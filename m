@@ -2,86 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF9E3634351
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 19:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA77363437F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 19:19:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234455AbiKVSJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 13:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54676 "EHLO
+        id S234113AbiKVSTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 13:19:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234465AbiKVSJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 13:09:15 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F2C7CB8D;
-        Tue, 22 Nov 2022 10:09:12 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id jn7so12569245plb.13;
-        Tue, 22 Nov 2022 10:09:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KRMhYB9UPO2WtEP0UfvsFBZ6e6YdwWgScP76/C9Yycs=;
-        b=M+5E7ETSufWPx+E2mZBDiYBpsWvhg9NS+0oud8xN7L+y/ywZzwWx/9Yk/wEeBqhXWv
-         7HrtF9k+BVmfh30B3TvMo3srXrtTKrKImB11ADbg1f6WsBv8/+LRwJRqE2Q2ZoycdkUM
-         yVYfNaFdBfvZtt0zDSu2yVoH73SydK6cyBkNUXm1Xvd8zNFMJAs2SwlqDJbo++OFjXNf
-         yJNhBwgY6ZC8S79K4yR70xw96ZczaPZj9p6nLble4XdItCPmSGZ/FyJbZVjHQ1/2TECb
-         4W2ozvOAxBJZkfCy7UCiNbT9O5FjRR1FKuS74TUBYfJMPe0ds2AH3L+N7xW4T2fSVNyO
-         J3Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KRMhYB9UPO2WtEP0UfvsFBZ6e6YdwWgScP76/C9Yycs=;
-        b=en4BCtfh+3sJ6myaPGF149TuHOgHhjfTKoBlzMNi2PZbmg9SZ/FNhU1MfYCdd+Zc2m
-         r2/Eac6v1ZDZiuomSzTcJqsPeEoggMuD1IriMbf6yp0G1MG56/Lto2NwP+xGX9D8qIZl
-         qSm68MFoVd435+aSKoEM7G/r01oQGY1/k04paipz6vimT0uE9Vb4c7PX2GZZbfbvXu1p
-         YNtP37vqLPxcsL4IVCzkEIuz8xn4feu4OszatT72reipjfygsKxsUsU0hmHe4EpYGd3F
-         GQ2CoIfwQoYpqa8h/DznGPu/AuqoWEeIUDs//eXRT2nW8G5vartb29kXaTksj6eJ6uOK
-         HKlQ==
-X-Gm-Message-State: ANoB5pkxT3A2rKcG5+jUfD1PIuWKb0Y3WfM0FiN7H6GvqvGJEay9WJOS
-        RQlj30LopA6yEZ2QIcgu5C8g3qhodzX4STnwC/g=
-X-Google-Smtp-Source: AA0mqf4AGbu14xUfrouQH/rCMsj54a7vqxbpp4i6D4+jiZZqOK8c52s9h5B66FphmMpWdVoYct8FUOYE5AJyW6IBqDc=
-X-Received: by 2002:a17:90a:4147:b0:214:2214:869e with SMTP id
- m7-20020a17090a414700b002142214869emr33794590pjg.76.1669140552412; Tue, 22
- Nov 2022 10:09:12 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1669013346.git.Sandor.yu@nxp.com> <be4532b834109595b0fbf3562bf072caf2852a01.1669013346.git.Sandor.yu@nxp.com>
-In-Reply-To: <be4532b834109595b0fbf3562bf072caf2852a01.1669013346.git.Sandor.yu@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 22 Nov 2022 15:08:54 -0300
-Message-ID: <CAOMZO5AwwyZofwQNRnamNiLcj74HayNgocKsKx9epNGm8O-8-A@mail.gmail.com>
-Subject: Re: [PATCH v4 01/10] drm: bridge: cadence: convert mailbox functions
- to macro functions
-To:     Sandor Yu <Sandor.yu@nxp.com>
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
+        with ESMTP id S232192AbiKVSTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 13:19:04 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6BA663D8;
+        Tue, 22 Nov 2022 10:19:02 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7893B1C000A;
+        Tue, 22 Nov 2022 18:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669141140;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZDNwluvtG1WetRunNnZnkNy7ktuJgRYjHUd4OHQgY8I=;
+        b=L36lKCSi1XfW5DlAarMBCS+HzTxpCvOXlID2bSnYrAmwyRimyeaYmihvCOs9AhjQjDRfrT
+        xGo8ELt/5NimK8Hy3Y5aVa/AOjQ7c31daMRTbwZBTjnOF6yTm1BE5tWt+Zhzm8cqiDqaNh
+        9kyBc7ciuO7UgoKlJxNkpuO1he/FzZaZBM4OLPRIuWjNsw1q41cY8ojU1BB5zBgDOjAnec
+        XLA5e26Q09Gs2WmNNZPE7P0YE1TlVZ9BQX8M0W9M9nIwN/Jke3nVIKfRW1jo5gdibCznoj
+        GS/nlnlt8ZMoBUTq54NT09RZBMdZ553XjybCwtNZs5kdbas0OOPr2cEnDam8Hg==
+Date:   Tue, 22 Nov 2022 19:18:59 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kishon@ti.com, vkoul@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, alexander.stein@ew.tq-group.com,
-        kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        a.zummo@towertech.it, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-rtc@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, festevam@gmail.com
+Subject: Re: [PATCH 3/4] rtc: bbnsm: Add the bbnsm rtc support
+Message-ID: <Y30Sk+ftJQ5XJQZF@mail.local>
+References: <20221121065144.3667658-1-ping.bai@nxp.com>
+ <20221121065144.3667658-4-ping.bai@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221121065144.3667658-4-ping.bai@nxp.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sandor,
+On 21/11/2022 14:51:43+0800, Jacky Bai wrote:
+> The BBNSM module includes a real time counter with alarm.
+> Add a RTC driver for this function.
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/rtc/Kconfig     |  12 +++
+>  drivers/rtc/Makefile    |   1 +
+>  drivers/rtc/rtc-bbnsm.c | 223 ++++++++++++++++++++++++++++++++++++++++
 
-On Mon, Nov 21, 2022 at 4:27 AM Sandor Yu <Sandor.yu@nxp.com> wrote:
->
-> Mailbox access functions could be share to other mhdp driver and
-> HDP-TX HDMI/DP PHY drivers, move those functions to head file
-> include/drm/bridge/cdns-mhdp-mailbox.h and convert them to
-> macro functions.
+I'd prefer that filename to include imx or mxc if this is only available
+on those SoCs.
 
-What is the reason for converting the functions to macro?
+> diff --git a/drivers/rtc/rtc-bbnsm.c b/drivers/rtc/rtc-bbnsm.c
+> new file mode 100644
+> index 000000000000..4157b238ed9a
+> --- /dev/null
+> +++ b/drivers/rtc/rtc-bbnsm.c
+> @@ -0,0 +1,223 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +//
+> +// Copyright 2022 NXP.
+> +
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_wakeirq.h>
+> +#include <linux/rtc.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+
+This list should be sorted alphabetically
+
+
+> +
+> +#define BBNSM_CTRL	0x8
+> +#define BBNSM_INT_EN	0x10
+> +#define BBNSM_EVENTS	0x14
+> +#define BBNSM_RTC_LS	0x40
+> +#define BBNSM_RTC_MS	0x44
+> +#define BBNSM_TA	0x50
+> +
+> +#define RTC_EN		0x2
+> +#define RTC_EN_MSK	0x3
+> +#define TA_EN		(0x2 << 2)
+> +#define TA_DIS		(0x1 << 2)
+> +#define TA_EN_MSK	(0x3 << 2)
+> +#define RTC_INT_EN	0x2
+> +#define TA_INT_EN	(0x2 << 2)
+> +
+> +#define BBNSM_EVENT_TA	TA_EN
+> +
+
+I'm not clear why this define is needed
+
+> +static irqreturn_t bbnsm_rtc_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct device *dev = dev_id;
+> +	struct bbnsm_rtc  *bbnsm = dev_get_drvdata(dev);
+> +	u32 val;
+> +	u32 event = 0;
+
+You can rework this function to remove this variable because it is
+either 0 or RTC_AF | RTC_IRQF
+
+> +
+> +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &val);
+> +	if (val & BBNSM_EVENT_TA) {
+> +		event |= (RTC_AF | RTC_IRQF);
+> +		bbnsm_rtc_alarm_irq_enable(dev, false);
+> +		/* clear the alarm event */
+> +		regmap_write_bits(bbnsm->regmap, BBNSM_EVENTS, TA_EN_MSK, BBNSM_EVENT_TA);
+> +		rtc_update_irq(bbnsm->rtc, 1, event);
+> +	}
+> +
+> +	return event ? IRQ_HANDLED : IRQ_NONE;
+> +}
+> +
+> +static int bbnsm_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct bbnsm_rtc *bbnsm;
+> +	int ret;
+> +
+> +	bbnsm = devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
+> +	if (!bbnsm)
+> +		return -ENOMEM;
+> +
+> +	bbnsm->rtc = devm_rtc_allocate_device(&pdev->dev);
+> +
+> +	bbnsm->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "regmap");
+> +	if (IS_ERR(bbnsm->regmap)) {
+> +		dev_err(&pdev->dev, "bbnsm get regmap failed\n");
+> +		return PTR_ERR(bbnsm->regmap);
+> +	}
+> +
+> +	bbnsm->irq = platform_get_irq(pdev, 0);
+> +	if (bbnsm->irq < 0)
+> +		return bbnsm->irq;
+> +
+> +	platform_set_drvdata(pdev, bbnsm);
+> +
+> +	/* clear all the pending events */
+> +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, 0x7A);
+> +
+> +	/* Enable the Real-Time counter */
+> +	regmap_update_bits(bbnsm->regmap, BBNSM_CTRL, RTC_EN_MSK, RTC_EN);
+> +
+
+Please don't do that, this removes an important piece of information.
+Instead, let .set_time enable it and check it in .read_time as if this
+is not set, you now you are out of PoR and the time is invalid
+
+> +	device_init_wakeup(&pdev->dev, true);
+> +	ret = dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "Failed to enable the irq wakeup\n");
+
+dev_err but the function is not failing. Maybe just dev_warn? Also, is
+this message really necessary?
+
+> +
+> +	ret = devm_request_irq(&pdev->dev, bbnsm->irq, bbnsm_rtc_irq_handler,
+> +			IRQF_SHARED, "rtc alarm", &pdev->dev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to request irq %d: %d\n",
+> +			bbnsm->irq, ret);
+> +		return ret;
+> +	}
+> +
+> +	bbnsm->rtc->ops = &bbnsm_rtc_ops;
+> +	bbnsm->rtc->range_max = U32_MAX;
+> +
+> +	return devm_rtc_register_device(bbnsm->rtc);
+> +}
+> +
+> +static const struct of_device_id bbnsm_dt_ids[] = {
+> +	{ .compatible = "nxp,bbnsm-rtc", },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, bbnsm_dt_ids);
+> +
+> +static struct platform_driver bbnsm_rtc_driver = {
+> +	.driver = {
+> +		.name = "bbnsm_rtc",
+> +		.of_match_table = bbnsm_dt_ids,
+> +	},
+> +	.probe = bbnsm_rtc_probe,
+> +};
+> +module_platform_driver(bbnsm_rtc_driver);
+> +
+> +MODULE_AUTHOR("Jacky Bai <ping.bai@nxp.com>");
+> +MODULE_DESCRIPTION("NXP BBNSM RTC Driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.37.1
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
