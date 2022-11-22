@@ -2,335 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 953076349CC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 23:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D468634A0B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 23:34:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234298AbiKVWHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 17:07:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50680 "EHLO
+        id S234320AbiKVWeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 17:34:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234400AbiKVWHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 17:07:34 -0500
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F409DAB;
-        Tue, 22 Nov 2022 14:07:30 -0800 (PST)
-Received: by mail-io1-f47.google.com with SMTP id n188so11980416iof.8;
-        Tue, 22 Nov 2022 14:07:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+9Nr6gPVOX/6LCyJBvLH9UJlV747BhwLKeGilJxI7hM=;
-        b=N4NJD2T4VN4ZSmNpR1G8QAQEE1Rp4cVHG85U6wUCFzH06m/MUvLT9mwWyQxqrBnF3C
-         zfRRtLaAxJSawXc2XMIRyu8QmqS2GOWzTEi5putq5jE1YQZWXR+yY1GseUUWT7ZfvKZB
-         aM2RXRiMXqoXgcEhwY/yy0+8g8NdmLDFzzbLKBt5xnvnYaOTPZWJIs0xLdAssmZwgAUA
-         8RgQl15f7tmZb0ZE6puRl/RxczsSj2xEHuqJAqtXeazWo07zc1CImCSdXTMshh+YAOko
-         GElzNjiXBSyPXZSh/B+IfXqtWCScp/5RRYWnsZRbWeX8JMHatVuwS4tG5Js8Mft4npFm
-         ggrQ==
-X-Gm-Message-State: ANoB5pnBrtdtiCZVbq/NCEQOdhn/CYQti1hUZGaJ+TkRN4lq+vlZAGu5
-        dZze1bzPagoExi+ISa7z0A==
-X-Google-Smtp-Source: AA0mqf4V6ppRkdKRqtlLw69vA65riP97JWiM8WcMjwXpElslevptzfWytkuNVAbmbvpQ/TcmgGNdEw==
-X-Received: by 2002:a02:6662:0:b0:363:69a0:837f with SMTP id l34-20020a026662000000b0036369a0837fmr4983635jaf.57.1669154849246;
-        Tue, 22 Nov 2022 14:07:29 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id w11-20020a056638024b00b0037609ad8485sm5775812jaq.69.2022.11.22.14.07.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 14:07:28 -0800 (PST)
-Received: (nullmailer pid 660771 invoked by uid 1000);
-        Tue, 22 Nov 2022 22:07:30 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: apple: Add t600x L1/L2 cache properties and nodes
-Date:   Tue, 22 Nov 2022 16:06:20 -0600
-Message-Id: <20221122220619.659174-1-robh@kernel.org>
+        with ESMTP id S232734AbiKVWeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 17:34:22 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568E2C67E1;
+        Tue, 22 Nov 2022 14:34:20 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oxbqJ-0004DQ-8F; Tue, 22 Nov 2022 23:34:15 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] Misc SOQuartz Enablement
+Date:   Tue, 22 Nov 2022 23:34:10 +0100
+Message-Id: <166915627085.1689466.13486151224430970136.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221116115337.541601-1-frattaroli.nicolas@gmail.com>
+References: <20221116115337.541601-1-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The t600x CPU nodes are missing the cache hierarchy information. The
-cache hierarchy on Arm can not be detected and needs to be described in
-DT. The OS scheduler can make use of this information for scheduling
-decisions.
+On Wed, 16 Nov 2022 12:53:33 +0100, Nicolas Frattaroli wrote:
+> This series adds the following:
+>  * SOQuartz Blade bindings (patch 1)
+>  * SOQuartz Blade device tree (patch 2)
+>  * SOQuartz Model A bindings (patch 3)
+>  * SOQuartz Model A device tree (patch 4)
+> 
+> The name of this patch series is a bit inaccurate as it has
+> evolved, now entirely consisting of new baseboards for the
+> SOQuartz. Nevertheless I chose to keep it as to make it easier
+> for maintainers to track what this is a follow-up to.
+> 
+> [...]
 
-The cache size information is based on various articles about the
-processors. There's also an L3 system level cache (SLC). It's not
-described here because SLCs typically have some MMIO interface which
-would need to be described.
+Applied, thanks!
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Based on apple dts changes in linux-next.
+[1/4] dt-bindings: arm: rockchip: Add SOQuartz Blade
+      commit: 8c84c2e51f3ee39b40e8078ebe3ad9c01fb17aff
+[2/4] arm64: dts: rockchip: Add SOQuartz blade board
+      commit: a5c826ecde5222f755e7d8a0c8d795189c5c1228
+[3/4] dt-bindings: arm: rockchip: Add SOQuartz Model A
+      commit: 7441d8c437883581dddfb616a087b399338244f0
+[4/4] arm64: dts: rockchip: rk3566: Add SOQuartz Model A baseboard
+      commit: afbaed737fb45bcae91e4606025fb31da71b9dfe
 
-This fixes the warning: Unable to detect cache hierarchy for CPU %d
----
- arch/arm64/boot/dts/apple/t6002.dtsi        | 51 +++++++++++++++++++++
- arch/arm64/boot/dts/apple/t600x-common.dtsi | 51 +++++++++++++++++++++
- 2 files changed, 102 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/apple/t6002.dtsi b/arch/arm64/boot/dts/apple/t6002.dtsi
-index 3b1677ba5262..731d61fbb05f 100644
---- a/arch/arm64/boot/dts/apple/t6002.dtsi
-+++ b/arch/arm64/boot/dts/apple/t6002.dtsi
-@@ -29,6 +29,9 @@ cpu_e10: cpu@800 {
- 			reg = <0x0 0x800>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_3>;
-+			i-cache-size = <0x20000>;
-+			d-cache-size = <0x10000>;
- 		};
- 
- 		cpu_e11: cpu@801 {
-@@ -37,6 +40,9 @@ cpu_e11: cpu@801 {
- 			reg = <0x0 0x801>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_3>;
-+			i-cache-size = <0x20000>;
-+			d-cache-size = <0x10000>;
- 		};
- 
- 		cpu_p20: cpu@10900 {
-@@ -45,6 +51,9 @@ cpu_p20: cpu@10900 {
- 			reg = <0x0 0x10900>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_4>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p21: cpu@10901 {
-@@ -53,6 +62,9 @@ cpu_p21: cpu@10901 {
- 			reg = <0x0 0x10901>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_4>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p22: cpu@10902 {
-@@ -61,6 +73,9 @@ cpu_p22: cpu@10902 {
- 			reg = <0x0 0x10902>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_4>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p23: cpu@10903 {
-@@ -69,6 +84,9 @@ cpu_p23: cpu@10903 {
- 			reg = <0x0 0x10903>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_4>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p30: cpu@10a00 {
-@@ -77,6 +95,9 @@ cpu_p30: cpu@10a00 {
- 			reg = <0x0 0x10a00>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_5>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p31: cpu@10a01 {
-@@ -85,6 +106,9 @@ cpu_p31: cpu@10a01 {
- 			reg = <0x0 0x10a01>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_5>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p32: cpu@10a02 {
-@@ -93,6 +117,9 @@ cpu_p32: cpu@10a02 {
- 			reg = <0x0 0x10a02>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_5>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p33: cpu@10a03 {
-@@ -101,6 +128,30 @@ cpu_p33: cpu@10a03 {
- 			reg = <0x0 0x10a03>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_5>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
-+		};
-+
-+		l2_cache_3: l2-cache-3 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x400000>;
-+		};
-+
-+		l2_cache_4: l2-cache-4 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0xc00000>;
-+		};
-+
-+		l2_cache_5: l2-cache-5 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0xc00000>;
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/apple/t600x-common.dtsi b/arch/arm64/boot/dts/apple/t600x-common.dtsi
-index f5fac1926a25..e2568d914719 100644
---- a/arch/arm64/boot/dts/apple/t600x-common.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-common.dtsi
-@@ -21,6 +21,9 @@ cpu_e00: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_0>;
-+			i-cache-size = <0x20000>;
-+			d-cache-size = <0x10000>;
- 		};
- 
- 		cpu_e01: cpu@1 {
-@@ -29,6 +32,9 @@ cpu_e01: cpu@1 {
- 			reg = <0x0 0x1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_0>;
-+			i-cache-size = <0x20000>;
-+			d-cache-size = <0x10000>;
- 		};
- 
- 		cpu_p00: cpu@10100 {
-@@ -37,6 +43,9 @@ cpu_p00: cpu@10100 {
- 			reg = <0x0 0x10100>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_1>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p01: cpu@10101 {
-@@ -45,6 +54,9 @@ cpu_p01: cpu@10101 {
- 			reg = <0x0 0x10101>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_1>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p02: cpu@10102 {
-@@ -53,6 +65,9 @@ cpu_p02: cpu@10102 {
- 			reg = <0x0 0x10102>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_1>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p03: cpu@10103 {
-@@ -61,6 +76,9 @@ cpu_p03: cpu@10103 {
- 			reg = <0x0 0x10103>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_1>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p10: cpu@10200 {
-@@ -69,6 +87,9 @@ cpu_p10: cpu@10200 {
- 			reg = <0x0 0x10200>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_2>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p11: cpu@10201 {
-@@ -77,6 +98,9 @@ cpu_p11: cpu@10201 {
- 			reg = <0x0 0x10201>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_2>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p12: cpu@10202 {
-@@ -85,6 +109,9 @@ cpu_p12: cpu@10202 {
- 			reg = <0x0 0x10202>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_2>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
- 		};
- 
- 		cpu_p13: cpu@10203 {
-@@ -93,6 +120,30 @@ cpu_p13: cpu@10203 {
- 			reg = <0x0 0x10203>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			next-level-cache = <&l2_cache_2>;
-+			i-cache-size = <0x30000>;
-+			d-cache-size = <0x20000>;
-+		};
-+
-+		l2_cache_0: l2-cache-0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x400000>;
-+		};
-+
-+		l2_cache_1: l2-cache-1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0xc00000>;
-+		};
-+
-+		l2_cache_2: l2-cache-2 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0xc00000>;
- 		};
- 	};
- 
+Best regards,
 -- 
-2.35.1
-
+Heiko Stuebner <heiko@sntech.de>
