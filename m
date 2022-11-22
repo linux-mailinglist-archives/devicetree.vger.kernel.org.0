@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31AE963353F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 07:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6799633553
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 07:31:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiKVG0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 01:26:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41236 "EHLO
+        id S231318AbiKVGbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 01:31:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiKVG0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 01:26:54 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE562DA90;
-        Mon, 21 Nov 2022 22:26:52 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AM6Qg7f067538;
-        Tue, 22 Nov 2022 00:26:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669098402;
-        bh=iLSR+lNftbG5WCxJ5fgNr1tJatDoqnEjEPjFnCbRN8A=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=LUcPfF3+4ebkLqm+kPeJl0f2rrBM5MKe0vlQoHzE8gzy1yBWr0PFwRvpx8ijgK+zC
-         GwUmB0MgBV7556J9hkUbf9NqMXK7Y0cUqUjwfQMS7aGKuFVtj/CcZVMSHP/QWvM63c
-         V/8dbQOGoJi0O9sw1Qx/ROvFd152WlLuhkQ+dEDs=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AM6Qgk6012936
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Nov 2022 00:26:42 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 22
- Nov 2022 00:26:42 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 22 Nov 2022 00:26:42 -0600
-Received: from [10.24.69.79] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AM6QdQk020414;
-        Tue, 22 Nov 2022 00:26:39 -0600
-Message-ID: <9e1ab6e2-6b58-7b0f-fd74-2a6d785f2551@ti.com>
-Date:   Tue, 22 Nov 2022 11:56:38 +0530
+        with ESMTP id S229468AbiKVGbQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 01:31:16 -0500
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D5719C2F
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 22:31:15 -0800 (PST)
+Received: by mail-il1-x131.google.com with SMTP id z15so6687426ilp.4
+        for <devicetree@vger.kernel.org>; Mon, 21 Nov 2022 22:31:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bsoeB67PBLcHTOuWNBTA4LGNQI5Jn+cJhPvAir+OmEw=;
+        b=U00nL9m5+4ShcBT4yLfRgGxGIWuIzIpJyjXt0Av0vNIE41g4Owxh638Oot6EIJ5bsn
+         OCTX1rK45GHf0By//aOqiV7NNNcan9ryevUfQpFZ0A78exLjdD3DIWHbimX+cUY+o92t
+         HV/FIvIp2aVsHZBXXK38FgeE6Au4MUR/Jxkgv1AMeOzcd0gVbdc1QRHlX+AEEwbkYxG+
+         RPhm2ov0vTmYKClTrl+w0iMvybeI3eWdC3JZjWTS1PpArVDrYaORTj2EIoryg+RJvK3S
+         9d1JmFtAJQcQ0CGvKtKXfyg7AzpveoJWXpJRym2BBoh6jRMOipQ9SHsAuuRaPCYEtBoo
+         Zd3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bsoeB67PBLcHTOuWNBTA4LGNQI5Jn+cJhPvAir+OmEw=;
+        b=p74gwOAR16MaYaZChKXQBwOUtnsMECGcoukVOCUsPDOR7X5IPb7gLl5PeFqVeEzbzB
+         7cg5YNc4TDKzzl7QkS6ENKqLFmyPys96Makb6l+8UHXSwk/gm+TGwsj+qdNhUcD+HQYb
+         FOg1zheW1h6r1/S/hbu/FVnEXxOsSRdzuSY98l5aGe28FAgFtHFHQJ7fNNl9UurMC1SG
+         aZ+aUjo0c/YaPvViuz+i047RJVV2BhoLdKLhZ/tFMfUiUTJORbkPdX364/fY7Kemaf1c
+         8RUAXPNndYk6DxSkNxFvc27khRSXF0urQdXVWIQ7Rapzn3vQSDOIqJd8B5SUVC7L0E81
+         3D1w==
+X-Gm-Message-State: ANoB5pmxD2mbUUvatomj7oxqRSizLaRfjpsoB4EsMEyFOxtjCpuk8QSz
+        R+PBVWSTHpgV7guCHDKWhhdeyFzV90m5gw==
+X-Google-Smtp-Source: AA0mqf4BH2zJxrJnDxhXdD+nkIPYNkSefv41ATJty2dfABsEdPyUE1jvfNuAqei/UW8oEJPakfSUGQ==
+X-Received: by 2002:a05:6e02:dca:b0:300:d3b4:389 with SMTP id l10-20020a056e020dca00b00300d3b40389mr1234017ilj.114.1669098674846;
+        Mon, 21 Nov 2022 22:31:14 -0800 (PST)
+Received: from localhost.localdomain ([2a01:4f9:c010:5d73::1])
+        by smtp.gmail.com with ESMTPSA id j1-20020a5e9e41000000b0068a235db030sm5050947ioq.27.2022.11.21.22.31.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Nov 2022 22:31:14 -0800 (PST)
+From:   Enrico Mioso <mrkiko.rs@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Enrico Mioso <mrkiko.rs@gmail.com>, Pali <pali@pali.im>
+Subject: [PATCH] arm64: dts: marvell: add DTS for GL.iNet GL-MV1000
+Date:   Tue, 22 Nov 2022 07:30:17 +0100
+Message-Id: <20221122063017.924-1-mrkiko.rs@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v6 2/8] arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ
- device tree node
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221119040906.9495-1-mranostay@ti.com>
- <20221119040906.9495-3-mranostay@ti.com>
-Content-Language: en-US
-From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
-In-Reply-To: <20221119040906.9495-3-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,LOTS_OF_MONEY,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,101 +67,283 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The GL-MV1000 (Brume) is a small form-factor gateway router.
+It is based on the Marvell Armada 88F3720 SOC (1GHz), has 3 gigabit ethernet ports, 1 GB RAM, 16M SPI flash, 8GB eMMC and an uSD slot, as well as an USB 2.0 type A and an USB 3.0 type C port.
 
+Signed-off-by: Enrico Mioso <mrkiko.rs@gmail.com>
+CC: Pali <pali@pali.im>
+---
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../dts/marvell/armada-3720-gl-mv1000.dts     | 248 ++++++++++++++++++
+ 2 files changed, 249 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
 
-On 19/11/22 9:39 am, Matt Ranostay wrote:
-> Add dt node for the single instance of WIZ (SERDES wrapper) and
-> SERDES module shared by PCIe, eDP and USB.
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 54 ++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index b4869bff4f22..adbb172658b9 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -5,6 +5,17 @@
->   * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  
-> +#include <dt-bindings/phy/phy-cadence.h>
-> +#include <dt-bindings/phy/phy-ti.h>
-> +
-> +/ {
-> +	serdes_refclk: clock-cmnrefclk {
-> +		#clock-cells = <0>;
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <0>;
-> +	};
-> +};
-> +
->  &cbass_main {
->  	msmc_ram: sram@70000000 {
->  		compatible = "mmio-sram";
-> @@ -38,6 +49,13 @@ usb_serdes_mux: mux-controller-0 {
->  			#mux-control-cells = <1>;
->  			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
->  		};
-> +
-> +		serdes_ln_ctrl: mux-controller-80 {
-> +			compatible = "mmio-mux";
-> +			#mux-control-cells = <1>;
-> +			mux-reg-masks = <0x80 0x3>, <0x84 0x3>, /* SERDES0 lane0/1 select */
-> +					<0x88 0x3>, <0x8c 0x3>; /* SERDES0 lane2/3 select */
-> +		};
->  	};
->  
->  	gic500: interrupt-controller@1800000 {
-> @@ -787,6 +805,42 @@ usb0: usb@6000000 {
->  		};
->  	};
->  
-> +	serdes_wiz0: wiz@5060000 {
-> +		compatible = "ti,am64-wiz-10g";
-
-Using compatible "ti,am64-wiz-10g" may cause issues as the wiz_data->type plays a role in serdes configuration
-Please relook into this
-
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 365 0>, <&k3_clks 365 3>, <&serdes_refclk>;
-> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-> +		num-lanes = <4>;
-> +		#reset-cells = <1>;
-> +		#clock-cells = <1>;
-> +		ranges = <0x5060000 0x0 0x5060000 0x10000>;
-> +
-> +		assigned-clocks = <&k3_clks 365 3>;
-> +		assigned-clock-parents = <&k3_clks 365 7>;
-> +
-> +		serdes0: serdes@5060000 {
-> +			compatible = "ti,j721e-serdes-10g";
-> +			reg = <0x05060000 0x00010000>;
-> +			reg-names = "torrent_phy";
-> +			resets = <&serdes_wiz0 0>;
-> +			reset-names = "torrent_reset";
-> +			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-> +				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
-> +			clock-names = "refclk", "phy_en_refclk";
-> +			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
-> +					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
-> +					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
-> +			assigned-clock-parents = <&k3_clks 365 3>,
-> +						 <&k3_clks 365 3>,
-> +						 <&k3_clks 365 3>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#clock-cells = <1>;
-> +		};
-> +	};
-> +
->  	main_mcan0: can@2701000 {
->  		compatible = "bosch,m_can";
->  		reg = <0x00 0x02701000 0x00 0x200>,
-
+diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+index 058237681fe5..79ac09b58a89 100644
+--- a/arch/arm64/boot/dts/marvell/Makefile
++++ b/arch/arm64/boot/dts/marvell/Makefile
+@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
++dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-gl-mv1000.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-uDPU.dtb
+ dtb-$(CONFIG_ARCH_MVEBU) += armada-7040-db.dtb
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+new file mode 100644
+index 000000000000..72d7267ccd08
+--- /dev/null
++++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+@@ -0,0 +1,248 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++
++/dts-v1/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include "armada-372x.dtsi"
++
++/ {
++	model = "GL.iNet GL-MV1000";
++	compatible = "glinet,gl-mv1000", "marvell,armada3720";
++
++	aliases {
++		led-boot = &led_power;
++		led-failsafe = &led_power;
++		led-running = &led_power;
++		led-upgrade = &led_power;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x00000000 0x00000000 0x00000000 0x20000000>;
++	};
++
++	vcc_sd_reg1: regulator {
++		compatible = "regulator-gpio";
++		regulator-name = "vcc_sd1";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++
++		gpios-states = <0>;
++		states = <1800000 0x1
++			3300000 0x0>;
++		enable-active-high;
++	};
++
++	keys {
++		compatible = "gpio-keys";
++
++		reset {
++			label = "reset";
++			linux,code = <KEY_RESTART>;
++			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
++		};
++
++		switch {
++			label = "switch";
++			linux,code = <BTN_0>;
++			gpios = <&gpiosb 22 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		vpn {
++			label = "green:vpn";
++			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
++		};
++
++		wan {
++			label = "green:wan";
++			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
++		};
++
++		led_power: power {
++			label = "green:power";
++			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
++			default-state = "on";
++		};
++	};
++};
++
++&spi0 {
++	status = "okay";
++
++	flash@0 {
++		reg = <0>;
++		compatible = "jedec,spi-nor";
++		spi-max-frequency = <104000000>;
++		m25p,fast-read;
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "u-boot";
++				reg = <0 0xf0000>;
++				read-only;
++			};
++
++			partition@f0000 {
++				label = "u-boot-env";
++				reg = <0xf0000 0x8000>;
++				read-only;
++			};
++
++			factory: partition@f8000 {
++				label = "factory";
++				reg = <0xf8000 0x8000>;
++				read-only;
++			};
++
++			partition@100000 {
++				label = "gl-firmware-dtb";
++				reg = <0x100000 0x10000>;
++				read-only;
++			};
++
++			partition@110000 {
++				label = "gl-firmware";
++				reg = <0x110000 0xef0000>;
++				read-only;
++			};
++
++			partition@ef0000 {
++				label = "gl-firmware-jffs2";
++				reg = <0xef0000 0x110000>;
++				read-only;
++			};
++		};
++	};
++};
++
++&sdhci1 {
++	wp-inverted;
++	bus-width = <4>;
++	cd-gpios = <&gpionb 17 GPIO_ACTIVE_LOW>;
++	marvell,pad-type = "sd";
++	no-1-8-v;
++	vqmmc-supply = <&vcc_sd_reg1>;
++	status = "okay";
++};
++
++&sdhci0 {
++	bus-width = <8>;
++	mmc-ddr-1_8v;
++	mmc-hs400-1_8v;
++	non-removable;
++	no-sd;
++	no-sdio;
++	marvell,pad-type = "fixed-1-8v";
++	status = "okay";
++};
++
++&usb3 {
++	status = "okay";
++};
++
++&usb2 {
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&mdio {
++	switch0: switch0@1 {
++		compatible = "marvell,mv88e6085";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <1>;
++
++		dsa,member = <0 0>;
++
++		ports: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				label = "cpu";
++				ethernet = <&eth0>;
++			};
++
++			port@1 {
++				reg = <1>;
++				label = "wan";
++				phy-handle = <&switch0phy0>;
++			};
++
++			port@2 {
++				reg = <2>;
++				label = "lan0";
++				phy-handle = <&switch0phy1>;
++
++				nvmem-cells = <&macaddr_factory_6>;
++				nvmem-cell-names = "mac-address";
++			};
++
++			port@3 {
++				reg = <3>;
++				label = "lan1";
++				phy-handle = <&switch0phy2>;
++
++				nvmem-cells = <&macaddr_factory_6>;
++				nvmem-cell-names = "mac-address";
++			};
++		};
++
++		mdio {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			switch0phy0: switch0phy0@11 {
++				reg = <0x11>;
++			};
++			switch0phy1: switch0phy1@12 {
++				reg = <0x12>;
++			};
++			switch0phy2: switch0phy2@13 {
++				reg = <0x13>;
++			};
++		};
++	};
++};
++
++&eth0 {
++	nvmem-cells = <&macaddr_factory_0>;
++	nvmem-cell-names = "mac-address";
++	phy-mode = "rgmii-id";
++	status = "okay";
++
++	fixed-link {
++		speed = <1000>;
++		full-duplex;
++	};
++};
++
++&factory {
++	compatible = "nvmem-cells";
++	#address-cells = <1>;
++	#size-cells = <1>;
++
++	macaddr_factory_0: macaddr@0 {
++		reg = <0x0 0x6>;
++	};
++
++	macaddr_factory_6: macaddr@6 {
++		reg = <0x6 0x6>;
++	};
++};
 -- 
-Regards,
-Ravi
+2.38.1
+
