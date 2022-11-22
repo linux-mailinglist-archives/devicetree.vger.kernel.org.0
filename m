@@ -2,116 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C37633FC4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1865633FD0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:06:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232370AbiKVPEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 10:04:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
+        id S233845AbiKVPGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 10:06:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233217AbiKVPEn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:04:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021A365F6;
-        Tue, 22 Nov 2022 07:04:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A293FB81AF2;
-        Tue, 22 Nov 2022 15:04:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41550C433C1;
-        Tue, 22 Nov 2022 15:04:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669129479;
-        bh=P9fA7ZwQiyLuOSFN0uBsRJicIpWm5a1d+ko8TW2gN8Y=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=HDQdFxxyOEjTZRPW3tZdRQQAYijhdaM7D0xV4PtCL0x+8eTD7VBCxwTxnsrhBujYZ
-         P0C0UIzBYUjE3wnGmLHZOZAgbM/MtG6L13XRhqtUDgQITVRwkb0f+MK7I4tJS79cCd
-         ZYWF+2ROiGDJwzLrR89zbq+ayiFZoYJqWLBxwgMED8gJME13I4wa02ekb4MVtxYeHr
-         jriPHtW8fHvJ7SZjwVsKiazwBpibVf8zg7vEsbkDCNHDIQb3Is+o0Ijtv8kajNhi+F
-         //C+Z9zzji3DOZymzFuEgjvdEqX67jrfXIaD3z1vAiRx6JyYxnkSLsf/GymIvujVId
-         WrUiVUCTSllDw==
-Date:   Tue, 22 Nov 2022 09:04:37 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, krzk+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v7 7/9] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
-Message-ID: <20221122150437.GA187129@bhelgaas>
+        with ESMTP id S232656AbiKVPGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:06:07 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CE4CE10
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:06:06 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id y13so14611279pfp.7
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:06:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KFm/hQzp85f9PkuPkdfd/PZMWkQMCDrrQWUl2fEW03w=;
+        b=LNABZeRJscon/VHkVveJ+lRDsjpGyOiP9IOwSqUmzdQKKCR9YcvxcJDwYKXoQ31puT
+         1HqnkQrRZ/k+3TSJjAgBQ+Kr38QRdX+vbD6LLNCI4Rm1RvfZc5Z5vyUACqBpPu6rIRLx
+         t1GdVd7Fk8spxfx32ehpulaunieqgpV/uNMX7QABg6IveP4V2P3HH3odTGTN9wqWK6VZ
+         A4hS2GeaolVs6tDiYvsBXUu7E2cey22hii5xm78bilr9FXr7EO8qryDnZYSSc35X1Z9Y
+         8PQchihQYpWbWxOsbrC6xgoiwPI0pxmnMZSkMshttOyJ7AVkTteMKSdJBxceEsC4VpbH
+         ToWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KFm/hQzp85f9PkuPkdfd/PZMWkQMCDrrQWUl2fEW03w=;
+        b=lWYba0kQ/b41I/2XvPkz7xDmZGRUDxEqp5MahY99i97WgwUXZLAQi3+whuislPodaR
+         zSAkCsGiPfkJPA8lNQPrjNkFUPgMr9Pg2y+kOvuKrMtIFAjHxbdIcS7salw+kShhmqKa
+         IeSAP7G1FOVTsQApkNLGDl0S1X2qTbR63M+XaiKRdASS5TEEyEPJPCjUO1a08BVm2IHR
+         wMjBpva3IMzwgyjtinomoojODwH7gWNekVDxuz43/1KxWbslQtEfrVNLn3OwIxfWVAQd
+         fa51F3YIqyeKfK1M4+pQTtyYR7MEi+z07c2708B9IQhRtbF6kPzZoyF+UwaS5Deqhjos
+         dgnA==
+X-Gm-Message-State: ANoB5pn+e/3BPL+eZkwx2+UnBcocT36MGvtjD0lIijbCwzz+tJpNaI14
+        jJPxKioTsSIxc5HGWuzYWCUP
+X-Google-Smtp-Source: AA0mqf5GjmHRR2cgKROAhBGQlpp08yLh0IhPhYqC84bGzFy5Jw1en3ayBeCra6H6haMqnZOZo68kzg==
+X-Received: by 2002:a63:e44:0:b0:475:2f61:bbc3 with SMTP id 4-20020a630e44000000b004752f61bbc3mr5548600pgo.435.1669129565476;
+        Tue, 22 Nov 2022 07:06:05 -0800 (PST)
+Received: from thinkpad ([59.92.98.84])
+        by smtp.gmail.com with ESMTPSA id b15-20020a1709027e0f00b001869394a372sm12022018plm.201.2022.11.22.07.05.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Nov 2022 07:06:04 -0800 (PST)
+Date:   Tue, 22 Nov 2022 20:35:55 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        "James E . J . Bottomley" <jejb@linux.ibm.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH 1/2] ufs: host: ufs-qcom: Clear qunipro_g4_sel for HW
+ version major 5
+Message-ID: <20221122150555.GE157542@thinkpad>
+References: <20221116121732.2731448-1-abel.vesa@linaro.org>
+ <20221116121732.2731448-2-abel.vesa@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221121124400.1282768-8-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221116121732.2731448-2-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 09:43:58PM +0900, Yoshihiro Shimoda wrote:
-> Add R-Car Gen4 PCIe Host support. This controller is based on
-> Synopsys DesignWare PCIe.
+On Wed, Nov 16, 2022 at 02:17:31PM +0200, Abel Vesa wrote:
+> On SM8550, depending on the Qunipro, we can run with G5 or G4.
+> For now, when the major version is 5 or above, we go with G5.
+> Therefore, we need to specifically tell UFS HC that.
 > 
-> This controller doesn't support MSI-X interrupt. So, introduce
-> no_msix flag in struct dw_pcie_host_ops to clear MSI_FLAG_PCI_MSIX
-> from dw_pcie_msi_domain_info.
-
-> +	/* Enable L1 Substates */
-> +	val = dw_pcie_readl_dbi(dw, L1PSCAP(PCI_L1SS_CTL1));
-> +	val &= ~PCI_L1SS_CTL1_L1SS_MASK;
-> +	val |= PCI_L1SS_CTL1_PCIPM_L1_2 | PCI_L1SS_CTL1_PCIPM_L1_1 |
-> +	       PCI_L1SS_CTL1_ASPM_L1_2 | PCI_L1SS_CTL1_ASPM_L1_1;
-> +	dw_pcie_writel_dbi(dw, L1PSCAP(PCI_L1SS_CTL1), val);
-
-This seems like something that ought to be done by the PCI core in
-pcie/aspm.c.  L1.2 also depends on LTR being supported and configured.
-
-If it needs to be enabled here, can you expand the comment to say why
-and how LTR is being configured?
-
-> +	rcar_gen4_pcie_disable_bar(dw, BAR0MASKF);
-> +	rcar_gen4_pcie_disable_bar(dw, BAR1MASKF);
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/ufs/host/ufs-qcom.c | 4 ++++
+>  drivers/ufs/host/ufs-qcom.h | 2 ++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> index ca60a5b0292b..72334aefe81c 100644
+> --- a/drivers/ufs/host/ufs-qcom.c
+> +++ b/drivers/ufs/host/ufs-qcom.c
+> @@ -227,6 +227,10 @@ static void ufs_qcom_select_unipro_mode(struct ufs_qcom_host *host)
+>  	ufshcd_rmwl(host->hba, QUNIPRO_SEL,
+>  		   ufs_qcom_cap_qunipro(host) ? QUNIPRO_SEL : 0,
+>  		   REG_UFS_CFG1);
 > +
-> +	/* Set Root Control */
-> +	val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_RTCTL));
-> +	val |= PCI_EXP_RTCTL_SECEE | PCI_EXP_RTCTL_SENFEE |
-> +	       PCI_EXP_RTCTL_SEFEE | PCI_EXP_RTCTL_PMEIE |
-> +	       PCI_EXP_RTCTL_CRSSVE;
-> +	dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_RTCTL), val);
+> +	if (host->hw_ver.major == 0x05)
+> +		ufshcd_rmwl(host->hba, QUNIPRO_G4_SEL, 0, REG_UFS_CFG0);
+
+So this means, G5 will be used all the time even if the UFS device doesn't
+support it (ie., G4 device), which is not ideal.
+
+Since you have already based this series on my UFS gear 4 series, you should
+resend this on top of my next version that I'm about to submit. There I have
+proposed reinitializing the UFS device after switching to max gear supported by
+both controller and device.
+
+Based on that information, you could do:
+
+```
+	if (host->hw_ver.major == 0x05) {
+		if (host->hs_hear == UFS_HS_G5)
+			ufshcd_rmwl(host->hba, QUNIPRO_G4_SEL, 0, REG_UFS_CFG0);
+		else
+			ufshcd_rmwl(host->hba, QUNIPRO_G4_SEL, 1, REG_UFS_CFG0);
+	}
+```
+
+By this way, if the device doesn't support G5, G4 will be used.
+
+Btw, please use a valid definition instead of 0/1 above.
+
 > +
-> +	/* Set Interrupt Disable, SERR# Enable, Parity Error Response */
-> +	val = dw_pcie_readl_dbi(dw, PCI_COMMAND);
-> +	val |= PCI_COMMAND_PARITY | PCI_COMMAND_SERR |
-> +	       PCI_COMMAND_INTX_DISABLE;
-> +	dw_pcie_writel_dbi(dw, PCI_COMMAND, val);
-> +
-> +	/* Enable SERR */
-> +	val = dw_pcie_readb_dbi(dw, PCI_BRIDGE_CONTROL);
-> +	val |= PCI_BRIDGE_CTL_SERR;
-> +	dw_pcie_writeb_dbi(dw, PCI_BRIDGE_CONTROL, val);
-> +
-> +	/* Device control */
-> +	val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_DEVCTL));
-> +	val |= PCI_EXP_DEVCTL_CERE | PCI_EXP_DEVCTL_NFERE |
-> +	       PCI_EXP_DEVCTL_FERE | PCI_EXP_DEVCTL_URRE;
-> +	dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_DEVCTL), val);
+>  	/* make sure above configuration is applied before we return */
+>  	mb();
+>  }
+> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
+> index 751ded3e3531..10621055bf7f 100644
+> --- a/drivers/ufs/host/ufs-qcom.h
+> +++ b/drivers/ufs/host/ufs-qcom.h
+> @@ -36,6 +36,7 @@ enum {
+>  	/* On older UFS revisions, this register is called "RETRY_TIMER_REG" */
+>  	REG_UFS_PARAM0                      = 0xD0,
+>  	REG_UFS_PA_LINK_STARTUP_TIMER       = 0xD8,
+> +	REG_UFS_CFG0                        = 0xD8,
 
-The above also looks like things that should be configured by the PCI
-core.
+Hmm, so what is the offset of REG_UFS_PA_LINK_STARTUP_TIMER?
 
-> +		dev_err(&pdev->dev, "Failed to initialize host\n");
-> +		dev_err(dev, "failed to request resource: %d\n", err);
+>  	REG_UFS_CFG1                        = 0xDC,
+>  	REG_UFS_CFG2                        = 0xE0,
+>  	REG_UFS_HW_VERSION                  = 0xE4,
+> @@ -75,6 +76,7 @@ enum {
+>  
+>  /* bit definitions for REG_UFS_CFG1 register */
+>  #define QUNIPRO_SEL		BIT(0)
+> +#define QUNIPRO_G4_SEL		BIT(5)
 
-Pick a capitalization style.
+Since this bit belongs to CFG0 register, it should be added separately and not
+with CFG1 definitions.
 
-> +		dev_err(dev, "%s: failed to resume/get Runtime PM\n", __func__);
+Thanks,
+Mani
 
-The driver name + device ID + message text printed by dev_err() should
-be enough that __func__ isn't needed.
+>  #define UFS_PHY_SOFT_RESET	BIT(1)
+>  #define UTP_DBG_RAMS_EN		BIT(17)
+>  #define TEST_BUS_EN		BIT(18)
+> -- 
+> 2.34.1
+> 
 
-Bjorn
+-- 
+மணிவண்ணன் சதாசிவம்
