@@ -2,79 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E5F5633FA6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 15:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C37633FC4
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233460AbiKVO7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 09:59:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47070 "EHLO
+        id S232370AbiKVPEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 10:04:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232665AbiKVO7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 09:59:11 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5215D68D
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 06:57:55 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id f13so2415714lfa.6
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 06:57:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s2G5LSHSLWos4o64Yy/qVYvKcmpoCK7vfBEppoqpTno=;
-        b=WSLYBc0Uhv5x1y70Wc+bcOK72gnLzXzGWQYLYwhzeFfVUxnqmBgppJfNxGkIelPiAW
-         LZPC/pGtl9q/SoMerW8kXEovLqXNg5McJqQ0aUbzVkr1C1EvIjAL85gxftgLhhP/62p9
-         uuqoT5BZXytkcYu2r+gqrEtNZyL9Z7ZYrLmeSUcemP+zZTYufOPnXuYyet3o9SsaYV4k
-         3UdXXVOKIHAZeIL7zzEHOmX0YbiaqQFHCGwce8C9KiwKABc0VwiIVwhwq6NNghWpr61h
-         PCOtSnOvdPpU11BH4jeGC8AlbxBn5d++AmtiYIb5XM2BwkctnPbkktaf1Ber7r1w9UUs
-         12Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s2G5LSHSLWos4o64Yy/qVYvKcmpoCK7vfBEppoqpTno=;
-        b=hITYrxKB76WiBzsoyJfOQ7lFgAnOjtsGZJ9v8N/pqA7qtM70UXuw8S30vO+9lQEgqE
-         KetN3dPlGxORjwaDXInAhhHH7ejoeQlaByjWsfkmXMJ+ZZU1khAzGkGtwnQTXoQDGX3d
-         Ndo8IreW9ZiikGYqRIsvGCnrT3ccW7AFVgddhho1ee7kxPzQ3I4IBAmqTKeWBvqRfmXR
-         dVMqA8fk44VGHHLk/5oIr1v9rEful+vBr6ZgpBQBkHDuh2+3LHEdJ8q3qo6w1is76Eyr
-         OgWa7SAakX4bsXLj0l65nQQOkNeBWN7VYYNtpFdtV63I4MRyP1YvYFvYVji+2mO4+VF2
-         5r1w==
-X-Gm-Message-State: ANoB5pnAHmuM0OlpNurA9lB6EdyAMJVG8NOj6cWwy82EP5pZgEJOCwDX
-        xPIn4M8aoPU0vU5BzylwY1Dy9w==
-X-Google-Smtp-Source: AA0mqf5cRagWe1+0LJQH1W1DbZlV4g9CgozLMEPngBqOIdOvmMJI2ZuBIUUC8xX163GPXmUsWlvZ8w==
-X-Received: by 2002:a19:6d0b:0:b0:4a2:489d:490f with SMTP id i11-20020a196d0b000000b004a2489d490fmr8335514lfc.196.1669129074184;
-        Tue, 22 Nov 2022 06:57:54 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id d18-20020a2e8912000000b002770eafaafbsm1949415lji.99.2022.11.22.06.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 06:57:53 -0800 (PST)
-Message-ID: <844a3ebf-d7f9-a745-3444-03c1be68e239@linaro.org>
-Date:   Tue, 22 Nov 2022 15:57:52 +0100
+        with ESMTP id S233217AbiKVPEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:04:43 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021A365F6;
+        Tue, 22 Nov 2022 07:04:42 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A293FB81AF2;
+        Tue, 22 Nov 2022 15:04:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41550C433C1;
+        Tue, 22 Nov 2022 15:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669129479;
+        bh=P9fA7ZwQiyLuOSFN0uBsRJicIpWm5a1d+ko8TW2gN8Y=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=HDQdFxxyOEjTZRPW3tZdRQQAYijhdaM7D0xV4PtCL0x+8eTD7VBCxwTxnsrhBujYZ
+         P0C0UIzBYUjE3wnGmLHZOZAgbM/MtG6L13XRhqtUDgQITVRwkb0f+MK7I4tJS79cCd
+         ZYWF+2ROiGDJwzLrR89zbq+ayiFZoYJqWLBxwgMED8gJME13I4wa02ekb4MVtxYeHr
+         jriPHtW8fHvJ7SZjwVsKiazwBpibVf8zg7vEsbkDCNHDIQb3Is+o0Ijtv8kajNhi+F
+         //C+Z9zzji3DOZymzFuEgjvdEqX67jrfXIaD3z1vAiRx6JyYxnkSLsf/GymIvujVId
+         WrUiVUCTSllDw==
+Date:   Tue, 22 Nov 2022 09:04:37 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, krzk+dt@kernel.org,
+        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 7/9] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+Message-ID: <20221122150437.GA187129@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [RESEND PATCH v5 4/4] dts: arm64: qcom: msm8916-acer-a1-724: Add
- touchscreen
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20221122132816.257717-1-linmengbo0689@protonmail.com>
- <20221122133141.258357-1-linmengbo0689@protonmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221122133141.258357-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221121124400.1282768-8-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,78 +53,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22.11.2022 14:32, Lin, Meng-Bo wrote:
-> A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
-> Add it to the device tree.
+On Mon, Nov 21, 2022 at 09:43:58PM +0900, Yoshihiro Shimoda wrote:
+> Add R-Car Gen4 PCIe Host support. This controller is based on
+> Synopsys DesignWare PCIe.
 > 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
-Your commit message is wrong. It should be arm64: dts:.. and not dts: arm64:...
->  .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-> index bea0d022dd9a..5b216107f69b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-> @@ -81,6 +81,30 @@ magnetometer@12 {
->  	};
->  };
->  
-> +&blsp_i2c5 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		/* Actually ft5446 */
-> +		compatible = "edt,edt-ft5406";
-> +		reg = <0x38>;
-> +
-> +		interrupt-parent = <&msmgpio>;
-> +		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		reset-gpios = <&msmgpio 12 GPIO_ACTIVE_LOW>;
-> +
-> +		vcc-supply = <&pm8916_l16>;
-> +		iovcc-supply = <&pm8916_l6>;
-> +
-> +		touchscreen-size-x = <720>;
-> +		touchscreen-size-y = <1280>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_default>;
-> +	};
-> +};
-> +
->  &blsp1_uart2 {
->  	status = "okay";
->  };
-> @@ -245,6 +269,24 @@ gpio_keys_default: gpio-keys-default-state {
->  		bias-pull-up;
->  	};
->  
-> +	touchscreen_default: touchscreen-default-state {
-> +		reset-pins {
-> +			pins = "gpio12";
-> +			function = "gpio";
-Redundant new line, here and in the next subnode.
+> This controller doesn't support MSI-X interrupt. So, introduce
+> no_msix flag in struct dw_pcie_host_ops to clear MSI_FLAG_PCI_MSIX
+> from dw_pcie_msi_domain_info.
 
-Konrad
+> +	/* Enable L1 Substates */
+> +	val = dw_pcie_readl_dbi(dw, L1PSCAP(PCI_L1SS_CTL1));
+> +	val &= ~PCI_L1SS_CTL1_L1SS_MASK;
+> +	val |= PCI_L1SS_CTL1_PCIPM_L1_2 | PCI_L1SS_CTL1_PCIPM_L1_1 |
+> +	       PCI_L1SS_CTL1_ASPM_L1_2 | PCI_L1SS_CTL1_ASPM_L1_1;
+> +	dw_pcie_writel_dbi(dw, L1PSCAP(PCI_L1SS_CTL1), val);
+
+This seems like something that ought to be done by the PCI core in
+pcie/aspm.c.  L1.2 also depends on LTR being supported and configured.
+
+If it needs to be enabled here, can you expand the comment to say why
+and how LTR is being configured?
+
+> +	rcar_gen4_pcie_disable_bar(dw, BAR0MASKF);
+> +	rcar_gen4_pcie_disable_bar(dw, BAR1MASKF);
 > +
-> +			drive-strength = <2>;
-> +			bias-disable;
-> +		};
+> +	/* Set Root Control */
+> +	val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_RTCTL));
+> +	val |= PCI_EXP_RTCTL_SECEE | PCI_EXP_RTCTL_SENFEE |
+> +	       PCI_EXP_RTCTL_SEFEE | PCI_EXP_RTCTL_PMEIE |
+> +	       PCI_EXP_RTCTL_CRSSVE;
+> +	dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_RTCTL), val);
 > +
-> +		touchscreen-pins {
-> +			pins = "gpio13";
-> +			function = "gpio";
+> +	/* Set Interrupt Disable, SERR# Enable, Parity Error Response */
+> +	val = dw_pcie_readl_dbi(dw, PCI_COMMAND);
+> +	val |= PCI_COMMAND_PARITY | PCI_COMMAND_SERR |
+> +	       PCI_COMMAND_INTX_DISABLE;
+> +	dw_pcie_writel_dbi(dw, PCI_COMMAND, val);
 > +
-> +			drive-strength = <2>;
-> +			bias-pull-up;
-> +		};
-> +	};
+> +	/* Enable SERR */
+> +	val = dw_pcie_readb_dbi(dw, PCI_BRIDGE_CONTROL);
+> +	val |= PCI_BRIDGE_CTL_SERR;
+> +	dw_pcie_writeb_dbi(dw, PCI_BRIDGE_CONTROL, val);
 > +
->  	usb_id_default: usb-id-default-state {
->  		pins = "gpio110";
->  		function = "gpio";
+> +	/* Device control */
+> +	val = dw_pcie_readl_dbi(dw, EXPCAP(PCI_EXP_DEVCTL));
+> +	val |= PCI_EXP_DEVCTL_CERE | PCI_EXP_DEVCTL_NFERE |
+> +	       PCI_EXP_DEVCTL_FERE | PCI_EXP_DEVCTL_URRE;
+> +	dw_pcie_writel_dbi(dw, EXPCAP(PCI_EXP_DEVCTL), val);
+
+The above also looks like things that should be configured by the PCI
+core.
+
+> +		dev_err(&pdev->dev, "Failed to initialize host\n");
+> +		dev_err(dev, "failed to request resource: %d\n", err);
+
+Pick a capitalization style.
+
+> +		dev_err(dev, "%s: failed to resume/get Runtime PM\n", __func__);
+
+The driver name + device ID + message text printed by dev_err() should
+be enough that __func__ isn't needed.
+
+Bjorn
