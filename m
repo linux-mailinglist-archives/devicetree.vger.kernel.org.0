@@ -2,95 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F536336A8
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C68806336B0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:10:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232499AbiKVIIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:08:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45384 "EHLO
+        id S232276AbiKVIK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbiKVIIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:08:21 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFED24F09
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:08:18 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id a15so17066356ljb.7
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 00:08:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4m37A/talNp70vF+VxLy7ZtvPFBex/6NeMS3n0jrH1c=;
-        b=MJDKF7emETjRP4WxOUeK+8WxHTtIFN9TRN3WN5LZSt+tHwjEe8v77uDnH3dA2vAeHn
-         O3o3nFC9xT+YTQfREbF3Qc62b7n1f0DduhKAh5/dCM0I7GfqgkIXFj+msOG6kJ31/EhL
-         rpxeds0cDmgjMficvEiXs+eructqToNd1kNKxQt+/Cso5I/GT6LXlK6ugCRMzxnjU/KQ
-         gT6OcGlaToVvFA7v6AZdkjnhswDRvyMt/GU3PJLXJrIQr72H+8kT8WqvxXr2LEHa+2LR
-         hpaNu/uX4hUIrrmCQJnFPq7wTvGzGpMwxl1Tn6nsRf0Ir4nI0K2pR2G/ExP8UuaT5Nk/
-         RJjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4m37A/talNp70vF+VxLy7ZtvPFBex/6NeMS3n0jrH1c=;
-        b=ngmvu+qPSOjdcd1ttGxF+zXJwclL6fS1fGenoF3Yr/RyphITy5JMM//skqBgRGxT6S
-         OvWchCo4Fia1CIM/j+h4RX8aMsVI+Z/VQhxqlXwGPP40duJhPiICGPsEyvcQG1vUR/Ym
-         j1VMwMzgLMFk/h9+apnoSXWVhN604oqICT/KAbn0iYaHAMrkIpmDzkgUKBRIYXXDIaFT
-         SqEaQc243wdRBFtrAzPPJ1nLL/ns6SesmtaPlve6NcAZV3utnzufesOQxDGMwO+1a5v0
-         i2uADPnQHK3eEIv7mWh2rLDt5I6Qn/HUI4VUyLG6gb+q2fF5hcHt3FoWHj7Z66e0KWiT
-         6bHQ==
-X-Gm-Message-State: ANoB5pmP8XdWlnPlC4oQurVtBynG82hNtKY6gXqeykaKQiTXPwsMUdcC
-        xQKzivNdE8LgySUHYsaov/1faA==
-X-Google-Smtp-Source: AA0mqf4RQelr2ivp3d2aUuGU6ED6ob6F1q0qEAwy3uK5D9ZUOLJG1rQtMbHRUVpHb6Y2mol6tZrOJQ==
-X-Received: by 2002:a2e:a374:0:b0:279:4e82:9010 with SMTP id i20-20020a2ea374000000b002794e829010mr2823296ljn.295.1669104497279;
-        Tue, 22 Nov 2022 00:08:17 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g24-20020a0565123b9800b0049464d89e40sm2359967lfv.72.2022.11.22.00.08.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 00:08:16 -0800 (PST)
-Message-ID: <4f8c1ba3-f62b-136a-42da-68406dce5ab0@linaro.org>
-Date:   Tue, 22 Nov 2022 09:08:15 +0100
+        with ESMTP id S232154AbiKVIKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:10:25 -0500
+Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [IPv6:2a01:e0c:1:1599::10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B6522BE7;
+        Tue, 22 Nov 2022 00:10:21 -0800 (PST)
+Received: from [192.168.10.46] (unknown [130.180.211.218])
+        (Authenticated sender: daniel.lezcano@free.fr)
+        by smtp1-g21.free.fr (Postfix) with ESMTPA id A0B24B0055A;
+        Tue, 22 Nov 2022 09:09:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+        s=smtp-20201208; t=1669104619;
+        bh=QqT0gBw0xLVZALCHaBpNFHcCmr+fibAnqkfvXhxig94=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YWx0Y5rMecZm8dj2aaa9zKoRmXYW5RDTj3g3ZoslU9YoIxwdmfC5fpn3uPG9kMJd0
+         mDCTXhUrqMfDCOKwrRh1D4dnnYENzRfbDZVY39jUVIUGGhPkphxJ2s5WfvP0PuY7x1
+         lZc/rYX6wVO4lgWIZuuWcI/Rl3BUT+wRqqhFSEEjXHZNLYsv0+MXPIB4HONnnZm1z/
+         DUpYtzOwj91El8w3ugBL/7+i/3VCa8PEQRrjQhjY9GJr69DDaSIjhqJ7BBx+Gdp3rp
+         rM8Y8eXL1FgKO/4MSrdRa0Ps/X0QDB5esiDpeurpx66fWzo5hIXDoMnRq0YiZgqb6M
+         jljMVQkHGOdpQ==
+Message-ID: <69a959d4-6058-de70-e1c7-15d81b33373c@free.fr>
+Date:   Tue, 22 Nov 2022 09:09:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCHv3 6/9] dt-bindings: arm: rockchip: add Rock 5 Model B
+Subject: Re: [PATCH v5 0/6] Nuvoton WPCM450 clock and reset driver
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20221121175814.68927-1-sebastian.reichel@collabora.com>
- <20221121175814.68927-7-sebastian.reichel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121175814.68927-7-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Joel Stanley <joel@jms.id.au>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org,
+        Patrick Venture <venture@google.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Tomer Maimon <tmaimon77@gmail.com>
+References: <20221104161850.2889894-1-j.neuschaefer@gmx.net>
+ <CACPK8XdXrAPMdnn0T6GQiYEK3R4MvwprOZu_Yvmv=WVOfivROg@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@free.fr>
+In-Reply-To: <CACPK8XdXrAPMdnn0T6GQiYEK3R4MvwprOZu_Yvmv=WVOfivROg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 18:58, Sebastian Reichel wrote:
-> From: Christopher Obbard <chris.obbard@collabora.com>
+On 22/11/2022 02:40, Joel Stanley wrote:
+> On Fri, 4 Nov 2022 at 16:21, Jonathan Neuschäfer <j.neuschaefer@gmx.net> wrote:
+>>
+>> This series adds support for the clock and reset controller in the Nuvoton
+>> WPCM450 SoC. This means that the clock rates for peripherals will be calculated
+>> automatically based on the clock tree as it was preconfigured by the bootloader.
+>> The 24 MHz dummy clock, that is currently in the devicetree, is no longer needed.
+>> Somewhat unfortunately, this also means that there is a breaking change once
+>> the devicetree starts relying on the clock driver, but I find it acceptable in
+>> this case, because WPCM450 is still at a somewhat early stage.
 > 
-> Add DT binding documentation for the Radxa Rock 5 Model B.
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> 
+>>
+>>
+>> Upstreaming plan (although other suggestions are welcome):
+>>
+>> Once reviewed,
+>>
+>> - The ARM/dts changes should go through Joel Stanley's bmc tree
+> 
+> I've picked up the standalone patch ("Add clock controller node").
+> 
+>> - The clocksource/timer changes should probably go via Daniel Lezcano and TIP
 
-One binding change per new board is a lot. This should be rather squashed.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
-
+I picked the timer change along with the binding
