@@ -2,133 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE66A63406E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73130634088
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 16:48:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbiKVPjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 10:39:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
+        id S231808AbiKVPsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 10:48:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbiKVPjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:39:40 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF917627FD
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:39:38 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id l8so18348398ljh.13
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 07:39:38 -0800 (PST)
+        with ESMTP id S229449AbiKVPsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 10:48:53 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5C82E689;
+        Tue, 22 Nov 2022 07:48:52 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id e11so12439049wru.8;
+        Tue, 22 Nov 2022 07:48:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ds8Sy9Qo0VlxaGfYZfQDdKcBEoXNjqFnH02Jzco/bEA=;
-        b=lk1QsjWdooS9s/Fhmb9/UR2iEAgaGSjYskun7Wnkf/gMr57Ths5J3/laG66JVjx0s7
-         r6SPRs/z6fKrAtfGZOu+Lrg8JyO7a9VdoZF8FXMhujUwbioAGHZCjp24aokB6xo4Mim2
-         PfAIUfSGsVn+NHg1Q+R0PiWmZhS5Y8w/a7OJF5r1WSM5uhPuw511WBMoZ0wpvLDBl6FE
-         BOBW+eShfw/V+dMLlSGDW3fJWoNzZYdX8pNMnPW2Myk3OizgIgayS+cPqogQchx8AFwL
-         tCn5Ejgh7kWV8J+ZxdiyzddH9iyRR4iaWAPSPp6X5qyPrVgkfNEblOI/z1THa46PFv/G
-         Ub2A==
+        bh=iejRpG5xmG3AVT59k2korzV+i4h+JxFeIQ6F9nhVYVE=;
+        b=ERJaFk4RY2JkFY1qv6TQODE0AZ/ynMZlyKjqpHHZeLeGVUineTumgeSDCVdaBTDoCE
+         k3JFmtpqgr2rwK2uCB+hzbXD4Lu+hEHgql6SJVCdw7yOg3rP2YZgXzJaDpEvv9VMzxEO
+         envg5y6jmXVxTExN5qMcUhLl8tIAoNNfOCRXBoBRGS/MqWlfpz9kH9EYVqDHKh/deueG
+         J9CNjTwJ5Bt6sLbAhD3sUZWhQF/yFlSocEihRmiNKnnbgdfeB+fWGAMd6rFZkji9ZWfB
+         FDhyCf+fte3sj9Ss2mq8SnVDVPA45GnYCwfS2Gj/tGOYAEEbE2XxgXL9OmhNnlXIzQf1
+         FVwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ds8Sy9Qo0VlxaGfYZfQDdKcBEoXNjqFnH02Jzco/bEA=;
-        b=GvZloKOgqZf/DO9ommz6gKsm7PxdIkqpWPuqypKXIZfHvfo+ZBlqTnuVf+tgRSbXBC
-         sS2B/gxcDzYsmi6DST485t2dr0uIsT5VBTRrH6ig/BQX/jhiwgSOR6PIQ9DK6gVfRWQ/
-         38Srdt2MEk9Zp+rmOkLAoqysB3Wp0ox68XVbKRCpTX8DBiI4Tw7vUTPha909jCJVhTSR
-         SulKUAY1eE4lqZA6t0o2IEll602qf0cZEV4bEp02iPHGM3lM8nSUgjOs1iBODOCWBbqA
-         9iz6AnuwM0AWumdDvIPlx5+bK5tPO0zzGo8ypnXdhJ18qBYYnxc7vhTt+nhz9Z1RHrRY
-         h+FA==
-X-Gm-Message-State: ANoB5pl6GR7EuXrgST3irdJAkAEWyYmxe7OzH4FpIHh1EIQkb270+YZs
-        n9XA6s4Xk4kyru4+ejcBGeGWug==
-X-Google-Smtp-Source: AA0mqf5pPAK3W4v8an/eR+cieEGeNBfDtiHWiAnML0e5MFDjyCE5sQTecKnWv5WEaFVv9FlPUuqd/A==
-X-Received: by 2002:a05:651c:10a1:b0:26e:a:b5c9 with SMTP id k1-20020a05651c10a100b0026e000ab5c9mr2069061ljn.481.1669131576967;
-        Tue, 22 Nov 2022 07:39:36 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c4-20020ac25304000000b0049fff3f645esm2507227lfh.70.2022.11.22.07.39.36
+        bh=iejRpG5xmG3AVT59k2korzV+i4h+JxFeIQ6F9nhVYVE=;
+        b=eMkOCrInL8w9ItYtxPjPaKGW4ZKVM2CQPnHnkEZT/Frk3h4TeIhMEm/C7Y92HhkK6j
+         kwNcarzxPbA8sry7JUV1VKFLEWs3I4vfN/Qd9E6D4fnb0uWQCqCs8UzAMjTkORCWJ53o
+         Nx+DZIoI8DN2AE0Q3U8ggbzvzRw+7mvgHgcnDuJRjfqRglCfseHCNTOZmEuJcREaaarl
+         xuViKjKmhsu4iVAeIISAHhiA8ZUzDbemE/lJ7lymCqe+QByC5qDEosxM9DH06l60shzQ
+         I9BmPvnD4oj0zKuYsa8LLKsV5dEkKpwONRYur1HQVNLDHVVRWngR2AXqdxSpuqTq4z6i
+         Mtjw==
+X-Gm-Message-State: ANoB5pnAfxnj0p9WpdbbIyEAXH0TBUzOSV+3+WGjNgH/N7W2Lulzg5zD
+        NwvFdUUzRLqCidqVnG9oSnknCKKIty8=
+X-Google-Smtp-Source: AA0mqf5NEgw8nrH93u2bY10c05fdm/Tx+wCnuYxy3cVf0cNE/5kLDJeWbVYnyzre7ISbHsO3k7PUGQ==
+X-Received: by 2002:adf:e84f:0:b0:22e:37c1:b225 with SMTP id d15-20020adfe84f000000b0022e37c1b225mr13795647wrn.428.1669132130446;
+        Tue, 22 Nov 2022 07:48:50 -0800 (PST)
+Received: from [192.168.0.25] ([37.222.251.204])
+        by smtp.gmail.com with ESMTPSA id f28-20020a5d58fc000000b0022e36c1113fsm14161625wrd.13.2022.11.22.07.48.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 07:39:36 -0800 (PST)
-Message-ID: <17b4eb3a-97ab-905d-f8f2-eb5669e4854f@linaro.org>
-Date:   Tue, 22 Nov 2022 16:39:35 +0100
+        Tue, 22 Nov 2022 07:48:48 -0800 (PST)
+Message-ID: <a5464d62-bb42-5bdf-e49e-5c3edef4b09b@gmail.com>
+Date:   Tue, 22 Nov 2022 16:48:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4] dt-bindings: iio: adc: ad7923: adjust documentation
-To:     Edmund Berenson <edmund.berenson@emlix.com>
-Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221122140543.11230-1-edmund.berenson@emlix.com>
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v28 01/11] dt-bindings: arm: mediatek: mmsys: add vdosys1
+ compatible for MT8195
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122140543.11230-1-edmund.berenson@emlix.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        "nathan@kernel.org" <nathan@kernel.org>,
+        =?UTF-8?B?WW9uZ3FpYW5nIE5pdSAo54mb5rC45by6KQ==?= 
+        <yongqiang.niu@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
+        "ndesaulniers@google.com" <ndesaulniers@google.com>
+References: <20221107072243.15748-1-nancy.lin@mediatek.com>
+ <20221107072243.15748-2-nancy.lin@mediatek.com>
+ <c6297a1c-e282-4a18-f16c-fa2df08b440a@gmail.com>
+ <f6d7eaa0b7e2a3ed6567692616ebc1304500806c.camel@mediatek.com>
+ <fd6c1299-4ac9-6d51-247f-3a7b7e39052b@gmail.com>
+ <de21390898759ce979da8d2ae76a93982f59c149.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <de21390898759ce979da8d2ae76a93982f59c149.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 15:05, Edmund Berenson wrote:
-> - The ad7927 is fully compatible with ad7928 driver, add
-> documentation for device.
-> - ad7923 and ad7924 are treated the same in the driver, show
-> the relationship in the documentation.
+
+
+On 22/11/2022 11:51, Nancy Lin (林欣螢) wrote:
+> Dear Matthias,
 > 
-> Suggested-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
-> ---
->  .../bindings/iio/adc/adi,ad7923.yaml          | 25 ++++++++++++-------
->  1 file changed, 16 insertions(+), 9 deletions(-)
+> Thanks for the review.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> index 07f9d1c09c7d..b6e2f1b41739 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
-> @@ -11,7 +11,7 @@ maintainers:
->  
->  description: |
->    Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
-> -   AD7918, AD7928 8 Channels ADCs.
-> +   AD7918, AD7927, AD7928 8 Channels ADCs.
->  
->    Specifications about the part can be found at:
->      https://www.analog.com/media/en/technical-documentation/data-sheets/AD7923.pdf
-> @@ -20,14 +20,21 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - adi,ad7904
-> -      - adi,ad7914
-> -      - adi,ad7923
-> -      - adi,ad7924
-> -      - adi,ad7908
-> -      - adi,ad7918
-> -      - adi,ad7928
-> +    oneOf:
-> +      - const: adi,ad7904
-> +      - const: adi,ad7908
-> +      - const: adi,ad7914
-> +      - const: adi,ad7918
-> +      - const: adi,ad7923
+> On Thu, 2022-11-10 at 14:10 +0100, Matthias Brugger wrote:
+>> 
+>> On 09/11/2022 06:10, Jason-JH Lin (林睿祥) wrote:
+>> > On Tue, 2022-11-08 at 18:46 +0100, Matthias Brugger wrote:
+>> > > 
+>> > > On 07/11/2022 08:22, Nancy.Lin wrote:
+>> > > > Add vdosys1 mmsys compatible for MT8195 platform.
+>> > > > 
+>> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
+>> > > > binding
+>> > > > to
+>> > > > 2 different power domains, different clock drivers and
+>> > > > different
+>> > > > mediatek-drm drivers.
+>> > > > 
+>> > > > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+>> > > > Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>> > > > ---
+>> > > >  
+>> > > > .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      |
+>> > > > 4
+>> > > > +++-
+>> > > >   1 file changed, 3 insertions(+), 1 deletion(-)
+>> > > > 
+>> > > > diff --git
+>> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>> > > > .yam
+>> > > > l
+>> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>> > > > .yam
+>> > > > l
+>> > > > index 0711f1834fbd..aaabe2196185 100644
+>> > > > ---
+>> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>> > > > .yam
+>> > > > l
+>> > > > +++
+>> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>> > > > .yam
+>> > > > l
+>> > > > @@ -48,7 +48,9 @@ properties:
+>> > > >             - const: syscon
+>> > > >   
+>> > > >         - items:
+>> > > > -          - const: mediatek,mt8195-vdosys0
+>> > > > +          - enum:
+>> > > > +              - mediatek,mt8195-vdosys0
+>> > > > +              - mediatek,mt8195-vdosys1
+>> > > >             - const: mediatek,mt8195-mmsys
+>> > > >             - const: syscon
+>> > > >   
+>> > > 
+>> > > I think we had that several times already:
+>> > > 
+>> > 
+>> > 
+> https://lore.kernel.org/all/6bbe9527-ae48-30e0-fb45-519223a744d7@linaro.org/
+>> > > 
+>> > > We will something like this, but please check that this does not
+>> > > give
+>> > > any 
+>> > > errors/warnings:
+>> > > 
+>> > > diff --git
+>> > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y
+>> > > aml 
+>> > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y
+>> > > aml
+>> > > index eb451bec23d3d..8e9c4f4d7c389 100644
+>> > > ---
+>> > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y
+>> > > aml
+>> > > +++
+>> > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.y
+>> > > aml
+>> > > @@ -32,13 +32,22 @@ properties:
+>> > >                 - mediatek,mt8183-mmsys
+>> > >                 - mediatek,mt8186-mmsys
+>> > >                 - mediatek,mt8192-mmsys
+>> > > -              - mediatek,mt8195-mmsys
+>> > >                 - mediatek,mt8365-mmsys
+>> > >             - const: syscon
+>> > >         - items:
+>> > >             - const: mediatek,mt7623-mmsys
+>> > >             - const: mediatek,mt2701-mmsys
+>> > >             - const: syscon
+>> > > +      - items:
+>> > > +          - const: mediatek,mt8195-vdosys0
+>> > > +          - const: syscon
+>> > > +      - items:
+>> > > +          - const: mediatek,mt8195-vdosys1
+>> > > +          - const: syscon
+>> > > +      - items:
+>> > > +          - const: mediatek,mt8195-mmsys
+>> > > +          - const: syscon
+>> > > +      deprecated: true
+>> > > 
+>> > >     reg:
+>> > >       maxItems: 1
+>> > 
+>> > Hi Matthias,
+>> > 
+>> > As the vdosys0 previous reviewed patch:
+>> > 
+>> > 
+> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/patch/20220927152704.12018-2-jason-jh.lin@mediatek.com/__;!!CTRNKA9wMg0ARbw!zRdbIyyAsfqob2kapMAcKYATAguhEV0x0qE5cTOAcWUNhzeAbMHzZoos_2QzUCxS$
+>> >  
+>> > Should I modify the vdosys0 items format like your example?
+>> > 
+>> > Or should vdosys1 add items format like vdosys0's previous patch?
+>> >      - items:
+>> >          - const: mediatek,mt8195-vdosys1
+>> >          - const: mediatek,mt8195-mmsys
+>> >          - const: syscon
+>> > 
+>> 
+>> No, vdosys1 must not have mediatek,mt8195-mmsys fallback.
+>> 
+>> Regards,
+>> Matthias
+>> 
+> 
+> I will fix it and add the following vdosys1 binding base on [1].
+> 
+>        - description: vdosys0 and vdosys1 are 2 display HW pipelines,
+>                       so mt8195 binding should be deprecated.
+>          deprecated: true
+>          items:
+>            - const: mediatek,mt8195-mmsys
+>            - const: syscon
+>        - items:
+>            - const: mediatek,mt7623-mmsys
+>            - const: mediatek,mt2701-mmsys
+>            - const: syscon
+>        - items:
+>            - const: mediatek,mt8195-vdosys0
+>            - const: mediatek,mt8195-mmsys
+>            - const: syscon
+>   +    - items:
+>   +        - const: mediatek,mt8195-vdosys1
+>   +        - const: syscon
+> 
 
-Keep all others as enum.
+Looks good, thanks
+Matthias
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> [1]
+> https://kernel.googlesource.com/pub/scm/linux/kernel/git/matthias.bgg/linux/+/b237efd47df7d25b78c306e90b97c5aa0ff4c4fc/Documentation/devicetree/bindings/arm/mediatek/mediatek%2Cmmsys.yaml
+> 
+> Regards,
+> Nancy
+> 
+> 
+>> > Regards,
+>> > Jason-JH.Lin
+>> > 
+>> > 
+>> > 
+>> > ************* MEDIATEK Confidentiality Notice
+>> >   ********************
+>> > The information contained in this e-mail message (including any
+>> > attachments) may be confidential, proprietary, privileged, or
+>> > otherwise
+>> > exempt from disclosure under applicable laws. It is intended to be
+>> > conveyed only to the designated recipient(s). Any use,
+>> > dissemination,
+>> > distribution, printing, retaining or copying of this e-mail
+>> > (including its
+>> > attachments) by unintended recipient(s) is strictly prohibited and
+>> > may
+>> > be unlawful. If you are not an intended recipient of this e-mail,
+>> > or believe
+>> >   
+>> > that you have received this e-mail in error, please notify the
+>> > sender
+>> > immediately (by replying to this e-mail), delete any and all copies
+>> > of
+>> > this e-mail (including any attachments) from your system, and do
+>> > not
+>> > disclose the content of this e-mail to any other person. Thank you!
+>> 
+>> 
+> 
+> ************* MEDIATEK Confidentiality Notice ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including its
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or believe
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
