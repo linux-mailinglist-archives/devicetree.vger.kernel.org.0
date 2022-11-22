@@ -2,133 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49954633795
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:55:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 564036337A0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 09:57:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231993AbiKVIzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 03:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56036 "EHLO
+        id S233010AbiKVI54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 03:57:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232361AbiKVIzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:55:24 -0500
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DD2193F1;
-        Tue, 22 Nov 2022 00:55:24 -0800 (PST)
-Received: by mail-qt1-f181.google.com with SMTP id s4so8860017qtx.6;
-        Tue, 22 Nov 2022 00:55:24 -0800 (PST)
+        with ESMTP id S233045AbiKVI5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 03:57:47 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F26179FED;
+        Tue, 22 Nov 2022 00:57:46 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id c203so13760748pfc.11;
+        Tue, 22 Nov 2022 00:57:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K7p2RhTIHOiiIJZTjmhXGRhILIDz16YqqhDTRMuyQCI=;
+        b=bBf6N/RQI4Bmm4vCEADnIhAPkvjNHZMhvxLDZyPMkuG48nwGxINjJXQeXSMi7FgegG
+         +o/gnoMqMugquWBJWbhgxroVGB4XWj690h969GNlp9GaCmxrjhrKS6GCyL7V52qt2OnH
+         PCz/AyKcv4UUxSZlNIPg22FGJ+OfIFw287vErBN5AUnlDO/yMJ56ot7Y+mB36yRRB6+K
+         BqKXxg59RqlEnP9veCYtb0HqW1KGQgdg6gcvtfG45A6te97G1+AQ0dBTz1q+HuwWakx9
+         cghiJ+z/9JOsCEMvtymGOQBPEjT9Ew50MeKN1n4Zu6D/Sr3WlPDwRPmuT3tm0kppEmUW
+         +TLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P7qk9S0cPIQ0L5zgnqXV8Oc65l49/AfnuuGAj/cKJTk=;
-        b=XM4pgryGinKaUIuRWHujuOGyGex/kjQfJrimqTpuOdTdknmVrSV2IEQhzIXkZ6uwQg
-         /mrRsuXyI9BErkOJ5ucN38tJ4oFISnSbXgpbpYV02/ZAjLea+IfPVIa2uGp7Irj2vio9
-         3bWadttIVkgesveJLUjb229/XLkNrd4Aq7X84EU1LBSheHY88ThCYss4oBmO75v/gEna
-         RN4bxkevduaeGln+Nw1Btj4+50PTXWDdrHl+9P2AW6LuNd/VOrWjpcmF/Q884dvmdMzL
-         lCxjk3UNFTuBwPXlOrPhN+XH+A63W+ibV1Al4qESDmDR2cT06oqXqTnzjD83TE4yrEjp
-         4g+A==
-X-Gm-Message-State: ANoB5pmAAX4Ymkegi22IfUcVb1tOl42KrvpmXiK9Bchpn1RCHncY5OfD
-        ybTWhttCit4AKjb3bR4tkW78EQdiRkP+Hg==
-X-Google-Smtp-Source: AA0mqf7uEyhL6SZ4wQqqSS9FgyZTnHN6MilujgP5+sAe7rzs8HcJBKMdPNWem73Tv4Fg7UOV0gjQPQ==
-X-Received: by 2002:a05:622a:4890:b0:3a5:84b9:3292 with SMTP id fc16-20020a05622a489000b003a584b93292mr20723848qtb.119.1669107323118;
-        Tue, 22 Nov 2022 00:55:23 -0800 (PST)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id x12-20020ae9e90c000000b006b5cc25535fsm9366502qkf.99.2022.11.22.00.55.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 00:55:22 -0800 (PST)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-398cff43344so88100087b3.0;
-        Tue, 22 Nov 2022 00:55:21 -0800 (PST)
-X-Received: by 2002:a0d:fec2:0:b0:36b:56d3:71b8 with SMTP id
- o185-20020a0dfec2000000b0036b56d371b8mr20585246ywf.384.1669107321620; Tue, 22
- Nov 2022 00:55:21 -0800 (PST)
+        bh=K7p2RhTIHOiiIJZTjmhXGRhILIDz16YqqhDTRMuyQCI=;
+        b=jok9S5hV407+g25zz6hq3kfwTyx8NU++5Hy9Uzsdxo9lMbKccCyla14mivtj+XG5+V
+         LBnXrHzIr0xTUZjlBFbCqU/nrB5ztDNfcMugC/nuA7QyvAJf7x0DY094OHJdCBQvSYP7
+         2a8o0UyMBrPC1x8Jp21bPuJ6q6xoZimLZpLndws9TMR9IrE4iAd73SFJzACoEkRxNms5
+         aQ98MzY41eQiH4hARohBwBbXHUKbfgEhzA8thy0t0ccaIXriXLlPFRYGBxvoRCGcx8SR
+         vOW/xE/MeoDew5a8hWTjUh/0FWrr1zZcFyK26y1gLb1e47ABuuhZNaFRMW7RzOfNdScH
+         hNbA==
+X-Gm-Message-State: ANoB5plsH0Tbu5ZZvk9cu9X3tvR1jYHUvZx6v/NIXzfXCbT/UkBm353u
+        k/bO8Tm6jRqh3l7zfsNNMh0=
+X-Google-Smtp-Source: AA0mqf407uXLMOYMcJ3cJcJpwHaONDNN30ZQVqMuzzBJYQIWMtI22drar6Xk0zyP8mKbpX4C55bWsQ==
+X-Received: by 2002:a63:eb16:0:b0:477:6fe1:cd6d with SMTP id t22-20020a63eb16000000b004776fe1cd6dmr8188510pgh.334.1669107466247;
+        Tue, 22 Nov 2022 00:57:46 -0800 (PST)
+Received: from hcdev-d520mt2.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id u9-20020a17090341c900b0017a0668befasm11400246ple.124.2022.11.22.00.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Nov 2022 00:57:45 -0800 (PST)
+From:   Marvin Lin <milkfafa@gmail.com>
+To:     mchehab@kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     openbmc@lists.ozlabs.org, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, kwliu@nuvoton.com,
+        kflin@nuvoton.com, Marvin Lin <milkfafa@gmail.com>
+Subject: [PATCH v7 0/7] Support Nuvoton NPCM Video Capture/Encode Engine
+Date:   Tue, 22 Nov 2022 16:57:17 +0800
+Message-Id: <20221122085724.3245078-1-milkfafa@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20221117122547.809644-1-tomi.valkeinen@ideasonboard.com>
- <20221117122547.809644-3-tomi.valkeinen@ideasonboard.com> <CAMuHMdWUvLzCtFRXvUpCxczpkpaunb==gjBMwdniXY4UBVuMUw@mail.gmail.com>
- <f5df3cb8-d315-b06b-aa04-f0b4af64a1c2@ideasonboard.com>
-In-Reply-To: <f5df3cb8-d315-b06b-aa04-f0b4af64a1c2@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Nov 2022 09:55:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWsvcd3_CX_dESW3EO4FoSGcMWAAyKO_5g2ch-jezdzzQ@mail.gmail.com>
-Message-ID: <CAMuHMdWsvcd3_CX_dESW3EO4FoSGcMWAAyKO_5g2ch-jezdzzQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/8] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
- Add r8a779g0
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+This patch series add DTS node, dt-bindings document and drivers for Video
+Capture/Differentiation Engine (VCD) and Encoding Compression Engine (ECE)
+present on Nuvoton NPCM SoCs.
 
-On Tue, Nov 22, 2022 at 9:20 AM Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
-> On 17/11/2022 17:14, Geert Uytterhoeven wrote:
-> > On Thu, Nov 17, 2022 at 1:26 PM Tomi Valkeinen
-> > <tomi.valkeinen@ideasonboard.com> wrote:
-> >> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> >>
-> >> Extend the Renesas DSI display bindings to support the r8a779g0 V4H.
-> >>
-> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> >> ---
-> >>   .../bindings/display/bridge/renesas,dsi-csi2-tx.yaml           | 3 ++-
-> >>   1 file changed, 2 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> >> index afeeb967393d..bc3101f77e5a 100644
-> >> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-> >> @@ -11,13 +11,14 @@ maintainers:
-> >>
-> >>   description: |
-> >>     This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
-> >> -  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
-> >> +  R-Car V3U/V4H SoC. The encoder can operate in either DSI or CSI-2 mode, with up
-> >
-> > Perhaps "R-Car Gen4 SoCs", so we stay within 80 chars, and don't have
-> > to update this when the next member of the family is around the block?
->
-> Is V3U gen 4? Or do you mean "R-Car V3U and Gen 4 SoCs"?
+VCD can capture/differentiate video data from digital or analog sources,
+then the ECE will compress the data into HEXTILE format which is defined in
+Remote Framebuffer Protocol (RFC 6143) Chapter 7.7.4.
 
-Despite the name, R-Car V3U is the first member of the R-Car Gen4 family...
-https://www.renesas.com/us/en/products/automotive-products/automotive-system-chips-socs/r-car-v3u-best-class-r-car-v3u-asil-d-system-chip-automated-driving
+The output of v4l2-compliance:
+v4l2-compliance 1.23.0-4965, 64 bits, 64-bit time_t
+v4l2-compliance SHA: d0964d133053 2022-11-06 14:46:45
 
-> > Is there anything that might be SoC-specific?
-> > If not, perhaps the time is ripe for a family-specific compatible value?
->
-> At least v3u and v4h DSIs are slightly different. Well, the DSI IP block
-> itself looks the same, but the PLL and PHY are different.
+Compliance test for npcm-video device /dev/video0:
 
-I noticed, when I saw the dsi-csi2 driver changes.
-So no family-specific compatible value is needed.
+Driver Info:
+        Driver name      : npcm-video
+        Card type        : NPCM Video Engine
+        Bus info         : platform:npcm-video
+        Driver version   : 5.15.50
+        Capabilities     : 0x85200001
+                Video Capture
+                Read/Write
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x05200001
+                Video Capture
+                Read/Write
+                Streaming
+                Extended Pix Format
 
-Gr{oetje,eeting}s,
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+        test invalid ioctls: OK
 
-                        Geert
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 1 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+        test VIDIOC_DV_TIMINGS_CAP: OK
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls (Input 0):
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+                warn: /usr/src/debug/v4l-utils/1.22.1-r0/utils/v4l2-compliance/v4l2-test-controls.cpp(1070): V4L2_CID_DV_RX_POWER_PRESENT not found for input 0
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 1 Private Controls: 2
+
+Format ioctls (Input 0):
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+                warn: /usr/src/debug/v4l-utils/1.22.1-r0/utils/v4l2-compliance/v4l2-test-formats.cpp(1411): S_PARM is supported for buftype 1, but not for ENUM_FRAMEINTERVALS
+        test VIDIOC_G/S_PARM: OK
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls (Input 0):
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls (Input 0):
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Total for npcm-video device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 2
+
+Changes in v7:
+  - Add uapi documents for driver-specific controls.
+  - Implement driver-specific controls for switching capture mode and
+    getting the count of compressed HEXTILE rectangles.
+  - Drop unnecessary "enum_framesizes" and "enum_frameintervals" functions.
+  - Include the output of v4l2-compliance in cover letter.
+
+Changes in v6:
+  - Support NPCM845 and add compatible "nuvoton,npcm845-video".
+  - Correct pixel format to V4L2_PIX_FMT_HEXTILE which is newly added in
+    this patch series.
+
+Changes in v5:
+  - Simplify function prefix "nuvoton_" to "npcm_".
+  - Increase VCD_BUSY_TIMEOUT_US and ECE_POLL_TIMEOUT_US to 300ms to
+    prevent polling timeout when ECC is enabled or system is busy.
+
+Changes in v4:
+  - Fix compile warning reported by kernel test robot.
+
+Changes in v3:
+  - Add video driver entry in MAINTAINERS.
+  - Change config name to CONFIG_VIDEO_NPCM_VCD_ECE.
+  - Reduce the waiting time after resetting the VCD/ECE module.
+  - Correct data types of some variables.
+
+Changes in v2:
+  - Add Hextile document and locate with vendor formats.
+
+Marvin Lin (7):
+  ARM: dts: nuvoton: Add node for NPCM VCD and ECE engine
+  media: dt-binding: nuvoton: Add bindings for NPCM VCD and ECE engine
+  dt-bindings: arm: nuvoton: Add bindings for NPCM GFXI
+  media: v4l: Add HEXTILE compressed format
+  media: v4l2-ctrls: Reserve user control base for NPCM video controls
+  media: uapi: Add controls for NPCM video driver
+  media: nuvoton: Add driver for NPCM video capture and encode engine
+
+ .../bindings/arm/npcm/nuvoton,gfxi.yaml       |   41 +
+ .../bindings/media/nuvoton,npcm-video.yaml    |   87 +
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../media/drivers/npcm-video.rst              |   68 +
+ .../media/v4l/pixfmt-reserved.rst             |    7 +
+ MAINTAINERS                                   |   11 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   19 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/nuvoton/Kconfig        |   15 +
+ drivers/media/platform/nuvoton/Makefile       |    2 +
+ drivers/media/platform/nuvoton/npcm-video.c   | 2068 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
+ include/uapi/linux/npcm-video.h               |   41 +
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/videodev2.h                |    1 +
+ 16 files changed, 2370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/npcm/nuvoton,gfxi.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-video.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/npcm-video.rst
+ create mode 100644 drivers/media/platform/nuvoton/Kconfig
+ create mode 100644 drivers/media/platform/nuvoton/Makefile
+ create mode 100644 drivers/media/platform/nuvoton/npcm-video.c
+ create mode 100644 include/uapi/linux/npcm-video.h
+
+-- 
+2.34.1
+
