@@ -2,99 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ECD5633BCF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 12:53:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A991D633ACE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Nov 2022 12:11:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbiKVLxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 06:53:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
+        id S232140AbiKVLLs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Nov 2022 06:11:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232440AbiKVLxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 06:53:03 -0500
-X-Greylist: delayed 585 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 22 Nov 2022 03:52:57 PST
-Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CDC9167C0;
-        Tue, 22 Nov 2022 03:52:53 -0800 (PST)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx4.securetransport.de (Postfix) with ESMTPSA id 582B67204BB;
-        Tue, 22 Nov 2022 12:42:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1669117365;
-        bh=2ZV0bTDb7qgkQDDGXEMdO4IEDitBFvE2cMMeUtDgqK8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=TnjAuy6HNThxX8BxOJ6PJ1rLq6P8Bd+IagVBhxojTdee3uzR3yFS4KhAJ0+ruQAa4
-         JzUVWuC39Hw0too9T3fj4oNMzH16h5QBSYUWIQ1GrwazrOfezI/rTDnZVITm4p7IUx
-         TSjKEWfcZRpXnyMgf0P0bLtwxsjHBk5gAF27w77IQDJkgttT4guOXnIeiqKjnc68BD
-         uOBrhdZzUFk2Z0cwvcmVFHh5dZW+nysU/BUu9CxXqWBxGFtDbQQFP0ibn6TVeYCUET
-         PdlEp16wDstM5RfDt8dh58ZaHly3av8uTB6MN4Ot9nuLVCLYg69s6WUf8Z2qQkqIjk
-         c6fRRTdUPKhEg==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20; Tue, 22 Nov 2022 12:12:35 +0100
-Received: from localhost.localdomain (172.16.51.2) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20 via Frontend Transport; Tue, 22 Nov 2022 12:12:35 +0100
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S232934AbiKVLLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 06:11:47 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DC6272FC2F;
+        Tue, 22 Nov 2022 03:11:45 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 396CB8061;
+        Tue, 22 Nov 2022 11:01:31 +0000 (UTC)
+Date:   Tue, 22 Nov 2022 13:11:43 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>, <kernel@dh-electronics.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less confusing
-Date:   Tue, 22 Nov 2022 12:11:24 +0100
-Message-ID: <20221122111124.6828-3-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
-In-Reply-To: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Allow decimal format in
+ addition to hex format
+Message-ID: <Y3yubxJ3ZCIIed3T@atomide.com>
+References: <20221121115525.36362-1-tony@atomide.com>
+ <20221121144000.7weeyfbbulltfxmd@pengutronix.de>
+ <Y3uPvYqaILNiYW8K@atomide.com>
+ <bb5ac0cf-84eb-165f-40bb-0f3c9afe084f@linaro.org>
+ <Y3xTi5JeLPSWchT7@atomide.com>
+ <20221122093650.oouke2utlkvdd7r6@pengutronix.de>
+ <Y3ymZphck8JM6g9B@atomide.com>
+ <20221122105710.5aow5qsri6pikgri@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20221122105710.5aow5qsri6pikgri@pengutronix.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current comment on wakeup-source is a bit confusing, because it isn't
-clear at first sight which property is actually deprecated.
-Change the comment to one that is less confusing.
+* Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221122 10:47]:
+> On Tue, Nov 22, 2022 at 12:37:26PM +0200, Tony Lindgren wrote:
+> > * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221122 09:26]:
+> > > On Tue, Nov 22, 2022 at 06:43:55AM +0200, Tony Lindgren wrote:
+> > > > * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [221121 16:05]:
+> > > > > On 21/11/2022 15:48, Tony Lindgren wrote:
+> > > > > > * Uwe Kleine-König <u.kleine-koenig@pengutronix.de> [221121 14:30]:
+> > > > > >> On Mon, Nov 21, 2022 at 01:55:24PM +0200, Tony Lindgren wrote:
+> > > > > >>> Let's allow node numbering in decimal format too.
+> > > > > >>>
+> > > > > >>> Simple human-readable increments/IDs are usually decimal, hex is only for
+> > > > > >>> addresses as noted by Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>.
+> > > > > >>>
+> > > > > >>> Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > > > >>> Cc: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > > > > >>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > > >>> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > > > >>> ---
+> > > > > >>>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+> > > > > >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > >>>
+> > > > > >>> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > > > >>> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > > > >>> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> > > > > >>> @@ -13,7 +13,7 @@ select: false
+> > > > > >>>  
+> > > > > >>>  properties:
+> > > > > >>>    $nodename:
+> > > > > >>> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+> > > > > >>> +    pattern: "^pwm(@.*|-([0-9a-f]|1[0-5]))*$"
+> > > > > >>
+> > > > > >> I wonder why you don't make this:
+> > > > > >>
+> > > > > >> +    pattern: "^pwm(@.*|-[0-9a-f]*)$"
+> > > > > 
+> > > > > Yes, the '*' should be within ().
+> > > > 
+> > > > Sorry I guess I don't follow. So for what type of naming is the second '*'
+> > > > actually needed here, or is it needed at all?
+> > > > 
+> > > > We only want to match the following:
+> > > > 
+> > > > pwm@1234
+> > > > 
+> > > > pwm-0
+> > > > ...
+> > > > pwm-f
+> > > > 
+> > > > And now also:
+> > > > 
+> > > > pwm-0
+> > > > ...
+> > > > pwm-15
+> > > > 
+> > > > Is there yet another format I'm missing?
+> > > 
+> > > I think there is a misunderstanding about the type of pattern here. Do
+> > > we talk about a shell pattern where "[0-9a-f]*" matches a name starting
+> > > with a hex digit followed by any number of any caracter, or is it a
+> > > regexp where the * means "any number of the preceding pattern", so
+> > > effectively a word consisting of only hex digits.
+> > > 
+> > > The .* part makes me think we're talking about a regexp, so the old
+> > > pattern ("^pwm(@.*|-[0-9a-f])*$") means that
+> > > 
+> > > 	pwm-1-2-3-4
+> > > 
+> > > is allowed but
+> > > 
+> > > 	pwm-10
+> > > 
+> > > isn't. And I think what we want is:
+> > > 
+> > > 	"^pwm(@.*|-[0-9a-f]*)$"
+> > 
+> > Heh so this fails for just node name pwm:
+> > 
+> > pwm: $nodename:0: 'pwm' does not match '^pwm(@.*|-[0-9a-f]*)$'
+> > 
+> > Maybe that's why the second '..)*$' was there originally for?
+> > And adding it back there fixes pwm but allows pwm-1-2-3..
+> > 
+> > > (or maybe better "^pwm(@.+|-[0-9a-f]+)$" ?)
+> > 
+> > And this too fails for just pwm node name.
+> 
+> Then let's pick:
+> 
+> 
+> 	"^pwm(@.+|-[0-9a-f]+)?$"
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
----
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: kernel@dh-electronics.com
-Cc: linux-mmc@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-To: linux-kernel@vger.kernel.org
----
- Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That works for pwm and pwm-11, but now fails for pwm11 :)
 
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-index 802e3ca8be4d..a921442c6c1d 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-@@ -293,7 +293,7 @@ properties:
-     description:
-       SDIO only. Preserves card power during a suspend/resume cycle.
- 
--  # Deprecated: enable-sdio-wakeup
-+  # Use wakeup-source instead of the deprecated enable-sdio-wakeup
-   wakeup-source:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
--- 
-2.11.0
-
+Tony
