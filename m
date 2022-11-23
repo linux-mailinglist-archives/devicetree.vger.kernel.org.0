@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61484636348
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:22:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B80463635A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:23:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235097AbiKWPWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 10:22:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58064 "EHLO
+        id S236657AbiKWPXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 10:23:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236185AbiKWPVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:21:50 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C78063BAD;
-        Wed, 23 Nov 2022 07:21:49 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so11387720otl.10;
-        Wed, 23 Nov 2022 07:21:49 -0800 (PST)
+        with ESMTP id S235513AbiKWPXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:23:20 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E8A62C2;
+        Wed, 23 Nov 2022 07:23:12 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id p16so13315244wmc.3;
+        Wed, 23 Nov 2022 07:23:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=4aoLHgFE05riq4cmWmfmiT+Ki6XAw13WHmlMKR+7aRQ=;
-        b=FIYqM2Z4zwJkd03cpZExtLXs5D1EcfVfgDi3wMib43kPB9h2immK0hfK6fkkeHo4Vk
-         TQKdVEI1YB2me/wkf6fCRFIWhRWI3rLYQaoLoRgUB16YDck5XXxim6rYlrAFr9oz7fNL
-         3lDvd8XxA9Xv3uSCXIG8QuprUR794x5W8tS9mgQtBmc5AgUxHKhBSiQOVWekB7Unut1h
-         2lY8Mu3WyCGJrY5cKTbd6XYkk+DPzMm3ANgc/h/F8b6CXAchJF4XYtCqpsBWewSuSMDi
-         m8xQtks+78XXRnWu1aDcUIl8TBFPJUpSaEHE75WhpWiNGxMgAFAJiz98+HI7A8kZwB6Z
-         pnOA==
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mRsDugZQHZ3cAp8Uo4BX8m8iIIGYim123jYJVHkkzNM=;
+        b=JTS32H5Rl1FRQ5qQGs7q0aes2NHFbc/tVU1PRG9uzTWCLptD9c3MBLc2IqYddt3s+j
+         9Of0wCplecvcC/ZN1lmfkazZqsy11weqsJhVk4QzwDldCoYxshlc7rC+qRSCf9Y/SqWB
+         v/saVhfl+UuoPYhBVsTcqPPB1s6kP/enS0YerURQUZMzmRXmcAtyZYWjr5bPNnE9wIDH
+         VW49UWoCb5VTT2rNTAVnEMk9qRuYv594NWL0wRMEci2KxO0FRzeZNCtNLbScBe0Xo0p7
+         8H7kU9A+dvHezIaVrs3sjWhaXVIIBafgl/QMvsjn7GYdWVgzQ/Pi5mVzH95DYjng5LzN
+         Pwgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4aoLHgFE05riq4cmWmfmiT+Ki6XAw13WHmlMKR+7aRQ=;
-        b=UI7VD19P9v+82zQAonkAzhGOS9cn+3c0cfCvYQNiA/qO8wN8S3cmoYYAdRUdaLK5XT
-         Ja3Db8jlGk6hvLdqhe2uXNFdyOyqYqNq5uhZ+CAQQI2uZYwiKTpjg/oVK5LyXjUAwLCG
-         7PoGbQYVWNxpDtgIsd400A4S+ma7wVO727k3v8ZNScvgIAzpA8zZf2e62GFPAWPKOwTE
-         PwVwZJJNIXS8zXhQmqORqzDp4I+DH5jHnbT82f0Hd2gNv3lXPcmiQNbpSMR9OFhStd9n
-         WS9dhk2jPr7X5kSXoHQ7QDqcsM0yf8DKSwZBpfkg8jodR35p4+Yed7iHjrUbGYyoB2Zc
-         NcZw==
-X-Gm-Message-State: ANoB5pl/7m4Qk6kFvvYc19Llt8WXM6tLS5mzPz/gXgTFCoUKuWbGOXJB
-        JLx15oxbNr9isOEC2oxtJCU=
-X-Google-Smtp-Source: AA0mqf6j3JfOqMGcXTRxGtsdc4OmDhJ+STJS3nrH05Ko1b+ciKHvjsbwSDRblJz5KBqDhemfYIO3AA==
-X-Received: by 2002:a9d:4c84:0:b0:66b:34bd:772b with SMTP id m4-20020a9d4c84000000b0066b34bd772bmr15089714otf.276.1669216908871;
-        Wed, 23 Nov 2022 07:21:48 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id el33-20020a056870f6a100b0013bc95650c8sm9263267oab.54.2022.11.23.07.21.46
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mRsDugZQHZ3cAp8Uo4BX8m8iIIGYim123jYJVHkkzNM=;
+        b=UttgYdID17rzYxZMQrDCv5NC+KSWYmeYDWIqVj0AZaldFV7boB3u5h4ayWud3QoNh+
+         A7FlRFC0MKhWB7INEc5X6YSoQgSm2hJITruoSd/Zl3txDNX8qn+fkXst3l1ve86Uhk15
+         EwEuVgy3hxnYTadQvV7ffNsNSOR52DBKuLhwvy6KfNu6ZN2mybytLhhooz4HvmAxqBPs
+         RfiAczQ5uzqTsxo7fNF7nPOPoGkQkaQ6yJQ8EN6uOhbAFdGmF7/qJfz3gTSQ/mDivtw6
+         tDAbshPr3FYsoX61dOUJ+GqZZ/YOwEiSh4dpoESRk8p+9ROYEbf/VrweZblYUSwfaCrw
+         KIRQ==
+X-Gm-Message-State: ANoB5pl0ChlssDtBW7lvDD/p/7a1c93v/2u7k0e4Y+txlDGol2LNlxNt
+        dXc7l+CpHgb9yrkW3Kpg8ic=
+X-Google-Smtp-Source: AA0mqf4GOX3D3H86tdcDE4TkSHPMY+S13P3j1Dp/lKoItpeUJRYos1PzrSOxOWOfWevsQEXVOhunCg==
+X-Received: by 2002:a05:600c:2309:b0:3c6:f252:f072 with SMTP id 9-20020a05600c230900b003c6f252f072mr7118083wmo.145.1669216991388;
+        Wed, 23 Nov 2022 07:23:11 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id c18-20020adffb12000000b002365730eae8sm16654203wrr.55.2022.11.23.07.23.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 07:21:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <979b192d-7011-680e-0e0d-d70519bec2b1@roeck-us.net>
-Date:   Wed, 23 Nov 2022 07:21:45 -0800
+        Wed, 23 Nov 2022 07:23:10 -0800 (PST)
+Message-ID: <5b253182-c15e-7fdd-48e2-37fd64838644@gmail.com>
+Date:   Wed, 23 Nov 2022 16:23:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [v4 3/5] dt-bindings: hwmon: Add bindings for aspeed tach
- controller
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/5] arm64: dts: mt8186: Add power domains controller
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, lee@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        corbet@lwn.net, p.zabel@pengutronix.de,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-4-billy_tsai@aspeedtech.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20221123061635.32025-4-billy_tsai@aspeedtech.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, hsinyi@chromium.org
+References: <20221123135531.23221-1-allen-kh.cheng@mediatek.com>
+ <20221123135531.23221-3-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221123135531.23221-3-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,63 +80,218 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/22/22 22:16, Billy Tsai wrote:
-> Add the aspeed tach device bindings which should be the child-node of
-> pwm-tach mfd.
+
+
+On 23/11/2022 14:55, Allen-KH Cheng wrote:
+> Add power domains controller for mt8186 SoC.
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+
+Applied for the next merge window. (v6.2-tmp/dts64 which will transform into 
+v6.2-next/dts64 once v6.2-rc1 is released)
+
+Thanks
+
 > ---
->   .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 36 +++++++++++++++++++
->   1 file changed, 36 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 188 +++++++++++++++++++++++
+>   1 file changed, 188 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> new file mode 100644
-> index 000000000000..f42114f8e3c2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,ast2600-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> index c326aeb33a10..2b03a342b8db 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> @@ -332,6 +332,194 @@
+>   			#interrupt-cells = <2>;
+>   		};
+>   
+> +		scpsys: syscon@10006000 {
+> +			compatible = "mediatek,mt8186-scpsys", "syscon", "simple-mfd";
+> +			reg = <0 0x10006000 0 0x1000>;
 > +
-> +title: Aspeed Ast2600 Tach controller
+> +			/* System Power Manager */
+> +			spm: power-controller {
+> +				compatible = "mediatek,mt8186-power-controller";
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				#power-domain-cells = <1>;
 > +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +				/* power domain of the SoC */
+> +				mfg0: power-domain@MT8186_POWER_DOMAIN_MFG0 {
+> +					reg = <MT8186_POWER_DOMAIN_MFG0>;
+> +					clocks = <&topckgen CLK_TOP_MFG>;
+> +					clock-names = "mfg00";
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					#power-domain-cells = <1>;
 > +
-> +description: |
-> +  The Aspeed Tach controller can support upto 16 fan input.
-> +  This module is part of the ast2600-pwm-tach multi-function device. For more
-> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
+> +					power-domain@MT8186_POWER_DOMAIN_MFG1 {
+> +						reg = <MT8186_POWER_DOMAIN_MFG1>;
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#address-cells = <1>;
+> +						#size-cells = <0>;
+> +						#power-domain-cells = <1>;
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-tach
-> +patternProperties:
-> +  "^fan@[a-z0-9]+$":
-> +    type: object
-> +    properties:
-> +      reg:
-> +        description:
-> +          The tach channel used for this node.
-> +        maxItems: 1
-> +    required:
-> +      - reg
+> +						power-domain@MT8186_POWER_DOMAIN_MFG2 {
+> +							reg = <MT8186_POWER_DOMAIN_MFG2>;
+> +							#power-domain-cells = <0>;
+> +						};
 > +
-> +required:
-> +  - compatible
+> +						power-domain@MT8186_POWER_DOMAIN_MFG3 {
+> +							reg = <MT8186_POWER_DOMAIN_MFG3>;
+> +							#power-domain-cells = <0>;
+> +						};
+> +					};
+> +				};
 > +
-> +additionalProperties: false
-
-I am not a devicetree expert, but I have to say I find it confusing that
-there is no clear explanation that this is for a single fan channel
-which is really a child of aspeed,ast2600-tach. An example might be
-helpful.
-
-Guenter
-
+> +				power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
+> +					reg = <MT8186_POWER_DOMAIN_CSIRX_TOP>;
+> +					clocks = <&topckgen CLK_TOP_SENINF>,
+> +						 <&topckgen CLK_TOP_SENINF1>;
+> +					clock-names = "csirx_top0", "csirx_top1";
+> +					#power-domain-cells = <0>;
+> +				};
+> +
+> +				power-domain@MT8186_POWER_DOMAIN_SSUSB {
+> +					reg = <MT8186_POWER_DOMAIN_SSUSB>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +
+> +				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
+> +					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +
+> +				power-domain@MT8186_POWER_DOMAIN_ADSP_AO {
+> +					reg = <MT8186_POWER_DOMAIN_ADSP_AO>;
+> +					clocks = <&topckgen CLK_TOP_AUDIODSP>,
+> +						 <&topckgen CLK_TOP_ADSP_BUS>;
+> +					clock-names = "audioadsp", "adsp_bus";
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					#power-domain-cells = <1>;
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_ADSP_INFRA {
+> +						reg = <MT8186_POWER_DOMAIN_ADSP_INFRA>;
+> +						#address-cells = <1>;
+> +						#size-cells = <0>;
+> +						#power-domain-cells = <1>;
+> +
+> +						power-domain@MT8186_POWER_DOMAIN_ADSP_TOP {
+> +							reg = <MT8186_POWER_DOMAIN_ADSP_TOP>;
+> +							mediatek,infracfg = <&infracfg_ao>;
+> +							#power-domain-cells = <0>;
+> +						};
+> +					};
+> +				};
+> +
+> +				power-domain@MT8186_POWER_DOMAIN_CONN_ON {
+> +					reg = <MT8186_POWER_DOMAIN_CONN_ON>;
+> +					mediatek,infracfg = <&infracfg_ao>;
+> +					#power-domain-cells = <0>;
+> +				};
+> +
+> +				power-domain@MT8186_POWER_DOMAIN_DIS {
+> +					reg = <MT8186_POWER_DOMAIN_DIS>;
+> +					clocks = <&topckgen CLK_TOP_DISP>,
+> +						 <&topckgen CLK_TOP_MDP>,
+> +						 <&mmsys CLK_MM_SMI_INFRA>,
+> +						 <&mmsys CLK_MM_SMI_COMMON>,
+> +						 <&mmsys CLK_MM_SMI_GALS>,
+> +						 <&mmsys CLK_MM_SMI_IOMMU>;
+> +					clock-names = "disp", "mdp", "smi_infra", "smi_common",
+> +						     "smi_gals", "smi_iommu";
+> +					mediatek,infracfg = <&infracfg_ao>;
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					#power-domain-cells = <1>;
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_VDEC {
+> +						reg = <MT8186_POWER_DOMAIN_VDEC>;
+> +						clocks = <&topckgen CLK_TOP_VDEC>,
+> +							 <&vdecsys CLK_VDEC_LARB1_CKEN>;
+> +						clock-names = "vdec0", "larb";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_CAM {
+> +						reg = <MT8186_POWER_DOMAIN_CAM>;
+> +						clocks = <&topckgen CLK_TOP_CAM>,
+> +							 <&topckgen CLK_TOP_SENINF>,
+> +							 <&topckgen CLK_TOP_SENINF1>,
+> +							 <&topckgen CLK_TOP_SENINF2>,
+> +							 <&topckgen CLK_TOP_SENINF3>,
+> +							 <&topckgen CLK_TOP_CAMTM>,
+> +							 <&camsys CLK_CAM2MM_GALS>;
+> +						clock-names = "cam-top", "cam0", "cam1", "cam2",
+> +							     "cam3", "cam-tm", "gals";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#address-cells = <1>;
+> +						#size-cells = <0>;
+> +						#power-domain-cells = <1>;
+> +
+> +						power-domain@MT8186_POWER_DOMAIN_CAM_RAWB {
+> +							reg = <MT8186_POWER_DOMAIN_CAM_RAWB>;
+> +							#power-domain-cells = <0>;
+> +						};
+> +
+> +						power-domain@MT8186_POWER_DOMAIN_CAM_RAWA {
+> +							reg = <MT8186_POWER_DOMAIN_CAM_RAWA>;
+> +							#power-domain-cells = <0>;
+> +						};
+> +					};
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_IMG {
+> +						reg = <MT8186_POWER_DOMAIN_IMG>;
+> +						clocks = <&topckgen CLK_TOP_IMG1>,
+> +							 <&imgsys1 CLK_IMG1_GALS_IMG1>;
+> +						clock-names = "img-top", "gals";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#address-cells = <1>;
+> +						#size-cells = <0>;
+> +						#power-domain-cells = <1>;
+> +
+> +						power-domain@MT8186_POWER_DOMAIN_IMG2 {
+> +							reg = <MT8186_POWER_DOMAIN_IMG2>;
+> +							#power-domain-cells = <0>;
+> +						};
+> +					};
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_IPE {
+> +						reg = <MT8186_POWER_DOMAIN_IPE>;
+> +						clocks = <&topckgen CLK_TOP_IPE>,
+> +							 <&ipesys CLK_IPE_LARB19>,
+> +							 <&ipesys CLK_IPE_LARB20>,
+> +							 <&ipesys CLK_IPE_SMI_SUBCOM>,
+> +							 <&ipesys CLK_IPE_GALS_IPE>;
+> +						clock-names = "ipe-top", "ipe-larb0", "ipe-larb1",
+> +							      "ipe-smi", "ipe-gals";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_VENC {
+> +						reg = <MT8186_POWER_DOMAIN_VENC>;
+> +						clocks = <&topckgen CLK_TOP_VENC>,
+> +							 <&vencsys CLK_VENC_CKE1_VENC>;
+> +						clock-names = "venc0", "larb";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +
+> +					power-domain@MT8186_POWER_DOMAIN_WPE {
+> +						reg = <MT8186_POWER_DOMAIN_WPE>;
+> +						clocks = <&topckgen CLK_TOP_WPE>,
+> +							 <&wpesys CLK_WPE_SMI_LARB8_CK_EN>,
+> +							 <&wpesys CLK_WPE_SMI_LARB8_PCLK_EN>;
+> +						clock-names = "wpe0", "larb-ck", "larb-pclk";
+> +						mediatek,infracfg = <&infracfg_ao>;
+> +						#power-domain-cells = <0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>   		watchdog: watchdog@10007000 {
+>   			compatible = "mediatek,mt8186-wdt",
+>   				     "mediatek,mt6589-wdt";
