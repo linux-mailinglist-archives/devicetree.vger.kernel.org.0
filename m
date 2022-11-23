@@ -2,553 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5209A635066
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 07:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71BFE635087
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 07:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236058AbiKWGTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 01:19:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
+        id S235778AbiKWGg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 01:36:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236003AbiKWGTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 01:19:15 -0500
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A83F5CD0A;
-        Tue, 22 Nov 2022 22:19:12 -0800 (PST)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 2AN5pU4M081940;
-        Wed, 23 Nov 2022 13:51:32 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 23 Nov
- 2022 14:15:55 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <joel@jms.id.au>,
-        <andrew@aj.id.au>, <lee@kernel.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <corbet@lwn.net>,
-        <p.zabel@pengutronix.de>, <billy_tsai@aspeedtech.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S234531AbiKWGg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 01:36:26 -0500
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2059.outbound.protection.outlook.com [40.107.103.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5001F4191;
+        Tue, 22 Nov 2022 22:36:25 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X/yRKcs4qVN7xOwl1te2zPagALNyPaayA8CTI0YPxPnXIJ0gNI5NPp9GJe8/kGrL/QF8NQzTcwpoo+P3BtEaldf9sLmcZ8CAy5zjQ8l///LI+IpPh1CkokPFMut4zbx9LtcQgPTFJ1+rrI1yJ52ktCmXFzWYamJXsTM7ovBQ3jmIFg7W364wK3NyKE/IpTpGGXoXUs/k0rxPJtDMCNguigexxVZiHn81n7DWr7/23KfGpBSS2mY03EQhcBtQEztma9j26qrqJHy1sk9tacIj3svhkvx8f+l8PnfXKTfgd64e4jlESLQkfdF86dE8xVrf2SY7+oXlg3brZdCrvhEFQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XbL7NsJ7O3x/Y6YS9j1+VFlIhH1jWLeMZtpmcE5i4Qs=;
+ b=A84F/6BbYO15lqKrm+rXjABqLIQdMgQAMdei7mQDi5EXKOlnYyGU8O2GfwWP0lxR6vMWK1uujngZyS/HvFwgMFYX6O6T3NeNqztjnDGKhieGLz9gMlwCwh7YPPfnG42L44+9Ge5sCQnvhvEpPLQ5DYU6Dd6EhBvjDHhw8bB/CD7IuZUeQ/H3hLbj/PGgy2goWbOSJhs8ibZluwaHd1Rc2N6LpKMO9mLtoGnlTDmEcl1TBQSk0dfCd7re/5olFt+CjWVZ8lKQZ1AUAJnMAM2PaYXYUm7peIu8vDm/CQrzWACv5vJWgbr/ij1H7YfkqwQnZaFL4NDQIb8E8XXMoKhwCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XbL7NsJ7O3x/Y6YS9j1+VFlIhH1jWLeMZtpmcE5i4Qs=;
+ b=Jya/iY0EsVsRYB7paqAPSZBmeoZT9rk75OSk8V2nZ097s2K6DCwP3uL/F0LZEmAw21CWw4n3OfEKaszyVdaa8Y3tTtbq+L63/rmLauXghmMapn+Ce4E1s+MoHDe4pLa2TdDfiNITw9ZeMsVGdm5TsGiMO50CCuNBsDvgE05Nid0=
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
+ by DU0PR04MB9274.eurprd04.prod.outlook.com (2603:10a6:10:355::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Wed, 23 Nov
+ 2022 06:36:21 +0000
+Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::d0c6:7b1d:6982:d400]) by PAXPR04MB9448.eurprd04.prod.outlook.com
+ ([fe80::d0c6:7b1d:6982:d400%6]) with mapi id 15.20.5857.017; Wed, 23 Nov 2022
+ 06:36:21 +0000
+From:   Sandor Yu <sandor.yu@nxp.com>
+To:     Fabio Estevam <festevam@gmail.com>
+CC:     "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "robert.foss@linaro.org" <robert.foss@linaro.org>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-doc@vger.kernel.org>
-CC:     kernel test robot <lkp@intel.com>
-Subject: [v4 5/5] hwmon: Add Aspeed ast2600 TACH support
-Date:   Wed, 23 Nov 2022 14:16:35 +0800
-Message-ID: <20221123061635.32025-6-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Oliver Brown <oliver.brown@nxp.com>
+Subject: RE: [EXT] Re: [PATCH v4 01/10] drm: bridge: cadence: convert mailbox
+ functions to macro functions
+Thread-Topic: [EXT] Re: [PATCH v4 01/10] drm: bridge: cadence: convert mailbox
+ functions to macro functions
+Thread-Index: AQHY/XlstS/wObBAJ02g1W0U4veKAa5LQAMAgAB4s8A=
+Date:   Wed, 23 Nov 2022 06:36:21 +0000
+Message-ID: <PAXPR04MB94489F10D38BB14A22FDD598F40C9@PAXPR04MB9448.eurprd04.prod.outlook.com>
+References: <cover.1669013346.git.Sandor.yu@nxp.com>
+ <be4532b834109595b0fbf3562bf072caf2852a01.1669013346.git.Sandor.yu@nxp.com>
+ <CAOMZO5AwwyZofwQNRnamNiLcj74HayNgocKsKx9epNGm8O-8-A@mail.gmail.com>
+In-Reply-To: <CAOMZO5AwwyZofwQNRnamNiLcj74HayNgocKsKx9epNGm8O-8-A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9448:EE_|DU0PR04MB9274:EE_
+x-ms-office365-filtering-correlation-id: f83097af-e3f3-4f02-b8f1-08dacd1d092f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 62/P9dQk/07O9Q2BoncThpwDoKE32YeElDiEmRgUUF9ciEXeNY6krJ50Kt8Q9rsyM3w4uFskAgCODhhYdJodN4ncVH+k/qJJJYx+jhVf87+KE8y/Rp7NT5S60eNsmj4huUyp1jjP3mTqO6aDUmYvQ1ZdqV0SrIIsbFGfu42sojNFZ+JT6nvbxufdEMpnOfPpC5fctgFfL4+eelzAwSWO/+0jgkvm581qNH45JBzL5SCtCiSFP91LlBDK8TU1+nv+XeH7BIMVqpMOnPsBrOIpojP7sSf4YzobhaC4Ibg9TWZ7P6c/zMOavZJrdKbfnqm/5KQaRzfwRbI8XyCJmUdkwZkA/WuYEpzMzxccp6FOsfgUsh/vdfvU6Oi9jRBUH+E5H3eR1+Sn9LOm8aoEpAQ2JK9kg3EH0UNHFdymLptlx+DZss5CKXW5sNS86s76/urySF70pl90w6cZQxzCooluItmMQ/i9EIYC77Ua5tdQOkbIIrglmVRGENIShMyjFPBzXLceoaQhSxC318FMa/OCfa5Tdsv+vJkmG6kI1/4ZxeAgnRr3UuuekE04PAQI+WBMwAm5PRwxdoFULS2YrXn5PbRSEkOPm0YNU+DFvkEPgcu9/VKV9iXyxH4QGM2zm8R+PP8Ars55H1HRfYjgGyYuNomVpucuh+4Pk1GKsTu97GqVZUSSTi6Z+ozug4C4jb/krumxFifZrSwp0lcZSLx7Yg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(346002)(396003)(376002)(136003)(451199015)(5660300002)(33656002)(8936002)(6916009)(186003)(316002)(38100700002)(122000001)(26005)(55016003)(53546011)(7696005)(7416002)(15650500001)(6506007)(71200400001)(9686003)(86362001)(38070700005)(478600001)(44832011)(83380400001)(52536014)(2906002)(54906003)(4326008)(8676002)(64756008)(66476007)(66556008)(66946007)(66446008)(41300700001)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?T0FYaGJhUUtZZjJBZkZXalQ1SnJWYlhUYnNWUE1sVDlzMFFCcUpMaDhYQUxW?=
+ =?utf-8?B?MzlLdE9qSk4xcnQ5T0Z6citBZ0Y5dUtTcmFSY1VjekNVeUNDUjRXTHZ0V0gy?=
+ =?utf-8?B?NGpTSElVMWFEWTBpeDRkZVp5bUlTcFBGdXdnMGdzeDQvb2F4d251Tjl3citq?=
+ =?utf-8?B?dlhvakZMc2ZQazhieUsyVXVWZ2pWS0JmeFc5OWpUeVFCeGhYdUVzL3ZZUFJT?=
+ =?utf-8?B?aFFYU3pOODlnNjlkbHhKUko2SVF2cUkxSWlVVmJkbjBIVUFuTGM1MkFQek5M?=
+ =?utf-8?B?cG4rQWZUYzFWTlAyRVdicG1UZlJraWRNQk1Pcmh4a2s4K1M3OVBYT29tT0E2?=
+ =?utf-8?B?bmFyeFJJR0ZGaE5HQTlKZWx3QndKZm14ZTZDUE9vM2JmSVdCYlcxMTVqQURt?=
+ =?utf-8?B?OVBKcTBVTXdudEhqbkV5TWc0SFFRVXRnOE1RbW5mdlNlNlN6TlNwckluQmhV?=
+ =?utf-8?B?WGxzL1RZRllyNlFobTZpL1doYlNBWWt0T0Yxclo1OERHRXlPeWlDd2RBTWpr?=
+ =?utf-8?B?QXBRcmJqTnRzcmZBeUVIRDcrSnpGeWpESzFZbEdtUnNyNUdLMFNGWUVxMWV2?=
+ =?utf-8?B?RUJyaGNiQk5iWE5jcHJhOHhZZWVLL0hrK3BzK0tPSmFNUzdSVVBMckcvUkJY?=
+ =?utf-8?B?WlgxQkFPVU1sOUY3cG9PMVhTWW8wM0NuVXlGcVpyenlTNTFHUm0zUVJ0T0xG?=
+ =?utf-8?B?akVWbGQxUGx0TDNYUm42SWdTeUV0YVFMYmNxS21nbHdQZU9KMFB5VVdRc0lH?=
+ =?utf-8?B?SXpLMW1wN3QxUXd4aTBIdDRFbnRRM0F5WUhBb3ZDY1FmZVpxM0R6TDJub3dn?=
+ =?utf-8?B?dUEvakREdk51elhnL2s3NWJhMHdKQ3JhTEV0TG9MRHI2ajdZczlZaS9WLzFw?=
+ =?utf-8?B?WTJGNTNuNDlUczRWTlY3bGRLdjFwbzViVVR3ODJvcHV4UUtuZUx5bUtwQTlQ?=
+ =?utf-8?B?aDQ0RnB2L0VDM3JmOU8zaE95NEo3dGtoWjZJWE5wQWdMNmhBcXRCSkIvTjV6?=
+ =?utf-8?B?cDQ5NUdoUWk3WHMvcVh6QXVTRDVYNXVjTVZhc2Z6MlkzMWFqUFpJRkl0VExk?=
+ =?utf-8?B?T251SjNGcmFheWZvbFZhdytQc1pDVUxwbVVwWXJRN3ZueUl2ZVY2eEVSQUR2?=
+ =?utf-8?B?T1ptMnBoMW82L0tzZnlmdjNtVXJZUXhuQVNxSnlkNm5wdldkbFlPWHdlUjV3?=
+ =?utf-8?B?TzQwQXNNTDFpbkc3QjR4TzRPbk04S2Z0UWhuN0lrclI5YnNkZVRxd2d5Tksv?=
+ =?utf-8?B?YTZ2UFhWTDlRTFJXUjd4QjdOSU1ZOTFlc1luSVhCdEZ6U0Z0UGVDR0FwSzU1?=
+ =?utf-8?B?Z1lESHhSbWRkZ2h6VDZ3djl5QmNaRFlDSE4rS29pQlNBblNxd25HSGZpWmYz?=
+ =?utf-8?B?T0w0M2NucUVSWEQ4K1V0a2hyV3M0ajAySU4xVzBHUEE0YXR5L3pkVG9TaDR1?=
+ =?utf-8?B?THEzMmsrUkEyRlVxZnRsVGh2QThFYUJaN0I2VUJ2REM1K3FxWVBQcGNoNDcw?=
+ =?utf-8?B?WDhTaTY4aXZaN1J6Q2hOaDZOc0c3c0V5b0NFdlVSL3Q3ekNoYUFPZFQ3NHh1?=
+ =?utf-8?B?T1JxbVF1Y1Q1eURnY2JwYkJLSnIrM2VURHhpQU1DV3hPOGlId0lnUlhvY3Vx?=
+ =?utf-8?B?b1lnSTdqdW94MWk2UmZmM0ozUnZFUURwdXhrNHE4NktZS213YXVPMWYxZ0x5?=
+ =?utf-8?B?Vk9qc1J3Z2FsUVdPQXRwVWpHMWl6aFVweEVZVzBEVXlMT0VCTFhEcWg1RmJo?=
+ =?utf-8?B?WkcveHNrby9ybnZkL1MyZ0ZYbnpDK2xZV0VLaXlpSCtPKzlJQjkzZ3VmTjYz?=
+ =?utf-8?B?Wk9Dbk5YNGsySUhhVmtSYU5rWFRReFdwU0g4V2RQSCtwenIzSVJ3dEJvd0li?=
+ =?utf-8?B?T1NNQU13RnY5b1FlcHFVdWxnc00rSlU1NkRKdnVuQzE5b0pRMmRRZFJ6OVRs?=
+ =?utf-8?B?MWoxb012Qk5hd3FIWUU0NnJ6OWxrOW81QUNKWGVGUUt2cjBqd3RMaHlJR28y?=
+ =?utf-8?B?dC9hTlpMdWFXcFJRc2EvNGVsekYzaGhFd1NyZ1RIc0xLZmEwUGlkMGhPV2ZE?=
+ =?utf-8?B?R2VnWnNoOGlwZ2lmRlhlWWRJNi9TeHJmWVdQN1BGMDUrWXRBZXliT0N5bWVv?=
+ =?utf-8?Q?XZO0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 2AN5pU4M081940
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f83097af-e3f3-4f02-b8f1-08dacd1d092f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2022 06:36:21.7746
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rp2dNFFuvkXdwg8xcCsQS60m9TR28vIaZsyon1XVQdlij8DCH0n0MlNDPGmMPGC3lOTCI3e0EWR/4Ikar3/I3w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9274
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the support of Tachometer which can use to monitor the frequency of
-the input. The tach supports up to 16 channels and it's part function of
-multi-function device "pwm-tach controller".
-
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-Reported-by: kernel test robot <lkp@intel.com>
----
- Documentation/hwmon/index.rst               |   1 +
- Documentation/hwmon/tach-aspeed-ast2600.rst |  24 ++
- drivers/hwmon/Kconfig                       |   9 +
- drivers/hwmon/Makefile                      |   1 +
- drivers/hwmon/tach-aspeed-ast2600.c         | 399 ++++++++++++++++++++
- 5 files changed, 434 insertions(+)
- create mode 100644 Documentation/hwmon/tach-aspeed-ast2600.rst
- create mode 100644 drivers/hwmon/tach-aspeed-ast2600.c
-
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index c1d11cf13eef..8aed4c42ca89 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -193,6 +193,7 @@ Hardware Monitoring Kernel Drivers
-    sparx5-temp
-    stpddc60
-    sy7636a-hwmon
-+   tach-aspeed-ast2600
-    tc654
-    tc74
-    thmc50
-diff --git a/Documentation/hwmon/tach-aspeed-ast2600.rst b/Documentation/hwmon/tach-aspeed-ast2600.rst
-new file mode 100644
-index 000000000000..4f9501b783a1
---- /dev/null
-+++ b/Documentation/hwmon/tach-aspeed-ast2600.rst
-@@ -0,0 +1,24 @@
-+Kernel driver tach-aspeed-ast2600
-+==============================
-+
-+Supported chips:
-+	ASPEED AST2600
-+
-+Authors:
-+	<billy_tsai@aspeedtech.com>
-+
-+Description:
-+------------
-+This driver implements support for ASPEED AST2600 Fan Tacho controller.
-+The controller supports up to 16 tachometer inputs.
-+
-+The driver provides the following sensor accesses in sysfs:
-+=============== ======= =====================================================
-+fanX_input	ro	provide current fan rotation value in RPM as reported
-+			by the fan to the device.
-+fanX_div	rw	Fan divisor: Supported value are power of 4 (1, 4, 16
-+                        64, ... 4194304)
-+                        The larger divisor, the less rpm accuracy and the less
-+                        affected by fan signal glitch.
-+fanX_pulses	rw      Fan pulses per resolution.
-+=============== ======= ======================================================
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 7ac3daaf59ce..3196087a7b3e 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -403,6 +403,15 @@ config SENSORS_ASPEED
- 	  This driver can also be built as a module. If so, the module
- 	  will be called aspeed_pwm_tacho.
- 
-+config SENSORS_TACH_ASPEED_AST2600
-+	tristate "ASPEED ast2600 Tachometer support"
-+	select REGMAP
-+	help
-+	  This driver provides support for Aspeed ast2600 Tachometer.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called tach-aspeed-ast2600.
-+
- config SENSORS_ATXP1
- 	tristate "Attansic ATXP1 VID controller"
- 	depends on I2C
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 11d076cad8a2..50a139c7c4ca 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -53,6 +53,7 @@ obj-$(CONFIG_SENSORS_ARM_SCMI)	+= scmi-hwmon.o
- obj-$(CONFIG_SENSORS_ARM_SCPI)	+= scpi-hwmon.o
- obj-$(CONFIG_SENSORS_AS370)	+= as370-hwmon.o
- obj-$(CONFIG_SENSORS_ASC7621)	+= asc7621.o
-+obj-$(CONFIG_SENSORS_TACH_ASPEED_AST2600) += tach-aspeed-ast2600.o
- obj-$(CONFIG_SENSORS_ASPEED)	+= aspeed-pwm-tacho.o
- obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
- obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
-diff --git a/drivers/hwmon/tach-aspeed-ast2600.c b/drivers/hwmon/tach-aspeed-ast2600.c
-new file mode 100644
-index 000000000000..2b8dd5eeb6ec
---- /dev/null
-+++ b/drivers/hwmon/tach-aspeed-ast2600.c
-@@ -0,0 +1,399 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) ASPEED Technology Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/errno.h>
-+#include <linux/hwmon.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <linux/sysfs.h>
-+
-+/* The channel number of Aspeed tach controller */
-+#define TACH_ASPEED_NR_TACHS		16
-+/* TACH Control Register */
-+#define TACH_ASPEED_CTRL(ch)		(((ch) * 0x10) + 0x08)
-+#define TACH_ASPEED_IER			BIT(31)
-+#define TACH_ASPEED_INVERS_LIMIT	BIT(30)
-+#define TACH_ASPEED_LOOPBACK		BIT(29)
-+#define TACH_ASPEED_ENABLE		BIT(28)
-+#define TACH_ASPEED_DEBOUNCE_MASK	GENMASK(27, 26)
-+#define TACH_ASPEED_DEBOUNCE_BIT	26
-+#define TACH_ASPEED_IO_EDGE_MASK	GENMASK(25, 24)
-+#define TACH_ASPEED_IO_EDGE_BIT		24
-+#define TACH_ASPEED_CLK_DIV_T_MASK	GENMASK(23, 20)
-+#define TACH_ASPEED_CLK_DIV_BIT		20
-+#define TACH_ASPEED_THRESHOLD_MASK	GENMASK(19, 0)
-+/* [27:26] */
-+#define DEBOUNCE_3_CLK			0x00
-+#define DEBOUNCE_2_CLK			0x01
-+#define DEBOUNCE_1_CLK			0x02
-+#define DEBOUNCE_0_CLK			0x03
-+/* [25:24] */
-+#define F2F_EDGES			0x00
-+#define R2R_EDGES			0x01
-+#define BOTH_EDGES			0x02
-+/* [23:20] */
-+/* divisor = 4 to the nth power, n = register value */
-+#define DEFAULT_TACH_DIV		1024
-+#define DIV_TO_REG(divisor)		(ilog2(divisor) >> 1)
-+
-+/* TACH Status Register */
-+#define TACH_ASPEED_STS(ch)		(((ch) * 0x10) + 0x0C)
-+
-+/*PWM_TACH_STS */
-+#define TACH_ASPEED_ISR			BIT(31)
-+#define TACH_ASPEED_PWM_OUT		BIT(25)
-+#define TACH_ASPEED_PWM_OEN		BIT(24)
-+#define TACH_ASPEED_DEB_INPUT		BIT(23)
-+#define TACH_ASPEED_RAW_INPUT		BIT(22)
-+#define TACH_ASPEED_VALUE_UPDATE	BIT(21)
-+#define TACH_ASPEED_FULL_MEASUREMENT	BIT(20)
-+#define TACH_ASPEED_VALUE_MASK		GENMASK(19, 0)
-+/**********************************************************
-+ * Software setting
-+ *********************************************************/
-+#define DEFAULT_FAN_PULSE_PR		2
-+struct aspeed_tach_channel_params {
-+	int limited_inverse;
-+	u16 threshold;
-+	u8 tach_edge;
-+	u8 tach_debounce;
-+	u8 pulse_pr;
-+	u32 divisor;
-+	u32 sample_period; /* unit is us */
-+	u32 polling_period; /* unit is us */
-+};
-+
-+struct aspeed_tach_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct clk *clk;
-+	struct reset_control *reset;
-+	bool tach_present[TACH_ASPEED_NR_TACHS];
-+	struct aspeed_tach_channel_params *tach_channel;
-+};
-+
-+static void aspeed_tach_ch_enable(struct aspeed_tach_data *priv, u8 tach_ch,
-+				  bool enable)
-+{
-+	if (enable)
-+		regmap_set_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+				TACH_ASPEED_ENABLE);
-+	else
-+		regmap_clear_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+				  TACH_ASPEED_ENABLE);
-+}
-+
-+static u64 aspeed_tach_val_to_rpm(struct aspeed_tach_data *priv, u8 fan_tach_ch,
-+				  u32 tach_val)
-+{
-+	unsigned long clk_source;
-+	u64 rpm;
-+	u32 tach_div;
-+
-+	/*
-+	 * We need the mode to determine if the tach_val is double (from
-+	 * counting both edges).
-+	 */
-+	if (priv->tach_channel[fan_tach_ch].tach_edge == BOTH_EDGES)
-+		tach_val <<= 1;
-+
-+	tach_div = tach_val * (priv->tach_channel[fan_tach_ch].divisor) *
-+		   (priv->tach_channel[fan_tach_ch].pulse_pr);
-+
-+	clk_source = clk_get_rate(priv->clk);
-+	dev_dbg(priv->dev, "clk %ld, tach_val %d , tach_div %d\n", clk_source,
-+		tach_val, tach_div);
-+
-+	rpm = (u64)clk_source * 60;
-+	do_div(rpm, tach_div);
-+
-+	return rpm;
-+}
-+
-+static int aspeed_get_fan_tach_ch_rpm(struct aspeed_tach_data *priv,
-+				      u8 fan_tach_ch)
-+{
-+	u32 val;
-+	u64 rpm;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, TACH_ASPEED_STS(fan_tach_ch), &val);
-+
-+	if (ret)
-+		return ret;
-+
-+	if (!(val & TACH_ASPEED_FULL_MEASUREMENT))
-+		return 0;
-+	rpm = aspeed_tach_val_to_rpm(priv, fan_tach_ch,
-+				     val & TACH_ASPEED_VALUE_MASK);
-+
-+	return rpm;
-+}
-+
-+static int aspeed_tach_hwmon_read(struct device *dev,
-+				  enum hwmon_sensor_types type, u32 attr,
-+				  int channel, long *val)
-+{
-+	struct aspeed_tach_data *priv = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	int ret;
-+
-+	switch (attr) {
-+	case hwmon_fan_input:
-+		ret = aspeed_get_fan_tach_ch_rpm(priv, channel);
-+		if (ret < 0)
-+			return ret;
-+		*val = ret;
-+		break;
-+	case hwmon_fan_div:
-+		regmap_read(priv->regmap, TACH_ASPEED_CTRL(channel), &reg_val);
-+		reg_val = FIELD_GET(TACH_ASPEED_CLK_DIV_T_MASK, reg_val);
-+		*val = BIT(reg_val << 1);
-+		break;
-+	case hwmon_fan_pulses:
-+		*val = priv->tach_channel[channel].pulse_pr;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static int aspeed_tach_hwmon_write(struct device *dev,
-+				   enum hwmon_sensor_types type, u32 attr,
-+				   int channel, long val)
-+{
-+	struct aspeed_tach_data *priv = dev_get_drvdata(dev);
-+
-+	switch (attr) {
-+	case hwmon_fan_div:
-+		if (!(is_power_of_2(val) && !(ilog2(val) % 2))) {
-+			dev_err(dev,
-+				"fan_div value %ld not supported. Only support power of 4\n",
-+				val);
-+			return -EINVAL;
-+		}
-+		priv->tach_channel[channel].divisor = val;
-+		regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(channel),
-+				  TACH_ASPEED_CLK_DIV_T_MASK,
-+				  DIV_TO_REG(priv->tach_channel[channel].divisor)
-+					  << TACH_ASPEED_CLK_DIV_BIT);
-+		break;
-+	case hwmon_fan_pulses:
-+		priv->tach_channel[channel].pulse_pr = val;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static umode_t aspeed_tach_dev_is_visible(const void *drvdata,
-+					  enum hwmon_sensor_types type,
-+					  u32 attr, int channel)
-+{
-+	const struct aspeed_tach_data *priv = drvdata;
-+
-+	if (!priv->tach_present[channel])
-+		return 0;
-+	switch (attr) {
-+	case hwmon_fan_input:
-+		return 0444;
-+	case hwmon_fan_div:
-+	case hwmon_fan_pulses:
-+		return 0644;
-+	}
-+	return 0;
-+}
-+
-+static const struct hwmon_ops aspeed_tach_ops = {
-+	.is_visible = aspeed_tach_dev_is_visible,
-+	.read = aspeed_tach_hwmon_read,
-+	.write = aspeed_tach_hwmon_write,
-+};
-+
-+static const struct hwmon_channel_info *aspeed_tach_info[] = {
-+	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_DIV | HWMON_F_PULSES),
-+	NULL
-+};
-+
-+static const struct hwmon_chip_info aspeed_tach_chip_info = {
-+	.ops = &aspeed_tach_ops,
-+	.info = aspeed_tach_info,
-+};
-+
-+static void aspeed_create_fan_tach_channel(struct aspeed_tach_data *priv,
-+					   u32 tach_ch)
-+{
-+	priv->tach_present[tach_ch] = true;
-+	priv->tach_channel[tach_ch].limited_inverse = 0;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_INVERS_LIMIT,
-+			  priv->tach_channel[tach_ch].limited_inverse ?
-+				  TACH_ASPEED_INVERS_LIMIT :
-+				  0);
-+
-+	priv->tach_channel[tach_ch].tach_debounce = DEBOUNCE_3_CLK;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_DEBOUNCE_MASK,
-+			  priv->tach_channel[tach_ch].tach_debounce
-+				  << TACH_ASPEED_DEBOUNCE_BIT);
-+
-+	priv->tach_channel[tach_ch].tach_edge = F2F_EDGES;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_IO_EDGE_MASK,
-+			  priv->tach_channel[tach_ch].tach_edge
-+				  << TACH_ASPEED_IO_EDGE_BIT);
-+
-+	priv->tach_channel[tach_ch].divisor = DEFAULT_TACH_DIV;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_CLK_DIV_T_MASK,
-+			  DIV_TO_REG(priv->tach_channel[tach_ch].divisor)
-+				  << TACH_ASPEED_CLK_DIV_BIT);
-+
-+	priv->tach_channel[tach_ch].threshold = 0;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_THRESHOLD_MASK,
-+			  priv->tach_channel[tach_ch].threshold);
-+
-+	priv->tach_channel[tach_ch].pulse_pr = DEFAULT_FAN_PULSE_PR;
-+
-+	aspeed_tach_ch_enable(priv, tach_ch, true);
-+}
-+
-+static int aspeed_tach_create_fan(struct device *dev, struct device_node *child,
-+				  struct aspeed_tach_data *priv)
-+{
-+	u32 tach_channel;
-+	int ret;
-+
-+	ret = of_property_read_u32(child, "reg", &tach_channel);
-+	if (ret)
-+		return ret;
-+
-+	aspeed_create_fan_tach_channel(priv, tach_channel);
-+
-+	return 0;
-+}
-+
-+static void aspeed_tach_reset_assert(void *data)
-+{
-+	struct reset_control *rst = data;
-+
-+	reset_control_assert(rst);
-+}
-+
-+static int aspeed_tach_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np, *child;
-+	struct aspeed_tach_data *priv;
-+	struct device *hwmon;
-+	struct platform_device *parent_dev;
-+	int ret;
-+
-+	np = dev->parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Unsupported tach device binding\n");
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = &pdev->dev;
-+	priv->tach_channel =
-+		devm_kcalloc(dev, TACH_ASPEED_NR_TACHS,
-+			     sizeof(*priv->tach_channel), GFP_KERNEL);
-+	if (!priv->tach_channel)
-+		return -ENOMEM;
-+
-+	priv->regmap = syscon_node_to_regmap(np);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "Couldn't get regmap\n");
-+	parent_dev = of_find_device_by_node(np);
-+	priv->clk = devm_clk_get_enabled(&parent_dev->dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "Couldn't get clock\n");
-+
-+	priv->reset = devm_reset_control_get_shared(&parent_dev->dev, NULL);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "Couldn't get reset control\n");
-+
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Couldn't deassert reset control\n");
-+
-+	ret = devm_add_action_or_reset(dev, aspeed_tach_reset_assert,
-+				       priv->reset);
-+	if (ret)
-+		return ret;
-+
-+	for_each_child_of_node(dev->of_node, child) {
-+		ret = aspeed_tach_create_fan(dev, child, priv);
-+		if (ret) {
-+			of_node_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	hwmon = devm_hwmon_device_register_with_info(dev, "aspeed_tach", priv,
-+						     &aspeed_tach_chip_info, NULL);
-+	ret = PTR_ERR_OR_ZERO(hwmon);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register hwmon device\n");
-+	return 0;
-+}
-+
-+static const struct of_device_id of_stach_match_table[] = {
-+	{
-+		.compatible = "aspeed,ast2600-tach",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, of_stach_match_table);
-+
-+static struct platform_driver aspeed_tach_driver = {
-+	.probe		= aspeed_tach_probe,
-+	.driver		= {
-+		.name	= "aspeed_tach",
-+		.of_match_table = of_stach_match_table,
-+	},
-+};
-+
-+module_platform_driver(aspeed_tach_driver);
-+
-+MODULE_AUTHOR("Billy Tsai <billy_tsai@aspeedtech.com>");
-+MODULE_DESCRIPTION("Aspeed ast2600 TACH device driver");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
-
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEZhYmlvIEVzdGV2YW0gPGZl
+c3RldmFtQGdtYWlsLmNvbT4NCj4gU2VudDogMjAyMuW5tDEx5pyIMjPml6UgMjowOQ0KPiBUbzog
+U2FuZG9yIFl1IDxzYW5kb3IueXVAbnhwLmNvbT4NCj4gQ2M6IGFuZHJ6ZWouaGFqZGFAaW50ZWwu
+Y29tOyBuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnOw0KPiByb2JlcnQuZm9zc0BsaW5hcm8ub3Jn
+OyBMYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb207DQo+IGpvbmFzQGt3aWJvby5zZTsg
+amVybmVqLnNrcmFiZWNAZ21haWwuY29tOyBhaXJsaWVkQGdtYWlsLmNvbTsNCj4gZGFuaWVsQGZm
+d2xsLmNoOyByb2JoK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJv
+Lm9yZzsNCj4gc2hhd25ndW9Aa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRyb25peC5kZTsga2lz
+aG9uQHRpLmNvbTsNCj4gdmtvdWxAa2VybmVsLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJuZWxA
+bGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGlu
+dXgtcGh5QGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+IGFsZXhhbmRlci5zdGVpbkBldy50cS1ncm91
+cC5jb207IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZGwtbGludXgtaW14DQo+IDxsaW51eC1pbXhA
+bnhwLmNvbT47IE9saXZlciBCcm93biA8b2xpdmVyLmJyb3duQG54cC5jb20+DQo+IFN1YmplY3Q6
+IFtFWFRdIFJlOiBbUEFUQ0ggdjQgMDEvMTBdIGRybTogYnJpZGdlOiBjYWRlbmNlOiBjb252ZXJ0
+IG1haWxib3gNCj4gZnVuY3Rpb25zIHRvIG1hY3JvIGZ1bmN0aW9ucw0KPiANCj4gQ2F1dGlvbjog
+RVhUIEVtYWlsDQo+IA0KPiBIaSBTYW5kb3IsDQo+IA0KPiBPbiBNb24sIE5vdiAyMSwgMjAyMiBh
+dCA0OjI3IEFNIFNhbmRvciBZdSA8U2FuZG9yLnl1QG54cC5jb20+IHdyb3RlOg0KPiA+DQo+ID4g
+TWFpbGJveCBhY2Nlc3MgZnVuY3Rpb25zIGNvdWxkIGJlIHNoYXJlIHRvIG90aGVyIG1oZHAgZHJp
+dmVyIGFuZA0KPiA+IEhEUC1UWCBIRE1JL0RQIFBIWSBkcml2ZXJzLCBtb3ZlIHRob3NlIGZ1bmN0
+aW9ucyB0byBoZWFkIGZpbGUNCj4gPiBpbmNsdWRlL2RybS9icmlkZ2UvY2Rucy1taGRwLW1haWxi
+b3guaCBhbmQgY29udmVydCB0aGVtIHRvIG1hY3JvDQo+ID4gZnVuY3Rpb25zLg0KPiANCj4gV2hh
+dCBpcyB0aGUgcmVhc29uIGZvciBjb252ZXJ0aW5nIHRoZSBmdW5jdGlvbnMgdG8gbWFjcm8/DQpC
+b3RoIEhETUkgUEhZIGRyaXZlciBhbmQgSERNSSBicmlkZ2UgZHJpdmVyIG5lZWQgbWFpbGJveCBB
+UEkgZnVuY3Rpb24gdG8gYWNjZXNzIHJlZ2lzdGVyIGFuZCBnZXQgc3RhdHVzIGZyb20gZmlybXdh
+cmUuDQpDb3ZlcnQgdGhvc2UgZnVuY3Rpb25zIHRvIG1hY3JvIGNvdWxkIGJlIGVhc3kgcmV1c2Vk
+IGJ5IGJvdGggUEhZIGFuZCBicmlkZ2UgZHJpdmVyLg0KDQpCLlINClNhbmRvcg0KDQo=
