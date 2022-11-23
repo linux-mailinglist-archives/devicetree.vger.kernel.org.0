@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 522346352C4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:34:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A076352E4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:39:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236564AbiKWId1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 03:33:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41818 "EHLO
+        id S236246AbiKWIjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 03:39:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236550AbiKWIdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:33:24 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9EADB879
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:33:22 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b3so27119143lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:33:22 -0800 (PST)
+        with ESMTP id S236610AbiKWIi5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:38:57 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63320FBAB9
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:38:55 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id k19so20606871lji.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:38:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r24+kxiwoCSvm2ayWOZArpjPKCuE4SnymqyJAd3zIYM=;
-        b=IOlJksGNdbJbrBpJA3cBm5xy486N/lEda8ByQPM70Vn2iN6r40/7a8iMKvXvbONgot
-         dTJRLBkxGogODzjpQHPXfCuRt0SxPUiYwNZapRMJItO9VYrAvduz/YyTAXv81YAGLexT
-         BFXU2sSbdjP7kWM4wiENR6YE1J09HxsVAPfm5mVtOFdnoXMfhBEHeKPqxDSEVrHKgs06
-         Q5P8Hp3iHER6Nx4H3p/ZqW6tkLcflP9UhrVqKv4SL3Vad5jdoQCfbGdxWx3TvLi+fDFp
-         0JGDldMXrOOiYsbT9fBpEjMbS5rABl99l6YBfO3Z5sFcYXGW0oqpuIAr/yptdQpUhNSL
-         cG6A==
+        bh=WWg6Ff6BH10NGuivQAe12p9c1TDwH/74TLSEqxl141E=;
+        b=G+Y0WU2FKvs6wUCeKCoe+WBbu6w5r3al4pGIeCTDsKyiEahu1kT86Q19qMqtnZ/4Zt
+         5ltUpKPWIvoMv8Ah9n0hMy/D0dZHormnBUfn5TDyKAW9DkYcZsb/QJJFKt/ZDGhWht2X
+         t2VwbS28jdu3pYPPxOYdt452TZgh2lpzIiQryuCCxpk0oqjC5zldfSvt6JZL8ZDwjDji
+         flxXKx9YaculyiHOiiVz2c3unz2qnhYkxntwncry9bOY0IBiJMP7xF21MCrNfuD/Ljvn
+         UFPR941foBk7PEEfkpAPPLi1udI0M3vnQXhIzWUbUDpWnvRFvgmn3G8++TApL9yqusaK
+         K9Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r24+kxiwoCSvm2ayWOZArpjPKCuE4SnymqyJAd3zIYM=;
-        b=yiW9CjsrsB68U/74wzKpI4Ss9ZUgYJLqh8GzGCczJn66L2GMELJCjvemrw9EuD85JC
-         +XCAyz67SvWP38YQX9E58VVb5K0PJvXeP1jPtcTeOkZJuqaD6S5BfwmumaMY9PvQc2+Q
-         IZriN+X+2FJJeA9CTIIIJLz5pm9IOiY+ZMlHF8a/Sbi88v8wzA4Ucx1ha4FEx4dFDytH
-         KK0tx7+3gNNWP25OMQoYD7NdnzHDmam761W5LgthczAOab3FS4/5AWeoku9nlMxWtGwc
-         nn47U+6hJB9S3NEHr0bcN7nVHK7+Kl3tUiMnO0GsL7MG/sEam7wF4Ns7xczJo+g2V5RN
-         b6cA==
-X-Gm-Message-State: ANoB5pmja6zLZ7ffG8UKmkXhoPGT97vLEPbC0J2t/r7LxVDDCeQ/sRP6
-        mgLUdqXnV2ZUYx9TAE9eor77Iw==
-X-Google-Smtp-Source: AA0mqf67rrmrBfbzQZgJMP0M0a0H3ooRG18aVbjknpNHm5vqSTPAfytlNHVUmddpFWSVh4iqF+jDXg==
-X-Received: by 2002:ac2:47fc:0:b0:4a2:2f31:12bf with SMTP id b28-20020ac247fc000000b004a22f3112bfmr9699219lfp.550.1669192400912;
-        Wed, 23 Nov 2022 00:33:20 -0800 (PST)
+        bh=WWg6Ff6BH10NGuivQAe12p9c1TDwH/74TLSEqxl141E=;
+        b=YjqJ37ZDdYiPVbZdUF+ZfuSrzHYXOHCn0vxsNgGEZ6cGfrqC8gv/dD9c76bmtWFWem
+         HwRfup4FVKaoKqe3NNpOC2uQ9CzDJIZn8wJLx7ra2TdX+C2c1b3XTFL31VpefWhpIf81
+         G60JQofHybEnGULkagfRx1SqdN2Okg254b+5iGgTjmTvLXcksffrQfwH/Cr5Hg65kYTz
+         UZb7KBsisf8cuSzIjIlganvbfGhSNXDUAR0yktazHhUrUqZsvcdoimqy/sSscWx3tv8r
+         pgffwUOw9a5icbV72BLR/+jFxnMuTHMYOQPHBKt+NDKaUPnawxwyNRKDC6AObi6jHjRU
+         5mjg==
+X-Gm-Message-State: ANoB5pllRr8j7E30Kcl2Q4OIyIuqX/V2XFWEKweaPDS7rMy/QTmgc9LQ
+        yslM9WVUiPNn6ORYYX+a+l/bAg==
+X-Google-Smtp-Source: AA0mqf5u75+G9Siks12lr8P8mRmKZeK2sOP85dyIcPznnELW5X7sGWzwPjD1FaHES5bhYZ/oab6Jsg==
+X-Received: by 2002:a05:651c:1105:b0:277:3dd:e32e with SMTP id e5-20020a05651c110500b0027703dde32emr8018766ljo.467.1669192733608;
+        Wed, 23 Nov 2022 00:38:53 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac24548000000b00499fe9ce5f2sm2834949lfm.175.2022.11.23.00.33.19
+        by smtp.gmail.com with ESMTPSA id c26-20020ac2415a000000b0048a8c907fe9sm2814452lfi.167.2022.11.23.00.38.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 00:33:20 -0800 (PST)
-Message-ID: <d7538ba3-c326-ffcb-afe0-5abb7f0deff1@linaro.org>
-Date:   Wed, 23 Nov 2022 09:33:19 +0100
+        Wed, 23 Nov 2022 00:38:52 -0800 (PST)
+Message-ID: <a141f08c-18e4-13b6-105f-b8e54bef61ba@linaro.org>
+Date:   Wed, 23 Nov 2022 09:38:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [v4 3/5] dt-bindings: hwmon: Add bindings for aspeed tach
- controller
+Subject: Re: [PATCH v3 2/2] arm64: dts: fsd: Add MCAN device node
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        lee@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, corbet@lwn.net,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-4-billy_tsai@aspeedtech.com>
+To:     Vivek Yadav <vivek.2311@samsung.com>, rcsekar@samsung.com,
+        krzysztof.kozlowski+dt@linaro.org, wg@grandegger.com,
+        mkl@pengutronix.de, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com, alim.akhtar@samsung.com,
+        linux-fsd@tesla.com, robh+dt@kernel.org
+Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        aswani.reddy@samsung.com, sriranjani.p@samsung.com
+References: <20221122105455.39294-1-vivek.2311@samsung.com>
+ <CGME20221122105027epcas5p2237c5bc9ab02cf12f6e0f603c5bb90c4@epcas5p2.samsung.com>
+ <20221122105455.39294-3-vivek.2311@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123061635.32025-4-billy_tsai@aspeedtech.com>
+In-Reply-To: <20221122105455.39294-3-vivek.2311@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,77 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 07:16, Billy Tsai wrote:
-> Add the aspeed tach device bindings which should be the child-node of
-> pwm-tach mfd.
-
-Subject: drop second, redundant "bindings".
-
+On 22/11/2022 11:54, Vivek Yadav wrote:
+> Add MCAN device node and enable the same for FSD platform.
+> This also adds the required pin configuration for the same.
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> new file mode 100644
-> index 000000000000..f42114f8e3c2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,ast2600-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Ast2600 Tach controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The Aspeed Tach controller can support upto 16 fan input.
+> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
 
-Same comments as before. When you receive feedback about something,
-please correct it everywhere, not only in one place.
+Thank you for the patch.
 
-> +  This module is part of the ast2600-pwm-tach multi-function device. For more
-> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-tach
+Looks OK. It is too late in the cycle for me to pick it up. I will take
+it after the merge window via Samsung SoC.
 
-
-Missing blank line.
-
-> +patternProperties:
-> +  "^fan@[a-z0-9]+$":
-> +    type: object
-
-Missing description. But more important - why do you have such child
-nodes? Your example does not have them. What's the point? Do you expect
-different number of fans per one device (one compatible)?
-
-> +    properties:
-> +      reg:
-> +        description:
-> +          The tach channel used for this node.
-> +        maxItems: 1
-
-Missing blank line.
-
-> +    required:
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
+Note for networking maintainers: please do not pick up DTS via netdev tree.
 
 Best regards,
 Krzysztof
