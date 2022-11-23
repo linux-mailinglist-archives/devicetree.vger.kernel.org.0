@@ -2,54 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC372636D64
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DE4636D6B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:42:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiKWWjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 17:39:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        id S229448AbiKWWmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 17:42:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiKWWjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:39:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE2792B5D;
-        Wed, 23 Nov 2022 14:39:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BCB761F4C;
-        Wed, 23 Nov 2022 22:39:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B6E7C433C1;
-        Wed, 23 Nov 2022 22:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669243191;
-        bh=a4+0uiLBUyE9xruBjqTz1QT1oKdoKy3V//RWTYjwkwY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ckM/t7ZKPNwm4Zuy7Uv7ff+ykJqZS0VjMONRm4ToWTuo/TVOIgm+DCpVBaQbrZVQV
-         5oF158/847ifg8T2T+ZAbs2q7b2bPIT9Av7mBk8sEE+Nd4K+L5d3gUiQLmuOte198h
-         jzaNpZIsLqhe2aEZhss2zLCaq7YcaSfVGI2heQIbfAxtwSNTPFCwL+n0Aci9SXBqZ9
-         0aDTulLNWUMMBn0zIrE0D9gPm/B994EqT5o2bWCU9Be2ZMrv/TpKaRoR8cyTzV2lMI
-         XqcW3gtWP30OBARqnEi8Ov5lqpxnboGARVYMETmGm7VboLN1xK48Nwxi8S1orSeTQD
-         IJMG3CWalhSxQ==
-Date:   Wed, 23 Nov 2022 22:39:46 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 6/9] PCI: microchip: Re-partition code between probe()
- and init()
-Message-ID: <Y36hMtARoGy2YULP@spud>
-References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
- <20221116135504.258687-7-daire.mcnamara@microchip.com>
+        with ESMTP id S229463AbiKWWmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:42:19 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A644922C4
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:42:17 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oxyRE-00020Y-Hi; Wed, 23 Nov 2022 23:41:52 +0100
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:2e2e:9f36:4c74:dde5])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 994ED127BF5;
+        Wed, 23 Nov 2022 22:41:48 +0000 (UTC)
+Date:   Wed, 23 Nov 2022 23:41:46 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Vivek Yadav <vivek.2311@samsung.com>
+Cc:     rcsekar@samsung.com, krzysztof.kozlowski+dt@linaro.org,
+        wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com, alim.akhtar@samsung.com,
+        linux-fsd@tesla.com, robh+dt@kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        aswani.reddy@samsung.com, sriranjani.p@samsung.com
+Subject: Re: [PATCH v3 1/2] can: m_can: Move mram init to mcan device setup
+Message-ID: <20221123224146.iic52cuhhnwqk2te@pengutronix.de>
+References: <20221122105455.39294-1-vivek.2311@samsung.com>
+ <CGME20221122105022epcas5p3f5db1c5790b605bac8d319fe06ad915b@epcas5p3.samsung.com>
+ <20221122105455.39294-2-vivek.2311@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cil7nudg4royyvqc"
 Content-Disposition: inline
-In-Reply-To: <20221116135504.258687-7-daire.mcnamara@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20221122105455.39294-2-vivek.2311@samsung.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,131 +60,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 01:55:01PM +0000, daire.mcnamara@microchip.com wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
-> 
-> Continuing to use pci_host_common_probe() for the PCIe root complex on
-> PolarFire SoC was leading to an extremely large _init() function and
-> some unnatural code flow. Re-partition so some tasks are done in
-> a _probe() routine, which calls pci_host_common_probe() and then use a
-> much smaller _init() function, mainly to enable interrupts after address
-> translation tables are set up.
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pci/controller/pcie-microchip-host.c | 55 ++++++++++++++------
->  1 file changed, 38 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-> index faecf419ad6f..73856647f321 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
-> @@ -381,6 +381,8 @@ static struct {
->  
->  static char poss_clks[][5] = { "fic0", "fic1", "fic2", "fic3" };
->  
-> +static struct mc_pcie *port;
-> +
->  static void mc_pcie_fixup_ecam(struct mc_pcie *port, void __iomem *ecam)
->  {
->  	struct mc_msi *msi = &port->msi;
-> @@ -1095,7 +1097,34 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  {
->  	struct device *dev = cfg->parent;
->  	struct platform_device *pdev = to_platform_device(dev);
-> -	struct mc_pcie *port;
-> +	void __iomem *bridge_base_addr =
-> +		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> +	int ret;
-> +
-> +	/* Configure address translation table 0 for PCIe config space */
-> +	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
-> +			     cfg->res.start,
-> +			     resource_size(&cfg->res));
-> +
-> +	/* Need some fixups in config space */
-> +	mc_pcie_fixup_ecam(port, cfg->win);
-> +
-> +	/* Configure non-config space outbound ranges */
-> +	ret = mc_pcie_setup_windows(pdev, port);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* address translation is up; safe to enable interrupts */
 
-I think that Bjorn mentioned it elsewhere, but consistent capitalisation
-would be nice. Otherwise, code movement looks good to me.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+--cil7nudg4royyvqc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Conor.
+On 22.11.2022 16:24:54, Vivek Yadav wrote:
+> When we try to access the mcan message ram addresses, hclk is
+> gated by any other drivers or disabled, because of that probe gets
+> failed.
+>=20
+> Move the mram init functionality to mcan device setup called by
+> mcan class register from mcan probe function, by that time clocks
+> are enabled.
 
-> +	ret = mc_init_interrupts(pdev, port);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mc_host_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
->  	void __iomem *bridge_base_addr;
->  	void __iomem *ctrl_base_addr;
->  	int ret;
-> @@ -1104,13 +1133,8 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
->  	if (!port)
->  		return -ENOMEM;
-> -	port->dev = dev;
->  
-> -	ret = mc_pcie_init_clks(dev);
-> -	if (ret) {
-> -		dev_err(dev, "failed to get clock resources, error %d\n", ret);
-> -		return -ENODEV;
-> -	}
-> +	port->dev = dev;
->  
->  	port->axi_base_addr = devm_platform_ioremap_resource(pdev, 1);
->  	if (IS_ERR(port->axi_base_addr))
-> @@ -1136,16 +1160,13 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	/* pick vector address from design */
->  	port->msi.vector_phy = readl_relaxed(bridge_base_addr + IMSI_ADDR);
->  
-> -	/* Configure Address Translation Table 0 for PCIe config space */
-> -	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & 0xffffffff,
-> -			     cfg->res.start, resource_size(&cfg->res));
-> -
-> -	ret = mc_pcie_setup_windows(pdev, port);
-> -	if (ret)
-> -		return ret;
-> +	ret = mc_pcie_init_clks(dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to get clock resources, error %d\n", ret);
-> +		return -ENODEV;
-> +	}
->  
-> -	/* address translation is up; safe to enable interrupts */
-> -	return mc_init_interrupts(pdev, port);
-> +	return pci_host_common_probe(pdev);
->  }
->  
->  static const struct pci_ecam_ops mc_ecam_ops = {
-> @@ -1168,7 +1189,7 @@ static const struct of_device_id mc_pcie_of_match[] = {
->  MODULE_DEVICE_TABLE(of, mc_pcie_of_match);
->  
->  static struct platform_driver mc_pcie_driver = {
-> -	.probe = pci_host_common_probe,
-> +	.probe = mc_host_probe,
->  	.driver = {
->  		.name = "microchip-pcie",
->  		.of_match_table = mc_pcie_of_match,
-> -- 
-> 2.25.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Why not call the RAM init directly from m_can_chip_config()?
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--cil7nudg4royyvqc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmN+oagACgkQrX5LkNig
+011CiQf/e32bdb0BoAliyr1ZRwrW/c5KZqmDEeb4gpGTrA+uk73UwZje2Z7ONoUG
+i/N5b0FpZTka1LfBi+XANlo77wmwTrvRut5OdXSw++JobVghAqqJOOLGZLJ5k4xz
+glFz35NhXTNlY6VMs5l8Mg0X/lBNcTQ0WkjUUZylqF63c8szMbZcIxG2avMB00dS
+BPIsmfMwSjwQqle7i2VXnjH8cW7A2jrDytYx0Azai4a6NrZ8ZxK47aAiyuMfvUsA
+t2kJZHqp1IfSnhZ99QHvAPMOsYVO26bqvN0EDdd0ZVo9kij/moh2aqOh3XwCoqQF
+OA1iycEnvVQh1ytL69snZMIEm1GkEw==
+=geD9
+-----END PGP SIGNATURE-----
+
+--cil7nudg4royyvqc--
