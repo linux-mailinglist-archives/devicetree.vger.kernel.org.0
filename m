@@ -2,101 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9921B6365A3
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 17:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 620586365AE
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 17:25:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238213AbiKWQX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 11:23:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49354 "EHLO
+        id S237578AbiKWQZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 11:25:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236459AbiKWQX0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 11:23:26 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62B8C88F83;
-        Wed, 23 Nov 2022 08:23:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 09E0861DC9;
-        Wed, 23 Nov 2022 16:23:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37FCC433D6;
-        Wed, 23 Nov 2022 16:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669220604;
-        bh=RhLtqnmMaCbDvylZulq2NNvZV6guUhXmHED0yPmvTDc=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=CDkx4u4ciq3BJQ+mm7Hg+RJrOfVOZ8mLnMe5UDgBT5umauYr4s1ocwrbskk3oLPT1
-         CI8ApNBAJxPXL//r+MD6Y/MLDgNTMu36IYbsGYHWOAqsTdguLYCaRANygKr3Lf7v52
-         J/N4oD2PcxgzOOG62Z6W3avfWHf0frB7YHrdqOuj3jFxbBC0B6ur3HUWFPh/TVEv0G
-         x7yNLKcmMlwyhoGsW/307+ZzYMvB9yhJMBXpXE1v9zD3pSyVTfasndAiJ2UpwsLHaI
-         ZSfggbRftdwoflaotCdXjmOcXdeT4oW1cLAHxRm8GvNwp+r/nGxqMHMfDBEkYzqr73
-         aegCrILbzu1Bg==
-Message-ID: <a7ee14ae-3bbb-bc8a-a118-9721336d72ff@kernel.org>
-Date:   Wed, 23 Nov 2022 17:23:20 +0100
+        with ESMTP id S237931AbiKWQZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 11:25:36 -0500
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65628F3EF
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 08:25:34 -0800 (PST)
+Received: by mail-qt1-x833.google.com with SMTP id a27so11512300qtw.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 08:25:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PhJSJnLVsP1vBula4KCFSx5kBTht7CuZrspFHU0N884=;
+        b=ebGDyq+q12UGY7Qk5Tupc9qhDLGyIcTZVkm5UZYo/563kMYJJqyAeOt5CzUtM4J8DZ
+         3trFHny8FIDylUgXR9JjN8PS72NcWsvrDfr1Nd1Q7FDnTR43onbW+jw1+Ctw0cwtwrCd
+         T18F6CTTWbwHWY6WrhS9prZWxtXaTjwzs7IQnIsjaZTmFdCmKdzeecD0BbnuyMQqVQVg
+         z0s4POzfjTxMQ62r8mCHZM0rSmjmaRN4hzlYV7zdZbP1xMXxym5gxZ3SKz4kt6tgYYum
+         EfCUt6/g2D4WDco0MNWeSPD0NJ6lencxZ7NqZJCJlD8ikZ4WiUl7N0yJnMd2Q4wIPSG2
+         7pnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PhJSJnLVsP1vBula4KCFSx5kBTht7CuZrspFHU0N884=;
+        b=26qA1mBfIB4Lc5ltumtUZfoHQWOC2GPSWHCf4fFSwrHjy2eJq7K/tzUfHXhDnpMrJ4
+         dqXulI828yC+frMnedh4qNPZddQJPeN0sUeywG67fXaa5fd0Z0kYaJswqWJ9OvE2hI7a
+         qrLAe0H9vEvkPbnqKzg/WH1DS49dES6vQrUg1SNqEzXRTLL0bCdThqYPgeQMBu1Fq5LY
+         Ul30Mjt7PS2bbKU0iyevSqio2RpRnQEBtdS8dvUMBDqCxBNbTtv/9lpj0DP/8punZzPp
+         mhZ3NLZvmx5B/qKkEf5dFlXWMpUT71DpjFAvFRArm1D/x0WqRH2wFmjG1uPvqeOsPCgw
+         zOxA==
+X-Gm-Message-State: ANoB5plbYUP/MwVO6VtHxsbUjr/FDihW29kG/8gtXxfwEN6rmKjnCT6W
+        LCBnYuBLjiiJH126XhkW1Wyo1Q==
+X-Google-Smtp-Source: AA0mqf7URgWK3LZKBiCOJvrYX2BcRTBThzd2VlaYXoILbXTQHzjAWJMWnGzlcI0wVuCFvjEWzX6GjA==
+X-Received: by 2002:ac8:60c:0:b0:3a6:37bd:ace5 with SMTP id d12-20020ac8060c000000b003a637bdace5mr14127789qth.426.1669220734011;
+        Wed, 23 Nov 2022 08:25:34 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
+        by smtp.gmail.com with ESMTPSA id q7-20020a05620a0d8700b006f8665f483fsm12561497qkl.85.2022.11.23.08.25.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 08:25:33 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.95)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1oxsZ2-00AOLL-MZ;
+        Wed, 23 Nov 2022 12:25:32 -0400
+Date:   Wed, 23 Nov 2022 12:25:32 -0400
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Matthew Wilcox <willy@infradead.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Andreas Noever <andreas.noever@gmail.com>,
+        Michael Jamet <michael.jamet@intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Yehezkel Bernat <YehezkelShB@gmail.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        Ming Lei <ming.lei@redhat.com>,
+        Jilin Yuan <yuanjilin@cdjrlc.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ira Weiny <ira.weiny@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
+ const *
+Message-ID: <Y35JfNJDppRp5bLX@ziepe.ca>
+References: <20221123122523.1332370-1-gregkh@linuxfoundation.org>
+ <20221123122523.1332370-3-gregkh@linuxfoundation.org>
+ <711d5275-7e80-c00d-0cdc-0f3d52175361@gmail.com>
+ <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
+ <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
+ <Y34zyzdbRUdyOSkA@casper.infradead.org>
+ <Y34+V2bCDdqujBDk@kroah.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 4/4] arm64: dts: docs: Update mmc meson-gx documentation
- for new config option amlogic,mmc-phase
-Content-Language: en-US
-To:     Vyacheslav Bocharov <adeep@lexina.in>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221110150035.2824580-1-adeep@lexina.in>
- <20221110150035.2824580-5-adeep@lexina.in>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20221110150035.2824580-5-adeep@lexina.in>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y34+V2bCDdqujBDk@kroah.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2022 16:00, Vyacheslav Bocharov wrote:
-> - amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx
-
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-> clock with values:
-> 	0: CLK_PHASE_0 - 0 phase
-> 	1: CLK_PHASE_90 - 90 phase
-> 	2: CLK_PHASE_180 - 180 phase
-> 	3: CLK_PHASE_270 - 270 phase
-> By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-You missed several people.
-
+On Wed, Nov 23, 2022 at 04:37:59PM +0100, Greg Kroah-Hartman wrote:
+> static inline struct device *__kobj_to_dev(struct kobject *kobj)
+> {
+>         return container_of(kobj, struct device, kobj);
+> }
 > 
-> Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
+> static inline const struct device *__kobj_to_dev_const(const struct kobject *kobj)
+> {
+>         return container_of(kobj, const struct device, kobj);
+> }
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> index ccc5358db131..98c89c5b3455 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> @@ -25,6 +25,12 @@ Required properties:
->  Optional properties:
->  - amlogic,dram-access-quirk: set when controller's internal DMA engine cannot access the
->    DRAM memory, like on the G12A dedicated SDIO controller.
-> +- amlogic,mmc-phases: 3-element array of clock phases for core, tx, rx clock with values:
-> +	0: CLK_PHASE_0 - 0 phase
-> +	1: CLK_PHASE_90 - 90 phase
-> +	2: CLK_PHASE_180 - 180 phase
-> +	3: CLK_PHASE_270 - 270 phase
-> +  By default driver use <CLK_PHASE_180 CLK_PHASE_0 CLK_PHASE_0> value.
+> /*
+>  * container_of() will happily take a const * and spit back a non-const * as it
+>  * is just doing pointer math.  But we want to be a bit more careful in the
+>  * driver code, so manually force any const * of a kobject to also be a const *
+>  * to a device.
+>  */
+> #define kobj_to_dev(kobj)                                       \
+>         _Generic((kobj),                                        \
+>                  const struct kobject *: __kobj_to_dev_const,   \
+>                  struct kobject *: __kobj_to_dev)(kobj)
+> 
+> 
+> Want me to do the same thing here as well?
 
-No, this has to be converted to DT schema first.
+It would be nice to have a shared macro code gen all of the above
+instead of copy and pasting it. Then maybe other cases beyond struct
+device could adopt const too..
 
-Best regards,
-Krzysztof
-
+Jason
