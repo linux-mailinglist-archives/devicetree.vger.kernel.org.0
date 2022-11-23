@@ -2,296 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F35E1635A8A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA407635A96
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:54:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236194AbiKWKwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:52:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
+        id S236840AbiKWKxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:53:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237323AbiKWKvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:51:51 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C7B13EBE
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:38:28 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id z4so3996168ljq.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:38:28 -0800 (PST)
+        with ESMTP id S237003AbiKWKxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:53:17 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C3C12EBFB
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:40:41 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id s8so27542513lfc.8
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:40:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=seTGGYFc6lGg3lbS4N83LE8Bp6OtFcacLrP8CTGacMo=;
-        b=YRPv1aLHrpgKQyrWWKzzTrcXxqQfxYuqxsSGd7uEuq981X7hksZLz+TdvyLWfdn03b
-         6tjf/0pxtl1DkIn+/I4f3EOVM3m0BqaTnD4az6qT0cdntEcAdK7LlUw2zJIgNvNBwdRj
-         K3LPnJQIhvo/IEvR5kEs1mCeh6qrckKtXskuE4x8s5VoFfsCf1H2QzEw2BlgMTgrOS5s
-         xz0OTdERJOvpVGfS7LBXdqImjfZ7YDC6FyBTZiiB7mnIjyTSwZjEMxWbTs1fPAi7lNAW
-         2vJPP6rntVFftTJdo2BlYNIJxSxLohBEWkdkpMYYe4rwVABXIAU+FuA14/6A68qcsTU9
-         hIcw==
+        bh=2pM9FxyqpBfqOkWHZznQlsEGwgwUinMmoNOgEnKgLr4=;
+        b=Ow0xVzWPkFoncMiJC03Spf4BHgUncJGI6fQ7W+eTFjCoE4X66chE8lsyYCE0hXnJx7
+         ON+KOvz2pDbpILTd4dvyuUMLuxlKmRXlYf9Es+7+klAP3l/xiit/GIAUzTktA9aJvDZD
+         3mS++ghxdsqW75p8bIsNImoQdk9YcbHpMvUlXo/UR+OEYN40/PtII+ME7+7e6TuQj5jI
+         Ta+2In+MS0zfCDz1VP1h98e6BQYUGV+GWJUexUARWyB92ANYo35/OCJsZNLYMS/mzoQ2
+         xJqC8DCG3gvepFdk2lxVPDUZGuHXwci5biqppPoX3RVOpbeW/n7bWRsSrR8lIdWnN+0W
+         Yacg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=seTGGYFc6lGg3lbS4N83LE8Bp6OtFcacLrP8CTGacMo=;
-        b=J9l5MLF7JHhfFoxL6x0GbBfktdT4s6Nd36o/LnZkYE6h/fl2NKcwUwP4lMML5KfFy8
-         FKE3/yszmdr3V5joYmRyol9MaS2e8ZxPid13N49BqCzFvfZVlAFgh8FvpVm7LUutukjK
-         vGQjlaZfxct+OHLv4LnkzWPHog1A78XG7C46wq+klY/FUuefG2urwRvngMajHLdrV6Bz
-         2E6jbrw+E0LK29owTakfkX+OcnGT4o7ufuSVsiuwAHWV0Ylrf50RvIpSCwpcSwZIgIAg
-         9U3pLwKEVNMNQasY2nH1GJjp/WeutMPznjpbAqwKZz1les/x1PjmwMFCGlR/hcXAC9fV
-         JI6Q==
-X-Gm-Message-State: ANoB5pnHiYWEUiRn5TNloxa4toglVstLgq2pJEIlTHvkWgwz6Gq/mzlK
-        ikMF7YPn08FvDGSqBbr8G7etgQ==
-X-Google-Smtp-Source: AA0mqf4uRdVYTYJT9FcrmT33/8lfD0TV26DGvjJ+0jndv4ZddyX2v3XPAYCmZFruP3JnzGP+yTAgKw==
-X-Received: by 2002:a2e:9d50:0:b0:26f:db16:4735 with SMTP id y16-20020a2e9d50000000b0026fdb164735mr9017224ljj.323.1669199906750;
-        Wed, 23 Nov 2022 02:38:26 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a302:5f12::1? (dzpbg0ftyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:a302:5f12::1])
-        by smtp.gmail.com with ESMTPSA id bt26-20020a056512261a00b004ab2cb8deb5sm2834451lfb.18.2022.11.23.02.38.25
+        bh=2pM9FxyqpBfqOkWHZznQlsEGwgwUinMmoNOgEnKgLr4=;
+        b=GqqamMFZLSmZO3EO50LCNYUgBX0zw1L2unfv0ItzUE2exJtp6KmTi+NSsz3JOR/aXh
+         9xv7vUpOdrJ+9v3FMMPj3VlM2K6a4Ps+jERd+GxMsoNLFIAwv6aBtXnqQOZ9gFd0v0Y9
+         61SeSqIiF8WTMFinjzAsTAf2qvKesYxI/ZZsBnJJ761er0FM2GFTLBrhUEnD2hG6hRc6
+         wN8LMOIh5wf6+fCvEhMGHTcdBVZGLvQtBXuSGop7iNKDAmrltaKRLPcY+u7fH3wuSWKz
+         hLsWWPEY44/xsehXk2NKuSX4I7VppoFMwflYW7Z8fiHIr3cZldLwA46soinQiH3zd4b2
+         M42g==
+X-Gm-Message-State: ANoB5pnE9Mt2Wl3gR0v6nNJsWCANuXF6nicjYGHkAolRyZ8u30mIEMC/
+        DhQznCdBYWMjbhXniUw2KE8eFw==
+X-Google-Smtp-Source: AA0mqf65UK1CaHGngQBgykBf32ZTP2POeVhbADAETUeoSjm5v+P3xFmEI/+7eSZUzMMygcDjB106IA==
+X-Received: by 2002:a05:6512:3b23:b0:4b3:abaf:b7c1 with SMTP id f35-20020a0565123b2300b004b3abafb7c1mr3193346lfv.39.1669200039533;
+        Wed, 23 Nov 2022 02:40:39 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id g7-20020a056512118700b004b4cbc942a3sm1653992lfr.127.2022.11.23.02.40.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 02:38:26 -0800 (PST)
-Message-ID: <fc3bec1d-8e07-d890-c84c-39b7cec8769d@linaro.org>
-Date:   Wed, 23 Nov 2022 12:38:25 +0200
+        Wed, 23 Nov 2022 02:40:39 -0800 (PST)
+Message-ID: <ef1eec15-4875-9ba7-1152-97a9b81330d3@linaro.org>
+Date:   Wed, 23 Nov 2022 11:40:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 05/11] dt-bindings: display/msm: add support for the
- display on SM8450
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
+ Document RZ/V2L support
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221122231235.3299737-1-dmitry.baryshkov@linaro.org>
- <20221122231235.3299737-6-dmitry.baryshkov@linaro.org>
- <1d32c6d0-c6dc-cd24-ba52-ecb597553ef9@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1d32c6d0-c6dc-cd24-ba52-ecb597553ef9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Cc:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 12:32, Krzysztof Kozlowski wrote:
-> On 23/11/2022 00:12, Dmitry Baryshkov wrote:
->> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
->> SM8450 platform.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 139 +++++++
->>   .../display/msm/qcom,sm8450-mdss.yaml         | 352 ++++++++++++++++++
->>   2 files changed, 491 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>
-> 
-> 
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->> new file mode 100644
->> index 000000000000..8e25d456e5e9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->> @@ -0,0 +1,139 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM8450 Display DPU
->> +
->> +maintainers:
->> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> +
->> +$ref: /schemas/display/msm/dpu-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sm8450-dpu
->> +
->> +  reg:
->> +    items:
->> +      - description: Address offset and size for mdp register set
->> +      - description: Address offset and size for vbif register set
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mdp
->> +      - const: vbif
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display hf axi clock
->> +      - description: Display sf axi clock
->> +      - description: Display ahb clock
->> +      - description: Display lut clock
->> +      - description: Display core clock
->> +      - description: Display vsync clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: bus
->> +      - const: nrt_bus
->> +      - const: iface
->> +      - const: lut
->> +      - const: core
->> +      - const: vsync
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
->> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interconnect/qcom,sm8450.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    display-controller@ae01000 {
->> +        compatible = "qcom,sm8450-dpu";
->> +        reg = <0x0ae01000 0x8f000>,
->> +              <0x0aeb0000 0x2008>;
->> +        reg-names = "mdp", "vbif";
->> +
->> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
->> +                <&gcc GCC_DISP_SF_AXI_CLK>,
->> +                <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
->> +                <&dispcc DISP_CC_MDSS_MDP_CLK>,
->> +                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->> +        clock-names = "bus",
->> +                      "nrt_bus",
->> +                      "iface",
->> +                      "lut",
->> +                      "core",
->> +                      "vsync";
->> +
->> +        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->> +        assigned-clock-rates = <19200000>;
->> +
->> +        operating-points-v2 = <&mdp_opp_table>;
->> +        power-domains = <&rpmhpd SM8450_MMCX>;
->> +
->> +        interrupt-parent = <&mdss>;
->> +        interrupts = <0>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +                dpu_intf1_out: endpoint {
->> +                    remote-endpoint = <&dsi0_in>;
->> +                };
->> +            };
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +                dpu_intf2_out: endpoint {
->> +                    remote-endpoint = <&dsi1_in>;
->> +                };
->> +            };
->> +        };
->> +
->> +        mdp_opp_table: opp-table {
->> +            compatible = "operating-points-v2";
->> +
->> +            opp-172000000{
->> +                opp-hz = /bits/ 64 <172000000>;
->> +                required-opps = <&rpmhpd_opp_low_svs_d1>;
->> +            };
->> +
->> +            opp-200000000 {
->> +                opp-hz = /bits/ 64 <200000000>;
->> +                required-opps = <&rpmhpd_opp_low_svs>;
->> +            };
->> +
->> +            opp-325000000 {
->> +                opp-hz = /bits/ 64 <325000000>;
->> +                required-opps = <&rpmhpd_opp_svs>;
->> +            };
->> +
->> +            opp-375000000 {
->> +                opp-hz = /bits/ 64 <375000000>;
->> +                required-opps = <&rpmhpd_opp_svs_l1>;
->> +            };
->> +
->> +            opp-500000000 {
->> +                opp-hz = /bits/ 64 <500000000>;
->> +                required-opps = <&rpmhpd_opp_nom>;
->> +            };
->> +        };
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->> new file mode 100644
->> index 000000000000..73f8c5caf637
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->> @@ -0,0 +1,352 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM8450 Display MDSS
->> +
->> +maintainers:
->> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> +
->> +description:
->> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
->> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
->> +  bindings of MDSS are mentioned for SM8450 target.
->> +
->> +$ref: /schemas/display/msm/mdss-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
-> 
-> I don't understand this patchset. Some tags were present, then gone.
-> Items was never here, now it is... and you explicitly received such
-> feedback long time ago, therefore I suspect you sent or rebased
-> something old.
-> 
-> Go through all previous comments.
+On 22/11/2022 20:54, Biju Das wrote:
+> Document RZ/V2L DSI bindings. RZ/V2L MIPI DSI is identical to one found on
+> the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-mipi-dsi" will be used as a fallback.
 
-Let me check, what went wrong on my side.
 
-> 
->> +      - const: qcom,sm8450-mdss
->> +
-> 
-> Best regards,
-> Krzysztof
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
