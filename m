@@ -2,149 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC4E636731
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E741636759
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:38:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238578AbiKWRal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 12:30:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48046 "EHLO
+        id S238781AbiKWRiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 12:38:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238866AbiKWRaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:30:13 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DDB88E295;
-        Wed, 23 Nov 2022 09:30:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1669224612; x=1700760612;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ZT9WVned9qGMAlH0r6W65dY8aAfAq0l2ES0Gvi1OpwI=;
-  b=nnHKdSPTYo47b6DAIhIVApHTAOdpOozQLnW/MQPB27rGarHhpDtCREnX
-   j3g4oBm2h17QBYN0wTEwgqKUVrS+LEUlbJ0TjHzXB7xvgXYJsa0jsqgft
-   mM6mF5HQOqHdycX5VTNVISbT2Tj0lfW98FMXb6DdYemAk9EQM5jFaxpjP
-   k=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 23 Nov 2022 09:30:12 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2022 09:30:11 -0800
-Received: from [10.110.94.74] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 23 Nov
- 2022 09:30:10 -0800
-Message-ID: <85a0af2c-5f79-3d84-c946-a4960aee2958@quicinc.com>
-Date:   Wed, 23 Nov 2022 11:30:09 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
- QRU1000 pinctrl
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S236541AbiKWRiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:38:23 -0500
+Received: from mx4.securetransport.de (mx4.securetransport.de [178.254.6.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 16CE38FE60;
+        Wed, 23 Nov 2022 09:38:19 -0800 (PST)
+Received: from mail.dh-electronics.com (unknown [77.24.89.57])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx4.securetransport.de (Postfix) with ESMTPSA id 944F2720109;
+        Wed, 23 Nov 2022 18:37:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1669225047;
+        bh=mr+6grJRmSi4JGM1E2bk/usBkFWsPdEVQHFYvo1s6QA=;
+        h=From:To:CC:Subject:Date:From;
+        b=xaD4jLYB+7/FKLAKtljNLNpk1Ytwfy5jp8fWjv8Le6RFde8NpbmEGgZPWMMyrsMh0
+         W9gLyPFDz87hG3xLV7jNO79UuwMvaQ1vCVZawd1BjRW4ZQDm34l0X3QWbchdgvbYhM
+         ZgxRfNGmi4fZX0ruU2qYD0OYOXePDBnllwspJb1jDeZiOBrPRnLTNKfvecwGB6COXO
+         Xr7MYUTVOV6Oi98RASXz9bIWRHSfG2Mm99mc4ByPeR9UAPh/7MIYw/sMUDdci3EtI0
+         Ij81QbP/VeFvUPaCaf/V+aEXS/DDW6Raq1PO8xSAJOUQq91t7/Jn5X4o9dbbvwPZz4
+         kVrAmnWHhdshg==
+Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.20; Wed, 23 Nov 2022 18:37:16 +0100
+Received: from localhost.localdomain (172.16.51.2) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.20 via Frontend Transport; Wed, 23 Nov 2022 18:37:16 +0100
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+To:     <linux-arm-kernel@lists.infradead.org>
+CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221118182039.29236-1-quic_molvera@quicinc.com>
- <20221118182039.29236-2-quic_molvera@quicinc.com>
- <528648f2-17df-ab19-8ad4-76423bbc0ae4@linaro.org>
- <faf2d137-efab-93ab-f325-1fa507f166a7@quicinc.com>
- <03174a04-440d-a840-1e54-fbdbdfe296c3@linaro.org>
- <2a50b68f-d2dd-bae5-29b3-f608813d5a3f@quicinc.com>
- <1d13e913-d425-8cb0-d954-d1d7bc340f38@linaro.org>
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <1d13e913-d425-8cb0-d954-d1d7bc340f38@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH V2 1/4] dt-bindings: arm: fsl: Add PDK2, PicoITX and DRC02 boards for the DHCOM i.MX6ULL SoM
+Date:   Wed, 23 Nov 2022 18:35:58 +0100
+Message-ID: <20221123173601.13291-1-cniedermaier@dh-electronics.com>
+X-Mailer: git-send-email 2.11.0
+X-klartext: yes
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DH electronics DHCOM PDK2, PicoITX and DRC02 boards
+for the DHCOM i.MX6ULL SoM.
 
+Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: kernel@dh-electronics.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+V2: - Add Acked-by tag
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-On 11/23/2022 2:06 AM, Krzysztof Kozlowski wrote:
-> On 22/11/2022 16:23, Melody Olvera wrote:
->>
->> On 11/22/2022 1:48 AM, Krzysztof Kozlowski wrote:
->>> On 21/11/2022 21:38, Melody Olvera wrote:
->>>> On 11/20/2022 4:58 AM, Krzysztof Kozlowski wrote:
->>>>> On 18/11/2022 19:20, Melody Olvera wrote:
->>>>>> Add device tree bindings for QDU1000 and QRU1000 TLMM devices.
->>>>>>
->>>>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>>>> ---
->>>>>>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 134 ++++++++++++++++++
->>>>>>  1 file changed, 134 insertions(+)
->>>>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..cb0c496d8666
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
->>>>>> @@ -0,0 +1,134 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Melody Olvera <quic_molvera@quicinc.com>
->>>>>> +
->>>>>> +description: |
->>>>>> +  This Top Level Mode Multiplexer block (TLMM) is found in the QDU1000 and
->>>>>> +  QRU1000 platforms.
->>>>> It's better to keep consistent style which allows to do easy
->>>>> search/replace, than to have new files using their own sentences. So
->>>>> keep it the same as was unified in few recent commits.
->>>> Ok... Just making sure that's what you want. Last PS you gave comments to change
->>>> the wording of this description to remove "This binding describes..." as we've done
->>>> in all the other qcom pinctrl/tlmm bindings. I can change the wording back to the
->>>> original, just want to be clear here.
->>> I propose to have the same wording as other Qualcomm TLMM bindings,
->>> however you changed it to something not the same. Therefore I wonder -
->>> why having here different wording than all other bindings?
->>>
->>> By going back to original - what do you mean? If it matches all others,
->>> then yes, but I doubt it.
->>>
->>> Just to be sure - are you working on proper (recent) trees or something old?
->> Original matched how it was done on other Qualcomm TLMM bindings. Feedback
->> was to drop "This binding describes..." from [1], but all the Qualcomm TLMM
->> bindings start with "This binding describes...". I'm looking at qcom tree for-next
->> branch; should be recent, no?
-> No. It's not recent for anything else than managed by Bjorn. You need to
-> base the patches on maintainer's trees, which is usually the easiest to
-> achieve via linux-next (especially that these changes were in my tree
-> for some time before I sent them to Linus).
-
-Ah ok; looking at linux-next looks like it should be "Top Level Mode Multiplexer pin
-controller in Qualcomm QDU1000 and QRU1000 SoCs."
-
-Thanks,
-Melody
-
->
-> Your all other patches might have similar issues - wrong base or not
-> good example/starting point.
->
-> Best regards,
-> Krzysztof
->
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 05b5276a0e14..ba7a17d8ec19 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -644,6 +644,16 @@ properties:
+           - const: armadeus,imx6ull-opos6ul     # OPOS6UL (i.MX6ULL) SoM
+           - const: fsl,imx6ull
+ 
++      - description: i.MX6ULL DHCOM SoM based Boards
++        items:
++          - enum:
++              - dh,imx6ull-dhcom-pdk2
++              - dh,imx6ull-dhcom-picoitx
++              - dh,imx6ull-dhcom-drc02
++          - const: dh,imx6ull-dhcom-som # The DHCOR is soldered on the DHCOM
++          - const: dh,imx6ull-dhcor-som
++          - const: fsl,imx6ull
++
+       - description: i.MX6ULL PHYTEC phyBOARD-Segin
+         items:
+           - enum:
+-- 
+2.11.0
 
