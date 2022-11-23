@@ -2,149 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4266C63626C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 456CC636288
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237898AbiKWOxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:53:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
+        id S238026AbiKWO5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:57:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237907AbiKWOxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:53:13 -0500
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E471EEF2;
-        Wed, 23 Nov 2022 06:53:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=d34IWNksyN/fUaMdJSyNyFr5/NYJSUamcGjA6pAMtuA=; b=caDYBku0DlKozdr16VvQx2Pf47
-        2FemMLhC3IcrPQOUzURzAZnbhstHNQck3oc9tp/PXObEiBO1MfrwTzqTVM4sWneDrW/0ivZt02rfR
-        GJ97qbtKp6invRyg7JlLsZYl3ZG3vWExlD7hzk57S+mKdQTrPuVtfzCSbDoVVJ8FxhHKtoRSJ0jtU
-        XYB3KakhM7UNmV0lB+Oflj6FYMkeTc2cxN2tMw87mvmQsXCHH2Ve1EXgve0TduL0q7RtvwUTii1c5
-        R8WonwObHfVSic7ZLMDFLvXv3RjVaPGgy5xWCwSrWbCPm+c1AWWTPP+4n4zTi5sjodPbwnBYZMh7x
-        2Km029GQ==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1oxr7T-007j3f-RC; Wed, 23 Nov 2022 14:53:00 +0000
-Date:   Wed, 23 Nov 2022 14:52:59 +0000
-From:   Matthew Wilcox <willy@infradead.org>
-To:     Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Michael Jamet <michael.jamet@intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Yehezkel Bernat <YehezkelShB@gmail.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Ming Lei <ming.lei@redhat.com>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ira Weiny <ira.weiny@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
- const *
-Message-ID: <Y34zyzdbRUdyOSkA@casper.infradead.org>
-References: <20221123122523.1332370-1-gregkh@linuxfoundation.org>
- <20221123122523.1332370-3-gregkh@linuxfoundation.org>
- <711d5275-7e80-c00d-0cdc-0f3d52175361@gmail.com>
- <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
- <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
+        with ESMTP id S238233AbiKWO5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:57:08 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C0F70A37;
+        Wed, 23 Nov 2022 06:57:06 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 315576602939;
+        Wed, 23 Nov 2022 14:57:04 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669215424;
+        bh=g4PZ1pFavunt2Qa2dTh59ojyrA0227tsgXRwJ1+S5mY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=nuS1G94KsbG8q60/U2Ciim/So0bBfMPt4cb+jgeUkgxwkI+hsKaMhX71KemIi2EO5
+         tyyBCXos2d1dYnRREbO92uE/NiOjPs7FxW5pnU5WpWmHyMoqdF3UDxw7v34bwiQiX3
+         7FC2yAKhPQm0gldiu1rYhME7staCFi9hUWmVrJBUtqlo16sxGtvD5rfTXKl4rdUCap
+         wdCT6zTSoK4RmA729jiY2cNYfnpRztbWpMSWXyhljuGEN9B/H7/6YbDk/FSu/Nk3XW
+         UVWN9a/KZcvLpaUhwljPQpzHXEZCG+44KdgKP7NsiUWAgUPE9xw95LKaf84IGqHSo7
+         1zZk8c/rGAqOg==
+Message-ID: <c8174977-2995-811a-83e2-9f941057acd8@collabora.com>
+Date:   Wed, 23 Nov 2022 15:57:02 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 3/4] irqchip: irq-mtk-cirq: Move register offsets to
+ const array
+Content-Language: en-US
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        youlin.pei@mediatek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221123112249.98281-1-angelogioacchino.delregno@collabora.com>
+ <20221123112249.98281-4-angelogioacchino.delregno@collabora.com>
+ <86fse9ok3y.wl-maz@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <86fse9ok3y.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 02:59:00PM +0100, Maximilian Luz wrote:
-> On 11/23/22 14:34, Andy Shevchenko wrote:
-> > On Wed, Nov 23, 2022 at 02:14:31PM +0100, Maximilian Luz wrote:
-> > > On 11/23/22 13:25, Greg Kroah-Hartman wrote:
-> > > > The uevent() callback in struct device_type should not be modifying the
-> > > > device that is passed into it, so mark it as a const * and propagate the
-> > > > function signature changes out into all relevant subsystems that use
-> > > > this callback.
-> > 
-> > [...]
-> > 
-> > > > -static inline struct ssam_device *to_ssam_device(struct device *d)
-> > > > +static inline struct ssam_device *to_ssam_device(const struct device *d)
-> > > >    {
-> > > >    	return container_of(d, struct ssam_device, dev);
-> > > >    }
-> > > 
-> > > I am slightly conflicted about this change as that now more or less
-> > > implicitly drops the const. So I'm wondering if it wouldn't be better to
-> > > either create a function specifically for const pointers or to just
-> > > open-code it in the instance above.
-> > > 
-> > > I guess we could also convert this to a macro. Then at least there
-> > > wouldn't be an explicit and potentially misleading const-conversion
-> > > indicated in the function signature.
-> > 
-> > This is an intermediate step as far as I know since moving container_of to
-> > recognize const is a bit noisy right now. I guess you can find a discussion
-> > on the topic between Greg and Sakari.
+Il 23/11/22 14:50, Marc Zyngier ha scritto:
+> On Wed, 23 Nov 2022 11:22:48 +0000,
+> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> In preparation to add support for new SoCs having a different
+>> register layout, add an enumeration that documents register
+>> offsets and move the definitions for the same to a u32 array;
+>>
+>> Selecting the right register offsets array is done by adding an
+>> of_device_id array containing all of the currently supported
+>> compatible strings pointing to the "v1" offsets array (as data):
+>> since no devicetree declares the `mediatek,mtk-cirq` compatible
+>> without a SoC-specific one, it wasn't necessary to provide any
+>> legacy fallback.
+>>
+>> Every usage of the aforemementioned definitions was changed to
+>> get a register address through a newly introduced `mtk_cirq_reg()`
+>> accessor.
+>>
+>> This change brings no functional changes.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/irqchip/irq-mtk-cirq.c | 78 ++++++++++++++++++++++++++--------
+>>   1 file changed, 61 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/irq-mtk-cirq.c b/drivers/irqchip/irq-mtk-cirq.c
+>> index 9bca0918078e..4d873d2ba0fd 100644
+>> --- a/drivers/irqchip/irq-mtk-cirq.c
+>> +++ b/drivers/irqchip/irq-mtk-cirq.c
+>> @@ -15,14 +15,29 @@
+>>   #include <linux/slab.h>
+>>   #include <linux/syscore_ops.h>
+>>   
+>> -#define CIRQ_ACK	0x40
+>> -#define CIRQ_MASK_SET	0xc0
+>> -#define CIRQ_MASK_CLR	0x100
+>> -#define CIRQ_SENS_SET	0x180
+>> -#define CIRQ_SENS_CLR	0x1c0
+>> -#define CIRQ_POL_SET	0x240
+>> -#define CIRQ_POL_CLR	0x280
+>> -#define CIRQ_CONTROL	0x300
+>> +enum mtk_cirq_reg_index {
+>> +	CIRQ_STA,
+>> +	CIRQ_ACK,
+>> +	CIRQ_MASK_SET,
+>> +	CIRQ_MASK_CLR,
+>> +	CIRQ_SENS_SET,
+>> +	CIRQ_SENS_CLR,
+>> +	CIRQ_POL_SET,
+>> +	CIRQ_POL_CLR,
+>> +	CIRQ_CONTROL
+>> +};
+>> +
+>> +static const u32 mtk_cirq_regs_v1[] = {
 > 
-> Thanks! I assume you are referring to the following?
+> Again: this contains offsets, not registers. Consistency matters.
 > 
-> 	https://lore.kernel.org/lkml/4218173bd72b4f1899d4c41a8e251f0d@AcuMS.aculab.com/T/
-> 
-> As far as I can tell this is only a warning in documentation, not
-> compile time (which would probably be impossible?).
-> 
-> As I've said I'd be fine with converting the function to a macro (and
-> preferably adding a similar warning like the one proposed in that
-> thread). The point that irks me up is just that, as proposed, the
-> function signature would now advertise a conversion that should never be
-> happening.
-> 
-> Having two separate functions would create a compile-time guarantee, so
-> I'd prefer that, but I can understand if that might be considered too
-> noisy in code. Or if there is a push to make container_of() emit a
-> compile-time warning I'd also be perfectly happy with converting it to a
-> macro now as that'd alleviate the need for functions in the future.
 
-Can't we do:
+Ack.
 
-static inline const struct ssam_device *to_ssam_device(const struct device *d)
-{
-	return container_of(d, const struct ssam_device, dev);
-}
+>> +	[CIRQ_STA]	= 0x0,
+>> +	[CIRQ_ACK]	= 0x40,
+>> +	[CIRQ_MASK_SET]	= 0xc0,
+>> +	[CIRQ_MASK_CLR]	= 0x100,
+>> +	[CIRQ_SENS_SET]	= 0x180,
+>> +	[CIRQ_SENS_CLR]	= 0x1c0,
+>> +	[CIRQ_POL_SET]	= 0x240,
+>> +	[CIRQ_POL_CLR]	= 0x280,
+>> +	[CIRQ_CONTROL]	= 0x300,
+>> +};
+>>   
+>>   #define CIRQ_EN	0x1
+>>   #define CIRQ_EDGE	0x2
+>> @@ -32,18 +47,28 @@ struct mtk_cirq_chip_data {
+>>   	void __iomem *base;
+>>   	unsigned int ext_irq_start;
+>>   	unsigned int ext_irq_end;
+>> +	const u32 *offsets;
+>>   	struct irq_domain *domain;
+>>   };
+>>   
+>>   static struct mtk_cirq_chip_data *cirq_data;
+>>   
+>> -static void mtk_cirq_write_mask(struct irq_data *data, unsigned int offset)
+>> +static inline void __iomem *mtk_cirq_reg(struct mtk_cirq_chip_data *chip_data,
+> 
+> Drop the inline. That's for the compiler to figure it out.
+> 
+
+Will do.
+
+>> +					 enum mtk_cirq_reg_index idx,
+>> +					 unsigned int cirq_num)
+> 
+> What does cirq_num mean for registers that are not relative to an
+> interrupt? Create a separate helper for those.
+> 
+Means literally nothing, so yes I agree, but...
+
+... mtk_cirq_irq_reg(), mtk_cirq_reg() feels too similar and may lead to
+confusion while reading the code.
+
+Any advice about a possibly clear-er name?
+
+>> +{
+>> +	void __iomem *reg = chip_data->base + chip_data->offsets[idx];
+>> +
+>> +	return reg + (cirq_num / 32) * 4;
+>> +}
+>> +
+>> +static void mtk_cirq_write_mask(struct irq_data *data, enum mtk_cirq_reg_index idx)
+>>   {
+>>   	struct mtk_cirq_chip_data *chip_data = data->chip_data;
+>>   	unsigned int cirq_num = data->hwirq;
+>>   	u32 mask = 1 << (cirq_num % 32);
+>>   
+>> -	writel_relaxed(mask, chip_data->base + offset + (cirq_num / 32) * 4);
+>> +	writel_relaxed(mask, mtk_cirq_reg(chip_data, idx, cirq_num));
+>>   }
+>>   
+>>   static void mtk_cirq_mask(struct irq_data *data)
+>> @@ -160,6 +185,7 @@ static const struct irq_domain_ops cirq_domain_ops = {
+>>   #ifdef CONFIG_PM_SLEEP
+>>   static int mtk_cirq_suspend(void)
+>>   {
+>> +	void __iomem *reg;
+>>   	u32 value, mask;
+>>   	unsigned int irq, hwirq_num;
+>>   	bool pending, masked;
+>> @@ -200,31 +226,34 @@ static int mtk_cirq_suspend(void)
+>>   				continue;
+>>   		}
+>>   
+>> +		reg = mtk_cirq_reg(cirq_data, CIRQ_ACK, i);
+>>   		mask = 1 << (i % 32);
+>> -		writel_relaxed(mask, cirq_data->base + CIRQ_ACK + (i / 32) * 4);
+>> +		writel_relaxed(mask, reg);
+>>   	}
+>>   
+>>   	/* set edge_only mode, record edge-triggerd interrupts */
+>>   	/* enable cirq */
+>> -	value = readl_relaxed(cirq_data->base + CIRQ_CONTROL);
+>> +	reg = mtk_cirq_reg(cirq_data, CIRQ_CONTROL, 0);
+>> +	value = readl_relaxed(reg);
+>>   	value |= (CIRQ_EDGE | CIRQ_EN);
+>> -	writel_relaxed(value, cirq_data->base + CIRQ_CONTROL);
+>> +	writel_relaxed(value, reg);
+>>   
+>>   	return 0;
+>>   }
+>>   
+>>   static void mtk_cirq_resume(void)
+>>   {
+>> +	void __iomem *reg = mtk_cirq_reg(cirq_data, CIRQ_CONTROL, 0);
+>>   	u32 value;
+>>   
+>>   	/* flush recorded interrupts, will send signals to parent controller */
+>> -	value = readl_relaxed(cirq_data->base + CIRQ_CONTROL);
+>> -	writel_relaxed(value | CIRQ_FLUSH, cirq_data->base + CIRQ_CONTROL);
+>> +	value = readl_relaxed(reg);
+>> +	writel_relaxed(value | CIRQ_FLUSH, reg);
+>>   
+>>   	/* disable cirq */
+>> -	value = readl_relaxed(cirq_data->base + CIRQ_CONTROL);
+>> +	value = readl_relaxed(reg);
+>>   	value &= ~(CIRQ_EDGE | CIRQ_EN);
+>> -	writel_relaxed(value, cirq_data->base + CIRQ_CONTROL);
+>> +	writel_relaxed(value, reg);
+>>   }
+>>   
+>>   static struct syscore_ops mtk_cirq_syscore_ops = {
+>> @@ -240,10 +269,18 @@ static void mtk_cirq_syscore_init(void)
+>>   static inline void mtk_cirq_syscore_init(void) {}
+>>   #endif
+>>   
+>> +static const struct of_device_id mtk_cirq_of_match[] = {
+> 
+> Can't this be made __initconst?
+> 
+
+Ack.
+
+>> +	{ .compatible = "mediatek,mt2701-cirq", .data = &mtk_cirq_regs_v1 },
+>> +	{ .compatible = "mediatek,mt8135-cirq", .data = &mtk_cirq_regs_v1 },
+>> +	{ .compatible = "mediatek,mt8173-cirq", .data = &mtk_cirq_regs_v1 },
+>> +	{ /* sentinel */ }
+>> +};
+>> +
+>>   static int __init mtk_cirq_of_init(struct device_node *node,
+>>   				   struct device_node *parent)
+>>   {
+>>   	struct irq_domain *domain, *domain_parent;
+>> +	const struct of_device_id *match;
+>>   	unsigned int irq_num;
+>>   	int ret;
+>>   
+>> @@ -274,6 +311,13 @@ static int __init mtk_cirq_of_init(struct device_node *node,
+>>   	if (ret)
+>>   		goto out_unmap;
+>>   
+>> +	match = of_match_node(mtk_cirq_of_match, node);
+>> +	if (!match) {
+>> +		ret = -ENODEV;
+>> +		goto out_unmap;
+>> +	}
+> 
+> Can't you perform this before mapping the MMIO region and allocating
+> memory? If you must fail, fail early.
+> 
+
+I was thinking the same, but ultimately chose to aggregate handling that entirely
+in one place...
+
+I'll move that as suggested.
+
+Many thanks,
+Angelo
 
