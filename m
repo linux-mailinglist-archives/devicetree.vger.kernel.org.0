@@ -2,94 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A7E636668
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FB6E6366EF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235918AbiKWRBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 12:01:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51350 "EHLO
+        id S237359AbiKWRZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 12:25:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235738AbiKWRBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:01:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E20E32B9B;
-        Wed, 23 Nov 2022 09:01:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E04F561DFD;
-        Wed, 23 Nov 2022 17:01:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 777BCC433D6;
-        Wed, 23 Nov 2022 17:01:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1669222911;
-        bh=o3haMfaeHZfYTyEePRwp9h5E4unKgpaM0OuqyhoXnp0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qo8vJIErhb/ipCwuy4gwV/i9YmIAaJMojUiZPS4IOOd8yQY7LyT3VrOZMJTKRDS9x
-         i8L49I9CCW+G4gWPmwXnGTUcpWsWu7OwHPDHLjbFVstIHlX3U3iCwopRHJdZmvOcLy
-         DUuQU3VjRGKHYyj8ctniAuEtEhb8ztF3vFHL+6eY=
-Date:   Wed, 23 Nov 2022 18:01:47 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Jason Gunthorpe <jgg@ziepe.ca>
-Cc:     Matthew Wilcox <willy@infradead.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Michael Jamet <michael.jamet@intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Yehezkel Bernat <YehezkelShB@gmail.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Ming Lei <ming.lei@redhat.com>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ira Weiny <ira.weiny@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
- const *
-Message-ID: <Y35R+/eQJYI7VaDS@kroah.com>
-References: <20221123122523.1332370-1-gregkh@linuxfoundation.org>
- <20221123122523.1332370-3-gregkh@linuxfoundation.org>
- <711d5275-7e80-c00d-0cdc-0f3d52175361@gmail.com>
- <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
- <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
- <Y34zyzdbRUdyOSkA@casper.infradead.org>
- <Y34+V2bCDdqujBDk@kroah.com>
- <Y35JfNJDppRp5bLX@ziepe.ca>
+        with ESMTP id S236459AbiKWRZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:25:44 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED188E0AB
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 09:25:43 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id b12so16639130wrn.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 09:25:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=0o7n9aYBSzoZxwFuSe0/TKLoFU4W7raNANzVNncYvXw=;
+        b=DnkaY1AG+EjDI4cVCnGzmVOqU+YklwNcFSMU20ugCQlYHt6tL84ipDdUv62fmxfmCD
+         9QXmMIMf1nEBvHUXecPfiC7ahZAvciHaaS8/kfXzpHK4MLAqU1Fz2vHFa1stnRCA78GC
+         dNin8IhEyES+8TYkC3qDkUbsuM4u6PXZA44hEM7V1WQPPXjCU210OEshGOJSNvBh5or6
+         +F2hvGBFlEWe+nQs7EQE2cpSqNrLy9wkr5mk4CM627InzdcmAnH6RKIDbzDwZoCUasnB
+         SLyIls0KjkKoz0HxMIEW1EaekLfyerQt9r6T6eCiY0ONiwX4xUyq5o+bFV/2/gj05DSt
+         ypzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0o7n9aYBSzoZxwFuSe0/TKLoFU4W7raNANzVNncYvXw=;
+        b=X1u9M3t6deY0Cw9/J2Tyhad22beGp6paJLQd9uC+qQyNxAZK4ixzxrOk72zWKqKE50
+         KxGZlkHPgUcH2Uno6kwj7Q5ciuSlWafkENJPhjw95uCKU41a8AcVdsnw578FG6bQZdeK
+         yU7WUnfblm4hr5b6PelYqqQkityQh+g8l2PE/ey+ccLqzAmaiVRWreNghDO4F76ETP7t
+         gQHs1SnReKYMQ2nVeVLWAiyaYV/zPO6VaPWpkrfj5diS1Tqxd9xtFY3Z8+MpEvXpYJjp
+         z2sKZQaKHacFg85cpXCZQk2n7FUkaF0YpcUb/blXWSmfbjzjEfGgvF1KXa9UuDwj8hzH
+         uGUw==
+X-Gm-Message-State: ANoB5plYxE8Xtmop4ztSX9+EWSEsReFPGKYv+89f9x3riQAZPuHp3ynU
+        c3R/AeEGg0wnQjgbRaRqIl4UhA==
+X-Google-Smtp-Source: AA0mqf46S5Kp6+tlC/ZeFeE9K8YM4Q32ncP7DtA/Mwx2P3YNXWLeIywpLCyBi55242hteDKz3KBw4Q==
+X-Received: by 2002:a5d:4604:0:b0:241:dd0f:49e5 with SMTP id t4-20020a5d4604000000b00241dd0f49e5mr8346820wrq.113.1669224341491;
+        Wed, 23 Nov 2022 09:25:41 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e551:24c3:152c:7c05? ([2a01:e0a:982:cbb0:e551:24c3:152c:7c05])
+        by smtp.gmail.com with ESMTPSA id z4-20020a05600c0a0400b003c70191f267sm3346689wmp.39.2022.11.23.09.25.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 09:25:40 -0800 (PST)
+Message-ID: <034d653a-6402-6973-4caa-8ea2219c7064@linaro.org>
+Date:   Wed, 23 Nov 2022 18:25:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y35JfNJDppRp5bLX@ziepe.ca>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 09/11] drm/msm/dpu: add support for MDP_TOP blackhole
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20221122231235.3299737-1-dmitry.baryshkov@linaro.org>
+ <20221122231235.3299737-10-dmitry.baryshkov@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20221122231235.3299737-10-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -97,40 +88,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 12:25:32PM -0400, Jason Gunthorpe wrote:
-> On Wed, Nov 23, 2022 at 04:37:59PM +0100, Greg Kroah-Hartman wrote:
-> > static inline struct device *__kobj_to_dev(struct kobject *kobj)
-> > {
-> >         return container_of(kobj, struct device, kobj);
-> > }
-> > 
-> > static inline const struct device *__kobj_to_dev_const(const struct kobject *kobj)
-> > {
-> >         return container_of(kobj, const struct device, kobj);
-> > }
-> > 
-> > /*
-> >  * container_of() will happily take a const * and spit back a non-const * as it
-> >  * is just doing pointer math.  But we want to be a bit more careful in the
-> >  * driver code, so manually force any const * of a kobject to also be a const *
-> >  * to a device.
-> >  */
-> > #define kobj_to_dev(kobj)                                       \
-> >         _Generic((kobj),                                        \
-> >                  const struct kobject *: __kobj_to_dev_const,   \
-> >                  struct kobject *: __kobj_to_dev)(kobj)
-> > 
-> > 
-> > Want me to do the same thing here as well?
+Hi,
+
+On 23/11/2022 00:12, Dmitry Baryshkov wrote:
+> On sm8450 a register block was removed from MDP TOP. Accessing it during
+> snapshotting results in NoC errors / immediate reboot. Skip accessing
+> these registers during snapshot.
 > 
-> It would be nice to have a shared macro code gen all of the above
-> instead of copy and pasting it. Then maybe other cases beyond struct
-> device could adopt const too..
+> Tested-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
+>   2 files changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> index 38aa38ab1568..4730f8268f2a 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> @@ -92,6 +92,7 @@ enum {
+>   	DPU_MDP_UBWC_1_0,
+>   	DPU_MDP_UBWC_1_5,
+>   	DPU_MDP_AUDIO_SELECT,
+> +	DPU_MDP_PERIPH_0_REMOVED,
+>   	DPU_MDP_MAX
+>   };
+>   
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index f3660cd14f4f..67f2e5288b3c 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct msm_disp_state *disp_state, struct msm_k
+>   		msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
+>   				dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
+>   
+> -	msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+> -			dpu_kms->mmio + cat->mdp[0].base, "top");
+> +	if (top->caps->features & BIT(DPU_MDP_PERIPH_0_REMOVED)) {
 
-I think I tried to create such a beast, but failed, so ended up
-open-coding it in a few places in the USB headers already.  I can try it
-again, but the redirection gets tricky (defines creating defines...)
+This fails to build on linux-next, either I missed something while applying or it should be:
+-       if (top->caps->features & BIT(DPU_MDP_PERIPH_0_REMOVED)) {
++       if (dpu_kms->hw_mdp->caps->features & BIT(DPU_MDP_PERIPH_0_REMOVED)) {
 
-thanks,
 
-greg k-h
+> +		msm_disp_snapshot_add_block(disp_state, 0x380,
+> +				dpu_kms->mmio + cat->mdp[0].base, "top");
+> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 0x3a8,
+> +				dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
+> +	} else {
+> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+> +				dpu_kms->mmio + cat->mdp[0].base, "top");
+> +	}
+>   
+>   	pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>   }
+
+Neil
+
