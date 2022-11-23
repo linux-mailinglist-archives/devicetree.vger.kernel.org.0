@@ -2,245 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E8863657F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 17:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B876636583
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 17:13:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238956AbiKWQMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 11:12:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40296 "EHLO
+        id S239037AbiKWQNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 11:13:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238995AbiKWQMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 11:12:34 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D71E8E
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 08:12:27 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id g12so28855718lfh.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 08:12:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TtHcJd8BFDObQdDtblgbEBO+6P5tMrTuGpRtmyRE6Wk=;
-        b=n/c4r3USYSLRZJkp4JvI5PMts2/NDqfq+kLZ7qyrvS7i8sVrgdj8wOjoRYotUZfIfc
-         Ze6x6xgdhxCGYWxRZQSIlidb/Po6Wz7wGYslxWWAtbaS7EGdtTYG6t8rXOZvwVaeaEN7
-         ZiMF/h7xXBoeFF+X+D1y0rRszRO0VSjznWYEYddEiWm8XDRFEvJIwreNhACw5kOyvofA
-         AGBuO2izlnmJppwLFP/obYrm/P8It5bp94a4Y88kdjKbWUm9Qn0G4E2tc6f/eWAzTwhg
-         FDh8UFfx2Yr8JGCiSKVMnest/HzYmKO8TMstLzKNHZ2NNDIUHubNn0JJ9Qj7WjwxjuXr
-         1O6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TtHcJd8BFDObQdDtblgbEBO+6P5tMrTuGpRtmyRE6Wk=;
-        b=lsMnDvcMWjzz5dosMifx2FEwL1emLpoA2WBhproxndrDR/1OPzGU7JFpxw2NWo33Il
-         ma32yRhGecxbpG1IHnHFDyYAvQg0cufDp4xMKV8RhTXYyvCW6qc/iUIQLitKQm7I0U38
-         5jidsHFg1RIkmvp/ARxgUHb7Y02LgdLeMoVPsfkceAorrGvQj0euH4IwzshyOjlbEMTb
-         DwlPOKlVsvJvwe9uYqkpXJMJjeEEfWc1QkXTsqwKq3ivr49QYYFVxV1dW43gnX5BBJg3
-         KBxQ2tWmhxXC6Nqq2ejWhfZfMtXi1bfDGIjnJyKJT1U3ZtqXrhIvoCWv3hun6xtot1C4
-         578w==
-X-Gm-Message-State: ANoB5pn2JXZEB8n0oscPrp5hgM3ks6TPHtNSRkgq//fNss2wlPXx2kvT
-        JXSqrOSwjWXgAfTNt72qWY/9FLH0oMB0fTH3
-X-Google-Smtp-Source: AA0mqf6C7DmqvswpMzMro5oN6iDjEGz5uMBvVejvdFIJVXO135263hjmIJl8A75d37cxxwwoT2UksA==
-X-Received: by 2002:ac2:5e7a:0:b0:4a2:6238:e7f9 with SMTP id a26-20020ac25e7a000000b004a26238e7f9mr9463350lfr.294.1669219945658;
-        Wed, 23 Nov 2022 08:12:25 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id z8-20020ac25de8000000b004946bb30469sm2955303lfq.82.2022.11.23.08.12.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 08:12:25 -0800 (PST)
-Message-ID: <848da740-37ee-ebb8-b754-3b9dfa9944a6@linaro.org>
-Date:   Wed, 23 Nov 2022 17:12:23 +0100
+        with ESMTP id S238875AbiKWQNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 11:13:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28C26E568;
+        Wed, 23 Nov 2022 08:13:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D89A61DEA;
+        Wed, 23 Nov 2022 16:13:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 953BFC433D7;
+        Wed, 23 Nov 2022 16:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669219987;
+        bh=fkTjWBvj8eK0AxwkvvHG9qSe5D21CdW6TK2ghXH+FIA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Ds7jJ/VWbrQ9y8JZ/clo3yipZhTq9LfUKAKVRQNXlgmy/pt/crrASGmoEpNkxl99U
+         mCfoIX38/fNVPko1LD8lALY5IWMepHpSpx8kENeNSkXxGMU6NpShIAX1ITTYQjUVSV
+         /KTa32y6jIZwNDGuSJSTU31bTM+vE3/tFYId3JksmOUGHsW9x4z5O/rie5JYhZy7Hn
+         0+2rj2WUVKq3RDgFi5aLpKeVW8mH6+KUvm+OrNRGEpP6pobJvVffihHWvxB/5N6OGj
+         O9e1SioZYE5dnefv0Kv9HKU++WcgsbR00LXq/+CR2I/EI9ei+XkWacMh64TVTLmb/q
+         FlP1phjivjh5Q==
+Message-ID: <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
+Date:   Wed, 23 Nov 2022 17:13:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 8/9] clk: qcom: rpmh: Add support for SM8550 rpmh
- clocks
+Subject: Re: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
 Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221123142009.594781-1-abel.vesa@linaro.org>
- <20221123142009.594781-9-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221123142009.594781-9-abel.vesa@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org
+References: <20221119221219.1232541-1-linus.walleij@linaro.org>
+ <20221119221219.1232541-2-linus.walleij@linaro.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20221119221219.1232541-2-linus.walleij@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/11/2022 23:12, Linus Walleij wrote:
+> This adds device tree bindings for the Ux500 CRYP block
+> as a compatible in the STM32 CRYP bindings.
 
-
-On 23.11.2022 15:20, Abel Vesa wrote:
-> Adds the RPMH clocks present in SM8550 SoC.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> The Ux500 CRYP binding has been used for ages in the kernel
+> device tree for Ux500 but was never documented, so fill in
+> the gap by making it a sibling of the STM32 CRYP block,
+> which is what it is.
+> 
+> The relationship to the existing STM32 CRYP block is pretty
+> obvious when looking at the register map, and I have written
+> patches to reuse the STM32 CRYP driver on the Ux500.
+> 
+> The two properties added are DMA channels and power domain.
+> Power domains are a generic SoC feature and the STM32 variant
+> also has DMA channels.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> This was previously sent out as an open question but
+> nothing happened, now I send it as part of the STM32
+> bindings, in a series making the Linux STM32 driver
+> use the STM32 driver.
+> ---
+>  .../bindings/crypto/st,stm32-cryp.yaml        | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 
-Konrad
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+
 > 
-> Changes since v1:
->  * moved DEFINE_CLK_RPMH_FIXED define upwards
-> 
->  drivers/clk/qcom/clk-rpmh.c | 110 +++++++++++++++++++++++++++++-------
->  1 file changed, 90 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index 0471bab82464..3204df3fda86 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -132,6 +132,36 @@ static DEFINE_MUTEX(rpmh_clk_lock);
->  		},							\
->  	}
+> diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> index ed23bf94a8e0..69614ab51f81 100644
+> --- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
-> +#define DEFINE_CLK_RPMH_FIXED(_platform, _name, _name_active,	\
-> +				  _parent_name, _name_active_parent,	\
-> +				  _div)					\
-> +	static struct clk_fixed_factor _platform##_##_name = {		\
-> +		.mult = 1,						\
-> +		.div = _div,						\
-> +		.hw.init = &(struct clk_init_data){			\
-> +			.ops = &clk_fixed_factor_ops,			\
-> +			.name = #_name,					\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +					.fw_name = #_parent_name,	\
-> +					.name = #_parent_name,		\
-> +			},						\
-> +			.num_parents = 1,				\
-> +		},							\
-> +	};								\
-> +	static struct clk_fixed_factor _platform##_##_name_active = {	\
-> +		.mult = 1,						\
-> +		.div = _div,						\
-> +		.hw.init = &(struct clk_init_data){			\
-> +			.ops = &clk_fixed_factor_ops,			\
-> +			.name = #_name_active,				\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +					.fw_name = #_name_active_parent,\
-> +					.name = #_name_active_parent,	\
-> +			},						\
-> +			.num_parents = 1,				\
-> +		},							\
-> +	}
+>  title: STMicroelectronics STM32 CRYP bindings
+>  
+> +description: The STM32 CRYP block is built on the CRYP block found in
+> +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
+> +  SoC in 2010.
 > +
->  static inline struct clk_rpmh *to_clk_rpmh(struct clk_hw *_hw)
->  {
->  	return container_of(_hw, struct clk_rpmh, hw);
-> @@ -579,6 +609,43 @@ static const struct clk_rpmh_desc clk_rpmh_sm8450 = {
->  	.num_clks = ARRAY_SIZE(sm8450_rpmh_clocks),
->  };
+>  maintainers:
+>    - Lionel Debieve <lionel.debieve@foss.st.com>
 >  
-> +DEFINE_CLK_RPMH_ARC(sm8550, xo_pad, xo_pad_ao, "xo.lvl", 0x03, 2);
-> +DEFINE_CLK_RPMH_FIXED(sm8550, bi_tcxo, bi_tcxo_ao, xo_pad, xo_pad_ao, 2);
-> +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk1, rf_clk1_ao, "clka1", 1);
-> +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk2, rf_clk2_ao, "clka2", 1);
-> +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk3, rf_clk3_ao, "clka3", 1);
-> +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk4, rf_clk4_ao, "clka4", 1);
-> +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk1, ln_bb_clk1_ao, "clka6", 2);
-> +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk2, ln_bb_clk2_ao, "clka7", 2);
-> +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk3, ln_bb_clk3_ao, "clka8", 2);
+>  properties:
+>    compatible:
+>      enum:
+> +      - st,stn8820-cryp
+> +      - stericsson,ux500-cryp
+>        - st,stm32f756-cryp
+>        - st,stm32mp1-cryp
+>  
+> @@ -27,6 +33,19 @@ properties:
+>    resets:
+>      maxItems: 1
+>  
+> +  dmas:
+> +    items:
+> +      - description: mem2cryp DMA channel
+> +      - description: cryp2mem DMA channel
 > +
-> +static struct clk_hw *sm8550_rpmh_clocks[] = {
-> +	[RPMH_CXO_PAD_CLK]      = &sm8550_xo_pad.hw,
-> +	[RPMH_CXO_PAD_CLK_A]    = &sm8550_xo_pad_ao.hw,
-> +	[RPMH_CXO_CLK]		= &sm8550_bi_tcxo.hw,
-> +	[RPMH_CXO_CLK_A]	= &sm8550_bi_tcxo_ao.hw,
-> +	[RPMH_LN_BB_CLK1]	= &sm8550_ln_bb_clk1.hw,
-> +	[RPMH_LN_BB_CLK1_A]	= &sm8550_ln_bb_clk1_ao.hw,
-> +	[RPMH_LN_BB_CLK2]	= &sm8550_ln_bb_clk2.hw,
-> +	[RPMH_LN_BB_CLK2_A]	= &sm8550_ln_bb_clk2_ao.hw,
-> +	[RPMH_LN_BB_CLK3]	= &sm8550_ln_bb_clk3.hw,
-> +	[RPMH_LN_BB_CLK3_A]	= &sm8550_ln_bb_clk3_ao.hw,
-> +	[RPMH_RF_CLK1]		= &sm8550_rf_clk1.hw,
-> +	[RPMH_RF_CLK1_A]	= &sm8550_rf_clk1_ao.hw,
-> +	[RPMH_RF_CLK2]		= &sm8550_rf_clk2.hw,
-> +	[RPMH_RF_CLK2_A]	= &sm8550_rf_clk2_ao.hw,
-> +	[RPMH_RF_CLK3]		= &sm8550_rf_clk3.hw,
-> +	[RPMH_RF_CLK3_A]	= &sm8550_rf_clk3_ao.hw,
-> +	[RPMH_RF_CLK4]		= &sm8550_rf_clk4.hw,
-> +	[RPMH_RF_CLK4_A]	= &sm8550_rf_clk4_ao.hw,
-> +	[RPMH_IPA_CLK]		= &sdm845_ipa.hw,
-> +};
+> +  dma-names:
+> +    items:
+> +      - const: mem2cryp
+> +      - const: cryp2mem
 > +
-> +static const struct clk_rpmh_desc clk_rpmh_sm8550 = {
-> +	.clks = sm8550_rpmh_clocks,
-> +	.num_clks = ARRAY_SIZE(sm8550_rpmh_clocks),
-> +};
+> +  power-domains:
+> +    maxItems: 1
+
+Are these all valid for other variants?
+
 > +
->  static struct clk_hw *sc7280_rpmh_clocks[] = {
->  	[RPMH_CXO_CLK]      = &sc7280_bi_tcxo.hw,
->  	[RPMH_CXO_CLK_A]    = &sc7280_bi_tcxo_ao.hw,
-> @@ -682,29 +749,31 @@ static int clk_rpmh_probe(struct platform_device *pdev)
+>  required:
+>    - compatible
+>    - reg
+> @@ -48,4 +67,17 @@ examples:
+>        resets = <&rcc CRYP1_R>;
+>      };
 >  
->  		name = hw_clks[i]->init->name;
->  
-> -		rpmh_clk = to_clk_rpmh(hw_clks[i]);
-> -		res_addr = cmd_db_read_addr(rpmh_clk->res_name);
-> -		if (!res_addr) {
-> -			dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
-> -				rpmh_clk->res_name);
-> -			return -ENODEV;
-> -		}
-> +		if (hw_clks[i]->init->ops != &clk_fixed_factor_ops) {
-> +			rpmh_clk = to_clk_rpmh(hw_clks[i]);
-> +			res_addr = cmd_db_read_addr(rpmh_clk->res_name);
-> +			if (!res_addr) {
-> +				dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
-> +					rpmh_clk->res_name);
-> +				return -ENODEV;
-> +			}
->  
-> -		data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
-> -		if (IS_ERR(data)) {
-> -			ret = PTR_ERR(data);
-> -			dev_err(&pdev->dev,
-> -				"error reading RPMh aux data for %s (%d)\n",
-> -				rpmh_clk->res_name, ret);
-> -			return ret;
-> -		}
-> +			data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
-> +			if (IS_ERR(data)) {
-> +				ret = PTR_ERR(data);
-> +				dev_err(&pdev->dev,
-> +					"error reading RPMh aux data for %s (%d)\n",
-> +					rpmh_clk->res_name, ret);
-> +				return ret;
-> +			}
->  
-> -		/* Convert unit from Khz to Hz */
-> -		if (aux_data_len == sizeof(*data))
-> -			rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
-> +			/* Convert unit from Khz to Hz */
-> +			if (aux_data_len == sizeof(*data))
-> +				rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
->  
-> -		rpmh_clk->res_addr += res_addr;
-> -		rpmh_clk->dev = &pdev->dev;
-> +			rpmh_clk->res_addr += res_addr;
-> +			rpmh_clk->dev = &pdev->dev;
-> +		}
->  
->  		ret = devm_clk_hw_register(&pdev->dev, hw_clks[i]);
->  		if (ret) {
-> @@ -739,6 +808,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->  	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
->  	{ .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
->  	{ .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
-> +	{ .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
->  	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
->  	{ }
->  };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
+> +    #include <dt-bindings/arm/ux500_pm_domains.h>
+> +    cryp@a03cb000 {
+
+Drop the example, it's almost the same and difference in one new
+property does not warrant a new example.
+
+Best regards,
+Krzysztof
+
