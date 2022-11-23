@@ -2,296 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B80463635A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:23:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1EA63636A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:25:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236657AbiKWPXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 10:23:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
+        id S237617AbiKWPZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 10:25:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235513AbiKWPXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:23:20 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E8A62C2;
-        Wed, 23 Nov 2022 07:23:12 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id p16so13315244wmc.3;
-        Wed, 23 Nov 2022 07:23:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mRsDugZQHZ3cAp8Uo4BX8m8iIIGYim123jYJVHkkzNM=;
-        b=JTS32H5Rl1FRQ5qQGs7q0aes2NHFbc/tVU1PRG9uzTWCLptD9c3MBLc2IqYddt3s+j
-         9Of0wCplecvcC/ZN1lmfkazZqsy11weqsJhVk4QzwDldCoYxshlc7rC+qRSCf9Y/SqWB
-         v/saVhfl+UuoPYhBVsTcqPPB1s6kP/enS0YerURQUZMzmRXmcAtyZYWjr5bPNnE9wIDH
-         VW49UWoCb5VTT2rNTAVnEMk9qRuYv594NWL0wRMEci2KxO0FRzeZNCtNLbScBe0Xo0p7
-         8H7kU9A+dvHezIaVrs3sjWhaXVIIBafgl/QMvsjn7GYdWVgzQ/Pi5mVzH95DYjng5LzN
-         Pwgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mRsDugZQHZ3cAp8Uo4BX8m8iIIGYim123jYJVHkkzNM=;
-        b=UttgYdID17rzYxZMQrDCv5NC+KSWYmeYDWIqVj0AZaldFV7boB3u5h4ayWud3QoNh+
-         A7FlRFC0MKhWB7INEc5X6YSoQgSm2hJITruoSd/Zl3txDNX8qn+fkXst3l1ve86Uhk15
-         EwEuVgy3hxnYTadQvV7ffNsNSOR52DBKuLhwvy6KfNu6ZN2mybytLhhooz4HvmAxqBPs
-         RfiAczQ5uzqTsxo7fNF7nPOPoGkQkaQ6yJQ8EN6uOhbAFdGmF7/qJfz3gTSQ/mDivtw6
-         tDAbshPr3FYsoX61dOUJ+GqZZ/YOwEiSh4dpoESRk8p+9ROYEbf/VrweZblYUSwfaCrw
-         KIRQ==
-X-Gm-Message-State: ANoB5pl0ChlssDtBW7lvDD/p/7a1c93v/2u7k0e4Y+txlDGol2LNlxNt
-        dXc7l+CpHgb9yrkW3Kpg8ic=
-X-Google-Smtp-Source: AA0mqf4GOX3D3H86tdcDE4TkSHPMY+S13P3j1Dp/lKoItpeUJRYos1PzrSOxOWOfWevsQEXVOhunCg==
-X-Received: by 2002:a05:600c:2309:b0:3c6:f252:f072 with SMTP id 9-20020a05600c230900b003c6f252f072mr7118083wmo.145.1669216991388;
-        Wed, 23 Nov 2022 07:23:11 -0800 (PST)
-Received: from [192.168.1.131] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id c18-20020adffb12000000b002365730eae8sm16654203wrr.55.2022.11.23.07.23.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 07:23:10 -0800 (PST)
-Message-ID: <5b253182-c15e-7fdd-48e2-37fd64838644@gmail.com>
-Date:   Wed, 23 Nov 2022 16:23:09 +0100
+        with ESMTP id S237215AbiKWPZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:25:32 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D49DDEC9;
+        Wed, 23 Nov 2022 07:25:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AA03E61D9B;
+        Wed, 23 Nov 2022 15:25:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED97C43147;
+        Wed, 23 Nov 2022 15:25:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669217131;
+        bh=RtxS3m8RidOG39tfzw7d4tVjWi8ImaOggtUBMDmGKOk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oSorEMc2dHiBGtYNXsHTl12w2fVInFgukQW47xG4DnuHpRzcTKx1etSLqVxA6vqSA
+         TDUM6TIDXCPOGEYOUegUztFeCKhCJ7D5AB2WLgvgQodZZxcw43EahjgiLYwJ23PhzV
+         HC0Yl39AFe2iVN2gziTKruIIV3fHzFv+xMkdDDtuZfXPSZFCi1nyIvlz9AgCAxDj2E
+         XSJioyc4k1+SagJVRkJJCkI4kF7ylP/mm8UJnqeJmbiXAUQBPfHKI6Rq/2EybrwxQf
+         ijVZsNtZnWCo3Hc+gUdfTK04/8uswxdt+DilpEgrCSLJ3OAf643WTsZu1vnKRg4xxv
+         th7OBfjaluPoQ==
+Received: by mail-ot1-f49.google.com with SMTP id 46-20020a9d0631000000b00666823da25fso11444160otn.0;
+        Wed, 23 Nov 2022 07:25:30 -0800 (PST)
+X-Gm-Message-State: ANoB5pnBQW9cByWanm8pIteTIuwDpPIl7MmOUjX1+hbdBR7yeTAHrNql
+        41r1KMXvmr9HyqM9RGQ8HgcYoyUtMIPDmqTmeQ==
+X-Google-Smtp-Source: AA0mqf49fnswLYy6SsiK1Ro9HFjY4CW9aK/5sATEF6GPDJi3Wc2i0C/TiO825btUhwszzmrdBBQ9RzCdpGxBDCNpAIY=
+X-Received: by 2002:a05:6830:d87:b0:66d:8b98:683f with SMTP id
+ bv7-20020a0568300d8700b0066d8b98683fmr15490045otb.40.1669217130091; Wed, 23
+ Nov 2022 07:25:30 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/5] arm64: dts: mt8186: Add power domains controller
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, hsinyi@chromium.org
-References: <20221123135531.23221-1-allen-kh.cheng@mediatek.com>
- <20221123135531.23221-3-allen-kh.cheng@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20221123135531.23221-3-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1666266353-16670-1-git-send-email-xinlei.lee@mediatek.com> <1666266353-16670-3-git-send-email-xinlei.lee@mediatek.com>
+In-Reply-To: <1666266353-16670-3-git-send-email-xinlei.lee@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 23 Nov 2022 23:25:19 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9+VWN3S3=BRMXaEf5A5G_AVaDa=V2v3AVXT=3O-DrJEQ@mail.gmail.com>
+Message-ID: <CAAOTY_9+VWN3S3=BRMXaEf5A5G_AVaDa=V2v3AVXT=3O-DrJEQ@mail.gmail.com>
+Subject: Re: [PATCH v2,2/2] drm: mediatek: Add mt8188 dpi compatibles and
+ platform data
+To:     xinlei.lee@mediatek.com
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Xinlei:
 
+<xinlei.lee@mediatek.com> =E6=96=BC 2022=E5=B9=B410=E6=9C=8820=E6=97=A5 =E9=
+=80=B1=E5=9B=9B =E6=99=9A=E4=B8=8A7:46=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: xinlei lee <xinlei.lee@mediatek.com>
+>
+> For MT8188, the vdosys0 only supports 1T1P mode, so we need to add the co=
+mpatible for mt8188 edp-intf.
 
-On 23/11/2022 14:55, Allen-KH Cheng wrote:
-> Add power domains controller for mt8186 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+For this series, applied to mediatek-drm-next [1], thanks.
 
-Applied for the next merge window. (v6.2-tmp/dts64 which will transform into 
-v6.2-next/dts64 once v6.2-rc1 is released)
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-Thanks
-
+>
+> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 188 +++++++++++++++++++++++
->   1 file changed, 188 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> index c326aeb33a10..2b03a342b8db 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -332,6 +332,194 @@
->   			#interrupt-cells = <2>;
->   		};
->   
-> +		scpsys: syscon@10006000 {
-> +			compatible = "mediatek,mt8186-scpsys", "syscon", "simple-mfd";
-> +			reg = <0 0x10006000 0 0x1000>;
+>  drivers/gpu/drm/mediatek/mtk_dpi.c     | 17 +++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c |  2 ++
+>  2 files changed, 19 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediate=
+k/mtk_dpi.c
+> index 508a6d9..02c2a00 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -929,6 +929,20 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
+>         .csc_enable_bit =3D CSC_ENABLE,
+>  };
+>
+> +static const struct mtk_dpi_conf mt8188_dpintf_conf =3D {
+> +       .cal_factor =3D mt8195_dpintf_calculate_factor,
+> +       .max_clock_khz =3D 600000,
+> +       .output_fmts =3D mt8195_output_fmts,
+> +       .num_output_fmts =3D ARRAY_SIZE(mt8195_output_fmts),
+> +       .pixels_per_iter =3D 4,
+> +       .input_2pixel =3D false,
+> +       .dimension_mask =3D DPINTF_HPW_MASK,
+> +       .hvsize_mask =3D DPINTF_HSIZE_MASK,
+> +       .channel_swap_shift =3D DPINTF_CH_SWAP,
+> +       .yuv422_en_bit =3D DPINTF_YUV422_EN,
+> +       .csc_enable_bit =3D DPINTF_CSC_ENABLE,
+> +};
 > +
-> +			/* System Power Manager */
-> +			spm: power-controller {
-> +				compatible = "mediatek,mt8186-power-controller";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				#power-domain-cells = <1>;
-> +
-> +				/* power domain of the SoC */
-> +				mfg0: power-domain@MT8186_POWER_DOMAIN_MFG0 {
-> +					reg = <MT8186_POWER_DOMAIN_MFG0>;
-> +					clocks = <&topckgen CLK_TOP_MFG>;
-> +					clock-names = "mfg00";
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_MFG1 {
-> +						reg = <MT8186_POWER_DOMAIN_MFG1>;
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_MFG2 {
-> +							reg = <MT8186_POWER_DOMAIN_MFG2>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_MFG3 {
-> +							reg = <MT8186_POWER_DOMAIN_MFG3>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +					};
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
-> +					reg = <MT8186_POWER_DOMAIN_CSIRX_TOP>;
-> +					clocks = <&topckgen CLK_TOP_SENINF>,
-> +						 <&topckgen CLK_TOP_SENINF1>;
-> +					clock-names = "csirx_top0", "csirx_top1";
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_SSUSB {
-> +					reg = <MT8186_POWER_DOMAIN_SSUSB>;
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
-> +					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_ADSP_AO {
-> +					reg = <MT8186_POWER_DOMAIN_ADSP_AO>;
-> +					clocks = <&topckgen CLK_TOP_AUDIODSP>,
-> +						 <&topckgen CLK_TOP_ADSP_BUS>;
-> +					clock-names = "audioadsp", "adsp_bus";
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_ADSP_INFRA {
-> +						reg = <MT8186_POWER_DOMAIN_ADSP_INFRA>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_ADSP_TOP {
-> +							reg = <MT8186_POWER_DOMAIN_ADSP_TOP>;
-> +							mediatek,infracfg = <&infracfg_ao>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +					};
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_CONN_ON {
-> +					reg = <MT8186_POWER_DOMAIN_CONN_ON>;
-> +					mediatek,infracfg = <&infracfg_ao>;
-> +					#power-domain-cells = <0>;
-> +				};
-> +
-> +				power-domain@MT8186_POWER_DOMAIN_DIS {
-> +					reg = <MT8186_POWER_DOMAIN_DIS>;
-> +					clocks = <&topckgen CLK_TOP_DISP>,
-> +						 <&topckgen CLK_TOP_MDP>,
-> +						 <&mmsys CLK_MM_SMI_INFRA>,
-> +						 <&mmsys CLK_MM_SMI_COMMON>,
-> +						 <&mmsys CLK_MM_SMI_GALS>,
-> +						 <&mmsys CLK_MM_SMI_IOMMU>;
-> +					clock-names = "disp", "mdp", "smi_infra", "smi_common",
-> +						     "smi_gals", "smi_iommu";
-> +					mediatek,infracfg = <&infracfg_ao>;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					#power-domain-cells = <1>;
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_VDEC {
-> +						reg = <MT8186_POWER_DOMAIN_VDEC>;
-> +						clocks = <&topckgen CLK_TOP_VDEC>,
-> +							 <&vdecsys CLK_VDEC_LARB1_CKEN>;
-> +						clock-names = "vdec0", "larb";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#power-domain-cells = <0>;
-> +					};
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_CAM {
-> +						reg = <MT8186_POWER_DOMAIN_CAM>;
-> +						clocks = <&topckgen CLK_TOP_CAM>,
-> +							 <&topckgen CLK_TOP_SENINF>,
-> +							 <&topckgen CLK_TOP_SENINF1>,
-> +							 <&topckgen CLK_TOP_SENINF2>,
-> +							 <&topckgen CLK_TOP_SENINF3>,
-> +							 <&topckgen CLK_TOP_CAMTM>,
-> +							 <&camsys CLK_CAM2MM_GALS>;
-> +						clock-names = "cam-top", "cam0", "cam1", "cam2",
-> +							     "cam3", "cam-tm", "gals";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_CAM_RAWB {
-> +							reg = <MT8186_POWER_DOMAIN_CAM_RAWB>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_CAM_RAWA {
-> +							reg = <MT8186_POWER_DOMAIN_CAM_RAWA>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +					};
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_IMG {
-> +						reg = <MT8186_POWER_DOMAIN_IMG>;
-> +						clocks = <&topckgen CLK_TOP_IMG1>,
-> +							 <&imgsys1 CLK_IMG1_GALS_IMG1>;
-> +						clock-names = "img-top", "gals";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#address-cells = <1>;
-> +						#size-cells = <0>;
-> +						#power-domain-cells = <1>;
-> +
-> +						power-domain@MT8186_POWER_DOMAIN_IMG2 {
-> +							reg = <MT8186_POWER_DOMAIN_IMG2>;
-> +							#power-domain-cells = <0>;
-> +						};
-> +					};
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_IPE {
-> +						reg = <MT8186_POWER_DOMAIN_IPE>;
-> +						clocks = <&topckgen CLK_TOP_IPE>,
-> +							 <&ipesys CLK_IPE_LARB19>,
-> +							 <&ipesys CLK_IPE_LARB20>,
-> +							 <&ipesys CLK_IPE_SMI_SUBCOM>,
-> +							 <&ipesys CLK_IPE_GALS_IPE>;
-> +						clock-names = "ipe-top", "ipe-larb0", "ipe-larb1",
-> +							      "ipe-smi", "ipe-gals";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#power-domain-cells = <0>;
-> +					};
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_VENC {
-> +						reg = <MT8186_POWER_DOMAIN_VENC>;
-> +						clocks = <&topckgen CLK_TOP_VENC>,
-> +							 <&vencsys CLK_VENC_CKE1_VENC>;
-> +						clock-names = "venc0", "larb";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#power-domain-cells = <0>;
-> +					};
-> +
-> +					power-domain@MT8186_POWER_DOMAIN_WPE {
-> +						reg = <MT8186_POWER_DOMAIN_WPE>;
-> +						clocks = <&topckgen CLK_TOP_WPE>,
-> +							 <&wpesys CLK_WPE_SMI_LARB8_CK_EN>,
-> +							 <&wpesys CLK_WPE_SMI_LARB8_PCLK_EN>;
-> +						clock-names = "wpe0", "larb-ck", "larb-pclk";
-> +						mediatek,infracfg = <&infracfg_ao>;
-> +						#power-domain-cells = <0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		watchdog: watchdog@10007000 {
->   			compatible = "mediatek,mt8186-wdt",
->   				     "mediatek,mt6589-wdt";
+>  static const struct mtk_dpi_conf mt8192_conf =3D {
+>         .cal_factor =3D mt8183_calculate_factor,
+>         .reg_h_fre_con =3D 0xe0,
+> @@ -1079,6 +1093,9 @@ static const struct of_device_id mtk_dpi_of_ids[] =
+=3D {
+>         { .compatible =3D "mediatek,mt8183-dpi",
+>           .data =3D &mt8183_conf,
+>         },
+> +       { .compatible =3D "mediatek,mt8188-dp-intf",
+> +         .data =3D &mt8188_dpintf_conf,
+> +       },
+>         { .compatible =3D "mediatek,mt8192-dpi",
+>           .data =3D &mt8192_conf,
+>         },
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index 91f58db..950bd04 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -631,6 +631,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[=
+] =3D {
+>           .data =3D (void *)MTK_DPI },
+>         { .compatible =3D "mediatek,mt8183-dpi",
+>           .data =3D (void *)MTK_DPI },
+> +       { .compatible =3D "mediatek,mt8188-dp-intf",
+> +         .data =3D (void *)MTK_DP_INTF },
+>         { .compatible =3D "mediatek,mt8192-dpi",
+>           .data =3D (void *)MTK_DPI },
+>         { .compatible =3D "mediatek,mt8195-dp-intf",
+> --
+> 2.6.4
+>
