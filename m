@@ -2,130 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7A4F63607E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 194C6636083
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:53:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238001AbiKWNwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 08:52:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32912 "EHLO
+        id S236038AbiKWNxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 08:53:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235962AbiKWNwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:52:18 -0500
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB88765A;
-        Wed, 23 Nov 2022 05:44:54 -0800 (PST)
+        with ESMTP id S236131AbiKWNws (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:52:48 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E47C613F6F;
+        Wed, 23 Nov 2022 05:47:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669211094; x=1700747094;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669211222; x=1700747222;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=8ThpPRnT3H2tIfP/zSsUWW1oRAj/U3AJ3PTwjtrPgLE=;
-  b=XPKwM/rlGGPF8I/7Z+bTmJo1UWxbHMlhZzuMOgzuWiYM/6mY0W61A8sE
-   z7N/KkRab52oVfbjtYGGELgLXwSRC5VhymWatWzzUDNktNfevqwzKJ6OF
-   J377cIgK/dZW0phwVjfVE4V0TeEjv/Qgg/17g5l9z2k5zGntpUT1cmjyW
-   JOURB4fEHdy1rR92dJIvbmdbumzP2MwqFcmHruHSVrSBEh6LIRRuJDofd
-   kmkF197WyK6XF2hzOpD/v52U4DMoqkDUWVhUi7rK2VEVCqOEmQC9Orked
-   VwpiIcGZDZB3CdPNdAXhtqjC974LYJE6WekbtMhmtfdJofHFF1yHVdd9E
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="340947058"
+  bh=liuuYffao1svpZRieQS14LiWSlQPrdAQn3xHBamy8s8=;
+  b=f4Y+EtxJ6omvvEpp+rOJRdgKB9/7Swxbu4jJpkI3ORijZf++5ecdYGmE
+   S/UiXDpLOrXKS7kqR7VEfgxYLmx6sO4LYvYHvqp1lF160fbYaGqqCiumD
+   VmZo5awTFZD9Qww6aTT6B2060rlDQSax3iNtF0TcMwJmHphHguyhIlytd
+   sqPsxHm0gjTUG90GT4N5Jb03hwBwaDTKpQ9L9g7vNObAZFXWGsTJpLnf1
+   XUeGNy0yyR0/of/OQC6l/2rOZX/J/BuQpULPpRz2FCS93ochyOCAkLRBW
+   rBZ/Q+beiUJxk+lgQT16pOh3wmU+0xACuigEA7MfmYAX64A+vUecK/+NN
+   g==;
 X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="340947058"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2022 05:44:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="672880767"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="672880767"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 23 Nov 2022 05:44:51 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oxq3U-00GIyb-2x;
-        Wed, 23 Nov 2022 15:44:48 +0200
-Date:   Wed, 23 Nov 2022 15:44:48 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+   d="scan'208";a="190245048"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2022 06:47:02 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 23 Nov 2022 06:46:47 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 23 Nov 2022 06:46:45 -0700
+Date:   Wed, 23 Nov 2022 13:46:27 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Anup Patel <anup@brainfault.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Anup Patel <apatel@ventanamicro.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-        "H. Peter Anvin" <hpa@zytor.com>, linux-lgm-soc@maxlinear.com
-Subject: Re: [PATCH v4 4/4] x86/of: Add support for boot time interrupt
- delivery mode configuration
-Message-ID: <Y34j0BgRTVS6KG4i@smile.fi.intel.com>
-References: <20221123100850.22969-1-rtanwar@maxlinear.com>
- <20221123100850.22969-5-rtanwar@maxlinear.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
+ riscv,timer-can-wake-cpu
+Message-ID: <Y34kM9TZ1FSqpeEB@wendy>
+References: <20220727114302.302201-1-apatel@ventanamicro.com>
+ <20220727114302.302201-2-apatel@ventanamicro.com>
+ <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
+ <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
+ <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
+ <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
+ <Y3zjQXqEHsaoVVvf@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20221123100850.22969-5-rtanwar@maxlinear.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y3zjQXqEHsaoVVvf@wendy>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 06:08:50PM +0800, Rahul Tanwar wrote:
-> Presently, init/boot time interrupt delivery mode is enumerated
-> only for ACPI enabled systems by parsing MADT table or for older
-> systems by parsing MP table. But for OF based x86 systems, it is
-> assumed & hardcoded to legacy PIC mode. This causes boot time crash
-> for platforms which do not use 8259 compliant legacy PIC.
+Hey Anup,
+
+(keeping all the context since you didn't reply to this mail yet)
+
+On Tue, Nov 22, 2022 at 02:57:05PM +0000, Conor Dooley wrote:
+> Hey Anup,
 > 
-> Add support for configuration of init time interrupt delivery mode
-> for x86 OF based systems by introducing a new optional boolean
-> property 'intel,virtual-wire-mode' for interrupt-controller node
-> of local APIC. This property emulates IMCRP Bit 7 of MP feature
-> info byte 2 of MP floating pointer structure.
+> I've been meaning to get back to you on this stuff for quite a while,
+> but unfortunately I've gotten distracted with other stuff every time I
+> got close. Apologies for that :(
 > 
-> Defaults to legacy PIC mode if absent. Configures it to virtual
-> wire compatibility mode if present.
-
-From code perspective looks good to me, but you need to have a blessing by DT
-people for first two patches.
-
-With whatever property name agreed on,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-> Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
-> ---
->  arch/x86/kernel/devicetree.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+> On Wed, Jul 27, 2022 at 07:04:57PM +0530, Anup Patel wrote:
+> > On Wed, Jul 27, 2022 at 6:05 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > On 27/07/2022 14:21, Anup Patel wrote:
+> > > > On Wed, Jul 27, 2022 at 5:37 PM Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > >>
+> > > >> On 27/07/2022 13:43, Anup Patel wrote:
+> > > >
+> > > > Since, there is no dedicated timer node, we use CPU compatible string
+> > > > for probing the per-CPU timer.
+> > >
+> > > Next time you add a properties:
+> > > riscv,saata-can-wake-cpu
+> > > riscv,usb-can-wake-cpu
+> > > riscv,interrupt-controller-can-wake-cpu
+> > >
+> > > and so on and keep explaining that "historically" you did not define
+> > > separate nodes, so thus must be in CPU node.
+> > 
+> > This is a one-of-case with RISC-V DeviceTree where we are living with
+> > the fact that there is no timer DT node. If we add a timer DT node now
+> > then we have to deal with compatibility for existing platforms.
 > 
-> diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-> index fcc6f1b7818f..458e43490414 100644
-> --- a/arch/x86/kernel/devicetree.c
-> +++ b/arch/x86/kernel/devicetree.c
-> @@ -167,7 +167,14 @@ static void __init dtb_lapic_setup(void)
->  			return;
->  	}
->  	smp_found_config = 1;
-> -	pic_mode = 1;
-> +	if (of_property_read_bool(dn, "intel,virtual-wire-mode")) {
-> +		pr_info("Virtual Wire compatibility mode.\n");
-> +		pic_mode = 0;
-> +	} else {
-> +		pr_info("IMCR and PIC compatibility mode.\n");
-> +		pic_mode = 1;
-> +	}
-> +
->  	register_lapic_address(lapic_addr);
->  }
->  
-> -- 
-> 2.17.1
+> I don't really understand the argument here. Perhaps this made sense a
+> few months ago, but it no longer does IMO.
 > 
+> We have existing platforms that interpreted the SBI spec (or perhaps
+> predated the SBI spec in the relevant form?) differently. I've pasted it
+> several times now I feel but it's relevant so pasting it here again...
+> 
+> On the subject of suspend, the RISC-V SBI spec states:
+> > Request the SBI implementation to put the calling hart in a platform
+> > specific suspend (or low power) state specified by the suspend_type
+> > parameter. The hart will automatically come out of suspended state and
+> > resume normal execution when it receives an interrupt or platform
+> > specific hardware event.
+> 
+> This does not cover whether a given event actually reaches the hart or
+> not, just what the hart will do if it receives an event. For the
+> implementation on the Allwinner D1, timer events are not received during
+> suspend.
+> 
+> Through-out the various bits of conversation so far, I have been
+> operating on the assumption that on PolarFire SoC, and potentially other
+> SiFive based implementations, events from the RISC-V timer do reach a
+> hart during suspend.
+> I realised while writing this response that I have never actually tested
+> it - the C3STOP flag caused problems for me during regular operation &
+> not while using some DT defined sleep states.
+> I've been learning/piecing together the bits of what is happening here as
+> time goes on, so I made an assumption that may or may not be correct, and
+> I am still oh-so-far from an understanding.
+> I just took it for granted that the existing driver worked correctly for
+> "old" SiFive stuff which MPFS is based on & figured that with ~the same
+> core complex as the fu540 that we'd behave similarly.
+> Perhaps that was not a good idea & please let me know if I've been
+> barking up the wrong tree.
+> 
+> Do we know definitively what is/isn't the case for any of the existing
+> platforms?
+> I can test some stuff, but it'll take some time as it's a bad week in
+> my neck of the woods.
+> 
+> > If we add a timer DT node now
+> > then we have to deal with compatibility for existing platforms.
+> 
+> In terms of what to encode in a DT, and given the spec never says that
+> the timer interrupt must arrive during suspend, we must assume, by
+> default, that no timer events arrive during suspend.
+> 
+> We have a bunch of existing platforms that may (do?) get timer events
+> during suspend, the opposite of the proposed default behaviour.
+> 
+> I'm trying to follow the line of reasoning but I fail to see how taking
+> either the property or node approach allows us to maintain behaviour for
+> exiting platforms that that do see timer events during suspend without
+> adding *something* to the DT. No matter what we add, we've got some sort
+> of backwards compatibility issue, right?
+> 
+> I noted the above:
+> 
+> > Since, there is no dedicated timer node, we use CPU compatible string
+> > for probing the per-CPU timer.
+> 
+> If we could rely on the cpu compatible why would we need to add a
+> dt-property anyway? Forgive my naivety here, but is the timer event in
+> suspend behaviour not a "core complex" level attribute rather than a
+> something that can be consistently determined by the cpu compatible?
+> 
+> Either way, we need to figure out why enabling C3STOP is causing other
+> timer issues even when we are not in some sort of sleep state & do
+> something about that - or figure out some different way to communicate
+> the behavioural differences.
+> I would expect timers to continue working "normally" with the flag set,
+> even if how they work is subtly different?
+> On a D1, with the C3STOP "feature" flag set, and it's custom timer
+> implementation unused, how do timers behave?
+> 
+> Hopefully I've missed something blatant here Anup!
 
--- 
-With Best Regards,
-Andy Shevchenko
+So what I missed, as Anup pointed out else where, is:
 
+> me:
+> > I don't really follow. How is there a compatibility issue created by
+> > adding a new node that is not added for a new property? Both will
+> > require changes to the device tree. (You need not reply here, I am going
+> > to review the other thread, it's been on my todo list for too long. Been
+> > caught up with non-coherent stuff & our sw release cycle..)
+> 
+> Adding a new timer DT node would mean, the RISC-V timer driver
+> will now be probed using the compatible to the new DT node whereas
+> the RISC-V timer driver is currently probed using CPU DT nodes.
+
+In that case, we would have to retain the ability to match against the
+"riscv". Spitballing:
+- add a new timer node
+- keep matching against "riscv"
+- look up a timer node during init w/ of_find_matching_node() that
+  contains any new timer properties
+
+I think it's unlikely that this will be the last time we have to add
+some timer properties & we should avoid doing odd things in a DT to suit
+an operating system?
+
+Would something along those lines work Anup, or am I, yet again, missing
+something?
+
+Thanks,
+Conor.
 
