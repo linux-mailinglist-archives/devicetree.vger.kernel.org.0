@@ -2,160 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1BC635C02
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAC7F635C1B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:50:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236356AbiKWLny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 06:43:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
+        id S229472AbiKWLuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 06:50:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236362AbiKWLnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:43:53 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723E111091F
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 03:43:52 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id p8so27738122lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 03:43:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=o+T2mPZQp7vnmYO/VBII05x2MosM1f+t1yFyH0GD4j4=;
-        b=iLE0E0fsgalMDgEFoiDG7mC4omu6kUK/OtiaPfnLb3jV1MHQDu/PW13DyQkmcI5G0y
-         rPO52ta3HI3eVdT0RHgHBbRztSIq42qr1CNRicM9UJXhGa7U/nVPxXZTiJruswZUVrZJ
-         tk0aeZQee+cd4tNAqcoHC8B5hRBpkKTldoj8F5jyLHbjXd1rrKuZBa4GF0n2ql5A7mPT
-         qZnXZU+s8xFeJCbYsRWcMKXonxvPv+slcRzLldZL7HpTvhzjZNWWogbZFNT1sZf2wpam
-         jEjSQofzm0dJDCpZriWJPGHopJo2gTZOVgnB3oLSbVcXjHW9keX7GKVBEtKgCDMM0PJx
-         waoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o+T2mPZQp7vnmYO/VBII05x2MosM1f+t1yFyH0GD4j4=;
-        b=LV7Q7uzCjcDrQtnR6Pa5YAei8SZlWR2eVGMWW+pSMI/Doa0q17fz4ie3s2BOqQ+xrD
-         J+9kF87VHvcBhriQSkVAMVk5mykM0zCjgTPPtqai+AifayX7e135fGleyG86bEOPgJ2/
-         CNXJUHCNPWBgD5vMeuGjk06dNMGePy4AT1VQEukEcnFI7PeW4vurpWhy6KJjuptNDqKd
-         O3n4ih/GCidztW8a3buQepBkV0Da8n2Cr1xfmi7FtCTZ/mkxhtzrLZqkBmnE0T+A12UI
-         PZ+kn/XV91KSLRn30GyQ4nDMC9l3EWfnKSmV9d8fpgePnmkGBIpQXyNJ7ypOXlmLEUpR
-         DEmw==
-X-Gm-Message-State: ANoB5plQo2zDjVjvXIZwIvwtLygRIFCI/cKg9SKnkez8XgW/B9V1SiPC
-        muP0uwLJ8jGEDVDgD4Zaw4Ptlg==
-X-Google-Smtp-Source: AA0mqf4QP+zArFz63fn57otD32gK2i2elrbUESyr+iPF2DcZAE9V8zZJ7nbMKdM25Fr7Z0/3Tu+lEA==
-X-Received: by 2002:a05:6512:340a:b0:4ae:d9b4:bd31 with SMTP id i10-20020a056512340a00b004aed9b4bd31mr3787930lfr.645.1669203830759;
-        Wed, 23 Nov 2022 03:43:50 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id z18-20020a056512371200b004b4bae1a05asm2536301lfr.293.2022.11.23.03.43.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 03:43:50 -0800 (PST)
-Message-ID: <e416812c-5524-673f-4c34-8dab758e0de8@linaro.org>
-Date:   Wed, 23 Nov 2022 12:43:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 06/11] drm/msm/dsi/phy: rework register setting for 7nm
- PHY
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S235917AbiKWLuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:50:18 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A2D6254;
+        Wed, 23 Nov 2022 03:50:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669204214; x=1700740214;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nNJj4/SNlznTLYes66f3xfwnOOogTO0GLozcvfHLa+E=;
+  b=PyDarsJ39m1NLtmpHd00iYn4PgRUswUzOKQ2yn7j+pvnRMZzRj9+atPv
+   7NhfkFwlbfVGcvXii+9pxyaW9ZVq7sBSJYc5ub74Iy19zSDQiT+swYrxB
+   xIfegDQQOxXMYMBG7J7dlmfaFd9MiUJDG4KN/aOW2/zpj9/Zm9wy3T4Tm
+   OT+qiwe7m9gpvvAbN34IE9MqxohtEPKo5jIE9qjOEWA+lcthG1RAzvS0t
+   rbmgx4CdR2kIyVXaDh0LJtgQMB8mZmUqsFMKLuAAzhLHCF2ALfGGWQSyt
+   Ehev0MoopP1G5oAg7puFDaWLLw2nk+/ed6Jn+UR/IfE6FdRLBU7MO9tPj
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
+   d="scan'208";a="184837932"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2022 04:50:13 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 23 Nov 2022 04:49:48 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Wed, 23 Nov 2022 04:49:45 -0700
+Date:   Wed, 23 Nov 2022 11:49:28 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Samuel Holland <samuel@sholland.org>
+CC:     Anup Patel <anup@brainfault.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Anup Patel <apatel@ventanamicro.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221122231235.3299737-1-dmitry.baryshkov@linaro.org>
- <20221122231235.3299737-7-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221122231235.3299737-7-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
+ riscv,timer-can-wake-cpu
+Message-ID: <Y34IyMroJA6TfrKN@wendy>
+References: <20220727114302.302201-1-apatel@ventanamicro.com>
+ <20220727114302.302201-2-apatel@ventanamicro.com>
+ <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
+ <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
+ <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
+ <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
+ <Y3zjQXqEHsaoVVvf@wendy>
+ <2b329306-9706-7156-ad18-b87e4da666d9@sholland.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2b329306-9706-7156-ad18-b87e4da666d9@sholland.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey Samuel,
 
-
-On 23.11.2022 00:12, Dmitry Baryshkov wrote:
-> In preparation to adding the sm8350 and sm8450 PHYs support, rearrange
-> register values calculations in dsi_7nm_phy_enable(). This change bears
-> no functional changes itself, it is merely a preparation for the next
-> patch.
+On Tue, Nov 22, 2022 at 11:43:04PM -0600, Samuel Holland wrote:
+> On 11/22/22 08:57, Conor Dooley wrote:
+> >> If we add a timer DT node now
+> >> then we have to deal with compatibility for existing platforms.
+> > 
+> > In terms of what to encode in a DT, and given the spec never says that
+> > the timer interrupt must arrive during suspend, we must assume, by
+> > default, that no timer events arrive during suspend.
+> > 
+> > We have a bunch of existing platforms that may (do?) get timer events
+> > during suspend, the opposite of the proposed default behaviour.
+> > 
+> > I'm trying to follow the line of reasoning but I fail to see how taking
+> > either the property or node approach allows us to maintain behaviour for
+> > exiting platforms that that do see timer events during suspend without
+> > adding *something* to the DT. No matter what we add, we've got some sort
+> > of backwards compatibility issue, right?
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> In the absence of bugs/limitations in Linux timer code (like the ones
+> you are seeing on PolarFire), the backwards compatibility issue with
+> setting C3STOP by default is that non-retentive idle states will be
+> ignored unless:
+>  1) the DT property is added (i.e. firmware upgrade), or
+>  2) some other timer driver is available.
+> No other behavior should be affected.
 
-Konrad
->  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 26 +++++++++++------------
->  1 file changed, 13 insertions(+), 13 deletions(-)
+Aye, which I think is fine, in the context of platforms supported by
+upstream Linux. Right now, nothing in-tree seems to use idle states:
+- the SiFive stuff is more demo than anything
+- we've not really got to that point with our reference PolarFire stuff
+  (although I can't speak for any customers)
+- the K210 is a toy (sorry Damien!)
+- the StarFive lads have moved on to the jh7110
+- the D1 (although it's not an in-tree config) needs C3STOP by default,
+  so its behaviour is positively affected.
+
+If there's someone with an out-of-tree idle config, there's not really
+much that we can do about it?
+
+> On the other hand, if C3STOP defaults to off, then the backwards
+> compatibility issue concerns platforms that can currently boot Linux,
+> but which cannot use cpuidle because they need the flag. If they were to
+> upgrade their firmware, and Linux is provided a DTB that includes both
+> idle states and the property, these platforms would unexpectedly fail to
+> boot. (They would enter an idle state and never wake up.)
 > 
-> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> index 9e7fa7d88ead..0b780f9d3d0a 100644
-> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-> @@ -858,23 +858,34 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
->  	/* Alter PHY configurations if data rate less than 1.5GHZ*/
->  	less_than_1500_mhz = (clk_req->bitclk_rate <= 1500000000);
->  
-> +	if (phy->cphy_mode) {
-> +		vreg_ctrl_0 = 0x51;
-> +		vreg_ctrl_1 = 0x55;
-> +		glbl_pemph_ctrl_0 = 0x11;
-> +		lane_ctrl0 = 0x17;
-> +	} else {
-> +		vreg_ctrl_1 = 0x5c;
-> +		glbl_pemph_ctrl_0 = 0x00;
-> +		lane_ctrl0 = 0x1f;
-> +	}
-> +
->  	if (phy->cfg->quirks & DSI_PHY_7NM_QUIRK_V4_1) {
-> -		vreg_ctrl_0 = less_than_1500_mhz ? 0x53 : 0x52;
->  		if (phy->cphy_mode) {
->  			glbl_rescode_top_ctrl = 0x00;
->  			glbl_rescode_bot_ctrl = 0x3c;
->  		} else {
-> +			vreg_ctrl_0 = less_than_1500_mhz ? 0x53 : 0x52;
->  			glbl_rescode_top_ctrl = less_than_1500_mhz ? 0x3d :  0x00;
->  			glbl_rescode_bot_ctrl = less_than_1500_mhz ? 0x39 :  0x3c;
->  		}
->  		glbl_str_swi_cal_sel_ctrl = 0x00;
->  		glbl_hstx_str_ctrl_0 = 0x88;
->  	} else {
-> -		vreg_ctrl_0 = less_than_1500_mhz ? 0x5B : 0x59;
->  		if (phy->cphy_mode) {
->  			glbl_str_swi_cal_sel_ctrl = 0x03;
->  			glbl_hstx_str_ctrl_0 = 0x66;
->  		} else {
-> +			vreg_ctrl_0 = less_than_1500_mhz ? 0x5B : 0x59;
->  			glbl_str_swi_cal_sel_ctrl = less_than_1500_mhz ? 0x03 : 0x00;
->  			glbl_hstx_str_ctrl_0 = less_than_1500_mhz ? 0x66 : 0x88;
->  		}
-> @@ -882,17 +893,6 @@ static int dsi_7nm_phy_enable(struct msm_dsi_phy *phy,
->  		glbl_rescode_bot_ctrl = 0x3c;
->  	}
->  
-> -	if (phy->cphy_mode) {
-> -		vreg_ctrl_0 = 0x51;
-> -		vreg_ctrl_1 = 0x55;
-> -		glbl_pemph_ctrl_0 = 0x11;
-> -		lane_ctrl0 = 0x17;
-> -	} else {
-> -		vreg_ctrl_1 = 0x5c;
-> -		glbl_pemph_ctrl_0 = 0x00;
-> -		lane_ctrl0 = 0x1f;
-> -	}
-> -
->  	/* de-assert digital and pll power down */
->  	data = BIT(6) | BIT(5);
->  	dsi_phy_write(base + REG_DSI_7nm_PHY_CMN_CTRL_0, data);
+> Assuming no such platforms exist, then it would actually be better to
+> default C3STOP to off.
+
+Yeah, *assuming* no such platforms exist I agree - but the D1 is one of
+such platforms (albeit in a specific configuration) so I think we have
+to default C3STOP to on.
+
+> Now, this says nothing about how the property should be named -- we can
+> set C3STOP based on the absence of a property, just as easily as we can
+> clear C3STOP based on the presence of a property.
+> 
+> > I noted the above:
+> > 
+> >> Since, there is no dedicated timer node, we use CPU compatible string
+> >> for probing the per-CPU timer.
+> > 
+> > If we could rely on the cpu compatible why would we need to add a
+> > dt-property anyway? Forgive my naivety here, but is the timer event in
+> > suspend behaviour not a "core complex" level attribute rather than a
+> > something that can be consistently determined by the cpu compatible?
+> 
+> I do not support using either the CPU compatible (not specific enough)
+> or the board compatible (too many to list, but still not specific
+> enough). Consider that not all CPUs in a system may need this property.
+
+Yeah, I was just trying to understand where Anup was coming from and
+teasing out the different bits of logic. I do not think that using the
+CPU compatible is a good idea - my understanding was that how a CPU with
+a given compatible is integrated into a core complex determines which
+timer (or interrupt etc) is capable of what.
+
+> > Either way, we need to figure out why enabling C3STOP is causing other
+> > timer issues even when we are not in some sort of sleep state & do
+> > something about that - or figure out some different way to communicate
+> > the behavioural differences.
+> > I would expect timers to continue working "normally" with the flag set,
+> > even if how they work is subtly different?
+> 
+> Definitely agree here. My intention was not to affect anything other
+> than cpuidle behavior.
+> 
+> > On a D1, with the C3STOP "feature" flag set, and it's custom timer
+> > implementation unused, how do timers behave?
+> 
+> D1 is uniprocessor, so I build with CONFIG_SMP=n. In this case,
+> CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=n, and thus
+> __tick_broadcast_oneshot_control() returns -EBUSY, forcing
+> cpuidle_enter_state() to choose a retentive idle state.
+
+Right & that makes sense for someone building a D1 focused kernel (and
+is what I do for my Nezha IIRC) but if someone builds a multiplatform
+kernel you're going to end up with CONFIG_SMP=y (but I'd imagine that in
+that scenario they'll have the sunxi,foo-timer's driver enabled). At
+this point, it's something I should go and dig out my board for though..
+
+I was mainly just curious if the D1 also exhibits the borked timer
+behaviour that I see.
+
+Thanks again Samuel,
+Conor.
+
