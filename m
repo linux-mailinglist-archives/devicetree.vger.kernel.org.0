@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FF9636B85
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C87B5636B4B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:39:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235174AbiKWUs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 15:48:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43382 "EHLO
+        id S236305AbiKWUjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 15:39:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236833AbiKWUq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:46:56 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8D911474;
-        Wed, 23 Nov 2022 12:46:54 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ANEIit1017538;
-        Wed, 23 Nov 2022 20:46:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=z6f87EZDKH9K0rqUrHMwlq6wu1chU5yeC2DfnK3QVUg=;
- b=S4e19Qyx1zHjsQn+1o7JHBbJUky+PA17vgPqxtq0lzlZq2uxDgsq5OZbAgeLfF/UISSB
- SRdicKggsJ2gfX6VKb3uuaQ2nCJmcygGDL0urgo8UXnktYCZf5OApOu9SYuyxSSwGxnF
- 2kx3wuKOVWXmW4hiVaKjl5LuHSn1uzelenIDI2tYsWC7EkHW81k9m01e4OwtikTUmJjM
- QveblFH7xwqIRfDM5Nr1uirFXurVLbjw5kxzoEjTAaAhn2ee8YAla/EPinhy/bkr/1Q3
- PKLT0zu/yTCETPHbieTJh8Fb5EImcbpVvSePLRSzlM6uKlnEZWyuRcnA3IU4pdncrGaj Wg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0vmw5h4q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Nov 2022 20:46:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ANKkkMx014513
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Nov 2022 20:46:46 GMT
-Received: from blr-ubuntu-87.ap.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Wed, 23 Nov 2022 12:46:42 -0800
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-To:     <andersson@kernel.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <quic_rjendra@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Subject: [PATCH V5 2/2] firmware: qcom: scm: Add wait-queue handling logic
-Date:   Thu, 24 Nov 2022 02:16:15 +0530
-Message-ID: <20221123204615.25358-3-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221123204615.25358-1-quic_sibis@quicinc.com>
-References: <20221123204615.25358-1-quic_sibis@quicinc.com>
+        with ESMTP id S240152AbiKWUho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:37:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FA16452;
+        Wed, 23 Nov 2022 12:37:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D136C61F00;
+        Wed, 23 Nov 2022 20:36:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C39C433D6;
+        Wed, 23 Nov 2022 20:36:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669235819;
+        bh=mKmCackjRxhwKbYhMXGB3HGYXAK9Dag9f+46iYyPlhU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=t5Ujwg9jPP03HaIjcF0zfSj2aZLiMfDMGiCj9Kvzu6fDP5+d3LMM86eakFay000+X
+         xn+HDK1hOmgc+9b8J4iYfKqJrKcmx7A+S3zgxoTb/qXWxw8n3R44RRhlkT9QGuadBl
+         np9ONO/YeRu/5W1rOwl+XyXKtA0mlrKAhTzaaCJ8KxSuTKLhfxJmqU2RXTdSFbr+wA
+         rRGzVuHWWSNiik3eFFHsk51n1ZJQvMOO+eq2Ok/W7s8fXeus3KiJyE6tBUNINp900d
+         tNa2MrosMcNMzUccTzHD/dm4Txw88WWbLQzeP0A1y+Gq1HX7y+gDJqKEvxH9NnikNB
+         AhiN6aVEtXZ3w==
+Date:   Wed, 23 Nov 2022 20:49:31 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] AD74115
+Message-ID: <20221123204931.18098131@jic23-huawei>
+In-Reply-To: <20221117080916.411766-1-cosmin.tanislav@analog.com>
+References: <20221117080916.411766-1-cosmin.tanislav@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Db5Ry2OJSIlAGz62MuUIA-cAvUO8jPKX
-X-Proofpoint-GUID: Db5Ry2OJSIlAGz62MuUIA-cAvUO8jPKX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-23_11,2022-11-23_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- spamscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1015
- suspectscore=0 phishscore=0 impostorscore=0 adultscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211230153
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,507 +60,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Guru Das Srinagesh <quic_gurus@quicinc.com>
+On Thu, 17 Nov 2022 10:09:14 +0200
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-When the firmware (FW) supports multiple requests per VM, multiple requests
-from the same/different VM can reach the firmware at the same time. Since
-the firmware currently being used has limited resources, it guards them
-with a resource lock and puts requests on a wait-queue internally and
-signals to HLOS that it is doing so. It does this by returning a new return
-value in addition to success or error: SCM_WAITQ_SLEEP. A sleeping SCM call
-can be woken up by an interrupt that the FW raises.
+> The AD74115H is a single-channel, software-configurable, input and
+> output device for industrial control applications. The AD74115H
+> provides a wide range of use cases, integrated on a single chip.
+> 
+> These use cases include analog output, analog input, digital output,
+> digital input, resistance temperature detector (RTD), and thermocouple
+> measurement capability. The AD74115H also has an integrated HART modem.
+> 
+> A serial peripheral interface (SPI) is used to handle all communications
+> to the device, including communications with the HART modem. The digital
+> input and digital outputs can be accessed via the SPI or the
+> general-purpose input and output (GPIO) pins to support higher
+> speed data rates.
+> 
+> The device features a 16-bit, sigma-delta analog-to-digital converter
+> (ADC) and a 14-bit digital-to-analog converter (DAC).
+> The AD74115H contains a high accuracy 2.5 V on-chip reference that can
+> be used as the DAC and ADC reference.
+> 
+Applied to the togreg branch of iio.git.
 
-  1) SCM_WAITQ_SLEEP:
+Thanks,
 
-  	When an SCM call receives this return value instead of success
-  	or error, FW has placed this call on a wait-queue and has signalled
-	HLOS to put it to non-interruptible sleep.
+Jonathan
 
-	Along with this return value, FW also passes to HLOS `wq_ctx` -
-	a unique number (UID) identifying the wait-queue that it has put
-	the call on, internally. This is to help HLOS with its own
-	bookkeeping to wake this sleeping call later.
-
-	Additionally, FW also passes to HLOS `smc_call_ctx` - a UID
-	identifying the SCM call thus being put to sleep. This is also
-	for HLOS' bookkeeping to wake this call up later.
-
-	These two additional values are passed via the a1 and a2
-	registers.
-
-	N.B.: The "ctx" in the above UID names = "context".
-
-The handshake mechanism that HLOS uses to talk to FW about wait-queue
-operations involves two new SMC calls.
-
-  1) get_wq_ctx():
-
-    	Arguments: 	None
-    	Returns:	wq_ctx, flags, more_pending
-
-    	Get the wait-queue context, and wake up either one or all of the
-    	sleeping SCM calls associated with that wait-queue.
-
-    	Additionally, repeat this if there are more wait-queues that are
-    	ready to have their requests woken up (`more_pending`).
-
-  2) wq_resume(smc_call_ctx):
-
-  	Arguments:	smc_call_ctx
-
-  	HLOS needs to issue this in response to receiving an
-  	IRQ, passing to FW the same smc_call_ctx that FW
-  	receives from HLOS via the get_wq_ctx() call.
-
-(The mechanism to wake a SMC call back up is described in detail below)
-
- VM_1                     VM_2                            Firmware
-   │                        │                                 │
-   │                        │                                 │
-   │                        │                                 │
-   │                        │                                 │
-   │      REQUEST_1         │                                 │
-   ├────────────────────────┼─────────────────────────────────┤
-   │                        │                                 │
-   │                        │                              ┌──┼──┐
-   │                        │                              │  │  │
-   │                        │     REQUEST_2                │  │  │
-   │                        ├──────────────────────────────┼──┤  │
-   │                        │                              │  │  │Resource
-   │                        │                              │  │  │is busy
-   │                        │       {WQ_SLEEP}             │  │  │
-   │                        │◄─────────────────────────────┼──┤  │
-   │                        │  wq_ctx, smc_call_ctx        │  │  │
-   │                        │                              └──┼──┘
-   │   REQUEST_1 COMPLETE   │                                 │
-   │◄───────────────────────┼─────────────────────────────────┤
-   │                        │                                 │
-   │                        │         IRQ                     │
-   │                        │◄─-------------------------------│
-   │                        │                                 │
-   │                        │      get_wq_ctx()               │
-   │                        ├────────────────────────────────►│
-   │                        │                                 │
-   │                        │                                 │
-   │                        │◄────────────────────────────────┤
-   │                        │   wq_ctx, flags, and            │
-   │                        │        more_pending             │
-   │                        │                                 │
-   │                        │                                 │
-   │                        │ wq_resume(smc_call_ctx)         │
-   │                        ├────────────────────────────────►│
-   │                        │                                 │
-   │                        │                                 │
-   │                        │      REQUEST_2 COMPLETE         │
-   │                        │◄────────────────────────────────┤
-   │                        │                                 │
-   │                        │                                 │
-
-With the exception of get_wq_ctx(), the other SMC call wq_resume() can
-return WQ_SLEEP (these nested rounds of WQ_SLEEP are not shown in the
-above diagram for the sake of simplicity). Therefore, introduce a new
-do-while loop to handle multiple WQ_SLEEP return values for the same
-parent SCM call.
-
-Request Completion in the above diagram refers to either a success
-return value (zero) or error (and not SMC_WAITQ_SLEEP)
-
-Also add the interrupt handler that wakes up a sleeping SCM call.
-
-Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
-
-v5:
-- Handle the wake_one/wake_all flags [Guru]
-- Rename flag handler to qcom_scm_waitq_wakeup [Bjorn]
-- Resume scm call can return ebusy as well handle that scenario by retrying
-  the original smc call and not the resume call
-
-v4:
-- platform_set_drvdata will be used by __scm_smc_do_quirk_handle_waitq to
-  get access to scm struct from device so retain it
-- Use a single completion as it satisfies all of the current usecases [Bjorn]
-- Inline scm_get_wq_ctx [Bjorn]
-- Convert all pr_err to dev_err [Bjorn]
-- Handle idr_destroy in a thread safe manner [Bjorn]
-- Misc. Style fixes [Bjorn]
-
-v3:
-- Fixup irq handling so as not to affect SoCs without the interrupt.
-- Fix warnings reported by kernel test-bot.
-
- drivers/firmware/qcom_scm-smc.c |  97 +++++++++++++++++++++++++--
- drivers/firmware/qcom_scm.c     | 115 +++++++++++++++++++++++++++++++-
- drivers/firmware/qcom_scm.h     |   9 +++
- 3 files changed, 213 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/firmware/qcom_scm-smc.c b/drivers/firmware/qcom_scm-smc.c
-index d111833364ba..385615d76e94 100644
---- a/drivers/firmware/qcom_scm-smc.c
-+++ b/drivers/firmware/qcom_scm-smc.c
-@@ -52,29 +52,108 @@ static void __scm_smc_do_quirk(const struct arm_smccc_args *smc,
- 	} while (res->a0 == QCOM_SCM_INTERRUPTED);
- }
- 
--static void __scm_smc_do(const struct arm_smccc_args *smc,
--			 struct arm_smccc_res *res, bool atomic)
-+static void fill_wq_resume_args(struct arm_smccc_args *resume, u32 smc_call_ctx)
- {
--	int retry_count = 0;
-+	memset(resume->args, 0, sizeof(resume->args[0]) * ARRAY_SIZE(resume->args));
-+
-+	resume->args[0] = ARM_SMCCC_CALL_VAL(ARM_SMCCC_STD_CALL,
-+					ARM_SMCCC_SMC_64, ARM_SMCCC_OWNER_SIP,
-+					SCM_SMC_FNID(QCOM_SCM_SVC_WAITQ, QCOM_SCM_WAITQ_RESUME));
-+
-+	resume->args[1] = QCOM_SCM_ARGS(1);
-+
-+	resume->args[2] = smc_call_ctx;
-+}
-+
-+int scm_get_wq_ctx(u32 *wq_ctx, u32 *flags, u32 *more_pending)
-+{
-+	int ret;
-+	struct arm_smccc_args get_wq_ctx = {0};
-+	struct arm_smccc_res get_wq_res;
-+
-+	get_wq_ctx.args[0] = ARM_SMCCC_CALL_VAL(ARM_SMCCC_STD_CALL,
-+				ARM_SMCCC_SMC_64, ARM_SMCCC_OWNER_SIP,
-+				SCM_SMC_FNID(QCOM_SCM_SVC_WAITQ, QCOM_SCM_WAITQ_GET_WQ_CTX));
-+
-+	/* Guaranteed to return only success or error, no WAITQ_* */
-+	__scm_smc_do_quirk(&get_wq_ctx, &get_wq_res);
-+	ret = get_wq_res.a0;
-+	if (ret)
-+		return ret;
-+
-+	*wq_ctx = get_wq_res.a1;
-+	*flags  = get_wq_res.a2;
-+	*more_pending = get_wq_res.a3;
-+
-+	return 0;
-+}
-+
-+static int __scm_smc_do_quirk_handle_waitq(struct device *dev, struct arm_smccc_args *waitq,
-+					   struct arm_smccc_res *res)
-+{
-+	struct qcom_scm *scm;
-+	struct completion *wq = NULL;
-+	struct arm_smccc_args resume;
-+	u32 wq_ctx, smc_call_ctx, flags;
-+	struct arm_smccc_args *smc = waitq;
-+
-+	do {
-+		__scm_smc_do_quirk(smc, res);
-+
-+		if (res->a0 == QCOM_SCM_WAITQ_SLEEP) {
-+			wq_ctx = res->a1;
-+			smc_call_ctx = res->a2;
-+			flags = res->a3;
-+
-+			if (!dev)
-+				return -EPROBE_DEFER;
-+
-+			scm = dev_get_drvdata(dev);
-+			wq = qcom_scm_lookup_wq(scm, wq_ctx);
-+			if (IS_ERR_OR_NULL(wq)) {
-+				dev_err(dev, "No waitqueue found for wq_ctx %d: %ld\n",
-+					wq_ctx, PTR_ERR(wq));
-+				return PTR_ERR(wq) ? : -EINVAL;
-+			}
-+
-+			wait_for_completion(wq);
-+			fill_wq_resume_args(&resume, smc_call_ctx);
-+			smc = &resume;
-+			wq = NULL;
-+		}
-+	} while (res->a0 == QCOM_SCM_WAITQ_SLEEP);
-+
-+	return 0;
-+}
-+
-+static int __scm_smc_do(struct device *dev, struct arm_smccc_args *smc,
-+			struct arm_smccc_res *res, bool atomic)
-+{
-+	int ret, retry_count = 0;
- 
- 	if (atomic) {
- 		__scm_smc_do_quirk(smc, res);
--		return;
-+		return 0;
- 	}
- 
- 	do {
- 		mutex_lock(&qcom_scm_lock);
- 
--		__scm_smc_do_quirk(smc, res);
-+		ret = __scm_smc_do_quirk_handle_waitq(dev, smc, res);
- 
- 		mutex_unlock(&qcom_scm_lock);
- 
-+		if (ret)
-+			return ret;
-+
- 		if (res->a0 == QCOM_SCM_V2_EBUSY) {
- 			if (retry_count++ > QCOM_SCM_EBUSY_MAX_RETRY)
- 				break;
- 			msleep(QCOM_SCM_EBUSY_WAIT_MS);
- 		}
- 	}  while (res->a0 == QCOM_SCM_V2_EBUSY);
-+
-+	return 0;
- }
- 
- 
-@@ -83,7 +162,7 @@ int __scm_smc_call(struct device *dev, const struct qcom_scm_desc *desc,
- 		   struct qcom_scm_res *res, bool atomic)
- {
- 	int arglen = desc->arginfo & 0xf;
--	int i;
-+	int i, ret;
- 	dma_addr_t args_phys = 0;
- 	void *args_virt = NULL;
- 	size_t alloc_len;
-@@ -135,13 +214,17 @@ int __scm_smc_call(struct device *dev, const struct qcom_scm_desc *desc,
- 		smc.args[SCM_SMC_LAST_REG_IDX] = args_phys;
- 	}
- 
--	__scm_smc_do(&smc, &smc_res, atomic);
-+	/* ret error check follows after args_virt cleanup*/
-+	ret = __scm_smc_do(dev, &smc, &smc_res, atomic);
- 
- 	if (args_virt) {
- 		dma_unmap_single(dev, args_phys, alloc_len, DMA_TO_DEVICE);
- 		kfree(args_virt);
- 	}
- 
-+	if (ret)
-+		return ret;
-+
- 	if (res) {
- 		res->result[0] = smc_res.a1;
- 		res->result[1] = smc_res.a2;
-diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-index cdbfe54c8146..396080138eaa 100644
---- a/drivers/firmware/qcom_scm.c
-+++ b/drivers/firmware/qcom_scm.c
-@@ -3,7 +3,9 @@
-  * Copyright (C) 2015 Linaro Ltd.
-  */
- #include <linux/platform_device.h>
-+#include <linux/idr.h>
- #include <linux/init.h>
-+#include <linux/interrupt.h>
- #include <linux/cpumask.h>
- #include <linux/export.h>
- #include <linux/dma-mapping.h>
-@@ -13,9 +15,12 @@
- #include <linux/qcom_scm.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/of_irq.h>
- #include <linux/of_platform.h>
- #include <linux/clk.h>
- #include <linux/reset-controller.h>
-+#include <linux/spinlock.h>
-+#include <linux/ktime.h>
- #include <linux/arm-smccc.h>
- 
- #include "qcom_scm.h"
-@@ -27,12 +32,20 @@ module_param(download_mode, bool, 0);
- #define SCM_HAS_IFACE_CLK	BIT(1)
- #define SCM_HAS_BUS_CLK		BIT(2)
- 
-+struct qcom_scm_waitq {
-+	struct idr idr;
-+	/* control access to IDR */
-+	spinlock_t idr_lock;
-+	struct completion waitq_comp;
-+};
-+
- struct qcom_scm {
- 	struct device *dev;
- 	struct clk *core_clk;
- 	struct clk *iface_clk;
- 	struct clk *bus_clk;
- 	struct icc_path *path;
-+	struct qcom_scm_waitq waitq;
- 	struct reset_controller_dev reset;
- 
- 	/* control access to the interconnect path */
-@@ -63,6 +76,9 @@ static const u8 qcom_scm_cpu_warm_bits[QCOM_SCM_BOOT_MAX_CPUS] = {
- 	BIT(2), BIT(1), BIT(4), BIT(6)
- };
- 
-+#define QCOM_SMC_WAITQ_FLAG_WAKE_ONE	BIT(0)
-+#define QCOM_SMC_WAITQ_FLAG_WAKE_ALL	BIT(1)
-+
- static const char * const qcom_scm_convention_names[] = {
- 	[SMC_CONVENTION_UNKNOWN] = "unknown",
- 	[SMC_CONVENTION_ARM_32] = "smc arm 32",
-@@ -1325,11 +1341,82 @@ bool qcom_scm_is_available(void)
- }
- EXPORT_SYMBOL(qcom_scm_is_available);
- 
-+struct completion *qcom_scm_lookup_wq(struct qcom_scm *scm, u32 wq_ctx)
-+{
-+	int err;
-+	unsigned long flags;
-+	u32 wq_ctx_idr = wq_ctx;
-+	struct completion *wq = NULL;
-+
-+	spin_lock_irqsave(&scm->waitq.idr_lock, flags);
-+	wq = idr_find(&scm->waitq.idr, wq_ctx);
-+	if (wq)
-+		goto out;
-+
-+	wq = &scm->waitq.waitq_comp;
-+
-+	err = idr_alloc_u32(&scm->waitq.idr, wq, &wq_ctx_idr,
-+			    U32_MAX, GFP_ATOMIC);
-+	if (err < 0)
-+		wq = ERR_PTR(err);
-+
-+out:
-+	spin_unlock_irqrestore(&scm->waitq.idr_lock, flags);
-+	return wq;
-+}
-+
-+static int qcom_scm_waitq_wakeup(struct qcom_scm *scm, unsigned int wq_ctx, bool wake_all)
-+{
-+	struct completion *wq_to_wake;
-+
-+	wq_to_wake = qcom_scm_lookup_wq(scm, wq_ctx);
-+	if (IS_ERR_OR_NULL(wq_to_wake)) {
-+		dev_err(scm->dev, "No waitqueue found for wq_ctx %d: %ld\n",
-+			wq_ctx, PTR_ERR(wq_to_wake));
-+		return PTR_ERR(wq_to_wake) ? : -EINVAL;
-+	}
-+
-+	if (wake_all)
-+		complete_all(wq_to_wake);
-+	else
-+		complete(wq_to_wake);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t qcom_scm_irq_handler(int irq, void *data)
-+{
-+	int ret;
-+	struct qcom_scm *scm = data;
-+	u32 wq_ctx, flags, more_pending = 0;
-+
-+	do {
-+		ret = scm_get_wq_ctx(&wq_ctx, &flags, &more_pending);
-+		if (ret) {
-+			dev_err(scm->dev, "GET_WQ_CTX SMC call failed: %d\n", ret);
-+			goto out;
-+		}
-+
-+		if (flags != QCOM_SMC_WAITQ_FLAG_WAKE_ONE &&
-+		    flags != QCOM_SMC_WAITQ_FLAG_WAKE_ALL) {
-+			dev_err(scm->dev, "Invalid flags found for wq_ctx: %u\n", flags);
-+			goto out;
-+		}
-+
-+		ret = qcom_scm_waitq_wakeup(scm, wq_ctx, !!(flags & QCOM_SMC_WAITQ_FLAG_WAKE_ALL));
-+		if (ret)
-+			goto out;
-+	} while (more_pending);
-+
-+out:
-+	return IRQ_HANDLED;
-+}
-+
- static int qcom_scm_probe(struct platform_device *pdev)
- {
- 	struct qcom_scm *scm;
- 	unsigned long clks;
--	int ret;
-+	int irq, ret;
- 
- 	scm = devm_kzalloc(&pdev->dev, sizeof(*scm), GFP_KERNEL);
- 	if (!scm)
-@@ -1399,9 +1486,29 @@ static int qcom_scm_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	platform_set_drvdata(pdev, scm);
-+
- 	__scm = scm;
- 	__scm->dev = &pdev->dev;
- 
-+	spin_lock_init(&__scm->waitq.idr_lock);
-+	idr_init(&__scm->waitq.idr);
-+	init_completion(&__scm->waitq.waitq_comp);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		if (irq != -ENXIO)
-+			return irq;
-+	} else {
-+		ret = devm_request_threaded_irq(__scm->dev, irq, NULL, qcom_scm_irq_handler,
-+						IRQF_ONESHOT, "qcom-scm", __scm);
-+		if (ret < 0) {
-+			dev_err(scm->dev, "Failed to request qcom-scm irq: %d\n", ret);
-+			idr_destroy(&__scm->waitq.idr);
-+			return ret;
-+		}
-+	}
-+
- 	__get_convention();
- 
- 	/*
-@@ -1417,6 +1524,12 @@ static int qcom_scm_probe(struct platform_device *pdev)
- 
- static void qcom_scm_shutdown(struct platform_device *pdev)
- {
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&__scm->waitq.idr_lock, flags);
-+	idr_destroy(&__scm->waitq.idr);
-+	spin_unlock_irqrestore(&__scm->waitq.idr_lock, flags);
-+
- 	/* Clean shutdown, disable download mode to allow normal restart */
- 	if (download_mode)
- 		qcom_scm_set_download_mode(false);
-diff --git a/drivers/firmware/qcom_scm.h b/drivers/firmware/qcom_scm.h
-index db3d08a01209..323cb49d4976 100644
---- a/drivers/firmware/qcom_scm.h
-+++ b/drivers/firmware/qcom_scm.h
-@@ -60,6 +60,10 @@ struct qcom_scm_res {
- 	u64 result[MAX_QCOM_SCM_RETS];
- };
- 
-+struct qcom_scm;
-+extern struct completion *qcom_scm_lookup_wq(struct qcom_scm *scm, u32 wq_ctx);
-+extern int scm_get_wq_ctx(u32 *wq_ctx, u32 *flags, u32 *more_pending);
-+
- #define SCM_SMC_FNID(s, c)	((((s) & 0xFF) << 8) | ((c) & 0xFF))
- extern int __scm_smc_call(struct device *dev, const struct qcom_scm_desc *desc,
- 			  enum qcom_scm_convention qcom_convention,
-@@ -129,6 +133,10 @@ extern int scm_legacy_call(struct device *dev, const struct qcom_scm_desc *desc,
- #define QCOM_SCM_SMMU_CONFIG_ERRATA1		0x03
- #define QCOM_SCM_SMMU_CONFIG_ERRATA1_CLIENT_ALL	0x02
- 
-+#define QCOM_SCM_SVC_WAITQ			0x24
-+#define QCOM_SCM_WAITQ_RESUME			0x02
-+#define QCOM_SCM_WAITQ_GET_WQ_CTX		0x03
-+
- /* common error codes */
- #define QCOM_SCM_V2_EBUSY	-12
- #define QCOM_SCM_ENOMEM		-5
-@@ -137,6 +145,7 @@ extern int scm_legacy_call(struct device *dev, const struct qcom_scm_desc *desc,
- #define QCOM_SCM_EINVAL_ARG	-2
- #define QCOM_SCM_ERROR		-1
- #define QCOM_SCM_INTERRUPTED	1
-+#define QCOM_SCM_WAITQ_SLEEP	2
- 
- static inline int qcom_scm_remap_error(int err)
- {
--- 
-2.17.1
+> V2 -> V3:
+>  * dt-bindings: remove address and size cells specifiers
+>  * dt-bindings: additionalProperties -> unevaluatedProperties
+>  * dt-bindings: remove pipe where not needed
+>  * dt-bindings: use required for adi,digital-input-sink-range-high: true
+>  * do not uselessly store poll time
+>  * fix ad74115_adc_gain capitalization
+>  * inline ad74115_channels_map[st->ch_func] access
+>  * keep consistent table naming
+>  * remove aldo1v8 regulator
+>  * spell out low-power
+>  * split up resistance offset and scale into separate function
+>  * use adc_rdy name for irq
+>  * use microvolt for conv2 range
+>  * use unsigned int for ad74115_adc_conv_mul
+>  * use unsigned int for ad74115_adc_gain
+>  * wrap module_driver call less
+> 
+> V1 -> V2:
+>  * dt-bindings: add spi peripheral allOf
+>  * dt-bindings: remove cs-gpios
+>  * dt-bindings: remove refin supply from example
+>  * dt-bindings: remove status
+>  * sort includes
+>  * ad74115_parse_fw_prop -> ad74115_apply_fw_prop
+>  * ad74115_setup_{comp,}_gc -> ad74115_setup_{comp,}_gpio_chip
+>  * gpiod_get_optional -> devm_gpiod_get_optional
+>  * add support for reset-gpios
+>  * add support for running without an interrupt
+>  * fix comma after terminating member
+>  * fix order of rate and range masks
+>  * fix reset pin wait time and out of reset time
+>  * fix rtd mode reading
+>  * pass chan spec only where needed
+>  * remove -en suffix
+>  * remove default 0 values
+>  * remove diag support
+>  * remove unecessary prop storage
+>  * reorder switch cases to match enum
+>  * set burnout enable bit based on burnout current
+>  * set default value for props
+>  * simplify dac hart slew usage
+>  * simplify prop value validation
+>  * use bool for 4 wire rtd mode
+>  * use bool for burnout current polarity
+>  * use bool for dac sc current limit
+>  * use bool for debounce mode
+>  * use bool for din sink range
+>  * use bool for din threshold mode
+>  * use devm_regulator_bulk_get_enable
+>  * use IIO_VAL_FRACTIONAL for resistance offset
+>  * use struct assignment for gpiochip
+>  * warn on empty prop mask
+> 
+> Cosmin Tanislav (2):
+>   dt-bindings: iio: addac: add AD74115
+>   iio: addac: add AD74115 driver
+> 
+>  .../bindings/iio/addac/adi,ad74115.yaml       |  373 ++++
+>  MAINTAINERS                                   |    8 +
+>  drivers/iio/addac/Kconfig                     |   14 +
+>  drivers/iio/addac/Makefile                    |    1 +
+>  drivers/iio/addac/ad74115.c                   | 1947 +++++++++++++++++
+>  5 files changed, 2343 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
+>  create mode 100644 drivers/iio/addac/ad74115.c
+> 
 
