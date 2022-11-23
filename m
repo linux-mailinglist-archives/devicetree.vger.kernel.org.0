@@ -2,98 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B946635A7B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DC30635A82
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236345AbiKWKru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:47:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50404 "EHLO
+        id S236742AbiKWKuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:50:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236413AbiKWKr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:47:26 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AD715393E
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:34:34 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id s8so27522743lfc.8
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jPdtPFLB1TZrWsH5lIP/9uszUEed9wIYjEKO4gAb5yU=;
-        b=HOF6g1RJdwdLL6iLu3D0x66hwcgOkg5/WgcsfOWuA5pquaKT84zusTGhgp7sQrHd/W
-         OKiMVV9I70OpfnR0HBdpOwdV+i5aMNHyHbd7kL/BbdDVp53s24VO+ALmHeRwtGoRXibZ
-         L5UjEmyugoL56ICfZl8Urysri+gQdo3b+HxBw1wkEmQSYLzYQFYJr22Zb5nl9JlUMDp9
-         MVmulLLYUDhq7r38JDTQYfjewWs1hyhdELlbJpi4ioDJmxSRsm+Akhc3d8oEQxqRCkv8
-         Xilguo6TDqDUqVmGVMSZ/S2/IpFHu1GDtITwhmg2+wV6zGe9rcmrfLMqYLubYyK3J9l7
-         9lzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jPdtPFLB1TZrWsH5lIP/9uszUEed9wIYjEKO4gAb5yU=;
-        b=cEwfYhv2wVajSMKVddEkWcSQPpbcTksSRv4/lxkQlXAjR3KXZAl+IU0cpDvl2jfblB
-         TqMX9dh6dV0tUent4AH0ELE4/fvKXUA6o8G7h6Jp1ftUeV7tL2LP3oXNb4cYWGcbbV/B
-         DM3n/s5WUT5AoEfh6sUi6AJPp2NaHeAfwDW8AKn2mYAFKLsEna4tZGOc0O0EvcWJRHf9
-         E/O32eZQqBa1tkq5h0yopilQlGvx3qfLDMQFr00qQyulDgZXG9DRQx6VaYMdla+SBjC9
-         hlERDm3ULyDCzwEIeuFMabIxIrZcY66M+J5lW/Bh0eIPBTXaNBszjemd2wt65kvVsVnK
-         Ymtg==
-X-Gm-Message-State: ANoB5pmVbNak249dN6aQkkOqt494Q5tmJuc66IWg6/2BR6Lek/TZozN+
-        iyfhxive3ZpVho3LlQcYGqxCZQ==
-X-Google-Smtp-Source: AA0mqf7p6ErXDvhBcT1rz9LRvU8Zd+ybGzBI3a4HdTIjjSrjm5pRGb/z52EPnwtcP2g9kd05/N+W2g==
-X-Received: by 2002:ac2:4e14:0:b0:4af:f5a0:8786 with SMTP id e20-20020ac24e14000000b004aff5a08786mr8563399lfr.265.1669199672422;
-        Wed, 23 Nov 2022 02:34:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 14-20020ac25f4e000000b00499b27a329esm2842925lfz.300.2022.11.23.02.34.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 02:34:31 -0800 (PST)
-Message-ID: <c9c27d62-9299-cb7d-f379-a5b059449789@linaro.org>
-Date:   Wed, 23 Nov 2022 11:34:30 +0100
+        with ESMTP id S237218AbiKWKuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:50:01 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1B8168B29;
+        Wed, 23 Nov 2022 02:36:13 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ANAZa6G002161;
+        Wed, 23 Nov 2022 04:35:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1669199736;
+        bh=KfO6PqNKjgJto3U2SMjCBIkvYlCrtdNKy02McM1fDUs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ethbXwDDQ5FQ+s/ToXovNgL7VCwXSd0GI8D5IgM72Mqm7RfVQk0hs6Px3fUeI32qz
+         +kGOU9+zlKbl1ump9UUz8WBpbtDClDy2EUNA7YdVE1qEHTqWhs5MjhTXD6MLoX2x6r
+         YZcm5LsqVeuizntwv49xP/zGn9T6MIBSpuPFNhkk=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ANAZar3003648
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Nov 2022 04:35:36 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 23
+ Nov 2022 04:35:36 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 23 Nov 2022 04:35:36 -0600
+Received: from [10.24.69.79] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ANAZWSj116439;
+        Wed, 23 Nov 2022 04:35:33 -0600
+Message-ID: <4173e0c6-61d9-5b79-44ec-317870de070b@ti.com>
+Date:   Wed, 23 Nov 2022 16:05:31 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Adding DT binding for zombie
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 2/8] arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ
+ device tree node
 Content-Language: en-US
-To:     Owen Yang <ecs.taipeikernel@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221123181043.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123181043.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
-Content-Type: text/plain; charset=UTF-8
+To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221122101616.770050-1-mranostay@ti.com>
+ <20221122101616.770050-3-mranostay@ti.com>
+From:   Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20221122101616.770050-3-mranostay@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 11:11, Owen Yang wrote:
-> Add an entry in the device tree binding for sc7280-zombie.
-
-Subject: drop second, redundant "DT binding". This is obvious from the
-prefix.
-
-With subject fixed:
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 22/11/22 3:46 pm, Matt Ranostay wrote:
+> Add dt node for the single instance of WIZ (SERDES wrapper) and
+> SERDES module shared by PCIe, eDP and USB.
+> 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 54 ++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index b4869bff4f22..2858ba589d54 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -5,6 +5,17 @@
+>   * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  
+> +#include <dt-bindings/phy/phy-cadence.h>
+> +#include <dt-bindings/phy/phy-ti.h>
+> +
+> +/ {
+> +	serdes_refclk: clock-cmnrefclk {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <0>;
+> +	};
+> +};
+> +
+>  &cbass_main {
+>  	msmc_ram: sram@70000000 {
+>  		compatible = "mmio-sram";
+> @@ -38,6 +49,13 @@ usb_serdes_mux: mux-controller-0 {
+>  			#mux-control-cells = <1>;
+>  			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
+>  		};
+> +
+> +		serdes_ln_ctrl: mux-controller-80 {
+> +			compatible = "mmio-mux";
+> +			#mux-control-cells = <1>;
+> +			mux-reg-masks = <0x80 0x3>, <0x84 0x3>, /* SERDES0 lane0/1 select */
+> +					<0x88 0x3>, <0x8c 0x3>; /* SERDES0 lane2/3 select */
+> +		};
+>  	};
+>  
+>  	gic500: interrupt-controller@1800000 {
+> @@ -787,6 +805,42 @@ usb0: usb@6000000 {
+>  		};
+>  	};
+>  
+> +	serdes_wiz0: wiz@5060000 {
+> +		compatible = "ti,j721s2-wiz-10g";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 365 0>, <&k3_clks 365 3>, <&serdes_refclk>;
+> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+> +		num-lanes = <4>;
+> +		#reset-cells = <1>;
+> +		#clock-cells = <1>;
+> +		ranges = <0x5060000 0x0 0x5060000 0x10000>;
+> +
+> +		assigned-clocks = <&k3_clks 365 3>;
+> +		assigned-clock-parents = <&k3_clks 365 7>;
+> +
+> +		serdes0: serdes@5060000 {
+> +			compatible = "ti,j721e-serdes-10g";
+> +			reg = <0x05060000 0x00010000>;
+> +			reg-names = "torrent_phy";
+> +			resets = <&serdes_wiz0 0>;
+> +			reset-names = "torrent_reset";
+> +			clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
+> +				 <&serdes_wiz0 TI_WIZ_PHY_EN_REFCLK>;
+> +			clock-names = "refclk", "phy_en_refclk";
+> +			assigned-clocks = <&serdes_wiz0 TI_WIZ_PLL0_REFCLK>,
+> +					  <&serdes_wiz0 TI_WIZ_PLL1_REFCLK>,
+> +					  <&serdes_wiz0 TI_WIZ_REFCLK_DIG>;
+> +			assigned-clock-parents = <&k3_clks 365 3>,
+> +						 <&k3_clks 365 3>,
+> +						 <&k3_clks 365 3>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#clock-cells = <1>;
+> +		};
+> +	};
+> +
+>  	main_mcan0: can@2701000 {
+>  		compatible = "bosch,m_can";
+>  		reg = <0x00 0x02701000 0x00 0x200>,
 
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+-- 
+Regards,
+Ravi
