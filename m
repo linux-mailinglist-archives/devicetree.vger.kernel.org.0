@@ -2,79 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A589636CBA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 335C5636CD9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbiKWWFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 17:05:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
+        id S229502AbiKWWLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 17:11:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiKWWFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:05:45 -0500
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DE974CFF
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:05:43 -0800 (PST)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3a3961f8659so95910427b3.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:05:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sS/IgqjTF1tmvQxzdv5yarn8h8llKtnDhKBpoO1W7gw=;
-        b=H3OfneAQdVLL8lSwU/0mnFsoxLSLxCgfHi/87G5l/gHv+mdyOgH/D9L75dZF4Rx5s2
-         ug5cpP6uukXLswroGQ5JbdlnljpOKXpxM7YKbnh+1wZb1Va/GjWGkzHkoKN7f2/5zmsu
-         XELF7pGg9Tw3NnC/8sieKyPD1ef8c0McVYnZTTjbbWFgoTz2YmGLmOQ1qPC2/2bdoFBv
-         Twy4OxkoUcuNb5nQ7aby8YyaKpTB+7BVb+2qcTmnX8B+aa8a40PdxyYRjEiXgSk1+clD
-         5QC2AfBcwZx+kRvk7Ew7IB5nerw2zAq+K2HkSkja0wen5iJUsbh9qXrF39oJUaMFlkFy
-         pMZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sS/IgqjTF1tmvQxzdv5yarn8h8llKtnDhKBpoO1W7gw=;
-        b=LJgkjPhg1rTYJx9d5QIibRLC/oHDQ8IehtV24UIB1WgTTKsodQisvlofTtCZA6q5On
-         DgxSkvgmCUNpsyfoZnzi0NaezKKM4t0wmmUM77x51/C0+1XYTVnDKGlN+qonODaJsMTh
-         p+s91R6yzxjbwf1PLJvR/UUuxsMH3rIJMstk5YgYLkJOEZ7EN/Z8bTFnonRpIrVIG4FB
-         BDLkRjr6WYVjP1YZjT7O1CEo/ZFBbC7eMAq0AQeW7Qy5DobkijWcbiRUt9tLiXPcPN8Q
-         R0DjanaSOz/rMf7jXbCou/vUDNlPVGbK5OUF+lTK3mpbyqzpSJiU4HyfFU2QdIjbWKEM
-         sycA==
-X-Gm-Message-State: ANoB5pmtESB0Stlj8bBZeQnrpToftVb9WLWUns7jHIQJgsKdzZF87iSG
-        hAg1sXowMqAKbt1xyXJ+We+CiFkAsA3G0Qw9CLYSsg==
-X-Google-Smtp-Source: AA0mqf4RP+UuaAyu4KmEHW5zVct6l2qm89R2f7yd/Dqrj/Tw40uxMrmXQ6A3yUE04g5OYl92I5TjytR1SlKBvbAWhTo=
-X-Received: by 2002:a81:7909:0:b0:36f:d2d9:cdc4 with SMTP id
- u9-20020a817909000000b0036fd2d9cdc4mr13216107ywc.380.1669241142870; Wed, 23
- Nov 2022 14:05:42 -0800 (PST)
+        with ESMTP id S229518AbiKWWLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:11:15 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688E5134762;
+        Wed, 23 Nov 2022 14:09:45 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D8B07CE27FF;
+        Wed, 23 Nov 2022 22:09:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77468C433C1;
+        Wed, 23 Nov 2022 22:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669241382;
+        bh=RNQMCQJlao0O78KP1S5ZJEIcmbnaSDXpMdfAnkuD1dQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HlSic7OwrqRXFCwtUgfY6/1AFG/uzp6TRyqc/bScHhUtAtqW+/5YlS8ft929XhYDF
+         fIlfPXff0RzTKsWqoOREG8UqjC+/L1H/dPpzw9b2lEeoeg1AYwArpKlXy2IZx0B5+B
+         DASDM3ZZ6fsuuocHv6Mu1DzRJpTHTTgaZC8tz8n6XH8RY07yIrNoW/l0q2dG0Vdzee
+         GHnagyX4Lk58jj2RYNxbBAo3f2is5Q/D2GZz/SxfosalAaWcHEOWT+hVVFp9wQb6FG
+         M1Xc/HhpTAxS6x9oFMkpv8b6XuYPXCxZw+jXVflo8Nz1elYRV6SUDZRMmQj7ZG01Hf
+         qFEXlVQdbSJvw==
+Date:   Wed, 23 Nov 2022 22:09:36 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 5/9] PCI: microchip: Gather MSI information from
+ hardware config registers
+Message-ID: <Y36aIJoIoMDe+KZV@spud>
+References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+ <20221116135504.258687-6-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
- <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com> <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn>
-In-Reply-To: <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 23 Nov 2022 23:05:31 +0100
-Message-ID: <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116135504.258687-6-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,61 +57,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 9:02 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
-> =E5=9C=A8 2022/11/21 =E4=B8=8B=E5=8D=889:24, Linus Walleij =E5=86=99=E9=
-=81=93:
+On Wed, Nov 16, 2022 at 01:55:00PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> The PCIe root complex on PolarFire SoC is configured at bitstream creation
+> time using Libero.  Key MSI-related parameters include the number of
+> MSIs (1/2/4/8/16/32) and the MSI address. In the device driver, extract
+> this information from hw registers at init time, and use it to configure
 
-> >> +static int loongson_gpio_request(
-> >> +                       struct gpio_chip *chip, unsigned int pin)
-> >> +{
-> >> +       if (pin >=3D chip->ngpio)
-> >> +               return -EINVAL;
-> >
-> > This is not needed, the gpiolib core already checks this. Drop it.
-> I check gpio_request in gpilib, I notice gpio_is_valid is not equal to
-> this condition, so I still kept it for byte mode.
+I don't know the answer here, so I am not being difficult:
+Does the HSS program them in based on the XML produced alongside the
+bitstream, or is that information encoded in the bitstream itself?
 
-This is because descriptors can only be obtained from gpiod_get() and
-similar and gpiod_get() falls to gpiod_get_index() which will not
-return a valid descriptor from either HW backend. gpiod_get()
-will call gpiod_request() for if and only if the descriptor is valid.
+> MSI system, including configuring MSI capability structure correctly in
+> configuration space.
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  drivers/pci/controller/pcie-microchip-host.c | 73 +++++++++++---------
+>  1 file changed, 40 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
+> index ecd4d3f3e3d4..faecf419ad6f 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -20,8 +20,7 @@
+>  #include "../pci.h"
+>  
+>  /* Number of MSI IRQs */
+> -#define MC_NUM_MSI_IRQS				32
+> -#define MC_NUM_MSI_IRQS_CODED			5
+> +#define MC_MAX_NUM_MSI_IRQS			32
+>  
+>  /* PCIe Bridge Phy and Controller Phy offsets */
+>  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
+> @@ -31,6 +30,11 @@
+>  #define MC_PCIE_CTRL_ADDR			(MC_PCIE1_CTRL_ADDR)
+>  
+>  /* PCIe Bridge Phy Regs */
+> +#define PCIE_PCI_IRQ_DW0			0xa8
+> +#define  MSIX_CAP_MASK				BIT(31)
+> +#define  NUM_MSI_MSGS_MASK			GENMASK(6, 4)
+> +#define  NUM_MSI_MSGS_SHIFT			4
+> +
+>  #define IMASK_LOCAL				0x180
+>  #define  DMA_END_ENGINE_0_MASK			0x00000000u
+>  #define  DMA_END_ENGINE_0_SHIFT			0
+> @@ -79,7 +83,6 @@
+>  #define IMASK_HOST				0x188
+>  #define ISTATUS_HOST				0x18c
+>  #define IMSI_ADDR				0x190
+> -#define  MSI_ADDR				0x190
+>  #define ISTATUS_MSI				0x194
+>  
+>  /* PCIe Master table init defines */
+> @@ -156,8 +159,6 @@
+>  
+>  /* PCIe Config space MSI capability structure */
+>  #define MC_MSI_CAP_CTRL_OFFSET			0xe0u
+> -#define  MC_MSI_MAX_Q_AVAIL			(MC_NUM_MSI_IRQS_CODED << 1)
+> -#define  MC_MSI_Q_SIZE				(MC_NUM_MSI_IRQS_CODED << 4)
+>  
+>  /* Events */
+>  #define EVENT_PCIE_L2_EXIT			0
+> @@ -257,7 +258,7 @@ struct mc_msi {
+>  	struct irq_domain *dev_domain;
+>  	u32 num_vectors;
+>  	u64 vector_phy;
+> -	DECLARE_BITMAP(used, MC_NUM_MSI_IRQS);
+> +	DECLARE_BITMAP(used, MC_MAX_NUM_MSI_IRQS);
+>  };
+>  
+>  struct mc_pcie {
+> @@ -380,25 +381,29 @@ static struct {
+>  
+>  static char poss_clks[][5] = { "fic0", "fic1", "fic2", "fic3" };
+>  
+> -static void mc_pcie_enable_msi(struct mc_pcie *port, void __iomem *base)
+> +static void mc_pcie_fixup_ecam(struct mc_pcie *port, void __iomem *ecam)
+>  {
+>  	struct mc_msi *msi = &port->msi;
+> -	u32 cap_offset = MC_MSI_CAP_CTRL_OFFSET;
+> -	u16 msg_ctrl = readw_relaxed(base + cap_offset + PCI_MSI_FLAGS);
+> -
+> -	msg_ctrl |= PCI_MSI_FLAGS_ENABLE;
+> -	msg_ctrl &= ~PCI_MSI_FLAGS_QMASK;
+> -	msg_ctrl |= MC_MSI_MAX_Q_AVAIL;
+> -	msg_ctrl &= ~PCI_MSI_FLAGS_QSIZE;
+> -	msg_ctrl |= MC_MSI_Q_SIZE;
+> -	msg_ctrl |= PCI_MSI_FLAGS_64BIT;
+> -
+> -	writew_relaxed(msg_ctrl, base + cap_offset + PCI_MSI_FLAGS);
+> -
+> +	u16 reg;
+> +	u8 queue_size;
+> +
+> +	/* fixup msi enable flag */
+> +	reg = readw_relaxed(ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
+> +	reg |= PCI_MSI_FLAGS_ENABLE;
+> +	writew_relaxed(reg, ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
+> +
+> +	/* fixup msi queue flags */
+> +	queue_size = reg & PCI_MSI_FLAGS_QMASK;
+> +	queue_size >>= 1;
+> +	reg &= ~PCI_MSI_FLAGS_QSIZE;
+> +	reg |= queue_size << 4;
 
-The only reason to implement something like this is because of
-using the legacy GPIO numberspace which we are getting rid
-of so it is irrelevant, the consumers of your driver will only be
-using gpio descriptors, will only come in through gpiod_get_index()
-and will have desc validity check done before calling gpiod_request().
+Could you please explain where the >> 1 & << 4 come from? Maybe it's
+sufficient to just make them defines, or the comment here could be
+expanded on.
 
-So drop this.
+> +	writew_relaxed(reg, ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_FLAGS);
+> +
+> +	/* fixup msi addr fields */
+>  	writel_relaxed(lower_32_bits(msi->vector_phy),
+> -		       base + cap_offset + PCI_MSI_ADDRESS_LO);
+> +		       ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_ADDRESS_LO);
+>  	writel_relaxed(upper_32_bits(msi->vector_phy),
+> -		       base + cap_offset + PCI_MSI_ADDRESS_HI);
+> +		       ecam + MC_MSI_CAP_CTRL_OFFSET + PCI_MSI_ADDRESS_HI);
+>  }
+>  
+>  static void mc_handle_msi(struct irq_desc *desc)
+> @@ -471,10 +476,7 @@ static int mc_irq_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  {
+>  	struct mc_pcie *port = domain->host_data;
+>  	struct mc_msi *msi = &port->msi;
+> -	void __iomem *bridge_base_addr =
+> -		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+>  	unsigned long bit;
+> -	u32 val;
+>  
+>  	mutex_lock(&msi->lock);
+>  	bit = find_first_zero_bit(msi->used, msi->num_vectors);
+> @@ -488,11 +490,6 @@ static int mc_irq_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>  	irq_domain_set_info(domain, virq, bit, &mc_msi_bottom_irq_chip,
+>  			    domain->host_data, handle_edge_irq, NULL, NULL);
+>  
+> -	/* Enable MSI interrupts */
+> -	val = readl_relaxed(bridge_base_addr + IMASK_LOCAL);
+> -	val |= PM_MSI_INT_MSI_MASK;
+> -	writel_relaxed(val, bridge_base_addr + IMASK_LOCAL);
+> -
+>  	mutex_unlock(&msi->lock);
+>  
+>  	return 0;
+> @@ -1102,6 +1099,7 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	void __iomem *bridge_base_addr;
+>  	void __iomem *ctrl_base_addr;
+>  	int ret;
+> +	u32 val;
+>  
+>  	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+>  	if (!port)
+> @@ -1123,11 +1121,20 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+>  	ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+>  
+> -	port->msi.vector_phy = MSI_ADDR;
+> -	port->msi.num_vectors = MC_NUM_MSI_IRQS;
+> +	/* allow enabling msi by disabling msi-x */
+> +	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
+> +	val &= ~MSIX_CAP_MASK;
+> +	writel(val, bridge_base_addr + PCIE_PCI_IRQ_DW0);
+> +
+> +	/* pick num vectors from design */
+> +	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
+> +	val &= NUM_MSI_MSGS_MASK;
+> +	val >>= NUM_MSI_MSGS_SHIFT;
+> +
+> +	port->msi.num_vectors = 1 << val;
+>  
+> -	/* Hardware doesn't setup MSI by default */
+> -	mc_pcie_enable_msi(port, cfg->win);
+> +	/* pick vector address from design */
 
-> > I am bit suspicious that your IRQchip implementation expects consumers
-> > to call gpiod_to_irq() first and this is not legal.
->
-> okay, I got it, and other driver use gpio interrupt doesn't rely on
-> gpiod_to_irq, but can use gpiod_to_irq.
+"Design" might make sense to you or I, but I think you could expand this
+comment for the lay reader. Copy-paste from the commit message maybe
+hah.
 
-Yes it can be used to look up the irq corresponding to a GPIO
-but it is not mandatory to do that.
+Anyways, as with the rest of the series - I'm just nitpicking.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> The reason is that gpio interrupt wasn't an independent module,  The
-> loongson interrupt controller liointc include lots of interrupt was
-> route to perpherial, such as i2c/spi .. gpio, so gpio interrupt as
-> normal perpherial interrupt, It is unnecessary and redundant to
-> implement a gpio irq chip. The liointc controller driver had cover all
-> interrupt.
-
-This is fine, and it is common for GPIO drivers to implement
-their own IRQchips.
-
-But these drivers can not rely on the .gpio_to_irq() callback
-to be called before an IRQ is requested and used.
-
-> in addition,  I don't like to use the dynamically allocated gpio base,
-> so I set the gpio base after call bgpio_init.
-
-Don't do that because the GPIO maintainers love the
-dynamic base and hate hardcoded bases. Set the base to -1
-If you wonder why, read drivers/gpio/TODO.
-
-Yours,
-Linus Walleij
+> +	port->msi.vector_phy = readl_relaxed(bridge_base_addr + IMSI_ADDR);
+>  
+>  	/* Configure Address Translation Table 0 for PCIe config space */
+>  	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & 0xffffffff,
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
