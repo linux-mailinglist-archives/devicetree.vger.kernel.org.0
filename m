@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E3B8635401
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 369D7635426
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236925AbiKWJB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 04:01:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38202 "EHLO
+        id S236955AbiKWJD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 04:03:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236921AbiKWJBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:01:55 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BFBFFAB7
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:01:53 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id s8so27201605lfc.8
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:01:53 -0800 (PST)
+        with ESMTP id S237007AbiKWJDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:03:18 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7136CA3E
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:03:16 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id d6so27195241lfs.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:03:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WA7wcqap9FFSojyAIedMI2HkYd/yBUkUMbNf1qYRGDQ=;
-        b=oiepXkfX2ozhXYoitSiMJdedTucyjr0vbG8Y331jpwhNAtO377avpdEIUokHvGP+z8
-         2R5Mono0FGVQ8SvDeDRuABrB86bgCw9ZUBFRzkyRn4uWVdOb+VVFH/d0IuRel+dlkIIo
-         A9j5MNM6BaIMvYxWOu//+UBLalE0ailN4OANyohJOKboO2GRbFxNxjbJIrWTGiosbOQR
-         KHCLnp2akVpoftWmwiDgDgon7I+JLxcNKbL64wp+8rAHpFGm5g4rIWgEJkN0cjgr4mY7
-         lFQNaMWatYJcUXTkKFKSwmXTbNEc6d7VeRdx1DbbfAThVk3T6CQTDvSc/yxDQyEM2jGZ
-         jRAg==
+        bh=lj5qM8HyY9yPvHfYz3RvhZJi/KrYTswvqs6RCRkYoUU=;
+        b=hdw5NXv78GEDuDERgDIqOlpxuJTqcfYs4LLbA0s1YzzZIGq9kR1gw1DpIkLdb6s5cy
+         bKA1PoiGqEdPaRae6SpkGDec7wGz8u3h/AIwCU/21tAcmtT8doWhTtyADI6MlOutrcA+
+         J6WvQrnEq+wfo5+50rESDG21oH7Zy2ToeAIq+wOWhx5uVAm2ZLrtBuFqDC7DZPnoh7xl
+         wlJvFqR2I22F+s2CbqrIrp/R96/4/bciWNa1OANOPG67eKZ3XjCKIE3MGJ56n699z2xk
+         17vV7g8SOTWG/Fb68dB72EMCPOWIdOgAD+JDBjiuAmk0sSDl/2fCg3Qq+fq/aHCzSUKI
+         y/wQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WA7wcqap9FFSojyAIedMI2HkYd/yBUkUMbNf1qYRGDQ=;
-        b=aIGee26dVcAf+AafN7QVfuM5F67bozFra1mEK/1fH0qj6uS/VmjPWXjQnkgkU2ouK1
-         qGWilZukfKptJI4LUtomSIAi7SlwbHYMoKB4ky/K+gGwUwtNoDHYUaRB72iwDndbid7s
-         osTB3Q2ymPk3Vaen6BDmUPXxy0AMRGS9qLpKpvwyDidNLUpatE9ajJmri4cuL+FuuKqi
-         UkfdmdAZ4WmlMUahCEAdPkYCFJv49wa9jXFswfdf0xcX/td4lzCj6192ocMJ6XEvbMgj
-         Ks36X22wAjILAFIMQrncPWBk3BRMioJ/gwgIp86MtpVFxSThqI8/Q5UAtMX76gt5cJL5
-         DHHw==
-X-Gm-Message-State: ANoB5pmWxFm5mbVT2iO4UikF91YfatiZQsd+9UZWFmvFiQBkDDGMxN6Z
-        NTw/kRmCM3vvFnQZmEgRaFa6NiX8ALcsAY3j
-X-Google-Smtp-Source: AA0mqf6Jf0/+ltsRerqajN32SESPAarDvzpQCu/W4nX4wn56+27rFasS+QC5XNK+JMyEiI6Uf9n6/w==
-X-Received: by 2002:a05:6512:128d:b0:4b4:b645:6303 with SMTP id u13-20020a056512128d00b004b4b6456303mr3117475lfs.475.1669194112270;
-        Wed, 23 Nov 2022 01:01:52 -0800 (PST)
+        bh=lj5qM8HyY9yPvHfYz3RvhZJi/KrYTswvqs6RCRkYoUU=;
+        b=bE+U5QaDLJtA9B/VrFk6EvZwuWJCJgEgRXkjQdGlX9bfnDsSLLitDMu9RQC2elJKFX
+         DoxGGATdQbA8OLe5xDJB2xf3f8mflHNStPZBXI8Y5ciVcWChcpNuUJbpPWjjgdNGFqRi
+         E2gNIqBLuPM+mf5FFFTzL1TPnup2RUN6+H9U2vS/YVjnVOFuXi9YV8Tlt5cJeAM+9Pad
+         KYKi1lnE2GQB3prjCzYSX4xbkr2sqqb+pIIbL8PJgxj7ZdwegG2IcmjRds6F6hMohaOs
+         skqirS0k2tZIL9rjTnvMhC3dVlPf4sjf7iEPAXvOEPGumpetfgbkj/lBGIX+BEhGHKOn
+         2kog==
+X-Gm-Message-State: ANoB5pkRpEywH+fpjyaz3k88uQuM4W81xveGesvENFqRrbUbrXHibRyt
+        4g46Dv5t3xSYcl2pd1OHpBGQXw==
+X-Google-Smtp-Source: AA0mqf5YZINXfyoHMvEKMXYYzTYl/T0856F2iwgRBsR9O5/Nm6Nm+W15mMPu0oipOaJPOJ/G1QGVXg==
+X-Received: by 2002:a05:6512:2a98:b0:4b1:4612:6d06 with SMTP id dt24-20020a0565122a9800b004b146126d06mr8677897lfb.683.1669194195317;
+        Wed, 23 Nov 2022 01:03:15 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b17-20020a196451000000b00498f23c249dsm2779102lfj.74.2022.11.23.01.01.50
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b00499bf7605afsm2809973lfo.143.2022.11.23.01.03.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 01:01:51 -0800 (PST)
-Message-ID: <ac216c05-d939-0045-9a32-c874b584ee2d@linaro.org>
-Date:   Wed, 23 Nov 2022 10:01:50 +0100
+        Wed, 23 Nov 2022 01:03:14 -0800 (PST)
+Message-ID: <cdb96213-ec91-11dc-73c5-63a266200ac6@linaro.org>
+Date:   Wed, 23 Nov 2022 10:03:13 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI
- bridge
+Subject: Re: [PATCH v3 0/2] arm64: dts: Update cache properties for exynos/fsd
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
-References: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
- <20221122233659.3308175-5-dmitry.baryshkov@linaro.org>
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Aswani Reddy <aswani.reddy@samsung.com>,
+        Shashank Prashar <s.prashar@samsung.com>,
+        Andi Shyti <andi@etezian.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20221123090109.74441-1-pierre.gondois@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122233659.3308175-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221123090109.74441-1-pierre.gondois@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,46 +80,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 00:36, Dmitry Baryshkov wrote:
-> From: Vinod Koul <vkoul@kernel.org>
+On 23/11/2022 10:01, Pierre Gondois wrote:
+> v1:
+>  - exynos: [1]
+>  - fds: [2]
+> v2:
+>   No change.
+>  - exynos: [3]
+>  - fds: [4]
+> v3:
+>  - Update commit header for fds platform.
 > 
-> Add the LT9611uxc DSI-HDMI bridge and supplies
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> As requested by [5], resend patches updating the cache properties for the
+> exynos/fsd platforms with:
+> 1. Fixed subject.
 
-> +
->  &sdhc_2 {
->  	cd-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
->  	pinctrl-names = "default", "sleep";
-> @@ -431,6 +478,20 @@ &sdhc_2 {
->  &tlmm {
->  	gpio-reserved-ranges = <28 4>, <36 4>;
->  
-> +	lt9611_irq_pin: lt9611-irq {
+No improvements in the subject.
 
--state suffix
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-And test DTS against bindings (`make dtbs_check`).
-
-> +		pins = "gpio44";
-> +		function = "gpio";
-> +		bias-disable;
-> +	};
-> +
-> +	lt9611_rst_pin: lt9611-rst-state {
-> +		pins = "gpio107";
-> +		function = "normal";
-> +
-> +		output-high;
-> +		input-disable;
-> +	};
-> +
->  	sdc2_card_det_n: sd-card-det-n-state {
->  		pins = "gpio92";
->  		function = "gpio";
 
 Best regards,
 Krzysztof
