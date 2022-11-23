@@ -2,91 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E398F635398
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D04635412
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236626AbiKWIyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 03:54:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58154 "EHLO
+        id S236912AbiKWJBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 04:01:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236722AbiKWIyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:54:36 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246C6F2C37
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:54:36 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id d3so20669340ljl.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:54:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PNci12Bf0vBYmKC3Nyo1ySusK0Po552Ewnk3CKCFgiM=;
-        b=uFzBBFc2i+/cs2eokxyz9+zPpobzbSA5PttHyEmsE5O8m9d0ffaSHLkggJctyfOHvC
-         GaPb456kzfgPTkarLmQq0yq4EJflAF87ejknNDXPUDrCKpRfra4nGdRn/MkhxB14eNZ1
-         ClWptRHX/l2rYgeWkhXxPa41aBgHHxWm+g0rcTLfvkcIZu9UiUx3KWtdGirv3IzK3P1C
-         d+kcfk6eZbP4gUupa5jfz+RXFrQzQpjEljUS+lAsH+ZJEm8dQn3+s9msHQNZFPQvI+wn
-         ZuZqRPpgb4B7j4uDvSGrfDyrkJPNLSSgW9D6IbIviLL1NGiCVNKXuNGMJ5D6ATxPIAzy
-         wkWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNci12Bf0vBYmKC3Nyo1ySusK0Po552Ewnk3CKCFgiM=;
-        b=uGoUyCGglaSp6Tq64fdra1DIpEwNAtJU5BA5yvQItR6Jr6ca8zBEX374UYYaj/ROS0
-         44HNZimbXyPob8cToqT3ZdoTOtAP6OhxOKAgwF6vItna3iyqs0f55yJN8FzllyU4CmxH
-         hUyiHvVoOoU+tlW78M0kKSFHrDaN1unuEUoOC4x9ZX4u8vnbHkFqHxcrO9hg/3pGBK8I
-         tX6Y69ZI+QXVt77+BiBaN5RbJF/wTnsO4rI1XDJICDsL7zeUMVFy9facg30FEhOzn3Sv
-         VJFD7YVp0IsRPmpWXQRtpTuWv1l6qI5h+Q8pyTHWSrsfV5Pwl3RUo1L/XRZDOKVlJriG
-         yF7A==
-X-Gm-Message-State: ANoB5png1E0D/qSn4acLiZNlukpG9DKdEv9KCCuoZpeMMG2QhGOlNsdM
-        T0nnt6hPGwoFoo0jP5Ie88UelA==
-X-Google-Smtp-Source: AA0mqf7zw0pr/I8AJsrt0bkdgbbMNDxfTG/Inc4P8oO0f9B7+bwl+WZbKu89sNkMdVirsGZ8SjdSMA==
-X-Received: by 2002:a2e:a80a:0:b0:277:2600:9cc0 with SMTP id l10-20020a2ea80a000000b0027726009cc0mr8668597ljq.437.1669193674524;
-        Wed, 23 Nov 2022 00:54:34 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t17-20020a195f11000000b004994117b0fdsm2812854lfb.281.2022.11.23.00.54.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 00:54:33 -0800 (PST)
-Message-ID: <40a0eff9-607d-1143-3835-378079f38c0f@linaro.org>
-Date:   Wed, 23 Nov 2022 09:54:32 +0100
+        with ESMTP id S236906AbiKWJBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:01:52 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D278EEC0A5;
+        Wed, 23 Nov 2022 01:01:51 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C7C721FB;
+        Wed, 23 Nov 2022 01:01:57 -0800 (PST)
+Received: from pierre123.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 95C043F73B;
+        Wed, 23 Nov 2022 01:01:48 -0800 (PST)
+From:   Pierre Gondois <pierre.gondois@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Pierre Gondois <pierre.gondois@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Aswani Reddy <aswani.reddy@samsung.com>,
+        Shashank Prashar <s.prashar@samsung.com>,
+        Andi Shyti <andi@etezian.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 0/2] arm64: dts: Update cache properties for exynos/fsd
+Date:   Wed, 23 Nov 2022 10:01:02 +0100
+Message-Id: <20221123090109.74441-1-pierre.gondois@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy-j721e-wiz: add j721s2 compatible
- string
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, r-gunasekaran@ti.com,
-        rogerq@kernel.org, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vigneshr@ti.com
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221123032413.1193961-1-mranostay@ti.com>
- <20221123032413.1193961-2-mranostay@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123032413.1193961-2-mranostay@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 04:24, Matt Ranostay wrote:
-> Add ti,j721s2-wiz-10g compatible string to binding documentation.
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yam
+v1:
+ - exynos: [1]
+ - fds: [2]
+v2:
+  No change.
+ - exynos: [3]
+ - fds: [4]
+v3:
+ - Update commit header for fds platform.
 
+As requested by [5], resend patches updating the cache properties for the
+exynos/fsd platforms with:
+1. Fixed subject.
+2. Changelog.
+3. Trimmed list.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1] https://lore.kernel.org/all/20221031091945.531874-1-pierre.gondois@arm.com/
+[2] https://lore.kernel.org/all/20221031092125.533621-1-pierre.gondois@arm.com/
+[3] https://lore.kernel.org/all/20221107155825.1644604-8-pierre.gondois@arm.com/
+[4] https://lore.kernel.org/all/20221107155825.1644604-23-pierre.gondois@arm.com/
+[5] https://lore.kernel.org/all/4f4bdc95-16a2-df76-9787-df46a3b5e1eb@linaro.org/
 
-Best regards,
-Krzysztof
+Pierre Gondois (2):
+  arm64: dts: Update cache properties for exynos
+  arm64: dts: Update cache properties for fds
+
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi | 4 ++++
+ arch/arm64/boot/dts/exynos/exynos7.dtsi    | 2 ++
+ arch/arm64/boot/dts/tesla/fsd.dtsi         | 2 ++
+ 3 files changed, 8 insertions(+)
+
+-- 
+2.25.1
 
