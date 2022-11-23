@@ -2,150 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CC5634D75
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 02:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EB06634D9E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 03:12:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbiKWBw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 20:52:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52324 "EHLO
+        id S235435AbiKWCMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 21:12:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233459AbiKWBw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 20:52:57 -0500
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57EA2716
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 17:52:55 -0800 (PST)
-Received: from kwepemi500024.china.huawei.com (unknown [172.30.72.53])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NH3w22CnpzJnrF;
-        Wed, 23 Nov 2022 09:49:38 +0800 (CST)
-Received: from [10.174.179.163] (10.174.179.163) by
- kwepemi500024.china.huawei.com (7.221.188.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 23 Nov 2022 09:52:53 +0800
-Message-ID: <f98eb584-53e6-f906-4299-32ad3dbde572@huawei.com>
-Date:   Wed, 23 Nov 2022 09:52:52 +0800
+        with ESMTP id S235419AbiKWCL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 21:11:57 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F0E11A14;
+        Tue, 22 Nov 2022 18:11:52 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id CC8AD24E236;
+        Wed, 23 Nov 2022 10:11:45 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 23 Nov
+ 2022 10:11:44 +0800
+Received: from [192.168.125.96] (113.72.144.23) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 23 Nov
+ 2022 10:11:43 +0800
+Message-ID: <f794e9fb-7ce0-2649-9839-b9ce36b80d1d@starfivetech.com>
+Date:   Wed, 23 Nov 2022 10:11:44 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2] of: overlay: fix memory leak in add_changeset_node()
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v1 4/4] riscv: dts: starfive: add power controller node
 Content-Language: en-US
-To:     Frank Rowand <frowand.list@gmail.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <liwei391@huawei.com>
-References: <f0c641ee-b20d-48dd-c65f-2b372eae0b06@huawei.com>
- <20221121035335.809316-1-zengheng4@huawei.com>
- <c89af7df-4e6d-3d0b-d58a-1dbbfe43fcff@gmail.com>
- <0be2e48f-4cfe-eed8-16cb-da3f6fbda9d5@gmail.com>
-From:   Zeng Heng <zengheng4@huawei.com>
-In-Reply-To: <0be2e48f-4cfe-eed8-16cb-da3f6fbda9d5@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118133216.17037-1-walker.chen@starfivetech.com>
+ <20221118133216.17037-5-walker.chen@starfivetech.com>
+ <CAJM55Z9bJqpEGbbx1=EBXhmhigxuHw=ObBdTJ7xy+QY=pTJyoQ@mail.gmail.com>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <CAJM55Z9bJqpEGbbx1=EBXhmhigxuHw=ObBdTJ7xy+QY=pTJyoQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.163]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemi500024.china.huawei.com (7.221.188.100)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.144.23]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2022/11/23 9:16, Frank Rowand wrote:
-> On 11/22/22 18:29, Frank Rowand wrote:
->> Hi Zeng,
+On 2022/11/19 2:36, Emil Renner Berthing wrote:
+> On Fri, 18 Nov 2022 at 14:35, Walker Chen <walker.chen@starfivetech.com> wrote:
 >>
->> In the future, please do not send a new version of a patch series as a reply
->> to a previous thread.  For people who leave threads collapsed in their email
->> client (like me), there is a good chance that the new patch version email
->> will not be noticed.
+>> This adds the power controller node for the Starfive JH7110 SoC.
+>> The pmu needs to be used by other modules such as ISP, VPU, etc.
 >>
->> More below...
+>> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+> 
+> Hi Walker,
+> 
+> You called the driver jh71xx which suggests it also applies to the
+> jh7100. Are you missing a node in the jh7100 device tree?
+
+No, there is no power domain controller on the jh7100. Our next generation of chips jh7120 will 
+still use this power management unit, so here this driver name is called jh71xx_pmu.c or changed
+to jh71xx_power.c , do you think such a name is appropriate ?  
+Your reply will be highly appreciated!
+
+> 
+>> ---
+>>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
 >>
->> On 11/20/22 21:53, Zeng Heng wrote:
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> index c22e8f1d2640..fa7b60b82d71 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> @@ -356,6 +356,13 @@
+>>                         #gpio-cells = <2>;
+>>                 };
 >>
->>> When of_changeset_attach_node() returns fail and tchild is
->>> over of life cycle which is duplicated by __of_node_dup(),
->>> it needs to call of_node_put() to release tchild in
->>> error handle route.
->> This does not seem correct.  I will explain this in the patch v1
->> thread.
-> After reading throught the code some more, and confusing myself a bit,
-> I think the proposed patch of adding the of_node_put(tchild) is correct.
->
-> I'll run it through my tests and then reply again, hopefully tommorrow.
->
-> -Frank
-
-Many thanks to your patient review.
-
-
-My work is injecting fault(like ENOMEM by failslab) into every corners 
-per single time,
-
-so i would send the corresponding patch even if the probability of error 
-is low.
-
-
-And continue digging.
-
-
-With best regards,
-
-Zeng Heng
-
->
->>> Otherwise, there are some memory leak reported about the node:
->>>
->>> unreferenced object 0xffff88810cd1e800 (size 256):
->>>    backtrace:
->>>      kmalloc_trace
->>>      __of_node_dup
->>>      add_changeset_node (inlined)
->>>      build_changeset_next_level
->>>
->>> unreferenced object 0xffff888113721240 (size 16):
->>>    backtrace:
->>>      __kmalloc_node_track_caller
->>>      kstrdup
->>>      __of_node_dup
->>>      add_changeset_node (inlined)
->>>      build_changeset_next_level
->>>
->>> unreferenced object 0xffff88810a38d400 (size 128):
->>>    backtrace:
->>>      kmalloc_trace
->>>      __of_prop_dup
->>>      add_changeset_property
->>>      build_changeset_next_level
->>>
->>> Fixes: 0290c4ca2536 ("of: overlay: rename identifiers to more reflect what they do")
->> You have to dig deeper.  The code that introduced the issue is even older:
->>
->> 7518b5890d8a of/overlay: Introduce DT overlay support
->>
->> -Frank
+>> +               pwrc: power-controller@17030000 {
+>> +                       compatible = "starfive,jh7110-pmu";
+>> +                       reg = <0x0 0x17030000 0x0 0x10000>;
+>> +                       interrupts = <111>;
+>> +                       #power-domain-cells = <1>;
+>> +               };
+>> +
+>>                 uart0: serial@10000000 {
+>>                         compatible = "snps,dw-apb-uart";
+>>                         reg = <0x0 0x10000000 0x0 0x10000>;
+>> --
+>> 2.17.1
 >>
 >>
->>> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
->>> ---
->>>   drivers/of/overlay.c | 4 +++-
->>>   1 file changed, 3 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
->>> index bd8ff4df723d..a5189a0ec0a3 100644
->>> --- a/drivers/of/overlay.c
->>> +++ b/drivers/of/overlay.c
->>> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
->>>   		of_node_set_flag(tchild, OF_OVERLAY);
->>>   
->>>   		ret = of_changeset_attach_node(&ovcs->cset, tchild);
->>> -		if (ret)
->>> +		if (ret) {
->>> +			of_node_put(tchild);
->>>   			return ret;
->>> +		}
->>>   
->>>   		target_child.np = tchild;
->>>   		target_child.in_livetree = false;
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
