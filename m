@@ -2,93 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFBA0636C1B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E16A636C31
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237370AbiKWVJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 16:09:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
+        id S235724AbiKWVRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 16:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236859AbiKWVJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:09:14 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E0731213;
-        Wed, 23 Nov 2022 13:09:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 92569B82479;
-        Wed, 23 Nov 2022 21:09:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 958DAC433D6;
-        Wed, 23 Nov 2022 21:09:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669237751;
-        bh=pl7Qiqa3fxBm6Q+/LK3Xnpo0DhZBZ76AOO6EJVopoXI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VjAogGXCl7hgXsWnZY97PqUFczkd2/EWuPp0xSd1ogZ48HbJBUcOSyjmatPjRCiMl
-         u2QsbsBpsWUo6FQS9jNnS0nJymO/UZrePE1U2X8x4HFo7y7r0KdHaYV8vxSclEMlIo
-         JDus8bYmd7liwPTBszcu1C63JWbpKh763yXht1CoJ+s6qKUDjl44O3kUwvcnqagjxg
-         2nnjeO0bbwI9BJIZSYz1FyEsr5zxEDgC8iGim+il1kODAwo3v2vidw0dW5DYylspKB
-         Vu0Mb0+VjJ67b4V+vIFTN+4ORdHKhvZdnV40/Wl0SBPwtbxGJ8Q6Apk5heAnv38klx
-         1T6kT9u0u7kLQ==
-Date:   Wed, 23 Nov 2022 21:09:06 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 1/9] PCI: microchip: Align register, offset, and mask
- names with hw docs
-Message-ID: <Y36L8nnZw46mm8x/@spud>
-References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
- <20221116135504.258687-2-daire.mcnamara@microchip.com>
+        with ESMTP id S235288AbiKWVRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:17:55 -0500
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360DE248D5;
+        Wed, 23 Nov 2022 13:17:53 -0800 (PST)
+Received: by mail-io1-f42.google.com with SMTP id p141so23905iod.6;
+        Wed, 23 Nov 2022 13:17:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BlGzPtaFyxT63ceQLXbSW4Fmxcnh3kelB9yPiEvgEPw=;
+        b=Dei/jEdHgaR4K1VGrWuVROTLYOorjL2tbGE9iQQ7DH4Yzk8MeWSEs035yp6yWSj1jU
+         UpH/hHCpmrbT9sDXyXd6FssDU4LcJ9PGSYP3O7IPsnlr93CCvxptEVrYdkSECraeGMJ2
+         eMnZd4sFMFmLZfebU2Hh4lUCi+RrKYVuKNlrE9890rQH6eAAurJS6a3MCMO9FcNsWalw
+         7BRXU2GVVuIS6Vfo5CZxCQmnx5qNqb7bLOnNysIymidYvESDPEDB3a/NfRMSAkgGq9jJ
+         V00QNYvjA7WAnS0ormJ/U4VIx3ZQf+/+gA55tVZzyGJDkiMHoTtGfAOMaRNfei4ityeF
+         l86w==
+X-Gm-Message-State: ANoB5pl93znrU+MNhT/MDVFO096GQBdwFaDn1Rt3gLuPsAFfaxmp2GwI
+        SQs9avBYLkwI67RDmMWoA2xpH1WP7g==
+X-Google-Smtp-Source: AA0mqf7M9NWs/AP1+/NB1NNy5H44vkbvteepEMbJ1+gr4DpWhp1CvkedqtvGFv2cQop4Vmpov33/7Q==
+X-Received: by 2002:a6b:6b07:0:b0:6dd:f70e:dda5 with SMTP id g7-20020a6b6b07000000b006ddf70edda5mr6778925ioc.100.1669238273216;
+        Wed, 23 Nov 2022 13:17:53 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id u12-20020a02c94c000000b003758390c97esm6813302jao.83.2022.11.23.13.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 13:17:52 -0800 (PST)
+Received: (nullmailer pid 2511151 invoked by uid 1000);
+        Wed, 23 Nov 2022 21:17:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116135504.258687-2-daire.mcnamara@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Mike Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+In-Reply-To: <20221123142009.594781-3-abel.vesa@linaro.org>
+References: <20221123142009.594781-1-abel.vesa@linaro.org>
+ <20221123142009.594781-3-abel.vesa@linaro.org>
+Message-Id: <166923784873.2501231.6595702811083404727.robh@kernel.org>
+Subject: Re: [PATCH v2 2/9] dt-bindings: clock: Add SM8550 TCSR CC clocks
+Date:   Wed, 23 Nov 2022 15:17:54 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 01:54:56PM +0000, daire.mcnamara@microchip.com wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+
+On Wed, 23 Nov 2022 16:20:02 +0200, Abel Vesa wrote:
+> Add bindings documentation for clock TCSR driver on SM8550.
 > 
-> Minor re-organisation so that macros representing registers ascend in
-> numerical order and use the same names as their hardware documentation.
-> Removed registers not used by the driver.
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/pci/controller/pcie-microchip-host.c | 122 +++++++++----------
->  1 file changed, 60 insertions(+), 62 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-> index 0ebf7015e9af..80e7554722ca 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> Changes since v1:
+>  * based on recent bindings, like Krzysztof asked
+>  * used qcom,gcc.yaml and dropped redundant properties
+>  * used additionalProperties instead unevaluatedProperties
+>  * renamed qcom,tcsrcc-sm8550.h to qcom,sm8550-tcsrcc.h, to match
+>    compatible
+>  * added dual lincese to qcom,sm8550-tcsrcc.h
+>  * moved patch to the beginning of patchset
+>  * dropped redundant "bindings" from subject line
+> 
+>  .../bindings/clock/qcom,sm8550-tcsrcc.yaml    | 39 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    | 18 +++++++++
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> 
 
-> @@ -137,7 +78,8 @@
->  #define ISTATUS_LOCAL				0x184
->  #define IMASK_HOST				0x188
->  #define ISTATUS_HOST				0x18c
-> -#define MSI_ADDR				0x190
-> +#define IMSI_ADDR				0x190
-> +#define  MSI_ADDR				0x190
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Trivial, trivial comment - I think it would look more intentional as:
-#define  MSI_ADDR				IMSI_ADDR
+yamllint warnings/errors:
 
-Otherwise this seems grand to me, modulo the SoB issue.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml: allOf:0: '$ref qcom,gcc.yaml#' is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml: ignoring, error in schema: allOf: 0
+Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.example.dtb:0:0: /example-0/clock-controller@1fc0000: failed to match any schema with compatible: ['qcom,sm8550-tcsrcc']
 
-Thanks,
-Conor.
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221123142009.594781-3-abel.vesa@linaro.org
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
 
