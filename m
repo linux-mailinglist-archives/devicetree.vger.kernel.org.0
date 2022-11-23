@@ -2,90 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6DB6351B5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 08:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 116BF6351C5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236238AbiKWH7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 02:59:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37476 "EHLO
+        id S234936AbiKWIBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 03:01:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236137AbiKWH7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 02:59:00 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61414101F6
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 23:58:37 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id be13so27014971lfb.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 23:58:37 -0800 (PST)
+        with ESMTP id S229477AbiKWIA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:00:58 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2FB8A44A
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:00:57 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id b4so515744pfb.9
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:00:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eIg6Rv/LOFpgj+DKWMManbiu0MfbC5FGq/xuxr/n0/w=;
-        b=O/38mHTk0CPM9pVVyRJOWrliNAFqF+1lUR9wj+BJJ1xjTUPpFWP1swpYrwoKOYsG6+
-         Wfno/8Y3RM2L3GU+fe0tExQzuXxi8ipqkzqI0iQD9nWP6U1VGXFOcOJ/UOHKPiidllZy
-         DcXABk/ZIwhEQa9nyEy6G8U9Nh9svKgwgzpUYO+jRw9R89uM8QgNKSQdVcUfRg8cKpDR
-         gIcHpd0XsFyAegMNut9QdiLn63gxpiE35ob4bBrcJGsO2pVYcJmqgygVoH0KxDLZoHlA
-         T0Yqr1ladsKpyLswJzbtX+2NSnYtVZqJTzbUf9dk7jtvKz4dfAdG6hSvlFZFIBgV1J+Y
-         tZYw==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MbrrOYxtC09rgwMwO+Cbut5UgPOnDEL5L8z0SmkUTx0=;
+        b=H6QGDEr5id4FYQg10XbPv+j8hNAvGnohGMD95/H4aWJzbjrqTfjWjKc+mig0yFAYNm
+         hWAGgkWMcx1+Y3dQjNoe/DQ9UUfE8HLrjszCXvg6VIffTMb4bH/reZXzAC9iEZHiABfQ
+         rZWkPvZMYjeDJYQESJqfTD2qHNl0bUH+eaiVicF20sGvxhrXJwW65AMStxLBJ0Vf9jlK
+         nt4oOHK7jPO5p1rqfBGg9fHRRXfCwL9aSuarA9SagPMWkAawP7aPTy2tGifoLj+xznht
+         cR/MHq7rcCKTENZU9k2OI6Jo4bttnYaO96VtmYB0Zu6GOk+VwKTp2LP/8L5nN5DBdac4
+         FR+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eIg6Rv/LOFpgj+DKWMManbiu0MfbC5FGq/xuxr/n0/w=;
-        b=4Ayt+GjcoRTeZRnW7o78zahmL/pvoAXAAlB3kBTDn8aeyKXAZknb6IY3PiWTgqsi/I
-         k87KB6VtoIm8CejhHUsltwdfzI01vNeIZoLEIhnDlIPfYgpyp7G/il6KNImCrzAI8E5P
-         C3LEZE6ZQXTyxySTBGwoH8Qnh1UnJozbQYscuQB+iPzKdNyVhjqPK1PQxRXPlTFK6w/a
-         4O+FKpFvMfNp/Uy/lYcERIS03XinA1Lsmf3+lhlOYqZfseBdUVvBE7VXPfaGeYOpXpZI
-         H6xpOyApRO1DId+NMpaxJIKY5Pza7SA8rEMcDJtFU8EhA5RVCrDrsylICrDZjv1aOPU1
-         CJWQ==
-X-Gm-Message-State: ANoB5plu60e2mno53JmCu2cI3fxrXPGX2LtqBv/p2WPdFoMHkoUsCM4d
-        aFWF64aCxPmYxYkYhBiWddo7bw==
-X-Google-Smtp-Source: AA0mqf6zL4R+GgorjVgH9PoP2t6OY5S6qEA+2L8rRG2kN5zlZUkPGnPJ6ancNeSRmy+Dl5f5mxbA9Q==
-X-Received: by 2002:a05:6512:3ba6:b0:4a2:2bd7:d4fd with SMTP id g38-20020a0565123ba600b004a22bd7d4fdmr3599654lfv.613.1669190315409;
-        Tue, 22 Nov 2022 23:58:35 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y18-20020a05651c107200b0027741daec09sm1997549ljm.107.2022.11.22.23.58.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Nov 2022 23:58:34 -0800 (PST)
-Message-ID: <8a67f8a5-0e79-45ed-3bad-0678d15910c5@linaro.org>
-Date:   Wed, 23 Nov 2022 08:58:28 +0100
+        bh=MbrrOYxtC09rgwMwO+Cbut5UgPOnDEL5L8z0SmkUTx0=;
+        b=uot4FpuSEwT5wDx4sZOdAUeufbjw7SD5hdymyU8ldKulbmTrd51blMHtDpOJwKU2zn
+         Y+S2BBU71cijXrRPfgwfeJZnZmeR68qG5jDfVhHZtQdLC0X27qOyN5LlI/9oDSP4aqQd
+         F2aOjh8wdkQKSEBQeBi92uuIVZ4xHMIk4Hw6iSQ8wTdRSaF0J0Ai/TUdylaa4rVoMYbD
+         6SjpSRDaf1mlav/ZGPynmNWLZSgXS977Q552mV5YLl7UVjs9lkt+LgfxQ+70fB11RDgR
+         A0c+oVwlD7dixRiLVV92gGV4uICXP9jmI5OXD7VkvFUgPEi7b6OcK8Sai2ieSJnBgO8D
+         X2vw==
+X-Gm-Message-State: ANoB5pm8dN4gSG//KeLQLf9bl/A0b2svIBq6R9COHjGeDZXeet1oJXiN
+        OsmsOOgvKZ9PZOeaV4sHO1Do
+X-Google-Smtp-Source: AA0mqf7XKP/aKQ2CDMevSm6iFDAjqsMZSrLbBwGBHmTxbloPCER3WSL+LUrYxphp5z9bn+3AcwR5HA==
+X-Received: by 2002:a63:ff63:0:b0:477:8d4f:3dda with SMTP id s35-20020a63ff63000000b004778d4f3ddamr8903672pgk.552.1669190457108;
+        Wed, 23 Nov 2022 00:00:57 -0800 (PST)
+Received: from thinkpad ([117.202.191.0])
+        by smtp.gmail.com with ESMTPSA id d9-20020a170902f14900b0017f7628cbddsm13376943plb.30.2022.11.23.00.00.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 00:00:55 -0800 (PST)
+Date:   Wed, 23 Nov 2022 13:30:50 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH 1/3] arm64: dts: imx8mq-thor96: Remove invalid
+ linux,default-trigger
+Message-ID: <20221123080050.GB7743@thinkpad>
+References: <20221121145114.2362260-1-festevam@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
- bbnsm
-To:     Jacky Bai <ping.bai@nxp.com>, "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>
-References: <20221121065144.3667658-1-ping.bai@nxp.com>
- <20221121065144.3667658-2-ping.bai@nxp.com>
- <2aeb0590-4fd0-5bb4-5e68-0378953a94c3@linaro.org>
- <AS8PR04MB864223C12564CB68F5836908870A9@AS8PR04MB8642.eurprd04.prod.outlook.com>
- <6bb1ee6d-ab8c-824c-4a7d-29769189e4b4@linaro.org>
- <AS8PR04MB86420CA249C3E1D800BB4404870C9@AS8PR04MB8642.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AS8PR04MB86420CA249C3E1D800BB4404870C9@AS8PR04MB8642.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221121145114.2362260-1-festevam@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,68 +74,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 08:43, Jacky Bai wrote:
->> Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for nxp
->> bbnsm
->>
->> On 21/11/2022 11:26, Jacky Bai wrote:
->>>> Subject: Re: [PATCH 1/4] dt-bindings: mfd: nxp,bbnsm: Add binding for
->>>> nxp bbnsm
->>>>
->>>> On 21/11/2022 07:51, Jacky Bai wrote:
->>>>> Add binding for NXP BBNSM(Battery-Backed Non-Secure Module).
->>>>>
->>>>> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
->>>>> ---
->>>
->>> ...
->>>
->>>>> +
->>>>> +    properties:
->>>>> +      compatible:
->>>>> +        const: nxp,bbnsm-rtc
->>>>
->>>>
->>>> Missing ref to rtc.yaml.
->>>
->>> Ok will include in v2.
->>>>
->>>>> +
->>>>> +      regmap:
->>>>
->>>> Use vendor prefix, descriptive name and description. Where is the
->>>> type of 'regmap' defined?
->>>
->>> Type is missed. Will add a description and type define if necessary.
->>>
->>>>
->>>>> +        maxItems: 1
->>>>
->>>> I don't think this is correct. Rob explained the simple-mfd means
->>>> children
->>> do
->>>> not depend on anything from the parent, but taking a regmap from its
->>> parent
->>>> contradicts it.
->>>
->>> For this BBNSM module, basically, it provides two sperate & different
->>> function: RTC and ON/OFF button control. But no separate register
->>> offset range for each of these functions. For example, the interrupt
->>> enable control, Interrupt status and basic function control are mixed
->>> in the same registers'
->>> different bit.
->>>
->>> Any good suggestion on how to handle such case? ^_^
->>
->> The solution for more complex common parts, dedicated device driver (MFD
->> driver) with its own binding. However I understand why it would be overshoot
->> here.
->>
+On Mon, Nov 21, 2022 at 11:51:12AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Is it ok to keep current implementation rather than reimplement a new dedicate MFD wrapper driver?
+> "none", "phy0tx" and "hci0-power" are not valid values for the
+> linux,default-trigger property and trigger the following warnings when
+> running:
+> 
+> make dtbs_check DT_SCHEMA_FILES=leds-gpio.yaml
+> 
+> arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb: leds: user-led4:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'none' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'none' does not match '^mmc[0-9]+$'
+> 	'none' does not match '^cpu[0-9]*$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb: leds: wlan-active-led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'phy0tx' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'phy0tx' does not match '^mmc[0-9]+$'
+> 	'phy0tx' does not match '^cpu[0-9]*$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> arch/arm64/boot/dts/freescale/imx8mq-thor96.dtb: leds: bt-active-led:linux,default-trigger: 'oneOf' conditional failed, one must be fixed:
+> 	'hci0-power' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+> 	'hci0-power' does not match '^mmc[0-9]+$'
+> 	'hci0-power' does not match '^cpu[0-9]*$'
+> 	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+> 
+> Remove the invalid linux,default-trigger entries.
+> 
 
-Yes
+Just because the binding is complaining doesn't mean that these triggers are
+invalid. In this case, the binding needs to be updated as these triggers are
+supported by the LED subsystem.
 
-Best regards,
-Krzysztof
+I tried to do that but somehow didn't follow up:
+https://lore.kernel.org/lkml/20201210082449.30586-1-manivannan.sadhasivam@linaro.org/
 
+Let me revive that patch.
+
+Thanks,
+Mani
+
+> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Fixes: 68ca364d4812 ("arm64: dts: freescale: Add devicetree support for Thor96 board")
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq-thor96.dts | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
+> index 5d5aa6537225..170e00c2447f 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-thor96.dts
+> @@ -35,7 +35,6 @@ user-led1 {
+>  		user-led2 {
+>  			label = "green:user2";
+>  			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger = "none";
+>  		};
+>  
+>  		user-led3 {
+> @@ -49,20 +48,17 @@ user-led4 {
+>  			label = "green:user4";
+>  			gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+>  			panic-indicator;
+> -			linux,default-trigger = "none";
+>  		};
+>  
+>  		wlan-active-led {
+>  			label = "yellow:wlan";
+>  			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger = "phy0tx";
+>  			default-state = "off";
+>  		};
+>  
+>  		bt-active-led {
+>  			label = "blue:bt";
+>  			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger = "hci0-power";
+>  			default-state = "off";
+>  		};
+>  	};
+> -- 
+> 2.25.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
