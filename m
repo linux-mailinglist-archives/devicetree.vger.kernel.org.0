@@ -2,50 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0CA636B6F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7C5A636B8B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:49:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238834AbiKWUmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 15:42:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40664 "EHLO
+        id S236806AbiKWUtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 15:49:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239053AbiKWUmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:42:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C491F14085;
-        Wed, 23 Nov 2022 12:42:42 -0800 (PST)
+        with ESMTP id S239495AbiKWUtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:49:31 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467D26C72C;
+        Wed, 23 Nov 2022 12:49:16 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6F32EB81F03;
-        Wed, 23 Nov 2022 20:42:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 868BDC433D6;
-        Wed, 23 Nov 2022 20:42:38 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC0EA61F0F;
+        Wed, 23 Nov 2022 20:49:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCE71C433C1;
+        Wed, 23 Nov 2022 20:49:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669236160;
-        bh=ujHw+aEUaI4XEXzsza7m4fXJuhYYTP3KGc3pezOt4Lk=;
+        s=k20201202; t=1669236555;
+        bh=zhAO3YZEgtsjDcAYaBQkQ0qOKaBzRKJDU31uqjYHdfg=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jjkc+E6u03YiMaWa9vMg2/eu7K42pLsepaYdDYazo9KpOFLTpcU+ecS+d4ldCWoMN
-         /Rlvrbx2TRDlF5v1x3GfzDAgyQzBV+w1855yhwf4JfWswZoIE4LuDZ0c40H95hRvAX
-         7Gbd9ql864Okc574/FZANW5SHPrsTIx4nJ7mVv46NuC6cI0PFfFlddR3Hb3jQPJOJp
-         gCLW0sdWhvoHgr3N6TFtKYtrljT2kM2TFq5bW0gdsz6xnxb2u5+YZqArtdJGeMSj5F
-         rIgi1Opi77XwvYHeOZu18Hiv0XsiPPzhorVlQ9wdx4IUoBO9L7U6YZdjPzfs6yl2yz
-         kjHgXB9Oin6lw==
-Date:   Wed, 23 Nov 2022 20:55:12 +0000
+        b=VTt8eJ9W5dgiW9v1VRM9XlXRxoPrs3ngI9nfJi5+STVAhATYsaoyO+DSK0fST7AvZ
+         m+45pjUZgI7ezOvJjuKahoJmSF7rjhix4UHXQMIhgE8pDcel1ddsInpeBb4nlgZa8A
+         NzOnsQ8+0BEOMzwKk4/K3X6V0blkR3+4grUnBXp2nFppHVxjE2U75Tp38bPF2DDrL6
+         wdfuv0wZEYiXklzcjUFpJefhy/cS80zTggApHtkI+PVSRQph+ZO12+Lc5seJ8juou3
+         LtPkKYnLh3wwVvgdwNZS1xvDLF6FrGuEuGqFTZ/Fez5Y4xpsawMyjjuF3qwN66g65Z
+         ohqndyx/2v+gg==
+Date:   Wed, 23 Nov 2022 21:01:47 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] iio: addac: ad74413r: add spi device id table,
- support reset gpio
-Message-ID: <20221123205512.5db9bc08@jic23-huawei>
-In-Reply-To: <20221115095517.1008632-1-linux@rasmusvillemoes.dk>
-References: <20221111143921.742194-1-linux@rasmusvillemoes.dk>
-        <20221115095517.1008632-1-linux@rasmusvillemoes.dk>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: iio: adc: renesas,rzg2l-adc: Document
+ RZ/Five SoC
+Message-ID: <20221123210147.0bf34345@jic23-huawei>
+In-Reply-To: <166863468321.1016692.3662033617872440170.robh@kernel.org>
+References: <20221115124128.1183144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <166863468321.1016692.3662033617872440170.robh@kernel.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -59,34 +62,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Nov 2022 10:55:14 +0100
-Rasmus Villemoes <linux@rasmusvillemoes.dk> wrote:
+On Wed, 16 Nov 2022 15:38:03 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> Fix a run-time warning from the SPI core by providing a spi_device_id
-> table, and add binding and driver support for a reset gpio.
+> On Tue, 15 Nov 2022 12:41:28 +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > 
+> > The ADC block on the RZ/Five SoC is identical to one found on the RZ/G2UL
+> > SoC. "renesas,r9a07g043-adc" compatible string will be used on the RZ/Five
+> > SoC so to make this clear, update the comment to include RZ/Five SoC.
+> > 
+> > No driver changes are required as generic compatible string
+> > "renesas,rzg2l-adc" will be used as a fallback on RZ/Five SoC.
+> > 
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml          | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >   
 > 
-> v2:
-> - drop the two patches related to refin-supply
-> - fall back to getting device data from the spi_device_id entry
-> - update the example in the binding with a reset-gpios entry
-> - fix a style nit
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Series applied to the togreg branch of iio.git.  They might get one
-day soaking as testing before I push them out to get some linux-next
-coverage or I might skip that bit.
-
-Thanks,
-
-Jonathan
-
-> 
-> Rasmus Villemoes (3):
->   iio: addac: ad74413r: add spi_device_id table
->   dt-bindings: iio: ad74413r: add optional reset-gpios
->   iio: addac: ad74413r: add support for reset-gpio
-> 
->  .../bindings/iio/addac/adi,ad74413r.yaml      |  4 +++
->  drivers/iio/addac/ad74413r.c                  | 29 +++++++++++++++++++
->  2 files changed, 33 insertions(+)
-> 
-
+Applied. Thanks,
