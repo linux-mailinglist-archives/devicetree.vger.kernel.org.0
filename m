@@ -2,107 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B20635B8B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 149AD635B92
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236261AbiKWLXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 06:23:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58414 "EHLO
+        id S237325AbiKWLYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 06:24:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236527AbiKWLXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:23:07 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F6DD769FA;
-        Wed, 23 Nov 2022 03:23:02 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4C7426602AE2;
-        Wed, 23 Nov 2022 11:23:00 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669202580;
-        bh=SS5h0AcRIuCYZwAghSxIqcJiZsZkfQ+w6DNodr6pz3o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=V20LmNqEDP+RZ0vAsiU/DQZGF5/FzpEzVBLshk46yMDkXxGYO4LWXx9JEi0+gutz8
-         7kkJmsbuS0HechadCgfeRB/dAcVA+ZGOHCZdkS6XOipqkEsbdkZ+W80o0YoLoZryIg
-         E+rNNVZNt9nbw0qBMh3Axy7Y0Do+7bzWppxD8u7S4leSJnC7gqdZFLMOZAKAx7RWo3
-         nzHCHgq83zmjzyDz+ettN+5uq7XAQBcTtioiPlt1XLAKPiDWkdLlfGEXmH1f2XU2m7
-         oVFRA55Z8wDuOJOMAzg/E+QXMHFj31rhFH7LxhejhrrflUQsKd/Y7jneWSXQLWo7tz
-         lvioMV7HT09qg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     tglx@linutronix.de
-Cc:     maz@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        youlin.pei@mediatek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 4/4] irqchip: irq-mtk-cirq: Add support for System CIRQ on MT8192
-Date:   Wed, 23 Nov 2022 12:22:49 +0100
-Message-Id: <20221123112249.98281-5-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S237373AbiKWLYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:24:00 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E1F4102E61;
+        Wed, 23 Nov 2022 03:23:28 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id ud5so42051429ejc.4;
+        Wed, 23 Nov 2022 03:23:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8E3HfKqpI7OPKMpyZd0aAajsv0bkMn9cWxEfRq/Jexs=;
+        b=S75Rq8lR46tMXia66z0bag4+iCEPjiOF29vJ4f/d9XmTqxByrmRDlJEY4PEHfujyr7
+         3iSruSGx+Od/ROcQpcRX5L5P2cTbwM+v+F+vwC4SwkVBxQwXe5u3Y/rFpf3d06ryu/tu
+         niIZV05v7O7fTlS/fjkCLSWkktRHWiRGT2jPTd9oiQhqfieNgOZcMTkgf6MwrMJXLale
+         c1x4xo36zcBnAebY6q85YVJQxFtc6asFl1SnmkR6k4CaWCLV5HsO7YnouSORPhVk752+
+         lvWFDUUEn9oxMFlJrcd3kdfqxad4Z1MY4wfqrv8naYXI6gpO7nnBrIzTsaY+fhmqH4xb
+         wigA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8E3HfKqpI7OPKMpyZd0aAajsv0bkMn9cWxEfRq/Jexs=;
+        b=d2BUEFfkLDN+IIadQ3YEbK+eoZYZUv1kXcI0wuJekKebcaT2JOchbTQtLMTZlJz5FH
+         74i3erNTM5Jocw4qtPDAvmksFDFYCLAdF8hYNrW2K7JiaiCRujCp+MKCL2dLu03jlSlT
+         tv2bH9E60W4gXvNpiWQNRQHZOdbaD2T0mxX+biBXxhhRwpoPWAFx5Gf3Ers9f+GXmwrt
+         L3W9s9iCWfAd+O+qDFGj/kDiGNeennlIZayMO1w+P9Klc7h8MtIptXEJy1VjUFYCeIQn
+         BQ9x8E8M2SibftWDjR7GdS5xEHd/eU/X1jP420Xy6KbjE2584/Nu0Ia8E/srlBJ9c1FL
+         E3yw==
+X-Gm-Message-State: ANoB5pkfRukJP5+UTTevgEJVFOxmKd3hep2f5SaJgQRHEYMjxtdiyaEp
+        NyN+pHt8Vc8tCJs/Z1bJvbk=
+X-Google-Smtp-Source: AA0mqf6JNLeF8BQxBTQEN4OYB4XAlsusO8D5L5Frr6SYljvV1WXopKgkTBJpsD0A7oGpJeeO7LpjHQ==
+X-Received: by 2002:a17:906:bcc1:b0:73d:715c:5730 with SMTP id lw1-20020a170906bcc100b0073d715c5730mr23101781ejb.293.1669202606864;
+        Wed, 23 Nov 2022 03:23:26 -0800 (PST)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id l9-20020a1709065a8900b00773c60c2129sm7187189ejq.141.2022.11.23.03.23.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 03:23:26 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: pwm: renesas,pwm-rcar: Add r8a779g0 support
+Date:   Wed, 23 Nov 2022 12:23:22 +0100
+Message-Id: <166920257255.1455112.3556103275813437388.b4-ty@gmail.com>
 X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221123112249.98281-1-angelogioacchino.delregno@collabora.com>
-References: <20221123112249.98281-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <2d1732595327307080c57e201a7f029f8adeabf3.1669047149.git.geert+renesas@glider.be>
+References: <2d1732595327307080c57e201a7f029f8adeabf3.1669047149.git.geert+renesas@glider.be>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some SoCs the System CIRQ register layout is slightly different,
-as there are more registers per function and in some cases other
-differences later in the layout: this is seen on at least MT8192,
-but it's also valid for some other "contemporary" SoCs both for
-Chromebooks and for smartphones.
+On Mon, 21 Nov 2022 17:13:02 +0100, Geert Uytterhoeven wrote:
+> Document support for the PWM timers in the Renesas R-Car V4H (R8A779G0)
+> SoC.
+> 
+> Based on a patch in the BSP by CongDang.
+> 
+> 
 
-Add the new "v2" register layout and use it if the compatible
-"mediatek,mt8192-cirq" is found.
+Applied, thanks!
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/irqchip/irq-mtk-cirq.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+[1/1] dt-bindings: pwm: renesas,pwm-rcar: Add r8a779g0 support
+      commit: 5719efcc5abb34ceb47b03e58709d99713f80db1
 
-diff --git a/drivers/irqchip/irq-mtk-cirq.c b/drivers/irqchip/irq-mtk-cirq.c
-index 4d873d2ba0fd..57452d389b47 100644
---- a/drivers/irqchip/irq-mtk-cirq.c
-+++ b/drivers/irqchip/irq-mtk-cirq.c
-@@ -39,6 +39,18 @@ static const u32 mtk_cirq_regs_v1[] = {
- 	[CIRQ_CONTROL]	= 0x300,
- };
- 
-+static const u32 mtk_cirq_regs_v2[] = {
-+	[CIRQ_STA]	= 0x0,
-+	[CIRQ_ACK]	= 0x80,
-+	[CIRQ_MASK_SET]	= 0x180,
-+	[CIRQ_MASK_CLR]	= 0x200,
-+	[CIRQ_SENS_SET]	= 0x300,
-+	[CIRQ_SENS_CLR]	= 0x380,
-+	[CIRQ_POL_SET]	= 0x480,
-+	[CIRQ_POL_CLR]	= 0x500,
-+	[CIRQ_CONTROL]	= 0x600,
-+};
-+
- #define CIRQ_EN	0x1
- #define CIRQ_EDGE	0x2
- #define CIRQ_FLUSH	0x4
-@@ -273,6 +285,7 @@ static const struct of_device_id mtk_cirq_of_match[] = {
- 	{ .compatible = "mediatek,mt2701-cirq", .data = &mtk_cirq_regs_v1 },
- 	{ .compatible = "mediatek,mt8135-cirq", .data = &mtk_cirq_regs_v1 },
- 	{ .compatible = "mediatek,mt8173-cirq", .data = &mtk_cirq_regs_v1 },
-+	{ .compatible = "mediatek,mt8192-cirq", .data = &mtk_cirq_regs_v2 },
- 	{ /* sentinel */ }
- };
- 
+Best regards,
 -- 
-2.38.1
-
+Thierry Reding <thierry.reding@gmail.com>
