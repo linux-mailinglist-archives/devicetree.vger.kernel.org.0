@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 192AA636BFF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:05:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC45A636C18
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:08:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237042AbiKWVFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 16:05:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58120 "EHLO
+        id S237373AbiKWVIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 16:08:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236332AbiKWVFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:05:46 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC5297AAE
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:05:44 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id a7so1947403ljq.12
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:05:44 -0800 (PST)
+        with ESMTP id S238976AbiKWVHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:07:23 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0589C97AAE
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:07:23 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bp15so29907105lfb.13
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:07:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dzqt331g8T68TbUv6sgzKml0DHljiiwCg07CtnYVk1Q=;
-        b=rdQUXwcIP0uEWh7Ulyhf+ky26BtMT19RFWwVxD33CSMIhC7n8iasJ+6WnsStWbiXxR
-         /NLZCPKKcYPaYV0VIQqmFRXFsEqXhHsMvfquefe89IdzwtezCPskcFJMLWu81RllkmtH
-         xe1TMNwABc2QWkw7JDNigKcjKX8uE8dPc69sqZNkNqFZCE3wtn6TMSknX3leib+edtnz
-         dStnp+uThASYAQTfly6odXol9Co5iXJTMoxwKt2w2Zec66aHBHHNlvfwTGbg/wnqGgcL
-         E/9TI/cKucsMIZLCArdgG5BeKCHsyh3iLwx/kJOgFX4zxrItqr1hbf/KFX18i8lqYQEP
-         SHPw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v0A9RS9WTIAG2lt1QtTE8t0FlIRUG4CfcC0TMQSUbrY=;
+        b=OlLe32Q7esYlagWdYgvqaaO7qhmshYM8OtCqr+j9I+xK/dw34fk/8Aqicw3BcPvaZ/
+         1PCv2AxP/VlKMF2iwb002W0G3prAqiIHdun1LZsEUmG8uLJ/CJ6Un8Kj0keI00PCk08n
+         i2U8gVm9BpvwrhLuQG7CIIf9EPzSV0oudxv5dl+Xqe+xhAlohvG4rYrMYE2geLt6jfFb
+         ZRx7549DNxoku9IpQXYrBFDh0vs2mPZcFTLruShebPgXLUclk9YF3ucB/9vzvINaJvYp
+         Mzcr2s3LVqHOjEUBe/FiL4zQodidSM/Nasz3T5gq20+S4EAQllxKONFAyVHBXcZoEej9
+         T3fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dzqt331g8T68TbUv6sgzKml0DHljiiwCg07CtnYVk1Q=;
-        b=ntHqhg9DbVUMjdrWFfZilOMyZofROF8psrJRYtsDG8+EP3CKbTfIRmruxbuW/rQ5QI
-         cfXEE8u+KwPpzgvACM42G3608ry94+U7FgcMXVa93NqJF2dZmNApuHk+kdYne+hRmxpT
-         v+6grGEmNubz8b7H+eM3Pr0mGZNYC9Qihi/+BchusjMWhYRQwbNnrTohgCJSeCXWYoZh
-         iIT/4lENLrggbgoggielGc14R77FP0wuU1P0h5z2eL1PqhGGp1xGJVlbe7AR88jUIsHC
-         dspvbfHmcToM0O9XMse0FM2qqbFNINoIqzcydD6al1XFjPK9HdpPVaGigI29PFx1fcgP
-         /RBw==
-X-Gm-Message-State: ANoB5pkhSt8309lm80F16SK9EFg39VpwEaZh1QWFKR9rWCKRcjuArXrT
-        trOXkE1xWCs3KAM1tilS+xq7OQ==
-X-Google-Smtp-Source: AA0mqf4vdFElVVd26hcrflnM3jwAKdLRue0OvT56EcJoe77rqn9gFdAxg0vHma8xxGawZfkoLjfBgg==
-X-Received: by 2002:a05:651c:b0f:b0:277:ba3:ca71 with SMTP id b15-20020a05651c0b0f00b002770ba3ca71mr9097106ljr.146.1669237543343;
-        Wed, 23 Nov 2022 13:05:43 -0800 (PST)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id 6-20020ac25f06000000b004a91d1b3070sm241096lfq.308.2022.11.23.13.05.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 13:05:42 -0800 (PST)
-Message-ID: <ab9c9915-3e56-c72f-8102-eb9a0d36c4be@linaro.org>
-Date:   Wed, 23 Nov 2022 23:05:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/2] drm/msm/disp/dpu1: add support for display on SM6115
-Content-Language: en-GB
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v0A9RS9WTIAG2lt1QtTE8t0FlIRUG4CfcC0TMQSUbrY=;
+        b=6gukfWq9aZHXOF0EeyzaG82ruNR5zEeeBw1/ImTKxyoAXxmZ53GRb5oRbL7GMJG4hI
+         KEkjNJ4GlFaKL72QNCYDNyOJEc0JVMOeMyhy75PTZwFGPCgdQLlI6TMV4btsu5Ok9BHc
+         Hs/Iw3cKLxJ+DpUxNqSs1cQyz6XSXeTXv9qn7F4vV+BD1VJ4NJv333/rWgacouOM3khx
+         sD6C+4j4I91uE22NQaXSK6WdLRhRo1wxRAKAT9RaXICBowZdwkI7C2Al1V7tH2vBHD0W
+         B7OFeN18nqs8K9UTFTUuXIN+mJbIoBn9aTqUThijdcgUmGyry3aZ1LLiMBTtXynn5boj
+         tXpg==
+X-Gm-Message-State: ANoB5plhejKlGyrVP1QjAfOZSDAkt5UYOTNM+4F6hckyjS8EUKZNEcVa
+        2aUg/mCsqB/11TvWtAjQZifrcw==
+X-Google-Smtp-Source: AA0mqf75hVPqSKxibnxFEsIPqYTLibqLSPku8NPj30wsuDlj+TSP2+pWTMc7yYwJd2S8M4bkwpKu9w==
+X-Received: by 2002:a05:6512:3c8e:b0:4ab:714b:7d1b with SMTP id h14-20020a0565123c8e00b004ab714b7d1bmr9670025lfv.621.1669237641402;
+        Wed, 23 Nov 2022 13:07:21 -0800 (PST)
+Received: from eriador.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id c26-20020ac2415a000000b0048a8c907fe9sm3024119lfi.167.2022.11.23.13.07.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 13:07:21 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Clark <robdclark@gmail.com>,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Jason Wang <wangborong@cdjrlc.com>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221120133744.24808-1-a39.skl@gmail.com>
- <20221120133744.24808-3-a39.skl@gmail.com>
- <f39ae6c3-e156-7366-6802-c392f1b1246e@linaro.org>
-In-Reply-To: <f39ae6c3-e156-7366-6802-c392f1b1246e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v3 0/5] arm64: dts: qcom: sm8450-hdk: enable HDMI output
+Date:   Wed, 23 Nov 2022 23:07:15 +0200
+Message-Id: <20221123210720.3593671-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -95,61 +77,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 01:54, Dmitry Baryshkov wrote:
-> On 20/11/2022 15:37, Adam Skladowski wrote:
->> Add required display hw catalog changes for SM6115.
->>
->> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
->> ---
->>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 87 +++++++++++++++++++
->>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  1 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |  1 +
->>   drivers/gpu/drm/msm/msm_mdss.c                |  5 ++
->>   4 files changed, 94 insertions(+)
->>
-> 
-> [skipped]
-> 
->> diff --git a/drivers/gpu/drm/msm/msm_mdss.c 
->> b/drivers/gpu/drm/msm/msm_mdss.c
->> index 6a4549ef34d4..86b28add1fff 100644
->> --- a/drivers/gpu/drm/msm/msm_mdss.c
->> +++ b/drivers/gpu/drm/msm/msm_mdss.c
->> @@ -280,6 +280,10 @@ static int msm_mdss_enable(struct msm_mdss 
->> *msm_mdss)
->>           /* UBWC_2_0 */
->>           msm_mdss_setup_ubwc_dec_20(msm_mdss, 0x1e);
->>           break;
->> +    case DPU_HW_VER_630:
->> +        /* UBWC_2_0 */
->> +        msm_mdss_setup_ubwc_dec_20(msm_mdss, 0x11f);
->> +        break;
-> 
-> According to the vendor dtsi the sm6115 is UBWC 1.0, not 2.0
-> 
-> Could you please doublecheck?
-> 
-> Looks good to me otherwise.
+Add device tree nodes for MDSS, DPU and DSI devices on Qualcomm SM8450
+platform. Enable these devices and add the HDMI bridge configuration on
+SM8450 HDK.
 
-After doublechecking:
+Changes since v2:
+- Dropped clock-names from mdss device node
+- Fixed pinctrl configuration used by lt9611uxc (Krzysztof)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Changes since v1:
+- Reorder properties, making status the last one
+- Rename opp nodes to follow the schema
+- Renamed display-controller and phy device nodes
+- Dropped phy-names for DSI PHYs
+- Renamed DSI and DSI PHY labels to include mdss_ prefix
+- Renamed 3v3 regulator device node to add -regulator suffix
 
-> 
->>       case DPU_HW_VER_720:
->>           msm_mdss_setup_ubwc_dec_40(msm_mdss, UBWC_3_0, 6, 1, 1, 1);
->>           break;
->> @@ -509,6 +513,7 @@ static const struct of_device_id mdss_dt_match[] = {
->>       { .compatible = "qcom,sc7180-mdss" },
->>       { .compatible = "qcom,sc7280-mdss" },
->>       { .compatible = "qcom,sc8180x-mdss" },
->> +    { .compatible = "qcom,sm6115-mdss" },
->>       { .compatible = "qcom,sm8150-mdss" },
->>       { .compatible = "qcom,sm8250-mdss" },
->>       {}
-> 
+Dmitry Baryshkov (3):
+  arm64: dts: qcom: sm8450: add RPMH_REGULATOR_LEVEL_LOW_SVS_D1
+  arm64: dts: qcom: sm8450: add display hardware devices
+  arm64: dts: qcom: sm8450-hdk: enable display hardware
+
+Vinod Koul (2):
+  arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI bridge
+  arm64: dts: qcom: sm8450-hdk: Enable HDMI Display
+
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 117 +++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 303 +++++++++++++++++++++++-
+ include/dt-bindings/power/qcom-rpmpd.h  |   1 +
+ 3 files changed, 409 insertions(+), 12 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.35.1
 
