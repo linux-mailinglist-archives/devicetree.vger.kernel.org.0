@@ -2,110 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832AF6362DA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F3F6362EB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:10:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238185AbiKWPHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 10:07:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41970 "EHLO
+        id S237809AbiKWPKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 10:10:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238589AbiKWPH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:07:26 -0500
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13382286DE;
-        Wed, 23 Nov 2022 07:07:24 -0800 (PST)
-Received: by mail-io1-f51.google.com with SMTP id n188so13334363iof.8;
-        Wed, 23 Nov 2022 07:07:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mEKRRENqRMYufrIxQe5nh4pku7YdsEXR7GLENp5qxds=;
-        b=7HYCzPeRz6R67eBGjx8AK+E+VUMgd5IrFWPHPLhDVlqjIKFF0TwZq+jy1XH/YHyOFI
-         /s04lzpFRnkRoEtNS87RN8G5N4hNtyrabYQhs0onSjQjkP2bcRFHmgS3W2sW2BQqRRuT
-         jL1ofvoFknurGJwpKg5GpcGDsZjvfjY19wlOfCZQsZ1DEgljA+evs+T/sieyuH7IlYPI
-         n99DmNd1stgEUbQy32tAbyNssioQpSQpO8A9phBN+V3yON1Kvxywia0D+a1OL759V9bS
-         N1OXIXAOaIH70LeJPdqZKjTTHfIzSfOo5rCo9Nb+6PbfQ1pqqeAmWVqS1PxDPSnVksbu
-         ZRJA==
-X-Gm-Message-State: ANoB5pkSeGRO8yvB1kKu1MpvPzmzDflMW7JPk/qZQFODoJjSJrRwzDWE
-        g7uJMn4bd/YqDR9TMdR2Lg==
-X-Google-Smtp-Source: AA0mqf5WEOGwgDMNRRrW1Nl5ZZQrwr9oGk58/ul6P+DcjJ/FKrD+KR+qn5EypzZ/kztelu0r7NW1nA==
-X-Received: by 2002:a5e:8302:0:b0:6de:4dce:37ef with SMTP id x2-20020a5e8302000000b006de4dce37efmr4093910iom.68.1669216043222;
-        Wed, 23 Nov 2022 07:07:23 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id u28-20020a02cbdc000000b003757ab96c08sm6561820jaq.67.2022.11.23.07.07.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 07:07:22 -0800 (PST)
-Received: (nullmailer pid 2005408 invoked by uid 1000);
-        Wed, 23 Nov 2022 15:07:21 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S238175AbiKWPJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:09:44 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254912AE12;
+        Wed, 23 Nov 2022 07:09:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D5D44B82096;
+        Wed, 23 Nov 2022 15:09:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA1FC433C1;
+        Wed, 23 Nov 2022 15:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669216162;
+        bh=ZB9yXxoNWv0/ib9hXa9McUF3dn9BdeiQydTdlw+V3J4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=VkvAYFNHhdlZqIJOGsEfQnFk5pkTAqg36frexyGlewnwozb7Y5OIe5S0WzD2y/V+s
+         awdkDoeGQwn3xQTF2F8mJlQdrs85FCT81aqnz9QGwEXWXGjCMruifGgQupcscmCrDl
+         tZeRNbP0MUfm/ZmV7xvZvTyhXu7P3YkZk1LJ3gemPja1XRB3FQjUquXsvSDGEH73MS
+         kgXjZ0JzobJ9Jea0NsaHr4KZjEsxdN8Gaud++siIa3Ii56I04nx3utAfGHPtAOat66
+         wkX901eLvy0zt6DQ51YA7hoTJJWQ5Aa/cvCfUV43nvi1EBoqePr/1zsbaQQ4DEJbiz
+         BkK021E9NWl6A==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH v7 00/20] PCI: dwc: Add generic resources and Baikal-T1 support
+Date:   Wed, 23 Nov 2022 16:09:12 +0100
+Message-Id: <166921583106.17960.15949667825256145052.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
+References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     linux-aspeed@lists.ozlabs.org, linux-hwmon@vger.kernel.org,
-        lee@kernel.org, linux-doc@vger.kernel.org, jdelvare@suse.com,
-        linux-pwm@vger.kernel.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, u.kleine-koenig@pengutronix.de,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, corbet@lwn.net,
-        andrew@aj.id.au, joel@jms.id.au
-In-Reply-To: <20221123061635.32025-2-billy_tsai@aspeedtech.com>
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-2-billy_tsai@aspeedtech.com>
-Message-Id: <166921592541.2001852.8427859391374590200.robh@kernel.org>
-Subject: Re: [v4 1/5] dt-bindings: mfd: Add aspeed pwm-tach binding
-Date:   Wed, 23 Nov 2022 09:07:21 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 23 Nov 2022 14:16:31 +0800, Billy Tsai wrote:
-> Add device binding for aspeed pwm-tach device which is a multi-function
-> device include pwm and tach function.
+On Sun, 13 Nov 2022 22:12:41 +0300, Serge Semin wrote:
+> This patchset is a third one in the series created in the framework of
+> my Baikal-T1 PCIe/eDMA-related work:
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+> [1: Done v5] PCI: dwc: Various fixes and cleanups
+> Link: https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
+> Merged: kernel 6.0-rc1
+> [2: Done v4] PCI: dwc: Add hw version and dma-ranges support
+> Link: https://lore.kernel.org/linux-pci/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
+> Merged: kernel 6.0-rc1
+> [3: In-review v7] PCI: dwc: Add generic resources and Baikal-T1 support
+> Link: ---you are looking at it---
+> [4: Done v6] dmaengine: dw-edma: Add RP/EP local DMA support
+> Link: https://lore.kernel.org/linux-pci/20221107210438.1515-1-Sergey.Semin@baikalelectronics.ru/
 > 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I think it is time we merged this series - we went through
+several rounds of reviews and it should be ready for
+mainline (in particular wrt using the generic infrastructure
+it puts in place).
 
-yamllint warnings/errors:
+Applied to pci/dwc, thank you.
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/pwm/aspeed,ast2600-pwm.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: pwm-tach@1e610000: pwm: False schema does not allow {'compatible': ['aspeed,ast2600-pwm'], '#pwm-cells': [[3]], 'pinctrl-names': ['default'], 'pinctrl-0': [[4294967295]]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb: pwm-tach@1e610000: tach: False schema does not allow {'compatible': ['aspeed,ast2600-tach'], 'pinctrl-names': ['default'], 'pinctrl-0': [[4294967295]]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb:0:0: /example-0/pwm-tach@1e610000/pwm: failed to match any schema with compatible: ['aspeed,ast2600-pwm']
-Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.example.dtb:0:0: /example-0/pwm-tach@1e610000/tach: failed to match any schema with compatible: ['aspeed,ast2600-tach']
+[01/20] dt-bindings: imx6q-pcie: Fix clock names for imx6sx and imx8mq
+        https://git.kernel.org/lpieralisi/pci/c/b8a83e600bdd
+[02/20] dt-bindings: visconti-pcie: Fix interrupts array max constraints
+        https://git.kernel.org/lpieralisi/pci/c/4cf4b9b70ab2
+[03/20] dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+        https://git.kernel.org/lpieralisi/pci/c/057646a5db2f
+[04/20] dt-bindings: PCI: dwc: Remove bus node from the examples
+        https://git.kernel.org/lpieralisi/pci/c/b9fe9985aee2
+[05/20] dt-bindings: PCI: dwc: Add phys/phy-names common properties
+        https://git.kernel.org/lpieralisi/pci/c/875596361910
+[06/20] dt-bindings: PCI: dwc: Add max-link-speed common property
+        https://git.kernel.org/lpieralisi/pci/c/eaa9d8865287
+[07/20] dt-bindings: PCI: dwc: Apply generic schema for generic device only
+        https://git.kernel.org/lpieralisi/pci/c/f133396e2d00
+[08/20] dt-bindings: PCI: dwc: Add max-functions EP property
+        https://git.kernel.org/lpieralisi/pci/c/12f7936c7a0e
+[09/20] dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
+        https://git.kernel.org/lpieralisi/pci/c/35486813c41b
+[10/20] dt-bindings: PCI: dwc: Add reg/reg-names common properties
+        https://git.kernel.org/lpieralisi/pci/c/4cc13eedb892
+[11/20] dt-bindings: PCI: dwc: Add clocks/resets common properties
+        https://git.kernel.org/lpieralisi/pci/c/bd9504af9169
+[12/20] dt-bindings: PCI: dwc: Add dma-coherent property
+        https://git.kernel.org/lpieralisi/pci/c/4a8972542a6d
+[13/20] dt-bindings: PCI: dwc: Apply common schema to Rockchip DW PCIe nodes
+        https://git.kernel.org/lpieralisi/pci/c/98b59129cb9f
+[14/20] dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
+        https://git.kernel.org/lpieralisi/pci/c/ce27c4e61f2d
+[15/20] PCI: dwc: Introduce dma-ranges property support for RC-host
+        https://git.kernel.org/lpieralisi/pci/c/8522e17d4cab
+[16/20] PCI: dwc: Introduce generic controller capabilities interface
+        https://git.kernel.org/lpieralisi/pci/c/7f9e982dc4fc
+[17/20] PCI: dwc: Introduce generic resources getter
+        https://git.kernel.org/lpieralisi/pci/c/ef8c58877fe7
+[18/20] PCI: dwc: Combine iATU detection procedures
+        https://git.kernel.org/lpieralisi/pci/c/9f67ecdd9579
+[19/20] PCI: dwc: Introduce generic platform clocks and resets
+        https://git.kernel.org/lpieralisi/pci/c/ef69f852a978
+[20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
+        https://git.kernel.org/lpieralisi/pci/c/ba6ed462dcf4
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221123061635.32025-2-billy_tsai@aspeedtech.com
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command.
-
+Thanks,
+Lorenzo
