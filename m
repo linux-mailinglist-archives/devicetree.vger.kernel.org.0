@@ -2,187 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ECF3636CED
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:13:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6945B636CF7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:14:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiKWWNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 17:13:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
+        id S229585AbiKWWOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 17:14:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiKWWNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:13:44 -0500
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD052C668;
-        Wed, 23 Nov 2022 14:13:43 -0800 (PST)
-Received: by mail-il1-f175.google.com with SMTP id x13so54882ilp.8;
-        Wed, 23 Nov 2022 14:13:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q87qXZC226hu78NzbfxizHwI49QoPdMNwaF2clTtxOA=;
-        b=AZRSfx89jWRP11mgYFs5ZzFSChW3WCr3McVGNMsiNol2lBgvMeCzw4FM3hJhVQosOE
-         Qv21opvFkxG7ku1ZrFPpJbbPjloOdC6CNgMRPnjKb//nFsMh2c1OeukmM+p+bqwMZsp3
-         L0PXvxyuXjU55vcibEpx52R746R3dMFyygLY6dxkyrEvrdK6ZiC4k8XB4DwqQbfFKJL2
-         SP1eaZ6InRhQ/UrIrqmRhZBIfG3zDiYlAcdwkJRQuQI0mxz6qr0GC0nX8Ni6A/rd/74S
-         1buIGmbFtffZ+a2vSFyaVxpH7zX05iznOPZeGWeCckrvFwrEXIFKE8bQrcG0Hp4riH0s
-         eI8g==
-X-Gm-Message-State: ANoB5pmHBbEt8OUyNKQlvPk93EzboLtEeO24JNab17o+FSCGsEJkRO8h
-        tpY/WPhqaICeU/M4jCSrsw==
-X-Google-Smtp-Source: AA0mqf7LzM4I6ggytAOrMmBYRLRAfM5DiOv4cQPoS7dQx4pulzdlQzfhgkQnI7OOk5NA1ImdkULn5w==
-X-Received: by 2002:a92:c80e:0:b0:300:e232:e0c3 with SMTP id v14-20020a92c80e000000b00300e232e0c3mr4631999iln.320.1669241622484;
-        Wed, 23 Nov 2022 14:13:42 -0800 (PST)
-Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id b2-20020a92ce02000000b00302aa2a202dsm5463509ilo.64.2022.11.23.14.13.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 14:13:42 -0800 (PST)
-Received: (nullmailer pid 2599122 invoked by uid 1000);
-        Wed, 23 Nov 2022 22:13:43 -0000
-Date:   Wed, 23 Nov 2022 16:13:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        Marcin Wojtas <mw@semihalf.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH 4/6] dt-bindings: net: marvell,prestera: Describe PCI
- devices of the prestera family
-Message-ID: <20221123221343.GA2595383-robh@kernel.org>
-References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
- <20221117215557.1277033-5-miquel.raynal@bootlin.com>
+        with ESMTP id S229644AbiKWWOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:14:25 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB4C10AD38;
+        Wed, 23 Nov 2022 14:14:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1169F61D85;
+        Wed, 23 Nov 2022 22:14:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E210C433C1;
+        Wed, 23 Nov 2022 22:14:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669241657;
+        bh=IlfNd3xG0lGjgm7fwh3ZoO9MxNH11zL8e7meF/BJR3A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LELmx55Q/1YwJS2GAtTntuVrIasCR4SSyMBZTwyE3I2LhZeVPg3O4J+1m4/iGwNmA
+         Rdsu1YItOzKFOa0qPQIPMZ8qGR8KsuevwlOt2s2MhrJFt2cNh4gNv0RgZo8l4DXcjD
+         9ppKwckhHnNb2Mj653o1U9Q7KU5c/wUfZQAHClnBZ6DdhVD+PEJdgIRolUK+MK8yor
+         RSAEqap47c5SWrYtDajGNuPxr5YEROKY5fFrr26dYK+YzFvxUtMcQ3z4CLMvzhczL2
+         gJ75oU+GDzB+W6ESh0rtEy4412FnSf3kFZAvNxdsTlEUhdyLNXingTeDN2lenhnVq8
+         MvHqrlegCTdIA==
+Date:   Wed, 23 Nov 2022 22:14:12 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     daire.mcnamara@microchip.com, robh@kernel.org
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 9/9] riscv: dts: microchip: add parent ranges and
+ dma-ranges for IKRD v2022.09
+Message-ID: <Y36bNE/pG14F9KyY@spud>
+References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+ <20221116135504.258687-10-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221117215557.1277033-5-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20221116135504.258687-10-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 10:55:55PM +0100, Miquel Raynal wrote:
-> Even though the devices have very little in common beside the name and
-> the main "switch" feature, Marvell Prestera switch family is also
-> composed of PCI-only devices which can receive additional static
-> properties, like nvmem cells to point at MAC addresses, for
-> instance. Let's describe them.
+Hey Rob,
+
+On Wed, Nov 16, 2022 at 01:55:04PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> we have replaced the "microchip,matro0" hack property with what was
+> suggested by Rob - create a parent bus and use ranges and dma-ranges in
+> the parent bus and pcie device to achieve the address translations we
+> need. Add the appropriate ranges and dma-ranges for the v2022.09 IKRD
+> so that it remains functional.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+
+This patch was included as demonstration of what the series results in
+DT wise. It's the custom address translation property that you had
+NACKED in [0] but done (we think) in the way that you suggested with an
+extra, middle-man bus. Could you take a look & see if it fits with what
+you requested?
+
+Thanks,
+Conor.
+
+0 - https://lore.kernel.org/linux-riscv/20220902142202.2437658-1-daire.mcnamara@microchip.com/
+
 > ---
->  .../bindings/net/marvell,prestera.yaml        | 55 ++++++++++++++++---
->  1 file changed, 48 insertions(+), 7 deletions(-)
+>  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 62 +++++++++++--------
+>  1 file changed, 35 insertions(+), 27 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/marvell,prestera.yaml b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> index b0a3ecca406e..f159fadf86ec 100644
-> --- a/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> +++ b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> @@ -4,19 +4,24 @@
->  $id: http://devicetree.org/schemas/net/marvell,prestera.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
+> index 1069134f2e12..51ce87e70b33 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
+> @@ -26,33 +26,41 @@ i2c2: i2c@40000200 {
+>  		status = "disabled";
+>  	};
 >  
-> -title: Marvell Prestera AlleyCat3 switch
-> +title: Marvell Prestera switch family
+> -	pcie: pcie@3000000000 {
+> -		compatible = "microchip,pcie-host-1.0";
+> -		#address-cells = <0x3>;
+> -		#interrupt-cells = <0x1>;
+> -		#size-cells = <0x2>;
+> -		device_type = "pci";
+> -		reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+> -		reg-names = "cfg", "apb";
+> -		bus-range = <0x0 0x7f>;
+> -		interrupt-parent = <&plic>;
+> -		interrupts = <119>;
+> -		interrupt-map = <0 0 0 1 &pcie_intc 0>,
+> -				<0 0 0 2 &pcie_intc 1>,
+> -				<0 0 0 3 &pcie_intc 2>,
+> -				<0 0 0 4 &pcie_intc 3>;
+> -		interrupt-map-mask = <0 0 0 7>;
+> -		clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
+> -		clock-names = "fic1", "fic3";
+> -		ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
+> -		dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x1 0x00000000>;
+> -		msi-parent = <&pcie>;
+> -		msi-controller;
+> -		status = "disabled";
+> -		pcie_intc: interrupt-controller {
+> -			#address-cells = <0>;
+> -			#interrupt-cells = <1>;
+> -			interrupt-controller;
+> +	fabric-pcie-bus {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>,
+> +			 <0x30 0x0 0x30 0x0 0x10 0x0>;
+> +		dma-ranges = <0x0 0x0 0x10 0x0 0x0 0x80000000>;
+> +		pcie: pcie@3000000000 {
+> +			compatible = "microchip,pcie-host-1.0";
+> +			#address-cells = <0x3>;
+> +			#interrupt-cells = <0x1>;
+> +			#size-cells = <0x2>;
+> +			device_type = "pci";
+> +			reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+> +			reg-names = "cfg", "apb";
+> +			bus-range = <0x0 0x7f>;
+> +			interrupt-parent = <&plic>;
+> +			interrupts = <119>;
+> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,
+> +					<0 0 0 2 &pcie_intc 1>,
+> +					<0 0 0 3 &pcie_intc 2>,
+> +					<0 0 0 4 &pcie_intc 3>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
+> +			clock-names = "fic1", "fic3";
+> +			ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
+> +			dma-ranges = <0x3000000 0x10 0x0 0x0 0x0 0x0 0x80000000>;
+> +			msi-parent = <&pcie>;
+> +			msi-controller;
+> +			status = "disabled";
+> +			pcie_intc: interrupt-controller {
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +				interrupt-controller;
+> +			};
+>  		};
+>  	};
 >  
->  maintainers:
->    - Miquel Raynal <miquel.raynal@bootlin.com>
->  
->  properties:
->    compatible:
-> -    items:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - marvell,prestera-98dx3236
-> +              - marvell,prestera-98dx3336
-> +              - marvell,prestera-98dx4251
-> +          - const: marvell,prestera
->        - enum:
-> -          - marvell,prestera-98dx3236
-> -          - marvell,prestera-98dx3336
-> -          - marvell,prestera-98dx4251
-> -      - const: marvell,prestera
-> +          - pci11ab,c804
-> +          - pci11ab,c80c
-> +          - pci11ab,cc1e
->  
->    reg:
->      maxItems: 1
-> @@ -28,10 +33,33 @@ properties:
->      description: Reference to the DFX Server bus node.
->      $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +  nvmem-cells: true
-> +
-> +  nvmem-cell-names: true
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: marvell,prestera
-> +
-> +# Memory mapped AlleyCat3 family
-> +then:
-> +  properties:
-> +    nvmem-cells: false
-> +    nvmem-cell-names: false
-> +  required:
-> +    - interrupts
-> +
-> +# PCI Aldrin family
-> +else:
-> +  properties:
-> +    interrupts: false
-> +    dfx: false
-> +
->  required:
->    - compatible
->    - reg
-> -  - interrupts
->  
->  additionalProperties: false
->  
-> @@ -43,3 +71,16 @@ examples:
->          interrupts = <33>, <34>, <35>;
->          dfx = <&dfx>;
->      };
-> +
-> +  - |
-> +    pcie {
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-
-           ranges;
-           device_type = "pci";
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +
-> +        switch@0,0 {
-> +            reg = <0x0 0x0 0x0 0x0 0x0>;
-> +            compatible = "pci11ab,c80c";
-> +            nvmem-cells = <&mac_address 0>;
-> +            nvmem-cell-names = "mac-address";
-> +        };
-> +    };
 > -- 
-> 2.34.1
+> 2.25.1
 > 
 > 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
