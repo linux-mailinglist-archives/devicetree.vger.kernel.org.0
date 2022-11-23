@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE30634B72
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 01:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 446DC634B79
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 01:08:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234372AbiKWAFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 19:05:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
+        id S234862AbiKWAIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 19:08:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbiKWAFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 19:05:54 -0500
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED74CD2F57;
-        Tue, 22 Nov 2022 16:05:53 -0800 (PST)
-Received: by mail-io1-f42.google.com with SMTP id n188so12144067iof.8;
-        Tue, 22 Nov 2022 16:05:53 -0800 (PST)
+        with ESMTP id S232341AbiKWAIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 19:08:32 -0500
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB869D2F65;
+        Tue, 22 Nov 2022 16:08:30 -0800 (PST)
+Received: by mail-io1-f48.google.com with SMTP id z3so12157062iof.3;
+        Tue, 22 Nov 2022 16:08:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HOAOA3l25FTlYWgHdX0NRqhyY9RcRAzmGvtq9++eoqg=;
-        b=zN8wvWkvhB3aWE6+Ul8ko4wtDbePEXuyuJ8SBoDmCib4qmXxJp/ig97AtEdJLdwxiK
-         zABZHiAU4ZKmexgcoUMB4jdnsgf/ToA9VXbl1DHT/rCzal+BGFRbkBf0JzHl+zofisD3
-         M1mP+vVEKqnr7JZbDurXgoUFpif+IIh9ZZRFk18FKiVoAqRFuYzgGfHVv9ptG0CXdIc8
-         cjDkVRySbyGbzyjkONdUXBTzMNrwe83tcMCuosFcQkkip7LL2bbd1iN3ZuA26q0UbGy2
-         znsYADbpf0j8lK9IeRMNbn7978hCB6OamqFR8Fw+tY0X49HlrSSbuo3qU3/cmho89a7/
-         OUOg==
-X-Gm-Message-State: ANoB5pk/MeX2Wy9PJE0MABBYTUINLUuhjQcRwtAHEKt94RK245Ojy44b
-        DfLX+M1Zc8xqJz0J+6LmLa7FCypfDQ==
-X-Google-Smtp-Source: AA0mqf7BJHES9MUwE3wyYO2MhDcoicDShRER72IeewX9pYLrmCObA2dqPuNTNfOnNiY9xNcRz1K8tA==
-X-Received: by 2002:a6b:c844:0:b0:6db:fe34:6948 with SMTP id y65-20020a6bc844000000b006dbfe346948mr3010433iof.209.1669161953103;
-        Tue, 22 Nov 2022 16:05:53 -0800 (PST)
+        bh=c5ZPbYkKnK2IkXf6T8FgMRx12jqOc1F0dei+USA8qpg=;
+        b=RWoJBoWJzSOjSw0arqQcRF3UNU5Qq2oD/uegmSJDwt524HCaUaAQOd9NXWannpyQaM
+         N6y2z4AgFpQr8BBZL0WdZOSNkYiQ8GcouHNN9+8weK3PLiXFbwNOHKRhxb9gUytqbHtZ
+         AT0VR2ZpHUv3DTMPVBP3uiu4sxhJrERnt1V/Q0CKDyNeibV1cgVO0aM0BK1rtUIju2WW
+         GJ9akvm0cIx0Q2GcZ4C+6Jhdtx0+K19c2NTimy1sFObIZkt+yXPzszAslmv1ZCzHpByg
+         7Zatp5JvCQdHKV3C+Qpvx3uKAiE2OMcHNHfIhiZERdVTnTni9zF12oipPs+Je/g1bn5y
+         Ov4w==
+X-Gm-Message-State: ANoB5pnuThT1QTCPDD/Hs+AqR3f9bLkZe+PnHbx/PTAUexbWXoddpKgu
+        rZD3HQyKTJmlhVSbsEhmIg==
+X-Google-Smtp-Source: AA0mqf6Wr7xqm6RogMUZda84qHyMvqZUsWZi6Gq6zcsxkRFMGZ1oVHNeafF1Qzbl4qKI3CfQBYwImg==
+X-Received: by 2002:a05:6638:3458:b0:376:24f6:2dc3 with SMTP id q24-20020a056638345800b0037624f62dc3mr11956348jav.26.1669162110050;
+        Tue, 22 Nov 2022 16:08:30 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id b4-20020a05660214c400b006cab79c4214sm5776318iow.46.2022.11.22.16.05.51
+        by smtp.gmail.com with ESMTPSA id z7-20020a05663822a700b003752e5b3c23sm5756588jas.20.2022.11.22.16.08.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 16:05:52 -0800 (PST)
-Received: (nullmailer pid 823019 invoked by uid 1000);
-        Wed, 23 Nov 2022 00:05:52 -0000
-Date:   Tue, 22 Nov 2022 18:05:52 -0600
+        Tue, 22 Nov 2022 16:08:29 -0800 (PST)
+Received: (nullmailer pid 828924 invoked by uid 1000);
+        Wed, 23 Nov 2022 00:08:31 -0000
+Date:   Tue, 22 Nov 2022 18:08:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marvin Lin <milkfafa@gmail.com>
-Cc:     mchehab@kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, kwliu@nuvoton.com,
-        kflin@nuvoton.com
-Subject: Re: [PATCH v7 2/7] media: dt-binding: nuvoton: Add bindings for NPCM
- VCD and ECE engine
-Message-ID: <20221123000552.GA817752-robh@kernel.org>
-References: <20221122085724.3245078-1-milkfafa@gmail.com>
- <20221122085724.3245078-3-milkfafa@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jerome Neanne <jerome.neanne@baylibre.com>,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Andrew Davis <afd@ti.com>, Mark Brown <broonie@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH] dt-bindings: Move fixed string node names under
+ 'properties'
+Message-ID: <166916210667.828774.15527231190149112577.robh@kernel.org>
+References: <20221118223708.1721134-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221122085724.3245078-3-milkfafa@gmail.com>
+In-Reply-To: <20221118223708.1721134-1-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,119 +68,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 04:57:19PM +0800, Marvin Lin wrote:
-> Add dt-binding document for Video Capture/Differentiation Engine (VCD)
-> and Encoding Compression Engine (ECE) present on Nuvoton NPCM SoCs.
+
+On Fri, 18 Nov 2022 16:37:07 -0600, Rob Herring wrote:
+> Fixed string node names should be under 'properties' rather than
+> 'patternProperties'. Additionally, without beginning and end of line
+> anchors, any prefix or suffix is allowed on the specified node name.
+> These cases don't appear to want a prefix or suffix, so move them under
+> 'properties'.
 > 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> In some cases, the diff turns out to look like we're moving some
+> patterns rather than the fixed string properties.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/media/nuvoton,npcm-video.yaml    | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nuvoton,npcm-video.yaml
+>  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 54 ++++++++--------
+>  .../bindings/regulator/ti,tps65219.yaml       | 14 ++--
+>  .../bindings/sound/tlv320adcx140.yaml         | 64 +++++++++----------
+>  3 files changed, 66 insertions(+), 66 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nuvoton,npcm-video.yaml b/Documentation/devicetree/bindings/media/nuvoton,npcm-video.yaml
-> new file mode 100644
-> index 000000000000..b5be7ef09038
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nuvoton,npcm-video.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nuvoton,npcm-video.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM Video Capture/Encode Engine Device Tree Bindings
 
-Drop ' Device Tree Bindings'
-
-> +
-> +maintainers:
-> +  - Joseph Liu <kwliu@nuvoton.com>
-> +  - Marvin Lin <kflin@nuvoton.com>
-> +
-> +description: |
-> +  Video Capture/Differentiation Engine (VCD) and Encoding Compression Engine
-> +  (ECE) present on Nuvoton NPCM SoCs.
-
-Sounds like 2 h/w blocks? If so, then it should be 2 separate nodes.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-video
-> +      - nuvoton,npcm845-video
-
-'video' doesn't sound like the name of the h/w block(s).
-
-> +
-> +  reg:
-> +    items:
-> +      - description: VCD registers
-> +      - description: ECE registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: vcd
-> +      - const: ece
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: VCD reset control
-> +      - description: ECE reset control
-> +
-> +  reset-names:
-> +    items:
-> +      - const: vcd
-> +      - const: ece
-> +
-> +  nuvoton,syscon-gcr:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description: Phandle to the Global Control Register DT node
-> +
-> +  nuvoton,syscon-gfxi:
-> +    $ref: /schemas/types.yaml#definitions/phandle
-> +    description: Phandle to the Graphics Core Information DT node
-> +
-> +  memory-region:
-> +    description:
-> +      CMA pool to use for buffers allocation instead of the default CMA pool.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - resets
-> +  - reset-names
-> +  - nuvoton,syscon-gcr
-> +  - nuvoton,syscon-gfxi
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/reset/nuvoton,npcm7xx-reset.h>
-> +
-> +    video: video@f0810000 {
-> +        compatible = "nuvoton,npcm750-video";
-> +        reg = <0xf0810000 0x10000>,
-> +              <0xf0820000 0x2000>;
-> +        reg-names = "vcd", "ece";
-> +        interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-> +        resets = <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_VCD>,
-> +                 <&rstc NPCM7XX_RESET_IPSRST2 NPCM7XX_RESET_ECE>;
-> +        reset-names = "vcd", "ece";
-> +        nuvoton,syscon-gcr = <&gcr>;
-> +        nuvoton,syscon-gfxi = <&gfxi>;
-> +    };
-> -- 
-> 2.34.1
-> 
-> 
+Applied, thanks!
