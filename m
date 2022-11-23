@@ -2,81 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8574635FB5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA3F636009
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:37:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236550AbiKWNch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 08:32:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40570 "EHLO
+        id S236260AbiKWNhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 08:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238831AbiKWNcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:32:12 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39B56F35E
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:17:02 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id a29so28059647lfj.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:17:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9rrWiHxgy8XL4EMhVPJm4PXUcc5P4DC16VghLNpNvqc=;
-        b=Szj6IJnVYD6/7h8/2+rn3OkkE6gMACGs65XIdv7bNYNGKsGU5q7Us/Uq7gdSb9ly1G
-         yUlhPNVMz6Jqo8Yy5gy5XqTa9MdZy9guSkgl/F1M7lVObURlfoB6Gf2pzeztXiuRwVlu
-         JqYlA1NWxo7mokcqBBNnjGN9lF8NJHWV0+52J3O7HoD1WEeLSPnIbBRAExSJr+FEOJx2
-         S0l6yeBGx6sZg4BB+WTqhbdAXpWE4xxBBDDQHRS0qUEZvnyLwUgLaX79U6WYdduy9yEC
-         rzhbGlJSyWEUw2D2dVast+4HSJf/B5S9MxVeqgGIYzSrlYTjUgEbrP4yW9kEWnfOBWJe
-         ewtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9rrWiHxgy8XL4EMhVPJm4PXUcc5P4DC16VghLNpNvqc=;
-        b=wPyxHGvrViAxUlMMJdgRVYlYp4FmZliq/RipboMNo+5R6EkHS4GrUy1LNVo2pMx19O
-         Axmgku9+gdLwhEEJz3o5X8WqSKvIJqpswk8W298uviwIMLx71u5tEsk9usCHouoJSFDD
-         kE05HGbAkgsEWJkGN0boq1J48aZibp8+b8VU2GyjHIIR2ofIkcutMmXycNX+btPbbWU9
-         ZYLpcr0P9sPt2OmOPt+x6Tub84OZWG+aWkf0fJ2hMU+9u/QAqqYd+XJtdh1yrlbxCbah
-         hrGnDIYayqQBoGqXACsytxBB+r6Jq6PwbHSnnA7Gp3d1AHOk/fmjR4U51O3A2JkuyExM
-         UHXQ==
-X-Gm-Message-State: ANoB5pnmIDg3zVCgS+Z+vBBr8j0NTfoHh96IsaNAKpc/JhfnZSkC3AII
-        m0eY4CElNdf/4iRjclCLwfTSiQ==
-X-Google-Smtp-Source: AA0mqf7DLaDOx9/kIucgdP9wbuyY2ZzDY+IE1nEku1WaomgQSO+mpoC14e1nZTanImk+XPkpSwW5lg==
-X-Received: by 2002:ac2:4c50:0:b0:4b1:8a90:6524 with SMTP id o16-20020ac24c50000000b004b18a906524mr8783922lfk.628.1669209421365;
-        Wed, 23 Nov 2022 05:17:01 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id u14-20020ac258ce000000b00499d70c0310sm2888258lfo.3.2022.11.23.05.17.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 05:17:00 -0800 (PST)
-Message-ID: <afa7567f-e86e-639b-92b7-efae505b55f1@linaro.org>
-Date:   Wed, 23 Nov 2022 14:16:59 +0100
+        with ESMTP id S238877AbiKWNgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:36:43 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83EB51DA6D;
+        Wed, 23 Nov 2022 05:23:02 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 23 Nov
+ 2022 21:23:00 +0800
+Message-ID: <3bdaa648-c607-a79c-f6bb-c75baa1e8509@amlogic.com>
+Date:   Wed, 23 Nov 2022 21:23:00 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sm8450-hdk: enable display
- hardware
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
+ controller in DT
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
- <20221122233659.3308175-4-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221122233659.3308175-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <kelvin.zhang@amlogic.com>
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-5-yu.tu@amlogic.com>
+ <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
+ <9858039f-e635-2749-80a2-75072d6e9cea@amlogic.com>
+ <8dbb3ce2-c8d9-70be-d1de-ed875de0ea1b@linaro.org>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <8dbb3ce2-c8d9-70be-d1de-ed875de0ea1b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,48 +62,64 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 23.11.2022 00:36, Dmitry Baryshkov wrote:
-> Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
-> configuration (yet).
+On 2022/11/23 21:02, Krzysztof Kozlowski wrote:
+> [ EXTERNAL EMAIL ]
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> On 23/11/2022 12:27, Yu Tu wrote:
+>> Hi Krzysztof,
+>> 	
+>> On 2022/11/23 18:10, Krzysztof Kozlowski wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> On 23/11/2022 03:13, Yu Tu wrote:
+>>>> Added information about the S4 SOC Peripheral Clock controller in DT.
+>>>>
+>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
+>>>>    1 file changed, 26 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>>> index bd9c2ef83314..e7fab6e400be 100644
+>>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>>> @@ -6,6 +6,8 @@
+>>>>    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>    #include <dt-bindings/gpio/gpio.h>
+>>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+>>>> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>>    
+>>>>    / {
+>>>>    	cpus {
+>>>> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
+>>>>    				#clock-cells = <1>;
+>>>>    			};
+>>>>    
+>>>> +			clkc_periphs: clock-controller {
+>>>> +				compatible = "amlogic,s4-peripherals-clkc";
+>>>> +				reg = <0x0 0x0 0x0 0x49c>;
+>>>
+>>> This is broken... did you check for warnings?
+>> Yes, i do.
+>> You can have a look at the results of my test, as follows.
+>>
+>> total: 0 errors, 0 warnings, 0 checks, 38 lines checked
+>>
+>> ../patch_clk_v5_1122/0004-arm64-dts-meson-add-S4-Soc-Peripheral-clock-controll.patch
+>> has no obvious style problems and is ready for submission.
+>>
+> 
+> This is a checkpatch output. I am talking about DTS broken. dtc should
+> warn you.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+Do you mean I will have wraning in compiling?
+I actually compiled without warning.
+ccf$ make ARCH=arm64 dtbs -j12
+   DTC     arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index 2dd4f8c8f931..75b7aecb7d8e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -349,6 +349,28 @@ vreg_l7e_2p8: ldo7 {
->  	};
->  };
->  
-> +&dispcc {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l6b_1p2>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vreg_l5b_0p88>;
-> +	status = "okay";
-> +};
-> +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
-> +
->  &pcie0 {
->  	status = "okay";
->  	max-link-speed = <2>;
+> Best regards,
+> Krzysztof
+> 
+> .
