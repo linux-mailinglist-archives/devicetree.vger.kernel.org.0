@@ -2,57 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C87B5636B4B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:39:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8220B636B8E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 21:50:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236305AbiKWUjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 15:39:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34786 "EHLO
+        id S235673AbiKWUtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 15:49:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240152AbiKWUho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:37:44 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FA16452;
-        Wed, 23 Nov 2022 12:37:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D136C61F00;
-        Wed, 23 Nov 2022 20:36:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C39C433D6;
-        Wed, 23 Nov 2022 20:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669235819;
-        bh=mKmCackjRxhwKbYhMXGB3HGYXAK9Dag9f+46iYyPlhU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=t5Ujwg9jPP03HaIjcF0zfSj2aZLiMfDMGiCj9Kvzu6fDP5+d3LMM86eakFay000+X
-         xn+HDK1hOmgc+9b8J4iYfKqJrKcmx7A+S3zgxoTb/qXWxw8n3R44RRhlkT9QGuadBl
-         np9ONO/YeRu/5W1rOwl+XyXKtA0mlrKAhTzaaCJ8KxSuTKLhfxJmqU2RXTdSFbr+wA
-         rRGzVuHWWSNiik3eFFHsk51n1ZJQvMOO+eq2Ok/W7s8fXeus3KiJyE6tBUNINp900d
-         tNa2MrosMcNMzUccTzHD/dm4Txw88WWbLQzeP0A1y+Gq1HX7y+gDJqKEvxH9NnikNB
-         AhiN6aVEtXZ3w==
-Date:   Wed, 23 Nov 2022 20:49:31 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] AD74115
-Message-ID: <20221123204931.18098131@jic23-huawei>
-In-Reply-To: <20221117080916.411766-1-cosmin.tanislav@analog.com>
-References: <20221117080916.411766-1-cosmin.tanislav@analog.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S237586AbiKWUth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 15:49:37 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0D46BDEF
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 12:49:36 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id x21so22668672ljg.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 12:49:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S7YvUMQ+nKYiMNNWPyDhQ/jukxJGNja3gA82pbwqtr0=;
+        b=qze4Fhr0i3wUjK7JmEknyCoCM3OyXohdoTL4Xq39kXScuKBAlMYJMwXKjKdN0O7L+I
+         kUPREyK48s65dzMlGsXdM+g8KDHeD6kY7LrvXocUDBc/P3Il2GYIKm9+lWoYOH8F5YHx
+         NkgqSj21KZyxtWthL7UsesnZG2woWNiG1MW5mMlEWa4HsUJxy+BxRthpGa1Ctd8I5x8M
+         PsR7rwRkPrbJWzxW5/iUfBMyK8e/fwoCRK7JkNn8UKXO3maLYCR3BzwiTSNW9p+y7PmE
+         ULhHZTRBr2ExTWIe0tZ55hHpDolMAjmRoFSDdu4IiZgb1IT67klnF/d6+aJXxmxkqTpi
+         WyAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S7YvUMQ+nKYiMNNWPyDhQ/jukxJGNja3gA82pbwqtr0=;
+        b=0wdIuePjhb9CUV3uxQb2V5hZaU9iK/W+bU3+o4WKHKLZ8srU6eR85yoVTszbvj0nQP
+         l+CfuJMVa+cYpbCrZnGtTBKDafnbwnbbEHx/YYdNbnhP70xUq9B0mEdHZWQBGt/eG6rC
+         YsP62tY5mnA+jx0uU3bQiA+Dg+SgBNJtsrEU6Ji866GLTqdzgQWy0AOwyK6OiFWj+rz1
+         noDrBdHS8eTDDL91W6jwGLfSNl1BLTqX5DDzAusCFZcaBPXWX/LXnsvgUafc8KrthW44
+         Vbw7rAWnxTrBRp7jq+3yAWZzAIX4E6uqAOp8iLvlFeve114GBRofYqeduWnXAywn8WNI
+         bvYQ==
+X-Gm-Message-State: ANoB5pmnYovvGLF9JdilVVdQ1b7XV2/c+VorYuu0jgqlMqzCGR2Qknm5
+        +wHpRawBZcAHcFbddt/KYRH0F4sbbxZ2SA==
+X-Google-Smtp-Source: AA0mqf6qjoBrUq7CGFIeDR/JoCZ8sBBy+cS4F3Qk97kaSCgXDjoTf66drKA9dZ74tkFh2N6z6E0dcA==
+X-Received: by 2002:a2e:a4a3:0:b0:278:ecbe:ebba with SMTP id g3-20020a2ea4a3000000b00278ecbeebbamr4753569ljm.450.1669236574484;
+        Wed, 23 Nov 2022 12:49:34 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id x12-20020a19f60c000000b0048b26d4bb64sm3036057lfe.40.2022.11.23.12.49.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 12:49:34 -0800 (PST)
+Message-ID: <0800676c-9182-aa2c-72f2-525d8776b33f@linaro.org>
+Date:   Wed, 23 Nov 2022 22:49:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI
+ bridge
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+References: <20221122233659.3308175-1-dmitry.baryshkov@linaro.org>
+ <20221122233659.3308175-5-dmitry.baryshkov@linaro.org>
+ <ac216c05-d939-0045-9a32-c874b584ee2d@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <ac216c05-d939-0045-9a32-c874b584ee2d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,99 +86,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Nov 2022 10:09:14 +0200
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
+On 23/11/2022 11:01, Krzysztof Kozlowski wrote:
+> On 23/11/2022 00:36, Dmitry Baryshkov wrote:
+>> From: Vinod Koul <vkoul@kernel.org>
+>>
+>> Add the LT9611uxc DSI-HDMI bridge and supplies
+>>
+>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+> 
+>> +
+>>   &sdhc_2 {
+>>   	cd-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+>>   	pinctrl-names = "default", "sleep";
+>> @@ -431,6 +478,20 @@ &sdhc_2 {
+>>   &tlmm {
+>>   	gpio-reserved-ranges = <28 4>, <36 4>;
+>>   
+>> +	lt9611_irq_pin: lt9611-irq {
+> 
+> -state suffix
+> 
+> And test DTS against bindings (`make dtbs_check`).
 
-> The AD74115H is a single-channel, software-configurable, input and
-> output device for industrial control applications. The AD74115H
-> provides a wide range of use cases, integrated on a single chip.
-> 
-> These use cases include analog output, analog input, digital output,
-> digital input, resistance temperature detector (RTD), and thermocouple
-> measurement capability. The AD74115H also has an integrated HART modem.
-> 
-> A serial peripheral interface (SPI) is used to handle all communications
-> to the device, including communications with the HART modem. The digital
-> input and digital outputs can be accessed via the SPI or the
-> general-purpose input and output (GPIO) pins to support higher
-> speed data rates.
-> 
-> The device features a 16-bit, sigma-delta analog-to-digital converter
-> (ADC) and a 14-bit digital-to-analog converter (DAC).
-> The AD74115H contains a high accuracy 2.5 V on-chip reference that can
-> be used as the DAC and ADC reference.
-> 
-Applied to the togreg branch of iio.git.
+Ack
 
-Thanks,
+> 
+>> +		pins = "gpio44";
+>> +		function = "gpio";
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	lt9611_rst_pin: lt9611-rst-state {
+>> +		pins = "gpio107";
+>> +		function = "normal";
+>> +
+>> +		output-high;
+>> +		input-disable;
 
-Jonathan
+Also dropping input-disable and changing function to "gpio".
 
-> V2 -> V3:
->  * dt-bindings: remove address and size cells specifiers
->  * dt-bindings: additionalProperties -> unevaluatedProperties
->  * dt-bindings: remove pipe where not needed
->  * dt-bindings: use required for adi,digital-input-sink-range-high: true
->  * do not uselessly store poll time
->  * fix ad74115_adc_gain capitalization
->  * inline ad74115_channels_map[st->ch_func] access
->  * keep consistent table naming
->  * remove aldo1v8 regulator
->  * spell out low-power
->  * split up resistance offset and scale into separate function
->  * use adc_rdy name for irq
->  * use microvolt for conv2 range
->  * use unsigned int for ad74115_adc_conv_mul
->  * use unsigned int for ad74115_adc_gain
->  * wrap module_driver call less
+>> +	};
+>> +
+>>   	sdc2_card_det_n: sd-card-det-n-state {
+>>   		pins = "gpio92";
+>>   		function = "gpio";
 > 
-> V1 -> V2:
->  * dt-bindings: add spi peripheral allOf
->  * dt-bindings: remove cs-gpios
->  * dt-bindings: remove refin supply from example
->  * dt-bindings: remove status
->  * sort includes
->  * ad74115_parse_fw_prop -> ad74115_apply_fw_prop
->  * ad74115_setup_{comp,}_gc -> ad74115_setup_{comp,}_gpio_chip
->  * gpiod_get_optional -> devm_gpiod_get_optional
->  * add support for reset-gpios
->  * add support for running without an interrupt
->  * fix comma after terminating member
->  * fix order of rate and range masks
->  * fix reset pin wait time and out of reset time
->  * fix rtd mode reading
->  * pass chan spec only where needed
->  * remove -en suffix
->  * remove default 0 values
->  * remove diag support
->  * remove unecessary prop storage
->  * reorder switch cases to match enum
->  * set burnout enable bit based on burnout current
->  * set default value for props
->  * simplify dac hart slew usage
->  * simplify prop value validation
->  * use bool for 4 wire rtd mode
->  * use bool for burnout current polarity
->  * use bool for dac sc current limit
->  * use bool for debounce mode
->  * use bool for din sink range
->  * use bool for din threshold mode
->  * use devm_regulator_bulk_get_enable
->  * use IIO_VAL_FRACTIONAL for resistance offset
->  * use struct assignment for gpiochip
->  * warn on empty prop mask
+> Best regards,
+> Krzysztof
 > 
-> Cosmin Tanislav (2):
->   dt-bindings: iio: addac: add AD74115
->   iio: addac: add AD74115 driver
-> 
->  .../bindings/iio/addac/adi,ad74115.yaml       |  373 ++++
->  MAINTAINERS                                   |    8 +
->  drivers/iio/addac/Kconfig                     |   14 +
->  drivers/iio/addac/Makefile                    |    1 +
->  drivers/iio/addac/ad74115.c                   | 1947 +++++++++++++++++
->  5 files changed, 2343 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
->  create mode 100644 drivers/iio/addac/ad74115.c
-> 
+
+-- 
+With best wishes
+Dmitry
 
