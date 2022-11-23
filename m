@@ -2,145 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB5C635AE4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:03:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30705635B64
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:17:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236515AbiKWLDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 06:03:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35748 "EHLO
+        id S236032AbiKWLRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 06:17:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236560AbiKWLCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:02:49 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC5124965;
-        Wed, 23 Nov 2022 02:58:20 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 404755C018B;
-        Wed, 23 Nov 2022 05:58:20 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Wed, 23 Nov 2022 05:58:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1669201100; x=1669287500; bh=P/3gymjggx
-        G0AGo8CB4kiNTmYVS5hoUgWnwMUY5zy6A=; b=XHerL+dM+qFeU/J/gClsNwqKYP
-        +/f48/pxEFdBIrgqCgIQLzD9UFu9xP1tqyeSqfgwXjvIvRL8p3bCjb0bNiI9pfXR
-        DWGqecxjuUkjtwe6CpBmkVnaHwop6wzEjYcy0pl938upDFhP/AkM73XSEGC7A3+N
-        LcPLvZ9MFm+tPG3cRUTXK5slAxL/dBxMRCeSsA7s0qqzXQ/EEKvpMKUxH5+E7xvo
-        loR6KfoexCYcdlW9TyduWMYvnqWH/eobTeAxW4Vj6xt1EYhWenZqwLwHCkALwKE3
-        fdY1zhdIW83wFlwj7j/Gc1WNv63jnPWCYMnUZxsTCfC845UmY5WPFydbXPzQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1669201100; x=1669287500; bh=P/3gymjggxG0AGo8CB4kiNTmYVS5
-        hoUgWnwMUY5zy6A=; b=DXuPSQyIBea+ygxBIrS1CUZ8KzYgBSuCeg3zFSY1x7Wy
-        H35LLQSxcPV9GwtCUj4XHP0V8vIrTKuORP4QJP+vRXyA3S1sydeDaDSOxOt5/OnU
-        HewPpYDKJabWFRxYGXCrmlaQgR6klwWTX8IHHCGPDnHkViHAi8wTbxypX9y59l1V
-        0rxQCHvo0ZlnFmXuZgmGpxUVD8j3S8rDGBOqCkGvhrrw5XOy7lv82lQlzrkM0Aku
-        rWsh13yD1uLsqzYdVhjuCcTfNyf8pbNqQeR2Z+dciT+ZLmmVrg3RROoXYewu9hf7
-        Rq0ShKkYrXeYH+qTtfNv+BMTJoxU4CggQbRZuYv3bg==
-X-ME-Sender: <xms:y_x9Y2q-16jMcKDaMHfpFitDAPXbIXmVFOwsx9ZxWSTs7MsxbkcI-A>
-    <xme:y_x9Y0prnXaYP6gndujYUiB_tZI8ZEZs8UxJRl27wzVrJNI4tOxSD4305-gRr-HNx
-    7SQYlhiBmDu3HVDujI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedriedugddulecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:y_x9Y7OCA_vrHQ-Vunm62PK5EGarJThVdKvx3qYwFvFoZEQ0cufGNQ>
-    <xmx:y_x9Y17k0gMJkZohfz_FAR1ZKZEHExBzEF7hOEjpfYX_EFbCvcvFjA>
-    <xmx:y_x9Y15042C56nmesMe3NyGdkvr8sJzz-UX_hMeVs-j-mHkZVyTEZw>
-    <xmx:zPx9Y5qMcGBjs0kHvf_zCQ_oUueT6B7zkZASXWcd43LgFoPl2Y8FhQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 2195EB60086; Wed, 23 Nov 2022 05:58:19 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <577e273d-ff9b-4d8d-b797-d7275ab8374f@app.fastmail.com>
-In-Reply-To: <20221122201232.107065-3-tmaimon77@gmail.com>
-References: <20221122201232.107065-1-tmaimon77@gmail.com>
- <20221122201232.107065-3-tmaimon77@gmail.com>
-Date:   Wed, 23 Nov 2022 11:57:57 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Tomer Maimon" <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, "Joel Stanley" <joel@jms.id.au>,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Sven Peter" <sven@svenpeter.dev>,
-        "Brian Norris" <briannorris@chromium.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] soc: nuvoton: add NPCM LPC BPC driver
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237620AbiKWLR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:17:26 -0500
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD5F6238C;
+        Wed, 23 Nov 2022 03:16:09 -0800 (PST)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 23 Nov
+ 2022 19:16:06 +0800
+Message-ID: <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
+Date:   Wed, 23 Nov 2022 19:16:06 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver and bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <kelvin.zhang@amlogic.com>
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-2-yu.tu@amlogic.com>
+ <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022, at 21:12, Tomer Maimon wrote:
-> Add Nuvoton BMC NPCM LPC BIOS post code (BPC) driver.
->
-> The NPCM BPC monitoring two configurable I/O address written by the host
-> on the Low Pin Count (LPC) bus.
->
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  drivers/soc/Kconfig                |   1 +
->  drivers/soc/Makefile               |   1 +
->  drivers/soc/nuvoton/Kconfig        |  24 ++
->  drivers/soc/nuvoton/Makefile       |   3 +
->  drivers/soc/nuvoton/npcm-lpc-bpc.c | 396 +++++++++++++++++++++++++++++
+Hi Krzysztof,
+	Thank you for your reply.
 
-In general, I try to keep drivers/soc/ for drivers that are
-used purely inside of the kernel and don't provide their
-own user space ABI, those should normally be part of
-some subsystem grouped by functionality.
+On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On 23/11/2022 03:13, Yu Tu wrote:
+>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
+>>
+>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>> ---
+>>   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
+> 
+> This is v5 and still bindings are here? Bindings are always separate
+> patches. Use subject prefixes matching the subsystem (git log --oneline
+> -- ...).
+> 
+> And this was split, wasn't it? What happened here?!?
 
-It appears that we have similar drivers for aspeed already,
-so there is some precedent, but I would still like to ask
-you and Joel to try to make sure the two are compatible,
-or ideally share the code for the user-facing part of the
-LPC driver.
+Put bindings and clock driver patch together from Jerome. Maybe you can 
+read this chat history.
+https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
 
-> +config NPCM_PCI_MBOX
-> +	tristate "NPCM PCI Mailbox Controller"
-> +	depends on (ARCH_NPCM || COMPILE_TEST) && REGMAP && MFD_SYSCON
-> +	help
-> +	  Expose the NPCM BMC PCI MBOX registers found on Nuvoton SOCs
-> +	  to userspace.
+> 
+> 
+>>   MAINTAINERS                                   |   1 +
+>>   drivers/clk/meson/Kconfig                     |  13 +
+>>   drivers/clk/meson/Makefile                    |   1 +
+>>   drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
+>>   drivers/clk/meson/s4-pll.h                    |  88 ++
+>>   .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
+>>   7 files changed, 1059 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>   create mode 100644 drivers/clk/meson/s4-pll.c
+>>   create mode 100644 drivers/clk/meson/s4-pll.h
+>>   create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>> new file mode 100644
+>> index 000000000000..fd517e8ef14f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Meson S serials PLL Clock Controller
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>> +  - Yu Tu <yu.hu@amlogic.com>
+>> +
+> One blank line.
 
-This looks unrelated to the LPC driver, so this should
-probably be a separate patch. The same comment about user
-space presumably applies here, but I have not seen the driver.
+  I will delete this, on next version patch.
 
-The implementation of npcm-lpc-bpc looks fine otherwise, I only
-noticed one minor detail that I would change:
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,s4-pll-clkc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: xtal
+>> +
+>> +  "#clock-cells":
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - "#clock-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    clkc_pll: clock-controller@fe008000 {
+>> +      compatible = "amlogic,s4-pll-clkc";
+>> +      reg = <0xfe008000 0x1e8>;
+>> +      clocks = <&xtal>;
+>> +      clock-names = "xtal";
+>> +      #clock-cells = <1>;
+>> +    };
+> 
+> 
+>> +#endif /* __MESON_S4_PLL_H__ */
+>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>> new file mode 100644
+>> index 000000000000..345f87023886
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+> 
+> This belongs to bindings patch, not driver.
+> 
+>> @@ -0,0 +1,30 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>> + * Author: Yu Tu <yu.tu@amlogic.com>
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>> +
+>> +/*
+>> + * CLKID index values
+>> + */
+>> +
+>> +#define CLKID_FIXED_PLL			1
+>> +#define CLKID_FCLK_DIV2			3
+> 
+> Indexes start from 0 and are incremented by 1. Not by 2.
+> 
+> NAK.
 
-> +	np = pdev->dev.parent->of_node;
-> +	if (!of_device_is_compatible(np, "nuvoton,npcm750-lpc") &&
-> +	    !of_device_is_compatible(np, "nuvoton,npcm845-lpc")) {
-> +		dev_err(dev, "unsupported LPC device binding\n");
-> +		return -ENODEV;
-> +	}
+I remember Jerome discussing this with you.You can look at this 
+submission history.
+https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
 
-This check doesn't seem to make sense here, since those are
-the only two types you support.
-
-      Arnd
+> 
+> Best regards,
+> Krzysztof
+> 
+> .
