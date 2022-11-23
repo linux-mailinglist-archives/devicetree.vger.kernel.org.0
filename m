@@ -2,55 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4496635BBF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41B34635BB8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:30:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234901AbiKWLaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 06:30:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35098 "EHLO
+        id S236183AbiKWL3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 06:29:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237045AbiKWL3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:29:42 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78523F1D81;
-        Wed, 23 Nov 2022 03:27:27 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 23 Nov
- 2022 19:27:25 +0800
-Message-ID: <9858039f-e635-2749-80a2-75072d6e9cea@amlogic.com>
-Date:   Wed, 23 Nov 2022 19:27:25 +0800
+        with ESMTP id S237079AbiKWL3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:29:16 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FDFECCCD
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 03:28:15 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id d6so27696925lfs.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 03:28:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=I1ADM7UYe44oPMUdR6G7H2LOvTiTNGV7P8fJqETMECo=;
+        b=y4f4ErZCeTYMmipHc+uKfUdwmYenDNglYBypVQlDRhsh0UqP/veREFs+35Nl8dDqsY
+         jCByBajx/AabQjcFZgikBUXpRIEtO4lySKcc66TbWw74Of2X0+2GSDPSN59oi+ETkA64
+         JR9q8V/Mu3wFuewMpGST8gSnGpUWCfsQUrdobTLd7Ibfzhy9nI5NPUXbH0tg4HlSm+l3
+         qA/ftoRddicm+ZYqrLwt/T/3SDpdkVxA4fQf3Aep/RGYxFZQflHX4VbIPOCe1JBt9M0g
+         Cg/HGo1NH7C1j7Y4Nl26aQZOoMEDkLHQs/c1gYZ1+YdroS8HRoE+Q0Kk8+8yfx04xXSk
+         CUQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I1ADM7UYe44oPMUdR6G7H2LOvTiTNGV7P8fJqETMECo=;
+        b=S9AgMUAPEvK3MvpvOgGEMUtzQ3+9bBIkZMSNyLEqdOJQRblQ9VpOMxsZ36VLXi+jJU
+         5ayN67FmIpr0I7pTJBqqamPeGJRMdk2L09zxQ4s90oAbcXSe+tPm/POfPpHBX/MTe5+l
+         yzOsoY3F9GOvlR57zxC4+RcJSItEC/Pc+O2jcUn/IAOJTpoC/BWVRmVFxD/zk2B7mF1B
+         L3v//COSfOaVv/LKL1XasL8poJdvpKv7zciG2Cx9JtNWCLSgC9UeETXCC9OqC7SGUSs/
+         u8L+WQO5HXp6/yfvlJDqlp2yfNyhi4MV/7bsNLVpEKWfFXrKS3pbgQS9bahq0AePXJY0
+         zj/w==
+X-Gm-Message-State: ANoB5pnyatHCP2NOJhI9ZPtoqEJxHZMcM9b6pjXqlRn4faC4/a01njDH
+        fd8UJyQqQeo7BHN7FqnPJ3nxbQ==
+X-Google-Smtp-Source: AA0mqf5hFh16jq8zxNHpSxi7CuwYbhXKAFsg22owMtSy38KbIA6849AQxkEFyLxZVwneGKqpacQM6Q==
+X-Received: by 2002:ac2:46f0:0:b0:4b4:c0c:89a3 with SMTP id q16-20020ac246f0000000b004b40c0c89a3mr8844104lfo.129.1669202893857;
+        Wed, 23 Nov 2022 03:28:13 -0800 (PST)
+Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
+        by smtp.gmail.com with ESMTPSA id j4-20020a05651231c400b004a44ffb1023sm2889071lfe.57.2022.11.23.03.28.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 03:28:13 -0800 (PST)
+Message-ID: <f48780d3-cce6-ea0b-1799-67ffc1eee6e4@linaro.org>
+Date:   Wed, 23 Nov 2022 12:28:11 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
- controller in DT
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v6 4/4] arm64: dts: qcom: msm8916-acer-a1-724: Add
+ touchscreen
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <kelvin.zhang@amlogic.com>
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-5-yu.tu@amlogic.com>
- <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20221123033524.148682-1-linmengbo0689@protonmail.com>
+ <20221123033844.149115-1-linmengbo0689@protonmail.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221123033844.149115-1-linmengbo0689@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,52 +82,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-	
-On 2022/11/23 18:10, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 23/11/2022 03:13, Yu Tu wrote:
->> Added information about the S4 SOC Peripheral Clock controller in DT.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
->>   1 file changed, 26 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> index bd9c2ef83314..e7fab6e400be 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->> @@ -6,6 +6,8 @@
->>   #include <dt-bindings/interrupt-controller/irq.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   #include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
->> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>   
->>   / {
->>   	cpus {
->> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
->>   				#clock-cells = <1>;
->>   			};
->>   
->> +			clkc_periphs: clock-controller {
->> +				compatible = "amlogic,s4-peripherals-clkc";
->> +				reg = <0x0 0x0 0x0 0x49c>;
-> 
-> This is broken... did you check for warnings?
-Yes, i do.
-You can have a look at the results of my test, as follows.
 
-total: 0 errors, 0 warnings, 0 checks, 38 lines checked
 
-../patch_clk_v5_1122/0004-arm64-dts-meson-add-S4-Soc-Peripheral-clock-controll.patch 
-has no obvious style problems and is ready for submission.
+On 23.11.2022 04:39, Lin, Meng-Bo wrote:
+> A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
+> Add it to the device tree.
+> 
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+>  .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
 > 
-> 
-> Best regards,
-> Krzysztof
-> 
-> .
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+> index bea0d022dd9a..ed3fa7b3575b 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
+> @@ -81,6 +81,30 @@ magnetometer@12 {
+>  	};
+>  };
+>  
+> +&blsp_i2c5 {
+> +	status = "okay";
+> +
+> +	touchscreen@38 {
+> +		/* Actually ft5446 */
+> +		compatible = "edt,edt-ft5406";
+> +		reg = <0x38>;
+> +
+> +		interrupt-parent = <&msmgpio>;
+> +		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		reset-gpios = <&msmgpio 12 GPIO_ACTIVE_LOW>;
+> +
+> +		vcc-supply = <&pm8916_l16>;
+> +		iovcc-supply = <&pm8916_l6>;
+> +
+> +		touchscreen-size-x = <720>;
+> +		touchscreen-size-y = <1280>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touchscreen_default>;
+> +	};
+> +};
+> +
+>  &blsp1_uart2 {
+>  	status = "okay";
+>  };
+> @@ -245,6 +269,22 @@ gpio_keys_default: gpio-keys-default-state {
+>  		bias-pull-up;
+>  	};
+>  
+> +	touchscreen_default: touchscreen-default-state {
+> +		reset-pins {
+> +			pins = "gpio12";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +
+> +		touchscreen-pins {
+> +			pins = "gpio13";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+>  	usb_id_default: usb-id-default-state {
+>  		pins = "gpio110";
+>  		function = "gpio";
