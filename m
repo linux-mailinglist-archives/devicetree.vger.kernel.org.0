@@ -2,406 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C2E636E24
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 00:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 882CB636E3A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 00:16:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiKWXLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 18:11:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
+        id S229760AbiKWXQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 18:16:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiKWXLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 18:11:31 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFBA950C5
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 15:11:28 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id j4so88656lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 15:11:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7XcTTI3VTKH5Ew7b4w2Gn9cRXjRHQBtu6NQmXOetUGw=;
-        b=SYoOY7rZftTsDa3r7rI6AIPmcr8sI5HSxxE/rCN+yjg6qQdWiKjKfjvLLKYXxHupWv
-         qJwWaOf9Y+turS/k7IgQSFxXa3nmviUxOc9BUdkt98fICFMHeKroBhjTnTxcrrb1mplc
-         lu8mryjd6BP7jPvu60q4RS/CKJ9prs+0t/QYjA9j2Q4/LxR2vns6EgMixVHpg7U7n3tb
-         l5znAXSfUDcBeF+BF0pFx6QIzR9P+WX9/yu+4ZeN+ahgOET9V6osdxQBtsVCfiXkmM+l
-         Ki/j+GjPmTeA5RkxRsBdi9EQXUqLvcDHvr1QIRFvP2+bhWfGZAbdDVvAgHYfc6yNt2gV
-         3eLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7XcTTI3VTKH5Ew7b4w2Gn9cRXjRHQBtu6NQmXOetUGw=;
-        b=t1XgcssjOs0RgvdxTeXAg8oRFqz1Z2sX+pZH2IxIEL3fs2/G4PDzu9iDcitg1qKoua
-         d5aDccVkxlI2s748RZmwmLU2cXkPCUne+YnZZwYv62vJRhkyZAbF8iJHlm7EjnZ57M5e
-         mwsw0Uw/wjBU2aOktBUy+Cb0sufaEbQAz7LdEHxr9n1lO+GCcbPvXSLNp9JpjFgk81TX
-         QsLeFf0TQ4eNWQQOId/8qVlXKxgejW7LcdlhbWZNiHlIXybTZpirI70+rMlR+vL6ikMM
-         VxMbHIOChi6N8VH3ByCRYntpFwcD1hJ4pGzOYoM72BbT/X15ugyVovMq8Mfk8g9Vfkz+
-         CWZw==
-X-Gm-Message-State: ANoB5pm3gxfZi34be+m3Cq3QPyxnHsxpIfkRi6ZzJPiMIhZSEq8iVNHu
-        v13ZLM6fPvnyQCZ7HG4LAmPS1A==
-X-Google-Smtp-Source: AA0mqf4ap4rSKu1q4RzaMVU+Ew9bLfwjunXcWBhERA8AnppBDiepmkCDzvZejuLLCMPYFng6xbdf+A==
-X-Received: by 2002:a05:6512:2591:b0:4ae:c2b5:29c4 with SMTP id bf17-20020a056512259100b004aec2b529c4mr4605476lfb.614.1669245086436;
-        Wed, 23 Nov 2022 15:11:26 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a302:192b::1? (dzpbbwm4yyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:a302:192b::1])
-        by smtp.gmail.com with ESMTPSA id c4-20020ac25304000000b0049fff3f645esm3017256lfh.70.2022.11.23.15.11.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 15:11:25 -0800 (PST)
-Message-ID: <1ad9d68a-8735-07cf-e279-503d9ba63878@linaro.org>
-Date:   Thu, 24 Nov 2022 01:11:25 +0200
+        with ESMTP id S229910AbiKWXP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 18:15:56 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD03F4A58F;
+        Wed, 23 Nov 2022 15:15:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 58FEC61F5C;
+        Wed, 23 Nov 2022 23:15:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A532C433C1;
+        Wed, 23 Nov 2022 23:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669245319;
+        bh=bWh0T0oFSkJB4PdiGGy2fzByge1TZxmhgUDK3+WVRwQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hOsL4XS3Ls3qrj//pdUPbpdj+bs3yrDTUf2+YCvHJOcLO96rX1hwTJysQesJ4OxXO
+         1QN13hX76UR86edLyOE82ZXmQIOb6+ciFjaOFlb/HzTB6QcttSr7FiWjsu6OdlW0hI
+         ESLz2htJ4t/8vPubL5XR/fY7MCxlq0qOIk1M62UvPMcT9rnBqIz0BSRdGbJZ5u5M6N
+         IfSKX0Lj22j6681Hku9IO3xbNOf94rmi/G0aD0aOe3AtJ1xUeS4zPBqN05bZa9nOpu
+         7Mp3b1P4NYcUXM3CfdzyhKoaIva8vB4wB6yuQPMPbR6SLHag8QJ6uAeFvNSj3XFEqz
+         VzfK2GNkl40MQ==
+Date:   Wed, 23 Nov 2022 23:15:14 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 0/9] PCI: microchip: Partition address translations
+Message-ID: <Y36pgsCplC5hN2ij@spud>
+References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: display/msm: add support for the display
-Content-Language: en-GB
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Jason Wang <wangborong@cdjrlc.com>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20221120133744.24808-1-a39.skl@gmail.com>
- <20221120133744.24808-2-a39.skl@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221120133744.24808-2-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/11/2022 15:37, Adam Skladowski wrote:
-> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
-> SM6115 platform.
-> Configuration for DSI/PHY is shared with QCM2290 so compatibles are reused.
-> Lack of dsi phy supply in example is intended
-> due to fact on qcm2290, sm6115 and sm6125
-> this phy is supplied via power domain, not regulator.
+Hey Daire,
+
+On Wed, Nov 16, 2022 at 01:54:55PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->   .../bindings/display/msm/qcom,sm6115-dpu.yaml |  87 ++++++++
->   .../display/msm/qcom,sm6115-mdss.yaml         | 187 ++++++++++++++++++
->   2 files changed, 274 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> Microchip PolarFire SoC is a 64-bit device and has DDR starting at
+> 0x80000000 and 0x1000000000. Its PCIe rootport is connected to the CPU
+> Coreplex via an FPGA fabric. The AXI connections between the Coreplex and
+> the fabric are 64-bit and the AXI connections between the fabric and the
+> rootport are 32-bit.  For the CPU CorePlex to act as an AXI-Master to the
+> PCIe devices and for the PCIe devices to act as bus masters to DDR at these
+> base addresses, the fabric can be customised to add/remove offsets for bits
+> 38-32 in each direction. These offsets, if present, vary with each
+> customer's design.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-> new file mode 100644
-> index 000000000000..cc77675ec4f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6115-dpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display DPU dt properties for SM6115 target
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +$ref: /schemas/display/msm/dpu-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,sm6115-dpu
-> +
-> +  reg:
-> +    items:
-> +      - description: Address offset and size for mdp register set
-> +      - description: Address offset and size for vbif register set
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mdp
-> +      - const: vbif
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display AXI clock from gcc
-> +      - description: Display AHB clock from dispcc
-> +      - description: Display core clock from dispcc
-> +      - description: Display lut clock from dispcc
-> +      - description: Display rotator clock from dispcc
-> +      - description: Display vsync clock from dispcc
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: iface
-> +      - const: core
-> +      - const: lut
-> +      - const: rot
-> +      - const: vsync
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    display-controller@5e01000 {
-> +        compatible = "qcom,sm6115-dpu";
-> +        reg = <0x05e01000 0x8f000>,
-> +              <0x05eb0000 0x2008>;
-> +        reg-names = "mdp", "vbif";
-> +
-> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_ROT_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +        clock-names = "bus", "iface", "core", "lut", "rot", "vsync";
-> +
-> +        operating-points-v2 = <&mdp_opp_table>;
-> +        power-domains = <&rpmpd SM6115_VDDCX>;
-> +
-> +        interrupt-parent = <&mdss>;
-> +        interrupts = <0>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-> new file mode 100644
-> index 000000000000..af721aa05b22
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-> @@ -0,0 +1,187 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6115-mdss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SM6115 Display MDSS
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +description:
-> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-> +  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
-> +  are mentioned for SM6115 target.
-> +
-> +$ref: /schemas/display/msm/mdss-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,sm6115-mdss
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display AHB clock from gcc
-> +      - description: Display AXI clock
-> +      - description: Display core clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: iface
-> +      - const: bus
-> +      - const: core
+> To support this variety, the rootport driver must know how much address
+> translation (both inbound and outbound) is performed by a particular
+> customer design and how much address translation must be provided by the
+> rootport.
+> 
+> This patchset contains a parent/child dma-ranges scheme suggested by Rob
+> Herring. It creates an FPGA PCIe parent bus which wraps the PCIe rootport
+> and implements a parsing scheme where the root port identifies what address
+> translations are performed by the FPGA fabric parent bus, and what
+> address translations must be done by the rootport itself.
 
-I think you can drop clock-names from the MDSS node.
+I've tried this scheme with a bunch of different PCI configurations, and
+it holds water, so I am happy with it :) Hopefully Rob is a lot happier
+with this version of it too!
 
-> +
-> +  iommus:
-> +    maxItems: 2
-> +
-> +patternProperties:
-> +  "^display-controller@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,sm6115-dpu
-> +
-> +  "^dsi@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,dsi-ctrl-6g-qcm2290
-> +
-> +  "^phy@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,dsi-phy-14nm-2290
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-> +    #include <dt-bindings/clock/qcom,rpmcc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    mdss@5e00000 {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        compatible = "qcom,sm6115-mdss";
-> +        reg = <0x05e00000 0x1000>;
-> +        reg-names = "mdss";
-> +        power-domains = <&dispcc MDSS_GDSC>;
-> +        clocks = <&gcc GCC_DISP_AHB_CLK>,
-> +                 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> +        clock-names = "iface", "bus", "core";
-> +
-> +        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +
-> +        iommus = <&apps_smmu 0x420 0x2>,
-> +                 <&apps_smmu 0x421 0x0>;
-> +        ranges;
-> +
-> +        display-controller@5e01000 {
-> +            compatible = "qcom,sm6115-dpu";
-> +            reg = <0x05e01000 0x8f000>,
-> +                  <0x05eb0000 0x2008>;
-> +            reg-names = "mdp", "vbif";
-> +
-> +            clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_ROT_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +            clock-names = "bus", "iface", "core", "lut", "rot", "vsync";
-> +
-> +            operating-points-v2 = <&mdp_opp_table>;
-> +            power-domains = <&rpmpd SM6115_VDDCX>;
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <0>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    dpu_intf1_out: endpoint {
-> +                        remote-endpoint = <&dsi0_in>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +        dsi@5e94000 {
-> +            compatible = "qcom,dsi-ctrl-6g-qcm2290";
-> +            reg = <0x05e94000 0x400>;
-> +            reg-names = "dsi_ctrl";
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <4>;
-> +
-> +            clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                     <&gcc GCC_DISP_HF_AXI_CLK>;
-> +            clock-names = "byte",
-> +                          "byte_intf",
-> +                          "pixel",
-> +                          "core",
-> +                          "iface",
-> +                          "bus";
-> +            assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-> +            assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> +
-> +            operating-points-v2 = <&dsi_opp_table>;
-> +            power-domains = <&rpmpd SM6115_VDDCX>;
-> +            phys = <&dsi0_phy>;
-> +            phy-names = "dsi";
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    dsi0_in: endpoint {
-> +                        remote-endpoint = <&dpu_intf1_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    dsi0_out: endpoint {
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +        dsi0_phy: phy@5e94400 {
-> +            compatible = "qcom,dsi-phy-14nm-2290";
-> +            reg = <0x05e94400 0x100>,
-> +                  <0x05e94500 0x300>,
-> +                  <0x05e94800 0x188>;
-> +            reg-names = "dsi_phy",
-> +                        "dsi_phy_lane",
-> +                        "dsi_pll";
-> +
-> +            #clock-cells = <1>;
-> +            #phy-cells = <0>;
-> +
-> +            clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +            clock-names = "iface", "ref";
-> +        };
-> +    };
-> +...
+It's been long enough that I think you should be good to submit a
+cleaned up version, provided Rob's happy on the DT side I think.
 
--- 
-With best wishes
-Dmitry
+Thanks,
+Conor.
 
+> See https://lore.kernel.org/linux-pci/20220902142202.2437658-1-daire.mcnamara@microchip.com/
+> for the relevant previous patch submission discussion.
+> 
+> It also re-partitions the probe() and init() functions as suggested by
+> Bjorn Helgaas to make them more maintainable as the init() function had
+> become too large.
+> 
+> It also contains some minor fixes and clean-ups that are pre-requisites:
+> - to align register, offset, and mask names with the hardware documentation
+>   and to have the register definitions appear in the same order as in the
+>   hardware documentation;
+> - to harvest the MSI information from the hardware configuration register
+>   as these depend on the FPGA fabric design and can vary with different
+>   customer designs;
+> - to clean up interrupt initialisation to make it more maintainable;
+> - to fix SEC and DED interrupt handling.
+> 
+> I expect Conor will take the dts patch via the soc tree once the PCIe parts
+> of the series are accepted.
+> 
+> Conor Dooley (1):
+>   riscv: dts: microchip: add parent ranges and dma-ranges for IKRD
+>     v2022.09
+> 
+> Daire McNamara (8):
+>   PCI: microchip: Align register, offset, and mask names with hw docs
+>   PCI: microchip: Correct the DED and SEC interrupt bit offsets
+>   PCI: microchip: Enable event handlers to access bridge and ctrl ptrs
+>   PCI: microchip: Clean up initialisation of interrupts
+>   PCI: microchip: Gather MSI information from hardware config registers
+>   PCI: microchip: Re-partition code between probe() and init()
+>   PCI: microchip: Partition outbound address translation
+>   PCI: microchip: Partition inbound address translation
+> 
+>  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  62 +-
+>  drivers/pci/controller/pcie-microchip-host.c  | 676 +++++++++++++-----
+>  2 files changed, 522 insertions(+), 216 deletions(-)
+> 
+> 
+> base-commit: 3c1f24109dfc4fb1a3730ed237e50183c6bb26b3
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
