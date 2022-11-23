@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EBF46359D0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16AD86359DF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236662AbiKWKZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:25:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48442 "EHLO
+        id S236166AbiKWK1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:27:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236695AbiKWKYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:24:54 -0500
-Received: from us-smtp-delivery-115.mimecast.com (us-smtp-delivery-115.mimecast.com [170.10.133.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0153FB86
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:09:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
-        s=selector; t=1669198159;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Mc2NS0olCt0qUzsLi0zWfYaDeL0jAmHwQjCqJZ5SsT8=;
-        b=L+GVyjPqXoUVb88eR1PLWSrDEGisi7H/3q53bDnpq89e5lQotXDQ1q9XxB/f9VBcgC36gj
-        +ifynGzJb3ap2gtkXeOZe8YNXcu2XHay0rEaOMzVyNBdwaexjsbLM6rrQzl3e4KjD/KVAM
-        341L0QKw3RNRA70L+Vk5zTQ21znytj55rAwBavs5m2QZwgQcXEyLZjCIUetXuDJuL31mmc
-        gMVHMzYdY+h/4nzahvN97tq3G6uUivZ75Wm39jUhIi3gXOV2eNc7YNxVobQQgy+KXj1Tkb
-        TIhiD6Ynopk0aGqe+BmZ2HcZjTzqZKAN2Y6GE4p0c9lw4NM2LZ2nB9N+FmyMXQ==
-Received: from mail.maxlinear.com (174-47-1-84.static.ctl.one [174.47.1.84])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- us-mta-60-BskRCc8PMByVuKyULDY1HA-1; Wed, 23 Nov 2022 05:09:16 -0500
-X-MC-Unique: BskRCc8PMByVuKyULDY1HA-1
-Received: from sgsxdev001.isng.phoenix.local (10.226.81.111) by
- mail.maxlinear.com (10.23.38.119) with Microsoft SMTP Server id 15.1.2375.24;
- Wed, 23 Nov 2022 02:09:08 -0800
-From:   Rahul Tanwar <rtanwar@maxlinear.com>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Borislav Petkov" <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>, <x86@kernel.org>,
-        "H. Peter Anvin" <hpa@zytor.com>, <linux-lgm-soc@maxlinear.com>,
-        <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v4 4/4] x86/of: Add support for boot time interrupt delivery mode configuration
-Date:   Wed, 23 Nov 2022 18:08:50 +0800
-Message-ID: <20221123100850.22969-5-rtanwar@maxlinear.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221123100850.22969-1-rtanwar@maxlinear.com>
-References: <20221123100850.22969-1-rtanwar@maxlinear.com>
+        with ESMTP id S236522AbiKWK0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:26:49 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2652769FC
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:09:58 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id z4so3919719ljq.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:09:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
+        b=LoDEChFlLgzRfgj2sVBMbstyjMSGKEC6XjMZqmuvucEVuveBIlMXgMMSiuI++6+IcQ
+         aS9bnxmzJlAaKE+MfOds2q1b+s9mvevdH7oyVKelyHFFwUitnM3B6hVK/Q4+dSUZML4m
+         Shqp7BNXicViAayytoxOzh5SIR1YozQRAcKIIho5gSGw7Yly/2XOiUkYyMnPzevrBxSO
+         9eKLGtlDGoav4GxFExmr0nsywKeoBzKpnkjYraQgBUnOY+M7H4qofnwhO41PkZw+vYzx
+         wXuLtPXV8ddWlwU8afXb2XTDejwM14uouwWAX0eYMVU2UOu7cuRnrakbiNz7eCLy607j
+         FcWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
+        b=k+WSG6wA/gwyXdds6vj1M4cMd6lBiv0rtmU+ERsDAsXKw9NNVfRKyx6EmisOHc0O/E
+         j8LTtJFp+VQ0Aswi9+ydFT0E26cmT4oaF3MjwEWgdH5w/FCnrJ/D3pWbhSFwjNwvXLl7
+         lZ9R49ZWRz7OHv7ru+6Lg01kkdhRL7TP4O2XMRE5X4TZeiJDfcMc1KaluLdRieaR4WNA
+         1wPjEwj1hdIjDbJFy2wH0KUaAC4Fnee8g8SU7QrimQiljkQygPo77BL33Ai7szy8hl5T
+         OdShyxy0Sksql8nvZkGAolHf9POTuF/QBc0/zoZ0FOeKyUUZsgTjOq4sVvPVTOwRuzbS
+         gHzQ==
+X-Gm-Message-State: ANoB5pkYEfl5jCJSALsJE2i/3D9S0aKvd/5u2cL0sK2qIewrOp+zWukC
+        lnOkjW/fiftRQdnqmohe14K5VQ==
+X-Google-Smtp-Source: AA0mqf5TV5txgsK0WFTA0l4gRjfGYwijM8avNcNq2kGWPcaw69fP3+7jectvC9FDgDMfpYRzpwNglg==
+X-Received: by 2002:a2e:8891:0:b0:277:a4e:98f2 with SMTP id k17-20020a2e8891000000b002770a4e98f2mr9186739lji.358.1669198197083;
+        Wed, 23 Nov 2022 02:09:57 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c28-20020a2ebf1c000000b0026b2094f6fcsm2141922ljr.73.2022.11.23.02.09.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 02:09:56 -0800 (PST)
+Message-ID: <09a443b3-4e27-a751-ba2c-057d69363a13@linaro.org>
+Date:   Wed, 23 Nov 2022 11:09:55 +0100
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: maxlinear.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
+ controller driver and bindings
+Content-Language: en-US
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-4-yu.tu@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221123021346.18136-4-yu.tu@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Presently, init/boot time interrupt delivery mode is enumerated
-only for ACPI enabled systems by parsing MADT table or for older
-systems by parsing MP table. But for OF based x86 systems, it is
-assumed & hardcoded to legacy PIC mode. This causes boot time crash
-for platforms which do not use 8259 compliant legacy PIC.
+On 23/11/2022 03:13, Yu Tu wrote:
+> Add the peripherals clock controller found and bindings in the s4 SoC family.
+> 
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> ---
+>  .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
 
-Add support for configuration of init time interrupt delivery mode
-for x86 OF based systems by introducing a new optional boolean
-property 'intel,virtual-wire-mode' for interrupt-controller node
-of local APIC. This property emulates IMCRP Bit 7 of MP feature
-info byte 2 of MP floating pointer structure.
+No, this is total mess now.
 
-Defaults to legacy PIC mode if absent. Configures it to virtual
-wire compatibility mode if present.
+Additionally, you received a lot of feedback but your changelog says only:
+"V3 -> V4: change format and clock flags."
+so you ignored entire feedback?
 
-Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
----
- arch/x86/kernel/devicetree.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+That's not the way to work with patches.
 
-diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-index fcc6f1b7818f..458e43490414 100644
---- a/arch/x86/kernel/devicetree.c
-+++ b/arch/x86/kernel/devicetree.c
-@@ -167,7 +167,14 @@ static void __init dtb_lapic_setup(void)
- =09=09=09return;
- =09}
- =09smp_found_config =3D 1;
--=09pic_mode =3D 1;
-+=09if (of_property_read_bool(dn, "intel,virtual-wire-mode")) {
-+=09=09pr_info("Virtual Wire compatibility mode.\n");
-+=09=09pic_mode =3D 0;
-+=09} else {
-+=09=09pr_info("IMCR and PIC compatibility mode.\n");
-+=09=09pic_mode =3D 1;
-+=09}
-+
- =09register_lapic_address(lapic_addr);
- }
-=20
---=20
-2.17.1
+Best regards,
+Krzysztof
 
