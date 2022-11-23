@@ -2,184 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24844636CF0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82150636D08
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:26:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbiKWWOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 17:14:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38332 "EHLO
+        id S229618AbiKWW00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 17:26:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiKWWOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:14:45 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25DB10B42F
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:14:43 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id n189so10023012yba.8
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:14:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yxwq700cjgIpgfGXjXVMIWZf+/i54U4hiQu6wwaFrxs=;
-        b=NERkzdTLp+gtlJdbWRZFxyzivY0ZJDPAXdfrGF3m/XML2U8DBM1f9y3bdLAgjKiZn8
-         a2V5OxNDZdSmicHR0Vw2yjHPlWFDCC4yIun+usLgcmKTJw6n4FjYvRAlM4U1S0GaguhK
-         GvFRvouAy/HCKKjynSlpWv5lqkA5xDE/awBDG+0n8wS3M+yA16vT8okceMIwiQIVGgwk
-         cxulXw1lewEXbgR4GCJfE+rEyDVVODX0X8pAQ49ujkduB68QFJCDfQtd9TwO+QdAt6dl
-         9wK2iOGcLfiqo8TB1jUMzOzWqE2LHkAioDTh6SGmTRDJyquX3/viOLFRcnbauKLHHilJ
-         Soew==
+        with ESMTP id S229483AbiKWW0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:26:25 -0500
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DF514E6C0;
+        Wed, 23 Nov 2022 14:26:24 -0800 (PST)
+Received: by mail-io1-f53.google.com with SMTP id q21so133619iod.4;
+        Wed, 23 Nov 2022 14:26:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yxwq700cjgIpgfGXjXVMIWZf+/i54U4hiQu6wwaFrxs=;
-        b=h44ImVIHN7aVETQM3t3vN67IJ9LO1EAPF3feJrIvK0bF3oBjXB2bZoRy2KBvHL5Zxm
-         4wwZvGzylVBYOP4hKk5X/lc2F//CZFMovMP290Y3Dn96+wZKM/nLa5fRBf0QdRnSJqaj
-         sx9xy55pN1NpP5pjKC3t0pHxsEh9UUgHoCKDHig4Ev9D51q5+oLEGEaytLNbnGXChsYw
-         dfU5MLtirwuI+ndu9dM0jOz8zEmmvaJVU0VPhVqjMjw1jlRlaGNzft+BIGGvZ98ub/bV
-         iMJRabIj0LcjGB8TCnwqy/e13LIN0CofY4yMJ1KyNXnqjZceUs0kVo8OfSkpiDQVmFVU
-         vQqw==
-X-Gm-Message-State: ANoB5pliJ+ywUBoLgF/l2MXEmNysnirVmyHD2mmA7NG7/NmAQt/Q/tku
-        oX/FjBt+Zm1vDNBEXfWm11G+zzsRc0rPtg3dxlKWM7YVdBOPDw==
-X-Google-Smtp-Source: AA0mqf4bdwIwAUjV3qYMdxNw8Ige0lynYHKpcKkZxcAuLvYxsMbWkZsSuItzC/6TVTNtDTdGQ7fzuG7GrT5n9w66TJU=
-X-Received: by 2002:a25:acd1:0:b0:6b4:b9e3:c64b with SMTP id
- x17-20020a25acd1000000b006b4b9e3c64bmr10342450ybd.238.1669241683091; Wed, 23
- Nov 2022 14:14:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20221123080414.14005-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221123080414.14005-1-zhuyinbo@loongson.cn>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 23 Nov 2022 23:14:31 +0100
-Message-ID: <CACRpkdZ5OJpMFH1Wi31TKQZskQtCmNGyySdkOpouiNW2t_jV6Q@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Md22OrgObOx6DJr1ojJ7e+OLdIlThpqngt384PGuCOQ=;
+        b=JEzoc13ZQO/3bTFZBY/TBBoDw/UmT5dr9mDRMHT2oq8vDcsJp/EEofKAAlw/IC092s
+         DmPMLCn0cKKycp7m/St+aeqHnui0Mtpd3Af1Qrn2euvKsQnZOyKkZ8QuScSC+kAriPqF
+         1AoOE0+rQBpS05yvY3uCe59fKYFC3qS3m0t230dEUF7fh5TZxtKxH2Jnz9FozznK/meI
+         xrWwMdxlFl2FCOG8kegNjnhwwJ7dT1fiNH0euNLPwDIqfRt6aE42yIB9fSr6brbc8gDk
+         cm28CLLrSACbNYOzSWxo9a5wxLzKymf9ZjwRUuKMuPzxbKHtlUZXk5pnoUH4AyF81rLN
+         y89w==
+X-Gm-Message-State: ANoB5pmIsfydoF7m+uLTRp99Vwz1VGdSR7rT84UrKGQKQcDKjsZ20HFd
+        fgw1IvilK/TFJM+icVDB4w==
+X-Google-Smtp-Source: AA0mqf5kzl4MXkOhcYULiC7EDYSS0a6ABHItbyx+DROc/VOx1kAqziBldZZSdsDen3xapJ9BYjl7LA==
+X-Received: by 2002:a05:6638:296:b0:363:79c4:b889 with SMTP id c22-20020a056638029600b0036379c4b889mr4970556jaq.292.1669242383774;
+        Wed, 23 Nov 2022 14:26:23 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id u29-20020a02b1dd000000b003880914948fsm556036jah.6.2022.11.23.14.26.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 14:26:23 -0800 (PST)
+Received: (nullmailer pid 2616920 invoked by uid 1000);
+        Wed, 23 Nov 2022 22:26:24 -0000
+Date:   Wed, 23 Nov 2022 16:26:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     Hal Feng <hal.feng@starfivetech.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/8] dt-bindings: sifive,ccache0: Support StarFive
+ JH7110 SoC
+Message-ID: <20221123222624.GA2611087-robh@kernel.org>
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+ <20221118011714.70877-5-hal.feng@starfivetech.com>
+ <Y3duiJguYE6VrVLP@spud>
+ <Y3dvCPP1g0LzzHFO@spud>
+ <a5193e23-efe1-fa65-15de-d53b80b87d63@starfivetech.com>
+ <Y3yRTuo69JUsfLqk@wendy>
+ <0f9e423e-37c0-a838-bf25-f9b6784a31d0@starfivetech.com>
+ <Y3yd+tfFl4yvXOx6@wendy>
+ <b57bdf1c-19f4-3d70-7618-16817669abc5@starfivetech.com>
+ <CAJM55Z-aQfvUZXNtaorAk4acpbbVsj-f-8TQn6uZXQosD=MORA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z-aQfvUZXNtaorAk4acpbbVsj-f-8TQn6uZXQosD=MORA@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 9:04 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+On Tue, Nov 22, 2022 at 11:35:28AM +0100, Emil Renner Berthing wrote:
+> On Tue, 22 Nov 2022 at 11:16, Hal Feng <hal.feng@starfivetech.com> wrote:
+> >
+> > On Tue, 22 Nov 2022 10:01:30 +0000, Conor Dooley wrote:
+> > > On Tue, Nov 22, 2022 at 05:55:57PM +0800, Hal Feng wrote:
+> > > > On Tue, 22 Nov 2022 09:07:26 +0000, Conor Dooley wrote:
+> > > > > On Tue, Nov 22, 2022 at 04:40:23PM +0800, Hal Feng wrote:
+> > > > > > On Fri, 18 Nov 2022 19:39:52 +0800, Conor Dooley wrote:
+> > > > > > > On Fri, Nov 18, 2022 at 11:37:50AM +0000, Conor Dooley wrote:
+> > > > > > > > On Fri, Nov 18, 2022 at 09:17:10AM +0800, Hal Feng wrote:
+> > > > > > > > > From: Emil Renner Berthing <kernel@esmil.dk>
+> > > > > > > > >
+> > > > > > > > > This cache controller is also used on the StarFive JH7110 SoC.
+> > > > > > > >
+> > > > > > > > "... and configured identically to that of the FU740"?
+> > > > > > > > Anyways,
+> > > > > > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > > >
+> > > > > > > Actually, after looking at the next patch - why can you not fall back to
+> > > > > > > the fu740 one since you appear to have the same configuration as it?
+> > > > > >
+> > > > > > Right, I will drop this patch and use "sifive,fu740-c000-ccache" as
+> > > > > > compatible in dts.
+> > > > >
+> > > > > Uh, that's not quite what I was suggesting. Rather than using that one
+> > > > > in isolation, you can do the following in your dt:
+> > > > > "starfive,jh7110-ccache", "sifive,fu740-c000-ccache"
+> > > > >
+> > > > > And then in the driver we need to make no changes - unless down the line
+> > > > > we find some sort of issue that requires special handling etc. There's
+> > > > > no harm in having a "starfive,jh7110-ccache" IMO.
+> > > >
+> > > > Just like what microchip did as blow?
+> >
+> > below
+> >
+> > > >
+> > > > Documentation/devicetree/bindings/riscv/sifive,ccache0.yaml:
+> > > > properties:
+> > > >   compatible:
+> > > >     oneOf:
+> > > >       - items:
+> > > >           - enum:
+> > > >               - sifive,ccache0
+> > > >               - sifive,fu540-c000-ccache
+> > > >               - sifive,fu740-c000-ccache
+> > > >               - starfive,jh7110-ccache
+> > > >           - const: cache
+> > > >       - items:
+> > > >           - const: microchip,mpfs-ccache
+> > > >           - const: sifive,fu540-c000-ccache
+> > > >           - const: cache
+> > >
+> > > No, I don't think this is correct either. You'd do something like:
+> > >
+> > > >       - items:
+> > > >           - const: starfive,jh7110-ccache
+> > > >           - const: sifive,fu740-c000-ccache
+> 
+> For the record I don't think the line above should be there. The
+> fu7400-c000 is a specific tapeout and pretending the JH7110 is that
+> tapeout is not right. Especially when there is already the
+> "sifive,ccache0" string for the generic IP.
 
-> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
-> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
-> with other functions. Each GPIO can set input/output and has the
-> interrupt capability.
->
-> This driver added support for Loongson GPIO controller and support to
-> use DTS or ACPI to descibe GPIO device resources.
->
-> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
-> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v6:
+All it really says is that this h/w will work with any client (OS) 
+that understands 'sifive,fu740-c000-ccache'. Maybe 'sifive,ccache0' is 
+sufficient too, IDK.
 
-This is way better :)
-
-I guess you notice how the driver gets smaller and smaller.
-This is a good sign!
-
-> +static int loongson_gpio_request(
-> +                       struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       if (pin >= chip->ngpio)
-> +               return -EINVAL;
-> +
-> +       return 0;
-> +}
-
-Drop this altogether as discussed in my other reply.
-
-> +static inline void __set_direction(struct loongson_gpio_chip *lgpio,
-> +                       unsigned int pin, int input)
-> +static void __set_level(struct loongson_gpio_chip *lgpio, unsigned int pin,
-> +                       int high)
-
-I missed this before. Also the use of __underscore for inner functions
-is a bad habit IMO (because __underscore is also used for compiler
-primitives such as __init which is confusing) The signature of these
-functions is too generic. Name them loongson_commit_direction() or
-loongson_commit_level() or something.
-
-> +static int loongson_gpio_get_direction(
-> +                               struct gpio_chip *chip, unsigned int pin)
-
-thanks for implementing this!
-
-> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
-> +               ret = bgpio_init(&lgpio->chip, dev, 8,
-> +                               LOONGSON_GPIO_IN(lgpio),
-> +                               LOONGSON_GPIO_OUT(lgpio), 0,
-> +                               LOONGSON_GPIO_OEN(lgpio), NULL, 0);
-> +               if (ret) {
-> +                       dev_err(dev, "unable to init generic GPIO\n");
-> +                       return ret;
-> +               }
-> +               lgpio->chip.ngpio = ngpios;
-
-Neat!
-
-> +               lgpio->chip.base = 0;
-
-Drop this. It is good that the base is unpredictable so
-people don't start to rely on it. (drivers/gpio/TODO)
-
-> +       rval = device_property_read_u16_array(dev, "gsi_idx_map", NULL, 0);
-
-But this gsi_idx_map is missing from your device tree bindings,
-is it not?
-
-Or what am I missing here? Sorry I might overlook something...
-
-> +static int loongson_gpio_probe(struct platform_device *pdev)
-> +{
-> +       void __iomem *reg_base;
-> +       struct loongson_gpio_chip *lgpio;
-> +       struct device_node *np = pdev->dev.of_node;
-> +       struct device *dev = &pdev->dev;
-> +
-> +       lgpio = devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
-> +       if (!lgpio)
-> +               return -ENOMEM;
-> +
-> +       loongson_gpio_get_props(pdev, lgpio);
-> +
-> +       lgpio->p_data = device_get_match_data(&pdev->dev);
-
-lgpio->p_data = device_get_match_data(dev);
-
-
-> +static int __init loongson_gpio_setup(void)
-> +{
-> +       return platform_driver_register(&loongson_gpio_driver);
-> +}
-> +postcore_initcall(loongson_gpio_setup);
-
-Why does this have to be postcore_initcall()?
-
-Yours,
-Linus Walleij
+Rob
