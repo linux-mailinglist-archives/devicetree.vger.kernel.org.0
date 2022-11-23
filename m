@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16AD86359DF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12B956359DC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:28:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236166AbiKWK1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:27:25 -0500
+        id S236527AbiKWK2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:28:31 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236522AbiKWK0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:26:49 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2652769FC
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:09:58 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id z4so3919719ljq.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:09:58 -0800 (PST)
+        with ESMTP id S236111AbiKWK1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:27:25 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7441173CB
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:10:28 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id z24so20837038ljn.4
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:10:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
-        b=LoDEChFlLgzRfgj2sVBMbstyjMSGKEC6XjMZqmuvucEVuveBIlMXgMMSiuI++6+IcQ
-         aS9bnxmzJlAaKE+MfOds2q1b+s9mvevdH7oyVKelyHFFwUitnM3B6hVK/Q4+dSUZML4m
-         Shqp7BNXicViAayytoxOzh5SIR1YozQRAcKIIho5gSGw7Yly/2XOiUkYyMnPzevrBxSO
-         9eKLGtlDGoav4GxFExmr0nsywKeoBzKpnkjYraQgBUnOY+M7H4qofnwhO41PkZw+vYzx
-         wXuLtPXV8ddWlwU8afXb2XTDejwM14uouwWAX0eYMVU2UOu7cuRnrakbiNz7eCLy607j
-         FcWQ==
+        bh=ZqJl1+6YGIooPA5RyCLFMiFhceaRWa4Nlh5Xn0glHTk=;
+        b=JH7kpmAlHqFLEvsthwrLXnmFxxjht9kdZM8X5XfWaeEbvoyTx+CqYnZSYxYvuiemN1
+         ZPby/Pq4iVzH3CTDRma1EBFYd5IRVOKYJhQPUwpI4Vh1THFJHP0EngW+4pe2aRIpVpj/
+         4BZ2hugDECFImf/7nKc7qMOTL0DDP+OpoDkjtY5XEYUf9Zyd6BvDZNp/DsPnnBVeYE56
+         vlE0ih1XjONPjhpyGMIRex/dPSNHCeywzGgMaoksmOzNrWudhPGUhyONPfvL3uBUor5Z
+         LNEWzGt64TKRf1q7WDtUgMPihWdEpa0ADL/QI3SOZPd2+1L7p4UCwSvvaAG7UYhZ7NwZ
+         nGCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RjVx0yPImCcrCeHJYSZsdrbYMFr6VcjIJVu6xhC1kYQ=;
-        b=k+WSG6wA/gwyXdds6vj1M4cMd6lBiv0rtmU+ERsDAsXKw9NNVfRKyx6EmisOHc0O/E
-         j8LTtJFp+VQ0Aswi9+ydFT0E26cmT4oaF3MjwEWgdH5w/FCnrJ/D3pWbhSFwjNwvXLl7
-         lZ9R49ZWRz7OHv7ru+6Lg01kkdhRL7TP4O2XMRE5X4TZeiJDfcMc1KaluLdRieaR4WNA
-         1wPjEwj1hdIjDbJFy2wH0KUaAC4Fnee8g8SU7QrimQiljkQygPo77BL33Ai7szy8hl5T
-         OdShyxy0Sksql8nvZkGAolHf9POTuF/QBc0/zoZ0FOeKyUUZsgTjOq4sVvPVTOwRuzbS
-         gHzQ==
-X-Gm-Message-State: ANoB5pkYEfl5jCJSALsJE2i/3D9S0aKvd/5u2cL0sK2qIewrOp+zWukC
-        lnOkjW/fiftRQdnqmohe14K5VQ==
-X-Google-Smtp-Source: AA0mqf5TV5txgsK0WFTA0l4gRjfGYwijM8avNcNq2kGWPcaw69fP3+7jectvC9FDgDMfpYRzpwNglg==
-X-Received: by 2002:a2e:8891:0:b0:277:a4e:98f2 with SMTP id k17-20020a2e8891000000b002770a4e98f2mr9186739lji.358.1669198197083;
-        Wed, 23 Nov 2022 02:09:57 -0800 (PST)
+        bh=ZqJl1+6YGIooPA5RyCLFMiFhceaRWa4Nlh5Xn0glHTk=;
+        b=uca4Cj30ZKDAYoL74rztflIj43S9PbI4hpMhCtxRfJlENJisVkvw3Qc9rGI+BQDppa
+         0JqAomYsiDCwmTJXVhv5sstGJ7I4GScG4HY0OD0tfw2EmuCFry/AGCERD6MBwoLYPNJV
+         sVC1OVEHyRMCGpsXmHgPxbSaGuLh7UuH8hmlZP6NarYmC1P8u4xfuEOAerkfVRfHPQ7X
+         huoPs2zOM7nZuRxb7H8NX8G/bZrxUrAFL+L+YVLf0KfBa6W9jSb1Xh9q/bhUZJHJGtDa
+         2//Rt+CvT+Ly+0Q4qsc56NzgByLHEuQyl4Moyd2k9zzE1rcDMZIca1wCuoK1hNcudwdI
+         4lcw==
+X-Gm-Message-State: ANoB5pnI/ehxHxGjhDikrpqq7kP1mNeUYzhQ82Wa7M2kSZ60AOnonnhn
+        ddL9VVxcFgjryRQ1VavmBQmu6A==
+X-Google-Smtp-Source: AA0mqf6XnTP7DKHANKMnVZVz2ILRp+dyk+l4bhA9ENXc6MSPSOQqM8P2qEVwUWegdewfNZkbnQ238w==
+X-Received: by 2002:a2e:b5d4:0:b0:279:5fa:8e7c with SMTP id g20-20020a2eb5d4000000b0027905fa8e7cmr8382761ljn.62.1669198226494;
+        Wed, 23 Nov 2022 02:10:26 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c28-20020a2ebf1c000000b0026b2094f6fcsm2141922ljr.73.2022.11.23.02.09.55
+        by smtp.gmail.com with ESMTPSA id s14-20020a2eb62e000000b002772414817esm1429030ljn.1.2022.11.23.02.10.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 02:09:56 -0800 (PST)
-Message-ID: <09a443b3-4e27-a751-ba2c-057d69363a13@linaro.org>
-Date:   Wed, 23 Nov 2022 11:09:55 +0100
+        Wed, 23 Nov 2022 02:10:25 -0800 (PST)
+Message-ID: <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
+Date:   Wed, 23 Nov 2022 11:10:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
- controller driver and bindings
+Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
+ controller in DT
 Content-Language: en-US
 To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
@@ -70,9 +70,9 @@ To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     kelvin.zhang@amlogic.com
 References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-4-yu.tu@amlogic.com>
+ <20221123021346.18136-5-yu.tu@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123021346.18136-4-yu.tu@amlogic.com>
+In-Reply-To: <20221123021346.18136-5-yu.tu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,19 +86,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/11/2022 03:13, Yu Tu wrote:
-> Add the peripherals clock controller found and bindings in the s4 SoC family.
+> Added information about the S4 SOC Peripheral Clock controller in DT.
 > 
 > Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > ---
->  .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index bd9c2ef83314..e7fab6e400be 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -6,6 +6,8 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
+> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>  
+>  / {
+>  	cpus {
+> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
+>  				#clock-cells = <1>;
+>  			};
+>  
+> +			clkc_periphs: clock-controller {
+> +				compatible = "amlogic,s4-peripherals-clkc";
+> +				reg = <0x0 0x0 0x0 0x49c>;
 
-No, this is total mess now.
+This is broken... did you check for warnings?
 
-Additionally, you received a lot of feedback but your changelog says only:
-"V3 -> V4: change format and clock flags."
-so you ignored entire feedback?
-
-That's not the way to work with patches.
 
 Best regards,
 Krzysztof
