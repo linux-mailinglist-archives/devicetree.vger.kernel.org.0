@@ -2,69 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B24D6636C6D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C228636CA5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:58:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238466AbiKWVf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 16:35:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
+        id S236756AbiKWV6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 16:58:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238411AbiKWVfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:35:24 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225B5A7C3E
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:35:24 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-39451671bdfso161632447b3.10
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:35:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/zxUg/3ClqWga+7Ed6StA1cm4QFeF6wTlClAy8FmIzU=;
-        b=RM3VeqxfkFIy8zz8Nl4T3pjNDIYv8xVYnY8rVzE53vCSoGEYJ0HflBsnVQ3Wh4oJT2
-         U5mYOFXNU+C6z2s4ZQf6JUf6MP/w5O0Llsf2RXwDKGS7X+oEKxoNtNPaTuX41bzoWac2
-         BybSWzGu4u5ibNrDdRtumvHaVcJLYdIRgUWuNJq66dwydaIPJcusUZ4Aq3Syj7F/HIC7
-         S9ltlqBpeQzsrchmpEM8I3NgX3751PlOY1/cb9UUp34IfGSKGYg+dFvhSziPn+OEE+2D
-         tpVbj+jNkKPUtg+FB3RXgkJtGk6JdO5yP/Jr4oL3vKvv3I8UtmyZHspDN5/WwXvKzLYw
-         mkRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/zxUg/3ClqWga+7Ed6StA1cm4QFeF6wTlClAy8FmIzU=;
-        b=cMQWhBbs1784BWSJXCxKmqQ63ik+jS104uGoavKBfb+Ek5wQ1TJB0oJMsLZyhld9YM
-         0NlWa9KEHEJJvRqV0HvuKkxBi5PFyPTe9HNIQ9moXza74E2J2daroSkncSwpHt2KitME
-         Ov1LHMSeHBJ1FyUd7Fs9cGmBI4D8d1cPpO9mJSta258u93ecoBOMU2x3W8u4hYO+/hUk
-         iBDLQ56MvAU2hpTOF65xyfmUFoKXICiBuB3ds+zgFH/ZHIj5t4yV5PcGhx4L3KUNXXP/
-         7mm6x/mHS1xmHrlMRl9Ix870r7HZIMtxi1muHUFdEdIcJay3vCuPpZzPBoe+1CoOkqGq
-         ouQQ==
-X-Gm-Message-State: ANoB5pkNNU9oLNtXM1wo+rXlDWWJd6eztmTzV7Id50SBSJEehBFxQ25I
-        iAiaqd3/r2Pl44wZ06TcXHi1lvOYsdO6IBiPTtnxHA==
-X-Google-Smtp-Source: AA0mqf4DAxvv5I96oWrIjGntJqn8cl3w0Gig1toUsFFzNHH6W/jvXb9tymyP4gjzy3MKGT3r0P6dywTTL64+amTtDR8=
-X-Received: by 2002:a81:3855:0:b0:38b:17c4:4297 with SMTP id
- f82-20020a813855000000b0038b17c44297mr11062402ywa.446.1669239323231; Wed, 23
- Nov 2022 13:35:23 -0800 (PST)
+        with ESMTP id S235336AbiKWV6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:58:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215F765E44;
+        Wed, 23 Nov 2022 13:58:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4571B82503;
+        Wed, 23 Nov 2022 21:58:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF829C433C1;
+        Wed, 23 Nov 2022 21:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669240711;
+        bh=/4n+Spc+ltblmwtJHhvxBgY8u1GVTKc0G55iQgfMppE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hP++qYrUtKfpPY16ErGKEilq8Mh5rSyLoG2hoX+Ex5QUAvNeKzYF2E/0kemchntJy
+         NTNxJwEM82TonQJnp7wgLYDln6Zb3U/85dWtE7moUbtcpk+rWa90kvw90HPpHLIVYB
+         1MrjEY+Ctpz3tuDfhdX7SCLA29fdBn+RTjulxSCPC3WnbznkaTZJs/ELs47sC6DUfT
+         we2R0RApfTCZ3sSIuse8XnBbwHq96/nmJQe9eu8m7ScLD0RRuVmZqbxNHsNAoJNrhy
+         DFEG5xUR1TaTBDHtYkJO/Mn6oEE6FVe/gEIjsENem1Y1MUiV6VaSR0gP/ECmndBmrl
+         jK+h81MRbvonA==
+Date:   Wed, 23 Nov 2022 21:58:26 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v1 4/9] PCI: microchip: Clean up initialisation of
+ interrupts
+Message-ID: <Y36Xgr7NobqA2BCh@spud>
+References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
+ <20221116135504.258687-5-daire.mcnamara@microchip.com>
 MIME-Version: 1.0
-References: <20221119221219.1232541-1-linus.walleij@linaro.org>
- <20221119221219.1232541-2-linus.walleij@linaro.org> <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
-In-Reply-To: <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 23 Nov 2022 22:35:11 +0100
-Message-ID: <CACRpkdZsxk2MH0AEHE=kpHuikdP35d3_q6wrr3+Yrs2QpZy62A@mail.gmail.com>
-Subject: Re: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221116135504.258687-5-daire.mcnamara@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,87 +57,241 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 5:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Wed, Nov 16, 2022 at 01:54:59PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> Refactor interrupt handling in _init() function into
+> disable_interrupts(), init_interrupts(), clear_sec_errors() and clear
+> ded_errors().  It was unwieldy and prone to bugs. Then clearly disable
+> interrupts as soon as possible and only enable interrupts after address
+> translation errors are setup to prevent spurious axi2pcie and pcie2axi
+              ^^^^^^
+Is that meant to read "after address translation is" or "after address
+translation handling is"?
 
-> > Cc: devicetree@vger.kernel.org
-> > Cc: Lionel Debieve <lionel.debieve@foss.st.com>
-> > Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> > Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-(...)
->
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
+> translation errors being reported
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  drivers/pci/controller/pcie-microchip-host.c | 148 ++++++++++++-------
+>  1 file changed, 92 insertions(+), 56 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
+> index a81e6d25e347..ecd4d3f3e3d4 100644
+> --- a/drivers/pci/controller/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/pcie-microchip-host.c
+> @@ -986,39 +986,65 @@ static int mc_pcie_setup_windows(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> -static int mc_platform_init(struct pci_config_window *cfg)
+> +static inline void mc_clear_secs(struct mc_pcie *port)
+>  {
+> -	struct device *dev = cfg->parent;
+> -	struct platform_device *pdev = to_platform_device(dev);
+> -	struct mc_pcie *port;
+> -	void __iomem *bridge_base_addr;
+> -	void __iomem *ctrl_base_addr;
+> -	int ret;
+> -	int irq;
+> -	int i, intx_irq, msi_irq, event_irq;
+> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+> +
+> +	writel_relaxed(GENMASK(15, 0), ctrl_base_addr + SEC_ERROR_INT);
 
-The people reported by get_maintainers are maybe not on the CC
-line of the patch, but if you look at the mail header they are
-on the Cc: line... because I pass the not immediately relevant people
-to git-send-email rather than add them in the Cc tags.
+I think it'd be nice if the GENMASK()s in this function and below were
+#defined above somewhere.
 
-> > diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> > index ed23bf94a8e0..69614ab51f81 100644
-> > --- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> > +++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> > @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >
-> >  title: STMicroelectronics STM32 CRYP bindings
-> >
-> > +description: The STM32 CRYP block is built on the CRYP block found in
-> > +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
-> > +  SoC in 2010.
-> > +
-> >  maintainers:
-> >    - Lionel Debieve <lionel.debieve@foss.st.com>
-> >
-> >  properties:
-> >    compatible:
-> >      enum:
-> > +      - st,stn8820-cryp
-> > +      - stericsson,ux500-cryp
-> >        - st,stm32f756-cryp
-> >        - st,stm32mp1-cryp
-> >
-> > @@ -27,6 +33,19 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> >
-> > +  dmas:
-> > +    items:
-> > +      - description: mem2cryp DMA channel
-> > +      - description: cryp2mem DMA channel
-> > +
-> > +  dma-names:
-> > +    items:
-> > +      - const: mem2cryp
-> > +      - const: cryp2mem
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
->
-> Are these all valid for other variants?
+> +	writel_relaxed(0, ctrl_base_addr + SEC_ERROR_EVENT_CNT);
+> +}
+> +
+> +static inline void mc_clear_deds(struct mc_pcie *port)
+> +{
+> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+> +
+> +	writel_relaxed(GENMASK(15, 0), ctrl_base_addr + DED_ERROR_INT);
+> +	writel_relaxed(0, ctrl_base_addr + DED_ERROR_EVENT_CNT);
+> +}
+> +
+> +static void mc_disable_interrupts(struct mc_pcie *port)
+> +{
+> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+>  	u32 val;
+> -	int err;
+>  
+> -	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> -	if (!port)
+> -		return -ENOMEM;
+> -	port->dev = dev;
+> +	/* ensure ecc bypass is enabled */
+> +	val = ECC_CONTROL_TX_RAM_ECC_BYPASS | ECC_CONTROL_RX_RAM_ECC_BYPASS |
+> +		ECC_CONTROL_PCIE2AXI_RAM_ECC_BYPASS | ECC_CONTROL_AXI2PCIE_RAM_ECC_BYPASS;
 
-The commit message of the patch reads:
+Pedantic maybe, but could we format this as:
+		ECC_CONTROL_TX_RAM_ECC_BYPASS |
+		ECC_CONTROL_RX_RAM_ECC_BYPASS |
+		ECC_CONTROL_PCIE2AXI_RAM_ECC_BYPASS |
+		ECC_CONTROL_AXI2PCIE_RAM_ECC_BYPASS;
+And the same below for the PCIE_EVENT_FOO stuff, I think it'd make
+things a bit easier on the eye.
 
-> The two properties added are DMA channels and power domain.
-> Power domains are a generic SoC feature and the STM32 variant
-> also has DMA channels.
+Anyways, SEC and DED stuff that I usually see on startup are gone - at
+least on the setup I have :)
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-I think of power domains kind of like resets, clocks or supplies,
-something that is optional.
-
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
-> > +    #include <dt-bindings/arm/ux500_pm_domains.h>
-> > +    cryp@a03cb000 {
->
-> Drop the example, it's almost the same and difference in one new
-> property does not warrant a new example.
-
-OK I drop it. Thanks for reviewing!
-
-Yours,
-Linus Walleij
+> +	writel_relaxed(val, ctrl_base_addr + ECC_CONTROL);
+>  
+> -	ret = mc_pcie_init_clks(dev);
+> -	if (ret) {
+> -		dev_err(dev, "failed to get clock resources, error %d\n", ret);
+> -		return -ENODEV;
+> -	}
+> +	/* disable sec errors and clear any outstanding */
+> +	writel_relaxed(GENMASK(15, 0), ctrl_base_addr + SEC_ERROR_INT_MASK);
+> +	mc_clear_secs(port);
+>  
+> -	port->axi_base_addr = devm_platform_ioremap_resource(pdev, 1);
+> -	if (IS_ERR(port->axi_base_addr))
+> -		return PTR_ERR(port->axi_base_addr);
+> +	/* disable ded errors and clear any outstanding */
+> +	writel_relaxed(GENMASK(15, 0), ctrl_base_addr + DED_ERROR_INT_MASK);
+> +	mc_clear_deds(port);
+>  
+> -	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> -	ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+> +	/* disable local interrupts and clear any outstanding */
+> +	writel_relaxed(0, bridge_base_addr + IMASK_LOCAL);
+> +	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_LOCAL);
+> +	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_MSI);
+> +
+> +	/* disable PCIe events and clear any outstanding */
+> +	val = PCIE_EVENT_INT_L2_EXIT_INT | PCIE_EVENT_INT_HOTRST_EXIT_INT |
+> +	      PCIE_EVENT_INT_DLUP_EXIT_INT | PCIE_EVENT_INT_L2_EXIT_INT_MASK |
+> +	      PCIE_EVENT_INT_HOTRST_EXIT_INT_MASK |
+> +	      PCIE_EVENT_INT_DLUP_EXIT_INT_MASK;
+> +	writel_relaxed(val, ctrl_base_addr + PCIE_EVENT_INT);
+> +
+> +	/* disable host interrupts and clear any outstanding */
+> +	writel_relaxed(0, bridge_base_addr + IMASK_HOST);
+> +	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
+> +}
+> +
+> +static int mc_init_interrupts(struct platform_device *pdev, struct mc_pcie *port)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int irq;
+> +	int i, intx_irq, msi_irq, event_irq;
+> +	int ret;
+>  
+> -	port->msi.vector_phy = MSI_ADDR;
+> -	port->msi.num_vectors = MC_NUM_MSI_IRQS;
+>  	ret = mc_pcie_init_irq_domains(port);
+>  	if (ret) {
+>  		dev_err(dev, "failed creating IRQ domains\n");
+> @@ -1036,11 +1062,11 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  			return -ENXIO;
+>  		}
+>  
+> -		err = devm_request_irq(dev, event_irq, mc_event_handler,
+> +		ret = devm_request_irq(dev, event_irq, mc_event_handler,
+>  				       0, event_cause[i].sym, port);
+> -		if (err) {
+> +		if (ret) {
+>  			dev_err(dev, "failed to request IRQ %d\n", event_irq);
+> -			return err;
+> +			return ret;
+>  		}
+>  	}
+>  
+> @@ -1065,44 +1091,54 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	/* Plug the main event chained handler */
+>  	irq_set_chained_handler_and_data(irq, mc_handle_event, port);
+>  
+> -	/* Hardware doesn't setup MSI by default */
+> -	mc_pcie_enable_msi(port, cfg->win);
+> +	return 0;
+> +}
+>  
+> -	val = readl_relaxed(bridge_base_addr + IMASK_LOCAL);
+> -	val |= PM_MSI_INT_INTX_MASK;
+> -	writel_relaxed(val, bridge_base_addr + IMASK_LOCAL);
+> +static int mc_platform_init(struct pci_config_window *cfg)
+> +{
+> +	struct device *dev = cfg->parent;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct mc_pcie *port;
+> +	void __iomem *bridge_base_addr;
+> +	void __iomem *ctrl_base_addr;
+> +	int ret;
+>  
+> -	writel_relaxed(val, ctrl_base_addr + ECC_CONTROL);
+> +	port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
+> +	if (!port)
+> +		return -ENOMEM;
+> +	port->dev = dev;
+>  
+> -	val = PCIE_EVENT_INT_L2_EXIT_INT |
+> -	      PCIE_EVENT_INT_HOTRST_EXIT_INT |
+> -	      PCIE_EVENT_INT_DLUP_EXIT_INT;
+> -	writel_relaxed(val, ctrl_base_addr + PCIE_EVENT_INT);
+> +	ret = mc_pcie_init_clks(dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get clock resources, error %d\n", ret);
+> +		return -ENODEV;
+> +	}
+>  
+> -	val = SEC_ERROR_INT_TX_RAM_SEC_ERR_INT |
+> -	      SEC_ERROR_INT_RX_RAM_SEC_ERR_INT |
+> -	      SEC_ERROR_INT_PCIE2AXI_RAM_SEC_ERR_INT |
+> -	      SEC_ERROR_INT_AXI2PCIE_RAM_SEC_ERR_INT;
+> -	writel_relaxed(val, ctrl_base_addr + SEC_ERROR_INT);
+> -	writel_relaxed(0, ctrl_base_addr + SEC_ERROR_INT_MASK);
+> -	writel_relaxed(0, ctrl_base_addr + SEC_ERROR_EVENT_CNT);
+> +	port->axi_base_addr = devm_platform_ioremap_resource(pdev, 1);
+> +	if (IS_ERR(port->axi_base_addr))
+> +		return PTR_ERR(port->axi_base_addr);
+>  
+> -	val = DED_ERROR_INT_TX_RAM_DED_ERR_INT |
+> -	      DED_ERROR_INT_RX_RAM_DED_ERR_INT |
+> -	      DED_ERROR_INT_PCIE2AXI_RAM_DED_ERR_INT |
+> -	      DED_ERROR_INT_AXI2PCIE_RAM_DED_ERR_INT;
+> -	writel_relaxed(val, ctrl_base_addr + DED_ERROR_INT);
+> -	writel_relaxed(0, ctrl_base_addr + DED_ERROR_INT_MASK);
+> -	writel_relaxed(0, ctrl_base_addr + DED_ERROR_EVENT_CNT);
+> +	mc_disable_interrupts(port);
+>  
+> -	writel_relaxed(0, bridge_base_addr + IMASK_HOST);
+> -	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
+> +	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> +	ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
+> +
+> +	port->msi.vector_phy = MSI_ADDR;
+> +	port->msi.num_vectors = MC_NUM_MSI_IRQS;
+> +
+> +	/* Hardware doesn't setup MSI by default */
+> +	mc_pcie_enable_msi(port, cfg->win);
+>  
+>  	/* Configure Address Translation Table 0 for PCIe config space */
+>  	mc_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & 0xffffffff,
+>  			     cfg->res.start, resource_size(&cfg->res));
+>  
+> -	return mc_pcie_setup_windows(pdev, port);
+> +	ret = mc_pcie_setup_windows(pdev, port);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* address translation is up; safe to enable interrupts */
+> +	return mc_init_interrupts(pdev, port);
+>  }
+>  
+>  static const struct pci_ecam_ops mc_ecam_ops = {
+> -- 
+> 2.25.1
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
