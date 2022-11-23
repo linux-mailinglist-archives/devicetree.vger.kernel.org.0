@@ -2,62 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB6FC635789
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:43:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1CBF635782
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:43:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238183AbiKWJnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 04:43:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
+        id S238022AbiKWJmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 04:42:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238072AbiKWJmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:42:18 -0500
-Received: from us-smtp-delivery-115.mimecast.com (us-smtp-delivery-115.mimecast.com [170.10.129.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B187CBBD
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:38:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
-        s=selector; t=1669196328;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Mc2NS0olCt0qUzsLi0zWfYaDeL0jAmHwQjCqJZ5SsT8=;
-        b=An+fYJ1ak9yv+HUO0ga2BpCsZPO9Df4pTvxFghvP0cW+824ALgkMGhicTZYJmSsrjo8JUb
-        n/AalJCBwe7cUsK6gN6bpL9fE6QQNEJVeCulSGGy7/y0Q+uS30bz3vHHvUUnwReV6I9CpG
-        gnDyCXKPOxnxoPZ+yHwg/eg8WuOY7iKvSz5fOymXM7/jG7+rksyPkuuJpCAmO2BlKTVtw0
-        IhcAhG2H7JDhflKokTTm2H4jg1KkPSV6bsjA4HT3yGKQF3+PmhmfNh5fqIVtkUfHe8/fGE
-        ciJ+2v/1G3CDfGY3CWfqUXQpn7HbEO4buyJiNWYEMS2RpMTpJWTVujB4ji+30A==
-Received: from mail.maxlinear.com (174-47-1-83.static.ctl.one [174.47.1.83])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- us-mta-665-BZZ1RMddN-WSVjCg2PoA3Q-1; Wed, 23 Nov 2022 04:38:47 -0500
-X-MC-Unique: BZZ1RMddN-WSVjCg2PoA3Q-1
-Received: from sgsxdev001.isng.phoenix.local (10.226.81.111) by
- mail.maxlinear.com (10.23.38.120) with Microsoft SMTP Server id 15.1.2375.24;
- Wed, 23 Nov 2022 01:38:39 -0800
-From:   Rahul Tanwar <rtanwar@maxlinear.com>
-To:     Rahul Tanwar <rtanwar@maxlinear.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Borislav Petkov" <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>, <x86@kernel.org>,
-        "H. Peter Anvin" <hpa@zytor.com>, <linux-lgm-soc@maxlinear.com>
-Subject: [PATCH v4 4/4] x86/of: Add support for boot time interrupt delivery mode configuration
-Date:   Wed, 23 Nov 2022 17:38:20 +0800
-Message-ID: <20221123093820.21161-5-rtanwar@maxlinear.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221123093820.21161-1-rtanwar@maxlinear.com>
-References: <20221123093820.21161-1-rtanwar@maxlinear.com>
+        with ESMTP id S237968AbiKWJlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:41:52 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 780BFE07
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:39:45 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id c1so27342391lfi.7
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:39:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HhqMtvHL6CzJDiLWuozbG2Jml88D7dY6P8TNnkcKrDk=;
+        b=uPcF2XKQ3yB8cxrDLUDzCH6YV36F1+y0M6Rxy2QxQEAVoZTzlfdojxgHr57lhPYv5Z
+         mvygHAfNvmroP5qhfZkQyzCDVc4n+ztMBYZO9poIohFylLJB8+4Q6P9BQRXemTgiWEOh
+         z1rctkkfQjvkzmKQMScUuLlwqfYgn9TygkLAjGGpwbvjaRuB2Sql6ikYhfcNfWFq21UY
+         TBogac2ZRtjdeDLfORHdgb5AseVSVAEvJ3qqWgWI9Syq5YwxjXWqgGu/zUjI+ieHO/ZW
+         YYbDMSKtbuXGHao1FM5Il9NCwdlomVwtK5h7m6WOj1qSCHqPMv9IJIRTb1q9AglycZM9
+         hIuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HhqMtvHL6CzJDiLWuozbG2Jml88D7dY6P8TNnkcKrDk=;
+        b=7gumKjrir3F/2ImV24lluZmRPL+ymwQfjAuqGakVQUW32wnhtXhtqSpCaAmBMv282+
+         hZA9yCgF6hfbCrZwT7cWzB8nOkr9h8rau2e7VzXwmrJQGjoMzaLLOoN5rw2x42NVr9rd
+         rS39w9I2CsRbdLjMK/rvC3RkmY+icS1EuDiwODwWl5C3p/7RH1O1blbzPmPwtUFFJH6z
+         4ZaJ0lZdfQQ5bqvtaqvo8vCSui2WQs3B2+u/zBHgzLcFWaXHPweUvNK4NvOgkSAyuF2r
+         iV35ZYYeYY5X3IheGn7tveNojFN7maLwGS6RQTDZEsVlUnuPtOjzErKhkV8LC9NYK6ZW
+         9pPw==
+X-Gm-Message-State: ANoB5pm53SJUVpzq6cYYRRsqLQ3B1hpjiTXlOY2RaACgxyVNeMrLaZI6
+        Cw6zpm7FWhjuXK0X4CUgUoPAeA==
+X-Google-Smtp-Source: AA0mqf5DA9z8M5jnKKs9XTmwUcoENZ3ioMO2Niz5dey3n7Kt+mn3Y92KAjKcnZl7/Qj50MFNZ79P0A==
+X-Received: by 2002:a19:9155:0:b0:492:f5b6:2124 with SMTP id y21-20020a199155000000b00492f5b62124mr8739646lfj.369.1669196383804;
+        Wed, 23 Nov 2022 01:39:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm2788676lfh.197.2022.11.23.01.39.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 01:39:43 -0800 (PST)
+Message-ID: <02db6a5d-ae9d-68b5-f5c5-bebb471e0f70@linaro.org>
+Date:   Wed, 23 Nov 2022 10:39:41 +0100
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: maxlinear.com
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
+ h2mode property
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221114111513.1436165-1-herve.codina@bootlin.com>
+ <20221114111513.1436165-3-herve.codina@bootlin.com>
+ <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
+ <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
+ <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
+ <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
+ <20221121165921.559d6538@bootlin.com>
+ <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
+ <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
+ <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
+ <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
+ <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
+ <CAMuHMdVbzg8y2So+A=z8nUwHMoL+XKUrvoXp9QdbCnUve1_Atw@mail.gmail.com>
+ <191a7f3e-0733-8058-5829-fe170a06dd5a@linaro.org>
+ <20221122100706.739cec4d@bootlin.com>
+ <3856e2d8-1c16-a69f-4ac5-34b8e7f18c2b@linaro.org>
+ <CAMuHMdXPndkt=+k1CAcDbH7eK=TFfS6wMu+xdqWZSCz1+hyhEA@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdXPndkt=+k1CAcDbH7eK=TFfS6wMu+xdqWZSCz1+hyhEA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,46 +101,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Presently, init/boot time interrupt delivery mode is enumerated
-only for ACPI enabled systems by parsing MADT table or for older
-systems by parsing MP table. But for OF based x86 systems, it is
-assumed & hardcoded to legacy PIC mode. This causes boot time crash
-for platforms which do not use 8259 compliant legacy PIC.
+On 22/11/2022 11:47, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> On Tue, Nov 22, 2022 at 11:30 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 22/11/2022 10:07, Herve Codina wrote:
+>>> On Tue, 22 Nov 2022 09:42:48 +0100
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>>> On 22/11/2022 09:25, Geert Uytterhoeven wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> On Tue, Nov 22, 2022 at 8:45 AM Krzysztof Kozlowski
+>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>> On 21/11/2022 21:46, Geert Uytterhoeven wrote:
+>>>>>>>> This does not change anything. Herve wrote:
+>>>>>>>>
+>>>>>>>>> probe some devices (USB host and probably others)
+>>>>>>>>
+>>>>>>>> Why some can be probed earlier and some not, if there are no
+>>>>>>>> dependencies? If there are dependencies, it's the same case with sysctrl
+>>>>>>>> touching the register bit and the USB controller touching it (as well
+>>>>>>>> via syscon, but that's obvious, I assume).
+>>>>>>>>
+>>>>>>>> Where is the synchronization problem?
+>>>>>>>
+>>>>>>> The h2mode bit (and probably a few other controls we haven't figured out
+>>>>>>> yet) in the sysctrl must be set before any of the USB devices is active.
+>>>>>>> Hence it's safest for the sysctrl to do this before any of the USB drivers
+>>>>>>> probes.
+>>>>>>
+>>>>>> Again, this does not differ from many, many of other devices. All of
+>>>>>> them must set something in system controller block, before they start
+>>>>>> operating (or at specific time). It's exactly the same everywhere.
+>>>>>
+>>>>> The issue here is that there are two _different drivers_ (USB host
+>>>>> and device). When both are modular, and the driver that depends on the
+>>>>> sysctrl setting is loaded second, you have a problem: the sysctrl change
+>>>>> must not be done when the first driver is already using the hardware.
+>>>>>
+>>>>> Hence the sysctrl driver should take care of it itself during early
+>>>>> initialization (it's the main clock controller, so it's a dependency
+>>>>> for all other I/O device drivers).
+>>>>
+>>>> I assumed you have there bit for the first device (which can switch
+>>>> between USB host and USB device) to choose appropriate mode. The
+>>>> bindings also expressed this - "the USBs are". Never said anything about
+>>>> dependency between these USBs.
+>>>>
+>>>> Are you saying that the mode for first device cannot be changed once the
+>>>> second device (which is only host) is started? IOW, the mode setup must
+>>>> happen before any of these devices are started?
+>>>>
+>>>> Anyway with sysctrl approach you will have dependency and you cannot
+>>>> rely on clock provider-consumer relationship to order that dependency.
+>>>> What if you make all clocks on and do not take any clocks in USB device?
+>>>> Broken dependency. What if you want to use this in a different SoC,
+>>>> where the sysctrl does not provide clocks? Broken dependency.
+>>>
+>>> The issue is really related to the Renesas sysctrl itself and not related
+>>> to the USB drivers themselves.
+>>> From the drivers themselves, the issue is not seen (I mean the driver
+>>> takes no specific action related to this issue).
+>>> If we change the SOC, the issue will probably not exist anymore.
+>>
+>> Yeah, and in the next SoC you will bring 10 of such properties to
+>> sysctrl arguing that if one was approved, 10 is also fine. Somehow
+>> people on the lists like to use that argument - I saw it somewhere, so I
+>> am allowed to do here the same.
+> 
+> Like pin control properties? ;-)
+> This property represents a wiring on the board...
+> I.e. a system integration issue.
+> 
+>> I understand that the registers responsible for configuration are in
+>> sysctrl block, but it does not mean that it should be described as part
+>> of sysctrl Devicetree node. If there was no synchronization problem,
+>> this would be regular example of register in syscon which is handled
+>> (toggled) by the device (so USB device/host controller). Since there is
+>> synchronization problem, you argue that it is correct representation of
+>> hardware. No, it is not, because logically in DT you do not describe
+>> mode or existence of other devices in some other node and it still does
+>> not describe this ordering.
+> 
+> So we have to drop the property, and let the sysctrl block look
+> for <name>@<reg> nodes, and check which ones are enabled?
+> 
+> Running out of ideas...
 
-Add support for configuration of init time interrupt delivery mode
-for x86 OF based systems by introducing a new optional boolean
-property 'intel,virtual-wire-mode' for interrupt-controller node
-of local APIC. This property emulates IMCRP Bit 7 of MP feature
-info byte 2 of MP floating pointer structure.
+One solution could be making USB nodes children of the sysctrl block which:
+1. Gives proper ordering (children cannot start before parent)
+regardless of any other shared resources,
+2. Allows to drop this mode property and instead check what type of
+children you have and configure mode depending on them.
 
-Defaults to legacy PIC mode if absent. Configures it to virtual
-wire compatibility mode if present.
+However this also might not be correct representation of hardware
+(dunno...), so I am also running out of ideas.
 
-Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
----
- arch/x86/kernel/devicetree.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Anyway, I appreciate your explanations. I don't oppose this and I defer
+the decision to Rob (for this or for v3 patch with descriptive strings).
 
-diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-index fcc6f1b7818f..458e43490414 100644
---- a/arch/x86/kernel/devicetree.c
-+++ b/arch/x86/kernel/devicetree.c
-@@ -167,7 +167,14 @@ static void __init dtb_lapic_setup(void)
- =09=09=09return;
- =09}
- =09smp_found_config =3D 1;
--=09pic_mode =3D 1;
-+=09if (of_property_read_bool(dn, "intel,virtual-wire-mode")) {
-+=09=09pr_info("Virtual Wire compatibility mode.\n");
-+=09=09pic_mode =3D 0;
-+=09} else {
-+=09=09pr_info("IMCR and PIC compatibility mode.\n");
-+=09=09pic_mode =3D 1;
-+=09}
-+
- =09register_lapic_address(lapic_addr);
- }
-=20
---=20
-2.17.1
+Best regards,
+Krzysztof
 
