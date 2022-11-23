@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3A2636143
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:15:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3EE763615A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237444AbiKWOPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:15:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
+        id S236822AbiKWOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:20:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236831AbiKWOPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:15:07 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AF82D1F6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:15:06 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id f13so6814538lfa.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:15:06 -0800 (PST)
+        with ESMTP id S236653AbiKWOU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:20:27 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173DE654F7
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:20:22 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id x5so25549562wrt.7
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:20:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TINdZmgbDrPzV0ASdfCG6s3LtrjTdjbG7XRFv55Do+s=;
-        b=T24d+0jcR5lA60i/hDr9pxlj7VcTDNIPxCLYpkwLfYreAl4zRdvR4jE0/1a9wGaBqO
-         cBFImhmg84zHF+FWgR1HvdD837KljLtuP8taD1ogbB6N6wHRTeDaoBD54vMZLepU8T2G
-         V9PAo7UA2ycJzMbGt4ET3Iquont2aQb9PbJJkJtz0siQvSm6GfajIj5qKHgxLuVs8ZYr
-         wPrZV9eNTQV4WfLwDFIY6B+t7vw2FyGpP9fnJDjCC0QmNaiUtEfzxQ7geqbfT2P0lqrh
-         RoTN0KPftTmsKoc1Db+91yiCcJmEJRvcl7IwEzom3oC2GyArUbuJ2BlxU8cJ5PUB3tEj
-         lklg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EMoXuHIdbhjwJcHJBXXgxho78Ko/2YIp+fuaUAlW2rY=;
+        b=UqeKHDjXeHPPYMhTlC9FYSoN/VLX8nN9SzpWL2c8bInJb/BM+st7kwbQPLjYgqeMf2
+         Ta/IK17zgDEC303ru/IWF1DrALGhUdKXwcbPk6/0PPkIrzcko7JH6vChe2yLwSh6Y9hV
+         HfMq9k2Cv0GB5WzTD3+rBAxpLCfPfuUNOV6U0uDcEWWBmLe9/hP5TV7+jACNBVTRSk/A
+         pWww9GWjGlwjVYS4VHueBqyjcNoYCwK0d4RUCD4kVvhh3X1gJ7Rm3vSxyItOQUcBaFO1
+         8leiLlGOXxQxOe+u548BsE31gKKGi/ZHbZnojcqp6ljxV0G6t2NnT5yYoU5Cti/0KMML
+         xyLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TINdZmgbDrPzV0ASdfCG6s3LtrjTdjbG7XRFv55Do+s=;
-        b=ArD6LdzazuxImd8X5VFkKYK4JRHMiphlJVa8FOBKvl4qSYVbT4i3WgG9kwW+j9Iuz7
-         0+JL+KYgIX/SLU+K78H2aBwpLY/XtENqo3wv0Uhj6fas26+EQNvgTsRwx9IIne5g1Ygs
-         ea4vZcyIK48ZIsQSl0y3ZmSH998fhrxZpO+qm4st+Ls8FftYFmxm1r1216AvK3MCprnG
-         +o4bMmkH/cKM2Fk9rrdO28ZaXHuYJkx3OPbZo8/JwJ32eYhI90LJnL/ARwgohEtZaqNj
-         x9tyGsFyScxqzOanBk5vndxhhNMtQvTX3AjK5b2GAJbHAaiFPLTuVq3tO4G6nSfseTSw
-         /Z7Q==
-X-Gm-Message-State: ANoB5pn0H8AEcX9mJt5HYqDOIIAF7cF7lCyJCYd+4xbWh1G5kGH8PjfM
-        zAD5wMRUWA7dUeeBcyCzBWIVQQ==
-X-Google-Smtp-Source: AA0mqf7us62BlfklbhRWa1ceYpuYyxgP15LQsqJEK1EMlwdIuyjDEP2y6HR/i+RboeD7kufOfcfTtA==
-X-Received: by 2002:ac2:5f49:0:b0:4a4:7db1:b853 with SMTP id 9-20020ac25f49000000b004a47db1b853mr9118798lfz.562.1669212904435;
-        Wed, 23 Nov 2022 06:15:04 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056512021900b004a9b9ccfbe6sm2930656lfo.51.2022.11.23.06.15.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 06:15:03 -0800 (PST)
-Message-ID: <3df1e707-929e-b0a0-441f-61f1a185aa44@linaro.org>
-Date:   Wed, 23 Nov 2022 15:15:02 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EMoXuHIdbhjwJcHJBXXgxho78Ko/2YIp+fuaUAlW2rY=;
+        b=lg8GghdRs8AqNiNjUe00rx73ZJZTz18SXeLjhYGUlz9i9vS5S1kStb8QmA5r3daawo
+         gnvwYCnardMAqxBwQBSyXobCLR7wCyPXvFVGg3JYNVhS3H1GDUQqK0bTnfd0YTkxCvS2
+         jQKjyYbKl/O1l9nXFNLWeXcn/R0qtr5ld4dZCtQ2ZmHt2IKKzEnqKPuc1lVX3LkI6n9I
+         c3fLzH4pOfGCaqyH5kxrxSVmHQSFVYhwKryw8RGwJNsI6W5bsqt+sxSlYF3eZ/HIrh+J
+         9QXEjFs5HoEuY17BuS53JwlwcrFHRnRwqy7ghm/SeqntcXTNFKSUSv1LFZnnVgL6Yqnl
+         9PcQ==
+X-Gm-Message-State: ANoB5pnqNVEr3GN5+lUC/yeR+Sk5f2//hvpHaqaYpqVkh9qqf6oS1JUs
+        25piCB69DmqZZcW9n7zY7ufxhw==
+X-Google-Smtp-Source: AA0mqf5/MjcP0RI/+UciB6PzI31sTUYrP2jKOSevJGF3jEz1P1vukOEYSoL/oxxMiaB9/eHN/I1Crw==
+X-Received: by 2002:adf:de0a:0:b0:241:cdf6:6a81 with SMTP id b10-20020adfde0a000000b00241cdf66a81mr7110202wrm.243.1669213220617;
+        Wed, 23 Nov 2022 06:20:20 -0800 (PST)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id g9-20020a05600c4ec900b003cfd58409desm2837438wmq.13.2022.11.23.06.20.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 06:20:20 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/9] clk: qcom: Add support for SM8550
+Date:   Wed, 23 Nov 2022 16:20:00 +0200
+Message-Id: <20221123142009.594781-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: increase spi-max-frequency of
- nor flash for roc-rk3399-pc
-Content-Language: en-US
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amarula@amarulasolutions.com, Da Xue <da.xue@libretech.co>,
-        dsx724 <da@lessconfused.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Suniel Mahesh <sunil@amarulasolutions.com>
-References: <20221123094827.250657-1-abbaraju.manojsai@amarulasolutions.com>
- <20221123094827.250657-2-abbaraju.manojsai@amarulasolutions.com>
- <4981984.iIbC2pHGDl@phil>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4981984.iIbC2pHGDl@phil>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,22 +74,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 15:04, Heiko Stuebner wrote:
-> Hi Manoj,
-> 
-> Am Mittwoch, 23. November 2022, 10:48:27 CET schrieb Manoj Sai:
->> Increase the spi-max-frequency of nor flash from 10Mhz to 30Mhz,this improves the
->> flash raw write speed by 0.9 MB/s to 1.6MB/s and the time taken to write is
->> get reduced from 36 seconds to 20 seconds.
->>
->> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
->> Signed-off-by: Da Xue <da.xue@libretech.co>
->> Signed-off-by: dsx724 <da@lessconfused.com>
-> 
-> who are these other people? :-)
+This patchset adds clock support for the Qualcomm SM8550 SoC,
+It adds support for the new type of PLL, the TCSR clock controller
+driver, support for configurable poll timeout, the RPMh clocks
+and the bindings.
 
-moreconfused.com :)
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Best regards,
-Krzysztof
+Abel Vesa (9):
+  dt-bindings: clock: Add SM8550 GCC clocks
+  dt-bindings: clock: Add SM8550 TCSR CC clocks
+  clk: qcom: gdsc: Add configurable poll timeout
+  clk: qcom: Add LUCID_OLE PLL type for SM8550
+  clk: qcom: Add clock driver for SM8550
+  dt-bindings: clock: Add RPMHCC for SM8550
+  dt-bindings: clock: qcom,rpmh: Add CXO PAD clock IDs
+  clk: qcom: rpmh: Add support for SM8550 rpmh clocks
+  clk: qcom: Add TCSR clock driver for SM8550
+
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ .../bindings/clock/qcom,sm8550-gcc.yaml       |   56 +
+ .../bindings/clock/qcom,sm8550-tcsrcc.yaml    |   39 +
+ drivers/clk/qcom/Kconfig                      |   15 +
+ drivers/clk/qcom/Makefile                     |    2 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   16 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    5 +
+ drivers/clk/qcom/clk-rpmh.c                   |  110 +-
+ drivers/clk/qcom/gcc-sm8550.c                 | 3396 +++++++++++++++++
+ drivers/clk/qcom/gdsc.c                       |    5 +-
+ drivers/clk/qcom/gdsc.h                       |    1 +
+ drivers/clk/qcom/tcsrcc-sm8550.c              |  193 +
+ include/dt-bindings/clock/qcom,rpmh.h         |    2 +
+ include/dt-bindings/clock/qcom,sm8550-gcc.h   |  231 ++
+ .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    |   18 +
+ 15 files changed, 4069 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-gcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm8550.c
+ create mode 100644 drivers/clk/qcom/tcsrcc-sm8550.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8550-gcc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+
+-- 
+2.34.1
 
