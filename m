@@ -2,189 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAC7F635C1B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3788F635C61
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 13:05:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbiKWLuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 06:50:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
+        id S237335AbiKWMFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 07:05:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235917AbiKWLuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:50:18 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A2D6254;
-        Wed, 23 Nov 2022 03:50:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669204214; x=1700740214;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nNJj4/SNlznTLYes66f3xfwnOOogTO0GLozcvfHLa+E=;
-  b=PyDarsJ39m1NLtmpHd00iYn4PgRUswUzOKQ2yn7j+pvnRMZzRj9+atPv
-   7NhfkFwlbfVGcvXii+9pxyaW9ZVq7sBSJYc5ub74Iy19zSDQiT+swYrxB
-   xIfegDQQOxXMYMBG7J7dlmfaFd9MiUJDG4KN/aOW2/zpj9/Zm9wy3T4Tm
-   OT+qiwe7m9gpvvAbN34IE9MqxohtEPKo5jIE9qjOEWA+lcthG1RAzvS0t
-   rbmgx4CdR2kIyVXaDh0LJtgQMB8mZmUqsFMKLuAAzhLHCF2ALfGGWQSyt
-   Ehev0MoopP1G5oAg7puFDaWLLw2nk+/ed6Jn+UR/IfE6FdRLBU7MO9tPj
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="184837932"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2022 04:50:13 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 23 Nov 2022 04:49:48 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Wed, 23 Nov 2022 04:49:45 -0700
-Date:   Wed, 23 Nov 2022 11:49:28 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Samuel Holland <samuel@sholland.org>
-CC:     Anup Patel <anup@brainfault.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Anup Patel <apatel@ventanamicro.com>,
+        with ESMTP id S237145AbiKWMFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 07:05:08 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749A215FE2;
+        Wed, 23 Nov 2022 04:05:06 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id vv4so33002323ejc.2;
+        Wed, 23 Nov 2022 04:05:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MdkN33eqdBW8OFqoAkyIS40FmG3oWWH+dzPo/Vz7+AA=;
+        b=IwVLuZWWCilVb/mBFTdCkpJ/FyKCtl9qhLxekbfU3z6dSIbpf5HaE5M7yhDhpHR+Tl
+         Phudcd9OSkRwijiEw/baWROlfEKW9FdwH6B7Syq014lQMA54GfmjMV+AOXvds7sbuWf3
+         Zuaki/kU7fiFL2Z8Dj36y+wQBuxN/uC80aHsISXdWCzF6DSRxMQsu7sYq/5oM+t+G/Jm
+         p2lfngOI3XWaqkJyzgFvxkiOJxObGbiLTt2UNRqXOV4lL69TuMcSVgmjCqNj1YRFJ6Sa
+         t69NBYYsQdWuLVZhegvYJdSYa8m+8npCWow47ilp0RyKpnlTFmSvCk+iqxGQTxJgCGUy
+         vyWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MdkN33eqdBW8OFqoAkyIS40FmG3oWWH+dzPo/Vz7+AA=;
+        b=M+fKECkUrYo/8u8f8HPu13Yd2vA0bOy2tLPHTonzzvVGJbyqKxNp2Hd1WQnXZG8JF/
+         PZp8xzM7HN9xnHHPRQwq4HVSrT3kpipEH0iBeJvhyQ5DSNy5JhZdQIdkpohjLywMN6pV
+         W3Vv5CBGksQntBoThf8EwktXf+UQXqqUtbWjIInpISHG/zP/3eky9iQb9i/p3vx0DtLZ
+         By/MesNTBg5JSfV52O/6r8AeYnvDQnl1huwcLwnPrnsC9VjA4gsY0ujG22TzGzywm0Vm
+         y+M2niEUfkNCaP5Lmf3Y0/61eO/sSyaC0Ffon2JGrbUlIF7fKNrcuSxG4YqoJPKS+Paj
+         Au5A==
+X-Gm-Message-State: ANoB5plTQ94MhntdzP9aG8gUoBx/hOccYSpVOL7JIWObMTYBpTmpsv0g
+        DiSo9oyXruCaYDekjCu/YdM=
+X-Google-Smtp-Source: AA0mqf52SQi4DYO4SRXhGUeSpqmBH7rHMNwq6edg3z6Jqk+RvDG0nj7w9SzccS7/ZLjWV4Gkkes7sg==
+X-Received: by 2002:a17:907:98ea:b0:7ae:c1af:89af with SMTP id ke10-20020a17090798ea00b007aec1af89afmr7595669ejc.550.1669205104775;
+        Wed, 23 Nov 2022 04:05:04 -0800 (PST)
+Received: from [10.20.0.7] ([37.120.217.162])
+        by smtp.gmail.com with ESMTPSA id b14-20020a17090636ce00b007a8de84ce36sm7166227ejc.206.2022.11.23.04.05.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 04:05:04 -0800 (PST)
+Message-ID: <33348300-b3a7-af67-5729-8d0471aff2dc@gmail.com>
+Date:   Wed, 23 Nov 2022 13:05:02 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 0/4] firmware: Add support for Qualcomm UEFI Secure
+ Application
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
- riscv,timer-can-wake-cpu
-Message-ID: <Y34IyMroJA6TfrKN@wendy>
-References: <20220727114302.302201-1-apatel@ventanamicro.com>
- <20220727114302.302201-2-apatel@ventanamicro.com>
- <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
- <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
- <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
- <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
- <Y3zjQXqEHsaoVVvf@wendy>
- <2b329306-9706-7156-ad18-b87e4da666d9@sholland.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2b329306-9706-7156-ad18-b87e4da666d9@sholland.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <dfd07f84-c4bd-a18c-2263-49f999f2934c@linaro.org>
+ <f42539d0-c2a3-a2b2-c35b-b7a5904b376f@gmail.com>
+ <1085c75e-fd12-f432-8893-b58f7c3a7cab@linaro.org>
+Content-Language: en-US
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <1085c75e-fd12-f432-8893-b58f7c3a7cab@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Samuel,
+Hi,
 
-On Tue, Nov 22, 2022 at 11:43:04PM -0600, Samuel Holland wrote:
-> On 11/22/22 08:57, Conor Dooley wrote:
-> >> If we add a timer DT node now
-> >> then we have to deal with compatibility for existing platforms.
-> > 
-> > In terms of what to encode in a DT, and given the spec never says that
-> > the timer interrupt must arrive during suspend, we must assume, by
-> > default, that no timer events arrive during suspend.
-> > 
-> > We have a bunch of existing platforms that may (do?) get timer events
-> > during suspend, the opposite of the proposed default behaviour.
-> > 
-> > I'm trying to follow the line of reasoning but I fail to see how taking
-> > either the property or node approach allows us to maintain behaviour for
-> > exiting platforms that that do see timer events during suspend without
-> > adding *something* to the DT. No matter what we add, we've got some sort
-> > of backwards compatibility issue, right?
+On 11/23/22 12:22, Srinivas Kandagatla wrote:
+> Hi Max,
 > 
-> In the absence of bugs/limitations in Linux timer code (like the ones
-> you are seeing on PolarFire), the backwards compatibility issue with
-> setting C3STOP by default is that non-retentive idle states will be
-> ignored unless:
->  1) the DT property is added (i.e. firmware upgrade), or
->  2) some other timer driver is available.
-> No other behavior should be affected.
+> On 02/08/2022 14:22, Maximilian Luz wrote:
+>>
+>>
+>> On 8/2/22 13:51, Srinivas Kandagatla wrote:
 
-Aye, which I think is fine, in the context of platforms supported by
-upstream Linux. Right now, nothing in-tree seems to use idle states:
-- the SiFive stuff is more demo than anything
-- we've not really got to that point with our reference PolarFire stuff
-  (although I can't speak for any customers)
-- the K210 is a toy (sorry Damien!)
-- the StarFive lads have moved on to the jh7110
-- the D1 (although it's not an in-tree config) needs C3STOP by default,
-  so its behaviour is positively affected.
+[...]
 
-If there's someone with an out-of-tree idle config, there's not really
-much that we can do about it?
-
-> On the other hand, if C3STOP defaults to off, then the backwards
-> compatibility issue concerns platforms that can currently boot Linux,
-> but which cannot use cpuidle because they need the flag. If they were to
-> upgrade their firmware, and Linux is provided a DTB that includes both
-> idle states and the property, these platforms would unexpectedly fail to
-> boot. (They would enter an idle state and never wake up.)
+>>> I think its worth exploring if uefisecapp can talk smcinvoke.
+>>> I can ping Qualcomm engineers to see if that is doable.
+>>
+>> I think that would be great! Thanks!
+> Sorry for such a long delay to reply to this,
 > 
-> Assuming no such platforms exist, then it would actually be better to
-> default C3STOP to off.
-
-Yeah, *assuming* no such platforms exist I agree - but the D1 is one of
-such platforms (albeit in a specific configuration) so I think we have
-to default C3STOP to on.
-
-> Now, this says nothing about how the property should be named -- we can
-> set C3STOP based on the absence of a property, just as easily as we can
-> clear C3STOP based on the presence of a property.
+> here is what I have.
 > 
-> > I noted the above:
-> > 
-> >> Since, there is no dedicated timer node, we use CPU compatible string
-> >> for probing the per-CPU timer.
-> > 
-> > If we could rely on the cpu compatible why would we need to add a
-> > dt-property anyway? Forgive my naivety here, but is the timer event in
-> > suspend behaviour not a "core complex" level attribute rather than a
-> > something that can be consistently determined by the cpu compatible?
+> Access to TA using SCM calls remain valid and it will continue to work till SM8550 and probably after that if the TA is *NOT* loaded using smcinvoke for some reasons.
 > 
-> I do not support using either the CPU compatible (not specific enough)
-> or the board compatible (too many to list, but still not specific
-> enough). Consider that not all CPUs in a system may need this property.
-
-Yeah, I was just trying to understand where Anup was coming from and
-teasing out the different bits of logic. I do not think that using the
-CPU compatible is a good idea - my understanding was that how a CPU with
-a given compatible is integrated into a core complex determines which
-timer (or interrupt etc) is capable of what.
-
-> > Either way, we need to figure out why enabling C3STOP is causing other
-> > timer issues even when we are not in some sort of sleep state & do
-> > something about that - or figure out some different way to communicate
-> > the behavioural differences.
-> > I would expect timers to continue working "normally" with the flag set,
-> > even if how they work is subtly different?
+> But overall by default on all new SoCs after sm8550 all the access to TA is only done via smcinvoke, and the underlying scm call that are used in this patchset will not be supported anymore.
 > 
-> Definitely agree here. My intention was not to affect anything other
-> than cpuidle behavior.
+>  From SM8550, we will need to move this driver to a proper TEE client kernel driver.
 > 
-> > On a D1, with the C3STOP "feature" flag set, and it's custom timer
-> > implementation unused, how do timers behave?
-> 
-> D1 is uniprocessor, so I build with CONFIG_SMP=n. In this case,
-> CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=n, and thus
-> __tick_broadcast_oneshot_control() returns -EBUSY, forcing
-> cpuidle_enter_state() to choose a retentive idle state.
+> So, with that in mind, I would suggest that we carefully name the compatibles based on SoC rather than generic ones.
 
-Right & that makes sense for someone building a D1 focused kernel (and
-is what I do for my Nezha IIRC) but if someone builds a multiplatform
-kernel you're going to end up with CONFIG_SMP=y (but I'd imagine that in
-that scenario they'll have the sunxi,foo-timer's driver enabled). At
-this point, it's something I should go and dig out my board for though..
+Thanks! That makes sense.
 
-I was mainly just curious if the D1 also exhibits the borked timer
-behaviour that I see.
-
-Thanks again Samuel,
-Conor.
-
+Regards,
+Max
