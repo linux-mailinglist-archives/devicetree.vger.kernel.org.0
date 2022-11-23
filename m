@@ -2,183 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F28A6362D6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:07:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1086362D9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:07:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238103AbiKWPHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 10:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41940 "EHLO
+        id S238151AbiKWPHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 10:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238542AbiKWPHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:07:17 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD54286DE
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 07:07:15 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id h206so13317182iof.10
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 07:07:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=w3+6kZ2jPHYC5XIhLk4GWvNk5dgTaXJHF9rl6H9TAKQ=;
-        b=QxyS2jc4eEVkc7xWxzPYNIuXzGXAbZ8bAvsyjhaprQIYWaXpa8/mb0+5btpVEIRzOq
-         8bFEiKF2mpWq3B87UAQu/4QBUJ0NjvxwpTCDG3HBeJsfBxgoTvxIaqeQmIotAhTSCpAr
-         i3+XwQBf/22NjT/8M9cJXZNdbQN7k6L6Z5Z4c=
+        with ESMTP id S238646AbiKWPHe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:07:34 -0500
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30362F8;
+        Wed, 23 Nov 2022 07:07:28 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id b2so13298395iof.12;
+        Wed, 23 Nov 2022 07:07:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3+6kZ2jPHYC5XIhLk4GWvNk5dgTaXJHF9rl6H9TAKQ=;
-        b=HfAO+xgUk31Lca4GQ4IzvLldsrCeu+5yWKjP+Q4UF6EEiXo+VVG22mqAphJ/DE8cV/
-         hYUa6+TDdkwZiszwOQJkkGG/3wlJ1X6tnfEnCglQjEKZTLn8+vLEQO1aeWsO98p4uXR+
-         e6NfmWbs+lrr7NnZ9pq0WK8IrNM773X3FpHVTzA33gxL1j9lwjfOfNUeW5/41NGOzS+e
-         1bSfT+gYE+o0UGuyURafm9KqfRmMTEqN82vQEJMekxIFU+zcgYZx5vmzo29jEf3ih75m
-         uW5ja1N1RLcyO3Afmp5QLXaheW7R3aTqMRnBjg1LcTeIl5V/1n3jl91dfEFgZmm0u2K+
-         26oQ==
-X-Gm-Message-State: ANoB5pnGividxcviQvJLdzBaPsQmGnbbYKMR5E2LhSKdo6+BJD+QeP3T
-        bslhiB1cIaWaKz7fGFVnqzGMwg==
-X-Google-Smtp-Source: AA0mqf46YDgL+DFXaRtC//XFl6SUoUuagE8OHUpFvGoORyGX6ge4WY9xVHBXqJ5q7g4cVZOGNRJV4w==
-X-Received: by 2002:a6b:1455:0:b0:6de:896e:529c with SMTP id 82-20020a6b1455000000b006de896e529cmr12735578iou.45.1669216034569;
-        Wed, 23 Nov 2022 07:07:14 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id b13-20020a02a58d000000b003633848da58sm6454991jam.41.2022.11.23.07.07.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 07:07:14 -0800 (PST)
-Date:   Wed, 23 Nov 2022 15:07:13 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     =?utf-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Abner.Yen@ecs.com.tw,
-        Gavin.Lee@ecs.com.tw, Vicy.Lee@ecs.com.tw, Jason.Huang@ecs.com.tw,
-        Darren.Chen@ecs.com.tw
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Adding DT binding for
- zombie
-Message-ID: <Y343IWgkli+y8HMn@google.com>
-References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
- <Y3zck7tPA5WFd0p1@google.com>
- <CAPao8GKpXcRm3PmWnv+rsr2z53r6J-ScXAq+fOi4ydQg_Gy31A@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WKe49Y1AvVr7GpCr+4nG/0/Dmt7BidrtnVkO1Lu6Igw=;
+        b=KUslD+xDUE2rJwarOZGTH5H+06y9TJbbhCDQKVX5caCVeONgPS9MkxnMsupkavpdly
+         4fzfgvvbtnxBo6owA0e0/4RVobMRi59RyeAIQsKhDxGWSoXe0mwgW5qdYcsBWKhFp4Er
+         51nvn1RqZTvvmEIlPeRncZu0oCYBqgHqXkiFnGqD7gnBi7OU16E1F22sQmfQX9jrcLFV
+         fRtXeBLNUDI83IPGWuhPkoS8ffHoY4FUCuuucgML9zAyRbJlGSHWsmmNj6VDL5dRlVBP
+         4LHYU4dOLBwzM/40JAcCUa0lLGZFUrCECvuDJmffJeYpk30C1cMK2eo+SDqs4dush6JT
+         /83w==
+X-Gm-Message-State: ANoB5pnZoDB7JnQSNArSAh+vnfdSzCVp/lw1dpSaDimm+mkvq1sb7FLn
+        ODbGd+7LV2HJ613rXWVg5g==
+X-Google-Smtp-Source: AA0mqf6WbHyU80jh6PG+LSVYs/y0lHLnjypS7n9Y9eosd0RtRk164gljYbPgsreec7CEo46yAzDTyQ==
+X-Received: by 2002:a05:6602:234b:b0:6db:6299:1144 with SMTP id r11-20020a056602234b00b006db62991144mr4006765iot.212.1669216047991;
+        Wed, 23 Nov 2022 07:07:27 -0800 (PST)
+Received: from robh_at_kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id o11-20020a0566022e0b00b006c5247c8f81sm6467667iow.48.2022.11.23.07.07.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 07:07:27 -0800 (PST)
+Received: (nullmailer pid 2005413 invoked by uid 1000);
+        Wed, 23 Nov 2022 15:07:21 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPao8GKpXcRm3PmWnv+rsr2z53r6J-ScXAq+fOi4ydQg_Gy31A@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Rahul Tanwar <rtanwar@maxlinear.com>
+Cc:     Borislav Petkov <bp@alien8.de>, linux-kernel@vger.kernel.org,
+        linux-lgm-soc@maxlinear.com, Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        devicetree@vger.kernel.org, x86@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        andriy.shevchenko@linux.intel.com,
+        "H. Peter Anvin" <hpa@zytor.com>, Marc Zyngier <maz@kernel.org>
+In-Reply-To: <20221123100850.22969-2-rtanwar@maxlinear.com>
+References: <20221123100850.22969-1-rtanwar@maxlinear.com>
+ <20221123100850.22969-2-rtanwar@maxlinear.com>
+Message-Id: <166921592754.2001958.13714917297755911303.robh@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: x86: apic: Convert Intel's APIC
+ bindings to YAML schema
+Date:   Wed, 23 Nov 2022 09:07:21 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 02:02:38PM +0800, 楊宗翰 wrote:
-> HiÂ Matthias ,
-> 
-> When I run "patman" still get warning "<patch>:36: warning: added, moved or
-> deleted file(s), does MAINTAINERS need updating?"
 
-The warning is expected because you added new files. In this case you can
-ignore it as it isn't expected that you become the maintainer of the new zombie
-DT files.
-
-> And I screenshot my "git gui" as below(attachment "git_gui_screenshot.jpg"):
-> [image.png]
+On Wed, 23 Nov 2022 18:08:47 +0800, Rahul Tanwar wrote:
+> Intel's APIC family of interrupt controllers support local APIC
+> (lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
+> & ioapic from text to YAML schema. Separate lapic & ioapic schemas.
+> Addditionally, add description which was missing in text file and
+> add few more required standard properties which were also missing
+> in text file.
 > 
-> The latest git log info as below:
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
 > ---
-> commit 4d2b529bce125b83c546aebbc36ecedf76dfc55e (linux_qcom/for-next)
-> Merge: 9abf2313adc1 c03fa428ac6e afcd946be11c aec5f36cf676 cea42b8d7966
-> aa9f474014b1 37b5e8c48b9d cadaa773bcf1
-> Author: Bjorn Andersson <andersson@kernel.org>
-> Date: Â  Tue Nov 15 11:45:55 2022 -0600
+>  .../intel,ce4100-ioapic.txt                   | 26 --------
+>  .../intel,ce4100-ioapic.yaml                  | 62 +++++++++++++++++++
+>  .../intel,ce4100-lapic.yaml                   | 49 +++++++++++++++
+>  3 files changed, 111 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml
 > 
-> Â  Â  Merge branches 'arm64-defconfig-for-6.2', 'arm64-for-6.2', 'clk-for-6.2',
-> 'defconfig-for-6.2', 'drivers-for-6.2', 'dts-for-6.2' and 'arm64-fixes-for-6.1'
-> into for-next
-> ---
-> 
-> My checkout steps as below:
-> $ git remote add linux_qcomÂ git://git.kernel.org/pub/scm/linux/kernel/git/
-> qcom/linux.git
-> $ git fetch --no-tags linux_qcom
-> $ git checkout -b <MyLocalBranchName> linux_qcom/for-next
-> 
-> Is myÂ code base branch still worng?Â  Am IÂ missing something?Â 
 
-My understanding is that it is best to base you changes on a branch like
-'arm64-for-6.2' as the 'for-next' branch is re-created every time changes
-land in one of the '${area}-for-${version}' branches.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-No big issue in this case, just use the corresponding '${area}-for-${version}'
-branch for future patches/versions :)
+yamllint warnings/errors:
 
-> The attachment is "0001-dt-bindings-arm-qcom-Adding-DT-binding-for-
-> zombie.patch" patch file,
-> Â I have drop "Documentation/devicetree/bindings/arm/qcom.yaml" as your advice.
-> 
-> Matthias Kaehlcke <mka@chromium.org> æ¼ 2022å¹´11æ22æ¥ é±äº æä¸10:
-> 28å¯«éï¼
->      On which tree is this series based? My earlier reply bounced for
->      Bjorn's
->      old Linaro e-mail address, which suggests that the series might be
->      based
->      on an older kernel tree (maybe downstream Chrome OS v5.15?). Please
->      make
->      sure to base patches to upstream lists on the corresponding
->      maintainer
->      tree/branch or a recent kernel version/rc.
-> 
->      On Tue, Nov 22, 2022 at 08:37:02PM +0800, Owen Yang wrote:
->      > Add an entry in the device tree binding for sc7280-zombie.
->      >
->      > Documentation/devicetree/bindings/arm/qcom.yaml
->      >
->      > Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
->      > ---
->      >
->      > Changes in v2:
->      > - Move binding item to Google series bottom.
->      > - Modify DT file for zombie.
->      >
->      >Â  Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
->      >Â  1 file changed, 10 insertions(+)
->      >
->      > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/
->      Documentation/devicetree/bindings/arm/qcom.yaml
->      > index c15a729a6852..f617923f7485 100644
->      > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->      > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->      > @@ -538,6 +538,16 @@ properties:
->      >Â  Â  Â  Â  Â  Â  - const: google,villager-sku512
->      >Â  Â  Â  Â  Â  Â  - const: qcom,sc7280
->      >Â 
->      > +Â  Â  Â  - description: Google Zombie (newest rev)
->      > +Â  Â  Â  Â  items:
->      > +Â  Â  Â  Â  Â  - const: google,zombie
->      > +Â  Â  Â  Â  Â  - const: qcom,sc7280
->      > +
->      > +Â  Â  Â  - description: Google Zombie with LTE (newest rev)
->      > +Â  Â  Â  Â  items:
->      > +Â  Â  Â  Â  Â  - const: google,zombie-sku512
->      > +Â  Â  Â  Â  Â  - const: qcom,sc7280
->      > +
->      >Â  Â  Â  Â  - items:
->      >Â  Â  Â  Â  Â  Â  - enum:
->      >Â  Â  Â  Â  Â  Â  Â  Â  - xiaomi,lavender
->      > --
->      > 2.17.1
->      >
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.example.dtb: interrupt-controller@fec00000: '#address-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml
 
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221123100850.22969-2-rtanwar@maxlinear.com
 
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
 
