@@ -2,164 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFB36368AF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 19:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB90636902
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 19:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239582AbiKWS0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 13:26:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54736 "EHLO
+        id S239794AbiKWSdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 13:33:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239277AbiKWS0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 13:26:06 -0500
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C0567113
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:26:01 -0800 (PST)
-Received: by mail-qt1-x835.google.com with SMTP id w4so11824651qts.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:26:01 -0800 (PST)
+        with ESMTP id S239798AbiKWSc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 13:32:56 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E63D3F07E
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:32:44 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id y14-20020a17090a2b4e00b002189a1b84d4so2598210pjc.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:32:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wor3YG1VA6P7o8c/O7L7eJMI/pZ9HPWWwXQft3hmCP0=;
-        b=cedo7ZWSmsuH0XJ4ubpV07F12j6QbWjVQ5/8pLuMpcToghtBSuk56S6MXMX6Qm7WjS
-         1NChO+moKmrDNMneamIggSvWWzwr/T//kN/Kwcj6tkr42ZlPhD/UrODWK93fqzNGGGwJ
-         iaes3XW9eYna/Bw5lL+n4z8tFP5LtgS2cmv98rZ7AlPx3XDSdaiaMvzcA8+djvnqI1Jm
-         kByuaQkEy2IUN0jEoJWE9aJxjegXkz/nFnBqeS7bAW8o6PzzHwTSega1vNzAX6eGe++Z
-         VrL1e2yxkd6Af/0OPW4nuezYyEJvxr1zGiOqJwebNXGUK6ij0o7CaXNXzEmp7wpIRmex
-         6uNg==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZABUQWhI60I9tegrwMWQreaQqUzVwxzH3LtE7y7zkQ=;
+        b=lkOt4Lu9szF0fBQH9eSaea60q5o/jZo6kOC6f+bAmuuX2Q+Eay8K12TKArZ8MYFeYS
+         gGNO3/bdO74AAr6+Ii7pqx2tWMf9gcv7JC+r70pzDaKP00zpjBbyK2Pi6OKqmlyY8J3i
+         Avp7rKuyeJmwHS691ed+esWbq1mt76clUO0Yu4pynb6gaPf/w/q4LWJjQjPeIQSnyXSu
+         m7I0gDLkMJAeSq5/MKxD1jcE9GOq9KZ/H9cE9QZSMll/xFkhOmwYJq0NAWMMHcp3eawg
+         rqNyS3mx6Md9vutg6bvnl1hTJXPS5jnIF1Vkk3ucZtttpfSIXq897qPwyj5FQzSkr/ol
+         bC5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wor3YG1VA6P7o8c/O7L7eJMI/pZ9HPWWwXQft3hmCP0=;
-        b=AioVzOqsQA8NXzivrMXSUJf8nM+HvTzHf69D8YK9/QID2fVJN5FrFeskvOj8LtMYUq
-         KETZHwWe5LzXavVq+QfVsGWU8O05sKSbA+9wITs2QAGKOtdRRFC4NeGtoM6Gg3QFked3
-         v2yw9wlkTmHpgsZytUaiT2iGXvYyswDkPkNU8iK/I/aRnGnR+/dGrWIIlb83MYYyNOi6
-         X58kU3bITIqd2WQUn7fJcL0bxsfSHk1li8imafzze6aR4B8p22e/GsGSCHsGI3nGhBB1
-         6PnOCOEc5Mlp9eDkxQqkQU6HwynWxaCi3OtiP/rJSsys5f4q6ECYcXmTfFcscL8Ba0ck
-         E8ZA==
-X-Gm-Message-State: ANoB5plA+DVhFeaXCejeD7fxc5Q13UHZuu3aZgItS+YbJZfDtCJYqDtL
-        PuUd9jOx5joqa5bx0EkiSSo+f8KuVMDWnA==
-X-Google-Smtp-Source: AA0mqf7b8dECsNl10eMwxdSE/ntYRY0ZHq3jcx6smQ+WjEjXUXHAE2sWPKfXnqS1wuH6GWMgna/H+Q==
-X-Received: by 2002:a05:622a:1f97:b0:3a6:39c4:dc6 with SMTP id cb23-20020a05622a1f9700b003a639c40dc6mr19492448qtb.515.1669227960618;
-        Wed, 23 Nov 2022 10:26:00 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-47-55-122-23.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.122.23])
-        by smtp.gmail.com with ESMTPSA id e9-20020ac81309000000b003a56796a764sm10034417qtj.25.2022.11.23.10.25.59
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NZABUQWhI60I9tegrwMWQreaQqUzVwxzH3LtE7y7zkQ=;
+        b=tvy1mnBlYf9YAy4CUVfavC/PfQGIQSWouF/A4zDRyAwvHIUedmxn6O5G7ReJBLjS3c
+         5JWGXe8c9PK9F6Aq/CqhvK5y2ySljegg786tzrUtE9T1Xkeh7D5DG7vUWfyQRqQSXM4w
+         /rc3xR/1E9VpbTxR8CT5IXW3oEhnoflU7CSyCj3s0nvEekbUUuMjIZ31OxtXf0a+KaOG
+         UvRZEs2wB6M6de7j1NjuB/w+tdEJQEiDoBCk+TFctgzTG2bWgWdZGtrsBJVuFIMaPHLO
+         4YnvsI/HTfRPe+dtBGEbUim4vCkfRkp5GN8HmVCHpDC5dMvhRgd8o9o1wYgeWUIUssVH
+         THgg==
+X-Gm-Message-State: ANoB5plyll2tn1mrISjahl0VIBGSQ+9xl6mNiuuVusrLEWbUviKtI1SM
+        gkv14MU9clKBn8NtSK72cj+3ww==
+X-Google-Smtp-Source: AA0mqf5LpGxAubWk7IgLLkviKV04MNy0SzL43/+yW0xpUAEFwDxUogCqwZCnd7+60YwKY8fvKepVHA==
+X-Received: by 2002:a17:902:f2c5:b0:189:1cc3:802a with SMTP id h5-20020a170902f2c500b001891cc3802amr11595622plc.56.1669228364464;
+        Wed, 23 Nov 2022 10:32:44 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a809:a055:fcc4:4677:827])
+        by smtp.gmail.com with ESMTPSA id x3-20020aa79403000000b0056d2317455bsm13006732pfo.7.2022.11.23.10.32.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 10:25:59 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.95)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1oxuRb-00AgEQ-7R;
-        Wed, 23 Nov 2022 14:25:59 -0400
-Date:   Wed, 23 Nov 2022 14:25:59 -0400
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Matthew Wilcox <willy@infradead.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Michael Jamet <michael.jamet@intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Yehezkel Bernat <YehezkelShB@gmail.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Ming Lei <ming.lei@redhat.com>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ira Weiny <ira.weiny@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
- const *
-Message-ID: <Y35lt+0jXrOKynL5@ziepe.ca>
-References: <711d5275-7e80-c00d-0cdc-0f3d52175361@gmail.com>
- <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
- <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
- <Y34zyzdbRUdyOSkA@casper.infradead.org>
- <Y34+V2bCDdqujBDk@kroah.com>
- <Y35JfNJDppRp5bLX@ziepe.ca>
- <Y35R+/eQJYI7VaDS@kroah.com>
- <Y35YlI93UBuTfgYy@ziepe.ca>
- <Y35dMIaNYSE0Cykd@casper.infradead.org>
- <Y35iKfYf3ThdVvaR@kroah.com>
+        Wed, 23 Nov 2022 10:32:43 -0800 (PST)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>, Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH v8 0/8] ARM: Add Rockchip RV1126 support
+Date:   Thu, 24 Nov 2022 00:01:16 +0530
+Message-Id: <20221123183124.6911-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y35iKfYf3ThdVvaR@kroah.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 07:10:49PM +0100, Greg Kroah-Hartman wrote:
-> On Wed, Nov 23, 2022 at 05:49:36PM +0000, Matthew Wilcox wrote:
-> > On Wed, Nov 23, 2022 at 01:29:56PM -0400, Jason Gunthorpe wrote:
-> > > #define generic_container_of(in_type, in, out_type, out_member) \
-> > > 	_Generic(in,                                        \
-> > >                   const in_type *: ((const out_type *)container_of(in, out_type, out_member)),   \
-> > >                   in_type *: ((out_type *)container_of(in, out_type, out_member)) \
-> > > 		  )
-> > 
-> > There's a neat trick I found in seqlock.h:
-> > 
-> > #define generic_container_of(in_t, in, out_t, m)			\
-> > 	_Generic(*(in),							\
-> > 		const in_t: ((const out_t *)container_of(in, out_t, m)), \
-> > 		in_t: ((out_t *)container_of(in, out_type, m))	\
-> > 	)
-> > 
-> > and now it fits in 80 columns ;-)
-> 
-> Nice trick!  Dropping the inline functions is a bit different, let me
-> see if that still gives a sane error if we pass an incorrect type or
-> mess with the const * the wrong way.  I'll run some tests tomorrow
-> afternoon...
+This patch series combined the next level dts patches for 
+Rockchip RV1126 support.
 
-The errors in some cases are very verbose, but it is somewhat
-understandable - the worst is when _Generic fails to match anything,
-but also at least clang partially expanded container_of and it throws
-other assertions too.
+Changes for v8:
+- fix rv1126 dtsi
+- remove uart aliases
+- add adc node name
+- add uart dma-names
+- add timer0 node name
+Changes for v7:
+- fix dtbs_check
+- new dt-bindings patches
+- collect Rob Ack
 
-I also wonder if this could just be rolled into the normal
-container_of.
+Any inputs?
+Jagan.
 
-in_type would have to be derived like:
+Jagan Teki (8):
+  dt-bindings: arm: rockchip: Add pmu compatible for rv1126
+  dt-bindings: timer: rk-timer: Add rktimer for rv1126
+  ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+  ARM: dts: rockchip: Add Rockchip RV1126 SoC
+  dt-bindings: vendor-prefixes: Add Edgeble AI Technologies Pvt. Ltd.
+  dt-bindings: arm: rockchip: Add Edgeble Neural Compute Module 2
+  ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2)
+  ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2) IO
 
-  in_type = typeof((out_type *)NULL)->out_member)
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ .../devicetree/bindings/arm/rockchip/pmu.yaml |   2 +
+ .../bindings/timer/rockchip,rk-timer.yaml     |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts  |  38 ++
+ arch/arm/boot/dts/rv1126-edgeble-neu2.dtsi    | 338 ++++++++++++++
+ arch/arm/boot/dts/rv1126-pinctrl.dtsi         | 211 +++++++++
+ arch/arm/boot/dts/rv1126.dtsi                 | 438 ++++++++++++++++++
+ 10 files changed, 1038 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126.dtsi
 
-But I don't know if you can use typeof in a generic type matching expression..
+-- 
+2.25.1
 
-Jason
