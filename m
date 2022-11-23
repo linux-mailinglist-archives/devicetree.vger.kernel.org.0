@@ -2,140 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4076367D5
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8B56367E0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 18:59:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237269AbiKWR4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 12:56:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47582 "EHLO
+        id S237996AbiKWR7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 12:59:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237228AbiKWR4o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:56:44 -0500
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D33806AEDA;
-        Wed, 23 Nov 2022 09:56:42 -0800 (PST)
-Received: from fraeml712-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4NHTMn6RqPz67QRR;
-        Thu, 24 Nov 2022 01:56:37 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml712-chm.china.huawei.com (10.206.15.61) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Wed, 23 Nov 2022 18:56:40 +0100
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 23 Nov
- 2022 17:56:39 +0000
-Date:   Wed, 23 Nov 2022 17:56:39 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Gerald Loacker <gerald.loacker@wolfvision.net>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S236875AbiKWR7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 12:59:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D83EE37;
+        Wed, 23 Nov 2022 09:59:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 51AF8B82215;
+        Wed, 23 Nov 2022 17:59:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEFFBC433D6;
+        Wed, 23 Nov 2022 17:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669226371;
+        bh=fo+5RajrLOWrgXzM+Dx5VV6uRU0lJQMAjI3KTS77p5w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pOkPLTiR2ZiV9f0l+NjiZnJhsn0x52zY/ZL5PiWHoxrD2La5EXianO7ellh88t2WX
+         hr166iVCyjUmSqY7LN01JwfRpROB2NbDSKS7qUz5hqJqV8g+7In3WlqgM3g7v5fOsV
+         vkAQC6ZLl1vYZcywAnPMdFaULMpRSGAb7lBz18jXGp3kBtAIGKWL0Mt/LgLjv+bUxS
+         HND3rRTW7oUGYkE/4THvnKBknxqeHAtAussMTvuN3ZujmAGtBrmFSW4lTkhGUYc2pq
+         fZNFyWczoe1zbpsc/9c81jWcIZlXIBMvtBHAPaK/e4ZyIqRTW3reqgtV4UYRspKnsx
+         kyVPfmSLfTiew==
+Date:   Wed, 23 Nov 2022 17:59:25 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Jakob Hauser <jahau@rocketmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 2/2] iio: magnetometer: add ti tmag5273 driver
-Message-ID: <20221123175639.00000ede@Huawei.com>
-In-Reply-To: <Y34irZRlkpdqLrll@smile.fi.intel.com>
-References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
-        <20221121123542.1322367-3-gerald.loacker@wolfvision.net>
-        <Y3uFWH5GV/x7UDcP@smile.fi.intel.com>
-        <f3fbf861-37c6-3bcf-615b-2f55261fbf90@wolfvision.net>
-        <Y34irZRlkpdqLrll@smile.fi.intel.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
+ riscv,timer-can-wake-cpu
+Message-ID: <Y35ffSHWy4B6v+Pc@spud>
+References: <20220727114302.302201-1-apatel@ventanamicro.com>
+ <20220727114302.302201-2-apatel@ventanamicro.com>
+ <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
+ <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
+ <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
+ <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
+ <Y3zjQXqEHsaoVVvf@wendy>
+ <Y34kM9TZ1FSqpeEB@wendy>
+ <CAK9=C2UeUhMXmbMZzS4rnhS++DfsTYTCQ4y-LVu6QgL0c64=0A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2UeUhMXmbMZzS4rnhS++DfsTYTCQ4y-LVu6QgL0c64=0A@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Nov 2022 15:39:57 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+On Wed, Nov 23, 2022 at 09:16:55PM +0530, Anup Patel wrote:
+> On Wed, Nov 23, 2022 at 7:17 PM Conor Dooley <conor.dooley@microchip.com> wrote:
 
-> On Wed, Nov 23, 2022 at 10:58:47AM +0100, Gerald Loacker wrote:
-> > Am 21.11.2022 um 15:04 schrieb Andy Shevchenko:  
-> > > On Mon, Nov 21, 2022 at 01:35:42PM +0100, Gerald Loacker wrote:  
+> > > Adding a new timer DT node would mean, the RISC-V timer driver
+> > > will now be probed using the compatible to the new DT node whereas
+> > > the RISC-V timer driver is currently probed using CPU DT nodes.
+> >
+> > In that case, we would have to retain the ability to match against the
+> > "riscv". Spitballing:
+> > - add a new timer node
+> > - keep matching against "riscv"
+> > - look up a timer node during init w/ of_find_matching_node() that
+> >   contains any new timer properties
+> >
+> > I think it's unlikely that this will be the last time we have to add
+> > some timer properties & we should avoid doing odd things in a DT to suit
+> > an operating system?
+> >
+> > Would something along those lines work Anup, or am I, yet again, missing
+> > something?
 > 
-> ...
-> 
-> > >> +static const struct {
-> > >> +	unsigned int scale_int;
-> > >> +	unsigned int scale_micro;  
-> > > 
-> > > Can we have a separate patch to define this one eventually in the (one of) IIO
-> > > generic headers? It's a bit pity that every new driver seems to reinvent the
-> > > wheel.
-> > >   
-> > >> +} tmag5273_scale_table[4][2] = {
-> > >> +	{ { 0, 0 }, { 0, 0 } },
-> > >> +	{ { 0, 12200 }, { 0, 24400 } },
-> > >> +	{ { 0, 40600 }, { 0, 81200 } },
-> > >> +	{ { 0, 0 }, { 0, 0 } },
-> > >> +};  
-> > >   
-> > 
-> > I'm thinking of defining structs for all similar types of IIO output
-> > formats in iio.h like this:
-> > 
-> > 
-> > struct iio_val_int_plus_micro {
-> > 	int val_int;
-> > 	int val_micro;
-> > };
-> > 
-> > struct iio_val_int_plus_nano {
-> > 	int val_int;
-> > 	int val_nano;
-> > };
-> > 
-> > struct iio_val_int_plus_micro_db {
-> > 	int val_int;
-> > 	int val_micro_db;
-> > };  
-> 
-> ...
-> 
-> > struct iio_val_fractional {
-> > 	int dividend;
-> > 	int divisor;
-> > };  
-> 
-> This one...
-> 
-> > struct iio_val_fractional_log2 {
-> > 	int dividend;
-> > 	int divisor;
-> > };  
-> 
-> ...and this one repeat struct s32_fract (or u32_fract, whatever suits better).
-> 
-> > Do you agree?  
-> 
-> Me, yes, but you need a blessing by maintainers of IIO.
+> I was already working on v3 along these lines. I will try to post a v3 this
+> week itself.
 
-I'm not 100% convinced it matters, particularly as one of the two typical
-use paths has to cast them to an int * anyway (as it can take any of the
-above, or a 1D array of ints).  However, if it makes drivers a little
-easier to read then fair enough.  I'm not keen to see a brute force
-set of patches updating existing drivers that treat them as simple array
-of ints though.  Fine to convert any drivers with a local equivalent of these
-structures defined.
+Cool, I'll keep my eyes peeled :)
 
-Jonathan
-
+Thanks Anup!
 
