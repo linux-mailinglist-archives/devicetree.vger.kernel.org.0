@@ -2,152 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1744763528C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C56C63529F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 09:30:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236528AbiKWI1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 03:27:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
+        id S236049AbiKWI3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 03:29:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236525AbiKWI1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:27:23 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D775AFC71D
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:27:20 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id g7so27124351lfv.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:27:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HcQzfS4Peg1BcWVPqA3r5THwZqoD6UuyTScyPfW0+gk=;
-        b=wwsMJSLDaFLkDmDTXJtxCSc0Yi9K/FrzEMP5aqu+f3DlffmLcAneNewS0AeVoruiVA
-         P/UeSJbrk0e1LjmHE43sKXJW9qWXGXevFE80Yxar8Exmw3uJKnxVTottlDgGYvfxX1/s
-         kk/OnKpMdejE9stbilHmFZz4R3CIxE1s4wpsH9FS4U5W8TyTm0TL7e6WX0mvjJwrnPmC
-         comRH/5ZY+VXajexEne/REUOPAHJTj5ssKXbUQNCdIH6VEVSqy2k9eXfiU/TeNpHNTlK
-         viWQ8x4OUOwoHLQCwSs8gLKi2Ggzr70p/tUZPb0B/V1fqvIzQrXjxXdhq9uro2PbBj3C
-         Ra2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HcQzfS4Peg1BcWVPqA3r5THwZqoD6UuyTScyPfW0+gk=;
-        b=BGuEdev8M5mP3JB1ZEtHGV0EoQU5SCkdsV090c9rm83+N1fs5VIQUtEb1gpqxaoh4d
-         txD3xLHPCRkCquBLUlJZNqGJYG5uSRKosa8C6mNtojqWf1hGPhvbSi/bCmH/4ujOlwtA
-         QCDdc1KkRE1AgM/oVGQRRuGrH6Sz1W4GXgVlEDFdc/adWQvYIM2ii8zJgnai/KqhFNTm
-         wKD7pDydgg2rUpYfOhavPZsVpBCsxsAZtWrAIajOnY2ixGlgz2EiAVwudV4pO4tDQubE
-         HnO4rwrXYJzhzoSFAwSaKtR9N8DTcHOBeWK/qinpe3glATAXoiNXSIiRjQieNBSA8Boz
-         zUYw==
-X-Gm-Message-State: ANoB5pmNCjaTdo1JnCfnMxNx3zo7SpJdr5Q2bTJdaSJl33ruB88jMyrc
-        MBohXN9U6ZoHXh+6cSS6p881kw==
-X-Google-Smtp-Source: AA0mqf43Wrz+lScpnmQazgR9edsrHf8CWzNzDGSguKpLX4o0m+7qhfGZ6s4+ZcKOiUFO9TVR0WiMOw==
-X-Received: by 2002:a05:6512:2a89:b0:4b4:dffc:62a8 with SMTP id dt9-20020a0565122a8900b004b4dffc62a8mr2147155lfb.585.1669192039230;
-        Wed, 23 Nov 2022 00:27:19 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f16-20020a05651c03d000b0026dffd032b8sm2110336ljp.2.2022.11.23.00.27.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 00:27:18 -0800 (PST)
-Message-ID: <27055c13-11ab-cc73-f2ba-c269785b0e28@linaro.org>
-Date:   Wed, 23 Nov 2022 09:27:17 +0100
+        with ESMTP id S236523AbiKWI3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 03:29:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B02BFCDD1
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 00:29:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DA660B81EDF
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 08:29:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9308FC433C1;
+        Wed, 23 Nov 2022 08:29:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669192175;
+        bh=1BVaOqfXuj4I5Ypqc1c1M244A6McDU05cdjjlMqBUnI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cW7PM2K93a9HEr+v4oAeFnlAfmVPagtNm6qktvIdE06dttAHAnQne6QYgOoLr3rPA
+         ATMhio0lrgehcp7s9mB39e3CXvn1FRBVyKW121KgZTPIfFpVPHmpeifmtR6WAYDSJU
+         TPZMN9nPinclJjp49wCAw1a5ozBX7D+yB8kHn8vUTno9IhyRiBWSNyHmaCr4zrBL/4
+         fRJvExMsOh8XjttnNvD7MP7Y8OGnFGmBG5Zsp5K/i541brLXtsSnw6kVmHbwKLDgQP
+         YKEg4Miq59pu83ay9vMF71m5YMj/3JdSTDxMGWz9Qh96S86cyfqeDRWt+A5+9HzN5O
+         nj4N23KLjT9kw==
+Message-ID: <d26d3a65-ce71-7b4c-27d3-45f5ccf50e02@kernel.org>
+Date:   Wed, 23 Nov 2022 10:29:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [v4 1/5] dt-bindings: mfd: Add aspeed pwm-tach binding
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/2] phy: ti: phy-j721e-wiz: add j721s2-wiz-10g module
+ support
+To:     Matt Ranostay <mranostay@ti.com>, r-gunasekaran@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vigneshr@ti.com
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221123032413.1193961-1-mranostay@ti.com>
+ <20221123032413.1193961-3-mranostay@ti.com>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        lee@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, corbet@lwn.net,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-2-billy_tsai@aspeedtech.com>
- <c4b188b1-06a4-3cb0-a758-e12942e1f67b@linaro.org>
-In-Reply-To: <c4b188b1-06a4-3cb0-a758-e12942e1f67b@linaro.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221123032413.1193961-3-mranostay@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 09:24, Krzysztof Kozlowski wrote:
-> On 23/11/2022 07:16, Billy Tsai wrote:
->> Add device binding for aspeed pwm-tach device which is a multi-function
->> device include pwm and tach function.
-> 
-> Subject: drop second, redundant "bindings".
-> Also use proper PATCH prefix.
-> 
->>
->> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
->> ---
->>  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 73 +++++++++++++++++++
->>  1 file changed, 73 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
->> new file mode 100644
->> index 000000000000..e2a7be2e0a18
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
->> @@ -0,0 +1,73 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (C) 2021 Aspeed, Inc.
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/aspeed,ast2600-pwm-tach.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: PWM Tach controller
->> +
->> +description: |
->> +  The PWM Tach controller is represented as a multi-function device which
->> +  includes:
->> +    PWM
->> +    Tach
->> +
->> +maintainers:
->> +  - Billy Tsai <billy_tsai@aspeedtech.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - aspeed,ast2600-pwm-tach
->> +      - const: syscon
->> +      - const: simple-mfd
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
-> 
-> If this is simple-mfd then it cannot take clocks or resets.  Usually the
-> recommendation for such case is: This is not simple-mfd, drop it. Drop
-> also syscon and make a proper device.
-> 
-> However I am surprised to see such change, so I have no clue why this
-> was done.
 
-Actually now I see it was like that in previous patch, I just missed it
-during previous review. Anyway this must be fixed.
 
-Best regards,
-Krzysztof
+On 23/11/2022 05:24, Matt Ranostay wrote:
+> Add support for j721s2-wiz-10g device which is similar to j721e-wiz-10g but
+> uses clock-names interface versus explicitly defining clock nodes within
+> device tree node.
+> 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
 
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
+
+>  drivers/phy/ti/phy-j721e-wiz.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
+> index 141b51af4427..ddce5ef7711c 100644
+> --- a/drivers/phy/ti/phy-j721e-wiz.c
+> +++ b/drivers/phy/ti/phy-j721e-wiz.c
+> @@ -322,6 +322,7 @@ enum wiz_type {
+>  	AM64_WIZ_10G,
+>  	J7200_WIZ_10G,  /* J7200 SR2.0 */
+>  	J784S4_WIZ_10G,
+> +	J721S2_WIZ_10G,
+>  };
+>  
+>  struct wiz_data {
+> @@ -1000,6 +1001,7 @@ static void wiz_clock_cleanup(struct wiz *wiz, struct device_node *node)
+>  	case AM64_WIZ_10G:
+>  	case J7200_WIZ_10G:
+>  	case J784S4_WIZ_10G:
+> +	case J721S2_WIZ_10G:
+>  		of_clk_del_provider(dev->of_node);
+>  		return;
+>  	default:
+> @@ -1132,6 +1134,7 @@ static int wiz_clock_init(struct wiz *wiz, struct device_node *node)
+>  	case AM64_WIZ_10G:
+>  	case J7200_WIZ_10G:
+>  	case J784S4_WIZ_10G:
+> +	case J721S2_WIZ_10G:
+>  		ret = wiz_clock_register(wiz);
+>  		if (ret)
+>  			dev_err(dev, "Failed to register wiz clocks\n");
+> @@ -1214,6 +1217,7 @@ static int wiz_phy_fullrt_div(struct wiz *wiz, int lane)
+>  		break;
+>  	case J721E_WIZ_10G:
+>  	case J7200_WIZ_10G:
+> +	case J721S2_WIZ_10G:
+>  		if (wiz->lane_phy_type[lane] == PHY_TYPE_SGMII)
+>  			return regmap_field_write(wiz->p0_fullrt_div[lane], 0x2);
+>  		break;
+> @@ -1318,6 +1322,15 @@ static struct wiz_data j784s4_10g_data = {
+>  	.clk_div_sel_num = WIZ_DIV_NUM_CLOCKS_10G,
+>  };
+>  
+> +static struct wiz_data j721s2_10g_data = {
+> +	.type = J721S2_WIZ_10G,
+> +	.pll0_refclk_mux_sel = &pll0_refclk_mux_sel,
+> +	.pll1_refclk_mux_sel = &pll1_refclk_mux_sel,
+> +	.refclk_dig_sel = &refclk_dig_sel_10g,
+> +	.clk_mux_sel = clk_mux_sel_10g,
+> +	.clk_div_sel_num = WIZ_DIV_NUM_CLOCKS_10G,
+> +};
+> +
+>  static const struct of_device_id wiz_id_table[] = {
+>  	{
+>  		.compatible = "ti,j721e-wiz-16g", .data = &j721e_16g_data,
+> @@ -1334,6 +1347,9 @@ static const struct of_device_id wiz_id_table[] = {
+>  	{
+>  		.compatible = "ti,j784s4-wiz-10g", .data = &j784s4_10g_data,
+>  	},
+> +	{
+> +		.compatible = "ti,j721s2-wiz-10g", .data = &j721s2_10g_data,
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, wiz_id_table);
+
+--
+cheers,
+-roger
