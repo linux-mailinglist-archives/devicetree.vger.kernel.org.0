@@ -2,123 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05586635F84
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B470635FA4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:31:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237391AbiKWN2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 08:28:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60584 "EHLO
+        id S237973AbiKWNbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 08:31:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236360AbiKWN2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:28:10 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0E2C78E3
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:07:02 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id b9so21317847ljr.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:07:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0ccqh3dfGzML1aBGj7t/YrqY2QT7pR2uNL+e7DNuF1s=;
-        b=NTz8FoNtJ/3ZrpELLvCYWVTs1l2QYVefQOUUa43xmopc3UEmPvePHMJSVKHqy/sqJ5
-         qY92VBAkQjFaYJngeKZGTzNUNHJvkBkLJC8lisKE8S/bv/zckV1tg3G7HrQG8steUfvq
-         VelhR4nq3DQHY0mQNijfoW149T5Dvz06H48Qhsnq9ajy6PhnZv7jFc0I1hbnGoVHr3QH
-         uqccIGYC5o1uugg7zDi5pr1imEa3DLPyPzXFpFhBh/XLh0CCLoelejWsd3ZHd3X6MAbf
-         7MHD/5U0VZKi8R7jNpJ/MW7o77ATRMQAfsxc+nfY7XAnOoyh8RCAfBC4hDZbYH8vXgQF
-         KiFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ccqh3dfGzML1aBGj7t/YrqY2QT7pR2uNL+e7DNuF1s=;
-        b=IaIwRd35hYSDPwYNbMBxIaaebOYNAzwfFE/aZO/qs+DgxIBTKlxXXehiqib6fW2LHb
-         TnvwFkVEu+0UFCMkvxn+v1spIjOLJ2MHRPGmlRwvPAzjC53t5wIkFRYbYyFmuUaxL74v
-         DbGsCmoiPfX+3elVqKB1EsNauFBK3bJO8YhRqBNdBcGJPsXUNx75nJumOzw6dqp2RfYB
-         po+IvA7DucnZBacIlUUkCPtKcupL0LLqOYSoca+wsjOnRGL2Dlmjtsvvikvc8RE9u9Tn
-         9gjZcyaUDoUX0BUvQncbnQMe7aE4fs2ix8lMvMtynhUbLCMdZuuOB7trlvkkIfpsy5jO
-         gipQ==
-X-Gm-Message-State: ANoB5pn8UGe/7Ejk06wYWVdoOxZBDl9y5WAvaaKZKLhJ+8isSwkwt28S
-        D8mUL6ngktlNBUWB7Ms95Am05A==
-X-Google-Smtp-Source: AA0mqf5NaHTNZWztbivNnH1bVjzcoFbgIS8edaP6RX+ZaLqm31IxoNIMjBsE8vCZBviPdnlqNqQTNQ==
-X-Received: by 2002:a2e:bd17:0:b0:277:50a:bd5c with SMTP id n23-20020a2ebd17000000b00277050abd5cmr8965045ljq.6.1669208821202;
-        Wed, 23 Nov 2022 05:07:01 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j23-20020ac253b7000000b004a62ff61b3dsm2904375lfh.252.2022.11.23.05.06.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 05:07:00 -0800 (PST)
-Message-ID: <2418f79c-ae56-9e4e-46e2-f1ca757642ee@linaro.org>
-Date:   Wed, 23 Nov 2022 14:06:59 +0100
+        with ESMTP id S237472AbiKWNaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:30:46 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E3F8C0B1;
+        Wed, 23 Nov 2022 05:11:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EDB11B81FDF;
+        Wed, 23 Nov 2022 13:11:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F3FC433D6;
+        Wed, 23 Nov 2022 13:11:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669209090;
+        bh=Pmimk6P6al4IzF3uS/yD4sA/hKmZqcQ3viaO89EoanQ=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=ZrUI/t5mVj7g/IwF947jY7DEP46UTmCGwZm1yrfeZj8sJpE/0UsmGkHz1oufRXJJT
+         VOoyod3pAfIt0tEPQ6mCEfbNTvdMImsLCgXoOXxN93nxZ3VQ9vEkBWU8/oaCgNo4+W
+         k4KDT+73KAx2I71qfX7xPMecXaE1GHnkrllRaM2dbqwB0souBB3OxSpKGHeHAVB5U+
+         WxRLzI4nKX6m4gcIwcosJQ5DhFHeZpPB7hyiwa3yGPbQIxb+Y+y430e8cbuxJ/Sysh
+         Zd+HS13Y8PBubLg5c1lya7GG/ae0Y6SAnCLQmUcQjytq+uokYlVfTowmBOtEXYDroi
+         iuz03vebUOwIg==
+From:   Mark Brown <broonie@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        linus.walleij@linaro.org, maz@kernel.org, tglx@linutronix.de,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20221109165331.29332-1-rf@opensource.cirrus.com>
+References: <20221109165331.29332-1-rf@opensource.cirrus.com>
+Subject: Re: (subset) [PATCH 00/12] Add support for the Cirrus Logic CS48L32 audio codecs
+Message-Id: <166920908765.125457.5735851922084989509.b4-ty@kernel.org>
+Date:   Wed, 23 Nov 2022 13:11:27 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
- controller driver and bindings
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-4-yu.tu@amlogic.com>
- <09a443b3-4e27-a751-ba2c-057d69363a13@linaro.org>
- <cf7295c7-3ec6-3017-0c21-167da06e3214@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cf7295c7-3ec6-3017-0c21-167da06e3214@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 12:22, Yu Tu wrote:
+On Wed, 9 Nov 2022 16:53:19 +0000, Richard Fitzgerald wrote:
+> The CS48L32 is a high-performance low-power audio DSP for smartphones
+> and other portable audio devices. It has various digital audio I/O,
+> a programmable Halo Core DSP, fixed-function audio processors,
+> configurable GPIO and microphone bias regulators.
 > 
+> The CS48L31 and CS48L33 were derivatives of the CS48L32.
 > 
-> On 2022/11/23 18:09, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 23/11/2022 03:13, Yu Tu wrote:
->>> Add the peripherals clock controller found and bindings in the s4 SoC family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   .../clock/amlogic,s4-peripherals-clkc.yaml    |  105 +
->>
->> No, this is total mess now.
->>
->> Additionally, you received a lot of feedback but your changelog says only:
->> "V3 -> V4: change format and clock flags."
->> so you ignored entire feedback?
->>
->> That's not the way to work with patches.
-> 
-> Hi Krzysztof,
-> 	You can check the previous email reply. Now I don't know who to follow 
-> your advice or Jerome's. I'm confused. Maybe you need to come to a 
-> conclusion. So I can change it in the next patch.
+> [...]
 
-I don't understand your comment. You received a lot of things to change
-for your v3. You said here "change format and clock flagS", so all other
-feedbacks from me were ignored? They were not contradicting to Jerome's
-comments, so either you implement them and mention this in changelog, or
-you keep discussing.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[10/12] ASoC: wm_adsp: Allow client to hook into pre_run callback
+        commit: fe07130870c8540bc0cddbaa8d4521ecdba6b560
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
