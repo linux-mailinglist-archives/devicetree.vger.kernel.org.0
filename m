@@ -2,167 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 846E7636903
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 19:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD26E636986
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 20:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239349AbiKWSeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 13:34:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
+        id S239600AbiKWTGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 14:06:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239793AbiKWSdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 13:33:45 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C3C21A1
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:33:23 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id x13-20020a17090a46cd00b00218f611b6e9so972840pjg.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 10:33:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jPbVvPps35d9qSmRicMnyfKxv7RaFTM2lFdzVKFiQc0=;
-        b=GjVa3I9DLIVr/b1xkrqj+nLz/A1pDKu716OKgzMMClvA5VnFJY4vE4V6EAU9AzjiY5
-         +VqLd2uI5L8J7kqsWIZRIE8lTVzjA3y8pK8gv8UI+0/0WfXemVoMI9KF4LnBQVOoZ1p9
-         nqM4dbBOyPUoKsx0MtqdUjgG3wXAUoKuFgjyEiPltQKBAtMaQW6tuCCZfNNUoRLbe5Gv
-         YpjjsT4TJh9JAYd6bnCrOehRRJBZQw5fPxwk3/VzDAYajhR6rsQTHs2ZfVFMmvkR/Jkn
-         2BxFeAOg9P5f9lKtmbfkmwdixVzj+hXcJu9Hh+X2vlAR6gbAs7bGvl1AfJ9oHoIsfOJ6
-         4g4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jPbVvPps35d9qSmRicMnyfKxv7RaFTM2lFdzVKFiQc0=;
-        b=BmB1dimWfEIaA5x3fGypGJLuDm2GrasXTbTkG88foeDdHQRVJ1vqbWlk/Rk+kE0M3+
-         o/toyTbThc+I3J0CxH9wWWFFrpZ2TL6DPoCA5IQib6VN2v12p9Mn7se+Rgo14N0fmwcn
-         E84DqLdIPhrmqc2JMgGOfM82KimcaNmOd2nmJohqaaj+bKGpeQDgKBS2LBSEwb6PU/lv
-         tOuOR+naT9SxY2fYGfl5WOSthF/xx7dJ0yrf87ISkyxPM0AsDQkIxhF07MOdKUm6sMMT
-         Ij4CVW7SLX3F9Z9O+RlwOVvYZ3wsumseR7w8OWgqSA9oV+t1XsG6vfiNYabWLxcJZ3JT
-         T4kg==
-X-Gm-Message-State: ANoB5pm31J056jOnkMxgVftXzYwB5JWa9qFyIL+nKl8bkCUVlqT41bEj
-        y+kJ5AKxSV0YMukVN/Y4Jq2F4g==
-X-Google-Smtp-Source: AA0mqf7dAPWZzf40dx3d0O3bkXKMBgurnduSmGOZHlNfm/ahurULbBuk5/AdotG3WbK7zhruBkWH6Q==
-X-Received: by 2002:a17:90a:5918:b0:213:ff:1cda with SMTP id k24-20020a17090a591800b0021300ff1cdamr30955608pji.86.1669228402771;
-        Wed, 23 Nov 2022 10:33:22 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a809:a055:fcc4:4677:827])
-        by smtp.gmail.com with ESMTPSA id x3-20020aa79403000000b0056d2317455bsm13006732pfo.7.2022.11.23.10.33.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 10:33:21 -0800 (PST)
-From:   Jagan Teki <jagan@edgeble.ai>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>, Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v8 8/8] ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2) IO
-Date:   Thu, 24 Nov 2022 00:01:24 +0530
-Message-Id: <20221123183124.6911-9-jagan@edgeble.ai>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221123183124.6911-1-jagan@edgeble.ai>
-References: <20221123183124.6911-1-jagan@edgeble.ai>
+        with ESMTP id S236590AbiKWTGY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 14:06:24 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC46F922D2;
+        Wed, 23 Nov 2022 11:06:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 586E161EBE;
+        Wed, 23 Nov 2022 19:06:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7968C433D6;
+        Wed, 23 Nov 2022 19:06:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1669230382;
+        bh=imibZHjJL9cpBpAGiGFcUllw5xFRNIsDuHu6Y+fwag4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V2GZdWHPvr+u9NV42kW3apisS1jk4Cp6h19MZ6qfaWIUGIVJV5gV2ha39zpYgwqP7
+         WIt60wd9b8FvKniDUGYZZUiLCvZQFxPf+YdmrcSFnI46/b/EWX33zlFDz2TQxA125f
+         2aOS9p5Y/Iiz28acyMaujccSu8U/Ol2yQw6Symkw=
+Date:   Wed, 23 Nov 2022 20:06:20 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     Matthew Wilcox <willy@infradead.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Andreas Noever <andreas.noever@gmail.com>,
+        Michael Jamet <michael.jamet@intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Yehezkel Bernat <YehezkelShB@gmail.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        Ming Lei <ming.lei@redhat.com>,
+        Jilin Yuan <yuanjilin@cdjrlc.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ira Weiny <ira.weiny@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
+ const *
+Message-ID: <Y35vLAWWfezPvGSm@kroah.com>
+References: <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
+ <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
+ <Y34zyzdbRUdyOSkA@casper.infradead.org>
+ <Y34+V2bCDdqujBDk@kroah.com>
+ <Y35JfNJDppRp5bLX@ziepe.ca>
+ <Y35R+/eQJYI7VaDS@kroah.com>
+ <Y35YlI93UBuTfgYy@ziepe.ca>
+ <Y35dMIaNYSE0Cykd@casper.infradead.org>
+ <Y35iKfYf3ThdVvaR@kroah.com>
+ <Y35lt+0jXrOKynL5@ziepe.ca>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y35lt+0jXrOKynL5@ziepe.ca>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neural Compute Module 2(Neu2) IO board is an industrial form factor
-evaluation board from Edgeble AI.
+On Wed, Nov 23, 2022 at 02:25:59PM -0400, Jason Gunthorpe wrote:
+> On Wed, Nov 23, 2022 at 07:10:49PM +0100, Greg Kroah-Hartman wrote:
+> > On Wed, Nov 23, 2022 at 05:49:36PM +0000, Matthew Wilcox wrote:
+> > > On Wed, Nov 23, 2022 at 01:29:56PM -0400, Jason Gunthorpe wrote:
+> > > > #define generic_container_of(in_type, in, out_type, out_member) \
+> > > > 	_Generic(in,                                        \
+> > > >                   const in_type *: ((const out_type *)container_of(in, out_type, out_member)),   \
+> > > >                   in_type *: ((out_type *)container_of(in, out_type, out_member)) \
+> > > > 		  )
+> > > 
+> > > There's a neat trick I found in seqlock.h:
+> > > 
+> > > #define generic_container_of(in_t, in, out_t, m)			\
+> > > 	_Generic(*(in),							\
+> > > 		const in_t: ((const out_t *)container_of(in, out_t, m)), \
+> > > 		in_t: ((out_t *)container_of(in, out_type, m))	\
+> > > 	)
+> > > 
+> > > and now it fits in 80 columns ;-)
+> > 
+> > Nice trick!  Dropping the inline functions is a bit different, let me
+> > see if that still gives a sane error if we pass an incorrect type or
+> > mess with the const * the wrong way.  I'll run some tests tomorrow
+> > afternoon...
+> 
+> The errors in some cases are very verbose, but it is somewhat
+> understandable - the worst is when _Generic fails to match anything,
+> but also at least clang partially expanded container_of and it throws
+> other assertions too.
+> 
+> I also wonder if this could just be rolled into the normal
+> container_of.
 
-General features:
-- microSD slot
-- MIPI DSI connector
-- 2x USB Host
-- 1x USB OTG
-- Ethernet
-- mini PCIe
-- Onboard PoE
-- RS485, RS232, CAN
-- Micro Phone array
-- Speaker
-- RTC battery slot
-- 40-pin expansion
+I think we might be able to now, my previous attempts with inline
+functions prevented that.  I'll beat on that tomorrow...
 
-Neu2 needs to mount on top of this IO board in order to create complete
-Edgeble Neural Compute Module 2(Neu2) IO platform.
+> in_type would have to be derived like:
+> 
+>   in_type = typeof((out_type *)NULL)->out_member)
+> 
+> But I don't know if you can use typeof in a generic type matching expression..
 
-Add support for it.
+Maybe that is what threw me before, I can't remember.  I do know we
+tried a number of different attempts, can't recall the failed ones...
 
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
----
-Changes for v8, v7:
-- none
-Changes for v6:
-- update the carrier name.
+thanks,
 
- arch/arm/boot/dts/Makefile                   |  1 +
- arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts | 38 ++++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e48cfbc4e8e4..40cc34bd4945 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1122,6 +1122,7 @@ dtb-$(CONFIG_ARCH_RENESAS) += \
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-+	rv1126-edgeble-neu2-io.dtb \
- 	rk3036-evb.dtb \
- 	rk3036-kylin.dtb \
- 	rk3066a-bqcurie2.dtb \
-diff --git a/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-new file mode 100644
-index 000000000000..ae1cf344239b
---- /dev/null
-+++ b/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
-+ */
-+
-+/dts-v1/;
-+#include "rv1126.dtsi"
-+#include "rv1126-edgeble-neu2.dtsi"
-+
-+/ {
-+	model = "Edgeble Neu2 IO Board";
-+	compatible = "edgeble,neural-compute-module-2-io",
-+		     "edgeble,neural-compute-module-2", "rockchip,rv1126";
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_bus4 &sdmmc0_det>;
-+	rockchip,default-sample-phase = <90>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr104;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.25.1
-
+greg k-h
