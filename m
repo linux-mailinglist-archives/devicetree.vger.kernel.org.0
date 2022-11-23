@@ -2,199 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E853635959
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4C7635971
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:16:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237256AbiKWKKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:10:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33106 "EHLO
+        id S236585AbiKWKQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:16:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236117AbiKWKJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:09:00 -0500
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2077.outbound.protection.outlook.com [40.107.103.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8FCF1173C2;
-        Wed, 23 Nov 2022 01:58:55 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a0qFNRtlz9AbMEVXZ5qfR+xdf7QxmnnebHyFx+uxPHJOqeyYkcDECARn6RCH4Vsp/20TFw+c2V6726fz24W7Tsd6U8xehoDrt3HY3OmqjMBh19JRW57lYTCciCj0MuQOwDm8yVA2c3uV1tqXcwlh50vc+6VZDbcIQZVhriGAEI9dW9JnDJ8GvzqqisVXQla7KJsrTanJeY9jWCq+8Ff/4SsIGJZIM1F6GzBQyzI6DH4xDCuNOd5AKSiMNB0Rd/PHSX7RFzQhNnysN7ZkDYi55UeL+F1bIeOmDFVaWvEL1qieFHzi9aWqE+4XPGVrEO7u5TfcB07JqxqbjG2peKzRrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7afvXYQgRAgaadWL2WIE7fPZj+rSpLkf5pG13oQ7m+4=;
- b=cRVKx4l9Lnzm0b9AsXjOhLKQf1bSDgKF6jnwg3Cg2yDO0U7j5W21VjOKHSfhpwiL8R6l3AHJ8LU/G4v7srlohx9IlJPqzrMhqbhuDsDPVCr8Kc/5Q7DzK2wPmyPVlr3yl9SDeQj+G6QC9dH8LEcz0WPnJMVeapCDYxfeDi/qASeXEkNGt8oMdLriEGXL7NrB16GUT0CZooudwEuXTslGxWI6hm+rg+Eoo73ygSaavrxolt0XXnCsaCQ3NFuJdHiHz3oA1idK7j9rhyjAPs6vn20JOR0R0gxNcsulvdGArCJNe4B0nPnhmr+R6DxLx3NTUnjV2/vxvvi7urv3AeZkkw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7afvXYQgRAgaadWL2WIE7fPZj+rSpLkf5pG13oQ7m+4=;
- b=1AvSGRY7cbmQdAPCDtlJIq2itQtPRbbam2UwGSLDBuuCbvhrjzf+YlsQsCWkvtWTi7GWl9MiJBHd4maTU+FQzoyoln04SkSDHgnHD2Q/W2pW35v4GG/n5eZF5DHYl+v1PEDl0x5PRkx8TDSAXtZPNXDF8CrgwXsQgVjusREIQTQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com (2603:10a6:803:100::13)
- by DU0PR08MB9653.eurprd08.prod.outlook.com (2603:10a6:10:449::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.17; Wed, 23 Nov
- 2022 09:58:51 +0000
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::bcc7:bc51:bf44:1454]) by VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::bcc7:bc51:bf44:1454%6]) with mapi id 15.20.5857.017; Wed, 23 Nov 2022
- 09:58:51 +0000
-Message-ID: <f3fbf861-37c6-3bcf-615b-2f55261fbf90@wolfvision.net>
-Date:   Wed, 23 Nov 2022 10:58:47 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+        with ESMTP id S237320AbiKWKPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:15:15 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D730D1255E5
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:03:31 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id p8so27394538lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:03:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xrp9emg8rmzMjobwMpdEQCEo1OkOBMLjYQe8MINMVNo=;
+        b=ql9cW+HxihOHo5ErhgqND81dCz26wUv7fAfv7rs02E6tP0ANDEs5aQlw5Mh/41C5ya
+         6dkp601F5nRFztG81TMblWiaZK6kd5Hp3CuknKk8QDi58ATwJWkepZDFiury74gOQRxm
+         5lIYMO+Ip7AFwCAoy5F/qXzJ5NO5PxAios/FTXxdcnvn/IZyyjr3ujLm/HQcSspL69Ts
+         hRkymyq3MchxJJEPRLHk9mR8zng1koCY4+yXT88iT+wV5KbVh0aM4UMb+GA8joUNk+PD
+         Au/XJE+Bz//c/Nwlq+FhM2bjiojaffPhBxuzYgIWrBMatesc0m4lgA2C7LxHvAWFMgrQ
+         hkBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xrp9emg8rmzMjobwMpdEQCEo1OkOBMLjYQe8MINMVNo=;
+        b=klCThu/T3JVg/2c/xsOG8OpZYXTkL2CNjHQKHNzOQoJME+/UcWeM8kpE9D3puUmpRm
+         6YH3aEGcvz5rSUNwY4J+S5B7hF0W9wXmHCGnV3vhTtUJVzIaC9i/S2OLgBkNp5mWOXFv
+         j5qFdkmME2Q72jcQLSRShaC0M4oXcSqpf4/RzWsKJBFLVMeWc0m5N/uoA/3j0pZ5j44w
+         Vvt54TNIMojPGgOZhVT4Jn6NcIF3j2PTLvk5ZKdI+vPAVuvkrCmxznh0EEL2TRwgzaB/
+         kiE62qolW6lKAx4VNB4064+tM70SxMLX3nSEXyE0TYqhkKCiR7iTaQoVSyhzNsu0jpoR
+         4QBQ==
+X-Gm-Message-State: ANoB5pnQrWSerLBC+PtLcyutSeE0C8u4zbkvtrjoctS7Da+r7x5+wxIQ
+        kbnW980w5EymY6ZuBZMOv0gNdg==
+X-Google-Smtp-Source: AA0mqf7R+ffMLqXf9Cp1KfZgINgnCgPuAR3jvHdHDFn13QxVur9RO6l7hku+b0va3p/aeMmg7jRq4A==
+X-Received: by 2002:ac2:46f8:0:b0:4af:5088:8fa3 with SMTP id q24-20020ac246f8000000b004af50888fa3mr9691661lfo.538.1669197810196;
+        Wed, 23 Nov 2022 02:03:30 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id br31-20020a056512401f00b004b1a5086485sm2834830lfb.2.2022.11.23.02.03.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 02:03:29 -0800 (PST)
+Message-ID: <cedc0013-f0c0-3180-6995-477b77b919f8@linaro.org>
+Date:   Wed, 23 Nov 2022 11:03:28 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/2] iio: magnetometer: add ti tmag5273 driver
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Jakob Hauser <jahau@rocketmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
- <20221121123542.1322367-3-gerald.loacker@wolfvision.net>
- <Y3uFWH5GV/x7UDcP@smile.fi.intel.com>
-From:   Gerald Loacker <gerald.loacker@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <Y3uFWH5GV/x7UDcP@smile.fi.intel.com>
+Subject: Re: [PATCH v1 1/2] dt-binding: soc: nuvoton: Add NPCM BPC LPC
+ documentation
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, arnd@arndb.de,
+        hasegawa-hitomi@fujitsu.com, marcan@marcan.st,
+        nicolas.ferre@microchip.com, conor.dooley@microchip.com,
+        heiko@sntech.de, sven@svenpeter.dev, briannorris@chromium.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221122201232.107065-1-tmaimon77@gmail.com>
+ <20221122201232.107065-2-tmaimon77@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122201232.107065-2-tmaimon77@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1P189CA0009.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:802:2a::22) To VI1PR08MB4544.eurprd08.prod.outlook.com
- (2603:10a6:803:100::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR08MB4544:EE_|DU0PR08MB9653:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1c6e38b-5fbc-47b4-e2bb-08dacd3952af
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BYFanwCJXU9kHYqsdgiTb/icfBO/0MpCuvlwxVHA/2klVazzDxwYhg0H/ePPPCp9uhROl2oVBTn01ZV3pJhot3l4tF60Uw6bDgd6g2D9bt46JSUqDgRN+MJMeD5CqZyxbC3iHWJYHaS7GaH/fl4qeemqlGKNWp/wVJPVkDKWpw8SAi0zFNJ8UvIM5AnlxqreB9tWT7n6c/9LbihabSGykDny7ilz9/ue5soHSOgwwvT5Nx+uRKuWYHwx/3H3Mt7OZ4KzW3HwxFHyRLOAeZOMdEGbRm6tljZ5hNaTzgMKXT7ZVMRZKtANnAsLmGNLVmbUsjSlmMtWFvupVtaPuKiI4nIQ23WR7BD2zH1iOperYZwKHKTf9HcxF1xizk1xVM/WasfmGEvlPJAEbbKyVna+O0MX+SQk6rpzsAAWJ1Elm4ANNkv2eGijpxd/r3f3n0EbTT08n5dbdXqAUapC0l1owncwdgBfP4ktR7Aq2kCHAr/ezG/0gsVdDK2kiAUc46ROiMpTC+3K1oX0X92PwP5ygQ9uHZz5SckOaquPGDmhBWrcxPVcCAEG9PveX5y+8lSvYS3n2JGrdvPA40w4+ENvP809L3bRkPN5E7TxdS1DIi7H+AOP/sEIo0QZadQuWfgs0mXjpEceAvuzppSXGnchTF0+pBsaWalPPZgkcQsCSmEx4PDks7h10aPfIrir73P7WytmX77PCz018XMXRrKfNAgXAK7rT0jYZPzNQ+CyP+oEN9dWnNBl9ZA+rghaph6S
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR08MB4544.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(396003)(39850400004)(136003)(346002)(451199015)(6486002)(6506007)(6512007)(6666004)(26005)(52116002)(186003)(36756003)(478600001)(107886003)(36916002)(38350700002)(38100700002)(83380400001)(31696002)(86362001)(2616005)(2906002)(8936002)(7416002)(31686004)(41300700001)(44832011)(66556008)(66946007)(66476007)(8676002)(4326008)(54906003)(6916009)(5660300002)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWI4a1ZUN0xtTjhKYWw5eVdrZkhBcG1zOEt3dllZczFhMlN1ZGZhd0tDUnF6?=
- =?utf-8?B?dTRqaERNY0JWaXk4b2JyNlg3L05HMkwwS2djbG0vUFlFZkZIL2tQZXFEN3JR?=
- =?utf-8?B?dW5yRXZpVFlYUG1XalB1UzRqQW1hckpZTUxMNE8rV21admR2eEVJOHh6M1dv?=
- =?utf-8?B?WStvYkllYTdwM1FZbkw5QjJRcmlPNzA2MWpnamhFZnU1bDFwVjJsUm8vSFdu?=
- =?utf-8?B?U21kUEtoMitKY3JEMTEzeVZtWkNTTWpENS9KRmRmQnhEYnFKSVpndFZUbEVX?=
- =?utf-8?B?ckVoL0s1ZS8zdFE3eHFqU1JQaHBRL0taVmo0T1dGOTBrSFEwRHVNY0tNamRV?=
- =?utf-8?B?SWh1MktOUFlsSmhNZmVPMGpPcENDWVFoMmduZVc2UUFLT0tBcDBpbytGSFVX?=
- =?utf-8?B?WElSQzg5WTYvR205OTlLMHRVaGpkcGhQSFBqdlNicjNGY2YxOFUzMCtpWm0r?=
- =?utf-8?B?R2FKVmJLT3NwUFdGOUJ5c3FEaDd3ajVVY0xkYmtyZC8ydmJUc2pqdXlHME0v?=
- =?utf-8?B?Z1ZvRHZQdjAwRWhzYzdQdmtXQnQxQXk3ZVJ5MmpDclJCSTlLZ2crc1prUmhI?=
- =?utf-8?B?ang4aHpnY2l5NHFVcm0zWjQ3RFRMZFVTRU85VkpiU2NzdG12T3ZmL0RKMHhw?=
- =?utf-8?B?enhpMEh0UU44UlpIWURaMExnNy9vbGhQdk9CUFBxRlI0RkNPbFd4b0NYeXEy?=
- =?utf-8?B?bnpPQUlTSUQ1MzIwVjY4SDA4RUVPbzRnZndoUnJZMDhhYzJ6bjlSODdKZVY3?=
- =?utf-8?B?NkZYV0I3NXFCUy9CZGpDV2dGQ2J3S2lQMkoyNC9TTVpPQ1l6Mlh3TjFGYndv?=
- =?utf-8?B?N1ZKa3djZDh4SEttNTVNejNsb3NMbFVSWGZjcDNlREFJT2RRN0g1MEdiOGxx?=
- =?utf-8?B?UEttZk9TczlrVFRidjN3VkVGaEgrMTZydWltVmU2RzRuc2hFbytQZWpoUlIw?=
- =?utf-8?B?MHl5Tmt6SWFLUnl6Z2ZPcUJTQjl1NzNFeWtRbDM2czF5bTlOSlZmRjBiOU9J?=
- =?utf-8?B?QTkycjlwOHNlbng0RFVXOTZwL1lLYndIVEVLaDhGL2NzQ3YvR3hRTktOVGZh?=
- =?utf-8?B?Y3JLdks2TnY4NUNONEJENFNsUjdpVmxyQ0RES0p0UWxaeWVBeEptTnBRQ1ZS?=
- =?utf-8?B?clg0Y0sxMWNHVkttTTZhaFV0N3NmaXNIakRyUVVTN3g4RzJxV1haNFpuc3VI?=
- =?utf-8?B?TWM5Qm93YUJ6aEhiaDJWTzU3a0ZpM09kZUNVYy9GZ2Z6Y0pINGpEaWJhODJ3?=
- =?utf-8?B?OElqTjVQaDE5SDhDbDNRZ21oR3lwUVFyUlNFWndsUFNrdWV6VkRISCtOZzJ6?=
- =?utf-8?B?VzZOUTFNV2FXVHNUbU8vVmR0UVU1V2xMOFZkd0YzTnBLaEVycHRlTHh0Q0Er?=
- =?utf-8?B?UTFVMHI2alpkcmhqMWdsZFFZdlVGWHlnRitCWEc2Z2tlMkxTYXA2NDRJL2ti?=
- =?utf-8?B?UHQrY1RvNGFkWDVFY1FUdXExSW9QMCt3bE5rOEJnODJjQzRWSXdiYnlUV0Ji?=
- =?utf-8?B?cjFMVUVobnNQWi9LdDBLVFNBdWxuSjBkYlVUczB6cnovZUhicnRMSWtlOXpL?=
- =?utf-8?B?NmlmS3VQNkMweGNzYURRNDUxWkw2a3p1WUVYcUM4WTIweCtNSTBEZkRMdVBh?=
- =?utf-8?B?WndYRTduQkhURW5ZTXFwOXA5cSs2SjNBb2xvdmZSencwYWJGblNaTGYxNVo4?=
- =?utf-8?B?Q0FSRjFzQnFiTnF1K0lTL0gwUm4yTGxjQ0ZHeE1XTW9KVUU2bjVZUnlONW5R?=
- =?utf-8?B?QjVLRVNLdU96Q29sVGo0WU56WnJWQ1FsZlhGQzRBQWp3WjUyeFNrc1BqYmts?=
- =?utf-8?B?RjZNYXltM0N0K1dYbzRyWkFpaWZOYVl1UzhEK2xFT291K0RKaCt6VlN6aGFs?=
- =?utf-8?B?dE94ekVSSWNvTXExVEhxd2srWkpRbTdrRHMwMTB6Z1M3MnJsNlFYd3BWTHR6?=
- =?utf-8?B?SHppcVRiTnM4ZFVxUGdOWFVUNTV0bHFpYnN1d09ZNzFzYm5WVjdxVjhTRlZi?=
- =?utf-8?B?YlB0N1o3Ukdpc0pVWDNDQUlWZzFxejdOb21tcnhrK1IyNndnMDJvTnE2dVE5?=
- =?utf-8?B?UStkSmZXMFNnWWltVFliUjVqbnpPQ0d5am9IYjRyNnRaTmdTQW1Zb2Q0VTRp?=
- =?utf-8?B?OUR3YmN1TG12cko1WjE1em55QjROT2Qxc1RRV3NKSjFEZnVPdDFwcmNzYzFN?=
- =?utf-8?B?a0E9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1c6e38b-5fbc-47b4-e2bb-08dacd3952af
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR08MB4544.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2022 09:58:51.2309
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JXDTHbCyb3UIh8wRTrM4LpRVN1UCOp+uKlCYC2c8TtkbHwuNAARiqcDv/d7LYqqiVecxHOxWHndMDYPs9YhHISn7yvQMCs2mFWdG2S0oOpI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB9653
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22/11/2022 21:12, Tomer Maimon wrote:
 
+1. Subject: drop second, redundant "documentation" (dt-bindings are
+documentation).
 
-Am 21.11.2022 um 15:04 schrieb Andy Shevchenko:
-> On Mon, Nov 21, 2022 at 01:35:42PM +0100, Gerald Loacker wrote:
->> Add support for TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor.
->> Additionally to temperature and magnetic X, Y and Z-axes the angle and
->> magnitude are reported.
->> The sensor is operating in continuous measurement mode and changes to sleep
->> mode if not used for 5 seconds.
+2. Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+> Added device tree binding documentation for Nuvoton BMC NPCM BIOS Post
+> Code (BPC).
 > 
-> Thank you for an update! My comments below.
-> (I believe the next version will be ready for inclusion)
+> The NPCM BPC monitoring two configurable I/O addresses written by the
+> host on Low Pin Count (LPC) bus.
 > 
-> ...
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  .../bindings/soc/nuvoton/npcm-lpc-bpc.yaml    | 112 ++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
 > 
->> +static const struct {
->> +	unsigned int scale_int;
->> +	unsigned int scale_micro;
-> 
-> Can we have a separate patch to define this one eventually in the (one of) IIO
-> generic headers? It's a bit pity that every new driver seems to reinvent the
-> wheel.
-> 
->> +} tmag5273_scale_table[4][2] = {
->> +	{ { 0, 0 }, { 0, 0 } },
->> +	{ { 0, 12200 }, { 0, 24400 } },
->> +	{ { 0, 40600 }, { 0, 81200 } },
->> +	{ { 0, 0 }, { 0, 0 } },
->> +};
-> 
+> diff --git a/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
+> new file mode 100644
+> index 000000000000..2c8e66546891
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
 
-I'm thinking of defining structs for all similar types of IIO output
-formats in iio.h like this:
+Filename should match compatibles, at least in the "vendor,device"
+style, so for example: nuvoton,lpc.yaml
+
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/nuvoton/npcm-lpc-bpc.yaml#
+
+LPC is a generic bus, so this should not be in "soc" directory. Where?
+Depends what is this... Generic bus bindings could be in "bus" directory
+or dedicated "lpc", if we have more of these.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton Low Pin Count (LPC) Bus Controller
+> +
+> +maintainers:
+> +  - Tomer Maimon <tmaimon77@gmail.com>
+> +
+> +description:
+> +  The Low Pin Count (LPC) is a low bandwidth bus that is used to connect
+> +  peripherals around the CPU and to replace the Industry Standard Architecture
+> +  (ISA) bus.
+
+You need to decide whether you describe here bus, bus controller or
+device on the bus.
+
+> +
+> +  The Nuvoton NPCM LPC bus is a bridge of host CPU to a several of peripheral
+> +  devices.
+
+LPC bus is a bridge? It's either incorrect or so generic that every bus
+is a "bridge"?
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - nuvoton,npcm750-lpc
+> +          - nuvoton,npcm845-lpc
+> +      - const: simple-mfd
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^lpc_bpc@[0-9a-f]+$":
+
+No underscores in node names. Generic node names, so maybe "bpc"
+
+This also does not match your example at all.
 
 
-struct iio_val_int_plus_micro {
-	int val_int;
-	int val_micro;
-};
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    description:
+> +      Nuvoton BMC NPCM BIOS Post Code (BPC) monitoring two configurable I/O
+> +      addresses written by the host on the Low Pin Count (LPC) bus, the capure
 
-struct iio_val_int_plus_nano {
-	int val_int;
-	int val_nano;
-};
+typo: capture
 
-struct iio_val_int_plus_micro_db {
-	int val_int;
-	int val_micro_db;
-};
+> +      data stored in 128-word FIFO.
+> +
+> +      NPCM BPC supports capture double words, when using capture
+> +      double word only I/O address 1 is monitored.
 
-struct iio_val_fractional {
-	int dividend;
-	int divisor;
-};
+This sentence is not grammatically correct. BPC supports capturing
+double words when using double word capturing? Aren't these two sentences?
 
-struct iio_val_fractional_log2 {
-	int dividend;
-	int divisor;
-};
+> +
+> +    properties:
+> +      compatible:
+> +        items:
 
+No items here.
 
-Do you agree?
+> +          - enum:
+> +              - nuvoton,npcm750-lpc-bpc
+> +              - nuvoton,npcm845-lpc-bpc
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      interrupts:
+> +        maxItems: 1
+> +
+> +      nuvoton,monitor-ports:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description: 
+> +          Contain monitor I/O addresses, at least one monitor I/O address 
 
-Regards,
-Gerald
+Contains
+
+But you need to explain what are these... I/O addresses on the bus?
+
+> +          required.
+> +
+> +      nuvoton,bpc-en-dwcapture:
+> +        description: If present, Enable capture double words support.
+
+Is it the same as reg-io-width?
+
+> +        type: boolean
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupts
+> +      - nuvoton,monitor-ports
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties:
+> +  type: object
+
+No, only bus schemas could have it. Here additionalProperties: false.
+
+It seems there are already few LPC controllers and all are put in
+different places:
+Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
+Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+
+Maybe Rob why this was made not really as two bindings - for bus
+controller and devices?
+
+Best regards,
+Krzysztof
+
