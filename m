@@ -2,137 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C1C6636065
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A4F63607E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237333AbiKWNuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 08:50:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60488 "EHLO
+        id S238001AbiKWNwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 08:52:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237248AbiKWNtm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:49:42 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861D59039D;
-        Wed, 23 Nov 2022 05:40:03 -0800 (PST)
+        with ESMTP id S235962AbiKWNwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:52:18 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB88765A;
+        Wed, 23 Nov 2022 05:44:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669210803; x=1700746803;
+  t=1669211094; x=1700747094;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=9srsKAsm31l1dTbkfAVTNzSDO2Kf610A6JWSfuub0kk=;
-  b=O8w2xloMEqmWt0Oi58sjwSLMJUVXFoFozTFcy8wRZAAYgq7tWXu1PQp0
-   3NVBC6PVGoxo+5xzXZaJmVTHFILwV0VW0wMPuyEIzZJIHl6ZJOIFfNgIz
-   /NY184QqgbHvTMmsjN6J16AVKDfB83AmcED+ZzYgQ+RTwodf4XQpUarr/
-   oN9/1ESKpC+i2iIdbcjZIxWMpD/o4iq2mRXsrF8BqiEjQRlotM9Fku5Ap
-   S3z4ha7l5L+en/hmJcBl2lx3MqcCOzKsTtKchvR4F0kKVLhyCoWmkZ/yy
-   qy2zoN1kkdOqRVhZYcMoClHGwVfbUCT87WEtg8RNiXMZuRz0d3XLrmKz6
+  bh=8ThpPRnT3H2tIfP/zSsUWW1oRAj/U3AJ3PTwjtrPgLE=;
+  b=XPKwM/rlGGPF8I/7Z+bTmJo1UWxbHMlhZzuMOgzuWiYM/6mY0W61A8sE
+   z7N/KkRab52oVfbjtYGGELgLXwSRC5VhymWatWzzUDNktNfevqwzKJ6OF
+   J377cIgK/dZW0phwVjfVE4V0TeEjv/Qgg/17g5l9z2k5zGntpUT1cmjyW
+   JOURB4fEHdy1rR92dJIvbmdbumzP2MwqFcmHruHSVrSBEh6LIRRuJDofd
+   kmkF197WyK6XF2hzOpD/v52U4DMoqkDUWVhUi7rK2VEVCqOEmQC9Orked
+   VwpiIcGZDZB3CdPNdAXhtqjC974LYJE6WekbtMhmtfdJofHFF1yHVdd9E
    A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="312766696"
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="340947058"
 X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="312766696"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2022 05:40:03 -0800
+   d="scan'208";a="340947058"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2022 05:44:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="641799230"
+X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="672880767"
 X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="641799230"
+   d="scan'208";a="672880767"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 23 Nov 2022 05:39:59 -0800
+  by orsmga008.jf.intel.com with ESMTP; 23 Nov 2022 05:44:51 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.96)
         (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oxpyo-00GIsS-0d;
-        Wed, 23 Nov 2022 15:39:58 +0200
-Date:   Wed, 23 Nov 2022 15:39:57 +0200
+        id 1oxq3U-00GIyb-2x;
+        Wed, 23 Nov 2022 15:44:48 +0200
+Date:   Wed, 23 Nov 2022 15:44:48 +0200
 From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Gerald Loacker <gerald.loacker@wolfvision.net>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Rahul Tanwar <rtanwar@maxlinear.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Jakob Hauser <jahau@rocketmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 2/2] iio: magnetometer: add ti tmag5273 driver
-Message-ID: <Y34irZRlkpdqLrll@smile.fi.intel.com>
-References: <20221121123542.1322367-1-gerald.loacker@wolfvision.net>
- <20221121123542.1322367-3-gerald.loacker@wolfvision.net>
- <Y3uFWH5GV/x7UDcP@smile.fi.intel.com>
- <f3fbf861-37c6-3bcf-615b-2f55261fbf90@wolfvision.net>
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+        "H. Peter Anvin" <hpa@zytor.com>, linux-lgm-soc@maxlinear.com
+Subject: Re: [PATCH v4 4/4] x86/of: Add support for boot time interrupt
+ delivery mode configuration
+Message-ID: <Y34j0BgRTVS6KG4i@smile.fi.intel.com>
+References: <20221123100850.22969-1-rtanwar@maxlinear.com>
+ <20221123100850.22969-5-rtanwar@maxlinear.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f3fbf861-37c6-3bcf-615b-2f55261fbf90@wolfvision.net>
+In-Reply-To: <20221123100850.22969-5-rtanwar@maxlinear.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 10:58:47AM +0100, Gerald Loacker wrote:
-> Am 21.11.2022 um 15:04 schrieb Andy Shevchenko:
-> > On Mon, Nov 21, 2022 at 01:35:42PM +0100, Gerald Loacker wrote:
-
-...
-
-> >> +static const struct {
-> >> +	unsigned int scale_int;
-> >> +	unsigned int scale_micro;
-> > 
-> > Can we have a separate patch to define this one eventually in the (one of) IIO
-> > generic headers? It's a bit pity that every new driver seems to reinvent the
-> > wheel.
-> > 
-> >> +} tmag5273_scale_table[4][2] = {
-> >> +	{ { 0, 0 }, { 0, 0 } },
-> >> +	{ { 0, 12200 }, { 0, 24400 } },
-> >> +	{ { 0, 40600 }, { 0, 81200 } },
-> >> +	{ { 0, 0 }, { 0, 0 } },
-> >> +};
-> > 
+On Wed, Nov 23, 2022 at 06:08:50PM +0800, Rahul Tanwar wrote:
+> Presently, init/boot time interrupt delivery mode is enumerated
+> only for ACPI enabled systems by parsing MADT table or for older
+> systems by parsing MP table. But for OF based x86 systems, it is
+> assumed & hardcoded to legacy PIC mode. This causes boot time crash
+> for platforms which do not use 8259 compliant legacy PIC.
 > 
-> I'm thinking of defining structs for all similar types of IIO output
-> formats in iio.h like this:
+> Add support for configuration of init time interrupt delivery mode
+> for x86 OF based systems by introducing a new optional boolean
+> property 'intel,virtual-wire-mode' for interrupt-controller node
+> of local APIC. This property emulates IMCRP Bit 7 of MP feature
+> info byte 2 of MP floating pointer structure.
 > 
+> Defaults to legacy PIC mode if absent. Configures it to virtual
+> wire compatibility mode if present.
+
+From code perspective looks good to me, but you need to have a blessing by DT
+people for first two patches.
+
+With whatever property name agreed on,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+> Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
+> ---
+>  arch/x86/kernel/devicetree.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> struct iio_val_int_plus_micro {
-> 	int val_int;
-> 	int val_micro;
-> };
+> diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
+> index fcc6f1b7818f..458e43490414 100644
+> --- a/arch/x86/kernel/devicetree.c
+> +++ b/arch/x86/kernel/devicetree.c
+> @@ -167,7 +167,14 @@ static void __init dtb_lapic_setup(void)
+>  			return;
+>  	}
+>  	smp_found_config = 1;
+> -	pic_mode = 1;
+> +	if (of_property_read_bool(dn, "intel,virtual-wire-mode")) {
+> +		pr_info("Virtual Wire compatibility mode.\n");
+> +		pic_mode = 0;
+> +	} else {
+> +		pr_info("IMCR and PIC compatibility mode.\n");
+> +		pic_mode = 1;
+> +	}
+> +
+>  	register_lapic_address(lapic_addr);
+>  }
+>  
+> -- 
+> 2.17.1
 > 
-> struct iio_val_int_plus_nano {
-> 	int val_int;
-> 	int val_nano;
-> };
-> 
-> struct iio_val_int_plus_micro_db {
-> 	int val_int;
-> 	int val_micro_db;
-> };
-
-...
-
-> struct iio_val_fractional {
-> 	int dividend;
-> 	int divisor;
-> };
-
-This one...
-
-> struct iio_val_fractional_log2 {
-> 	int dividend;
-> 	int divisor;
-> };
-
-...and this one repeat struct s32_fract (or u32_fract, whatever suits better).
-
-> Do you agree?
-
-Me, yes, but you need a blessing by maintainers of IIO.
 
 -- 
 With Best Regards,
