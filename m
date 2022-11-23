@@ -2,206 +2,394 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CBF635782
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E51BF635787
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238022AbiKWJmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 04:42:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
+        id S238098AbiKWJmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 04:42:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237968AbiKWJlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:41:52 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 780BFE07
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:39:45 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id c1so27342391lfi.7
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:39:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HhqMtvHL6CzJDiLWuozbG2Jml88D7dY6P8TNnkcKrDk=;
-        b=uPcF2XKQ3yB8cxrDLUDzCH6YV36F1+y0M6Rxy2QxQEAVoZTzlfdojxgHr57lhPYv5Z
-         mvygHAfNvmroP5qhfZkQyzCDVc4n+ztMBYZO9poIohFylLJB8+4Q6P9BQRXemTgiWEOh
-         z1rctkkfQjvkzmKQMScUuLlwqfYgn9TygkLAjGGpwbvjaRuB2Sql6ikYhfcNfWFq21UY
-         TBogac2ZRtjdeDLfORHdgb5AseVSVAEvJ3qqWgWI9Syq5YwxjXWqgGu/zUjI+ieHO/ZW
-         YYbDMSKtbuXGHao1FM5Il9NCwdlomVwtK5h7m6WOj1qSCHqPMv9IJIRTb1q9AglycZM9
-         hIuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HhqMtvHL6CzJDiLWuozbG2Jml88D7dY6P8TNnkcKrDk=;
-        b=7gumKjrir3F/2ImV24lluZmRPL+ymwQfjAuqGakVQUW32wnhtXhtqSpCaAmBMv282+
-         hZA9yCgF6hfbCrZwT7cWzB8nOkr9h8rau2e7VzXwmrJQGjoMzaLLOoN5rw2x42NVr9rd
-         rS39w9I2CsRbdLjMK/rvC3RkmY+icS1EuDiwODwWl5C3p/7RH1O1blbzPmPwtUFFJH6z
-         4ZaJ0lZdfQQ5bqvtaqvo8vCSui2WQs3B2+u/zBHgzLcFWaXHPweUvNK4NvOgkSAyuF2r
-         iV35ZYYeYY5X3IheGn7tveNojFN7maLwGS6RQTDZEsVlUnuPtOjzErKhkV8LC9NYK6ZW
-         9pPw==
-X-Gm-Message-State: ANoB5pm53SJUVpzq6cYYRRsqLQ3B1hpjiTXlOY2RaACgxyVNeMrLaZI6
-        Cw6zpm7FWhjuXK0X4CUgUoPAeA==
-X-Google-Smtp-Source: AA0mqf5DA9z8M5jnKKs9XTmwUcoENZ3ioMO2Niz5dey3n7Kt+mn3Y92KAjKcnZl7/Qj50MFNZ79P0A==
-X-Received: by 2002:a19:9155:0:b0:492:f5b6:2124 with SMTP id y21-20020a199155000000b00492f5b62124mr8739646lfj.369.1669196383804;
-        Wed, 23 Nov 2022 01:39:43 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j8-20020ac253a8000000b004946a1e045fsm2788676lfh.197.2022.11.23.01.39.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 01:39:43 -0800 (PST)
-Message-ID: <02db6a5d-ae9d-68b5-f5c5-bebb471e0f70@linaro.org>
-Date:   Wed, 23 Nov 2022 10:39:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl: Add
- h2mode property
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
- <20221114111513.1436165-3-herve.codina@bootlin.com>
- <a1a7fdf4-2608-d6c9-7c7a-f8e8fae3a742@linaro.org>
- <c9a77262-f137-21d9-58af-eb4efb8aadbf@linaro.org>
- <20221115150417.513955a7@bootlin.com> <20221118112349.7f09eefb@bootlin.com>
- <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
- <20221121165921.559d6538@bootlin.com>
- <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
- <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
- <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
- <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
- <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
- <CAMuHMdVbzg8y2So+A=z8nUwHMoL+XKUrvoXp9QdbCnUve1_Atw@mail.gmail.com>
- <191a7f3e-0733-8058-5829-fe170a06dd5a@linaro.org>
- <20221122100706.739cec4d@bootlin.com>
- <3856e2d8-1c16-a69f-4ac5-34b8e7f18c2b@linaro.org>
- <CAMuHMdXPndkt=+k1CAcDbH7eK=TFfS6wMu+xdqWZSCz1+hyhEA@mail.gmail.com>
+        with ESMTP id S238114AbiKWJl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:41:58 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60043.outbound.protection.outlook.com [40.107.6.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2679AD06D6;
+        Wed, 23 Nov 2022 01:40:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZQLPYf0ZB6lbnlKH0t4PH1WSwn84bYPSN2eOUerGQhy6Ti35zmkcUo3IVnrxrf90FRT/KCNBlLs8hpHHAexYDR9ICDnkB9A4W7KiWYYGchiV8Er6yiWNWb3CoBrWBLrvaHZhvIeuA4l+Zt8ylWVA3D8tcMk8gWko+w309f6uKzfPPJYxqD+hNMMMnN/9nrHl/bP6e7n/g3NgmfV7wKim4Zejp5Ts7uqtptA+pUQgp/i+YUCDegtdO2y6fIs8m9qGwfrynL9EZ2mxbi5W4dJ203hD7xvlPCerg1Yh9IB2ZXt/EjKxuHvdXiuk81PBSMmimhTtKex/rOh1kXidJTWiOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jMJa5GLMEkadvJokXwqVB2hGUlSJzyG6O58eLOIWxXE=;
+ b=YwQc3MIAhnr7zdiu8AG13ZTJOovKpDCIGoM1BP202tlSC1277rjT18o7XPrLenz4YmlKiHWNB489RpWl649gZqanEgBNjHLoDRDEcka1LtLwt4lCkm8VH3sOy5M+WOL+6yf6Idhjl09MxoIDcqpWFdvRd60hUMw3RNGv+tNdSaqQASkNfVPc5u0Cb80paMhXvMgEPl9xq8kSfhzyOyNNQrDnBhfUSL5v9ZNXsO+dPVDx2FKhoC3pGSQwPfrYlIRDAkmqmUsaehtMZXsG5XFpV8wf1/X+cJX51+RkeUM/7II39KTHw3/uVp1qOAXdssufOLRku1ovX0P//RVC8TZePQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jMJa5GLMEkadvJokXwqVB2hGUlSJzyG6O58eLOIWxXE=;
+ b=RrJa/QLf1haG+u0qHP5yBxre26Bl/iZyyQq5hacP5kLgbIjh03OMplLIS3LXNDeDKPTsCQjm4Z+ts+3omigG8FUx+CQ8sSt9YfcOsYayFgBUnDR6KDjd2teE9ieYRtV1bVfg2jfHkFJUC5FPm3axqtZ99GzdDHkBtGJgFXSxb5o=
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+ by AS4PR04MB9689.eurprd04.prod.outlook.com (2603:10a6:20b:4fc::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.11; Wed, 23 Nov
+ 2022 09:39:57 +0000
+Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::9ded:65b7:9d51:d37a]) by AS8PR04MB8642.eurprd04.prod.outlook.com
+ ([fe80::9ded:65b7:9d51:d37a%8]) with mapi id 15.20.5834.015; Wed, 23 Nov 2022
+ 09:39:57 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC:     "lee@kernel.org" <lee@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Subject: RE: [PATCH 2/4] input: bbnsm_pwrkey: Add bbnsm power key support
+Thread-Topic: [PATCH 2/4] input: bbnsm_pwrkey: Add bbnsm power key support
+Thread-Index: AQHY/XWQ7kPrYj56Okmc6NwuZ1D1865LmniAgACmGBA=
+Date:   Wed, 23 Nov 2022 09:39:57 +0000
+Message-ID: <AS8PR04MB864238021EE2CA42BF800461870C9@AS8PR04MB8642.eurprd04.prod.outlook.com>
+References: <20221121065144.3667658-1-ping.bai@nxp.com>
+ <20221121065144.3667658-3-ping.bai@nxp.com> <Y31cES4SiUlG4mKd@google.com>
+In-Reply-To: <Y31cES4SiUlG4mKd@google.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdXPndkt=+k1CAcDbH7eK=TFfS6wMu+xdqWZSCz1+hyhEA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8642:EE_|AS4PR04MB9689:EE_
+x-ms-office365-filtering-correlation-id: a16b9086-f3f4-4b3f-5a10-08dacd36af3d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wDaw+h0ExrsXRN2RKUMbTQ5ptWmflupKyIxkVo+am/T3iBZNoJfn5oQ95G75lv45yeDgOm6gf/xqFFftcoPmx0BWSM5dL/zzpvEUCwlDumbyuNEIKoaUVug/vx/4eHBqL/1Q77jFDElaF92Ezk1g2OvMGQGMkpW+z6lQ+N755HVevpu9kek+d8AXcGBYE1D2isJu+efCWN+MENaQRHTQHX8Uj1kAQgDgwmwxf7RKu8x/xrVHQu8c+Ni+b/oC5oaH/+GuZonkcnHoIYcFIfMlcuzamH/obPV0OwdLgQzX4ckTIJ+5ivaoIeJckHEip5Ewnan3HJfmDzBco58TqQogRNcX6rCOdGxMauzGASaHodghjr5Dbe9i439AaJ2U+eifVAN90PC5alkQ79oHpYIL5VN4ChbQYTEdsPIxx8p7o+nlP0Dpyo/OkV0iG5ZrY4MA8MKmLZmv4cz2HpfYVo1NbOcwFhsXdOQ+wnOQixcGGnU+3pFTK0tgTuA25ECOv08PorhjmznstVIEaPFoKt2YyJgKpVM2TX8b0aZTVX3nGu2ZGZmTgt+raCNSZXXNJsqR5zqGTVVyo8554Q+y58gqnMM6iAKaF1RtUz4g1puSOjvsdjk/IvbCv8kxDUNu+LM6Hb1K8yG9qXqofKhyh+z77jwkkIu2cm7vBtGDnbkwoxa50U1lzAxmRGgK38kcq0qlajT5Xk7WE+s/yAQysj9wiA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(396003)(346002)(376002)(136003)(39860400002)(451199015)(66556008)(33656002)(66476007)(66446008)(76116006)(66946007)(64756008)(86362001)(8676002)(5660300002)(4326008)(9686003)(8936002)(41300700001)(7696005)(52536014)(6506007)(26005)(55016003)(71200400001)(38070700005)(54906003)(83380400001)(186003)(316002)(38100700002)(6916009)(122000001)(478600001)(7416002)(2906002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?S1N5nc3drsS1vmPlihrN+rSgiynjSjSid3jTAaPArAtzLr1/YRTwO5L0/28B?=
+ =?us-ascii?Q?6W9wm4ZqzHOdVIIWLv2h04gM0HMVDAs56g3ZY9rm4QVlH0POeav37RBJvT+N?=
+ =?us-ascii?Q?d4w4f8lWr784XZOsE19qe8nxcqNRKPLc67R4ERNw89NvywCoYL7mwvCJnhd1?=
+ =?us-ascii?Q?GzzfPTGCDWo/IYxTnk2Pr1jwA8vl6U9QSzPJSj1ZVGQGabl8rxO1Mslioc+I?=
+ =?us-ascii?Q?3SPYIkMrGHrUepvjAJiN3LhMSMONB1FuhA5JAXrkd6GtRWzZzjxIW6JGwLmZ?=
+ =?us-ascii?Q?v8M5fcCmDE6OsWTxAODNKooG2MlR37moxCpbmZRvmCS9SlOOxpGb8Qx6xqBR?=
+ =?us-ascii?Q?lVs4qOfe8+ogZnq4Q/+r5qLzTUIqUIkMZ793vGAelcrHAVRxETednWlZPnTz?=
+ =?us-ascii?Q?AV1/aS/tJZGO0Wbw4b25Zpa3IgB8l1Pbp6KJw8noMaZVaIwH4I5DADWTdKh8?=
+ =?us-ascii?Q?HL5C+F1UQmK8i0jMbd8AjP+PXRuOWkMgYKC62ycPfm4pQqwmf598WRSZjp4F?=
+ =?us-ascii?Q?YOelY+pNrG7+JQJV3usNvuOHgBW6VxUPUbZHhD1O7lItyy34kECAMXdCRGZd?=
+ =?us-ascii?Q?zrFGkn24GkeZ6j49iKtgW77y1caoKcSdV03j15dOXyyYKUTKwZbvTKK44jwY?=
+ =?us-ascii?Q?os1aB7KBxchLyb2zFI9pYQHbVutnXrun71Ekg78qvCviiJcTQvPtroJpXjLU?=
+ =?us-ascii?Q?RYVVco082OXusVbIkmKPzdRiIkGDfplDAtOLhsywoFErDtGpfTkoWZXQG5fD?=
+ =?us-ascii?Q?DMkbOrARZZb5ixBSeVQrmGL8UH6tmdhgeNMtjSwlF7KGiVqzJRBKVUkn+V6G?=
+ =?us-ascii?Q?kQhMG6vtQU88wlE7OlricMaA3Xz+ajzgN28yBkdXqNQSIYPYjUhmphXzWdP9?=
+ =?us-ascii?Q?qq2p4QnI1rc1Yfp2lEYDuXaBGDu4R7d/3rIBjxIdQ9WBnvKjKq8Lat0iDvlX?=
+ =?us-ascii?Q?mL/vaQrmakSPJArb/iGjbMC2ofx7eAoNSqLcYrWMCuXpAZGyk865m1kbK8xS?=
+ =?us-ascii?Q?vAI/sXTshA0bTB4MjsSBq76oaLWjptW/vSxoi2Qfye327dYpCipvAnEEHeRM?=
+ =?us-ascii?Q?6vRE4qLK1bKI9Tse1FB45lelp5XwFV3WCmNSD7cnG9Ru2it4+pzYqevU9KqF?=
+ =?us-ascii?Q?IPH57Qlrs4yXuikaYnx3K3FIcteUXPEF70xSpeZyRl/44O2VOuXVdjyS2Hnu?=
+ =?us-ascii?Q?dzv/NFTUKmpJkWNhpLXPjbmVrCVhy+Po9rWqwTTdOgGxOLgl+tz3UR/yfRPB?=
+ =?us-ascii?Q?BwsOzo3BRtXmcE+ASPIKEUWeCkQgxQZsWyH7h120QK1PdW64ym0heE1k4yKJ?=
+ =?us-ascii?Q?c/qqHJT4/Xwdksqn3rUt83iwOV9N44rVf8T1teaPdSGbHIW0YkEX4BO1Fjsm?=
+ =?us-ascii?Q?DOZhioBb6TPY1ctI7e6CbddXKEK/epEyJ7bnbwY+k/VatYFiJnkHatPDjI2Z?=
+ =?us-ascii?Q?yHsfDDPZJ+LDlg12ojBpAu0GxNR7Pzq+LUgWBzJkZj1dtcNOYa1ErecXbAQG?=
+ =?us-ascii?Q?lL1zrpQJ8xQ/Lz7RgehHfmd0LZL2HGP3ZIyGoSXl4IR7zWxUv992W5JHyllk?=
+ =?us-ascii?Q?MfVOYO8dG6gWVEUWwL0=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a16b9086-f3f4-4b3f-5a10-08dacd36af3d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2022 09:39:57.7839
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: in0Lg0V7MyvEQ0NxBqNxYCqpiUv/NslKOwN3USZVlNMQFRzVWOmnF7W1mj6myVb4K1A/Uoe4VW57M9OTN7RHZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9689
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 11:47, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Tue, Nov 22, 2022 at 11:30 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 22/11/2022 10:07, Herve Codina wrote:
->>> On Tue, 22 Nov 2022 09:42:48 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> On 22/11/2022 09:25, Geert Uytterhoeven wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On Tue, Nov 22, 2022 at 8:45 AM Krzysztof Kozlowski
->>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>> On 21/11/2022 21:46, Geert Uytterhoeven wrote:
->>>>>>>> This does not change anything. Herve wrote:
->>>>>>>>
->>>>>>>>> probe some devices (USB host and probably others)
->>>>>>>>
->>>>>>>> Why some can be probed earlier and some not, if there are no
->>>>>>>> dependencies? If there are dependencies, it's the same case with sysctrl
->>>>>>>> touching the register bit and the USB controller touching it (as well
->>>>>>>> via syscon, but that's obvious, I assume).
->>>>>>>>
->>>>>>>> Where is the synchronization problem?
->>>>>>>
->>>>>>> The h2mode bit (and probably a few other controls we haven't figured out
->>>>>>> yet) in the sysctrl must be set before any of the USB devices is active.
->>>>>>> Hence it's safest for the sysctrl to do this before any of the USB drivers
->>>>>>> probes.
->>>>>>
->>>>>> Again, this does not differ from many, many of other devices. All of
->>>>>> them must set something in system controller block, before they start
->>>>>> operating (or at specific time). It's exactly the same everywhere.
->>>>>
->>>>> The issue here is that there are two _different drivers_ (USB host
->>>>> and device). When both are modular, and the driver that depends on the
->>>>> sysctrl setting is loaded second, you have a problem: the sysctrl change
->>>>> must not be done when the first driver is already using the hardware.
->>>>>
->>>>> Hence the sysctrl driver should take care of it itself during early
->>>>> initialization (it's the main clock controller, so it's a dependency
->>>>> for all other I/O device drivers).
->>>>
->>>> I assumed you have there bit for the first device (which can switch
->>>> between USB host and USB device) to choose appropriate mode. The
->>>> bindings also expressed this - "the USBs are". Never said anything about
->>>> dependency between these USBs.
->>>>
->>>> Are you saying that the mode for first device cannot be changed once the
->>>> second device (which is only host) is started? IOW, the mode setup must
->>>> happen before any of these devices are started?
->>>>
->>>> Anyway with sysctrl approach you will have dependency and you cannot
->>>> rely on clock provider-consumer relationship to order that dependency.
->>>> What if you make all clocks on and do not take any clocks in USB device?
->>>> Broken dependency. What if you want to use this in a different SoC,
->>>> where the sysctrl does not provide clocks? Broken dependency.
->>>
->>> The issue is really related to the Renesas sysctrl itself and not related
->>> to the USB drivers themselves.
->>> From the drivers themselves, the issue is not seen (I mean the driver
->>> takes no specific action related to this issue).
->>> If we change the SOC, the issue will probably not exist anymore.
->>
->> Yeah, and in the next SoC you will bring 10 of such properties to
->> sysctrl arguing that if one was approved, 10 is also fine. Somehow
->> people on the lists like to use that argument - I saw it somewhere, so I
->> am allowed to do here the same.
-> 
-> Like pin control properties? ;-)
-> This property represents a wiring on the board...
-> I.e. a system integration issue.
-> 
->> I understand that the registers responsible for configuration are in
->> sysctrl block, but it does not mean that it should be described as part
->> of sysctrl Devicetree node. If there was no synchronization problem,
->> this would be regular example of register in syscon which is handled
->> (toggled) by the device (so USB device/host controller). Since there is
->> synchronization problem, you argue that it is correct representation of
->> hardware. No, it is not, because logically in DT you do not describe
->> mode or existence of other devices in some other node and it still does
->> not describe this ordering.
-> 
-> So we have to drop the property, and let the sysctrl block look
-> for <name>@<reg> nodes, and check which ones are enabled?
-> 
-> Running out of ideas...
+> Subject: Re: [PATCH 2/4] input: bbnsm_pwrkey: Add bbnsm power key
+> support
+>=20
+> Hi Jacky,
+>=20
+> On Mon, Nov 21, 2022 at 02:51:42PM +0800, Jacky Bai wrote:
+> > The ON/OFF logic inside the BBNSM allows for connecting directly into
+> > a PMIC or other voltage regulator device. The module has an button
+> > input signal and a wakeup request input signal. It also has two
+> > interrupts (set_pwr_off_irq and set_pwr_on_irq) and an active-low PMIC
+> > enable (pmic_en_b) output.
+> >
+> > Add the power key support for the ON/OFF button function found in
+> > BBNSM module.
+> >
+> > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> > Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/input/keyboard/Kconfig        |  11 ++
+> >  drivers/input/keyboard/Makefile       |   1 +
+> >  drivers/input/keyboard/bbnsm_pwrkey.c | 196
+> > ++++++++++++++++++++++++++
+> >  3 files changed, 208 insertions(+)
+> >  create mode 100644 drivers/input/keyboard/bbnsm_pwrkey.c
+> >
+> > diff --git a/drivers/input/keyboard/Kconfig
+> > b/drivers/input/keyboard/Kconfig index 00292118b79b..8efcd95492b3
+> > 100644
+> > --- a/drivers/input/keyboard/Kconfig
+> > +++ b/drivers/input/keyboard/Kconfig
+> > @@ -456,6 +456,17 @@ config KEYBOARD_SNVS_PWRKEY
+> >  	  To compile this driver as a module, choose M here; the
+> >  	  module will be called snvs_pwrkey.
+> >
+> > +config KEYBOARD_BBNSM_PWRKEY
+> > +	tristate "NXP BBNSM Power Key Driver"
+> > +	depends on ARCH_MXC || COMPILE_TEST
+> > +	depends on OF
+> > +	help
+> > +	  This is the bbnsm powerkey driver for the NXP i.MX application
+> > +	  processors.
+> > +
+> > +	  To compile this driver as a module, choose M here; the
+> > +	  module will be called bbnsm_pwrkey.
+> > +
+> >  config KEYBOARD_IMX
+> >  	tristate "IMX keypad support"
+> >  	depends on ARCH_MXC || COMPILE_TEST
+> > diff --git a/drivers/input/keyboard/Makefile
+> > b/drivers/input/keyboard/Makefile index 5f67196bb2c1..0bc101e004ae
+> > 100644
+> > --- a/drivers/input/keyboard/Makefile
+> > +++ b/drivers/input/keyboard/Makefile
+> > @@ -62,6 +62,7 @@ obj-$(CONFIG_KEYBOARD_QT2160)		+=3D
+> qt2160.o
+> >  obj-$(CONFIG_KEYBOARD_SAMSUNG)		+=3D samsung-keypad.o
+> >  obj-$(CONFIG_KEYBOARD_SH_KEYSC)		+=3D sh_keysc.o
+> >  obj-$(CONFIG_KEYBOARD_SNVS_PWRKEY)	+=3D snvs_pwrkey.o
+> > +obj-$(CONFIG_KEYBOARD_BBNSM_PWRKEY)	+=3D bbnsm_pwrkey.o
+> >  obj-$(CONFIG_KEYBOARD_SPEAR)		+=3D spear-keyboard.o
+> >  obj-$(CONFIG_KEYBOARD_STMPE)		+=3D stmpe-keypad.o
+> >  obj-$(CONFIG_KEYBOARD_STOWAWAY)		+=3D stowaway.o
+> > diff --git a/drivers/input/keyboard/bbnsm_pwrkey.c
+> > b/drivers/input/keyboard/bbnsm_pwrkey.c
+> > new file mode 100644
+> > index 000000000000..288ee6844000
+> > --- /dev/null
+> > +++ b/drivers/input/keyboard/bbnsm_pwrkey.c
 
-One solution could be making USB nodes children of the sysctrl block which:
-1. Gives proper ordering (children cannot start before parent)
-regardless of any other shared resources,
-2. Allows to drop this mode property and instead check what type of
-children you have and configure mode depending on them.
+...
 
-However this also might not be correct representation of hardware
-(dunno...), so I am also running out of ideas.
+> > +
+> > +static void bbnsm_pwrkey_check_for_events(struct timer_list *t) {
+> > +	struct bbnsm_pwrkey *bbnsm =3D from_timer(bbnsm, t, check_timer);
+> > +	struct input_dev *input =3D bbnsm->input;
+> > +	u32 state;
+> > +
+> > +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &state);
+>=20
+> Can this fail?
 
-Anyway, I appreciate your explanations. I don't oppose this and I defer
-the decision to Rob (for this or for v3 patch with descriptive strings).
+Should no chance to fail. Any more tips?
 
-Best regards,
-Krzysztof
+>=20
+> > +
+> > +	state =3D state & BBNSM_BTN_PRESSED ? 1 : 0;
+> > +
+> > +	/* only report new event if status changed */
+> > +	if (state ^ bbnsm->keystate) {
+> > +		bbnsm->keystate =3D state;
+> > +		input_event(input, EV_KEY, bbnsm->keycode, state);
+> > +		input_sync(input);
+> > +		pm_relax(bbnsm->input->dev.parent);
+> > +	}
+> > +
+> > +	/* repeat check if pressed long */
+> > +	if (state) {
+> > +		mod_timer(&bbnsm->check_timer,
+> > +			  jiffies + msecs_to_jiffies(REPEAT_INTERVAL));
+> > +	}
+>=20
+> So interrupt is only generated once when key is pressed, but not on relea=
+se?
+>=20
 
+Yes, at lease from my test, this interrupt can only be triggered when press=
+ed.
+
+> > +}
+> > +
+> > +static irqreturn_t bbnsm_pwrkey_interrupt(int irq, void *dev_id) {
+> > +	struct platform_device *pdev =3D dev_id;
+> > +	struct bbnsm_pwrkey *bbnsm =3D platform_get_drvdata(pdev);
+> > +	struct input_dev *input =3D bbnsm->input;
+> > +	u32 event;
+> > +
+> > +	regmap_read(bbnsm->regmap, BBNSM_EVENTS, &event);
+> > +	if (event & BBNSM_BTN_OFF)
+> > +		mod_timer(&bbnsm->check_timer, jiffies +
+> msecs_to_jiffies(DEBOUNCE_TIME));
+> > +	else
+> > +		return IRQ_NONE;
+> > +
+> > +	pm_wakeup_event(input->dev.parent, 0);
+> > +
+> > +	/* clear PWR OFF */
+> > +	regmap_write(bbnsm->regmap, BBNSM_EVENTS, BBNSM_BTN_OFF);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static void bbnsm_pwrkey_act(void *pdata) {
+> > +	struct bbnsm_pwrkey *bbnsm =3D pdata;
+> > +
+> > +	del_timer_sync(&bbnsm->check_timer);
+> > +}
+> > +
+> > +static int bbnsm_pwrkey_probe(struct platform_device *pdev) {
+> > +	struct bbnsm_pwrkey *bbnsm;
+> > +	struct input_dev *input;
+> > +	struct device_node *np =3D pdev->dev.of_node;
+> > +	int error;
+> > +
+> > +	bbnsm =3D devm_kzalloc(&pdev->dev, sizeof(*bbnsm), GFP_KERNEL);
+> > +	if (!bbnsm)
+> > +		return -ENOMEM;
+> > +
+> > +	bbnsm->regmap =3D
+> syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "regmap");
+> > +	if (IS_ERR(bbnsm->regmap)) {
+> > +		dev_err(&pdev->dev, "bbnsm pwerkey get regmap failed\n");
+> > +		return PTR_ERR(bbnsm->regmap);
+> > +	}
+> > +
+> > +	if (of_property_read_u32(np, "linux,code", &bbnsm->keycode)) {
+>=20
+> Please use device_property_read_u32() here.
+
+Ok, will fix in V2.
+
+>=20
+> > +		bbnsm->keycode =3D KEY_POWER;
+> > +		dev_warn(&pdev->dev, "KEY_POWER without setting in dts\n");
+> > +	}
+> > +
+> > +	bbnsm->irq =3D platform_get_irq(pdev, 0);
+> > +	if (bbnsm->irq < 0)
+> > +		return -EINVAL;
+> > +
+> > +	/* config the BBNSM power related register */
+> > +	regmap_update_bits(bbnsm->regmap, BBNSM_CTRL, BBNSM_DP_EN,
+> > +BBNSM_DP_EN);
+> > +
+> > +	/* clear the unexpected interrupt before driver ready */
+> > +	regmap_write_bits(bbnsm->regmap, BBNSM_EVENTS,
+> BBNSM_PWRKEY_EVENTS,
+> > +BBNSM_PWRKEY_EVENTS);
+> > +
+> > +	timer_setup(&bbnsm->check_timer, bbnsm_pwrkey_check_for_events,
+> 0);
+> > +
+> > +	input =3D devm_input_allocate_device(&pdev->dev);
+> > +	if (!input) {
+> > +		dev_err(&pdev->dev, "failed to allocate the input device\n");
+> > +		error =3D -ENOMEM;
+> > +		goto error_probe;
+>=20
+> Please return directly here and below, since there is not explicit cleanu=
+p.
+>=20
+
+Thx, will fix in V2.
+
+BR
+
+> > +	}
+> > +
+> > +	input->name =3D pdev->name;
+> > +	input->phys =3D "bbnsm-pwrkey/input0";
+> > +	input->id.bustype =3D BUS_HOST;
+> > +
+> > +	input_set_capability(input, EV_KEY, bbnsm->keycode);
+> > +
+> > +	/* input customer action to cancel release timer */
+> > +	error =3D devm_add_action(&pdev->dev, bbnsm_pwrkey_act, bbnsm);
+> > +	if (error) {
+> > +		dev_err(&pdev->dev, "failed to register remove action\n");
+> > +		goto error_probe;
+> > +	}
+> > +
+> > +	bbnsm->input =3D input;
+> > +	platform_set_drvdata(pdev, bbnsm);
+> > +
+> > +	error =3D devm_request_irq(&pdev->dev, bbnsm->irq,
+> bbnsm_pwrkey_interrupt,
+> > +			       IRQF_SHARED, pdev->name, pdev);
+> > +	if (error) {
+> > +		dev_err(&pdev->dev, "interrupt not available.\n");
+> > +		goto error_probe;
+> > +	}
+> > +
+> > +	error =3D input_register_device(input);
+> > +	if (error < 0) {
+> > +		dev_err(&pdev->dev, "failed to register input device\n");
+> > +		goto error_probe;
+> > +	}
+> > +
+> > +	device_init_wakeup(&pdev->dev, true);
+> > +	error =3D dev_pm_set_wake_irq(&pdev->dev, bbnsm->irq);
+> > +	if (error)
+> > +		dev_err(&pdev->dev, "irq wake enable failed.\n");
+> > +
+> > +	return 0;
+> > +
+> > +error_probe:
+> > +	return error;
+> > +}
+> > +
+> > +static const struct of_device_id bbnsm_pwrkey_ids[] =3D {
+> > +	{ .compatible =3D "nxp,bbnsm-pwrkey" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, bbnsm_pwrkey_ids);
+> > +
+> > +static struct platform_driver bbnsm_pwrkey_driver =3D {
+> > +	.driver =3D {
+> > +		.name =3D "bbnsm_pwrkey",
+> > +		.of_match_table =3D bbnsm_pwrkey_ids,
+> > +	},
+> > +	.probe =3D bbnsm_pwrkey_probe,
+> > +};
+> > +module_platform_driver(bbnsm_pwrkey_driver);
+> > +
+> > +MODULE_AUTHOR("Jacky Bai <ping.bai@nxp.com>");
+> > +MODULE_DESCRIPTION("NXP bbnsm power key Driver");
+> > +MODULE_LICENSE("GPL");
+> > --
+> > 2.37.1
+> >
+>=20
+> Thanks.
+>=20
+> --
+> Dmitry
