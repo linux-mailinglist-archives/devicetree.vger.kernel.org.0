@@ -2,54 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B470635FA4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1AC1635FAA
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 14:31:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237973AbiKWNbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 08:31:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38888 "EHLO
+        id S238440AbiKWNbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 08:31:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237472AbiKWNaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:30:46 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E3F8C0B1;
-        Wed, 23 Nov 2022 05:11:33 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EDB11B81FDF;
-        Wed, 23 Nov 2022 13:11:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F3FC433D6;
-        Wed, 23 Nov 2022 13:11:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669209090;
-        bh=Pmimk6P6al4IzF3uS/yD4sA/hKmZqcQ3viaO89EoanQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ZrUI/t5mVj7g/IwF947jY7DEP46UTmCGwZm1yrfeZj8sJpE/0UsmGkHz1oufRXJJT
-         VOoyod3pAfIt0tEPQ6mCEfbNTvdMImsLCgXoOXxN93nxZ3VQ9vEkBWU8/oaCgNo4+W
-         k4KDT+73KAx2I71qfX7xPMecXaE1GHnkrllRaM2dbqwB0souBB3OxSpKGHeHAVB5U+
-         WxRLzI4nKX6m4gcIwcosJQ5DhFHeZpPB7hyiwa3yGPbQIxb+Y+y430e8cbuxJ/Sysh
-         Zd+HS13Y8PBubLg5c1lya7GG/ae0Y6SAnCLQmUcQjytq+uokYlVfTowmBOtEXYDroi
-         iuz03vebUOwIg==
-From:   Mark Brown <broonie@kernel.org>
-To:     krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        linus.walleij@linaro.org, maz@kernel.org, tglx@linutronix.de,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20221109165331.29332-1-rf@opensource.cirrus.com>
-References: <20221109165331.29332-1-rf@opensource.cirrus.com>
-Subject: Re: (subset) [PATCH 00/12] Add support for the Cirrus Logic CS48L32 audio codecs
-Message-Id: <166920908765.125457.5735851922084989509.b4-ty@kernel.org>
-Date:   Wed, 23 Nov 2022 13:11:27 +0000
+        with ESMTP id S238096AbiKWNbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 08:31:03 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D144D10B7F
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:12:41 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id u2so21345196ljl.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:12:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p/IVWWdjp8tAx1I6PTuaSz9fGetOroGNtnDHskb25ww=;
+        b=baOyM71qkJYZUfmBbkdR2CsrfUbsjU4y13yize9SsqNZBJzcjC2HlZKq/8tEx6QBg1
+         2LekXSAPbNjO+tW9q0atX0ELsU137PD7NM8Yqm+J2BxzSViycFJO52Md2zcQYopH56kz
+         xLf7QAXBSvdlIXctpK7HCZJqqklT6dVmTSNGOsPZj9qk3Ct0tHjS8VZK0IhwJkJU6Otc
+         SD1yd2zV7+G8Ty+jcsXSuE6a3wOBPxFtjENrZe0XjTrRPLurhMPKsHAALxTLMC1lrRA+
+         ZR0BYHMGhT/WuY8CCOP2n0PMfs1cvbeObHztC05O1b/XgL+AcK2Ysbb2g9X55w2qeRYS
+         qmcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p/IVWWdjp8tAx1I6PTuaSz9fGetOroGNtnDHskb25ww=;
+        b=R5nSm2r2yCqENvC7FYxlDmw1YlsHDwcQeNm82rIpEuFfAslCj2N+Y35AiLchr4L8iA
+         eG1rTVVaPvQInAu888n6/yOMGIY4bPFaR2mwbbNWdPaQOv+mPTtlBKIuwwTPKp0LALpI
+         sb6m1TKCSHFYg7FdR6HO85wzal8vEMF4wUt8wOEBapAhDqV08QLhMVUQSxNRHueWpMn1
+         EKDhnuewRwjTUhmXOQhyiwXhj8Mq5qX1PmnLHRD7nMw4F0yoFwFtH4Bx9FAgXeD45qnr
+         n5OUdNTvpj6x0c7hbTXT/BlUTPF5/3CdOQz7khrFO3j4TJT7P9GCmRd3jZOTeV4tW2mp
+         sLeQ==
+X-Gm-Message-State: ANoB5pmPDSH8yWoyqUaycUDlEccCzVaul9S314JT2Yt+jnTwwpDewBSz
+        95P6wvuptGmyFKAk2q9wV59EFQ==
+X-Google-Smtp-Source: AA0mqf72r3r2CdweEKQPRpoICFb4EKclboZYMlY4ArKN+ddS2Sk6L1oDCwr0Ujc+mePWkYAv2UpgMA==
+X-Received: by 2002:a2e:a543:0:b0:277:8f64:f9fa with SMTP id e3-20020a2ea543000000b002778f64f9famr4684566ljn.282.1669209160213;
+        Wed, 23 Nov 2022 05:12:40 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o15-20020a05651205cf00b0049ad2619becsm2898897lfo.131.2022.11.23.05.12.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 05:12:39 -0800 (PST)
+Message-ID: <03a26971-e54b-a8e7-c02f-ae5a8feba71a@linaro.org>
+Date:   Wed, 23 Nov 2022 14:12:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 2/2] arm64: dts: fsd: add sysreg device node
+Content-Language: en-US
+To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
+        pankaj.dubey@samsung.com, ravi.patel@samsung.com
+Cc:     linux-kernel@vger.kernel.org
+References: <20221121091118.48628-1-sriranjani.p@samsung.com>
+ <CGME20221121090647epcas5p439dc84f0c4f435a703a1f8396a11202f@epcas5p4.samsung.com>
+ <20221121091118.48628-3-sriranjani.p@samsung.com>
+ <a98ac5d7-0c0e-110e-5405-83a09c77ceac@linaro.org>
+ <000001d8ff32$c8b78e30$5a26aa90$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000001d8ff32$c8b78e30$5a26aa90$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,40 +79,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Nov 2022 16:53:19 +0000, Richard Fitzgerald wrote:
-> The CS48L32 is a high-performance low-power audio DSP for smartphones
-> and other portable audio devices. It has various digital audio I/O,
-> a programmable Halo Core DSP, fixed-function audio processors,
-> configurable GPIO and microphone bias regulators.
+On 23/11/2022 12:57, Sriranjani P wrote:
 > 
-> The CS48L31 and CS48L33 were derivatives of the CS48L32.
 > 
-> [...]
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 21 November 2022 17:58
+>> To: Sriranjani P <sriranjani.p@samsung.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; lee@kernel.org;
+>> devicetree@vger.kernel.org; alim.akhtar@samsung.com;
+>> pankaj.dubey@samsung.com; ravi.patel@samsung.com
+>> Cc: linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH 2/2] arm64: dts: fsd: add sysreg device node
+>>
+>> On 21/11/2022 10:11, Sriranjani P wrote:
+>>> Add SYSREG controller device node, which is available in PERIC, FSYS0
+>>> and
+>>> FSYS1 block of FSD SoC.
+>>>
+>>> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+>>> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+>>> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+>>> ---
+>>>  arch/arm64/boot/dts/tesla/fsd.dtsi | 15 +++++++++++++++
+>>>  1 file changed, 15 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
+>>> b/arch/arm64/boot/dts/tesla/fsd.dtsi
+>>> index f35bc5a288c2..db78816ba0bf 100644
+>>> --- a/arch/arm64/boot/dts/tesla/fsd.dtsi
+>>> +++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
+>>> @@ -518,6 +518,21 @@
+>>>  				"dout_cmu_fsys1_shared0div4";
+>>>  		};
+>>>
+>>> +		sysreg_peric: syscon@14030000 {
+>>
+>> Node name system-controller
+> [Sriranjani P] Will fix it in the next version. We added “syscon” since I referred other dtsi files in mainline for example exynosautov9.dtsi used syscon as node name. If this is the name we should add then I’ll post few more patches fixing this node name in other Exynos dtsi files.
 
-Applied to
+Use proper wrapping for mailing lists. It's difficult to read your emails.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>> and either put it next to existing one or next to functional block (peric
+>> clocks?) ordered by unit address.
+> [Sriranjani P] We thought of it but as I saw current fsd.dtsi file and other exynos file like exynosautov9.dtsi, in that nodes are not properly arranged as per unit address.
 
-Thanks!
+I know, that's why I proposed to order by unit address within other
+syscons or other functional blocks (e.g. peric-related).
 
-[10/12] ASoC: wm_adsp: Allow client to hook into pre_run callback
-        commit: fe07130870c8540bc0cddbaa8d4521ecdba6b560
+> 
+> So I can think of following two approaches: 
+> 1: For the time being I will put this sysreg node in between clock_peric node and clock_fysys0 node and clock_fsys1 node as per increasing unit address. I will clean up other exynos and FSD DTSI files and post a new patch 
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Not sure what cleaning you have in mind.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> 2: First I will clean up exynos and FSD DTSI files and then post this sysreg patch keeping it at appropriate place. 
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+What cleaning?
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Best regards,
+Krzysztof
 
-Thanks,
-Mark
