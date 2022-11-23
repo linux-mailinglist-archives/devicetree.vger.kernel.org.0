@@ -2,31 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BECF634E6E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 04:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA05634EA3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 05:13:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234875AbiKWDjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 22:39:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51612 "EHLO
+        id S235664AbiKWEMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 23:12:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235622AbiKWDj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 22:39:29 -0500
-Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F044DE6EE6
-        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 19:39:28 -0800 (PST)
-Date:   Wed, 23 Nov 2022 03:39:21 +0000
+        with ESMTP id S235548AbiKWEMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 23:12:13 -0500
+Received: from mail-40137.protonmail.ch (mail-40137.protonmail.ch [185.70.40.137])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BBB70A07;
+        Tue, 22 Nov 2022 20:12:07 -0800 (PST)
+Date:   Wed, 23 Nov 2022 04:11:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1669174767; x=1669433967;
-        bh=VAzF2acE8fV18MqA/KaNHMPFyttLWRS89RLiSXR00tc=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=aqhv26zEwL4SOKL7qqOgZcJDLcNF611HAmls7ZIdx3jMmVzi8DeGSg7ON/PJ9N0/M
-         1ESTnXKC16/kn/OWIAjzx8TFoKncFJX7ChB33VVlzEg7AkSZmidIKESVbhx9laSXUz
-         khmlW+dJdePtZFoWsM05rI+0XN0uCQK8jzLILdbpB9h/uiw332iTOiTB5bVcoSH5Ls
-         tZ7ZSANczr7oDYt1gn56fwmM44GC8LN9boFtTmYMdt82keWBWzcuLrc8rK0XDHvonH
-         THI4Sbv5XUq3Bi7y1wcvJeqYrIbGw78zDPYtushyJhW2t/GPvWKpVEKviIouinY050
-         rHd59DpC131PQ==
+        s=protonmail3; t=1669176725; x=1669435925;
+        bh=8EU89Vsk/zcnyypYNYzr98PvEuS/NDihuG+V30R5BqI=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=dSg9HaIofHXBRSPo8/1749eVyeTeKlC7UUtk7a/uE+0izFkUqweK01dsJPnfsjAF5
+         0Rjzmv22+clWfYRL2U9S/jeGJw7vcBko2F2tMLnbs5XwwvUTifTArVNDsQ6EPL/TrW
+         DbZnDfKF5x/X9+moSsPoZ9EnUBNEN/aJPQ7+2yeowA2hjpR3SPcnbzC388tf+q3vBi
+         ToACCKNZMtUFCflLG4Ym4AwCFolOueUAlal8ek54JoLhwfIqo3xxvsNVW5GlG9h4Ss
+         uKM6Ot58K2qICK0LBjSb+kvn0eHbkTYM88cHws88ImeOULfEfScS+cioJPl3f4w6Si
+         YGDDuqSOTsA0A==
 To:     linux-kernel@vger.kernel.org
 From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -34,21 +33,22 @@ Cc:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH v6 4/4] arm64: dts: qcom: msm8916-acer-a1-724: Add touchscreen
-Message-ID: <20221123033844.149115-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20221123033524.148682-1-linmengbo0689@protonmail.com>
-References: <20221123033524.148682-1-linmengbo0689@protonmail.com>
+Subject: [PATCH v4 0/5] arm64: dts: qcom: msm8916-gplus-fl8005a: Add initial device tree
+Message-ID: <20221123041110.150837-1-linmengbo0689@protonmail.com>
 Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,74 +56,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
-Add it to the device tree.
+v4: Fix missing Makefile entry in v3
+v3: Sort properties in l11 and nodes in touchscreen pinctrl.
+v2: Set property status =3D "okay"; as the last property.
+Reword the bindings patch.
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- .../boot/dts/qcom/msm8916-acer-a1-724.dts     | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+GPLUS FL8005A is a tablet using the MSM8916 SoC released in 2015.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts b/arch/arm64/=
-boot/dts/qcom/msm8916-acer-a1-724.dts
-index bea0d022dd9a..ed3fa7b3575b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts
-@@ -81,6 +81,30 @@ magnetometer@12 {
- =09};
- };
-=20
-+&blsp_i2c5 {
-+=09status =3D "okay";
-+
-+=09touchscreen@38 {
-+=09=09/* Actually ft5446 */
-+=09=09compatible =3D "edt,edt-ft5406";
-+=09=09reg =3D <0x38>;
-+
-+=09=09interrupt-parent =3D <&msmgpio>;
-+=09=09interrupts =3D <13 IRQ_TYPE_LEVEL_LOW>;
-+
-+=09=09reset-gpios =3D <&msmgpio 12 GPIO_ACTIVE_LOW>;
-+
-+=09=09vcc-supply =3D <&pm8916_l16>;
-+=09=09iovcc-supply =3D <&pm8916_l6>;
-+
-+=09=09touchscreen-size-x =3D <720>;
-+=09=09touchscreen-size-y =3D <1280>;
-+
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&touchscreen_default>;
-+=09};
-+};
-+
- &blsp1_uart2 {
- =09status =3D "okay";
- };
-@@ -245,6 +269,22 @@ gpio_keys_default: gpio-keys-default-state {
- =09=09bias-pull-up;
- =09};
-=20
-+=09touchscreen_default: touchscreen-default-state {
-+=09=09reset-pins {
-+=09=09=09pins =3D "gpio12";
-+=09=09=09function =3D "gpio";
-+=09=09=09drive-strength =3D <2>;
-+=09=09=09bias-disable;
-+=09=09};
-+
-+=09=09touchscreen-pins {
-+=09=09=09pins =3D "gpio13";
-+=09=09=09function =3D "gpio";
-+=09=09=09drive-strength =3D <2>;
-+=09=09=09bias-pull-up;
-+=09=09};
-+=09};
-+
- =09usb_id_default: usb-id-default-state {
- =09=09pins =3D "gpio110";
- =09=09function =3D "gpio";
---=20
-2.30.2
+Add a device tree for with initial support for:
 
+- GPIO keys
+- GPIO LEDs
+- pm8916-vibrator
+- SDHCI (internal and external storage)
+- USB Device Mode
+- UART
+- WCNSS (WiFi/BT)
+- Regulators
+- Focaltech FT5402 touchscreen
+- SGM3140 Flash LED
 
