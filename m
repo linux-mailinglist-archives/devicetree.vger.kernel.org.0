@@ -2,252 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4C7635971
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E90A76359B2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:23:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236585AbiKWKQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:16:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S237104AbiKWKXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:23:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237320AbiKWKPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:15:15 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D730D1255E5
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:03:31 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p8so27394538lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:03:31 -0800 (PST)
+        with ESMTP id S237479AbiKWKWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:22:06 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CF3CCA
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:08:32 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id j16so27420316lfe.12
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:08:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xrp9emg8rmzMjobwMpdEQCEo1OkOBMLjYQe8MINMVNo=;
-        b=ql9cW+HxihOHo5ErhgqND81dCz26wUv7fAfv7rs02E6tP0ANDEs5aQlw5Mh/41C5ya
-         6dkp601F5nRFztG81TMblWiaZK6kd5Hp3CuknKk8QDi58ATwJWkepZDFiury74gOQRxm
-         5lIYMO+Ip7AFwCAoy5F/qXzJ5NO5PxAios/FTXxdcnvn/IZyyjr3ujLm/HQcSspL69Ts
-         hRkymyq3MchxJJEPRLHk9mR8zng1koCY4+yXT88iT+wV5KbVh0aM4UMb+GA8joUNk+PD
-         Au/XJE+Bz//c/Nwlq+FhM2bjiojaffPhBxuzYgIWrBMatesc0m4lgA2C7LxHvAWFMgrQ
-         hkBQ==
+        bh=/6KnfI+9/uy7ITylHecTvTbunNR+ZrgdbZvYW8L95tE=;
+        b=Z3GYxeYtlrpUJfiFGwuiU+qI838C6YNMSXBcHWKBD3OeHCuCpAlyNpJ8dlXJnsreT2
+         ZHoxcAjO1+dtsBH+otG8+/Eio4ekhaqXw5Pf86DXPzHPYVI9FqurhcQ1tFCeKdeVHMeq
+         HXZY1PF/BRopuElmeMKJ9v4BgMDgc7YOw3H/ofTFPFA9uadwEIdommTGe3+jGWihL9H6
+         TSRxyjHtgKYP1s8pNCrOLghvCh9R8k+MlrpX/HlNjPaspZBPXSG3oYzAGvkJ/tbUdjdK
+         DviI9Rv/n0Mik+Af52qds+pdsGXkSOY4Hp2Abdhx7PiTfKrygUxb6coVInzQhVxBrBKz
+         J6Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xrp9emg8rmzMjobwMpdEQCEo1OkOBMLjYQe8MINMVNo=;
-        b=klCThu/T3JVg/2c/xsOG8OpZYXTkL2CNjHQKHNzOQoJME+/UcWeM8kpE9D3puUmpRm
-         6YH3aEGcvz5rSUNwY4J+S5B7hF0W9wXmHCGnV3vhTtUJVzIaC9i/S2OLgBkNp5mWOXFv
-         j5qFdkmME2Q72jcQLSRShaC0M4oXcSqpf4/RzWsKJBFLVMeWc0m5N/uoA/3j0pZ5j44w
-         Vvt54TNIMojPGgOZhVT4Jn6NcIF3j2PTLvk5ZKdI+vPAVuvkrCmxznh0EEL2TRwgzaB/
-         kiE62qolW6lKAx4VNB4064+tM70SxMLX3nSEXyE0TYqhkKCiR7iTaQoVSyhzNsu0jpoR
-         4QBQ==
-X-Gm-Message-State: ANoB5pnQrWSerLBC+PtLcyutSeE0C8u4zbkvtrjoctS7Da+r7x5+wxIQ
-        kbnW980w5EymY6ZuBZMOv0gNdg==
-X-Google-Smtp-Source: AA0mqf7R+ffMLqXf9Cp1KfZgINgnCgPuAR3jvHdHDFn13QxVur9RO6l7hku+b0va3p/aeMmg7jRq4A==
-X-Received: by 2002:ac2:46f8:0:b0:4af:5088:8fa3 with SMTP id q24-20020ac246f8000000b004af50888fa3mr9691661lfo.538.1669197810196;
-        Wed, 23 Nov 2022 02:03:30 -0800 (PST)
+        bh=/6KnfI+9/uy7ITylHecTvTbunNR+ZrgdbZvYW8L95tE=;
+        b=3gx4ziqr5SHxbxm4twDXqKia+KW2J/0itLWtsv8iG49qGwVnj52pKEDPewAqaaHv5f
+         WWdhyQxDnSXcQPD8959/lz/yBQ+SjqLT5/CB4DZoT/kCo4Yjo1YIQXFmYEN4HEhfM/nH
+         lbrSM1JqHB2mMOMzQCaKXSGI6UkYrEYkhGdvnpphtBgDMBkMmIrksCEMXr5gNHipGxmI
+         Ioq22/A8CID8z2PqwzyEaEIsNXav8GEcHG4KcD9lq6d5SCPumTI0B1qa97PBhQeeCIMB
+         h/z+w3FLFm32LxJ+NFoUcUJ4UtwM3MoCHV+Kv0EqMzWu/M+pvDoX+lSpKqbHOclvDbjJ
+         QRHQ==
+X-Gm-Message-State: ANoB5pl9UKu4l/DlKIIn1oBNs8IL0EonyE9yDI8P2IRbSjbHBeCsFt0V
+        qYouSE7lglRj4SuzAz8mhrerE7Y32kVo5zIf
+X-Google-Smtp-Source: AA0mqf7ledULYqnBZnfQi9FuTJ2ZzfaNniMGFoQ0mm+yVXMomPygKM0YjBxAcGyJgZZx2qeB1bwHQw==
+X-Received: by 2002:ac2:58d9:0:b0:4b3:ccea:9b2e with SMTP id u25-20020ac258d9000000b004b3ccea9b2emr10307267lfo.379.1669198110899;
+        Wed, 23 Nov 2022 02:08:30 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id br31-20020a056512401f00b004b1a5086485sm2834830lfb.2.2022.11.23.02.03.28
+        by smtp.gmail.com with ESMTPSA id d18-20020a2e8912000000b002770eafaafbsm2199487lji.99.2022.11.23.02.08.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 02:03:29 -0800 (PST)
-Message-ID: <cedc0013-f0c0-3180-6995-477b77b919f8@linaro.org>
-Date:   Wed, 23 Nov 2022 11:03:28 +0100
+        Wed, 23 Nov 2022 02:08:30 -0800 (PST)
+Message-ID: <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
+Date:   Wed, 23 Nov 2022 11:08:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v1 1/2] dt-binding: soc: nuvoton: Add NPCM BPC LPC
- documentation
+Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver and bindings
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, arnd@arndb.de,
-        hasegawa-hitomi@fujitsu.com, marcan@marcan.st,
-        nicolas.ferre@microchip.com, conor.dooley@microchip.com,
-        heiko@sntech.de, sven@svenpeter.dev, briannorris@chromium.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221122201232.107065-1-tmaimon77@gmail.com>
- <20221122201232.107065-2-tmaimon77@gmail.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-2-yu.tu@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122201232.107065-2-tmaimon77@gmail.com>
+In-Reply-To: <20221123021346.18136-2-yu.tu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 21:12, Tomer Maimon wrote:
-
-1. Subject: drop second, redundant "documentation" (dt-bindings are
-documentation).
-
-2. Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-> Added device tree binding documentation for Nuvoton BMC NPCM BIOS Post
-> Code (BPC).
+On 23/11/2022 03:13, Yu Tu wrote:
+> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
 > 
-> The NPCM BPC monitoring two configurable I/O addresses written by the
-> host on Low Pin Count (LPC) bus.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 > ---
->  .../bindings/soc/nuvoton/npcm-lpc-bpc.yaml    | 112 ++++++++++++++++++
->  1 file changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
+>  .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
+
+This is v5 and still bindings are here? Bindings are always separate
+patches. Use subject prefixes matching the subsystem (git log --oneline
+-- ...).
+
+And this was split, wasn't it? What happened here?!?
+
+
+>  MAINTAINERS                                   |   1 +
+>  drivers/clk/meson/Kconfig                     |  13 +
+>  drivers/clk/meson/Makefile                    |   1 +
+>  drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
+>  drivers/clk/meson/s4-pll.h                    |  88 ++
+>  .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
+>  7 files changed, 1059 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>  create mode 100644 drivers/clk/meson/s4-pll.c
+>  create mode 100644 drivers/clk/meson/s4-pll.h
+>  create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
 > new file mode 100644
-> index 000000000000..2c8e66546891
+> index 000000000000..fd517e8ef14f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
-
-Filename should match compatibles, at least in the "vendor,device"
-style, so for example: nuvoton,lpc.yaml
-
-> @@ -0,0 +1,112 @@
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+> @@ -0,0 +1,51 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/nuvoton/npcm-lpc-bpc.yaml#
-
-LPC is a generic bus, so this should not be in "soc" directory. Where?
-Depends what is this... Generic bus bindings could be in "bus" directory
-or dedicated "lpc", if we have more of these.
-
+> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nuvoton Low Pin Count (LPC) Bus Controller
+> +title: Amlogic Meson S serials PLL Clock Controller
 > +
 > +maintainers:
-> +  - Tomer Maimon <tmaimon77@gmail.com>
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Yu Tu <yu.hu@amlogic.com>
 > +
-> +description:
-> +  The Low Pin Count (LPC) is a low bandwidth bus that is used to connect
-> +  peripherals around the CPU and to replace the Industry Standard Architecture
-> +  (ISA) bus.
-
-You need to decide whether you describe here bus, bus controller or
-device on the bus.
-
-> +
-> +  The Nuvoton NPCM LPC bus is a bridge of host CPU to a several of peripheral
-> +  devices.
-
-LPC bus is a bridge? It's either incorrect or so generic that every bus
-is a "bridge"?
+One blank line.
 
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - nuvoton,npcm750-lpc
-> +          - nuvoton,npcm845-lpc
-> +      - const: simple-mfd
-> +      - const: syscon
+> +    const: amlogic,s4-pll-clkc
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  "#address-cells":
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xtal
+> +
+> +  "#clock-cells":
 > +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^lpc_bpc@[0-9a-f]+$":
-
-No underscores in node names. Generic node names, so maybe "bpc"
-
-This also does not match your example at all.
-
-
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    description:
-> +      Nuvoton BMC NPCM BIOS Post Code (BPC) monitoring two configurable I/O
-> +      addresses written by the host on the Low Pin Count (LPC) bus, the capure
-
-typo: capture
-
-> +      data stored in 128-word FIFO.
-> +
-> +      NPCM BPC supports capture double words, when using capture
-> +      double word only I/O address 1 is monitored.
-
-This sentence is not grammatically correct. BPC supports capturing
-double words when using double word capturing? Aren't these two sentences?
-
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-
-No items here.
-
-> +          - enum:
-> +              - nuvoton,npcm750-lpc-bpc
-> +              - nuvoton,npcm845-lpc-bpc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      nuvoton,monitor-ports:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: 
-> +          Contain monitor I/O addresses, at least one monitor I/O address 
-
-Contains
-
-But you need to explain what are these... I/O addresses on the bus?
-
-> +          required.
-> +
-> +      nuvoton,bpc-en-dwcapture:
-> +        description: If present, Enable capture double words support.
-
-Is it the same as reg-io-width?
-
-> +        type: boolean
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - nuvoton,monitor-ports
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
+> +  - clocks
+> +  - clock-names
+> +  - "#clock-cells"
 > +
-> +additionalProperties:
-> +  type: object
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clkc_pll: clock-controller@fe008000 {
+> +      compatible = "amlogic,s4-pll-clkc";
+> +      reg = <0xfe008000 0x1e8>;
+> +      clocks = <&xtal>;
+> +      clock-names = "xtal";
+> +      #clock-cells = <1>;
+> +    };
 
-No, only bus schemas could have it. Here additionalProperties: false.
 
-It seems there are already few LPC controllers and all are put in
-different places:
-Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+> +#endif /* __MESON_S4_PLL_H__ */
+> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+> new file mode 100644
+> index 000000000000..345f87023886
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
 
-Maybe Rob why this was made not really as two bindings - for bus
-controller and devices?
+This belongs to bindings patch, not driver.
+
+> @@ -0,0 +1,30 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + * Author: Yu Tu <yu.tu@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+> +
+> +/*
+> + * CLKID index values
+> + */
+> +
+> +#define CLKID_FIXED_PLL			1
+> +#define CLKID_FCLK_DIV2			3
+
+Indexes start from 0 and are incremented by 1. Not by 2.
+
+NAK.
 
 Best regards,
 Krzysztof
