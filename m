@@ -2,144 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19B27634FB4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 06:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE176634FBB
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 06:43:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235833AbiKWFhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 00:37:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57562 "EHLO
+        id S235713AbiKWFnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 00:43:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbiKWFhQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 00:37:16 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832A3F1D87;
-        Tue, 22 Nov 2022 21:37:14 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AN4to6o026311;
-        Wed, 23 Nov 2022 05:37:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=i5cQM6Zb0RFIDomP7VSgalfTUBrkgnb5lgnwKHZmF8U=;
- b=XHcfT8kbNGPaAPfZ0z5N2sNbZiLK59CuK4/SwFaH5GnCemrX8el/UPfMS9rnQr5aSX0I
- 7oZ5zCRisubNWBuXQFDaY4YG+Cx5T7QQxWfefpN+17JrZ0wC3S381GYilu2TSyi9oTkD
- bLXn1ehSITVYaTm1o4O0+clcaoCCRZi5YWXYT7H+CjUPjhFwj41Sc+rRWboSE9BQcYfD
- hafKPUCtvAANeEQ8NsehcMiqZF/8vZIBv7Vm6dlzq4GfJqzRGIii6/g+mREwkhfWVUPP
- b4b+OQnAtYraBtDauq2swRgm36I7ZHiQuz4xqVUwpoEQCauY3T9T59LkJ+CfQnkO2xRX 5g== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m0nsjb0nd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Nov 2022 05:37:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AN5b3wK014141
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Nov 2022 05:37:03 GMT
-Received: from [10.216.38.33] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 22 Nov
- 2022 21:36:57 -0800
-Message-ID: <7b6d7d2b-f8e7-f85c-ba39-70582225f6c4@quicinc.com>
-Date:   Tue, 22 Nov 2022 21:36:46 -0800
+        with ESMTP id S229717AbiKWFnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 00:43:07 -0500
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA35A13CE3;
+        Tue, 22 Nov 2022 21:43:06 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 223C35C010A;
+        Wed, 23 Nov 2022 00:43:06 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 23 Nov 2022 00:43:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1669182186; x=
+        1669268586; bh=tSVppnYkpeXnvHJUaWTsGY07NlSPhzPn1JiOoH5/HyE=; b=D
+        3eSJv+20H8TXCSPTvFOo/bOny1fv8RxplvzQVkb2/Izev6Oy84wT9DlLyFcpK4Bu
+        x8Yrdp4r3DK88kGRuI/O905Uh2jSscSAsvhWHQznWg0fHnepnrt0leigEByh6tlv
+        EJ2tVOM5NPQmLVW0h+ycQtIedE76znn7KcmDABXIZjSqLZY5A+ggryv3HhUmIwHE
+        M10OkSqEuB+cFZibEP/bhDgn1JBD82cDdpwnfK0wmIZZnxxPq3nJxdrf12FAtXPZ
+        2/WmsT9Jtg7vwJfbKXr/EY8IX37ndvBzLBxFUUXLYYRjprAb0J8DVc3mjtgUq07f
+        vUM5d18tsXeX5OTaMW6tw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1669182186; x=
+        1669268586; bh=tSVppnYkpeXnvHJUaWTsGY07NlSPhzPn1JiOoH5/HyE=; b=c
+        9vHnGChIlGMiLqQBwDo7DCJUOF9wunu4vWnKXpcn1UCPdGh8W0E+NgcDeYmlhNx9
+        rkHX0arpD+C8hcik6BlSpth6Go3v1PZC/H0Nz1cQNivWaoZgPVaNZITtL6Y+F6U8
+        j0tqFrDfWR+Kdwm7cz11nWrZEhAs4UbBmaJ8twbWWOTQhmjat+BcFPo0VBSb8FC1
+        rR38kJh657AecYfVB/5Mk6ukMgi/meDvmvDvLEMQ2w1012Ncp+Uy+ofjTZE8W+KY
+        laPQ+oqHvkP/0ZC9hVFp18e/GI2zntt+rxtkmvsvxWSP7cWbBtx+5t1CGlmFnME6
+        KHhONFZY6oikTUfUqgSXg==
+X-ME-Sender: <xms:6bJ9Y3m-XQyW_cW19EF0O7_qSgwYBs78gcIFkmZOEvtLFK-ybK7Mbg>
+    <xme:6bJ9Y63rjEr4m1DW9F5hobFuuR7BWw4SXQx-ahVEkqlN5DrPFLBTxbGKKXf4A9tX9
+    oGwA-ISkycPysVRww>
+X-ME-Received: <xmr:6bJ9Y9oemprdq9BqkxXaBkmpK3H8lQuomL0oD6G39wfSDt1bQWVprKsTOo5cTENRaMvclgl8N7Q-Groz_h2aT64mh01_Ipcm72IHtQsMyJRKfOcqkT9OepogFQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedriedtgdekkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefkffggfgfvvehfhffujggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepjefgfffhudejfedtuedugeeutdetgfeiteffffehjeeugfeuvdeh
+    jeetfedtffdtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:6bJ9Y_lqMg3jiaGs7hy7HpZRfc5co6xof8uTYu8XKCLGZTLHMJ9kBg>
+    <xmx:6bJ9Y10GY7LEHQ-c-r5q1s5_6nbAfmI-kg3zXJmNBOfY7jjMejfSlQ>
+    <xmx:6bJ9Y-vfg_AHIULqTZmNT0_ucgTU-gEurRoRsnaY54BKr-Q_pzj7hA>
+    <xmx:6rJ9Y001uFlYr4G8WozL5W2N2KX3RNkMAw0Vr4dYKx3UD3j-IqK3zw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 23 Nov 2022 00:43:04 -0500 (EST)
+Message-ID: <2b329306-9706-7156-ad18-b87e4da666d9@sholland.org>
+Date:   Tue, 22 Nov 2022 23:43:04 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v4 09/11] drm/msm/dpu: add support for MDP_TOP blackhole
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Anup Patel <apatel@ventanamicro.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20221122231235.3299737-1-dmitry.baryshkov@linaro.org>
- <20221122231235.3299737-10-dmitry.baryshkov@linaro.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20221122231235.3299737-10-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220727114302.302201-1-apatel@ventanamicro.com>
+ <20220727114302.302201-2-apatel@ventanamicro.com>
+ <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
+ <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com>
+ <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
+ <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
+ <Y3zjQXqEHsaoVVvf@wendy>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
+ riscv,timer-can-wake-cpu
+In-Reply-To: <Y3zjQXqEHsaoVVvf@wendy>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Y1VPpCf_zvYWACEGEHCS3Vb6WbifQBOh
-X-Proofpoint-ORIG-GUID: Y1VPpCf_zvYWACEGEHCS3Vb6WbifQBOh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-23_02,2022-11-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 mlxscore=0 adultscore=0
- impostorscore=0 bulkscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211230040
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Conor,
 
-
-On 11/22/2022 3:12 PM, Dmitry Baryshkov wrote:
-> On sm8450 a register block was removed from MDP TOP. Accessing it during
-> snapshotting results in NoC errors / immediate reboot. Skip accessing
-> these registers during snapshot.
+On 11/22/22 08:57, Conor Dooley wrote:
+>> If we add a timer DT node now
+>> then we have to deal with compatibility for existing platforms.
 > 
-> Tested-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  1 +
->   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
->   2 files changed, 10 insertions(+), 2 deletions(-)
+> In terms of what to encode in a DT, and given the spec never says that
+> the timer interrupt must arrive during suspend, we must assume, by
+> default, that no timer events arrive during suspend.
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 38aa38ab1568..4730f8268f2a 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -92,6 +92,7 @@ enum {
->   	DPU_MDP_UBWC_1_0,
->   	DPU_MDP_UBWC_1_5,
->   	DPU_MDP_AUDIO_SELECT,
-> +	DPU_MDP_PERIPH_0_REMOVED,
->   	DPU_MDP_MAX
->   };
+> We have a bunch of existing platforms that may (do?) get timer events
+> during suspend, the opposite of the proposed default behaviour.
+> 
+> I'm trying to follow the line of reasoning but I fail to see how taking
+> either the property or node approach allows us to maintain behaviour for
+> exiting platforms that that do see timer events during suspend without
+> adding *something* to the DT. No matter what we add, we've got some sort
+> of backwards compatibility issue, right?
 
-Please update the enum documentation as already requested in the 
-previous patchset.
+In the absence of bugs/limitations in Linux timer code (like the ones
+you are seeing on PolarFire), the backwards compatibility issue with
+setting C3STOP by default is that non-retentive idle states will be
+ignored unless:
+ 1) the DT property is added (i.e. firmware upgrade), or
+ 2) some other timer driver is available.
+No other behavior should be affected.
 
->   
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index f3660cd14f4f..67f2e5288b3c 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct msm_disp_state *disp_state, struct msm_k
->   		msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
->   				dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
->   
-> -	msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
-> -			dpu_kms->mmio + cat->mdp[0].base, "top");
-> +	if (top->caps->features & BIT(DPU_MDP_PERIPH_0_REMOVED)) {
-> +		msm_disp_snapshot_add_block(disp_state, 0x380,
-> +				dpu_kms->mmio + cat->mdp[0].base, "top");
-> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 0x3a8,
-> +				dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
-> +	} else {
-> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
-> +				dpu_kms->mmio + cat->mdp[0].base, "top");
-> +	}
->   
->   	pm_runtime_put_sync(&dpu_kms->pdev->dev);
->   }
+On the other hand, if C3STOP defaults to off, then the backwards
+compatibility issue concerns platforms that can currently boot Linux,
+but which cannot use cpuidle because they need the flag. If they were to
+upgrade their firmware, and Linux is provided a DTB that includes both
+idle states and the property, these platforms would unexpectedly fail to
+boot. (They would enter an idle state and never wake up.)
+
+Assuming no such platforms exist, then it would actually be better to
+default C3STOP to off.
+
+Now, this says nothing about how the property should be named -- we can
+set C3STOP based on the absence of a property, just as easily as we can
+clear C3STOP based on the presence of a property.
+
+> I noted the above:
+> 
+>> Since, there is no dedicated timer node, we use CPU compatible string
+>> for probing the per-CPU timer.
+> 
+> If we could rely on the cpu compatible why would we need to add a
+> dt-property anyway? Forgive my naivety here, but is the timer event in
+> suspend behaviour not a "core complex" level attribute rather than a
+> something that can be consistently determined by the cpu compatible?
+
+I do not support using either the CPU compatible (not specific enough)
+or the board compatible (too many to list, but still not specific
+enough). Consider that not all CPUs in a system may need this property.
+
+> Either way, we need to figure out why enabling C3STOP is causing other
+> timer issues even when we are not in some sort of sleep state & do
+> something about that - or figure out some different way to communicate
+> the behavioural differences.
+> I would expect timers to continue working "normally" with the flag set,
+> even if how they work is subtly different?
+
+Definitely agree here. My intention was not to affect anything other
+than cpuidle behavior.
+
+> On a D1, with the C3STOP "feature" flag set, and it's custom timer
+> implementation unused, how do timers behave?
+
+D1 is uniprocessor, so I build with CONFIG_SMP=n. In this case,
+CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=n, and thus
+__tick_broadcast_oneshot_control() returns -EBUSY, forcing
+cpuidle_enter_state() to choose a retentive idle state.
+
+Regards,
+Samuel
+
