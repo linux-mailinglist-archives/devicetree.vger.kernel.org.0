@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184B3635831
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:52:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7987D63583D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 10:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237138AbiKWJwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 04:52:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44142 "EHLO
+        id S236704AbiKWJw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 04:52:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238247AbiKWJv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:51:26 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDB7E4A
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:48:42 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id 6so16317110pgm.6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:48:42 -0800 (PST)
+        with ESMTP id S236881AbiKWJvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 04:51:44 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217EE1CFEF
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:48:51 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id y14-20020a17090a2b4e00b002189a1b84d4so1354041pjc.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 01:48:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1GEU2cRgjlLvYsLY0fZ4A4QbwfIO6NbgQTnOI4zDrLE=;
-        b=SUtTrkQx6wur4zOzrqLMn/8cHKy9h+yPv+sWOb9nHEWuhuNfU+3ZwvrZL5PsWR1jHD
-         LviK45EH3sfIL/zNpqcb/E6rCbosrPbax1qUFcHZlLG1ntBzgPSp2MPSwLc7kaRE8AKP
-         9rUbuliMwnHZOeY7pNQQsu/XKgljhiGE9+2tY=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rWRmeeyqa9WI4jmwUmuk/cmr2MhYhWIGDdJ7im7Y/jM=;
+        b=Zq3w/pCFVSkeds/S7tM/ej34T2gQ11JPDxqpR08a8+PiqvqKJhu6W3yFnR5/6+cXHD
+         o+G3IcZU+KtRZhqQi15n1MIshQ/aAqFpm/FoI3M/iGWi0D3lp3u3fpZA1QGhLqaVryds
+         gpLv6WGgF+PkoCX5FPGgJ9dHzg5q4J/wuHbqw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1GEU2cRgjlLvYsLY0fZ4A4QbwfIO6NbgQTnOI4zDrLE=;
-        b=5rRr94V/hHQg7IzPKMq5DGwWuU9IJuH0aQlf/FwgLLR0xhXlnaodKMIpUoaR7hxaHT
-         tDrZON3/Xd5IFihalTNiggOhNfzR/hRSP1/kvl/yGhwIoaO0yA3VeAABFa8Suv0+dcDJ
-         UVCBf8TYyCET+r3HcboF+4/a3cRLotGLHE4VYAOFb3GgarybT9Gyo7xpVZkGcTdmOpiT
-         myHoSTRPLhMGopZk3jktLliaP0VDtTy8Hk9LcrEKV8qeBlRU41KCU6+clXULb2XwtfUR
-         3yqTxdW5/8ArY31xYgfiF/w8CZ47b1eEv/0ePxJDUbVH1PPS6g2i81oEU36RQ8lEF6+l
-         vC6Q==
-X-Gm-Message-State: ANoB5pmt7exlo9nuifKdbfjkMczuUtuxWeoa3uPUAsg0yq4EpoWBdzhF
-        U+wr0nf7zLvHNibmB8b4q1y6gA==
-X-Google-Smtp-Source: AA0mqf4GuAbzU14kwO1xYECCrssU/mE1WSrgrNjxoxPUn/mwN7pQwtnAZM0fOT4hAo3W0rDYKw9bjg==
-X-Received: by 2002:a63:f00e:0:b0:477:5e25:6d4c with SMTP id k14-20020a63f00e000000b004775e256d4cmr7962597pgh.159.1669196922014;
-        Wed, 23 Nov 2022 01:48:42 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rWRmeeyqa9WI4jmwUmuk/cmr2MhYhWIGDdJ7im7Y/jM=;
+        b=F54OtgxOLFcCSNe3AzClhb6tlQ/tca52Rw5NwfHY4khGF+inRB0mVWo5HoyK4fxBtc
+         +cGzPktkHmpN2w1EHcrE01hLxczQAkKZ57yKBH1HEMYb7IamXqeszWHA78g2cx/v/y2K
+         dt2za3bsuzs+RrGRmGT/18JWSCf+oWHmaplPY17l+RT/q5hCxfZoR6b2jTKM/mb7MGHv
+         g5QLjHk6a/yT+ojE5otxZmTUouCWFZ1MFDvnip29Ye9Cg6wVmMmML7IL322K+uxxH4rM
+         JmjQeR1n+WNccYCFrnLRSQnk8NTxLrw/Phm+h3sPIe/m8YgH4ngLtCmkhAbQ+FgT+VOR
+         9t8w==
+X-Gm-Message-State: ANoB5plA3J+WzDfAtMPYwEGuyQ8h7VmT17poRQ4D10cVzCfR7bmXf6PC
+        oBmb0A0K57b1I84XKrjJO0qTVQ==
+X-Google-Smtp-Source: AA0mqf5OILxDB8mH1chCpvbV3aeqCVitrWAYOXWWamwFP/EkzOlbg3pFAyMMj1dT/GHoyxOqmuKvsw==
+X-Received: by 2002:a17:90a:c7c8:b0:212:d9cf:5696 with SMTP id gf8-20020a17090ac7c800b00212d9cf5696mr30079385pjb.237.1669196930569;
+        Wed, 23 Nov 2022 01:48:50 -0800 (PST)
 Received: from localhost.localdomain ([183.83.141.79])
-        by smtp.gmail.com with ESMTPSA id k16-20020a170902c41000b001869f2120a4sm6524670plk.94.2022.11.23.01.48.35
+        by smtp.gmail.com with ESMTPSA id k16-20020a170902c41000b001869f2120a4sm6524670plk.94.2022.11.23.01.48.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 01:48:41 -0800 (PST)
+        Wed, 23 Nov 2022 01:48:49 -0800 (PST)
 From:   Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,30 +60,48 @@ Cc:     Robin Murphy <robin.murphy@arm.com>,
         Jagan Teki <jagan@amarulasolutions.com>,
         Suniel Mahesh <sunil@amarulasolutions.com>,
         Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Subject: [PATCH 0/1] Increase spi-max-frequency of nor flash for roc-rk3399-pc
-Date:   Wed, 23 Nov 2022 15:18:26 +0530
-Message-Id: <20221123094827.250657-1-abbaraju.manojsai@amarulasolutions.com>
+Subject: [PATCH 1/1] arm64: dts: rockchip: increase spi-max-frequency of nor flash for roc-rk3399-pc
+Date:   Wed, 23 Nov 2022 15:18:27 +0530
+Message-Id: <20221123094827.250657-2-abbaraju.manojsai@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221123094827.250657-1-abbaraju.manojsai@amarulasolutions.com>
+References: <20221123094827.250657-1-abbaraju.manojsai@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-change spi-max-frequency of nor flash from 10Mhz to 30Mhz for roc-rk3399-pc
+Increase the spi-max-frequency of nor flash from 10Mhz to 30Mhz,this improves the
+flash raw write speed by 0.9 MB/s to 1.6MB/s and the time taken to write is
+get reduced from 36 seconds to 20 seconds.
 
-Manoj Sai (1):
-  arm64: dts: rockchip: increase spi-max-frequency of nor flash for
-    roc-rk3399-pc
-
+Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Signed-off-by: Da Xue <da.xue@libretech.co>
+Signed-off-by: dsx724 <da@lessconfused.com>
+---
  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index 2f4b1b2e3ac7..8fd808a0df85 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -735,7 +735,7 @@ &spi1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <10000000>;
++		spi-max-frequency = <30000000>;
+ 	};
+ };
+ 
 -- 
 2.25.1
 
