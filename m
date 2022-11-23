@@ -2,127 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B8B6361C7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B1E6361FC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:39:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238636AbiKWOaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:30:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57644 "EHLO
+        id S237929AbiKWOjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238645AbiKWO3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:29:41 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154842739;
-        Wed, 23 Nov 2022 06:27:30 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Wed, 23 Nov
- 2022 22:27:28 +0800
-Message-ID: <3d657951-cbdf-07d6-4c73-7650381695a5@amlogic.com>
-Date:   Wed, 23 Nov 2022 22:27:28 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
- controller in DT
-Content-Language: en-US
-To:     <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S237894AbiKWOjz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:39:55 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218884386F
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:39:53 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id q21so13282344iod.4
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:39:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=w+iYV6kI8Gk9CIv4+Wp5wKD5Vy+egVw6+4bqcYnHaKI=;
+        b=d8tw10g4jtqLpofZTzhmT1a8hePY93ZndD3gt6AV59K25N6voZ5T1SnKpVpeRsvnAI
+         DmVe3PsPkvlbaWsGELyJZ8sgzqmkFrcidEruudubyMKbZz7q7hy6LRfr4iLRgksIg1vv
+         xTynzXdHshGggqHQatqo8SUBPDsXbwp1e3b0I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=w+iYV6kI8Gk9CIv4+Wp5wKD5Vy+egVw6+4bqcYnHaKI=;
+        b=VXOhUaFyl3CdJfzYTTiGwYSbCpkJ6DtNq2V3gR9gBVAWqriK0t0BjW6K62qbdF2Gau
+         rutN4sqqKApizx/B6GPJcwpxBNsow0A2TTwBrjp2HaPy44PnrkCBgKcElZ9c8bt1HBaE
+         WtnpSsP2E/z72a6IHp4di2pIm0RR07/p9LTXC7j+zlS6Cl2qDu3l9rQtucOlg/f9VeFP
+         1WhPJkhTwCofA2zRtzjBC888pmVfFRhWndLDJUY1n/bsPqxmgl4fv1fL5kQfNABhWevJ
+         +VK0DanEbfFX7K9TcbWqufq/K7ATLWYAqCJaF2CJvFOnubtjwmZpbapTlotXta6p20iB
+         ZncA==
+X-Gm-Message-State: ANoB5pmE9J4vBMZQ2Cm9+apsPTzcHfbGKxHcrgHdJe91ww5OgCTN9wjd
+        DGyDHs1sT3sxe2vp/FbmT+WBQQ==
+X-Google-Smtp-Source: AA0mqf7iPTcWLEFnYgztOLb+FkD7e3oqdAY4QDsam+H748gK8+kwtFePlhri9cdquk/ZyyGh5+eOeQ==
+X-Received: by 2002:a02:334d:0:b0:376:22fe:5e7c with SMTP id k13-20020a02334d000000b0037622fe5e7cmr13067604jak.126.1669214392381;
+        Wed, 23 Nov 2022 06:39:52 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id e1-20020a028601000000b003636c5dcf29sm6242823jai.176.2022.11.23.06.39.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 06:39:52 -0800 (PST)
+Date:   Wed, 23 Nov 2022 14:39:51 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Owen Yang <ecs.taipeikernel@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <kelvin.zhang@amlogic.com>
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-5-yu.tu@amlogic.com>
- <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
- <9961d579-9463-c585-34a6-a3abcd4b3e52@linaro.org>
- <7f3a34a0-a5b0-3a72-8e0e-00656bd77ff6@linaro.org>
- <2153a111-d5f0-94cf-9cfc-f8ce4b084a1c@linaro.org>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <2153a111-d5f0-94cf-9cfc-f8ce4b084a1c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add DT for
+ sc7280-herobrine-zombie
+Message-ID: <Y34wtwSlqc0y4Msz@google.com>
+References: <20221123181043.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+ <20221123181043.2.Ie435b31225d2dc284a34ac8e52fb84fffb39488c@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221123181043.2.Ie435b31225d2dc284a34ac8e52fb84fffb39488c@changeid>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 23, 2022 at 06:11:13PM +0800, Owen Yang wrote:
 
+> Subject: [2/2] arm64: dts: qcom: sc7280: Add DT for sc7280-herobrine-zombie
 
-On 2022/11/23 22:21, neil.armstrong@linaro.org wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 23/11/2022 15:13, Krzysztof Kozlowski wrote:
->> On 23/11/2022 14:27, Neil Armstrong wrote:
->>> On 23/11/2022 11:10, Krzysztof Kozlowski wrote:
->>>> On 23/11/2022 03:13, Yu Tu wrote:
->>>>> Added information about the S4 SOC Peripheral Clock controller in DT.
->>>>>
->>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 
->>>>> +++++++++++++++++++++++
->>>>>    1 file changed, 26 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi 
->>>>> b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>>>> index bd9c2ef83314..e7fab6e400be 100644
->>>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>>>> @@ -6,6 +6,8 @@
->>>>>    #include <dt-bindings/interrupt-controller/irq.h>
->>>>>    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>>    #include <dt-bindings/gpio/gpio.h>
->>>>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
->>>>> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>>>>    / {
->>>>>        cpus {
->>>>> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
->>>>>                    #clock-cells = <1>;
->>>>>                };
->>>>> +            clkc_periphs: clock-controller {
->>>>> +                compatible = "amlogic,s4-peripherals-clkc";
->>>>> +                reg = <0x0 0x0 0x0 0x49c>;
->>>>
->>>> This is broken... did you check for warnings?
->>>
->>> This is actually fine, the parent node has a ranges property:
->>> https://github.com/torvalds/linux/blob/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/arch/arm64/boot/dts/amlogic/meson-s4.dtsi#L93 
->>>
->>
->> The parent ranges do not change here anything. You cannot have a reg
->> without unit address and the tools report it. No need to use reviewers
->> for this...
-> 
-> Oh I see now, I simply looked at the reg property, not the unit address.
-> 
-> Sorry indeed it's wrong and DTC should complain.
-> 
-> Yu, you should probably update your DTC version.
+Please in include a version number for versions >1. If my accounting is correct
+this is v3, so the next iteration should be v4.
 
-Okay.
+You mentioned earlier that you are using patman. Add the following tag to
+one of the patches in the series to get the version included in the subject:
 
+Series-version: 4
+
+> Add DT for sc7280-herobrine-zombie
 > 
-> Neil
+> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+> ---
+
+Where is the change log that I requested for v2? A change log helps reviewers to
+focus their attention and can save them time by allowing them to skip parts they
+already have reviewed.
+
+Again patman can come to your help:
+
+Commit-changes: 2
+- <change 1>
+- <change 2>
+
+Commit-changes: 3
+- none (<= example)
+
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  .../dts/qcom/sc7280-herobrine-zombie-lte.dts  |  15 +
+>  .../boot/dts/qcom/sc7280-herobrine-zombie.dts |  15 +
+>  .../dts/qcom/sc7280-herobrine-zombie.dtsi     | 310 ++++++++++++++++++
+>  4 files changed, 342 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
 > 
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> .
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index afe496a93f94..7b0644a39062 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -114,6 +114,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1-lte.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
+> new file mode 100644
+> index 000000000000..2f1da87e5005
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Zombie board device tree source
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+
+nit: add an empty line here
+
+> +/dts-v1/;
+> +
+> +#include "sc7280-herobrine-zombie.dtsi"
+> +#include "sc7280-herobrine-lte-sku.dtsi"
+> +
+> +/ {
+> +	model = "Google Zombie with LTE";
+> +	compatible = "google,zombie-sku512", "qcom,sc7280";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
+> new file mode 100644
+> index 000000000000..3fa3d441991e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Zombie board device tree source
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+
+You deleted an empty line here, instead of removing the unnecessary '/dts-v1/;'
+entry from the .dtsi as requested.
+
+> +/dts-v1/;
+> +
+> +#include "sc7280-herobrine-zombie.dtsi"
+> +#include "sc7280-herobrine-wifi-sku.dtsi"
+> +
+> +/ {
+> +	model = "Google Zombie";
+> +	compatible = "google,zombie", "qcom,sc7280";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> new file mode 100644
+> index 000000000000..15832620ff5d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> @@ -0,0 +1,310 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Zombie board device tree source
+> + *
+> + * Copyright 2022 Google LLC.
+> + */
+> +/dts-v1/;
+
+Please drop the above line as requested in the review of v2.
