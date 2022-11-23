@@ -2,130 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A971B63613F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3A2636143
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:15:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238063AbiKWONb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:13:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
+        id S237444AbiKWOPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:15:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236038AbiKWON2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:13:28 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DCA2D74E
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:13:26 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id r12so28383841lfp.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:13:26 -0800 (PST)
+        with ESMTP id S236831AbiKWOPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:15:07 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AF82D1F6
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:15:06 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id f13so6814538lfa.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:15:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8/Gp8oNJZw3cLXUYP8ks4PwvnFzrrxOR4KiPfsrpS5s=;
-        b=Eu4w0mKIlQN/48m6aFJ+zpEBptQk93sPQh9M8czvaTGBgj/obNFUppnhII4bHaL+t8
-         WDRLzC/3Bq9UVwLtv7GnkM96heFTdJivk2h6ne0AJWun7grt5tlGRIkzjFdSsrMuxmm9
-         fOEoOPvp1SOx/oesbnKiK5xb2kGivh5DafLvQPvRzONO+0HYgfFbCsn5INIWAqht3SWV
-         XGyvUJUdga+HZqaWOemqlq7N/FMRO9J5Gswx85kxcWL5ADEik4+K0/FZgRLrjRPkD6Cx
-         EIDe//PF9Abt7YL/j3jqsSf12pvXQUFX1J8fSacwR2zK+LGdDdBoE3fd3uPb87puxjNj
-         KbKg==
+        bh=TINdZmgbDrPzV0ASdfCG6s3LtrjTdjbG7XRFv55Do+s=;
+        b=T24d+0jcR5lA60i/hDr9pxlj7VcTDNIPxCLYpkwLfYreAl4zRdvR4jE0/1a9wGaBqO
+         cBFImhmg84zHF+FWgR1HvdD837KljLtuP8taD1ogbB6N6wHRTeDaoBD54vMZLepU8T2G
+         V9PAo7UA2ycJzMbGt4ET3Iquont2aQb9PbJJkJtz0siQvSm6GfajIj5qKHgxLuVs8ZYr
+         wPrZV9eNTQV4WfLwDFIY6B+t7vw2FyGpP9fnJDjCC0QmNaiUtEfzxQ7geqbfT2P0lqrh
+         RoTN0KPftTmsKoc1Db+91yiCcJmEJRvcl7IwEzom3oC2GyArUbuJ2BlxU8cJ5PUB3tEj
+         lklg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8/Gp8oNJZw3cLXUYP8ks4PwvnFzrrxOR4KiPfsrpS5s=;
-        b=UDz27ASfS1ifGRe+7ehuH+USeechGzbkE4Z76eP9TcBpPPeBpcWVQ897QjWD2YwRB4
-         UvqpfJnijTVofNk1gt4WNZ7VgYJJPk5lijQhgQjjEF6EyO3+KSyjiSAx7QLXBqyEQhlZ
-         LvqOWNiIchyC0edSGb4rfTdnxDf2osbxR3TQKbk6PkCm+Cys4h0SjSACfaZsjRCi6Tt2
-         BC0esAoqXeVONAGm2Qm1fpdelXnHyyy5zOafjKSHK/f1ghLrN+Sah7xnSF6tI6GUrXuN
-         eyfiqEv/6wOQ4uFe2wEQ0mJ2JFjuZ/K4cfiWQgSj05KUDiOEjz+bHwZUC1YC0TzXOwGb
-         cd5w==
-X-Gm-Message-State: ANoB5plzmUeguWYYVAKlMlqCptMwt9H84cQcyDsIJjifVgd6ZJ7ROKOg
-        38qFsCsf2f4j34Tg/LzK7/X4Ig==
-X-Google-Smtp-Source: AA0mqf5quQBr81TBL9QYOBAQk89wKtHmN891t6m5JcSES8bjEfXcUWIQE5L7V2X5rE6LA0yj51omnw==
-X-Received: by 2002:ac2:5f62:0:b0:4b4:6ca6:c669 with SMTP id c2-20020ac25f62000000b004b46ca6c669mr9176286lfc.338.1669212804830;
-        Wed, 23 Nov 2022 06:13:24 -0800 (PST)
+        bh=TINdZmgbDrPzV0ASdfCG6s3LtrjTdjbG7XRFv55Do+s=;
+        b=ArD6LdzazuxImd8X5VFkKYK4JRHMiphlJVa8FOBKvl4qSYVbT4i3WgG9kwW+j9Iuz7
+         0+JL+KYgIX/SLU+K78H2aBwpLY/XtENqo3wv0Uhj6fas26+EQNvgTsRwx9IIne5g1Ygs
+         ea4vZcyIK48ZIsQSl0y3ZmSH998fhrxZpO+qm4st+Ls8FftYFmxm1r1216AvK3MCprnG
+         +o4bMmkH/cKM2Fk9rrdO28ZaXHuYJkx3OPbZo8/JwJ32eYhI90LJnL/ARwgohEtZaqNj
+         x9tyGsFyScxqzOanBk5vndxhhNMtQvTX3AjK5b2GAJbHAaiFPLTuVq3tO4G6nSfseTSw
+         /Z7Q==
+X-Gm-Message-State: ANoB5pn0H8AEcX9mJt5HYqDOIIAF7cF7lCyJCYd+4xbWh1G5kGH8PjfM
+        zAD5wMRUWA7dUeeBcyCzBWIVQQ==
+X-Google-Smtp-Source: AA0mqf7us62BlfklbhRWa1ceYpuYyxgP15LQsqJEK1EMlwdIuyjDEP2y6HR/i+RboeD7kufOfcfTtA==
+X-Received: by 2002:ac2:5f49:0:b0:4a4:7db1:b853 with SMTP id 9-20020ac25f49000000b004a47db1b853mr9118798lfz.562.1669212904435;
+        Wed, 23 Nov 2022 06:15:04 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 21-20020ac24835000000b004a2588520f5sm2893414lft.166.2022.11.23.06.13.23
+        by smtp.gmail.com with ESMTPSA id a25-20020a056512021900b004a9b9ccfbe6sm2930656lfo.51.2022.11.23.06.15.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 06:13:24 -0800 (PST)
-Message-ID: <7f3a34a0-a5b0-3a72-8e0e-00656bd77ff6@linaro.org>
-Date:   Wed, 23 Nov 2022 15:13:23 +0100
+        Wed, 23 Nov 2022 06:15:03 -0800 (PST)
+Message-ID: <3df1e707-929e-b0a0-441f-61f1a185aa44@linaro.org>
+Date:   Wed, 23 Nov 2022 15:15:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH V5 4/4] arm64: dts: meson: add S4 Soc Peripheral clock
- controller in DT
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: increase spi-max-frequency of
+ nor flash for roc-rk3399-pc
 Content-Language: en-US
-To:     neil.armstrong@linaro.org, Yu Tu <yu.tu@amlogic.com>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-5-yu.tu@amlogic.com>
- <ae43fadf-9255-7db7-8b5e-01200e02a2c6@linaro.org>
- <9961d579-9463-c585-34a6-a3abcd4b3e52@linaro.org>
+        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com, Da Xue <da.xue@libretech.co>,
+        dsx724 <da@lessconfused.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Suniel Mahesh <sunil@amarulasolutions.com>
+References: <20221123094827.250657-1-abbaraju.manojsai@amarulasolutions.com>
+ <20221123094827.250657-2-abbaraju.manojsai@amarulasolutions.com>
+ <4981984.iIbC2pHGDl@phil>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9961d579-9463-c585-34a6-a3abcd4b3e52@linaro.org>
+In-Reply-To: <4981984.iIbC2pHGDl@phil>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 14:27, Neil Armstrong wrote:
-> On 23/11/2022 11:10, Krzysztof Kozlowski wrote:
->> On 23/11/2022 03:13, Yu Tu wrote:
->>> Added information about the S4 SOC Peripheral Clock controller in DT.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 26 +++++++++++++++++++++++
->>>   1 file changed, 26 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> index bd9c2ef83314..e7fab6e400be 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> @@ -6,6 +6,8 @@
->>>   #include <dt-bindings/interrupt-controller/irq.h>
->>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>   #include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/clock/amlogic,s4-pll-clkc.h>
->>> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>>   
->>>   / {
->>>   	cpus {
->>> @@ -100,6 +102,30 @@ clkc_pll: clock-controller@8000 {
->>>   				#clock-cells = <1>;
->>>   			};
->>>   
->>> +			clkc_periphs: clock-controller {
->>> +				compatible = "amlogic,s4-peripherals-clkc";
->>> +				reg = <0x0 0x0 0x0 0x49c>;
->>
->> This is broken... did you check for warnings?
+On 23/11/2022 15:04, Heiko Stuebner wrote:
+> Hi Manoj,
 > 
-> This is actually fine, the parent node has a ranges property:
-> https://github.com/torvalds/linux/blob/eb7081409f94a9a8608593d0fb63a1aa3d6f95d8/arch/arm64/boot/dts/amlogic/meson-s4.dtsi#L93
+> Am Mittwoch, 23. November 2022, 10:48:27 CET schrieb Manoj Sai:
+>> Increase the spi-max-frequency of nor flash from 10Mhz to 30Mhz,this improves the
+>> flash raw write speed by 0.9 MB/s to 1.6MB/s and the time taken to write is
+>> get reduced from 36 seconds to 20 seconds.
+>>
+>> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+>> Signed-off-by: Da Xue <da.xue@libretech.co>
+>> Signed-off-by: dsx724 <da@lessconfused.com>
+> 
+> who are these other people? :-)
 
-The parent ranges do not change here anything. You cannot have a reg
-without unit address and the tools report it. No need to use reviewers
-for this...
+moreconfused.com :)
 
 Best regards,
 Krzysztof
