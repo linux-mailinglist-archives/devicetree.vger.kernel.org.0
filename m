@@ -2,531 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CDB3635A5E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96609635A70
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237432AbiKWKlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:41:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S237415AbiKWKpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 05:45:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237290AbiKWKlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:41:13 -0500
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761EE150473
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:25:17 -0800 (PST)
-Received: by mail-vs1-xe31.google.com with SMTP id q127so17021537vsa.7
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:25:17 -0800 (PST)
+        with ESMTP id S236633AbiKWKpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:45:15 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B951B73A7
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:32:52 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id d3so20923793ljl.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 02:32:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZMErEw1suU1MT0P6/rMfRL5I1kRlC+tSYXA7ait891w=;
-        b=CCX0hAVZ9Vu7nh/i8kLk5vfwMdholAjuN1BtN/t+fu2KBUcRtoi9nOgtX1lOKJwRAd
-         2n8Pcm58dxnwFw7KTeIHGD+uTS52v9LWPKXSKJ03hxP3tb4eTA9VmLb9tLmwXjZpfQln
-         aYlgYKav/S3ozCLllNKcvscTNFgRktsIqEpv+zMFl6fs0dG7mIPZvUgsULP8joxgFrrS
-         X08e1a/zq1oI2RdZDuizc0upp2dddVn1k6Tgs2DsHAdBLTJBA6QmHyGvkKG8a9YElJRV
-         7HvUIMPyXCtsq1DGs0DJwZBsvneLMmp8T9qMVtr/wbUogXb1X/Syt6Ce3KRo0fQzMq7t
-         E3pg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gFLf46+XYeldlY4nkKiQt/+sonBGtDvMLHdsO3ftd3Y=;
+        b=tJ1oW38tPItN3sO1UT3WiaUNIEbE/Qv51sdZ4Xr4gxzZsMjFUWvjArH2FfZ6oql58R
+         3XiHv433f3bAIEmVz5YgaNIPO2T3O3x56+zIDm4XNd/WeeVE8MyrzhdBu0txkuZd3RTR
+         vGmvC0JyAL/ETUbuDhZEHNKdwoIOjb6gXSj55ppxIuC/rZEeIKOA2yzBHwpLZgdeDDqM
+         lbl9uvLP9w4rrTjxYcaUBYEWKT9nIVicsABTNQDLVExHauESOXyICVzciCUfAN0VpZQD
+         tMZ9ZQ7vMWiRkMnIIIeRKkOU6KinrdnFZC1KSrdeqdk+ukxVdEk3uinohinJTh8Ms2gq
+         ya6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZMErEw1suU1MT0P6/rMfRL5I1kRlC+tSYXA7ait891w=;
-        b=1+K6p4We/tzb8UR57NbFRTXm0F4oIh/gR9uyhOsGd/qsGFATzBfjB8r0TdBGuPGxNn
-         1oyh3CeoxjsJgNkJMwV0gxF2PpemMvFPIj5PJUAuCEQi6jtWFjP3by3Ckh3svhlwoxhT
-         kj9YxhWVVmdfwEK2ZKD4CSDxsDgfdZjhdWTbIjx6uifKRm2kqWJv9/XEOTXBT2xI/CeB
-         e4i4lilI/ysdPWfCikxYc7/sX1lPAvjhYcYGCf1iR8Qt/K/S+semXQ26K/DpFoY8hx0y
-         xnZC+VvLPbUirrnuEtFt2W+kggw926jm4Ki/gBt+wUsJqeIUoDdhumjX0l9+n33QI92h
-         a7sQ==
-X-Gm-Message-State: ANoB5pmRCIT85UJ858URjFE7idmRElXtLH91trOQNUM7iNgU+BZ85dMU
-        aJoO7PLGdfX5bwHfbBpzsWiE+dTxXQ2lgBUrCWIJig==
-X-Google-Smtp-Source: AA0mqf5aDTc6a2KFe1GqCik0+hMjUl1Hs2e6BIYmbgRpq00JBCst36XYPmn8YZyE41EgP/LI6p5NIPdVhOsE27fOgFo=
-X-Received: by 2002:a67:fbd6:0:b0:3ac:38c7:1bdd with SMTP id
- o22-20020a67fbd6000000b003ac38c71bddmr6198959vsr.9.1669199116260; Wed, 23 Nov
- 2022 02:25:16 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gFLf46+XYeldlY4nkKiQt/+sonBGtDvMLHdsO3ftd3Y=;
+        b=R/FI6wrym3rQ86SHe0qfuuFRvZJj0KuBEr/rtnJ8BTFrQ9ynzw7Xp14jStS9N4m1K4
+         ioKgeXNo6HLZAZ5K1s9v+n1/4MTFGJpLe8nCzOUgYPQvw7dCP67sTUsbMMv9zdCLjnU9
+         1Ia9+VnsR/plrxaipenE2FDqxetkrn86xgVzfLKwSWyA+xCw2vyFuBJZJnZShMv6vfYm
+         k9UiClE/htAX/8DoXj0Tg6/tOEetvjYF+5cCXaKO51mAulsytmgKTgMAkQftNjtXRMXa
+         LRUHyjwwXuP23SkuRUZTJH2AEOAewA1G/AKqfS860pve0QmOyOM1MzvI0lk2UCse4rYJ
+         fFPA==
+X-Gm-Message-State: ANoB5pmiXabM1mgVhn7h/PsBy8xofqW83Mct+xXTLiqj/QLw41a5yfBp
+        NGccVVftXTT3buvbcq24WM3lZg==
+X-Google-Smtp-Source: AA0mqf4gfB0TP4AT+H5cGdxbuYXABQQCpnMyLcKxDXCWX56c6m80KC3+RdSnTd1JRbXcoWp6/aINQg==
+X-Received: by 2002:a2e:3806:0:b0:277:b84:81b6 with SMTP id f6-20020a2e3806000000b002770b8481b6mr8334004lja.425.1669199571295;
+        Wed, 23 Nov 2022 02:32:51 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id q3-20020ac25283000000b004b3b2a9f506sm2828122lfm.4.2022.11.23.02.32.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 02:32:50 -0800 (PST)
+Message-ID: <1d32c6d0-c6dc-cd24-ba52-ecb597553ef9@linaro.org>
+Date:   Wed, 23 Nov 2022 11:32:49 +0100
 MIME-Version: 1.0
-References: <20221123080414.14005-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221123080414.14005-1-zhuyinbo@loongson.cn>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 23 Nov 2022 11:25:05 +0100
-Message-ID: <CAMRc=MeyaQdmQxxuOag8a1zYo-4-5Qxvc4dX2pee7k37OD4GFQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 05/11] dt-bindings: display/msm: add support for the
+ display on SM8450
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221122231235.3299737-1-dmitry.baryshkov@linaro.org>
+ <20221122231235.3299737-6-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122231235.3299737-6-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 9:04 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->
-> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
-> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
-> with other functions. Each GPIO can set input/output and has the
-> interrupt capability.
->
-> This driver added support for Loongson GPIO controller and support to
-> use DTS or ACPI to descibe GPIO device resources.
->
-> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
-> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+On 23/11/2022 00:12, Dmitry Baryshkov wrote:
+> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
+> SM8450 platform.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> Change in v6:
->                 1. Remove the bit mode keep byte mode in all function except
->                    loongson_gpio_init.
->                 2. Use bgpio_init replace bit mode.
->                 3. Implement the function loongson_gpio_get_direction for byte mode.
->                 4. Set ngpios after call bgpio_init.
->                 5. Use gpio-loongson-64bit.c as driver filename.
->                 6. Ignore that loongson legacy drvier and remove the patch about
->                    "gpio: loongson2ef: move driver to original location".
-> Change in v5:
->                 1. Move legacy gpio driver to proper location.
->                 2. Remove the "gpio_base".
->                 3. Add of_device_id and acpi_device_id data field for platform
->                    data.
->                 4. Remove the ACPI_PTR().
->                 5. Remove the gpio label judgement logic and use mode instead.
->                 6. Drop platform_loongson_gpio_get_props.
->                 7. Using devres for all resource.
->                 8. Remove the loongson_gpio_remove.
->                 9. Remove the unmatched print information.
->                 10. Remove the loongson_gpio_exit.
-> Change in v4:
->                 1. Fixup name spelling about Signed-off-by.
->                 2. Drop "series" here and everywhere else.
->                 3. Fixup the copyright in driver.
->                 4. Drop the "else" in loongson_gpio_request.
->                 5. Use trinocular operation replace the related logic.
->                 6. Remove lable judgement in context about "lgpio->chip.to_irq =
->                    loongson_gpio_to_irq"
->                 7. Use dev_err replace pr_err in probe.
->                 8. Make legacy platform_data should be left out of this patch.
->                 9. Remove the mips config in gpio Kconfig.
-> Change in v3:
->                 1. Move the gpio platform data struct from arch/ into include/linux/
->                    platform_data/.
->                 2. Replace platform_gpio_data with loongson_gpio_platform_data in .c.
->                 3. Add maintainer in MAINTAINERS file for include/linux/platform_data/
->                    gpio-loongson.h and gpio-loongson.c
-> Change in v2:
->                 1. Fixup of_loongson_gpio_get_props and remove the parse logic about
->                    "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
->                    "loongson,gpio_base", "loongson,support_irq" then kernel driver will
->                    initial them that depend compatible except "loongson,gpio_base".
->
->  MAINTAINERS                        |   6 +
->  drivers/gpio/Kconfig               |  11 +
->  drivers/gpio/Makefile              |   1 +
->  drivers/gpio/gpio-loongson-64bit.c | 315 +++++++++++++++++++++++++++++
->  4 files changed, 333 insertions(+)
->  create mode 100644 drivers/gpio/gpio-loongson-64bit.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5114db9c8f32..2854da69cabb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12051,6 +12051,12 @@ S:     Maintained
->  F:     Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
->  F:     drivers/soc/loongson/loongson2_guts.c
->
-> +LOONGSON GPIO DRIVER
-> +M:     Yinbo Zhu <zhuyinbo@loongson.cn>
-> +L:     linux-gpio@vger.kernel.org
-> +S:     Maintained
-> +F:     drivers/gpio/gpio-loongson-64bit.c
-> +
->  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->  M:     Sathya Prakash <sathya.prakash@broadcom.com>
->  M:     Sreekanth Reddy <sreekanth.reddy@broadcom.com>
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index a01af1180616..840e8a80af2b 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -381,6 +381,17 @@ config GPIO_LOONGSON
->         help
->           Driver for GPIO functionality on Loongson-2F/3A/3B processors.
->
-> +config GPIO_LOONGSON_64BIT
-> +       tristate "Loongson 64 bit GPIO support"
-> +       depends on LOONGARCH || COMPILE_TEST
-> +       select GPIO_GENERIC
-> +       help
-> +         Say yes here to support the GPIO functionality of a number of
-> +         Loongson series of chips. The Loongson GPIO controller supports
-> +         up to 60 GPIOS in total, 4 of which are dedicated GPIO pins, and
-> +         the remaining 56 are reused with other functions, with edge or
-> +         level triggered interrupts.
-> +
->  config GPIO_LPC18XX
->         tristate "NXP LPC18XX/43XX GPIO support"
->         default y if ARCH_LPC18XX
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 29e3beb6548c..fc832484cc77 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -78,6 +78,7 @@ obj-$(CONFIG_GPIO_KEMPLD)             += gpio-kempld.o
->  obj-$(CONFIG_GPIO_LOGICVC)             += gpio-logicvc.o
->  obj-$(CONFIG_GPIO_LOONGSON1)           += gpio-loongson1.o
->  obj-$(CONFIG_GPIO_LOONGSON)            += gpio-loongson.o
-> +obj-$(CONFIG_GPIO_LOONGSON_64BIT)      += gpio-loongson-64bit.o
->  obj-$(CONFIG_GPIO_LP3943)              += gpio-lp3943.o
->  obj-$(CONFIG_GPIO_LP873X)              += gpio-lp873x.o
->  obj-$(CONFIG_GPIO_LP87565)             += gpio-lp87565.o
-> diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loongson-64bit.c
+>  .../bindings/display/msm/qcom,sm8450-dpu.yaml | 139 +++++++
+>  .../display/msm/qcom,sm8450-mdss.yaml         | 352 ++++++++++++++++++
+>  2 files changed, 491 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+> 
+
+
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
 > new file mode 100644
-> index 000000000000..e0528a8768a0
+> index 000000000000..8e25d456e5e9
 > --- /dev/null
-> +++ b/drivers/gpio/gpio-loongson-64bit.c
-> @@ -0,0 +1,315 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Loongson GPIO Support
-> + *
-> + * Copyright (C) 2022 Loongson Technology Corporation Limited
-> + */
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+> @@ -0,0 +1,139 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <linux/acpi.h>
-> +#include <linux/kernel.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/bitops.h>
-> +#include <asm/types.h>
+> +title: Qualcomm SM8450 Display DPU
 > +
-> +#define LOONGSON_GPIO_IN(x)            (x->reg_base +\
-> +                                       x->p_data->in_offset)
-> +#define LOONGSON_GPIO_OUT(x)           (x->reg_base +\
-> +                                       x->p_data->out_offset)
-> +#define LOONGSON_GPIO_OEN(x)           (x->reg_base +\
-> +                                       x->p_data->conf_offset)
-> +#define LOONGSON_GPIO_IN_BYTE(x, gpio) (x->reg_base +\
-> +                                       x->p_data->in_offset + gpio)
-> +#define LOONGSON_GPIO_OUT_BYTE(x, gpio)        (x->reg_base +\
-> +                                       x->p_data->out_offset + gpio)
-> +#define LOONGSON_GPIO_OEN_BYTE(x, gpio)        (x->reg_base +\
-> +                                       x->p_data->conf_offset + gpio)
+> +maintainers:
+> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > +
-> +enum loongson_gpio_mode {
-> +       BIT_CTRL_MODE,
-> +       BYTE_CTRL_MODE,
-> +};
+> +$ref: /schemas/display/msm/dpu-common.yaml#
 > +
-> +struct loongson_gpio_platform_data {
-> +       const char              *label;
-> +       enum loongson_gpio_mode mode;
-> +       int                     conf_offset;
-> +       int                     out_offset;
-> +       int                     in_offset;
-> +};
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8450-dpu
+> +
+> +  reg:
+> +    items:
+> +      - description: Address offset and size for mdp register set
+> +      - description: Address offset and size for vbif register set
+> +
+> +  reg-names:
+> +    items:
+> +      - const: mdp
+> +      - const: vbif
+> +
+> +  clocks:
+> +    items:
+> +      - description: Display hf axi clock
+> +      - description: Display sf axi clock
+> +      - description: Display ahb clock
+> +      - description: Display lut clock
+> +      - description: Display core clock
+> +      - description: Display vsync clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: nrt_bus
+> +      - const: iface
+> +      - const: lut
+> +      - const: core
+> +      - const: vsync
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interconnect/qcom,sm8450.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +    display-controller@ae01000 {
+> +        compatible = "qcom,sm8450-dpu";
+> +        reg = <0x0ae01000 0x8f000>,
+> +              <0x0aeb0000 0x2008>;
+> +        reg-names = "mdp", "vbif";
+> +
+> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> +                <&gcc GCC_DISP_SF_AXI_CLK>,
+> +                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+> +                <&dispcc DISP_CC_MDSS_MDP_CLK>,
+> +                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +        clock-names = "bus",
+> +                      "nrt_bus",
+> +                      "iface",
+> +                      "lut",
+> +                      "core",
+> +                      "vsync";
+> +
+> +        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +        assigned-clock-rates = <19200000>;
+> +
+> +        operating-points-v2 = <&mdp_opp_table>;
+> +        power-domains = <&rpmhpd SM8450_MMCX>;
+> +
+> +        interrupt-parent = <&mdss>;
+> +        interrupts = <0>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +                dpu_intf1_out: endpoint {
+> +                    remote-endpoint = <&dsi0_in>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                dpu_intf2_out: endpoint {
+> +                    remote-endpoint = <&dsi1_in>;
+> +                };
+> +            };
+> +        };
+> +
+> +        mdp_opp_table: opp-table {
+> +            compatible = "operating-points-v2";
+> +
+> +            opp-172000000{
+> +                opp-hz = /bits/ 64 <172000000>;
+> +                required-opps = <&rpmhpd_opp_low_svs_d1>;
+> +            };
+> +
+> +            opp-200000000 {
+> +                opp-hz = /bits/ 64 <200000000>;
+> +                required-opps = <&rpmhpd_opp_low_svs>;
+> +            };
+> +
+> +            opp-325000000 {
+> +                opp-hz = /bits/ 64 <325000000>;
+> +                required-opps = <&rpmhpd_opp_svs>;
+> +            };
+> +
+> +            opp-375000000 {
+> +                opp-hz = /bits/ 64 <375000000>;
+> +                required-opps = <&rpmhpd_opp_svs_l1>;
+> +            };
+> +
+> +            opp-500000000 {
+> +                opp-hz = /bits/ 64 <500000000>;
+> +                required-opps = <&rpmhpd_opp_nom>;
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+> new file mode 100644
+> index 000000000000..73f8c5caf637
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+> @@ -0,0 +1,352 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SM8450 Display MDSS
+> +
+> +maintainers:
+> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> +
+> +description:
+> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
+> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
+> +  bindings of MDSS are mentioned for SM8450 target.
+> +
+> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-Calling this platform_data is confusing as platform data is typically
-used for structures associated with device instances, not device
-types. There is no hard convention but normally it would be called
-chip_data.
+I don't understand this patchset. Some tags were present, then gone.
+Items was never here, now it is... and you explicitly received such
+feedback long time ago, therefore I suspect you sent or rebased
+something old.
 
-> +
-> +struct loongson_gpio_chip {
-> +       struct gpio_chip        chip;
-> +       spinlock_t              lock;
-> +       void __iomem            *reg_base;
-> +       u16                     *gsi_idx_map;
-> +       u16                     mapsize;
-> +       const struct loongson_gpio_platform_data *p_data;
-> +};
-> +
-> +static int loongson_gpio_request(
-> +                       struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       if (pin >= chip->ngpio)
-> +               return -EINVAL;
-> +
-> +       return 0;
-> +}
-> +
-> +static inline void __set_direction(struct loongson_gpio_chip *lgpio,
-> +                       unsigned int pin, int input)
-> +{
-> +       u8  bval;
-> +
-> +       bval = input ? 1 : 0;
-> +       writeb(bval, LOONGSON_GPIO_OEN_BYTE(lgpio, pin));
-> +}
-> +
-> +static void __set_level(struct loongson_gpio_chip *lgpio, unsigned int pin,
-> +                       int high)
-> +{
-> +       u8 bval;
-> +
-> +       bval = high ? 1 : 0;
-> +       writeb(bval, LOONGSON_GPIO_OUT_BYTE(lgpio, pin));
-> +}
-> +
-> +static int loongson_gpio_direction_input(
-> +                               struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       unsigned long flags;
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +
-> +       spin_lock_irqsave(&lgpio->lock, flags);
-> +       __set_direction(lgpio, pin, 1);
-> +       spin_unlock_irqrestore(&lgpio->lock, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static int loongson_gpio_direction_output(
-> +                               struct gpio_chip *chip, unsigned int pin,
-> +                               int value)
-> +{
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(&lgpio->lock, flags);
-> +       __set_level(lgpio, pin, value);
-> +       __set_direction(lgpio, pin, 0);
-> +       spin_unlock_irqrestore(&lgpio->lock, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static int loongson_gpio_get(struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       u8  bval;
-> +       int val;
-> +
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +
-> +       bval = readb(LOONGSON_GPIO_IN_BYTE(lgpio, pin));
-> +       val = bval & 1;
-> +
-> +       return val;
-> +}
-> +
-> +static int loongson_gpio_get_direction(
-> +                               struct gpio_chip *chip, unsigned int pin)
-> +{
-> +       u8  bval;
-> +       int val;
-> +
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +
-> +       bval = readb(LOONGSON_GPIO_OEN_BYTE(lgpio, pin));
-> +       val = bval & 1;
-> +
-> +       return val;
-> +}
-> +
-> +static void loongson_gpio_set(struct gpio_chip *chip, unsigned int pin,
-> +                       int value)
-> +{
-> +       unsigned long flags;
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +
-> +       spin_lock_irqsave(&lgpio->lock, flags);
-> +       __set_level(lgpio, pin, value);
-> +       spin_unlock_irqrestore(&lgpio->lock, flags);
-> +}
-> +
-> +static int loongson_gpio_to_irq(
-> +                       struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       struct platform_device *pdev =
-> +               container_of(chip->parent, struct platform_device, dev);
-> +       struct loongson_gpio_chip *lgpio =
-> +               container_of(chip, struct loongson_gpio_chip, chip);
-> +
-> +       if (offset >= chip->ngpio)
-> +               return -EINVAL;
-> +
-> +       if ((lgpio->gsi_idx_map != NULL) && (offset < lgpio->mapsize))
-> +               offset = lgpio->gsi_idx_map[offset];
-> +       else
-> +               return -EINVAL;
-> +
-> +       return platform_get_irq(pdev, offset);
-> +}
-> +
-> +static int loongson_gpio_init(
-> +                       struct device *dev, struct loongson_gpio_chip *lgpio,
-> +                       struct device_node *np, void __iomem *reg_base)
-> +{
-> +       int ret;
-> +       u32 ngpios = lgpio->chip.ngpio;
-> +
-> +       lgpio->reg_base = reg_base;
-> +
-> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
-> +               ret = bgpio_init(&lgpio->chip, dev, 8,
-> +                               LOONGSON_GPIO_IN(lgpio),
-> +                               LOONGSON_GPIO_OUT(lgpio), 0,
-> +                               LOONGSON_GPIO_OEN(lgpio), NULL, 0);
-> +               if (ret) {
-> +                       dev_err(dev, "unable to init generic GPIO\n");
-> +                       return ret;
-> +               }
-> +               lgpio->chip.ngpio = ngpios;
-> +               lgpio->chip.base = 0;
-> +       } else {
-> +               lgpio->chip.request = loongson_gpio_request;
-> +               lgpio->chip.direction_input = loongson_gpio_direction_input;
-> +               lgpio->chip.get = loongson_gpio_get;
-> +               lgpio->chip.get_direction = loongson_gpio_get_direction;
-> +               lgpio->chip.direction_output = loongson_gpio_direction_output;
-> +               lgpio->chip.set = loongson_gpio_set;
-> +               lgpio->chip.can_sleep = 0;
-> +               lgpio->chip.of_node = np;
-> +               lgpio->chip.parent = dev;
-> +               spin_lock_init(&lgpio->lock);
-> +       }
-> +
-> +       lgpio->chip.label = lgpio->p_data->label;
-> +
-> +       lgpio->chip.to_irq = loongson_gpio_to_irq;
-> +
-> +       devm_gpiochip_add_data(dev, &lgpio->chip, lgpio);
-> +
-> +       return 0;
+Go through all previous comments.
 
-You can return the above function directly.
+> +      - const: qcom,sm8450-mdss
+> +
 
-> +}
-> +
-> +static void loongson_gpio_get_props(struct platform_device *pdev,
-> +                                 struct loongson_gpio_chip *lgpio)
-> +{
-> +       int rval;
-> +       u32 ngpios;
-> +       struct device *dev = &pdev->dev;
-> +
-> +       device_property_read_u32(dev, "ngpios", &ngpios);
-> +       lgpio->chip.ngpio = ngpios;
-> +
-> +       rval = device_property_read_u16_array(dev, "gsi_idx_map", NULL, 0);
-> +       if (rval > 0) {
-> +               lgpio->gsi_idx_map =
-> +                       devm_kmalloc_array(dev, rval, sizeof(*lgpio->gsi_idx_map),
-> +                                       GFP_KERNEL);
-> +               if (lgpio->gsi_idx_map) {
-> +                       lgpio->mapsize = rval;
-> +                       device_property_read_u16_array(dev, "gsi_idx_map",
-> +                                       lgpio->gsi_idx_map, lgpio->mapsize);
-> +               }
-> +       }
-> +}
-> +
-> +static int loongson_gpio_probe(struct platform_device *pdev)
-> +{
-> +       void __iomem *reg_base;
-> +       struct loongson_gpio_chip *lgpio;
-> +       struct device_node *np = pdev->dev.of_node;
-> +       struct device *dev = &pdev->dev;
-> +
-> +       lgpio = devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
-> +       if (!lgpio)
-> +               return -ENOMEM;
-> +
-> +       loongson_gpio_get_props(pdev, lgpio);
-> +
-> +       lgpio->p_data = device_get_match_data(&pdev->dev);
-> +
-> +       reg_base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(reg_base))
-> +               return PTR_ERR(reg_base);
-> +
-> +       loongson_gpio_init(dev, lgpio, np, reg_base);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct loongson_gpio_platform_data loongson_gpio_pdata0 = {
-> +       .label = "ls2k_gpio",
-> +       .mode = BIT_CTRL_MODE,
-> +       .conf_offset = 0x0,
-> +       .in_offset = 0x10,
-> +       .out_offset = 0x20,
-> +};
-> +
-> +static const struct loongson_gpio_platform_data loongson_gpio_pdata1 = {
-> +       .label = "ls7a_gpio",
-> +       .mode = BYTE_CTRL_MODE,
-> +       .conf_offset = 0x800,
-> +       .in_offset = 0x900,
-> +       .out_offset = 0xa00,
-> +};
-> +
-> +static const struct of_device_id loongson_gpio_of_match[] = {
-> +       {
-> +               .compatible = "loongson,ls2k-gpio",
-> +               .data = &loongson_gpio_pdata0,
-> +       },
-> +       {
-> +               .compatible = "loongson,ls7a-gpio",
-> +               .data = &loongson_gpio_pdata1,
-> +       },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(of, loongson_gpio_of_match);
-> +
-> +static const struct acpi_device_id loongson_gpio_acpi_match[] = {
-> +       {
-> +               .id = "LOON0002",
-> +               .driver_data = (kernel_ulong_t)&loongson_gpio_pdata1,
-> +       },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(acpi, loongson_gpio_acpi_match);
-> +
-> +static struct platform_driver loongson_gpio_driver = {
-> +       .driver = {
-> +               .name = "loongson-gpio",
-> +               .owner = THIS_MODULE,
-> +               .of_match_table = loongson_gpio_of_match,
-> +               .acpi_match_table = loongson_gpio_acpi_match,
-> +       },
-> +       .probe = loongson_gpio_probe,
-> +};
-> +
-> +static int __init loongson_gpio_setup(void)
-> +{
-> +       return platform_driver_register(&loongson_gpio_driver);
-> +}
-> +postcore_initcall(loongson_gpio_setup);
-> +
-> +MODULE_DESCRIPTION("Loongson gpio driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.31.1
->
+Best regards,
+Krzysztof
+
