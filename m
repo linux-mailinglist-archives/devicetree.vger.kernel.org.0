@@ -2,136 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F3F6362EB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:10:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D456362F3
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 16:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237809AbiKWPKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 10:10:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S238297AbiKWPLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 10:11:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238175AbiKWPJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:09:44 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254912AE12;
-        Wed, 23 Nov 2022 07:09:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D5D44B82096;
-        Wed, 23 Nov 2022 15:09:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA1FC433C1;
-        Wed, 23 Nov 2022 15:09:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669216162;
-        bh=ZB9yXxoNWv0/ib9hXa9McUF3dn9BdeiQydTdlw+V3J4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VkvAYFNHhdlZqIJOGsEfQnFk5pkTAqg36frexyGlewnwozb7Y5OIe5S0WzD2y/V+s
-         awdkDoeGQwn3xQTF2F8mJlQdrs85FCT81aqnz9QGwEXWXGjCMruifGgQupcscmCrDl
-         tZeRNbP0MUfm/ZmV7xvZvTyhXu7P3YkZk1LJ3gemPja1XRB3FQjUquXsvSDGEH73MS
-         kgXjZ0JzobJ9Jea0NsaHr4KZjEsxdN8Gaud++siIa3Ii56I04nx3utAfGHPtAOat66
-         wkX901eLvy0zt6DQ51YA7hoTJJWQ5Aa/cvCfUV43nvi1EBoqePr/1zsbaQQ4DEJbiz
-         BkK021E9NWl6A==
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Cai Huoqing <cai.huoqing@linux.dev>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-pci@vger.kernel.org,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v7 00/20] PCI: dwc: Add generic resources and Baikal-T1 support
-Date:   Wed, 23 Nov 2022 16:09:12 +0100
-Message-Id: <166921583106.17960.15949667825256145052.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
-References: <20221113191301.5526-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S238415AbiKWPLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 10:11:06 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F91349B51;
+        Wed, 23 Nov 2022 07:11:05 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id bs21so29852040wrb.4;
+        Wed, 23 Nov 2022 07:11:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+DYRTkLQkt5QsUQFkBhyOTw4ineCXo6DjjJscrJFSgc=;
+        b=a6cyw71kovfdAiAgG/Pmn3Is0bFtobdtqmKQZVwHwZei0zj4buzNah86/6bkSx8hZN
+         CcaVd5gUchTpWqD2YKnTiQoRcyvmf48JeMS46LSu7Q9BrUL4fczKCaj3MHplZnuYQfEa
+         z2J3Z3PZGMWNB9Sgol4pLp6h+7qPsTOhfvCZ9GSE1l9u1+7ZGSRbax6FkyThJTth5Q7o
+         b9vbjKpu+RepLZhj09l38CIfBMzC69vK7zfGD73f6RfnUPNiyiz7PJiu73xSVq7UUGS4
+         x8W9YjKne9o/WZqFiKiwWGkvJ1pbw2uSbyKO2wQApRTUA60nrnolf1LTh/CBx4x0XOXv
+         9bZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+DYRTkLQkt5QsUQFkBhyOTw4ineCXo6DjjJscrJFSgc=;
+        b=ZXzXtQPuzqTZbb2JmFw4FGtZTu1C1uJpz/iVk+eZ+LuI+yM8+tNk47pEuUqB/BV6A3
+         xX+HAsNENbclk9yHHdtSFn0NsvACWzFl2fbQOhB/39vhjW9oaDa4d4GLsP3Mwq426E5m
+         ii7rF+f9zL5DfIhuIXjybUlhJ65/zBLV3ebRsMdv9jJHta2tLKXE435U+zZ4N61Ntfox
+         Rnh0lVBDO0FHBJ1gvorNBy7lMil0tOi8lxUXbzVQ2Z+6d1XN5hJntATjvIJ2kYtYGz9M
+         nuaIZB4Rl4a1ZFLLdNOcMG28d0eGEXVXw8/j8wv+X066GWJGpIutcBQupgH9BRyLS29C
+         u7gw==
+X-Gm-Message-State: ANoB5pkZ46pyYoAOkR1D7p9XpDukCutnwtdYHSueFwFL27EI2MHwPmdL
+        nz4xPfSCAWeJk0cMt0umb5lrWDmpIHI=
+X-Google-Smtp-Source: AA0mqf6QDXovSwze3tv0ycv0Haj3/XbQr1CmC7ICTzDgFzPaqSinUcDrrNIj+ryOtRqBrdJZ7F3JgQ==
+X-Received: by 2002:adf:dfd0:0:b0:22e:32d9:e1b1 with SMTP id q16-20020adfdfd0000000b0022e32d9e1b1mr16994282wrn.631.1669216263997;
+        Wed, 23 Nov 2022 07:11:03 -0800 (PST)
+Received: from [192.168.1.131] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id e18-20020adfdbd2000000b0022da3977ec5sm16850807wrj.113.2022.11.23.07.11.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 07:11:02 -0800 (PST)
+Message-ID: <802ae971-0790-9ad3-821a-7faa36bd9035@gmail.com>
+Date:   Wed, 23 Nov 2022 16:11:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 1/5] dt-bindings: usb: mtu3: add compatible for mt8186
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, hsinyi@chromium.org
+References: <20221123135531.23221-1-allen-kh.cheng@mediatek.com>
+ <20221123135531.23221-2-allen-kh.cheng@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20221123135531.23221-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Nov 2022 22:12:41 +0300, Serge Semin wrote:
-> This patchset is a third one in the series created in the framework of
-> my Baikal-T1 PCIe/eDMA-related work:
+
+
+On 23/11/2022 14:55, Allen-KH Cheng wrote:
+> Add a new compatible for mt8186 SoC.
 > 
-> [1: Done v5] PCI: dwc: Various fixes and cleanups
-> Link: https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
-> Merged: kernel 6.0-rc1
-> [2: Done v4] PCI: dwc: Add hw version and dma-ranges support
-> Link: https://lore.kernel.org/linux-pci/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
-> Merged: kernel 6.0-rc1
-> [3: In-review v7] PCI: dwc: Add generic resources and Baikal-T1 support
-> Link: ---you are looking at it---
-> [4: Done v6] dmaengine: dw-edma: Add RP/EP local DMA support
-> Link: https://lore.kernel.org/linux-pci/20221107210438.1515-1-Sergey.Semin@baikalelectronics.ru/
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
+> ---
+>   Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> [...]
-
-I think it is time we merged this series - we went through
-several rounds of reviews and it should be ready for
-mainline (in particular wrt using the generic infrastructure
-it puts in place).
-
-Applied to pci/dwc, thank you.
-
-[01/20] dt-bindings: imx6q-pcie: Fix clock names for imx6sx and imx8mq
-        https://git.kernel.org/lpieralisi/pci/c/b8a83e600bdd
-[02/20] dt-bindings: visconti-pcie: Fix interrupts array max constraints
-        https://git.kernel.org/lpieralisi/pci/c/4cf4b9b70ab2
-[03/20] dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
-        https://git.kernel.org/lpieralisi/pci/c/057646a5db2f
-[04/20] dt-bindings: PCI: dwc: Remove bus node from the examples
-        https://git.kernel.org/lpieralisi/pci/c/b9fe9985aee2
-[05/20] dt-bindings: PCI: dwc: Add phys/phy-names common properties
-        https://git.kernel.org/lpieralisi/pci/c/875596361910
-[06/20] dt-bindings: PCI: dwc: Add max-link-speed common property
-        https://git.kernel.org/lpieralisi/pci/c/eaa9d8865287
-[07/20] dt-bindings: PCI: dwc: Apply generic schema for generic device only
-        https://git.kernel.org/lpieralisi/pci/c/f133396e2d00
-[08/20] dt-bindings: PCI: dwc: Add max-functions EP property
-        https://git.kernel.org/lpieralisi/pci/c/12f7936c7a0e
-[09/20] dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
-        https://git.kernel.org/lpieralisi/pci/c/35486813c41b
-[10/20] dt-bindings: PCI: dwc: Add reg/reg-names common properties
-        https://git.kernel.org/lpieralisi/pci/c/4cc13eedb892
-[11/20] dt-bindings: PCI: dwc: Add clocks/resets common properties
-        https://git.kernel.org/lpieralisi/pci/c/bd9504af9169
-[12/20] dt-bindings: PCI: dwc: Add dma-coherent property
-        https://git.kernel.org/lpieralisi/pci/c/4a8972542a6d
-[13/20] dt-bindings: PCI: dwc: Apply common schema to Rockchip DW PCIe nodes
-        https://git.kernel.org/lpieralisi/pci/c/98b59129cb9f
-[14/20] dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
-        https://git.kernel.org/lpieralisi/pci/c/ce27c4e61f2d
-[15/20] PCI: dwc: Introduce dma-ranges property support for RC-host
-        https://git.kernel.org/lpieralisi/pci/c/8522e17d4cab
-[16/20] PCI: dwc: Introduce generic controller capabilities interface
-        https://git.kernel.org/lpieralisi/pci/c/7f9e982dc4fc
-[17/20] PCI: dwc: Introduce generic resources getter
-        https://git.kernel.org/lpieralisi/pci/c/ef8c58877fe7
-[18/20] PCI: dwc: Combine iATU detection procedures
-        https://git.kernel.org/lpieralisi/pci/c/9f67ecdd9579
-[19/20] PCI: dwc: Introduce generic platform clocks and resets
-        https://git.kernel.org/lpieralisi/pci/c/ef69f852a978
-[20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-        https://git.kernel.org/lpieralisi/pci/c/ba6ed462dcf4
-
-Thanks,
-Lorenzo
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> index 80750b0f458a..7168110e2f9d 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
+> @@ -24,6 +24,7 @@ properties:
+>             - mediatek,mt2712-mtu3
+>             - mediatek,mt8173-mtu3
+>             - mediatek,mt8183-mtu3
+> +          - mediatek,mt8186-mtu3
+>             - mediatek,mt8188-mtu3
+>             - mediatek,mt8192-mtu3
+>             - mediatek,mt8195-mtu3
