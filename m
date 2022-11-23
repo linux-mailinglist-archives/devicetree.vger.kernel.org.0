@@ -2,118 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09764635A9C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 11:54:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB5C635AE4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 12:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbiKWKxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 05:53:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56680 "EHLO
+        id S236515AbiKWLDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 06:03:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236560AbiKWKx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 05:53:28 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9258E2DD2;
-        Wed, 23 Nov 2022 02:41:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669200078; x=1700736078;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j3uIlflRX6X3w3UzK50E4aZVuOuALfClRJmuCDZuPSc=;
-  b=gM4WVsfL9Ztl+ATQgqY+bHEDZhnWNAwFHJ5/d+XHLJHeFa6MRLPDv2Yf
-   G5p32RVDr/eMU0O9gNfDuYUr7QSP5mGjYecjuG2BT9UGR9tw82rB+gfiO
-   ejdzcJ9eMucFnG2Ua7EhjazJBIEAymCPmxEh4/QIYcYb1FUuusudM4BCZ
-   ZThCFoLpsHod6nRWcaa5EKUiiQr1np3VrL6EbYBo3sz5ny2AASklO02Tq
-   mRLLj6cL8pKf3nnIj//jWT87ALW/6AG1fydIx0HWxLmACJKOBiSM1Muuh
-   vTpvnsrSGMU0buk1USPYm0OzvBsaq3Hsec8D0Xdxwqj1uoLPgUvys90sq
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="188308734"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2022 03:41:18 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 23 Nov 2022 03:40:59 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Wed, 23 Nov 2022 03:40:59 -0700
-Date:   Wed, 23 Nov 2022 11:45:50 +0100
-From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
-To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
-        UNGLinuxDriver <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH] ARM: dts: lan966x: Add otp support
-Message-ID: <20221123104550.3hnod4bo4yitisy3@soft-dev3-1>
-References: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
- <c108d42d-dae8-0852-d89b-160b70b196dc@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <c108d42d-dae8-0852-d89b-160b70b196dc@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S236560AbiKWLCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 06:02:49 -0500
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC5124965;
+        Wed, 23 Nov 2022 02:58:20 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 404755C018B;
+        Wed, 23 Nov 2022 05:58:20 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Wed, 23 Nov 2022 05:58:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1669201100; x=1669287500; bh=P/3gymjggx
+        G0AGo8CB4kiNTmYVS5hoUgWnwMUY5zy6A=; b=XHerL+dM+qFeU/J/gClsNwqKYP
+        +/f48/pxEFdBIrgqCgIQLzD9UFu9xP1tqyeSqfgwXjvIvRL8p3bCjb0bNiI9pfXR
+        DWGqecxjuUkjtwe6CpBmkVnaHwop6wzEjYcy0pl938upDFhP/AkM73XSEGC7A3+N
+        LcPLvZ9MFm+tPG3cRUTXK5slAxL/dBxMRCeSsA7s0qqzXQ/EEKvpMKUxH5+E7xvo
+        loR6KfoexCYcdlW9TyduWMYvnqWH/eobTeAxW4Vj6xt1EYhWenZqwLwHCkALwKE3
+        fdY1zhdIW83wFlwj7j/Gc1WNv63jnPWCYMnUZxsTCfC845UmY5WPFydbXPzQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1669201100; x=1669287500; bh=P/3gymjggxG0AGo8CB4kiNTmYVS5
+        hoUgWnwMUY5zy6A=; b=DXuPSQyIBea+ygxBIrS1CUZ8KzYgBSuCeg3zFSY1x7Wy
+        H35LLQSxcPV9GwtCUj4XHP0V8vIrTKuORP4QJP+vRXyA3S1sydeDaDSOxOt5/OnU
+        HewPpYDKJabWFRxYGXCrmlaQgR6klwWTX8IHHCGPDnHkViHAi8wTbxypX9y59l1V
+        0rxQCHvo0ZlnFmXuZgmGpxUVD8j3S8rDGBOqCkGvhrrw5XOy7lv82lQlzrkM0Aku
+        rWsh13yD1uLsqzYdVhjuCcTfNyf8pbNqQeR2Z+dciT+ZLmmVrg3RROoXYewu9hf7
+        Rq0ShKkYrXeYH+qTtfNv+BMTJoxU4CggQbRZuYv3bg==
+X-ME-Sender: <xms:y_x9Y2q-16jMcKDaMHfpFitDAPXbIXmVFOwsx9ZxWSTs7MsxbkcI-A>
+    <xme:y_x9Y0prnXaYP6gndujYUiB_tZI8ZEZs8UxJRl27wzVrJNI4tOxSD4305-gRr-HNx
+    7SQYlhiBmDu3HVDujI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedriedugddulecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:y_x9Y7OCA_vrHQ-Vunm62PK5EGarJThVdKvx3qYwFvFoZEQ0cufGNQ>
+    <xmx:y_x9Y17k0gMJkZohfz_FAR1ZKZEHExBzEF7hOEjpfYX_EFbCvcvFjA>
+    <xmx:y_x9Y15042C56nmesMe3NyGdkvr8sJzz-UX_hMeVs-j-mHkZVyTEZw>
+    <xmx:zPx9Y5qMcGBjs0kHvf_zCQ_oUueT6B7zkZASXWcd43LgFoPl2Y8FhQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 2195EB60086; Wed, 23 Nov 2022 05:58:19 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <577e273d-ff9b-4d8d-b797-d7275ab8374f@app.fastmail.com>
+In-Reply-To: <20221122201232.107065-3-tmaimon77@gmail.com>
+References: <20221122201232.107065-1-tmaimon77@gmail.com>
+ <20221122201232.107065-3-tmaimon77@gmail.com>
+Date:   Wed, 23 Nov 2022 11:57:57 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Tomer Maimon" <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, "Joel Stanley" <joel@jms.id.au>,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "Sven Peter" <sven@svenpeter.dev>,
+        "Brian Norris" <briannorris@chromium.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] soc: nuvoton: add NPCM LPC BPC driver
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/26/2022 07:42, Claudiu Beznea - M18063 wrote:
+On Tue, Nov 22, 2022, at 21:12, Tomer Maimon wrote:
+> Add Nuvoton BMC NPCM LPC BIOS post code (BPC) driver.
+>
+> The NPCM BPC monitoring two configurable I/O address written by the host
+> on the Low Pin Count (LPC) bus.
+>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  drivers/soc/Kconfig                |   1 +
+>  drivers/soc/Makefile               |   1 +
+>  drivers/soc/nuvoton/Kconfig        |  24 ++
+>  drivers/soc/nuvoton/Makefile       |   3 +
+>  drivers/soc/nuvoton/npcm-lpc-bpc.c | 396 +++++++++++++++++++++++++++++
 
-Hi Claudiu,
+In general, I try to keep drivers/soc/ for drivers that are
+used purely inside of the kernel and don't provide their
+own user space ABI, those should normally be part of
+some subsystem grouped by functionality.
 
-I just want to let you know that the patch that blocked this patch
-was applied and reached the linus' tree [0].
-Should I resend this patch?
+It appears that we have similar drivers for aspeed already,
+so there is some precedent, but I would still like to ask
+you and Joel to try to make sure the two are compatible,
+or ideally share the code for the user-facing part of the
+LPC driver.
 
-[0] https://elixir.bootlin.com/linux/v6.1-rc6/source/drivers/nvmem/lan9662-otpc.c#L206
+> +config NPCM_PCI_MBOX
+> +	tristate "NPCM PCI Mailbox Controller"
+> +	depends on (ARCH_NPCM || COMPILE_TEST) && REGMAP && MFD_SYSCON
+> +	help
+> +	  Expose the NPCM BMC PCI MBOX registers found on Nuvoton SOCs
+> +	  to userspace.
 
-> Hi, Horatiu,
-> 
-> I will postpone this until [1] or [2] is applied.
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> [1]
-> https://lore.kernel.org/all/20220928195112.630351-1-horatiu.vultur@microchip.com/
-> [2]
-> https://lore.kernel.org/all/20221025072217.3715634-1-claudiu.beznea@microchip.com/
-> 
-> On 16.09.2022 22:49, Horatiu Vultur wrote:
-> > Add OTP (one time programmable) support.
-> > The both lan966x SocS (lan9662 and lan9668) have the same OTP IP.
-> > 
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  arch/arm/boot/dts/lan966x.dtsi | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-> > index 23665a0429906..784caba369485 100644
-> > --- a/arch/arm/boot/dts/lan966x.dtsi
-> > +++ b/arch/arm/boot/dts/lan966x.dtsi
-> > @@ -163,6 +163,11 @@ port7: port@7 {
-> >  			};
-> >  		};
-> >  
-> > +		otp: otp@e0021000 {
-> > +			compatible = "microchip,lan9668-otpc", "microchip,lan9662-otpc";
-> > +			reg = <0xe0021000 0x300>;
-> > +		};
-> > +
-> >  		flx0: flexcom@e0040000 {
-> >  			compatible = "atmel,sama5d2-flexcom";
-> >  			reg = <0xe0040000 0x100>;
-> 
+This looks unrelated to the LPC driver, so this should
+probably be a separate patch. The same comment about user
+space presumably applies here, but I have not seen the driver.
 
--- 
-/Horatiu
+The implementation of npcm-lpc-bpc looks fine otherwise, I only
+noticed one minor detail that I would change:
+
+> +	np = pdev->dev.parent->of_node;
+> +	if (!of_device_is_compatible(np, "nuvoton,npcm750-lpc") &&
+> +	    !of_device_is_compatible(np, "nuvoton,npcm845-lpc")) {
+> +		dev_err(dev, "unsupported LPC device binding\n");
+> +		return -ENODEV;
+> +	}
+
+This check doesn't seem to make sense here, since those are
+the only two types you support.
+
+      Arnd
