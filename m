@@ -2,194 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B1E6361FC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:39:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4266C63626C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:53:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237929AbiKWOjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:39:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39322 "EHLO
+        id S237898AbiKWOxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:53:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237894AbiKWOjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:39:55 -0500
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218884386F
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:39:53 -0800 (PST)
-Received: by mail-io1-xd35.google.com with SMTP id q21so13282344iod.4
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 06:39:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w+iYV6kI8Gk9CIv4+Wp5wKD5Vy+egVw6+4bqcYnHaKI=;
-        b=d8tw10g4jtqLpofZTzhmT1a8hePY93ZndD3gt6AV59K25N6voZ5T1SnKpVpeRsvnAI
-         DmVe3PsPkvlbaWsGELyJZ8sgzqmkFrcidEruudubyMKbZz7q7hy6LRfr4iLRgksIg1vv
-         xTynzXdHshGggqHQatqo8SUBPDsXbwp1e3b0I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w+iYV6kI8Gk9CIv4+Wp5wKD5Vy+egVw6+4bqcYnHaKI=;
-        b=VXOhUaFyl3CdJfzYTTiGwYSbCpkJ6DtNq2V3gR9gBVAWqriK0t0BjW6K62qbdF2Gau
-         rutN4sqqKApizx/B6GPJcwpxBNsow0A2TTwBrjp2HaPy44PnrkCBgKcElZ9c8bt1HBaE
-         WtnpSsP2E/z72a6IHp4di2pIm0RR07/p9LTXC7j+zlS6Cl2qDu3l9rQtucOlg/f9VeFP
-         1WhPJkhTwCofA2zRtzjBC888pmVfFRhWndLDJUY1n/bsPqxmgl4fv1fL5kQfNABhWevJ
-         +VK0DanEbfFX7K9TcbWqufq/K7ATLWYAqCJaF2CJvFOnubtjwmZpbapTlotXta6p20iB
-         ZncA==
-X-Gm-Message-State: ANoB5pmE9J4vBMZQ2Cm9+apsPTzcHfbGKxHcrgHdJe91ww5OgCTN9wjd
-        DGyDHs1sT3sxe2vp/FbmT+WBQQ==
-X-Google-Smtp-Source: AA0mqf7iPTcWLEFnYgztOLb+FkD7e3oqdAY4QDsam+H748gK8+kwtFePlhri9cdquk/ZyyGh5+eOeQ==
-X-Received: by 2002:a02:334d:0:b0:376:22fe:5e7c with SMTP id k13-20020a02334d000000b0037622fe5e7cmr13067604jak.126.1669214392381;
-        Wed, 23 Nov 2022 06:39:52 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id e1-20020a028601000000b003636c5dcf29sm6242823jai.176.2022.11.23.06.39.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Nov 2022 06:39:52 -0800 (PST)
-Date:   Wed, 23 Nov 2022 14:39:51 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Owen Yang <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc7280: Add DT for
- sc7280-herobrine-zombie
-Message-ID: <Y34wtwSlqc0y4Msz@google.com>
-References: <20221123181043.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
- <20221123181043.2.Ie435b31225d2dc284a34ac8e52fb84fffb39488c@changeid>
+        with ESMTP id S237907AbiKWOxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:53:13 -0500
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E471EEF2;
+        Wed, 23 Nov 2022 06:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=d34IWNksyN/fUaMdJSyNyFr5/NYJSUamcGjA6pAMtuA=; b=caDYBku0DlKozdr16VvQx2Pf47
+        2FemMLhC3IcrPQOUzURzAZnbhstHNQck3oc9tp/PXObEiBO1MfrwTzqTVM4sWneDrW/0ivZt02rfR
+        GJ97qbtKp6invRyg7JlLsZYl3ZG3vWExlD7hzk57S+mKdQTrPuVtfzCSbDoVVJ8FxhHKtoRSJ0jtU
+        XYB3KakhM7UNmV0lB+Oflj6FYMkeTc2cxN2tMw87mvmQsXCHH2Ve1EXgve0TduL0q7RtvwUTii1c5
+        R8WonwObHfVSic7ZLMDFLvXv3RjVaPGgy5xWCwSrWbCPm+c1AWWTPP+4n4zTi5sjodPbwnBYZMh7x
+        2Km029GQ==;
+Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oxr7T-007j3f-RC; Wed, 23 Nov 2022 14:53:00 +0000
+Date:   Wed, 23 Nov 2022 14:52:59 +0000
+From:   Matthew Wilcox <willy@infradead.org>
+To:     Maximilian Luz <luzmaximilian@gmail.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Stefan Richter <stefanr@s5r6.in-berlin.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <markgross@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Sanyog Kale <sanyog.r.kale@intel.com>,
+        Andreas Noever <andreas.noever@gmail.com>,
+        Michael Jamet <michael.jamet@intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Yehezkel Bernat <YehezkelShB@gmail.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        Ming Lei <ming.lei@redhat.com>,
+        Jilin Yuan <yuanjilin@cdjrlc.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ira Weiny <ira.weiny@intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
+ const *
+Message-ID: <Y34zyzdbRUdyOSkA@casper.infradead.org>
+References: <20221123122523.1332370-1-gregkh@linuxfoundation.org>
+ <20221123122523.1332370-3-gregkh@linuxfoundation.org>
+ <711d5275-7e80-c00d-0cdc-0f3d52175361@gmail.com>
+ <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
+ <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221123181043.2.Ie435b31225d2dc284a34ac8e52fb84fffb39488c@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 06:11:13PM +0800, Owen Yang wrote:
-
-> Subject: [2/2] arm64: dts: qcom: sc7280: Add DT for sc7280-herobrine-zombie
-
-Please in include a version number for versions >1. If my accounting is correct
-this is v3, so the next iteration should be v4.
-
-You mentioned earlier that you are using patman. Add the following tag to
-one of the patches in the series to get the version included in the subject:
-
-Series-version: 4
-
-> Add DT for sc7280-herobrine-zombie
+On Wed, Nov 23, 2022 at 02:59:00PM +0100, Maximilian Luz wrote:
+> On 11/23/22 14:34, Andy Shevchenko wrote:
+> > On Wed, Nov 23, 2022 at 02:14:31PM +0100, Maximilian Luz wrote:
+> > > On 11/23/22 13:25, Greg Kroah-Hartman wrote:
+> > > > The uevent() callback in struct device_type should not be modifying the
+> > > > device that is passed into it, so mark it as a const * and propagate the
+> > > > function signature changes out into all relevant subsystems that use
+> > > > this callback.
+> > 
+> > [...]
+> > 
+> > > > -static inline struct ssam_device *to_ssam_device(struct device *d)
+> > > > +static inline struct ssam_device *to_ssam_device(const struct device *d)
+> > > >    {
+> > > >    	return container_of(d, struct ssam_device, dev);
+> > > >    }
+> > > 
+> > > I am slightly conflicted about this change as that now more or less
+> > > implicitly drops the const. So I'm wondering if it wouldn't be better to
+> > > either create a function specifically for const pointers or to just
+> > > open-code it in the instance above.
+> > > 
+> > > I guess we could also convert this to a macro. Then at least there
+> > > wouldn't be an explicit and potentially misleading const-conversion
+> > > indicated in the function signature.
+> > 
+> > This is an intermediate step as far as I know since moving container_of to
+> > recognize const is a bit noisy right now. I guess you can find a discussion
+> > on the topic between Greg and Sakari.
 > 
-> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
-> ---
-
-Where is the change log that I requested for v2? A change log helps reviewers to
-focus their attention and can save them time by allowing them to skip parts they
-already have reviewed.
-
-Again patman can come to your help:
-
-Commit-changes: 2
-- <change 1>
-- <change 2>
-
-Commit-changes: 3
-- none (<= example)
-
->  arch/arm64/boot/dts/qcom/Makefile             |   2 +
->  .../dts/qcom/sc7280-herobrine-zombie-lte.dts  |  15 +
->  .../boot/dts/qcom/sc7280-herobrine-zombie.dts |  15 +
->  .../dts/qcom/sc7280-herobrine-zombie.dtsi     | 310 ++++++++++++++++++
->  4 files changed, 342 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+> Thanks! I assume you are referring to the following?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index afe496a93f94..7b0644a39062 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -114,6 +114,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1-lte.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-> new file mode 100644
-> index 000000000000..2f1da87e5005
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
+> 	https://lore.kernel.org/lkml/4218173bd72b4f1899d4c41a8e251f0d@AcuMS.aculab.com/T/
+> 
+> As far as I can tell this is only a warning in documentation, not
+> compile time (which would probably be impossible?).
+> 
+> As I've said I'd be fine with converting the function to a macro (and
+> preferably adding a similar warning like the one proposed in that
+> thread). The point that irks me up is just that, as proposed, the
+> function signature would now advertise a conversion that should never be
+> happening.
+> 
+> Having two separate functions would create a compile-time guarantee, so
+> I'd prefer that, but I can understand if that might be considered too
+> noisy in code. Or if there is a push to make container_of() emit a
+> compile-time warning I'd also be perfectly happy with converting it to a
+> macro now as that'd alleviate the need for functions in the future.
 
-nit: add an empty line here
+Can't we do:
 
-> +/dts-v1/;
-> +
-> +#include "sc7280-herobrine-zombie.dtsi"
-> +#include "sc7280-herobrine-lte-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Zombie with LTE";
-> +	compatible = "google,zombie-sku512", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-> new file mode 100644
-> index 000000000000..3fa3d441991e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
+static inline const struct ssam_device *to_ssam_device(const struct device *d)
+{
+	return container_of(d, const struct ssam_device, dev);
+}
 
-You deleted an empty line here, instead of removing the unnecessary '/dts-v1/;'
-entry from the .dtsi as requested.
-
-> +/dts-v1/;
-> +
-> +#include "sc7280-herobrine-zombie.dtsi"
-> +#include "sc7280-herobrine-wifi-sku.dtsi"
-> +
-> +/ {
-> +	model = "Google Zombie";
-> +	compatible = "google,zombie", "qcom,sc7280";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-> new file mode 100644
-> index 000000000000..15832620ff5d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-> @@ -0,0 +1,310 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Zombie board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +/dts-v1/;
-
-Please drop the above line as requested in the review of v2.
