@@ -2,93 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EDDD634D3F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 02:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6530F634D58
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 02:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235289AbiKWBhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Nov 2022 20:37:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
+        id S234320AbiKWBmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Nov 2022 20:42:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234070AbiKWBhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 20:37:24 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709879824F;
-        Tue, 22 Nov 2022 17:37:23 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id n17so15530466pgh.9;
-        Tue, 22 Nov 2022 17:37:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=57QTDQNjua4bD17eBQRGR4QYAKmDZiaeZv3y3ThjHNA=;
-        b=AJd4p4Y1GJ2PPHHqMJkt2vAn6ERqJlfv48oiJrZolP8/Sh1CAzdLzBPA6Y9SygNMOB
-         ZL09xzKfYY7O9Doh92VB3jb6Ja8HBaQeBTEaB8nC72ZjmyawK/usRw5XgujG3BFx/tAa
-         YQzpVS/GviFMu850709iF5BIFlEAro2HnvijgpS0DgkaoVdPf+crlJ8hgf6xE8Hefq+w
-         79hHmd2FIBoMnyNG0wJ0UGHjyN8DYJcXF/xPRlPXnE/3S7V0L3QNV1H73/xPNO9zBSaj
-         Pg4w7ZIQmKiJxfxA9pfQlebDCPWdCV3XIz9WLiDa5A8wWXQqx8dPEJlxFOfUf9f5WHlm
-         xytw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=57QTDQNjua4bD17eBQRGR4QYAKmDZiaeZv3y3ThjHNA=;
-        b=Xp+xVKZiv7dMq3egI49uxxxbvYedqyTHuitrzxA6GyAq60sVbFtjCG2c9pZXqrKjCc
-         QB8BbTxH25GIuBQoQkh/uYV/OsJoh6g1ZgZ7HtuSt5tLXPIeu8wduJk1El4S4TO/ph5u
-         dsfB1siKCOyUh7fSNxpPWEnUva8PJPpHvEmCF+f9cagh5mFpSo/y4XDL2qUsi/PQ+3XV
-         SnpsELKi9fwYWASuLCDlAGTpNhP//pQFLr59VU/Wfu+RNpjYZFsO2sxjP8jNl7NoCG9C
-         HI/l9lAbg51TeW1lKP2aRR86wjGWnfejofeyGOf/l4niZDyvBOVe3dJiN8qct/30/Hpu
-         hSqQ==
-X-Gm-Message-State: ANoB5pkbuQpHHvRO7TmK28EVTEO7K1Y2EIuioOwe9RjrEmjKoDbQRsyV
-        WYdybXaTHipy/RRi5Bigbow=
-X-Google-Smtp-Source: AA0mqf547JrxZeSVmkQLdlrpalzLSYM74m3LOUHFPzZ3vcYEWkifg+t/S5X1eHUvslK9HNQURfIwrg==
-X-Received: by 2002:a63:de14:0:b0:477:4a61:eb99 with SMTP id f20-20020a63de14000000b004774a61eb99mr16322572pgg.48.1669167442801;
-        Tue, 22 Nov 2022 17:37:22 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:af8d:6047:29d5:446c])
-        by smtp.gmail.com with ESMTPSA id c4-20020a17090a674400b002189ab866bfsm204545pjm.5.2022.11.22.17.37.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Nov 2022 17:37:22 -0800 (PST)
-Date:   Tue, 22 Nov 2022 17:37:17 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        linux-watchdog@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v2 9/9] dt-bindings: drop redundant part of title (manual)
-Message-ID: <Y315Ta+ST067iVmh@google.com>
-References: <20221121110615.97962-1-krzysztof.kozlowski@linaro.org>
- <20221121110615.97962-10-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229728AbiKWBl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Nov 2022 20:41:59 -0500
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950D41BE8D
+        for <devicetree@vger.kernel.org>; Tue, 22 Nov 2022 17:41:57 -0800 (PST)
+Received: from kwepemi500024.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4NH3kY67bzzRpRp;
+        Wed, 23 Nov 2022 09:41:25 +0800 (CST)
+Received: from [10.174.179.163] (10.174.179.163) by
+ kwepemi500024.china.huawei.com (7.221.188.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Wed, 23 Nov 2022 09:41:54 +0800
+Message-ID: <027900a6-f983-3356-c83c-a34f8cf0cfec@huawei.com>
+Date:   Wed, 23 Nov 2022 09:41:54 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221121110615.97962-10-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v2] of: overlay: fix memory leak in add_changeset_node()
+Content-Language: en-US
+To:     Frank Rowand <frowand.list@gmail.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <liwei391@huawei.com>
+References: <f0c641ee-b20d-48dd-c65f-2b372eae0b06@huawei.com>
+ <20221121035335.809316-1-zengheng4@huawei.com>
+ <c89af7df-4e6d-3d0b-d58a-1dbbfe43fcff@gmail.com>
+From:   Zeng Heng <zengheng4@huawei.com>
+In-Reply-To: <c89af7df-4e6d-3d0b-d58a-1dbbfe43fcff@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.163]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500024.china.huawei.com (7.221.188.100)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,11 +50,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 12:06:15PM +0100, Krzysztof Kozlowski wrote:
->  Documentation/devicetree/bindings/input/fsl,scu-key.yaml        | 2 +-
->  Documentation/devicetree/bindings/input/matrix-keymap.yaml      | 2 +-
 
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+On 2022/11/23 8:29, Frank Rowand wrote:
+> Hi Zeng,
+>
+> In the future, please do not send a new version of a patch series as a reply
+> to a previous thread.  For people who leave threads collapsed in their email
+> client (like me), there is a good chance that the new patch version email
+> will not be noticed.
+>
+> More below...
 
--- 
-Dmitry
+Get it. Thanks for your suggestion.
+
+With B. R.,
+
+Zeng Heng
+
+>
+> On 11/20/22 21:53, Zeng Heng wrote:
+>
+>> When of_changeset_attach_node() returns fail and tchild is
+>> over of life cycle which is duplicated by __of_node_dup(),
+>> it needs to call of_node_put() to release tchild in
+>> error handle route.
+> This does not seem correct.  I will explain this in the patch v1
+> thread.
+>
+>> Otherwise, there are some memory leak reported about the node:
+>>
+>> unreferenced object 0xffff88810cd1e800 (size 256):
+>>    backtrace:
+>>      kmalloc_trace
+>>      __of_node_dup
+>>      add_changeset_node (inlined)
+>>      build_changeset_next_level
+>>
+>> unreferenced object 0xffff888113721240 (size 16):
+>>    backtrace:
+>>      __kmalloc_node_track_caller
+>>      kstrdup
+>>      __of_node_dup
+>>      add_changeset_node (inlined)
+>>      build_changeset_next_level
+>>
+>> unreferenced object 0xffff88810a38d400 (size 128):
+>>    backtrace:
+>>      kmalloc_trace
+>>      __of_prop_dup
+>>      add_changeset_property
+>>      build_changeset_next_level
+>>
+>> Fixes: 0290c4ca2536 ("of: overlay: rename identifiers to more reflect what they do")
+> You have to dig deeper.  The code that introduced the issue is even older:
+>
+> 7518b5890d8a of/overlay: Introduce DT overlay support
+>
+> -Frank
+>
+>
+>> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
+>> ---
+>>   drivers/of/overlay.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+>> index bd8ff4df723d..a5189a0ec0a3 100644
+>> --- a/drivers/of/overlay.c
+>> +++ b/drivers/of/overlay.c
+>> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
+>>   		of_node_set_flag(tchild, OF_OVERLAY);
+>>   
+>>   		ret = of_changeset_attach_node(&ovcs->cset, tchild);
+>> -		if (ret)
+>> +		if (ret) {
+>> +			of_node_put(tchild);
+>>   			return ret;
+>> +		}
+>>   
+>>   		target_child.np = tchild;
+>>   		target_child.in_livetree = false;
