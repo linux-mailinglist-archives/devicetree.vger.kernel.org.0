@@ -2,54 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AE71636C6B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:34:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B24D6636C6D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 22:35:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbiKWVeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 16:34:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49532 "EHLO
+        id S238466AbiKWVf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 16:35:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238411AbiKWVeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:34:17 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD2DA4163;
-        Wed, 23 Nov 2022 13:34:16 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDEB161F32;
-        Wed, 23 Nov 2022 21:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3D8C433D6;
-        Wed, 23 Nov 2022 21:34:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669239255;
-        bh=ttMnqx4iEKEd6geGNacCiYRbZj8zxa04+xKggspTI3U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pdX0/svkQ/HYg3xS3rH6GcyUNRLwoipJuiIoygPCKDNw+pLtkul/tX757vACpYGtR
-         MpvHKe6k1Tb+iT91JVu4FK3toFOR4Az9ePc6k0aa94gQ1+ix+KqTbFDrieh+wK/gJc
-         Ppv9XHefhHc3s2gtDMADjnMc7oHB10KYGHKygBkaeflbErUVlML+bbop6qe7ZG8vFX
-         Pbu9mvMSPje3BJilqEGydf34aXaSS6QuG2ZDWL0i1b0IT2lvOQS+qHHSu+dByXDIms
-         qUILaMekxYgX4AkuAZkZBaZRG+7Kf7m/DpCGsCk58TtYVqOOv7PBP4rIZSJqS5fpgZ
-         aylWlicVQFkXQ==
-Date:   Wed, 23 Nov 2022 21:34:10 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     daire.mcnamara@microchip.com
-Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 3/9] PCI: microchip: Enable event handlers to access
- bridge and ctrl ptrs
-Message-ID: <Y36R0jXXx6AwrLub@spud>
-References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
- <20221116135504.258687-4-daire.mcnamara@microchip.com>
+        with ESMTP id S238411AbiKWVfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 16:35:24 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225B5A7C3E
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:35:24 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-39451671bdfso161632447b3.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 13:35:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/zxUg/3ClqWga+7Ed6StA1cm4QFeF6wTlClAy8FmIzU=;
+        b=RM3VeqxfkFIy8zz8Nl4T3pjNDIYv8xVYnY8rVzE53vCSoGEYJ0HflBsnVQ3Wh4oJT2
+         U5mYOFXNU+C6z2s4ZQf6JUf6MP/w5O0Llsf2RXwDKGS7X+oEKxoNtNPaTuX41bzoWac2
+         BybSWzGu4u5ibNrDdRtumvHaVcJLYdIRgUWuNJq66dwydaIPJcusUZ4Aq3Syj7F/HIC7
+         S9ltlqBpeQzsrchmpEM8I3NgX3751PlOY1/cb9UUp34IfGSKGYg+dFvhSziPn+OEE+2D
+         tpVbj+jNkKPUtg+FB3RXgkJtGk6JdO5yP/Jr4oL3vKvv3I8UtmyZHspDN5/WwXvKzLYw
+         mkRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/zxUg/3ClqWga+7Ed6StA1cm4QFeF6wTlClAy8FmIzU=;
+        b=cMQWhBbs1784BWSJXCxKmqQ63ik+jS104uGoavKBfb+Ek5wQ1TJB0oJMsLZyhld9YM
+         0NlWa9KEHEJJvRqV0HvuKkxBi5PFyPTe9HNIQ9moXza74E2J2daroSkncSwpHt2KitME
+         Ov1LHMSeHBJ1FyUd7Fs9cGmBI4D8d1cPpO9mJSta258u93ecoBOMU2x3W8u4hYO+/hUk
+         iBDLQ56MvAU2hpTOF65xyfmUFoKXICiBuB3ds+zgFH/ZHIj5t4yV5PcGhx4L3KUNXXP/
+         7mm6x/mHS1xmHrlMRl9Ix870r7HZIMtxi1muHUFdEdIcJay3vCuPpZzPBoe+1CoOkqGq
+         ouQQ==
+X-Gm-Message-State: ANoB5pkNNU9oLNtXM1wo+rXlDWWJd6eztmTzV7Id50SBSJEehBFxQ25I
+        iAiaqd3/r2Pl44wZ06TcXHi1lvOYsdO6IBiPTtnxHA==
+X-Google-Smtp-Source: AA0mqf4DAxvv5I96oWrIjGntJqn8cl3w0Gig1toUsFFzNHH6W/jvXb9tymyP4gjzy3MKGT3r0P6dywTTL64+amTtDR8=
+X-Received: by 2002:a81:3855:0:b0:38b:17c4:4297 with SMTP id
+ f82-20020a813855000000b0038b17c44297mr11062402ywa.446.1669239323231; Wed, 23
+ Nov 2022 13:35:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116135504.258687-4-daire.mcnamara@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221119221219.1232541-1-linus.walleij@linaro.org>
+ <20221119221219.1232541-2-linus.walleij@linaro.org> <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
+In-Reply-To: <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 23 Nov 2022 22:35:11 +0100
+Message-ID: <CACRpkdZsxk2MH0AEHE=kpHuikdP35d3_q6wrr3+Yrs2QpZy62A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,112 +72,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Daire,
+On Wed, Nov 23, 2022 at 5:13 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-On Wed, Nov 16, 2022 at 01:54:58PM +0000, daire.mcnamara@microchip.com wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
-> 
-> Minor re-organisation so that event handlers can access both a pointer
-> to the bridge area of the PCIe rootport and the ctrl area of the PCIe
-> rootport.
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+> > Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> > Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+(...)
+>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC.  It might happen, that command when run on an older
+> kernel, gives you outdated entries.  Therefore please be sure you base
+> your patches on recent Linux kernel.
 
-Perhaps explaining why we would want to access both, when we've not
-needed to so far, would be helpful so that this commit message will make
-sense in isolation would be nice. The mechanics of the change seem good
-to me though:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+The people reported by get_maintainers are maybe not on the CC
+line of the patch, but if you look at the mail header they are
+on the Cc: line... because I pass the not immediately relevant people
+to git-send-email rather than add them in the Cc tags.
 
-Thanks,
-Conor.
+> > diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> > index ed23bf94a8e0..69614ab51f81 100644
+> > --- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> > +++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> > @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >
+> >  title: STMicroelectronics STM32 CRYP bindings
+> >
+> > +description: The STM32 CRYP block is built on the CRYP block found in
+> > +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
+> > +  SoC in 2010.
+> > +
+> >  maintainers:
+> >    - Lionel Debieve <lionel.debieve@foss.st.com>
+> >
+> >  properties:
+> >    compatible:
+> >      enum:
+> > +      - st,stn8820-cryp
+> > +      - stericsson,ux500-cryp
+> >        - st,stm32f756-cryp
+> >        - st,stm32mp1-cryp
+> >
+> > @@ -27,6 +33,19 @@ properties:
+> >    resets:
+> >      maxItems: 1
+> >
+> > +  dmas:
+> > +    items:
+> > +      - description: mem2cryp DMA channel
+> > +      - description: cryp2mem DMA channel
+> > +
+> > +  dma-names:
+> > +    items:
+> > +      - const: mem2cryp
+> > +      - const: cryp2mem
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+>
+> Are these all valid for other variants?
 
-> 
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pci/controller/pcie-microchip-host.c | 31 ++++++++++----------
->  1 file changed, 16 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-> index 30153fd1a2b3..a81e6d25e347 100644
-> --- a/drivers/pci/controller/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/pcie-microchip-host.c
-> @@ -654,9 +654,10 @@ static inline u32 reg_to_event(u32 reg, struct event_map field)
->  	return (reg & field.reg_mask) ? BIT(field.event_bit) : 0;
->  }
->  
-> -static u32 pcie_events(void __iomem *addr)
-> +static u32 pcie_events(struct mc_pcie *port)
->  {
-> -	u32 reg = readl_relaxed(addr);
-> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> +	u32 reg = readl_relaxed(ctrl_base_addr + PCIE_EVENT_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -666,9 +667,10 @@ static u32 pcie_events(void __iomem *addr)
->  	return val;
->  }
->  
-> -static u32 sec_errors(void __iomem *addr)
-> +static u32 sec_errors(struct mc_pcie *port)
->  {
-> -	u32 reg = readl_relaxed(addr);
-> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> +	u32 reg = readl_relaxed(ctrl_base_addr + SEC_ERROR_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -678,9 +680,10 @@ static u32 sec_errors(void __iomem *addr)
->  	return val;
->  }
->  
-> -static u32 ded_errors(void __iomem *addr)
-> +static u32 ded_errors(struct mc_pcie *port)
->  {
-> -	u32 reg = readl_relaxed(addr);
-> +	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
-> +	u32 reg = readl_relaxed(ctrl_base_addr + DED_ERROR_INT);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -690,9 +693,10 @@ static u32 ded_errors(void __iomem *addr)
->  	return val;
->  }
->  
-> -static u32 local_events(void __iomem *addr)
-> +static u32 local_events(struct mc_pcie *port)
->  {
-> -	u32 reg = readl_relaxed(addr);
-> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> +	u32 reg = readl_relaxed(bridge_base_addr + ISTATUS_LOCAL);
->  	u32 val = 0;
->  	int i;
->  
-> @@ -704,15 +708,12 @@ static u32 local_events(void __iomem *addr)
->  
->  static u32 get_events(struct mc_pcie *port)
->  {
-> -	void __iomem *bridge_base_addr =
-> -		port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> -	void __iomem *ctrl_base_addr = port->axi_base_addr + MC_PCIE_CTRL_ADDR;
->  	u32 events = 0;
->  
-> -	events |= pcie_events(ctrl_base_addr + PCIE_EVENT_INT);
-> -	events |= sec_errors(ctrl_base_addr + SEC_ERROR_INT);
-> -	events |= ded_errors(ctrl_base_addr + DED_ERROR_INT);
-> -	events |= local_events(bridge_base_addr + ISTATUS_LOCAL);
-> +	events |= pcie_events(port);
-> +	events |= sec_errors(port);
-> +	events |= ded_errors(port);
-> +	events |= local_events(port);
->  
->  	return events;
->  }
-> -- 
-> 2.25.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+The commit message of the patch reads:
+
+> The two properties added are DMA channels and power domain.
+> Power domains are a generic SoC feature and the STM32 variant
+> also has DMA channels.
+
+I think of power domains kind of like resets, clocks or supplies,
+something that is optional.
+
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
+> > +    #include <dt-bindings/arm/ux500_pm_domains.h>
+> > +    cryp@a03cb000 {
+>
+> Drop the example, it's almost the same and difference in one new
+> property does not warrant a new example.
+
+OK I drop it. Thanks for reviewing!
+
+Yours,
+Linus Walleij
