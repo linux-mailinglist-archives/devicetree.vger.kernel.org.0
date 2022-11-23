@@ -2,133 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E05766360E4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D546360F6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 15:02:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238325AbiKWOBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 09:01:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51366 "EHLO
+        id S238146AbiKWOCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 09:02:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238175AbiKWOAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:00:49 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD196DCE7;
-        Wed, 23 Nov 2022 05:56:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669211800; x=1700747800;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=G44bnr+iuPtt+qZ8zu8tlw18X2XouCKtZQHGH+Pp3d4=;
-  b=XexFnTlsUxF1LDTm9dhP/FKYXd7Y9IZWVDCFyd4BKC6oWKXKmaYVDDg1
-   2oz6KbAjyHclfCQPnljs3m+cp+X6MZPwXexdSK70pR9Fd/SGJr52Ggwm9
-   dRPVOHR05Ql09ln6pJ+IyKGuNb2aFdd9Amnxf7A6rMx5N0kHR4t+RnhQA
-   Y+2Wcn6ifBDxVQM1a+a2GrLmXk+J1qb0nkCGXrmX+4xUIdo9HziFzwb/+
-   pXH6OsRyUoa4wam/+jOixVxzVwigAYTA/pC/BzKl/rsNnCH6dPGXUYpb0
-   Y+GaQR9aEGbSatjevBG7lXB/OFmidEK0ZiM0PQ1FbZixGUOE+DB9m5myz
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="293777075"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="293777075"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2022 05:56:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10540"; a="635924172"
-X-IronPort-AV: E=Sophos;i="5.96,187,1665471600"; 
-   d="scan'208";a="635924172"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by orsmga007.jf.intel.com with ESMTP; 23 Nov 2022 05:56:28 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1001)
-        id 994C4128; Wed, 23 Nov 2022 15:56:54 +0200 (EET)
-Date:   Wed, 23 Nov 2022 15:56:54 +0200
-From:   Mika Westerberg <mika.westerberg@linux.intel.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Michael Jamet <michael.jamet@intel.com>,
-        Yehezkel Bernat <YehezkelShB@gmail.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Matthew Wilcox (Oracle)" <willy@infradead.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Ming Lei <ming.lei@redhat.com>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ira Weiny <ira.weiny@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
- const *
-Message-ID: <Y34mpkqds3NEZclU@black.fi.intel.com>
-References: <20221123122523.1332370-1-gregkh@linuxfoundation.org>
- <20221123122523.1332370-3-gregkh@linuxfoundation.org>
+        with ESMTP id S238572AbiKWOCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 09:02:05 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28BA85A39
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:57:10 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso1481461wme.5
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 05:57:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dL/ms0BVBV2/oY4UScUHED3NO3FKIUaK6/18RYZuPxA=;
+        b=ivgk3JNhdWzsOpo+GIpVt6LMMA7Ek5v17Dohgj/LffEcXYE5YqxhXMF2yNkL1XYbPa
+         BJvQO07IqnRZf4Pp2ea7fEopixJnXeOmxbuAz4uuk6+nUkCAY8xa3rKj1PE/AtJMQNXr
+         iSoC502J0s2U5ebAc7PFn5yr828ybdgyU+7ZylT/UrFxV3WKqArqA+eA0FnSuHo+02hx
+         EXwDCXz8rj8CAm0ob0oM5SlhdbXKCtDDRPG4tv3pJ1zqPuhWrflK4CpSGQPQLcIEHD0J
+         XiQ0XpMAdNiz/3fwbU5sOLIvsCARAOQ9/0ZxAzzpGMfQjSRLHud/32OZhGuUInh8uE0c
+         jBpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dL/ms0BVBV2/oY4UScUHED3NO3FKIUaK6/18RYZuPxA=;
+        b=qew+EwmOu87v2eA+Y5UEL0V4lC3rauUnygyqtvdMsltCRmSR7k3mH5YTpHZe9h5yJH
+         dmQZcGKsvHPTn768WNhIuYHHcOv4Z62FCuxjWWeCaUYxLyginVhklkmwWak8V933Qev9
+         G8O7tbmIiYTyf23SMbStw4ba/BNiR2bqoe6gWu00zNEvQRXn1L29SOsb+dduJXsonGY4
+         CJUGdAQDvx0eVdRSIpNHuRwxXBR14jd/rcHY5HI8ANZJeJEZqCAb5TYFKSeYvKhBRT0z
+         VF0p2WHs4F3gGbJgBMDWd6vqgVJw1oCmETyBi5bJODukAuCBDYzQGqcv3szYZ9j50p4H
+         esMw==
+X-Gm-Message-State: ANoB5pmS6/9sqQ8vcNCghyr+7Mn2klXriw2Vjk3tDwXs4XQcAqDyH61h
+        fY2W4YQePShld6xIAsD7ecZZJA==
+X-Google-Smtp-Source: AA0mqf4Zeq+CBUw9DBFNc5fPW9o18lGsw48Qe4aNbIyv85wr3wsW4SN5jRqHDgSwBj8zT9AvZ+0+Qg==
+X-Received: by 2002:a05:600c:2e51:b0:3cf:9f01:620e with SMTP id q17-20020a05600c2e5100b003cf9f01620emr6467998wmf.15.1669211829360;
+        Wed, 23 Nov 2022 05:57:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e551:24c3:152c:7c05? ([2a01:e0a:982:cbb0:e551:24c3:152c:7c05])
+        by smtp.gmail.com with ESMTPSA id n8-20020a05600c4f8800b003cfd64b6be1sm2811870wmq.27.2022.11.23.05.57.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Nov 2022 05:57:08 -0800 (PST)
+Message-ID: <31bdbe7b-b78a-8fc0-602b-fa11004294a7@linaro.org>
+Date:   Wed, 23 Nov 2022 14:57:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221123122523.1332370-3-gregkh@linuxfoundation.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
+ clock driver and bindings
+Content-Language: en-US
+To:     Yu Tu <yu.tu@amlogic.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-2-yu.tu@amlogic.com>
+ <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
+ <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
+ <eb56ed39-cfaa-3368-a2c0-0a4e89440e40@linaro.org>
+ <322262b1-d3db-f190-ef69-f42d5d0522c0@amlogic.com>
+Organization: Linaro Developer Services
+In-Reply-To: <322262b1-d3db-f190-ef69-f42d5d0522c0@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 01:25:21PM +0100, Greg Kroah-Hartman wrote:
-> The uevent() callback in struct device_type should not be modifying the
-> device that is passed into it, so mark it as a const * and propagate the
-> function signature changes out into all relevant subsystems that use
-> this callback.
+On 23/11/2022 14:54, Yu Tu wrote:
+> Hi Neil,
 > 
-> Cc: Jens Axboe <axboe@kernel.dk>
-> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> Cc: Len Brown <lenb@kernel.org>
-> Cc: Stefan Richter <stefanr@s5r6.in-berlin.de>
-> Cc: Wolfram Sang <wsa@kernel.org>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Sean Young <sean@mess.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Maximilian Luz <luzmaximilian@gmail.com>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: Mark Gross <markgross@kernel.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Bard Liao <yung-chuan.liao@linux.intel.com>
-> Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> Cc: Sanyog Kale <sanyog.r.kale@intel.com>
-> Cc: Andreas Noever <andreas.noever@gmail.com>
-> Cc: Michael Jamet <michael.jamet@intel.com>
-> Cc: Mika Westerberg <mika.westerberg@linux.intel.com>
+> On 2022/11/23 21:23, Neil Armstrong wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> Hi,
+>>
+>> On 23/11/2022 12:16, Yu Tu wrote:
+>>> Hi Krzysztof,
+>>>      Thank you for your reply.
+>>>
+>>> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On 23/11/2022 03:13, Yu Tu wrote:
+>>>>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
+>>>>>
+>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>> ---
+>>>>>   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
+>>>>
+>>>> This is v5 and still bindings are here? Bindings are always separate
+>>>> patches. Use subject prefixes matching the subsystem (git log --oneline
+>>>> -- ...).
+>>>>
+>>>> And this was split, wasn't it? What happened here?!?
+>>>
+>>> Put bindings and clock driver patch together from Jerome. Maybe you can read this chat history.
+>>> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
+>>
+>> Jerome was asking you to send 2 patchsets, one with :
+>> - bindings in separate patches
+>> - drivers in separate patches
+>> and a second with DT changes.
+>>
+>> Then when the bindings + clocks patches are merged, a pull request of the bindings
+>> can be done to me so I can merge it with DT.
+>>
+> 
+> I may have misunderstood Jerome's advice.So should I follow the V4 patch format and change as Jerome suggested from V3?
 
-Acked-by: Mika Westerberg <mika.westerberg@linux.intel.com> # for Thunderbolt
+Let's wait for his input on this to see if a v4 is needed now or later.
+
+> 
+>>>
+>>>>
+>>>>
+>>>>>   MAINTAINERS                                   |   1 +
+>>>>>   drivers/clk/meson/Kconfig                     |  13 +
+>>>>>   drivers/clk/meson/Makefile                    |   1 +
+>>>>>   drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
+>>>>>   drivers/clk/meson/s4-pll.h                    |  88 ++
+>>>>>   .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
+>>>>>   7 files changed, 1059 insertions(+)
+>>>>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>>   create mode 100644 drivers/clk/meson/s4-pll.c
+>>>>>   create mode 100644 drivers/clk/meson/s4-pll.h
+>>>>>   create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..fd517e8ef14f
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>> @@ -0,0 +1,51 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Amlogic Meson S serials PLL Clock Controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>>>>> +  - Yu Tu <yu.hu@amlogic.com>
+>>>>> +
+>>>> One blank line.
+>>>
+>>>   I will delete this, on next version patch.
+>>>
+>>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: amlogic,s4-pll-clkc
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: xtal
+>>>>> +
+>>>>> +  "#clock-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +  - clocks
+>>>>> +  - clock-names
+>>>>> +  - "#clock-cells"
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    clkc_pll: clock-controller@fe008000 {
+>>>>> +      compatible = "amlogic,s4-pll-clkc";
+>>>>> +      reg = <0xfe008000 0x1e8>;
+>>>>> +      clocks = <&xtal>;
+>>>>> +      clock-names = "xtal";
+>>>>> +      #clock-cells = <1>;
+>>>>> +    };
+>>>>
+>>>>
+>>>>> +#endif /* __MESON_S4_PLL_H__ */
+>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..345f87023886
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>
+>>>> This belongs to bindings patch, not driver.
+>>>>
+>>>>> @@ -0,0 +1,30 @@
+>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>>>> +/*
+>>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
+>>>>> + */
+>>>>> +
+>>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>>>>> +
+>>>>> +/*
+>>>>> + * CLKID index values
+>>>>> + */
+>>>>> +
+>>>>> +#define CLKID_FIXED_PLL            1
+>>>>> +#define CLKID_FCLK_DIV2            3
+>>>>
+>>>> Indexes start from 0 and are incremented by 1. Not by 2.
+>>>>
+>>>> NAK.
+>>>
+>>> I remember Jerome discussing this with you.You can look at this submission history.
+>>> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
+>>
+>> Historically we did that by only exposing part of the numbers, controlling which
+>> clocks were part of the bindings.
+>>
+>> But it seems this doesn't make sens anymore, maybe it would be time to put all the
+>> clock ids in the bindings for this new SoC and break with the previous strategy.
+> 
+> That's OK with me. But I don't know if Jerome thinks it's ok?
+
+Let's wait for his input on that aswell.
+
+Neil
+
+> 
+>>
+>> Neil
+>>
+>>>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>> .
+>>
+>> .
+
