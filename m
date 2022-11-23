@@ -2,168 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6945B636CF7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24844636CF0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Nov 2022 23:14:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbiKWWOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 17:14:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37986 "EHLO
+        id S229575AbiKWWOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 17:14:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbiKWWOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:14:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB4C10AD38;
-        Wed, 23 Nov 2022 14:14:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1169F61D85;
-        Wed, 23 Nov 2022 22:14:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E210C433C1;
-        Wed, 23 Nov 2022 22:14:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669241657;
-        bh=IlfNd3xG0lGjgm7fwh3ZoO9MxNH11zL8e7meF/BJR3A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LELmx55Q/1YwJS2GAtTntuVrIasCR4SSyMBZTwyE3I2LhZeVPg3O4J+1m4/iGwNmA
-         Rdsu1YItOzKFOa0qPQIPMZ8qGR8KsuevwlOt2s2MhrJFt2cNh4gNv0RgZo8l4DXcjD
-         9ppKwckhHnNb2Mj653o1U9Q7KU5c/wUfZQAHClnBZ6DdhVD+PEJdgIRolUK+MK8yor
-         RSAEqap47c5SWrYtDajGNuPxr5YEROKY5fFrr26dYK+YzFvxUtMcQ3z4CLMvzhczL2
-         gJ75oU+GDzB+W6ESh0rtEy4412FnSf3kFZAvNxdsTlEUhdyLNXingTeDN2lenhnVq8
-         MvHqrlegCTdIA==
-Date:   Wed, 23 Nov 2022 22:14:12 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     daire.mcnamara@microchip.com, robh@kernel.org
-Cc:     conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org,
-        kw@linux.com, bhelgaas@google.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 9/9] riscv: dts: microchip: add parent ranges and
- dma-ranges for IKRD v2022.09
-Message-ID: <Y36bNE/pG14F9KyY@spud>
-References: <20221116135504.258687-1-daire.mcnamara@microchip.com>
- <20221116135504.258687-10-daire.mcnamara@microchip.com>
+        with ESMTP id S229599AbiKWWOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 17:14:45 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25DB10B42F
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:14:43 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id n189so10023012yba.8
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 14:14:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yxwq700cjgIpgfGXjXVMIWZf+/i54U4hiQu6wwaFrxs=;
+        b=NERkzdTLp+gtlJdbWRZFxyzivY0ZJDPAXdfrGF3m/XML2U8DBM1f9y3bdLAgjKiZn8
+         a2V5OxNDZdSmicHR0Vw2yjHPlWFDCC4yIun+usLgcmKTJw6n4FjYvRAlM4U1S0GaguhK
+         GvFRvouAy/HCKKjynSlpWv5lqkA5xDE/awBDG+0n8wS3M+yA16vT8okceMIwiQIVGgwk
+         cxulXw1lewEXbgR4GCJfE+rEyDVVODX0X8pAQ49ujkduB68QFJCDfQtd9TwO+QdAt6dl
+         9wK2iOGcLfiqo8TB1jUMzOzWqE2LHkAioDTh6SGmTRDJyquX3/viOLFRcnbauKLHHilJ
+         Soew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yxwq700cjgIpgfGXjXVMIWZf+/i54U4hiQu6wwaFrxs=;
+        b=h44ImVIHN7aVETQM3t3vN67IJ9LO1EAPF3feJrIvK0bF3oBjXB2bZoRy2KBvHL5Zxm
+         4wwZvGzylVBYOP4hKk5X/lc2F//CZFMovMP290Y3Dn96+wZKM/nLa5fRBf0QdRnSJqaj
+         sx9xy55pN1NpP5pjKC3t0pHxsEh9UUgHoCKDHig4Ev9D51q5+oLEGEaytLNbnGXChsYw
+         dfU5MLtirwuI+ndu9dM0jOz8zEmmvaJVU0VPhVqjMjw1jlRlaGNzft+BIGGvZ98ub/bV
+         iMJRabIj0LcjGB8TCnwqy/e13LIN0CofY4yMJ1KyNXnqjZceUs0kVo8OfSkpiDQVmFVU
+         vQqw==
+X-Gm-Message-State: ANoB5pliJ+ywUBoLgF/l2MXEmNysnirVmyHD2mmA7NG7/NmAQt/Q/tku
+        oX/FjBt+Zm1vDNBEXfWm11G+zzsRc0rPtg3dxlKWM7YVdBOPDw==
+X-Google-Smtp-Source: AA0mqf4bdwIwAUjV3qYMdxNw8Ige0lynYHKpcKkZxcAuLvYxsMbWkZsSuItzC/6TVTNtDTdGQ7fzuG7GrT5n9w66TJU=
+X-Received: by 2002:a25:acd1:0:b0:6b4:b9e3:c64b with SMTP id
+ x17-20020a25acd1000000b006b4b9e3c64bmr10342450ybd.238.1669241683091; Wed, 23
+ Nov 2022 14:14:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221116135504.258687-10-daire.mcnamara@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221123080414.14005-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221123080414.14005-1-zhuyinbo@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 23 Nov 2022 23:14:31 +0100
+Message-ID: <CACRpkdZ5OJpMFH1Wi31TKQZskQtCmNGyySdkOpouiNW2t_jV6Q@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] gpio: loongson: add gpio driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Rob,
+On Wed, Nov 23, 2022 at 9:04 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
 
-On Wed, Nov 16, 2022 at 01:55:04PM +0000, daire.mcnamara@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> we have replaced the "microchip,matro0" hack property with what was
-> suggested by Rob - create a parent bus and use ranges and dma-ranges in
-> the parent bus and pcie device to achieve the address translations we
-> need. Add the appropriate ranges and dma-ranges for the v2022.09 IKRD
-> so that it remains functional.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-
-This patch was included as demonstration of what the series results in
-DT wise. It's the custom address translation property that you had
-NACKED in [0] but done (we think) in the way that you suggested with an
-extra, middle-man bus. Could you take a look & see if it fits with what
-you requested?
-
-Thanks,
-Conor.
-
-0 - https://lore.kernel.org/linux-riscv/20220902142202.2437658-1-daire.mcnamara@microchip.com/
-
+> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
+> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
+> with other functions. Each GPIO can set input/output and has the
+> interrupt capability.
+>
+> This driver added support for Loongson GPIO controller and support to
+> use DTS or ACPI to descibe GPIO device resources.
+>
+> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
+> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
+> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 > ---
->  .../dts/microchip/mpfs-icicle-kit-fabric.dtsi | 62 +++++++++++--------
->  1 file changed, 35 insertions(+), 27 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> index 1069134f2e12..51ce87e70b33 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-fabric.dtsi
-> @@ -26,33 +26,41 @@ i2c2: i2c@40000200 {
->  		status = "disabled";
->  	};
->  
-> -	pcie: pcie@3000000000 {
-> -		compatible = "microchip,pcie-host-1.0";
-> -		#address-cells = <0x3>;
-> -		#interrupt-cells = <0x1>;
-> -		#size-cells = <0x2>;
-> -		device_type = "pci";
-> -		reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
-> -		reg-names = "cfg", "apb";
-> -		bus-range = <0x0 0x7f>;
-> -		interrupt-parent = <&plic>;
-> -		interrupts = <119>;
-> -		interrupt-map = <0 0 0 1 &pcie_intc 0>,
-> -				<0 0 0 2 &pcie_intc 1>,
-> -				<0 0 0 3 &pcie_intc 2>,
-> -				<0 0 0 4 &pcie_intc 3>;
-> -		interrupt-map-mask = <0 0 0 7>;
-> -		clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
-> -		clock-names = "fic1", "fic3";
-> -		ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
-> -		dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x1 0x00000000>;
-> -		msi-parent = <&pcie>;
-> -		msi-controller;
-> -		status = "disabled";
-> -		pcie_intc: interrupt-controller {
-> -			#address-cells = <0>;
-> -			#interrupt-cells = <1>;
-> -			interrupt-controller;
-> +	fabric-pcie-bus {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>,
-> +			 <0x30 0x0 0x30 0x0 0x10 0x0>;
-> +		dma-ranges = <0x0 0x0 0x10 0x0 0x0 0x80000000>;
-> +		pcie: pcie@3000000000 {
-> +			compatible = "microchip,pcie-host-1.0";
-> +			#address-cells = <0x3>;
-> +			#interrupt-cells = <0x1>;
-> +			#size-cells = <0x2>;
-> +			device_type = "pci";
-> +			reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
-> +			reg-names = "cfg", "apb";
-> +			bus-range = <0x0 0x7f>;
-> +			interrupt-parent = <&plic>;
-> +			interrupts = <119>;
-> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,
-> +					<0 0 0 2 &pcie_intc 1>,
-> +					<0 0 0 3 &pcie_intc 2>,
-> +					<0 0 0 4 &pcie_intc 3>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			clocks = <&ccc_nw CLK_CCC_PLL0_OUT1>, <&ccc_nw CLK_CCC_PLL0_OUT3>;
-> +			clock-names = "fic1", "fic3";
-> +			ranges = <0x3000000 0x0 0x8000000 0x30 0x8000000 0x0 0x80000000>;
-> +			dma-ranges = <0x3000000 0x10 0x0 0x0 0x0 0x0 0x80000000>;
-> +			msi-parent = <&pcie>;
-> +			msi-controller;
-> +			status = "disabled";
-> +			pcie_intc: interrupt-controller {
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +				interrupt-controller;
-> +			};
->  		};
->  	};
->  
-> -- 
-> 2.25.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Change in v6:
+
+This is way better :)
+
+I guess you notice how the driver gets smaller and smaller.
+This is a good sign!
+
+> +static int loongson_gpio_request(
+> +                       struct gpio_chip *chip, unsigned int pin)
+> +{
+> +       if (pin >= chip->ngpio)
+> +               return -EINVAL;
+> +
+> +       return 0;
+> +}
+
+Drop this altogether as discussed in my other reply.
+
+> +static inline void __set_direction(struct loongson_gpio_chip *lgpio,
+> +                       unsigned int pin, int input)
+> +static void __set_level(struct loongson_gpio_chip *lgpio, unsigned int pin,
+> +                       int high)
+
+I missed this before. Also the use of __underscore for inner functions
+is a bad habit IMO (because __underscore is also used for compiler
+primitives such as __init which is confusing) The signature of these
+functions is too generic. Name them loongson_commit_direction() or
+loongson_commit_level() or something.
+
+> +static int loongson_gpio_get_direction(
+> +                               struct gpio_chip *chip, unsigned int pin)
+
+thanks for implementing this!
+
+> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+> +               ret = bgpio_init(&lgpio->chip, dev, 8,
+> +                               LOONGSON_GPIO_IN(lgpio),
+> +                               LOONGSON_GPIO_OUT(lgpio), 0,
+> +                               LOONGSON_GPIO_OEN(lgpio), NULL, 0);
+> +               if (ret) {
+> +                       dev_err(dev, "unable to init generic GPIO\n");
+> +                       return ret;
+> +               }
+> +               lgpio->chip.ngpio = ngpios;
+
+Neat!
+
+> +               lgpio->chip.base = 0;
+
+Drop this. It is good that the base is unpredictable so
+people don't start to rely on it. (drivers/gpio/TODO)
+
+> +       rval = device_property_read_u16_array(dev, "gsi_idx_map", NULL, 0);
+
+But this gsi_idx_map is missing from your device tree bindings,
+is it not?
+
+Or what am I missing here? Sorry I might overlook something...
+
+> +static int loongson_gpio_probe(struct platform_device *pdev)
+> +{
+> +       void __iomem *reg_base;
+> +       struct loongson_gpio_chip *lgpio;
+> +       struct device_node *np = pdev->dev.of_node;
+> +       struct device *dev = &pdev->dev;
+> +
+> +       lgpio = devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
+> +       if (!lgpio)
+> +               return -ENOMEM;
+> +
+> +       loongson_gpio_get_props(pdev, lgpio);
+> +
+> +       lgpio->p_data = device_get_match_data(&pdev->dev);
+
+lgpio->p_data = device_get_match_data(dev);
+
+
+> +static int __init loongson_gpio_setup(void)
+> +{
+> +       return platform_driver_register(&loongson_gpio_driver);
+> +}
+> +postcore_initcall(loongson_gpio_setup);
+
+Why does this have to be postcore_initcall()?
+
+Yours,
+Linus Walleij
