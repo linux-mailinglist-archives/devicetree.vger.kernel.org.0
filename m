@@ -2,110 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1152637F97
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 20:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8242A637F78
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 20:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbiKXTSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 14:18:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
+        id S229672AbiKXTO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 14:14:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiKXTSb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 14:18:31 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAB9A623B5;
-        Thu, 24 Nov 2022 11:18:29 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id vp12so4671202ejc.8;
-        Thu, 24 Nov 2022 11:18:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kWoRrNDgHDvAiElkaM9ey/BkEhFNRR4kcdpp5ftZc90=;
-        b=G6I0pdiG9+FJ7AxQvCRN/NCC8/HyD532a5M1tG0c8SFT1MMsNlNonirbr35ya3fR3r
-         iLSMHGD9O6zi6qyr7i52EQSIUFiCNdRI8IEDO38DEu9lI7EQ/gUlC1SAmbfWV69Q59Gj
-         3fSriUJ0BIPNLg6zDRx5PFXqzZekfhMX8hYdMoR3mVXpe6HBFBbOGFizMVwAdwqQ5Yl0
-         Wd63uFtzx7e1A7Hb1bCKue9IybJXneMGgvlDbGBDzbzVIzYYowCZ47pCvtFmrjOJXbJo
-         Xwqd8OQEkiB+25DrGT6GycGV/WF/HqgGXqXEX+7VnF/GNai1+R51464iBbVlLnem2Juh
-         ASHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kWoRrNDgHDvAiElkaM9ey/BkEhFNRR4kcdpp5ftZc90=;
-        b=PFVms1/wJH3wZKjM+edKyIvstxZIzbu5OD3w+sz7dQUcUkhskiZq1TZmtNKd0P5gqY
-         cTv2k8yMPoTCkkOCJNyKM6+280tJBtERfoViKecnGAVeLWU04zK3gTzE0OIHg9ueYukT
-         K+xj7m7J2jPm+27lDK/4l4bqxdKz4CvODR1Ix/wZj3sm+iOYItfWag57ZG2x3ojWereb
-         NsBFAmG0IgK2aS6bm7suxbHZfJO1wYH+T41XLbaP7s34PH6sDicMEMfZe4FkK6jqwqeQ
-         d6EhOlP2UVsHgvhT7hh3gX8XnyPFGhOV+zi81P+aLR+ZsBtsERoIiO9iyN7Ia+A1ZNCg
-         nW2w==
-X-Gm-Message-State: ANoB5pnseS8j1iDoR7ZU0pUdz6QDAmrLURDshZIiAEpq32mCdIBtbHF0
-        1MYW2V0cRNrToKHw8aJJ7h64BTJI7ONruOvHA4E=
-X-Google-Smtp-Source: AA0mqf4WrZ/GykWiZqfe3oroUEIfEHqNDi9z0Lnip9PJsnUGxVHzil2Hb+kFxbeVynw2bI+m/BgujuTA2L1DS5ybuk8=
-X-Received: by 2002:a17:906:560c:b0:7ae:5884:81b1 with SMTP id
- f12-20020a170906560c00b007ae588481b1mr14232995ejq.155.1669317508056; Thu, 24
- Nov 2022 11:18:28 -0800 (PST)
+        with ESMTP id S229670AbiKXTOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 14:14:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB39E1204;
+        Thu, 24 Nov 2022 11:14:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B7A9EB828CB;
+        Thu, 24 Nov 2022 19:14:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E439EC433C1;
+        Thu, 24 Nov 2022 19:14:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669317271;
+        bh=Ix8+P7Duczx/NjwDDYp7hN9nqdH0RXpYRoK993t8pps=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=J+554nGU5qJQ8g751un1+LO0aKSS1XjaxvpxXtKZjq8pRMZpBzouvsCORUguLGxE2
+         smrlFUZPfssZ9ggUwZRzAbhc3EIt8qEWRmo1iSqTF3mAM1QCgl37SBvGuBcp6vogBC
+         DdcWYmvaOOFzofADwmtaCLYfQt9lzz4pu0NL1H9c1RSYyNRDwgz2uf2F0/o6JcvgmV
+         /TeL0njVAfl5/m5pCE0qyUDc18w0mxETcNIYD4/vZNotXQGtXbmU5/8/VXqeu0hybn
+         k9Q6LGr684uh2L9oH3i8DGQxZld5WvWDg2JDgdr9lv1Jb8dwS4YZUhTJ9n6k3v8+12
+         Oydl1w6srMzNg==
+Date:   Thu, 24 Nov 2022 19:27:05 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     mario.tesi@st.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, lorenzo.bianconi@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH 0/2] add support for ISM330IS
+Message-ID: <20221124192705.1cc85674@jic23-huawei>
+In-Reply-To: <cover.1669279604.git.lorenzo@kernel.org>
+References: <cover.1669279604.git.lorenzo@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <3689906.Lt9SDvczpP@diego>
-In-Reply-To: <3689906.Lt9SDvczpP@diego>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 24 Nov 2022 19:18:01 +0000
-Message-ID: <CA+V-a8uQh=q8ksTe8ttHkJThcoYtggSU-AXUqPGYnam0CiqZWw@mail.gmail.com>
-Subject: Re: [PATCH v4 5/7] riscv: mm: dma-noncoherent: Pass direction and
- operation to ALT_CMO_OP()
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+On Thu, 24 Nov 2022 09:49:26 +0100
+Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-Thank you for the review.
+> Add support for ISM330IS IMU mems sensor
+> https://www.st.com/resource/en/datasheet/ism330is.pdf
 
-On Thu, Nov 24, 2022 at 6:29 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Am Donnerstag, 24. November 2022, 18:22:05 CET schrieb Prabhakar:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Pass direction and operation to ALT_CMO_OP() macro.
-> >
-> > This is in preparation for adding errata for the Andes CPU core.
->
-> can you provide more explanation why that is necessary please?
-> I guess you want to use different cache operations for some cases?
->
-Yes basically to call different cache operations based on the dir and
-operations (and also this allows to export just one function to handle
-the errata). I'll update the commit message in the next version.
+Looks safe enough for a very late application in the cycle as it'll
+get only a day or so in next before I send the final pull request.
+Applied
 
-Cheers,
-Prabhakar
+> 
+> Lorenzo Bianconi (2):
+>   iio: imu: st_lsm6dsx: add support to ISM330IS
+>   dt-bindings: iio: imu: st_lsm6dsx: add ism330is
+> 
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+>  drivers/iio/imu/st_lsm6dsx/Kconfig                        | 4 ++--
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h                   | 2 ++
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 8 ++++++--
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c               | 5 +++++
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c               | 5 +++++
+>  6 files changed, 23 insertions(+), 4 deletions(-)
+> 
+
