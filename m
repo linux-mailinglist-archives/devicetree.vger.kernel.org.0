@@ -2,121 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4331E63752A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95CA3637536
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbiKXJ3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 04:29:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
+        id S229615AbiKXJcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 04:32:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiKXJ33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:29:29 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5474411A72C
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:29:28 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id j4so1731894lfk.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:29:28 -0800 (PST)
+        with ESMTP id S229612AbiKXJb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:31:59 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 781C911E714;
+        Thu, 24 Nov 2022 01:31:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KV6XnQXIA2eA5M0tB2UZYyfS4gcyR4tDitrUAvHiG64=;
-        b=ijhZHfh2jZL9aCjySXnzWT2QAriwMLx4nzWxqr7Ct5pDlOBP8KRkshxp0DOqDNJByO
-         7L1gG3ediEGbqNZtXkmUiS5f1BBtHFUMjohZaBYuFBLnMSR83bIKYosH3sATN+cxrgGO
-         UnN91unOeAvkBjwP38VBGdL719rlnVhWSz19vIgv3TpWkfszBwLMHXC3QBP3KlQl61K4
-         zcnlehxA1IvqfZjZ3cZFQWcBUk3CI5nTBO4RYimq3rWiFM2tBV1r210Z21h0LI/X9qst
-         8g/5KaCMFzw7VGSWbi1epbLxQfjNrBOl3eVbOhuEIsRn8BVQH4Ani0vTU47nD7G53EbX
-         I5NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KV6XnQXIA2eA5M0tB2UZYyfS4gcyR4tDitrUAvHiG64=;
-        b=6H+nHkA3MztBa2i2jP6ui3ygqYannW2PejVaUOqtkdC8/WG4yT6NsgDXTOVhL5Ri+G
-         WqI7Gd01/eGc+qplgbzyi9qUxPY52dSH/+NfE6PLkihuWXC9sIdYgXpRwYhkQWHCCr2t
-         1awyl83DBLLWONYzV2fTb5iRxndGNQHUdD1YjdWwmQiPze+A74ghwp4asZ1EVHN/S1to
-         Lgn2K+4NTf85Lu2ff09NRkX7m6lz9hkLg57P4Psv4Jc1AAHdSxAHFaboImCCVdr1gzGN
-         qzvGLl6fqYKXSzKsPIb5S4f7rEaal1gWoAqR2gx4E7dj/c1pt3qiPmbOSlefjLliVHcR
-         z+DA==
-X-Gm-Message-State: ANoB5plV74Z1t/Cynf6PTOZ4oVKL8z0ER6j+ymM9bnyb9doka9iG61SS
-        mp6DUhK4QhQaq5+Cml6hG9JrCA==
-X-Google-Smtp-Source: AA0mqf4FNz77r6ziMbhgr+xM19T1ZqJEOgq5L657yKXbaw70s+u1xJJYAzZYPPiE7MXfud8Zuu2ovg==
-X-Received: by 2002:ac2:4bd0:0:b0:4af:ad36:7a85 with SMTP id o16-20020ac24bd0000000b004afad367a85mr10488664lfq.617.1669282166656;
-        Thu, 24 Nov 2022 01:29:26 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k3-20020a2ea283000000b0027970c9aea4sm54673lja.57.2022.11.24.01.29.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 01:29:26 -0800 (PST)
-Message-ID: <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
-Date:   Thu, 24 Nov 2022 10:29:24 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669282317; x=1700818317;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=NWlBaxQt3W9WLLicNYqXQv+njBhdZsXbYEamMElvhBg=;
+  b=TrlWeY5c+Gf5vHSGEA5X/TO85o/Ic1tB/hT5OQmPv/fTCQVx4ozVB8b0
+   HSiGVY96OD7chy9yBfUu4okeHL9+W2tY7heCEcKzh/Jp5E5/jfY3J8eCW
+   lkg+4sKkJwBX+xopQIn0IyQ3IX7vfB5GgjSuCBLCycX/SQaK4v3Pe+bNX
+   mbyrsUL8mrPW9qHX2/YKWXKW/xjn5mo2ctM5hfi9BosfY5iE/wZbUU1Cf
+   6JZR2KZBhRXhMD75PsNr8w5oUWrVEpTGMWHDvYpkRo1PAUK5uqNkNVLT1
+   z12UDDywuQ6u9ip6af+tDguXWxd9+V4InjHFzuMuuihJJH1B8kkj8AqAU
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27556206"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Nov 2022 10:31:55 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 24 Nov 2022 10:31:55 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 24 Nov 2022 10:31:55 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669282315; x=1700818315;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=NWlBaxQt3W9WLLicNYqXQv+njBhdZsXbYEamMElvhBg=;
+  b=FUo0INdzNkSLDoipxieVO3+38xrbJWWzyhpz9SQXic3zgoW4PQbpy+Fg
+   EoOXtBPZDsLhRWMkrZNzQKlgBCaLUpLi9HlKk8EgDduNUe+gq58e0ozpr
+   Ta/b0196tZaCywXmaQP2kQQeH+mTy7/WwkzaDc8DYb4e/l3FaUCZLv/D/
+   fw55DK9VJvPq4tKFg9Qo/F2dfDEaXbKNbycM0/L2NU4XjVLN5QKAsH2pg
+   SnemQDZcPNELqve/xz1hUQjMwIh/E32Sti98Z6C2fITXhHcIlJdunSsM2
+   CBpNTN9+CZEyTzszSzyjGDvUtLZ/xuw7VXZeQiRA/QDP39GlC8ik4s9Qb
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27556205"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Nov 2022 10:31:55 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 0E87A280056;
+        Thu, 24 Nov 2022 10:31:55 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        linux-media@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 2/2] media: i2c: ov9282: Add support for regulators.
+Date:   Thu, 24 Nov 2022 10:31:53 +0100
+Message-ID: <834648869.0ifERbkFSE@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221005152018.3783890-3-dave.stevenson@raspberrypi.com>
+References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com> <20221005152018.3783890-3-dave.stevenson@raspberrypi.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
-Content-Language: en-US
-To:     =?UTF-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Bob Moragues <moragues@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
-        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
-        Jason.Huang@ecs.com.tw
-References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
- <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 05:30, 楊宗翰 wrote:
-> Hi Reviewers,
+Hello Dave,
+
+Am Mittwoch, 5. Oktober 2022, 17:20:18 CET schrieb Dave Stevenson:
+> The sensor takes 3 supply rails - AVDD, DVDD, and DOVDD.
 > 
-> I really appreciate your kind guide for this task, Matthias is right, I am
-> newer to upstream kernel development.
-> There are a lot of thing I need to learn, so I just try my best do not ask
-> stupid questions. (please forgive me)
+> Add hooks into the regulator framework for each of these
+> regulators.
 > 
-> 1.
-> Because I missed V2, V3 changed log, so I supply in V4 commit, and using V#
-> to note which version's change.
-> 
-> 2.
-> I notice Kryzysztof say he didn't in cc mail loop at beggin, and below is
-> my updated mail list:
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > ---
-> Series-to: LKML <linux-kernel@vger.kernel.org>
-> Series-cc: Douglas Anderson <dianders@chromium.org>
-> Series-cc: Bob Moragues <moragues@chromium.org>
-> Series-cc: Harvey <hunge@google.com>
-> Series-cc: Stephen Boyd <swboyd@chromium.org>
-> Series-cc: Matthias Kaehlcke <mka@chromium.org>
-> Series-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Is there anyone I missed?
+>  drivers/media/i2c/ov9282.c | 38 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+> index 2e0b315801e5..699fc5b753b4 100644
+> --- a/drivers/media/i2c/ov9282.c
+> +++ b/drivers/media/i2c/ov9282.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/i2c.h>
+>  #include <linux/module.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> 
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-fwnode.h>
+> @@ -55,6 +56,14 @@
+>  #define OV9282_REG_MIN		0x00
+>  #define OV9282_REG_MAX		0xfffff
+> 
+> +static const char * const ov9282_supply_names[] = {
+> +	"avdd",		/* Analog power */
+> +	"dovdd",	/* Digital I/O power */
+> +	"dvdd",		/* Digital core power */
+> +};
+> +
+> +#define OV9282_NUM_SUPPLIES ARRAY_SIZE(ov9282_supply_names)
+> +
+>  /**
+>   * struct ov9282_reg - ov9282 sensor register
+>   * @address: Register address
+> @@ -128,6 +137,7 @@ struct ov9282 {
+>  	struct media_pad pad;
+>  	struct gpio_desc *reset_gpio;
+>  	struct clk *inclk;
+> +	struct regulator_bulk_data supplies[OV9282_NUM_SUPPLIES];
 
-These are not correct addresses and not complete list of them. Don't
-invent the entries, don't add there some weird addresses.
+Please add documentation for supplies.
 
-Use get_maintainers.pl. That's it. Nothing more, nothing less.
+>  	struct v4l2_ctrl_handler ctrl_handler;
+>  	struct v4l2_ctrl *link_freq_ctrl;
+>  	struct v4l2_ctrl *pclk_ctrl;
+> @@ -767,6 +777,18 @@ static int ov9282_detect(struct ov9282 *ov9282)
+>  	return 0;
+>  }
+> 
+> +static int ov9282_configure_regulators(struct ov9282 *ov9282)
+> +{
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < OV9282_NUM_SUPPLIES; i++)
+> +		ov9282->supplies[i].supply = ov9282_supply_names[i];
+> +
+> +	return devm_regulator_bulk_get(ov9282->dev,
+> +				       OV9282_NUM_SUPPLIES,
+> +				       ov9282->supplies);
+> +}
+> +
+>  /**
+>   * ov9282_parse_hw_config() - Parse HW configuration and check if supported
+> * @ov9282: pointer to ov9282 device
+> @@ -803,6 +825,12 @@ static int ov9282_parse_hw_config(struct ov9282
+> *ov9282) return PTR_ERR(ov9282->inclk);
+>  	}
+> 
+> +	ret = ov9282_configure_regulators(ov9282);
+> +	if (ret) {
+> +		dev_err(ov9282->dev, "Failed to get power regulators\n");
 
-Best regards,
-Krzysztof
+dev_err_probe seems sensible here.
+
+> +		return ret;
+> +	}
+> +
+>  	rate = clk_get_rate(ov9282->inclk);
+>  	if (rate != OV9282_INCLK_RATE) {
+>  		dev_err(ov9282->dev, "inclk frequency mismatch");
+> @@ -874,6 +902,12 @@ static int ov9282_power_on(struct device *dev)
+>  	struct ov9282 *ov9282 = to_ov9282(sd);
+>  	int ret;
+> 
+> +	ret = regulator_bulk_enable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators\n");
+> +		return ret;
+> +	}
+> +
+>  	usleep_range(400, 600);
+> 
+>  	gpiod_set_value_cansleep(ov9282->reset_gpio, 1);
+> @@ -891,6 +925,8 @@ static int ov9282_power_on(struct device *dev)
+>  error_reset:
+>  	gpiod_set_value_cansleep(ov9282->reset_gpio, 0);
+> 
+> +	regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> +
+>  	return ret;
+>  }
+> 
+> @@ -909,6 +945,8 @@ static int ov9282_power_off(struct device *dev)
+> 
+>  	clk_disable_unprepare(ov9282->inclk);
+> 
+> +	regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> +
+>  	return 0;
+>  }
+
+Despite the nits above
+Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+
 
