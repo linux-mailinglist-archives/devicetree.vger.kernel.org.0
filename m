@@ -2,76 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA149637703
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75178637706
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:02:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbiKXLBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:01:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54238 "EHLO
+        id S229849AbiKXLC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:02:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbiKXLBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:01:44 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F235FBA8D
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:01:42 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id g12so2022508lfh.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:01:42 -0800 (PST)
+        with ESMTP id S229683AbiKXLC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:02:26 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE5512520D
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:02:25 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id n7so1910335wrr.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:02:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kd8zQI9wnYru5j50rc+Ckmmg1m5RoBPFttE/lorPY5w=;
-        b=OY9LNDjlBiY9+3MakXwsxkfxLZDTilqyaHG7iKmM2W3oxEZLB4DF5NhAJc/cUzWHx5
-         xaLdXlsVLv86+WahFaiF29wX9zICvj03Rw6mHqvsaZVHYwJcA2ic5IcuGiW7FqXIjmpw
-         k7uqD5F1zHs6ropXo6J+iC5ipLHXeN+njTOT4bAdSQB9rjv2poYmcWyBBMrO4y+DFpkl
-         7wPGjYqGFS5yfhltlTLeiHQur648AInn1kk9cOdH0Mw40DS/jK2SafKLt9UasueRB8nI
-         OqIXQwvceaHssBVUB2kPMhb6il6vNLtBgAy63wILdzhRHOSzBILuYHdtskSB6kS6u7pL
-         HvKg==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qu3xB7BDAsHZerZW0pGAagjp7CtoVgai761hm4h5lQU=;
+        b=Z8zCGR++Ue7UFFaHxzioTXIV4JWkztILoC3/z7OUDG6lIRcHovoFrqihk+6onf35Ws
+         nhJs27sLIgKSf6ahrCMqxFa6i8MVBVCWn3jaDSHWCZfhmZVXbW9B6dcc2QuYYgaXSAF7
+         WYNYADxPv+21hB5kavh/TznBo/YU/GPPeEa9rSatk5SPSK6XpBeRTvqNJGoA8RA7zMqf
+         XdRPfTajuuBRnbeRMiRSKqAJnhEP/Cekggvq/xDcMa7Im3Eea43ZPOknaEj1uLEYPP9F
+         ob4pZ55k0lpdY/GBPaFxLsBHwVjqPPdd4+Sed56KiiVg8yTLQOBjF0OzO8diYsK9aQ/C
+         w24g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kd8zQI9wnYru5j50rc+Ckmmg1m5RoBPFttE/lorPY5w=;
-        b=fP/X9NSf80KhlfHP62ewTla1DO5P+5OXE9hC4+8jTUqqq071Z0rS03qQyjWRSMXp2v
-         Y96vAFcQ0cAZFbdHqjd2NDYDmtc0E59HEnOnQVpK6p7MQEnvfufWFCuXjXPMWnMddL6e
-         ossCw3nN9zUk+5bDs/aEBBZkWH8z7MRwulG8/S6lgqTpyvqc0ZQf4t2ZvX8PH0Ty+gca
-         PnJXMgdmevXxjAq0r69BsqYC47+3MbfGuvPIvNsTv98Ny/y3D6Ebb11sZcRR//vehFuw
-         uFskfUePniihSn1We/PIPiHFS4NixyfIxuIM7Epkh0RjDk4jiMvpyzuJO/nSQxbz3+sI
-         lKKg==
-X-Gm-Message-State: ANoB5pkaLbnzsu2u2u6Id96xs1yVjIIrbr2iUrCctio2IOzFI4nL7Zrg
-        m7RJ2bzwKnV5wVL9/DCnPVI4Ig==
-X-Google-Smtp-Source: AA0mqf7WsevkmrcjICA3KV/wRwide/rM/YU/GJVV2bZd2onyjXe8jLbsFpmDX3yXpdkLZiKceVYG7A==
-X-Received: by 2002:a05:6512:2203:b0:4aa:83e6:53e8 with SMTP id h3-20020a056512220300b004aa83e653e8mr1958837lfu.606.1669287700893;
-        Thu, 24 Nov 2022 03:01:40 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b20-20020a2eb914000000b00278e5d12be3sm74081ljb.127.2022.11.24.03.01.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:01:40 -0800 (PST)
-Message-ID: <29df89b7-8c28-a473-3efb-22710d86601a@linaro.org>
-Date:   Thu, 24 Nov 2022 12:01:39 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Qu3xB7BDAsHZerZW0pGAagjp7CtoVgai761hm4h5lQU=;
+        b=ZJUpEWvO5X/wd4bgQ0yGSXAPILEloP9abtL1ak5WgxmF71ovQf8HX42OF3JK4HF9z+
+         nwnsPJQB2IHx4GMA6QWwy2Vm16YEAWaqsdZ/UIC/7QtSPiaozXkp2P5Aa44/iylgqHO8
+         8UBreV5FB4Ol6yaHYBfGd7RwgbGyT3pGNquq8d14VgAUeCfimhl3iXsMhiYM60uqWnGu
+         rTd3DnlzmVNNsjIjVhrBMOhw+SmjSigXhykYKmMaVAQhbO1+ECd/w74QIn2dEzjkaU5H
+         Km9vMHFbvejuD+3iKX6SlWSPnjMIiHKn9IFoy4ntCaOFt6VZqAhHTG3h7AF/0jHEa0+b
+         eArw==
+X-Gm-Message-State: ANoB5pmm1EJ9PW1ARB4tUz1IIN78C1aPSSavOYhnI7lqGhTx87IjvT0X
+        ns/KglwgfsrX81AhjVcqErvEp9NR9QvVmofj
+X-Google-Smtp-Source: AA0mqf6TLVfgymm9l7wugpcbFltgYMGd0ic7k9E0zh9Aq+quuAWfqrQkYTBJp6L+gPlwKH7FoGN6sQ==
+X-Received: by 2002:a05:6000:1181:b0:22e:53c0:ead8 with SMTP id g1-20020a056000118100b0022e53c0ead8mr19895500wrx.210.1669287743590;
+        Thu, 24 Nov 2022 03:02:23 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id s10-20020a1cf20a000000b003cfe1376f68sm1332732wmc.9.2022.11.24.03.02.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Nov 2022 03:02:23 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [RESEND PATCH v11 0/2] mfd: max597x: Add support for max597x
+Date:   Thu, 24 Nov 2022 12:02:07 +0100
+Message-Id: <20221124110210.3905092-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: can: fsl,flexcan: add imx93 compatible
-To:     haibo.chen@nxp.com, wg@grandegger.com, mkl@pengutronix.de,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
- <1669116752-4260-2-git-send-email-haibo.chen@nxp.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1669116752-4260-2-git-send-email-haibo.chen@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,15 +67,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 12:32, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Add a new compatible string for imx93.
-> 
+max597x is multifunction device with hot swap controller, fault
+protection & upto four indication leds.
+
+max5978 has single hot swap controller whereas max5970 has two hot swap
+controllers.
+
+Changes in V11:
+- Update description in DT
+- Remove newline at end of file.
+Changes in V10:
+- Cleanup unused properties
+- removed superfluous comments
+- Update description for regulators property
+- Fix typo
+- Update 4 spaces indentation in example
+Changes in V9:
+- Update properties description
+- update required property
+Change in V8:
+- Set additionalproperties to false
+Change in V7:
+- Update id
+- Remove empty line
+Changes in V6:
+- Update missing vendor prefix
+- Update indentation in example
+Changes in V5:
+- Fix dt schema error
+Changes in V4:
+- Add NULL entry for of_device_id
+- Memory allocation check
+Changes in V3:
+- Address code review comment
+Changes in V2:
+- Update depends in Kconfig.
+
+Marcello Sylvester Bauer (1):
+  dt-bindings: mfd: Add MAX5970 and MAX5978
+
+Patrick Rudolph (1):
+  mfd: max597x: Add support for MAX5970 and MAX5978
+
+ .../bindings/mfd/maxim,max5970.yaml           | 151 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max597x.c                         |  93 +++++++++++
+ include/linux/mfd/max597x.h                   | 101 ++++++++++++
+ 5 files changed, 358 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+ create mode 100644 drivers/mfd/max597x.c
+ create mode 100644 include/linux/mfd/max597x.h
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+base-commit: 27fea302952d8c90cafbdbee96bafeca03544401
+-- 
+2.37.3
 
