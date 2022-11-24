@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BD88637ACA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 425F8637ACC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:58:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbiKXN6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 08:58:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
+        id S230044AbiKXN6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 08:58:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230375AbiKXN6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:58:02 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A4412E226
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:57:06 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5so1373022wmo.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:57:06 -0800 (PST)
+        with ESMTP id S230299AbiKXN6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:58:03 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4963712E210
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:57:07 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id q7so1704877wrr.8
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:57:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=X81SH+RvtQMdJQyeeQQaEGGr7kZrUwq921y0hQmKIlM=;
-        b=Y93QpfpBRa8z2B9SXGt9UosHxoJlzmYBGBwYSxFAPurn2YSOFq6RHZyl109ptccqW+
-         xrB5EPJTMhABgI5uOWpNw6AMTm9I9XHXvZi+QAH9wnzZujnEikDusZnMfGBAErtaV1Fv
-         s6H/DspGiv/XTNQJ9zcaGgyqbCAhuEhKKvOo3C68rFPXUXHprrNlfsWqc1/6/fr4Lqo5
-         dCc0JI1eCLq+ddYDMRVIbhclTQlJD+sqjfVGJj/XeuR1/YXMNcClZBB6UbhkdDq1X/AT
-         cRMAK9Abtcy/Op2wvFqFqT3TpYEK9IOwF4+c5YFHy9O8C+UllMVbCDb21Tdctgs0rP5V
-         stXw==
+        bh=D3mUw3WAFJms85vIR5glpftx63nEOz1wwmMM7KjPZPo=;
+        b=FPoWFRmSIYYS3LC+wEODQqTz0Pug1qDTB+kwZw4bxdcypjCA2cWV6GIyx3UH65YAv5
+         ouH9aVCApNIvN7drbfkhrbQfBrkqDJIDxg6zkUIsZFmFwXcQodpNG7PEqkGbWXViv2IV
+         /dKYkuweLpEQpiA9L+JKGclAX/MDzwBhF5O4hvtf1pcwFu7r89eT5ln65uZ0LvhEjvFg
+         fRjjCfxk84C2pMlTKh2/K6zO6g33+I4WobYbvsQntMdF+xSq54qR2co4Wt5UM3oOKtic
+         GLabikbVAIe4dePBRfpCC4vI0o8Kt2o5XQqO+rUQElWoARymBSMu2OgDENUFKqVlpXuX
+         3a0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=X81SH+RvtQMdJQyeeQQaEGGr7kZrUwq921y0hQmKIlM=;
-        b=h3iK82HvTS3d8IGuGzYCujmB2edguJ0EAM1hkoCkptYm/e2yCBt33eSJxiHF4HkYgK
-         drXcMZxo2wfcinlNa1eyxct6p7T4rb22VmN3rekksF4gaPppYEf7iaCYaiHM+7FrlfL6
-         xE2+TRNCifqGEMYGUeMOMwp4Sli+BHa1+24JUwcpwCgE5dQH3azQO2lmB8iMjrm7OFIJ
-         4odymcys62NMwsZZXmVGVjAkU4ybrkezOZrd0MgYHYiV6IYPAl0vq02HY/u4Nfg7Wx4p
-         hCle1JKaXBFxUGOa7koXYbXb3sDSz61+eVzCQBr0jgxGAdogiU2JYT9AgwgkjduwamDt
-         pXCA==
-X-Gm-Message-State: ANoB5pngAf55+VGlzVBT2gTYesalDBVlxAAXD+BC7Xs+jL+TYJrx6j2g
-        3WGqWZ0NWCJpl+NM7kYEG1iQ0g==
-X-Google-Smtp-Source: AA0mqf6vidJoAhs8CtXm5tdiARpJxztFkO/2AtNGN9MgSwaeuVYYGlk6+rtZJ0DdTHEVeKpxFqNx2w==
-X-Received: by 2002:a05:600c:a0c:b0:3cf:a851:d2ef with SMTP id z12-20020a05600c0a0c00b003cfa851d2efmr12903589wmp.88.1669298217908;
-        Thu, 24 Nov 2022 05:56:57 -0800 (PST)
+        bh=D3mUw3WAFJms85vIR5glpftx63nEOz1wwmMM7KjPZPo=;
+        b=DzARCOTxs1q9amgH0KpS7GPR3jXGA0qc4Fl9ZCUHncjAGCi45+ks4H5X9N1b90b0T/
+         0vlfzbeqDbi90b1vcCaijwkX74GxhUBdIqUMLKfjk6sHg88ij0rsNqLrIgkrIKXrAN8J
+         YEqh15grfLMn+MJ8KaIwDHJTa7PyfcZigKilHvRhqf53PQXPLYtmiXpNTo0CDc/8RP6Z
+         2dMtD13EKEUJ77Rajf298Y3g5SNST4u+y342ytT1N5diyEBC4LpoQugVyMF6rdnR6689
+         8CA9a/r7NkwMWzpdjympTHUE/uQcRxPnibw1fsCuM0n4rStcoBUcILmt/yTKzQAg+d7U
+         +4xw==
+X-Gm-Message-State: ANoB5pkw5Z+1svzGK95eD2Muzj7S7daz8WxfL4YM6E6+fanFb3Kjem7q
+        PqJlZIhjUuy9AtLWjE3d8/5+LA==
+X-Google-Smtp-Source: AA0mqf6D1IOuOInFxjKTgwpEvUvm3QiIlwIKNihbNY47dxua2xMVDDml3PUy/DDkXvKpROX95TZ/NQ==
+X-Received: by 2002:adf:ecd2:0:b0:236:6fd9:9efa with SMTP id s18-20020adfecd2000000b002366fd99efamr19336831wro.101.1669298219093;
+        Thu, 24 Nov 2022 05:56:59 -0800 (PST)
 Received: from localhost.localdomain ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id v14-20020adfebce000000b00241d21d4652sm1414322wrn.21.2022.11.24.05.56.56
+        by smtp.gmail.com with ESMTPSA id v14-20020adfebce000000b00241d21d4652sm1414322wrn.21.2022.11.24.05.56.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Nov 2022 05:56:57 -0800 (PST)
+        Thu, 24 Nov 2022 05:56:58 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 05/10] arm64: dts: qcom: Add PM8550b pmic dtsi
-Date:   Thu, 24 Nov 2022 15:56:41 +0200
-Message-Id: <20221124135646.1952727-6-abel.vesa@linaro.org>
+Subject: [PATCH v2 06/10] arm64: dts: qcom: Add PM8550ve pmic dtsi
+Date:   Thu, 24 Nov 2022 15:56:42 +0200
+Message-Id: <20221124135646.1952727-7-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221124135646.1952727-1-abel.vesa@linaro.org>
 References: <20221124135646.1952727-1-abel.vesa@linaro.org>
@@ -78,7 +78,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Neil Armstrong <neil.armstrong@linaro.org>
 
-Add nodes for PM8550b in separate dtsi file.
+Add nodes for PM8550ve in separate dtsi file.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -87,15 +87,15 @@ Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Changes since v1:
  * added Konrad's R-b tag
 
- arch/arm64/boot/dts/qcom/pm8550b.dtsi | 59 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8550ve.dtsi | 59 ++++++++++++++++++++++++++
  1 file changed, 59 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pm8550b.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550ve.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8550b.dtsi b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/pm8550ve.dtsi b/arch/arm64/boot/dts/qcom/pm8550ve.dtsi
 new file mode 100644
-index 000000000000..16bcfb64d735
+index 000000000000..c47646a467be
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pm8550b.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8550ve.dtsi
 @@ -0,0 +1,59 @@
 +// SPDX-License-Identifier: BSD-3-Clause
 +/*
@@ -107,11 +107,11 @@ index 000000000000..16bcfb64d735
 +
 +/ {
 +	thermal-zones {
-+		pm8550b-thermal {
++		pm8550ve-thermal {
 +			polling-delay-passive = <100>;
 +			polling-delay = <0>;
 +
-+			thermal-sensors = <&pm8550b_temp_alarm>;
++			thermal-sensors = <&pm8550ve_temp_alarm>;
 +
 +			trips {
 +				trip0 {
@@ -132,24 +132,24 @@ index 000000000000..16bcfb64d735
 +
 +
 +&spmi_bus {
-+	pm8550b: pmic@7 {
++	pm8550ve: pmic@5 {
 +		compatible = "qcom,pm8550", "qcom,spmi-pmic";
-+		reg = <0x7 SPMI_USID>;
++		reg = <0x5 SPMI_USID>;
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +
-+		pm8550b_temp_alarm: temp-alarm@a00 {
++		pm8550ve_temp_alarm: temp-alarm@a00 {
 +			compatible = "qcom,spmi-temp-alarm";
 +			reg = <0xa00>;
-+			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			interrupts = <0x5 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
 +			#thermal-sensor-cells = <0>;
 +		};
 +
-+		pm8550b_gpios: gpio@8800 {
-+			compatible = "qcom,pm8550b-gpio", "qcom,spmi-gpio";
++		pm8550ve_gpios: gpio@8800 {
++			compatible = "qcom,pm8550ve-gpio", "qcom,spmi-gpio";
 +			reg = <0x8800>;
 +			gpio-controller;
-+			gpio-ranges = <&pm8550b_gpios 0 0 12>;
++			gpio-ranges = <&pm8550ve_gpios 0 0 8>;
 +			#gpio-cells = <2>;
 +			interrupt-controller;
 +			#interrupt-cells = <2>;
