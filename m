@@ -2,108 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABFF6372C2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 08:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A3406372DD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 08:27:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiKXHMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 02:12:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44256 "EHLO
+        id S229609AbiKXHRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 02:17:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiKXHMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 02:12:18 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6663CCFBA6
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:16:36 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id s196so886354pgs.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:16:36 -0800 (PST)
+        with ESMTP id S229477AbiKXHRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 02:17:23 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 775BC266
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:27:26 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id b62so937403pgc.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:27:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9beI1qbDaBEZGBMzOodYXezAJNnkCn943LXJypsps08=;
-        b=jN9Iu2JG6Jbf9f/Vtx6/x8W99mbfvmkmA5JpUTuuOhHuX9hE65G+zwT360z98Yxh2l
-         i6PqDF91yJmzwCKNYEVFuLVfqGCqoHx9I7wNV8pa819eMDoiMR27SZF1GHdGnGDHcMWz
-         pqI4i03rsZDpQ60ONyvQHuYR+N3femATVqrSC4hLc3ih0MmJpf23tjAqEmigk+Q4lN5p
-         TjriD73VK+kqD8Wil5LA1NXQ4waHtGM3IZBFIczk95hCWTGki63dLVXFv0wvyqKSahPp
-         nd3iHhwTtHF7fG/CtXcp1E5PNjqsgHvp71L23Lt4pdmYQDMtQS6xnA3gM9hUIGynee9E
-         kaMQ==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tW6MvRH3jNggI06kpSrGpMQXghZPn7YvkXKr7sxkm/E=;
+        b=jthoqAqsb1On6ynD07XDwO4XNpMQVtTAlvP7hLtSbRKtKjf9HU1h5JDZJJLshzUMX6
+         2zmYIP8Tq1XEKWxn1y+FXkmQDbKndFnWniNxlD+5dKpAANdQtacRQjaHOaM34iy+UbqU
+         dCSuqSuzHjNKFVTGtJdAlymtplcsx2u785PCo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9beI1qbDaBEZGBMzOodYXezAJNnkCn943LXJypsps08=;
-        b=WLc2VAbXLlFJTZLZKPfL+b/VVRhH44XbS6MYDv8kOhYyyI5YWuYIX9SjegutRpO/zu
-         BjiDcCadD1LDbUhq5TUYNwbDRZmnKxKPCLcOo+Nn68jQDk3ic2AUjsJtU6ZJzjj6dUjY
-         0+wetjyAgvB0VkGJGnqBg6dO+y/cYozIj/2kBO10NNb7Df5Ryy3nHmgfVi9yD4K+zCnV
-         9LcD9NGQ7y66yg6eclHZeJg0ClJerR76M8gvDJt1VQsUa9W9xJWg+WwyLv+4hmkkcEda
-         MK+hETtECx2F9s67yj7spx0UJ/CvHd9SlT0k66+MFa5sfk5h4PFENctHXoeNboJjbcXN
-         bg/A==
-X-Gm-Message-State: ANoB5pl/EoI65InSSgA+4injvPuC10sDwm0+S6wb9cbQKMY1hqsWQ2Nx
-        CpK3a2tyHrGeqqib9OE/+H0Afw==
-X-Google-Smtp-Source: AA0mqf539xW7yp+XmSaeh7QyKEx/uI4+Px0TRaTKiiPa7cXAYmK2DoSN46/6FwkQRO+vECyNwcPwTg==
-X-Received: by 2002:aa7:8c19:0:b0:573:620a:3b1c with SMTP id c25-20020aa78c19000000b00573620a3b1cmr13160104pfd.50.1669274195379;
-        Wed, 23 Nov 2022 23:16:35 -0800 (PST)
-Received: from localhost ([122.172.85.60])
-        by smtp.gmail.com with ESMTPSA id k4-20020a170902c40400b001867fdec154sm414181plk.224.2022.11.23.23.16.34
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tW6MvRH3jNggI06kpSrGpMQXghZPn7YvkXKr7sxkm/E=;
+        b=xcYMvoY3dO2kETLfgBaJsiMXoqDNBMOOL3QIfCrWDL8h8KJSIB20LOg9Y7lmO5FEkG
+         NmbAG6qCqMkneAwXARA+raFQ5K+c89C2R9+lx6DrihUEmt5u+UfSKRZnrDtm8wgsSOvy
+         k3fS1U4c9sz5+1nGbkXU9+EnsS0NdqMK9g6dnIXWveNBQnunxGoeQuZw3VM7ZcqW2pxX
+         +M5iBJV581pVjNvOBhijCkjUCK0b8VpIx9mpfvoK6z74qk06HD5paKTjCF+w1fd/dmJK
+         AfyTirv8YpE7tHWq85S/i7K1UrBtNcUXEct5v3FJHCugokllz8w5Ac1nrGzLAClibNst
+         L3GA==
+X-Gm-Message-State: ANoB5plcM2DNr8YYltYjjLg7l5xyVpii58ng57ANGIlwz4qD2FhLv4ME
+        UihRIrNk5toISomQ5H0DeFPWTA==
+X-Google-Smtp-Source: AA0mqf7OHaA7DO+aqoNHin2IIal35uAtwUsWiZYlGCP3uW9OiZsRwm7Vxh59WgBGQNupgdfGcpyyuw==
+X-Received: by 2002:a05:6a00:10cd:b0:572:5c03:f7ad with SMTP id d13-20020a056a0010cd00b005725c03f7admr33870504pfu.17.1669274846030;
+        Wed, 23 Nov 2022 23:27:26 -0800 (PST)
+Received: from localhost.localdomain ([183.83.141.79])
+        by smtp.gmail.com with ESMTPSA id l64-20020a622543000000b0056ddd2b5e9bsm471630pfl.41.2022.11.23.23.27.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 23:16:34 -0800 (PST)
-Date:   Thu, 24 Nov 2022 12:46:32 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wed, 23 Nov 2022 23:27:25 -0800 (PST)
+From:   Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        linux-watchdog@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 0/9] dt-bindings: cleanup titles
-Message-ID: <20221124071632.5cadtc6pbdvdv3xb@vireshk-i7>
-References: <20221121110615.97962-1-krzysztof.kozlowski@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com, Da Xue <da.xue@libretech.co>,
+        dsx724 <da@lessconfused.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Suniel Mahesh <sunil@amarulasolutions.com>,
+        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+Subject: [PATCH v2] arm64: dts: rockchip: increase spi-max-frequency of nor flash for roc-rk3399-pc
+Date:   Thu, 24 Nov 2022 12:57:14 +0530
+Message-Id: <20221124072714.450223-1-abbaraju.manojsai@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221123094827.250657-2-abbaraju.manojsai@amarulasolutions.com>
+References: <20221123094827.250657-2-abbaraju.manojsai@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221121110615.97962-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-11-22, 12:06, Krzysztof Kozlowski wrote:
->  .../devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml        | 2 +-
->  .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml         | 2 +-
->  Documentation/devicetree/bindings/opp/opp-v1.yaml               | 2 +-
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml          | 2 +-
->  Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml      | 2 +-
->  Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml    | 2 +-
->  Documentation/devicetree/bindings/opp/opp-v2.yaml               | 2 +-
+Increase the spi-max-frequency of nor flash from 10Mhz to 30Mhz,this improves the
+flash raw write speed by 0.9 MB/s to 1.6MB/s and the time taken to write is
+get reduced from 36 seconds to 20 seconds.
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+---
+Changes for v2:
+- removed irrelevant members from the Signed-Off-By section in the commit message.
+---
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index 2f4b1b2e3ac7..8fd808a0df85 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -735,7 +735,7 @@ &spi1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <10000000>;
++		spi-max-frequency = <30000000>;
+ 	};
+ };
+ 
 -- 
-viresh
+2.25.1
+
