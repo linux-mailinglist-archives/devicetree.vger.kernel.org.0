@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03C4A6377A1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:27:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E52B76377B0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiKXL1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:27:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
+        id S230175AbiKXLa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbiKXL1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:27:34 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F7E62F4
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:27:31 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b3so2123282lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:27:31 -0800 (PST)
+        with ESMTP id S230153AbiKXLav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:30:51 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9797588F90
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:30:47 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id t10so1712005ljj.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:30:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g/RcUCBSrTzcNlLdWw7otlBZrxfGPBbiRBBDWc0XP4A=;
-        b=HbCrXU+SzUJguUIe4zXMLiPiGN8Oa9EjS1Wu35u/YBnJoq5/8xUuNLz2b3USLgdr+2
-         fskMhE4MJ5Ruiu3AdZOwN6d8Byd1ObVR5Rlhj0nwTcgG8u3GntM0xJd3R7pzRoRqqb2H
-         9bttEo22Xwo5MJnldX0IRdQdv89MyyXoeCVvrlNBAhvYphYA1EqOXMQlmGmqs5NZAJqu
-         e4kIOQQFuQPDzfgxyKRcvc+gWwu5aJ85pec7iG/JWtLwPcF08OuND1ggAaemojQmVVxJ
-         cvB9J2HFyOoinRUqGRvrmhqpfStr3Xm/fui8TxtpCJgusJpG8VN3Jx/y5Fhm02Uc9fJG
-         O5bA==
+        bh=Fyb8cWovIHqjfoKBUsRkxLqfHtzttGTVJMM1/mMniBc=;
+        b=QZk3tIfbzK4rNT+vIGPYUeXn4gNgs+gW6dkAXRxipvRcU4xuaMIl3agnzv/tg6k1s4
+         LKxEj/JapkraxMo0L3Y9KUV69bri62FuZyfBMDZ7Grj59z5hpR6L4Sxg6fh+E14Ll2Qw
+         kwbdatuLICRroPArSIXGB3rUucBLjcZITeEizV/yp5Mge5dWj3Cy75qb6k7pYAu5etFQ
+         O1N2dks6mhny2t+RRF/bvCEyJ+Jre9HzBZSIhsXvuWZ5/Ijw/W2ILeYfZYpeA/X3pwvP
+         nomzsP11aNAY4hKRCJOE7t/rWNKRoMmCh+DYBwAkmzvrT/9DGP6OXAl6o5EdTwPHsJv0
+         P6dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g/RcUCBSrTzcNlLdWw7otlBZrxfGPBbiRBBDWc0XP4A=;
-        b=i0H1ZvIVAhzirDdhbAK3cBfMdTOvQM4taDmzLb5aH4OPN3AFs4ElCH1QoNywfobIyw
-         U/LYt1Rwd8OeHGHZpBY+Gqmvr5gLljzNwFVw1ShWmWeSKzAgwICgf9gcXVokw2ENnmmJ
-         2DGPclRu0kU8Ch4YkP4ohAl3lx4U8Vh6F62lWIsB4McUSgaEnk1uH9Bnf81ykUjpBzWi
-         ka6MrdAk2YWlAkt+/Ahz3qZt2eixWaHvryFNZpQzNEeDIpz1Dyc3vmINcBwMgrZ00nff
-         DIeJZD31kuCliTUecy7qmx0vGTYE12cCS0yqaH3k1ynSlGuigx6GyUCx89vIsKbruBEg
-         6FJA==
-X-Gm-Message-State: ANoB5pkDDF1CZV1/3eozravpWsxH8BthrE1hg0iq3O7mnvSmNND8MCJJ
-        zDfPWVKAJzq5CdgLTVxeX1CH0A==
-X-Google-Smtp-Source: AA0mqf6XG2yxSA16v4PWoQHaCgxxnQd1h0fWdr0Q6o7i6UnADvTLM9Oqi2ogidxtB+hSXcoYiodb9w==
-X-Received: by 2002:a05:6512:3416:b0:498:f589:c1b3 with SMTP id i22-20020a056512341600b00498f589c1b3mr5473600lfr.406.1669289250094;
-        Thu, 24 Nov 2022 03:27:30 -0800 (PST)
+        bh=Fyb8cWovIHqjfoKBUsRkxLqfHtzttGTVJMM1/mMniBc=;
+        b=H0s6GQVg7OXWWoPc0T/cJyD5Fz72e3W+pWd3eYxxyvuhiCPymPNv5me1QQQMHQQLHl
+         9ssceqALt4r3XVetHEb3sayqO9tZYFKqPQboPXfBESJ1HcHizjtmZ5eNMegEOgtiGyej
+         GBXeEU8vUlzXH3L/Z90hy0Bkwk3FTL+pP5YnXtQ+UliC5+SS74GzFHTEaZ0CQTNR8lAe
+         hIbdO1UXBwlJE71mmEMGwj1NiR2ycvKxrcN3/B++0N7XaT9Zls9KHxRiDWPZnji33IYX
+         gyaHfxGaYHmMHwZ/+Lg+r6ww9886p4TLuqHvYz2xgWjdjtPHTmb4LTU6tUxHXmREhlyi
+         EEeg==
+X-Gm-Message-State: ANoB5pm/F0Nb5Ggscl1lsJd8KUwB/kKK4iKFYQ3fFvw0/K7UQp8Npq2O
+        uLL41/dmFqaBt9MZjcfynR9/Dw==
+X-Google-Smtp-Source: AA0mqf7BKwwl8DQ9FRp+pIXisHGgV5Q1UBV/4F4DMWyHmsPYWp4b2sHCx8CXTm7yLTzau1VK7KZLWw==
+X-Received: by 2002:a2e:824e:0:b0:26f:be8e:5298 with SMTP id j14-20020a2e824e000000b0026fbe8e5298mr5653251ljh.418.1669289445821;
+        Thu, 24 Nov 2022 03:30:45 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0027708462fe5sm77157ljb.120.2022.11.24.03.27.28
+        by smtp.gmail.com with ESMTPSA id p19-20020ac24ed3000000b004b4f1ea713csm95584lfr.73.2022.11.24.03.30.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:27:29 -0800 (PST)
-Message-ID: <b54cd0a4-7ee8-e8c0-ceda-18b29588d535@linaro.org>
-Date:   Thu, 24 Nov 2022 12:27:28 +0100
+        Thu, 24 Nov 2022 03:30:45 -0800 (PST)
+Message-ID: <e5e87795-12d7-699e-1539-2e60b8b51957@linaro.org>
+Date:   Thu, 24 Nov 2022 12:30:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
+Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
+ MT7986
 Content-Language: en-US
-To:     =?UTF-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Daniel Golle <daniel@makrotopia.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
-        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
-        Jason.Huang@ecs.com.tw
-References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
- <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
- <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
- <CAPao8GKbdK79Z7w91x0T6JW9v6VFoeYSaXGGAuzB_=ukR9g0_w@mail.gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Zhi Mao <zhi.mao@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>
+References: <Y39PjU1BqBB8tZ98@makrotopia.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPao8GKbdK79Z7w91x0T6JW9v6VFoeYSaXGGAuzB_=ukR9g0_w@mail.gmail.com>
+In-Reply-To: <Y39PjU1BqBB8tZ98@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 12:20, 楊宗翰 wrote:
-> Hi Krzysztof, Matthias,
+On 24/11/2022 12:03, Daniel Golle wrote:
+> Add new compatible string for MT7986 PWM and list compatible units for
+> existing entries. Also make sure the number of pwm1-X clocks is listed
+> for all supported units.
 > 
-> How to use "get_maintainers.pl"?
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
 > 
-> I find this script in path "<MyCodebase>/kernel/v5.15/script", and output
+> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
+> makes sure dt maintainers are included. This has been requested by
+> Krzysztof Kozlowski.
+> 
+>  .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> index 554c96b6d0c3..952a338e06e7 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> @@ -2,14 +2,15 @@ MediaTek PWM controller
+>  
+>  Required properties:
+>   - compatible: should be "mediatek,<name>-pwm":
+> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
+> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
+>     - "mediatek,mt6795-pwm": found on mt6795 SoC.
+> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
+> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
+> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
 
-This looks like v5.15 kernel which is heavily outdated. Please never
-work on such kernels when interacting with upstream. The rule is you
-work on either last mainline kernel (v6.1-rc6), maintainers for-next
-branch (you should know who is the maintainer of subsystem you submit
-to, get_maintainers.pl gives this information) or on moderately recent
-linux-next. For bigger patchsets there might be exceptions for these
-rules, but it's not the case here.
+This does not look right. What you are saying is mt7622 is compatible
+with mt8195, which is compatible with mt8183, which is compatible with
+mt7986. It could be true, but I feel you wanted to say something else -
+mt7622 is compatible with one SoC which is generic and common to all
+other implementations.
+
+> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
+>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
+> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
+> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
+> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
+> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+
+This as well looks excessive.
 
 Best regards,
 Krzysztof
