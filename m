@@ -2,179 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78328636E76
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 00:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A35F636ED1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 01:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230000AbiKWXeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 18:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40252 "EHLO
+        id S229617AbiKXAR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 19:17:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbiKWXeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 18:34:20 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF522A727;
-        Wed, 23 Nov 2022 15:34:18 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DCA13240002;
-        Wed, 23 Nov 2022 23:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669246457;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QZEGkusolukN4rVJkkr+SmRPY0B0B9qmE32YQK4KN28=;
-        b=UIJ1/vnWuGxD2BugR4k5HWjkEduaRhQO2Ez84GdKl3yeBvpIR/+gyYyhdindqVR+idKU1Q
-        Zj9Qfu80ezmteY+Rfy8pwmWI5zNKpi7V79zGeoJwT1FC7djSbTYYCikW1GYdwI2tvDwHUf
-        L/uLSM1hwoff/7v40YIqqK1S7QRqi9VchP2aNJBzJB3d227qzjL328aGqLEtnBmaES/OHf
-        hsbnXO3LZQGuUDPWPDZejzkFwBNLNG7GiXpZIITCbPql8pboPZMclaLKWTlJ17S1c+NeZu
-        SfZtNCodFk643mcpal+Qy28lajsmM/XaHk0JEB10WVHojOH++2zdJWGtVkSiDA==
-Date:   Thu, 24 Nov 2022 00:34:13 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        Marcin Wojtas <mw@semihalf.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Taras Chornyi <tchornyi@marvell.com>,
-        linux-kernel@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH 2/6] dt-bindings: net: marvell,dfx-server: Convert to
- yaml
-Message-ID: <20221124003413.6a2c4518@xps-13>
-In-Reply-To: <20221123221023.GA2582938-robh@kernel.org>
-References: <20221117215557.1277033-1-miquel.raynal@bootlin.com>
-        <20221117215557.1277033-3-miquel.raynal@bootlin.com>
-        <20221123221023.GA2582938-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229436AbiKXARz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 19:17:55 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6231B19C3D;
+        Wed, 23 Nov 2022 16:17:49 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id s8so190789lfc.8;
+        Wed, 23 Nov 2022 16:17:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DYsSNCXWhpFs7o4x2IkqFxSQUbarPP9Op1/XKXYtDBY=;
+        b=mO8gD1Uq4kFyJckqBAStesA4EMzaLVQ9SgJ0grZsFpjIsTvd02FQAgKAxa9v6/u+CF
+         BN6XSSaPVq+OoDOnEVtxg0sEoV48DSp/2fgD9+GLjxNSEDWCP+L+tk9XhZHll1ZAPPTf
+         8uVGsIL07M26DlMzU1u53ta1rYqKeHlLOvfIMCNfY3N42+nZLmC0nUUHtXOWBjLpuKYK
+         YuFzTrHTbKF+8wlto5dYW5HeeifxP+WZdN2C+hERORQOem13X83mU/wJ1EHzIKAsp2Iy
+         l2G1hMj/d8M/oWvk/hcC45WS1wFNufg3xnZe9PKolAiwobxkVFM4UDO5VmOU5vnrKRDy
+         SIFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DYsSNCXWhpFs7o4x2IkqFxSQUbarPP9Op1/XKXYtDBY=;
+        b=L5vi2K3drPOEJOuGDvMuEpbN/slvmcyhsw1S+wKExfDvsE+zHPKljV/7zfDYNRYm2p
+         snRXeJKWhZdd+fZjQHkvGql+mTZNZm073B/JqIiZVGyQigU/Ig/bP9t/ijnUC6Hmc9pe
+         tzg2u/OzB/tJtgEXiPeien8UuiZwslU7/1ZX1eSeFws1aMRz9oHZ0UzTEabmSF40wQXw
+         f/FzS0yCYE/tRiJmk0/PUR1a0PAufQkqkowu8qINkkzvTD681YrF7nAzGr9Cjh4WMUZN
+         ajETd3SujO1QKzycOzpipKJ5OZlTW8gu5fQnKITBmZCFTuCtZuyL0kWqzXQk6HWUUocK
+         bz1g==
+X-Gm-Message-State: ANoB5pkukmpZK5QPRLaoTu+/MJV7yRfMoYkQ594QwNZqhSJBpE9tGqaD
+        kC5S0WvG5cUmV3i24ebX95+edJbl/Hg=
+X-Google-Smtp-Source: AA0mqf7qCd7dpkyoK6YOZrAt8Il3y3aOCsCuSaTgXZRgDwiIVGU+E0Q3JF+W1YU83f5PZvHiHOSe9Q==
+X-Received: by 2002:a05:6512:c09:b0:4ac:2fae:8a9e with SMTP id z9-20020a0565120c0900b004ac2fae8a9emr9855039lfu.413.1669249067646;
+        Wed, 23 Nov 2022 16:17:47 -0800 (PST)
+Received: from localhost.localdomain (ccy110.neoplus.adsl.tpnet.pl. [83.30.148.110])
+        by smtp.gmail.com with ESMTPSA id p8-20020a19f008000000b004ac980a1ba1sm3054388lfc.24.2022.11.23.16.17.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 16:17:47 -0800 (PST)
+From:   Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kalyan Thota <quic_kalyant@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Polimera <quic_vpolimer@quicinc.com>,
+        Jason Wang <wangborong@cdjrlc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add SM6115 MDSS/DPU support
+Date:   Thu, 24 Nov 2022 01:16:30 +0100
+Message-Id: <20221124001708.25720-1-a39.skl@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch series add support for MDSS and DPU block found on SM6115.
+These patches were tested on Xiaomi Redmi 9T smartphone.
 
-robh@kernel.org wrote on Wed, 23 Nov 2022 16:10:23 -0600:
+Changes since v1
+================
+1. Adjusted YAMLs per requests.
+2. Changed MDP regs to lowercase hex.
+3. Rebased series over latest next and SM8450 patches.
 
-> On Thu, Nov 17, 2022 at 10:55:53PM +0100, Miquel Raynal wrote:
-> > Even though this description is not used anywhere upstream (no matching
-> > driver), while on this file I decided I would try a conversion to yaml
-> > in order to clarify the prestera family description.
-> >=20
-> > I cannot keep the nodename dfx-server@xxxx so I switched to dfx-bus@xxxx
-> > which matches simple-bus.yaml. Otherwise I took the example context from
-> > the only user of this compatible: armada-xp-98dx3236.dtsi, which is a
-> > rather old and not perfect DT.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> > I am fine dropping this file entirely as well, if judged useless.
-> > ---
-> >  .../bindings/net/marvell,dfx-server.yaml      | 60 +++++++++++++++++++
-> >  .../bindings/net/marvell,prestera.txt         | 18 ------
-> >  2 files changed, 60 insertions(+), 18 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/marvell,dfx-s=
-erver.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/marvell,dfx-server.y=
-aml b/Documentation/devicetree/bindings/net/marvell,dfx-server.yaml
-> > new file mode 100644
-> > index 000000000000..72151a78396f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/marvell,dfx-server.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/marvell,dfx-server.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Marvell Prestera DFX server
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: marvell,dfx-server
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: marvell,dfx-server
-> > +      - const: simple-bus
-> > +
-> > +  reg: true =20
->=20
-> How many entries?
+Adam Skladowski (2):
+  dt-bindings: display/msm: add support for SM6115
+  drm/msm/disp/dpu1: add support for display on SM6115
 
-Right, there is a single one, I'll constrain reg properly in v2.
+ .../bindings/display/msm/qcom,sm6115-dpu.yaml |  94 +++++++++
+ .../display/msm/qcom,sm6115-mdss.yaml         | 182 ++++++++++++++++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  87 +++++++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   5 +
+ 6 files changed, 370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
 
-> > +
-> > +  ranges: true
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - ranges
-> > +
-> > +# The DFX server may expose clocks described as subnodes
-> > +additionalProperties: true =20
->=20
-> addtionalProperties:
->   type: object
->=20
-> So that only nodes can be added.
+-- 
+2.25.1
 
-Excellent, I never thought about this possibility, but of course that
-works. Thanks a lot!
-
->=20
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    #define MBUS_ID(target,attributes) (((target) << 24) | ((attribute=
-s) << 16))
-> > +    bus@0 {
-> > +        reg =3D <0 0>;
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <1>;
-> > +
-> > +        dfx-bus@ac000000 {
-> > +            compatible =3D "marvell,dfx-server", "simple-bus";
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <1>;
-> > +            ranges =3D <0 MBUS_ID(0x08, 0x00) 0 0x100000>;
-> > +            reg =3D <MBUS_ID(0x08, 0x00) 0 0x100000>;
-> > +        };
-> > +    }; =20
-
-
-Thanks,
-Miqu=C3=A8l
