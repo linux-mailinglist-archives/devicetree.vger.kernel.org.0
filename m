@@ -2,98 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D8D637BAE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:46:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5CB637BC1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbiKXOqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 09:46:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
+        id S229704AbiKXOtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 09:49:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiKXOqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:46:14 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A971FED713
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:46:13 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id s24so2198497ljs.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:46:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qwmcpO6fUbn4Yroiwgc+xgdcYz3ZwR3GFESZAS168vk=;
-        b=IWLLCkJLO4sW2HKGZg2TY1Oz/ByZwLaBHRHZn1HvFVQxzLxRdxJnBbx7I7ji7+CyPA
-         kNxcZ22RtA45mN12iEcX7Wpb3ZK5tfZ93zG8+Tgsrxb1IuwlMlfSZGyjzn6Q9XOOYJqY
-         ZMlCvlPVJqQcjL/dS2P8cWWxj5fxrXeB5TxggrKUOAQG+jp+h4p1RbFYr53mfUB2s5Zt
-         yXYOTn9MTdM9IOVeBFTvsO8akNsa4TC83KliDSysN9xmp/AQTTA7LKOK1QYhH/21hzyU
-         6EGwin+Pyo+cJI3YkTiqe3FOXWQ4yEFSi7R3On8LBdbhZW/i+ro6GKj5WCTvj5rpHZtP
-         vc9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qwmcpO6fUbn4Yroiwgc+xgdcYz3ZwR3GFESZAS168vk=;
-        b=O4+8cS7kVvd4oahrfXNBCPtYr1AS1FLJ3ZdnVtXs0nNaYyLL0NzLzeA5knnGzOv1VC
-         YQRONlzcMfRXXncgpE4TKZt5Q9gN2vvsAnDY7Sc+kpfl0Qq/kpN8jbF7TB7gFLCWpL2d
-         UhaOl5z+gKTHQFCiYdzAZ0A+jbnBPSIwqAAAxT+TIr5nrlTLzNWgPPpPP3UXsuVviO8W
-         tg1u2QgS45NwokeOM1FR61pnLZeLCBSLBEyMBNQJzS8hrNlZ+Fgd0A4qY4X7tLJ+Ep5u
-         y1D9Hng+/fDsgKEPp+Mu+7YWrZuH8VPqkydirKL8gTZm451PMCyXYD8uvYqYBpzlXy0E
-         l+Tg==
-X-Gm-Message-State: ANoB5pnmES0Qk/71g/h9H3PcTCCOOc/hMKA8dsDAdZrReOFr9s8G9VL+
-        MmebKBxi3VLHFnOv+fWhcG47bg==
-X-Google-Smtp-Source: AA0mqf6jfioPGGeJ3CzVJHyXDecYR3wU+TooN+C9ZD8wNL3c7qfWCgDWljRYY3bvx1PRzS8iQ/4/wg==
-X-Received: by 2002:a05:651c:114b:b0:26d:fba9:984c with SMTP id h11-20020a05651c114b00b0026dfba9984cmr10505805ljo.438.1669301172032;
-        Thu, 24 Nov 2022 06:46:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f24-20020ac25cd8000000b004a44ffb1050sm139649lfq.171.2022.11.24.06.46.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 06:46:11 -0800 (PST)
-Message-ID: <7a02cbea-14ea-4f8e-2910-0ccef0251332@linaro.org>
-Date:   Thu, 24 Nov 2022 15:46:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: armada8k: Add compatible string
- for AC5 SoC
-Content-Language: en-US
-To:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        with ESMTP id S229526AbiKXOtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:49:35 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF4A0100B2C;
+        Thu, 24 Nov 2022 06:49:33 -0800 (PST)
+Received: from jupiter.universe (dyndsl-095-033-156-095.ewe-ip-backbone.de [95.33.156.95])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AB21D6602B31;
+        Thu, 24 Nov 2022 14:49:31 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669301371;
+        bh=yBh0Wx9DXuTVRgMWeBdTO0zin0IJINi2hEYO9Xdv17k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jL07reJAZiRz+S8Ft122TMBUINA4UMACpDLXzzOsGaz/GShghEC38od8rD3nU+Et2
+         asU/q/gB7ymheXk08wZpCCI83OgsA1tTcQqcjPw5oAykQwQ9XDEHV8nhhCuzWYAeD9
+         wECjS4J1XKt1FBmFPagK123NSJ9gkHhbGwStHT9Y6Go9YJCW/onSpwzR1/ctHMaOFa
+         iahOMTOjZot2ZXNdF7n/wHjjOLlQsQF9VvpIkh6/3Pd0eVFRTndPaWeaPpdEYluKqq
+         Gr5D4DGqW18SpcaJCo3+5g3Ye6IU5+Hgv9Oa3VxJrOK+9e+/15EsueU1o+ZUjb86qw
+         G9Mjfm0j9MSGg==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 583A8480117; Thu, 24 Nov 2022 15:49:29 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Elad Nachman <enachman@marvell.com>
-References: <20221124135829.2551873-1-vadym.kochan@plvision.eu>
- <20221124135829.2551873-2-vadym.kochan@plvision.eu>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221124135829.2551873-2-vadym.kochan@plvision.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Linus Walleij <linus.walleij@linaro.org>,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv4 0/7] Initial rk3588 DT
+Date:   Thu, 24 Nov 2022 15:49:21 +0100
+Message-Id: <20221124144928.35381-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 14:58, Vadym Kochan wrote:
-> AC5 SoC has armada8k PCIe IP so add compatible string for it.
-> 
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> ---
-> v2: no changes
+Hi,
 
-Not correct... I wasted some time looking for v1. This is a new patch.
+This adds initial rk3588(s) DT including two different board
+devicetrees. All required driver changes have been merged into
+the respective maintainer trees. There is one warning from the
+DT check:
 
+$ make CHECK_DTBS=y rockchip/rk3588-evb1-v10.dtb rockchip/rk3588s-rock-5a.dtb
+  DTC_CHK arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb
+/home/sre/src/collabora/rode/linux-rockchip-upstream/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb:
+    ethernet@fe1c0000: Unevaluated properties are not allowed ('interrupt-names', 'interrupts', 'mdio',
+    'power-domains', 'reg', 'reset-names', 'resets', 'rx-queues-config', 'snps,axi-config', 'snps,mixed-burst',
+    'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,tso', 'stmmac-axi-config', 'tx-queues-config' were unexpected)
+	From schema: /home/sre/src/collabora/rode/linux-rockchip-upstream/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is for gmac1. gmac0 has the same properties and there is no warning. Also
+rk3588s (and thus the Rock 5A) has only gmac1 and there is no warning for the
+Rock 5A. It looks like for some reason the referenced "snps,dwmac.yaml#"
+is only checked for the first node. I think it's a bug in dt-validate.
+Also the same issue can be seen with rk356x.
 
-Best regards,
-Krzysztof
+Changes since PATCHv3:
+ * https://lore.kernel.org/all/20221121175814.68927-1-sebastian.reichel@collabora.com/
+ * update reset gpio + timings in EVB1 and Rock 5A DT to new style
+ * change regulator- prefix to -regulator suffix in EVB1 and Rock 5B DTB
+ * merge dt-binding update patches for EVB1, Rock 5A and Rock 5B and add Krzysztof's Ack
+ * change pinctrl name "active" to "default" for all PWM nodes
+ * remove aliases from rk3588s and rk3588 DTSI
+ * sort includes in rk3588s.dtsi
+ * add dma names for uart
+ * some more property order fixes
+ * remove #power-domain-cells for the power-controller sub-nodes; only the main node should be referenced
+ * add dynamic-power-coefficient and #cooling-cells for all CPU cores
+
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20221115161702.163057-1-sebastian.reichel@collabora.com/
+ * add minimal Radxa Rock 5B DT
+ * Add aliases for i2c, spi and gpio in rk3588s.dtsi
+ * Fix ethernet-phy node name and remove #phy-cells
+ * Sort nodes / includes in both boards
+ * Sort nodes in rk3588s.dtsi according to register address
+ * add missing spi4 node in rk3588s.dtsi
+ * split board specific dt-bindings into their own patches
+ * add board specific mmc alias following the downstream enumeration
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221108171500.99599-1-sebastian.reichel@collabora.com/
+ * Drop Acked-by from Krzysztof
+ * Add 'regulator-' prefix to VCC12V VCC5V0 regulators
+ * Change 'Radxa Rock 5A' to 'Radxa ROCK 5 Model A' in DT binding
+ * Update cover-letter (clock driver and some DT binding fixes got merged)
+
+-- Sebastian
+
+Christopher Obbard (1):
+  arm64: dts: rockchip: Add rock-5b board
+
+Jianqun Xu (1):
+  arm64: dts: rockchip: Add rk3588 pinctrl data
+
+Kever Yang (2):
+  arm64: dts: rockchip: Add base DT for rk3588 SoC
+  arm64: dts: rockchip: Add rk3588-evb1 board
+
+Sebastian Reichel (3):
+  dt-bindings: soc: rockchip: add initial rk3588 syscon compatibles
+  dt-bindings: arm: rockchip: add initial rk3588 boards
+  arm64: dts: rockchip: Add rock-5a board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   15 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    3 +
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |  156 +
+ .../boot/dts/rockchip/rk3588-pinctrl.dtsi     |  516 +++
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   44 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |   58 +
+ .../boot/dts/rockchip/rk3588s-pinctrl.dtsi    | 3403 +++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   63 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 1672 ++++++++
+ 10 files changed, 5935 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+
+-- 
+2.38.1
 
