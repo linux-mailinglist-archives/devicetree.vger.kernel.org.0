@@ -2,53 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2443637B99
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D8D637BAE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:46:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbiKXOnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 09:43:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
+        id S229716AbiKXOqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 09:46:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiKXOny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:43:54 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3657DCAC
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:43:53 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1oyDS3-0002Xe-I9; Thu, 24 Nov 2022 15:43:43 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:5507:4aba:5e0a:4c27])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 5A9EC12865E;
-        Thu, 24 Nov 2022 14:43:42 +0000 (UTC)
-Date:   Thu, 24 Nov 2022 15:43:40 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     haibo.chen@nxp.com
-Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: imx93: add flexcan nodes
-Message-ID: <20221124144340.pxlnpvu3igl4fijo@pengutronix.de>
-References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
- <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
+        with ESMTP id S229514AbiKXOqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:46:14 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A971FED713
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:46:13 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id s24so2198497ljs.11
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:46:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qwmcpO6fUbn4Yroiwgc+xgdcYz3ZwR3GFESZAS168vk=;
+        b=IWLLCkJLO4sW2HKGZg2TY1Oz/ByZwLaBHRHZn1HvFVQxzLxRdxJnBbx7I7ji7+CyPA
+         kNxcZ22RtA45mN12iEcX7Wpb3ZK5tfZ93zG8+Tgsrxb1IuwlMlfSZGyjzn6Q9XOOYJqY
+         ZMlCvlPVJqQcjL/dS2P8cWWxj5fxrXeB5TxggrKUOAQG+jp+h4p1RbFYr53mfUB2s5Zt
+         yXYOTn9MTdM9IOVeBFTvsO8akNsa4TC83KliDSysN9xmp/AQTTA7LKOK1QYhH/21hzyU
+         6EGwin+Pyo+cJI3YkTiqe3FOXWQ4yEFSi7R3On8LBdbhZW/i+ro6GKj5WCTvj5rpHZtP
+         vc9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qwmcpO6fUbn4Yroiwgc+xgdcYz3ZwR3GFESZAS168vk=;
+        b=O4+8cS7kVvd4oahrfXNBCPtYr1AS1FLJ3ZdnVtXs0nNaYyLL0NzLzeA5knnGzOv1VC
+         YQRONlzcMfRXXncgpE4TKZt5Q9gN2vvsAnDY7Sc+kpfl0Qq/kpN8jbF7TB7gFLCWpL2d
+         UhaOl5z+gKTHQFCiYdzAZ0A+jbnBPSIwqAAAxT+TIr5nrlTLzNWgPPpPP3UXsuVviO8W
+         tg1u2QgS45NwokeOM1FR61pnLZeLCBSLBEyMBNQJzS8hrNlZ+Fgd0A4qY4X7tLJ+Ep5u
+         y1D9Hng+/fDsgKEPp+Mu+7YWrZuH8VPqkydirKL8gTZm451PMCyXYD8uvYqYBpzlXy0E
+         l+Tg==
+X-Gm-Message-State: ANoB5pnmES0Qk/71g/h9H3PcTCCOOc/hMKA8dsDAdZrReOFr9s8G9VL+
+        MmebKBxi3VLHFnOv+fWhcG47bg==
+X-Google-Smtp-Source: AA0mqf6jfioPGGeJ3CzVJHyXDecYR3wU+TooN+C9ZD8wNL3c7qfWCgDWljRYY3bvx1PRzS8iQ/4/wg==
+X-Received: by 2002:a05:651c:114b:b0:26d:fba9:984c with SMTP id h11-20020a05651c114b00b0026dfba9984cmr10505805ljo.438.1669301172032;
+        Thu, 24 Nov 2022 06:46:12 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f24-20020ac25cd8000000b004a44ffb1050sm139649lfq.171.2022.11.24.06.46.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 06:46:11 -0800 (PST)
+Message-ID: <7a02cbea-14ea-4f8e-2910-0ccef0251332@linaro.org>
+Date:   Thu, 24 Nov 2022 15:46:10 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="bun327v46tx4wk6q"
-Content-Disposition: inline
-In-Reply-To: <1669116752-4260-3-git-send-email-haibo.chen@nxp.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: armada8k: Add compatible string
+ for AC5 SoC
+Content-Language: en-US
+To:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Elad Nachman <enachman@marvell.com>
+References: <20221124135829.2551873-1-vadym.kochan@plvision.eu>
+ <20221124135829.2551873-2-vadym.kochan@plvision.eu>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221124135829.2551873-2-vadym.kochan@plvision.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,99 +82,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---bun327v46tx4wk6q
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Shawn,
-
-do you take this patch?
-
-Marc
-
-On 22.11.2022 19:32:32, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
->=20
-> Add flexcan1 and flexcan2 nodes.
->=20
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+On 24/11/2022 14:58, Vadym Kochan wrote:
+> AC5 SoC has armada8k PCIe IP so add compatible string for it.
+> 
+> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 28 ++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/d=
-ts/freescale/imx93.dtsi
-> index 5d79663b3b84..6808321ed809 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -223,6 +223,20 @@ lpuart2: serial@44390000 {
->  				status =3D "disabled";
->  			};
-> =20
-> +			flexcan1: can@443a0000 {
-> +				compatible =3D "fsl,imx93-flexcan";
-> +				reg =3D <0x443a0000 0x10000>;
-> +				interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&clk IMX93_CLK_BUS_AON>,
-> +					 <&clk IMX93_CLK_CAN1_GATE>;
-> +				clock-names =3D "ipg", "per";
-> +				assigned-clocks =3D <&clk IMX93_CLK_CAN1>;
-> +				assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> +				assigned-clock-rates =3D <40000000>;
-> +				fsl,clk-source =3D /bits/ 8 <0>;
-> +				status =3D "disabled";
-> +			};
-> +
->  			iomuxc: pinctrl@443c0000 {
->  				compatible =3D "fsl,imx93-iomuxc";
->  				reg =3D <0x443c0000 0x10000>;
-> @@ -393,6 +407,20 @@ lpuart6: serial@425a0000 {
->  				status =3D "disabled";
->  			};
-> =20
-> +			flexcan2: can@425b0000 {
-> +				compatible =3D "fsl,imx93-flexcan";
-> +				reg =3D <0x425b0000 0x10000>;
-> +				interrupts =3D <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&clk IMX93_CLK_BUS_WAKEUP>,
-> +					 <&clk IMX93_CLK_CAN2_GATE>;
-> +				clock-names =3D "ipg", "per";
-> +				assigned-clocks =3D <&clk IMX93_CLK_CAN2>;
-> +				assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> +				assigned-clock-rates =3D <40000000>;
-> +				fsl,clk-source =3D /bits/ 8 <0>;
-> +				status =3D "disabled";
-> +			};
-> +
->  			lpuart7: serial@42690000 {
->  				compatible =3D "fsl,imx93-lpuart", "fsl,imx7ulp-lpuart";
->  				reg =3D <0x42690000 0x1000>;
-> --=20
-> 2.34.1
->=20
->=20
+> v2: no changes
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+Not correct... I wasted some time looking for v1. This is a new patch.
 
---bun327v46tx4wk6q
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmN/gxkACgkQrX5LkNig
-012jpAf/Tl9GlAuWcLGh7nB/ddi7WxuR6tBSKZbkKApe5rmKuGQODe4jB8aDevD6
-3cUSNHjhdAJLrTm+z99xGGr3/bxb4XqZQAUTRj1PYz/Pc82TC/aFglh99o+ixG/X
-IkcsjSRQRvT6EmISzMCP5S3L031W6OgkpPNy6SeZSACqyc72x7ZjPdEGTZNutXcI
-IG5yqJDljrm7ZyMBehv4miKVFbgdFlwOgRVsE1iQcw2UyNi7HGHcezWf0UQS/7Ht
-+5NiruhiGx/gBY13fNKE1AzPwEN7BhPcgE+C2b7MIRxOxucKE+xKnYImk3Pu7hYJ
-csl8iwEdREP5mtZv5A7fAu3fT4mdKg==
-=g+gE
------END PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
---bun327v46tx4wk6q--
