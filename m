@@ -2,297 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23063637887
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 13:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97AD063788E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 13:07:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiKXMHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 07:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
+        id S229954AbiKXMHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 07:07:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229870AbiKXMGp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 07:06:45 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB4564540
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 04:05:20 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id s8so2234627lfc.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 04:05:20 -0800 (PST)
+        with ESMTP id S229966AbiKXMHS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 07:07:18 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B2A5DBB3;
+        Thu, 24 Nov 2022 04:07:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4UD2+BwrM4OIYmxXfGtMiwHH7M/T9FxMPWGUo8Plx2Y=;
-        b=VOuR003ZOkZqtUtOjQfaqRbWh1fGzpthkUs9mPEzG+CeS6IetDR+RDBJVqTVW0zttw
-         VJ0L4YifpbSC7AFZxSuBzblLjHetdBS+QvacdWj/e1rHe8OOKILmEEQySuqnn9xNrCei
-         vYZofeCLig9GHuhZJGUKehoX2eHTYC3R8iFtXlXYx1FHQbiB+BFl8Ql22UHIZOon2L/F
-         jdsmlYaqfEMqIePQeqLbpqkWt0ocJAmGN3Cfy0yZCfsA533j1v8Lmo6+IMIBMUCpks0r
-         kK6B/NmLA7QFkOaCra0dqNpRZ02vyvJcvqmXvFX+cev6QtaHbXJrH+lyqkxkBMkLbWVS
-         XOPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4UD2+BwrM4OIYmxXfGtMiwHH7M/T9FxMPWGUo8Plx2Y=;
-        b=GGn9qlA924G0OQ9thQkFCIHGlRt2NXTEcBbAdAsfTw67RWQUDFlZ7SWEIMiYKR67lY
-         VoXyAV4NMJTltHqEtealqePTW6SpJTqw6pW6agIDZb7BaI4S/Mn4/uDTiaU7//Rqlo/x
-         iTXLMwbB3hPBlsCu1nvqtRFyBwLsgMTKeYUcR/XhZXLZSga4XM1HfExb8crqd/gDIIAw
-         NgOGg8hZAH7w25KK4tOEqtn4AkT/BLzkWhIraarI5/jferH9IbQi6eUXkgWzy9FVm+4I
-         xZncZOnbvL8/k7v2rLrvayX3zjDX17SfJuamBw9PFWZwVzUy+AT2EH/euNP4miyR9Ghs
-         hIcg==
-X-Gm-Message-State: ANoB5pm9C1Ybnjl/J6SBSm/OHrtX6Jkn9y4JC+454IIbJu6FJkuB2lFF
-        VhU989Ykr7nTHN1JAfkv9NEYgg==
-X-Google-Smtp-Source: AA0mqf6H5h0Qk3gTJm8eqtQ17NGa3DDlAZJvzsKd6eCbSR2Aj7QnE3MnIEWCQ8MX/Lc4QGAxh1hkPg==
-X-Received: by 2002:a19:4f56:0:b0:4af:cd2:f8df with SMTP id a22-20020a194f56000000b004af0cd2f8dfmr10508208lfk.586.1669291518289;
-        Thu, 24 Nov 2022 04:05:18 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p22-20020a056512313600b00498f871f33fsm103879lfd.86.2022.11.24.04.05.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 04:05:17 -0800 (PST)
-Message-ID: <80417bba-2ddb-2730-c9fd-6879d38bf126@linaro.org>
-Date:   Thu, 24 Nov 2022 13:05:16 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669291621; x=1700827621;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=YsgidHp3z6YWpMEV/I6fovM+NYx8bsUJoi4Wsw5apxY=;
+  b=MArkUQYSNW/32VOOOrRrjKeQFjPTRqJx7q0W6gtyoFNxEyppICK6w+iu
+   6KqeFzr+/u5/Ll8mPeVM0wvXNInGMo0k0wCppD8JfwAU8pZfa1GBSgNb7
+   fSYpVRZXfqhMmDYdUmw7AHndOkO8mFddvFn2mPnwa7d5aXEF9BhVfMq/R
+   3bXNayt86Xs0ynqYBONdyKMokhVQH3DuhSQa7SzX/I4SGQhBQot+Rv28C
+   N20leLoakEkq6S3ehKvBS+WmHl7WLiNnIzp41wJhcBwt818NzD2hYhpzI
+   YPEtONyR8/mj/EyOWmSCK6LCRGrnmbPShxnpcZddlxpYWoduz2Tnm1yfC
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27561043"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Nov 2022 13:06:59 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 24 Nov 2022 13:06:59 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 24 Nov 2022 13:06:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669291619; x=1700827619;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=YsgidHp3z6YWpMEV/I6fovM+NYx8bsUJoi4Wsw5apxY=;
+  b=CAsPUIDnwafQ/ui5JQBW7dM6hGwx5bbIBWXJTz6gn1FQYeJGqwm6e6X6
+   J5dKdAcGWPJeP5kZa/FbwBfPUVx/9T+++r/4A4DLNfWjb/KBNqi7eDmNk
+   +Jtst9fGd20d/X9HwkOvH75baIG1pAWRVm+YvQnCw9CyW+20CnA34LOfJ
+   UOEiCOynEan/r6jy7OtLesKJYcdctaY7ueNo9D++cdYMGmBzX+KQg5ahA
+   8GBErlzmAUr3rz+vzFfEpwCzQJ08LT4v4Wblh2kcjU1a82S5lGVrNzYoC
+   SLgveSUWeSVLwKadH6Zqo6/7EOf5x4wIH6nBiMvpYVveXDHGcx7Vll55/
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27561042"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Nov 2022 13:06:58 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B7B0F280056;
+        Thu, 24 Nov 2022 13:06:58 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        linux-media@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] media: i2c: ov9282: Add support for regulators.
+Date:   Thu, 24 Nov 2022 13:06:56 +0100
+Message-ID: <2615981.X9hSmTKtgW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAPY8ntA0oq4qYu1gJszEf3WpRLywn-+8V5=Y36jzboTa69-=Tw@mail.gmail.com>
+References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com> <834648869.0ifERbkFSE@steina-w> <CAPY8ntA0oq4qYu1gJszEf3WpRLywn-+8V5=Y36jzboTa69-=Tw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: Add schema for SM8550
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20221124112232.1704144-1-abel.vesa@linaro.org>
- <20221124112232.1704144-2-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221124112232.1704144-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 12:22, Abel Vesa wrote:
-> Add dedicated schema file for SM8500. This allows better constraining
-> of reg property, depending on the type of the NOC node. Also allows
-> better constraining of the clocks property. All of the above while
-> keeping the file itself comprehensible.
+Hi Dave,
+
+Am Donnerstag, 24. November 2022, 12:58:08 CET schrieb Dave Stevenson:
+> Hi Alexander
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  .../interconnect/qcom,sm8550-rpmh.yaml        | 141 ++++++++++++++++++
->  1 file changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
+> Thanks for the review.
 > 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
-> new file mode 100644
-> index 000000000000..9627b629d4ce
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,sm8550-rpmh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm RPMh Network-On-Chip Interconnect on SM8550
-> +
-> +maintainers:
-> +  - Georgi Djakov <djakov@kernel.org>
-> +  - Odelu Kukatla <okukatla@codeaurora.org>
+> Sakari has already picked this up and included it in a pull to Mauro for
+> 6.2. https://www.spinics.net/lists/linux-media/msg222346.html
 
-I think this is not accurate email. Georgi also might not be interested
-in SM8550 itself, so I propose add here yourself and Neil.
+A quite recent, I wasn't aware of that. Thanks for the hint.
 
-> +
-> +description: |
-> +   RPMh interconnect providers support system bandwidth requirements through
-> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
-> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
-> +   associated with each execution environment. Provider nodes must point to at
-> +   least one RPMh device child node pertaining to their RSC and each provider
-> +   can map to multiple RPMh resources.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8550-aggre1-noc
-> +      - qcom,sm8550-aggre2-noc
-> +      - qcom,sm8550-clk-virt
-> +      - qcom,sm8550-cnoc-main
-> +      - qcom,sm8550-config-noc
-> +      - qcom,sm8550-gem-noc
-> +      - qcom,sm8550-lpass-ag-noc
-> +      - qcom,sm8550-lpass-lpiaon-noc
-> +      - qcom,sm8550-lpass-lpicx-noc
-> +      - qcom,sm8550-mc-virt
-> +      - qcom,sm8550-mmss-noc
-> +      - qcom,sm8550-nsp-noc
-> +      - qcom,sm8550-pcie-anoc
-> +      - qcom,sm8550-system-noc
-> +
+> On Thu, 24 Nov 2022 at 09:31, Alexander Stein
+> 
+> <alexander.stein@ew.tq-group.com> wrote:
+> > Hello Dave,
+> > 
+> > Am Mittwoch, 5. Oktober 2022, 17:20:18 CET schrieb Dave Stevenson:
+> > > The sensor takes 3 supply rails - AVDD, DVDD, and DOVDD.
+> > > 
+> > > Add hooks into the regulator framework for each of these
+> > > regulators.
+> > > 
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > ---
+> > > 
+> > >  drivers/media/i2c/ov9282.c | 38 ++++++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 38 insertions(+)
+> > > 
+> > > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+> > > index 2e0b315801e5..699fc5b753b4 100644
+> > > --- a/drivers/media/i2c/ov9282.c
+> > > +++ b/drivers/media/i2c/ov9282.c
+> > > @@ -11,6 +11,7 @@
+> > > 
+> > >  #include <linux/i2c.h>
+> > >  #include <linux/module.h>
+> > >  #include <linux/pm_runtime.h>
+> > > 
+> > > +#include <linux/regulator/consumer.h>
+> > > 
+> > >  #include <media/v4l2-ctrls.h>
+> > >  #include <media/v4l2-fwnode.h>
+> > > 
+> > > @@ -55,6 +56,14 @@
+> > > 
+> > >  #define OV9282_REG_MIN               0x00
+> > >  #define OV9282_REG_MAX               0xfffff
+> > > 
+> > > +static const char * const ov9282_supply_names[] = {
+> > > +     "avdd",         /* Analog power */
+> > > +     "dovdd",        /* Digital I/O power */
+> > > +     "dvdd",         /* Digital core power */
+> > > +};
+> > > +
+> > > +#define OV9282_NUM_SUPPLIES ARRAY_SIZE(ov9282_supply_names)
+> > > +
+> > > 
+> > >  /**
+> > >  
+> > >   * struct ov9282_reg - ov9282 sensor register
+> > >   * @address: Register address
+> > > 
+> > > @@ -128,6 +137,7 @@ struct ov9282 {
+> > > 
+> > >       struct media_pad pad;
+> > >       struct gpio_desc *reset_gpio;
+> > >       struct clk *inclk;
+> > > 
+> > > +     struct regulator_bulk_data supplies[OV9282_NUM_SUPPLIES];
+> > 
+> > Please add documentation for supplies.
+> 
+> Is it the place for the driver to document the supplies beyond the
+> comments in ov9282_supply_names with regard to which sensor rail they
+> relate to?
+> Some drivers include the typical values for each supply, but those are
+> technically inaccurate as each will have a min and max value.
+> 
+> Anyone interfacing with a sensor is going to have the datasheet for it
+> and should be referring to that for the characteristics of supply
+> rails. Duplicating some of that in the driver seems redundant, and has
+> the potential to be incorrect.
 
-reg:
-  maxItems: 1
+What I meant was adding " @supplies: power supply regulators" to the doxygen 
+(?) documentation directly above.
+I agree that no details about those supplies should be added to driver code 
+though.
 
-> +allOf:
-> +  - $ref: qcom,rpmh-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-aggre1-noc
-> +              - qcom,sm8550-aggre2-noc
-> +              - qcom,sm8550-cnoc-main
-> +              - qcom,sm8550-config-noc
-> +              - qcom,sm8550-gem-noc
-> +              - qcom,sm8550-lpass-ag-noc
-> +              - qcom,sm8550-lpass-lpiaon-noc
-> +              - qcom,sm8550-lpass-lpicx-noc
-> +              - qcom,sm8550-mmss-noc
-> +              - qcom,sm8550-nsp-noc
-> +              - qcom,sm8550-pcie-anoc
-> +              - qcom,sm8550-system-noc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 1
-> +          maxItems: 1
+Alexander
 
-Instead:
+> 
+> > >       struct v4l2_ctrl_handler ctrl_handler;
+> > >       struct v4l2_ctrl *link_freq_ctrl;
+> > >       struct v4l2_ctrl *pclk_ctrl;
+> > > 
+> > > @@ -767,6 +777,18 @@ static int ov9282_detect(struct ov9282 *ov9282)
+> > > 
+> > >       return 0;
+> > >  
+> > >  }
+> > > 
+> > > +static int ov9282_configure_regulators(struct ov9282 *ov9282)
+> > > +{
+> > > +     unsigned int i;
+> > > +
+> > > +     for (i = 0; i < OV9282_NUM_SUPPLIES; i++)
+> > > +             ov9282->supplies[i].supply = ov9282_supply_names[i];
+> > > +
+> > > +     return devm_regulator_bulk_get(ov9282->dev,
+> > > +                                    OV9282_NUM_SUPPLIES,
+> > > +                                    ov9282->supplies);
+> > > +}
+> > > +
+> > > 
+> > >  /**
+> > >  
+> > >   * ov9282_parse_hw_config() - Parse HW configuration and check if
+> > >   supported
+> > > 
+> > > * @ov9282: pointer to ov9282 device
+> > > @@ -803,6 +825,12 @@ static int ov9282_parse_hw_config(struct ov9282
+> > > *ov9282) return PTR_ERR(ov9282->inclk);
+> > > 
+> > >       }
+> > > 
+> > > +     ret = ov9282_configure_regulators(ov9282);
+> > > +     if (ret) {
+> > > +             dev_err(ov9282->dev, "Failed to get power regulators\n");
+> > 
+> > dev_err_probe seems sensible here.
+> 
+> That would have been good - sorry. I must get into the habit of
+> remembering to use dev_err_probe.
+> 
+>   Dave
+> 
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > 
+> > >       rate = clk_get_rate(ov9282->inclk);
+> > >       if (rate != OV9282_INCLK_RATE) {
+> > >       
+> > >               dev_err(ov9282->dev, "inclk frequency mismatch");
+> > > 
+> > > @@ -874,6 +902,12 @@ static int ov9282_power_on(struct device *dev)
+> > > 
+> > >       struct ov9282 *ov9282 = to_ov9282(sd);
+> > >       int ret;
+> > > 
+> > > +     ret = regulator_bulk_enable(OV9282_NUM_SUPPLIES,
+> > > ov9282->supplies);
+> > > +     if (ret < 0) {
+> > > +             dev_err(dev, "Failed to enable regulators\n");
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > 
+> > >       usleep_range(400, 600);
+> > >       
+> > >       gpiod_set_value_cansleep(ov9282->reset_gpio, 1);
+> > > 
+> > > @@ -891,6 +925,8 @@ static int ov9282_power_on(struct device *dev)
+> > > 
+> > >  error_reset:
+> > >       gpiod_set_value_cansleep(ov9282->reset_gpio, 0);
+> > > 
+> > > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> > > +
+> > > 
+> > >       return ret;
+> > >  
+> > >  }
+> > > 
+> > > @@ -909,6 +945,8 @@ static int ov9282_power_off(struct device *dev)
+> > > 
+> > >       clk_disable_unprepare(ov9282->inclk);
+> > > 
+> > > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> > > +
+> > > 
+> > >       return 0;
+> > >  
+> > >  }
+> > 
+> > Despite the nits above
+> > Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-  if:
-     ....
-
-     enum:
-       - virt interconnects
-  then:
-    properties:
-      reg: false
-  else:
-    required:
-      - reg
 
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-pcie-anoc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: aggre-NOC PCIe AXI clock
-> +            - description: cfg-NOC PCIe a-NOC AHB clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-aggre1-noc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: aggre UFS PHY AXI clock
-> +            - description: aggre USB3 PRIM AXI clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-aggre2-noc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: RPMH CC IPA clock
-
-This part is in general fine, but I propose to do it differently -
-mentioning clocks in top-level properties, because it's defining
-properties in allOf:if:then is error prone and easy to miss. Better to
-have one definition and customization in if:then:.
-
-Therefore:
-1. in top-level properties:
-  clocks:
-    minItems: 1
-    maxItems: 2
-
-2. All your ifs stay the same.
-
-3. One more if: compatible: enum: pcie/aggre1/aggre2
-
-  then:
-    required:
-      - clocks
-  else:
-    properties:
-      clocks: false
-
-
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/clock/qcom,gcc-sm8550.h>
-> +      #include <dt-bindings/interconnect/qcom,sm8550.h>
-> +      #include <dt-bindings/clock/qcom,rpmh.h>
-> +
-> +      clk_virt: interconnect-0 {
-> +             compatible = "qcom,sm8550-clk-virt";
-> +             #interconnect-cells = <2>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
-> +
-> +      cnoc_main: interconnect@1500000 {
-> +             compatible = "qcom,sm8550-cnoc-main";
-> +             reg = <0x01500000 0x13080>;
-> +             #interconnect-cells = <2>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
-> +
-> +      aggre1_noc: interconnect@16e0000 {
-> +             compatible = "qcom,sm8550-aggre1-noc";
-> +             reg = <0x016e0000 0x14400>;
-> +             #interconnect-cells = <2>;
-> +             clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> +                      <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
-> +
-> +      aggre2_noc: interconnect@1700000 {
-> +             compatible = "qcom,sm8550-aggre2-noc";
-> +             reg = <0x01700000 0x1E400>;
-> +             #interconnect-cells = <2>;
-> +             clocks = <&rpmhcc RPMH_IPA_CLK>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
-
-and keep just two examples (e.g. virt and aggre1) - they differ only by
-one or two properties, so it's a bit too much...
-
-Best regards,
-Krzysztof
 
