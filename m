@@ -2,170 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C11637733
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ADDF637743
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:13:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbiKXLJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39358 "EHLO
+        id S229748AbiKXLNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:13:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbiKXLJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:09:13 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EAD65FBA1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:09:11 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id bn5so1630341ljb.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:09:10 -0800 (PST)
+        with ESMTP id S229544AbiKXLNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:13:36 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF1813E06B
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:13:33 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id r12so2082704lfp.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:13:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g3sDEE3qa8mV6Z8JLdbIcpk1y3W4FOR+C6lE//MJGBA=;
-        b=YwQsbws8Gdut4vqlvVwAGqR8yxlaet5b02SqRYH3b0ZOLIOkqiXHr0liDJUuIBNQyW
-         cVkcsW6I8skCy4wXVnS+/xcCumMDaz5WbutbsK1JL/l4IE9Hsgul8ap1f92eYSEckq2P
-         v5lmf34VWNXMvRyZkGdjoSNe0ReDIaw8qUsnpO+Pe//H72gJCw123DL4Jp9JSan1t6ba
-         sFFMTZr+y+jq5hyy56MCzDOG1hQIcaCu4tX1KhmLiQrwNehIyQLgOgv0WcTIf8a6TaMa
-         q0IBbHrj0u1x6rzKuOzKYlFWes7H/+dHxcVeCxPUM/8JPmq1zZmcndQxWBN0+kvYipjB
-         kzrw==
+        bh=rCj2UGwGM6w6ZRGQowdeC2XnWEPWL1uXR/0dltIvUwQ=;
+        b=XLX4CK2BN8y+2/Rw9fe9pSJddMHxO4Jj0B8KsBOQcz0Hp4ZyDYIqKp+SeirpiZAFAm
+         p6NdrjCcsLOMKZddZ+qRoYura7Sqwgmz3ykLV1v3WGE7sG5ZOeb96+E8usmo1w63l67D
+         DpDpGbpJYZ97fs4sRh7JXh+lOWHe7B4BnlC8J9nHMIMjteiplDHLdNKD54v2mpEzeNlH
+         MTb+LrBkuFgGX/RqG+MR785N0kdlkPN8tgHeGk1XlY3px26hH6W4aSiUoJUxtdyVjVRg
+         RSZNrFjvANfTTGicn3B+26yaSot04M2Xhrct1Iv7rgu2RBHq3xFPfd6kvqW/GP4Xd/kg
+         LW0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g3sDEE3qa8mV6Z8JLdbIcpk1y3W4FOR+C6lE//MJGBA=;
-        b=Njij1XRiG8rXDOMResi4KeJvz5oN7pm+lxJoG+IGZotioUrn6doA5qgcmXr7jJISbM
-         accKD1q1Hl7NpOMeIrWFEfvf9gJrPEj1krPwX3Arq8ZxIM34W2R1F4h50TDRqy5KnJLW
-         xJzF54TaU9S+KWHZBKvz90rL8oVvk645FiqFRAAPF4xus35sZUiy0De2gIwfbavYEcHa
-         6NekELAML63knH/9b/lC2Cx8qXwVKX5WWOcE4Ljuk4+Z9CQ21ZJQrBqW+xsYqSUBLo7W
-         F0OXXzU4dhcaPO4P7Vr7k2VuZnyu7K7uBrKKa6s/NWtgilL+0FKpgiJ5T8t4YQZ38j/o
-         ghmg==
-X-Gm-Message-State: ANoB5pnRck51dxy8aY1Vm83rB+c4IlyH08hV+py13gMACqvMDHUczqCM
-        z7CHz9qJLRueIriIZzNMAsmKVg==
-X-Google-Smtp-Source: AA0mqf6LyBiVykGyk7kCz9xb1VAXnYbL3E7n7XIc4SDO7ASJrU0aMhqJ7FUYBvNj2MY6wbI+eH7zYw==
-X-Received: by 2002:a2e:7017:0:b0:277:18ee:c91e with SMTP id l23-20020a2e7017000000b0027718eec91emr10976398ljc.363.1669288149407;
-        Thu, 24 Nov 2022 03:09:09 -0800 (PST)
+        bh=rCj2UGwGM6w6ZRGQowdeC2XnWEPWL1uXR/0dltIvUwQ=;
+        b=oX7WjUIOY6Ozg5IGYWNBWEcdYsLga8IIPL9KLtp0vtYlv4LfqTcviODmbY/lenKsjr
+         sDjOcHs8qieHANEFdYh6kozoypQe98RoK3/PDocHTv3uuLktwPEPBvvAGyJblKKMCLNf
+         BeuiWl2mDfX9O+8Rdfn5vH+cyHqaJwKRvy9pmvvnG9LpWux0og8lheLM0AgqWOVUvwbF
+         Ztv9AhYsM+cjpCLwd8T7MQrodKO6AC1xt5CEBSirpVz1vfmtjW9I/IxQ40biGDbI4v8a
+         5kH5VfHx81YMM0S9mFETSPCOkVpe/2VfB2QpuesZm+hieWQ+LwXXNHmQq81LknFak4AB
+         WS2g==
+X-Gm-Message-State: ANoB5pmKI+62wgJLenQ3YgwqE0PrmUZG19ySvU+RoLVhmmzZkzY2pyBz
+        QUS8uRzMNWLCnfDGKB1wpWPUXg==
+X-Google-Smtp-Source: AA0mqf77SJcXFxiT+8w1pskHsMFpUj7CdpIorQh3ACsDwCn46PkgObtYNifZNSkbEYo1vZBQPEdkFQ==
+X-Received: by 2002:a05:6512:1043:b0:4b0:efed:e3a8 with SMTP id c3-20020a056512104300b004b0efede3a8mr10457783lfb.650.1669288412115;
+        Thu, 24 Nov 2022 03:13:32 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u4-20020ac248a4000000b0049944ab6895sm85882lfg.260.2022.11.24.03.09.07
+        by smtp.gmail.com with ESMTPSA id d13-20020a056512368d00b0049496855494sm91047lfs.104.2022.11.24.03.13.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:09:08 -0800 (PST)
-Message-ID: <3012ca1a-c583-4148-8a96-f9ecf61a07dd@linaro.org>
-Date:   Thu, 24 Nov 2022 12:09:06 +0100
+        Thu, 24 Nov 2022 03:13:31 -0800 (PST)
+Message-ID: <3cda9005-d7a5-56f0-d1d2-fd6c1cb36fc3@linaro.org>
+Date:   Thu, 24 Nov 2022 12:13:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
- names for decoder
+Subject: Re: [PATCH V5 1/2] dt-bindings: firmware: qcom-scm: Add optional
+ interrupt
 Content-Language: en-US
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>, "robh@kernel.org" <robh@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
- <20220930220011.GA1107972-robh@kernel.org>
- <ffc56eb60a3ef74c815c8d3c170a0df51958e20d.camel@mediatek.com>
- <24361bea-ecfe-b6e1-e755-5151220767f2@linaro.org>
- <722194a3d413ca15069554ebab1f34dec25057eb.camel@mediatek.com>
- <de2198dd-16a7-f412-932d-a75cccf801e0@xs4all.nl>
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@somainline.org, robimarko@gmail.com,
+        quic_gurus@quicinc.com, quic_rjendra@quicinc.com
+References: <20221123204615.25358-1-quic_sibis@quicinc.com>
+ <20221123204615.25358-2-quic_sibis@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <de2198dd-16a7-f412-932d-a75cccf801e0@xs4all.nl>
+In-Reply-To: <20221123204615.25358-2-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 12:05, Hans Verkuil wrote:
-> Hi Krzysztof,
+On 23/11/2022 21:46, Sibi Sankar wrote:
+> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
 > 
-> On 05/10/2022 13:58, Allen-KH Cheng (程冠勳) wrote:
->> Hi Krzysztof,
->>
->> On Wed, 2022-10-05 at 09:30 +0200, Krzysztof Kozlowski wrote:
->>> On 05/10/2022 09:21, Allen-KH Cheng (程冠勳) wrote:
->>>> Hi Rob,
->>>>
->>>> On Fri, 2022-09-30 at 17:00 -0500, Rob Herring wrote:
->>>>> On Fri, Sep 30, 2022 at 07:22:36PM +0800, Allen-KH Cheng wrote:
->>>>>> In order to make the names of the child nodes more generic, we
->>>>>> rename
->>>>>> "vcodec" to "video-codec" for decoder in patternProperties and
->>>>>> example.
->>>>>
->>>>> They are either generic or they aren't. Until something generic
->>>>> is 
->>>>> defined, I don't think it's worth the churn to change.
->>>>>
->>>>>
->>>>>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>>>>> Reviewed-by: AngeloGioacchino Del Regno <
->>>>>> angelogioacchino.delregno@collabora.com>
->>>>>> ---
->>>>>>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8
->>>>>> ++++----
->>>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>>> subdev-
->>>>>> decoder.yaml
->>>>>> b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>>> subdev-
->>>>>> decoder.yaml
->>>>>> index c4f20acdc1f8..67fde48f991c 100644
->>>>>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>>> subdev-decoder.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>>> subdev-decoder.yaml
->>>>>> @@ -91,7 +91,7 @@ properties:
->>>>>>  
->>>>>>  # Required child node:
->>>>>>  patternProperties:
->>>>>> -  '^vcodec-lat@[0-9a-f]+$':
->>>>>> +  '^video-codec-lat@[0-9a-f]+$':
->>>>>
->>>>> Just 'video-codec' doesn't work?
->>>>>
->>>>
->>>> Thanks for your reply.
->>>>
->>>> hmm, I think 'vidoe-codec' does wrok.
->>>>
->>>> There are two seperate hardwares for the MTK video codec.
->>>> codec-lat and codec-core.
->>>>
->>>> Is it ok to keep two child node names for various hardwares?
->>>>
->>>
->>> Aren't they still codecs?
->>>
->>> Best regards,
->>> Krzysztof
->>
->> Yes, They are both hardware deocders. Lat is responsible for the
->> bitstream and write the outcome to the lat buffer. Core will decode the
->> lat buffer and write the outcome to the output buffer. Each frame will
->> be decoded cyclically by these two hardware deocders.
-> 
-> So is this patch OK to be merged? Or do you still want changes?
+> Add an interrupt specification to the bindings to support the wait-queue
+> feature.
 
-The patch should be changed as Rob pointed out - use "video-codec" name.
+Subject - this is qcom,scm, not qcom-scm.
+
+
+> 
+> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+> v5:
+> - Pick up R-b
+> 
+> v4:
+> - Qualify bindings [Krzysztoff]
+> 
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> index 25688571ee7c..aea6e0c86a89 100644
+> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> @@ -73,6 +73,12 @@ properties:
+>    '#reset-cells':
+>      const: 1
+>  
+> +  interrupts:
+> +    description:
+> +      The wait-queue interrupt that firmware raises as part of handshake
+> +      protocol to handle sleeping SCM calls.
+> +    maxItems: 1
+
+Which devices have interrupts?
+
+We talked about it here:
+https://lore.kernel.org/all/2464d90f-64e9-5e3c-404b-10394c3bc302@quicinc.com/
+and here:
+https://lore.kernel.org/all/c20edd0d-7613-5683-60e7-54317cac6e0b@linaro.org/
+
+But I still don't get which devices support it and which do not.
+
+
+BTW:
+https://lore.kernel.org/all/20221122092345.44369-2-krzysztof.kozlowski@linaro.org/
+
 
 Best regards,
 Krzysztof
