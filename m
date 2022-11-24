@@ -2,150 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72704637FFB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 21:00:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E06F638009
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 21:05:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbiKXUAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 15:00:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S229481AbiKXUFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 15:05:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbiKXUAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 15:00:13 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C4F614F;
-        Thu, 24 Nov 2022 12:00:11 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1oyIOB-00027b-Hj; Thu, 24 Nov 2022 21:00:03 +0100
-Date:   Thu, 24 Nov 2022 20:00:00 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229448AbiKXUFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 15:05:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98B16CE4F;
+        Thu, 24 Nov 2022 12:05:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8752EB82756;
+        Thu, 24 Nov 2022 20:05:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A56BC433D7;
+        Thu, 24 Nov 2022 20:05:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669320350;
+        bh=f8Kaz8pUEg/+dRz3JXsCoWQ/hDv43xbv8M6GJX2jTMQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f9PIyi1b28nJcBVnbuB52YKFjX9SgXxrw/smc+QNBcHKHwpDR0exAb/cuFUCBr9CQ
+         MwCHQnRO9ji2xHo6iJuFh0pSygN9gg7YkB0KGwiaX2XgVLPCO63PD3k/ygS4kAMvgg
+         EpWwmr4ABoTnMwLExgMauElADrxobvRX+7F+ziAjdRYOY1E/2xXiBX02CxJ63jdVta
+         QPWLG4PjEb9Td+S6E/payr/UPALGtERLV60ckexfjm9j2yRNPLuc9NE1AJOCJCOd1E
+         2zfZ884cqIbqZMVraME45p1jw/abfNa4Py1/mM1ObtSm5d/ULhLMkcLx20f6qWzulP
+         APCR+icwPFKqA==
+Date:   Thu, 24 Nov 2022 20:05:40 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Zhi Mao <zhi.mao@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
- MT7986
-Message-ID: <Y3/NQBzU/R6XubBf@makrotopia.org>
-References: <Y39PjU1BqBB8tZ98@makrotopia.org>
- <e5e87795-12d7-699e-1539-2e60b8b51957@linaro.org>
- <Y39fe3oHgMTyAHBm@makrotopia.org>
- <add5675c-b7a9-7f6e-e977-ac79c5c4086a@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 1/7] riscv: asm: alternative-macros: Introduce
+ ALTERNATIVE_3() macro
+Message-ID: <Y3/OlKI1jyi0eoCJ@spud>
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y3/LgZkR1hkblJ8D@spud>
+ <4801607.MHq7AAxBmi@diego>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <add5675c-b7a9-7f6e-e977-ac79c5c4086a@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4801607.MHq7AAxBmi@diego>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Thu, Nov 24, 2022 at 02:33:35PM +0100, Krzysztof Kozlowski wrote:
-> On 24/11/2022 13:11, Daniel Golle wrote:
-> > On Thu, Nov 24, 2022 at 12:30:44PM +0100, Krzysztof Kozlowski wrote:
-> >> On 24/11/2022 12:03, Daniel Golle wrote:
-> >>> Add new compatible string for MT7986 PWM and list compatible units for
-> >>> existing entries. Also make sure the number of pwm1-X clocks is listed
-> >>> for all supported units.
-> >>>
-> >>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> >>> ---
-> >>> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
-> >>>
-> >>> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
-> >>> makes sure dt maintainers are included. This has been requested by
-> >>> Krzysztof Kozlowski.
-> >>>
-> >>>  .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
-> >>>  1 file changed, 12 insertions(+), 8 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>> index 554c96b6d0c3..952a338e06e7 100644
-> >>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>> @@ -2,14 +2,15 @@ MediaTek PWM controller
-> >>>  
-> >>>  Required properties:
-> >>>   - compatible: should be "mediatek,<name>-pwm":
-> >>> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
-> >>> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
-> >>>     - "mediatek,mt6795-pwm": found on mt6795 SoC.
-> >>> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
-> >>> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
-> >>> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
-> >>
-> >> This does not look right. What you are saying is mt7622 is compatible
-> >> with mt8195, which is compatible with mt8183, which is compatible with
-> >> mt7986. It could be true, but I feel you wanted to say something else -
-> >> mt7622 is compatible with one SoC which is generic and common to all
-> >> other implementations.
+On Thu, Nov 24, 2022 at 08:58:41PM +0100, Heiko Stübner wrote:
+> Am Donnerstag, 24. November 2022, 20:52:33 CET schrieb Conor Dooley:
+> > On Thu, Nov 24, 2022 at 05:22:01PM +0000, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > 
+> > > Introduce ALTERNATIVE_3() macro.
 > > 
-> > MT7622 has 6 PWM channels, it does have CK_26M_SEL register and does
-> > not need pwm45_fixup. Hence, when using a driver made for MT8195, only
-> > 4 out of 6 channels woukd work. MT8183 PWM is identical to MT8195,
-> > hence also compatible. When using driver for MT7986, only 2 channels
-> > would work, but otherwise it is also compatible.
-> > 
-> > So unfortunately, that one generic implementation ("common ancestor")
-> > does not exist and development of the PWM unit found in MediaTek SoCs
-> > did not necessarily increase features in more recent iterations, but
-> > rather just reduce or increase the number of PWM channels available.
-> > Ironically, the unit with least features (only 2 channels) is found in
-> > the most recent SoC (MT7986).
+> > Bit perfunctory I think! There's a lovely comment down below that would
+> > make for a better commit message if you were to yoink it.
+> > Content looks about what I'd expect to see though.
 > 
-> None of these explain listing four compatibles.
-
-So do I understand correctly that in this case only the newly
-introduced "mediatek,mt7986-pwm" should be listed as more generic
-compatible after the more specific "mediatek,mt7622-pwm", everything in
-between should be dropped? Or only drop "mediatek,mt8195-pwm" here?
-
-I'm asking because in your message from 23/10/2022 you were quoting
-Devicetree specification:
-> "The property value consists of a concatenated list of null terminated
-> strings, from most specific to most general. They allow a device to
-> express its compatibility with a family of similar devices, potentially
-> allowing a single device driver to match against several devices."
-
-And we have discussed in great length (as I had misunderstood it) that
-this should mean that units with the lowest number of channels are to
-be considered the "most general" if otherwise identical.
-
-
+> Also both the comment on the original ALTERNATIVE_2 and the new ALTERNATIVE_3
+> should probably be merged into a single comment explaining this once for all
+> ALTERNATIVE_x variants.
 > 
-> > 
-> >>
-> >>> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
-> >>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
-> >>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
-> >>> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
-> >>> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
-> >>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
-> >>> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
-> >>> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
-> >>
-> >> This as well looks excessive.
-> > 
-> > I agree. But it's difficult to say which one should be ommitted.
+> Especially with the dma stuff, I'm pretty sure we'll get at least an ALTERNATIVE_4
+> if not even more ;-) . So we defnitly don't want to repeat this multiple times.
 
-So are you suggesting to drop the "mediatek,mt8183-pwm" string here?
+Oh I can promise you that there'll be a #4 ;) I do find the comment's
+wording to be quite odd though..
 
-Thank you for your patience!
+> + * A vendor wants to replace an old_content, but another vendor has used
+> + * ALTERNATIVE_2() to patch its customized content at the same location. In
+
+In particular this bit about "at the same location" does not make all
+that much sense. What "at the same location" means in this context
+should be expanded on imo. Effectively it boils down to someone else is
+already replacing the same things you want to replace - it's just the
+word "location" that might make sense if you're an old hand but not
+otherwise?
+
+> + * this case, this vendor can create a new macro ALTERNATIVE_3() based
+
+Also, using the word "can". Is it not a "must" rather than a "can",
+since this stuff needs to be multiplatform?
+
+> + * on the following sample code and then replace ALTERNATIVE_2() with
+> + * ALTERNATIVE_3() to append its customized content.
 
 
-Daniel
