@@ -2,589 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D32B3637837
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:57:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D2F63783F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:58:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbiKXL54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:57:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36772 "EHLO
+        id S229563AbiKXL6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:58:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiKXL5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:57:54 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2038127B00
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:57:51 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id d3so1762323ljl.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:57:51 -0800 (PST)
+        with ESMTP id S229747AbiKXL63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:58:29 -0500
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A7BCB9D0
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:58:25 -0800 (PST)
+Received: by mail-il1-x12c.google.com with SMTP id h2so690402ile.11
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:58:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NPmDZK4XmnAOyxkMxe20Ybvmmjh3LoW3ETcvzboBHAU=;
-        b=i5SSIpvAf/Ejbtaj6w2g0uRZ1sYzLR2tKI4VuD5gebcozOR63sD/+MzOhXRACplESB
-         LHwegGYPl8iBopiP93nlp5lHcQMTENa/voWA5xLlfSZP5AmiNS/eNbGc4EzfO+atjyGr
-         wP57XcXhkEfrEkWUUEf+QNFJun17+XlV+7X/5gpbtTnLn8noMdaVuwLZDUeKTNg++cQo
-         jxOO+XSra4VZKbSXP+iur4Ulw7dd9tP1rFoIDCzFUpIMOPwA2UlygQIVGuqP61SEVMEe
-         iP+TKP6eMnpQgF+FF9s6VT4SrJ7WL4JeO4ssxYaYcjq0FfPp7odFaUcQQ2s7r7EZTQQg
-         HShA==
+        d=raspberrypi.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3OcOKLBkavhNW4KYy1hfo9fa8x/O5MBbapatWejvVZ0=;
+        b=VUOMDJARVPimx/Aq4HJiarNMiq61PPL6+4OTq/Pguz1det2yayWmkYe0th4FR0aSCK
+         SzkhnOsyF04sA+07lo5ueIsqNu4ue3Xlms6J3x9YrRX4h1MBOLRCqqmLtXs6tkzdwfw1
+         Z278nX3dBBFaqhbO6PTR2BhiY8pYpDbo5ke8wjv5RPkroUPMj8eokGEyPLHN+mvG/aCW
+         dRI+9ZdDjA+BzEU3Y6xRNDrbavVlVbJfBZIuxYFHbDtLuYDHrSS+uiTwJpUAeoyMjr9X
+         podCYZCU3xFGPnbXrgAtv3WlZtiqJT9PunhZ28rZo/gKtmF545kNbBipLLhaBSaIgrpi
+         TxQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NPmDZK4XmnAOyxkMxe20Ybvmmjh3LoW3ETcvzboBHAU=;
-        b=LSuwqx7QPidZC0eYS5JlgCcXvCpTe71MMT9V1YM2f2AQ9mi50dS4cpj/zoojQwMZYK
-         7Iom9TxaOnoe4tgbZY9AsgRJ4nI3V1IZDiewHgbWXLc28mTyZTvYBnBfuD5z3hNiT/iZ
-         2x17SYpn2BoeinLFzDKpg0YRLD1UalF+KeRPG9tsRrbHt7QOrxwJvXyHrxGTFFccmOg+
-         Zhm2ZZgyvr4imK2w98MP61lzl243midqs5p74tBFzlLTZigvrkJepy51bljix5Ik/Zaz
-         WDOXbFrHll/7RnVygIOiv7xd39u47+ZwTMJrUdMLYzcErMX8/M8O3A+JrMM4HQdX0WVr
-         DV9Q==
-X-Gm-Message-State: ANoB5pk/Haj8JC9FLpZiuPat9bkUTJgnHy+Pv2Mgf2teaXhxIviTKvXt
-        im9hOxVZ+q75c1ZymLo+yj54aw==
-X-Google-Smtp-Source: AA0mqf4tOZy1XI6gIeGCQKO0IE9RPc/SMBSueH4Z9MiM8wsB9AjA+IiTBUojMenLOoCXCuQmT5PXhA==
-X-Received: by 2002:a2e:9941:0:b0:26d:fe34:6dc0 with SMTP id r1-20020a2e9941000000b0026dfe346dc0mr5110775ljj.477.1669291069405;
-        Thu, 24 Nov 2022 03:57:49 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o30-20020a198c1e000000b004a26b9cea32sm97055lfd.271.2022.11.24.03.57.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:57:49 -0800 (PST)
-Message-ID: <9cbc6894-4d08-5edd-3b29-e15611700dfe@linaro.org>
-Date:   Thu, 24 Nov 2022 12:57:48 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3OcOKLBkavhNW4KYy1hfo9fa8x/O5MBbapatWejvVZ0=;
+        b=6A0FREK3rHIqQ9pq17KYQ4ZA5vRdzep51bC0AQdiGzIP+vCk356zwrBRjAbGMRC9C8
+         NmheZdJiV0irGc+MIcHsYY4/ZFoCi6y2tO7IKiYcsLjunmDJIMVTyy+pWUIcrpOs7K25
+         kql+Q1aFuW3viPjLiff7bqk4nDJghHNjh/hgc5ZBT0XigfGiyNRdVHwCEul6Wb87eet5
+         R3N9KtR9JorioGgU8VPyJFMrwfpgviS9QiRD7OHej52Oh0zE9XfMI+TSp8rxsvRDEUrf
+         M/sxuNHKSa1R4j5jqxj2+MpOYkzJ+hknfqOGsBnUGmefUwaRU0IvAQyiBODCm4rYpBLK
+         cPGQ==
+X-Gm-Message-State: ANoB5pky20dKt7rl4o/fuqjG/MSyxWXhxuekWLiLt9QPQwwDI8TAfb5Z
+        Ng5tyGdvCcCf8VfTboyvkTx504x6p9Ubkk5jbWjsmw==
+X-Google-Smtp-Source: AA0mqf5HzPxwTSlXEkLPQ/HLgvn2b60CfiAFs/2id3qDhIiHixPDY+pW2uyQsciqRS3dCHp+DmIEGqDqM+zKxyjEmGs=
+X-Received: by 2002:a92:2c0e:0:b0:302:e042:9ddd with SMTP id
+ t14-20020a922c0e000000b00302e0429dddmr3466683ile.292.1669291105111; Thu, 24
+ Nov 2022 03:58:25 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/2] arm: dts: omap4: pcm959: add initial support for
- phytec pcm959
-Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Tony Lindgren <tony@atomide.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        soc@kernel.org, Olof Johansson <olof@lixom.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20221123233209.1854806-1-colin.foster@in-advantage.com>
- <20221123233209.1854806-3-colin.foster@in-advantage.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123233209.1854806-3-colin.foster@in-advantage.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com>
+ <20221005152018.3783890-3-dave.stevenson@raspberrypi.com> <834648869.0ifERbkFSE@steina-w>
+In-Reply-To: <834648869.0ifERbkFSE@steina-w>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Thu, 24 Nov 2022 11:58:08 +0000
+Message-ID: <CAPY8ntA0oq4qYu1gJszEf3WpRLywn-+8V5=Y36jzboTa69-=Tw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] media: i2c: ov9282: Add support for regulators.
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
+        linux-media@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 00:32, Colin Foster wrote:
-> The Phytec PCM-959 is a development platform for the Phytec PCM-049 SOM.
-> Add initial functionality for the board. The verified interfaces and
-> peripherals are listed below for the SOM (PCM-049) and the dev board
-> (PCM-959)
-> 
-> The omap2plus_defconfig was used for testing. Only the On-board LEDs
-> required CONFIG_LEDS_PCA9532 addition.
-> 
+Hi Alexander
 
-Thank you for your patch. There is something to discuss/improve.
+Thanks for the review.
 
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		dsp_memory_region: dsp-memory@98000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x98000000 0x800000>;
-> +			reusable;
-> +			status = "okay";
+Sakari has already picked this up and included it in a pull to Mauro for 6.2.
+https://www.spinics.net/lists/linux-media/msg222346.html
 
-Okay is by default, why adding it? Was it disabled in DTSI file?
+On Thu, 24 Nov 2022 at 09:31, Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hello Dave,
+>
+> Am Mittwoch, 5. Oktober 2022, 17:20:18 CET schrieb Dave Stevenson:
+> > The sensor takes 3 supply rails - AVDD, DVDD, and DOVDD.
+> >
+> > Add hooks into the regulator framework for each of these
+> > regulators.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > ---
+> >  drivers/media/i2c/ov9282.c | 38 ++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 38 insertions(+)
+> >
+> > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+> > index 2e0b315801e5..699fc5b753b4 100644
+> > --- a/drivers/media/i2c/ov9282.c
+> > +++ b/drivers/media/i2c/ov9282.c
+> > @@ -11,6 +11,7 @@
+> >  #include <linux/i2c.h>
+> >  #include <linux/module.h>
+> >  #include <linux/pm_runtime.h>
+> > +#include <linux/regulator/consumer.h>
+> >
+> >  #include <media/v4l2-ctrls.h>
+> >  #include <media/v4l2-fwnode.h>
+> > @@ -55,6 +56,14 @@
+> >  #define OV9282_REG_MIN               0x00
+> >  #define OV9282_REG_MAX               0xfffff
+> >
+> > +static const char * const ov9282_supply_names[] = {
+> > +     "avdd",         /* Analog power */
+> > +     "dovdd",        /* Digital I/O power */
+> > +     "dvdd",         /* Digital core power */
+> > +};
+> > +
+> > +#define OV9282_NUM_SUPPLIES ARRAY_SIZE(ov9282_supply_names)
+> > +
+> >  /**
+> >   * struct ov9282_reg - ov9282 sensor register
+> >   * @address: Register address
+> > @@ -128,6 +137,7 @@ struct ov9282 {
+> >       struct media_pad pad;
+> >       struct gpio_desc *reset_gpio;
+> >       struct clk *inclk;
+> > +     struct regulator_bulk_data supplies[OV9282_NUM_SUPPLIES];
+>
+> Please add documentation for supplies.
 
-> +		};
-> +
-> +		ipu_memory_region: ipu-memory@98800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x98800000 0x7000000>;
-> +			reusable;
-> +			status = "okay";
-> +		};
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart3;
-> +	};
-> +
-> +	leds: leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <
-> +			&led_gpio_pins
-> +		>;
+Is it the place for the driver to document the supplies beyond the
+comments in ov9282_supply_names with regard to which sensor rail they
+relate to?
+Some drivers include the typical values for each supply, but those are
+technically inaccurate as each will have a min and max value.
 
-That's unusual syntax.
+Anyone interfacing with a sensor is going to have the datasheet for it
+and should be referring to that for the characteristics of supply
+rails. Duplicating some of that in the driver seems redundant, and has
+the potential to be incorrect.
 
-pinctrl-0 = <&led_gpio_pins>;
+> >       struct v4l2_ctrl_handler ctrl_handler;
+> >       struct v4l2_ctrl *link_freq_ctrl;
+> >       struct v4l2_ctrl *pclk_ctrl;
+> > @@ -767,6 +777,18 @@ static int ov9282_detect(struct ov9282 *ov9282)
+> >       return 0;
+> >  }
+> >
+> > +static int ov9282_configure_regulators(struct ov9282 *ov9282)
+> > +{
+> > +     unsigned int i;
+> > +
+> > +     for (i = 0; i < OV9282_NUM_SUPPLIES; i++)
+> > +             ov9282->supplies[i].supply = ov9282_supply_names[i];
+> > +
+> > +     return devm_regulator_bulk_get(ov9282->dev,
+> > +                                    OV9282_NUM_SUPPLIES,
+> > +                                    ov9282->supplies);
+> > +}
+> > +
+> >  /**
+> >   * ov9282_parse_hw_config() - Parse HW configuration and check if supported
+> > * @ov9282: pointer to ov9282 device
+> > @@ -803,6 +825,12 @@ static int ov9282_parse_hw_config(struct ov9282
+> > *ov9282) return PTR_ERR(ov9282->inclk);
+> >       }
+> >
+> > +     ret = ov9282_configure_regulators(ov9282);
+> > +     if (ret) {
+> > +             dev_err(ov9282->dev, "Failed to get power regulators\n");
+>
+> dev_err_probe seems sensible here.
 
+That would have been good - sorry. I must get into the habit of
+remembering to use dev_err_probe.
 
-> +
-> +		led-0 {
-> +			label = "modul:red:status1";
+  Dave
 
-You should rather use function and color. label is slowly getting
-deprecated.
-
-> +			gpios = <&gpio5 0x18 GPIO_ACTIVE_HIGH>; /* GPIO 152 */
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		led-1 {
-> +			label = "modul:green:status2";
-> +			gpios = <&gpio5 0x19 GPIO_ACTIVE_HIGH>; /* GPIO 153 */
-> +			linux,default-trigger = "mmc0";
-> +		};
-> +	};
-> +};
-> +
-> +&gpio1_target {
-> +	ti,no-reset-on-init;
-> +};
-> +
-> +&omap4_pmx_core {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <
-> +		&tps62361_pins
-
-Ditto.
-
-> +	>;
-> +
-> +	i2c1_pins: pinmux-i2c1-pins {
-> +		pinctrl-single,pins = <
-
-These can stay like this. But it's exception.
-
-> +			OMAP4_IOPAD(0x122, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_scl */
-> +			OMAP4_IOPAD(0x124, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_sda */
-> +		>;
-> +	};
-> +
-> +	i2c3_pins: pinmux-i2c3-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x12a, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c3_scl */
-> +			OMAP4_IOPAD(0x12c, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c3_sda */
-> +		>;
-> +	};
-> +
-> +	i2c4_pins: pinmux-i2c4-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x12e, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c4_scl */
-> +			OMAP4_IOPAD(0x130, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c4_sda */
-> +		>;
-> +	};
-> +
-> +	uart1_pins: pinmux_uart1_pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x126, PIN_INPUT_PULLUP | MUX_MODE1)	/* uart1_rx */
-> +			OMAP4_IOPAD(0x128, PIN_INPUT_PULLUP | MUX_MODE1)	/* uart1_tx */
-> +		>;
-> +	};
-> +
-> +	uart2_pins: pinmux-uart2-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_cts */
-> +			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)		/* uart2_rts */
-> +			OMAP4_IOPAD(0x11c, PIN_INPUT | MUX_MODE0)		/* uart2_rx */
-> +			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)		/* uart2_tx */
-> +		>;
-> +	};
-> +
-> +	uart3_pins: pinmux-uart3-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x140, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart3_cts */
-> +			OMAP4_IOPAD(0x142, PIN_OUTPUT | MUX_MODE0)		/* uart3_rts */
-> +			OMAP4_IOPAD(0x144, PIN_INPUT | MUX_MODE0)		/* uart3_rx */
-> +			OMAP4_IOPAD(0x146, PIN_OUTPUT | MUX_MODE0)		/* uart3_tx */
-> +		>;
-> +	};
-> +
-> +	led_gpio_pins: pinmux-leds-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x156, PIN_OUTPUT | MUX_MODE3)	/* gpio_152 */
-> +			OMAP4_IOPAD(0x158, PIN_OUTPUT | MUX_MODE3)	/* gpio_153 */
-> +		>;
-> +	};
-> +
-> +	pinctrl_tempsense: pinmux-pinctrl-tempsense-pins{
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x154, PIN_INPUT_PULLUP | MUX_MODE3)	/* gpio_151 */
-> +		>;
-> +	};
-> +
-> +	gpmc_pins: gpmc-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x40, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad0 */
-> +			OMAP4_IOPAD(0x42, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad1 */
-> +			OMAP4_IOPAD(0x44, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad2 */
-> +			OMAP4_IOPAD(0x46, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad3 */
-> +			OMAP4_IOPAD(0x48, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad4 */
-> +			OMAP4_IOPAD(0x4a, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad5 */
-> +			OMAP4_IOPAD(0x4c, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad6 */
-> +			OMAP4_IOPAD(0x4e, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad7 */
-> +			OMAP4_IOPAD(0x50, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad8 */
-> +			OMAP4_IOPAD(0x52, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad9 */
-> +			OMAP4_IOPAD(0x54, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad10 */
-> +			OMAP4_IOPAD(0x56, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad11 */
-> +			OMAP4_IOPAD(0x58, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad12 */
-> +			OMAP4_IOPAD(0x5a, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad13 */
-> +			OMAP4_IOPAD(0x5c, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad14 */
-> +			OMAP4_IOPAD(0x5e, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* gpmc_ad15 */
-> +
-> +			OMAP4_IOPAD(0x60, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a16 */
-> +			OMAP4_IOPAD(0x62, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a17 */
-> +			OMAP4_IOPAD(0x64, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a18 */
-> +			OMAP4_IOPAD(0x66, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a19 */
-> +			OMAP4_IOPAD(0x68, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a20 */
-> +			OMAP4_IOPAD(0x6a, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a21 */
-> +			OMAP4_IOPAD(0x6c, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a22 */
-> +			OMAP4_IOPAD(0x6e, PIN_OUTPUT | MUX_MODE0)		/* gpmc_a23 */
-> +
-> +			OMAP4_IOPAD(0x82, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* gpmc_noe */
-> +			OMAP4_IOPAD(0x84, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* gpmc_nwe */
-> +
-> +			OMAP4_IOPAD(0x7c, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* gpmc_nwp */
-> +			OMAP4_IOPAD(0x80, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* gpmc_nadv_ale */
-> +			OMAP4_IOPAD(0x86, PIN_OUTPUT_PULLDOWN | MUX_MODE0)	/* gpmc_nbe0_cle */
-> +			OMAP4_IOPAD(0x8a, PIN_INPUT_PULLUP | MUX_MODE0)		/* gpmc_wait0 */
-> +			OMAP4_IOPAD(0x8c, PIN_INPUT_PULLUP | MUX_MODE0)		/* gpmc_wait1 */
-> +
-> +			OMAP4_IOPAD(0x74, PIN_OUTPUT_PULLUP | MUX_MODE0)	/* gpmc_ncs0 */
-> +			OMAP4_IOPAD(0x76, PIN_OUTPUT_PULLUP | MUX_MODE0)	/* gpmc_ncs1 */
-> +			OMAP4_IOPAD(0x92, PIN_OUTPUT_PULLUP | MUX_MODE0)	/* gpmc_ncs5 */
-> +		>;
-> +	};
-> +
-> +	ethernet_pins: ethernet-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x114, PIN_INPUT | MUX_MODE3)		/* gpio_121 */
-> +		>;
-> +	};
-> +
-> +	tps62361_pins: pinmux-tps62361-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x19c, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpio_182 */
-> +		>;
-> +	};
-> +
-> +	mmc1_pins: pinmux-mmc1-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x0e2, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_clk */
-> +			OMAP4_IOPAD(0x0e4, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_cmd */
-> +			OMAP4_IOPAD(0x0e6, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_dat0 */
-> +			OMAP4_IOPAD(0x0e8, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_dat1 */
-> +			OMAP4_IOPAD(0x0ea, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_dat2 */
-> +			OMAP4_IOPAD(0x0ec, PIN_INPUT_PULLUP | MUX_MODE0)	/* sdmmc1_dat3 */
-> +		>;
-> +	};
-> +};
-> +
-> +&omap4_pmx_wkup {
-> +	pinctrl-names = "default";
-> +	pinctrl-0= <
-> +		&smartreflex_i2c_pins
-> +		&fref_xtal_in_pins
-> +		&fref_clk3_out_pins
-> +		&sys_pins
-
-Squash the lines.
-
-> +	>;
-> +
-> +	ethernet_wkgpio_pins: pinmux-ethernet-wkup-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x66, PIN_OUTPUT | MUX_MODE3)		/* gpio_wk29 */
-> +		>;
-> +	};
-> +
-> +	smartreflex_i2c_pins: pinmux-smartreflex-i2c-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x4a, PIN_INPUT_PULLUP | MUX_MODE0)		/* sr_scl */
-> +			OMAP4_IOPAD(0x4c, PIN_INPUT_PULLUP | MUX_MODE0)		/* sr_sda */
-> +		>;
-> +	};
-> +
-> +	fref_xtal_in_pins: pinmux-fref-xtal-in-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x4e, PIN_OUTPUT | MUX_MODE0)		/* fref_xtal_in */
-> +		>;
-> +	};
-> +
-> +	fref_clk3_out_pins: pinmux-usb-refclk-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x58, PIN_OUTPUT | MUX_MODE0)		/* fref_clk3_out */
-> +		>;
-> +	};
-> +
-> +	sys_pins: pinmux-sys-pins {
-> +		pinctrl-single,pins = <
-> +			OMAP4_IOPAD(0x5e, PIN_INPUT | MUX_MODE0)		/* sys_32k */
-> +			OMAP4_IOPAD(0x60, PIN_OUTPUT | MUX_MODE0)		/* sys_nrespwron */
-> +			OMAP4_IOPAD(0x62, PIN_OUTPUT | MUX_MODE0)		/* sys_nreswarm */
-> +			OMAP4_IOPAD(0x64, PIN_OUTPUT_PULLUP | MUX_MODE0)	/* sys_pwr_req */
-> +			OMAP4_IOPAD(0x68, PIN_INPUT | MUX_MODE0)		/* sys_boot6 */
-> +			OMAP4_IOPAD(0x6a, PIN_INPUT | MUX_MODE0)		/* sys_boot7 */
-> +		>;
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +
-> +	clock-frequency = <400000>;
-> +
-> +	twl: twl@48 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "ti,twl6030";
-> +		reg = <0x48>;
-> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>; /* IRQ_SYS_1N cascaded to gic */
-> +	};
-> +
-> +	core_vdd_reg: regulator@60 {
-> +		compatible = "ti,tps62361";
-> +		reg = <0x60>;
-> +
-> +		regulator-name = "tps62361-vout";
-> +		regulator-min-microvolt = <500000>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-coupled-max-spread = <300000>;
-> +		regulator-max-step-microvolt = <100000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		ti,vsel0-gpio = <&gpio5 22 GPIO_ACTIVE_HIGH>;
-> +		ti,vsel0-state-high;
-> +	};
-> +
-> +	temperature-sensor@4b {
-> +		compatible = "ti,tmp102";
-> +		reg = <0x4b>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_tempsense>;
-> +		interrupt-parent = <&gpio5>;
-> +		interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
-> +		#thermal-sensor-cells = <1>;
-> +	};
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
-> +#include "twl6030.dtsi"
-> +#include "twl6030_omap4.dtsi"
-
-Includes are usually at beginning. Is it a convention for all OMAP DTSes
-to add it in the middle?
-
-> +
-> +&i2c2 {
-> +	status = "disabled";
-> +};
-> +
-> +&i2c3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c3_pins>;
-> +	status = "okay";
-> +
-> +	clock-frequency = <100000>;
-> +};
-> +
-> +&i2c4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c4_pins>;
-> +	status = "disabled";
-> +
-> +	clock-frequency = <400000>;
-> +};
-> +
-> +&vmmc {
-> +	ti,retain-on-reset;
-> +};
-> +
-> +&mmc1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc1_pins>;
-> +
-> +	vmmc-supply = <&vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&mmc2 {
-> +	status = "disabled";
-> +};
-> +
-> +&mmc3 {
-> +	status = "disabled";
-> +};
-> +
-> +&mmc4 {
-> +	status = "disabled";
-> +};
-> +
-> +&mmc5 {
-> +	status = "disabled";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart3_pins>;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	status = "disabled";
-> +};
-> +
-> +&elm {
-> +	status = "okay";
-> +};
-> +
-> +#include "omap-gpmc-smsc9221.dtsi"
-> +
-> +&gpmc {
-> +	ranges = <5 0 0x2c000000 0x01000000>,
-> +		 <0 0 0x08000000 0x01000000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <
-> +		&gpmc_pins
-> +		>;
-
-Merge/squash lines.
-
-> +	status = "okay";
-> +
-> +	nandflash: nand@0,0 {
-> +		compatible = "ti,omap2-nand";
-> +		reg = <0 0 4>;
-> +		interrupt-parent = <&gpmc>;
-> +		rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>;
-> +		nand-bus-width = <16>;
-> +		ti,nand-ecc-opt = "bch8";
-> +		ti,elm-id=<&elm>;
-> +		linux,mtd-name = "micron,nand";
-> +		gpmc,device-nand = "true";
-> +		gpmc,device-width = <1>;
-> +
-> +		gpmc,sync-clk-ps = <0>;
-> +		gpmc,cs-on-ns = <0>;
-> +		gpmc,cs-rd-off-ns = <44>;
-> +		gpmc,cs-wr-off-ns = <44>;
-> +		gpmc,adv-rd-off-ns = <34>;
-> +		gpmc,adv-wr-off-ns = <44>;
-> +		gpmc,we-off-ns = <40>;
-> +		gpmc,oe-off-ns = <54>;
-> +		gpmc,access-ns = <64>;
-> +		gpmc,rd-cycle-ns = <82>;
-> +		gpmc,wr-cycle-ns = <82>;
-> +		gpmc,wr-access-ns = <40>;
-> +		gpmc,wr-data-mux-bus-ns = <0>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +	};
-> +
-> +	ethernet@gpmc {
-> +		reg = <5 0 0xff>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <
-> +			&ethernet_pins
-> +			&ethernet_wkgpio_pins
-> +		>;
-> +
-> +		/* Either GPIO 103 or GPIO 121. Use 121 to match the reference design */
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/omap4-phytec-pcm-959.dts b/arch/arm/boot/dts/omap4-phytec-pcm-959.dts
-> new file mode 100644
-> index 000000000000..f323d64660d7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/omap4-phytec-pcm-959.dts
-> @@ -0,0 +1,48 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2022 Innovative Advantage, Inc.
-> + */
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/leds-pca9532.h>
-> +#include "omap4460.dtsi"
-> +#include "omap4-phytec-pcm-049.dtsi"
-> +
-> +/ {
-> +	model = "Phytec PCM-959 Eval Board";
-> +	compatible = "phytec,pcm959", "phytec,pcm049", "ti,omap4460", "ti,omap4430", "ti,omap4";
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +
-> +	leddim: led@62 {
-> +		compatible = "nxp,pca9533";
-> +		reg = <0x62>;
-> +
-> +		led-1 {
-> +			label = "board:red:free_use1";
-> +			linux,default-trigger = "none";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led-2 {
-> +			label = "board:yellow:free_use2";
-> +			linux,default-trigger = "none";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led-3 {
-> +			label = "board:yellow:free_use3";
-> +			linux,default-trigger = "none";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +
-> +		led-4 {
-> +			label = "board:green:free_use4";
-> +			linux,default-trigger = "none";
-> +			type = <PCA9532_TYPE_LED>;
-> +		};
-> +	};
-> +};
-> +
-
-Drop trailing new line.
-
-
-Best regards,
-Krzysztof
-
+> > +             return ret;
+> > +     }
+> > +
+> >       rate = clk_get_rate(ov9282->inclk);
+> >       if (rate != OV9282_INCLK_RATE) {
+> >               dev_err(ov9282->dev, "inclk frequency mismatch");
+> > @@ -874,6 +902,12 @@ static int ov9282_power_on(struct device *dev)
+> >       struct ov9282 *ov9282 = to_ov9282(sd);
+> >       int ret;
+> >
+> > +     ret = regulator_bulk_enable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "Failed to enable regulators\n");
+> > +             return ret;
+> > +     }
+> > +
+> >       usleep_range(400, 600);
+> >
+> >       gpiod_set_value_cansleep(ov9282->reset_gpio, 1);
+> > @@ -891,6 +925,8 @@ static int ov9282_power_on(struct device *dev)
+> >  error_reset:
+> >       gpiod_set_value_cansleep(ov9282->reset_gpio, 0);
+> >
+> > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> > +
+> >       return ret;
+> >  }
+> >
+> > @@ -909,6 +945,8 @@ static int ov9282_power_off(struct device *dev)
+> >
+> >       clk_disable_unprepare(ov9282->inclk);
+> >
+> > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
+> > +
+> >       return 0;
+> >  }
+>
+> Despite the nits above
+> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
