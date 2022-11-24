@@ -2,378 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8551E637662
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 11:28:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 272BB63767C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 11:30:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbiKXK2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 05:28:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
+        id S229525AbiKXKa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 05:30:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbiKXK2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 05:28:06 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0C676141;
-        Thu, 24 Nov 2022 02:28:02 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5396BFF803;
-        Thu, 24 Nov 2022 10:27:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669285681;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QuXxXHjsO6Qesz4Cd2esIPDdydm9CuuV9DYveil89fw=;
-        b=Gbee6iBj/3Wqjolgg5a/+mE+XtaS7VFrOtuhrRXLd5CNdIdVuSc77J9xGc/XQmZ7AU+p4M
-        V3+6xVNZIWY1zIty5niZ3SoeiQgjYsby8gNJBrkGyS4WH93C6cjIKWUVRoHI34VWyX7Z37
-        Ts6HVrpPwm22YTZTNd9lMKlJBupCnuyl6QPYAAvi6pHWmN6e1GOUi4h+UHTKA1tnQWdWpK
-        GmN5VYNdsoj7J7H932oy/agi714eYInEkI2ljly25kWapR+gH8DwJmlBJ9bw/LHUd041sW
-        gM8iYCCZKPV7y7b7DFFIVGAQ7DJeMvceEzRaNZ2stAkfCYtsFqr3Fuj9ewhzAQ==
-Date:   Thu, 24 Nov 2022 11:27:57 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: renesas,r9a06g032-sysctrl:
- Add h2mode property
-Message-ID: <20221124112757.13f200c4@xps-13>
-In-Reply-To: <d203a6ce-7032-a423-5158-fa551922dea1@linaro.org>
-References: <20221114111513.1436165-1-herve.codina@bootlin.com>
-        <20221115150417.513955a7@bootlin.com>
-        <20221118112349.7f09eefb@bootlin.com>
-        <d9bd5075-9d06-888d-36a9-911e2d7ec5af@linaro.org>
-        <20221121165921.559d6538@bootlin.com>
-        <4e54bfb4-bb67-73b8-f58f-56797c5925d3@linaro.org>
-        <CAMuHMdU=-ZUzHSb0Z8P3wsLK9cgGVCPdMi6AcjTH23tUQEeEBA@mail.gmail.com>
-        <a3e1332e-fc15-8a78-0ddd-6d5b26197f11@linaro.org>
-        <CAMuHMdXzqZB4sKMmroriq5oPp7z=yXiHk=+eQKwSyPhNbYqgYA@mail.gmail.com>
-        <1f12883b-1e37-7f2b-f9e9-c8bad290a133@linaro.org>
-        <CAMuHMdVbzg8y2So+A=z8nUwHMoL+XKUrvoXp9QdbCnUve1_Atw@mail.gmail.com>
-        <191a7f3e-0733-8058-5829-fe170a06dd5a@linaro.org>
-        <20221122100706.739cec4d@bootlin.com>
-        <3856e2d8-1c16-a69f-4ac5-34b8e7f18c2b@linaro.org>
-        <CAMuHMdXPndkt=+k1CAcDbH7eK=TFfS6wMu+xdqWZSCz1+hyhEA@mail.gmail.com>
-        <02db6a5d-ae9d-68b5-f5c5-bebb471e0f70@linaro.org>
-        <20221124103633.4fbf483f@xps-13>
-        <d203a6ce-7032-a423-5158-fa551922dea1@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229877AbiKXKaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 05:30:05 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A00B14A2DA
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 02:30:01 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id 7so1326366ybp.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 02:30:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jDR5GJzkrlvJD9yzrOlJ5GKkSJVuJ19hWIOf5v5G1Xs=;
+        b=LYM4pUwf23JLOP2V2OZ/RWMDi150FSYYyA+9UgSRGxIxTQig+tUBqDEu+XQ448IIj9
+         RoK7MSA87V+DgOaO1Asco/X7DRXQbEdXdZGUySxHiZCpYMSM1n9ew+Qjam+jkdDoqKhf
+         r2vhIqTlPP+sEpRKNSzjLLhzaPZBj09M/OLFmDJ8gBnj0WbjmZW+7Bj9GA2zvCkwGytn
+         fpQsR5N+Q/48fOLBwQ7TwIlLl7TspzpFjXWoj2pfMRNJJ/+DmVKKrFYdqoSgFgBPngpf
+         fA9xSbwYlCo8hrFIrki128ZHrB3UVwHtyZ8MiJUbupA8m8S3JYOZtDMeWV7/YPZoZ942
+         1SBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jDR5GJzkrlvJD9yzrOlJ5GKkSJVuJ19hWIOf5v5G1Xs=;
+        b=7ITj3MmTee8eg6z0SwaGBSGd+CtM8kJD+77RIR6DSHwe4GB1G1vMj0q/MsMEaWVTiK
+         O3Dq6OThYzQZaCV7NfsbfFbOXZLRxoo0dlQUk2SvWzoZRCjG7urImdwcZoIUXjrPca9e
+         M123f/n+fDUZbxn2K3K4I8HVmxs9dxAyfMPAZNXA4CVU7poJjMV6Kr5WEPx0mTaRO3Sl
+         hQ9x5e4qHuG7uj0XniIOmq8zXSKZFMMEGKxiJDKJU3UwaeHOk+TLvAKqNDeOAluU0ySv
+         hA5yx5RcSGRZ02DCfCVzc4SujTRn9ndrPHIzgrlioQhfaUKOjuziX638zVJFam2rjWhw
+         alXg==
+X-Gm-Message-State: ANoB5pl2f2MM8OFFjAM5ksnyC19AqMZK1F7/Bzjp3JyLCaXFPnxlziug
+        EgIbZBl7Tz9SunnceYa794NhlsGEE7VbL2h8Fp8/tg==
+X-Google-Smtp-Source: AA0mqf74tPMpGfik0vFG+53g1ZLEgmMjeL8riBiFr5hh/nRi1D9lpJvY/uduLLM0RUm1jdXXrlUx+QgqqjWEZuUgbqk=
+X-Received: by 2002:a25:1843:0:b0:6dc:b9ec:7c87 with SMTP id
+ 64-20020a251843000000b006dcb9ec7c87mr13626761yby.322.1669285800899; Thu, 24
+ Nov 2022 02:30:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221119221219.1232541-1-linus.walleij@linaro.org>
+ <20221119221219.1232541-2-linus.walleij@linaro.org> <73df18a2-b0d6-72de-37bb-17ba84b54b82@kernel.org>
+ <CACRpkdZsxk2MH0AEHE=kpHuikdP35d3_q6wrr3+Yrs2QpZy62A@mail.gmail.com> <7b11aca1-c984-d8f4-6d99-13833270ee16@kernel.org>
+In-Reply-To: <7b11aca1-c984-d8f4-6d99-13833270ee16@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 24 Nov 2022 11:29:48 +0100
+Message-ID: <CACRpkday99jcpruX_viWiz7M66UC-k_kmsqFWpJiLMp0AEAh9w@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Nov 24, 2022 at 10:22 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-krzysztof.kozlowski@linaro.org wrote on Thu, 24 Nov 2022 10:46:14 +0100:
+> I am referring to the mail header, not to "CC" lines above. You missed
+> to Cc Devicetree maintainers (maybe more folks, I did not check all
+> addresses).
 
-> On 24/11/2022 10:36, Miquel Raynal wrote:
-> > Hi Krzysztof,
-> >=20
-> > krzysztof.kozlowski@linaro.org wrote on Wed, 23 Nov 2022 10:39:41 +0100:
-> >  =20
-> >> On 22/11/2022 11:47, Geert Uytterhoeven wrote: =20
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Tue, Nov 22, 2022 at 11:30 AM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:   =20
-> >>>> On 22/11/2022 10:07, Herve Codina wrote:   =20
-> >>>>> On Tue, 22 Nov 2022 09:42:48 +0100
-> >>>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>>   =20
-> >>>>>> On 22/11/2022 09:25, Geert Uytterhoeven wrote:   =20
-> >>>>>>> Hi Krzysztof,
-> >>>>>>>
-> >>>>>>> On Tue, Nov 22, 2022 at 8:45 AM Krzysztof Kozlowski
-> >>>>>>> <krzysztof.kozlowski@linaro.org> wrote:   =20
-> >>>>>>>> On 21/11/2022 21:46, Geert Uytterhoeven wrote:   =20
-> >>>>>>>>>> This does not change anything. Herve wrote:
-> >>>>>>>>>>   =20
-> >>>>>>>>>>> probe some devices (USB host and probably others)   =20
-> >>>>>>>>>>
-> >>>>>>>>>> Why some can be probed earlier and some not, if there are no
-> >>>>>>>>>> dependencies? If there are dependencies, it's the same case wi=
-th sysctrl
-> >>>>>>>>>> touching the register bit and the USB controller touching it (=
-as well
-> >>>>>>>>>> via syscon, but that's obvious, I assume).
-> >>>>>>>>>>
-> >>>>>>>>>> Where is the synchronization problem?   =20
-> >>>>>>>>>
-> >>>>>>>>> The h2mode bit (and probably a few other controls we haven't fi=
-gured out
-> >>>>>>>>> yet) in the sysctrl must be set before any of the USB devices i=
-s active.
-> >>>>>>>>> Hence it's safest for the sysctrl to do this before any of the =
-USB drivers
-> >>>>>>>>> probes.   =20
-> >>>>>>>>
-> >>>>>>>> Again, this does not differ from many, many of other devices. Al=
-l of
-> >>>>>>>> them must set something in system controller block, before they =
-start
-> >>>>>>>> operating (or at specific time). It's exactly the same everywher=
-e.   =20
-> >>>>>>>
-> >>>>>>> The issue here is that there are two _different drivers_ (USB host
-> >>>>>>> and device). When both are modular, and the driver that depends o=
-n the
-> >>>>>>> sysctrl setting is loaded second, you have a problem: the sysctrl=
- change
-> >>>>>>> must not be done when the first driver is already using the hardw=
-are.
-> >>>>>>>
-> >>>>>>> Hence the sysctrl driver should take care of it itself during ear=
-ly
-> >>>>>>> initialization (it's the main clock controller, so it's a depende=
-ncy
-> >>>>>>> for all other I/O device drivers).   =20
-> >>>>>>
-> >>>>>> I assumed you have there bit for the first device (which can switch
-> >>>>>> between USB host and USB device) to choose appropriate mode. The
-> >>>>>> bindings also expressed this - "the USBs are". Never said anything=
- about
-> >>>>>> dependency between these USBs.
-> >>>>>>
-> >>>>>> Are you saying that the mode for first device cannot be changed on=
-ce the
-> >>>>>> second device (which is only host) is started? IOW, the mode setup=
- must
-> >>>>>> happen before any of these devices are started?
-> >>>>>>
-> >>>>>> Anyway with sysctrl approach you will have dependency and you cann=
-ot
-> >>>>>> rely on clock provider-consumer relationship to order that depende=
-ncy.
-> >>>>>> What if you make all clocks on and do not take any clocks in USB d=
-evice?
-> >>>>>> Broken dependency. What if you want to use this in a different SoC,
-> >>>>>> where the sysctrl does not provide clocks? Broken dependency.   =20
-> >>>>>
-> >>>>> The issue is really related to the Renesas sysctrl itself and not r=
-elated
-> >>>>> to the USB drivers themselves.
-> >>>>> From the drivers themselves, the issue is not seen (I mean the driv=
-er
-> >>>>> takes no specific action related to this issue).
-> >>>>> If we change the SOC, the issue will probably not exist anymore.   =
-=20
-> >>>>
-> >>>> Yeah, and in the next SoC you will bring 10 of such properties to
-> >>>> sysctrl arguing that if one was approved, 10 is also fine. Somehow
-> >>>> people on the lists like to use that argument - I saw it somewhere, =
-so I
-> >>>> am allowed to do here the same.   =20
-> >>>
-> >>> Like pin control properties? ;-)
-> >>> This property represents a wiring on the board...
-> >>> I.e. a system integration issue.
-> >>>    =20
-> >>>> I understand that the registers responsible for configuration are in
-> >>>> sysctrl block, but it does not mean that it should be described as p=
-art
-> >>>> of sysctrl Devicetree node. If there was no synchronization problem,
-> >>>> this would be regular example of register in syscon which is handled
-> >>>> (toggled) by the device (so USB device/host controller). Since there=
- is
-> >>>> synchronization problem, you argue that it is correct representation=
- of
-> >>>> hardware. No, it is not, because logically in DT you do not describe
-> >>>> mode or existence of other devices in some other node and it still d=
-oes
-> >>>> not describe this ordering.   =20
-> >>>
-> >>> So we have to drop the property, and let the sysctrl block look
-> >>> for <name>@<reg> nodes, and check which ones are enabled?
-> >>>
-> >>> Running out of ideas...   =20
-> >=20
-> > I'm stepping in, hopefully I won't just be bikeshedding on something
-> > that has already been discussed but here is my grain of salt.
-> >  =20
-> >> One solution could be making USB nodes children of the sysctrl block w=
-hich:
-> >> 1. Gives proper ordering (children cannot start before parent)
-> >> regardless of any other shared resources,
-> >> 2. Allows to drop this mode property and instead check what type of
-> >> children you have and configure mode depending on them.
-> >>
-> >> However this also might not be correct representation of hardware
-> >> (dunno...), so I am also running out of ideas. =20
-> >=20
-> > I see what you mean here, but AFAICS that is clearly a wrong
-> > representation of the hardware. Sorting nodes by bus seems the aim of
-> > device tree because there is a physical relationship, that's why we
-> > have (i2c as an example):
-> >=20
-> > 	ahb {
-> > 		foo-controller@xxx {
-> > 			reg =3D <xxx>;
-> > 		};
-> > 	};
-> >=20
-> > But what you are describing now is conceptually closer to:
-> >=20
-> > 	clk-controller {
-> > 		foo-controller {
-> > 			reg =3D ?
-> > 		};
-> > 	}; =20
->=20
-> Which is not a problem. reg can be anything - offset from sysctrl node
-> or absolute offset. We have it in many places already. What's the issue
-> here?
->
-> > Not mentioning that this only works once, because foo-controller might
-> > also need other blocks to be ready before probing and those might
-> > be different blocks (they are the same in the rzn1 case, but
-> > more generally, they are not). =20
->=20
-> But what is the problem of needing other blocks? All devices need
-> something and we solve it...
+Aha yeah that by default I just add Cc devicetree@vger.kernel.org
+for bindings, I guess because of the old ambition of separating device
+tree work from kernel work, which I think we have now given up
+on so yeah I should know better :/
 
-What I am saying is that parenting only works once. All the other
-dependencies must be described by properties.
-
-The h2mode register, no matter its content, should be set early in the
-boot process, at least before any of the concerned controllers, which
-are totally independent hardware blocks, probe. If one of them has
-started, a change to the h2mode property could just stall the system.
-The USB controllers do not *need* this property nor want to change it
-(see below).
-
-The fact that the USB controllers are totally independent hardware
-blocks make me thing that they should *not* be children of the sysctrl.
-In our case one of them even is a PCI device! Would you represent a PCI
-device within the sysctrl node? The other is somehow memory mapped
-behind a bridge. Again, this has to be described somewhere, and
-parenting usually is the right fit for that.
-
-Hence, the only real thing that remains to be described, as you
-rightly pointed out in your earlier reviews, is the probe order which
-is nothing related to any kind of parenting in this case.
-
-> > So in the end I am not in favor of this
-> > solution.
-> >=20
-> > If we compare the dependency between the USB device controller and the
-> > sysctrl block which contains the h2mode register to existing
-> > dependencies, they are all treated with properties. These properties,
-> > eg:
-> >=20
-> > 	foo-controller {
-> > 		clocks =3D <&provider [index]>;
-> > 	};
-> >=20
-> > were initially used to just tell the consumer which resource it should
-> > grab/enable. If the device was not yet ready, we would rely on the
-> > probe deferral mechanism to try again later. Not optimal, but not
-> > bad either as it made things work. Since v5.11 and the addition of
-> > automatic device links, the probe order is explicitly ordered.
-> > <provider> could always get probed before <foo-controller>. So, isn't
-> > what we need here? What about the following:
-> >=20
-> > 	sysctrl {
-> > 		h2mode =3D "something";
-> > 	};
-> >=20
-> > 	usb-device {
-> > 		h2mode-provider =3D <&sysctrl>;
-> > 	}; =20
->=20
-> No, because next time one will add 10 of such properties:
-> sysctrl {
-> 	h2mode =3D ""
-> 	g2mode =3D ""
-> 	i2mode =3D ""
-> 	....
-> }
->=20
-> and keep arguing that because these registers are in sysctrl, so they
-> should have their own property in sysctrl mode.
->=20
-> That's not correct representation of hardware.
-
-Actually my main focus here was more on the "sysctrl-provider" logic.
-We need a probe dependency so we have two choices:
-- pointing
-- parenting
-For the reasons above, I bet the former is the most accurate approach.
-
-If the h2mode property bothers you, it's fine, we can just drop it. The
-USB device controller can do without it:
-- either it just probes without knowing the mode, its bus will remain
-  empty so the device is useless, but nothing will break.
-- or (this is my favorite) we add another sysctrl helper that exposes
-  the h2mode, very much like we've done with the dmamux [2] and we just
-  avoid probing if the mode that we receive does not ask for a USB
-  device controller. Speeds-up the boot process.
-
-[2] https://lore.kernel.org/all/20220427095653.91804-5-miquel.raynal@bootli=
-n.com/
-
-Either ways, we would still need the probe order to be enforced,
-which might be achieved on Linux side with the below explanations.
-
-> > We can initially just make this work with some additional logic on both
-> > sides. The USB device controller would manually check whether sysctrl
-> > has been probed or not (in practice, because of the clocks and power
-> > domains being described this will always be a yes, but IIUC we want to
-> > avoid relying on it) and otherwise, defer its probe. On the sysctrl side
-> > it is just a matter of checking (like we already do):
-> >=20
-> > 	if (!sysctrl_priv)
-> > 		return -EPROBE_DEFER;
-> >=20
-> > To be honest I would love to see the device link mechanism extended to
-> > "custom" phandle properties like that, it would avoid the burden of
-> > checking for deferrals manually, aside with boot time improvements. If
-> > we go this way, we shall decide whether we want to:
-> > * extend the list of properties that will lead to a dependency creation=
- [1]
-> > * or maybe settle on a common suffix that could always be used,
-> >   especially for specific cases like this one where there is an
-> >   explicit provider-consumer dependency that must be fulfilled:
-> >=20
-> > 	DEFINE_SUFFIX_PROP(provider, "-provider", "#provider-cells")
-> >=20
-> > * or perhaps extend struct of_device_id to contain the name of the
-> >   properties pointing to phandles that describe probe dependencies with:
-> >=20
-> > 	char *provider_prop_name;
-> > 	char *provider_cells_prop_name;
-> >=20
-> >   and use them from of/property.c to generate the links when relevant.
-> >=20
-> > [1] https://elixir.bootlin.com/linux/v6.0/source/drivers/of/property.c#=
-L1298
-> >=20
-> >=20
-> > Thanks,
-> > Miqu=C3=A8l =20
->=20
-> Best regards,
-> Krzysztof
->=20
-
-Thanks,
-Miqu=C3=A8l
+Thanks!
+Linus Walleij
