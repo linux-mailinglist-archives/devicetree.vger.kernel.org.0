@@ -2,183 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF93637B0E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:05:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D09637B73
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:30:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229808AbiKXOFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 09:05:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
+        id S229514AbiKXOaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 09:30:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbiKXOFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:05:19 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADB620BD1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:05:07 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id a29so2693739lfj.9
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:05:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9xSkgvbeKVsRIQO54MHan2onCSxwrrD+XXDauFHX6PI=;
-        b=P+xZZji/4tykRi30u7V2uwiVkrvWzXBWGMMoHkM4301eJiR/jE5ccK1+Ecc+6t0ZUM
-         4Y0Wdv7M+oFgNT7bIf/IcId35reHixuxppTjBt1Ry+gx0er+Bbc9u4FpxSKa6tz6LSxs
-         JNPCufmert60WDsyliHiruKHfRqHlSFpFxU9CuQK1+ejbIyg90jRInYn6JLW1jXd7N2H
-         3On35QTA0nGIGvHek++EYd+rigB8T7hutawzV6CR0U2PFfAtO+zH+Run0f5lmZIujzJO
-         OP8T+J+jOJR14PIoLbXznCqHnADsIBP6xj8f0ka2YZZVOXaVvxaX4u4ebALdHRrRdXUP
-         C9YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9xSkgvbeKVsRIQO54MHan2onCSxwrrD+XXDauFHX6PI=;
-        b=HCQ164BksQJx9CNtffGzqP6Lq8eEEsZ1xWi2ORdx22L5+9QX2w5qdkk4z80s8Bkin/
-         42CwLDJORCTtGQSuoCoqSxfZrXsrvwsmwSOJaalxAwGvZMp4RwBlNgiyu9jFpTLZbSil
-         AXH0PQztKrvrgY9/3e34MzaDrA/VYC+pUWxBh5zW4eCk++/nqIUvbg+l41XKpyrQZJ17
-         cmnvcUlbuSJmXLtQ5QTAakQor4fMPVAblPlS+SG50vtDxWcN78QQGXVi925mz8j5dCTa
-         AQn16QqHnOBk3ScXtgNWQw76whYVSZEb8aBdOiNgX63PTk+9sFgLuWicJQLbivHVKR1T
-         hItA==
-X-Gm-Message-State: ANoB5plF6Q2MKPEjISGvjaaGXQawYDok2NDXEqJliqVffLpkOWLHgdzz
-        GwPwuquIBw3sYrb7pXkwxHLZuQ==
-X-Google-Smtp-Source: AA0mqf7oXX8it2c2jTo0y8WBHPqGA85ZEeqGBI4LuwDFD9dN4491p2jbDYdj+PZoLvjFuMPo3q1MNA==
-X-Received: by 2002:a05:6512:4029:b0:4b4:e26b:2c28 with SMTP id br41-20020a056512402900b004b4e26b2c28mr4473023lfb.356.1669298705766;
-        Thu, 24 Nov 2022 06:05:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id by37-20020a05651c1a2500b0026ddaf38b0fsm104763ljb.96.2022.11.24.06.05.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 06:05:05 -0800 (PST)
-Message-ID: <86732e73-fb66-0a90-5e64-50049e0f6507@linaro.org>
-Date:   Thu, 24 Nov 2022 15:05:04 +0100
+        with ESMTP id S229379AbiKXOaA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:30:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76E9F7213E;
+        Thu, 24 Nov 2022 06:29:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1E42AB82835;
+        Thu, 24 Nov 2022 14:29:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9307C433D6;
+        Thu, 24 Nov 2022 14:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669300196;
+        bh=hIeGLPE7dl6RAVsZMh0WHZl4Pd+eFlTWe3fogJ7tYp8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MbShXb8EdixsZ3fJ0JShJ3FyadhLA0/Uo4HMvt9mdlnloJbIBTG0pIzZG50manRt7
+         SNLhQBN0bxsF/UVdDL2uQOKniSaiMGutZyosktOPjQQTq3ZVfZGcjOf6e/tjj/ZGaI
+         uMTQ2sOAKuBqujLw4DP8P98ChJUAZ8cwkWx+/nyck1zuhiPM46y0fuEcQD7WZkjwlT
+         i447f/Ho97jimg+Sl9FS8MbHifLK4Ws0bQ0GqZEabHYswZVI0hCZ3t5U94LHjxBHn8
+         yYb1nC68rz3qiKDH9bnRK8h/BLci+K5RnvWm0cf0jAAL92N8jH+tEnv3jQejzUX4TF
+         GO0vhyHrpFymA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1oyDEH-0007fo-H2; Thu, 24 Nov 2022 15:29:30 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
+Date:   Thu, 24 Nov 2022 15:25:01 +0100
+Message-Id: <20221124142501.29314-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: ti,tps6594: add TPS6594 PMIC
- support
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, michael@walle.cc,
-        vigneshr@ti.com, robh@kernel.org, a.zummo@towertech.it,
-        linus.walleij@linaro.org, lee@kernel.org, brgl@bgdev.pl
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-References: <20221123053512.1195309-1-mranostay@ti.com>
- <20221123053512.1195309-2-mranostay@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123053512.1195309-2-mranostay@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 06:35, Matt Ranostay wrote:
-> Add documentation for the TPS6594 PMIC including its RTC and GPIO
-> functionalities.
+The devices on the SC8280XP PCIe buses are cache coherent and must be
+marked as such to avoid data corruption.
 
-Back in September I asked to use get_maintainers.pl to CC people. Can
-you please tell me, why you still prefer not to use it's output and
-instead use a bit different email addresses?
+A coherent device can, for example, end up snooping stale data from the
+caches instead of using data written by the CPU through the
+non-cacheable mapping which is used for consistent DMA buffers for
+non-coherent devices.
 
-How many times same feedback should be given?
+Note that this is much more likely to happen since commit c44094eee32f
+("arm64: dma: Drop cache invalidation from arch_dma_prep_coherent()")
+that was added in 6.1 and which removed the cache invalidation when
+setting up the non-cacheable mapping.
 
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> new file mode 100644
-> index 000000000000..0de0db87dbf7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TPS6594 Power Management Integrated Circuit (PMIC)
-> +
-> +description: |
-> +  TPS6594 Power Management Integrated Circuit (PMIC)
-> +  https://www.ti.com/lit/ds/symlink/tps6594-q1.pdf
-> +
-> +maintainers:
-> +  - Keerthy <j-keerthy@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tps6594
-> +
-> +  reg:
-> +    const: 0x48
-> +
-> +  ti,system-power-controller:
-> +    type: boolean
-> +    description: PMIC is controlling the system power.
-> +
-> +  rtc:
-> +    type: object
-> +    $ref: /schemas/rtc/rtc.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      compatible:
-> +        const: ti,tps6594-rtc
-> +
-> +  gpio:
-> +    type: object
-> +    unevaluatedProperties: false
-> +    properties:
-> +      compatible:
-> +        const: ti,tps6594-gpio
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic: pmic@48 {
-> +            compatible = "ti,tps6594";
-> +            reg = <0x48>;
-> +
-> +            rtc {
-> +                compatible = "ti,tps6594-rtc";
+Marking the PCIe devices as coherent specifically fixes the intermittent
+NVMe probe failures observed on the Thinkpad X13s, which was due to
+corruption of the submission and completion queues. This was typically
+observed as corruption of the admin submission queue (with well-formed
+completion):
 
-No resources? No properties? Usually such nodes are not useful at all.
-Rob pointed this some times in different cases, but I don't remember if
-we resolved it here.
+	could not locate request for tag 0x0
+	nvme nvme0: invalid id 0 completed on queue 0
 
-> +            };
-> +
-> +            gpio {
-> +                compatible = "ti,tps6594-gpio";
+or corruption of the admin or I/O completion queues (malformed
+completion):
 
-Same question.
+	could not locate request for tag 0x45f
+	nvme nvme0: invalid id 25695 completed on queue 25965
 
-> +            };
-> +        };
-> +    };
-> +
-> +...
+presumably as these queues are small enough to not be allocated using
+CMA which in turn make them more likely to be cached (e.g. due to
+accesses to nearby pages through the cacheable linear map). Increasing
+the buffer sizes to two pages to force CMA allocation also appears to
+make the problem go away.
 
-Best regards,
-Krzysztof
+Fixes: 813e83157001 ("arm64: dts: qcom: sc8280xp/sa8540p: add PCIe2-4 nodes")
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 27f5c2f82338..7748cd29276d 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -854,6 +854,8 @@ pcie4: pcie@1c00000 {
+ 				 <0x02000000 0x0 0x30300000 0x0 0x30300000 0x0 0x1d00000>;
+ 			bus-range = <0x00 0xff>;
+ 
++			dma-coherent;
++
+ 			linux,pci-domain = <6>;
+ 			num-lanes = <1>;
+ 
+@@ -951,6 +953,8 @@ pcie3b: pcie@1c08000 {
+ 				 <0x02000000 0x0 0x32300000 0x0 0x32300000 0x0 0x1d00000>;
+ 			bus-range = <0x00 0xff>;
+ 
++			dma-coherent;
++
+ 			linux,pci-domain = <5>;
+ 			num-lanes = <2>;
+ 
+@@ -1046,6 +1050,8 @@ pcie3a: pcie@1c10000 {
+ 				 <0x02000000 0x0 0x34300000 0x0 0x34300000 0x0 0x1d00000>;
+ 			bus-range = <0x00 0xff>;
+ 
++			dma-coherent;
++
+ 			linux,pci-domain = <4>;
+ 			num-lanes = <4>;
+ 
+@@ -1144,6 +1150,8 @@ pcie2b: pcie@1c18000 {
+ 				 <0x02000000 0x0 0x38300000 0x0 0x38300000 0x0 0x1d00000>;
+ 			bus-range = <0x00 0xff>;
+ 
++			dma-coherent;
++
+ 			linux,pci-domain = <3>;
+ 			num-lanes = <2>;
+ 
+@@ -1239,6 +1247,8 @@ pcie2a: pcie@1c20000 {
+ 				 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>;
+ 			bus-range = <0x00 0xff>;
+ 
++			dma-coherent;
++
+ 			linux,pci-domain = <2>;
+ 			num-lanes = <4>;
+ 
+-- 
+2.37.4
 
