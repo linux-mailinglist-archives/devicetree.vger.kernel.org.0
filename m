@@ -2,254 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2852B637248
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 07:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 760BD637251
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 07:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229379AbiKXGRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 01:17:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53416 "EHLO
+        id S229544AbiKXGXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 01:23:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiKXGRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 01:17:01 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6007654FA;
-        Wed, 23 Nov 2022 22:16:58 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3AB2624E20A;
-        Thu, 24 Nov 2022 14:16:57 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Nov
- 2022 14:16:57 +0800
-Received: from [192.168.125.106] (183.27.97.81) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Nov
- 2022 14:16:56 +0800
-Message-ID: <049f07d3-3e1c-3f52-e125-671f66bc432e@starfivetech.com>
-Date:   Thu, 24 Nov 2022 14:17:30 +0800
+        with ESMTP id S229463AbiKXGXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 01:23:04 -0500
+Received: from mx.msync.work (mx.msync.work [185.250.0.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B683B27CDF;
+        Wed, 23 Nov 2022 22:22:56 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 647292AB88;
+        Thu, 24 Nov 2022 06:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+        t=1669270976; h=from:subject:date:message-id:to:mime-version:content-type:
+         content-transfer-encoding:content-language:in-reply-to:references;
+        bh=Jtkb8FsWa/xNXgK1fxfSzbSkqlyxfm+DrIrqY+1P7xA=;
+        b=excDdHXccoor+/ly4WQAAdddOMnCppJSjYZ+UA68KkBk4+F+Esr1QzonlhXwo3wqbMPIXM
+        GruVSUr6XCcxMvp6Efwj8YRh8iaurZhlF3GgaSCTHF/n7gChplhO3nykIx/s0+5buDsGs+
+        F7MARCewOgtRQZerb7SnMwfLfsxYEQKoKfHATh+4f312E6cLn+Xcmyk1HI8dDGnr6Yd4u4
+        FZU1D+GKOg+JWS9J0cqkf/qLNUObfdUcIXY5xgHsi0IyQ9drhM1aOsJQLCMaPjHLep+S69
+        KLENDe2wfgvLG8MeBRxYY3GsMn6nivs0vSpt19OGGG4chbWUwQxOrGyo5m8QDw==
+Message-ID: <c31cc8a3-8adc-3e93-f6fe-73cd7482429d@lexina.in>
+Date:   Thu, 24 Nov 2022 09:22:52 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v2 7/8] riscv: dts: starfive: Add StarFive JH7110
- VisionFive2 board device tree
-Content-Language: en-US
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Ben Dooks <ben.dooks@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20221118011714.70877-1-hal.feng@starfivetech.com>
- <20221118011714.70877-8-hal.feng@starfivetech.com>
- <CAJM55Z-rdicV69otq=YFsTSUNsg==Svf18b+3w-cMfb_BYcbGg@mail.gmail.com>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <CAJM55Z-rdicV69otq=YFsTSUNsg==Svf18b+3w-cMfb_BYcbGg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 0/4] arm64: amlogic: mmc: meson-gx: Add core, tx, rx
+Content-Language: en-MW
+To:     Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20221110150035.2824580-1-adeep@lexina.in>
+ <1jk03y37vs.fsf@starbuckisacylon.baylibre.com>
+From:   Vyacheslav <adeep@lexina.in>
+In-Reply-To: <1jk03y37vs.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.81]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 19 Nov 2022 01:55:40 +0800, Emil Renner Berthing wrote:
-> On Fri, 18 Nov 2022 at 02:17, Hal Feng <hal.feng@starfivetech.com> wrote:
+Hi!
+Thanks for reply. Sorry for delay.
+
+
+13.11.2022 23:06, Jerome Brunet wrote:
+> 
+> On Thu 10 Nov 2022 at 18:00, Vyacheslav Bocharov <adeep@lexina.in> wrote:
+> 
+>> The mmc driver use the same phase values (core - 180, tx/rx - 0) for all
+>> meson64 platforms. However, some platforms (and even some boards) require
+>> different values
+> 
+> Where does it stops ? Trying to solve the instabilities of this
+> IP/driver by tweaking the phase has proven to be dead-end.
+
+As a result, there is now a stalemate and various real-world operating 
+system projects use patches to change clock phases.
+
+
+> 
+> Soon, you'll end up tweaking these settings depending on the on
+> particular version of the device because it ships with a different eMMC
+> manufacturer. Then comes multi sourcing, sdio modules, sdcards ...
+> 
+>> (axg for example use 270 degree for core clock).
+> 
+> Where ? Upstream linux does not
+
+Armbian/Home Assistant OS use core phase 270 for axg/g12/sm1 boards 
+(patches by Neil). On JetHub devices phase 270 is need with eMMC more 
+than 16Gb size.
+
+> 
+> u-boot does something of the sort for sm1 and I'm not entirely sure this
+> appropriate either.
+
+U-boot in Armbian/HAOS use same phase 270 or/and force low speed mode 
+for eMMC (limit clock freq).
+
+> 
+> IMO, this setting has more to do with the mode the mmc device is
+> operating at - not the platform or board.
+> 
+> We had some discussions with the HW designers at AML and they recommended
+> to keep a phase shift of 180 between the Core and Tx. They also
+> recommended to leave Rx alone (actually, starting from the v3, the Rx
+> field has no effect. It is not even wired to actual HW)
+
+I do not have access to AML engineers :)
+I can only test settings on several different boards. And it seems that 
+the phase settings depend not only on the board layout, but also on the 
+eMMC chip used. What to do about this (if not to use the magic of the 
+driver from AML) other than providing the ability to change the value in 
+devicetree for each board I can't think of yet.
+
+> 
+> Funnily, that is not what the vendor driver does. It also does A LOT of
+> extremely complex and 'debatable' things, which mostly mask how much the
+> driver is unstable.
+
+As far as I understand they just go through all possible values until 
+the first successful attempt to initialize the device.
+What do you think of the idea to implement such a variant for the 
+meson-gx driver?
+
+> 
+> With the upstream drivers, modes up to SDR50 and HS200 have been stable
+> lately. SDR104 and DDR modes (DDR52 or HS400) remains problematic.
+
+I have troubles with HS200, for example:
+Card Type [CARD_TYPE: 0x57]
+  HS200 Single Data Rate eMMC @200MHz 1.8VI/O
+  HS Dual Data Rate eMMC @52MHz 1.8V or 3VI/O
+  HS eMMC @52MHz - at rated device voltage(s)
+  HS eMMC @26MHz - at rated device voltage(s)
+
+> 
+> Changing the settings further would require more discussion with AML.
+> Blindly poking these value until you get something stablish for 1
+> particular use case is a recipe for disaster.
+
+I assumed the idea that the dts are edited by the maintainers or the 
+board developers and will be able to choose the values themselves.
+
+
+> 
+>> This patch
+>> transfers the values from the code to the variables in the device-tree files.
+>> If not set in dts, use old default values.
+> 
+> I think going that way is opening a big can of worms.
+> I don't think this should be applied
+> 
 >>
->> From: Emil Renner Berthing <kernel@esmil.dk>
+>> Vyacheslav Bocharov (4):
+>>    arm64: amlogic: mmc: meson-gx: Add core, tx, rx eMMC/SD/SDIO phase
+>>      clock settings from devicetree data
+>>    arm64: amlogic: mmc: meson-gx: Add dts binding include for core, tx,
+>>      rx eMMC/SD/SDIO phase clock settings from devicetree data
+>>    arm64: amlogic: dts: meson: update meson-axg device-tree for new core,
+>>      tx, rx phase clock settings.
+>>    arm64: dts: docs: Update mmc meson-gx documentation for new config
+>>      option amlogic,mmc-phase
 >>
->> Add a minimal device tree for StarFive JH7110 VisionFive2 board.
-> Missing space between VisionFive and 2.
-
-Will fix accordingly.
-
+>>   .../bindings/mmc/amlogic,meson-gx.txt         |  7 ++++
+>>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  3 ++
+>>   drivers/mmc/host/meson-gx-mmc.c               | 18 +++++++---
+>>   include/dt-bindings/mmc/meson-gx-mmc.h        | 35 +++++++++++++++++++
+>>   4 files changed, 58 insertions(+), 5 deletions(-)
+>>   create mode 100644 include/dt-bindings/mmc/meson-gx-mmc.h
 > 
->> Support booting and basic clock/reset/pinctrl/uart drivers.
->>
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Co-developed-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
->> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
->> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->> ---
->>  arch/riscv/boot/dts/starfive/Makefile         |   1 +
->>  .../jh7110-starfive-visionfive-v2.dts         | 116 ++++++++++++++++++
->>  2 files changed, 117 insertions(+)
->>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->>
->> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
->> index 0ea1bc15ab30..e1237dbc6aac 100644
->> --- a/arch/riscv/boot/dts/starfive/Makefile
->> +++ b/arch/riscv/boot/dts/starfive/Makefile
->> @@ -1,2 +1,3 @@
->>  # SPDX-License-Identifier: GPL-2.0
->>  dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
->> +dtb-$(CONFIG_SOC_STARFIVE) += jh7110-starfive-visionfive-v2.dtb
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> new file mode 100644
->> index 000000000000..c8946cf3a268
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> @@ -0,0 +1,116 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
->> + */
->> +
->> +/dts-v1/;
->> +#include "jh7110.dtsi"
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/pinctrl/pinctrl-starfive-jh7110.h>
->> +
->> +/ {
->> +       model = "StarFive VisionFive V2";
->> +       compatible = "starfive,visionfive-v2", "starfive,jh7110";
 > 
-> Again, please consult your colleagues if you're calling the board
-> "VisionFive 2" or "VisionFive V2" and name the file, model and board
-> accordingly.
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Will fix accordingly. Please see the record of patch 1.
-
-> 
->> +       aliases {
->> +               serial0 = &uart0;
->> +       };
->> +
->> +       chosen {
->> +               linux,initrd-start = <0x46100000>;
->> +               linux,initrd-end = <0x4c000000>;
-> 
-> These two lines don't belong here. They're added by the bootloader dynamically.
-
-OK, will delete. Thanks.
-
-> 
->> +               stdout-path = "serial0:115200";
-> 
-> You're missing a n8.
-
-Will fix.
-
-> 
->> +       };
->> +
->> +       cpus {
->> +               timebase-frequency = <4000000>;
->> +       };
->> +
->> +       memory@40000000 {
->> +               device_type = "memory";
->> +               reg = <0x0 0x40000000 0x1 0x0>;
->> +       };
->> +
->> +       gpio-restart {
->> +               compatible = "gpio-restart";
->> +               gpios = <&gpio 35 GPIO_ACTIVE_HIGH>;
->> +               priority = <224>;
->> +       };
->> +};
->> +
->> +&osc {
->> +       clock-frequency = <24000000>;
->> +};
->> +
->> +&clk_rtc {
->> +       clock-frequency = <32768>;
->> +};
->> +
->> +&gmac0_rmii_refin {
->> +       clock-frequency = <50000000>;
->> +};
->> +
->> +&gmac0_rgmii_rxin {
->> +       clock-frequency = <125000000>;
->> +};
->> +
->> +&gmac1_rmii_refin {
->> +       clock-frequency = <50000000>;
->> +};
->> +
->> +&gmac1_rgmii_rxin {
->> +       clock-frequency = <125000000>;
->> +};
->> +
->> +&i2stx_bclk_ext {
->> +       clock-frequency = <12288000>;
->> +};
->> +
->> +&i2stx_lrck_ext {
->> +       clock-frequency = <192000>;
->> +};
->> +
->> +&i2srx_bclk_ext {
->> +       clock-frequency = <12288000>;
->> +};
->> +
->> +&i2srx_lrck_ext {
->> +       clock-frequency = <192000>;
->> +};
->> +
->> +&tdm_ext {
->> +       clock-frequency = <49152000>;
->> +};
->> +
->> +&mclk_ext {
->> +       clock-frequency = <12288000>;
->> +};
->> +
->> +&gpio {
->> +       uart0_pins: uart0-0 {
->> +               tx-pins {
->> +                       pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
->> +                       bias-disable;
->> +                       drive-strength = <12>;
->> +                       input-disable;
->> +                       input-schmitt-disable;
->> +                       slew-rate = <0>;
->> +               };
->> +
->> +               rx-pins {
->> +                       pinmux = <GPIOMUX(6, GPOUT_LOW, GPOEN_DISABLE, GPI_SYS_UART0_RX)>;
->> +                       bias-pull-up;
-> 
-> There are external pull-ups, so maybe change this line to
-> 
-> bias-disable; /* external pull-up */
-
-Good job. Will fix it later.
-
-Best regards,
-Hal
-
-> 
->> +                       drive-strength = <2>;
->> +                       input-enable;
->> +                       input-schmitt-enable;
->> +                       slew-rate = <0>;
->> +               };
->> +       };
->> +};
->> +
->> +&uart0 {
->> +       pinctrl-names = "default";
->> +       pinctrl-0 = <&uart0_pins>;
->> +       status = "okay";
->> +};
-
+-- 
+Vyacheslav Bocharov
