@@ -2,135 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADDF637743
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27BB463774B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:16:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbiKXLNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:13:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
+        id S230020AbiKXLQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:16:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiKXLNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:13:36 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF1813E06B
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:13:33 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id r12so2082704lfp.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:13:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rCj2UGwGM6w6ZRGQowdeC2XnWEPWL1uXR/0dltIvUwQ=;
-        b=XLX4CK2BN8y+2/Rw9fe9pSJddMHxO4Jj0B8KsBOQcz0Hp4ZyDYIqKp+SeirpiZAFAm
-         p6NdrjCcsLOMKZddZ+qRoYura7Sqwgmz3ykLV1v3WGE7sG5ZOeb96+E8usmo1w63l67D
-         DpDpGbpJYZ97fs4sRh7JXh+lOWHe7B4BnlC8J9nHMIMjteiplDHLdNKD54v2mpEzeNlH
-         MTb+LrBkuFgGX/RqG+MR785N0kdlkPN8tgHeGk1XlY3px26hH6W4aSiUoJUxtdyVjVRg
-         RSZNrFjvANfTTGicn3B+26yaSot04M2Xhrct1Iv7rgu2RBHq3xFPfd6kvqW/GP4Xd/kg
-         LW0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rCj2UGwGM6w6ZRGQowdeC2XnWEPWL1uXR/0dltIvUwQ=;
-        b=oX7WjUIOY6Ozg5IGYWNBWEcdYsLga8IIPL9KLtp0vtYlv4LfqTcviODmbY/lenKsjr
-         sDjOcHs8qieHANEFdYh6kozoypQe98RoK3/PDocHTv3uuLktwPEPBvvAGyJblKKMCLNf
-         BeuiWl2mDfX9O+8Rdfn5vH+cyHqaJwKRvy9pmvvnG9LpWux0og8lheLM0AgqWOVUvwbF
-         Ztv9AhYsM+cjpCLwd8T7MQrodKO6AC1xt5CEBSirpVz1vfmtjW9I/IxQ40biGDbI4v8a
-         5kH5VfHx81YMM0S9mFETSPCOkVpe/2VfB2QpuesZm+hieWQ+LwXXNHmQq81LknFak4AB
-         WS2g==
-X-Gm-Message-State: ANoB5pmKI+62wgJLenQ3YgwqE0PrmUZG19ySvU+RoLVhmmzZkzY2pyBz
-        QUS8uRzMNWLCnfDGKB1wpWPUXg==
-X-Google-Smtp-Source: AA0mqf77SJcXFxiT+8w1pskHsMFpUj7CdpIorQh3ACsDwCn46PkgObtYNifZNSkbEYo1vZBQPEdkFQ==
-X-Received: by 2002:a05:6512:1043:b0:4b0:efed:e3a8 with SMTP id c3-20020a056512104300b004b0efede3a8mr10457783lfb.650.1669288412115;
-        Thu, 24 Nov 2022 03:13:32 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d13-20020a056512368d00b0049496855494sm91047lfs.104.2022.11.24.03.13.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:13:31 -0800 (PST)
-Message-ID: <3cda9005-d7a5-56f0-d1d2-fd6c1cb36fc3@linaro.org>
-Date:   Thu, 24 Nov 2022 12:13:30 +0100
+        with ESMTP id S229884AbiKXLQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:16:06 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8533A6F801;
+        Thu, 24 Nov 2022 03:16:01 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 912B51C0003;
+        Thu, 24 Nov 2022 11:15:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669288560;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=cjEyF9Ie26j30k+xWS+sGbqXthb9SDc8p5d5gfhe8Yc=;
+        b=nlUfaEqhj6VJFwAc1HEeUT9yQvapv1nOxwPe7EzGqZ/RX+fZgGzR10X8Uz4HSzIZW1c8UG
+        7ZUWG7aTC4waMHwVqTf7Y5ph89CLnwPRoGuwlq66roTmHyAiMiu2zlCYyNVK2HV58z5Pcw
+        4BSkrCRn6q/LGdnvpm9QslMPqm+NG1ZiVQK08lCZaQ518MvtlIj/diXH75cNcWJnkibhC6
+        4RHsdz1dWdTk1BxyhKAq3HD1Ub7bkM4T9IhvNjgpCjsUh96Vseq/yxvE2UHcVZcTMgcx+8
+        grW27/0y4wDO0RhuplgEcnawE+cti8RiBbkXdsWOivEaqGYTdE+7DD+YAyL2lw==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Marcin Wojtas <mw@semihalf.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH net-next v2 0/7] Marvell nvmem mac addresses support
+Date:   Thu, 24 Nov 2022 12:15:49 +0100
+Message-Id: <20221124111556.264647-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH V5 1/2] dt-bindings: firmware: qcom-scm: Add optional
- interrupt
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        konrad.dybcio@somainline.org, robimarko@gmail.com,
-        quic_gurus@quicinc.com, quic_rjendra@quicinc.com
-References: <20221123204615.25358-1-quic_sibis@quicinc.com>
- <20221123204615.25358-2-quic_sibis@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123204615.25358-2-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 21:46, Sibi Sankar wrote:
-> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> 
-> Add an interrupt specification to the bindings to support the wait-queue
-> feature.
+Hello,
 
-Subject - this is qcom,scm, not qcom-scm.
+Now that we are aligned on how to make information available from static
+storage media to drivers like Ethernet controller drivers or switch
+drivers by using nvmem cells and going through the whole nvmem
+infrastructure, here are two driver updates to reflect these changes.
 
+Prior to the driver updates, I propose:
+* Reverting binding changes which should have never been accepted like
+  that.
+* A conversion of the (old) Prestera and DFX server bindings (optional,
+  can be dropped if not considered necessary).
+* A better description of the more recent Prestera PCI switch.
 
-> 
-> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> v5:
-> - Pick up R-b
-> 
-> v4:
-> - Qualify bindings [Krzysztoff]
-> 
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index 25688571ee7c..aea6e0c86a89 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -73,6 +73,12 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  interrupts:
-> +    description:
-> +      The wait-queue interrupt that firmware raises as part of handshake
-> +      protocol to handle sleeping SCM calls.
-> +    maxItems: 1
+Please mind that this series cannot break anything since retrieving the
+MAC address Prestera driver has never worked upstream, because the (ONIE
+tlv) driver supposed to export the MAC address has not been accepted in
+its original form and has been updated to the nvmem-layout
+infrastructure (bindings have been merged, the code remains to be
+applied).
 
-Which devices have interrupts?
+Thanks,
+Miquèl
 
-We talked about it here:
-https://lore.kernel.org/all/2464d90f-64e9-5e3c-404b-10394c3bc302@quicinc.com/
-and here:
-https://lore.kernel.org/all/c20edd0d-7613-5683-60e7-54317cac6e0b@linaro.org/
+Changes in v2:
+* Bindings:
+  - Add Rob's tags.
+  - Use "additionalProperties: \n type: object" in both yaml files.
+  - Add missing PCI properties to the prestera example as suggested.
+  - Added a limitation over the number of register entries in the
+    dfx-server description.
+* Drivers:
+  - Export the of_ helper retrieving MAC addresses from nvmem cells.
+  - Add a comment in mvpp2 to say that the nvmem lookup only is valid on
+    OF enabled platforms as suggested by Marcin.
 
-But I still don't get which devices support it and which do not.
+Miquel Raynal (7):
+  Revert "dt-bindings: marvell,prestera: Add description for device-tree
+    bindings"
+  dt-bindings: net: marvell,dfx-server: Convert to yaml
+  dt-bindings: net: marvell,prestera: Convert to yaml
+  dt-bindings: net: marvell,prestera: Describe PCI devices of the
+    prestera family
+  of: net: export of_get_mac_address_nvmem()
+  net: marvell: prestera: Avoid unnecessary DT lookups
+  net: mvpp2: Consider NVMEM cells as possible MAC address source
 
+ .../bindings/net/marvell,dfx-server.yaml      | 62 +++++++++++++
+ .../bindings/net/marvell,prestera.txt         | 81 -----------------
+ .../bindings/net/marvell,prestera.yaml        | 91 +++++++++++++++++++
+ .../net/ethernet/marvell/mvpp2/mvpp2_main.c   |  7 ++
+ .../ethernet/marvell/prestera/prestera_main.c | 15 +--
+ include/linux/of_net.h                        |  6 ++
+ net/core/of_net.c                             |  5 +-
+ 7 files changed, 173 insertions(+), 94 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,dfx-server.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell,prestera.txt
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,prestera.yaml
 
-BTW:
-https://lore.kernel.org/all/20221122092345.44369-2-krzysztof.kozlowski@linaro.org/
-
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
