@@ -2,100 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B729637A87
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E38637A8A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbiKXNx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 08:53:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47938 "EHLO
+        id S229729AbiKXNxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 08:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbiKXNx0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:53:26 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC69E0DC0;
-        Thu, 24 Nov 2022 05:53:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669298004; x=1700834004;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=iJYwQQbsEFPUK7ZmqDMRO9t/URWDUHZSWtb8FdSzfbk=;
-  b=HTTIR1XKt9pHUe/rJ3cb2RBtBXKfnBjA/kXAOepJ/0W232AEzso50Df4
-   oHn/ozMSXt9tWPLFGfG2DiLbnzjZcKZU6ostqqPUA3H+Bus7Ej3d9Di6R
-   wJBs/ZThv1wckfVls1VONTSOM1/YxvVvlS4xcuRJQlm+evoswluJRO2E0
-   UFjmRjjNtTjhGXvkjkqsw366kDPeyhWEfdcFuCyuSij1H7P97/SobTfks
-   ArXOZ02fZGe3kORTBctissysJ/CZESXl4n1ElcRhd2nhGkO0t58g+TmDf
-   Om44iujHFOAn/selPhZnuTHQkyWcRY8hqIsHcUIxEizwG3B/hfH43ISOp
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,190,1665471600"; 
-   d="scan'208";a="188521747"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Nov 2022 06:53:23 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Thu, 24 Nov 2022 06:53:18 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Thu, 24 Nov 2022 06:53:16 -0700
-Date:   Thu, 24 Nov 2022 13:52:58 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-CC:     <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Guo Ren <guoren@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: riscv: fix single letter canonical order
-Message-ID: <Y393OvlAa+h8Dyek@wendy>
-References: <20221124130440.306771-1-conor.dooley@microchip.com>
- <20221124130440.306771-3-conor.dooley@microchip.com>
- <7034611.lOV4Wx5bFT@diego>
+        with ESMTP id S229558AbiKXNxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:53:41 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF9FAE0DC0
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:53:40 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id g12so2671682lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:53:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P8lbUu6OFIl7NccN7UG8ZKYXFkiaHI1XkyswdMkXj8c=;
+        b=K2uzXr8LtHcvWqkJF/JEwxLR4ecnpLaumkSgW+1rexxqTYcEX168nhUEN42HSfKa3X
+         Sg+sPlGWdwIFNLZQz08CpI0HuwCJIm5FsNOEZWzPtJ1B5Fbv7FaruT4Ug4te5DawuUNN
+         +SkMioMJ+Zw0mMDBxLXVd19ukHNS/IeSPcsJ3mmGxnPAO8off4DVFCuP67sbNpreF2hs
+         qlYnXu7SBmzgNqSwWqDRDbzmdIFkFD5NpMC21VOcaOSnaKc7HIMUhbqhxCQs/rGNx5Yz
+         mhyFbzywSkD45rLongGT0erhSbo+hrzwcIKNzdO3iegJwqA0GosTDwZV2c4DaGDwQiLi
+         6KAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P8lbUu6OFIl7NccN7UG8ZKYXFkiaHI1XkyswdMkXj8c=;
+        b=7IxEkAkSbz+aoZSY/xknVtqadkG88yeRlj4su6BUT8ZLDn4y0HkViDeKsEmSwG53U2
+         44i0+x+c8H4aWn556P0TOMctVM0s9SoGNcUWnJG+pbEDkA2G2pFKYmKrxhyW+qRSlsV3
+         mPp0G8VTnSuulIxeim6SslnIDQUzlYObfzXpW46PWiIcoIop/iUkcJXudg+AJcvh7R+N
+         BzzLcpyTQX1An385RIp5BoSYbABlunXXsifx6daCEUEYlsIZaRyPGdv88m18khqDflMk
+         L9YK4KAYN4iSvw+j6pTUGlfDhpWrHVVkQpsIPOEjiqpbTcM6GysseG1OkB5CwlG/mclP
+         tC7w==
+X-Gm-Message-State: ANoB5pkhmG3cAJj+ge8VTon9D/AdDk7QzUtiN5SLG+VDGp1BaN9FT3aC
+        Atz+gEvnGr0nDAMZMAOnwdHdjQ==
+X-Google-Smtp-Source: AA0mqf6t/T0KZpzUbtEltL3VTN7eFSbYPD/4fl64zlMo7LAQqsCI5aeCjioKcCcT900So7/113ZPcw==
+X-Received: by 2002:ac2:54a8:0:b0:494:7541:9dee with SMTP id w8-20020ac254a8000000b0049475419deemr10255586lfk.680.1669298019233;
+        Thu, 24 Nov 2022 05:53:39 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z17-20020a056512371100b004b4bae1a05asm124794lfr.293.2022.11.24.05.53.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 05:53:38 -0800 (PST)
+Message-ID: <23bd1410-bef7-65cb-be51-476efc832740@linaro.org>
+Date:   Thu, 24 Nov 2022 14:53:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7034611.lOV4Wx5bFT@diego>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk: Add binding for versal clocking
+ wizard
+Content-Language: en-US
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-clk@vger.kernel.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, michal.simek@xilinx.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        sboyd@kernel.org, mturquette@baylibre.com
+References: <20221122121255.6823-1-shubhrajyoti.datta@amd.com>
+ <20221122121255.6823-2-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221122121255.6823-2-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 02:42:20PM +0100, Heiko Stübner wrote:
-> Am Donnerstag, 24. November 2022, 14:04:41 CET schrieb Conor Dooley:
-> > I used the wikipedia table for ordering extensions when updating the
-> > pattern here in foo.
+On 22/11/2022 13:12, Shubhrajyoti Datta wrote:
+> The Clocking Wizard for Versal adaptive compute acceleration platforms
+> generates multiple configurable number of clock outputs.
+> Add device tree binding for Versal clocking wizard support.
 > 
-> 	    ^ foo? :-)
-
-God damn it! I wrote foo, left nvim to check what the fixes tag would
-be, came back and added it below but did not update this part of the
-commit log...
-
-> > Unfortunately that table did not match canonical order, as defined by
-> > the RISC-V ISA Manual, which defines extension ordering in (what is
-> > currently) Table 41, "Standard ISA extension names". Fix things up by
-> > re-sorting v (vector) and adding p (packed-simd) & j (dynamic
-> > languages). The e (reduced integer) and g (general) extensions are still
-> > intentionally left out.
-> > 
-> > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
-> > Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 > 
-> So I have compared the new pattern to the isa manual,
-> and it looks like the order checks out, so
+> ---
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Changes in v3:
+> rename the clocks to clk_in1 and s_axi_clk dt
+> 
+> Changes in v2:
+> rename the clocks clk_in1 to in1 and s_axi_clk to s_axi in dt
+> 
+>  .../clock/xlnx,versal-clk-wizard.yaml         | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,versal-clk-wizard.yaml
+> 
 
-Thanks!
+We pointed out last time that you already have the bindings for it
+(xlnx,clocking-wizard.yaml). Don't duplicate it. I don't think this
+deserves new bindings and new driver.
+
+Best regards,
+Krzysztof
 
