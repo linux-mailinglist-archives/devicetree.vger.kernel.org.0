@@ -2,73 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241106373DC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 09:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3CAA63740A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 09:35:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiKXI2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 03:28:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52790 "EHLO
+        id S229743AbiKXIfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 03:35:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiKXI2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 03:28:08 -0500
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8226956ED7;
-        Thu, 24 Nov 2022 00:28:07 -0800 (PST)
-Received: by mail-qk1-f182.google.com with SMTP id i9so600565qkl.5;
-        Thu, 24 Nov 2022 00:28:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dwqo+aPqDnP0bEZRL6rSm5BGllSO4V9pda1/2AYM1HI=;
-        b=MOAnfGy82m52aSDHQ+0EHMPVMtKo40WwsGFF1gYxLyBzYLjnhE9YII9DumCBjWhwez
-         zhuHYFivEkHRyZ2yB3P7WAYCvUCwAFHCbyE4Ly6Xl5dZeJR70fWyxwcs+7Vxut2zKgOT
-         KTJsuhKsTDrvJRDrngmmtgijrepz6O9vOzssHwHij9Yt05Sihgfsq0cJuMDIB8uIfgNU
-         E0pmk7gcllRuDVPwgqL/Kwy4uKm9OdqZ8RGHlTbr/EG/32mYDYsJd2nnM+A9OLxs7JKN
-         tKZ3Xyg8FU+k3YVcdrSO9tuAH2mTu5xnE24pZwrKqcFsahxlKRAG02ODtaLcYI45c2RZ
-         5jMw==
-X-Gm-Message-State: ANoB5plaSfhJztZKvVODei5ns7vlEJEPXt3EFcJXFCIJlzMWjvrRku2V
-        zusxMWwDFIt1DyXP2AJXBhysJtk6DNN6Ig==
-X-Google-Smtp-Source: AA0mqf76TJXEsFN1Wdeurd9N6WFtavOwkczYKEpWrt+fkixGEk7kpGNd+qCGxxXfhKMxnL9i6ht4XA==
-X-Received: by 2002:ae9:e509:0:b0:6f5:5aa7:c772 with SMTP id w9-20020ae9e509000000b006f55aa7c772mr13913340qkf.97.1669278486518;
-        Thu, 24 Nov 2022 00:28:06 -0800 (PST)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id bz13-20020a05622a1e8d00b0039cc0fbdb61sm279976qtb.53.2022.11.24.00.28.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 00:28:04 -0800 (PST)
-Received: by mail-yb1-f169.google.com with SMTP id z192so1096768yba.0;
-        Thu, 24 Nov 2022 00:28:04 -0800 (PST)
-X-Received: by 2002:a25:8249:0:b0:6dd:b521:a8f2 with SMTP id
- d9-20020a258249000000b006ddb521a8f2mr10946728ybn.380.1669278483856; Thu, 24
- Nov 2022 00:28:03 -0800 (PST)
+        with ESMTP id S229536AbiKXIfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 03:35:38 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2053.outbound.protection.outlook.com [40.107.223.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A80CDCB9EE;
+        Thu, 24 Nov 2022 00:35:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DcAZfKnp4SubgXmw+Fm7t2DMgAUh8rroaM/z9188KY1D16sRATu5GiNpTm+p5DdQ5S4IWXoFcEXJEGSQOsqqGWvFXCD1IleCKfQgzyUId6nRC5uTTDHTcMS5jadqD4Ex+2zlNeWc2AMt2UYk5N92IzZ3Jb/jOXOUDocC3/SnZcLE+fcMN2t16jgXoJKe8Kf5DqbwmLrEiIskjio+opps03G7SwWFJ4/4XS0u12PNq73h7+s46BfXh5TQkI7FsuS1mxtlrYuOEa9vYZSD9g6VCu3tUx1WxFbUbaBrNdOdWokdcn4CaIenOuwPAJqLyljhVKtg0kBDNL9Nd6DR0edu1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jrb96oJ1XTaWs7uDXw8gzrA2RJOuAdcPo0OCdKbIUJg=;
+ b=FMQFlbBEVEV67iOjpxpW4QhPtpRbDUwRXW0Kwk/0tLIAi6zgdbjQnrlH/Sr8nkoWz4qdilxLZbzPqSNJ3i5fM4PMbCU3VlAu7bOCUQfqLUVqv+ghOO3Q3eR41iMh8gPZTrq2lWGEbQJD1WcGj8xpgWOM42se01FE2GRVCFP1XwB1+eYwxy/CyVZ5h30ZTGtuz38hBS+wMUn76nw+KJb7zBUxsFDveChxbOw3cHbD96o0kUlMeJAnGu10irFh3+rWIUfW+/0wNk8GlmEcrWq9/KSi0fg/dEIOIz5A3j4FU5QrGis9utHIlIojZQ+ZEc30Olriz4oCjlgHAT5a1GdJLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jrb96oJ1XTaWs7uDXw8gzrA2RJOuAdcPo0OCdKbIUJg=;
+ b=PLnwFNrgP0cvEq+ZAk5oSZVfSACsc3KHOXMVGMFbuvS99GzhV53dVSeJQsXJVz6SM5GtlA3iQXtJMMFU5RfjXResIs1rTK4QC2wmGFCfgGE7X987DMiu7esE9peAp5OvS3PBb7EKGzIQHrATeNsheGfhbzWOiRlJ9rvmyqxVxTV0GUxZ2W89HgsnFu6V0gqHHqUlRxpaSlia+pprCTa0NBjkwguBERULvSkPyOXImOgCYT+xLBJIsofrUUDQcvN71UrEmzVovqxv44HAx40rWdPiI9pdjkYxzlv0ENzJSNm4I5qn+FYFJWBh0hGuYlqPmXrRoUZbvCiIL41xIZySZg==
+Received: from DM5PR08CA0026.namprd08.prod.outlook.com (2603:10b6:4:60::15) by
+ CH2PR12MB4230.namprd12.prod.outlook.com (2603:10b6:610:aa::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5857.19; Thu, 24 Nov 2022 08:35:36 +0000
+Received: from DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:60:cafe::4a) by DM5PR08CA0026.outlook.office365.com
+ (2603:10b6:4:60::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15 via Frontend
+ Transport; Thu, 24 Nov 2022 08:35:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DM6NAM11FT061.mail.protection.outlook.com (10.13.173.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5857.19 via Frontend Transport; Thu, 24 Nov 2022 08:35:35 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 24 Nov
+ 2022 00:35:23 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 24 Nov
+ 2022 00:35:22 -0800
+Received: from mmaddireddy-ubuntu.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.36 via Frontend
+ Transport; Thu, 24 Nov 2022 00:35:18 -0800
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+To:     <vkoul@kernel.org>, <kishon@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <vidyas@nvidia.com>
+CC:     <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <bhelgaas@google.com>,
+        <lpieralisi@kernel.org>, <nkristam@nvidia.com>,
+        Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Subject: [IP REVIEW PATCH 0/3] Add support for Lane Margining at Receiver
+Date:   Thu, 24 Nov 2022 14:05:07 +0530
+Message-ID: <20221124083510.3008139-1-mmaddireddy@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221122195413.1882486-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 24 Nov 2022 09:27:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWW7vG+EQ3hNcNxuPpMaBLtLztEpZC1Y=0f4MUy9RN67g@mail.gmail.com>
-Message-ID: <CAMuHMdWW7vG+EQ3hNcNxuPpMaBLtLztEpZC1Y=0f4MUy9RN67g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,rzg2l-mipi-dsi:
- Document RZ/V2L support
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT061:EE_|CH2PR12MB4230:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14bdc38a-e70c-49d0-0139-08dacdf6dbda
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +J+oaT5e6No6OnCSNcfO6GP0u3QDh705N5eoUzXEZOkYlS9Ih2llusGfed5gxakx5Ut6cgNu9tCEav3aPtAQKlqg6ISPbYA4c4UQcpA6wQZG97WbOSj7YkkI9GdX1ixooKlELEftjL6SD91S7iTmETCkcUt39IVoO9r5SaB0w//UZCBWLzV4J07XEgpqOJMzxb9yGKOdu8kPWYjErbQBeLKdod7HHDhAZnMkeQPoRORYq/bkIkTL3uv0vJwf5zcLVo3kuyYuMlPyz7D2p0RVpHS5Brt8dAIc2B8nxeE4eR9ZPvW4S3MqFB9+9w6hH9gMeig4Iqjmos3Ck96FDnLks8A7xnlqxEcWFYEtETsrWvu4Wit7NcN1Lsl3R2vokbcMNwSyMchSp9bO/LAPnjSG/d+pptGHzzd3Pmg9Zy0wVQW1LeE3AlCK9OkEGiwQNTO3gYObcevkeSz+qcxJHgSKU2Y74ECQYeol5IeshrxwVtBzfLXa3Oh12lkNqSNjrBS3QFDzSAgEjZz03UuLUMxlS8pCU2337LzwUilZccgHkC3cqqxk6785DFZae9nI6wQT+zTT2muaEaK2R9vImBd9KFLM0nqlgkXwTfuEzvTRFnDzJbg+TMS8+TsaF8tqahyhnS1UE5CfaN7YqBeMFIRs2A/WPvg3qNcCgbdgzk0O4sevxfpaDVJxTYw2mQpXgFC0zW/YttlbFQbVlHr1h3ncttixDBgAyW1iScb9Xp0uJP8=
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(346002)(136003)(376002)(451199015)(36840700001)(40470700004)(46966006)(1076003)(47076005)(426003)(2616005)(186003)(336012)(110136005)(54906003)(107886003)(82310400005)(6666004)(478600001)(36756003)(7696005)(26005)(40480700001)(356005)(7636003)(40460700003)(36860700001)(82740400003)(316002)(6636002)(4744005)(5660300002)(7416002)(8936002)(2906002)(70586007)(70206006)(8676002)(41300700001)(86362001)(4326008)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2022 08:35:35.9086
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14bdc38a-e70c-49d0-0139-08dacdf6dbda
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4230
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,22 +106,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 8:54 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document RZ/V2L DSI bindings. RZ/V2L MIPI DSI is identical to one found on
-> the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-mipi-dsi" will be used as a fallback.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Tegra234 supports Lane Margining at Receiver feature. However, this
+requires programming of per lane PIPE2UPHY hardware instance to relay
+the lane margin control and margin status information between PCIe
+controller and UPHY modules. This series adds this support in PIPE2UPHY
+driver.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Manikanta Maddireddy (3):
+  phy: tegra: p2u: Add lane margin support
+  dts: soc: t234: Add uphy lane number and intr in p2u nodes
+  dt-bindings: PHY: P2U: Add PCIe lane margining support
 
-Gr{oetje,eeting}s,
+ .../bindings/phy/phy-tegra194-p2u.yaml        |  50 ++++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 120 ++++++++
+ drivers/phy/tegra/phy-tegra194-p2u.c          | 274 ++++++++++++++++++
+ 3 files changed, 444 insertions(+)
 
-                        Geert
+-- 
+2.25.1
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
