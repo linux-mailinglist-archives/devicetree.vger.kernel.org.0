@@ -2,78 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C096374FB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B39A637506
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:20:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbiKXJT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 04:19:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56526 "EHLO
+        id S229908AbiKXJU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 04:20:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbiKXJT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:19:57 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B9F10FED4
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:19:56 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id p8so1619024lfu.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:19:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XJccgccyb+EDgilHyzIVzUT8LWA3KCS4EFgVZgSZ4m8=;
-        b=hSyzXlBj6dz9FcnrVQ1MXRdS72trSrlT7/unwCu9LrWu6Uk9YsScLFyt+TE9+69002
-         EIpOoDfQTXizwfBQfUiU+3ap9jA/S7U4PNkaPIfSmwevLcCIEDyGxb9hcvm/soYld08k
-         +ETnz9/3EwWekX9AEAsa3ppnrdhknjLDCH+VSNU/sHcuRSxAA94Mo0e//qljYbEgzWnK
-         EcY+yakAz2rHlJ9D4QsEGAuSkP6f8bzxEohvlN4dwnz8aRas1sOUFS8SOC+GyWH0MVdn
-         /j7Td/I2xrudjmHHvSJijZXqd556caVXMc4l3ZddgBCsxvDXiHHkpChz75DbHfJhzCJx
-         kCIg==
+        with ESMTP id S230150AbiKXJUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:20:55 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D381173C9
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:20:51 -0800 (PST)
+Received: from mail-yb1-f199.google.com (mail-yb1-f199.google.com [209.85.219.199])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 127C23F19F
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 09:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1669281650;
+        bh=VRx51K+Grac4imHy1DHLCU82k/uWawM5zQfqB1/2368=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=BTSb5oDPfk5kVdVNwh/WPgxbI/s03ycVt3H5olgJTv9wwLfLdHt+lPsGUA1RYeRrr
+         E+QELyzw7H9wkP6y64I6UlTd9z4511LRkY9EsWZ3sKZrfDF0hY8rAx5Q4XHNDuJaxR
+         6uD28+ZjNaZerOIbKO33njc0E5A0XyiuYi9jTrykz5g1cVgWBFfCafTOtnn427W2pa
+         3b9mfcDffeaTqB6MQb8HnSpEKSO8r3+Z6+QjACugugQrd5KxD4Jah5SgGHW7lb9uRm
+         hgOueE+0qB0KF6yzt4oNdmqRLD1/k5YurnzaAaxAsh9WFzI5dneKAM4jrCq3vTybq6
+         Omvj4AS2I7vnA==
+Received: by mail-yb1-f199.google.com with SMTP id 62-20020a250541000000b006ef62e56e90so1052526ybf.7
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:20:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XJccgccyb+EDgilHyzIVzUT8LWA3KCS4EFgVZgSZ4m8=;
-        b=vdgyDOqYQK50Nm83PSedBZtxz7Zif64+i/vjoLojfswh3c2kW/HCwpbqBPvC3ej8b5
-         gesC13c/ee6Zf4WT1bPu1FKa3yxdgD/hW9Qnh880MUkWujvDoIpTwk1B9EU/XtgNppPp
-         RIAmle2J8tkbkcN7UJ1Zf/VAP3ygEMkbSpSuzQJ/WjrZU2Voa+6ZNpmo8JxEcKQ7F+0s
-         77Jaecg1nfDAA83js0FdKz4UxzRgka8HdsAqOySjhFJcPM/AEeOuOc8MGOwMudD7TV/z
-         KXhrEUlBaZHUBhe+e5MPfHSyIbCgY9oKU06dDfuDceI2VMicyTCRJJ7qQ/qZmv7n0KTV
-         92XQ==
-X-Gm-Message-State: ANoB5pnzrPRCxO39UP1+LIFNfbTfBjCEi80vUtp+YcwjPCbNBVamSzNf
-        oihPAB5JC9KUzgno840Ic3tCcw==
-X-Google-Smtp-Source: AA0mqf4aV9JDNfBISW/b7TmLrMhFaWYBJYE8Sf8k5oWOic6aPYZ5a1sxNm/fL4qPU+UDMV6fRU1YDg==
-X-Received: by 2002:a05:6512:3ed:b0:4b4:f696:6dbc with SMTP id n13-20020a05651203ed00b004b4f6966dbcmr342182lfq.593.1669281594943;
-        Thu, 24 Nov 2022 01:19:54 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u25-20020a196a19000000b00498fd423cc3sm60108lfu.295.2022.11.24.01.19.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 01:19:54 -0800 (PST)
-Message-ID: <2751584a-782e-2bdd-b72d-4a726e6ede8d@linaro.org>
-Date:   Thu, 24 Nov 2022 10:19:53 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VRx51K+Grac4imHy1DHLCU82k/uWawM5zQfqB1/2368=;
+        b=kd6HmXEC53X/D6GurZYJP3RepkenS3qeTJCcVnTg1N2oa4+Qacg2diOQLaETetBjxL
+         0dNqCttk0DHRhxhcD7W7vcTMmJ0hKejxCJg5Uva5YZnEr20kgS7JvxyxyG4iBT9/Ph6K
+         FniAKP5n853csR9M7j6V++KZe9zMYx1pQq0uCoU5xs3QwCg188rB34eM95H6kSZQkcUP
+         SKlW7qMaCAm7LFpe5g6E0HGrxGUvA7Bi8K7GGztO0S9iIKpWFe/kZxdLIEI8Jg2hv8US
+         fFIRf6SREFcZHfnGJYs2C7t+SprvbovQY78+UnFyXtJ/umfGIG6v6FYZO47trlCN1K+6
+         uCIQ==
+X-Gm-Message-State: ANoB5pn08VdPzehCPcgDZh4W80OVFb2cAdNJp0TjVKKXUBxcQjKJ6xWZ
+        Bv7E5k6Sz64leDaVtDTEgpuxx07jQaPH8kjntqbnlVMfCJqIuJZbKvOifsSVVGyPVsOENhD/6Xz
+        Yp1VEz4bVPzg+aIBMFf+gGo1BNEZ50DTDeMvthhDPqaA14wpl4aZSswc=
+X-Received: by 2002:a25:4a86:0:b0:6f1:215a:2dbe with SMTP id x128-20020a254a86000000b006f1215a2dbemr3191231yba.469.1669281648229;
+        Thu, 24 Nov 2022 01:20:48 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf4H7k0go2dHlua8ClKkvM8qah93F0sS9CYUiwz8DhwGeE2xOLmvodSBoY+vtCQ2wxqkd5uAMT6yRu2cukAu/Qc=
+X-Received: by 2002:a25:4a86:0:b0:6f1:215a:2dbe with SMTP id
+ x128-20020a254a86000000b006f1215a2dbemr3191211yba.469.1669281648005; Thu, 24
+ Nov 2022 01:20:48 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/2] arm64: dts: fsd: add sysreg device node
-Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
-        pankaj.dubey@samsung.com, ravi.patel@samsung.com
-Cc:     linux-kernel@vger.kernel.org
-References: <20221121091118.48628-1-sriranjani.p@samsung.com>
- <CGME20221121090647epcas5p439dc84f0c4f435a703a1f8396a11202f@epcas5p4.samsung.com>
- <20221121091118.48628-3-sriranjani.p@samsung.com>
- <a98ac5d7-0c0e-110e-5405-83a09c77ceac@linaro.org>
- <000001d8ff32$c8b78e30$5a26aa90$@samsung.com>
- <03a26971-e54b-a8e7-c02f-ae5a8feba71a@linaro.org>
- <001601d8ff41$231deaf0$6959c0d0$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <001601d8ff41$231deaf0$6959c0d0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+ <20221118011714.70877-2-hal.feng@starfivetech.com> <202211190418.2AJ4IQjc072382@SH1-CSMTP-DB111.sundns.com>
+ <ca3e341a-3dc3-39d6-7e26-89ba65aa9473@starfivetech.com>
+In-Reply-To: <ca3e341a-3dc3-39d6-7e26-89ba65aa9473@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Thu, 24 Nov 2022 10:20:32 +0100
+Message-ID: <CAJM55Z-zgR=LKqtg4ioj9Ez1CT7wchrNWWPVT5XAMPF736OcRA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: riscv: Add StarFive JH7110 SoC and
+ VisionFive2 board
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Ben Dooks <ben.dooks@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,26 +90,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 14:40, Sriranjani P wrote:
->>
->>>
->>> So I can think of following two approaches:
->>> 1: For the time being I will put this sysreg node in between
->>> clock_peric node and clock_fysys0 node and clock_fsys1 node as per
->>> increasing unit address. I will clean up other exynos and FSD DTSI
->>> files and post a new patch
->>
->> Not sure what cleaning you have in mind.
->>
->>> 2: First I will clean up exynos and FSD DTSI files and then post this sysreg
->> patch keeping it at appropriate place.
->>
->> What cleaning?
-> 
-> By cleaning I meant fixing these dtsi files to have the device nodes in the order of ascending unit address.
+On Thu, 24 Nov 2022 at 06:56, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> On Sat, 19 Nov 2022 01:28:48 +0800, Emil Renner Berthing wrote:
+> > On Fri, 18 Nov 2022 at 02:17, Hal Feng <hal.feng@starfivetech.com> wrote:
+> > >
+> > > From: Emil Renner Berthing <kernel@esmil.dk>
+> > >
+> > > Add device tree bindings for the StarFive JH7110 RISC-V SoC [1]
+> > > and the VisionFive2 board [2] equipped with it.
+> > >
+> > > [1]: https://doc-en.rvspace.org/Doc_Center/jh7110.html
+> > > [2]: https://doc-en.rvspace.org/Doc_Center/visionfive_2.html
+> > >
+> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > index 5b36243fd674..64008c57e31f 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > @@ -22,6 +22,10 @@ properties:
+> > >            - const: beagle,beaglev-starlight-jh7100-r0
+> > >            - const: starfive,jh7100
+> > >
+> > > +      - items:
+> > > +          - const: starfive,visionfive-v2
+> >
+> > I think StarFive has switched to just calling it VisionFive 2 and not
+> > V2. Please check up on this before committing to the compatible
+> > string.
+> >
+> > Also there are going to be different revisions of the VisionFive 2
+> > board, so maybe consider adding eg. starfive,visionfive-2-v1.1 and
+> > starfive,visionfive-2-v1,2b early.
+>
+> I checked that the official name of this board is "VisionFive 2". The
+> board has version A and version B, which are different in gmac and phy
+> chip. The version A board has one 1000M and one 100M Ethernet ports
+> while the version B board has two 1000M Ethernet ports. In dts, they
+> have different configuration parameters for gmac. So I would like to
+> distinguish them by two compatibles as below in the next version.
+>
+>       - items:
+>           - enum:
+>               - starfive,visionfive-2-va
+>               - starfive,visionfive-2-vb
+>           - const: starfive,jh7110
 
-Such cleanup is fine.
+Cool. Though the silkscreen on my board says "VisionFive 2 V1.2B" so I
+think it would be less confusing if you used that as the model, and
+"starfive,visionfive-2-v1.2b" as the compatible string for the board.
 
-Best regards,
-Krzysztof
 
+> Best regards,
+> Hal
+>
+> >
+> > > +          - const: starfive,jh7110
+> > > +
+> > >  additionalProperties: true
+>
