@@ -2,83 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691FD63770E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:02:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E75637711
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:03:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiKXLCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:02:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
+        id S229934AbiKXLDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:03:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbiKXLCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:02:47 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842F16312
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:02:43 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bp15so1972704lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:02:43 -0800 (PST)
+        with ESMTP id S229677AbiKXLDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:03:14 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDE52D1C7
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:03:12 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id t10so1634797ljj.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:03:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nu6pjkXIBFfjqNqFnOUYgw7nMcsD0pE0OGpEOCK7UF8=;
-        b=g18UXMLu+HaZr5Vma7hCKLNfw8vE5DtyJQQ/h0wELeQztKUsZinIOYD0Emd571Ttaz
-         G8gKTl4Gjfv1qddAZVO3V5bexes47auyNSgRTXKOFA86NLV4OWBnG9IySg8lw/SBqNR2
-         6PnX/oZdvF05r2urpn9cDwRFY4lTHRC9NUOphPu+GJomqjVeCR67oNZPdO6U6XYaFViv
-         cSLl3JDzwhR0gYG+PpVdE8ZNwH+pw2fU52yOyyPiANnlSXP5ypDsEtRIcm6t9u4lM4mm
-         2qK/nbsG3QfaEEb8Qrp6NUkLU/PLhyZ5sjNo2AWS7bXDpvtI76RbrJIFzcVc0Y9wceiN
-         bngA==
+        bh=mDM/d5CET6oYT0lLoOZG0E9uim0TDLBGm1cgXTWoslg=;
+        b=hQ/V92dhjJCRtQq+P0sHevHeRvw2WaHOSVebQnPRM5NHe5pY/eF79cBnAdlfh7QmEc
+         EL8X3vZIGa1EXRcgO6fHuDKK8K0x+oQQB8De3AykL/jaBwFYIsButHQyJZz/lccN6167
+         yOUysvh0Q92VU/wYricMhO1SezEbDvAWtyuerOmBPA+6Zh78uK59W20vX6NCQ2ol8n28
+         9DAWuYvhVrd83PKndvPOOUJL7xdr6+sN8vKNeJCedLRzO+0y7zPxDJJGNlp+Hjlv67Ml
+         RGJ5nukneSZIp/TvwVuBjwHXO2vvRbIDDRdxiS6whP+MqL+8WjEjHayPbk5Cxv3BXVX4
+         nJVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nu6pjkXIBFfjqNqFnOUYgw7nMcsD0pE0OGpEOCK7UF8=;
-        b=7VvjZCHYLtPFOrxxe8D63oOuJtMSdXDWV5avLIjFhlCgodcgEKZ6Q7Ep6qoukUTkcR
-         uN2BTfBvIJTWOmMLyMybcyw8N4PTqECvVx/EiGor/gtAww2XT2+Y3mFI1rYA5+XxA7sE
-         g7jz9x4knqBUNq9S0s7keGFqIvGcd/1FQ/8MWJjqfGpluoFINB8rIVrXgIc027MXUQCx
-         0VRNjqUL7S5UW/PEOVDW2d/BS2wxKQoz7tl8NXmUI4rDYvk02vp5zY6gFBgcGuIgvo02
-         qEcABN0vs/ReCkwGoj+aUHUU/FvWS7pem2AZK+BQx5nZeffE/hM8oXOyyrp1mdw9LS6k
-         xXGw==
-X-Gm-Message-State: ANoB5pnPwL3e6HB/PyChXbQjbp0ulIo4xAtOQn4mHAU8HvSLhLwqXG+a
-        HBksN0sDlt5mgcHmem5mWdWhvg==
-X-Google-Smtp-Source: AA0mqf467/nJeQnupvv/69oKsa3gmbQrSZGWwkEVDwG8CorBpsO5lNOGph3XKFrZdmNiiKGZ18jCjg==
-X-Received: by 2002:a19:7b0f:0:b0:4a2:3bed:2008 with SMTP id w15-20020a197b0f000000b004a23bed2008mr11520699lfc.88.1669287761901;
-        Thu, 24 Nov 2022 03:02:41 -0800 (PST)
+        bh=mDM/d5CET6oYT0lLoOZG0E9uim0TDLBGm1cgXTWoslg=;
+        b=LbUNh3cmmCtfazcrElKMDvKDIuchZNv5I1w2hscNwAirUkLkAZaD9tm4FiqZ7SJuwY
+         tt848wUsqITbtdNz9nnic0G+qU5cBXIb1lmXcPMcg+n0tRBdMNJURPW/cBcKH9ZWL3IP
+         IhwDos0n6a7sPeOeV20wnvpvA9GU9am3kQmp+8VBhJbC1hh/r9pgomM9Nc3oikx1AbKy
+         knIrSMVfP0NqikCoKAA/tKSJUQt4tne/Tzl8tXg264hApUyKh/rePpY8aPMmt1uZOdtN
+         Me9N8bhWo5Z8x8A6iY31lKy8i7z3fcpuZGfdoRK6EUxG9lwkcxlrJfW7T8LTGob342JI
+         di7A==
+X-Gm-Message-State: ANoB5pnybJaQQXYbW5cTCub7FJPutQtq/gznoKH/xYJ0jYuB2pAwdieJ
+        TnbONzWh3dkIg+mj+2SoKbKDuA==
+X-Google-Smtp-Source: AA0mqf7VEQKhxtsN0eXgoWfAX7pDNSgYO1qXyyK17In6HBwYMWCXFFo8nE2OyXmcSI874cGj9Fb/JA==
+X-Received: by 2002:a05:651c:12ca:b0:277:a9d:9355 with SMTP id 10-20020a05651c12ca00b002770a9d9355mr3881647lje.102.1669287791098;
+        Thu, 24 Nov 2022 03:03:11 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f18-20020a05651c161200b00278e9c0d3a2sm73435ljq.33.2022.11.24.03.02.40
+        by smtp.gmail.com with ESMTPSA id z14-20020a056512308e00b004abc977ad7fsm84341lfd.294.2022.11.24.03.03.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:02:41 -0800 (PST)
-Message-ID: <69540766-4fe8-cc21-f2bc-4ad04643e4b6@linaro.org>
-Date:   Thu, 24 Nov 2022 12:02:39 +0100
+        Thu, 24 Nov 2022 03:03:10 -0800 (PST)
+Message-ID: <3d4812c3-1963-5e5a-8d13-39891bbd6733@linaro.org>
+Date:   Thu, 24 Nov 2022 12:03:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH] MAINTAINERS: Update email of Tudor Ambarus
+Subject: Re: [PATCH v5 4/4] dts: arm64: qcom: msm8916-acer-a1-724: Add
+ touchscreen
 Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Mark Brown <broonie@kernel.org>, qyousef@layalina.io,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>, tkhai@ya.ru,
-        quic_abhinavk@quicinc.com, vasily.averin@linux.dev,
-        baolin.wang@linux.alibaba.com, colin.i.king@gmail.com,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        pratyush@kernel.org, Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>
-References: <20221122125244.175295-1-tudor.ambarus@microchip.com>
- <024e0a68-bb79-4e2e-84f8-f44afb759cdd@app.fastmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20221121133732.207820-1-linmengbo0689@protonmail.com>
+ <20221122132142.257241-1-linmengbo0689@protonmail.com>
+ <20221122132421.257658-1-linmengbo0689@protonmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <024e0a68-bb79-4e2e-84f8-f44afb759cdd@app.fastmail.com>
+In-Reply-To: <20221122132421.257658-1-linmengbo0689@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,23 +84,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 14:15, Arnd Bergmann wrote:
-> On Tue, Nov 22, 2022, at 13:52, Tudor Ambarus wrote:
->> My professional email will change and the microchip one will bounce after
->> mid-november of 2022.
->>
->> Update the MAINTAINERS file, the YAML bindings, MODULE_AUTHOR entries and
->> author mentions, and add an entry in the .mailmap file.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
-> 
-> I can take this through the fixes branch of the SoC tree if that
-> works for everyone. Alternatively, I can take only the MAINTAINERS
-> and .mailmap bits and expect the other changes to get merged
-> by the devicetree and crypto maintainers for 6.2.
+On 22/11/2022 14:25, Lin, Meng-Bo wrote:
+> A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
+> Add it to the device tree.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject prefix needs fixes (reversed).
 
 Best regards,
 Krzysztof
