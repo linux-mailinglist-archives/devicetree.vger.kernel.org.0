@@ -2,214 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D2F63783F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACEDC637880
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 13:05:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbiKXL6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37858 "EHLO
+        id S229563AbiKXMFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 07:05:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbiKXL63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:58:29 -0500
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A7BCB9D0
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:58:25 -0800 (PST)
-Received: by mail-il1-x12c.google.com with SMTP id h2so690402ile.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:58:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3OcOKLBkavhNW4KYy1hfo9fa8x/O5MBbapatWejvVZ0=;
-        b=VUOMDJARVPimx/Aq4HJiarNMiq61PPL6+4OTq/Pguz1det2yayWmkYe0th4FR0aSCK
-         SzkhnOsyF04sA+07lo5ueIsqNu4ue3Xlms6J3x9YrRX4h1MBOLRCqqmLtXs6tkzdwfw1
-         Z278nX3dBBFaqhbO6PTR2BhiY8pYpDbo5ke8wjv5RPkroUPMj8eokGEyPLHN+mvG/aCW
-         dRI+9ZdDjA+BzEU3Y6xRNDrbavVlVbJfBZIuxYFHbDtLuYDHrSS+uiTwJpUAeoyMjr9X
-         podCYZCU3xFGPnbXrgAtv3WlZtiqJT9PunhZ28rZo/gKtmF545kNbBipLLhaBSaIgrpi
-         TxQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3OcOKLBkavhNW4KYy1hfo9fa8x/O5MBbapatWejvVZ0=;
-        b=6A0FREK3rHIqQ9pq17KYQ4ZA5vRdzep51bC0AQdiGzIP+vCk356zwrBRjAbGMRC9C8
-         NmheZdJiV0irGc+MIcHsYY4/ZFoCi6y2tO7IKiYcsLjunmDJIMVTyy+pWUIcrpOs7K25
-         kql+Q1aFuW3viPjLiff7bqk4nDJghHNjh/hgc5ZBT0XigfGiyNRdVHwCEul6Wb87eet5
-         R3N9KtR9JorioGgU8VPyJFMrwfpgviS9QiRD7OHej52Oh0zE9XfMI+TSp8rxsvRDEUrf
-         M/sxuNHKSa1R4j5jqxj2+MpOYkzJ+hknfqOGsBnUGmefUwaRU0IvAQyiBODCm4rYpBLK
-         cPGQ==
-X-Gm-Message-State: ANoB5pky20dKt7rl4o/fuqjG/MSyxWXhxuekWLiLt9QPQwwDI8TAfb5Z
-        Ng5tyGdvCcCf8VfTboyvkTx504x6p9Ubkk5jbWjsmw==
-X-Google-Smtp-Source: AA0mqf5HzPxwTSlXEkLPQ/HLgvn2b60CfiAFs/2id3qDhIiHixPDY+pW2uyQsciqRS3dCHp+DmIEGqDqM+zKxyjEmGs=
-X-Received: by 2002:a92:2c0e:0:b0:302:e042:9ddd with SMTP id
- t14-20020a922c0e000000b00302e0429dddmr3466683ile.292.1669291105111; Thu, 24
- Nov 2022 03:58:25 -0800 (PST)
+        with ESMTP id S229909AbiKXMFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 07:05:43 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5DBD1CB22;
+        Thu, 24 Nov 2022 04:04:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DD69620F6;
+        Thu, 24 Nov 2022 12:03:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA79C433D6;
+        Thu, 24 Nov 2022 12:03:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669291434;
+        bh=qNZnjGHtGYW9pPQzs/B7JclTgfPdNAJ786KvxxzKN3c=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=YrlQbqOAf42JMLcJWWIVy5ymygMwlrtxR4kSMMF9yFf8J3HA/iLxUs+W2pzimm3nT
+         L2a4cDcawMTl5pFj9suJfUad29lzrC0sK2aRXHjXXUmIPwWs1xjn2tEcmj9dJq6Z9+
+         SFjhQnweyCD1cvtavDbX7tZdA8aj1LQ0a5isjNmSnKv24h1OCtQByP3oQIKGZtqh52
+         0d6MW3zbjY5vjEbUBEDHUG4VSEE99deq4Em7TUPuGeF+Iu7K5fHVU4/m9EntAdMNHJ
+         QkXjFxM+BZFGh6VCWqZZybj9XCVZigI9+2HopNZVaNv99Y/m2SUb6TC2Db/CCT4j0N
+         rqU+yBhFT4Xpw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20221123153638.721254-1-abel.vesa@linaro.org>
+References: <20221123153638.721254-1-abel.vesa@linaro.org>
+Subject: Re: [PATCH v2 0/2] regulator: qcom-rpmh: Add support for PM8550
+Message-Id: <166929143255.146433.17935978441581244094.b4-ty@kernel.org>
+Date:   Thu, 24 Nov 2022 12:03:52 +0000
 MIME-Version: 1.0
-References: <20221005152018.3783890-1-dave.stevenson@raspberrypi.com>
- <20221005152018.3783890-3-dave.stevenson@raspberrypi.com> <834648869.0ifERbkFSE@steina-w>
-In-Reply-To: <834648869.0ifERbkFSE@steina-w>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Thu, 24 Nov 2022 11:58:08 +0000
-Message-ID: <CAPY8ntA0oq4qYu1gJszEf3WpRLywn-+8V5=Y36jzboTa69-=Tw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] media: i2c: ov9282: Add support for regulators.
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        linux-media@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander
+On Wed, 23 Nov 2022 17:36:36 +0200, Abel Vesa wrote:
+> This patchset adds regulator support for the new Qualcomm PM8550 PMIC.
+> 
+> To: Andy Gross <agross@kernel.org>
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> To: Liam Girdwood <lgirdwood@gmail.com>
+> To: Mark Brown <broonie@kernel.org>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> 
+> [...]
 
-Thanks for the review.
+Applied to
 
-Sakari has already picked this up and included it in a pull to Mauro for 6.2.
-https://www.spinics.net/lists/linux-media/msg222346.html
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-On Thu, 24 Nov 2022 at 09:31, Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Hello Dave,
->
-> Am Mittwoch, 5. Oktober 2022, 17:20:18 CET schrieb Dave Stevenson:
-> > The sensor takes 3 supply rails - AVDD, DVDD, and DOVDD.
-> >
-> > Add hooks into the regulator framework for each of these
-> > regulators.
-> >
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > ---
-> >  drivers/media/i2c/ov9282.c | 38 ++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 38 insertions(+)
-> >
-> > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> > index 2e0b315801e5..699fc5b753b4 100644
-> > --- a/drivers/media/i2c/ov9282.c
-> > +++ b/drivers/media/i2c/ov9282.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/i2c.h>
-> >  #include <linux/module.h>
-> >  #include <linux/pm_runtime.h>
-> > +#include <linux/regulator/consumer.h>
-> >
-> >  #include <media/v4l2-ctrls.h>
-> >  #include <media/v4l2-fwnode.h>
-> > @@ -55,6 +56,14 @@
-> >  #define OV9282_REG_MIN               0x00
-> >  #define OV9282_REG_MAX               0xfffff
-> >
-> > +static const char * const ov9282_supply_names[] = {
-> > +     "avdd",         /* Analog power */
-> > +     "dovdd",        /* Digital I/O power */
-> > +     "dvdd",         /* Digital core power */
-> > +};
-> > +
-> > +#define OV9282_NUM_SUPPLIES ARRAY_SIZE(ov9282_supply_names)
-> > +
-> >  /**
-> >   * struct ov9282_reg - ov9282 sensor register
-> >   * @address: Register address
-> > @@ -128,6 +137,7 @@ struct ov9282 {
-> >       struct media_pad pad;
-> >       struct gpio_desc *reset_gpio;
-> >       struct clk *inclk;
-> > +     struct regulator_bulk_data supplies[OV9282_NUM_SUPPLIES];
->
-> Please add documentation for supplies.
+Thanks!
 
-Is it the place for the driver to document the supplies beyond the
-comments in ov9282_supply_names with regard to which sensor rail they
-relate to?
-Some drivers include the typical values for each supply, but those are
-technically inaccurate as each will have a min and max value.
+[1/2] regulator: dt-bindings: qcom,rpmh: Add compatible for PM8550
+      commit: 0a60d098261dfdf2d7e892ab1faf935fea612826
+[2/2] regulator: qcom-rpmh: Add support for PM8550 regulators
+      commit: e6e3776d682d7f06e1a49be0d2a95dc6456f8be2
 
-Anyone interfacing with a sensor is going to have the datasheet for it
-and should be referring to that for the characteristics of supply
-rails. Duplicating some of that in the driver seems redundant, and has
-the potential to be incorrect.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> >       struct v4l2_ctrl_handler ctrl_handler;
-> >       struct v4l2_ctrl *link_freq_ctrl;
-> >       struct v4l2_ctrl *pclk_ctrl;
-> > @@ -767,6 +777,18 @@ static int ov9282_detect(struct ov9282 *ov9282)
-> >       return 0;
-> >  }
-> >
-> > +static int ov9282_configure_regulators(struct ov9282 *ov9282)
-> > +{
-> > +     unsigned int i;
-> > +
-> > +     for (i = 0; i < OV9282_NUM_SUPPLIES; i++)
-> > +             ov9282->supplies[i].supply = ov9282_supply_names[i];
-> > +
-> > +     return devm_regulator_bulk_get(ov9282->dev,
-> > +                                    OV9282_NUM_SUPPLIES,
-> > +                                    ov9282->supplies);
-> > +}
-> > +
-> >  /**
-> >   * ov9282_parse_hw_config() - Parse HW configuration and check if supported
-> > * @ov9282: pointer to ov9282 device
-> > @@ -803,6 +825,12 @@ static int ov9282_parse_hw_config(struct ov9282
-> > *ov9282) return PTR_ERR(ov9282->inclk);
-> >       }
-> >
-> > +     ret = ov9282_configure_regulators(ov9282);
-> > +     if (ret) {
-> > +             dev_err(ov9282->dev, "Failed to get power regulators\n");
->
-> dev_err_probe seems sensible here.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-That would have been good - sorry. I must get into the habit of
-remembering to use dev_err_probe.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-  Dave
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> > +             return ret;
-> > +     }
-> > +
-> >       rate = clk_get_rate(ov9282->inclk);
-> >       if (rate != OV9282_INCLK_RATE) {
-> >               dev_err(ov9282->dev, "inclk frequency mismatch");
-> > @@ -874,6 +902,12 @@ static int ov9282_power_on(struct device *dev)
-> >       struct ov9282 *ov9282 = to_ov9282(sd);
-> >       int ret;
-> >
-> > +     ret = regulator_bulk_enable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-> > +     if (ret < 0) {
-> > +             dev_err(dev, "Failed to enable regulators\n");
-> > +             return ret;
-> > +     }
-> > +
-> >       usleep_range(400, 600);
-> >
-> >       gpiod_set_value_cansleep(ov9282->reset_gpio, 1);
-> > @@ -891,6 +925,8 @@ static int ov9282_power_on(struct device *dev)
-> >  error_reset:
-> >       gpiod_set_value_cansleep(ov9282->reset_gpio, 0);
-> >
-> > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-> > +
-> >       return ret;
-> >  }
-> >
-> > @@ -909,6 +945,8 @@ static int ov9282_power_off(struct device *dev)
-> >
-> >       clk_disable_unprepare(ov9282->inclk);
-> >
-> > +     regulator_bulk_disable(OV9282_NUM_SUPPLIES, ov9282->supplies);
-> > +
-> >       return 0;
-> >  }
->
-> Despite the nits above
-> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Thanks,
+Mark
