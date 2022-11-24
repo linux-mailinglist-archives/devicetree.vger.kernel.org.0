@@ -2,58 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3637F637570
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F2F9637577
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:45:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbiKXJoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 04:44:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53654 "EHLO
+        id S229755AbiKXJpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 04:45:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbiKXJoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:44:19 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1478654CD;
-        Thu, 24 Nov 2022 01:44:16 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0F58D24E2E7;
-        Thu, 24 Nov 2022 17:44:15 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Nov
- 2022 17:44:15 +0800
-Received: from [192.168.125.96] (183.27.97.81) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Nov
- 2022 17:44:14 +0800
-Message-ID: <eeffbdd3-51d3-87cb-dda1-81b99ab51698@starfivetech.com>
-Date:   Thu, 24 Nov 2022 17:44:14 +0800
+        with ESMTP id S229688AbiKXJpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:45:40 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C59C10EA38;
+        Thu, 24 Nov 2022 01:45:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669283138; x=1700819138;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=uABMMS6kwFQ2mc/xf67+JZbowbuXffjlw22fLDT7/fg=;
+  b=kdynrCbNDPZu8qddgiV21Tq0afCa8SBbYMPMLnEX3JN375XhS+4P4FrV
+   g8xFTjtCxW+zlgkdmPDlRcqecw1jnQvkL/y/ceCBJylCvvxMSMSjrygoM
+   sMWhg1hAYnW9kOIFrldENHvdw9o7a0CFI19iZNK9seLGOBaZOmoQL5dx+
+   pEWZnLJFjKGqMnwkjLfgqDGg4eH+6YKtyJk4NMYAbkNKYyhSZrJmTGn5e
+   CApyVaJ5s2t0fLP0il4P02G94xsyVWYUkuEUMCj6qNlk3K5yRoJszq/mk
+   cvvhOHm1zd+ZOJrfJMccIVAvekaKOi0uEMMhoQbIw2x4CmD+LvwqZG38K
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27556592"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Nov 2022 10:45:36 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 24 Nov 2022 10:45:36 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 24 Nov 2022 10:45:36 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1669283136; x=1700819136;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=uABMMS6kwFQ2mc/xf67+JZbowbuXffjlw22fLDT7/fg=;
+  b=DTJgcIJruRXWxnPKrdY2NonxXLgoydFT5lSpdxcXexiFus6MyA92RBEt
+   L+IFh7yWMLRaF4GAAsUBH9sz0Stej3PCpJKFV/fyOaV/DtKC8SPkDFZzj
+   VKNmhpyWEL37/8x1A8GChgpSzy8vzxHOEHmJT+QOa7toOOTYmsK3y4zdD
+   h7qQTKjSjjqHc+VGzHv81xP6vgMFFjql82y2HY1q+NntELT2pWH8pMnZj
+   EfzX8GVZIH2TAPcPsaHEGQY93tGJwCmLFUA7RGFNwzDf4atpmMnp2Zziv
+   zeNWmx3AiPfary6RfGwW0EbeX3qUFEnjPXs1t2heu3E/Gjl/88nyjsIHi
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
+   d="scan'208";a="27556591"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Nov 2022 10:45:35 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 979A3280056;
+        Thu, 24 Nov 2022 10:45:35 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Paul J. Murphy" <paul.j.murphy@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
+Date:   Thu, 24 Nov 2022 10:45:35 +0100
+Message-ID: <14780130.tv2OnDr8pf@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <166821050429.550668.2828222448343135143@Monstersaurus>
+References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com> <20220728130237.3396663-4-alexander.stein@ew.tq-group.com> <166821050429.550668.2828222448343135143@Monstersaurus>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 3/4] soc: starfive: Add StarFive JH71XX pmu driver
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
- <20221118133216.17037-4-walker.chen@starfivetech.com>
- <CAJM55Z9jfpOW49Z5cdR18T0w4Ae6CQAYF-AsCD8eOcPczwgoZA@mail.gmail.com>
- <6303c341-a691-fd52-2861-74e9d3ea09c9@starfivetech.com>
- <Y385J2m5YByyAz0g@wendy>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <Y385J2m5YByyAz0g@wendy>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.81]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,55 +84,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/24 17:28, Conor Dooley wrote:
-> Hey Walker,
-> Just jumping in here...
-> 
-> On Thu, Nov 24, 2022 at 05:08:57PM +0800, Walker Chen wrote:
->> On 2022/11/19 2:31, Emil Renner Berthing wrote:
->> > On Fri, 18 Nov 2022 at 14:35, Walker Chen <walker.chen@starfivetech.com> wrote:
-> 
->> >> diff --git a/include/soc/starfive/pm_domains.h b/include/soc/starfive/pm_domains.h
->> >> new file mode 100644
->> >> index 000000000000..a20e28e9baf3
->> >> --- /dev/null
->> >> +++ b/include/soc/starfive/pm_domains.h
->> >> @@ -0,0 +1,15 @@
->> >> +/* SPDX-License-Identifier: GPL-2.0 */
->> >> +/*
->> >> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
->> >> + * Author: Walker Chen <walker.chen@starfivetech.com>
->> >> + */
->> >> +
->> >> +#ifndef __SOC_STARFIVE_PMDOMAINS_H__
->> >> +#define __SOC_STARFIVE_PMDOMAINS_H__
->> >> +
->> >> +#include <linux/types.h>
->> >> +
->> >> +void starfive_pmu_hw_event_turn_on(u32 mask);
->> >> +void starfive_pmu_hw_event_turn_off(u32 mask);
->> >> +
->> >> +#endif /* __SOC_STARFIVE_PMDOMAINS_H__ */
->> > 
->> > The header and functions within are named very generic, but
->> > implemented by the jh71xx-specific driver.
->> > 
->> > Also who should use this header? These functions are never called by
->> > anything in this series.
->> 
->> These two functions will be used by the GPU module. Only the power-off
->> of the GPU is not controlled by the software through PMU module. So
->> here the functions are needed to export.
-> 
-> ...the general policy is to avoid adding things without users. I think
-> they should be kept as static functions for now & when your GPU driver
-> is being upstreamed you can expose these functions. That way your usage
-> of them can be reviewed with the appropriate context.
-> 
+Hello Kieran,
 
-OK, thank you for your advice. I will modify the code according to your suggestion
- in the next version of patch.
+Am Samstag, 12. November 2022, 00:48:24 CET schrieb Kieran Bingham:
+> Hi All,
+> 
+> Quoting Alexander Stein (2022-07-28 14:02:33)
+> 
+> > According to product brief they are identical from software point of view.
+> > Differences are a different chief ray angle (CRA) and the package.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> 
+> Throwing my hat in the ring on this thread as I see it has been hanging
+> around for a while and my attention was sent here from [0]
+> 
+> [0]
+> https://lists.libcamera.org/pipermail/libcamera-devel/2022-November/035495.
+> html
 
-Best Regards,
-Walker Chen
+I postponed working on this change for a while, because there are (at least) 
+two series from Dave pending which conflict a bit with this series.
+
+> > ---
+> > 
+> >  drivers/media/i2c/ov9282.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+> > index 8a252bf3b59f..c8d83a29f9bb 100644
+> > --- a/drivers/media/i2c/ov9282.c
+> > +++ b/drivers/media/i2c/ov9282.c
+> > @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
+> > 
+> >  };
+> >  
+> >  static const struct of_device_id ov9282_of_match[] = {
+> > 
+> > +       { .compatible = "ovti,ov9281" },
+> 
+> I believe from my existing understanding of how we would support
+> existing sensors even with very similar parts is that a direct
+> compatible lets the DT express this.
+> 
+> If there were a common name that we could apply, we could have a generic
+> name here too, but I don't see anything specifically generic, and I
+> haven't yet seen a clear pattern in the namings schemes from omnivision
+> so ov928x wouldn't be appropriate as I couldn't be sure that an
+> unrelated ov9289 wouldn't exist with very different properties ... so ..
+> 
+> >         { .compatible = "ovti,ov9282" },
+> 
+> Either squashed with the later 6/7 that adds the name or not: (I think
+> it's fine either separated or squashed)
+> 
+> Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> 
+> It does in turn bring questions into how we handle both the ov9281 and
+> ov9282 together in libcamera, but I don't think that's an issue to solve
+> here. Expressing the two separately to userspace also allows libcamera
+> to make a distiction between the CRA should it need to.
+
+Krzysztof is in favor of squashing so I'll respin this accordingly, removing 
+the other changes from the ov9281 support series.
+
+Best regards,
+Alexander
+
+
+
 
