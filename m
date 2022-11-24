@@ -2,82 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C016637B7F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D028A637B8B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:40:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiKXOdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 09:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
+        id S229544AbiKXOkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 09:40:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiKXOc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:32:59 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF28776C9
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:32:56 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g7so2818524lfv.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zYPcwuN0ixxBPz8vi1NczLJaDfU7Jd6IdhNMvi6HWb0=;
-        b=D5u8AgJcYgd5joOZvehXrdY4ax0HefmPst5qs2Ll24ByNjMvjqsM24UzcM0L+o2bid
-         P4VCmAsFX1QmnRolJ1Tg+FTWF4GbcWeyKmUZvi0vz0cIfhO/z1HjrwinN/QH0DAJfCq7
-         eFFtorRUmIZ54wbGWkjBY8derySIAwdBDtB67k8k+xo+b9gcMpbUETbsTLXR+3/g2/U0
-         6Wc+XqlOUCs3t8AbW7C3kt7N4uVgdurS6xudUx46ATHi2J0GXrw3sxBBNIKNqMrc9TDF
-         70lhe03Q/wiT1N/TpkFdcSKgVS8TAwtOYVWkEh8P+D1AO/IyZSTX4QG591EtepYD8ET2
-         97CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zYPcwuN0ixxBPz8vi1NczLJaDfU7Jd6IdhNMvi6HWb0=;
-        b=1HR9UVKcTjlGK/584ZB0HagIubverLhIfTEtWLRJRTKl9uI+cdepO921EWB1l5bj8E
-         Pta09CoiiWYBFb3C1eSqdpBamHz3Rdpn2z+emZgwpbWYz5nWPDsqn3rb3YX1OnCsunI7
-         D6GPGJjw2kX+Pdu9EJYQGV6guTE7u1BUPAVd07P2dBKB2f35LVehGx+Sv1nl3krMUiQn
-         Qdsf7D83duDhu6x4l6G3I46UFJCoLKCaAR/7f5GquKfOegDsW3kccdwYNVdJg5PCasEs
-         Wp3v5gIxdjNfF6zfOlMETUt1yIxJVKmSs+3cEjUJz3r1hlAbZGyMy1fpjiBTfaBHdGgW
-         UmlQ==
-X-Gm-Message-State: ANoB5pnOr69QZqoc2HrBzVmQvuqq7dJn3ioM2/TtTNp3Cg+WYHipfJ8A
-        j5xjD0dYPMiVbJqA69HTLInLhQ==
-X-Google-Smtp-Source: AA0mqf4bKcysvolziy0EL4RTYdY5BJl7S8gZPvthaVbhBr9/keBrnI2vpdR0tAfaU7q/p4iv+lD0hw==
-X-Received: by 2002:ac2:44ac:0:b0:4b4:efec:b4c9 with SMTP id c12-20020ac244ac000000b004b4efecb4c9mr1963916lfm.276.1669300374556;
-        Thu, 24 Nov 2022 06:32:54 -0800 (PST)
-Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
-        by smtp.gmail.com with ESMTPSA id e8-20020ac24e08000000b00492ceda336fsm133145lfr.278.2022.11.24.06.32.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 06:32:53 -0800 (PST)
-Message-ID: <9016a729-4c7a-4252-a667-3c6536eb2038@linaro.org>
-Date:   Thu, 24 Nov 2022 15:32:48 +0100
+        with ESMTP id S229480AbiKXOkP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:40:15 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00E4C5B5F
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:40:14 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oyDOR-0001xM-ET; Thu, 24 Nov 2022 15:39:59 +0100
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:5507:4aba:5e0a:4c27])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 9705A12864A;
+        Thu, 24 Nov 2022 14:39:58 +0000 (UTC)
+Date:   Thu, 24 Nov 2022 15:39:57 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     haibo.chen@nxp.com
+Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] can: flexcan: add auto stop mode for IMX93 to
+ support wakeup
+Message-ID: <20221124143957.fr5fojvu3fa5vhnj@pengutronix.de>
+References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221124142501.29314-1-johan+linaro@kernel.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221124142501.29314-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yhn2qnplluft6atz"
+Content-Disposition: inline
+In-Reply-To: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,99 +57,115 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--yhn2qnplluft6atz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 24.11.2022 15:25, Johan Hovold wrote:
-> The devices on the SC8280XP PCIe buses are cache coherent and must be
-> marked as such to avoid data corruption.
-> 
-> A coherent device can, for example, end up snooping stale data from the
-> caches instead of using data written by the CPU through the
-> non-cacheable mapping which is used for consistent DMA buffers for
-> non-coherent devices.
-> 
-> Note that this is much more likely to happen since commit c44094eee32f
-> ("arm64: dma: Drop cache invalidation from arch_dma_prep_coherent()")
-> that was added in 6.1 and which removed the cache invalidation when
-> setting up the non-cacheable mapping.
-> 
-> Marking the PCIe devices as coherent specifically fixes the intermittent
-> NVMe probe failures observed on the Thinkpad X13s, which was due to
-> corruption of the submission and completion queues. This was typically
-> observed as corruption of the admin submission queue (with well-formed
-> completion):
-> 
-> 	could not locate request for tag 0x0
-> 	nvme nvme0: invalid id 0 completed on queue 0
-> 
-> or corruption of the admin or I/O completion queues (malformed
-> completion):
-> 
-> 	could not locate request for tag 0x45f
-> 	nvme nvme0: invalid id 25695 completed on queue 25965
-> 
-> presumably as these queues are small enough to not be allocated using
-> CMA which in turn make them more likely to be cached (e.g. due to
-> accesses to nearby pages through the cacheable linear map). Increasing
-> the buffer sizes to two pages to force CMA allocation also appears to
-> make the problem go away.
-> 
-> Fixes: 813e83157001 ("arm64: dts: qcom: sc8280xp/sa8540p: add PCIe2-4 nodes")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On 22.11.2022 19:32:30, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+>=20
+> IMX93 do not contain a GPR to config the stop mode, it will set
+> the flexcan into stop mode automatically once the ARM core go
+> into low power mode (WFI instruct) and gate off the flexcan
+> related clock automatically. But to let these logic work as
+> expect, before ARM core go into low power mode, need to make
+> sure the flexcan related clock keep on.
+>=20
+> To support stop mode and wakeup feature on imx93, this patch
+> add a new fsl_imx93_devtype_data to separate from imx8mp.
+>=20
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
-Looks like 8450 should also be like this, good catch!
+>  drivers/net/can/flexcan/flexcan-core.c | 37 +++++++++++++++++++++++---
+>  drivers/net/can/flexcan/flexcan.h      |  2 ++
+>  2 files changed, 36 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index 9bdadd716f4e..0aeff34e5ae1 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -345,6 +345,15 @@ static struct flexcan_devtype_data fsl_imx8mp_devtyp=
+e_data =3D {
+>  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+>  };
+> =20
+> +static struct flexcan_devtype_data fsl_imx93_devtype_data =3D {
+> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+> +		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
+> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_AUTO_STOP_MODE |
+> +		FLEXCAN_QUIRK_SUPPORT_FD | FLEXCAN_QUIRK_SUPPORT_ECC |
+> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
+> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+> +};
+> +
+>  static const struct flexcan_devtype_data fsl_vf610_devtype_data =3D {
+>  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+>  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
+> @@ -532,9 +541,14 @@ static inline int flexcan_enter_stop_mode(struct fle=
+xcan_priv *priv)
+>  		ret =3D flexcan_stop_mode_enable_scfw(priv, true);
+>  		if (ret < 0)
+>  			return ret;
+> -	} else {
+> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
+R) {
+>  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
+>  				   1 << priv->stm.req_bit, 1 << priv->stm.req_bit);
+> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE) {
+> +		/* For the auto stop mode, software do nothing, hardware will cover
+> +		 * all the operation automatically after system go into low power mode.
+> +		 */
+> +		return 0;
+>  	}
+> =20
+>  	return flexcan_low_power_enter_ack(priv);
+> @@ -551,7 +565,7 @@ static inline int flexcan_exit_stop_mode(struct flexc=
+an_priv *priv)
+>  		ret =3D flexcan_stop_mode_enable_scfw(priv, false);
+>  		if (ret < 0)
+>  			return ret;
+> -	} else {
+> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
+R) {
+>  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
+>  				   1 << priv->stm.req_bit, 0);
+>  	}
+> @@ -560,6 +574,12 @@ static inline int flexcan_exit_stop_mode(struct flex=
+can_priv *priv)
+>  	reg_mcr &=3D ~FLEXCAN_MCR_SLF_WAK;
+>  	priv->write(reg_mcr, &regs->mcr);
+> =20
+> +	/* For the auto stop mode, hardware will exist stop mode
+                                                 ^^^^^
+                                                 exit?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+No need to resend.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 27f5c2f82338..7748cd29276d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -854,6 +854,8 @@ pcie4: pcie@1c00000 {
->  				 <0x02000000 0x0 0x30300000 0x0 0x30300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <6>;
->  			num-lanes = <1>;
->  
-> @@ -951,6 +953,8 @@ pcie3b: pcie@1c08000 {
->  				 <0x02000000 0x0 0x32300000 0x0 0x32300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <5>;
->  			num-lanes = <2>;
->  
-> @@ -1046,6 +1050,8 @@ pcie3a: pcie@1c10000 {
->  				 <0x02000000 0x0 0x34300000 0x0 0x34300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <4>;
->  			num-lanes = <4>;
->  
-> @@ -1144,6 +1150,8 @@ pcie2b: pcie@1c18000 {
->  				 <0x02000000 0x0 0x38300000 0x0 0x38300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <3>;
->  			num-lanes = <2>;
->  
-> @@ -1239,6 +1247,8 @@ pcie2a: pcie@1c20000 {
->  				 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <2>;
->  			num-lanes = <4>;
->  
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--yhn2qnplluft6atz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmN/gjoACgkQrX5LkNig
+011sXQf+MCoRIn0fsXC1+erxc4xdoDvO1PaSDE7V5RT0iSFDX8tNKFew3uSnzPTi
+SPTuiIiEGy0SsJB108lLBxw+sS7x4+3ybV10clPL9Q4jEOgTJPthr2Iz8g8YQem6
+17gmmNv0kVyVSwGw1frreiuaxQ2fOaccMrr0Cgns2K8CzFpnyxQkIHDPM75L9IGw
+W6uOh1lFWYwW7W3RqZWruGb2QtBMVJFjKc0MTJO8Mqfiuo+EXAogIjbEAdKpJM9r
+9zHXgJrrN8m9xPwXF3zBYd1SnY/c0Fzy5xvVllbjVGKFIPfG2F5CCCLc6B/fYgml
+Cucg2bGPSmkvT9RDnHppJ7qyGfBScQ==
+=31C3
+-----END PGP SIGNATURE-----
+
+--yhn2qnplluft6atz--
