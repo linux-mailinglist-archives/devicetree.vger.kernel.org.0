@@ -2,109 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D13637715
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8629A63771A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:05:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbiKXLD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:03:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
+        id S229920AbiKXLFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:05:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiKXLDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:03:55 -0500
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36420881A2;
-        Thu, 24 Nov 2022 03:03:54 -0800 (PST)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1oyA1F-0000L5-44; Thu, 24 Nov 2022 12:03:49 +0100
-Date:   Thu, 24 Nov 2022 11:03:41 +0000
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Zhi Mao <zhi.mao@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
- MT7986
-Message-ID: <Y39PjU1BqBB8tZ98@makrotopia.org>
+        with ESMTP id S229885AbiKXLFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:05:23 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F74B5C0D4
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:05:22 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id q7so1584848ljp.9
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:05:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rn8gRLitU2bG8xUrjjRIZNkoRWyZ8WxzPo3QWmnRYPU=;
+        b=u8Yf2nhT5P01RksVG/fGGyze9h2f2xrgksiQwhkf3Ah2IaTC02jmSu5JmhHIRz4rGu
+         gFz0/Nawz5pSTpdaCFkfN+t7IK3wES1itdY+MXklXKvNJJAV3qhf/gVM1vkZPc6P0/pv
+         Qh3ybrOhg+fW2idYfu81USNxr90HGPDmVfUGJROV/dlUHQFq4azr3giM9sn6CBHEvv0f
+         t7mxrZuL9uvqPe9yzy2Eoh1tzqPSswtQQ9GdZdWI8Nzf4HqxTiodbrb0Datp3WMl64zT
+         IL/xBtaHUDRfyGcofxtbPkBR1VR0zZ+M5mzfcrN3V8zEHPYlYA+UUMLMq7LYnExsww/T
+         E/rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rn8gRLitU2bG8xUrjjRIZNkoRWyZ8WxzPo3QWmnRYPU=;
+        b=4ClsG6IaFeMVas65U8d0MEDXEvoktJfdDRUoiLiO//Avo9x9kg+RKyDebSJMj+yJp6
+         aXANbduAjGJBNN9/mX8bxillrfXp0mTXo41syASbCBsLy9NHyBJBGkla//WeJ/7jja/L
+         MN3JkUVOFS5qkBvthHsXYrudWgKdgOBnv9vXVTbVBuiqP3zLcfO7kMULpQnvYhtDqraE
+         k5yTzNuyyBy7YePEkGW+sW2n97hN966PDZBjqAYwhfo5eJOtRZdVX2x4CKOtuObmivDV
+         MeIALALjWFTh3poYW1i+nYO6T5kXSO49bpdI9guggjv4SdjqLkG58VMpzRt3M5sVdPF5
+         fI7g==
+X-Gm-Message-State: ANoB5pnpQDddTvkX/JODLqvN1TKJo92j8Gj9mI7RkJtde3O7PuUuKUfw
+        aZYU3rIfst38mQ4OGDgPTNDKQg==
+X-Google-Smtp-Source: AA0mqf6KCtKkTcJv0a7dnVOBWz4yFZ7Dni3PjZVdF2bhA4Fvpn7bpSDWU7lOxYyMprZ4p7eDtkrl6A==
+X-Received: by 2002:a05:651c:50b:b0:26c:5db6:cd84 with SMTP id o11-20020a05651c050b00b0026c5db6cd84mr4791835ljp.114.1669287920605;
+        Thu, 24 Nov 2022 03:05:20 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id g7-20020a0565123b8700b00494978b0caesm84019lfv.276.2022.11.24.03.05.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 03:05:20 -0800 (PST)
+Message-ID: <f13be4fb-da09-cd99-6bf4-03da3da4a64b@linaro.org>
+Date:   Thu, 24 Nov 2022 12:05:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3] dt-bindings: leds: Document commonly used LED triggers
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, dmurphy@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
+        festevam@gmail.com
+References: <20221123081112.97150-1-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221123081112.97150-1-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new compatible string for MT7986 PWM and list compatible units for
-existing entries. Also make sure the number of pwm1-X clocks is listed
-for all supported units.
+On 23/11/2022 09:11, Manivannan Sadhasivam wrote:
+> This commit documents the LED triggers used commonly in the SoCs. Not
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
-makes sure dt maintainers are included. This has been requested by
-Krzysztof Kozlowski.
+> all triggers are documented as some of them are very application specific.
+> Most of the triggers documented here are currently used in devicetrees
+> of many SoCs.
+> 
+> While at it, let's also sort the triggers in ascending order.
+> 
+> Tested-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+> 
+> Changes in v3:
+> 
+> * Rebased on top of v6.1-rc1
+> * Added WLAN Rx trigger
+> * Added tested tag from Zhen Lei
+> 
+> Changes in v2:
+> 
+> * Added more triggers, fixed the regex
+> * Sorted triggers in ascending order
+> 
+>  .../devicetree/bindings/leds/common.yaml      | 79 ++++++++++++++-----
+>  1 file changed, 59 insertions(+), 20 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index 3c14a98430e1..0ffed6bcbefd 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -80,26 +80,65 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/string
+>  
+>      oneOf:
+> -      - enum:
+> -            # LED will act as a back-light, controlled by the framebuffer system
+> -          - backlight
+> -            # LED will turn on (but for leds-gpio see "default-state" property in
+> -            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> -          - default-on
+> -            # LED "double" flashes at a load average based rate
+> -          - heartbeat
+> -            # LED indicates disk activity
+> -          - disk-activity
+> -            # LED indicates IDE disk activity (deprecated), in new implementations
+> -            # use "disk-activity"
+> -          - ide-disk
+> -            # LED flashes at a fixed, configurable rate
+> -          - timer
+> -            # LED alters the brightness for the specified duration with one software
+> -            # timer (requires "led-pattern" property)
+> -          - pattern
+> -        # LED is triggered by SD/MMC activity
+> -      - pattern: "^mmc[0-9]+$"
+> +      - items:
 
- .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+Why items appeared everywhere? It's not explained in commit msg and you
+do not have multiple items.
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-index 554c96b6d0c3..952a338e06e7 100644
---- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-+++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-@@ -2,14 +2,15 @@ MediaTek PWM controller
- 
- Required properties:
-  - compatible: should be "mediatek,<name>-pwm":
--   - "mediatek,mt2712-pwm": found on mt2712 SoC.
-+   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
-    - "mediatek,mt6795-pwm": found on mt6795 SoC.
--   - "mediatek,mt7622-pwm": found on mt7622 SoC.
--   - "mediatek,mt7623-pwm": found on mt7623 SoC.
-+   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
-+   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
-    - "mediatek,mt7628-pwm": found on mt7628 SoC.
-    - "mediatek,mt7629-pwm": found on mt7629 SoC.
--   - "mediatek,mt8183-pwm": found on mt8183 SoC.
--   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
-+   - "mediatek,mt7986-pwm": found on mt7986 SoC.
-+   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
-+   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
-    - "mediatek,mt8365-pwm": found on mt8365 SoC.
-    - "mediatek,mt8516-pwm": found on mt8516 SoC.
-  - reg: physical base address and length of the controller's registers.
-@@ -20,11 +21,14 @@ Required properties:
-                 has no clocks
-    - "top": the top clock generator
-    - "main": clock used by the PWM core
-+   - "pwm1"  : the PWM1 clock for mt7629
-+   - "pwm1-2": the two per PWM clocks for mt7986
-    - "pwm1-3": the three per PWM clocks for mt8365
--   - "pwm1-8": the eight per PWM clocks for mt2712
-+   - "pwm1-4": the four per PWM clocks for mt7628 or mt8183
-+   - "pwm1-5": the five per PWM clocks for mt7623 or mt8516
-    - "pwm1-6": the six per PWM clocks for mt7622
--   - "pwm1-5": the five per PWM clocks for mt7623
--   - "pwm1"  : the PWM1 clock for mt7629
-+   - "pwm1-7": the seven per PWM clocks for mt6795
-+   - "pwm1-8": the eight per PWM clocks for mt2712
-  - pinctrl-names: Must contain a "default" entry.
-  - pinctrl-0: One property must exist for each entry in pinctrl-names.
-    See pinctrl/pinctrl-bindings.txt for details of the property values.
--- 
-2.38.1
+> +          - enum:
+> +                # LED indicates mic mute state
+> +              - audio-micmute
+> +                # LED indicates audio mute state
+> +              - audio-mute
+> +                # LED will act as a back-light, controlled by the framebuffer system
+> +              - backlight
+> +                # LED indicates bluetooth power state
+> +              - bluetooth-power
+> +                # LED indicates activity of all CPUs
+> +              - cpu
+> +                # LED will turn on (but for leds-gpio see "default-state" property in
+> +                # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> +              - default-on
+> +                # LED indicates disk activity
+> +              - disk-activity
+> +                # LED indicates disk read activity
+> +              - disk-read
+> +                # LED indicates disk write activity
+> +              - disk-write
+> +                # LED indicates camera flash state
+> +              - flash
+> +                # LED "double" flashes at a load average based rate
+> +              - heartbeat
+> +                # LED indicates IDE disk activity (deprecated), in new implementations
+> +                # use "disk-activity"
+> +              - ide-disk
+> +                # LED indicates MTD memory activity
+> +              - mtd
+> +                # LED indicates NAND memory activity (deprecated),
+> +                # in new implementations use "mtd"
+> +              - nand-disk
+> +                # No trigger assigned to the LED. This is the default mode
+> +                # if trigger is absent
+> +              - none
+> +                # LED alters the brightness for the specified duration with one software
+> +                # timer (requires "led-pattern" property)
+> +              - pattern
+> +                # LED flashes at a fixed, configurable rate
+> +              - timer
+> +                # LED indicates camera torch state
+> +              - torch
+> +                # LED indicates USB gadget activity
+> +              - usb-gadget
+> +                # LED indicates USB host activity
+> +              - usb-host
+
+Split sorting from adding new patterns - it's not possible to judge what
+was here and what is new.
+Best regards,
+Krzysztof
 
