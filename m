@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3076375C2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 595EE6375C5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 11:00:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbiKXJ7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 04:59:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45398 "EHLO
+        id S229723AbiKXKAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 05:00:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiKXJ7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:59:44 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5D34E433
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:59:43 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id be13so1789694lfb.4
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:59:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uLVxA3yQxeJsXZtEUirJWHQKMadANt1t6I5SMmMyUzs=;
-        b=gTV+FCVayaeo95KLyfwT7X7NCzSuAZGAUZqCHPJzJro15gjLhEsZin5+vHQSmhnR9r
-         Tpol7bJ6jAT7Pp3n28Nk8Mp+qlvA4o14Bj8W/SARUiFygv6TZVHQ25wMy1G0ZM7BigGp
-         ENsf1KFPHdn9wWgugLmS7F42EmBkailAUz/3TANizikTjjdZ0RPFijz9zUsEXjwDJ/aM
-         FNFYgO7msNuCYWqKxQU9Gi5v+k9qd0HFtlneb+MMmtGi6GTqDEMEl8ITZM2fZPAfOMmD
-         w8frOfKjyTnxB5zGar8vsypiR/Q6JxEIGSuEnetMmLu24q2PSBMomY27T8VrBPJvgrZD
-         arZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uLVxA3yQxeJsXZtEUirJWHQKMadANt1t6I5SMmMyUzs=;
-        b=azWOn2MZ6oSzav1LyhD1TEzmqXkzg2r+mfWBOSQffFJo98zBs95Ra+pWUButMoJcx5
-         Ru7okD87Fp/uZE2uLJf1Q6pHwZUHjij+/7t6S6ai/ya5GJXQsIx3ny5MmJQHh7uToO4A
-         8BXhf6fShcZdnO4PO7WtQRJp05qYb9gLjdwqzVn77eugPL/NEtB4+MwG2s20O6nmhSMU
-         K/V8z9DFLEmz7fTtrqxS0v7rDkqNaD57aXrQKESa/h8ZyFvRe/rCnPZcfxfkkn7gIZKK
-         ZdVvzy/tQtqEA7FIRg9Ac9O3iFFkdIn07gG476M5gIROhY3+0blZqrq9KyEVvoIjsbQX
-         x9Vg==
-X-Gm-Message-State: ANoB5pmksDoh56xTghhfH8LX+m8Qg1+ks4TrzzYz+bHQPvVLxTME1mJn
-        N3NUslJw4YztIfLtMaewaRufrA==
-X-Google-Smtp-Source: AA0mqf7Ni/8WYAByN5XvDcKkRGcR9g6e7hzhW5WCPQC+CJZwj8ABjf9mNiNY/UAJctZ6mPXOT1sfRA==
-X-Received: by 2002:a05:6512:324f:b0:4b4:f3c5:f195 with SMTP id c15-20020a056512324f00b004b4f3c5f195mr729506lfr.516.1669283982300;
-        Thu, 24 Nov 2022 01:59:42 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i8-20020a2ea368000000b0027628240ff7sm59496ljn.135.2022.11.24.01.59.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 01:59:41 -0800 (PST)
-Message-ID: <a3eeef2d-edb6-fb73-040a-832fb54c142c@linaro.org>
-Date:   Thu, 24 Nov 2022 10:59:40 +0100
+        with ESMTP id S229658AbiKXKAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 05:00:01 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C827342B;
+        Thu, 24 Nov 2022 02:00:00 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9A2226602B0C;
+        Thu, 24 Nov 2022 09:59:57 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669283998;
+        bh=48X8OTH7/cJ6CzdDW7GuIRWxszRUPEKFaWr6Rm9Yc2g=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=UYW5QHWhwBOR7p3o9u96XxSmWa8xr+p1ubdXEmrliSgtBIkDYi5jIPtiVA6RF6kaZ
+         46VoFh+RSngStfA1rChmknARUMuJ1s4ze0Qks5JGNwao+G8EX1uHeaKbxXJtsgw64b
+         wNKDpfR70/WEXO3FwQXMD3SRLvY/Gy31CVvIYJn1F5l0CDkQqnMEWxjDuIi6fy5CZf
+         fxyE/QWo0U4YIiG51BVCWWkf+SaE8fbECIDpte7CC5KQcsJPfIHZVizGnrcSKTGgX5
+         klrGuyATQddROqSwNPC3ywyIg7OgyLnUX21Oo6vN8U3pZSwOGx5d+gLkfzQuK1QW4W
+         nHkZo1uPovCsg==
+Message-ID: <9c4167ac-d962-17e0-6e9c-03656169f50b@collabora.com>
+Date:   Thu, 24 Nov 2022 10:59:54 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc8280xp: add gpr node
+Subject: Re: [PATCH v2 3/4] irqchip: irq-mtk-cirq: Move register offsets to
+ const array
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        youlin.pei@mediatek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221123112249.98281-1-angelogioacchino.delregno@collabora.com>
+ <20221123112249.98281-4-angelogioacchino.delregno@collabora.com>
+ <86fse9ok3y.wl-maz@kernel.org>
+ <c8174977-2995-811a-83e2-9f941057acd8@collabora.com>
+ <86cz9doctj.wl-maz@kernel.org>
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, andersson@kernel.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221123104342.26140-1-srinivas.kandagatla@linaro.org>
- <20221123104342.26140-2-srinivas.kandagatla@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123104342.26140-2-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <86cz9doctj.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 11:43, Srinivas Kandagatla wrote:
-> Add GPR node along with APM(Audio Process Manager) and PRM(Proxy
-> resource Manager) audio services.
+Il 23/11/22 17:28, Marc Zyngier ha scritto:
+> On Wed, 23 Nov 2022 14:57:02 +0000,
+> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>>>> +					 enum mtk_cirq_reg_index idx,
+>>>> +					 unsigned int cirq_num)
+>>>
+>>> What does cirq_num mean for registers that are not relative to an
+>>> interrupt? Create a separate helper for those.
+>>>
+>> Means literally nothing, so yes I agree, but...
+>>
+>> ... mtk_cirq_irq_reg(), mtk_cirq_reg() feels too similar and may lead to
+>> confusion while reading the code.
+>>
+>> Any advice about a possibly clear-er name?
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
+> I think the names are OK. Passing an interrupt number as a parameter
+> is a good discriminant anyway.
+> 
+> Please wait for a few days before posting the next version though.
+> 
+> 	M.
+> 
 
+Let's go with these names then, thank you!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Regards,
+Angelo
