@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E75637711
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D13637715
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:03:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbiKXLDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:03:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56860 "EHLO
+        id S229747AbiKXLD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:03:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbiKXLDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:03:14 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDE52D1C7
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:03:12 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id t10so1634797ljj.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:03:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mDM/d5CET6oYT0lLoOZG0E9uim0TDLBGm1cgXTWoslg=;
-        b=hQ/V92dhjJCRtQq+P0sHevHeRvw2WaHOSVebQnPRM5NHe5pY/eF79cBnAdlfh7QmEc
-         EL8X3vZIGa1EXRcgO6fHuDKK8K0x+oQQB8De3AykL/jaBwFYIsButHQyJZz/lccN6167
-         yOUysvh0Q92VU/wYricMhO1SezEbDvAWtyuerOmBPA+6Zh78uK59W20vX6NCQ2ol8n28
-         9DAWuYvhVrd83PKndvPOOUJL7xdr6+sN8vKNeJCedLRzO+0y7zPxDJJGNlp+Hjlv67Ml
-         RGJ5nukneSZIp/TvwVuBjwHXO2vvRbIDDRdxiS6whP+MqL+8WjEjHayPbk5Cxv3BXVX4
-         nJVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mDM/d5CET6oYT0lLoOZG0E9uim0TDLBGm1cgXTWoslg=;
-        b=LbUNh3cmmCtfazcrElKMDvKDIuchZNv5I1w2hscNwAirUkLkAZaD9tm4FiqZ7SJuwY
-         tt848wUsqITbtdNz9nnic0G+qU5cBXIb1lmXcPMcg+n0tRBdMNJURPW/cBcKH9ZWL3IP
-         IhwDos0n6a7sPeOeV20wnvpvA9GU9am3kQmp+8VBhJbC1hh/r9pgomM9Nc3oikx1AbKy
-         knIrSMVfP0NqikCoKAA/tKSJUQt4tne/Tzl8tXg264hApUyKh/rePpY8aPMmt1uZOdtN
-         Me9N8bhWo5Z8x8A6iY31lKy8i7z3fcpuZGfdoRK6EUxG9lwkcxlrJfW7T8LTGob342JI
-         di7A==
-X-Gm-Message-State: ANoB5pnybJaQQXYbW5cTCub7FJPutQtq/gznoKH/xYJ0jYuB2pAwdieJ
-        TnbONzWh3dkIg+mj+2SoKbKDuA==
-X-Google-Smtp-Source: AA0mqf7VEQKhxtsN0eXgoWfAX7pDNSgYO1qXyyK17In6HBwYMWCXFFo8nE2OyXmcSI874cGj9Fb/JA==
-X-Received: by 2002:a05:651c:12ca:b0:277:a9d:9355 with SMTP id 10-20020a05651c12ca00b002770a9d9355mr3881647lje.102.1669287791098;
-        Thu, 24 Nov 2022 03:03:11 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z14-20020a056512308e00b004abc977ad7fsm84341lfd.294.2022.11.24.03.03.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:03:10 -0800 (PST)
-Message-ID: <3d4812c3-1963-5e5a-8d13-39891bbd6733@linaro.org>
-Date:   Thu, 24 Nov 2022 12:03:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 4/4] dts: arm64: qcom: msm8916-acer-a1-724: Add
- touchscreen
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229514AbiKXLDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:03:55 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36420881A2;
+        Thu, 24 Nov 2022 03:03:54 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1oyA1F-0000L5-44; Thu, 24 Nov 2022 12:03:49 +0100
+Date:   Thu, 24 Nov 2022 11:03:41 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20221121133732.207820-1-linmengbo0689@protonmail.com>
- <20221122132142.257241-1-linmengbo0689@protonmail.com>
- <20221122132421.257658-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122132421.257658-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Zhi Mao <zhi.mao@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
+ MT7986
+Message-ID: <Y39PjU1BqBB8tZ98@makrotopia.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 14:25, Lin, Meng-Bo wrote:
-> A1-724 uses a Focaltech FT5446 touchscreen that is connected to blsp_i2c5.
-> Add it to the device tree.
+Add new compatible string for MT7986 PWM and list compatible units for
+existing entries. Also make sure the number of pwm1-X clocks is listed
+for all supported units.
 
-Subject prefix needs fixes (reversed).
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+---
+Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
 
-Best regards,
-Krzysztof
+Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
+makes sure dt maintainers are included. This has been requested by
+Krzysztof Kozlowski.
+
+ .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+index 554c96b6d0c3..952a338e06e7 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+@@ -2,14 +2,15 @@ MediaTek PWM controller
+ 
+ Required properties:
+  - compatible: should be "mediatek,<name>-pwm":
+-   - "mediatek,mt2712-pwm": found on mt2712 SoC.
++   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
+    - "mediatek,mt6795-pwm": found on mt6795 SoC.
+-   - "mediatek,mt7622-pwm": found on mt7622 SoC.
+-   - "mediatek,mt7623-pwm": found on mt7623 SoC.
++   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
++   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
+    - "mediatek,mt7628-pwm": found on mt7628 SoC.
+    - "mediatek,mt7629-pwm": found on mt7629 SoC.
+-   - "mediatek,mt8183-pwm": found on mt8183 SoC.
+-   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
++   - "mediatek,mt7986-pwm": found on mt7986 SoC.
++   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
++   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+    - "mediatek,mt8365-pwm": found on mt8365 SoC.
+    - "mediatek,mt8516-pwm": found on mt8516 SoC.
+  - reg: physical base address and length of the controller's registers.
+@@ -20,11 +21,14 @@ Required properties:
+                 has no clocks
+    - "top": the top clock generator
+    - "main": clock used by the PWM core
++   - "pwm1"  : the PWM1 clock for mt7629
++   - "pwm1-2": the two per PWM clocks for mt7986
+    - "pwm1-3": the three per PWM clocks for mt8365
+-   - "pwm1-8": the eight per PWM clocks for mt2712
++   - "pwm1-4": the four per PWM clocks for mt7628 or mt8183
++   - "pwm1-5": the five per PWM clocks for mt7623 or mt8516
+    - "pwm1-6": the six per PWM clocks for mt7622
+-   - "pwm1-5": the five per PWM clocks for mt7623
+-   - "pwm1"  : the PWM1 clock for mt7629
++   - "pwm1-7": the seven per PWM clocks for mt6795
++   - "pwm1-8": the eight per PWM clocks for mt2712
+  - pinctrl-names: Must contain a "default" entry.
+  - pinctrl-0: One property must exist for each entry in pinctrl-names.
+    See pinctrl/pinctrl-bindings.txt for details of the property values.
+-- 
+2.38.1
 
