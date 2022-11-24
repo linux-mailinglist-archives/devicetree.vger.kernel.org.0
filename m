@@ -2,432 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB2E6374A6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:00:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F3B6374AF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbiKXJAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 04:00:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33948 "EHLO
+        id S229700AbiKXJD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 04:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbiKXJAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:00:42 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61DEF10EA35
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:00:40 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id h193so1046644pgc.10
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:00:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=w+w4tmZDiPM69E7coV2CH15uQShu4W0QLk13WRdoYqo=;
-        b=dD5T/z9NKIJhTp/gaxnDGrU96mZ28E5PpqSuka/NwlG93DRTeTfBa75wdv99Fncy8D
-         puavEF4RcN5c2+Y35jocuaOW69CtUX+kkBEPhWsa0eGlGNPUCoHrwrUgLL5xC/puH3FM
-         q81wpISgFha+xw6j6WpjkF0/Kkt+KyMMNf/UgPGc1V9Q3kcuMkG2xO8Z6MCBYeT15/8S
-         j15flgsrb0Em9z5rcHvTlnMyD36xcdaPycMktGq18iOKEnrm1y+TCYKBGge3vWd39AWe
-         9nKKii5tMvSfR4TvKT7SiYnX5aczyB5llNYPkWBlfVp2ZziByxguNNW59TcJytD7KMC+
-         DW/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w+w4tmZDiPM69E7coV2CH15uQShu4W0QLk13WRdoYqo=;
-        b=8EN4/Ar9W3EMLlk59txneLZs7ATOeeZHzFxiZ6rC7/JQ5iDMeSl4BUh7XedB+aq8zs
-         qvq4VQJjyfTqXYPim6beGLvc2gV4B907mPcz/m3j6jUzKXb3H8+2Tee6IpQNPVaMMfoc
-         akxfqUJ6INcIF/JAjumQ6mkDfLYrEYht2SSvXdAlYmP5xErbwsSVddVc//VuEwSRhMNg
-         36Ol2sJn7VZlWst+q9Hl/jr2lts2hQdZ1kSGB54sr42qqLW5UjefZQk76+hZ6Ggr+zOE
-         /XRODHCzjb6oDIameNVPXSiStjlZZuMVtkyN3yJqaZPkBgsnxZe6ZbU1X3L1wS2+5m3D
-         7u7w==
-X-Gm-Message-State: ANoB5plQnvO50DgiQmRg3wWMkfTo2r+9ojC76nCaf73bNOHCO6GfEN+b
-        Rq1ss5jDYY87icFl81JlUXjY
-X-Google-Smtp-Source: AA0mqf61Q3kR3fx0rJaTtcPJhpcU3lR6pU8IQfMAubF9oJ8HCJATlfXwTnvlGQZa466xICWBLj/+jQ==
-X-Received: by 2002:a63:f241:0:b0:46f:da0:f093 with SMTP id d1-20020a63f241000000b0046f0da0f093mr10972642pgk.441.1669280439701;
-        Thu, 24 Nov 2022 01:00:39 -0800 (PST)
-Received: from thinkpad ([59.92.97.13])
-        by smtp.gmail.com with ESMTPSA id g16-20020aa796b0000000b005385e2e86eesm700314pfk.18.2022.11.24.01.00.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Nov 2022 01:00:38 -0800 (PST)
-Date:   Thu, 24 Nov 2022 14:30:28 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     lpieralisi@kernel.org, aisheng.dong@nxp.com, bhelgaas@google.com,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
-        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, lznuaa@gmail.com, maz@kernel.org,
-        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH v13 2/2] PCI: endpoint: pci-epf-vntb: using platform MSI
- as doorbell
-Message-ID: <20221124090028.GC5119@thinkpad>
-References: <20221124055036.1630573-1-Frank.Li@nxp.com>
- <20221124055036.1630573-3-Frank.Li@nxp.com>
+        with ESMTP id S229555AbiKXJDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:03:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32AC10CEBE;
+        Thu, 24 Nov 2022 01:03:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 549D1B82721;
+        Thu, 24 Nov 2022 09:03:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0EDAC433D6;
+        Thu, 24 Nov 2022 09:03:48 +0000 (UTC)
+Message-ID: <e71296ac-46a7-7d8e-f922-8a933346f1c6@xs4all.nl>
+Date:   Thu, 24 Nov 2022 10:03:47 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221124055036.1630573-3-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 0/2] media: dt-bindings: media: sm8250-camss: Add
+ power-domain-names property
+Content-Language: en-US
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 12:50:36AM -0500, Frank Li wrote:
-> ┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
-> │            │   │                                   │   │                │
-> │            │   │ PCI Endpoint                      │   │ PCI Host       │
-> │            │   │                                   │   │                │
-> │            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
-> │            │   │                                   │   │                │
-> │ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
-> │ Controller │   │   update doorbell register address│   │                │
-> │            │   │   for BAR                         │   │                │
-> │            │   │                                   │   │ 3. Write BAR<n>│
-> │            │◄──┼───────────────────────────────────┼───┤                │
-> │            │   │                                   │   │                │
-> │            ├──►│ 4.Irq Handle                      │   │                │
-> │            │   │                                   │   │                │
-> │            │   │                                   │   │                │
-> └────────────┘   └───────────────────────────────────┘   └────────────────┘
+Hi Vladimir,
+
+On 18/05/2022 14:11, Vladimir Zapolskiy wrote:
+> QCOM SM8250 camera subsystem depends on three power domains, at the moment
+> all of them are not differentiated one from another, however the power
+> domains compose a hierarchical structure with vfe0 and vfe1 as subdomains
+> of titan_top, also managing vfe0 and vfe1 separately allows to get more
+> fine-grained power control in runtime.
+> 
+> The change relates to my review comment for v2 of CAMSS on SM8250 submission:
+> 
+>    https://lore.kernel.org/all/13ad033e-cd5d-3a8c-b036-50a3ac4245c0@linaro.org/
+> 
+> Apparently it becomes important to manage CAMSS power domains much better for
+> newer platforms, this referes to platforms with Titan GDSC, for instance CAMSS
+> on SM8450 has 6 power domains, and dealing with them in bulk is not an option.
+> 
+> There was a note in commit 2f6f8af67203 ("media: camss: Refactor VFE power
+> domain toggling") about problems with power VFE domains on/off, but perhaps
+> it's related to the fact that Titan GDSC is a special power domain and VFE
+> are subdomains, the latter shall not be enabled earlier than the Titan, but
+> the driver did not construct a proper hierarchy and leaves a room for races.
+> 
+> The change should have no implications on any SM8250 CAMSS users, since
+> none of the supported in upstream boards enables the camss device tree node.
+> The correspondent changes in the driver will follow this dt specific series.
+> 
+> Most likely a similar change is required for SDM845 platform, but it would
+> need additional investigation and testing.
+> 
+> Vladimir Zapolskiy (2):
+>   media: dt-bindings: media: sm8250-camss: Add power-domain-names property
+>   arm64: dts: qcom: sm8250: camss: Add power-domain-names property
+> 
+>  .../devicetree/bindings/media/qcom,sm8250-camss.yaml       | 7 +++++++
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi                       | 1 +
+>  2 files changed, 8 insertions(+)
 > 
 
-There are at least couple of BAR regions used in this patch but they were not
-mentioned in the above diagram.
+I am marking this series as 'Obsoleted' in patchwork. If you believe this
+(or a variant of it) is still needed, then please repost.
 
-The subject should be:
+Regards,
 
-"PCI: endpoint: pci-epf-vntb: Use EP MSI controller to handle DB from host"
-
-> Using platform MSI interrupt controller as endpoint(EP)'s doorbell.
-> 
-
-Above line is not needed.
-
-> The memory assigned for BAR region by the PCI host is mapped to the
-
-Which BAR? (BAR 1 aka. DB BAR)? There are multiple BAR regions exposed by this function driver.
-
-> message address of platform msi interrupt controller in PCI Endpoint.
-
-s/msi/MSI. Also, use either Endpoint or EP, pick one but not both.
-
-> Such that, whenever the PCI host writes to the BAR region, it will
-> trigger an IRQ in the EP.
-> 
-> Basic working follow as
-
-"work flow is"?
-
-> 1. EP function driver call platform_msi_domain_alloc_irqs() alloc a
-
-pci-epf-vntb function driver calls platform_msi_domain_alloc_irqs() to allocate
-MSI's from the platform MSI controller.
-
-> MSI irq from MSI controller with call back function write_msi_msg();
-> 2. write_msg_msg will config BAR and map to address defined in msi_msg;
-
-The epf_ntb_write_msi_msg() passed as a callback will write the offset of the
-MSI controller's MSI address dedicated for each MSI to the doorbell register
-db_offset and also writes the MSI data to db_data register in the CTRL BAR
-region.
-
-> 3. Host side trigger an IRQ at Endpoint by write to BAR region.
-> 
-
-Finally, the host can trigger doorbell by reading the offset of the doorbell
-from db_offset register and writing the data read from db_data register in CTRL
-BAR region to the computed address in the DB BAR region.
-
-> Add MSI doorbell support for pci-epf-vntb. Query if system has an MSI
-> controller. Set up doorbell address according to struct msi_msg.
-> 
-> So PCI host can write this doorbell address to trigger EP side's IRQ.
-> 
-> If no MSI controller exists, fall back to software polling.
-> 
-
-"Add doorbell support to pci-epf-vntb function driver making use of the platform
-MSI controller. If the MSI controller is not available, fallback to the polling
-method."
-
-Also, please move this paragraph to the beginning of the description.
-
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/endpoint/functions/pci-epf-vntb.c | 146 +++++++++++++++---
->  1 file changed, 125 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-> index 0d744975f815..f770a068e58c 100644
-> --- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
-> +++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-> @@ -44,6 +44,7 @@
->  #include <linux/pci-epc.h>
->  #include <linux/pci-epf.h>
->  #include <linux/ntb.h>
-> +#include <linux/msi.h>
->  
->  static struct workqueue_struct *kpcintb_workqueue;
->  
-> @@ -137,11 +138,14 @@ struct epf_ntb {
->  	struct epf_ntb_ctrl *reg;
->  
->  	u32 *epf_db;
-> +	phys_addr_t epf_db_phys;
->  
->  	phys_addr_t vpci_mw_phy[MAX_MW];
->  	void __iomem *vpci_mw_addr[MAX_MW];
->  
->  	struct delayed_work cmd_handler;
-> +
-> +	int msi_virqbase;
->  };
-
-You should add kernel doc comments for this struct in a separate patch. It will
-help in understanding the driver better.
-
->  
->  #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
-> @@ -256,11 +260,13 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
->  
->  	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
->  
-> -	for (i = 1; i < ntb->db_count; i++) {
-> -		if (ntb->epf_db[i]) {
-> -			ntb->db |= 1 << (i - 1);
-> -			ntb_db_event(&ntb->ntb, i);
-> -			ntb->epf_db[i] = 0;
-
-A comment here stating that polling is implemented would be better.
-
-> +	if (!ntb->epf_db_phys) {
-> +		for (i = 1; i < ntb->db_count; i++) {
-> +			if (ntb->epf_db[i]) {
-> +				ntb->db |= 1 << (i - 1);
-> +				ntb_db_event(&ntb->ntb, i);
-> +				ntb->epf_db[i] = 0;
-> +			}
->  		}
->  	}
->  
-> @@ -518,6 +524,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
->  	return 0;
->  }
->  
-> +static int epf_ntb_db_size(struct epf_ntb *ntb)
-> +{
-> +	const struct pci_epc_features *epc_features;
-> +	size_t size = sizeof(u32) * ntb->db_count;
-> +	u32 align;
-> +
-> +	epc_features = pci_epc_get_features(ntb->epf->epc,
-> +					    ntb->epf->func_no,
-> +					    ntb->epf->vfunc_no);
-> +	align = epc_features->align;
-> +
-> +	if (size < 128)
-
-Shouldn't this be (size > 128)?
-
-> +		size = 128;
-> +
-> +	if (align)
-> +		size = ALIGN(size, align);
-> +	else
-> +		size = roundup_pow_of_two(size);
-> +
-> +	return size;
-> +}
-> +
->  /**
->   * epf_ntb_db_bar_init() - Configure Doorbell window BARs
->   * @ntb: NTB device that facilitates communication between HOST and VHOST
-> @@ -539,27 +567,26 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
->  					    ntb->epf->func_no,
->  					    ntb->epf->vfunc_no);
->  	align = epc_features->align;
-> -
-> -	if (size < 128)
-> -		size = 128;
-> -
-> -	if (align)
-> -		size = ALIGN(size, align);
-> -	else
-> -		size = roundup_pow_of_two(size);
-> +	size = epf_ntb_db_size(ntb);
->  
->  	barno = ntb->epf_ntb_bar[BAR_DB];
-> +	epf_bar = &ntb->epf->bar[barno];
->  
-> -	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-> -	if (!mw_addr) {
-> -		dev_err(dev, "Failed to allocate OB address\n");
-> -		return -ENOMEM;
-> +	if (ntb->epf_db_phys) {
-> +		mw_addr = NULL;
-> +		epf_bar->phys_addr = ntb->epf_db_phys;
-> +		epf_bar->barno = barno;
-> +		epf_bar->size = size;
-> +	} else {
-> +		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-> +		if (!mw_addr) {
-> +			dev_err(dev, "Failed to allocate doorbell address\n");
-> +			return -ENOMEM;
-> +		}
->  	}
->  
->  	ntb->epf_db = mw_addr;
->  
-> -	epf_bar = &ntb->epf->bar[barno];
-> -
->  	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
->  	if (ret) {
->  		dev_err(dev, "Doorbell BAR set failed\n");
-> @@ -728,6 +755,82 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
->  	return 0;
->  }
->  
-> +static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
-
-Shouldn't this function also be guarded?
-
-> +{
-> +	struct epf_ntb *ntb = data;
-> +	int index;
-> +
-> +	index = irq - ntb->msi_virqbase;
-> +	ntb->db |= 1 << (index - 1);
-> +	ntb_db_event(&ntb->ntb, index);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
-
-It'd be better to use the relevant commit description as a comment here.
-
-> +static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
-> +{
-> +	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
-> +	struct epf_ntb_ctrl *reg = ntb->reg;
-> +	int size = epf_ntb_db_size(ntb);
-> +	u64 addr;
-> +
-> +	addr = msg->address_hi;
-> +	addr <<= 32;
-> +	addr |= msg->address_lo;
-> +
-> +	reg->db_data[desc->msi_index] = msg->data;
-> +
-
-A comment stating that the base address to be used as the DB BAR is set here
-would be useful too.
-
-> +	if (!desc->msi_index)
-> +		ntb->epf_db_phys = round_down(addr, size);
-> +
-> +	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phys;
-> +}
-> +
-> +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-> +{
-> +	struct device *dev = &ntb->epf->dev;
-> +	struct irq_domain *domain;
-> +	int virq;
-> +	int ret;
-> +	int i;
-> +
-> +	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
-> +	if (!domain)
-> +		return;
-> +
-> +	dev_set_msi_domain(dev, domain);
-> +
-> +	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-> +		ntb->db_count,
-> +		epf_ntb_write_msi_msg)) {
-
-Please wrap above two in a single line till 100 column limit.
-
-> +		dev_err(dev, "Can't allocate MSI, falling back to polling mode\n");
-
-This should be dev_dbg().
-
-> +		return;
-> +	}
-> +	dev_dbg(dev, "Using MSI as doorbell\n");
-> +
-> +	for (i = 0; i < ntb->db_count; i++) {
-> +		virq = msi_get_virq(dev, i);
-> +		ret = devm_request_irq(dev, virq,
-> +			       epf_ntb_interrupt_handler, 0,
-> +			       "pci_epf_vntb", ntb);
-> +
-> +		if (ret) {
-> +			dev_err(dev, "Failed to request doorbell IRQ! Falling back to polling mode");
-
-Again, dev_dbg()
-
-> +			ntb->epf_db_phys = 0;
-> +			platform_msi_domain_free_irqs(&ntb->epf->dev);
-> +			break;
-> +		}
-> +
-> +		if (!i)
-> +			ntb->msi_virqbase = virq; /* msi start virq number */
-> +	}
-> +}
-> +#else
-
-Since this is not exposed as an API, just end the ifdef here and...
-
-> +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-> +{
-> +}
-> +#endif /* CONFIG_GENERIC_MSI_IRQ_DOMAIN */
->  /**
->   * epf_ntb_epc_init() - Initialize NTB interface
->   * @ntb: NTB device that facilitates communication between HOST and VHOST
-> @@ -1336,14 +1439,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
->  		goto err_bar_alloc;
->  	}
->  
-> +	epf_set_drvdata(epf, ntb);
-> +	epf_ntb_epc_msi_init(ntb);
-
-Guard this function instead:
-
-#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
-	epf_ntb_epc_msi_init(ntb);
-#endif
-
-Thanks,
-Mani
-
-> +
->  	ret = epf_ntb_epc_init(ntb);
->  	if (ret) {
->  		dev_err(dev, "Failed to initialize EPC\n");
->  		goto err_bar_alloc;
->  	}
->  
-> -	epf_set_drvdata(epf, ntb);
-> -
->  	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
->  	pci_vntb_table[0].vendor = ntb->vntb_vid;
->  	pci_vntb_table[0].device = ntb->vntb_pid;
-> -- 
-> 2.34.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+	Hans
