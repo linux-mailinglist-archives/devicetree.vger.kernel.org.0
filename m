@@ -2,114 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF82637760
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32AC3637780
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:22:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbiKXLQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
+        id S229477AbiKXLWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:22:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbiKXLQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:16:38 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19345146F8D;
-        Thu, 24 Nov 2022 03:16:21 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id BB3351C0019;
-        Thu, 24 Nov 2022 11:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669288580;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=s42uM41w9ysmCNZE9IaonrxU6NJPatbC7hYnvHselLY=;
-        b=HCXhEKvsJrrzmpZ6OKhK9SABZxwycYvZjnfneAz5D7wWn4u74NVgS6KdAXFKxJbpDp2/z7
-        r65VnNGRgNSxE5YVkr8TvbkzUBcoHyLc0+xtGQGfHNIE8INTy3fKN+7VDEBb8Ugmf0OaHY
-        /NFcd5FDP4v8zxfCoMxMaOEkWfs2E6PUUUUQseKALeXpwSq1JjYnFN1uy3Qg+OogXpJH7w
-        8lIJsNRNci3dc11gMMqiitnnrVp4V43sRQTMi41gkAnAAy6voQeUvLOafpB2Fm4QPaFSn5
-        yeRUm/AhHBjeBMx2vY9bV1PHXtlYId5m0LZqQoczoTIRPQnTeKg+csxB3042uQ==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        Marcin Wojtas <mw@semihalf.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH net-next v2 7/7] net: mvpp2: Consider NVMEM cells as possible MAC address source
-Date:   Thu, 24 Nov 2022 12:15:56 +0100
-Message-Id: <20221124111556.264647-8-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221124111556.264647-1-miquel.raynal@bootlin.com>
-References: <20221124111556.264647-1-miquel.raynal@bootlin.com>
+        with ESMTP id S229507AbiKXLVy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:21:54 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3DA76F823
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:21:52 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id g12so2100488lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:21:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZOwF1IoRFMxbzXIpHBYM5XNjvDo/YeKJYT2kSquRYBI=;
+        b=Fg6jjuFR5m4W3eanpXYUM8RD8eOzPoKNiTAR69CyNrQ2TXTARkiaegBkmDzJvDN1Q5
+         TNaH/kMR9SkcsPeZwr/zXwirLELiEk65ZML40X0ZieBPnZceiynsXnabKoCF45oLycbT
+         K/TbRswfT8MLL42DQz++bH7QmDWySdsnm6S8HU/whadx+Ut9Sm188yQElzjDfsHgZuMG
+         0vPjo0ApdVB0ERSHHgsIls14A194b6K8yvlZRAPPhGeKz85rMFNd+TJn+Bj3Jpyiub7F
+         d26vGtmiHfXuX05tkMPiKarpGEXaEiJrAEqy38Xa5EIhEIphEod1yU/WAJUCZpgB7398
+         TFbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZOwF1IoRFMxbzXIpHBYM5XNjvDo/YeKJYT2kSquRYBI=;
+        b=E8xP6pcQe66GD6rBq1CvDd1GmiimweNFOAiPakJ5hwLYg48kUiOb1hmRNUPkuhPwn/
+         FQDYnXhzBp6e73bR9RuWJMGPNW0iY5R/qO3mpb+FNs50w8R0HIIH20S5+b66v6OdEtsO
+         gysDQTd5kaFGLgqBIuMJSGnSK6aLtkGJ3hE0zs1VH/TwzYuhJFs498z5rYGnb9MQYVuq
+         oDmphtqR81gJvx6zbfYB8eMZ2hWjDvC3sUFMlBb/zLnghM2/KK64x4m2+xeYLrStSI/O
+         DwkVlJMLNUVeV6ZPBECqebEcrwN1J+SiezHGQXeDHp5aop7fKedvlE9qvg8eMFjEJqRQ
+         7XLg==
+X-Gm-Message-State: ANoB5pk6ulJxydG7DAwlcWYiVbb68zuuWHDbMT/GYwBGudnihnV2rE0A
+        5MmpnPhPyoAiU8c+DCOPolFk2Q==
+X-Google-Smtp-Source: AA0mqf7vpoM/p1roR8SKJXHdDemXz3anj2sImLjc2Ea3xaf2sqNCO+JS7hjoMTCDlaijBDgrqDHsKA==
+X-Received: by 2002:a19:5049:0:b0:4b4:661a:1ce1 with SMTP id z9-20020a195049000000b004b4661a1ce1mr8858626lfj.136.1669288911199;
+        Thu, 24 Nov 2022 03:21:51 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f20-20020a0565123b1400b004a46a9cebe2sm88679lfv.289.2022.11.24.03.21.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 03:21:50 -0800 (PST)
+Message-ID: <fc2774de-22d3-0326-a438-c5e804837d77@linaro.org>
+Date:   Thu, 24 Nov 2022 12:21:49 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH V5 2/2] firmware: qcom: scm: Add wait-queue handling logic
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@somainline.org, robimarko@gmail.com,
+        quic_gurus@quicinc.com, quic_rjendra@quicinc.com
+References: <20221123204615.25358-1-quic_sibis@quicinc.com>
+ <20221123204615.25358-3-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221123204615.25358-3-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ONIE standard describes the organization of tlv (type-length-value)
-arrays commonly stored within NVMEM devices on common networking
-hardware.
+On 23/11/2022 21:46, Sibi Sankar wrote:
+> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
+> 
+> When the firmware (FW) supports multiple requests per VM, multiple requests
+> from the same/different VM can reach the firmware at the same time. Since
+> the firmware currently being used has limited resources, it guards them
+> with a resource lock and puts requests on a wait-queue internally and
+> signals to HLOS that it is doing so. It does this by returning a new return
+> value in addition to success or error: SCM_WAITQ_SLEEP. A sleeping SCM call
+> can be woken up by an interrupt that the FW raises.
 
-Several drivers already make use of NVMEM cells for purposes like
-retrieving a default MAC address provided by the manufacturer.
+Just two nitpicks while browsing the code...
 
-What made ONIE tables unusable so far was the fact that the information
-where "dynamically" located within the table depending on the
-manufacturer wishes, while Linux NVMEM support only allowed statically
-defined NVMEM cells. Fortunately, this limitation was eventually tackled
-with the introduction of discoverable cells through the use of NVMEM
-layouts, making it possible to extract and consistently use the content
-of tables like ONIE's tlv arrays.
+>  static int qcom_scm_probe(struct platform_device *pdev)
+>  {
+>  	struct qcom_scm *scm;
+>  	unsigned long clks;
+> -	int ret;
+> +	int irq, ret;
+>  
+>  	scm = devm_kzalloc(&pdev->dev, sizeof(*scm), GFP_KERNEL);
+>  	if (!scm)
+> @@ -1399,9 +1486,29 @@ static int qcom_scm_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	platform_set_drvdata(pdev, scm);
+> +
+>  	__scm = scm;
+>  	__scm->dev = &pdev->dev;
+>  
+> +	spin_lock_init(&__scm->waitq.idr_lock);
+> +	idr_init(&__scm->waitq.idr);
+> +	init_completion(&__scm->waitq.waitq_comp);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		if (irq != -ENXIO)
+> +			return irq;
+> +	} else {
+> +		ret = devm_request_threaded_irq(__scm->dev, irq, NULL, qcom_scm_irq_handler,
+> +						IRQF_ONESHOT, "qcom-scm", __scm);
+> +		if (ret < 0) {
+> +			dev_err(scm->dev, "Failed to request qcom-scm irq: %d\n", ret);
+> +			idr_destroy(&__scm->waitq.idr);
+> +			return ret;
 
-Parsing this table at runtime in order to get various information is now
-possible. So, because many Marvell networking switches already follow
-this standard, let's consider using NVMEM cells as a new valid source of
-information when looking for a base MAC address, which is one of the
-primary uses of these new fields. Indeed, manufacturers following the
-ONIE standard are encouraged to provide a default MAC address there, so
-let's eventually use it if no other MAC address has been found using the
-existing methods.
+return dev_err_probe().
 
-Link: https://opencomputeproject.github.io/onie/design-spec/hw_requirements.html
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> +		}
+> +	}
+> +
+>  	__get_convention();
+>  
+>  	/*
+> @@ -1417,6 +1524,12 @@ static int qcom_scm_probe(struct platform_device *pdev)
+>  
+>  static void qcom_scm_shutdown(struct platform_device *pdev)
+>  {
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&__scm->waitq.idr_lock, flags);
+> +	idr_destroy(&__scm->waitq.idr);
+> +	spin_unlock_irqrestore(&__scm->waitq.idr_lock, flags);
+> +
+>  	/* Clean shutdown, disable download mode to allow normal restart */
+>  	if (download_mode)
+>  		qcom_scm_set_download_mode(false);
+> diff --git a/drivers/firmware/qcom_scm.h b/drivers/firmware/qcom_scm.h
+> index db3d08a01209..323cb49d4976 100644
+> --- a/drivers/firmware/qcom_scm.h
+> +++ b/drivers/firmware/qcom_scm.h
+> @@ -60,6 +60,10 @@ struct qcom_scm_res {
+>  	u64 result[MAX_QCOM_SCM_RETS];
+>  };
+>  
+> +struct qcom_scm;
+> +extern struct completion *qcom_scm_lookup_wq(struct qcom_scm *scm, u32 wq_ctx);
+> +extern int scm_get_wq_ctx(u32 *wq_ctx, u32 *flags, u32 *more_pending);
 
-diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-index eb0fb8128096..12f0b5ad8cee 100644
---- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-+++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-@@ -6104,6 +6104,13 @@ static void mvpp2_port_copy_mac_addr(struct net_device *dev, struct mvpp2 *priv,
- 		}
- 	}
- 
-+	/* Only valid on OF enabled platforms */
-+	if (!of_get_mac_address_nvmem(to_of_node(fwnode), fw_mac_addr)) {
-+		*mac_from = "nvmem cell";
-+		eth_hw_addr_set(dev, fw_mac_addr);
-+		return;
-+	}
-+
- 	*mac_from = "random";
- 	eth_hw_addr_random(dev);
- }
--- 
-2.34.1
+No need for externs for new entries.
+
+Best regards,
+Krzysztof
 
