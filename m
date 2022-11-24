@@ -2,84 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 531536380AF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 22:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D46EC6380C6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 23:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiKXVey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 16:34:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
+        id S229677AbiKXWCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 17:02:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiKXVex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 16:34:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B9EB8FBA;
-        Thu, 24 Nov 2022 13:34:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5F321B828FE;
-        Thu, 24 Nov 2022 21:34:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD20CC433C1;
-        Thu, 24 Nov 2022 21:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669325690;
-        bh=G7tq99AoCNw2Xyp3xJA4Kg8jdEf+0S2KwzmYMu05gZw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q1i92Ptk1p413+xx6gb1nSmnsGxUb5Xkqkp95JWpTQ9eg2pXbiOjU0XSXYIXL/MFL
-         01fvTBXkG5FiiW6jfAoKUuh7SrtGfcllYKQbX883f8ZpxgYw1R3djENPzwV9nA2hc7
-         2TE/mdLfC79dz4ROChtLoAqiV2pNt1YdmgY1cvNoAt9LKhg300t2OuGu4tufIzSDi8
-         uWmKuYlWndEQN13vqxr+jlL4t21d9sRYkSbny/xZ6LqGO7jA5p6AOtfQQvGXgJyyAP
-         MkEV7JuLXhsvIEk1fytfkIi+QioU2tyjhqxlrs/jVX8SyPLv+fl0sazHR+E60L50K+
-         g3SdkzCUNYv+A==
-Date:   Thu, 24 Nov 2022 21:34:43 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S229504AbiKXWCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 17:02:01 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D875381F8E
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 14:01:56 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id s8so4220190lfc.8
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 14:01:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hiaWqrX53hfzzHEps4oYeXEWJEP8SB8VJFJPlW92C7M=;
+        b=q0uH/ZH2T9mzxpMxhmCPh++U8bgQ9REutxmlKqmCJio79K/P50x0nyM1hskgpEfSbj
+         ndkwKcE25OKhBQZ0OF0VtgOVseaVw/IDnbZogy0P5hDxrfU20scFX3VI59fQpuy8eNhU
+         dCwL3pdyXH1QisiCfEQM6zhIQREEWoXZyadP5rN/hTdyzR8E8u88eppWKZrE9MgMT3ox
+         1gA1o34PELNPWcggHLZCDpzIjKWz2PJCt4YgvFTdncu9zECYCThQNYqzjzY/opwfhkco
+         JptHAyNMgHVOSZjGWLhstXzCFZ4+H3+KaCqUiIBQ/Rxfb4jPJefd1xdEK8jWUP3AMZjb
+         DnGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hiaWqrX53hfzzHEps4oYeXEWJEP8SB8VJFJPlW92C7M=;
+        b=Gi1pxsIkBPHOdoWyvsa7ev3FT8c/dZM8z+aGwgI6NpgnA8fEUV3EX8Oxr0foVkpx+t
+         ZAtvlSfBAvH0bombJG7TrGJqtV/QwK79C+VKe7tKW2QEKK8WCOsNvSOuX29l+hJDmOsN
+         OW2iSZCCqnNJ2T3yUtTspO9FMxJUNNhwXoYsgCZJEIIrypZfi2h1Y1uRcfV83cblSbUl
+         IikRnrNdcNFSowdZfC8x59p6Vt+PtNRVCv7QrGIf2K9qOP7KWjbO533mahgEpQ47xiwz
+         LTbSj/mn6xq/zkSuvb3fj2iEaS8fKIjoJ5kQE7pwTepUKrTR5mJ+ud8xs2M850ZrGD5a
+         6lIA==
+X-Gm-Message-State: ANoB5pmY9dIDrz+Tq81x+LcjCz4HpXXMeLcOR6+wCz0TgzxRLHoTWFe3
+        XZmE6wtzVac5jjdRqAqvpXmtZw==
+X-Google-Smtp-Source: AA0mqf6M2JO3ZaRg2fRcCaXkasdBXbmKGbXblw9MdQ8zbe7LrcKxTEI6W6xRCIPHk0xgrXN6LtIS6Q==
+X-Received: by 2002:a05:6512:3992:b0:4ae:5dc5:82c5 with SMTP id j18-20020a056512399200b004ae5dc582c5mr13244750lfu.2.1669327315153;
+        Thu, 24 Nov 2022 14:01:55 -0800 (PST)
+Received: from localhost.localdomain (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
+        by smtp.gmail.com with ESMTPSA id p11-20020a05651212cb00b00497feee98basm246933lfg.274.2022.11.24.14.01.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Nov 2022 14:01:54 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 7/7] soc: renesas: Add L2 cache management for RZ/Five
- SoC
-Message-ID: <Y3/jc1g8uEHdyqwp@spud>
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y3/ivrvx4A+OImtW@spud>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8996-tone: Fix USB taking 6 minutes to wake up
+Date:   Thu, 24 Nov 2022 23:01:47 +0100
+Message-Id: <20221124220147.102611-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y3/ivrvx4A+OImtW@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 09:31:42PM +0000, Conor Dooley wrote:
-> On Thu, Nov 24, 2022 at 05:22:07PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+The hardware turns out to be pretty sluggish at assuming it can only
+do USB2 with just a USB2 phy assigned to it - before it needed about
+6 minutes to acknowledge that.
 
-> > +	ax45mp_priv->ucctl_ok = ax45mp_cpu_cache_controlable();
+Limit it to USB-HS explicitly to make USB come up about 720x faster.
 
-> That function name is a typo, should be called ax45mp_cpu_cache_cache_controllable().
+Fixes: 9da65e441d4d ("arm64: dts: qcom: Add support for SONY Xperia X Performance / XZ / XZs (msm8996, Tone platform)")
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+No words.
 
+ arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-And so is my suggestion! s/cache_cache/cache/
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+index 12a7b6d91dbe..0ab9687f3406 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+@@ -991,10 +991,6 @@ touch_int_sleep: touch-int-sleep-state {
+ 	};
+ };
+ 
+-/*
+- * For reasons that are currently unknown (but probably related to fusb301), USB takes about
+- * 6 minutes to wake up (nothing interesting in kernel logs), but then it works as it should.
+- */
+ &usb3 {
+ 	status = "okay";
+ 	qcom,select-utmi-as-pipe-clk;
+@@ -1003,6 +999,7 @@ &usb3 {
+ &usb3_dwc3 {
+ 	extcon = <&usb3_id>;
+ 	dr_mode = "peripheral";
++	maximum-speed = "high-speed";
+ 	phys = <&hsusb_phy1>;
+ 	phy-names = "usb2-phy";
+ 	snps,hird-threshold = /bits/ 8 <0>;
+-- 
+2.38.1
+
