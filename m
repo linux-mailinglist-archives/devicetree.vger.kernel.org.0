@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8033163748A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 09:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EB2E6374A6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 10:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbiKXIzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 03:55:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
+        id S229986AbiKXJAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 04:00:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbiKXIy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 03:54:57 -0500
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5E510CEAA
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 00:54:56 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id j196so1132064ybj.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 00:54:56 -0800 (PST)
+        with ESMTP id S229967AbiKXJAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 04:00:42 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61DEF10EA35
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:00:40 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id h193so1046644pgc.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 01:00:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l8R3F5kALGt7fZIFbbdQLZusILmf2AipY3tz1OkoyZg=;
-        b=BoTT++1ZJhXWkMbqvMW/FRK8+Jp2xAbHiq27Xk1WEsyCZ7YGMXSoiYjXndFPTgLW3E
-         Ak39gt1gk7HkJXwvl1ze3jPLtMdIGBkXI3TD6mJazIm5soc2L/KIXoktqhUnYB7k3AQO
-         KG1FZND6mzdGbeZJcgp5NydoulbO1aJlSobDLYBYcFhiuvo+RXDBHhq4BJZm3yE8BZgN
-         I5G/E5r2fLHt1x+F6ZSSRS9XeYFfiCEbobbo8jrrucKv3IHG/S65AHc3Onjwy2SWLsNy
-         VHQs63G8Pxalw2RYjcDYGG1XwzMT0fcZaklDmBMHeJGkteMnQ8zmkk6t27JTibOCODaC
-         H84A==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=w+w4tmZDiPM69E7coV2CH15uQShu4W0QLk13WRdoYqo=;
+        b=dD5T/z9NKIJhTp/gaxnDGrU96mZ28E5PpqSuka/NwlG93DRTeTfBa75wdv99Fncy8D
+         puavEF4RcN5c2+Y35jocuaOW69CtUX+kkBEPhWsa0eGlGNPUCoHrwrUgLL5xC/puH3FM
+         q81wpISgFha+xw6j6WpjkF0/Kkt+KyMMNf/UgPGc1V9Q3kcuMkG2xO8Z6MCBYeT15/8S
+         j15flgsrb0Em9z5rcHvTlnMyD36xcdaPycMktGq18iOKEnrm1y+TCYKBGge3vWd39AWe
+         9nKKii5tMvSfR4TvKT7SiYnX5aczyB5llNYPkWBlfVp2ZziByxguNNW59TcJytD7KMC+
+         DW/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l8R3F5kALGt7fZIFbbdQLZusILmf2AipY3tz1OkoyZg=;
-        b=ALgL578YVyL06B62wwKe8FYf5OJXOFRz/YCIqlU/CQiGHfHXQPxaQDzPBegP52WR17
-         +zjdxrHzvVfCtN726sPcXaxpjH0XEGe80mQE6ZEfdxaWIAyJywYi13Nr3ME7EqFI83Ri
-         m/Mn/DAWU8qW+VbsWUjfsm7YSIsqH91NMNYflkA0RyO6xsuFQdenPzrNmM3GEP+a+fPq
-         A+5k2ERhikOKV9BDmYLrt2l+pNfYp5SOlQDV6pZInkyN6Dt7MWU1S3bBXYC3aGAsmbwY
-         KKNwEWPzX7EvpDhmS3MyxxNVJnzJFgqqHtB9jRl8tByI/0mDG40qxN3ScjxM8p3RDXd0
-         BKoQ==
-X-Gm-Message-State: ANoB5pk4PESLNNy3ZaRr6xUtyMw1IQ6iMafNgJojy62nm9mWudHyKyX7
-        1A9AFzeZO3KNxntK/tpQJaZolUCZLYTXZZv5jwVDQQ==
-X-Google-Smtp-Source: AA0mqf7HBKYpljZej6bXe7Ojnqxlh65R7Qj4zpxpnR7ZPi1/Wnuyt44OyTeMDenQUWF4/SbRV3buTCxQI4MkWFzQ1DI=
-X-Received: by 2002:a25:d8d4:0:b0:6f0:36e2:5fc2 with SMTP id
- p203-20020a25d8d4000000b006f036e25fc2mr5552927ybg.52.1669280095520; Thu, 24
- Nov 2022 00:54:55 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w+w4tmZDiPM69E7coV2CH15uQShu4W0QLk13WRdoYqo=;
+        b=8EN4/Ar9W3EMLlk59txneLZs7ATOeeZHzFxiZ6rC7/JQ5iDMeSl4BUh7XedB+aq8zs
+         qvq4VQJjyfTqXYPim6beGLvc2gV4B907mPcz/m3j6jUzKXb3H8+2Tee6IpQNPVaMMfoc
+         akxfqUJ6INcIF/JAjumQ6mkDfLYrEYht2SSvXdAlYmP5xErbwsSVddVc//VuEwSRhMNg
+         36Ol2sJn7VZlWst+q9Hl/jr2lts2hQdZ1kSGB54sr42qqLW5UjefZQk76+hZ6Ggr+zOE
+         /XRODHCzjb6oDIameNVPXSiStjlZZuMVtkyN3yJqaZPkBgsnxZe6ZbU1X3L1wS2+5m3D
+         7u7w==
+X-Gm-Message-State: ANoB5plQnvO50DgiQmRg3wWMkfTo2r+9ojC76nCaf73bNOHCO6GfEN+b
+        Rq1ss5jDYY87icFl81JlUXjY
+X-Google-Smtp-Source: AA0mqf61Q3kR3fx0rJaTtcPJhpcU3lR6pU8IQfMAubF9oJ8HCJATlfXwTnvlGQZa466xICWBLj/+jQ==
+X-Received: by 2002:a63:f241:0:b0:46f:da0:f093 with SMTP id d1-20020a63f241000000b0046f0da0f093mr10972642pgk.441.1669280439701;
+        Thu, 24 Nov 2022 01:00:39 -0800 (PST)
+Received: from thinkpad ([59.92.97.13])
+        by smtp.gmail.com with ESMTPSA id g16-20020aa796b0000000b005385e2e86eesm700314pfk.18.2022.11.24.01.00.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Nov 2022 01:00:38 -0800 (PST)
+Date:   Thu, 24 Nov 2022 14:30:28 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     lpieralisi@kernel.org, aisheng.dong@nxp.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lznuaa@gmail.com, maz@kernel.org,
+        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: Re: [PATCH v13 2/2] PCI: endpoint: pci-epf-vntb: using platform MSI
+ as doorbell
+Message-ID: <20221124090028.GC5119@thinkpad>
+References: <20221124055036.1630573-1-Frank.Li@nxp.com>
+ <20221124055036.1630573-3-Frank.Li@nxp.com>
 MIME-Version: 1.0
-References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
- <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
- <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn> <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
- <4c02570e-03d5-85f1-73fb-b66d6170c875@loongson.cn>
-In-Reply-To: <4c02570e-03d5-85f1-73fb-b66d6170c875@loongson.cn>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 24 Nov 2022 09:54:43 +0100
-Message-ID: <CACRpkdbgP9m40t_Ky4H+SQi9TELikomT2M-JpF7+auKmzOxQdg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221124055036.1630573-3-Frank.Li@nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -85,87 +81,353 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 3:22 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
-> =E5=9C=A8 2022/11/24 =E4=B8=8A=E5=8D=886:05, Linus Walleij =E5=86=99=E9=
-=81=93:
+On Thu, Nov 24, 2022 at 12:50:36AM -0500, Frank Li wrote:
+> ┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
+> │            │   │                                   │   │                │
+> │            │   │ PCI Endpoint                      │   │ PCI Host       │
+> │            │   │                                   │   │                │
+> │            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
+> │            │   │                                   │   │                │
+> │ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
+> │ Controller │   │   update doorbell register address│   │                │
+> │            │   │   for BAR                         │   │                │
+> │            │   │                                   │   │ 3. Write BAR<n>│
+> │            │◄──┼───────────────────────────────────┼───┤                │
+> │            │   │                                   │   │                │
+> │            ├──►│ 4.Irq Handle                      │   │                │
+> │            │   │                                   │   │                │
+> │            │   │                                   │   │                │
+> └────────────┘   └───────────────────────────────────┘   └────────────────┘
+> 
 
-> > But these drivers can not rely on the .gpio_to_irq() callback
-> > to be called before an IRQ is requested and used.
->
-> I may not have made it clear before that the gpio irq chip for other
-> platforms may need to be implemented, but the loongson platform may be
-> special.
->
-> I mean that the loongson platform use gpio irq does not need to rely on
-> gpio_to_irq, because loongson interrupt controller driver has covered
-> gpio irq.  The specific reason is my above explanation.
->
-> so, Can I not realize gpio irq chip?
+There are at least couple of BAR regions used in this patch but they were not
+mentioned in the above diagram.
 
-Isn't this a hierarchical irqchip then?
+The subject should be:
 
-Please consult the following from
-Documentation/driver-api/gpio/driver.rst:
+"PCI: endpoint: pci-epf-vntb: Use EP MSI controller to handle DB from host"
 
----------------------------------
+> Using platform MSI interrupt controller as endpoint(EP)'s doorbell.
+> 
 
-GPIO drivers providing IRQs
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
+Above line is not needed.
 
-It is custom that GPIO drivers (GPIO chips) are also providing interrupts,
-most often cascaded off a parent interrupt controller, and in some special
-cases the GPIO logic is melded with a SoC's primary interrupt controller.
+> The memory assigned for BAR region by the PCI host is mapped to the
 
-The IRQ portions of the GPIO block are implemented using an irq_chip, using
-the header <linux/irq.h>. So this combined driver is utilizing two sub-
-systems simultaneously: gpio and irq.
+Which BAR? (BAR 1 aka. DB BAR)? There are multiple BAR regions exposed by this function driver.
 
-It is legal for any IRQ consumer to request an IRQ from any irqchip even if=
- it
-is a combined GPIO+IRQ driver. The basic premise is that gpio_chip and
-irq_chip are orthogonal, and offering their services independent of each
-other.
+> message address of platform msi interrupt controller in PCI Endpoint.
 
-gpiod_to_irq() is just a convenience function to figure out the IRQ for a
-certain GPIO line and should not be relied upon to have been called before
-the IRQ is used.
+s/msi/MSI. Also, use either Endpoint or EP, pick one but not both.
 
-Always prepare the hardware and make it ready for action in respective
-callbacks from the GPIO and irq_chip APIs. Do not rely on gpiod_to_irq() ha=
-ving
-been called first.
+> Such that, whenever the PCI host writes to the BAR region, it will
+> trigger an IRQ in the EP.
+> 
+> Basic working follow as
 
-We can divide GPIO irqchips in two broad categories:
+"work flow is"?
 
-- CASCADED INTERRUPT CHIPS: this means that the GPIO chip has one common
-  interrupt output line, which is triggered by any enabled GPIO line on tha=
-t
-  chip. The interrupt output line will then be routed to an parent interrup=
-t
-  controller one level up, in the most simple case the systems primary
-  interrupt controller. This is modeled by an irqchip that will inspect bit=
-s
-  inside the GPIO controller to figure out which line fired it. The irqchip
-  part of the driver needs to inspect registers to figure this out and it
-  will likely also need to acknowledge that it is handling the interrupt
-  by clearing some bit (sometime implicitly, by just reading a status
-  register) and it will often need to set up the configuration such as
-  edge sensitivity (rising or falling edge, or high/low level interrupt for
-  example).
+> 1. EP function driver call platform_msi_domain_alloc_irqs() alloc a
 
-- HIERARCHICAL INTERRUPT CHIPS: this means that each GPIO line has a dedica=
-ted
-  irq line to a parent interrupt controller one level up. There is no need
-  to inquire the GPIO hardware to figure out which line has fired, but it
-  may still be necessary to acknowledge the interrupt and set up configurat=
-ion
-  such as edge sensitivity.
+pci-epf-vntb function driver calls platform_msi_domain_alloc_irqs() to allocate
+MSI's from the platform MSI controller.
 
----------------------------------
+> MSI irq from MSI controller with call back function write_msi_msg();
+> 2. write_msg_msg will config BAR and map to address defined in msi_msg;
 
-You find an example of a hierarchical GPIO irqchip using the
-GPIOLIB_IRQCHIP in drivers/gpio/gpio-ixp4xx.c.
+The epf_ntb_write_msi_msg() passed as a callback will write the offset of the
+MSI controller's MSI address dedicated for each MSI to the doorbell register
+db_offset and also writes the MSI data to db_data register in the CTRL BAR
+region.
 
-Yours,
-Linus Walleij
+> 3. Host side trigger an IRQ at Endpoint by write to BAR region.
+> 
+
+Finally, the host can trigger doorbell by reading the offset of the doorbell
+from db_offset register and writing the data read from db_data register in CTRL
+BAR region to the computed address in the DB BAR region.
+
+> Add MSI doorbell support for pci-epf-vntb. Query if system has an MSI
+> controller. Set up doorbell address according to struct msi_msg.
+> 
+> So PCI host can write this doorbell address to trigger EP side's IRQ.
+> 
+> If no MSI controller exists, fall back to software polling.
+> 
+
+"Add doorbell support to pci-epf-vntb function driver making use of the platform
+MSI controller. If the MSI controller is not available, fallback to the polling
+method."
+
+Also, please move this paragraph to the beginning of the description.
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/endpoint/functions/pci-epf-vntb.c | 146 +++++++++++++++---
+>  1 file changed, 125 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> index 0d744975f815..f770a068e58c 100644
+> --- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> +++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> @@ -44,6 +44,7 @@
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+>  #include <linux/ntb.h>
+> +#include <linux/msi.h>
+>  
+>  static struct workqueue_struct *kpcintb_workqueue;
+>  
+> @@ -137,11 +138,14 @@ struct epf_ntb {
+>  	struct epf_ntb_ctrl *reg;
+>  
+>  	u32 *epf_db;
+> +	phys_addr_t epf_db_phys;
+>  
+>  	phys_addr_t vpci_mw_phy[MAX_MW];
+>  	void __iomem *vpci_mw_addr[MAX_MW];
+>  
+>  	struct delayed_work cmd_handler;
+> +
+> +	int msi_virqbase;
+>  };
+
+You should add kernel doc comments for this struct in a separate patch. It will
+help in understanding the driver better.
+
+>  
+>  #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
+> @@ -256,11 +260,13 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
+>  
+>  	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
+>  
+> -	for (i = 1; i < ntb->db_count; i++) {
+> -		if (ntb->epf_db[i]) {
+> -			ntb->db |= 1 << (i - 1);
+> -			ntb_db_event(&ntb->ntb, i);
+> -			ntb->epf_db[i] = 0;
+
+A comment here stating that polling is implemented would be better.
+
+> +	if (!ntb->epf_db_phys) {
+> +		for (i = 1; i < ntb->db_count; i++) {
+> +			if (ntb->epf_db[i]) {
+> +				ntb->db |= 1 << (i - 1);
+> +				ntb_db_event(&ntb->ntb, i);
+> +				ntb->epf_db[i] = 0;
+> +			}
+>  		}
+>  	}
+>  
+> @@ -518,6 +524,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
+>  	return 0;
+>  }
+>  
+> +static int epf_ntb_db_size(struct epf_ntb *ntb)
+> +{
+> +	const struct pci_epc_features *epc_features;
+> +	size_t size = sizeof(u32) * ntb->db_count;
+> +	u32 align;
+> +
+> +	epc_features = pci_epc_get_features(ntb->epf->epc,
+> +					    ntb->epf->func_no,
+> +					    ntb->epf->vfunc_no);
+> +	align = epc_features->align;
+> +
+> +	if (size < 128)
+
+Shouldn't this be (size > 128)?
+
+> +		size = 128;
+> +
+> +	if (align)
+> +		size = ALIGN(size, align);
+> +	else
+> +		size = roundup_pow_of_two(size);
+> +
+> +	return size;
+> +}
+> +
+>  /**
+>   * epf_ntb_db_bar_init() - Configure Doorbell window BARs
+>   * @ntb: NTB device that facilitates communication between HOST and VHOST
+> @@ -539,27 +567,26 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
+>  					    ntb->epf->func_no,
+>  					    ntb->epf->vfunc_no);
+>  	align = epc_features->align;
+> -
+> -	if (size < 128)
+> -		size = 128;
+> -
+> -	if (align)
+> -		size = ALIGN(size, align);
+> -	else
+> -		size = roundup_pow_of_two(size);
+> +	size = epf_ntb_db_size(ntb);
+>  
+>  	barno = ntb->epf_ntb_bar[BAR_DB];
+> +	epf_bar = &ntb->epf->bar[barno];
+>  
+> -	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
+> -	if (!mw_addr) {
+> -		dev_err(dev, "Failed to allocate OB address\n");
+> -		return -ENOMEM;
+> +	if (ntb->epf_db_phys) {
+> +		mw_addr = NULL;
+> +		epf_bar->phys_addr = ntb->epf_db_phys;
+> +		epf_bar->barno = barno;
+> +		epf_bar->size = size;
+> +	} else {
+> +		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
+> +		if (!mw_addr) {
+> +			dev_err(dev, "Failed to allocate doorbell address\n");
+> +			return -ENOMEM;
+> +		}
+>  	}
+>  
+>  	ntb->epf_db = mw_addr;
+>  
+> -	epf_bar = &ntb->epf->bar[barno];
+> -
+>  	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
+>  	if (ret) {
+>  		dev_err(dev, "Doorbell BAR set failed\n");
+> @@ -728,6 +755,82 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
+>  	return 0;
+>  }
+>  
+> +static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
+
+Shouldn't this function also be guarded?
+
+> +{
+> +	struct epf_ntb *ntb = data;
+> +	int index;
+> +
+> +	index = irq - ntb->msi_virqbase;
+> +	ntb->db |= 1 << (index - 1);
+> +	ntb_db_event(&ntb->ntb, index);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
+
+It'd be better to use the relevant commit description as a comment here.
+
+> +static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> +{
+> +	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
+> +	struct epf_ntb_ctrl *reg = ntb->reg;
+> +	int size = epf_ntb_db_size(ntb);
+> +	u64 addr;
+> +
+> +	addr = msg->address_hi;
+> +	addr <<= 32;
+> +	addr |= msg->address_lo;
+> +
+> +	reg->db_data[desc->msi_index] = msg->data;
+> +
+
+A comment stating that the base address to be used as the DB BAR is set here
+would be useful too.
+
+> +	if (!desc->msi_index)
+> +		ntb->epf_db_phys = round_down(addr, size);
+> +
+> +	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phys;
+> +}
+> +
+> +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
+> +{
+> +	struct device *dev = &ntb->epf->dev;
+> +	struct irq_domain *domain;
+> +	int virq;
+> +	int ret;
+> +	int i;
+> +
+> +	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
+> +	if (!domain)
+> +		return;
+> +
+> +	dev_set_msi_domain(dev, domain);
+> +
+> +	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
+> +		ntb->db_count,
+> +		epf_ntb_write_msi_msg)) {
+
+Please wrap above two in a single line till 100 column limit.
+
+> +		dev_err(dev, "Can't allocate MSI, falling back to polling mode\n");
+
+This should be dev_dbg().
+
+> +		return;
+> +	}
+> +	dev_dbg(dev, "Using MSI as doorbell\n");
+> +
+> +	for (i = 0; i < ntb->db_count; i++) {
+> +		virq = msi_get_virq(dev, i);
+> +		ret = devm_request_irq(dev, virq,
+> +			       epf_ntb_interrupt_handler, 0,
+> +			       "pci_epf_vntb", ntb);
+> +
+> +		if (ret) {
+> +			dev_err(dev, "Failed to request doorbell IRQ! Falling back to polling mode");
+
+Again, dev_dbg()
+
+> +			ntb->epf_db_phys = 0;
+> +			platform_msi_domain_free_irqs(&ntb->epf->dev);
+> +			break;
+> +		}
+> +
+> +		if (!i)
+> +			ntb->msi_virqbase = virq; /* msi start virq number */
+> +	}
+> +}
+> +#else
+
+Since this is not exposed as an API, just end the ifdef here and...
+
+> +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
+> +{
+> +}
+> +#endif /* CONFIG_GENERIC_MSI_IRQ_DOMAIN */
+>  /**
+>   * epf_ntb_epc_init() - Initialize NTB interface
+>   * @ntb: NTB device that facilitates communication between HOST and VHOST
+> @@ -1336,14 +1439,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
+>  		goto err_bar_alloc;
+>  	}
+>  
+> +	epf_set_drvdata(epf, ntb);
+> +	epf_ntb_epc_msi_init(ntb);
+
+Guard this function instead:
+
+#ifdef CONFIG_GENERIC_MSI_IRQ_DOMAIN
+	epf_ntb_epc_msi_init(ntb);
+#endif
+
+Thanks,
+Mani
+
+> +
+>  	ret = epf_ntb_epc_init(ntb);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to initialize EPC\n");
+>  		goto err_bar_alloc;
+>  	}
+>  
+> -	epf_set_drvdata(epf, ntb);
+> -
+>  	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
+>  	pci_vntb_table[0].vendor = ntb->vntb_vid;
+>  	pci_vntb_table[0].device = ntb->vntb_pid;
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
