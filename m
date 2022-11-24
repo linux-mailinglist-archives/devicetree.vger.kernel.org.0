@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92563637801
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43480637812
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:53:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbiKXLv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:51:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
+        id S229763AbiKXLxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:53:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiKXLv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:51:58 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FEA96B219
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:51:57 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id b9so1723769ljr.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:51:57 -0800 (PST)
+        with ESMTP id S229644AbiKXLxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:53:36 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7987B08E2
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:53:35 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id a29so2188494lfj.9
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:53:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FOdTvMo8dMW0KOze7cODnIqtVzrXTSA2hp1NUSdu9ZM=;
-        b=zmKh5jbifjAJVRLyl1Om4Fi5vQG7QeZB/vETFbmb1b0Iv0NjfDNz1VeiZKIdbp9Y1i
-         swOQ9aJxjwIVdFgnrJXHgnbzwD7aqZRK+zXa9yoxSO6n72pc6F6qyG9UibtvDxfReEKS
-         93OCvOjogMyBudb8o1WvckVJt40mwbuMkd3JNHlyBueeBqpMkzBuyfNXc0y85bHGFPX0
-         hlw8oQAGUhJmjBU3/L1W1Ndrv2N+Ut8xJZKPMX3KKaGGo8vvj+/HpmjaDNgP0KFF0e62
-         aJnTJtpKEc0ZTvgJPrlFmkKD15i4PgGu/6nlVgioJzYzy/RWlGZ8eE+HV6Mm/R/v24HO
-         pDhA==
+        bh=QPVcl2Eug+5uraZ8m6qhcz30LIzsGZsRRGgxjK4JKkQ=;
+        b=UZ3xC41EWV1GfOOrF46u4ZqOAdpreJnnihRyvCq8lvAqy3OFuTuVlphajy3OQrkiKM
+         yiWfG2OuD6zm9ZjFA07vazCpZaK5NpnZMDEYzyytqdYG5SEypvLiFctsgb1jewHKxlp4
+         YBGw8p3QrzUwOiWsTJPdkx47dyRQ+La9dGB4Gij9g8jMcqbKRhL+3QIJ2wIcF90IVycf
+         XyD7EMcpP59Ka5k5ZW0TnO55nPFiLNrVh3hgiQQRXVZVo014j/QLabcpfSXD+gv20FWl
+         IieUtv7CjjftVyWTQJdejuAWiJkPoX7nLzKVfs28Ku6yEsYhC3EafaqNPoyYGc5WSXNo
+         ZNjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FOdTvMo8dMW0KOze7cODnIqtVzrXTSA2hp1NUSdu9ZM=;
-        b=QcbqKwtjK53kwnZxkg9r+ybnT6m/PiFdiZpgfklvhzshnXNyi/5DA8iBiISRuFASVu
-         +dnHBNDmaki7sJs7fNq7KxaaQjTMTghrfY8u7LNE5lgpHvCMW/zPWO5KwrswRIqB7xom
-         JCfL24lwEW1LqzI/0pD239T6BO1gjUK8Kxr61tDARmsEyzOpa9z+GdXnaSrDXHACXVaY
-         YxDCcJO8O/XP1ZQP1mW4HCI9ib+nxgr2dYTDevTzUlWFxkjGZ2SgQj91/7U1pOvqDE6/
-         in5rwHLfLThKpEb+YYrfZEpc0NISvnGBNwRBOmINrT8MIiX+iI0F0WyHZpVrfPsZkgOe
-         5DAg==
-X-Gm-Message-State: ANoB5pkq5T7tor0dhQbcj1ZPD77gTy1mSzMUG/LvodgcsiNyDuL5fL4g
-        esqGIXLbqzfr6r/WS/5Ue7mmpA==
-X-Google-Smtp-Source: AA0mqf5Uby/2/Ol2+Q46FnOUV4X5k6uLRpoAeZ9RhJC9SCiGl76St58sKeziu8lkXzkGj1Q0gTHP9w==
-X-Received: by 2002:a2e:b8d1:0:b0:277:6fea:ac1e with SMTP id s17-20020a2eb8d1000000b002776feaac1emr10187873ljp.200.1669290715630;
-        Thu, 24 Nov 2022 03:51:55 -0800 (PST)
+        bh=QPVcl2Eug+5uraZ8m6qhcz30LIzsGZsRRGgxjK4JKkQ=;
+        b=n48G3ETKS+esDQzwmvBgM4n43qI69CUTn7y141ABaCNdvEgrKeAkPmhv/Ro4u3StRv
+         BpC2vCOzw6FmM5nTK5VeWa2VQFqH60ih+b2gaCX6NiU1k3yeq8dmZ2O153h9Rsxcm+aq
+         1X1Q5/phKkkb8UqpnyQN8XlmbwyQX85zX3nyNniJtcCzrL5caHF9rgdrL+m5R+V6r68J
+         BGQGNP+B5SPuC0Fth2BAr6axJGzA1YEEKkf1jyskIcG4HBE9ewO8E6MbaokOVdPZ8XAp
+         VL9DU+z2/C2hmxCmv2JWK67VD2PXNCPkHet/6yKq0191mlz8SoD+1DtU2wdUByujSvhc
+         NqFg==
+X-Gm-Message-State: ANoB5pkxk9mN/F12sANBsMWDSX6TNeEMr54ENSic/3jBqT9QUUqYrzJr
+        CX5tdld1NixFj0HMhlqGjygPWw==
+X-Google-Smtp-Source: AA0mqf7BswiRU15d2KnipL8ZZJdBMrUwqe10ADV8X/LEEDqryOG+RLgGnMJu4AYr+KJcmL9hOBAkTQ==
+X-Received: by 2002:a19:6b0b:0:b0:4a2:44dc:b70c with SMTP id d11-20020a196b0b000000b004a244dcb70cmr9943677lfa.360.1669290814310;
+        Thu, 24 Nov 2022 03:53:34 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512358400b00499b27a329esm96141lfr.300.2022.11.24.03.51.54
+        by smtp.gmail.com with ESMTPSA id be34-20020a056512252200b004978e51b691sm97186lfb.266.2022.11.24.03.53.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:51:55 -0800 (PST)
-Message-ID: <bef911e9-174a-3ab1-41b0-949028a7db7d@linaro.org>
-Date:   Thu, 24 Nov 2022 12:51:54 +0100
+        Thu, 24 Nov 2022 03:53:33 -0800 (PST)
+Message-ID: <0a3b491c-7b91-4732-e280-3e49d9da01c6@linaro.org>
+Date:   Thu, 24 Nov 2022 12:53:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/9] dt-bindings: clock: Add SM8550 TCSR CC clocks
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: omap: add phytec pcm-049 som and
+ pcm-959 dev board
 Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221123142009.594781-1-abel.vesa@linaro.org>
- <20221123142009.594781-3-abel.vesa@linaro.org>
+To:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Tony Lindgren <tony@atomide.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        soc@kernel.org, Olof Johansson <olof@lixom.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20221123233209.1854806-1-colin.foster@in-advantage.com>
+ <20221123233209.1854806-2-colin.foster@in-advantage.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123142009.594781-3-abel.vesa@linaro.org>
+In-Reply-To: <20221123233209.1854806-2-colin.foster@in-advantage.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,97 +81,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 15:20, Abel Vesa wrote:
-> Add bindings documentation for clock TCSR driver on SM8550.
+On 24/11/2022 00:32, Colin Foster wrote:
+> Add documentation for additional OMAP SOMs and development platforms,
+> provided by Phytec as the PCM-049 SOM and the PCM-959 development kit.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
 > ---
 > 
-> Changes since v1:
->  * based on recent bindings, like Krzysztof asked
->  * used qcom,gcc.yaml and dropped redundant properties
->  * used additionalProperties instead unevaluatedProperties
->  * renamed qcom,tcsrcc-sm8550.h to qcom,sm8550-tcsrcc.h, to match
->    compatible
->  * added dual lincese to qcom,sm8550-tcsrcc.h
->  * moved patch to the beginning of patchset
->  * dropped redundant "bindings" from subject line
-> 
->  .../bindings/clock/qcom,sm8550-tcsrcc.yaml    | 39 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    | 18 +++++++++
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
-> new file mode 100644
-> index 000000000000..a4531a7cad8c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsrcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm TCSR Clock Controller on SM8550
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +
-> +description: |
-> +  Qualcomm TCSR clock control module provides the clocks, resets and
-> +  power domains on SM8550
-> +
-> +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> +
-> +allOf:
-> +  - $ref qcom,gcc.yaml#
+> v1->v2
 
-I am not sure if this is similar block as GCC (or how similar). This
-wasn't here previously. There is also a typo (missing :), so bindings
-were not tested. :)
 
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8550-tcsrcc
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@1fc0000 {
-> +      compatible = "qcom,sm8550-tcsrcc";
-> +      reg = <0x1fc0000 0x30000>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> new file mode 100644
-> index 000000000000..4ce98ffc43ce
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> +#define _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> +
-> +/* GCC clocks */
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-And these are TCSR CC clocks :)
-
+Would be nice to convert the file to DT Schema.
 
 Best regards,
 Krzysztof
