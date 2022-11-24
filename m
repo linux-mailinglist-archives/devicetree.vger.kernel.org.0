@@ -2,81 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E52B76377B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90DD16377D5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:43:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiKXLa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:30:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36372 "EHLO
+        id S229747AbiKXLnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:43:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbiKXLav (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:30:51 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9797588F90
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:30:47 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id t10so1712005ljj.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:30:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fyb8cWovIHqjfoKBUsRkxLqfHtzttGTVJMM1/mMniBc=;
-        b=QZk3tIfbzK4rNT+vIGPYUeXn4gNgs+gW6dkAXRxipvRcU4xuaMIl3agnzv/tg6k1s4
-         LKxEj/JapkraxMo0L3Y9KUV69bri62FuZyfBMDZ7Grj59z5hpR6L4Sxg6fh+E14Ll2Qw
-         kwbdatuLICRroPArSIXGB3rUucBLjcZITeEizV/yp5Mge5dWj3Cy75qb6k7pYAu5etFQ
-         O1N2dks6mhny2t+RRF/bvCEyJ+Jre9HzBZSIhsXvuWZ5/Ijw/W2ILeYfZYpeA/X3pwvP
-         nomzsP11aNAY4hKRCJOE7t/rWNKRoMmCh+DYBwAkmzvrT/9DGP6OXAl6o5EdTwPHsJv0
-         P6dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fyb8cWovIHqjfoKBUsRkxLqfHtzttGTVJMM1/mMniBc=;
-        b=H0s6GQVg7OXWWoPc0T/cJyD5Fz72e3W+pWd3eYxxyvuhiCPymPNv5me1QQQMHQQLHl
-         9ssceqALt4r3XVetHEb3sayqO9tZYFKqPQboPXfBESJ1HcHizjtmZ5eNMegEOgtiGyej
-         GBXeEU8vUlzXH3L/Z90hy0Bkwk3FTL+pP5YnXtQ+UliC5+SS74GzFHTEaZ0CQTNR8lAe
-         hIbdO1UXBwlJE71mmEMGwj1NiR2ycvKxrcN3/B++0N7XaT9Zls9KHxRiDWPZnji33IYX
-         gyaHfxGaYHmMHwZ/+Lg+r6ww9886p4TLuqHvYz2xgWjdjtPHTmb4LTU6tUxHXmREhlyi
-         EEeg==
-X-Gm-Message-State: ANoB5pm/F0Nb5Ggscl1lsJd8KUwB/kKK4iKFYQ3fFvw0/K7UQp8Npq2O
-        uLL41/dmFqaBt9MZjcfynR9/Dw==
-X-Google-Smtp-Source: AA0mqf7BKwwl8DQ9FRp+pIXisHGgV5Q1UBV/4F4DMWyHmsPYWp4b2sHCx8CXTm7yLTzau1VK7KZLWw==
-X-Received: by 2002:a2e:824e:0:b0:26f:be8e:5298 with SMTP id j14-20020a2e824e000000b0026fbe8e5298mr5653251ljh.418.1669289445821;
-        Thu, 24 Nov 2022 03:30:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p19-20020ac24ed3000000b004b4f1ea713csm95584lfr.73.2022.11.24.03.30.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 03:30:45 -0800 (PST)
-Message-ID: <e5e87795-12d7-699e-1539-2e60b8b51957@linaro.org>
-Date:   Thu, 24 Nov 2022 12:30:44 +0100
+        with ESMTP id S229538AbiKXLnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:43:21 -0500
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C253C9C7B0
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:43:14 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221124114311epoutp029c3bad71ad0df351a4c0c57914806666~qgpWn9ZRl1768817688epoutp02J
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 11:43:11 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221124114311epoutp029c3bad71ad0df351a4c0c57914806666~qgpWn9ZRl1768817688epoutp02J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669290191;
+        bh=5mXRFoLs3Ave53OP/+bbEVKjYKpNERHuQLCi5BHRMd8=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=CAcvDPdHlWIsg3YsuFnXfW3eGZiAn8X93pdiAWz8Q8J8SxEaxU4kwoTE+FP9mf9QT
+         y30DAqXg+RmJ2uwmaAKO2wadoimSgagqHMUjCWKUloJJdaMsFYYzgOEW3vDeARvYQ2
+         BZP1E/ASn/bW6DFcZxcWe2ZYWhqc1FT7XESdPaAs=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20221124114309epcas5p36ae834149560fa37d5bd3574c58818cd~qgpVBDiXN2117821178epcas5p3C;
+        Thu, 24 Nov 2022 11:43:09 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4NHx2M6jbzz4x9Pq; Thu, 24 Nov
+        2022 11:43:07 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AE.CD.56352.BC85F736; Thu, 24 Nov 2022 20:43:07 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221124114307epcas5p1be354f71746681c4e8e163330653b4f4~qgpTOD8Gd0680406804epcas5p1J;
+        Thu, 24 Nov 2022 11:43:07 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221124114307epsmtrp14b1d52f8a31ad3b1fd27de394525f384~qgpTNDsnP0501805018epsmtrp1r;
+        Thu, 24 Nov 2022 11:43:07 +0000 (GMT)
+X-AuditID: b6c32a4b-5f7fe7000001dc20-8a-637f58cb0a5d
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2A.F2.14392.BC85F736; Thu, 24 Nov 2022 20:43:07 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221124114304epsmtip1585cd92c62d26d39ce9df8cc539c1a05~qgpQMuQWx1886718867epsmtip1S;
+        Thu, 24 Nov 2022 11:43:04 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Aakarsh Jain'" <aakarsh.jain@samsung.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
+        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
+        <benjamin.gaignard@collabora.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
+        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
+        <aswani.reddy@samsung.com>, <pankaj.dubey@samsung.com>,
+        <smitha.t@samsung.com>
+In-Reply-To: <20221114115024.69591-3-aakarsh.jain@samsung.com>
+Subject: RE: [Patch v5 2/3] media: s5p-mfc: Add variant data for MFC v7
+ hardware for Exynos 3250 SoC
+Date:   Thu, 24 Nov 2022 17:13:02 +0530
+Message-ID: <001401d8fff9$eb9c53a0$c2d4fae0$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
- MT7986
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Zhi Mao <zhi.mao@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-References: <Y39PjU1BqBB8tZ98@makrotopia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y39PjU1BqBB8tZ98@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQEWRgxeWB9GQv2mDJaVZC8m4WNgiwKNLU9SAqiIKIGvqbmjcA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf1CTdRzH/W7PfmmzpwnyZXTdfMI6yMGG23owwDLiHkNOlD8sqWBuTxtu
+        bLs9m0RHQoqcQA49u25MBXWIyaHY+OGA0QGNPOjSkJ9FQ0HJDY8wwMrkqo1h8d/r+/m839/P
+        5/P93odN51lYfHaOzkQadXItxlyNtHwTFS387p1ChejwbxJ8ylnJwO1/3qfht+3zCN7d2MzC
+        mwZP0fGL1zsZeLX7BgO/1jWJ4F95/dn+Sg+C36++AnCfbZyJW7wTdNxxd5iBD7SdZuKfXW1m
+        4JfdHhZ+YaSfhtc6Fmn4+eYFFn6kw83CPa4WgBeXuGmvhxH1VfWAcHpqADFSM0cnWm0eFmF3
+        +WiEo66USfw87GISjTWFxJGevxDC0lQHiDL3CJOYd7xA9D2aZ6Vz92oS1KRcSRoFpE6hV+bo
+        VIlYakbWm1lSmUgsFMfjr2ICnTyXTMSSd6QLU3K0/ukxwQG51uwPpcspCotNSjDqzSZSoNZT
+        pkSMNCi1BokhhpLnUmadKkZHmraIRaI4qV+YrVG3VOwzeOBHdouXVQTsoWWAw4aoBFqnWpll
+        YDWbh7YDOHbmKAge5gC82+igB1Q89HcAra0RTx0jXdZlUQeAs5bZZbsPwJmH/YyAiokKodNe
+        spQIQZ0ADtbbkUCCjhYj0PZEWAbYbA6aBHs7CwK4Dv0Q3hx6K6BA0I3wUNM0CDAXjYfltR5a
+        kJ+DvZX3lm95Bdaee0APNiSAj6dqGcF4GPT1uFkBDkG3wbFr7UuNQrSPA9vmFpCgIRn+4WpY
+        5nVw+noTK8h86KsoYQX6gSgBzy/yg2E1nLnYAIK8FXYOnkYCEjoaBRvaYoNl18JjT+7Rgk4u
+        PFrCC6o3wsO/Di0XioAnyssZQSZg+aidfhxssK0YzLZiMNuKYWz/FzsLkDoQThqoXBVJSQ2b
+        dWTef5+t0Oc6wNJiRKc6weSdhzHdgMYG3QCy6VgIt3B7gYLHVcrzPyaN+iyjWUtS3UDqf+0T
+        dH6oQu/fLJ0pSyyJF0lkMpkkfrNMjIVx7dZoBQ9VyU2khiQNpPGpj8bm8Ito6Pw/q7TS8IED
+        6pRIxlDP5fFULC3aXNC+PmKm6NLnmq1y9deju25jzw/1TGdKsiRezcC7f1eFVdQnh++6qp0o
+        zd9p6djve6+rwvX2WXN2TneaIs9tfvTJAOW6YqLy3riUeeFcafseQ3ZxdZLeNi7PSO9J+OlL
+        fOEXu0jZedxwh3/yU44sITM/bMvug/vdqn2SGynbNkU6kb4Pzrz27A8OjaixpIbvmp3IP7Vp
+        b82D1tH1Ly/GhqqnovrcDV6O89CYijp57P3B7+eH1yhlwjUHv02ryrgpTX+xN9wbb35p1W7N
+        3Pa1k3vaMh9bRTu7BIYNZbeMz1hz4m4ZdlgIYVyE9IvIHzGEUsvF0XQjJf8Xiyaqm6EEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUxTWRjHPXfrhUnHK0V7xBmijTyIiiAajorOxPX6IAhGJWqiTbkWZLUt
+        OiqxDAEntEqYB025qGiLNRZcKKWtCKTUW0lVVJRQt6rgwjI6QYtrzDiWxoS33/f9zv+f7+HQ
+        eMRXIorOztdwqnx5rowKJ+xXZdFzb2RoFfG956TopbOaRKZPAxh6agoQyN3ULEK2nhocne10
+        kahWuEUiR0c/gRoHv9vuaj+BBmovADTEP6FQ5WAfjqzPe0l0r+U4hQ5faibRecEvQmd83Rgy
+        W79iyNg8KkLlbYII+VvtAJUdErDfpWzDyQbAOv11gPXVvcPZy7xfxJpahzDWaqmg2Me9rRTb
+        VKdlyz1fCLbSZgGsTvBRbMAazV5/HxCtF28JT87kcrP3cKp5y3aEZxnu9oFCXvqH01FPlIB+
+        iQ6E0ZBZAH0dBqAD4XQEcwVAc2ULFRLToK+xShRiCTz334Ao9GgAwIpGNxkUFDMXOk2HqKCI
+        ZFoB1B/tJoMDzhwjoNP6AAtFOgC0t7//bmg6jFkGva7iYFrCZEL+xIexJoKJgaW2YRBkMbMI
+        6s1+LMSToLf6BRFknJkNj/SVgx9sPv0PHjpvOvz80kyG9lI45BHGzo5klsNHjiugCkj4cVX8
+        uCp+XBU/Ln4KEBYwlStU5ynz1AmFCfnc3ji1PE9dlK+MUxTkWcHYB4md5QQOy0icG2A0cANI
+        47JIsXZtsSJCnCnft59TFWxXFeVyajeYRhMyqfiOzrs9glHKNVwOxxVyqh8Wo8OiSjDX0MGK
+        noNzXi2ija6b+tHdS2JN/W86X8/3ZahVGb/WL0xe43mU/nzpaO7HrI97JhpAYvUqhX7bL1G1
+        YktzTtpPhsmpKbVlbI7tarvKcn8mSkw1l03Y9VfM8KqRJMP+jBcFvyGbi9q5kdZ0rTaOGB+X
+        btVFJ0sW//0mfsYRh33BuofaksOpnMmduPhZcVWKZ7RG40rypNX70/sWbvoW5W34dqwpW3vW
+        VWAkn81YrvHumlMkLvMMr1BsbVl5c61+xdvYd+Yau/L2z11Pw3zTA1hPT+qJJwdeZbNdygOE
+        sPFPPf/v+h3pKeCisHLTbWZWgpDEtLd1DuZMib+2IbOtNLB5koxQZ8kTYnGVWv4/tpDJi48D
+        AAA=
+X-CMS-MailID: 20221124114307epcas5p1be354f71746681c4e8e163330653b4f4
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221114114409epcas5p32057f807dd538f874f8fd4a940c9de00
+References: <20221114115024.69591-1-aakarsh.jain@samsung.com>
+        <CGME20221114114409epcas5p32057f807dd538f874f8fd4a940c9de00@epcas5p3.samsung.com>
+        <20221114115024.69591-3-aakarsh.jain@samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,54 +133,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 12:03, Daniel Golle wrote:
-> Add new compatible string for MT7986 PWM and list compatible units for
-> existing entries. Also make sure the number of pwm1-X clocks is listed
-> for all supported units.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
-> 
-> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
-> makes sure dt maintainers are included. This has been requested by
-> Krzysztof Kozlowski.
-> 
->  .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> index 554c96b6d0c3..952a338e06e7 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> @@ -2,14 +2,15 @@ MediaTek PWM controller
->  
->  Required properties:
->   - compatible: should be "mediatek,<name>-pwm":
-> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
-> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
->     - "mediatek,mt6795-pwm": found on mt6795 SoC.
-> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
-> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
-> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
 
-This does not look right. What you are saying is mt7622 is compatible
-with mt8195, which is compatible with mt8183, which is compatible with
-mt7986. It could be true, but I feel you wanted to say something else -
-mt7622 is compatible with one SoC which is generic and common to all
-other implementations.
 
-> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
->     - "mediatek,mt7628-pwm": found on mt7628 SoC.
->     - "mediatek,mt7629-pwm": found on mt7629 SoC.
-> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
-> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
-> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
-> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
-> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+>-----Original Message-----
+>From: Aakarsh Jain =5Bmailto:aakarsh.jain=40samsung.com=5D
+>Sent: Monday, November 14, 2022 5:20 PM
+>To: linux-arm-kernel=40lists.infradead.org; linux-media=40vger.kernel.org;=
+ linux-
+>kernel=40vger.kernel.org; devicetree=40vger.kernel.org
+>Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
+>mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
+>ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
+>benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org;
+>stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
+>david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
+>robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
+>alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
+>pankaj.dubey=40samsung.com; smitha.t=40samsung.com;
+>aakarsh.jain=40samsung.com
+>Subject: =5BPatch v5 2/3=5D media: s5p-mfc: Add variant data for MFC v7 ha=
+rdware
+>for Exynos 3250 SoC
+>
+>Commit 5441e9dafdfc6dc40 (=22=5Bmedia=5D s5p-mfc: Core support for MFC v7=
+=22)
+>which adds mfc v7 support for Exynos3250 and use the same compatible strin=
+g
+>as used by Exynos5240 but both the IPs are a bit different in terms of IP =
+clock.
+>Add variant driver data based on the new compatible string
+>=22samsung,exynos3250-mfc=22 for Exynos3250 SoC.
+>
+>Suggested-by: Alim Akhtar <alim.akhtar=40samsung.com>
+>Fixes: 5441e9dafdfc (=22=5Bmedia=5D s5p-mfc: Core support for MFC v7=22)
+>Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
+>---
+Thanks=21
 
-This as well looks excessive.
+Reviewed-by: Alim Akhtar <alim.akhtar=40samsung.com>
 
-Best regards,
-Krzysztof
+> .../media/platform/samsung/s5p-mfc/s5p_mfc.c    =7C 17 +++++++++++++++--
+> 1 file changed, 15 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc.c
+>b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc.c
+>index fca5c6405eec..007c7dbee037 100644
+>--- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc.c
+>+++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc.c
+>=40=40 -1576,8 +1576,18 =40=40 static struct s5p_mfc_variant mfc_drvdata_v=
+7 =3D =7B
+> 	.port_num	=3D MFC_NUM_PORTS_V7,
+> 	.buf_size	=3D &buf_size_v7,
+> 	.fw_name=5B0=5D     =3D =22s5p-mfc-v7.fw=22,
+>-	.clk_names	=3D =7B=22mfc=22, =22sclk_mfc=22=7D,
+>-	.num_clocks	=3D 2,
+>+	.clk_names	=3D =7B=22mfc=22=7D,
+>+	.num_clocks	=3D 1,
+>+=7D;
+>+
+>+static struct s5p_mfc_variant mfc_drvdata_v7_3250 =3D =7B
+>+	.version        =3D MFC_VERSION_V7,
+>+	.version_bit    =3D MFC_V7_BIT,
+>+	.port_num       =3D MFC_NUM_PORTS_V7,
+>+	.buf_size       =3D &buf_size_v7,
+>+	.fw_name=5B0=5D     =3D =22s5p-mfc-v7.fw=22,
+>+	.clk_names      =3D =7B=22mfc=22, =22sclk_mfc=22=7D,
+>+	.num_clocks     =3D 2,
+> =7D;
+>
+> static struct s5p_mfc_buf_size_v6 mfc_buf_size_v8 =3D =7B =40=40 -1647,6 =
++1657,9
+>=40=40 static const struct of_device_id exynos_mfc_match=5B=5D =3D =7B
+> 	=7D, =7B
+> 		.compatible =3D =22samsung,mfc-v7=22,
+> 		.data =3D &mfc_drvdata_v7,
+>+	=7D, =7B
+>+		.compatible =3D =22samsung,exynos3250-mfc=22,
+>+		.data =3D &mfc_drvdata_v7_3250,
+> 	=7D, =7B
+> 		.compatible =3D =22samsung,mfc-v8=22,
+> 		.data =3D &mfc_drvdata_v8,
+>--
+>2.17.1
+
 
