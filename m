@@ -2,257 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DC5D637A8D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:54:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57389637AB8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 14:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiKXNyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 08:54:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48536 "EHLO
+        id S230370AbiKXN6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 08:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiKXNyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:54:49 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C881DE871E
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:54:45 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id f13so2658743lfa.6
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:54:45 -0800 (PST)
+        with ESMTP id S230289AbiKXN5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 08:57:47 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23E4812BFC4
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:56:53 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id g12so2561501wrs.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 05:56:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+VY7crvbExdAc/2TYALZSt7S7bugh6YNFAMaaLjUNFw=;
-        b=MihJQTZSvAkkrEAWnJD457DPFL4qeqpPdiMEO/x2xSkemAbV2YhRCeL29rDTYzQQwa
-         0JE2Uq/zGiEYwO6Bw7m1v9TQF93WHxOh3HNooXZ1ymCWofwy1T0VexbhflduvDALWxrw
-         VqHATD0NQHJ8JK7F8oAGiQtPiw+UypuDevJgsqDItEPR9fx83iAgw8+MybcH5o4fkPVq
-         5/PZnIq4ogCnSashyaoshSkL99yAfBBR37PAB7FKJjY12tky6YicL+4KBXXVc5BMEywX
-         l/hEJTTGMiErVjBr5ljGnhPp+AyaJGWuC/tcCOjN9L6q9ObQhm+o0KwgrTTPRRaZv6jr
-         /b5w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MKy7telqHd11HTPv3+ayDIJY4ik4OoAmOld4l3dr43k=;
+        b=WIgWT9UExMUT8thEPd5eIeUMiiQq7v1HSe6+vjUm/jqXZB1uqqH1DsMjf9UEztgdn/
+         ZMZVcmv76UpYawTsoc6GjKKThwUkyyfwaSqw6FFlbs6JIDLMagIZFHHx6BNeBWj8uBxT
+         TpunKDUWQcB7Mv2U8PnJ2HweoqPsxGRhPvqnxjAervsftS1yk3UC0gDIZ0td9eXHGzpt
+         uPR/OohLTFWLzeVnAxGigcWPqhifFLbIsUcSPy0dkXH+N/s3dxkqgiMdFzUqOnXkhH9H
+         PWbsDnHWbdYE5hz5pFYmsCDn06tts5U5Y6IFMLqd/RdA5Cj0Pd8NJI1PTf8NGyu/iPRp
+         Hung==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+VY7crvbExdAc/2TYALZSt7S7bugh6YNFAMaaLjUNFw=;
-        b=xhoay1YQWADdXCbnPebFgKY75tNCvoFW2i7izAs362HaJgog/EbFxbcz9c/gOdP8ss
-         DIySq2vtJvOiZJIrmcLhLsc7VSycERudioGVOWE/6Zmc6ilewzpE7lfBKPUZjGiJU9MX
-         ifjTrQ/aWgjJuMcjBchNSq3lgiWQOELoFADE8GMNuG05iUtNbH76XV1rSfNYEPxev9dx
-         y+KpcMZWS29ikfw1nuFD8ctzFOCsxAksxN5Kd6ylzfX/rtfo6UVP+3Rne3N5utFQKqd1
-         A/0A1O9yNG0bayGXUYa2JW/xRQHDI3HXA2nmJmg0UOicbaMKpdBPsRRPecDyODCEs3yl
-         0cxg==
-X-Gm-Message-State: ANoB5pmdMp/9OnjWh0aAiN60QowC5TNp6jCbB27ukzHlMHTeeywq2T6i
-        zX+hqKnou90PnFW6zok9YXp4fw==
-X-Google-Smtp-Source: AA0mqf5vlrt8QgqNYBCNwPtmhdVADuoxYpe0R730tZANHrSzCtVLDy7r8sKENxv/bAQeSdkhPOLEKg==
-X-Received: by 2002:a19:6b09:0:b0:48a:b5ef:c49d with SMTP id d9-20020a196b09000000b0048ab5efc49dmr5243756lfa.313.1669298084161;
-        Thu, 24 Nov 2022 05:54:44 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a12-20020ac25e6c000000b004b0a1e77cb2sm128662lfr.137.2022.11.24.05.54.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Nov 2022 05:54:43 -0800 (PST)
-Message-ID: <4c24b52e-81f9-ff0d-38aa-fa5ae3296f5d@linaro.org>
-Date:   Thu, 24 Nov 2022 14:54:42 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MKy7telqHd11HTPv3+ayDIJY4ik4OoAmOld4l3dr43k=;
+        b=aLhWcUxlIevRYV7qeigeFTCm0rv0JPoN2yYN4f2HdTCAb96crCgeIgJ7HEdgCBbVoM
+         mczcqNXkiTtYpf+FF6NIOeuCBLWHZJSr4hiP4k53mGB3ueDKQ23eFGO7lJS5oaXmIhd9
+         6XbAn+4B8TN+EuIaM0X8X6lpTv2US3FO1k3S04VasqyvpthbJ4DfIQoK33GilOLHKTBj
+         oGtEmcP2IqFsCnQdVyABXGY/3AjfHjhfJfl7z5rZXdany3WJ2jWoKkCMLkJaZy1kkzo0
+         gh+UnNjSv8IauynWYWN0KwVVlH7TLcEySx1YL6KbXthZ/ROFuWWKXxOFptKHfyrPaD3T
+         GGDg==
+X-Gm-Message-State: ANoB5pn+bNm3YWzayR8Yx8W6FNVHb1vs/mwkYE6XROH6fXMq6nWat+NH
+        7pcRV9lb8GQAd2lbFte3jXB5ICxBQl7kQQ==
+X-Google-Smtp-Source: AA0mqf7iQOUQCknFxjDcRzNCKiB/vNg4WEpm3a6jb14JzuJO31BQ0KlJFBMCL8SGgWVuN8WlzZSzaQ==
+X-Received: by 2002:a5d:5191:0:b0:236:7c38:147b with SMTP id k17-20020a5d5191000000b002367c38147bmr13446500wrv.569.1669298211505;
+        Thu, 24 Nov 2022 05:56:51 -0800 (PST)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v14-20020adfebce000000b00241d21d4652sm1414322wrn.21.2022.11.24.05.56.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Nov 2022 05:56:51 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 00/10] arm64: dts: Add base device tree files for SM8550
+Date:   Thu, 24 Nov 2022 15:56:36 +0200
+Message-Id: <20221124135646.1952727-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 2/2] clocking-wizard: Add versal clocking wizard
- support
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-clk@vger.kernel.org
-Cc:     git@amd.com, devicetree@vger.kernel.org, michal.simek@xilinx.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com
-References: <20221122121255.6823-1-shubhrajyoti.datta@amd.com>
- <20221122121255.6823-3-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122121255.6823-3-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 13:12, Shubhrajyoti Datta wrote:
-> The Clocking Wizard for Versal adaptive compute acceleration platforms.
-> Add Versal clocking wizard support. The driver supports configurable
-> number of outputs.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> 
-> Changes in v3:
-> rename the clocks to clk_in1 and s_axi_clk in driver
-> 
-> Changes in v2:
-> rename the clocks clk_in1 to in1 and s_axi_clk to s_axi in driver
-> update the warn
-> Update the compatible to reflect versal
-> 
->  drivers/clk/xilinx/Kconfig                   |  13 +
->  drivers/clk/xilinx/Makefile                  |   1 +
->  drivers/clk/xilinx/clk-xlnx-clock-wizard-v.c | 739 +++++++++++++++++++
->  3 files changed, 753 insertions(+)
->  create mode 100644 drivers/clk/xilinx/clk-xlnx-clock-wizard-v.c
-> 
-> diff --git a/drivers/clk/xilinx/Kconfig b/drivers/clk/xilinx/Kconfig
-> index f205522c40ff..dd8e4a733d0b 100644
-> --- a/drivers/clk/xilinx/Kconfig
-> +++ b/drivers/clk/xilinx/Kconfig
-> @@ -29,3 +29,16 @@ config COMMON_CLK_XLNX_CLKWZRD
->  
->  	  If unsure, say N.
->  
-> +config COMMON_CLK_XLNX_CLKWZRD_V
-> +	tristate "Xilinx Versal Clocking Wizard"
-> +	depends on COMMON_CLK && OF
-> +	depends on HAS_IOMEM
-> +	help
-> +	  Support for the Versal Xilinx Clocking Wizard IP core clock generator.
-> +	  This driver supports the Versal Xilinx clocking wizard programmable clock
-> +	  synthesizer. The number of output is configurable in the design.
-> +
-> +	  If unsure, say N.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called clk-xlnx-clock-wizard-v.
-> diff --git a/drivers/clk/xilinx/Makefile b/drivers/clk/xilinx/Makefile
-> index 7ac1789c6b1b..9e7e1c1c026c 100644
-> --- a/drivers/clk/xilinx/Makefile
-> +++ b/drivers/clk/xilinx/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-$(CONFIG_XILINX_VCU)	+= xlnx_vcu.o
-> +obj-$(CONFIG_COMMON_CLK_XLNX_CLKWZRD_V)	+= clk-xlnx-clock-wizard-v.o
->  obj-$(CONFIG_COMMON_CLK_XLNX_CLKWZRD)	+= clk-xlnx-clock-wizard.o
-> diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard-v.c b/drivers/clk/xilinx/clk-xlnx-clock-wizard-v.c
-> new file mode 100644
-> index 000000000000..9afbbd5a2d15
-> --- /dev/null
-> +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard-v.c
-> @@ -0,0 +1,739 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Xilinx Versal Clocking Wizard driver
-> + *
-> + * Copyright (C) 2022, Advanced Micro Devices, Inc.
-> + *
-> + * Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#define WZRD_NUM_OUTPUTS	7
-> +#define WZRD_ACLK_MAX_FREQ	250000000UL
-> +
-> +#define WZRD_CLK_CFG_REG(n)	(0x330 + 4 * (n))
-> +
-> +#define WZRD_CLKFBOUT_1		0
-> +#define WZRD_CLKFBOUT_2		1
-> +#define WZRD_CLKOUT0_1		2
-> +#define WZRD_CLKOUT0_2		3
-> +#define WZRD_DESKEW_2		20
-> +#define WZRD_DIVCLK		21
-> +#define WZRD_CLKFBOUT_4		51
-> +#define WZRD_CLKFBOUT_3		48
-> +#define WZRD_DUTY_CYCLE		2
-> +#define WZRD_O_DIV		4
-> +
-> +#define WZRD_CLKFBOUT_FRAC_EN	BIT(1)
-> +#define WZRD_CLKFBOUT_PREDIV2	(BIT(11) | BIT(12) | BIT(9))
-> +#define WZRD_MULT_PREDIV2	(BIT(10) | BIT(9) | BIT(12))
-> +#define WZRD_CLKFBOUT_EDGE	BIT(8)
-> +#define WZRD_P5EN		BIT(13)
-> +#define WZRD_P5EN_SHIFT		13
-> +#define WZRD_P5FEDGE		BIT(15)
-> +#define WZRD_DIVCLK_EDGE	BIT(10)
-> +#define WZRD_P5FEDGE_SHIFT	15
-> +#define WZRD_CLKOUT0_PREDIV2	BIT(11)
-> +#define WZRD_EDGE_SHIFT		8
-> +
-> +#define WZRD_CLKFBOUT_L_SHIFT	0
-> +#define WZRD_CLKFBOUT_H_SHIFT	8
-> +#define WZRD_CLKFBOUT_L_MASK	GENMASK(7, 0)
-> +#define WZRD_CLKFBOUT_H_MASK	GENMASK(15, 8)
-> +#define WZRD_CLKFBOUT_FRAC_SHIFT	16
-> +#define WZRD_CLKFBOUT_FRAC_MASK		GENMASK(5, 0)
-> +#define WZRD_DIVCLK_DIVIDE_MASK		GENMASK(7, 0)
-> +#define WZRD_CLKOUT_DIVIDE_SHIFT	0
-> +#define WZRD_CLKOUT_DIVIDE_WIDTH	8
-> +#define WZRD_CLKOUT_DIVIDE_MASK		GENMASK(7, 0)
-> +#define WZRD_CLKOUT_FRAC_SHIFT		8
-> +#define WZRD_CLKOUT_FRAC_MASK		0x3ff
-> +
-> +#define WZRD_DR_MAX_INT_DIV_VALUE	32767
-> +#define WZRD_DR_STATUS_REG_OFFSET	0x04
-> +#define WZRD_DR_LOCK_BIT_MASK		BIT(0)
-> +#define WZRD_DR_INIT_REG_OFFSET		0x14
-> +#define WZRD_DR_DIV_TO_PHASE_OFFSET	4
-> +#define WZRD_DR_BEGIN_DYNA_RECONF	0x03
-> +#define WZRD_MIN_ERR			500000
-> +#define WZRD_USEC_POLL			10
-> +#define WZRD_TIMEOUT_POLL		1000
-> +#define WZRD_FRAC_GRADIENT		64
-> +#define PREDIV2_MULT			2
-> +
-> +#define DIV_O				1
-> +#define DIV_ALL				3
-> +
-> +#define WZRD_M_MIN			4
-> +#define WZRD_M_MAX			432
-> +#define WZRD_D_MIN			1
-> +#define WZRD_D_MAX			123
-> +#define WZRD_VCO_MIN			2160000000UL
-> +#define WZRD_VCO_MAX			4320000000UL
-> +#define WZRD_O_MIN			2
-> +#define WZRD_O_MAX			511
-> +
-> +/* Extract divider instance from clock hardware instance */
-> +#define to_clk_wzrd_divider(_hw) container_of(_hw, struct clk_wzrd_divider, hw)
-> +
-> +enum clk_wzrd_int_clks {
-> +	wzrd_clk_mul,
-> +	wzrd_clk_mul_div,
-> +	wzrd_clk_int_max
-> +};
-> +
-> +/**
-> + * struct clk_wzrd - Clock wizard private data structure
-> + *
-> + * @clk_data:		Clock data
-> + * @nb:			Notifier block
-> + * @base:		Memory base
-> + * @clk_in1:		Handle to input clock 'clk_in1'
-> + * @axi_clk:		Handle to input clock 's_axi_aclk'
-> + * @clks_internal:	Internal clocks
-> + * @clkout:		Output clocks
-> + */
-> +struct clk_wzrd {
-> +	struct clk_onecell_data clk_data;
-> +	struct notifier_block nb;
-> +	void __iomem *base;
-> +	struct clk *clk_in1;
-> +	struct clk *axi_clk;
-> +	struct clk *clks_internal[wzrd_clk_int_max];
-> +	struct clk *clkout[WZRD_NUM_OUTPUTS];
-> +};
+This series adds the base device tree files and MTP board support
+for the Qualcomm SM8550 SoC, including the clock, pinctrl, smmu,
+regulators, interconnect, cpufreq, and qup nodes.
 
-This is so similar to existing driver, so no to duplicating drivers.
-Integrate.
+The SM8550 is the latest Qualcomm Mobile Platform.
+See more at:
+https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-8-Gen-2-Product-Brief.pdf
 
-Best regards,
-Krzysztof
+The first verion of this patchset is here:
+https://lore.kernel.org/all/20221116103146.2556846-1-abel.vesa@linaro.org/
+
+Here is a branch where the entire support has been merged:
+https://git.codelinaro.org/linaro/qcomlt/linux/-/commits/topic/sm8550/next
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Abel Vesa (3):
+  dt-bindings: arm: qcom: Document SM8550 SoC and boards
+  arm64: dts: qcom: Add base SM8550 dtsi
+  arm64: dts: qcom: Add base SM8550 MTP dts
+
+Neil Armstrong (7):
+  arm64: dts: qcom: Add pm8010 pmic dtsi
+  arm64: dts: qcom: Add PM8550 pmic dtsi
+  arm64: dts: qcom: Add PM8550b pmic dtsi
+  arm64: dts: qcom: Add PM8550ve pmic dtsi
+  arm64: dts: qcom: Add PM8550vs pmic dtsi
+  arm64: dts: qcom: Add PMK8550 pmic dtsi
+  arm64: dts: qcom: Add PMR735d pmic dtsi
+
+ .../devicetree/bindings/arm/qcom.yaml         |    6 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/pm8010.dtsi          |   84 +
+ arch/arm64/boot/dts/qcom/pm8550.dtsi          |   59 +
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   59 +
+ arch/arm64/boot/dts/qcom/pm8550ve.dtsi        |   59 +
+ arch/arm64/boot/dts/qcom/pm8550vs.dtsi        |  194 +
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi         |   55 +
+ arch/arm64/boot/dts/qcom/pmr735d.dtsi         |  104 +
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  404 ++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          | 3522 +++++++++++++++++
+ 11 files changed, 4547 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8010.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550b.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550ve.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550vs.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmk8550.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735d.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8550.dtsi
+
+-- 
+2.34.1
 
