@@ -2,74 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F89637155
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 04:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 129C36371E1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 06:51:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiKXD5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 22:57:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43796 "EHLO
+        id S229552AbiKXFvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 00:51:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbiKXD5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 22:57:43 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B32FCE0D;
-        Wed, 23 Nov 2022 19:57:42 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id a22-20020a17090a6d9600b0021896eb5554so4014216pjk.1;
-        Wed, 23 Nov 2022 19:57:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=exuLTCBblWA2d/JP7u8oKeMGf5PXWykB86/4i9Wbh/M=;
-        b=hr6K9zyg+AR39BRQoJHmEss0N3MiSqsVD06Kd9z3WWN+JekCy1HvGRseGGWroTmLu1
-         /PiFQ8M40sxEvX+9vZziHvxnMB6UDLFk1BY8ppgS6Dr5w+wxAggmMdLuF/cxK7XjVx1z
-         ugHLlAhyeRHPCip+stn+U2JfwfH3YOtcjaftAPcthLrSjAAEW3hurC44U5+y6SpfpJ9S
-         ONqkS3/+2AHvZs0hfqey5vF3Iuu7QcHqP1R0Vs7CSaANK2IB4CQdWwTRZtumCuCHlsOE
-         nDmnF7ux+2MoGTuZ9QpkegtGevZQacMRU8P6HiwashAU2aHWyeTrvzu87YL1RGp5swnA
-         +GbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=exuLTCBblWA2d/JP7u8oKeMGf5PXWykB86/4i9Wbh/M=;
-        b=740jnLmwee5FAbPSw36cOkaBlo7vGzA6tyO83xjQlSu1RAMvPVxkmCiBWak092AF60
-         8lwKORM3w4hDhVfSfQUq5QgD07oGNpRTiq4RuKN7rhme6pVnxzsrweMxZfrvHrEbr2PR
-         71sz4QRg3XE5+4jEYYIL5N59kiuexjFbIOZCnSBFPHicWeCiFLSFmeg8+h/YQpSyftoR
-         mD3b6tZ+0Xnp4j/I2znryM6BlJCaaNr897+IeKntYoG843h+1zCwoDqH06N3mnimHC5t
-         yqXz3GOp/wXIsykU3WKZ/hjJbHleDJiAoWZ73eKnY1p8WmfPd1UMc5OHgLNMds4FI97E
-         P/3A==
-X-Gm-Message-State: ANoB5pkV7tm1lPCgTebUeEXM9aWgd4glzUHY8ps9s6wMklnWzA0lCI31
-        hTmiWXHYPMy5cpSvjq82DYT2Kfu+nqQ=
-X-Google-Smtp-Source: AA0mqf42boji5rZIS4W39HHOkshsHdTQaPTwfyggKfYr5MNWvQlRrXpIgEOJesBbefs2KyJ77U2qYg==
-X-Received: by 2002:a17:90a:de10:b0:218:c568:4214 with SMTP id m16-20020a17090ade1000b00218c5684214mr14456326pjv.135.1669262261351;
-        Wed, 23 Nov 2022 19:57:41 -0800 (PST)
-Received: from localhost.localdomain (2001-b400-e2d2-0afd-cc59-9e7c-2b31-e31c.emome-ip6.hinet.net. [2001:b400:e2d2:afd:cc59:9e7c:2b31:e31c])
-        by smtp.gmail.com with ESMTPSA id 124-20020a620582000000b00574866d619asm25998pff.119.2022.11.23.19.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 19:57:40 -0800 (PST)
-From:   Owen Yang <ecs.taipeikernel@gmail.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Bob Moragues <moragues@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Owen Yang <ecs.taipeikernel@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v4 2/2] arm64: dts: qcom: sc7280: Add DT for sc7280-herobrine-zombie
-Date:   Thu, 24 Nov 2022 11:57:29 +0800
-Message-Id: <20221124115712.v4.2.I56fb5003a3ac94e90d3068be274e6f9357fdd130@changeid>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
-References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+        with ESMTP id S229531AbiKXFvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 00:51:08 -0500
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2088.outbound.protection.outlook.com [40.107.103.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C5CC6891;
+        Wed, 23 Nov 2022 21:51:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j6280Gf6euV5R6AyZLQZLvwjPeJVlERRNFrMqzFxhExc+L5vZPRemAx9Dra6fKIV56Rhcb0+YLn5IxGV28jhwrKxrALgIxD4IBAkqjh4iD25FrjXGVx8CCU6Db/TPxPStljBdGboYM2YI8v+Ohoapl7OU9BPq9PKGDPmmQ9DU3k1xE6eHF846KdBLQTU3nWpxvv6wKbWmzOoj+vXdPtorcjFoJwNt0sc1Ge6VTxxRmUYVdEfkCa2Ojx29blaDxEx30rPYheo9sBu459ymI1OPgcjKK/zf1QeqSVXpFRxVmaSgKVigpsTHy/irXmnf84HAshqmeS9CGiin5hzyrx0HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uGD6RSOYAo0lFDou4r591YrE0IGwB+2GA06tmtcShsA=;
+ b=nIX0A9q+mnxN9u+6PYD12pRxItR40lkFEzuUE0Q/qj1OIVwenAbfwzuCGlw7nMtf/kC4yN+dQdS1C8P7DMns0VTtRi7IgrBjdLxPYt89Mv9hFFfWQE3glqioCE8FkUadgOo1Q436G/ZyTWGqqcF0NgSkz/heg/67brdch046Rjezp8hRG4O5Umoo8cnZl/LqE8k2JaWRvJkUACO5vbbG6yMMjDsgv1tXUSZ+CYnq4NeAtbbbmnZNkCRYCqBJf/f6lWv36C+9a/zI7nYR5ZrapKAipziexAQKa8JSwJrlhW1I3LaOMxZHPqjS/sfpe7cLSza1HM1S8GQ9cIDji3PRDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uGD6RSOYAo0lFDou4r591YrE0IGwB+2GA06tmtcShsA=;
+ b=T4dujJzDolQPKtGeNluJXq8NdnTxvZodXkPWG/2KfeRofCMiZcDMnFUWQcsMx6M88s6Tlo97QdhilgN6NusWEqgWDwYED2O5TFQfGiC/HOdshAT0q/u9Aae3D/LlcDWl2qBwJ3wxNW1ytVvVqNTpi0/iJPxO6mBTYlS/NhVEki0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from HE1PR0401MB2331.eurprd04.prod.outlook.com (2603:10a6:3:24::22)
+ by DU2PR04MB8600.eurprd04.prod.outlook.com (2603:10a6:10:2db::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.9; Thu, 24 Nov
+ 2022 05:51:02 +0000
+Received: from HE1PR0401MB2331.eurprd04.prod.outlook.com
+ ([fe80::a405:3557:91bc:9230]) by HE1PR0401MB2331.eurprd04.prod.outlook.com
+ ([fe80::a405:3557:91bc:9230%12]) with mapi id 15.20.5834.015; Thu, 24 Nov
+ 2022 05:51:02 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     lpieralisi@kernel.org
+Cc:     Frank.Li@nxp.com, aisheng.dong@nxp.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lznuaa@gmail.com,
+        manivannan.sadhasivam@linaro.org, maz@kernel.org,
+        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de
+Subject: [PATCH v13 0/2] PCI: endpoint: pci-epf-vntb: using platform MSI as doorbell
+Date:   Thu, 24 Nov 2022 00:50:34 -0500
+Message-Id: <20221124055036.1630573-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR05CA0043.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::20) To HE1PR0401MB2331.eurprd04.prod.outlook.com
+ (2603:10a6:3:24::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HE1PR0401MB2331:EE_|DU2PR04MB8600:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9eff9183-cf00-4844-57a2-08dacddfdd06
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: scYdUQxLrTkv+jpgejFmzv4cYMfxNOrbngVi6sX9I1o7r5Y/wVLPUjSnvfslMudnqUlqnRs3CncI2Zxp8nsRWR7lKXE6vV45tqWt2+ZbqaGK/s7LbDhTE1qX+uPwUWYm0fs2o1Dkm0vrFSnqpHZMjUZM09jIT31caB1hjIdFrT8KOHUIq1to1TJGZec/QSgH3MtnOv0/9pirs0HI1F6pDakKmF3NkIywBIVYfZ2UEEhPl43UMMwoFjMcM3ZTpFe2QOnhoPBOTWySr0aRGYz4WpulWxwHjkk6hZLrlqQq+y6+VN4UpDP8FXWA0XaXRl4KL/kSweW7lGPzV5GYYSZusEyc9MAZvy68R2D0UcT5izAB4RR4aAWpCahA18KHJw6etxWqojDDmxq+jEHEPEZodmse0fssYI954SndEV/d+6Cbot81a45+dIF+SieJw/CDbJSsou2w082miNpz72QNBlXHDjgtM5Q3IteL7DbzIoqQPZY5M5XoYN8ywkmaTjkH9DjrhzM8uXWcLUnC7XJVv/LSNBkMtZ3HS3V2jZoyWPoHhaRZiNxxceso1krEjFx8bv0ngkePHarzttebr0OjNg4iqaWF/31VI2+tvI30e+kTIDyCtq/SHtKGD3OWVxgH8CQvq9/f3ppCtDnX3pkDRYuvRhl3yKVwULw3PewjqDzUIUaUyYVYABEJKaSlIDNJixpI0BByBJrexM795l9SHmuxv1JOHZhXCA0CXcZ6ZmWKuj+xndi2lgpVy+gbuZzYg49upTDQKkuIM0Lik1ashQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0401MB2331.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(376002)(39860400002)(366004)(396003)(451199015)(7416002)(86362001)(38350700002)(4326008)(2906002)(83380400001)(4744005)(38100700002)(316002)(966005)(8936002)(8676002)(66476007)(1076003)(6916009)(2616005)(6486002)(36756003)(478600001)(186003)(6506007)(66946007)(6512007)(5660300002)(66556008)(26005)(6666004)(41300700001)(52116002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mzh4dHVuMlZGVCt2dHRnV2xTYjdIdzNBWXJLemUvVTF0ZUw1cGpLUC9wOFdN?=
+ =?utf-8?B?bFhXZHNZdG92NlBBUk1LL1ZaeXRyblVMVGo5ZDhQZGlHL1JqaUZrdTVTK0ZV?=
+ =?utf-8?B?UERzSzEyc1ppbTY0M29TU0tLb0M3UFpVODJmWmtERzJXNkhkN0s4YVlEZVM2?=
+ =?utf-8?B?dktSb1BWZzkxNGx0N2hSL1l2VkFjc3R1SUs2aGFyS0p6R1dCaG9Bd0NiemVp?=
+ =?utf-8?B?RG53Um5BWGVJZW01c204WWxLQm5LYjNvZlAxMVdFWVF0WW93N1BkRnhPVnB5?=
+ =?utf-8?B?R3Z6YXNMTUY1NENRYm0yRlZnVG93SldDdUFrTVh0QnJ4SHdaR1pnbzJKZlEy?=
+ =?utf-8?B?Q0xlYm1kZEYrUmhuaHR5by82UHlWeFd1OGlNTktXcGdwTTdyYmJWSDhENjgv?=
+ =?utf-8?B?c2ErZ0xRSnpqSGtFQmFKZ1F6WFpnbXdXc1lhTkpDZGxlUHBFeHBnYUtJQ3g5?=
+ =?utf-8?B?RmZBK2RuMXpVU1JSNk9xVWs2RThEMjZwYkhzbGFiNDR4NWpQR05aOWhMZVFY?=
+ =?utf-8?B?YUJXTVBYTWFJM2w3TEljN1hvWDV5U2xPcTdsc25tUjNoSE1RRDhxbWdTUWJp?=
+ =?utf-8?B?Y202NnNBTXFrTkdsVUlZSmppeTlRa0p6N3M3eWp6bFN4Y29JRXJXK0l6aUtW?=
+ =?utf-8?B?Yk9Na21Md0dxVTNpeTF3U1FLMmxHNGNJQTI2a3Z1VmtSRHlsQml6UDdsR1dt?=
+ =?utf-8?B?dTRTRWZiYnVmRnV4ZEFaQlVXSDlWNmNqZlF3dkdRMHBlTEhJQ1JkRHRnMzF2?=
+ =?utf-8?B?VVRhcUdMOUhvRk5aNEdrMDNPZHNNMS9KNVdWbjR5YUI0YmUwR1lpNzlOSXBU?=
+ =?utf-8?B?K1JubWRBU09RNk1tS1gydnMwMmtpem5zMHgvMk5ZSmE2VkNndmsvYmtMSFlj?=
+ =?utf-8?B?SVhYQkd2NGFEL2RZQWFsaEdGVFY2QWpJTy9iVzI1bUx1Q3JXK2gzQzBKenZq?=
+ =?utf-8?B?cFNMYXl2U2g0b3IwUFhMSVdOaTZ1UytHSXRCbFlGVFBwWlIvQjdqbXFURTBt?=
+ =?utf-8?B?aFZJK2VVdlFOOElpRzlCdWlHSnlRenk5eU90SnFwM1p1ZTEvVE5pVU5CdEwv?=
+ =?utf-8?B?YU1xYUxVMkxWQW5iYTdYQ2NST1JLSzE2TGRSTUZXQjBnbnA3d2xGME9DZWJu?=
+ =?utf-8?B?WGdVZm51MlRJc1RhbTVmRGNYRllCOVBzNUZhbTFrVHB2MS9jU3k2M3k5cTl2?=
+ =?utf-8?B?ZVJXQmhKTDBQUWttV1FqN01BOStvQ01QNE9ybk9nN1FUbVZWNlRUMk1SSmk1?=
+ =?utf-8?B?NDdyNEhQVTlWZisxOHAwNERIUkdvc09SclI1L2tja1pQQ2NvNmpGR21SZE5W?=
+ =?utf-8?B?dFNnb1Z6bGxBVE1tMFFEUDlRSVpqa1VackZWNXVFNFd6SmIxQmdYY1ZhS2lw?=
+ =?utf-8?B?ODlrQ21VdmJZaFBBYkJ4QW9idXRDOVExMEg1MkliRWErK3MwMmJhVnlLczJS?=
+ =?utf-8?B?VU1pL2pxb2hYbDdZcGFRSzhYQmFUVjVyRmR4MXN0WW52dkZGTGNKcmZBUHF5?=
+ =?utf-8?B?YWlENXYwZkFqaUpFWEY4NWJCVmVDS2RYUzNnV2pMQXorTkRQaUlzdy9VbEo5?=
+ =?utf-8?B?cUhoRWJLUEtwc3FjYm9xSXFUMHFpSkVrWTdUS09aREQvdDMzY3ZyTTIzWmVT?=
+ =?utf-8?B?eGxQcm9QMUhoZnpFam5mbE9sUTZLTHBDSEN1amRraDU4OWZwdGovcHFFekZJ?=
+ =?utf-8?B?KzZlYTNGcUdNK0ZQKzZSVjRkaG5aanpoL3dSWmR2RGlmYVhRNGpacWI3cDVi?=
+ =?utf-8?B?TzN3Tmo2dkF3SE1KVzZtQy9Sc3YrZlhIckI2QnJIdHNYRWQyR2FiNjU3Q2Ja?=
+ =?utf-8?B?VlpHUmNFZW40eTJ3dHEvcFgybnZNRlpTMFUzLys3YUpzM281S0V6OG1oMTY4?=
+ =?utf-8?B?TEFsY1YrOThhNXQ1M2lGN0dja2hKN1p1TmdrNUpTZDFwT0ZNWWNBWkltcVF3?=
+ =?utf-8?B?L0wyY3lqWENRdTNJSTFkQ2R2RnRsRVdCdm1FemllZGhFdzc0REoxd2lMVjBE?=
+ =?utf-8?B?alVtTnM2OHNEOHJGMno1b09tSzlTNWoyZ1FIN2x0RzBrYnFUOHJya2R1ejdY?=
+ =?utf-8?B?YTdPbzVEMmVhbkNKMEU5Ty9McUFpNFd3YkZFTWdVTlFCTVdXRmdmZnkwd2Y4?=
+ =?utf-8?Q?Yps/4abDaffzbUbKLMB9r6yY0?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9eff9183-cf00-4844-57a2-08dacddfdd06
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0401MB2331.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2022 05:51:02.4834
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z50+Be5+AtrHtobeSGEpyeZxucr2jBysIzLeqyoRq3aUL/XNuPPe4WMkh7dOiPIZ+yqBwguqD87Q1plHOTqkqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8600
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,394 +127,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT for sc7280-herobrine-zombie
+This patch continue https://lore.kernel.org/linux-pci/20220922163206.21281-1-Frank.Li@nxp.com/
+The above patch series fork to two parts. clean up and use msi as
+doorbell.
 
-Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
----
+clean up patch already been in https://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.git/commit/?h=pci/endpoint
 
-(no changes since v1)
+These patches based on the above git branch.
 
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../dts/qcom/sc7280-herobrine-zombie-lte.dts  |  16 +
- .../boot/dts/qcom/sc7280-herobrine-zombie.dts |  16 +
- .../dts/qcom/sc7280-herobrine-zombie.dtsi     | 309 ++++++++++++++++++
- 4 files changed, 343 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
+Change from v12 to v13:
+fixed Lorenzo Pieralisi comments in https://lore.kernel.org/imx/Yz%2FuMiElbqB3ThGd@lpieralisi/T/#u
+- update diagram
+- Add platform_msi_domain_free_irqs at failure path
+- sizeof(u32) is because hardcode by ntb_hw_epf.c
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index afe496a93f94..7b0644a39062 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -114,6 +114,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r1-lte.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-zombie-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-new file mode 100644
-index 000000000000..c9fe64529555
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie-lte.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Zombie board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7280-herobrine-zombie.dtsi"
-+#include "sc7280-herobrine-lte-sku.dtsi"
-+
-+/ {
-+	model = "Google Zombie with LTE";
-+	compatible = "google,zombie-sku512", "qcom,sc7280";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-new file mode 100644
-index 000000000000..0246c12b2f40
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Zombie board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7280-herobrine-zombie.dtsi"
-+#include "sc7280-herobrine-wifi-sku.dtsi"
-+
-+/ {
-+	model = "Google Zombie";
-+	compatible = "google,zombie", "qcom,sc7280";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-new file mode 100644
-index 000000000000..3de03602e1f7
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-zombie.dtsi
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Zombie board device tree source
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+#include "sc7280-herobrine.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
-+
-+/*
-+ * ADDITIONS TO FIXED REGULATORS DEFINED IN PARENT DEVICE TREE FILES
-+ *
-+ * Sort order matches the order in the parent files (parents before children).
-+ */
-+
-+&pp3300_codec {
-+	status = "okay";
-+};
-+
-+/* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
-+
-+ap_tp_i2c: &i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	trackpad: trackpad@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tp_int_odl>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+
-+		hid-descr-addr = <0x01>;
-+		vdd-supply = <&pp3300_z1>;
-+		post-power-on-delay-ms = <100>;
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&ap_sar_sensor_i2c {
-+	status = "okay";
-+};
-+
-+&ap_sar_sensor0 {
-+	status = "okay";
-+};
-+
-+&ap_sar_sensor1 {
-+	status = "okay";
-+};
-+
-+&mdss_edp {
-+	status = "okay";
-+};
-+
-+&mdss_edp_phy {
-+	status = "okay";
-+};
-+
-+/* For nvme */
-+&pcie1 {
-+	status = "okay";
-+};
-+
-+/* For nvme */
-+&pcie1_phy {
-+	status = "okay";
-+};
-+
-+&pwmleds {
-+	status = "okay";
-+};
-+
-+/* For eMMC */
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
-+
-+&ts_rst_conn {
-+	bias-disable;
-+};
-+
-+/* PINCTRL - BOARD-SPECIFIC */
-+
-+/*
-+ * Methodology for gpio-line-names:
-+ * - If a pin goes to herobrine board and is named it gets that name.
-+ * - If a pin goes to herobrine board and is not named, it gets no name.
-+ * - If a pin is totally internal to Qcard then it gets Qcard name.
-+ * - If a pin is not hooked up on Qcard, it gets no name.
-+ */
-+
-+&pm8350c_gpios {
-+	gpio-line-names = "FLASH_STROBE_1",		/* 1 */
-+			  "AP_SUSPEND",
-+			  "PM8008_1_RST_N",
-+			  "",
-+			  "",
-+			  "",
-+			  "PMIC_EDP_BL_EN",
-+			  "PMIC_EDP_BL_PWM",
-+			  "";
-+};
-+
-+&tlmm {
-+	gpio-line-names = "AP_TP_I2C_SDA",		/* 0 */
-+			  "AP_TP_I2C_SCL",
-+			  "SSD_RST_L",
-+			  "PE_WAKE_ODL",
-+			  "AP_SAR_SDA",
-+			  "AP_SAR_SCL",
-+			  "PRB_SC_GPIO_6",
-+			  "TP_INT_ODL",
-+			  "HP_I2C_SDA",
-+			  "HP_I2C_SCL",
-+
-+			  "GNSS_L1_EN",			/* 10 */
-+			  "GNSS_L5_EN",
-+			  "SPI_AP_MOSI",
-+			  "SPI_AP_MISO",
-+			  "SPI_AP_CLK",
-+			  "SPI_AP_CS0_L",
-+			  /*
-+			   * AP_FLASH_WP is crossystem ABI. Schematics
-+			   * call it BIOS_FLASH_WP_OD.
-+			   */
-+			  "AP_FLASH_WP",
-+			  "",
-+			  "AP_EC_INT_L",
-+			  "",
-+
-+			  "UF_CAM_RST_L",		/* 20 */
-+			  "WF_CAM_RST_L",
-+			  "UART_AP_TX_DBG_RX",
-+			  "UART_DBG_TX_AP_RX",
-+			  "",
-+			  "PM8008_IRQ_1",
-+			  "HOST2WLAN_SOL",
-+			  "WLAN2HOST_SOL",
-+			  "MOS_BT_UART_CTS",
-+			  "MOS_BT_UART_RFR",
-+
-+			  "MOS_BT_UART_TX",		/* 30 */
-+			  "MOS_BT_UART_RX",
-+			  "PRB_SC_GPIO_32",
-+			  "HUB_RST_L",
-+			  "",
-+			  "",
-+			  "AP_SPI_FP_MISO",
-+			  "AP_SPI_FP_MOSI",
-+			  "AP_SPI_FP_CLK",
-+			  "AP_SPI_FP_CS_L",
-+
-+			  "AP_EC_SPI_MISO",		/* 40 */
-+			  "AP_EC_SPI_MOSI",
-+			  "AP_EC_SPI_CLK",
-+			  "AP_EC_SPI_CS_L",
-+			  "LCM_RST_L",
-+			  "EARLY_EUD_N",
-+			  "",
-+			  "DP_HOT_PLUG_DET",
-+			  "IO_BRD_MLB_ID0",
-+			  "IO_BRD_MLB_ID1",
-+
-+			  "IO_BRD_MLB_ID2",		/* 50 */
-+			  "SSD_EN",
-+			  "TS_I2C_SDA_CONN",
-+			  "TS_I2C_CLK_CONN",
-+			  "TS_RST_CONN",
-+			  "TS_INT_CONN",
-+			  "AP_I2C_TPM_SDA",
-+			  "AP_I2C_TPM_SCL",
-+			  "PRB_SC_GPIO_58",
-+			  "PRB_SC_GPIO_59",
-+
-+			  "EDP_HOT_PLUG_DET_N",		/* 60 */
-+			  "FP_TO_AP_IRQ_L",
-+			  "",
-+			  "AMP_EN",
-+			  "CAM0_MCLK_GPIO_64",
-+			  "CAM1_MCLK_GPIO_65",
-+			  "WF_CAM_MCLK",
-+			  "PRB_SC_GPIO_67",
-+			  "FPMCU_BOOT0",
-+			  "UF_CAM_SDA",
-+
-+			  "UF_CAM_SCL",			/* 70 */
-+			  "",
-+			  "",
-+			  "WF_CAM_SDA",
-+			  "WF_CAM_SCL",
-+			  "",
-+			  "",
-+			  "EN_FP_RAILS",
-+			  "FP_RST_L",
-+			  "PCIE1_CLKREQ_ODL",
-+
-+			  "EN_PP3300_DX_EDP",		/* 80 */
-+			  "US_EURO_HS_SEL",
-+			  "FORCED_USB_BOOT",
-+			  "WCD_RESET_N",
-+			  "MOS_WLAN_EN",
-+			  "MOS_BT_EN",
-+			  "MOS_SW_CTRL",
-+			  "MOS_PCIE0_RST",
-+			  "MOS_PCIE0_CLKREQ_N",
-+			  "MOS_PCIE0_WAKE_N",
-+
-+			  "MOS_LAA_AS_EN",		/* 90 */
-+			  "SD_CD_ODL",
-+			  "",
-+			  "",
-+			  "MOS_BT_WLAN_SLIMBUS_CLK",
-+			  "MOS_BT_WLAN_SLIMBUS_DAT0",
-+			  "HP_MCLK",
-+			  "HP_BCLK",
-+			  "HP_DOUT",
-+			  "HP_DIN",
-+
-+			  "HP_LRCLK",			/* 100 */
-+			  "HP_IRQ",
-+			  "",
-+			  "",
-+			  "GSC_AP_INT_ODL",
-+			  "EN_PP3300_CODEC",
-+			  "AMP_BCLK",
-+			  "AMP_DIN",
-+			  "AMP_LRCLK",
-+			  "UIM1_DATA_GPIO_109",
-+
-+			  "UIM1_CLK_GPIO_110",		/* 110 */
-+			  "UIM1_RESET_GPIO_111",
-+			  "PRB_SC_GPIO_112",
-+			  "UIM0_DATA",
-+			  "UIM0_CLK",
-+			  "UIM0_RST",
-+			  "UIM0_PRESENT_ODL",
-+			  "SDM_RFFE0_CLK",
-+			  "SDM_RFFE0_DATA",
-+			  "WF_CAM_EN",
-+
-+			  "FASTBOOT_SEL_0",		/* 120 */
-+			  "SC_GPIO_121",
-+			  "FASTBOOT_SEL_1",
-+			  "SC_GPIO_123",
-+			  "FASTBOOT_SEL_2",
-+			  "SM_RFFE4_CLK_GRFC_8",
-+			  "SM_RFFE4_DATA_GRFC_9",
-+			  "WLAN_COEX_UART1_RX",
-+			  "WLAN_COEX_UART1_TX",
-+			  "PRB_SC_GPIO_129",
-+
-+			  "LCM_ID0",			/* 130 */
-+			  "LCM_ID1",
-+			  "",
-+			  "SDR_QLINK_REQ",
-+			  "SDR_QLINK_EN",
-+			  "QLINK0_WMSS_RESET_N",
-+			  "SMR526_QLINK1_REQ",
-+			  "SMR526_QLINK1_EN",
-+			  "SMR526_QLINK1_WMSS_RESET_N",
-+			  "PRB_SC_GPIO_139",
-+
-+			  "SAR1_IRQ_ODL",		/* 140 */
-+			  "SAR0_IRQ_ODL",
-+			  "PRB_SC_GPIO_142",
-+			  "",
-+			  "WCD_SWR_TX_CLK",
-+			  "WCD_SWR_TX_DATA0",
-+			  "WCD_SWR_TX_DATA1",
-+			  "WCD_SWR_RX_CLK",
-+			  "WCD_SWR_RX_DATA0",
-+			  "WCD_SWR_RX_DATA1",
-+
-+			  "DMIC01_CLK",			/* 150 */
-+			  "DMIC01_DATA",
-+			  "DMIC23_CLK",
-+			  "DMIC23_DATA",
-+			  "",
-+			  "",
-+			  "EC_IN_RW_ODL",
-+			  "HUB_EN",
-+			  "WCD_SWR_TX_DATA2",
-+			  "",
-+
-+			  "",				/* 160 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "",				/* 170 */
-+			  "MOS_BLE_UART_TX",
-+			  "MOS_BLE_UART_RX",
-+			  "",
-+			  "",
-+			  "";
-+};
+
+Frank Li (2):
+  PCI: endpoint: pci-epf-vntb: change doorbell register offset calc
+    mathod
+  PCI: endpoint: pci-epf-vntb: using platform MSI as doorbell
+
+ drivers/pci/endpoint/functions/pci-epf-vntb.c | 150 +++++++++++++++---
+ 1 file changed, 127 insertions(+), 23 deletions(-)
+
 -- 
-2.17.1
+2.34.1
 
