@@ -2,173 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 760BD637251
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 07:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ABFF6372C2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 08:22:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiKXGXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 01:23:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59792 "EHLO
+        id S229628AbiKXHMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 02:12:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiKXGXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 01:23:04 -0500
-Received: from mx.msync.work (mx.msync.work [185.250.0.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B683B27CDF;
-        Wed, 23 Nov 2022 22:22:56 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 647292AB88;
-        Thu, 24 Nov 2022 06:22:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1669270976; h=from:subject:date:message-id:to:mime-version:content-type:
-         content-transfer-encoding:content-language:in-reply-to:references;
-        bh=Jtkb8FsWa/xNXgK1fxfSzbSkqlyxfm+DrIrqY+1P7xA=;
-        b=excDdHXccoor+/ly4WQAAdddOMnCppJSjYZ+UA68KkBk4+F+Esr1QzonlhXwo3wqbMPIXM
-        GruVSUr6XCcxMvp6Efwj8YRh8iaurZhlF3GgaSCTHF/n7gChplhO3nykIx/s0+5buDsGs+
-        F7MARCewOgtRQZerb7SnMwfLfsxYEQKoKfHATh+4f312E6cLn+Xcmyk1HI8dDGnr6Yd4u4
-        FZU1D+GKOg+JWS9J0cqkf/qLNUObfdUcIXY5xgHsi0IyQ9drhM1aOsJQLCMaPjHLep+S69
-        KLENDe2wfgvLG8MeBRxYY3GsMn6nivs0vSpt19OGGG4chbWUwQxOrGyo5m8QDw==
-Message-ID: <c31cc8a3-8adc-3e93-f6fe-73cd7482429d@lexina.in>
-Date:   Thu, 24 Nov 2022 09:22:52 +0300
+        with ESMTP id S229718AbiKXHMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 02:12:18 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6663CCFBA6
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:16:36 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id s196so886354pgs.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 23:16:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9beI1qbDaBEZGBMzOodYXezAJNnkCn943LXJypsps08=;
+        b=jN9Iu2JG6Jbf9f/Vtx6/x8W99mbfvmkmA5JpUTuuOhHuX9hE65G+zwT360z98Yxh2l
+         i6PqDF91yJmzwCKNYEVFuLVfqGCqoHx9I7wNV8pa819eMDoiMR27SZF1GHdGnGDHcMWz
+         pqI4i03rsZDpQ60ONyvQHuYR+N3femATVqrSC4hLc3ih0MmJpf23tjAqEmigk+Q4lN5p
+         TjriD73VK+kqD8Wil5LA1NXQ4waHtGM3IZBFIczk95hCWTGki63dLVXFv0wvyqKSahPp
+         nd3iHhwTtHF7fG/CtXcp1E5PNjqsgHvp71L23Lt4pdmYQDMtQS6xnA3gM9hUIGynee9E
+         kaMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9beI1qbDaBEZGBMzOodYXezAJNnkCn943LXJypsps08=;
+        b=WLc2VAbXLlFJTZLZKPfL+b/VVRhH44XbS6MYDv8kOhYyyI5YWuYIX9SjegutRpO/zu
+         BjiDcCadD1LDbUhq5TUYNwbDRZmnKxKPCLcOo+Nn68jQDk3ic2AUjsJtU6ZJzjj6dUjY
+         0+wetjyAgvB0VkGJGnqBg6dO+y/cYozIj/2kBO10NNb7Df5Ryy3nHmgfVi9yD4K+zCnV
+         9LcD9NGQ7y66yg6eclHZeJg0ClJerR76M8gvDJt1VQsUa9W9xJWg+WwyLv+4hmkkcEda
+         MK+hETtECx2F9s67yj7spx0UJ/CvHd9SlT0k66+MFa5sfk5h4PFENctHXoeNboJjbcXN
+         bg/A==
+X-Gm-Message-State: ANoB5pl/EoI65InSSgA+4injvPuC10sDwm0+S6wb9cbQKMY1hqsWQ2Nx
+        CpK3a2tyHrGeqqib9OE/+H0Afw==
+X-Google-Smtp-Source: AA0mqf539xW7yp+XmSaeh7QyKEx/uI4+Px0TRaTKiiPa7cXAYmK2DoSN46/6FwkQRO+vECyNwcPwTg==
+X-Received: by 2002:aa7:8c19:0:b0:573:620a:3b1c with SMTP id c25-20020aa78c19000000b00573620a3b1cmr13160104pfd.50.1669274195379;
+        Wed, 23 Nov 2022 23:16:35 -0800 (PST)
+Received: from localhost ([122.172.85.60])
+        by smtp.gmail.com with ESMTPSA id k4-20020a170902c40400b001867fdec154sm414181plk.224.2022.11.23.23.16.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Nov 2022 23:16:34 -0800 (PST)
+Date:   Thu, 24 Nov 2022 12:46:32 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        linux-watchdog@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 0/9] dt-bindings: cleanup titles
+Message-ID: <20221124071632.5cadtc6pbdvdv3xb@vireshk-i7>
+References: <20221121110615.97962-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 0/4] arm64: amlogic: mmc: meson-gx: Add core, tx, rx
-Content-Language: en-MW
-To:     Jerome Brunet <jbrunet@baylibre.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20221110150035.2824580-1-adeep@lexina.in>
- <1jk03y37vs.fsf@starbuckisacylon.baylibre.com>
-From:   Vyacheslav <adeep@lexina.in>
-In-Reply-To: <1jk03y37vs.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221121110615.97962-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-Thanks for reply. Sorry for delay.
+On 21-11-22, 12:06, Krzysztof Kozlowski wrote:
+>  .../devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml        | 2 +-
+>  .../devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml         | 2 +-
+>  Documentation/devicetree/bindings/opp/opp-v1.yaml               | 2 +-
+>  Documentation/devicetree/bindings/opp/opp-v2-base.yaml          | 2 +-
+>  Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml      | 2 +-
+>  Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml    | 2 +-
+>  Documentation/devicetree/bindings/opp/opp-v2.yaml               | 2 +-
 
-
-13.11.2022 23:06, Jerome Brunet wrote:
-> 
-> On Thu 10 Nov 2022 at 18:00, Vyacheslav Bocharov <adeep@lexina.in> wrote:
-> 
->> The mmc driver use the same phase values (core - 180, tx/rx - 0) for all
->> meson64 platforms. However, some platforms (and even some boards) require
->> different values
-> 
-> Where does it stops ? Trying to solve the instabilities of this
-> IP/driver by tweaking the phase has proven to be dead-end.
-
-As a result, there is now a stalemate and various real-world operating 
-system projects use patches to change clock phases.
-
-
-> 
-> Soon, you'll end up tweaking these settings depending on the on
-> particular version of the device because it ships with a different eMMC
-> manufacturer. Then comes multi sourcing, sdio modules, sdcards ...
-> 
->> (axg for example use 270 degree for core clock).
-> 
-> Where ? Upstream linux does not
-
-Armbian/Home Assistant OS use core phase 270 for axg/g12/sm1 boards 
-(patches by Neil). On JetHub devices phase 270 is need with eMMC more 
-than 16Gb size.
-
-> 
-> u-boot does something of the sort for sm1 and I'm not entirely sure this
-> appropriate either.
-
-U-boot in Armbian/HAOS use same phase 270 or/and force low speed mode 
-for eMMC (limit clock freq).
-
-> 
-> IMO, this setting has more to do with the mode the mmc device is
-> operating at - not the platform or board.
-> 
-> We had some discussions with the HW designers at AML and they recommended
-> to keep a phase shift of 180 between the Core and Tx. They also
-> recommended to leave Rx alone (actually, starting from the v3, the Rx
-> field has no effect. It is not even wired to actual HW)
-
-I do not have access to AML engineers :)
-I can only test settings on several different boards. And it seems that 
-the phase settings depend not only on the board layout, but also on the 
-eMMC chip used. What to do about this (if not to use the magic of the 
-driver from AML) other than providing the ability to change the value in 
-devicetree for each board I can't think of yet.
-
-> 
-> Funnily, that is not what the vendor driver does. It also does A LOT of
-> extremely complex and 'debatable' things, which mostly mask how much the
-> driver is unstable.
-
-As far as I understand they just go through all possible values until 
-the first successful attempt to initialize the device.
-What do you think of the idea to implement such a variant for the 
-meson-gx driver?
-
-> 
-> With the upstream drivers, modes up to SDR50 and HS200 have been stable
-> lately. SDR104 and DDR modes (DDR52 or HS400) remains problematic.
-
-I have troubles with HS200, for example:
-Card Type [CARD_TYPE: 0x57]
-  HS200 Single Data Rate eMMC @200MHz 1.8VI/O
-  HS Dual Data Rate eMMC @52MHz 1.8V or 3VI/O
-  HS eMMC @52MHz - at rated device voltage(s)
-  HS eMMC @26MHz - at rated device voltage(s)
-
-> 
-> Changing the settings further would require more discussion with AML.
-> Blindly poking these value until you get something stablish for 1
-> particular use case is a recipe for disaster.
-
-I assumed the idea that the dts are edited by the maintainers or the 
-board developers and will be able to choose the values themselves.
-
-
-> 
->> This patch
->> transfers the values from the code to the variables in the device-tree files.
->> If not set in dts, use old default values.
-> 
-> I think going that way is opening a big can of worms.
-> I don't think this should be applied
-> 
->>
->> Vyacheslav Bocharov (4):
->>    arm64: amlogic: mmc: meson-gx: Add core, tx, rx eMMC/SD/SDIO phase
->>      clock settings from devicetree data
->>    arm64: amlogic: mmc: meson-gx: Add dts binding include for core, tx,
->>      rx eMMC/SD/SDIO phase clock settings from devicetree data
->>    arm64: amlogic: dts: meson: update meson-axg device-tree for new core,
->>      tx, rx phase clock settings.
->>    arm64: dts: docs: Update mmc meson-gx documentation for new config
->>      option amlogic,mmc-phase
->>
->>   .../bindings/mmc/amlogic,meson-gx.txt         |  7 ++++
->>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  3 ++
->>   drivers/mmc/host/meson-gx-mmc.c               | 18 +++++++---
->>   include/dt-bindings/mmc/meson-gx-mmc.h        | 35 +++++++++++++++++++
->>   4 files changed, 58 insertions(+), 5 deletions(-)
->>   create mode 100644 include/dt-bindings/mmc/meson-gx-mmc.h
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
 -- 
-Vyacheslav Bocharov
+viresh
