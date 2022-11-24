@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB439636F36
+	by mail.lfdr.de (Postfix) with ESMTP id 4489E636F35
 	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 01:48:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbiKXAsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Nov 2022 19:48:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43358 "EHLO
+        id S229645AbiKXAsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Nov 2022 19:48:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbiKXAs0 (ORCPT
+        with ESMTP id S229642AbiKXAs0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 23 Nov 2022 19:48:26 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65C3C8C95
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09118CB685
         for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 16:48:14 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id z4so259124wrr.3
+Received: by mail-wm1-x333.google.com with SMTP id l39-20020a05600c1d2700b003cf93c8156dso169714wms.4
         for <devicetree@vger.kernel.org>; Wed, 23 Nov 2022 16:48:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3eO0tOz0zwXGw3TOZj4ZrnPJ+UUmohAjz6RImQ5MpXA=;
-        b=I11XwzaEC+ir6A/K95aGzWsdpEp61vD3pFNkpvU4mVi3BC4N4n7ZvwuyozHApiUigC
-         qXzOG86bfe1PGX1/cl9CyC/Oroxv9LNWLw9nz4kTcU4RdoALJdfqlBNlWrBGtTunmba7
-         itwgKYDmITMGAwheA1RuaVXoo9kFRhgdbJoNTuki5KNPbEkMyYNaGR1WhWW9/1JQcE2T
-         ixXEg7UXqPNPRm1SdRatw5oWwlv9yBlCPCQaRHOlaXlNxFQzT1NExBPKuZOiVWdL6Jvu
-         yXTFGau1HwGpckNaTQs1PgbbctMervYDipU/qiPUctDZlLU6+mzRIpZ5B12Sap2chZyF
-         HKFA==
+        bh=gNXziAWeRjbSnLjIyAqIFKmN58WZ2py3nHOgpD+6wt8=;
+        b=Hy1so5B7geaFM1IXMTGxX5JXmXgo0d3B5upAtbSpgsjAk/2UjOT2gHJfrdSN+wxXUO
+         WI0Z62orpd561R41SBM7w5ewoEbZ5UZM38jFDQm6BpTYKAWj48vcII08LYCKJRg+QE0y
+         OpfO9p7ux6kX1Giwy2ZyLBzLY7W//KO7J3AX76NHEF+6JT1Dk6aS2ttLIy6W3vDb+vI9
+         uesiEcfN/aYlrqS9Lns7wHuS/cKaL645Ggi8qrMw2nmxRcDcgHvx2H9UEZo3L7kVkDuf
+         UM486geAyMtnb/qL69zg1D7v7FaUojuUisRNMC6WUbGO+V2n/V4Szf+7xCvpXiPEBwds
+         44Fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3eO0tOz0zwXGw3TOZj4ZrnPJ+UUmohAjz6RImQ5MpXA=;
-        b=qeEyZ8ong8meHsjnPjV5xC7jtu0wJp67icUVi17Q6/3hSsf3xyXVUs9mIKw5SywjoB
-         jBG5EHlgUA90HxU78Ogd7QfQeUibTqfHe+/XMQ4Ismd2t/gAYunsREe8qS4ttGx+NBgG
-         tK5/WgJTKkyw6XNRS16RBbuldztSN2GvzjzSwt5G0Mv9BkD6az6IkbMedmMRbyql0y7s
-         +uftJy93oH3zVqqzOdiokSf7g2Bw6XeN/PP7jZF/30/fn5JLjdgHvJUpJ7gASSWFqhH6
-         UAuR9/Djgb1E0KVLMewk/lDn63zZILq0E9art0/WbWqGy2XUFbDfG27L4y0ja9sqIrdY
-         e/ig==
-X-Gm-Message-State: ANoB5pmjRIwUY1Rj4en0FyCAiZI583FK5ThhONWZddsuTRWuUeflUTKs
-        3WbOxvfYTdGEHfKMwb+RSZnWCA==
-X-Google-Smtp-Source: AA0mqf4yy73QVZpMXWfU9xi9AHxR0nf+n1BO+7UBbflLWuG69yiXRQYNU/eR1741JbBoa77+rdSKkA==
-X-Received: by 2002:a5d:69c4:0:b0:236:c206:b2b1 with SMTP id s4-20020a5d69c4000000b00236c206b2b1mr7894471wrw.624.1669250893312;
-        Wed, 23 Nov 2022 16:48:13 -0800 (PST)
+        bh=gNXziAWeRjbSnLjIyAqIFKmN58WZ2py3nHOgpD+6wt8=;
+        b=6cFBLqBV1YZ6UyqwJ2XuVtGBTN6/5OBi8xS5tZemEu7ux13GCxsf7ykQ/OTNlG9JSA
+         Rv03bUjJodIUwyyniuiK7miZb78z0r8IF85zuMsDbUh5++53OpBEoS002ZLJb2ySsonU
+         nOT1qy75VI73+wAAvKFbw3+5ibUH1Bp5Ft1AMDzDRNJ94VWwvtRianxffYB1zuxpu7BK
+         4RcyGzbxfSCyvjEMsRvFnvjWsDj4LiU06jPAIcPo47IMa0L44K5HjbuSyCYY/x1mSjRy
+         qr7KrbixJVtzu7labmir3FV/n7svMIEyiuibLsWnKYrPdCIHVnkZgtB8wFb2vL6HhOhu
+         jP8w==
+X-Gm-Message-State: ANoB5pkJf6YJlVh0YKu/BcPXBDUZWJYTlUoVqzOYajVpviiLwJHx/FUf
+        gK6dyJoRqIVAJIsTk2INUI7u5w==
+X-Google-Smtp-Source: AA0mqf6YVz4IMn/YpDjmhDVs8Qlx7LojdAd8PiodySUyMSBe/MESilqDOspPk80Bu7xUlbNS6eEkTQ==
+X-Received: by 2002:a05:600c:1d9c:b0:3c6:bf1e:ebb9 with SMTP id p28-20020a05600c1d9c00b003c6bf1eebb9mr24942343wms.173.1669250894492;
+        Wed, 23 Nov 2022 16:48:14 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n38-20020a05600c3ba600b003c6bbe910fdsm5245076wms.9.2022.11.23.16.48.12
+        by smtp.gmail.com with ESMTPSA id n38-20020a05600c3ba600b003c6bbe910fdsm5245076wms.9.2022.11.23.16.48.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Nov 2022 16:48:12 -0800 (PST)
+        Wed, 23 Nov 2022 16:48:14 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
@@ -60,9 +60,9 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         agross@kernel.org, andersson@kernel.org,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         bryan.odonoghue@linaro.org
-Subject: [PATCH v3 07/18] dt-bindings: msm: dsi-controller-main: Fix clock declarations
-Date:   Thu, 24 Nov 2022 00:47:50 +0000
-Message-Id: <20221124004801.361232-8-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 08/18] dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
+Date:   Thu, 24 Nov 2022 00:47:51 +0000
+Message-Id: <20221124004801.361232-9-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221124004801.361232-1-bryan.odonoghue@linaro.org>
 References: <20221124004801.361232-1-bryan.odonoghue@linaro.org>
@@ -77,50 +77,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When converting from .txt to .yaml dt-binding descriptions we appear to
-have missed some of the previous detail on the number and names of
-permissible clocks.
+When converting from .txt to .yaml we didn't include descriptions for the
+existing regulator supplies.
 
-Fix this by listing the clock descriptions against the clock names at a
-high level.
+- vdd
+- vdda
+- vddio
+
+Add those descriptions into the yaml now as they were prior to the
+conversion. In the .txt description we marked these regulators as required,
+however, that requirement appears to have been in error.
+
+Taking the example of sc7180-trogdor-wormdingler.dtsi. The avdd and avee
+come from GPIO controlled external regulators, not the SoC and in this case
+there's no need for vddio to power an I/O bus. Similarly the regulators for
+the LCD are controlled by the panel driver not by the dsi-ctrl driver.
+
+It would be possible to connect a different type of panel to the DSI bus
+here in which case we may or may not want to make use of vdd, vdda or
+vddio.
+
+This is also the case for older chipsets like apq8064, msm8916 etc the vdd*
+regulators in the dsi-ctrl block are helpers not dependencies.
+
+Add the description of vdd, vdda and vddio back in for the existing
+upstream dts where vdd, vdda or vddio are already declared but, don't
+declare those regulators required - they are not SoC requirements.
 
 Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../display/msm/dsi-controller-main.yaml      | 20 ++++++++++++-------
- 1 file changed, 13 insertions(+), 7 deletions(-)
+ .../bindings/display/msm/dsi-controller-main.yaml    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index 0c09b9230b7f5..0fbb0c04f4b06 100644
+index 0fbb0c04f4b06..bcbcbdca1a78a 100644
 --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
 +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -36,13 +36,19 @@ properties:
-     maxItems: 1
+@@ -133,6 +133,18 @@ properties:
+       - port@0
+       - port@1
  
-   clocks:
--    items:
--      - description: Display byte clock
--      - description: Display byte interface clock
--      - description: Display pixel clock
--      - description: Display core clock
--      - description: Display AHB clock
--      - description: Display AXI clock
-+    description: |
-+      Several clocks are used, depending on the variant. Typical ones are::
-+       - bus:: Display AHB clock.
-+       - byte:: Display byte clock.
-+       - byte_intf:: Display byte interface clock.
-+       - core:: Display core clock.
-+       - core_mss:: Core MultiMedia SubSystem clock.
-+       - iface:: Display AXI clock.
-+       - mdp_core:: MDP Core clock.
-+       - mnoc:: MNOC clock
-+       - pixel:: Display pixel clock.
-+    minItems: 6
-+    maxItems: 9
- 
-   clock-names:
-     minItems: 6
++  vdd-supply:
++    description:
++      vdd regulator device node
++
++  vddio-supply:
++    description:
++      vdd-io regulator device node
++
++  vdda-supply:
++    description:
++      vdda regulator device node
++
+ required:
+   - compatible
+   - reg
 -- 
 2.38.1
 
