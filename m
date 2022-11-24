@@ -2,53 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D028A637B8B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD56F637B93
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 15:41:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiKXOkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 09:40:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
+        id S229623AbiKXOlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 09:41:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiKXOkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:40:15 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00E4C5B5F
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:40:14 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1oyDOR-0001xM-ET; Thu, 24 Nov 2022 15:39:59 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:5507:4aba:5e0a:4c27])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 9705A12864A;
-        Thu, 24 Nov 2022 14:39:58 +0000 (UTC)
-Date:   Thu, 24 Nov 2022 15:39:57 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     haibo.chen@nxp.com
-Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] can: flexcan: add auto stop mode for IMX93 to
- support wakeup
-Message-ID: <20221124143957.fr5fojvu3fa5vhnj@pengutronix.de>
-References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
+        with ESMTP id S229601AbiKXOlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 09:41:53 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C6AC67C3
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:41:49 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id d3so2232213ljl.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 06:41:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1501m/pV3I2YFjC6545ugxV+pZKwmEXspIUwDQHylu8=;
+        b=QviQSPMY7NLByd4ymW67yvSNaKAStoNc02Y22x30l3KGFw4xdTJMiKBVtwDd3q6Vuk
+         9wJpx0MyBFxvWQfs6hqMwBe7c7NBRXzorNRyl/macmEr/+fJFj+kk5SHn/50hOpKmMBj
+         OJwoouFRr1ZVKJkxCpGnkJOUysCEONMbC4yTkZNfbCG6EMNk0i/HnCQQRsV32aSrym7E
+         2JILI8LnuWbCWlJd3EcQCRP9Nka2ek5w/xafyMu1jEvpuxX5JVAPVu8HGrdRf17EAtim
+         oBUc2/U+bHS/Hm4Tgt5dUQcKw+jCjlFOw6Ou+96sZKncvogQSRRSIjhSR/zIlrEwdTHb
+         kd5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1501m/pV3I2YFjC6545ugxV+pZKwmEXspIUwDQHylu8=;
+        b=39O3vdisvkKJNWCmuhrKTEo8qDKysIXWiIFn2ubJGjXonnSpjzmEIWOtjVCiSfcF5f
+         3IQ0LmhtACR3q2EyXNCIt7kdDqs8EZIwodw4ueG4Jn8zYWZd+OyyJ2rlvTzmAwctMC0u
+         FzOwMg5RmwvznzOfMxLlUiQGhHoZhR5XhA3d/lBgwvOVAx5dcsSnc6wWrACU4Di0YjPy
+         PHutMxjV6DXputKP+RZRva2xkCPYuFAACrrorY9cIsBnl1AOwhQMLk1JvLrnvhN/0B3M
+         fpeXbKAOv1jltyfmaDUv00bfbpc9lAHKHkt9PDgT11xpqpH7AktFOz0mphy94SSv2GeB
+         YDaA==
+X-Gm-Message-State: ANoB5pmMLFKc6UQaRnGrE6eG1tJbsKr8ftF4l9/Ta9mUixa8Ey/2IFKY
+        Uq1F/LfLuzi45iYEA8/XtyAgAPWLMyEnZl49
+X-Google-Smtp-Source: AA0mqf6Y7CzwQt31av4VbTZbcOC08FcUE2XeKcinCHJppnxp7nxmHNN7YEI/yuhAeMEfQapEqEQFOg==
+X-Received: by 2002:a2e:321a:0:b0:279:7974:4471 with SMTP id y26-20020a2e321a000000b0027979744471mr2540317ljy.495.1669300907861;
+        Thu, 24 Nov 2022 06:41:47 -0800 (PST)
+Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
+        by smtp.gmail.com with ESMTPSA id w10-20020ac25d4a000000b004a8f824466bsm138637lfd.188.2022.11.24.06.41.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 06:41:47 -0800 (PST)
+Message-ID: <16acb2c7-cbaf-b8e0-9f3e-846672b29e14@linaro.org>
+Date:   Thu, 24 Nov 2022 15:41:44 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yhn2qnplluft6atz"
-Content-Disposition: inline
-In-Reply-To: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 02/10] arm64: dts: qcom: Add base SM8550 dtsi
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20221124135646.1952727-1-abel.vesa@linaro.org>
+ <20221124135646.1952727-3-abel.vesa@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221124135646.1952727-3-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,115 +79,258 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---yhn2qnplluft6atz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 22.11.2022 19:32:30, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
->=20
-> IMX93 do not contain a GPR to config the stop mode, it will set
-> the flexcan into stop mode automatically once the ARM core go
-> into low power mode (WFI instruct) and gate off the flexcan
-> related clock automatically. But to let these logic work as
-> expect, before ARM core go into low power mode, need to make
-> sure the flexcan related clock keep on.
->=20
-> To support stop mode and wakeup feature on imx93, this patch
-> add a new fsl_imx93_devtype_data to separate from imx8mp.
->=20
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+On 24.11.2022 14:56, Abel Vesa wrote:
+> Add base dtsi for SM8550 SoC and includes base description of
+> CPUs, GCC, RPMHCC, UART, interrupt controller, TLMM, reserved
+> memory, RPMh PD, TCSRCC, ITS, IPCC, AOSS QMP, LLCC, cpufreq,
+> interconnect, thermal sensor, cpu cooling maps and SMMU nodes
+> which helps boot to shell with console on boards with this SoC.
+> 
+> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 37 +++++++++++++++++++++++---
->  drivers/net/can/flexcan/flexcan.h      |  2 ++
->  2 files changed, 36 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index 9bdadd716f4e..0aeff34e5ae1 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -345,6 +345,15 @@ static struct flexcan_devtype_data fsl_imx8mp_devtyp=
-e_data =3D {
->  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
->  };
-> =20
-> +static struct flexcan_devtype_data fsl_imx93_devtype_data =3D {
-> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
-> +		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_AUTO_STOP_MODE |
-> +		FLEXCAN_QUIRK_SUPPORT_FD | FLEXCAN_QUIRK_SUPPORT_ECC |
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
-> +};
+[...]
+
+> +	reserved_memory: reserved-memory {
+> +		ranges;
 > +
->  static const struct flexcan_devtype_data fsl_vf610_devtype_data =3D {
->  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
->  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> @@ -532,9 +541,14 @@ static inline int flexcan_enter_stop_mode(struct fle=
-xcan_priv *priv)
->  		ret =3D flexcan_stop_mode_enable_scfw(priv, true);
->  		if (ret < 0)
->  			return ret;
-> -	} else {
-> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
-R) {
->  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
->  				   1 << priv->stm.req_bit, 1 << priv->stm.req_bit);
-> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE) {
-> +		/* For the auto stop mode, software do nothing, hardware will cover
-> +		 * all the operation automatically after system go into low power mode.
-> +		 */
-> +		return 0;
->  	}
-> =20
->  	return flexcan_low_power_enter_ack(priv);
-> @@ -551,7 +565,7 @@ static inline int flexcan_exit_stop_mode(struct flexc=
-an_priv *priv)
->  		ret =3D flexcan_stop_mode_enable_scfw(priv, false);
->  		if (ret < 0)
->  			return ret;
-> -	} else {
-> +	} else if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SETUP_STOP_MODE_GP=
-R) {
->  		regmap_update_bits(priv->stm.gpr, priv->stm.req_gpr,
->  				   1 << priv->stm.req_bit, 0);
->  	}
-> @@ -560,6 +574,12 @@ static inline int flexcan_exit_stop_mode(struct flex=
-can_priv *priv)
->  	reg_mcr &=3D ~FLEXCAN_MCR_SLF_WAK;
->  	priv->write(reg_mcr, &regs->mcr);
-> =20
-> +	/* For the auto stop mode, hardware will exist stop mode
-                                                 ^^^^^
-                                                 exit?
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+#address-cells = <2>;
+#size-cells = <2>;
+ranges;
 
-No need to resend.
 
-Marc
+> +
+> +		hyp_mem: hyp-region@80000000 {
+> +			reg = <0x0 0x80000000 0x0 0xa00000>;
+> +			no-map;
+> +		};
+> +
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+> +
+> +		sdhc_2: mmc@8804000 {
+> +			compatible = "qcom,sm8550-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0x0 0x08804000 0x0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			iommus = <&apps_smmu 0x540 0x0>;
+> +			qcom,dll-config = <0x0007642c>;
+> +			qcom,ddr-config = <0x80040868>;
+> +			power-domains = <&rpmhpd SM8550_CX>;
+> +			operating-points-v2 = <&sdhc2_opp_table>;
+> +
+> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+> +
+> +			/* Forbid SDR104/SDR50 - broken hw! */
+> +			sdhci-caps-mask = <0x3 0x0>;
+> +
+> +			status = "disabled";
+> +
+8450 needs `dma-coherent` there - I don't have any downstream for 8550
+to cross reference, could you check if this is the case here too?
 
---yhn2qnplluft6atz
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+> +			sdhc2_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-19200000 {
+> +					opp-hz = /bits/ 64 <19200000>;
+> +					required-opps = <&rpmhpd_opp_min_svs>;
+> +				};
+> +
+> +				opp-50000000 {
+> +					opp-hz = /bits/ 64 <50000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_svs>;
+> +				};
+> +
+> +				opp-202000000 {
+> +					opp-hz = /bits/ 64 <202000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		pdc: interrupt-controller@b220000 {
+> +			compatible = "qcom,sm8550-pdc", "qcom,pdc";
+> +			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+> +			qcom,pdc-ranges = <0 480 94>, <94 609 31>,
+> +					  <125 63 1>, <126 716 12>,
+> +					  <138 251 5>;
+> +			#interrupt-cells = <2>;
+> +			interrupt-parent = <&intc>;
+> +			interrupt-controller;
+> +		};
+> +
+> +		tsens0: thermal-sensor@c271000 {
+> +			compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c271000 0 0x1000>, /* TM */
+> +			      <0 0x0c222000 0 0x1000>; /* SROT */
+> +			#qcom,sensors = <16>;
+> +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		tsens1: thermal-sensor@c272000 {
+> +			compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c272000 0 0x1000>, /* TM */
+> +			      <0 0x0c223000 0 0x1000>; /* SROT */
+> +			#qcom,sensors = <16>;
+> +			interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		tsens2: thermal-sensor@c273000 {
+> +			compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c273000 0 0x1000>, /* TM */
+> +			      <0 0x0c224000 0 0x1000>; /* SROT */
+> +			#qcom,sensors = <16>;
+> +			interrupts = <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		aoss_qmp: power-controller@c300000 {
+> +			compatible = "qcom,sm8550-aoss-qmp", "qcom,aoss-qmp";
+> +			reg = <0 0x0c300000 0 0x400>;
+> +			interrupt-parent = <&ipcc>;
+> +			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
+> +						     IRQ_TYPE_EDGE_RISING>;
+> +			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +			#clock-cells = <0>;
+> +		};
+> +
+> +		sram@c3f0000 {
+> +			compatible = "qcom,rpmh-stats";
+> +			reg = <0x0 0x0c3f0000 0x0 0x400>;
+> +		};
+> +
+> +		spmi_bus: spmi@c400000 {
+> +			compatible = "qcom,spmi-pmic-arb";
+> +			reg = <0x0 0x0c400000 0x0 0x3000>,
+> +			      <0x0 0x0c500000 0x0 0x4000000>,
+> +			      <0x0 0x0c440000 0x0 0x80000>,
+> +			      <0x0 0x0c4c0000 0x0 0x20000>,
+> +			      <0x0 0x0c42d000 0x0 0x4000>;
+You use 0 and 0x0 inconsistently in reg. I propose to use 0 everywhere.
 
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmN/gjoACgkQrX5LkNig
-011sXQf+MCoRIn0fsXC1+erxc4xdoDvO1PaSDE7V5RT0iSFDX8tNKFew3uSnzPTi
-SPTuiIiEGy0SsJB108lLBxw+sS7x4+3ybV10clPL9Q4jEOgTJPthr2Iz8g8YQem6
-17gmmNv0kVyVSwGw1frreiuaxQ2fOaccMrr0Cgns2K8CzFpnyxQkIHDPM75L9IGw
-W6uOh1lFWYwW7W3RqZWruGb2QtBMVJFjKc0MTJO8Mqfiuo+EXAogIjbEAdKpJM9r
-9zHXgJrrN8m9xPwXF3zBYd1SnY/c0Fzy5xvVllbjVGKFIPfG2F5CCCLc6B/fYgml
-Cucg2bGPSmkvT9RDnHppJ7qyGfBScQ==
-=31C3
------END PGP SIGNATURE-----
 
---yhn2qnplluft6atz--
+> +			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
+> +			interrupt-names = "periph_irq";
+> +			interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
+> +			qcom,ee = <0>;
+> +			qcom,channel = <0>;
+> +			qcom,bus-id = <0>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <4>;
+> +		};
+> +
+
+[...]
+
+> +
+> +		pmu@24091000 {
+> +			compatible = "qcom,sm8550-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
+> +			reg = <0x0 0x24091000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+> +			interconnects = <&mc_virt MASTER_LLCC 3 &mc_virt SLAVE_EBI1 3>;
+> +
+> +			operating-points-v2 = <&llcc_bwmon_opp_table>;
+> +
+> +			llcc_bwmon_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-0 {
+> +					opp-peak-kBps = <2086000>;
+> +				};
+Please insert a newline after each node.
+
+> +				opp-1 {
+> +					opp-peak-kBps = <2929000>;
+> +				};
+> +				opp-2 {
+> +					opp-peak-kBps = <5931000>;
+> +				};
+> +				opp-3 {
+> +					opp-peak-kBps = <6515000>;
+> +				};
+> +				opp-4 {
+> +					opp-peak-kBps = <7980000>;
+> +				};
+> +				opp-5 {
+> +					opp-peak-kBps = <10437000>;
+> +				};
+> +				opp-6 {
+> +					opp-peak-kBps = <12157000>;
+> +				};
+> +				opp-7 {
+> +					opp-peak-kBps = <14060000>;
+> +				};
+> +				opp-8 {
+> +					opp-peak-kBps = <16113000>;
+> +				};
+> +			};
+> +		};
+> +
+> +		pmu@240b6400 {
+> +			compatible = "qcom,sm8550-cpu-bwmon", "qcom,msm8998-bwmon";
+> +			reg = <0x0 0x240b6400 0x0 0x600>;
+> +			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3>;
+> +
+> +			operating-points-v2 = <&cpu_bwmon_opp_table>;
+> +
+> +			cpu_bwmon_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-0 {
+> +					opp-peak-kBps = <4577000>;
+> +				};
+And here.
+
+> +				opp-1 {
+> +					opp-peak-kBps = <7110000>;
+> +				};
+> +				opp-2 {
+> +					opp-peak-kBps = <9155000>;
+> +				};
+> +				opp-3 {
+> +					opp-peak-kBps = <12298000>;
+> +				};
+> +				opp-4 {
+> +					opp-peak-kBps = <14236000>;
+> +				};
+> +				opp-5 {
+> +					opp-peak-kBps = <16265000>;
+> +				};
+> +			};
+> +		};
+> +
+
+The rest looks good!
+
+Konrad
