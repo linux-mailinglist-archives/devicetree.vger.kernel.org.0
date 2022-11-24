@@ -2,139 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C2863771D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F28F637729
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 12:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiKXLF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 06:05:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
+        id S229947AbiKXLIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 06:08:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiKXLF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:05:56 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E3A45C0CC;
-        Thu, 24 Nov 2022 03:05:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B7B3E620C5;
-        Thu, 24 Nov 2022 11:05:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F74BC433D6;
-        Thu, 24 Nov 2022 11:05:52 +0000 (UTC)
-Message-ID: <de2198dd-16a7-f412-932d-a75cccf801e0@xs4all.nl>
-Date:   Thu, 24 Nov 2022 12:05:51 +0100
+        with ESMTP id S229989AbiKXLIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 06:08:09 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570ED6204B
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:08:03 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id n7so1932651wrr.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 03:08:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FPB19jMhZvyEVpBKn475+Cr5xWHotqcvvsxXAViZaPU=;
+        b=IO1pN6Vibkb1R1OXiyH+6B69g6wuY7De8RS4j+IZAzelcUe5kls4IEzLsERyHvomF7
+         WYTU2v13hkY887ycwQNlJQ6JwUqMCTsaFFAfllHoqtb0avEKhW710EL6L6ny5eaS5AVv
+         2mS5bCorzVib5qAL/NYKF90ieAQEEGA8T5AdmmWGwVDNxeocoAOtdwQMu/i3w3lHI9zM
+         o7O3hppPzsR7XQhXHQs7TV2eK8e59UKB5ckS8ZAkidKhJLgLalIjcJgoTx0F5F+hcuww
+         qaUFt5Vw6KmZIhTteI+5rHGgtnB6EOtjdWtaNEObcfLMXnihFWq2O8gAZFWoQX95MIa0
+         Cc9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FPB19jMhZvyEVpBKn475+Cr5xWHotqcvvsxXAViZaPU=;
+        b=bW4CQwavvyHPvANIbkSiM3D4GPn7b/azc1hNTeM5Xf6QUy90RmGGIxrF4bmCFag9ol
+         WYaCedXp3qcRikxI5Z6HrZPmidjTmEZFxfDWcuyz/8G2HXnSvSqrfAcIa/FkdVpU7k/B
+         RnpEIvSuq6bGalKTDSxP1I/ktaqLOm9+U+Du/kwuR+LYbe02YAK2ro1voBxftLLSmKBV
+         Q3QjPzvrUOlvRf/EYQgOFtRW2ozdZHFOepmbs7DSlKUIu7BJUQP520+ioLiyxiQTue6A
+         2pMZCczSRQWSRsczfq5CiktCdJfpoS6VoGiy8GE+fX/kPCK+Bxb1Ei9QIWIVyh16U/KX
+         agLQ==
+X-Gm-Message-State: ANoB5plZOAUdqqn0Houtw9ChSGTiupFFzsM1OvpVFwPty/vF5xi6ZAVz
+        mXa2qNyboYq8yqw5lyXNW6NO9pHm/THitQ==
+X-Google-Smtp-Source: AA0mqf5SBvq8eqFA1uFxwfZGOf2choXZwu1RhElPM+LaHZM2Un9OM42jwAmLZOz65pYdK+c+UdmU4Q==
+X-Received: by 2002:a05:6000:12d1:b0:236:71fe:c9c5 with SMTP id l17-20020a05600012d100b0023671fec9c5mr19264996wrx.677.1669288081537;
+        Thu, 24 Nov 2022 03:08:01 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id bd9-20020a05600c1f0900b003c6bd12ac27sm1382131wmb.37.2022.11.24.03.08.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 03:08:00 -0800 (PST)
+Message-ID: <83a961ef-132e-6b9a-37e0-182ea2025be4@linaro.org>
+Date:   Thu, 24 Nov 2022 11:07:55 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: mediatek: Rename child node
- names for decoder
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 00/10] misc: fastrpc: Add audiopd support
 Content-Language: en-US
-To:     =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>, "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-References: <20220930112237.14411-1-allen-kh.cheng@mediatek.com>
- <20220930112237.14411-2-allen-kh.cheng@mediatek.com>
- <20220930220011.GA1107972-robh@kernel.org>
- <ffc56eb60a3ef74c815c8d3c170a0df51958e20d.camel@mediatek.com>
- <24361bea-ecfe-b6e1-e755-5151220767f2@linaro.org>
- <722194a3d413ca15069554ebab1f34dec25057eb.camel@mediatek.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <722194a3d413ca15069554ebab1f34dec25057eb.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Abel Vesa <abel.vesa@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ekansh Gupta <ekangupt@qti.qualcomm.com>,
+        Bharath Kumar <bkumar@qti.qualcomm.com>,
+        Himateja Reddy <hmreddy@quicinc.com>,
+        Anirudh Raghavendra <araghave@quicinc.com>,
+        Greg KH <gregkh@linuxfoundation.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+References: <20220909133938.3518520-1-abel.vesa@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220909133938.3518520-1-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Greg,
 
-On 05/10/2022 13:58, Allen-KH Cheng (程冠勳) wrote:
-> Hi Krzysztof,
+On 09/09/2022 14:39, Abel Vesa wrote:
+> This patchset adds audiopd support to fastrpc.
 > 
-> On Wed, 2022-10-05 at 09:30 +0200, Krzysztof Kozlowski wrote:
->> On 05/10/2022 09:21, Allen-KH Cheng (程冠勳) wrote:
->>> Hi Rob,
->>>
->>> On Fri, 2022-09-30 at 17:00 -0500, Rob Herring wrote:
->>>> On Fri, Sep 30, 2022 at 07:22:36PM +0800, Allen-KH Cheng wrote:
->>>>> In order to make the names of the child nodes more generic, we
->>>>> rename
->>>>> "vcodec" to "video-codec" for decoder in patternProperties and
->>>>> example.
->>>>
->>>> They are either generic or they aren't. Until something generic
->>>> is 
->>>> defined, I don't think it's worth the churn to change.
->>>>
->>>>
->>>>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->>>>> Reviewed-by: AngeloGioacchino Del Regno <
->>>>> angelogioacchino.delregno@collabora.com>
->>>>> ---
->>>>>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml    | 8
->>>>> ++++----
->>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>> subdev-
->>>>> decoder.yaml
->>>>> b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>> subdev-
->>>>> decoder.yaml
->>>>> index c4f20acdc1f8..67fde48f991c 100644
->>>>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>> subdev-decoder.yaml
->>>>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
->>>>> subdev-decoder.yaml
->>>>> @@ -91,7 +91,7 @@ properties:
->>>>>  
->>>>>  # Required child node:
->>>>>  patternProperties:
->>>>> -  '^vcodec-lat@[0-9a-f]+$':
->>>>> +  '^video-codec-lat@[0-9a-f]+$':
->>>>
->>>> Just 'video-codec' doesn't work?
->>>>
->>>
->>> Thanks for your reply.
->>>
->>> hmm, I think 'vidoe-codec' does wrok.
->>>
->>> There are two seperate hardwares for the MTK video codec.
->>> codec-lat and codec-core.
->>>
->>> Is it ok to keep two child node names for various hardwares?
->>>
->>
->> Aren't they still codecs?
->>
->> Best regards,
->> Krzysztof
+> The v2 of this patchset is here:
+> https://lore.kernel.org/all/20220902154900.3404524-1-abel.vesa@linaro.org/
 > 
-> Yes, They are both hardware deocders. Lat is responsible for the
-> bitstream and write the outcome to the lat buffer. Core will decode the
-> lat buffer and write the outcome to the output buffer. Each frame will
-> be decoded cyclically by these two hardware deocders.
+> Abel Vesa (10):
+>    misc: fastrpc: Rename audio protection domain to root
+>    misc: fastrpc: Add reserved mem support
+>    dt-bindings: misc: fastrpc: Document memory-region property
+>    misc: fastrpc: Add fastrpc_remote_heap_alloc
+>    misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
+>    misc: fastrpc: Rework fastrpc_req_munmap
+>    misc: fastrpc: Add support for audiopd
+>    misc: fastrpc: Safekeep mmaps on interrupted invoke
+>    misc: fastrpc: Add mmap request assigning for static PD pool
+>    misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
+> 
 
-So is this patch OK to be merged? Or do you still want changes?
+Do you think you could pick these fastrpc patches as it is or should I 
+collect these patches with other fastrpc patches on the list and send them?
 
-Regards,
+As there are few more of fastrpc patches that could go in 6.2.
 
-	Hans
+thanks,
+Srini
+
+
+
+>   .../bindings/misc/qcom,fastrpc.yaml           |   5 +
+>   drivers/misc/fastrpc.c                        | 260 +++++++++++++++---
+>   include/uapi/misc/fastrpc.h                   |   7 +
+>   3 files changed, 240 insertions(+), 32 deletions(-)
+> 
