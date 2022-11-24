@@ -2,80 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC4763746E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 09:49:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8033163748A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 09:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbiKXItt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 03:49:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52112 "EHLO
+        id S230059AbiKXIzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 03:55:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbiKXItt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 03:49:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92276CFA47;
-        Thu, 24 Nov 2022 00:49:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 47B76B82720;
-        Thu, 24 Nov 2022 08:49:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3300C433C1;
-        Thu, 24 Nov 2022 08:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669279786;
-        bh=74rMi1fnFVj4Wd/xlpYIITFOJt6EYcXTgY4fVmwfo7U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LQFNOI07kKjjLyg00oMl0ct7frcN8Qn/1hQz6zwwwsTFIP8fl1ffxNqnS6kpaNdcJ
-         bBy4WCSPqsNz5O9FkRtAV4RZOIdUk/aMKOl2w2kKk81zQbP5LndUUAfJmVjt5PkbBh
-         p2E3ECy1kuyKxwNyMu++I8oYnqaYOiu4JmGIvcQcXOJ1IzqK99AX3NaoLfG9gQPTIg
-         uxSa4W3zDSQ6zYT4GToHNvF8WYss9yJT4BWaVj9XO0R9iBqlLv3Ros68B8i82MvFnn
-         YCFIXBdAODmCGc+ZepurOJKsr5dF0P2ubo6Mb3tsN0VDWkx6V8n73XE5aJJJniHfls
-         guqOp9BkrSPAQ==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     mario.tesi@st.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, lorenzo.bianconi@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add ism330is
-Date:   Thu, 24 Nov 2022 09:49:28 +0100
-Message-Id: <a7a8a00037952928364269615ee8b6da4547795b.1669279604.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <cover.1669279604.git.lorenzo@kernel.org>
-References: <cover.1669279604.git.lorenzo@kernel.org>
+        with ESMTP id S229951AbiKXIy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 03:54:57 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5E510CEAA
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 00:54:56 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id j196so1132064ybj.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 00:54:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l8R3F5kALGt7fZIFbbdQLZusILmf2AipY3tz1OkoyZg=;
+        b=BoTT++1ZJhXWkMbqvMW/FRK8+Jp2xAbHiq27Xk1WEsyCZ7YGMXSoiYjXndFPTgLW3E
+         Ak39gt1gk7HkJXwvl1ze3jPLtMdIGBkXI3TD6mJazIm5soc2L/KIXoktqhUnYB7k3AQO
+         KG1FZND6mzdGbeZJcgp5NydoulbO1aJlSobDLYBYcFhiuvo+RXDBHhq4BJZm3yE8BZgN
+         I5G/E5r2fLHt1x+F6ZSSRS9XeYFfiCEbobbo8jrrucKv3IHG/S65AHc3Onjwy2SWLsNy
+         VHQs63G8Pxalw2RYjcDYGG1XwzMT0fcZaklDmBMHeJGkteMnQ8zmkk6t27JTibOCODaC
+         H84A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l8R3F5kALGt7fZIFbbdQLZusILmf2AipY3tz1OkoyZg=;
+        b=ALgL578YVyL06B62wwKe8FYf5OJXOFRz/YCIqlU/CQiGHfHXQPxaQDzPBegP52WR17
+         +zjdxrHzvVfCtN726sPcXaxpjH0XEGe80mQE6ZEfdxaWIAyJywYi13Nr3ME7EqFI83Ri
+         m/Mn/DAWU8qW+VbsWUjfsm7YSIsqH91NMNYflkA0RyO6xsuFQdenPzrNmM3GEP+a+fPq
+         A+5k2ERhikOKV9BDmYLrt2l+pNfYp5SOlQDV6pZInkyN6Dt7MWU1S3bBXYC3aGAsmbwY
+         KKNwEWPzX7EvpDhmS3MyxxNVJnzJFgqqHtB9jRl8tByI/0mDG40qxN3ScjxM8p3RDXd0
+         BKoQ==
+X-Gm-Message-State: ANoB5pk4PESLNNy3ZaRr6xUtyMw1IQ6iMafNgJojy62nm9mWudHyKyX7
+        1A9AFzeZO3KNxntK/tpQJaZolUCZLYTXZZv5jwVDQQ==
+X-Google-Smtp-Source: AA0mqf7HBKYpljZej6bXe7Ojnqxlh65R7Qj4zpxpnR7ZPi1/Wnuyt44OyTeMDenQUWF4/SbRV3buTCxQI4MkWFzQ1DI=
+X-Received: by 2002:a25:d8d4:0:b0:6f0:36e2:5fc2 with SMTP id
+ p203-20020a25d8d4000000b006f036e25fc2mr5552927ybg.52.1669280095520; Thu, 24
+ Nov 2022 00:54:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221121123803.3786-1-zhuyinbo@loongson.cn> <20221121123803.3786-2-zhuyinbo@loongson.cn>
+ <CACRpkda1adiNwbTZHdAyHKny3r5FFMP_XXVGbo1vnCdw9U1gNg@mail.gmail.com>
+ <8a7abd77-9540-efa8-6f67-908530e85399@loongson.cn> <CACRpkdb=wdydOYCcrpjLSyvfVO--_ezXsFQ46qwfVCiiTd5fNw@mail.gmail.com>
+ <4c02570e-03d5-85f1-73fb-b66d6170c875@loongson.cn>
+In-Reply-To: <4c02570e-03d5-85f1-73fb-b66d6170c875@loongson.cn>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 24 Nov 2022 09:54:43 +0100
+Message-ID: <CACRpkdbgP9m40t_Ky4H+SQi9TELikomT2M-JpF7+auKmzOxQdg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] gpio: loongson: add gpio driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device bindings for ism330is IMU sensor.
-Use lsm6dso16is as fallback device for ism330is since it implements all the
-features currently supported by ism330is.
+On Thu, Nov 24, 2022 at 3:22 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+> =E5=9C=A8 2022/11/24 =E4=B8=8A=E5=8D=886:05, Linus Walleij =E5=86=99=E9=
+=81=93:
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+> > But these drivers can not rely on the .gpio_to_irq() callback
+> > to be called before an IRQ is requested and used.
+>
+> I may not have made it clear before that the gpio irq chip for other
+> platforms may need to be implemented, but the loongson platform may be
+> special.
+>
+> I mean that the loongson platform use gpio irq does not need to rely on
+> gpio_to_irq, because loongson interrupt controller driver has covered
+> gpio irq.  The specific reason is my above explanation.
+>
+> so, Can I not realize gpio irq chip?
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 07d5aee7e442..68b481c63318 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -43,6 +43,9 @@ properties:
-       - items:
-           - const: st,lsm6dsv16x
-           - const: st,lsm6dsv
-+      - items:
-+          - const: st,ism330is
-+          - const: st,lsm6dso16is
- 
-   reg:
-     maxItems: 1
--- 
-2.38.1
+Isn't this a hierarchical irqchip then?
 
+Please consult the following from
+Documentation/driver-api/gpio/driver.rst:
+
+---------------------------------
+
+GPIO drivers providing IRQs
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+
+It is custom that GPIO drivers (GPIO chips) are also providing interrupts,
+most often cascaded off a parent interrupt controller, and in some special
+cases the GPIO logic is melded with a SoC's primary interrupt controller.
+
+The IRQ portions of the GPIO block are implemented using an irq_chip, using
+the header <linux/irq.h>. So this combined driver is utilizing two sub-
+systems simultaneously: gpio and irq.
+
+It is legal for any IRQ consumer to request an IRQ from any irqchip even if=
+ it
+is a combined GPIO+IRQ driver. The basic premise is that gpio_chip and
+irq_chip are orthogonal, and offering their services independent of each
+other.
+
+gpiod_to_irq() is just a convenience function to figure out the IRQ for a
+certain GPIO line and should not be relied upon to have been called before
+the IRQ is used.
+
+Always prepare the hardware and make it ready for action in respective
+callbacks from the GPIO and irq_chip APIs. Do not rely on gpiod_to_irq() ha=
+ving
+been called first.
+
+We can divide GPIO irqchips in two broad categories:
+
+- CASCADED INTERRUPT CHIPS: this means that the GPIO chip has one common
+  interrupt output line, which is triggered by any enabled GPIO line on tha=
+t
+  chip. The interrupt output line will then be routed to an parent interrup=
+t
+  controller one level up, in the most simple case the systems primary
+  interrupt controller. This is modeled by an irqchip that will inspect bit=
+s
+  inside the GPIO controller to figure out which line fired it. The irqchip
+  part of the driver needs to inspect registers to figure this out and it
+  will likely also need to acknowledge that it is handling the interrupt
+  by clearing some bit (sometime implicitly, by just reading a status
+  register) and it will often need to set up the configuration such as
+  edge sensitivity (rising or falling edge, or high/low level interrupt for
+  example).
+
+- HIERARCHICAL INTERRUPT CHIPS: this means that each GPIO line has a dedica=
+ted
+  irq line to a parent interrupt controller one level up. There is no need
+  to inquire the GPIO hardware to figure out which line has fired, but it
+  may still be necessary to acknowledge the interrupt and set up configurat=
+ion
+  such as edge sensitivity.
+
+---------------------------------
+
+You find an example of a hierarchical GPIO irqchip using the
+GPIOLIB_IRQCHIP in drivers/gpio/gpio-ixp4xx.c.
+
+Yours,
+Linus Walleij
