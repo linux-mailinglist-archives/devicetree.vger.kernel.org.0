@@ -2,124 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9B7637686
-	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 11:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 365E763767E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Nov 2022 11:30:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbiKXKau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Nov 2022 05:30:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49942 "EHLO
+        id S229539AbiKXKah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Nov 2022 05:30:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiKXKaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 05:30:24 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8957AD0DF2;
-        Thu, 24 Nov 2022 02:30:16 -0800 (PST)
+        with ESMTP id S229838AbiKXKaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Nov 2022 05:30:14 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 401F314F53C
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 02:30:05 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id f13so1891225lfa.6
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 02:30:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1669285816; x=1700821816;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=8EzM2+AU1Fro6JRdsVRnMz881rd525NgC/kvBamkYW8=;
-  b=dIOqgMTXbcpX/PHNw6YZCM4O5aer4F+x6MJczEw0FtiOYNcEOmcOeuQ0
-   cNwYO1IsmCaPNa3PsEPSd0XRYJWH6a58F2SzWRMBm2AL5vFKITEsnFhji
-   bvQBk63PlJKgOYA3Jg0w6FlauFyEuFe8ZVgAMuLEXMTMrMbsWSmp742Ua
-   Gk5rqZMhF6JQ5nA5dw6MaUWZtm1thC2qcoMESWq2YeTp/+oByI0+qSjuK
-   q0zjEFgoNDNx531aaZXwQikQkjOvdgQcMcg4T5ZY/lZPa9wI7UW9vrt9t
-   Yu+X1jsvs1ferI2Q/JU9K7P9C+5xmDuOyjrG/j7pboRpxlN6JJSEn9o11
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
-   d="scan'208";a="27558280"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 24 Nov 2022 11:30:04 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 24 Nov 2022 11:30:04 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 24 Nov 2022 11:30:04 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1669285804; x=1700821804;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=8EzM2+AU1Fro6JRdsVRnMz881rd525NgC/kvBamkYW8=;
-  b=Sqk2aDi/tz4wnljZuzRTKGfY/DSd4kQtWtsh/Jmx6VD0+tH4V16SCL/U
-   l6QNM/WjhWrUvgq4Upd6hjCB7zrqK2ft87PMXJOIyzLDJxpthVQaer2s0
-   3OAVX48JwL5sYg54tgYWcpRLfaOrslboTbL5Sb48QXgE34rL617B2D7c1
-   77zjlWDcB/f6NB5Cd4rBVnNrx8e5LnKVRrO4KgWuKuSK11SSuLS7OH+BW
-   A3Z4hqfb4+cP+yo830Rp39sRqUjGASxTjrI1GEUXalWS9+JTKPD5a8yt3
-   fHhLIuwqmU4qvBfEyOXFG+MLyGTeBSgPBP+pVsnWjj39MMeZEMKO0vsC2
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,190,1665439200"; 
-   d="scan'208";a="27558279"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Nov 2022 11:30:04 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4BBAD280073;
-        Thu, 24 Nov 2022 11:30:04 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/YGzB1m+A8t24Wyv5LyOx5oUGq5pgFjmcOjHEeeQKKE=;
+        b=P4r8ejXZ4Eg9YNX6ILD2RSHKALTZZ8W/0BRIkyRGGH0Te77UjQKe0yFJNG2u0iOytO
+         P7Ou21TenDgggLj4HVD7H2Wi64jHe369AGMSZ0VC6897W7apN0DYRll4z5n4FKNs0eAZ
+         8h7iQ4ZS7/zSNWfM0Dm9da7UIN8QMhUmEb6w5uDidqX+x1wGVONjkS4wivwkV4jBKayp
+         PJKNHH+CMVoBYIi1BGBZ+c+2k3GmTbqyPe5JMwjcTTf9CiGRc3kLtJeSMaG8QMtY1zD/
+         MhGeJgyoyrNErWBwfhZBs1ByXh6bEAjqob0yVnNjl8krHAcPZJLfrUBo1mnvJJgnJqfe
+         nw4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/YGzB1m+A8t24Wyv5LyOx5oUGq5pgFjmcOjHEeeQKKE=;
+        b=5HvdenI4pNSLpINXVe+6xZ4QI1pskrzOd3SZ1WYMBtFXIl02ejxqCtARi9Jp7piU/z
+         r160ZxxZud74hIGkTUef02OAVAa/RQnkqGSy000aP24DVBdMjDfk+i81L/KYS3V3g6s7
+         0zHonSujnoSoB6otvJlQTmAzr0aNx76Rli7r6dqQk0UgQhAU8le9GLf7xzJ0UcG8JodY
+         sg8zf1dpPSkXVT1NZWXq2y+kiL8FKU6BBLqwFKgERPD3FO7O03JwnFm0ulFy62+4VlQt
+         pmq/U8zUgZsUEBUN753ch8vlO9bMDaSkngM43JWTc8L2m9DyfcxIaqrLXS+HmrRerZhA
+         rUtg==
+X-Gm-Message-State: ANoB5pmV5jOFwuqz4knj5vRmFkG0kCoXlq3I4B0p+fJZcGV5tW1IhO1K
+        VePp4sjWTIEuSTiuGj2WGy0bRA==
+X-Google-Smtp-Source: AA0mqf6s5rfKEkFzvxg78RSbw5JHvfM0tIBJH7b0tkR3JUz6rMn6ooziH19gylVOxdcjatJAbJ3jhQ==
+X-Received: by 2002:a05:6512:3da3:b0:4aa:f992:28aa with SMTP id k35-20020a0565123da300b004aaf99228aamr4887349lfv.459.1669285803993;
+        Thu, 24 Nov 2022 02:30:03 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u21-20020a196a15000000b00498f570aef2sm78922lfu.209.2022.11.24.02.30.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 02:30:03 -0800 (PST)
+Message-ID: <333a240a-2c97-8b19-91d1-315d00e1f438@linaro.org>
+Date:   Thu, 24 Nov 2022 11:30:02 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: interconnect: Add rpmh virt devices
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>
-Subject: [PATCH v5 2/2] media: i2c: ov9282: Add ov9281 compatible
-Date:   Thu, 24 Nov 2022 11:29:59 +0100
-Message-Id: <20221124102959.1605202-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221124102959.1605202-1-alexander.stein@ew.tq-group.com>
-References: <20221124102959.1605202-1-alexander.stein@ew.tq-group.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221118182245.31035-1-quic_molvera@quicinc.com>
+ <20221118182245.31035-2-quic_molvera@quicinc.com>
+ <536af0d9-aa00-ddf1-753d-670ec2adef91@linaro.org>
+ <3ada611b-96e0-5cf0-d79d-b90ca4202ddb@quicinc.com>
+ <b7cc4f5d-c1d6-919c-9604-7855ea802d17@linaro.org>
+ <e6ae7c01-47ca-f1da-3b0b-1f17d9e862bf@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e6ae7c01-47ca-f1da-3b0b-1f17d9e862bf@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to product brief they are identical from software point of view.
-Differences are a different chief ray angle (CRA) and the package.
-To distinguish ov9281 & ov9282 in userspace the name has to be explicitly
-set. Provide a fixed string using platform data.
+On 22/11/2022 18:57, Melody Olvera wrote:
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Georgi Djakov <georgi.djakov@linaro.org>
+>>>>> +  - Odelu Kukatla <quic_okukatla@quicinc.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +   RPMh interconnect providers support system bandwidth requirements through
+>>>>> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
+>>>>> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
+>>>>> +   associated with each execution environment. Provider nodes must point to at
+>>>>> +   least one RPMh device child node pertaining to their RSC and each provider
+>>>>> +   can map to multiple RPMh resources. Virtual interconnect providers are not
+>>>>> +   controlled by AP and do not support QoS; they should not have associated
+>>>>> +   register regions.
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: qcom,rpmh-common.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - qcom,qdu1000-clk-virt
+>>>>> +      - qcom,qdu1000-mc-virt
+>>>>> +      - qcom,sm8450-clk-virt
+>>>>> +      - qcom,sm8450-mc-virt
+>>>> You should also move qcom,sdx65-mc-virt, qcom,sc8280xp-mc-virt,
+>>>> qcom,sc8280xp-clk-virt and more.
+>>> Ok. I wasn't sure since some of these entries don't seem to conform to
+>>> these bindings, even though it seems they should.
+>> I have impression that devices I listed conform to these bindings, this
+>> is why I listed them. But if you are sure that they do not, then they
+>> should not be moved.
+> 
+> You're correct; those you listed do conform to the new bindings and should be moved.
+> I also caught qcom,sc7280-clk-virt which needs to be moved. I'll add to the new bindings.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-Reviewed-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
----
- drivers/media/i2c/ov9282.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Actually let's wait a bit with this. For SM8550 we had an idea to move
+interconnect to their own bindings file, because they will grow a bit
+with allOf:if:then clauses.
 
-diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-index 072144668892..3d31d6f58dab 100644
---- a/drivers/media/i2c/ov9282.c
-+++ b/drivers/media/i2c/ov9282.c
-@@ -1400,6 +1400,8 @@ static int ov9282_probe(struct i2c_client *client)
- 
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&ov9282->sd, client, &ov9282_subdev_ops);
-+	v4l2_i2c_subdev_set_name(&ov9282->sd, client,
-+				 device_get_match_data(ov9282->dev), NULL);
- 
- 	ret = ov9282_parse_hw_config(ov9282);
- 	if (ret) {
-@@ -1499,7 +1501,8 @@ static const struct dev_pm_ops ov9282_pm_ops = {
- };
- 
- static const struct of_device_id ov9282_of_match[] = {
--	{ .compatible = "ovti,ov9282" },
-+	{ .compatible = "ovti,ov9281", .data = "ov9281" },
-+	{ .compatible = "ovti,ov9282", .data = "ov9282" },
- 	{ }
- };
- 
--- 
-2.34.1
+Maybe SM8450 and QDU1000 should also go to their own files which will
+describe all their interconnects (the virt and the ones requiring clocks)?
+
+Apologies for bringing it late for your patches, but SM8550 is also
+happening right now, so new things pop-up :)
+
+Best regards,
+Krzysztof
 
