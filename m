@@ -2,137 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F88F638890
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B148638897
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230390AbiKYLTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 06:19:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46150 "EHLO
+        id S229527AbiKYLVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 06:21:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbiKYLTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:19:49 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389D228E04;
-        Fri, 25 Nov 2022 03:19:47 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id x5so6291787wrt.7;
-        Fri, 25 Nov 2022 03:19:47 -0800 (PST)
+        with ESMTP id S230244AbiKYLV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:21:29 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D5723EBE
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:21:29 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id 130so3711880pgc.5
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:21:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7PfQ2W7+jfq13mv60YI0ZFUsMp5wOyJ2UsW2Qs+puQY=;
-        b=SbOHS903mNOpnILtR4C6Hka3wbt9VO8ZuT7xkiYlMrLPpfzFTRq/BYRgVS/iJ8W9cy
-         DvWv19s6RhNIRBpVLu8cwh1cDiYGNe6tGXBnRrlNI978OeboQKWWz2bF0fgIZt1W5Stf
-         mE02QjarGeHFH8aLwY/H9J4EzBPZDBgFlSfewGntNzf7EHZodWIE8G+gv6jT6CRvICW5
-         qzZUtGHrDaMGlqXsNb0o4uS51N5omZkkcQA+ERrSSFeNPd2W1cOSNoXaYJvbwHAbeiv2
-         yBZ0wZIF86RreFLmbDlM8pU8lL8haqJo1C40g3y4eNxwvHzRn5NTyHXDJSGPG+OP82x0
-         BQQQ==
+        d=ventanamicro.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vYP+2oM34cmJFG3V0Ltp7GNtutJIbBXEhCpqNRxYA1c=;
+        b=Pj9Bv7nv0hGxcqolfF4+yd/oe3Ub2fzfkcuWjrMi0VinpJH7fvdtr/YljSrODKWK0f
+         FM+Mz95Ur9WpLh6f0vCmbssVFWKWW2ofL/8GDnurs+S0sQiggICep5VwM2LXFol6x39I
+         VidgCoZBzSc/iITMBjwMr6oD8SDGBCXmlYseTtMP6EAqIiGyrcbLVj/aWlZlvIJVrE8X
+         XCIDAbGNlmDkUOdyCXP80IqSGHQa/rtF0lFEalT59kd7Z3ns30vsO3buNBshk1Ou/CtZ
+         RkgoP5HGq+zNCis3/uBJRtzaqXjfKRsy/UrYeKJDNpEsFezHd+IU/xnMvU+wH5KoJRrr
+         ReeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7PfQ2W7+jfq13mv60YI0ZFUsMp5wOyJ2UsW2Qs+puQY=;
-        b=rV3uJ4mfyh5Op9/voduhEfOehbLXGPg2iFVVBX9o6lr3otchxcvahBxVBbXpCIZpbb
-         uYU/VVnheVavG6DDEaVhufwjVKSA2s+hdI7tPhN1NUxzFeKYr51wfmYJArboFSPMgicw
-         xLDL5913ZV/wqHHj/oExYLJQ9I8JHHnxDiIx5UK7Ri1PaZ4J7GmfU9NXQbXJgMoAnmLU
-         tjia9+M1//VxV2SE+ukPnTgaoZ3wXMQ8qnRfFvnTo5ASncMV5QXSzMnHPbGr45AuMg40
-         WuHmtEfF85+9wMDf6UAntnJc4vWLNSwPdjMRQwhH9nx9XAFIQvb/7DK6bgxHLQTAUOVn
-         Vwrw==
-X-Gm-Message-State: ANoB5plwdKfsgZx3fXzEgd9qfkNf+ASYpDY4hRuFeytc1KgUWobDtv1b
-        hwFFpwE9WHk7FXpVLaEPCxQ=
-X-Google-Smtp-Source: AA0mqf5PgDcWrGG/qlTS1d5khO1RXvIht00dzCgwzfFVqj3/zuybOqlxIFU+3NcsYBK3ngzF7dm6Ng==
-X-Received: by 2002:adf:e8c9:0:b0:22e:33dc:3bf1 with SMTP id k9-20020adfe8c9000000b0022e33dc3bf1mr23477456wrn.316.1669375185693;
-        Fri, 25 Nov 2022 03:19:45 -0800 (PST)
-Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id v11-20020a5d4b0b000000b002368f6b56desm4207406wrq.18.2022.11.25.03.19.44
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vYP+2oM34cmJFG3V0Ltp7GNtutJIbBXEhCpqNRxYA1c=;
+        b=rlRWfUVGbd7VZWRuhz1H8LfgQo5opPPeStBFesRRhH0nR2XSiVgoj5wo8qx4FKCQxc
+         BUQRJ43QmqRL+bt27PV+GoBo1xYxmDQ3LFJaeb79UIVDIWeMgmcA7C3iVRChVbX3xXbq
+         EISxHiP1yqG+5JhT0m0hzVGNUliv9NECAuVdgFl1LEaVqbJUtBPi7nodhM+X4KUANfF5
+         DLmVqx6ci4z1Vrmdv/rFfA7meBPo4+1CSJfVGqfymK9QbFIuXXjlpUYxkm1pSzKEMtdI
+         qfttedpIZW7Pkm+1jt5Ylv3opvS7dATRwSxpzxjCe4UHs5L3sborsFh2kpXTfFIO8b7p
+         X7AA==
+X-Gm-Message-State: ANoB5pklkSnSQ/t/gQ68pZ4KB/29VnaQw1L5rq2jF03b1md95GAZlUcv
+        EiNe5XFdjRNv3jFv5E1objyszQ==
+X-Google-Smtp-Source: AA0mqf60LcLJuXxWEdKaVgoRREe0TX/v6dAlHlqUjeI4LuwEdKNOY1o0jWc8FMMP6h8gnDcCdeadMA==
+X-Received: by 2002:a63:131a:0:b0:476:f92f:885a with SMTP id i26-20020a63131a000000b00476f92f885amr16224287pgl.478.1669375288411;
+        Fri, 25 Nov 2022 03:21:28 -0800 (PST)
+Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
+        by smtp.gmail.com with ESMTPSA id e66-20020a621e45000000b0057488230704sm2834335pfe.219.2022.11.25.03.21.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 03:19:45 -0800 (PST)
-Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 25 Nov 2022 03:21:27 -0800 (PST)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
-        SoC support),
-        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 5/6] arm64: dts: Add DT node for the VIPNano-QI on the A311D
-Date:   Fri, 25 Nov 2022 12:19:18 +0100
-Message-Id: <20221125111921.37261-6-tomeu.vizoso@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
-References: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v3 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
+Date:   Fri, 25 Nov 2022 16:51:02 +0530
+Message-Id: <20221125112105.427045-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-with it with just a few small changes.
+This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3STOP
+feature based on RISC-V platform capabilities.
 
-Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi      | 10 ++++++++++
- .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts  |  4 ++++
- 2 files changed, 14 insertions(+)
+These patches can also be found in riscv_timer_dt_imp_v3 branch at:
+https://github.com/avpatel/linux.git
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index fa96fddf4633..13c79676a356 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/power/meson-g12a-power.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -2485,4 +2486,13 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	npu: npu@ff100000 {
-+		compatible = "vivante,gc";
-+		reg = <0x0 0xff100000 0x0 0x20000>;
-+		interrupts = <0 147 4>;
-+		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-+			<&clkc CLKID_NNA_AXI_CLK>;
-+		clock-names = "core", "bus";
-+		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 124a80901084..73f3d87dcefd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -15,6 +15,10 @@ / {
- 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- /*
-  * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
-  * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+Changes since v2:
+ - Include Conor's revert patch as the first patch and rebased other patches
+ - Update PATCH2 to document bindings for separate RISC-V timer DT node
+ - Update PATCH3 based on RISC-V timer DT node bindings
+
+Changes since v1:
+ - Rebased on Linux-5.19-rc8
+ - Renamed "riscv,always-on" DT property to "riscv,timer-can-wake-cpu"
+
+Anup Patel (2):
+  dt-bindings: timer: Add bindings for the RISC-V timer device
+  clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
+
+Conor Dooley (1):
+  Revert "clocksource/drivers/riscv: Events are stopped during CPU
+    suspend"
+
+ .../bindings/timer/riscv,timer.yaml           | 52 +++++++++++++++++++
+ drivers/clocksource/timer-riscv.c             | 12 ++++-
+ 2 files changed, 63 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/riscv,timer.yaml
+
 -- 
-2.38.1
+2.34.1
 
