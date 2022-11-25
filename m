@@ -2,79 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62896638C14
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72EE4638C23
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbiKYO0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:26:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47834 "EHLO
+        id S229635AbiKYO2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:28:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiKYO0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:26:35 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539172AC6D
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:26:34 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id 62so4060292pgb.13
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:26:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pr9EPBHz4BamKgB8yWADZkXZ2+tlYR/qk7DwwWPntys=;
-        b=I22Ui3Ws2mdvy3i8n4OvfE7B4UBhCYea7j3aLWfiqH6e04pBvYdBesUghp62dWLwlP
-         nUvmU/k0g1An/0OlJ34HaFJQiRBzF0H4W6T/bVUx1zm9Bl2bgWzoL3GpF4JfgONWkVbE
-         EwQpaRMKtu1ensgpA7mEiE9oiRjstNpI6/teS/2EmsCih9G1zkFWu57x03IKOctYmO6b
-         8uIFnuHSjhfW3vcW332yGJfmlCNj0hM2e3UlZ2FvRnUWb5xA0fGO9KsZPNX63gbTbsLc
-         Avx33IJSJQXBDcMj1TDY9VR9YSk/OF8WhfUPLTuG21X7mpO1vVjJj47paR3SHE3BHjTr
-         ROiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pr9EPBHz4BamKgB8yWADZkXZ2+tlYR/qk7DwwWPntys=;
-        b=XDcQhGkS6orZrUC9VFPAiFISigijgZfLmnb5c3QJcn9O5kV/v6a7kDYRLp3bt/VEcP
-         wRO5oUeQ3sirKT4GVqKRGwLCOnE8ji4bAz52qMh7d5+N5zgpCXAN+ud8sN+ku97QXrHR
-         MiCU5ZyyQ84V7A0PJN1ylPHWHzQ8wazdzL80uQDIDSsGEp5mZ9isajD6TeGRjlVTSkNu
-         aK5nYmSPtMeuTVA2vNYo62NZ35J/Rc82e5RJN473mZs8mmEpWLtHuBo0vYZS92upS3hO
-         qKz4shv3UQS/gkZWwJ26KfSfkoJkrlamVtBTUtw7gaNkXeaCLJIRf67XAnB6bjbsUxVj
-         VDGQ==
-X-Gm-Message-State: ANoB5plhGnIq+lw8nK37ELxx0p88Q3IJqKV0+MnYZQ/fSgQPZHGuagcT
-        N86T20//97rJeINCnTo0UmIg
-X-Google-Smtp-Source: AA0mqf49zCazD+UtCRa4BNYXgoE42BG1LqZ3W0LypZAXCz7fviyny0CBtnZkM2HGDAm3DL59CDuHnQ==
-X-Received: by 2002:a63:1e62:0:b0:46b:3acb:77b2 with SMTP id p34-20020a631e62000000b0046b3acb77b2mr15395586pgm.560.1669386393687;
-        Fri, 25 Nov 2022 06:26:33 -0800 (PST)
-Received: from thinkpad ([117.202.190.212])
-        by smtp.gmail.com with ESMTPSA id n7-20020a170902d2c700b00186ffe62502sm3448694plc.254.2022.11.25.06.26.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 06:26:32 -0800 (PST)
-Date:   Fri, 25 Nov 2022 19:56:25 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229633AbiKYO2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:28:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6E5EE2B;
+        Fri, 25 Nov 2022 06:28:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 06351622F2;
+        Fri, 25 Nov 2022 14:28:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9151BC433C1;
+        Fri, 25 Nov 2022 14:28:31 +0000 (UTC)
+Message-ID: <de7a776e-3fb2-3631-c301-847502fc1a39@xs4all.nl>
+Date:   Fri, 25 Nov 2022 15:28:30 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 3/8] media: Documentation: v4l: Add TOF class controls
+Content-Language: en-US
+To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
+Cc:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-Message-ID: <20221125142625.GA9892@thinkpad>
-References: <20221124142501.29314-1-johan+linaro@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221124142501.29314-1-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+References: <cover.1669381013.git.vkh@melexis.com>
+ <01cfeb602d52456bed08c89da356474474361e73.1669381013.git.vkh@melexis.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <01cfeb602d52456bed08c89da356474474361e73.1669381013.git.vkh@melexis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,117 +52,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 03:25:01PM +0100, Johan Hovold wrote:
-> The devices on the SC8280XP PCIe buses are cache coherent and must be
-> marked as such to avoid data corruption.
+On 25/11/2022 14:34, Volodymyr Kharuk wrote:
+> Add description about V4L2_CID_TOF_PHASE_SEQ, V4L2_CID_TOF_FMOD
+> and V4L2_CID_TOF_TINT.
+> Also updated MAINTAINERS with new ext-ctrls-tof file.
 > 
-> A coherent device can, for example, end up snooping stale data from the
-> caches instead of using data written by the CPU through the
-> non-cacheable mapping which is used for consistent DMA buffers for
-> non-coherent devices.
-> 
-
-Also, the device may write into the L2 cache (or whatever cache that is
-accessible) if there is an entry and the CPU may invalidate it before reading
-from the DMA buffer. This will end up in a data loss.
-
-> Note that this is much more likely to happen since commit c44094eee32f
-> ("arm64: dma: Drop cache invalidation from arch_dma_prep_coherent()")
-> that was added in 6.1 and which removed the cache invalidation when
-> setting up the non-cacheable mapping.
-> 
-> Marking the PCIe devices as coherent specifically fixes the intermittent
-> NVMe probe failures observed on the Thinkpad X13s, which was due to
-> corruption of the submission and completion queues. This was typically
-> observed as corruption of the admin submission queue (with well-formed
-> completion):
-> 
-> 	could not locate request for tag 0x0
-> 	nvme nvme0: invalid id 0 completed on queue 0
-> 
-> or corruption of the admin or I/O completion queues (malformed
-> completion):
-> 
-> 	could not locate request for tag 0x45f
-> 	nvme nvme0: invalid id 25695 completed on queue 25965
-> 
-> presumably as these queues are small enough to not be allocated using
-> CMA which in turn make them more likely to be cached (e.g. due to
-> accesses to nearby pages through the cacheable linear map). Increasing
-> the buffer sizes to two pages to force CMA allocation also appears to
-> make the problem go away.
-> 
-
-I don't think the problem will go away if the allocation happens from CMA
-region. It may just decrease the chances of cache hit but it could always
-happen due to the existence of linear mapping with cacheable attribute.
-
-> Fixes: 813e83157001 ("arm64: dts: qcom: sc8280xp/sa8540p: add PCIe2-4 nodes")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-
-Anyway, this is a really good find!
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
+> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  .../userspace-api/media/v4l/common.rst        |  1 +
+>  .../userspace-api/media/v4l/ext-ctrls-tof.rst | 35 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++++
+>  3 files changed, 43 insertions(+)
+>  create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 27f5c2f82338..7748cd29276d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -854,6 +854,8 @@ pcie4: pcie@1c00000 {
->  				 <0x02000000 0x0 0x30300000 0x0 0x30300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
+> diff --git a/Documentation/userspace-api/media/v4l/common.rst b/Documentation/userspace-api/media/v4l/common.rst
+> index ea0435182e44..1ea79e453066 100644
+> --- a/Documentation/userspace-api/media/v4l/common.rst
+> +++ b/Documentation/userspace-api/media/v4l/common.rst
+> @@ -52,6 +52,7 @@ applicable to all devices.
+>      ext-ctrls-fm-rx
+>      ext-ctrls-detect
+>      ext-ctrls-colorimetry
+> +    ext-ctrls-tof
+>      fourcc
+>      format
+>      planar-apis
+> diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> new file mode 100644
+> index 000000000000..8902cc7cd47b
+> --- /dev/null
+> +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> @@ -0,0 +1,35 @@
+> +.. SPDX-License-Identifier: GFDL-1.1-no-invariants-or-later
 > +
->  			linux,pci-domain = <6>;
->  			num-lanes = <1>;
->  
-> @@ -951,6 +953,8 @@ pcie3b: pcie@1c08000 {
->  				 <0x02000000 0x0 0x32300000 0x0 0x32300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
+> +.. _tof-controls:
 > +
->  			linux,pci-domain = <5>;
->  			num-lanes = <2>;
->  
-> @@ -1046,6 +1050,8 @@ pcie3a: pcie@1c10000 {
->  				 <0x02000000 0x0 0x34300000 0x0 0x34300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
+> +***************************************
+> +Time of Flight Camera Control Reference
+> +***************************************
 > +
->  			linux,pci-domain = <4>;
->  			num-lanes = <4>;
->  
-> @@ -1144,6 +1150,8 @@ pcie2b: pcie@1c18000 {
->  				 <0x02000000 0x0 0x38300000 0x0 0x38300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <3>;
->  			num-lanes = <2>;
->  
-> @@ -1239,6 +1247,8 @@ pcie2a: pcie@1c20000 {
->  				 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>;
->  			bus-range = <0x00 0xff>;
->  
-> +			dma-coherent;
-> +
->  			linux,pci-domain = <2>;
->  			num-lanes = <4>;
->  
-> -- 
-> 2.37.4
-> 
+> +The Time of Flight class includes controls for digital features
+> +of TOF camera.
 
--- 
-மணிவண்ணன் சதாசிவம்
+You might want to extend this description a bit and give more info
+about how they work. Perhaps a link to wikipedia or something
+might help too.
+
+> +
+> +.. _tof-control-id:
+> +
+> +Time of Flight Camera Control IDs
+> +=================================
+> +
+> +``V4L2_CID_TOF_CLASS (class)``
+> +    The TOF class descriptor. Calling :ref:`VIDIOC_QUERYCTRL` for
+> +    this control will return a description of this control class.
+> +
+> +``V4L2_CID_TOF_PHASE_SEQ (dynamic array u16)``
+> +    Change the shift between illumination and sampling for each phase
+> +    in degrees. A distance/confidence picture is obtained by merging
+> +    3..8 captures of the same scene using different phase shifts(some
+
+Space before (
+
+> +    TOF sensors use different frequency modulation).
+
+Either: use -> use a
+Or:     modulation -> modulations
+
+It's not clear right now whether "frequency modulation" is meant to be singular
+or plural.
+
+> +
+> +    The maximum array size is driver specific.
+> +
+> +``V4L2_CID_TOF_FMOD (dynamic array u8)``
+> +    The control sets the modulation frequency(in Mhz) per each phase.
+
+Space before (
+
+per each phase -> for each phase
+
+> +    The maximum array size is driver specific.
+
+What does the maximum array size signify? The number of phases?
+It's not clear from the spec (and I have to admit I know very little
+about TOF sensors).
+
+> +
+> +``V4L2_CID_TOF_TINT (dynamic array u16)``
+> +    The control sets the integration time(in us) per each phase.
+
+Add space before (
+
+per each phase -> for each phase
+
+> +    The maximum array size is driver specific.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index aa1974054fce..a2bc2ce53056 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13111,6 +13111,13 @@ S:	Supported
+>  W:	http://www.melexis.com
+>  F:	drivers/iio/temperature/mlx90632.c
+>  
+> +MELEXIS MLX7502X DRIVER
+> +M:	Volodymyr Kharuk <vkh@melexis.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Supported
+> +W:	http://www.melexis.com
+> +F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> +
+>  MELFAS MIP4 TOUCHSCREEN DRIVER
+>  M:	Sangwon Jee <jeesw@melfas.com>
+>  S:	Supported
+
+Regards,
+
+	Hans
