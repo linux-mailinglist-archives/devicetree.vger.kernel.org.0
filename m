@@ -2,55 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27BE6638E93
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 17:50:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A2B2638E9B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 17:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiKYQuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 11:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S229894AbiKYQvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 11:51:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiKYQtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 11:49:43 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCDA537E1;
-        Fri, 25 Nov 2022 08:48:29 -0800 (PST)
+        with ESMTP id S229903AbiKYQvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 11:51:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B9611802;
+        Fri, 25 Nov 2022 08:51:04 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9D57062576;
-        Fri, 25 Nov 2022 16:48:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC39C433D7;
-        Fri, 25 Nov 2022 16:48:26 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2B8FCB82B96;
+        Fri, 25 Nov 2022 16:51:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C106C433C1;
+        Fri, 25 Nov 2022 16:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669394908;
-        bh=cTVoodLlRnSOP0+5MqapZl7ab4yuqBv9vryTvywIgb8=;
+        s=k20201202; t=1669395061;
+        bh=icHKk06I7LpqiDqMP789HRUwYmQW5jPo6VqdPDTS/l0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TIk0X2r88mAdgXcX0wma+4mqtdidj+l5UzaOvNkGERBV0KIWnVDqH+jwuM8y90ay6
-         +wJs1DvXpE+OkI1MphVGFu8rTwcrAaTlJoYGskbIxciIgNR703V15p/SKFxIc6OY/B
-         xuE3yUMhxW8R98348tFw54Ew1mUungbpsu0D5i//fs+zrq/VBjZHnbqH5mehTSOFnS
-         2cFgZyjf9mNayVFBtAkPVfFJVi9m9Y7YFaVW7HYv1pl7OxFLRfAvureAPWbGNcP2oz
-         QORjLnw2MZGiZGWS3fdOuvBn48NIE5Wm3rs1GOeMoopRAHOoWEgH9uKpZeL+OUFp9t
-         WOvbyMCeTZRmQ==
-Date:   Fri, 25 Nov 2022 16:48:23 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
+        b=fW+oXsPKDd4V7QfsuSQ8mi7itl3qhA+l/jsjxp4R/tQbLLacjNOTuvmDFGKAJmST/
+         Ns6JCKP+scAu/e1n0oWRGYl+XJn5quEPOizb96pg6sFF6eAiDtQjwQEB+fM6m0XSyB
+         wxqbHzuB/Z2nnh7UAlOyIMhIcWjoYq3/Qs63H2NIczJ8gBtazTsxtN7MGq3EFAQbC+
+         Qz7olmfgnO2AVTXZb3Bd6FP3CbRufW//0y0ogMGm+tP223+leTuRpplXZF5mYIek/e
+         fNc/5un+ub/9cXPeAUjncq2bqDzMScZw4y9Nnhi3glWGdSG89NAsFp4X3PiY+H8ooG
+         lbp+OS619LKiA==
+Date:   Fri, 25 Nov 2022 16:50:54 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] spi: wpcm-fiu: Add driver for Nuvoton WPCM450
- Flash Interface Unit (FIU)
-Message-ID: <Y4Dx13KQHqyBLak3@sirena.org.uk>
-References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
- <20221124191400.287918-3-j.neuschaefer@gmx.net>
- <Y4C9druicCm0m3wi@sirena.org.uk>
- <Y4DuW6Rai0urvrEI@probook>
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 6/7] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
+ binding documentation for L2 cache controller
+Message-ID: <Y4DybtJuw9f5vl/D@spud>
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <70d1bfde-f57f-1741-08d3-23e362793595@linaro.org>
+ <CA+V-a8s2awLp=YvbhA1Ohe500Oh1easLUcG9V4_FWov7Pf2i6g@mail.gmail.com>
+ <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org>
+ <Y4C0Jn1hl81ZCxOt@wendy>
+ <ab0e55a2-d99a-328e-4f54-6a75936a1c81@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="EcQuk4Qg6NViYNQL"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y4DuW6Rai0urvrEI@probook>
-X-Cookie: Time and tide wait for no man.
+In-Reply-To: <ab0e55a2-d99a-328e-4f54-6a75936a1c81@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,50 +78,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Nov 25, 2022 at 04:55:11PM +0100, Krzysztof Kozlowski wrote:
+> On 25/11/2022 13:25, Conor Dooley wrote:
+> > On Fri, Nov 25, 2022 at 01:12:18PM +0100, Krzysztof Kozlowski wrote:
+> >> On 25/11/2022 11:34, Lad, Prabhakar wrote:
+> >>>>> +/* Device, Non-bufferable */
+> >>>>> +#define AX45MP_PMACFG_MTYP_DEV_NON_BUF                       (0 << 2)
+> >>>>> +/* Device, bufferable */
+> >>>>> +#define AX45MP_PMACFG_MTYP_DEV_BUF                   (1 << 2)
+> >>>>> +/* Memory, Non-cacheable, Non-bufferable */
+> >>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF     (2 << 2)
+> >>>>> +/* Memory, Non-cacheable, Bufferable */
+> >>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF         (3 << 2)
+> >>>>
+> >>>> What are all these? They don't look like flags, because 3 = 1 | 2...
+> >>>> they don't look like constants, because we do not use shifts in
+> >>>> constants. Are these some register values? I also do not see the header
+> >>>> being used in the code, so why having a bindings header if it is not
+> >>>> used (DTS is not usage...)?
+> >>>>
+> >>> These are register bit values for the MTYP[5:2] field. The DTS example
+> >>> in the binding doc (above) uses these macros. I haven't included the
+> >>> DTS/I patches with this patchset yet do think I should?
+> >>
+> >> Then why storing it as bindings? Bindings headers describe the interface
+> >> implemented by drivers and used by DTS, but this is not implemented by
+> >> drivers.
+> > 
+> > IIUC, some of these properties are non-discoverable attributes of the
+> > cache controller. I see two things that could be done here that are
+> > "better" than #defining bits:
+> 
+> I did not comment about properties. I comment about constants. Why
+> register values/offsets/addresses are in this particular case suitable
+> for binding headers?
 
---EcQuk4Qg6NViYNQL
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I don't think we disagree here. I'm not in favour of the defines either
+here. Perhaps I confused you by accidentally not adding Prabhakar to the
+to field.
 
-On Fri, Nov 25, 2022 at 05:33:31PM +0100, Jonathan Neusch=E4fer wrote:
+The dt needs to convey his particular cache implementation's bufferable
+and/or coherent regions so I was suggesting alternatives for conveying
+this information, without resorting to defines.
 
-> As to connecting non-memory chips: There is also a second, completely
-> different SPI controller in this SoC, which is used on some boards (in
-> factory configuration) to drive a little status LCD. I think it would be
-> easiest to use that one for custom hardware extensions.
+> > - add an RZ/Five specific compatible and use match data to set the
+> >   attributes which is only possible if the pma-regions are set on a
+> >   per SoC basis
+> > - make pma-regions into a child node, in which andestech,non-cacheable
+> >   andestech,non-bufferable etc are properties of the child node
 
-That's never stopped hardware engineers.  Perhaps it's simpler for
-pinmuxing, layout or other reasons in a given design.
-
-> > If the driver were implementing regular SPI operations and advertising
-> > a maximum transfer length this should just work without having to jump
-> > through hoops.  The core can split transfers up into sections that fit
-> > within the controller limits transparently.
-
-> As far as I'm aware, the controller is not capable of performing a pure
-> read transfer, because the command byte (a byte that is written, in
-> half-duplex) is always included at the start. I think this limitation
-> would break your idea.
-
-> IOW, the hoops aren't nice, but I think they're necessary.
-
-Ah, I see.  That is very limiting.  I'm very surprised that the
-6 byte thing works at all TBH.
-
---EcQuk4Qg6NViYNQL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOA8dYACgkQJNaLcl1U
-h9BtJQf9GPbxMYPOrlz3SZgjNLNWe4/gqjuP6n4MLBYU0xX6EA0jljP6ns0O0O1e
-hctY+Xg08vYmz9Ty3Ogc6lv1dPXwGB+AxRktoxkZuhp0uiPU5RzTyI7Ln80+DIKA
-+KUtP0XO/yjXDcMTS9phUaDmwwKaneKrbYw02G04iYWsJr5Kmp+tJiRYQEBlgdsa
-C0bRvfs/rGZHh6PtlamxACJGz8w25EfHbiD/zYpa5csHVQBkSr2qqpMUNKkABBqE
-9UNq+InmthqHdHUnjyLVYuy2NcID2EDyo2/rCvi9I6hQceyYchvZFimwp7MciMHy
-LkU87STOjXlPjsAaORZDQifKRiG22Q==
-=YB2z
------END PGP SIGNATURE-----
-
---EcQuk4Qg6NViYNQL--
