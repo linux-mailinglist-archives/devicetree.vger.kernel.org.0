@@ -2,170 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFAD6386DA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0A76386E1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:58:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbiKYJ5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 04:57:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48754 "EHLO
+        id S229653AbiKYJ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 04:58:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbiKYJ5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:57:23 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AF84876D
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:55:34 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id z18so5655604edb.9
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:55:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5gBtKZ9zx2Pm/QswfVM6U5FT5WCTySCzVA2lRu0vZYg=;
-        b=3JXZ9i2lxLnQM0cikC8NLREGele7lN/5iPmgqRvmomvdJVd3s1P/7UI9EQqxvvYwBE
-         oBJSlQNCRIXmr5I5hxZQR64jdXkpc9MGz811/HU+zsLeqMMJakrZozPCtn5rQnwIA1aV
-         nt0ml934Gk+/97Q0m10njwYQcAI4aJDu37TymEtxLGCuFYDUN2pCG70SELy7KD4fMDve
-         lfXddNnCv7FxahMPjdYDESyYgOS9udT4V/EeNHAuiYdmKOawyu4l+i/BLGFjS6x/XKF3
-         dWLU0zuE6Z7/yVTjH5sfMuP/y0ODr0gSXWKD9LffW3FHscv/Vs7QqCG+z8EOm6h56Tuu
-         L+Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5gBtKZ9zx2Pm/QswfVM6U5FT5WCTySCzVA2lRu0vZYg=;
-        b=1wG5TnbsIjl/4GP0YnE0vO45dce//24ePm0Bp9w9afZ5FW41ZZwU6fJLZ7TZnICpVX
-         rTAxC+Fo8lyWLXKfme2I42ueiTIPjYin98xoM4kecRm+BqzKbxKRRnj8uYgP2PBrk+LD
-         zv7KF87/7L9+lzasi5nvnakvd6TnY1qOdfnGW40HYAbEL/kdHd4jixUHZKVlgScE8xiO
-         U+9gew4XsOvyfpTlgX0GHIKR3v85d3IsULl96paKlvMem15DogVjnwRGCFXVfaT0tZRb
-         6JpsRyaJKlUDynlABdtKbNmeyBeoEV8k22pTRJ150aJWAbZcgKElMbtASAEfJ5WiYyo5
-         bI/g==
-X-Gm-Message-State: ANoB5pmcnYxYo9uWy3o3IZfmMaUSMfWzYWc89LG5UqOEgHF9xK1la9+B
-        WFmjfgK6SKVJTrmUXKo2yCUm2g==
-X-Google-Smtp-Source: AA0mqf6hz+jLPZkAJZJ35vx8mMN7LAoU9iZsAgiOtesJBekuIWWL3NO2uwsFi3tIZRuuLGXsc09FIw==
-X-Received: by 2002:aa7:cc8a:0:b0:464:1296:d5d4 with SMTP id p10-20020aa7cc8a000000b004641296d5d4mr33388969edt.83.1669370133372;
-        Fri, 25 Nov 2022 01:55:33 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id c17-20020aa7c991000000b004619f024864sm1568627edt.81.2022.11.25.01.55.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 01:55:32 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 25 Nov 2022 10:55:31 +0100
-Message-Id: <COLABNHBQ1DG.1PB8SDY3FW1YY@otso>
-To:     "Johan Hovold" <johan@kernel.org>
-Cc:     <linux-arm-msm@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add
- sm6350 compatible
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.13.0
-References: <20221125092749.46073-1-luca.weiss@fairphone.com>
- <Y4CP9fwhDXsLu57Q@hovoldconsulting.com>
-In-Reply-To: <Y4CP9fwhDXsLu57Q@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229731AbiKYJ5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:57:48 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947372C6;
+        Fri, 25 Nov 2022 01:56:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669370215; x=1700906215;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lydKM6kU5fun6DC5IqmhCzMnSTfb8qo1b4UPgphoXdk=;
+  b=gQZAoOLFd+fPbYuAmmmzfQI59cX8qk5ohV6geGhmozUKLK69UyZjYCD/
+   aUd4fmE8C40nhkSt+utaD3kEpi1sZdtKCR2Mwb2bYuC/c0RZdAn2GmTFo
+   To1HPLrxCXVGcFY2tGDfKmuwYAv5bbsBu+dXQ8SUPjeNw47S9Z7QMkaSD
+   bB1zAp87cC6zAp4IpFqShBk2BNEWmrzY1S3J7WuPNoVsLvcVE7cTI0C9j
+   amXhur/t7vqXkegyKarLKepi9j5X46Ow9qPsta9bQzbt58ktHAVVMpGE4
+   KgiX9RYZp5q6xTTeeA7deZ/APQLmOfN40H81zTFZJ9+j5l8gByH9x4k2D
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="190496059"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 02:56:54 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 25 Nov 2022 02:56:53 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Fri, 25 Nov 2022 02:56:53 -0700
+Date:   Fri, 25 Nov 2022 11:01:44 +0100
+From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
+To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
+        UNGLinuxDriver <UNGLinuxDriver@microchip.com>
+Subject: Re: [PATCH] ARM: dts: lan966x: Add otp support
+Message-ID: <20221125100144.332tizam7tonqqtz@soft-dev3-1>
+References: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
+ <bdce1cb7-a771-4ec6-c75b-f547d26f95b3@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <bdce1cb7-a771-4ec6-c75b-f547d26f95b3@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
+The 11/25/2022 09:23, Claudiu Beznea - M18063 wrote:
+> Hi, Horatiu,
 
-On Fri Nov 25, 2022 at 10:50 AM CET, Johan Hovold wrote:
-> On Fri, Nov 25, 2022 at 10:27:47AM +0100, Luca Weiss wrote:
-> > Add the compatible describing the combo phy found on SM6350.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+Hi Claudiu,
+
+> 
+> On 16.09.2022 22:49, Horatiu Vultur wrote:
+> > Add OTP (one time programmable) support.
+> > The both lan966x SocS (lan9662 and lan9668) have the same OTP IP.
+> 
+> If OTP IP is the same for both lan966x is there a reason you've added
+> compatibles for each SoC variants?
+
+When I was adding the device tree binding, Krzystof mention not to have
+any wilcards in compatible string [0].
+
+[0] https://lore.kernel.org/lkml/550e652e-4541-c1e6-33a7-d5555f0cb266@linaro.org/
+
+> 
+> Thank you,
+> Claudiu Beznea
+> 
+> > 
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > > ---
-> > @Johan Hovold, I've sent this v2 as RFC because there are several thing=
-s
-> > where I have questions on how it should be done.
-> >=20
-> > In this patch, you can see there's cfg_ahb (&xo_board) and power-domain=
-s
-> > is not set. In msm-4.19 &gcc_usb30_prim_gdsc is only used in the
-> > ssusb@a600000 node, or should I also add it to qmpphy?
->
-> Yeah, you may need to add a platform specific section of the clocks,
-> which appear to be different, even if I'm not sure they are currently
-> described correctly (xo_board as cfg_ahb and "QLINK" as ref). How are
-> they named in the vendor's dts?
+> >  arch/arm/boot/dts/lan966x.dtsi | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
+> > index 23665a0429906..784caba369485 100644
+> > --- a/arch/arm/boot/dts/lan966x.dtsi
+> > +++ b/arch/arm/boot/dts/lan966x.dtsi
+> > @@ -163,6 +163,11 @@ port7: port@7 {
+> >  			};
+> >  		};
+> >  
+> > +		otp: otp@e0021000 {
+> > +			compatible = "microchip,lan9668-otpc", "microchip,lan9662-otpc";
+> > +			reg = <0xe0021000 0x300>;
+> > +		};
+> > +
+> >  		flx0: flexcom@e0040000 {
+> >  			compatible = "atmel,sama5d2-flexcom";
+> >  			reg = <0xe0040000 0x100>;
+> 
 
-This is the msm-4.19 dts:
-https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/a=
-ndroid-msm-bramble-4.19-android11-qpr1/qcom/lagoon-usb.dtsi#354
-
->
-> It should be OK to include the power-domain also for the PHY node.
-
-Ack.
-
->
-> >  .../bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml          | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-us=
-b43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-us=
-b43dp-phy.yaml
-> > index 6f31693d9868..3e39e3e0504d 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-p=
-hy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-p=
-hy.yaml
-> > @@ -17,16 +17,18 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - qcom,sc8280xp-qmp-usb43dp-phy
-> > +      - qcom,sm6350-qmp-usb3-dp-phy
-> > =20
-> >    reg:
-> >      maxItems: 1
-> > =20
-> >    clocks:
-> > -    maxItems: 4
-> > +    maxItems: 5
-> > =20
-> >    clock-names:
-> >      items:
-> >        - const: aux
-> > +      - const: cfg_ahb
-> >        - const: ref
-> >        - const: com_aux
-> >        - const: usb3_pipe
->
-> So this would need to be moved to an allOf: construct at the end with
-> one section each for sc8280xp and sm6350.
-
-Ack.
-
-Thanks for the quick response!
-
-Regards,
-Luca
-
->
-> > @@ -61,7 +63,6 @@ required:
-> >    - reg
-> >    - clocks
-> >    - clock-names
-> > -  - power-domains
-> >    - resets
-> >    - reset-names
-> >    - vdda-phy-supply
->
-> Johan
-
+-- 
+/Horatiu
