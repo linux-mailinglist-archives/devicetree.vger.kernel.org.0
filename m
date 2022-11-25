@@ -2,103 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 845EF6387E5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF2E6387EB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbiKYKwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 05:52:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
+        id S229568AbiKYKxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 05:53:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbiKYKwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:52:01 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B1D4908C;
-        Fri, 25 Nov 2022 02:52:01 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id ho10so9494621ejc.1;
-        Fri, 25 Nov 2022 02:52:01 -0800 (PST)
+        with ESMTP id S229552AbiKYKxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:53:04 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50524248F2
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 02:53:02 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id a7so4712634ljq.12
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 02:53:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fud1H9vvbIEqPXGteAFL1sMqIMKt+68zGcESyvCiI/M=;
-        b=iBGeECdnnmjRGSrtK0BG888XfLpJQoy37P8qu0dK7MXCjPnIEVTd7KlEaOOSvkLRGN
-         kFAaGPSHQug6sGbcYfqe0RJlwQMt3+XcQHCTdvcTKLA/krmvCR5CQYNH2jEiUzMDttZH
-         JRDa1FaNIFANQI2mKG8lQbj6WNNJgHQyX8vvNJ9StxqDlcia5LinZ0ax51Vw5mTH+cD5
-         N5S3sCT/lLtmN5pNfg+N4OXVHuwphgqY8skM/fI+mwfro4xc+5mcul91Ux8bL8AuKsz3
-         YngXDKZPjbxqF9hn917Cj7hZjz4lsUFQ61yXo21qKcPZamBy+dPRtpGATkbDoqDXjXRB
-         miwQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IEwN7JkS6WniPfPWMk+RXfLAAAIl4/B53Bw+MxhtrFU=;
+        b=ap+tN7oxIXF/Iww4hxFJQDkFJfGi7gJNOBrkUmOylGjD2pwZf3NHfoZdLtLUpA90l/
+         Yp2lKYVzOvboZa8khcQTaJkKAsQLyFRQh8iIsiwV6TLJLqVOSC2d7+7VhI87dsF8laG1
+         dCHfPghzJyboccKcm6/U+EINMI3tLE1PkpTfxF3RrzgO3Yick1IeeTwrqrxJ8RvT+0om
+         tLeVVLTsSrxn5ArVF3PaZ97dy8V3m+5ZTc0jVn4N5p/ZCiHENXVf4zYkqaukR0BNHVSk
+         FD+VpuQZxTtOW6IFz0vVg596oLdJKFJtUHteQAE52mJ6yOMynzHFETbr9XMkcoLVOi0P
+         zlIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Fud1H9vvbIEqPXGteAFL1sMqIMKt+68zGcESyvCiI/M=;
-        b=Qq2Zu5R2nYymbG9g8Ryp+LwrXJkS3G9AHMcBwff7YbCc+Daxb9hlH4m6NBFdhPaqsb
-         GFkU1g5B4vvGn4qpd0F5q3oMZj4/wkzOB0Q1bxIDF9J0bF3WyiwjLLzXaOva/CxEb5j5
-         ti4SbnwUCIElgKvmUZ8MoZ3O/YWX2j98WvPL8dIgJUrP8M6BQlYb/mSRK9uIXwHR4PBp
-         Ez1zaeawTbT1xuBdjqS/4cMOj82gFysZVIjvyHsap45OJ4yiokYJHpYNeVykHebm75c7
-         fWn0HMVyUgWJnbOL5NsFAAxr3Lw/Nodg/jaS/zl8C2eUM2u3eeFc4j33R1ybm2llrsHU
-         RAIw==
-X-Gm-Message-State: ANoB5pn6qvqmk4SSym5QGoXIwN4AUsytsXJGO+rpXoTFLc1TW6xzEUIA
-        w+wvPUl6Mhokv4+XR17Wl/ULqRkYRyxEcSXvxNI=
-X-Google-Smtp-Source: AA0mqf4jnZPyve2IIDg4v48Q9ACVWtHs2u+FvXIyh1nLI+gqZesKRIEyJ8mKN5TZUc79ySLQawRJMPh6FXYTrmAjLvg=
-X-Received: by 2002:a17:906:ccd0:b0:7ad:db82:d073 with SMTP id
- ot16-20020a170906ccd000b007addb82d073mr19858052ejb.480.1669373519614; Fri, 25
- Nov 2022 02:51:59 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IEwN7JkS6WniPfPWMk+RXfLAAAIl4/B53Bw+MxhtrFU=;
+        b=lcZUZsXYvRZV7HvzSai2kT1n5eQtC4k/8mSZbzjFMLUWxHjWXJiuyVf2hickY+KEe5
+         A9g1dNoYLolLdbanlH5F0a0hApCYr3rLQvCLc9Su+Ww/sJywc+X1MKHE+cvIGmFqGXSJ
+         GuHTNduQ+WhYfMaI0HmYy1L0Ad/u4SYKCW4OpI7UuUEZwe+e+trshJAUGc1YKQQ/9qpI
+         sG3OHnkIuhT1vVxCKGwY1/UAquzod4oaHBGYd8zObEniMtdQj1XGX/mlRlGuzkOROn78
+         U98bM4Ob7dHQcvowHBSpBpTzuscKRlyw9fphAsl3WdEVsJmvOEgXgolHFWB0EA0GbUeW
+         kTKQ==
+X-Gm-Message-State: ANoB5pljxfq0djIYkb891wzMeDn9vxiYK/bIzb4LdI3ZfVePOm9pwadn
+        j2g1as18GTJgy4AgRu+lmukTGg==
+X-Google-Smtp-Source: AA0mqf5Bz+xeqdp/OA/M1NSAuuwKDRC4vex7spZ08NxEseEh0JyiH+uBgt1NvJoyt6uGvEDNMYadNA==
+X-Received: by 2002:a2e:7306:0:b0:279:9104:d60c with SMTP id o6-20020a2e7306000000b002799104d60cmr569976ljc.163.1669373580672;
+        Fri, 25 Nov 2022 02:53:00 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id g6-20020a056512118600b004a2cd6d5ad6sm488631lfr.19.2022.11.25.02.52.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 02:53:00 -0800 (PST)
+Message-ID: <93f128ce-5229-5163-841a-66d3cd54130a@linaro.org>
+Date:   Fri, 25 Nov 2022 11:52:59 +0100
 MIME-Version: 1.0
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWbunjdFo5YfQ2t4DSDm-LX8WhvLkzAogGrOg7HY4_uPw@mail.gmail.com>
-In-Reply-To: <CAMuHMdWbunjdFo5YfQ2t4DSDm-LX8WhvLkzAogGrOg7HY4_uPw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 25 Nov 2022 10:51:33 +0000
-Message-ID: <CA+V-a8to-Wr2x8qbxnktTzXrWjTGvtCqwXT27A8EmHTTG7Lbkg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] AX45MP: Add support to non-coherent DMA
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH] leds: MAINTAINERS: include dt-bindings headers
+Content-Language: en-US
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
+Cc:     Olliver Schinagl <oliver@schinagl.nl>
+References: <20220830083625.281462-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220830083625.281462-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 30/08/2022 10:36, Krzysztof Kozlowski wrote:
+> Include the Devicetree binding headers in LED SUBSYSTEM entry.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-On Fri, Nov 25, 2022 at 9:04 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Thu, Nov 24, 2022 at 6:24 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > Due to the above approach custom SBI calls have been implemented. The
-> > above implementation is in preparation for adding support for Renesas
-> > RZ/Five SoC which uses the AX45MP core. As with the above approach the
-> > kernel image might not be generic so that it can be used on other
->
-> might be generic?
->
-Oops I missed updating this part of the cover letter. Indeed it should
-be generic now.
+Anyone is going to pick it up?
 
-Cheers,
-Prabhakar
+Best regards,
+Krzysztof
+
