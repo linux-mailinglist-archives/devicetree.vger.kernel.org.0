@@ -2,94 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C13638DAD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:49:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4353D638DBE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:51:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbiKYPtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:49:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
+        id S229675AbiKYPvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:51:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbiKYPtu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:49:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BAC23381;
-        Fri, 25 Nov 2022 07:49:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 54C8E6251A;
-        Fri, 25 Nov 2022 15:49:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8C2C433D7;
-        Fri, 25 Nov 2022 15:49:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669391388;
-        bh=J1n7A3Po/BvjIiR1JkMUhIHi/MIjb2B5HBeJvLmwlrc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IlJkXvd6UD0q9KHrp0K6eTAKTW+cDf93ng3pAFhU8yb2+8+Q2Xs0wtEAT6fCUkjj5
-         oZhNQoGestw7q/77t7S1TOKFWod64jyhVQzayoGxCppnVhIfn7WUkBl9Fh/Qa2NX2k
-         8nGl86ofw2ut2ByiUSDWTmrhXWVDljsV7RYZTltgGuLH/B4flQYbZnTGJrR02M4u++
-         g+2CSHQhFFq9GwUXKT0UWMTvG4D2u95+0tAt73qLX9FXLxRE5w+hy5hNq+ocm8pVE7
-         kEn6KL3kEcUENP0VM41/1pbKahH7k9fN+psf3fjR1BkdkwngmdBpPPezz+Al+vVqHt
-         EZZ65d3HUhF8Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oyax9-0006Zf-7R; Fri, 25 Nov 2022 16:49:23 +0100
-Date:   Fri, 25 Nov 2022 16:49:23 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229680AbiKYPvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:51:18 -0500
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3357247329;
+        Fri, 25 Nov 2022 07:51:13 -0800 (PST)
+Received: (Authenticated sender: thomas.petazzoni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A50931BF203;
+        Fri, 25 Nov 2022 15:51:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669391472;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=GPaT39sAq6bB/8jycs8Qu4XNOLXdQXN9CIa8CNq+0DU=;
+        b=d/iWI35QnhWrUQmu3eK7MTp+CL19nh+Yxmv+C3PgagomoCjafmL46X4+idl8P6GeM7d7W/
+        IuyPuItiyYGPs6TsLADAGD0fSGx6to8UDVu3P9UK3lyMkSj/644Y+Y5bjxkZyDmYKd2Qga
+        DUF4/VbHFuiaCTiZ0UHRpzPT1DjliCWV4/upp90Fv1szfz/rUHVVRGz1w5qZJuqmV8DlmS
+        cNOkK0+d9366JLreDe2UDAfAZ62wxQCkvsA9I3ZhrdFmqD0kW5jtdEEkWlnU2CmcNCVjUK
+        Fkf7YKCimzEimQEb0AaOSeczhQyCpHoJCRmyNQeq1OscLIz4gU7xdWoeIXLmHA==
+Date:   Fri, 25 Nov 2022 16:51:09 +0100
+From:   Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To:     Vadym Kochan <vadym.kochan@plvision.eu>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-Message-ID: <Y4DkA6Tbf9exhnL7@hovoldconsulting.com>
-References: <20221124142501.29314-1-johan+linaro@kernel.org>
- <20221125142625.GA9892@thinkpad>
- <Y4DUr7tVqnFT5HV9@hovoldconsulting.com>
- <20221125145336.GB9892@thinkpad>
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Elad Nachman <enachman@marvell.com>,
+        Raz Adashi <raza@marvell.com>, Yuval Shaia <yshaia@marvell.com>
+Subject: Re: [PATCH v2 2/3] PCI: armada8k: Add AC5 SoC support
+Message-ID: <20221125165109.6059d3a5@windsurf>
+In-Reply-To: <VI1P190MB03173DB0A16402C8AB670D91950E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
+References: <20221124135829.2551873-1-vadym.kochan@plvision.eu>
+        <20221124135829.2551873-3-vadym.kochan@plvision.eu>
+        <20221124155817.5f372417@windsurf>
+        <VI1P190MB03173DB0A16402C8AB670D91950E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221125145336.GB9892@thinkpad>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 08:23:36PM +0530, Manivannan Sadhasivam wrote:
-> On Fri, Nov 25, 2022 at 03:43:59PM +0100, Johan Hovold wrote:
-> > On Fri, Nov 25, 2022 at 07:56:25PM +0530, Manivannan Sadhasivam wrote:
-> > > On Thu, Nov 24, 2022 at 03:25:01PM +0100, Johan Hovold wrote:
+Hello!
 
-> > I never claimed it would fix the problem, I explicitly wrote that it
-> > made it less likely to occur (to the point where my reproducer no longer
-> > triggers).
+On Fri, 25 Nov 2022 08:43:06 +0000
+Vadym Kochan <vadym.kochan@plvision.eu> wrote:
+
+> [quote]
+> this is not needed, as by the time Linux is loaded, link has already been established (by boot loaders)
 > 
-> > Increasing the buffer sizes to two pages to force CMA allocation also appears
-> > to make the problem go away.
-> 
-> The "go away" part sounded like a claim to me and hence I added the statement.
-> But no worries :)
+> So this code is not needed.
+> [/quote]
 
-Hopefully it's clear enough if you also read the preceding sentence
-(with emphasis added):
+Not ideal to rely on the bootloader for this sort of initialization,
+and if we want to do this change, perhaps it should be done in another
+patch.
 
-  presumably as these queues are small enough to not be allocated using
-  CMA which in turn make them *more likely to be cached* (e.g. due to
-  accesses to nearby pages through the cacheable linear map).
+But again, the fact that "it works for Marvell because their vendor
+U-Boot does the right thing prior to loading Linux" is not really a
+very solid argument to drop kernel code :-/
 
-Johan
+Thomas
+-- 
+Thomas Petazzoni, co-owner and CEO, Bootlin
+Embedded Linux and Kernel engineering and training
+https://bootlin.com
