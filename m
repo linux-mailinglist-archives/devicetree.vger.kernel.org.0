@@ -2,110 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8AF463879E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 877046387A5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:36:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbiKYKgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 05:36:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
+        id S230040AbiKYKgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 05:36:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiKYKgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:36:02 -0500
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57032303CB;
-        Fri, 25 Nov 2022 02:36:01 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id C2D385C0090;
-        Fri, 25 Nov 2022 05:36:00 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Fri, 25 Nov 2022 05:36:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1669372560; x=1669458960; bh=VNwX2vXO61
-        X0uYZ41E6oKqEzDNGY/LfLxq0bY0q1V4o=; b=k/y3tX8KQIuf//qmBlq1s2A8yk
-        uv3FlHQXvDso9xMfv5RvYDUgaySKYjD+dPwas2LBM1n4ToppYai9cZ0iEKJAcqSs
-        HOqpemBD/vSbKHqFuSBqOE/KRTT7KBBG9xRhRMxa1CmgX8963EFrsenMR0J8dXZh
-        GhObM0f3EQVZD/zolSYv2jHaIiYOAl+kIZHHe2DZNxADn45Ux6UTyOzqRPHBgh6l
-        K2myQfPXn/6Z4a0Xe0Tqf00oVZAyVyVh3ploEUqOdADy+9o93FsUKd3fQfX8RQ58
-        pTLTuazf1/84qMPknAwCJ9zEthWbz58YOF9RrPQ0jzIqLnqi0tTpHB/635oA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1669372560; x=1669458960; bh=VNwX2vXO61X0uYZ41E6oKqEzDNGY
-        /LfLxq0bY0q1V4o=; b=RaKRkLs7mG7uIcmMC8LpccBMs+kvNwKUKY+qLQ3Qipkm
-        B2pyKVx9D6g6InbwHv5qstm6CYOAk9w58Pcajw1qphopR+TJZjipB3Z/GYeWH52K
-        YCSNi9RjyX9qnbh/Y7DN5xvM2xz0ViKErM995i1liOZ+QmP1vwuXUPAKfXQb7lVq
-        XzZ+mWrvEZ/F6WriEd1xfgpFLgZcwhOMe2Uun6t0eypSXD6ip4m3DG+N1LyHM54U
-        YyDykmX01wYakBMOL4I9rGS+pxnECorBQsO6IvEoArLB0WYhbOUqKYHXgd4ZJvsL
-        fsCY6fS0CCniE110o1AI/kGH2WIbZUA/ve5UJwIUWw==
-X-ME-Sender: <xms:j5qAY92vv-myF5hbgwOYjdaeYZtmG5EvGcUoOS-0Ur2ajvXK9Qsmcw>
-    <xme:j5qAY0GLUMz0y8JjZOYb5yedRpYmFUpKPfbH1hIhmv9okPSfWP1kM-vq_RWyGUbpn
-    Za4SbalYYle2IVotZc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrieehgddukecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:j5qAY94ItBCCAA4VQpRNKfscBWw2ipIGDr-IZBIVWgDbhlT9aBovvA>
-    <xmx:j5qAY62mKtJGCF5PBF-9Csg1NhWAL94BunSrFFXG4Z92U_vBUcTlgw>
-    <xmx:j5qAYwEqqLe--sS9QskoTZigAU5x_2vvyy6SqlaUI05LG9rFeHaJoQ>
-    <xmx:kJqAY48-4eouqPQf8PV-exnBvbDKku3ORZ0tUnV67pN-ZQVAB05P_Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id CB7CFB60086; Fri, 25 Nov 2022 05:35:59 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <abb37a26-1659-4ba0-a621-55fef35f552d@app.fastmail.com>
-In-Reply-To: <4ace98785f900bf1a818d006ae5906f6b51edf7e.1669359515.git.zhoubinbin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <4ace98785f900bf1a818d006ae5906f6b51edf7e.1669359515.git.zhoubinbin@loongson.cn>
-Date:   Fri, 25 Nov 2022 11:35:39 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Binbin Zhou" <zhoubinbin@loongson.cn>,
-        "Wolfram Sang" <wsa@kernel.org>,
-        "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
-        "Mika Westerberg" <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        "Huacai Chen" <chenhuacai@loongson.cn>,
-        "WANG Xuerui" <kernel@xen0n.name>,
-        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Jianmin Lv" <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V3 1/5] i2c: gpio: Fix potential unused warning for
- 'i2c_gpio_dt_ids'
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229436AbiKYKgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:36:50 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 740DC46657;
+        Fri, 25 Nov 2022 02:36:49 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id bj12so9312113ejb.13;
+        Fri, 25 Nov 2022 02:36:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TAA5+MTosfMlNvoe36JT1THP0OI7Tftg0ZLwKpzdNig=;
+        b=deDNxf2lRCheq9V0vXDBA6reUMtumtqZcNEppvF215oH5eHmU2HzYSolGZUK/Pnipp
+         ndLiI4v8j3Y7U1lrHi3O1y+0YOpYb+J11Lcr4O81WqM9mpYE7HAz1kWBNjHI8302hwe9
+         2XBID3Dr0tUxMINLtQNaBey/kaAxgD8sYeI5JcqUJ7YuVHyBUiIfWe1YOIZgSngSCqjG
+         zAgIa1VDH6JwZQCV9+r/JcZuv4lCaqCL097tAWQe2mJHBRJdNb6MryVOVIn/Edv6xyiG
+         Hej2YtTIjQiAljHr6dpaQDLRrLMQzQIJIO9/O0d9zgVBibhtRQKFdU28bMjmeoGw9DRb
+         vYgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TAA5+MTosfMlNvoe36JT1THP0OI7Tftg0ZLwKpzdNig=;
+        b=MjHdH0nSv1H67A3mA9sVa5o5YHZcj03oM+e04ztnP+CfkqS3+PkEeuw406tanreMwc
+         5FYmIq6geka2vGnnMPEL//lFUXfTvhhEzScv5A+ro5btNlnz9cGFNaFyhht/01n5Y1+i
+         jFPK/7wAl0aXTGJWO7Va3AuGYu2q9Iqe7njCmF6n3j+afCfeIfNlJWesoqCawvwgO4Kp
+         bEC712D3j3ucJ8T0cE9l9+G9h2s3G1osKIyPLRD7tmxORVzE68Ufbelz99zuMOwkbnd+
+         VD1SvQq6o5n47stVFzFgajjU/Nryc0iyyjEZvhKFZmZgqqByd27Y4HeWUBgtFJqlIk8S
+         ATzg==
+X-Gm-Message-State: ANoB5pnbQ+SIbmM7xKAyoVoSgvp6apxYHzy1yJtp6VXQpq3BFQxb2FK3
+        GkG9v2Cd1ZJtpONmZoWZBQITPwLC18APvBj47U1kG1ekMNk=
+X-Google-Smtp-Source: AA0mqf5v4s+UiXApNhf+ddpsOWAtYV+uHFxYvnI+gH7ytNyYHKGnV6H8idKdOR9FnvEhkFCHFEi45im9VjNaU3DDanQ=
+X-Received: by 2002:a17:907:7650:b0:781:e568:294f with SMTP id
+ kj16-20020a170907765000b00781e568294fmr17396469ejc.447.1669372607905; Fri, 25
+ Nov 2022 02:36:47 -0800 (PST)
+MIME-Version: 1.0
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <4801607.MHq7AAxBmi@diego> <CA+V-a8sT8VxpeM=eBgmDeojOka-LDmvP4JkhVfEDKi3D3VOsmw@mail.gmail.com>
+ <3217756.bB369e8A3T@diego>
+In-Reply-To: <3217756.bB369e8A3T@diego>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 25 Nov 2022 10:36:21 +0000
+Message-ID: <CA+V-a8uXxCupvW9eQGs4=XnertvZUfi_KVAF5SUcmqmPHT_+xA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] riscv: asm: alternative-macros: Introduce
+ ALTERNATIVE_3() macro
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022, at 09:54, Binbin Zhou wrote:
-> of_match_ptr() compiles into NULL if CONFIG_OF is disabled.
-> Fix warning by dropping of_match_ptr().
->
-> Suggested by Andy Shevchenko, thanks.
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Hi Heiko,
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+On Fri, Nov 25, 2022 at 10:20 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
+>
+> Am Freitag, 25. November 2022, 11:02:21 CET schrieb Lad, Prabhakar:
+> > Hi Heiko,
+> >
+> > On Thu, Nov 24, 2022 at 7:58 PM Heiko St=C3=BCbner <heiko@sntech.de> wr=
+ote:
+> > >
+> > > Am Donnerstag, 24. November 2022, 20:52:33 CET schrieb Conor Dooley:
+> > > > On Thu, Nov 24, 2022 at 05:22:01PM +0000, Prabhakar wrote:
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > Introduce ALTERNATIVE_3() macro.
+> > > >
+> > > > Bit perfunctory I think! There's a lovely comment down below that w=
+ould
+> > > > make for a better commit message if you were to yoink it.
+> > > > Content looks about what I'd expect to see though.
+> > >
+> > > Also both the comment on the original ALTERNATIVE_2 and the new ALTER=
+NATIVE_3
+> > > should probably be merged into a single comment explaining this once =
+for all
+> > > ALTERNATIVE_x variants.
+> > >
+> > > Especially with the dma stuff, I'm pretty sure we'll get at least an =
+ALTERNATIVE_4
+> > > if not even more ;-) . So we defnitly don't want to repeat this multi=
+ple times.
+> > >
+> > Do agree. How about the below?
+> >
+> > /*
+> >  * Similar to what ALTERNATIVE_2() macro does but with an additional
+> >  * vendor content.
+> >  */
+> >
+> > So the other ALTERNATIVE_2+() macros will keep on building on it.
+>
+> My idea was more like having _one_ comment block of something like
+>
+> -----
+> /*
+>  * ALTERNATIVE_x macros allow providing multiple replacement options
+>  * for an ALTERNATIVE code section. This is helpful if multiple
+>  * implementation variants for the same functionality exist for
+>  * different cpu cores.
+>  *
+>  * Usage:
+>  *   ALTERNATIVE_x(old_content,
+>  *      new_content1, vendor_id1, errata_id1, CONFIG_k1,
+>  *      new_content2, vendor_id2, errata_id2, CONFIG_k2,
+>  *      ...
+>  *      new_contentx, vendor_idx, errata_idx, CONFIG_kx)
+>  */
+>
+> #define ALTERNATIVE_2(...)
+> #define ALTERNATIVE_3(...)
+> etc
+> -----
+>
+LGTM, I'll include the above in the next version.
 
-I think this is a useful cleanup in general, though I don't think
-there is an actual warning in this particular driver that gets fixed
-by the patch, so it would be good to change the changelog text to
-describe this better: dropping a matching #ifdef check along with
-dropping of_match_ptr() is just a cleanup, while dropping
-of_match_ptr() that has no corresponding #ifdef fixes an actual
-warning.
+> So this would include dropping the old comment over ALTERNATIVE2
+>
+Agreed, I'll drop it in the same patch.
+
+Cheers,
+Prabhakar
