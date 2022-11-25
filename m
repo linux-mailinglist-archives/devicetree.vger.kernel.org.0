@@ -2,96 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8142B63841B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 444DA638426
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbiKYGlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 01:41:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44640 "EHLO
+        id S229677AbiKYGz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 01:55:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbiKYGli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:41:38 -0500
-Received: from fd01.gateway.ufhost.com (unknown [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DBD2A730;
-        Thu, 24 Nov 2022 22:41:00 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9286D24E35C;
-        Fri, 25 Nov 2022 14:40:39 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Nov
- 2022 14:40:39 +0800
-Received: from [192.168.125.106] (183.27.97.81) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Nov
- 2022 14:40:38 +0800
-Message-ID: <72b3d10e-5a8e-ed42-6808-f53773913422@starfivetech.com>
-Date:   Fri, 25 Nov 2022 14:41:12 +0800
+        with ESMTP id S229495AbiKYGzZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:55:25 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6901D2C12E
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 22:55:24 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id r26so3056640edc.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 22:55:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ur6CY0ehyWvIsSYgBrRBd989RwDC6T3QUcqOKa4M1B4=;
+        b=jNnSsHNcd023P83kMILxiDJDJgirzXk5J8n8FkSm4NyIFaVmXexpO0DEMEkYn4Oedc
+         euDEkry9V94wGcq3+3lQ6Mi2B+iMeAkFXyijmtRixfRM1DB4eAtFMzcxbOYsl6nm+fvX
+         C5HULIDB1sjSdqQ16R3LmA6SplmEqmUPXk2Sc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ur6CY0ehyWvIsSYgBrRBd989RwDC6T3QUcqOKa4M1B4=;
+        b=YXc+n1+KW8OILJLREVsDmX0vWR9hPWBf3dfkoaqNZHkUk0s9NmG7C/KPFBl8wUpWlf
+         dBC/o6DPlMvD7xsqoybY2C8tzkYncf3y2kdflycSiiO22WZC3gYfxwqV2jvCWkC/CpU1
+         BmGw27IUapWCHKQAntjlhnqO+Guzbam45qVZN0ExURPwg63OM9iLqRtuHwyv4qSm0tgz
+         wQNG8A+NTWS4VWZNxGnwYHK7yYzGQ2Z4T0zZtJabh1RbYv7w/cpWtRt7UAwVXiCPTrAn
+         YNexv0mEhp/zuxjaPK610iqf7anktP7lxFoXyb7SyOHYnrfHFh1bbAAULIW2S47bf+RT
+         6OnA==
+X-Gm-Message-State: ANoB5pnEWvIbhFTJuNdpiKlcpn32wACy9kPjSanVyGCTc1kT6RIARsWT
+        P7sjk0BvML/N3KqN5kDFq23C0u4iG8ZdJzFyAR4QNg==
+X-Google-Smtp-Source: AA0mqf4R8vHrUUtgiwRXIkgosxHPQdIJFXKZT/SzNXwg5A6W3v+N2FteQiZNLGKekFOJ/0gOvKS6maAvZvkhLIhd3Co=
+X-Received: by 2002:a05:6402:3895:b0:468:15f1:54b5 with SMTP id
+ fd21-20020a056402389500b0046815f154b5mr15230966edb.8.1669359322947; Thu, 24
+ Nov 2022 22:55:22 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v2 09/14] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+References: <20221124102056.393220-1-treapking@chromium.org>
+ <20221124102056.393220-8-treapking@chromium.org> <Y39iRg2TZCljOyNN@smile.fi.intel.com>
+In-Reply-To: <Y39iRg2TZCljOyNN@smile.fi.intel.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Fri, 25 Nov 2022 14:55:11 +0800
+Message-ID: <CAEXTbpfU1EBD7QYZLeRFk9Kz7+J1wamzaVuwVpa8M9WxWtCe-g@mail.gmail.com>
+Subject: Re: [PATCH v6 7/7] drm/bridge: it6505: Register Type C mode switches
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-10-hal.feng@starfivetech.com>
- <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Javier Martinez Canillas <javierm@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        dri-devel@lists.freedesktop.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-acpi@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Xin Ji <xji@analogixsemi.com>, Lyude Paul <lyude@redhat.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.81]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Nov 2022 09:47:08 +0100, Krzysztof Kozlowski wrote:
-> On 18/11/2022 02:06, Hal Feng wrote:
-> > From: Emil Renner Berthing <kernel@esmil.dk>
-> > 
-> > Add bindings for the system clock and reset generator (SYSCRG) on the
-> > JH7110 RISC-V SoC by StarFive Ltd.
-> > 
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> 
-> Binding headers are coming with the file bringing bindings for the
-> device, so you need to squash patches.
+Hi Andy,
 
-As we discussed in patch 7, could I merge patch 7, 8, 9, 10 and add the
-following files in one commit?
+Thanks for reviewing the patch.
 
-include/dt-bindings/clock/starfive,jh7110-crg.h
-include/dt-bindings/reset/starfive,jh7110-crg.h
-Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
+On Thu, Nov 24, 2022 at 8:23 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Nov 24, 2022 at 06:20:56PM +0800, Pin-yen Lin wrote:
+> > Register USB Type-C mode switches when the "mode-switch" property and
+> > relevant port are available in Device Tree. Configure the "lane_swap"
+> > state based on the entered alternate mode for a specific Type-C
+> > connector, which ends up updating the lane swap registers of the it6505
+> > chip.
+>
+> ...
+>
+> >  config DRM_ITE_IT6505
+> >          tristate "ITE IT6505 DisplayPort bridge"
+> >          depends on OF
+> > +     depends on TYPEC || TYPEC=n
+> >       select DRM_DISPLAY_DP_HELPER
+> >       select DRM_DISPLAY_HDCP_HELPER
+> >       select DRM_DISPLAY_HELPER
+>
+> Something went wrong with the indentation. Perhaps you need to fix it first.
+>
+> ...
+>
+> >  #include <drm/drm_edid.h>
+> >  #include <drm/drm_print.h>
+> >  #include <drm/drm_probe_helper.h>
+> > +#include <drm/drm_of.h>
+>
+> Make it ordered?
 
-Best regards,
-Hal
+Will fix it in v7.
 
-> 
-> > ---
-> >  .../clock/starfive,jh7110-syscrg.yaml         | 80 +++++++++++++++++++
-> >  MAINTAINERS                                   |  2 +-
-> >  2 files changed, 81 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>
+> ...
+>
+> > +struct it6505_port_data {
+>
+> > +     bool dp_connected;
+>
+> Perhaps make it last?
 
+Will fix it in v7.
+
+>
+> > +     struct typec_mux_dev *typec_mux;
+> > +     struct it6505 *it6505;
+> > +};
+>
+> ...
+>
+> > +static void it6505_typec_ports_update(struct it6505 *it6505)
+> > +{
+> > +     usleep_range(3000, 4000);
+> > +
+> > +     if (it6505->typec_ports[0].dp_connected && it6505->typec_ports[1].dp_connected)
+> > +             /* Both ports available, do nothing to retain the current one. */
+> > +             return;
+> > +     else if (it6505->typec_ports[0].dp_connected)
+> > +             it6505->lane_swap = false;
+> > +     else if (it6505->typec_ports[1].dp_connected)
+> > +             it6505->lane_swap = true;
+> > +
+> > +     usleep_range(3000, 4000);
+> > +}
+>
+> As per previous patch comments.
+
+Will update it in v7.
+
+>
+> Also, comment out these long sleeps. Why they are needed.
+
+Actually, it turns out that these sleeps are not needed. I'll remove it in v7.
+
+>
+> ...
+>
+> > +             int ret = pm_runtime_get_sync(dev);
+> > +
+> > +             /*
+> > +              * On system resume, mux_set can be triggered before
+> > +              * pm_runtime_force_resume re-enables runtime power management.
+>
+> We refer to the functions as func().
+
+Will fix this in v7.
+
+>
+> > +              * Handling the error here to make sure the bridge is powered on.
+> > +              */
+> > +             if (ret < 0)
+> > +                     it6505_poweron(it6505);
+>
+> This seems needed a bit more of explanation, esp. why you leave PM runtime
+> reference count bumped up.
+
+pm_runtime_force_suspend() disables runtime PM when the device enters
+suspend, and sometime it6505_typec_mux_set() is called before
+pm_runtime_force_resume brings runtime PM back. We force power up the
+bridge in this case and leave the ref count incremented to make the
+future pm_runtime_(get|put)_sync() calls balanced.
+
+I'll include more explanations around this in v7.
+
+>
+> ...
+>
+> > +     num_lanes = drm_of_get_data_lanes_count(node, 0, 2);
+> > +     if (num_lanes <= 0) {
+> > +             dev_err(dev, "Error on getting data lanes count: %d\n",
+> > +                     num_lanes);
+> > +             return num_lanes;
+> > +     }
+> > +
+> > +     ret = of_property_read_u32_array(node, "data-lanes", dp_lanes, num_lanes);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to read the data-lanes variable: %d\n",
+> > +                     ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     for (i = 0; i < num_lanes; i++) {
+> > +             if (port_num != -1 && port_num != dp_lanes[i] / 2) {
+> > +                     dev_err(dev, "Invalid data lane numbers\n");
+> > +                     return -EINVAL;
+> > +             }
+>
+> As per previous patch comments.
+
+I'll remove this part in v7 and try to figure out how to do similar
+checking with schemas.
+>
+> > +             port_num = dp_lanes[i] / 2;
+> > +     }
+>
+> The above seems like tons of duplicating code that drivers need to implement.
+> Can we shrink that burden by adding some library functions?
+
+Could you advise where this lib file should go, and what the namings
+can be? The "port-switching" logic is specific to some of the DP
+bridges, and I'm not sure what kinds of naming/structure fit into this
+case.
+
+Thanks and regards,
+Pin-yen
+
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
