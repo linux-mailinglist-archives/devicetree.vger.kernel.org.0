@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F537638CCD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51BA9638CDB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:01:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbiKYO5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:57:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52930 "EHLO
+        id S230195AbiKYPBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:01:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiKYO5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:57:24 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA9F3D907
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:57:24 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id n17so4145270pgh.9
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:57:24 -0800 (PST)
+        with ESMTP id S230152AbiKYPB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:01:27 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C1E40908
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:01:27 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id w23so4196169ply.12
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:01:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jdhD7TyJAV9Yjv88DjHcR22sCnTCoFYgtGFsGgYfXW0=;
-        b=Uqm0qn5phqXeWhCqw/F05B4fb0YwjNUdPVyTz7nqy4Q+gyHwPLQ6HvMR1FgS8jsCQU
-         q1IK7QHUqNoSej2t1wae6i6GrPqtmNhKTjRNOXv6dBWEzRWn3zQdAUmrUhsthaHH4ikA
-         cKR2je4BA6e11up3gJriA/c3gADhUN24D8E0lcOKMwEyz+uwt53A6gsbAQTo8nUyFU29
-         Nzm2onZOM9+PF/v7Fqfbx9qr3HMphnAgYbvo2Oh7YGfVdmy0npoS0XPfeShCqUtIbkWN
-         3x124UDWLQJk1XjK6AP0SfKR3Jb8jr/J7dC5VtiH9wtkfA9KDI0Bz/IE257BuNOsWrFa
-         g8Kg==
+        bh=YzoqxWzLbAC5xaHv8eIezGdeIdLYxY/4HqUGgZdz7Wg=;
+        b=kH2Y3AbvfupiLGAvBUpirk8wOJGQvhlGXVI+TfDSUxOl8Je0lhyt7M93SsymrAoud9
+         h8cFSWSTqxMUROM0H3V7xWIODzPRwg3ELTUP0F6XECXzf3DjNWcw6Ik9v8+GOrtNX5Cm
+         ZSNYkpgs/h1h2rp9L87+Go1SFzDiP+9pTOu8TZ8npftunTgpx/0V8nSomCBgHla4VIHn
+         Dy5CxI2d+NG5mQ/Icl4P0XRXXKoZz+cjjM1XIrET1kQQJ6xd9Kex9LMBpTuNj65gHk1i
+         RLcevdCo7p/+djBxzaGpSDD92VetqSy81l6taHZeLlS3RFsM2yp/XWCsmeT4IVEMsDIM
+         Cl8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jdhD7TyJAV9Yjv88DjHcR22sCnTCoFYgtGFsGgYfXW0=;
-        b=702MA7lWw7SY/eWmQY4wqZFrxfJqtPh7WdqOMbe26kl1YvxzJ68JabEO2+UpARu61J
-         A95bAVpN5mnLQ0mj4exiLWheYB/BSkEQSL3EfpLa6chm5a6TnCaAUaEJmUdHZ9MNURZi
-         ebgZYmyw6TPCf4vHr/L7GtjpMr7zFO812Insm53Xv8gNpPuN8u/1rfXp5zmZRO4s6jkN
-         q38VqPb676fGrEjFJ7tsaeRoKg1NCCvVIiQOZE4kqlKonbR1TN/6OCxdaKSus0LyOrnL
-         /FCXCUCq2APrkSlPzD6TcRxw2ipzUy33Wlg1t5t0FOD8HfIP5x/g56baid6b4JJ4V8/I
-         Jfyw==
-X-Gm-Message-State: ANoB5pkkh7ZxGdpuer4H9HSVWIhh7hdV4dsWinpxw8PjK8nE4peZE810
-        EpOg4cDpKMA8IWIrIzMKO5DctijJ4XsudlpXGsPv3A==
-X-Google-Smtp-Source: AA0mqf5I5b28SQXiYfcgPnjF5puxBhYUKVhvjzG8dNtV0uM9fPMxZbbenGJQY8bIxdgwY3OxzBMUM0f64wcqVgqOMVc=
-X-Received: by 2002:a63:e008:0:b0:46f:5979:8889 with SMTP id
- e8-20020a63e008000000b0046f59798889mr16712060pgh.119.1669388243590; Fri, 25
- Nov 2022 06:57:23 -0800 (PST)
+        bh=YzoqxWzLbAC5xaHv8eIezGdeIdLYxY/4HqUGgZdz7Wg=;
+        b=N+ZDC9/fmijyUI/hpnzxL/BceBlSH+UQSqOI+h0wfl82aCdCUnzyuT9N1RKfHmzgEL
+         bvicM1e3PXgi+UMtOMgE0UrPhnQm3wgyWQKKycWv3lt/GSyv26HA094Q1YRj2O73Gskr
+         eL+0TYf8Qnf+gzDkIKmBQE5b1n96n8gIW/CB0lRqTGwvb3KVJQXTpnrRHt5zFWk00oVh
+         I8XuHb6Wet5tmQQBoajG8cBo6ZwnYjrkHqBJOCNM8LvCfqmq5kvukV+OMc1LP6afifIM
+         9kUBgueMXH6GYsIaJHa2Aeq0mvJPWPJL/U8vuGreOEVgkJz4E2rNgGxtf7/WejXvr6g8
+         Rlkg==
+X-Gm-Message-State: ANoB5pnsAqmcRX2SijRfBWE25MRLqu8nEqRM2dfUbYMpbLq8it6ldA+T
+        oTxyuH+3oaMwgrUiFojWXkHD+vi44E2TTZ96CGpeaA==
+X-Google-Smtp-Source: AA0mqf6shePmYKZfIf2OuYXE1zqCj37yUbefhBb4iV1YXC+qj6V5THYvuSCQVCkOaevgbGxM+Iz85hWJZHl4Ut5UbPc=
+X-Received: by 2002:a17:903:258b:b0:189:1b50:f9e with SMTP id
+ jb11-20020a170903258b00b001891b500f9emr19878838plb.74.1669388486600; Fri, 25
+ Nov 2022 07:01:26 -0800 (PST)
 MIME-Version: 1.0
 References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
- <20221125112201.240178-3-krzysztof.kozlowski@linaro.org> <CAPLW+4kwFCLaiowajdCnA09eT4emOB-3d-6cbA=ZYyRLwYuCxw@mail.gmail.com>
- <dfd956d5-d62d-52ac-c485-afc71c441df5@linaro.org>
-In-Reply-To: <dfd956d5-d62d-52ac-c485-afc71c441df5@linaro.org>
+ <20221125112201.240178-4-krzysztof.kozlowski@linaro.org> <CAPLW+4nSLP4ZpnzYrOfMu0uOQ0OYnWsnZ=sUppxts6O_3-yYZg@mail.gmail.com>
+ <ff33d45c-f4ad-49f3-24b6-b15b4af5aa83@linaro.org>
+In-Reply-To: <ff33d45c-f4ad-49f3-24b6-b15b4af5aa83@linaro.org>
 From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 25 Nov 2022 08:57:12 -0600
-Message-ID: <CAPLW+4mWq5Q4Ht1Upx2Xw3fMfNvvSK6fEPbLFru1NLpKHLbKOg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynos5433
+Date:   Fri, 25 Nov 2022 09:01:15 -0600
+Message-ID: <CAPLW+4kHef4pMNMbc8kvKzM0v0qBMoX6zwH1QCQKcLLubfcWXg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: soc: samsung: exynos-sysreg: add clocks
+ for Exynos850
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -74,44 +74,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Nov 2022 at 08:47, Krzysztof Kozlowski
+On Fri, 25 Nov 2022 at 08:49, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 25/11/2022 15:22, Sam Protsenko wrote:
+> On 25/11/2022 15:38, Sam Protsenko wrote:
 > > On Fri, 25 Nov 2022 at 05:22, Krzysztof Kozlowski
 > > <krzysztof.kozlowski@linaro.org> wrote:
 > >>
-> >> Exynos5433 has several different SYSREGs, so use dedicated compatibles
-> >> for them.
+> >> Exynos850 has dedicated clock for accessing SYSREGs.  Allow it, even
+> >> though Linux currently does not enable them and relies on bootloader.
 > >>
+> >
+> > Not sure if this description is correct. Of course, there is no driver
+> > for "samsung,exynos850-sysreg" compatible at the moment, so the next
+> > compatible from the list ("syscon") is used for Exynos850. And
+> > "syscon" driver (drivers/mfd/syscon.c) actually does control the
+> > clocks. I remember adding "clocks" property to Exynos850 dts to fix
+> > actual problem. Also, the "clocks" property is not described in
+> > Documentation/devicetree/bindings/mfd/syscon.yaml, didn't really check
+> > if it's ok or it's just missing.
+> >
+> > Other than that comment:
+> >
+> > Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> >
 > >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> Cc: Sriranjani P <sriranjani.p@samsung.com>
-> >> Cc: Chanho Park <chanho61.park@samsung.com>
-> >> Cc: Sam Protsenko <semen.protsenko@linaro.org>
-> >> ---
-> >
-> > Hi Krzysztof,
-> >
-> > Just curious: what is the rationale for adding those more specific
-> > sysregs? AFAIR, e.g. in Exynos850, different SysReg instances have
-> > pretty much the same register layout.
-> >
 >
-> On Exynos5433 all these blocks have different registers. Are you saying
-> that Exynos850 has four (or more) sysregs which are exactly the same?
-> Same registers? Why would they duplicate it?
+> Ah, then commit msg is not good. I'll update it and maybe the clocks
+> should be required for Exynos850?
 >
 
-Ah, no, you are right. Just checked it, they are different. Just first
-couple of registers are similar between blocks, that's why I memorized
-it wrong.
-
-So as I understand, adding those new compatibles follows "describe HW,
-not a driver" rule? Because AFAIU, right now it'll fallback to
-"syscon" compatible anyway.
+Yeah, looks like all Exynos850 sysreg blocks have dedicated clock.
+Please make it required. And thanks for working on that! :)
 
 > Best regards,
 > Krzysztof
