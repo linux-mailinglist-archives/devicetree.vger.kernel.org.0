@@ -2,134 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 483FC638A4C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3451638A5A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiKYMk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 07:40:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36722 "EHLO
+        id S229553AbiKYMmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 07:42:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbiKYMkl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:40:41 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A32655F
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:40:12 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id n3so6593798wrp.5
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:40:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=msWrrKQCqw0BYu4YAgOQYq+Ad0KCUwCY+JcS8it2gqA=;
-        b=JecijIkyNmwA4BnrdxMbg4rKUhOJGdz4NIPDdbm13gQEMUUXybXa9Lbt9qmNWX7e1O
-         zIYkJN5M3MBpaPU8TyTsWjgPn/hvwlGW2VdPkrsTQ5gJvLZEsZjSiZ0kseOw2q+x5Wh8
-         bKuMrPgCAleS83Xl5SGDO5FyjucfcywIYo0UvAw0cRvEZla2pZv7oUFGL6PU342F5Lif
-         udGhRLf9oF8EETcW5CR8TEcPmQwaH9kKl8OiEtjKmcx/R1UaAlEEpnmViC4BByXhdKx3
-         HZytGnLCi0iS5FnAzMcfTQlShWI6sNJt/UY4xZOdd/gPSzyBatIQ8pi4llGAraHdN9LJ
-         WWQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=msWrrKQCqw0BYu4YAgOQYq+Ad0KCUwCY+JcS8it2gqA=;
-        b=W+Q736UkJZYUxc29y40g35jG1sgYA4gvEoxI/SjMYB4WVhljTnd+HUafsqZsHFUoSV
-         dx4lik7JwgWKkffWoUzqgqNJ8INGZciMYQFgL5SdRHaKrdXCfbBU7rClo0c49B1VsFHl
-         6/LIm3GcV/km6rKK1LoFbIF8wUeAFLfChFGQfPdyAT/egmake2w7n0QbE4w678ZYFOZe
-         03USDf9SwxTXcjgbqgIxvJ0QehjG+03F621s3T00CqjUl4IuDRB15sCYPn+K4tLceGdu
-         AN8o+m7s2T2qb11PTtT4/vKC+pwy71Z2mA5n4XMRhKAr9gQ1YRK4ycx92XmIapl9Jgnh
-         u3Jg==
-X-Gm-Message-State: ANoB5pm9N0Rlh2ZEziW0t+SnyyPDt9sAJGgwjVmWlBPFnZGxwACtlYVK
-        BJ/erwhPPcRfXJsANRBr6tp5Ww==
-X-Google-Smtp-Source: AA0mqf7SU4JG52DSfbxYGLy0nDnf2sWj1aJ3f88ziA6uYVgDNYSKYTbg15BOYRm/8bzeQIYnE7iPPQ==
-X-Received: by 2002:a05:6000:783:b0:241:bc34:3149 with SMTP id bu3-20020a056000078300b00241bc343149mr17608825wrb.351.1669380010680;
-        Fri, 25 Nov 2022 04:40:10 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
-        by smtp.gmail.com with ESMTPSA id m16-20020a05600c3b1000b003cfd0bd8c0asm5798032wms.30.2022.11.25.04.40.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 04:40:10 -0800 (PST)
-Message-ID: <8602cacd-f552-e843-5c17-681b099069a3@linaro.org>
-Date:   Fri, 25 Nov 2022 13:40:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: qcom,tlmm-common: document
- i2c pull property
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230150AbiKYMmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:42:07 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3076134;
+        Fri, 25 Nov 2022 04:42:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669380126; x=1700916126;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xl+Bv7/Qyg1Mpk472aQOIV4FudsK3xM+T2iuA3fSdh4=;
+  b=F9GRsUpJ0Z3OY/d6mOUxPcJdIkD60g/p76IugLExiqlj1A6YEooGx7Id
+   8Rpw24vC9volwurIKcoPrQYb1uyY3nlnNiAzK2hWj/jjxf3GRbauwPbIQ
+   s70pWJtxuuNH8YRBq5h2y8nSKQjShSUF6dhbmt/rUIs87pXPGu44hRrpW
+   ZOcZjjlQ51387m8L8kzxGPideOdL9mZFdGvrFaA+2byG4ejfSCJnIN2Xv
+   6cZhJpwi5xr9HXn4o2Ln1raY7QiTnlzcDff/TISuFAoggg5PAiWgR0WYu
+   xkI3kIBcelbJQ7MvFVzIDFsvX4SqbVlV4e1FFB8ouy9rIYM//5o7+eSOo
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="125095415"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 05:42:06 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 25 Nov 2022 05:42:05 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Fri, 25 Nov 2022 05:42:04 -0700
+Date:   Fri, 25 Nov 2022 12:41:46 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <20221123152001.694546-1-abel.vesa@linaro.org>
- <20221123152001.694546-3-abel.vesa@linaro.org>
- <CACRpkdZtkHCkfUAcezSJvmei=HOezK6oyx+4C5kBrEtU+vAB-g@mail.gmail.com>
- <fecb2dd6-9be2-78dc-4598-cc338fbdc2a2@linaro.org>
- <CACRpkdZJaz9BEorQa7dTNkgTkwZjJNB-MWrpKFxHRgdsf3xJww@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CACRpkdZJaz9BEorQa7dTNkgTkwZjJNB-MWrpKFxHRgdsf3xJww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Wayne Chang <waynec@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: usb: tegra-xusb: Convert to json-schema
+Message-ID: <Y4C4Cp1D+QEKWiaf@wendy>
+References: <20221103144200.1479640-1-thierry.reding@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221103144200.1479640-1-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 10:47, Linus Walleij wrote:
-> On Thu, Nov 24, 2022 at 2:24 PM Neil Armstrong
-> <neil.armstrong@linaro.org> wrote:
->> On 24/11/2022 14:11, Linus Walleij wrote:
->>> On Wed, Nov 23, 2022 at 4:20 PM Abel Vesa <abel.vesa@linaro.org> wrote:
->>>
->>>> From: Neil Armstrong <neil.armstrong@linaro.org>
->>>>
->>>> Document the new i2c_pull property introduced for SM8550 setting
->>>> an I2C specific pull mode on I2C able pins.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>> (...)
->>>> +      qcom,i2c-pull:
->>>> +        type: boolean
->>>> +        description: enable bias pull feature designed for I2C on pin
->>>
->>> But what is this?
->>>
->>> I2C buses are usually just plain old bias-high-impedance, high-z
->>> or open drain, wire-or or whatever you want to call it.
->>>
->>> But now there is some special i2c mode, huh?
->>>
->>> The description is pretty much "it is what it is"... can we have
->>> some explanation about what this means electrically speaking
->>> and why you cannot use bias-high-impedance?
->>
->> I'll try to get some more info, but so far I only found what I wrote in the bindings.
+Hi Thierry,
+
+On Thu, Nov 03, 2022 at 03:42:00PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Björn: can you see if you can get some clarity about the i2c
-> bias thing?
-
-As I understood, it enables an "I2C resistor" on the pin, removing the need
-of an external pull-up resistor on the line.
-
-I assume the classical pull-up bias is not strong enough to replace an actual
-resistor on the PCB.
-
-Neil
-
+> Convert the Tegra XUSB controller bindings from the free-form text
+> format to json-schema.
 > 
-> Yours,
-> Linus Walleij
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+
+> +        phys = <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}>, /* mini-PCIe USB */
+> +               <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-2}>, /* USB A */
+> +               <&{/padctl@0,7009f000/pads/pcie/lanes/pcie-0}>; /* USB A */
+
+This seems to be breaking dt_binding_check in today's linux-next:
+FATAL ERROR: Can't generate fixup for reference to path &{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}
+
+Am I missing something? My dt-schema is today's main.
+
+Thanks,
+Conor.
 
