@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3C21638638
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:29:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E4F963863D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:29:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiKYJ24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 04:28:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44756 "EHLO
+        id S230018AbiKYJ3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 04:29:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiKYJ2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:28:38 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9499A12763
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:28:37 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id ud5so9037348ejc.4
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:28:37 -0800 (PST)
+        with ESMTP id S229904AbiKYJ2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:28:43 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BBE3AC15
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:28:39 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id vv4so9046749ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:28:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mpP1Fb3xrzGRgQcSv/nFJciJPCBP7tqCxTn34nBqums=;
-        b=M3AG39iyzVs6kp0nC+H6PpKMBHKps2QdCUkARwCOOsrhaQzvV03csXlDQrasZJfxXq
-         5++2hBLuysDfDyTuchXNvhK0/xi/Itvpo6NplBuZk7h6f+vuMyT2zIryoZu4RDAjpH9u
-         1kG8hhmksgxiGXsd1m8NOYhDz6dv/mVQbu/+mILE1rjce+4lB6agNnAWS4RYUHNpEZZ2
-         YfMq7mLnGCP1mG1Z8uAYt5dy87jP+gpppV548B0WAKVeVImMIXjTJC26xRJyrzY5jdC4
-         6vw4cdnVVsBX+MO9sczMwjyzNDYHPZFxsHGOZhipN926gnKVQc0Oy/o1+msxlp0ixOLj
-         odMw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eDlDbAHR12BKCMIARhmBHpen1uRLAhjJaEci7K6+OM8=;
+        b=Y0/gjH7Z7VH4bu0X+rO60RMSq8bgcJ07Whg6hgXdtirNhC/MCzivcqnRAC0LKbbRXJ
+         MgtIMgwqYSfgg8yKHXpATNes6Il5oeHwQqW7qkGy3d3u2iRnId8iUEAXL2XJTUvwwSzc
+         GKOnqeMGs1LdBz2Q5KRWeQ43gPPBsGt+jSsK4C06uhJrP1XSv/a+4lLIQX0aUOINb6CN
+         6fzEa3vcI8V/S3i6MzblZmWZYhF0n7vpBSaeNl/xPHF7wubyFcVm56HlCP3SEoT2WGjJ
+         jP4nJpDYjt4WmNtNE7pWMnudbDGqwNoIHfZ72d4m1XkK/i/VOW1++f8Wl+abqSv5KR45
+         H6fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mpP1Fb3xrzGRgQcSv/nFJciJPCBP7tqCxTn34nBqums=;
-        b=ZUVMSQcgmogUFNft7wjx/HRlmzkeeXT76lzQIvZK+K7mQHDzmdJQUuumNKb5nPxI0a
-         cUGBjquXjcGoEnlc7uTxN5gpq5ZsmeueWbEBMXBuTKKCZpIKKV1wl3XgwSp1tEjD6v+D
-         2+s5YGE9qmwguYXLSOyZyGZzvf0qVK1MT2b11Zn4XruApgAw4G+CynY0lRVvzE2Gq6JE
-         pyUxaCaXYhlSF2xOSQBj8Bl6r4uHKqmnFJo0C89EPDojYyONl9plv4JP41RHspxty51Z
-         6sBXaz1PSXEGOkrIT86kLUaDztacDJk1fJ+rWuNZIBNGbA31iyHVWWHiwGNAMBNaeFdP
-         6ayg==
-X-Gm-Message-State: ANoB5pmROrBX5z+31UJnfLxBE6CzyFsqN4Bb1s5eMW0Mv8qCDGHDqVSj
-        aKz4NWgsPYirLCf/ZYDv4XPZ0I7Oh+FvIQ==
-X-Google-Smtp-Source: AA0mqf6hp96XZKNkOkLtlvlp1dyiIjtsY9pIgqXvv7XvMMs9JbLaxGUy326AbqovFjsY5Em9g7F0/Q==
-X-Received: by 2002:a17:906:d281:b0:782:7790:f132 with SMTP id ay1-20020a170906d28100b007827790f132mr15514892ejb.649.1669368516112;
-        Fri, 25 Nov 2022 01:28:36 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eDlDbAHR12BKCMIARhmBHpen1uRLAhjJaEci7K6+OM8=;
+        b=7MV7fGo+MoT9Pn5waCi5ngzyyHV+BUdkanp57Yfe9DjWp0XXXmxCRhn1k/dmKFDDZ4
+         WvD7/pzjuOIjNnrXaeor/g8YNIMFvjw9F5a8RYixEgO9PWhiZa3KblMSkXeObDBp+Jza
+         3EgfylQadUmblUa+AGvqHve/autXEoNsVHRNn96WRETeXMzsmziyIRWGnGxVfs1qoX2H
+         aSASA3Ap+JFUnSLXwa/33fB3mVNgaPpKDvNZtrunaZq2jnv6ddmwSju8QmtAltz8xdvO
+         YNj0ygyHKZVyKW2+MpVqr4b61iu4hrJDpwQy8EiAUzORG3RMXKEemtBsFHlsndmKJ44/
+         ujBQ==
+X-Gm-Message-State: ANoB5pnbQ8fA6czazcaZTtAOUsI9hz3mvNFfbPU+9uVmeTPcP/7P2Fyq
+        RwDIrpP4VsAST02r61qZYyFdmw==
+X-Google-Smtp-Source: AA0mqf7oHl9+H293gFxLoBWl9XlcaihpEzinILW3YWYFjePNchpZGOt0bqS/jPIxrLU7CLPDeIzxTA==
+X-Received: by 2002:a17:906:1b48:b0:78d:a136:732b with SMTP id p8-20020a1709061b4800b0078da136732bmr15760264ejg.135.1669368518226;
+        Fri, 25 Nov 2022 01:28:38 -0800 (PST)
 Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id q10-20020a170906b28a00b007b47748d22fsm1329315ejz.220.2022.11.25.01.28.34
+        by smtp.gmail.com with ESMTPSA id q10-20020a170906b28a00b007b47748d22fsm1329315ejz.220.2022.11.25.01.28.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 01:28:35 -0800 (PST)
+        Fri, 25 Nov 2022 01:28:37 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
 To:     linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -55,73 +56,132 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add sm6350 compatible
-Date:   Fri, 25 Nov 2022 10:27:47 +0100
-Message-Id: <20221125092749.46073-1-luca.weiss@fairphone.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 3/3] arm64: dts: qcom: sm6350: Use specific qmpphy compatible
+Date:   Fri, 25 Nov 2022 10:27:49 +0100
+Message-Id: <20221125092749.46073-3-luca.weiss@fairphone.com>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221125092749.46073-1-luca.weiss@fairphone.com>
+References: <20221125092749.46073-1-luca.weiss@fairphone.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the compatible describing the combo phy found on SM6350.
+The sc7180 phy compatible works fine for some cases, but it turns out
+sm6350 does need proper phy configuration in the driver, so use the
+newly added sm6350 compatible.
+
+Because the sm6350 compatible is using the new binding, we need to
+change the node quite a bit to match it.
+
+This fixes qmpphy init when no USB cable is plugged in during bootloader
+stage.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-@Johan Hovold, I've sent this v2 as RFC because there are several things
-where I have questions on how it should be done.
+@Johan Hovold, in this patch there's also the question about cfg_ahb,
+power-domains but I'm also not happy about using the
+QMP_USB43DP_USB3_PHY define for the phy reference. Do you think it's a
+good idea to introduce e.g. QMP_USB3DP_USB3_PHY with the same value so
+it's essentially just an alias to the other?
 
-In this patch, you can see there's cfg_ahb (&xo_board) and power-domains
-is not set. In msm-4.19 &gcc_usb30_prim_gdsc is only used in the
-ssusb@a600000 node, or should I also add it to qmpphy?
+This series is tested on next-20221124 with next branch of linux-phy
+repo (commit bea3ce759b46) merged in.
 
- .../bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml          | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 46 +++++++---------------------
+ 1 file changed, 11 insertions(+), 35 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-index 6f31693d9868..3e39e3e0504d 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-@@ -17,16 +17,18 @@ properties:
-   compatible:
-     enum:
-       - qcom,sc8280xp-qmp-usb43dp-phy
-+      - qcom,sm6350-qmp-usb3-dp-phy
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 0f01ff4feb55..923c8bb7e5f8 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/interconnect/qcom,sm6350.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/mailbox/qcom-ipcc.h>
++#include <dt-bindings/phy/phy-qcom-qmp.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
  
-   reg:
-     maxItems: 1
+@@ -1119,50 +1120,25 @@ usb_1_hsphy: phy@88e3000 {
+ 			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+ 		};
  
-   clocks:
--    maxItems: 4
-+    maxItems: 5
+-		usb_1_qmpphy: phy@88e9000 {
+-			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
+-			reg = <0 0x088e9000 0 0x200>,
+-			      <0 0x088e8000 0 0x40>,
+-			      <0 0x088ea000 0 0x200>;
+-			status = "disabled";
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges;
++		usb_1_qmpphy: phy@88e8000 {
++			compatible = "qcom,sm6350-qmp-usb3-dp-phy";
++			reg = <0 0x088e8000 0 0x3000>;
  
-   clock-names:
-     items:
-       - const: aux
-+      - const: cfg_ahb
-       - const: ref
-       - const: com_aux
-       - const: usb3_pipe
-@@ -61,7 +63,6 @@ required:
-   - reg
-   - clocks
-   - clock-names
--  - power-domains
-   - resets
-   - reset-names
-   - vdda-phy-supply
+ 			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+ 				 <&xo_board>,
+ 				 <&rpmhcc RPMH_QLINK_CLK>,
+-				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+-			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
++				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
++			clock-names = "aux", "cfg_ahb", "ref", "com_aux", "usb3_pipe";
+ 
+ 			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+ 				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+ 			reset-names = "phy", "common";
+ 
+-			usb_1_ssphy: usb3-phy@88e9200 {
+-				reg = <0 0x088e9200 0 0x200>,
+-				      <0 0x088e9400 0 0x200>,
+-				      <0 0x088e9c00 0 0x400>,
+-				      <0 0x088e9600 0 0x200>,
+-				      <0 0x088e9800 0 0x200>,
+-				      <0 0x088e9a00 0 0x100>;
+-				#clock-cells = <0>;
+-				#phy-cells = <0>;
+-				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+-				clock-names = "pipe0";
+-				clock-output-names = "usb3_phy_pipe_clk_src";
+-			};
++			#clock-cells = <1>;
++			#phy-cells = <1>;
+ 
+-			dp_phy: dp-phy@88ea200 {
+-				reg = <0 0x088ea200 0 0x200>,
+-				      <0 0x088ea400 0 0x200>,
+-				      <0 0x088eac00 0 0x400>,
+-				      <0 0x088ea600 0 0x200>,
+-				      <0 0x088ea800 0 0x200>,
+-				      <0 0x088eaa00 0 0x100>;
+-				#phy-cells = <0>;
+-				#clock-cells = <1>;
+-			};
++			status = "disabled";
+ 		};
+ 
+ 		dc_noc: interconnect@9160000 {
+@@ -1236,7 +1212,7 @@ usb_1_dwc3: usb@a600000 {
+ 				snps,dis_enblslpm_quirk;
+ 				snps,has-lpm-erratum;
+ 				snps,hird-threshold = /bits/ 8 <0x10>;
+-				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
++				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+ 				phy-names = "usb2-phy", "usb3-phy";
+ 			};
+ 		};
 -- 
 2.38.1
 
