@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C09166385B5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D57BE6385BC
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:59:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiKYI6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 03:58:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
+        id S229833AbiKYI7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 03:59:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiKYI57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:57:59 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66F201D0FF;
-        Fri, 25 Nov 2022 00:57:55 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8DxtfCSg4Bj1OIAAA--.2346S3;
-        Fri, 25 Nov 2022 16:57:54 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_eGQg4BjEhQaAA--.1503S3;
-        Fri, 25 Nov 2022 16:57:54 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V3 5/5] LoongArch: Enable LS2X I2C in loongson3_defconfig
-Date:   Fri, 25 Nov 2022 16:55:21 +0800
-Message-Id: <d454f02f0baab458a332f7760f9c15c59b7d96eb.1669359515.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1669359515.git.zhoubinbin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
+        with ESMTP id S229766AbiKYI7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:59:08 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E63A30554
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:59:07 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id r8so4430633ljn.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:59:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B6NP9iExsKhwAiLL3vq6RTTdR3dVNz/YYKUpFQJUzmA=;
+        b=Hgk0oxKXN9Kp1SVIjeguHoN7XO7n/EC4fM773cZZZY8ilRuGvyEsgAcEGmeK3pU2Jy
+         TGfiulCY8gCJ64ILXTYgmm8vpspUQkudvB8Y1ubKbXoh++qvOKPcixdDp6c78Pvru8Tw
+         BOoODAJhX6OINqHo8FvGgeJKj6P4bcy2xiFboO1yKDvAR9vXbHMsdIXWibGLjQpiHE4N
+         2uJIUH4sWNmz4CpiKt9QGtgYFVYkZA9FKFd4U8NV2q0vv+7p6XEUFA1nBS2IjR50j3kK
+         k5wQ9Xn5hfOIkVWtPDSeqWIUOqj51F/sDsIFBtD92j/LMLglQwiSe3xlpRn/b+FDfjTm
+         Ee/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B6NP9iExsKhwAiLL3vq6RTTdR3dVNz/YYKUpFQJUzmA=;
+        b=m/eZhZfUOaMqGeZPGBFeEbGoLERCfyZJh1p8xzQwI2OS4ttxdi77AneFH+vDnNEkks
+         OAtbTj8OYpJpxlIIB3OIftjXRjXYb3bJ+vmq55jwwjUYZLJCc5h4dHljA/c6fK7GfB6/
+         dkwY4PlqpFkL0neeIxmsEKRlZ+Xs/pUwNM7C9fNgktdXIuxwdVmLhSSPhbC9PVfxTyXb
+         sdsqj4/aliOj5rJy0eb7huPweP87OKHby2+m4ILw3I0xkRNLWNPySSeGh658MYuIwnH5
+         eLcjkdxdNxRbSatpXrjSFxK8FqjZqI9lJnp/oKsWvi+JMTq+vj0VEwWD7zWcK7YeDKSz
+         umVg==
+X-Gm-Message-State: ANoB5pmSnKA5CMS4yvRjNTeNxY+DGKNbJ1eM4HH2wYM+D/m5V6cLnL3h
+        VTbfpm4GRVrzE4v2inpqW6+2nA==
+X-Google-Smtp-Source: AA0mqf77+c+kCbL9XSzsq+fyhsTpSylGBtPLQbDyXpMNs/p9Qr5IKiNMoVLX/VFlRUo/cQiC7vycWw==
+X-Received: by 2002:a2e:b10c:0:b0:26f:bd6e:7f7f with SMTP id p12-20020a2eb10c000000b0026fbd6e7f7fmr5808698ljl.87.1669366745565;
+        Fri, 25 Nov 2022 00:59:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s9-20020a2eb8c9000000b002770566d642sm301463ljp.17.2022.11.25.00.59.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 00:59:05 -0800 (PST)
+Message-ID: <735232e0-9e07-dc4e-4e6b-b7d198a2f27b@linaro.org>
+Date:   Fri, 25 Nov 2022 09:59:04 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/5] dt-bindings: usb: mtu3: add compatible for mt8186
+Content-Language: en-US
+To:     =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
+        <Allen-KH.Cheng@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+References: <20221123135531.23221-1-allen-kh.cheng@mediatek.com>
+ <20221123135531.23221-2-allen-kh.cheng@mediatek.com>
+ <4ffbba83-d23c-59ef-0b01-eeb80ea70219@linaro.org>
+ <fc0cb10747056f8f38a077b39df3a83e6b340c64.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fc0cb10747056f8f38a077b39df3a83e6b340c64.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx_eGQg4BjEhQaAA--.1503S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7Jry5XrWkuF48uF15Ww1fXrb_yoWxKFX_Ja
-        47Kw1kWr48JFZ7W3WIqw4rC3yDCa47X3WSkrnrAw1xX3Waqr13trWDA3W7C3Z0ga4DWrW3
-        ZaykJF9F9F18tjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        u7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26rWY6Fy7McIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxV
-        Aaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxY
-        O2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGV
-        WUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_
-        Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj4
-        0_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8
-        JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0_WrPUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson-3 systems.
-Other systems are unaffected.
+On 25/11/2022 09:41, Allen-KH Cheng (程冠勳) wrote:
+> Hi Krzysztof,
+> 
+> I have used get_maintainers.pl to get the email address and apologize
+> for not seeing the difference.
+> 
+> Do you mean "+dt" in email address?
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/configs/loongson3_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Yes. Don't write email addresses manually but use scripts/bash aliases
+to get the output... or CTRL+C and CTRL+V.
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index cd8e003d885e..017eb0e36738 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
-@@ -600,6 +600,7 @@ CONFIG_HW_RANDOM_VIRTIO=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_I2C_GPIO=y
-+CONFIG_I2C_LS2X=y
- CONFIG_SPI=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_LOONGSON=y
--- 
-2.31.1
+Best regards,
+Krzysztof
 
