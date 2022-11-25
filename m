@@ -2,104 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 559A0639127
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 22:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B0563912F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 22:42:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbiKYVkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 16:40:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42806 "EHLO
+        id S229769AbiKYVmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 16:42:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiKYVkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 16:40:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A73CF56EF6;
-        Fri, 25 Nov 2022 13:40:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3381260F52;
-        Fri, 25 Nov 2022 21:40:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43494C433C1;
-        Fri, 25 Nov 2022 21:40:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669412404;
-        bh=60OYuwERXmeJ082oTHm4vNOnTl4qAPQKBRpMhBKDRrg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=nGITamugCR2YRPeV8yeGPa7FCVN/G1LQAcnkE0xX1oDb80dSSVO4nvB4RaCNHXE/V
-         YTmyxm6GKwkWIX8Id7rvTSUFXJ9BsgyTZ7YZgPkB24z5m0YoW4tXACGf5StxLGE7Dy
-         cF5YYi5g9SQ1uPq2PzrNSnDhosH0UxSXRKhLQ36yFHb6Sp5SUmOHHmPw9j9yGNjUW6
-         V666PpdDk5lOvaAhcwSFq0i236E7+Nx375A7TimVo1GuK6dNS85OEONtV2yPyIWWJb
-         B6FxMooDqFCL3s3PtlP2jsBP1SMugXeN0WKK+4wnxJEhDiSal8PyFe8zLKpa3XG8xj
-         nDgWfrj8KVsxg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        with ESMTP id S229722AbiKYVmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 16:42:19 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CD2D656ECE;
+        Fri, 25 Nov 2022 13:42:18 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0B1F22B;
+        Fri, 25 Nov 2022 13:42:25 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1DF6D3F587;
+        Fri, 25 Nov 2022 13:42:17 -0800 (PST)
+Date:   Fri, 25 Nov 2022 21:40:50 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Jaroslav Kysela <perex@perex.cz>
-In-Reply-To: <20221025124132.399729-1-frattaroli.nicolas@gmail.com>
-References: <20221025124132.399729-1-frattaroli.nicolas@gmail.com>
-Subject: Re: [PATCH 0/4] RK3588 Audio Support
-Message-Id: <166941240197.2098666.9516708665413168178.b4-ty@kernel.org>
-Date:   Fri, 25 Nov 2022 21:40:01 +0000
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/2] ARM: dts: sunxi: Fix GPIO LED node names
+Message-ID: <20221125214050.711997f1@slackpad.lan>
+In-Reply-To: <20221125195401.61642-1-samuel@sholland.org>
+References: <20221125195401.61642-1-samuel@sholland.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Oct 2022 14:41:28 +0200, Nicolas Frattaroli wrote:
-> This patchset refactors the Rockchip I2S/TDM driver in order to
-> support the RK3588 SoC, and then adds the necessary compatible
-> string to load the driver for it.
+On Fri, 25 Nov 2022 13:54:00 -0600
+Samuel Holland <samuel@sholland.org> wrote:
+
+Hi Samuel,
+
+> These board devicetrees fail to validate because the gpio-leds schema
+> requires its child nodes to have "led" in the node name.
 > 
-> Patch 1 rectifies a problem with the bindings where we were too
-> strict about requiring the rockchip,grf property. Most features
-> of this audio device don't need access to the GRF to function.
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+
+That looks alright, though the comment in the binding says that we
+should just have led-0, led-1 instead, so just (hex) numbers. The
+"status" name is also in the label, so we wouldn't lose information.
+
+Actually, also "label" is deprecated, in favour of "color" and
+"function", shall this be fixed on the way? Or is there anything that
+breaks (older kernels) when removing the label property? 
+
+Cheers,
+Andre
+
+> ---
 > 
-> [...]
+>  arch/arm/boot/dts/sun5i-gr8-chip-pro.dts | 2 +-
+>  arch/arm/boot/dts/sun5i-r8-chip.dts      | 2 +-
+>  arch/arm/boot/dts/sun6i-a31s-sina31s.dts | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/sun5i-gr8-chip-pro.dts b/arch/arm/boot/dts/sun5i-gr8-chip-pro.dts
+> index a32cde3e32eb..3222f1490716 100644
+> --- a/arch/arm/boot/dts/sun5i-gr8-chip-pro.dts
+> +++ b/arch/arm/boot/dts/sun5i-gr8-chip-pro.dts
+> @@ -70,7 +70,7 @@ chosen {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		status {
+> +		led-status {
+>  			label = "chip-pro:white:status";
+>  			gpios = <&axp_gpio 2 GPIO_ACTIVE_HIGH>;
+>  			default-state = "on";
+> diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> index 4bf4943d4eb7..303191c926c2 100644
+> --- a/arch/arm/boot/dts/sun5i-r8-chip.dts
+> +++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
+> @@ -70,7 +70,7 @@ chosen {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		status {
+> +		led-status {
+>  			label = "chip:white:status";
+>  			gpios = <&axp_gpio 2 GPIO_ACTIVE_HIGH>;
+>  			default-state = "on";
+> diff --git a/arch/arm/boot/dts/sun6i-a31s-sina31s.dts b/arch/arm/boot/dts/sun6i-a31s-sina31s.dts
+> index 0af48e143b66..b84822453381 100644
+> --- a/arch/arm/boot/dts/sun6i-a31s-sina31s.dts
+> +++ b/arch/arm/boot/dts/sun6i-a31s-sina31s.dts
+> @@ -67,7 +67,7 @@ hdmi_con_in: endpoint {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		status {
+> +		led-status {
+>  			label = "sina31s:status:usr";
+>  			gpios = <&pio 7 13 GPIO_ACTIVE_HIGH>; /* PH13 */
+>  		};
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: dt-bindings: rockchip: i2s-tdm: Make grf property optional
-      commit: 1024a5b29e90a18530588b3f161e81cf3fae7dcf
-[2/4] ASoC: rockchip: i2s_tdm: Make the grf property optional
-      commit: d980004e349049a3fcbffc6096d14896f6a122ed
-[3/4] ASoC: dt-bindings: rockchip: i2s-tdm: Add RK3588 compatible
-      commit: 0643fd3669f5c33bab5b05a813459a2d00a83465
-[4/4] ASoC: rockchip: i2s_tdm: Add support for RK3588
-      commit: c619bd4268ff9895760dab303b4eb15ed3d0f7e9
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
