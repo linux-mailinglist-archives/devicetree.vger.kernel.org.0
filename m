@@ -2,67 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 756E8638C0D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62896638C14
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:26:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbiKYOXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:23:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
+        id S229720AbiKYO0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:26:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiKYOW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:22:56 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A23F2126A
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:22:53 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id w15-20020a17090a380f00b0021873113cb4so4317605pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:22:53 -0800 (PST)
+        with ESMTP id S229553AbiKYO0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:26:35 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539172AC6D
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:26:34 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id 62so4060292pgb.13
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:26:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qOAkxVSfJy2zWWxLaFIIKbmYp4D8DI0K2XpzJHgmkZ8=;
-        b=eJoLiVAmwT4odL41aHGE3930KuP7LK20G9MYe+DkZPIWUFRTqO/WQalz0QjfufKXiU
-         sCVoDRrMCJvHZzLUKhK50e8wCwfd/ahbNLXX3p6d4IycQwbXPq1qtZ7lHYSwHivf0YXE
-         muAKUBlxbMFB5EniGT3Xw7PW9oudvp5FDqEFjkq+NHdgdYW9NRUHJaUpYY2uMZp7G0nK
-         lEB01rvTR8EZ7gpE9tXv6bz71iEJDY2owqWuAWhPU7Tdm/jeasP26RFhoccZ3Er4XbGR
-         zk2qDn+k+cJ4P/sFpgoBcurkT3UpNGU/gLK9EUE1rnngSu6pjzxy72Y8jvXkLwAsZPvu
-         ib6Q==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pr9EPBHz4BamKgB8yWADZkXZ2+tlYR/qk7DwwWPntys=;
+        b=I22Ui3Ws2mdvy3i8n4OvfE7B4UBhCYea7j3aLWfiqH6e04pBvYdBesUghp62dWLwlP
+         nUvmU/k0g1An/0OlJ34HaFJQiRBzF0H4W6T/bVUx1zm9Bl2bgWzoL3GpF4JfgONWkVbE
+         EwQpaRMKtu1ensgpA7mEiE9oiRjstNpI6/teS/2EmsCih9G1zkFWu57x03IKOctYmO6b
+         8uIFnuHSjhfW3vcW332yGJfmlCNj0hM2e3UlZ2FvRnUWb5xA0fGO9KsZPNX63gbTbsLc
+         Avx33IJSJQXBDcMj1TDY9VR9YSk/OF8WhfUPLTuG21X7mpO1vVjJj47paR3SHE3BHjTr
+         ROiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qOAkxVSfJy2zWWxLaFIIKbmYp4D8DI0K2XpzJHgmkZ8=;
-        b=W1dvxvMa2gBus7U8LbGF34KOIaO9pKSsJUbJf+pH80NomQnovyeOWWmVEeL4QiIuFn
-         /SvkxYeafWwjFXviWw8BU3ZLrsL46FYlTjtiWQd0SQQL1jiBpd7+4aVWbahh4tunQUjZ
-         sWo8s4ntFccf8DUEByoi93qBvrrOYaYdZOdLL1YUrfMgr/KOT7Ry08K7daIIuId5/XJ+
-         qy9r3SPctQpVcVrccm9j4TRnVstWKj6iObeK4pvJrE1+GB2b8Av6arfDN92PF7GQ3u6J
-         OZG2zRZFv98ef7YT8FJzOBKqklzakaxGcr0fZS7bhD1A4bi6+FZrUE1e/b8KEpWRsMTj
-         HLwQ==
-X-Gm-Message-State: ANoB5pmW+SiHW+NkvjmsDBKcPfIxpxThBYruDbjIxbc3WgUaAyiUpoSo
-        VORoAi9/tVE7oU4/213alJpo2opM3aYPWaLftS9fxw==
-X-Google-Smtp-Source: AA0mqf5nMhmCfoFMzaWKFLi/TIrJ0PU/O/K/ihdE0Qu11bnoTnqH4/Wij6km66/QflyT8alRAKCaQMcenmHZXgIRR28=
-X-Received: by 2002:a17:903:258b:b0:189:1b50:f9e with SMTP id
- jb11-20020a170903258b00b001891b500f9emr19711920plb.74.1669386172833; Fri, 25
- Nov 2022 06:22:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 25 Nov 2022 08:22:40 -0600
-Message-ID: <CAPLW+4=1A42ppHYB5aFrokVx+9g=HYoF5H0Ot9cY74i6aZbujw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: exynos: add dedicated SYSREG compatibles
- to Exynos5433
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pr9EPBHz4BamKgB8yWADZkXZ2+tlYR/qk7DwwWPntys=;
+        b=XDcQhGkS6orZrUC9VFPAiFISigijgZfLmnb5c3QJcn9O5kV/v6a7kDYRLp3bt/VEcP
+         wRO5oUeQ3sirKT4GVqKRGwLCOnE8ji4bAz52qMh7d5+N5zgpCXAN+ud8sN+ku97QXrHR
+         MiCU5ZyyQ84V7A0PJN1ylPHWHzQ8wazdzL80uQDIDSsGEp5mZ9isajD6TeGRjlVTSkNu
+         aK5nYmSPtMeuTVA2vNYo62NZ35J/Rc82e5RJN473mZs8mmEpWLtHuBo0vYZS92upS3hO
+         qKz4shv3UQS/gkZWwJ26KfSfkoJkrlamVtBTUtw7gaNkXeaCLJIRf67XAnB6bjbsUxVj
+         VDGQ==
+X-Gm-Message-State: ANoB5plhGnIq+lw8nK37ELxx0p88Q3IJqKV0+MnYZQ/fSgQPZHGuagcT
+        N86T20//97rJeINCnTo0UmIg
+X-Google-Smtp-Source: AA0mqf49zCazD+UtCRa4BNYXgoE42BG1LqZ3W0LypZAXCz7fviyny0CBtnZkM2HGDAm3DL59CDuHnQ==
+X-Received: by 2002:a63:1e62:0:b0:46b:3acb:77b2 with SMTP id p34-20020a631e62000000b0046b3acb77b2mr15395586pgm.560.1669386393687;
+        Fri, 25 Nov 2022 06:26:33 -0800 (PST)
+Received: from thinkpad ([117.202.190.212])
+        by smtp.gmail.com with ESMTPSA id n7-20020a170902d2c700b00186ffe62502sm3448694plc.254.2022.11.25.06.26.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 06:26:32 -0800 (PST)
+Date:   Fri, 25 Nov 2022 19:56:25 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Sriranjani P <sriranjani.p@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
+Message-ID: <20221125142625.GA9892@thinkpad>
+References: <20221124142501.29314-1-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221124142501.29314-1-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -72,61 +82,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Nov 2022 at 05:22, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Exynos5433 has several different SYSREGs, so use dedicated compatibles
-> for them.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> ---
->
-> Cc: Sriranjani P <sriranjani.p@samsung.com>
-> Cc: Chanho Park <chanho61.park@samsung.com>
-> Cc: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
+On Thu, Nov 24, 2022 at 03:25:01PM +0100, Johan Hovold wrote:
+> The devices on the SC8280XP PCIe buses are cache coherent and must be
+> marked as such to avoid data corruption.
+> 
+> A coherent device can, for example, end up snooping stale data from the
+> caches instead of using data written by the CPU through the
+> non-cacheable mapping which is used for consistent DMA buffers for
+> non-coherent devices.
+> 
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Also, the device may write into the L2 cache (or whatever cache that is
+accessible) if there is an entry and the CPU may invalidate it before reading
+from the DMA buffer. This will end up in a data loss.
 
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> index bd6a354b9cb5..6976e45aa769 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> @@ -1118,22 +1118,26 @@ hdmiphy: hdmiphy@13af0000 {
->                 };
->
->                 syscon_disp: syscon@13b80000 {
-> -                       compatible = "samsung,exynos5433-sysreg", "syscon";
-> +                       compatible = "samsung,exynos5433-disp-sysreg",
-> +                                    "samsung,exynos5433-sysreg", "syscon";
->                         reg = <0x13b80000 0x1010>;
->                 };
->
->                 syscon_cam0: syscon@120f0000 {
-> -                       compatible = "samsung,exynos5433-sysreg", "syscon";
-> +                       compatible = "samsung,exynos5433-cam0-sysreg",
-> +                                    "samsung,exynos5433-sysreg", "syscon";
->                         reg = <0x120f0000 0x1020>;
->                 };
->
->                 syscon_cam1: syscon@145f0000 {
-> -                       compatible = "samsung,exynos5433-sysreg", "syscon";
-> +                       compatible = "samsung,exynos5433-cam1-sysreg",
-> +                                    "samsung,exynos5433-sysreg", "syscon";
->                         reg = <0x145f0000 0x1038>;
->                 };
->
->                 syscon_fsys: syscon@156f0000 {
-> -                       compatible = "samsung,exynos5433-sysreg", "syscon";
-> +                       compatible = "samsung,exynos5433-fsys-sysreg",
-> +                                    "samsung,exynos5433-sysreg", "syscon";
->                         reg = <0x156f0000 0x1044>;
->                 };
->
-> --
-> 2.34.1
->
+> Note that this is much more likely to happen since commit c44094eee32f
+> ("arm64: dma: Drop cache invalidation from arch_dma_prep_coherent()")
+> that was added in 6.1 and which removed the cache invalidation when
+> setting up the non-cacheable mapping.
+> 
+> Marking the PCIe devices as coherent specifically fixes the intermittent
+> NVMe probe failures observed on the Thinkpad X13s, which was due to
+> corruption of the submission and completion queues. This was typically
+> observed as corruption of the admin submission queue (with well-formed
+> completion):
+> 
+> 	could not locate request for tag 0x0
+> 	nvme nvme0: invalid id 0 completed on queue 0
+> 
+> or corruption of the admin or I/O completion queues (malformed
+> completion):
+> 
+> 	could not locate request for tag 0x45f
+> 	nvme nvme0: invalid id 25695 completed on queue 25965
+> 
+> presumably as these queues are small enough to not be allocated using
+> CMA which in turn make them more likely to be cached (e.g. due to
+> accesses to nearby pages through the cacheable linear map). Increasing
+> the buffer sizes to two pages to force CMA allocation also appears to
+> make the problem go away.
+> 
+
+I don't think the problem will go away if the allocation happens from CMA
+region. It may just decrease the chances of cache hit but it could always
+happen due to the existence of linear mapping with cacheable attribute.
+
+> Fixes: 813e83157001 ("arm64: dts: qcom: sc8280xp/sa8540p: add PCIe2-4 nodes")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+
+Anyway, this is a really good find!
+
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+Thanks,
+Mani
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 27f5c2f82338..7748cd29276d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -854,6 +854,8 @@ pcie4: pcie@1c00000 {
+>  				 <0x02000000 0x0 0x30300000 0x0 0x30300000 0x0 0x1d00000>;
+>  			bus-range = <0x00 0xff>;
+>  
+> +			dma-coherent;
+> +
+>  			linux,pci-domain = <6>;
+>  			num-lanes = <1>;
+>  
+> @@ -951,6 +953,8 @@ pcie3b: pcie@1c08000 {
+>  				 <0x02000000 0x0 0x32300000 0x0 0x32300000 0x0 0x1d00000>;
+>  			bus-range = <0x00 0xff>;
+>  
+> +			dma-coherent;
+> +
+>  			linux,pci-domain = <5>;
+>  			num-lanes = <2>;
+>  
+> @@ -1046,6 +1050,8 @@ pcie3a: pcie@1c10000 {
+>  				 <0x02000000 0x0 0x34300000 0x0 0x34300000 0x0 0x1d00000>;
+>  			bus-range = <0x00 0xff>;
+>  
+> +			dma-coherent;
+> +
+>  			linux,pci-domain = <4>;
+>  			num-lanes = <4>;
+>  
+> @@ -1144,6 +1150,8 @@ pcie2b: pcie@1c18000 {
+>  				 <0x02000000 0x0 0x38300000 0x0 0x38300000 0x0 0x1d00000>;
+>  			bus-range = <0x00 0xff>;
+>  
+> +			dma-coherent;
+> +
+>  			linux,pci-domain = <3>;
+>  			num-lanes = <2>;
+>  
+> @@ -1239,6 +1247,8 @@ pcie2a: pcie@1c20000 {
+>  				 <0x02000000 0x0 0x3c300000 0x0 0x3c300000 0x0 0x1d00000>;
+>  			bus-range = <0x00 0xff>;
+>  
+> +			dma-coherent;
+> +
+>  			linux,pci-domain = <2>;
+>  			num-lanes = <4>;
+>  
+> -- 
+> 2.37.4
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
