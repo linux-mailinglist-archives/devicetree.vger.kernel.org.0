@@ -2,114 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83C8638C4E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77A9E638C5B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiKYOfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:35:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S230054AbiKYOi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:38:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiKYOfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:35:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F041631DD6;
-        Fri, 25 Nov 2022 06:35:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A2FC9B8298F;
-        Fri, 25 Nov 2022 14:35:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E5AAC433D6;
-        Fri, 25 Nov 2022 14:35:35 +0000 (UTC)
-Message-ID: <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
-Date:   Fri, 25 Nov 2022 15:35:34 +0100
+        with ESMTP id S230044AbiKYOiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:38:25 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17FE1D660
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:38:24 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id io19so4153236plb.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:38:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=y7OdG/1AA7A8QO7ro/ae7lGZ6Xn5O4xI1Yx+62qUlgI=;
+        b=M/JUFv4TwAnM5AARdXkediVBXdwVJP0TZ4+dJWIlpplhA98UWj5UbbdEw6ynLsjdZ/
+         NATKK04icg9VRpWi9irytspzY9ps04YjskE+wsdAK0VDfX4/e/4N0LLKtTklsZRwTmTT
+         yx5NeUWukFm3jzVnia9Lt8y8u7eH9U/A87tdyWO5G+8JhfKR7fONtH/+PiyIO1QrYCg2
+         t/TbdbycUMR1Gpi0x3A8XwnrrnXKxiC4Q17r/ikf3+CSQfsV96yJoUTmkkiHNXwA+uDP
+         wFYBtS5MhlCT45cmUmzy5JsPXL7yrPS6BFdCQGE4WepFrUcwllDUB+0Suoj/aoz+n4sI
+         qdyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y7OdG/1AA7A8QO7ro/ae7lGZ6Xn5O4xI1Yx+62qUlgI=;
+        b=m4pzz0Nxotf6lyfDjFRiP8fuzfNr7bcB79S/+dCsk8ibD7uY/3TcatmMXkUmUmxBkp
+         VOZzLDvawJxkxBoBkMVF3u0FVfReQUPEM73ozwBNtKzsRKCzRCXI87IAp9ai9fHZb4Cu
+         L6vh3bVGzY0zwtcizosl3wchiV0mONZ1MJu145yTJuSW0i4sQ0Vl8NBnP+nXnVr3owGD
+         WDXEvCiy/8KDsF5uMpACGNi7g8xFnT1yjoPh1IzYhUHtKshzWecxoM/5ikeF09AY857f
+         m6iTSMHJhSbuVwxXaNXRgSN4nlozrGDhfC80WOS+WbZEazT1fzsNHZ9ZqC//WCAZ+QD1
+         NNMg==
+X-Gm-Message-State: ANoB5pnqZtAFGvNHnyyIKtob3BRXHRYLEtVR2B6dMPPvvWUOfMyZFsc7
+        PsuKw72EJrSFWZa960qgsKt7/b44OZWiIQlSH/ZEnQ==
+X-Google-Smtp-Source: AA0mqf5svRfmeY2K5liUXPqUGrovG9g0sMIM0rFvMMjpbLa8YX7W0LsZEF2fl4jRS44moGYBeSxAtt4kDZ9DK0PHzBM=
+X-Received: by 2002:a17:90a:4615:b0:218:8f4:bad5 with SMTP id
+ w21-20020a17090a461500b0021808f4bad5mr47415639pjg.55.1669387104386; Fri, 25
+ Nov 2022 06:38:24 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 4/8] media: v4l: ctrls-api: Allow array update in
- __v4l2_ctrl_modify_range
-Content-Language: en-US
-To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
-Cc:     Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org> <20221125112201.240178-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221125112201.240178-4-krzysztof.kozlowski@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 25 Nov 2022 08:38:11 -0600
+Message-ID: <CAPLW+4nSLP4ZpnzYrOfMu0uOQ0OYnWsnZ=sUppxts6O_3-yYZg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: soc: samsung: exynos-sysreg: add clocks
+ for Exynos850
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-References: <cover.1669381013.git.vkh@melexis.com>
- <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Sriranjani P <sriranjani.p@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 14:34, Volodymyr Kharuk wrote:
-> For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
-> __v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
-> from union. It will allow to work with any type.
-> 
-> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+On Fri, 25 Nov 2022 at 05:22, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Exynos850 has dedicated clock for accessing SYSREGs.  Allow it, even
+> though Linux currently does not enable them and relies on bootloader.
+>
+
+Not sure if this description is correct. Of course, there is no driver
+for "samsung,exynos850-sysreg" compatible at the moment, so the next
+compatible from the list ("syscon") is used for Exynos850. And
+"syscon" driver (drivers/mfd/syscon.c) actually does control the
+clocks. I remember adding "clocks" property to Exynos850 dts to fix
+actual problem. Also, the "clocks" property is not described in
+Documentation/devicetree/bindings/mfd/syscon.yaml, didn't really check
+if it's ok or it's just missing.
+
+Other than that comment:
+
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
 > ---
->  drivers/media/v4l2-core/v4l2-ctrls-api.c | 15 +++------------
->  1 file changed, 3 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> index d0a3aa3806fb..09735644a2f1 100644
-> --- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> +++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> @@ -942,8 +942,6 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
->  	case V4L2_CTRL_TYPE_U8:
->  	case V4L2_CTRL_TYPE_U16:
->  	case V4L2_CTRL_TYPE_U32:
-> -		if (ctrl->is_array)
-> -			return -EINVAL;
->  		ret = check_range(ctrl->type, min, max, step, def);
->  		if (ret)
->  			return ret;
-> @@ -960,17 +958,10 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
->  		ctrl->default_value = def;
->  	}
->  	cur_to_new(ctrl);
-> -	if (validate_new(ctrl, ctrl->p_new)) {
-> -		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
-> -			*ctrl->p_new.p_s64 = def;
-> -		else
-> -			*ctrl->p_new.p_s32 = def;
-> -	}
-> +	if (validate_new(ctrl, ctrl->p_new))
-> +		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
-
-Hmm, this sets *all* elements of the array to the default_value, not
-just the elements whose value is out of range.
-
-Is that what you want? Should this perhaps depend on the type of
-control? I.e. in some cases it might make sense to do this, in other
-cases it makes more sense to only adjust the elements that are out
-of range.
-
-How does that work for this TINT control?
-
-Regards,
-
-	Hans
-
->  
-> -	if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
-> -		value_changed = *ctrl->p_new.p_s64 != *ctrl->p_cur.p_s64;
-> -	else
-> -		value_changed = *ctrl->p_new.p_s32 != *ctrl->p_cur.p_s32;
-> +	value_changed = !ctrl->type_ops->equal(ctrl, ctrl->p_cur, ctrl->p_new);
->  	if (value_changed)
->  		ret = set_ctrl(NULL, ctrl, V4L2_EVENT_CTRL_CH_RANGE);
->  	else if (range_changed)
-
+>
+> Cc: Sriranjani P <sriranjani.p@samsung.com>
+> Cc: Chanho Park <chanho61.park@samsung.com>
+> Cc: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 42357466005e..27cea934a286 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -36,10 +36,25 @@ properties:
+>    reg:
+>      maxItems: 1
+>
+> +  clocks:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>
+> +allOf:
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - samsung,exynos850-sysreg
+> +    then:
+> +      properties:
+> +        clocks: false
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.34.1
+>
