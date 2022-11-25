@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 779786384F9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BED3E638503
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:11:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiKYIIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 03:08:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59512 "EHLO
+        id S229683AbiKYILD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 03:11:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiKYIIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:08:42 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFA61BE99
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:08:41 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id a7so4287784ljq.12
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:08:41 -0800 (PST)
+        with ESMTP id S229884AbiKYIK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:10:56 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E74A218B8
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:10:55 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id f13so5726169lfa.6
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:10:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wVlCLe2tXgcxDZw2iHBi8mQJtJf06p17wSgoJwP9yCI=;
-        b=b0rqCCntnPYmzh4xiAK5+t7TvqatYDlK5GGfyrAhtm5MWWxo65kZljLnnCwsSoK2zE
-         5rth6sky+e/nuyd74pNSPHoBDmMcAw+LDxcZeGdfyRRXI6Tez/Yr7ydIRYe3V4wu2SxX
-         RrsITuetuI0PUktGT+b+kdfUYR7RBpEV9USLBoXDkG8s/Ce3tFLsK3LMooiVIwqZbhnr
-         y2mcmc1KkPxi4uJ1KQ2B3eFc1hAIDqw5uk1/POC7ZLTN6P7ONIfjJvV6ehV12B1823hU
-         y8rEgHBzLUuZPc7gFwDtwAKcFjkQBBp+G+0hV3bD1c0CSdTDo93KOK2uT3XGAy1+f2wl
-         tTdg==
+        bh=sL1NUAu6lSv+jlMLYFhjd/8Pjp4yH4Gi/+vBxDoZ+ks=;
+        b=g3+PUwY4xc1OsQmrGhCpvVD+xktnoc9Q+9u9ZqE5ygYSKXtbkKc7gSdri4jQDsAhE3
+         TDBzrmi0Lr38VfXcPtrPK77gCo/Bt6uzdnQftL5A6rgpSiP/C8+zMyhCHB9nVHg8iKZK
+         +F6ItGNB20GLolup29DA+M+kgJojEQ8Pv09lUdMwbzfe9Czs9tjflxTouy9zKvnf5k14
+         XQUIZutT+Snv52pnteTN7AqffK7zKfk4W2gdY473UEJ9QSKf4BXjsrlH8qSfHi1dEthw
+         vL6E+F9OWHpv0STEwfrsokr51+gGm5iHmpMvpdF6FroJYOdLlmCEH8r/hCTcQsPa609J
+         TUKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wVlCLe2tXgcxDZw2iHBi8mQJtJf06p17wSgoJwP9yCI=;
-        b=ZAPIHETwI93QqgfqZJoKgBd8ejwZcgPYGYsTK0X3675EqDqpXe+0cqv3aQeWLYG7u0
-         roVYSxuCB0WZDYPO2mNzg6Abr//JWSKVY2BRGhLNlTF6ajsjZ/c1+5N33SXIyDOeMHGl
-         z1t1SOuEE9j+AL8jc4Kwu7bsrrgz99ADt+2ZQ2HEgLv9inwBQkY3shH3OVm8VeE3iSHR
-         rb/ACJAIAadFALUvSeV6QvmDe7BdOLtL/KlWEyg9qgPk7uhwlul+ipz6tXhobwPda2+S
-         DCbJWgbuiw0yyGtKuOUgVbzL4Xa7yo/bndVWaernxTZn1LqiEcm38pQCLSsn810aHrTM
-         flYw==
-X-Gm-Message-State: ANoB5pk2Hp/aILWjIganeazzFEh7/rjAuA55Lb1M5yBoprlBi4fW0Jv/
-        m5J5dqnYOEK1/8s4xxcXB1vJ7g==
-X-Google-Smtp-Source: AA0mqf4y8TOeAe22Hly1N/5VF497j2qebbP5U6K9IzUV3wi6yhM4Y5Q/UDCICzJx1Gc2dtU+2Velwg==
-X-Received: by 2002:a2e:824d:0:b0:276:9855:fe8d with SMTP id j13-20020a2e824d000000b002769855fe8dmr11305912ljh.506.1669363719936;
-        Fri, 25 Nov 2022 00:08:39 -0800 (PST)
+        bh=sL1NUAu6lSv+jlMLYFhjd/8Pjp4yH4Gi/+vBxDoZ+ks=;
+        b=s4S/DiakFXQOJvMjF0vXTTVT14C0QZKYyzXoFab2PvPwgW36X8OlfhPa4q6y5BGJPp
+         HZHOdQ83v6vz46K00RVZB/0PBCYFKkbL6oOC9LjKhmJpYw/0bUPV3xsD1rV3ZpJMs7X/
+         68isjRwQ7X1Btu6ZxQpg9FE1er4YxsDsQ7EMckUU8pUebrhEd/oJcxOVnDvzgCgoHgan
+         tH94IQf7jgI8Lt1RcpfGc8C41DmeqTUIAeEQor115EKhuE6/E3Iwy27K8+BIzRjfq8Fc
+         QshPf1xtTEO0B3fNUj43vfUWWjiKlbUUYPsDuffqXSstwqolYXbeoatyWfxRHJBiKqwB
+         PLWA==
+X-Gm-Message-State: ANoB5pmSTwUhjqB3EmPjOfDpPXYy6schysvra3VG0C/RdJBKnOwvoo4m
+        9D8EMCzMo/Ko0XQnlU2jWWcjVA==
+X-Google-Smtp-Source: AA0mqf6hra2shSkxsPNtb/2b1IHlfQhtErf0xh49kwt893xjrDT83WbRMB9jez0ppNQJlVyiYecu5Q==
+X-Received: by 2002:a05:6512:c29:b0:4b1:b061:4815 with SMTP id z41-20020a0565120c2900b004b1b0614815mr11672276lfu.18.1669363853422;
+        Fri, 25 Nov 2022 00:10:53 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o13-20020a056512052d00b004b48cc444ccsm430343lfc.100.2022.11.25.00.08.38
+        by smtp.gmail.com with ESMTPSA id s6-20020a056512214600b004afac783b5esm425357lfr.238.2022.11.25.00.10.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 00:08:39 -0800 (PST)
-Message-ID: <a8fe2f63-ca99-9aea-e4cc-325208b021e8@linaro.org>
-Date:   Fri, 25 Nov 2022 09:08:38 +0100
+        Fri, 25 Nov 2022 00:10:52 -0800 (PST)
+Message-ID: <8fe3c2a6-845a-06ab-1164-9ddd4f5e5ac9@linaro.org>
+Date:   Fri, 25 Nov 2022 09:10:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/4] regulator: dt-bindings: Add Allwinner D1 system
- LDOs
+Subject: Re: [PATCH v4 3/4] dt-bindings: sram: sunxi-sram: Add regulators
+ child
 Content-Language: en-US
 To:     Samuel Holland <samuel@sholland.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -68,9 +68,9 @@ Cc:     Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev
 References: <20221125040112.18160-1-samuel@sholland.org>
- <20221125040112.18160-2-samuel@sholland.org>
+ <20221125040112.18160-4-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125040112.18160-2-samuel@sholland.org>
+In-Reply-To: <20221125040112.18160-4-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,15 +84,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/11/2022 05:01, Samuel Holland wrote:
-> The Allwinner D1 SoC contains two pairs of in-package LDOs. The pair of
-> "system" LDOs is for general purpose use. LDOA generally powers the
-> board's 1.8 V rail. LDOB powers the in-package DRAM, where applicable.
+> Some sunxi SoCs have in-package regulators controlled by a register in
+> the system control MMIO block. Allow a child node for this regulator
+> device in addition to SRAM child nodes.
 > 
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
+> 
+> Changes in v4:
+>  - Remove unevaluatedProperties from regulators schema reference
+> 
+> Changes in v3:
+>  - Require the regulators node to have a unit address
+>  - Reference the regulator schema from the SRAM controller schema
+>  - Move the system LDOs example to the SRAM controller schema
+>  - Reorder the patches so the example passes validation
+> 
+> Changes in v2:
+>  - New patch for v2
+> 
+>  .../allwinner,sun4i-a10-system-control.yaml   | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> index 98a7dc7f467d..c487ac9521e9 100644
+> --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> @@ -56,6 +56,9 @@ properties:
+>    ranges: true
+>  
+>  patternProperties:
+> +  "^regulators@[0-9a-f]+$":
+> +    $ref: /schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
+> +
+>    "^sram@[a-z0-9]+":
+>      type: object
 
+You could add allOf:if:not:...then: clause making regulators as false
+for all variants which do not support it. This would make it more specific.
+
+Anyway:
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
