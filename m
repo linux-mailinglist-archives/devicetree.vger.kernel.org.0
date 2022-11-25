@@ -2,163 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04ECC6383BD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:05:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8142B63841B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:41:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiKYGFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 01:05:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43296 "EHLO
+        id S229686AbiKYGlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 01:41:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiKYGFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:05:40 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30EB1FCF4;
-        Thu, 24 Nov 2022 22:05:39 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AP50kUP032652;
-        Fri, 25 Nov 2022 06:05:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=95nu3QZwoiCm+Mik9Bjpaa1JAMoaDGnyaT/b8apUHYA=;
- b=WLc2B0kpr12ZAA0Hk1Uj/oORduNjzHLOXO3z/pFZo+U+GytOyLLmLk2GcGAc0tWgUlFG
- UFPD9bSK8mzXdleG2zqEV+FtfJ7gw2eXwQ9Zm8L5L+j4/g95FvtFHY02A+tVT2GauF/R
- NKNNqzHMiJdrl1unKvNmS1ORdeMm4beevshlj2z3Ll700LUM4wQUV9OLMS8cXn9g52FJ
- jR0pNitr2w3KHm4bkzLNBW62CoViZVNygqX9qZHqFM76Pncyenwz6R9iYMycJCmzBCVH
- vxQvGCnPoOpqFnGT7HlE0fKMXYi5xZHVpDGYm4rWCoFvE5+JBjN4/4LnaLzkrPiWJNND IQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m21mbbc2q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Nov 2022 06:05:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AP65Ruf027697
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Nov 2022 06:05:27 GMT
-Received: from [10.216.38.33] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 24 Nov
- 2022 22:05:19 -0800
-Message-ID: <6753d5a3-e46b-2cf1-c807-333093ff3fdf@quicinc.com>
-Date:   Thu, 24 Nov 2022 22:05:16 -0800
+        with ESMTP id S229645AbiKYGli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:41:38 -0500
+Received: from fd01.gateway.ufhost.com (unknown [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DBD2A730;
+        Thu, 24 Nov 2022 22:41:00 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9286D24E35C;
+        Fri, 25 Nov 2022 14:40:39 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Nov
+ 2022 14:40:39 +0800
+Received: from [192.168.125.106] (183.27.97.81) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Nov
+ 2022 14:40:38 +0800
+Message-ID: <72b3d10e-5a8e-ed42-6808-f53773913422@starfivetech.com>
+Date:   Fri, 25 Nov 2022 14:41:12 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [Freedreno] [PATCH v2 03/12] drm/msm/dpu: Refactor sc7280_pp
- location
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v2 09/14] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Robert Foss <robert.foss@linaro.org>, <robdclark@gmail.com>,
-        <dmitry.baryshkov@linaro.org>, <sean@poorly.run>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <quic_kalyant@quicinc.com>,
-        <swboyd@chromium.org>, <angelogioacchino.delregno@somainline.org>,
-        <loic.poulain@linaro.org>, <quic_khsieh@quicinc.com>,
-        <quic_vpolimer@quicinc.com>, <vkoul@kernel.org>,
-        <dianders@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jonathan Marek <jonathan@marek.ca>,
-        <vinod.koul@linaro.org>, <quic_jesszhan@quicinc.com>,
-        <andersson@kernel.org>
-References: <20221115133105.980877-1-robert.foss@linaro.org>
- <20221115133105.980877-4-robert.foss@linaro.org>
- <d85a5d66-d54b-29cb-3ced-69c75f6f7802@somainline.org>
-From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <d85a5d66-d54b-29cb-3ced-69c75f6f7802@somainline.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dy2vjxEGi9Y89OT7Lgm1pPSd_OzBv1mD
-X-Proofpoint-GUID: dy2vjxEGi9Y89OT7Lgm1pPSd_OzBv1mD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-25_02,2022-11-24_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 mlxscore=0 spamscore=0 malwarescore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 phishscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211250049
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118010627.70576-1-hal.feng@starfivetech.com>
+ <20221118010627.70576-10-hal.feng@starfivetech.com>
+ <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.81]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/15/2022 5:33 AM, Konrad Dybcio wrote:
+On Mon, 21 Nov 2022 09:47:08 +0100, Krzysztof Kozlowski wrote:
+> On 18/11/2022 02:06, Hal Feng wrote:
+> > From: Emil Renner Berthing <kernel@esmil.dk>
+> > 
+> > Add bindings for the system clock and reset generator (SYSCRG) on the
+> > JH7110 RISC-V SoC by StarFive Ltd.
+> > 
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 > 
-> 
-> On 15/11/2022 14:30, Robert Foss wrote:
->> The sc7280_pp declaration is not located by the other _pp
->> declarations, but rather hidden around the _merge_3d
->> declarations. Let's fix this to avoid confusion.
->>
->> Signed-off-by: Robert Foss <robert.foss@linaro.org>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
-> This is already merged.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=1a5b5372e3b0a4cc65a0cbb724b1b0859f4ac63c 
-> 
-> 
-> Konrad
+> Binding headers are coming with the file bringing bindings for the
+> device, so you need to squash patches.
 
-Its part of linux-next but a PR hasnt been sent with it.
+As we discussed in patch 7, could I merge patch 7, 8, 9, 10 and add the
+following files in one commit?
 
-That being said, since this particular change has been taken separately, 
-this series should now be rebased without this change and addressing 
-some of the other comments given by konrad.
+include/dt-bindings/clock/starfive,jh7110-crg.h
+include/dt-bindings/reset/starfive,jh7110-crg.h
+Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
 
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 14 +++++++-------
->>   1 file changed, 7 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c 
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> index 4dac90ee5b8a..8f2d634f7b6b 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> @@ -1294,6 +1294,13 @@ static const struct dpu_pingpong_cfg 
->> sm8150_pp[] = {
->>               -1),
->>   };
->> +static const struct dpu_pingpong_cfg sc7280_pp[] = {
->> +    PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> +    PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> +    PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> +    PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> +};
->> +
->>   static struct dpu_pingpong_cfg qcm2290_pp[] = {
->>       PP_BLK("pingpong_0", PINGPONG_0, 0x70000, 0, sdm845_pp_sblk,
->>           DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
->> @@ -1352,13 +1359,6 @@ static const struct dpu_merge_3d_cfg 
->> sm8450_merge_3d[] = {
->>       MERGE_3D_BLK("merge_3d_3", MERGE_3D_3, 0x65f00),
->>   };
->> -static const struct dpu_pingpong_cfg sc7280_pp[] = {
->> -    PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> -    PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> -    PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> -    PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, 
->> -1),
->> -};
->> -
->>   /*************************************************************
->>    * DSC sub blocks config
->>    *************************************************************/
+Best regards,
+Hal
+
+> 
+> > ---
+> >  .../clock/starfive,jh7110-syscrg.yaml         | 80 +++++++++++++++++++
+> >  MAINTAINERS                                   |  2 +-
+> >  2 files changed, 81 insertions(+), 1 deletion(-)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+
