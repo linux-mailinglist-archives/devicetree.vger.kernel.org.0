@@ -2,117 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C58638D8A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1F3638DA4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbiKYPhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:37:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        id S229541AbiKYPri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:47:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiKYPhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:37:31 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06306BB9
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:37:28 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id t10so5614773ljj.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:37:27 -0800 (PST)
+        with ESMTP id S229477AbiKYPrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:47:37 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C4C63DC
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:47:35 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id d3so5639138ljl.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:47:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cy7rH5pyJVnH/+6lKqlr5TaljKJablOrGP9ii/rIiII=;
-        b=pDHesMp1btaqc/TUfkbEP1d2tiYcYMBbqO2TfVSWFgK3WXApD3WEeAyuGAx57+uO3X
-         Otbl+HR83ZPO5r4I/mH1imRhToX5EdNfMupigVdZkRaHY4gRD8L2aIafExiNQw4AK2Vq
-         dLECruzCU04SKJiT3ul92Mvy5TjFxR5i/VQ2X3/KAiXftx8aePW4e5wL/TuxZyiwZ+GH
-         EiUY+5j8iNIRJNYIloZFHV1R3z8nt+Hbikzp66ZgG8U1M35lS0NhoIeVTUfL59I/Zuz3
-         wvG0nDdlnQk/dPE9hQBDbsSqXW4wec6gFzl9uHhBUClT9QpdWwHaitdibDz6jEXORFsv
-         Kgnw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4N7ARcCVQV+7m3JTQ82McZk+6Cxj9oXg8wroCaCjgXY=;
+        b=tz5sKtkacTpTvyW63bpHecpwDcjz6DHyXT4pcZvh7rXM6Mc041MIP32Qbw5V3gT/p/
+         VimweZU9Yena1fcRSUjO3d4LZ67czpnEiOGTjmuHsK2m+mjMvG9/+cie46JGctTQu6Yi
+         nY/awH0AO25lGPXDHkJ6SlBJHIj1vAUw+gPjNzPDWru9QZZcFRgLXmv1V71iyUrh9SS5
+         W8ah2ZKPvAZ0lee5KrMszNdun3/9J7n7Hf/jHxio+pAaehjsdcFSmpC5YF5I+9VVfB4T
+         PZvAatBqyTp4lIn5WHzIwk3HCH/n10dsVCkHTk6gFUZRYekWIGXzu0qC++L8cXjgGiHS
+         nKBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cy7rH5pyJVnH/+6lKqlr5TaljKJablOrGP9ii/rIiII=;
-        b=Y47L3eJPixCQJ8OfVdGyrFKFdMNjVcEgF1OqeeiqmB0uHQKdlvg1OcTuH85QrGvf3n
-         HmBw0+Z3uJTEsG3ODqxv+gulC5NoOVJrku6yoHD3tBaRecEVYw6pQL3g6V8Kt9bae3Jj
-         FEA1bF/Bq88e4VXF5oHeTfKhygtaOrrMgxR9ahdc9IY9P2rgXMcoGqbrmuuepWS8ByBB
-         vpr4tmv9rIUA37MfXOdprYx5qGc/V9SHz4PcJUAEZrAx0Vu+se8/o3gd8WuSpTn4dD0G
-         XJjqnb23wsV4eq6bU82hUikHxs/iuBnt9vY1Ih7EFXJrcxRVOYC8Hi9RDe1Cce80Srdh
-         0QyQ==
-X-Gm-Message-State: ANoB5pkp5opbFwaNMmwvmd/fZsUwCx/DjwtUuzFY7Pb7Hgz9ELqZa/Ij
-        I9Mehy+3dzb2+pflNVq7geumxw==
-X-Google-Smtp-Source: AA0mqf5K+x97VLQnH3hlsKXfJmEoZzglbn0gl1ASwDslzHBNOHw8t7x5/ZFMQCaxMBNHh0HFbx93NQ==
-X-Received: by 2002:a2e:3c18:0:b0:279:8173:4396 with SMTP id j24-20020a2e3c18000000b0027981734396mr3072327lja.345.1669390646369;
-        Fri, 25 Nov 2022 07:37:26 -0800 (PST)
-Received: from melexis.com ([91.192.183.26])
-        by smtp.gmail.com with ESMTPSA id q21-20020a05651232b500b004ac980a1ba1sm567760lfe.24.2022.11.25.07.37.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 07:37:25 -0800 (PST)
-Date:   Fri, 25 Nov 2022 17:37:22 +0200
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Subject: Re: [PATCH v3 7/8] media: dt-bindings: media: i2c: Add mlx7502x
- camera sensor
-Message-ID: <Y4DhMvjLNertB2xp@melexis.com>
-References: <cover.1669381013.git.vkh@melexis.com>
- <343c0ab708ab35ec101bcefbe2fda5c15d5e6bfd.1669381013.git.vkh@melexis.com>
- <756daf8d-9d4e-12f7-4d3a-e9da8480ed6a@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4N7ARcCVQV+7m3JTQ82McZk+6Cxj9oXg8wroCaCjgXY=;
+        b=Pz0ujjTukefp+Pu78ptWWBBXmV3E2fTgsltBnj8FO9IlYTOten9a+e0rSJvUc+2CLl
+         oBiZNcM8gwN39nvyWzEcRS/xiIjvQuHDTON3a5KX4oNzaIFWiucIFlDB62Z8aYkB1kUC
+         +bVYEM5NkGsIwG3RNWSYTjAbClUXWLCUi9NBrqNCl2Dlpct9s5JZlTyehiwP8dQaTS5S
+         UMEg21FBvEOTwSd3SukTm3+yZexEAZmwv/h5hnwSR1jJCQQ6X7VSkaV6n4D4MWZLXoUP
+         JL1kCFoVkH5b5mOxKfAAJBt3HjoN7XyMDmcRtkXmK3NBgGsoNhRciYFEtHojNzxV+o85
+         jVUA==
+X-Gm-Message-State: ANoB5pmVnPQ1NsQM212Hy1/bLZMM9fK2i59Dhzvm71eO5XhJwKzTgAqT
+        akSV8szCY+gTcXAJf/XUnQNLJzxxMoMujOx/
+X-Google-Smtp-Source: AA0mqf4I+flnzU2DvQ1/Qt7lKLlAw5TcGFinfaFNHv2h0CW3Ua/P6prtOSiXZrXwY4HLeTzjGt9spw==
+X-Received: by 2002:a2e:8847:0:b0:279:7611:36f5 with SMTP id z7-20020a2e8847000000b00279761136f5mr5227299ljj.134.1669391254296;
+        Fri, 25 Nov 2022 07:47:34 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c13-20020a056512238d00b0049ebc44994fsm572154lfv.128.2022.11.25.07.47.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 07:47:33 -0800 (PST)
+Message-ID: <66a2b0fb-2629-a358-8ee8-1fb6572954ca@linaro.org>
+Date:   Fri, 25 Nov 2022 16:47:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <756daf8d-9d4e-12f7-4d3a-e9da8480ed6a@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: narrow interrupts for
+ SC8280XP, SM6350 and SM8450
+Content-Language: en-US
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-pm@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 04:19:16PM +0100, Krzysztof Kozlowski wrote:
-> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
-> > Add device tree binding of the mlx7502x and update MAINTAINERS
-> > 
-> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > ---
-> >  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 126 ++++++++++++++++++
+On 16/11/2022 12:31, Krzysztof Kozlowski wrote:
+> Narrow number of interrupts per variants: SC8280XP, SM6350 and SM8450.
+> The compatibles are already used and described.  They only missed the
+> constraints of number of interrupts.
 > 
-> I mentioned you have wrong subject prefix. Only one "media" in the
-> subject prefix is needed, so:
-> "media: dt-bindings: Add melexis,mlx7502x camera sensor"
-Ah, I missed it. Thanks for review.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 127 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
-> > 
+> ---
 > 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
--- 
---
-Volodymyr Kharuk
-Embedded Software Engineer
-Melexis-Ukraine
-Mykhaila Kotel'nykova St, 4, Kyiv
-Mobile phone: +38 050 346 5527
-www.melexis.com
----
-The contents of this e-mail are CONFIDENTIAL AND PROPRIETARY. Please read
-our disclaimer at http://www.melexis.com/mailpolicy
+Hi Daniel,
+
+Can you pick it up for upcoming merge window?
+
+Best regards,
+Krzysztof
 
