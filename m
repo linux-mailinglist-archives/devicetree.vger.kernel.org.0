@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3B7638A23
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:37:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B98638A29
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbiKYMhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 07:37:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33794 "EHLO
+        id S230345AbiKYMhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 07:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbiKYMhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:37:08 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C65AD4C24E
+        with ESMTP id S230101AbiKYMhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:37:09 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E784E4E401
         for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:37:01 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id b12so6596790wrn.2
+Received: by mail-wr1-x42c.google.com with SMTP id n3so6582266wrp.5
         for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:37:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m6CoppLmCTxX9uttSJKGwFNEqGwRPNJKx/ekxUEKy2g=;
-        b=QhbOYxb24tTuaJPbVyoyscVgvUQklvpSVDXsx9WjqI2r5xzEhHybpTSzd8awQZbxIV
-         4D23eXP1EvTW49UIDC/e//hFc4Tap4xKpms/VtfLCYeU9rNO5O5D91EvbdYnr+6BfcFm
-         xZrUzQ/ZnqmWeu/xSJZkJmgvJzp1MxzNbVyHC3MfLdcQFgIOZ2bPsMv/co/l0UTQfvJV
-         KON9mzH2i4u/Wf7rBcFz41QcHqpgsWUoUGE4xHmx1yLFFo1jzIfWdnGGGdKN1G/Co7kr
-         XqWcVxBatWu5jp4IYcFCKzprgcGywsq0ODeRAfKbAyuAKjMu9cK3FJMbk0JYbKpgHQXE
-         Lkng==
+        bh=hrZRxDUkNBpr7/CO3VUWuIRRJhqQxCbIa8B1ayhBv+4=;
+        b=HewUI0q3JiGBKkRoIELpg8nbjCjuH8cpAkd53x1g6nujXHUTGpJlWiJsaGeMS0QI+o
+         WN1tIeREr9cv1rsh2JOJAMu1fd3B5eI0P6OIFHLSxUXf1+HOUSszUn8urAD8AoSbzeWf
+         pStkO5vDtE6A+IDMosKbktRuds3zBw1w9tgahaXy0Ghs9BxdkOttNyj+S6Kp6sTwXsyD
+         ZkRJw8r4cS2Ne93lfFvbpue5MPWBQdQfsikW5SoMLU0BJwpJ1hqMEKskR7DqdEojolQs
+         dQvF/fYZBLbm9ZD1MRI1kfvEbUFgZHfCXikICSfbd2IrAZdylqymO6YeDMZ54zsxpjQA
+         RoLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m6CoppLmCTxX9uttSJKGwFNEqGwRPNJKx/ekxUEKy2g=;
-        b=ueo+Xsai6W2pvzlGoQpVxmD3r5QJsIG1/SBela6IVcKwsVan7QrTN/tEbhnWYPXKHL
-         3Pi6TZFC5lxzpSAkmocqF+tAqF2sAMsow7RbfdLh/P3koA+zEmDdk8XwB5aL05PQXPkZ
-         h8iz1CEarMExM7D8wcathgo/LsWuaYkU5nFtLI0vtcdrebK/HbWQweFxgjkQLIjUQhCm
-         shNr11eIXaPkmz7d27rAO2RAGdDWKw/6n2K2Ni5UUsbwzN6nio0cLubgpQmJxQ6IT1Az
-         sYzug8p+Dao98vX+hyWQDD4PPQmGMktNHuchWWRgyc0HMrcEqr3Ry9AjM4Nqy7Gtyu5X
-         w52g==
-X-Gm-Message-State: ANoB5pn+1bUSxypXcjjEPyBGCsiDtAj9146oicC312JkxLvq54Ozj4Yi
-        FPQd8IawCYJQCbmSniuMxJ5TeA==
-X-Google-Smtp-Source: AA0mqf55hAMSzFjdkZQ4JxF9PUCqhQHWHHpTkmkzfVRF9q8V26H+eq8i5T1OqxBEyWaUd0YhBfMTMA==
-X-Received: by 2002:a5d:6e56:0:b0:241:d8e7:2b18 with SMTP id j22-20020a5d6e56000000b00241d8e72b18mr14541843wrz.388.1669379820342;
-        Fri, 25 Nov 2022 04:37:00 -0800 (PST)
+        bh=hrZRxDUkNBpr7/CO3VUWuIRRJhqQxCbIa8B1ayhBv+4=;
+        b=t0z/6TcLboauKpFPSGf1E25vGswBT3Uwcls2hRFlWjzNzaGhIH6M3K0JIqei2LsPH7
+         sdptZjSLyXIvW0y+D8vULwQNdRq7Wcy67j3bIkaOFjezIVkXpBJ415rMO5mOKeBVfjcF
+         pNakr7i4uggzYZ0wY8PQAg38nanja9FnyNZwPhARV7xPrOiSjS8pvRdwDUYn+vJ1a+xK
+         K4a8jytAl+uDg+A6pGcqKvN5/n69x53+5891k6gGv7BkPdHzWgSbxpzxUA3ZgL4J+T56
+         EkKJHZusMYdBP6cC0cEfzZM485FDuJsgGX6dQJEn35ZGOXK7hPhxZ9kQ0d3zNIrF5G35
+         YcPg==
+X-Gm-Message-State: ANoB5pnsLX7glmAAqCi9vP08v+o+g5PE+iyJKNwN1AvWQK3Xxz/mLckJ
+        9vqnjbozrUG7WDcYDWXfNdm/fw==
+X-Google-Smtp-Source: AA0mqf6uYcqHm6pJSFDYrGlH5uVpN8pnpSEtO4Xpcd119fJlRZqAf2omUuW/V37TYfnf9GTgSRw5sg==
+X-Received: by 2002:a05:6000:114b:b0:241:d199:1a04 with SMTP id d11-20020a056000114b00b00241d1991a04mr15971719wrx.227.1669379821520;
+        Fri, 25 Nov 2022 04:37:01 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k15-20020a5d6d4f000000b002366dd0e030sm3574111wri.68.2022.11.25.04.36.59
+        by smtp.gmail.com with ESMTPSA id k15-20020a5d6d4f000000b002366dd0e030sm3574111wri.68.2022.11.25.04.37.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 04:36:59 -0800 (PST)
+        Fri, 25 Nov 2022 04:37:01 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
@@ -60,9 +60,9 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         agross@kernel.org, andersson@kernel.org,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
         bryan.odonoghue@linaro.org
-Subject: [PATCH v4 15/18] arm64: dts: qcom: sdm630: Add compat qcom,sdm630-dsi-ctrl
-Date:   Fri, 25 Nov 2022 12:36:35 +0000
-Message-Id: <20221125123638.823261-16-bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 16/18] arm64: dts: qcom: sdm660: Add compat qcom,sdm660-dsi-ctrl
+Date:   Fri, 25 Nov 2022 12:36:36 +0000
+Message-Id: <20221125123638.823261-17-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
 References: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
@@ -78,28 +78,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add silicon specific compatible qcom,sdm630-dsi-ctrl to the
+Add silicon specific compatible qcom,sdm660-dsi-ctrl to the
 mdss-dsi-ctrl block. This allows us to differentiate the specific bindings
-for sdm630 against the yaml documentation.
+for sdm660 against the yaml documentation.
 
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 0e7764f66b104..905ddb57318dd 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1581,7 +1581,8 @@ opp-412500000 {
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+index 10bf1c45cf6ec..f8ec728e67f3d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+@@ -154,7 +154,8 @@ mdp5_intf2_out: endpoint {
  
- 			dsi0: dsi@c994000 {
--				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,sdm630-dsi-ctrl",
-+					     "qcom,mdss-dsi-ctrl";
- 				reg = <0x0c994000 0x400>;
- 				reg-names = "dsi_ctrl";
+ &mdss {
+ 	dsi1: dsi@c996000 {
+-		compatible = "qcom,mdss-dsi-ctrl";
++		compatible = "qcom,sdm660-dsi-ctrl",
++			     "qcom,mdss-dsi-ctrl";
+ 		reg = <0x0c996000 0x400>;
+ 		reg-names = "dsi_ctrl";
  
 -- 
 2.38.1
