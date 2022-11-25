@@ -2,161 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84BE4638BEF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:15:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF8D638BFE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbiKYOPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:15:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38446 "EHLO
+        id S229969AbiKYOVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:21:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbiKYOPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:15:18 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A58A42182F
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:15:17 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id v3so4074364pgh.4
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:15:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=J/617BJR3AxAjX3NPAcECKk88uzgNNQZ7+/ymtVAJWc=;
-        b=DPX8gA6Ixvj1sHraj9uVz4imnR0p5it1SKCFly7A8rT/+jeI8P++q7KgmKFvAl7wsB
-         k+cxZ+AUlBupu11cyAcf9ic+7nTqhXcYXVKqEhnD8J6ald4lh+JZcxap/Ky7CYsVpx75
-         XY1sFYO6ERrlamhK1IO+ptAEhN3Yg0upfb9eN4pu31I/uwZ1CMliBYpWeuMvygLljbVb
-         86qdzpcU27r5dcl7m1+sRWizykhPaRWFDzl+EPClI1j8gsimqtOytP4MF+VNPtQFwBWE
-         zJEK8ew9VJCjeDrYp6aPEMTbZ46JR0D19flwOfINlpPc7S8Z2ubksjJciIERsgfr5RFl
-         ZIGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J/617BJR3AxAjX3NPAcECKk88uzgNNQZ7+/ymtVAJWc=;
-        b=um5ZDt9T4uyZAUiTv/w8oB3D4sYL2Bi9CQ+UccZzZJodmLqwxqzIReFaSEMqjRE3u1
-         F5A/eKkzaL7MjIn3td4k9sfZMZr6O61kUnVOaSW8N0FK49c049LKnfUoZABdxaC8YAxI
-         k6ZufgWIu8eIzcpAkrht8rObM25VOjtIJbi25lOl2aHv13IyYuSOz75XOQA5A/sWMDsy
-         Mj4yZInu24HeUNtUhZarlzP3B1lA6/N35/HTOwlLzCMVNFqUIIihR6qqs//YJwuqF8vl
-         IVG1RV068+K9xM4jCDyCJjtGOM5/yUAt2XXEtowQ2a2Q1RN6BpS4f0zxM4/o3rrZ+OQ9
-         A8bA==
-X-Gm-Message-State: ANoB5plDxgJEcSXx1W+Ets9LTJ+K+o3jCuDJVB7WVERGF771Rtf6AG5n
-        8ROHYllyJqc5U8u2C2YFDHgOyoYPhBFYM7wNJdRWSKyBcW2Cmg==
-X-Google-Smtp-Source: AA0mqf6So6cRie6HhEzWSdJFgpZqNm19ZkFCQzm+lGVQCAAKnnMaxEf1S6OPjfhwzgUBpH8Z/S6USXAk+TjUuigh+DA=
-X-Received: by 2002:aa7:854d:0:b0:56d:6e51:60ee with SMTP id
- y13-20020aa7854d000000b0056d6e5160eemr18571535pfn.25.1669385717125; Fri, 25
- Nov 2022 06:15:17 -0800 (PST)
+        with ESMTP id S229968AbiKYOUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:20:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B0AD233B0;
+        Fri, 25 Nov 2022 06:20:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B8AC0B82AFB;
+        Fri, 25 Nov 2022 14:20:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75A4FC433C1;
+        Fri, 25 Nov 2022 14:20:48 +0000 (UTC)
+Message-ID: <a021fcb2-81f4-38bd-6958-4fca59738878@xs4all.nl>
+Date:   Fri, 25 Nov 2022 15:20:46 +0100
 MIME-Version: 1.0
-References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org> <20221125112201.240178-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125112201.240178-2-krzysztof.kozlowski@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 25 Nov 2022 08:15:04 -0600
-Message-ID: <CAPLW+4keg-bxpMs0HZmy8W7V9rZHeaTUc_GQvyvhNx5JcqE8YQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: soc: samsung: exynos-sysreg: split from syscon
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 1/8] media: uapi: ctrls: Add Time of Flight class
+ controls
+Content-Language: en-US
+To:     Volodymyr Kharuk <vkh@melexis.com>, linux-media@vger.kernel.org
+Cc:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Sriranjani P <sriranjani.p@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+References: <cover.1669381013.git.vkh@melexis.com>
+ <8819951fe1bb25501ab88e00bcf8e76734e97663.1669381013.git.vkh@melexis.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <8819951fe1bb25501ab88e00bcf8e76734e97663.1669381013.git.vkh@melexis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Nov 2022 at 05:22, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Split Samsung Exynos SoC SYSREG bindings to own file to narrow the
-> bindings and do not allow other parts of syscon.yaml.  This allows
-> further customization of Samsung SoC bindings.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+On 25/11/2022 14:34, Volodymyr Kharuk wrote:
+> Define Time of Flight class controls.
+> Also add most common TOF controls:
+>  - phase sequence
+>  - time integration
+>  - frequency modulation
+> 
+> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 > ---
->
-> Cc: Sriranjani P <sriranjani.p@samsung.com>
-> Cc: Chanho Park <chanho61.park@samsung.com>
-> Cc: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
+>  include/uapi/linux/v4l2-controls.h | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+> index d27e255ed33b..a9ecfaa4252c 100644
+> --- a/include/uapi/linux/v4l2-controls.h
+> +++ b/include/uapi/linux/v4l2-controls.h
+> @@ -68,6 +68,7 @@
+>  #define V4L2_CTRL_CLASS_DETECT		0x00a30000	/* Detection controls */
+>  #define V4L2_CTRL_CLASS_CODEC_STATELESS 0x00a40000	/* Stateless codecs controls */
+>  #define V4L2_CTRL_CLASS_COLORIMETRY	0x00a50000	/* Colorimetry controls */
+> +#define V4L2_CTRL_CLASS_TOF		0x00a60000	/* Time of light camera controls */
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+light -> flight
 
->  .../devicetree/bindings/mfd/syscon.yaml       |  6 ---
->  .../soc/samsung/samsung,exynos-sysreg.yaml    | 39 +++++++++++++++++++
->  2 files changed, 39 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 1b01bd010431..b73ba1ea08f7 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -64,12 +64,6 @@ properties:
->                - rockchip,rk3568-qos
->                - rockchip,rk3588-qos
->                - rockchip,rv1126-qos
-> -              - samsung,exynos3-sysreg
-> -              - samsung,exynos4-sysreg
-> -              - samsung,exynos5-sysreg
-> -              - samsung,exynos5433-sysreg
-> -              - samsung,exynos850-sysreg
-> -              - samsung,exynosautov9-sysreg
->
->            - const: syscon
->
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> new file mode 100644
-> index 000000000000..68064a5e339c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/samsung/samsung,exynos-sysreg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  /* User-class control IDs */
+>  
+> @@ -2782,6 +2783,13 @@ struct v4l2_ctrl_vp9_compressed_hdr {
+>  	struct v4l2_vp9_mv_probs mv;
+>  };
+>  
+> +#define V4L2_CID_TOF_CLASS_BASE		(V4L2_CTRL_CLASS_TOF | 0x900)
+> +#define V4L2_CID_TOF_CLASS		(V4L2_CTRL_CLASS_TOF | 1)
 > +
-> +title: Samsung Exynos SoC series System Registers (SYSREG)
+> +#define V4L2_CID_TOF_PHASE_SEQ		(V4L2_CID_TOF_CLASS_BASE + 0)
+> +#define V4L2_CID_TOF_FMOD		(V4L2_CID_TOF_CLASS_BASE + 1)
+
+I'd go for _FREQ_MOD
+
+> +#define V4L2_CID_TOF_TINT		(V4L2_CID_TOF_CLASS_BASE + 2)
+
+and _TIME_INTEGRATION
+
+Regards,
+
+	Hans
+
 > +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - samsung,exynos3-sysreg
-> +              - samsung,exynos4-sysreg
-> +              - samsung,exynos5-sysreg
-> +              - samsung,exynos5433-sysreg
-> +              - samsung,exynos850-sysreg
-> +              - samsung,exynosautov9-sysreg
-> +          - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    system-controller@10010000 {
-> +        compatible = "samsung,exynos4-sysreg", "syscon";
-> +        reg = <0x10010000 0x400>;
-> +    };
-> --
-> 2.34.1
->
+>  /* MPEG-compression definitions kept for backwards compatibility */
+>  #ifndef __KERNEL__
+>  #define V4L2_CTRL_CLASS_MPEG            V4L2_CTRL_CLASS_CODEC
+
