@@ -2,164 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0822639308
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 02:14:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98E6F6393DD
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 05:44:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbiKZBOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 20:14:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43694 "EHLO
+        id S230137AbiKZEof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 23:44:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbiKZBOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 20:14:41 -0500
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBFF52FFFC
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 17:14:40 -0800 (PST)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-13bd2aea61bso6998716fac.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 17:14:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y0OGJAFsRUCLM8lAVAlbmOQOAA7z9k3YOv8Et6vjKSo=;
-        b=KkYRpLUZmImQCq+JwM2pkNCa7RxHl+Nvcaw64J1mD7rLD/OhseHHds3HMVbGtV1KWt
-         HwISZLiL4w5C9lTDBfNZS+NkkJ47JeKklrLqHY+3ueeoajgOQUn2KOpAdCrBmxP0CTkX
-         X9HzE/GFC1FWl4z0z3PybuoiIOUUa1SGGbYFydAwK8aEqjipylQbYHXjGyW+9aiMl70B
-         QE2qoErAFb4NEtnZBeJ1yVF3SAM2syKh513MTXaGx7hPuCykm4Mz5BmduSI+jwioPUqF
-         JrM/O8Ssud12SFGZxAPVt1mftaatA+aOrNI8abAfv/8HaVVYwrpIIbC+CVY/ycYm6UQ1
-         O43A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y0OGJAFsRUCLM8lAVAlbmOQOAA7z9k3YOv8Et6vjKSo=;
-        b=z3ZrqI0/B7wCu4PW94pWMzHfOsjWPJtcbd5U4mu9sD7njG8f/dvSwiX+zD5s59X8wT
-         jVLbslbBY9Spx2fg9eEyuwOHZSIQtYxwyUummq6y/frTGt6gCqanztwu6u/X5A7MzeN4
-         adpKxZskqDo354svhPr86BSLAMESkPGslLaHig5VasgpYePueQ4dSyq54didba2LU+Bp
-         JmUqSa5wqFzKd77axzrlNH1UqXCDfgnNAMJIKb+GB8Jej5kpYIr2eRmgH2txLHB4CRmP
-         UU6sA2u2iFgKrgZcpqXImQKpXmsFIXVxbU7RfACtLaDViGDXwt8xh+wVqEzMCEwSwhMs
-         K70Q==
-X-Gm-Message-State: ANoB5pl+SqPjONBfwRTiV6I0I4YD8DnoqZISZb8u1bRvP8o8uYqCaCdp
-        jtAwhyZPdZeA6aL7wzLHwqhWNkWypVU=
-X-Google-Smtp-Source: AA0mqf5WdIBmTGqZHIUVwen1A5dWNkeRCtzv7u2N2XMG5/NeTFMQl6E4HwypsYa4iORQC6gdNlctXQ==
-X-Received: by 2002:a05:6870:b527:b0:143:7736:806b with SMTP id v39-20020a056870b52700b001437736806bmr3001798oap.222.1669425279820;
-        Fri, 25 Nov 2022 17:14:39 -0800 (PST)
-Received: from localhost.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id s191-20020acaa9c8000000b003546fada8f6sm2066177oie.12.2022.11.25.17.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 17:14:39 -0800 (PST)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: add panel to Anbernic RG353 series
-Date:   Fri, 25 Nov 2022 19:14:32 -0600
-Message-Id: <20221126011432.22891-2-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221126011432.22891-1-macroalpha82@gmail.com>
-References: <20221126011432.22891-1-macroalpha82@gmail.com>
+        with ESMTP id S230124AbiKZEoe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 23:44:34 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C6D2CE13
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 20:44:30 -0800 (PST)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221126044426epoutp03697235dd2e5468aec1d40d0b8f6e518b~rCOUU9pMb0535705357epoutp03v
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 04:44:26 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221126044426epoutp03697235dd2e5468aec1d40d0b8f6e518b~rCOUU9pMb0535705357epoutp03v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669437866;
+        bh=cFY/FZsuTQhXnVttxIEMfH5qGn4SH4SVIrTdkDMQhkU=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=rv0CiVyOo0K1S5RyfeNNFLaJmUsxhT46EUyaMkU4GuL6MGx2/ozHe/zdgmPLokyod
+         n+TuD7n+qM2K0X0DBZFfF//CxJux+0Lk451QL3cswT6UG3YRt2nwQUjj+nqQZBMJIM
+         X6CTaUtdvJLi4Q1F4LPf+X16ySYfKR92lXugotpU=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20221126044425epcas5p138ec32494ca686d269f7e0b5d48fad09~rCOTX3SGI2045020450epcas5p12;
+        Sat, 26 Nov 2022 04:44:25 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.179]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4NJzfJ1MbMz4x9Pr; Sat, 26 Nov
+        2022 04:44:24 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EA.B5.39477.7A991836; Sat, 26 Nov 2022 13:44:23 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221125142945epcas5p186bad6e82d3a326f59cbcde0dcf1fa13~q2kEeOH5e1174911749epcas5p1I;
+        Fri, 25 Nov 2022 14:29:45 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221125142945epsmtrp2eca28d8690192fd4fa069f5866178cf5~q2kEctY5-2179321793epsmtrp2S;
+        Fri, 25 Nov 2022 14:29:45 +0000 (GMT)
+X-AuditID: b6c32a4a-259fb70000019a35-0f-638199a73a45
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F4.1E.14392.851D0836; Fri, 25 Nov 2022 23:29:44 +0900 (KST)
+Received: from FDSFTE302 (unknown [107.122.81.78]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221125142943epsmtip28d5778b7b5a6ea236bb7d9637c12cd45~q2kCw3UJD0153301533epsmtip2t;
+        Fri, 25 Nov 2022 14:29:43 +0000 (GMT)
+From:   "Sriranjani P" <sriranjani.p@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Lee Jones'" <lee@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>
+Cc:     "'Chanho Park'" <chanho61.park@samsung.com>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>
+In-Reply-To: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 1/4] arm64: dts: exynos: add dedicated SYSREG
+ compatibles to Exynos5433
+Date:   Fri, 25 Nov 2022 19:59:41 +0530
+Message-ID: <016c01d900da$5cde8de0$169ba9a0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKBUIa/6G27KlCizF9/rwWtdMt9HwIt87tfrO2jG9A=
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLJsWRmVeSWpSXmKPExsWy7bCmpu6KmY3JBr9WM1s8mLeNzeLyfm2L
+        +UfOsVr0vXjIbLH39VZ2ix1tC1ksNj2+xmpxedccNosZ5/cxWbTuPcJu8bxvH5MDt8emVZ1s
+        Hneu7WHz2Lyk3qNvyypGj8+b5AJYo7JtMlITU1KLFFLzkvNTMvPSbZW8g+Od403NDAx1DS0t
+        zJUU8hJzU22VXHwCdN0yc4AOU1IoS8wpBQoFJBYXK+nb2RTll5akKmTkF5fYKqUWpOQUmBTo
+        FSfmFpfmpevlpZZYGRoYGJkCFSZkZ3y8WlQwUaRi9+X3jA2MlwW6GDk5JARMJLYc2cncxcjF
+        ISSwm1Hi8InTTBDOJ0aJGWvOMYFUCQl8Y5ToOZAG03G64w07RNFeRomtnV+gnOeMEpfXLwLr
+        YBPQl3i9Yj4bSEJE4D+TxN9fbSwgCWaBRInTZ06AFXEKuEr0rlnDCmILC8RKtEztZAexWQRU
+        Jfb3HAKr4RWwlJjys5cZwhaUODnzCdQceYntb+cwQ5ykIPHz6TKwOSICVhIXvy5hhKgRlzj6
+        swfsOQmBLRwS05res0M0uEjcbT3JCGELS7w6vgUqLiXx+d1eNgg7XWLzkc2sEHaOREdTM9Qy
+        e4kDV+YAHcEBtEBTYv0ufYiwrMTUU+uYIPbySfT+fsIEEeeV2DEPxlaTWPyoE8qWkVj76BPr
+        BEalWUhem4XktVlIXpiFsG0BI8sqRsnUguLc9NRi0wKjvNRyeIQn5+duYgSnWy2vHYwPH3zQ
+        O8TIxMF4iFGCg1lJhDfheEOyEG9KYmVValF+fFFpTmrxIUZTYHhPZJYSTc4HJvy8knhDE0sD
+        EzMzMxNLYzNDJXHexTO0koUE0hNLUrNTUwtSi2D6mDg4pRqYlnPLK81zNTDcevr/hU+b6hku
+        xpy8I3S58s6Cs/aPPyjmbXnTN0FY/ZmM9uTJURcsDm58r7c/UefY/5K81pMl3Gv3dqxsdTpo
+        YRJnLaDmfVbJY9aKs9tZ56jZ9707KZi1xsrzZ+qpwnanp6/DLlq1Glz5xT0z6+KBPL7+uTvm
+        GF/X+3pVuZn5yFrfzPh9exbcNOML/qnYtjJ9dZbTj8xcXqWL75/uOvR2+aHbSxyUZa/e+CCa
+        +WC5WUVkrG38/zP95z7adKvIX+XcVndypsHsQ/Eu65X5BLcX75pz615ZffHnNUwPb51c9XXW
+        92kmcr5JWX27zxycrHTp8Sa/hdbx6WES1/6E6px7K3XBef68XRlKLMUZiYZazEXFiQAQWwCd
+        QAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsWy7bCSvG7ExYZkg93zrSwezNvGZnF5v7bF
+        /CPnWC36Xjxkttj7eiu7xY62hSwWmx5fY7W4vGsOm8WM8/uYLFr3HmG3eN63j8mB22PTqk42
+        jzvX9rB5bF5S79G3ZRWjx+dNcgGsUVw2Kak5mWWpRfp2CVwZH68WFUwUqdh9+T1jA+NlgS5G
+        Tg4JAROJ0x1v2LsYuTiEBHYzSqye8ZIdIiEjcfLBEmYIW1hi5b/nUEVPGSU+vJzBBpJgE9CX
+        eL1iPhtIQkSglVni0dNbLCAJZoFEiUcn30N1TGOU2Ln5FyNIglPAVaJ3zRrWLkYODmGBaIlz
+        N4VAwiwCqhL7ew4xgdi8ApYSU372MkPYghInZz6BmqknsX79HEYIW15i+9s5UNcpSPx8uowV
+        xBYRsJK4+HUJVI24xNGfPcwTGIVnIRk1C8moWUhGzULSsoCRZRWjZGpBcW56brFhgWFearle
+        cWJucWleul5yfu4mRnDMaWnuYNy+6oPeIUYmDsZDjBIczEoivAnHG5KFeFMSK6tSi/Lji0pz
+        UosPMUpzsCiJ817oOhkvJJCeWJKanZpakFoEk2Xi4JRqYArI7xNviY9TP8Gi2SgdnGn9y1Xj
+        v+iaeTN7r70UX3noUNGP/cuMaww+mKq5vL2od2pJ+/tn55bP9X469+Li9U//haU36jXzz111
+        3nVnyfF3cxvW6O1cdPm6kn1/i5/T8spTK++WTP6w7ptktptb5+vH92aecIr0uW5h8iNevvJo
+        qvWCC00NOwyfr9slrPYzapLCRQHlic93sESF3pZNeLBndnLjn0/ZaRKHI0NY+X8kKKi15Kaf
+        /DVbWnrW/ed3wt2rTthP3yM186zBjTPJASf9rYtDDRb7LzN8v33WxhLHT4+Ud3eHewUEbfbV
+        nzKPUdNyz6dNS1M6AnYuOfxwvVTGpoeTtKPzFDo2C8T/5H6vxFKckWioxVxUnAgA3/qAHCgD
+        AAA=
+X-CMS-MailID: 20221125142945epcas5p186bad6e82d3a326f59cbcde0dcf1fa13
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221125112237epcas5p42180c4d081cce89e14ac0975a94cdbc4
+References: <CGME20221125112237epcas5p42180c4d081cce89e14ac0975a94cdbc4@epcas5p4.samsung.com>
+        <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the newly mainlined panel to the RG353 series of
-devices.
 
-https://lore.kernel.org/dri-devel/CACRpkdatn3SFaSDwj33QVvx_B-020TaTDoPz3p_9K=EiT7A_7w@mail.gmail.com/
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+> Sent: 25 November 2022 16:52
+> To: Lee Jones <lee@kernel.org>; Rob Herring <robh+dt@kernel.org>;
+Krzysztof
+> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
+> <alim.akhtar@samsung.com>; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+linux-samsung-
+> soc@vger.kernel.org
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Sriranjani P
+> <sriranjani.p@samsung.com>; Chanho Park <chanho61.park@samsung.com>;
+> Sam Protsenko <semen.protsenko@linaro.org>
+> Subject: [PATCH 1/4] arm64: dts: exynos: add dedicated SYSREG compatibles
+> to Exynos5433
+> 
+> Exynos5433 has several different SYSREGs, so use dedicated compatibles for
+> them.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Cc: Sriranjani P <sriranjani.p@samsung.com>
+> Cc: Chanho Park <chanho61.park@samsung.com>
+> Cc: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3566-anbernic-rg353x.dtsi  | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
+Reviewed-by: Sriranjani P <sriranjani.p@samsung.com>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-index 65a80d1f6d91..17450aa283b9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-@@ -20,6 +20,48 @@ &cru {
- 	assigned-clock-rates = <1200000000>, <200000000>, <241500000>;
- };
- 
-+&dsi_dphy0 {
-+	status = "okay";
-+};
-+
-+&dsi0 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	ports {
-+		dsi0_in: port@0 {
-+			reg = <0>;
-+			dsi0_in_vp1: endpoint {
-+				remote-endpoint = <&vp1_out_dsi0>;
-+			};
-+		};
-+
-+		dsi0_out: port@1 {
-+			reg = <1>;
-+			mipi_out_panel: endpoint {
-+				remote-endpoint = <&mipi_in_panel>;
-+			};
-+		};
-+	};
-+
-+	panel: panel@0 {
-+		compatible = "anbernic,rg353p-panel", "newvision,nv3051d";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&lcd_rst>;
-+		reset-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&vcc3v3_lcd0_n>;
-+
-+		port {
-+			mipi_in_panel: endpoint {
-+				remote-endpoint = <&mipi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
- &gpio_keys_control {
- 	button-a {
- 		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
-@@ -55,6 +97,22 @@ power-monitor@62 {
- 	};
- };
- 
-+&pinctrl {
-+	gpio-lcd {
-+		lcd_rst: lcd-rst {
-+			rockchip,pins =
-+				<4 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
- &pwm4 {
- 	status = "okay";
- };
-+
-+&vp1 {
-+	vp1_out_dsi0: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi0_in_vp1>;
-+	};
-+};
--- 
-2.25.1
+>  arch/arm64/boot/dts/exynos/exynos5433.dtsi | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+> b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+> index bd6a354b9cb5..6976e45aa769 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+> @@ -1118,22 +1118,26 @@ hdmiphy: hdmiphy@13af0000 {
+>  		};
+> 
+>  		syscon_disp: syscon@13b80000 {
+> -			compatible = "samsung,exynos5433-sysreg", "syscon";
+> +			compatible = "samsung,exynos5433-disp-sysreg",
+> +				     "samsung,exynos5433-sysreg", "syscon";
+>  			reg = <0x13b80000 0x1010>;
+>  		};
+> 
+>  		syscon_cam0: syscon@120f0000 {
+> -			compatible = "samsung,exynos5433-sysreg", "syscon";
+> +			compatible = "samsung,exynos5433-cam0-sysreg",
+> +				     "samsung,exynos5433-sysreg", "syscon";
+>  			reg = <0x120f0000 0x1020>;
+>  		};
+> 
+>  		syscon_cam1: syscon@145f0000 {
+> -			compatible = "samsung,exynos5433-sysreg", "syscon";
+> +			compatible = "samsung,exynos5433-cam1-sysreg",
+> +				     "samsung,exynos5433-sysreg", "syscon";
+>  			reg = <0x145f0000 0x1038>;
+>  		};
+> 
+>  		syscon_fsys: syscon@156f0000 {
+> -			compatible = "samsung,exynos5433-sysreg", "syscon";
+> +			compatible = "samsung,exynos5433-fsys-sysreg",
+> +				     "samsung,exynos5433-sysreg", "syscon";
+>  			reg = <0x156f0000 0x1044>;
+>  		};
+> 
+> --
+> 2.34.1
+
 
