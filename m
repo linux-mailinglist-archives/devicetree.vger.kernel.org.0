@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 320D6638515
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 130AA63851A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbiKYISr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 03:18:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39316 "EHLO
+        id S229874AbiKYITo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 03:19:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbiKYISq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:18:46 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1634D22BE5
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:18:43 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id g12so5596680wrs.10
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:18:43 -0800 (PST)
+        with ESMTP id S229862AbiKYITn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:19:43 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534C3205C0
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:19:41 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id l8so4309622ljh.13
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:19:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qDmdqp6SW6HdFWgspk0DWIhPAU8t3Np9ZdtMMl7oOME=;
-        b=CCHdYELQT1M8w4EtFrJ2Y7fmtaPgnfa+7fnzY6yF6NSfwsfqUC9hhrJeb4T1FthHx2
-         2/0T9VRuj7VXQTIvdJBg+2ccKz5yGMVHx8GhXfVL2HOav+QIsXQqWj21E7hY+jj88/Ng
-         KxxPkjnETI7qmhspWN5cMT8LjeN7YgayYM5DmSjXbLQvOCWJ/y+1bwZ9JRNOAwQymafn
-         8q4cDH0G54vCv8jvCoxYSDVU9r7cMMWIjztu2J4uw4MprSXynW1B4nCRMXULy78a8tUm
-         H0HP2SBOIUmWm5o/iemOrpAev5DeOheYhzfW1Iu9UV1iOYEE/ZBbrpVOZM5CP8+eE0sR
-         tyGg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o5fF1VG6bE4h78zSF6XpcpCWR5JSIWlcaFzzUnV+oZc=;
+        b=FPOq5FPNpVG9WdzonGxtVs1JzT5VuL40N5uRF6qExEsqmXeYENs2NRm36F/tUpL53D
+         +pwk5IP9Ugtaa2jKiOsbqdpOMf3miCSWZF02mhfv8V9rb1t6qahMepYHlDaOc4OZ+uFf
+         5rXJw16V4y6TjPI9g+9HU6H8Gh3jjl5gU8Q6DxrWTi24MlHz2HB2XPAM5nzDUsgh9+10
+         J07/urTxyiSCZoPtJEpDMtfB05E8CKy1EwUHEveK0rsC3JQw+akV5RRdLBmjq4yCwoGc
+         skKiRyBicZc6vGTYlBL6TeZJK1TtcShSY985ip59E3zVeCYRUVCiIZTd2gsSy/5VBDPJ
+         zwrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qDmdqp6SW6HdFWgspk0DWIhPAU8t3Np9ZdtMMl7oOME=;
-        b=x34+ADmfmrHfAo+y6zDUe+7AmM8FskyUOUv7TyWlowU4hFmkePn/gpVnKqzIBt4kSR
-         ZuYgFY+C1wG+p6lOMLE7AV/TlDnnwQyhYcTlPkqAxwK4HUoK3Xd6tdQskzRGV2xJo6Gr
-         cXlcblq+piDMhEEJ37acJRkpuPlXSDyVfJwEKoDHOnmHXbxxmJmFNid4XEEJsgs9ikCf
-         L2oIoLSliKXWaGYbdKlNCcigjsNy+nnSv+Me4oMTzjSPcW4RyI4gMtRRIJ4xf94trqQw
-         xOyGxztfa8tBpMAa75uEbrKh2ota2/sF9wqwacUX/ZX8akxfYBNZJIZMVK7AQ16cFyaf
-         0dSQ==
-X-Gm-Message-State: ANoB5pmLyJR2GATFNu09KOub1+BE7sosQ9Wwj8ewLMS9LH31DWMjhJxz
-        EBbHyCp759hlTU4Yft+r0Qdzzg==
-X-Google-Smtp-Source: AA0mqf5XuJU+9BN9OybWW9e8Vo2SZBCkORxZk42hiu7opuMRYNfY4D/Qh2JkoX4RRScVpiBDsEVCdQ==
-X-Received: by 2002:adf:e5c6:0:b0:236:7921:e10e with SMTP id a6-20020adfe5c6000000b002367921e10emr22040365wrn.61.1669364321538;
-        Fri, 25 Nov 2022 00:18:41 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
-        by smtp.gmail.com with ESMTPSA id m24-20020a05600c3b1800b003cf47556f21sm9683549wms.2.2022.11.25.00.18.40
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o5fF1VG6bE4h78zSF6XpcpCWR5JSIWlcaFzzUnV+oZc=;
+        b=6JGelZDm5/xLLErU/JrBBqnkzi5A9cuVCqu4oQxcwpMoUHJZDgz6SkR7ocw7Hr4Ix9
+         WDYGbviBz6B7o8yUyQVgWcEcB2TP7683tZqzcR+vciU079BqcmlJOD4lt1VGHNCW+7Ed
+         CFwNWIbLDxWDr51IkmI34xdIiWPM3+wViY6T1JukqPbo7noXaY2y2grOvgE7SVjcT3QH
+         LBPeg7zf2VVp1XbCmJ0ca7b8cw2qakadXloeSyAEupte88LAZNOPXFhGc7gMpShyMWfN
+         JV/ApolrpD7yDFD6Un+xz+5kt9sBYux+h+vRsLHfj592Vmo3glKGXM/mMASI/yT9hQYd
+         QmpA==
+X-Gm-Message-State: ANoB5pkmjuEQBf2x7cTqh8vloXiZXsrPlvPZ03j+Mn0Mv5+TnULPUmj7
+        wX72Uil90qus0iM8Ct8WFlhMAQ==
+X-Google-Smtp-Source: AA0mqf43cUIMS54O34Vhq9pPU/mS4mUl+E6LeZcrmUrIdo4O0OPsnuG7pJiWnKrQehDWZ30Iy/YrqQ==
+X-Received: by 2002:a2e:990b:0:b0:277:5a8:91c8 with SMTP id v11-20020a2e990b000000b0027705a891c8mr10818289lji.173.1669364379663;
+        Fri, 25 Nov 2022 00:19:39 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v22-20020a05651203b600b00492c663bba2sm438847lfp.124.2022.11.25.00.19.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 00:18:41 -0800 (PST)
-Message-ID: <e4ea8291-f733-775e-e2d1-79c5f887fa5b@linaro.org>
-Date:   Fri, 25 Nov 2022 09:18:40 +0100
+        Fri, 25 Nov 2022 00:19:39 -0800 (PST)
+Message-ID: <ba4918dd-309c-5e6e-dc0a-eb5f1c4b1dfa@linaro.org>
+Date:   Fri, 25 Nov 2022 09:19:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996-tone: Fix USB taking 6 minutes
- to wake up
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1 2/2] leds: add aw20xx driver
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221124220147.102611-1-konrad.dybcio@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20221124220147.102611-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jonathan Corbet <corbet@lwn.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        kernel@sberdevices.ru
+References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
+ <20221124204807.1593241-3-mmkurbanov@sberdevices.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221124204807.1593241-3-mmkurbanov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,44 +80,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2022 23:01, Konrad Dybcio wrote:
-> The hardware turns out to be pretty sluggish at assuming it can only
-> do USB2 with just a USB2 phy assigned to it - before it needed about
-> 6 minutes to acknowledge that.
+On 24/11/2022 21:48, Martin Kurbanov wrote:
+> This commit adds support for AWINIC AW20036/AW20054/AW20072 LED driver.
+> This driver supports following AW200XX features:
+>   - 3 pattern controllers for auto breathing or group dimming control
+>   - Individual 64-level DIM currents
+>   - Interrupt output, low active
 > 
-> Limit it to USB-HS explicitly to make USB come up about 720x faster.
-> 
-> Fixes: 9da65e441d4d ("arm64: dts: qcom: Add support for SONY Xperia X Performance / XZ / XZs (msm8996, Tone platform)")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
 > ---
-> No words.
+>  Documentation/leds/leds-aw200xx.rst |  274 +++++++
+>  drivers/leds/Kconfig                |   10 +
+>  drivers/leds/Makefile               |    1 +
+>  drivers/leds/leds-aw200xx.c         | 1113 +++++++++++++++++++++++++++
+>  4 files changed, 1398 insertions(+)
+>  create mode 100644 Documentation/leds/leds-aw200xx.rst
+>  create mode 100644 drivers/leds/leds-aw200xx.c
 > 
->   arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi | 5 +----
->   1 file changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> index 12a7b6d91dbe..0ab9687f3406 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> @@ -991,10 +991,6 @@ touch_int_sleep: touch-int-sleep-state {
->   	};
->   };
->   
-> -/*
-> - * For reasons that are currently unknown (but probably related to fusb301), USB takes about
-> - * 6 minutes to wake up (nothing interesting in kernel logs), but then it works as it should.
-> - */
->   &usb3 {
->   	status = "okay";
->   	qcom,select-utmi-as-pipe-clk;
-> @@ -1003,6 +999,7 @@ &usb3 {
->   &usb3_dwc3 {
->   	extcon = <&usb3_id>;
->   	dr_mode = "peripheral";
-> +	maximum-speed = "high-speed";
->   	phys = <&hsusb_phy1>;
->   	phy-names = "usb2-phy";
->   	snps,hird-threshold = /bits/ 8 <0>;
+> diff --git a/Documentation/leds/leds-aw200xx.rst b/Documentation/leds/leds-aw200xx.rst
+> new file mode 100644
+> index 000000000000..a751b91dfda6
+> --- /dev/null
+> +++ b/Documentation/leds/leds-aw200xx.rst
+> @@ -0,0 +1,274 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +=========================================
+> +Kernel driver for AW20036/AW20054/AW20072
+> +=========================================
+> +
+> +Description
+> +-----------
+> +
+> +The AW20036/AW20054/AW20072 is a 3x12/6x9/6x12 matrix LED driver programmed via
+> +an I2C interface. The brightness of each LED is independently controlled by
+> +FADE and DIM parameter.
+> +
+> +Three integrated pattern controllers provide auto breathing or group dimming
+> +control. Each pattern controller can work in auto breathing or manual control
+> +mode. All breathing parameters including rising/falling slope, on/off time,
+> +repeat times, min/max brightness and so on are configurable.
+> +
+> +Device attribute
+> +-----------------------------------
+> +
+> +**/sys/class/leds/<led>/dim** - 64-level DIM current. If write negative value
+> +or "auto", the dim will be calculated according to the brightness.
+> +
+> +The configuration files for each pattern are located::
+> +
+> +    /sys/bus/i2c/devices/xxxx/pattern0/
+> +    /sys/bus/i2c/devices/xxxx/pattern1/
+> +    /sys/bus/i2c/devices/xxxx/pattern2/
+> +
+> +Directory layout example for pattern
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +::
+> +
+> +    $ ls -l /sys/bus/i2c/devices/xxxx/pattern0/
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 clear_leds
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 fall_time
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 loop_begin
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 loop_end_on
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 max_breathing_level
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 min_breathing_level
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 mode
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 off_time
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 on_time
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 ramp
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 repeat
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 rise_time
+> +    -r--r--r--    1 root     root          4096 Jan  1 00:00 running
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 select_leds
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 start
+> +    -rw-r--r--    1 root     root          4096 Jan  1 00:00 toggle
+
+sysfs documentation goes to Documentation/ABI/
 
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+(...)
+
+> +static int aw200xx_probe(struct i2c_client *client)
+> +{
+> +	const struct aw200xx_chipdef *cdef;
+> +	struct aw200xx *chip;
+> +	int count;
+> +	int ret;
+> +
+> +	cdef = device_get_match_data(&client->dev);
+> +
+> +	count = device_get_child_node_count(&client->dev);
+> +	if (!count || count > cdef->channels)
+> +		return dev_err_probe(&client->dev, -EINVAL,
+> +				     "Incorrect number of leds (%d)", count);
+> +
+> +	chip = devm_kzalloc(&client->dev,
+> +			    struct_size(chip, leds, count),
+
+sizeof(*chip)
+
+> +			    GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +
+> +	chip->cdef = cdef;
+> +	chip->num_leds = count;
+> +	chip->client = client;
+> +	i2c_set_clientdata(client, chip);
+> +
+> +	chip->regmap = devm_regmap_init_i2c(client, &aw200xx_regmap_config);
+> +	if (IS_ERR(chip->regmap))
+> +		return PTR_ERR(chip->regmap);
+> +
+> +	ret = aw200xx_chip_check(chip);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_init(&chip->mutex);
+> +
+> +	/* Need a lock now since after call aw200xx_probe_dt, created sysfs nodes */
+> +	mutex_lock(&chip->mutex);
+> +
+> +	ret = aw200xx_probe_dt(&client->dev, chip);
+> +	if (ret < 0)
+> +		goto exit;
+> +
+> +	ret = aw200xx_chip_reset(chip);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = aw200xx_chip_init(chip);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = aw200xx_setup_interrupts(chip);
+> +
+> +exit:
+> +	mutex_unlock(&chip->mutex);
+> +	return ret;
+> +}
+> +
+> +static void aw200xx_remove(struct i2c_client *client)
+> +{
+> +	struct aw200xx *chip = i2c_get_clientdata(client);
+> +
+> +	aw200xx_chip_reset(chip);
+> +	mutex_destroy(&chip->mutex);
+> +}
+> +
+> +static const struct aw200xx_chipdef aw20036_cdef = {
+> +	.channels = 36,
+> +	.display_size_max = 2,
+> +	.display_size_columns = 12,
+> +};
+> +
+> +static const struct aw200xx_chipdef aw20054_cdef = {
+> +	.channels = 54,
+> +	.display_size_max = 5,
+> +	.display_size_columns = 9,
+> +};
+> +
+> +static const struct aw200xx_chipdef aw20072_cdef = {
+> +	.channels = 72,
+> +	.display_size_max = 5,
+> +	.display_size_columns = 12,
+> +};
+> +
+> +static const struct i2c_device_id aw200xx_id[] = {
+> +	{ "aw20036" },
+> +	{ "aw20054" },
+> +	{ "aw20072" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, aw200xx_id);
+> +
+> +static const struct of_device_id aw200xx_match_table[] = {
+> +	{ .compatible = "awinic,aw20036", .data = &aw20036_cdef, },
+> +	{ .compatible = "awinic,aw20054", .data = &aw20054_cdef, },
+> +	{ .compatible = "awinic,aw20072", .data = &aw20072_cdef, },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, aw200xx_match_table);
+> +
+> +static struct i2c_driver aw200xx_driver = {
+> +	.driver = {
+> +		.name = "aw200xx",
+> +		.of_match_table = of_match_ptr(aw200xx_match_table),
+
+You will have warning now. of_match_ptr goes with __maybe_unused. Drop it.
+
+> +		.dev_groups = aw200xx_pattern_groups,
+> +	},
+> +	.probe_new = aw200xx_probe,
+> +	.remove = aw200xx_remove,
+> +	.id_table = aw200xx_id,
+> +};
+> +
+> +module_i2c_driver(aw200xx_driver);
+> +
+> +MODULE_AUTHOR("Martin Kurbanov <mmkurbanov@sberdevices.ru>");
+> +MODULE_DESCRIPTION("AW200XX LED driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:leds-aw200xx");
+
+Best regards,
+Krzysztof
+
