@@ -2,73 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3BBD638E45
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 17:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B7B638E5C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 17:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiKYQdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 11:33:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
+        id S229625AbiKYQk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 11:40:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiKYQds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 11:33:48 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A90209AB;
-        Fri, 25 Nov 2022 08:33:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1669394018; bh=qrGihlr8b0uyjJHQy1x/KScetL6qwz/fPjcUju+VMJU=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=juM0A7hh5EKfp+jla4lVOwdEVPH1MxDYue7mza3MLtME3gzfaREFURa+0xwvllZl3
-         rQmz3UdXVcZgAE6SVD/NC86zNxZmtLJoQQf9O4FdaYBBiwtJz3COOSMoHs/QAaUdGx
-         mvyuxjXodrdUPZ7vLQL3mEDD7qE0DO1hXrQa/zq6pcm4cx32Bgb6MNp8KrE2hBdSnE
-         vQhjdav+SvhFO+57VJen1PLzjmoXP9m/ckGce7S/ZSZozlqL/i4aTFk26POcDpqsqe
-         fpKrUO6oWoxr9ZOvmaunRFPk7V0U5QFUeyJuR1YF8dIGBpgl578hRmZNJN85StW3cj
-         Szyvj18UXSM1w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N3bSj-1oqOFV0GRP-010eg3; Fri, 25
- Nov 2022 17:33:38 +0100
-Date:   Fri, 25 Nov 2022 17:33:31 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] spi: wpcm-fiu: Add driver for Nuvoton WPCM450
- Flash Interface Unit (FIU)
-Message-ID: <Y4DuW6Rai0urvrEI@probook>
-References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
- <20221124191400.287918-3-j.neuschaefer@gmx.net>
- <Y4C9druicCm0m3wi@sirena.org.uk>
+        with ESMTP id S229480AbiKYQk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 11:40:58 -0500
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BACA2BB24
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 08:40:54 -0800 (PST)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221125164050epoutp02982119157fe6f0e16b225beb4d46b0bf~q4Wh339RX2751327513epoutp02n
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 16:40:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221125164050epoutp02982119157fe6f0e16b225beb4d46b0bf~q4Wh339RX2751327513epoutp02n
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669394450;
+        bh=x9WaHarhEiy9sckdGNr5J1jaICTZoKpfCbdIcjqPPUY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=aU2SRw1DkwqNv4HKHscb1wM39BGuFfnYUIfqTDNJUqYjkujmrWm1y8zNzKjm3tNyS
+         AtAKu9Rfu6F5bLL2NoLnJTMTznjVwfnu+u5sNagH6kbJGAsc/Dc7mn/uihvM525RLX
+         SUflAJnRyCYHJrdySCTeNOusNm0EwpAVSSqpWLPU=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20221125164049epcas5p25e1b2fbd997100a4922fc8ec3380bc02~q4WgjfEqq1127511275epcas5p2p;
+        Fri, 25 Nov 2022 16:40:49 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.180]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4NJgbM4mkjz4x9Pv; Fri, 25 Nov
+        2022 16:40:47 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C8.9F.56352.F00F0836; Sat, 26 Nov 2022 01:40:47 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221125164046epcas5p22a5fba71d4c39ea4bb246e2100e9cc1f~q4Wd15DA51127511275epcas5p2o;
+        Fri, 25 Nov 2022 16:40:46 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221125164046epsmtrp24b31540b526d313b505b5dcc7807762e~q4Wd1Fgrc3038430384epsmtrp2c;
+        Fri, 25 Nov 2022 16:40:46 +0000 (GMT)
+X-AuditID: b6c32a4b-5f7fe7000001dc20-66-6380f00f9b83
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B3.50.14392.E00F0836; Sat, 26 Nov 2022 01:40:46 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221125164042epsmtip27f4567976c3ed9f62e46009d26c7bc2b~q4Wae56HA2485824858epsmtip2H;
+        Fri, 25 Nov 2022 16:40:42 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>
+Cc:     "'Lee Jones'" <lee@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        "'Sriranjani P'" <sriranjani.p@samsung.com>,
+        "'Chanho Park'" <chanho61.park@samsung.com>
+In-Reply-To: <016293da-92b1-16e9-9a8d-ecab34c2f0c6@linaro.org>
+Subject: RE: [PATCH 3/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ dedicated SYSREG compatibles to Exynos5433
+Date:   Fri, 25 Nov 2022 22:10:40 +0530
+Message-ID: <01a201d900ec$aaaf5740$000e05c0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gwqlkzk/XEkwkl3l"
-Content-Disposition: inline
-In-Reply-To: <Y4C9druicCm0m3wi@sirena.org.uk>
-X-Provags-ID: V03:K1:mzDpPOrp7RPNq9d1SLW3cp7WtEvYeFRz6k6oMkCwYUCf05fzHyq
- pC6/qkDFSJh6nXs6OlAFBi54Cvx52zNOSt45nKXIzZomk+3ur/ORqCJb3+gDUCWvteowj+q
- AOfAZY5XylKbdMYjO5kRjaDaypLC7cuG3Qck4NjHxbA0pZdSYHBuEwJjvXH+COGy7GiW1rc
- Gc+ex+UecT346RU97Oo5A==
-UI-OutboundReport: notjunk:1;M01:P0:GlWsrrnxvSw=;QI54juyukrryQzvM0y4temuv/CY
- lhcS2H8HaJ5wEHjxdvdjhk4MYaaOcGCu+GAg/jgxzj6Hlq77Vsvhfje0GjzLkOkqmX+Ht9d9g
- 5u95+h8qACQ/wSKkPXVcE7Xg2FntWcF7nCAQFnaGLY1j5HaB19VJs7Wxc42z59N0Vk8SVIp4j
- 8ZM+BdYARuP4WwBNCjZ6J9QdXMoENVgsQucevK9NhQHLGQ31dTyVpjCxkXTkHYY0bBHFUVYNi
- yXT4L8HoioUWAFkdLPz0m48pFBbqWqNq+0+vemhwolVQKUai/q6MrbxZQ323DYcUn1NYnKMQW
- T7TCnCfQqqs6t/6xCZGeB7ZTFZWZzgToyZs22HQ3Y+bBGWy+1bzdT/SFYB7sAa4VLCM43NyJY
- cnRd1f9IKggrjSdUKRN7M/YdNhq4FA7GKYTGS1/qWgGUnLEP9dy/hNz1vVOVKGGrQhcy8zNFo
- WSsPDq0jU/ppspy41iqD7RamuD0nazb0IeAh0qsj1tQvkoTlJK/h3G1JjQMA9NGj0VhyfH2PT
- 11YzrCcIn3oK8ewwOrCkUVG0XlQIu51/1iPUj8MiBPWoaevsg9rqteNqrqQuzxvG89Ty8UCDS
- Yj376G0fRoScRhaVLlVjRwR67QA1p2q+Ndr1xIkQuebsKGUletZIoGo6vyUDapA8JFcOpsREW
- cThF5Qn2WDXo1Kbaw52WxhBy+Eu9PFn38OSDta/4wJJciMDmQo+4tr5/RMyxWpe6HJcyjGRm2
- FeErGQziZRw6DS/qI1VMcUvQSSdbcOmbV1+XVRArg/HGuRdp32cUGjl15CBTkW0fQzC5vydP5
- mFdokiN3gJkUZ/Wg2aSOvOoRdJkdXfJaizA1iOheG37hqA2uvq5wSENVRTP/2Ks1TWw3uoefA
- Ylb09Xv008ffZVhqaYG3EqzYli/bm3qD1GRjUhJ2VsoJaVKvLu2o42AAhHXwbCIabaKmAlVY6
- 4Rn/zQGd9fp6hMo+6N3xF+Hu5tE=
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQIt87tfTwup8v8WQwS48SHvnyDBrAHgnMUHAkbd/d0Bcz2GTwF+lQpiAr6nA3gCgQusgK1DJvFw
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmhi7/h4Zkg7c/5S0u79e2mH/kHKtF
+        34uHzBZ7X29lt9jRtpDFYtPja6wWl3fNYbOYcX4fk0Xr3iPsFs/7gKzbb9axOnB7bFrVyeZx
+        59oeNo/NS+o9+rasYvT4vEkugDUq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJc
+        SSEvMTfVVsnFJ0DXLTMH6DAlhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5x
+        Ym5xaV66Xl5qiZWhgYGRKVBhQnbGu0VXWAvWiVfsObeErYHxmnAXIyeHhICJxKeGZrYuRi4O
+        IYHdjBJHrn1ihnA+MUocOn2KEcL5xiix78Q0JpiWL7Mfs0Mk9jJKtJ1/yQLhvGSUOHmzgRGk
+        ik1AV2LH4jY2EFtEIE9i+s3NYEXMAl+YJF7cmAuW4BSwkzg8ZwNQgoNDWKBY4t4RaZAwi4Cq
+        xIlFh8HCvAKWEnOORICEeQUEJU7OfMICYjMLaEssW/iaGeIgBYmfT5exQsTFJV4ePcIOsTZK
+        oufJDbDfJAS2cEi0HZnDBtHgInHk/AsoW1ji1fEt7BC2lMTnd3vZQPZKCHhILPojBRHOkHi7
+        fD0jhG0vceDKHLDTmAU0Jdbv0odYyyfR+/sJE0Qnr0RHmxBEtapE87urLBC2tMTE7m5WCNtD
+        4tqxVewTGBVnIXlsFpLHZiF5ZhbCsgWMLKsYJVMLinPTU4tNC4zzUsvh0Z2cn7uJEZxqtbx3
+        MD568EHvECMTB+MhRgkOZiUR3oTjDclCvCmJlVWpRfnxRaU5qcWHGE2BgT2RWUo0OR+Y7PNK
+        4g1NLA1MzMzMTCyNzQyVxHkXz9BKFhJITyxJzU5NLUgtgulj4uCUamDSdhaVyMll4DHg337M
+        +6jlU47C1cs6VwdNduAu2S3Kd+eOfExrs4+1WsVW106ZT5OmmVzJ977+92ndjI9hnd0eTvue
+        bTDlqp80qyxehUmrcMX3dQfX7vcNuzQln3GL7tG5brlnc18xJ+qfqlz2b320mFiGdO/JPs55
+        ckIHiy8fM7azNgxd5DRr2gzjaUrlAu3/rDSWmXP++bX50ibjCcbrL/3edHEqj9OC/Me5QrH/
+        5asYA9g/Kpg7VLVMXTrzynGGt/Vvu/Ue/e5alHrj7sf0l1/M9kQdONTIrTTdYEHZV5sNmo5r
+        2tbr9i3+N+Xz0k2NXRovC/u4WT99Sq1f6J2/80fstHDHz1eNXYzMGYSVWIozEg21mIuKEwFR
+        MbtvPgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprMIsWRmVeSWpSXmKPExsWy7bCSvC7fh4Zkg56lfBaX92tbzD9yjtWi
+        78VDZou9r7eyW+xoW8hisenxNVaLy7vmsFnMOL+PyaJ17xF2i+d9QNbtN+tYHbg9Nq3qZPO4
+        c20Pm8fmJfUefVtWMXp83iQXwBrFZZOSmpNZllqkb5fAlXHp+k7GgkniFROObWRuYFwl3MXI
+        ySEhYCLxZfZjdhBbSGA3o0Rbcy5EXFri+sYJ7BC2sMTKf8+hap4zStxoCAWx2QR0JXYsbmMD
+        sUUE8iSuHdnI2sXIxcEs8ItJ4ur/D2COkMBeZonr/5Yzg1RxCthJHJ6zgaWLkYNDWKBQYvqH
+        JJAwi4CqxIlFh8HCvAKWEnOORICEeQUEJU7OfMICYjMLaEv0PmxlhLGXLXzNDHGbgsTPp8tY
+        IeLiEi+PHmGHuCdKoufJDbYJjMKzkIyahWTULCSjZiFpX8DIsopRMrWgODc9t9iwwDAvtVyv
+        ODG3uDQvXS85P3cTIzjetDR3MG5f9UHvECMTB+MhRgkOZiUR3oTjDclCvCmJlVWpRfnxRaU5
+        qcWHGKU5WJTEeS90nYwXEkhPLEnNTk0tSC2CyTJxcEo1MJVdtJCpfStxYZeChsXL6/sKn1Se
+        3Gbw7YGbVRjb250bN3ibu/vfC7/wNJdLmHXJ9ni1lM+H3durjF8fW3Pe1GjurssywsGODXnT
+        5uqdsL39a4aMR9of1oYM79IDesf3zzA99UNDamW5XoW54kZz7b8persPz5tn8vDv27Ld2ulJ
+        jmV36tMk5+ts987enZiZv+dN2VG1dpu+42IO980D/k+ztw7cyHaQvbssrDP42qc36yb1TzB4
+        LKLy7xcfR/7LkCf3/jFtuH9NdcUshU6u4ga96zLc854HezP0TG9mWVQRXhDosGrd8cevHmxV
+        KTzce01wf4Bm3a+4BdXe29nevoyz2Txd5V/trCDnl/84nimxFGckGmoxFxUnAgDmm2ALJgMA
+        AA==
+X-CMS-MailID: 20221125164046epcas5p22a5fba71d4c39ea4bb246e2100e9cc1f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221125150130epcas5p3ce8a3b75cf80ea9df35093db4d684eb2
+References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
+        <20221125112201.240178-3-krzysztof.kozlowski@linaro.org>
+        <CAPLW+4kwFCLaiowajdCnA09eT4emOB-3d-6cbA=ZYyRLwYuCxw@mail.gmail.com>
+        <dfd956d5-d62d-52ac-c485-afc71c441df5@linaro.org>
+        <CAPLW+4mWq5Q4Ht1Upx2Xw3fMfNvvSK6fEPbLFru1NLpKHLbKOg@mail.gmail.com>
+        <CGME20221125150130epcas5p3ce8a3b75cf80ea9df35093db4d684eb2@epcas5p3.samsung.com>
+        <016293da-92b1-16e9-9a8d-ecab34c2f0c6@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        PDS_BAD_THREAD_QP_64,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,112 +131,81 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---gwqlkzk/XEkwkl3l
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+>-----Original Message-----
+>From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
+>Sent: Friday, November 25, 2022 8:31 PM
+>To: Sam Protsenko <semen.protsenko=40linaro.org>
+>Cc: Lee Jones <lee=40kernel.org>; Rob Herring <robh+dt=40kernel.org>;
+>Krzysztof Kozlowski <krzysztof.kozlowski+dt=40linaro.org>; Alim Akhtar
+><alim.akhtar=40samsung.com>; devicetree=40vger.kernel.org; linux-
+>kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
+>samsung-soc=40vger.kernel.org; Sriranjani P <sriranjani.p=40samsung.com>;
+>Chanho Park <chanho61.park=40samsung.com>
+>Subject: Re: =5BPATCH 3/4=5D dt-bindings: soc: samsung: exynos-sysreg: add
+>dedicated SYSREG compatibles to Exynos5433
+>
+>On 25/11/2022 15:57, Sam Protsenko wrote:
+>> On Fri, 25 Nov 2022 at 08:47, Krzysztof Kozlowski
+>> <krzysztof.kozlowski=40linaro.org> wrote:
+>>>
+>>> On 25/11/2022 15:22, Sam Protsenko wrote:
+>>>> On Fri, 25 Nov 2022 at 05:22, Krzysztof Kozlowski
+>>>> <krzysztof.kozlowski=40linaro.org> wrote:
+>>>>>
+>>>>> Exynos5433 has several different SYSREGs, so use dedicated
+>>>>> compatibles for them.
+>>>>>
+>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+>>>>>
+>>>>> ---
+>>>>>
+>>>>> Cc: Sriranjani P <sriranjani.p=40samsung.com>
+>>>>> Cc: Chanho Park <chanho61.park=40samsung.com>
+>>>>> Cc: Sam Protsenko <semen.protsenko=40linaro.org>
+>>>>> ---
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> Just curious: what is the rationale for adding those more specific
+>>>> sysregs? AFAIR, e.g. in Exynos850, different SysReg instances have
+>>>> pretty much the same register layout.
+>>>>
+>>>
+>>> On Exynos5433 all these blocks have different registers. Are you
+>>> saying that Exynos850 has four (or more) sysregs which are exactly the
+>same?
+>>> Same registers? Why would they duplicate it?
+>>>
+>>
+>> Ah, no, you are right. Just checked it, they are different. Just first
+>> couple of registers are similar between blocks, that's why I memorized
+>> it wrong.
+>>
+>> So as I understand, adding those new compatibles follows =22describe HW,
+>> not a driver=22 rule? Because AFAIU, right now it'll fallback to
+>> =22syscon=22 compatible anyway.
+>
+>Yes, they describe hardware. Of course all of these sysregs are similar as=
+ they
+>are just bunch of SFR/MMIO-region, but they have different roles/features.
+>For example some other devices (users) of syscon/sysreg should reference
+>specific device, not any sysreg.
+>
+Yes, these are dedicated / extended SFR region to provide IP/Block specific=
+ side-band signals / configurations.
 
-On Fri, Nov 25, 2022 at 01:04:54PM +0000, Mark Brown wrote:
-> On Thu, Nov 24, 2022 at 08:13:59PM +0100, Jonathan Neusch=C3=A4fer wrote:
->=20
-> > The Flash Interface Unit (FIU) is the SPI flash controller in the
-> > Nuvoton WPCM450 BMC SoC. It supports four chip selects, and direct
-> > (memory-mapped) access to 16 MiB per chip. Larger flash chips can be
-> > accessed by software-defined SPI transfers.
->=20
-> Those software defined SPI transfers seem to be most of the way to
-> supporting normal SPI controller operations, they just need wiring up.
-> That would both support people hooking other SPI chips up to the board
-> and might help support future flash stuff without needing custom code in
-> the driver like you've got now.
+>On several other architectures we use specific compatibles, so I think for
+>Samsung we should do the same.
+>
+Yes, most of the SoC's sysreg are dedicated/included in the IP block itself=
+ now a day, so make sense to have a dedicated compatible.
 
-I'm not so sure. The hardware mechanism allowing "software defined" SPI
-transfers is strongly oriented towards SPI flash, and it already felt
-like a stretch to implement all the features that Linux expects of a
-SPI MEM controller.
+>Different case was for Exynos 3/4/5 where there was only one SYSREG.
+>
+AFAIR, this is correct.
 
-As to connecting non-memory chips: There is also a second, completely
-different SPI controller in this SoC, which is used on some boards (in
-factory configuration) to drive a little status LCD. I think it would be
-easiest to use that one for custom hardware extensions.
-
-
->=20
-> > +static int wpcm_fiu_do_uma(struct wpcm_fiu_spi *fiu, unsigned int cs,
-> > +			   bool use_addr, bool write, int data_bytes)
-> > +{
->=20
-> This appears to only support half duplex access but the driver doesn't
-> flag itself as SPI_CONTROLLER_HALF_DUPLEX. =20
-
-Ok, I'll add it.
-
->=20
-> > +	cts |=3D FIU_UMA_CTS_D_SIZE(data_bytes);
->=20
-> I'm guessing there's a limit on data_bytes that should be enforced.  The
-> driver should probably also flag a max transfer size, though that might
-> cause issues if the limit is different between spi-mem and regular
-> transfers.
-
-For the existing spi-mem case, the transfer size is limited through
-wpcm_fiu_adjust_op_size. I *think* this is enough, but please correct me
-if I'm wrong.
-
-
-> > +/*
-> > + * RDID (Read Identification) needs special handling because Linux exp=
-ects to
-> > + * be able to read 6 ID bytes and FIU can only read up to 4 at once.
-> > + *
-> > + * We're lucky in this case, because executing the RDID instruction tw=
-ice will
-> > + * result in the same result.
-> > + *
-> > + * What we do is as follows (C: write command/opcode byte, D: read dat=
-a byte,
-> > + * A: write address byte):
-> > + *
-> > + *  1. C D D D
-> > + *  2. C A A A D D D
-> > + */
->=20
-> If the driver were implementing regular SPI operations and advertising
-> a maximum transfer length this should just work without having to jump
-> through hoops.  The core can split transfers up into sections that fit
-> within the controller limits transparently.
-
-As far as I'm aware, the controller is not capable of performing a pure
-read transfer, because the command byte (a byte that is written, in
-half-duplex) is always included at the start. I think this limitation
-would break your idea.
-
-IOW, the hoops aren't nice, but I think they're necessary.
+>Best regards,
+>Krzysztof
 
 
-Thanks for your review,
-Jonathan
-
---gwqlkzk/XEkwkl3l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmOA7joACgkQCDBEmo7z
-X9sd4hAAm0jeohWy0jH516T3AFdtefq8JNrt/cxtxoPtof1l2XSrS3Z6HvNqChWw
-ZoLYjVQfMJ/ABWXTPT2ODtVkrKlxaCBt7etGysg2NVGjD0BjaAgmMUcZk/YgzY8o
-UBaQCt49gI/F66pbm2LDqMJYh6VhOZbGePjNC3zGYvY5dh6DNYP/jaHy5Bgjwrgf
-1GTYYLsgaoLusWoDc+gamryqvweHXGGM1zE8Z8KORgqczhBe0Gj6Zi9tPRu9sEWF
-gnYr79dyU7ikjwQ6BREJVdbYNoQVgB6TwRdc+da9pOmNES/iHUUM3g2Ko87RzTPg
-8vk3yS+wc1rzn01+GOg2B3Fn1VkKmi4QfOJBU2WkeUf923wu/bWlpiCBkG55Kh9E
-w5fjnms1+ikNiHQTByFW4xvZ0Z8g81yDS4xz0aQnBRBPsq5N/Frou69TQ4eumyWn
-yuf0u6Bx5Pcf4pwPfjKFytiHO9uvqv9LwmsUkx5Q3Y8teBfKGRtGrlhInj0T0tSa
-UYuRvfGywhDzl2KQKMoKmTBTLG5F0W0IVBg2Y6sDB7NdUagt5wzqqscyuSvrrKRI
-+nIZqKjLKTDCYj/JIJY7DnFKyP6X/bCAKlcCUWdUHgrG8DCKaj2XsGcFut8LfNlV
-4Qn9wnEFdHdEhivLyj3LLHMe4lVHKqqvryvzeLXcZD5LITLWP+k=
-=RdbO
------END PGP SIGNATURE-----
-
---gwqlkzk/XEkwkl3l--
