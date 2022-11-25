@@ -2,104 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D57BE6385BC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 09:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0586385C4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:00:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbiKYI7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 03:59:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45366 "EHLO
+        id S229900AbiKYJAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 04:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbiKYI7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:59:08 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E63A30554
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:59:07 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id r8so4430633ljn.8
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 00:59:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B6NP9iExsKhwAiLL3vq6RTTdR3dVNz/YYKUpFQJUzmA=;
-        b=Hgk0oxKXN9Kp1SVIjeguHoN7XO7n/EC4fM773cZZZY8ilRuGvyEsgAcEGmeK3pU2Jy
-         TGfiulCY8gCJ64ILXTYgmm8vpspUQkudvB8Y1ubKbXoh++qvOKPcixdDp6c78Pvru8Tw
-         BOoODAJhX6OINqHo8FvGgeJKj6P4bcy2xiFboO1yKDvAR9vXbHMsdIXWibGLjQpiHE4N
-         2uJIUH4sWNmz4CpiKt9QGtgYFVYkZA9FKFd4U8NV2q0vv+7p6XEUFA1nBS2IjR50j3kK
-         k5wQ9Xn5hfOIkVWtPDSeqWIUOqj51F/sDsIFBtD92j/LMLglQwiSe3xlpRn/b+FDfjTm
-         Ee/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B6NP9iExsKhwAiLL3vq6RTTdR3dVNz/YYKUpFQJUzmA=;
-        b=m/eZhZfUOaMqGeZPGBFeEbGoLERCfyZJh1p8xzQwI2OS4ttxdi77AneFH+vDnNEkks
-         OAtbTj8OYpJpxlIIB3OIftjXRjXYb3bJ+vmq55jwwjUYZLJCc5h4dHljA/c6fK7GfB6/
-         dkwY4PlqpFkL0neeIxmsEKRlZ+Xs/pUwNM7C9fNgktdXIuxwdVmLhSSPhbC9PVfxTyXb
-         sdsqj4/aliOj5rJy0eb7huPweP87OKHby2+m4ILw3I0xkRNLWNPySSeGh658MYuIwnH5
-         eLcjkdxdNxRbSatpXrjSFxK8FqjZqI9lJnp/oKsWvi+JMTq+vj0VEwWD7zWcK7YeDKSz
-         umVg==
-X-Gm-Message-State: ANoB5pmSnKA5CMS4yvRjNTeNxY+DGKNbJ1eM4HH2wYM+D/m5V6cLnL3h
-        VTbfpm4GRVrzE4v2inpqW6+2nA==
-X-Google-Smtp-Source: AA0mqf77+c+kCbL9XSzsq+fyhsTpSylGBtPLQbDyXpMNs/p9Qr5IKiNMoVLX/VFlRUo/cQiC7vycWw==
-X-Received: by 2002:a2e:b10c:0:b0:26f:bd6e:7f7f with SMTP id p12-20020a2eb10c000000b0026fbd6e7f7fmr5808698ljl.87.1669366745565;
-        Fri, 25 Nov 2022 00:59:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s9-20020a2eb8c9000000b002770566d642sm301463ljp.17.2022.11.25.00.59.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 00:59:05 -0800 (PST)
-Message-ID: <735232e0-9e07-dc4e-4e6b-b7d198a2f27b@linaro.org>
-Date:   Fri, 25 Nov 2022 09:59:04 +0100
+        with ESMTP id S229920AbiKYI75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 03:59:57 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA7B2326CC;
+        Fri, 25 Nov 2022 00:59:55 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 884D5622F8;
+        Fri, 25 Nov 2022 08:59:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5DF8C433D6;
+        Fri, 25 Nov 2022 08:59:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669366795;
+        bh=e6HuqocvKF2BxDIP+LM0eTorRMU5x/m6qeueXBoIy2o=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MZLlKugAC6ovMQ6VpXpiH0+51k+TUegiP4iNiF1dxh6mqfMkCiNkF+9QKGLP7DrfV
+         zkPVQJbmZZ73wkWHtcjm2PltxG4gk/KN1zRvyCjxqgBFfVunKH23LEDHj3rOBYxIc3
+         zd9GbFmo9NaJ8mhDpbGaIkp2HyXMwun+13BEW7LatQzutT371SJbaQObTXQAK0i5At
+         ltsgAti7Ey91x0scqvwEw/YCNQ94NK+reLBkdPy3atdvLcfgHdd0mStZGsVgv55Edn
+         BqFR4/vKKScfoaGjnCwRk8zDanRtgRcKF00rg405puK0cBKagQ1MTjt161ZVHlYipH
+         DI4uDKm++rPoA==
+Message-ID: <5b26410e-a9d9-de8c-ea31-13dfec6c77b1@kernel.org>
+Date:   Fri, 25 Nov 2022 10:59:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: usb: mtu3: add compatible for mt8186
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v9 3/6] remoteproc: pru: Add enum for PRU Core
+ Indentifiers.
 Content-Language: en-US
-To:     =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-References: <20221123135531.23221-1-allen-kh.cheng@mediatek.com>
- <20221123135531.23221-2-allen-kh.cheng@mediatek.com>
- <4ffbba83-d23c-59ef-0b01-eeb80ea70219@linaro.org>
- <fc0cb10747056f8f38a077b39df3a83e6b340c64.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fc0cb10747056f8f38a077b39df3a83e6b340c64.camel@mediatek.com>
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        nm@ti.com, vigneshr@ti.com, srk@ti.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221118111924.3277838-1-danishanwar@ti.com>
+ <20221118111924.3277838-4-danishanwar@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221118111924.3277838-4-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 09:41, Allen-KH Cheng (程冠勳) wrote:
-> Hi Krzysztof,
+Hi,
+
+On 18/11/2022 13:19, MD Danish Anwar wrote:
+> Introducing enum pruss_pru_id for PRU Core Identifiers.
+> PRUSS_PRU0 indicates PRU Core 0.
+> PRUSS_PRU1 indicates PRU Core 1.
+> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
 > 
-> I have used get_maintainers.pl to get the email address and apologize
-> for not seeing the difference.
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  drivers/remoteproc/pru_rproc.c | 6 +++---
+>  include/linux/pruss.h          | 9 +++++++++
+>  2 files changed, 12 insertions(+), 3 deletions(-)
 > 
-> Do you mean "+dt" in email address?
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 4769ade9c316..7d4ed39b3772 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -564,7 +564,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>  	/* PRU1 has its local RAM addresses reversed */
+> -	if (pru->id == 1)
+> +	if (pru->id == PRUSS_PRU1)
+>  		swap(dram0, dram1);
+>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>  
+> @@ -873,14 +873,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>  	case RTU0_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU0_IRAM_ADDR_MASK:
+> -		pru->id = 0;
+> +		pru->id = PRUSS_PRU0;
+>  		break;
+>  	case TX_PRU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case RTU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU1_IRAM_ADDR_MASK:
+> -		pru->id = 1;
+> +		pru->id = PRUSS_PRU1;
+>  		break;
+>  	default:
+>  		ret = -EINVAL;
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> index 4909226f14a9..fdc719b43db0 100644
+> --- a/include/linux/pruss.h
+> +++ b/include/linux/pruss.h
+> @@ -14,6 +14,15 @@
+>  
+>  #define PRU_RPROC_DRVNAME "pru-rproc"
+>  
+> +/*
+> + * enum pruss_pru_id - PRU core identifiers
+> + */
 
-Yes. Don't write email addresses manually but use scripts/bash aliases
-to get the output... or CTRL+C and CTRL+V.
+This does not follow kernel-doc style
+https://www.kernel.org/doc/html/v6.0/doc-guide/kernel-doc.html#structure-union-and-enumeration-documentation
 
-Best regards,
-Krzysztof
+> +enum pruss_pru_id {
+> +	PRUSS_PRU0 = 0,
+> +	PRUSS_PRU1,
+> +	PRUSS_NUM_PRUS,
+> +};
+> +
+>  struct device_node;
+>  
+>  #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
 
+cheers,
+-roger
