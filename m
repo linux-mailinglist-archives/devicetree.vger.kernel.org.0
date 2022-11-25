@@ -2,131 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D836383AA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 06:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A206383B7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229597AbiKYFxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 00:53:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37286 "EHLO
+        id S229581AbiKYGCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 01:02:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiKYFxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 00:53:48 -0500
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C15C31AD91
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 21:53:47 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id k2so2083885qkk.7
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 21:53:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sJO4CKtz6uCVjlMUGm3BSASo1KZZ4zekB4W49uCXr0Q=;
-        b=GEQWK1zMTOaNgc6Jsw7BvrlA2RvLaRBKdutwd2mWXuN32GcN/F/lh7Do+jJwhu/lKf
-         eUQzy4v825QJ8od3gmSFrmEbBs06XRTg2khVxN2jX2t/NUFG68evKAZHk2uGyqoEdH/l
-         BYs68ifkf0D5ULeS+KO0T9nvkikk56lTOVFYw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sJO4CKtz6uCVjlMUGm3BSASo1KZZ4zekB4W49uCXr0Q=;
-        b=TpWMjCJvd01nw5BacLHHMp0hBR5A1Y+tjoW6MFGGAWFclztYzsODn0p4hGgu5JhDd2
-         tju/i0jOFBUTMGrNeYQe4bYbTsG/cBV6NsTKC4WkNr/1xQPS3iLrVx/SbJC5KC+1Ktko
-         DN9c87tYlniR/7J2lrDEfgPvZHPQ7XehPtkde+CjUuTYqV5ovbC5qQm9t/TeEYbfR0F2
-         qTJe3TQuG6JZIkGVZ4WCyWczLQOF6uWy/E1Hr4p8xgeC+Or6PKbgwNJMWCSZwYue/Ir9
-         tPNdxwu/na7ukyrE5SnsfX4neK8PzsMtD5tBr48Cjk9ddiUGvrelWqbGJxquN5ieEO3V
-         i/1A==
-X-Gm-Message-State: ANoB5pmsDMeEAoKPeaS9sEZ8XnUGCHDdl59mMXGy93sfKNf0t5MU3GYV
-        iB19RyAGay9rv17wEEHrie2X1bZjSL0yXFMMAdikPQ==
-X-Google-Smtp-Source: AA0mqf6knSu6QR92mZ0wCOhRti8BSXDFhhs9fIvKI9CaT08+1NzMdooQC08kJNAEDw9GfohzPzP4gUJ+R3xq6VWqYa4=
-X-Received: by 2002:a05:620a:31a5:b0:6fb:ff0f:e7e0 with SMTP id
- bi37-20020a05620a31a500b006fbff0fe7e0mr19622315qkb.747.1669355626882; Thu, 24
- Nov 2022 21:53:46 -0800 (PST)
+        with ESMTP id S229452AbiKYGCU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:02:20 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D07123BF4;
+        Thu, 24 Nov 2022 22:02:19 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AP49PWv022582;
+        Fri, 25 Nov 2022 06:02:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=heTUo47BerGeRioPZX3HJivL7gZCELJHeQVAQ3eaO6U=;
+ b=Wz87ZvZCKkj1iXbSYm0bIhHabPQ/DSBi4wY+40duOITP6T3Zr+7WKeRfmxY3F9dIkWpx
+ 80Gb207nmnmwI/uHTuE7T8czP7casVgTjMikl21RgcOrMunkx2zGXElVgwx84xpgrJRT
+ AJFZPzBabEQiU+lbTk/T/yRBHd2tjdSCMZKMsKZWvmhRZl92MIyXjrrPxvierNaFfJHU
+ pSEVfxd5zMTv20fYaVd9mnGt61FqeV902HIa9dnZHyJgw6QjDjBhCdS4M4QHy0rzCm98
+ bbdMbHh6KmiQhoe2sEZL4W9I4GPgYgc9tjjaut2eLXWp7mf88kFFRC82zNmcjIK9plJ6 LQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m1gxepkyv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 25 Nov 2022 06:02:06 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AP6256k031949
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 25 Nov 2022 06:02:05 GMT
+Received: from [10.216.38.33] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 24 Nov
+ 2022 22:01:59 -0800
+Message-ID: <5eab17ea-0688-f63d-ab73-fe4c15db7092@quicinc.com>
+Date:   Thu, 24 Nov 2022 22:01:55 -0800
 MIME-Version: 1.0
-References: <20221124102056.393220-1-treapking@chromium.org>
- <20221124102056.393220-3-treapking@chromium.org> <Y39ikbcqx5/pEc64@smile.fi.intel.com>
-In-Reply-To: <Y39ikbcqx5/pEc64@smile.fi.intel.com>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Thu, 24 Nov 2022 21:53:35 -0800
-Message-ID: <CACeCKaewXJYUJCyGyh==dsA6wsU4OESXFXJRiKm9AWPECS_ZBA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/7] platform/chrome: cros_ec_typec: Purge blocking
- switch devlinks
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Pin-yen Lin <treapking@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v5 08/10] drm/msm/dpu: add support for MDP_TOP blackhole
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Stephen Boyd <swboyd@chromium.org>,
         David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        dri-devel@lists.freedesktop.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-acpi@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Xin Ji <xji@analogixsemi.com>, Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, Vinod Koul <vkoul@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20221123210403.3593366-1-dmitry.baryshkov@linaro.org>
+ <20221123210403.3593366-9-dmitry.baryshkov@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20221123210403.3593366-9-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RwlG_GJKbgA8KLU0altOwsXrqpmyvVqd
+X-Proofpoint-ORIG-GUID: RwlG_GJKbgA8KLU0altOwsXrqpmyvVqd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-25_02,2022-11-24_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 adultscore=0 mlxlogscore=999 malwarescore=0
+ lowpriorityscore=0 spamscore=0 impostorscore=0 phishscore=0 bulkscore=0
+ mlxscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211250048
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-Thanks for taking a look at this patch.
 
-Pin-Yen beat me to the punch with comment responses, but I'll add mine anyway.
+On 11/23/2022 1:04 PM, Dmitry Baryshkov wrote:
+> On sm8450 a register block was removed from MDP TOP. Accessing it during
+> snapshotting results in NoC errors / immediate reboot. Skip accessing
+> these registers during snapshot.
+> 
+> Tested-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  3 +++
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        | 11 +++++++++--
+>   2 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> index 38aa38ab1568..8da4c5ba6dc3 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> @@ -82,6 +82,8 @@ enum {
+>    * @DPU_MDP_UBWC_1_0,      This chipsets supports Universal Bandwidth
+>    *                         compression initial revision
+>    * @DPU_MDP_UBWC_1_5,      Universal Bandwidth compression version 1.5
+> + * @DPU_MDP_PERIPH_0_REMOVED Indicates that access to periph top0 block results
+> + *			   in a failure
+shouldnt this be that "indicates that the top register block is not 
+contiguous and the two sub-blocks are separated by an offset"
+>    * @DPU_MDP_MAX            Maximum value
+>   
+>    */
+> @@ -92,6 +94,7 @@ enum {
+>   	DPU_MDP_UBWC_1_0,
+>   	DPU_MDP_UBWC_1_5,
+>   	DPU_MDP_AUDIO_SELECT,
+> +	DPU_MDP_PERIPH_0_REMOVED,
+>   	DPU_MDP_MAX
+>   };
+>   
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index f3660cd14f4f..4ac14de55139 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -927,8 +927,15 @@ static void dpu_kms_mdp_snapshot(struct msm_disp_state *disp_state, struct msm_k
+>   		msm_disp_snapshot_add_block(disp_state, cat->wb[i].len,
+>   				dpu_kms->mmio + cat->wb[i].base, "wb_%d", i);
+>   
+> -	msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+> -			dpu_kms->mmio + cat->mdp[0].base, "top");
+> +	if (cat->mdp[0].features & BIT(DPU_MDP_PERIPH_0_REMOVED)) {
+> +		msm_disp_snapshot_add_block(disp_state, 0x380,
+> +				dpu_kms->mmio + cat->mdp[0].base, "top");
+> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len - 0x3a8,
+> +				dpu_kms->mmio + cat->mdp[0].base + 0x3a8, "top_2");
 
-On Thu, Nov 24, 2022 at 4:25 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> ...
->
-> > +     /*
-> > +      * OF graph may have set up some device links with switches, since connectors have their
-> > +      * own compatible. Purge these to avoid a deadlock in switch probe (the switch mistakenly
-> > +      * assumes the connector is a supplier).
-> > +      */
->
-> A bit too long lines...
+I recall one of the comments from konrad that this should come from the 
+catalog rather than a hard-coded offset which you wanted to keep it for 
+a later time. I am fine with that.
 
-They are within the 100 character limit [1] which is followed
-elsewhere in the driver; has something
-changed recently to make that invalid?
+But instead of a hard-coded offset, do you want to have a macro so that 
+atleast we know what the value means and can fix it in the future? 
+Otherwise it would end up being one of those numbers which someone later 
+on wouldnt understand where it comes from and what it means.
 
->
-> > +     if (dev->of_node)
->
-> Why do you need this check?
-
-This issue only arises when using DT for this device. So the rationale
-is we don't need to
-perform this step on systems that don't use DT.
-
-Best regards,
-
--Prashant
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bdc48fa11e46f867ea4d75fa59ee87a7f48be144
+> +	} else {
+> +		msm_disp_snapshot_add_block(disp_state, cat->mdp[0].len,
+> +				dpu_kms->mmio + cat->mdp[0].base, "top");
+> +	}
+>   
+>   	pm_runtime_put_sync(&dpu_kms->pdev->dev);
+>   }
