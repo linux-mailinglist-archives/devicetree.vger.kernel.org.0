@@ -2,139 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D929B638B9C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 14:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B83638BC2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:02:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbiKYNwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 08:52:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49738 "EHLO
+        id S229819AbiKYOCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:02:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiKYNwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 08:52:54 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7733117AAC;
-        Fri, 25 Nov 2022 05:52:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2B0DBB82AED;
-        Fri, 25 Nov 2022 13:52:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C823DC433D6;
-        Fri, 25 Nov 2022 13:52:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669384370;
-        bh=qykFV7spweRMrT4EZcOj7Wfb2nv3rXRTU0mrl/58Hbw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lTSC8q8bDGdhwXkTWWuFycfOPPGJXlGJub23lsUHzvK83E6CP6VQa7oeGPikzyz+j
-         Ez+RfpT3TwKAkdOoods7a77H5GJIEatWyLi+tatnv9nloG37ATnQF1d25ROSuyBuyj
-         09o77V4qgZ4H+nDZUID0842bIIW7qjxZfTzLbfYrBUOnMddzEy3927+NUH4M25EeAW
-         KlzY/mDZt5F6e1kmMOwVJxuaHW4fyfDxTrAaJ7eyrxuuNizso8ipoHCWg+gkrKb60M
-         jvw0y2lU/xkf5MSoW+veF4jbXnYwyUT6SdTOOfsFGVLnVsIkKB9hucJiOMdVLfiE/f
-         hiRdaxUfHtyDg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oyZ7y-0004v6-59; Fri, 25 Nov 2022 14:52:26 +0100
-Date:   Fri, 25 Nov 2022 14:52:26 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229788AbiKYOCl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:02:41 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F54B1E9;
+        Fri, 25 Nov 2022 06:02:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669384957; x=1700920957;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bwzanIl/v6qmT0yR6agyAZBv5LYJ5TTsBNdzUdFwLBY=;
+  b=CpJTZ1/hsmlTyRMTKIwaqPMlhMwUxJ8ROm+ptS/LwvnRM4/NP7RYM7QF
+   O9tR+iQF7ZyUrVuXo/GdCcDlf8Rwhm4CfTHd4ynCih3b9q4cH9p+HauLc
+   UReR70tjvhhOrqHJhgn/m8zH8h13z/sJPsbpyOV+F3kHgxwraFYEJAGZE
+   4dVolVls82405ZMDBJL1QSkUxtzBL6iF3AjZXSRuxj8SbL4eutwz5mXJA
+   l+Gb8WRIOs50mxA6TLi1mGronyJ6jDCzMj7DkTdbr1Js++hWhderPW6Ud
+   XbrZ9pQjI8AEEHMh5tuI4+Q8RA6/9HlupQ+nV4q8asZZb3ckd/nsIKf/Z
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="190524179"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 07:02:08 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 25 Nov 2022 07:02:07 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Fri, 25 Nov 2022 07:02:05 -0700
+Date:   Fri, 25 Nov 2022 14:01:47 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add
- sm6350 compatible
-Message-ID: <Y4DImjwHQNlWPEKh@hovoldconsulting.com>
-References: <20221125092749.46073-1-luca.weiss@fairphone.com>
- <Y4CP9fwhDXsLu57Q@hovoldconsulting.com>
- <COLABNHBQ1DG.1PB8SDY3FW1YY@otso>
- <Y4CWoT52Q8jnm/dF@hovoldconsulting.com>
- <COLE3UWQCQ8R.XY36EY07DDDK@otso>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Wayne Chang <waynec@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: usb: tegra-xusb: Convert to json-schema
+Message-ID: <Y4DKy1xUjCGYUySM@wendy>
+References: <20221103144200.1479640-1-thierry.reding@gmail.com>
+ <Y4C4Cp1D+QEKWiaf@wendy>
+ <Y4C8JvSQuNZiDmJb@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <COLE3UWQCQ8R.XY36EY07DDDK@otso>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y4C8JvSQuNZiDmJb@wendy>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 01:53:25PM +0100, Luca Weiss wrote:
-> On Fri Nov 25, 2022 at 11:19 AM CET, Johan Hovold wrote:
-> > On Fri, Nov 25, 2022 at 10:55:31AM +0100, Luca Weiss wrote:
-> > > On Fri Nov 25, 2022 at 10:50 AM CET, Johan Hovold wrote:
-
-> > > > Yeah, you may need to add a platform specific section of the clocks,
-> > > > which appear to be different, even if I'm not sure they are currently
-> > > > described correctly (xo_board as cfg_ahb and "QLINK" as ref). How are
-> > > > they named in the vendor's dts?
+On Fri, Nov 25, 2022 at 12:59:18PM +0000, Conor Dooley wrote:
+> On Fri, Nov 25, 2022 at 12:41:46PM +0000, Conor Dooley wrote:
+> > Hi Thierry,
+> > 
+> > On Thu, Nov 03, 2022 at 03:42:00PM +0100, Thierry Reding wrote:
+> > > From: Thierry Reding <treding@nvidia.com>
 > > > 
-> > > This is the msm-4.19 dts:
-> > > https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/heads/android-msm-bramble-4.19-android11-qpr1/qcom/lagoon-usb.dtsi#354
-> >
-> > 		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> > 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
-> > 			<&rpmhcc RPMH_QLINK_CLK>,
-> > 			<&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> > 			<&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> > 		clock-names = "aux_clk", "pipe_clk", "ref_clk_src",
-> > 				"ref_clk", "com_aux_clk";
-> >
-> > So it looks like you don't need update the binding for the clocks as the
-> > above matches sc8280xp:
-> >
-> > 	aux
-> > 	ref
-> > 	com_aux
-> > 	usb3_pipe
+> > > Convert the Tegra XUSB controller bindings from the free-form text
+> > > format to json-schema.
+> > > 
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > 
+> > > +        phys = <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}>, /* mini-PCIe USB */
+> > > +               <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-2}>, /* USB A */
+> > > +               <&{/padctl@0,7009f000/pads/pcie/lanes/pcie-0}>; /* USB A */
+> > 
+> > This seems to be breaking dt_binding_check in today's linux-next:
+> > FATAL ERROR: Can't generate fixup for reference to path &{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}
+> > 
+> > Am I missing something? My dt-schema is today's main.
 > 
-> Thanks for checking!
+> Apologies for the noise, it appears to have broken several days ago and
+> is not caused by this patch.
 > 
-> >
-> > Parent clocks (ref_clk_src) should not be included in the binding, but
-> > rather be handled by the clock driver. For example, see:
-> >
-> > 	https://lore.kernel.org/all/20221121085058.31213-4-johan+linaro@kernel.org/
-> > 	https://lore.kernel.org/all/20221115152956.21677-1-quic_shazhuss@quicinc.com/
-> 
-> So I assume you mean that I shouldn't do this:
-> 
-> clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
->      <&rpmhcc RPMH_QLINK_CLK>,
->      <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
->      <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-> 
-> But for "ref" use GCC_USB3_PRIM_CLKREF_CLK? That also seems to work
-> fine, also if RPMH_QLINK_CLK is not used from Linux-side (checked in
-> debugfs).
+> I'll go bisect :)
 
-Exactly. Since the vendor dts describes RPMH_QLINK_CLK as parent of ref,
-I'd suggest modelling that in the clock driver. Perhaps it has just been
-left on by the boot firmware. Someone with access to docs may be able
-explain how it is supposed to be used.
+ea3723a541c198c84e81a0e975dba6c18764393e is the first bad commit
 
-> And for the driver patch, I've discovered that this phy doesn't have
-> separate txa/tbx region, so dts was also wrong there. Do you know if
-> there's a way to test DP phy initialization without having all the USB-C
-> plumbing in place? Might be good to validate at least phy init works if
-> we're already touching all of this.
+> > commit ea3723a541c198c84e81a0e975dba6c18764393e
+> > Author: Rob Herring <robh@kernel.org>
+> > Date:   Tue Nov 1 12:54:44 2022 -0500
+> > 
+> >     scripts/dtc: Update to upstream version v1.6.1-63-g55778a03df61
+> >     
+> >     It's been a while since the last sync and Lee needs commit 73590342fc85
+> >     ("libfdt: prevent integer overflow in fdt_next_tag").
+> >     
+> >     This adds the following commits from upstream:
+> >     
+> >     55778a03df61 libfdt: tests: add get_next_tag_invalid_prop_len
+> >     73590342fc85 libfdt: prevent integer overflow in fdt_next_tag
+> >     035fb90d5375 libfdt: add fdt_get_property_by_offset_w helper
+> >     98a07006c48d Makefile: fix infinite recursion by dropping non-existent `%.output`
+> >     a036cc7b0c10 Makefile: limit make re-execution to avoid infinite spin
+> >     c6e92108bcd9 libdtc: remove duplicate judgments
+> >     e37c25677dc9 Don't generate erroneous fixups from reference to path
 
-Do you mean that it appears to work as sc8280xp with txa/txb shared by
-both the USB and DP parts?
+I have not bisected the dtc, but this one seems like it could be the
+culprit? Just going off the $subject, not looked at the content at
+all...
 
-I guess you need a proper setup to test it properly. Not sure what
-you'll be able to learn otherwise, apart from whether it passes basic
-smoke testing.
+> >    50454658f2b5 libfdt: Don't mask fdt_get_name() returned error
+> >    e64a204196c9 manual.txt: Follow README.md and remove Jon
+> >    f508c83fe6f0 Update README in MANIFEST.in and setup.py to README.md
+> >    c2ccf8a77dd2 Add description of Signed-off-by lines
+> >    90b9d9de42ca Split out information for contributors to CONTRIBUTING.md
+> >    0ee1d479b23a Remove Jon Loeliger from maintainers list
+> >    b33a73c62c1c Convert README to README.md
+> >    7ad60734b1c1 Allow static building with meson
+> >    fd9b8c96c780 Allow static building with make
+> >    fda71da26e7f libfdt: Handle failed get_name() on BEGIN_NODE
+> >    c7c7f17a83d5 Fix test script to run also on dash shell
+> >    01f23ffe1679 Add missing relref_merge test to meson test list
+> >    ed310803ea89 pylibfdt: add FdtRo.get_path()
+> >    c001fc01a43e pylibfdt: fix swig build in install
+> >    26c54f840d23 tests: add test cases for label-relative path references
+> >    ec7986e682cf dtc: introduce label relative path references
+> >    651410e54cb9 util: introduce xstrndup helper
+> >    4048aed12b81 setup.py: fix out of tree build
+> >    ff5afb96d0c0 Handle integer overflow in check_property_phandle_args()
+> >    ca7294434309 README: Explain how to add a new API function
+> >    c0c2e115f82e Fix a UB when fdt_get_string return null
+> >    cd5f69cbc0d4 tests: setprop_inplace: use xstrdup instead of unchecked strdup
+> >    a04f69025003 pylibfdt: add Property.as_*int*_array()
+> >    83102717d7c4 pylibfdt: add Property.as_stringlist()
+> >    d152126bb029 Fix Python crash on getprop deallocation
+> >    17739b7ef510 Support 'r' format for printing raw bytes with fdtget
+> >    45f3d1a095dd libfdt: overlay: make overlay_get_target() public
+> >    c19a4bafa514 libfdt: fix an incorrect integer promotion
+> >    1cc41b1c969f pylibfdt: Add packaging metadata
+> >    db72398cd437 README: Update pylibfdt install instructions
+> >    383e148b70a4 pylibfdt: fix with Python 3.10
+> >    23b56cb7e189 pylibfdt: Move setup.py to the top level
+> >    69a760747d8d pylibfdt: Split setup.py author name and email
+> >    0b106a77dbdc pylibfdt: Use setuptools_scm for the version
+> >    c691776ddb26 pylibfdt: Use setuptools instead of distutils
+> >    5216f3f1bbb7 libfdt: Add static lib to meson build
+> >    4eda2590f481 CI: Cirrus: bump used FreeBSD from 12.1 to 13.0
+> >    
+> >    Link: https://lore.kernel.org/r/20221101181427.1808703-1-robh@kernel.org/
+> >    Signed-off-by: Rob Herring <robh@kernel.org>
 
-Johan
