@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D69638B40
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 14:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC865638B46
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 14:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbiKYNeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 08:34:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33890 "EHLO
+        id S229717AbiKYNep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 08:34:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiKYNea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 08:34:30 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA4927907
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:29 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id x2so6443465edd.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:29 -0800 (PST)
+        with ESMTP id S229748AbiKYNee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 08:34:34 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A58427907
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:33 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id ha10so10425703ejb.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=melexis.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UeY57UYeehZ/CFsKD0+hYGBmzYqQeQQW2LicLW4VUQs=;
-        b=FR5Snu9X1VeiQqi3igFgpmEKA4FbwHz0hZ4Hh9CZiGl0IhZrAC/30wXy4JEy8pzpyh
-         kOHeIqp9ygW1DEj9toRL+A3EtxIyRpTJh4swCVrd2QgwDif4DhNAL75E0tufMdbsj3Qe
-         vKgi+EHt9LZtMoMNp2zRtL+oRQ224PlxcE67P9glzDB7WjXCvJ7QC/P+6l9hzSxaTmyk
-         TcS+A++lcwgg0fmtCHy+apCCiaTAI87Q2oQfJgt43fkN+w3IUo3mO6gduq8XwvIIvEHy
-         JuMpFSskMRVDua+18Y1iw/3ogBDM20mHGSE6rXJsYnsPrLK4B2Ih4jhTG2nopu4Kq8Sf
-         sfkQ==
+        bh=Ry6vpBY5sEcwGbAi4otGsLxf2CvPTMM0zzHiIX66/tg=;
+        b=lNjZhZsVw9SepEAJAvetf9jj5ohdUcEXTXCVNVMiWkYMjXQk4uqQNxN5LjmYOeCaDI
+         MaYi2Ot+VyZoyXImKm6V4cQAdpbN1gqTBYM7EVr6BiUKMhfqvvZuvVqNKgTfiuRhm6oi
+         tyJffXGKPo3k/LUmKM30YiWbFONvoDSbE8N1nmTOns8uVe0Gfp5jWvzwuJvdVI0kLAwE
+         bDRA4mCEAYsaI27FOKH3rKSbctfEY+A9+bS+xhHAM9dXe/kcN+JTDXOxcvoABRGGZMgc
+         ++LZZw7cUGXH8UHlRmEXeKLpz4RKDAbUdzZCelmS2lkCvCywqmjim5AZzakZDh0a3Zc7
+         GGhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UeY57UYeehZ/CFsKD0+hYGBmzYqQeQQW2LicLW4VUQs=;
-        b=p26nLu+h9idp/BxuVOteanNqtlIvzkisWajo/XyLqaRh3AzsaiuGQSD9STtRmhedkI
-         TRndD5z21fExa2xF1V5dC/4jmv5hKPDd3/6txu3TVf2auOWue9Gm6tD536DST8oHZrCm
-         ISBG9cRqa4rMd0kGKjfXpcoazDG7hEDy/F/9B50/8lTlKUuty2UOu9Qtdrwz4P1sGIlS
-         CWpPEjo5F4Hg8OBan3YDk7FARZ8Sk++pyTbKct4wRF06LPSL2yOgOOmPFwNJPROoF/35
-         jQNrPGMyhAzQ6Ly5G2AZDqvQGk9UfV7txlwe+MUUjyHfNJaDQNaidrdZ6qMTQVJVMEbA
-         /Qbw==
-X-Gm-Message-State: ANoB5pnPM5+Oy44fXaraEEdgELsEuPchRIk8AVaQc4zVMkUR7ECS1v43
-        CcztifIVgnWosMwD1eXMIYN3nw==
-X-Google-Smtp-Source: AA0mqf61GlgRZisS0iM3nQ/luYvsPo3u3+B/unnfASTuiqmNyQoPlNoWTbvZuS8BKECVghNTBTFIwg==
-X-Received: by 2002:a05:6402:5c7:b0:469:6e8f:74c1 with SMTP id n7-20020a05640205c700b004696e8f74c1mr17614764edx.334.1669383268308;
-        Fri, 25 Nov 2022 05:34:28 -0800 (PST)
+        bh=Ry6vpBY5sEcwGbAi4otGsLxf2CvPTMM0zzHiIX66/tg=;
+        b=FrPl4K/+k3OS7/Wy4XGWwn6V1Z1Pjkc5h5U7Essbg/tIRI3nEta+ZizYS9UD4Trnux
+         0oIP9+lOALp5zNso7oH51n1V3mL9z9P4Ph0id/quNwqeT63lvForNkGBe2J1IBgxD995
+         Wuc+xC0GzMk5lm2CUeFCwTjXql/ChDKlEzY8OFgjn6B7A33I6W6T82xZKuw9eO85BJ5Q
+         OA7XrJJJB3tIy3QSLAzqplMVQn85vRj+b5WVFdOd9XwUXDjAIlpwPXefpCvI7NVsSfaS
+         PBcfRMeFb4vko7JipETDvEaUCESudxlQNYIVQuCEAfYqpSi6+Z8sqQPbOr3D3qDiL00A
+         tPWw==
+X-Gm-Message-State: ANoB5pmsejWO2VFkGV57XMgZGeG5aNoUg/kIPId4PNh0i75GlzFHX/4U
+        zQ47nJ5LccK+MhmrjiGYKmgyJg==
+X-Google-Smtp-Source: AA0mqf6kRhk2EjjqrWhMFX3g0KVhqqNd7hVw4EI4r3WBaQWa/ea4cW9nHdFtbGOB9pQ4fWtI3sRraA==
+X-Received: by 2002:a17:906:14c2:b0:78d:554f:fb16 with SMTP id y2-20020a17090614c200b0078d554ffb16mr32345835ejc.151.1669383271778;
+        Fri, 25 Nov 2022 05:34:31 -0800 (PST)
 Received: from melexis ([2a02:2378:1085:b41d:1fad:f315:d8eb:738b])
-        by smtp.gmail.com with ESMTPSA id l18-20020a1709060cd200b00779a605c777sm843756ejh.192.2022.11.25.05.34.26
+        by smtp.gmail.com with ESMTPSA id fe9-20020a1709072a4900b007ae0fde7a9asm1560886ejc.201.2022.11.25.05.34.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 05:34:27 -0800 (PST)
+        Fri, 25 Nov 2022 05:34:31 -0800 (PST)
 From:   Volodymyr Kharuk <vkh@melexis.com>
 To:     <linux-media@vger.kernel.org>
 Cc:     Andrii Kyselov <ays@melexis.com>,
@@ -61,9 +61,9 @@ Cc:     Andrii Kyselov <ays@melexis.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
         Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
         Volodymyr Kharuk <vkh@melexis.com>
-Subject: [PATCH v3 3/8] media: Documentation: v4l: Add TOF class controls
-Date:   Fri, 25 Nov 2022 15:34:06 +0200
-Message-Id: <01cfeb602d52456bed08c89da356474474361e73.1669381013.git.vkh@melexis.com>
+Subject: [PATCH v3 4/8] media: v4l: ctrls-api: Allow array update in __v4l2_ctrl_modify_range
+Date:   Fri, 25 Nov 2022 15:34:07 +0200
+Message-Id: <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <cover.1669381013.git.vkh@melexis.com>
 References: <cover.1669381013.git.vkh@melexis.com>
@@ -71,96 +71,57 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add description about V4L2_CID_TOF_PHASE_SEQ, V4L2_CID_TOF_FMOD
-and V4L2_CID_TOF_TINT.
-Also updated MAINTAINERS with new ext-ctrls-tof file.
+For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
+__v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
+from union. It will allow to work with any type.
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- .../userspace-api/media/v4l/common.rst        |  1 +
- .../userspace-api/media/v4l/ext-ctrls-tof.rst | 35 +++++++++++++++++++
- MAINTAINERS                                   |  7 ++++
- 3 files changed, 43 insertions(+)
- create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+ drivers/media/v4l2-core/v4l2-ctrls-api.c | 15 +++------------
+ 1 file changed, 3 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/userspace-api/media/v4l/common.rst b/Documentation/userspace-api/media/v4l/common.rst
-index ea0435182e44..1ea79e453066 100644
---- a/Documentation/userspace-api/media/v4l/common.rst
-+++ b/Documentation/userspace-api/media/v4l/common.rst
-@@ -52,6 +52,7 @@ applicable to all devices.
-     ext-ctrls-fm-rx
-     ext-ctrls-detect
-     ext-ctrls-colorimetry
-+    ext-ctrls-tof
-     fourcc
-     format
-     planar-apis
-diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
-new file mode 100644
-index 000000000000..8902cc7cd47b
---- /dev/null
-+++ b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
-@@ -0,0 +1,35 @@
-+.. SPDX-License-Identifier: GFDL-1.1-no-invariants-or-later
-+
-+.. _tof-controls:
-+
-+***************************************
-+Time of Flight Camera Control Reference
-+***************************************
-+
-+The Time of Flight class includes controls for digital features
-+of TOF camera.
-+
-+.. _tof-control-id:
-+
-+Time of Flight Camera Control IDs
-+=================================
-+
-+``V4L2_CID_TOF_CLASS (class)``
-+    The TOF class descriptor. Calling :ref:`VIDIOC_QUERYCTRL` for
-+    this control will return a description of this control class.
-+
-+``V4L2_CID_TOF_PHASE_SEQ (dynamic array u16)``
-+    Change the shift between illumination and sampling for each phase
-+    in degrees. A distance/confidence picture is obtained by merging
-+    3..8 captures of the same scene using different phase shifts(some
-+    TOF sensors use different frequency modulation).
-+
-+    The maximum array size is driver specific.
-+
-+``V4L2_CID_TOF_FMOD (dynamic array u8)``
-+    The control sets the modulation frequency(in Mhz) per each phase.
-+    The maximum array size is driver specific.
-+
-+``V4L2_CID_TOF_TINT (dynamic array u16)``
-+    The control sets the integration time(in us) per each phase.
-+    The maximum array size is driver specific.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aa1974054fce..a2bc2ce53056 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13111,6 +13111,13 @@ S:	Supported
- W:	http://www.melexis.com
- F:	drivers/iio/temperature/mlx90632.c
+diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
+index d0a3aa3806fb..09735644a2f1 100644
+--- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
++++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
+@@ -942,8 +942,6 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
+ 	case V4L2_CTRL_TYPE_U8:
+ 	case V4L2_CTRL_TYPE_U16:
+ 	case V4L2_CTRL_TYPE_U32:
+-		if (ctrl->is_array)
+-			return -EINVAL;
+ 		ret = check_range(ctrl->type, min, max, step, def);
+ 		if (ret)
+ 			return ret;
+@@ -960,17 +958,10 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
+ 		ctrl->default_value = def;
+ 	}
+ 	cur_to_new(ctrl);
+-	if (validate_new(ctrl, ctrl->p_new)) {
+-		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
+-			*ctrl->p_new.p_s64 = def;
+-		else
+-			*ctrl->p_new.p_s32 = def;
+-	}
++	if (validate_new(ctrl, ctrl->p_new))
++		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
  
-+MELEXIS MLX7502X DRIVER
-+M:	Volodymyr Kharuk <vkh@melexis.com>
-+L:	linux-media@vger.kernel.org
-+S:	Supported
-+W:	http://www.melexis.com
-+F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
-+
- MELFAS MIP4 TOUCHSCREEN DRIVER
- M:	Sangwon Jee <jeesw@melfas.com>
- S:	Supported
+-	if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
+-		value_changed = *ctrl->p_new.p_s64 != *ctrl->p_cur.p_s64;
+-	else
+-		value_changed = *ctrl->p_new.p_s32 != *ctrl->p_cur.p_s32;
++	value_changed = !ctrl->type_ops->equal(ctrl, ctrl->p_cur, ctrl->p_new);
+ 	if (value_changed)
+ 		ret = set_ctrl(NULL, ctrl, V4L2_EVENT_CTRL_CH_RANGE);
+ 	else if (range_changed)
 -- 
 BR,
 Volodymyr Kharuk
