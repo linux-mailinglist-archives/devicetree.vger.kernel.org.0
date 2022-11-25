@@ -2,164 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7050638B1F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 14:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88495638B39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 14:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbiKYNZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 08:25:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53340 "EHLO
+        id S229568AbiKYNeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 08:34:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiKYNZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 08:25:17 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33CC41987;
-        Fri, 25 Nov 2022 05:25:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669382716; x=1700918716;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PlRGf5S5JExBVvpK167qlrreMpp4yW3JD4H5Kt6/TWw=;
-  b=cmuqZwNh9XSTBvkb2fi9PBkgN29tdOxGiXOtd/D38avFAKx/sIvM3hU+
-   jNWDME7kmI49tD/xX290Egim/71rVRKnZ1FM2qBVxo3kws5X22NC2NMX/
-   t2f90OedayFZdJbIDHEIn+OY9/aSQhXkQqlIer2zXIhMClyNBTsNhXEzl
-   VdU+kbcAxdDJjK5wrWtTAmMRvmCVfJ0Zil6IRRKJZCe9APGB2a0XlOZuc
-   XnoBQSryEezYTgo6al7bckCyV3n65Z3lBnHLH8ePbHnmKSJQm3Uknz92S
-   MV9DDob0jZ8xVrFQs159SiHLYWvkOLYiKCoAO46nWi+5WsZePUW0hpwxn
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
-   d="scan'208";a="188665806"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 06:25:15 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 25 Nov 2022 06:25:13 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Fri, 25 Nov 2022 06:25:10 -0700
-Date:   Fri, 25 Nov 2022 13:24:52 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S229493AbiKYNeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 08:34:21 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AA027171
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:19 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id f18so10403313ejz.5
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 05:34:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=melexis.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vLmrOXRUTnmBcIKY2DoOGroemdZ2wFBv0D8Hf5F2IRY=;
+        b=fbFnWzR3/pRdPOJ3gwTO7k3HLbQxSFPlV7n3rATxW3HOmQDyv76R/d+HVWv8oE5M3G
+         gZ2kj3VCbza72oBmPYCMLSqYmpeUtcLP20ijzX8P91sMI0EitHPHPfSq99/c9n8hlKiI
+         h+HGC+9GAY8kaGSncUz3tlJwSZMsnejOSP0MD3SXEF3vfF/0FQ/ciqsR0TQmb6NN+JNy
+         PtY3gUGWh6AB+2I67VDgQld/fwpJJyOGc73Ap7Ph4E6pZyuWLg4eM9H0Btm+xaxUPTXL
+         lAPAB0iX3lYZnSUFiXzn7B636RmoJnk53YB1EF3+zadiHhiDt60v0vQuNBCSaj3j9qNY
+         3naw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vLmrOXRUTnmBcIKY2DoOGroemdZ2wFBv0D8Hf5F2IRY=;
+        b=MXEZL+/TSGTk2wZunD/LuSHNiyuUUcf/8UR01DFBCCwVQaHerm527WBOSsr7Ipsp8e
+         ckvk+GZ7yPpyQzQStwvZB8TyyloEOoLS5UUSNHDLGVqj+ZvMwhZv3z+SxS1AzPbXPl3C
+         V9p4+nAg1FDBHOKUWW8cSi+GW4BW2gHrRbsdKAjDdXFzIXIlm+/0YT7L6reqkmuens3w
+         GamAf08WrFPaSGh4QV2pW7lZ/JajAizYlTsH7L5BJNNWW0zUc8+gzRmDMD2VmxM+9tzU
+         sBny3iW/AvAtZx8qCALaCbSpAkpdur9012Ylm3vYraHikzwp0bOaErijKg6Dyg1m6aH0
+         DOmA==
+X-Gm-Message-State: ANoB5pnLVXR/FRPXQfO950al3pfiFIi1FIxFlER32aECsIVK8F9HpUDk
+        SxOi/895WirQX/6rfD/U9qsPvw==
+X-Google-Smtp-Source: AA0mqf5dB+9OA0RjitJ7/s7W6WreBUAPynvfQT58KxeuOJLpQ1csQb4ro/e64KBMrJ6jZj8NXcU/xg==
+X-Received: by 2002:a17:906:6859:b0:7ae:4ed2:84f4 with SMTP id a25-20020a170906685900b007ae4ed284f4mr31625925ejs.429.1669383258274;
+        Fri, 25 Nov 2022 05:34:18 -0800 (PST)
+Received: from melexis ([2a02:2378:1085:b41d:1fad:f315:d8eb:738b])
+        by smtp.gmail.com with ESMTPSA id 11-20020a170906300b00b007aee947ce9esm1568579ejz.138.2022.11.25.05.34.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 05:34:17 -0800 (PST)
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     <linux-media@vger.kernel.org>
+Cc:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 6/7] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
- binding documentation for L2 cache controller
-Message-ID: <Y4DCJJnpSG07/vIb@wendy>
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <70d1bfde-f57f-1741-08d3-23e362793595@linaro.org>
- <CA+V-a8s2awLp=YvbhA1Ohe500Oh1easLUcG9V4_FWov7Pf2i6g@mail.gmail.com>
- <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org>
- <Y4C0Jn1hl81ZCxOt@wendy>
- <CA+V-a8u_R9X10AQ2dV9ieDGx7OJPhLRW3ENAoRP2fqVQTVodPw@mail.gmail.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Volodymyr Kharuk <vkh@melexis.com>
+Subject: [PATCH v3 0/8] media: i2c: mlx7502x ToF camera support
+Date:   Fri, 25 Nov 2022 15:34:03 +0200
+Message-Id: <cover.1669381013.git.vkh@melexis.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8u_R9X10AQ2dV9ieDGx7OJPhLRW3ENAoRP2fqVQTVodPw@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 12:51:34PM +0000, Lad, Prabhakar wrote:
-> Hi Conor,
-> 
-> On Fri, Nov 25, 2022 at 12:25 PM Conor Dooley
-> <conor.dooley@microchip.com> wrote:
-> >
-> > On Fri, Nov 25, 2022 at 01:12:18PM +0100, Krzysztof Kozlowski wrote:
-> > > On 25/11/2022 11:34, Lad, Prabhakar wrote:
-> > > >>> +/* Device, Non-bufferable */
-> > > >>> +#define AX45MP_PMACFG_MTYP_DEV_NON_BUF                       (0 << 2)
-> > > >>> +/* Device, bufferable */
-> > > >>> +#define AX45MP_PMACFG_MTYP_DEV_BUF                   (1 << 2)
-> > > >>> +/* Memory, Non-cacheable, Non-bufferable */
-> > > >>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF     (2 << 2)
-> > > >>> +/* Memory, Non-cacheable, Bufferable */
-> > > >>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF         (3 << 2)
-> > > >>
-> > > >> What are all these? They don't look like flags, because 3 = 1 | 2...
-> > > >> they don't look like constants, because we do not use shifts in
-> > > >> constants. Are these some register values? I also do not see the header
-> > > >> being used in the code, so why having a bindings header if it is not
-> > > >> used (DTS is not usage...)?
-> > > >>
-> > > > These are register bit values for the MTYP[5:2] field. The DTS example
-> > > > in the binding doc (above) uses these macros. I haven't included the
-> > > > DTS/I patches with this patchset yet do think I should?
-> > >
-> > > Then why storing it as bindings? Bindings headers describe the interface
-> > > implemented by drivers and used by DTS, but this is not implemented by
-> > > drivers.
-> >
-> > IIUC, some of these properties are non-discoverable attributes of the
-> > cache controller. I see two things that could be done here that are
-> > "better" than #defining bits:
-> > - add an RZ/Five specific compatible and use match data to set the
-> >   attributes which is only possible if the pma-regions are set on a
-> >   per SoC basis
-> > - make pma-regions into a child node, in which andestech,non-cacheable
-> >   andestech,non-bufferable etc are properties of the child node
-> >
-> For now the only way to get DMA working without IOCP is to have
-> AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF. But for future purposes I have
-> introduced the other available flags.
-> 
-> So maybe for now we could just have this flag
-> andestech,mem-non-cacheable-bufferable in the binding doc.
-> 
->     cache-controller@2010000 {
->         reg = <0x13400000 0x100000>;
->         compatible = "andestech,ax45mp-cache", "cache";
->         interrupts = <508 IRQ_TYPE_LEVEL_HIGH>;
->         cache-line-size = <64>;
->         cache-level = <2>;
->         cache-sets = <1024>;
->         cache-size = <262144>;
->         cache-unified;
->         andestech,pma-region@0x58000000 {
->             reg = <0x58000000 0x08000000>;
->             andestech,mem-non-cacheable-bufferable;
+Hello,
 
-Yah, that's about what I would expect - except splitting the properties
-up. I think split up makes more sense from a property description point
-of view, rather than needing some sort of
-oneOf:
-  - non-cacheable-bufferable
-  - cacheable-non-bufferable
-  - non-cacheable-non-bufferable
+This series adds support for the Melexis 75026 and 75027 Time of Flight
+camera sensors, with DT bindings in patch 7/8 and a driver in patch 8/8.
+In patches 1/8, 2/8 and 3/8, I've add ToF controls as separate
+ToF control class.
+
+v3:
+- move FMOD, TINT, PHASE_SEQ to common V4L2 as ToF common controls
+- FMOD and TINT became dynamic arrays
+- remove PHASE_NUM, use dynamic_array for PHASE_SEQ,
+  ctrl->new_elems pass number of phases
+- remove leden-gpios, will be used gpio explicitly in library for now
+- remade probe: use probe_new, no power on during probe
+- remove autodetect and wildcard
+- make all supplies to be required
+- remove trigger ioctl, will add in separate patch series
+- remove temperature ioctl, will add in separate patch series
+- add documentation about custom ioctl
+- style: 80 cols
+- minor fixes device tree
+
+v2:
+- added external clock to the sensor
+- added all regulators required by the sensor
+- added posibility to choose sensor type in device tree
+- added prefixes to all custom types in device tree and driver as well
+- style fixes
+
+Volodymyr Kharuk (8):
+  media: uapi: ctrls: Add Time of Flight class controls
+  media: v4l: ctrls: Fill V4L2_CID_TOF_CLASS controls
+  media: Documentation: v4l: Add TOF class controls
+  media: v4l: ctrls-api: Allow array update in __v4l2_ctrl_modify_range
+  media: v4l: ctrls: Add user control base for mlx7502x
+  media: uapi: Add mlx7502x header file
+  media: dt-bindings: media: i2c: Add mlx7502x camera sensor
+  media: i2c: Add driver for mlx7502x ToF sensor
+
+ .../bindings/media/i2c/melexis,mlx7502x.yaml  |  126 ++
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../userspace-api/media/drivers/mlx7502x.rst  |   28 +
+ .../userspace-api/media/v4l/common.rst        |    1 +
+ .../userspace-api/media/v4l/ext-ctrls-tof.rst |   35 +
+ MAINTAINERS                                   |   11 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/mlx7502x.c                  | 1728 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ctrls-api.c      |   15 +-
+ drivers/media/v4l2-core/v4l2-ctrls-defs.c     |   20 +
+ include/uapi/linux/mlx7502x.h                 |   20 +
+ include/uapi/linux/v4l2-controls.h            |   14 +
+ 13 files changed, 2001 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/mlx7502x.rst
+ create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+ create mode 100644 drivers/media/i2c/mlx7502x.c
+ create mode 100644 include/uapi/linux/mlx7502x.h
 
 
->         };
->         andestech,pma-region@0xdeadbeef {
->             reg = <0xdeadbeef 0x08000000>;
->             andestech,mem-non-cacheable-bufferable;
->         };
->         ....
->     };
+base-commit: 1e284ea984d3705e042b6b07469a66f1d43371e3
+-- 
+BR,
+Volodymyr Kharuk
 
