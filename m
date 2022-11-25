@@ -2,65 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF17E6388B9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7E76388BD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:29:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiKYL3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 06:29:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57806 "EHLO
+        id S229564AbiKYL3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 06:29:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbiKYL3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:29:13 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E068EE3D
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:29:12 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id f18so9690486ejz.5
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:29:12 -0800 (PST)
+        with ESMTP id S229502AbiKYL3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:29:48 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91C86555
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:29:47 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id j16so6405689lfe.12
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 03:29:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fjVN2/rarqDocQfRidrwGPz+qRzx6OCOZytsLPLYMiI=;
-        b=TCteURvHQM5/U/BicR2ooC7pNBm94/ZNg1On4HQzhX1qR+4STId8/XzuNEF9aWrzXc
-         7XkkxA+clrH55MWjx645uvUgrvZnmVoOJJYPQGkKBksl4Ct5qzh87nuqSyGjhWQBizcw
-         LYIbQDm8Y65s6zdydt9EA+bLLfAtNcflaPd9yJSF39A1emvBm30GAYPGgcb4aQFGU97A
-         JM7sryoKzCFnuVDddXsqEeRYEwtu2nHm9MIxFiSwtzyu3/cigC6k2Xmu1TIrhlXsgzuv
-         XDBfw5VminEL6THAxgk6NBoduMboAmC53SoECNHgP9TZjFL7/Zbl9ZTSwwwQvAxkKRTy
-         FOqw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AlAaAFE6C5OWWwdg+ZapGy1tLZGrCpnjydf36VbXlug=;
+        b=jJUw+czORzXYz3tJ1rpIjyElMLsUPzx4CSNPXLW8GuItlyqJ8fVyezeHlThWJVHzeu
+         fY7YqvzVtEkAU5AQ6AadoxXStN8VpZFAxItzbGyA8r108llFZBvtMGMaYz00GlINkSj3
+         VgYczWIw+IN1zCqdqycVZYQ1JNzI5SQKLJ/q6pJ8jE7eN59YEQnnzVd6vXesp00DUdLa
+         AG5oxd+ESLI8O37/AmIZy28pPIB9y3EQjlR9ih1v4aloaOWiLVX9/ZsMf/FrAs28dOoX
+         PHsfupgpi/BJE8bmB/iKwvvonYTGlOdEOzqiaCfz92Wz72TTYxlEY4POqPTJjXAkTv0j
+         oNbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fjVN2/rarqDocQfRidrwGPz+qRzx6OCOZytsLPLYMiI=;
-        b=ptjyRA3xYl2Gfcjtuj78SpLHgl3s1aSqg0638jMXKrzwv1q3gU4LJBPFS280/UFAT8
-         BgEhW2EVbYbeeywIbfSLhCZS+G34zPNFyqUvzgHueZxF9BF1/3ZHRXBI+VxE+BWk6Ivh
-         IYVoiGo8v66EvAdnUeTOpRNvAinYUBuloJqejrfC9qX3BEcJRpnsfFI7h3jMrKtcMfU+
-         Bm+i8WN6oEjT8mU5gvYq+LmXd+BUb3XnhT5T95t9yPRsfmrQ3NZc8MRlsLcWOxuGuhEZ
-         4NlMsqrUXVEO0B6Tw+UgDJFwiISvubA2l/U+PkNcQ9RAR6pDvt0MWYa80la52NmIcjEy
-         jvVg==
-X-Gm-Message-State: ANoB5pkMUvkC6I/gjLA7M8TfvSyWNVUZWkswOEz8I2oWbwJ1u5yuRUN8
-        0+/83wWWwBVSY3kBzNDRuU0haA==
-X-Google-Smtp-Source: AA0mqf4RcSOX8BzWZvef3/rhkSC3lI78SUp/kX4xqPnhbCEp/4hNeep6gDAalJKqBRoSBRxq21lYdQ==
-X-Received: by 2002:a17:906:190d:b0:7bd:1f71:ee0e with SMTP id a13-20020a170906190d00b007bd1f71ee0emr581811eje.714.1669375750653;
-        Fri, 25 Nov 2022 03:29:10 -0800 (PST)
-Received: from fedora.. (dh207-98-224.xnet.hr. [88.207.98.224])
-        by smtp.googlemail.com with ESMTPSA id f19-20020a17090631d300b007a1d4944d45sm1451996ejf.142.2022.11.25.03.29.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 03:29:09 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>, luka.perkov@sartura.hr
-Subject: [PATCH] dt-bindings: watchdog: Convert GPIO binding to json-schema
-Date:   Fri, 25 Nov 2022 12:29:04 +0100
-Message-Id: <20221125112904.48652-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.38.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AlAaAFE6C5OWWwdg+ZapGy1tLZGrCpnjydf36VbXlug=;
+        b=bOmVQpxI1Lb0ammcmKAQmcz9iUzaHocZRGcs4RHfA0c1rHK1IHSCa/Mt0C2kjb7dRu
+         8kO+l3V7yR55r1hPB+H4qecFO73YRaiYTW9qnJlB1DEAxrzhWYcFaBSf6dL0VMAylFau
+         aQbwVYNuUWlpkkR5Hc1kPJWlSYfbjpmu33Nk8lFQ2rz23+Y4TMq/c35qUDXkxWdlJwik
+         r6LOzo7Pf2dKAkgYLc/spWSyERe1FMUQ9BzhA9h+SEqwokxDDNMdmNVepiyQ/Mw776WP
+         JRuE9bQ9PDXkchXeLT/OEr8E8IGRx7OMoayD4U4BCqi1nKBMJPrf7xpF4M1uQjvSXLma
+         WeAQ==
+X-Gm-Message-State: ANoB5pm+/uXC5PFeU+iYnb4swuz2X4WRNIV+mtwdamNLsjfq9LsTsCJX
+        unUpMHXyAYOY/KRUfrBHQLVmng==
+X-Google-Smtp-Source: AA0mqf6d9rfUIFY8b9xP3QC9gltABhmbCQF9thPu9QZ9Tr2WJgaf/kvsMW/2fAf+e26rRNFwZR5QaQ==
+X-Received: by 2002:a05:6512:2385:b0:4ab:13d7:5751 with SMTP id c5-20020a056512238500b004ab13d75751mr12849274lfv.631.1669375786097;
+        Fri, 25 Nov 2022 03:29:46 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b13-20020a2e894d000000b0026a92616cd2sm342500ljk.35.2022.11.25.03.29.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 03:29:45 -0800 (PST)
+Message-ID: <13a33962-ac55-e3f1-933a-a9addf9bc10d@linaro.org>
+Date:   Fri, 25 Nov 2022 12:29:44 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: syscon: Add tesla compatibles
+ found on FSD SoC
+Content-Language: en-US
+To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
+        pankaj.dubey@samsung.com, ravi.patel@samsung.com,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Cc:     linux-kernel@vger.kernel.org
+References: <20221125070657.28335-1-sriranjani.p@samsung.com>
+ <CGME20221125070709epcas5p329c4a6d9caf4e9903b60f2e6624fb7b3@epcas5p3.samsung.com>
+ <20221125070657.28335-2-sriranjani.p@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221125070657.28335-2-sriranjani.p@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,112 +80,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the DT binding for GPIO WDT to JSON schema.
+On 25/11/2022 08:06, Sriranjani P wrote:
+> Add compatible for Tesla SYSREG controllers found on FSD SoC.
+> 
+> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> ---
 
-Cc: luka.perkov@sartura.hr
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 ----------
- .../bindings/watchdog/gpio-wdt.yaml           | 55 +++++++++++++++++++
- 2 files changed, 55 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+Thank you for your patch. There is something to discuss/improve.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-deleted file mode 100644
-index 198794963786..000000000000
---- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* GPIO-controlled Watchdog
--
--Required Properties:
--- compatible: Should contain "linux,wdt-gpio".
--- gpios: From common gpio binding; gpio connection to WDT reset pin.
--- hw_algo: The algorithm used by the driver. Should be one of the
--  following values:
--  - toggle: Either a high-to-low or a low-to-high transition clears
--    the WDT counter. The watchdog timer is disabled when GPIO is
--    left floating or connected to a three-state buffer.
--  - level: Low or high level starts counting WDT timeout,
--    the opposite level disables the WDT. Active level is determined
--    by the GPIO flags.
--- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
--
--Optional Properties:
--- always-running: If the watchdog timer cannot be disabled, add this flag to
--  have the driver keep toggling the signal without a client. It will only cease
--  to toggle the signal when the device is open and the timeout elapsed.
--
--Example:
--	watchdog: watchdog {
--		/* ADM706 */
--		compatible = "linux,wdt-gpio";
--		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
--		hw_algo = "toggle";
--		hw_margin_ms = <1600>;
--	};
-diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml b/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
-new file mode 100644
-index 000000000000..155dc7965e9b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/gpio-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPIO controlled watchdog
-+
-+maintainers:
-+  - Robert Marko <robert.marko@sartura.hr>
-+
-+properties:
-+  compatible:
-+    const: linux,wdt-gpio
-+
-+  gpios:
-+    maxItems: 1
-+    description: GPIO connected to the WDT reset pin
-+
-+  hw_algo:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Algorithm used by the driver
-+    oneOf:
-+      - description:
-+          Either a high-to-low or a low-to-high transition clears the WDT counter.
-+          The watchdog timer is disabled when GPIO is left floating or connected
-+          to a three-state buffer.
-+        const: toggle
-+      - description:
-+          Low or high level starts counting WDT timeout, the opposite level
-+          disables the WDT.
-+          Active level is determined by the GPIO flags.
-+        const: level
-+
-+  hw_margin_ms:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Maximum time to reset watchdog circuit (in milliseconds)
-+    minimum: 2
-+    maximum: 65535
-+
-+  always-running:
-+    type: boolean
-+    description:
-+      If the watchdog timer cannot be disabled, add this flag to have the driver
-+      keep toggling the signal without a client.
-+      It will only cease to toggle the signal when the device is open and the
-+      timeout elapsed.
-+
-+required:
-+  - compatible
-+  - gpios
-+  - hw_algo
-+  - hw_margin_ms
-+
-+unevaluatedProperties: false
--- 
-2.38.1
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 4e4baf53796d..8c3334999bec 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -69,6 +69,7 @@ properties:
+>                - samsung,exynos5433-sysreg
+>                - samsung,exynos850-sysreg
+>                - samsung,exynosautov9-sysreg
+> +              - tesla,fsd-sysreg
+
+I think we made mistake starting from 5433. Before (Exynos3/4/5) there
+was only one block called actually SYSREG. For example on Exynos5433 we
+have SYSREG_DISP, SYSREG_CAM1 and so on. These are different so we
+should have dedicated compatibles. The same for Tesla - please provide
+dedicated compatibles per each block.
+
+I'll fix Exynos5433. Maybe someone can also fix Exynos850 and Autov9.
+
+Best regards,
+Krzysztof
 
