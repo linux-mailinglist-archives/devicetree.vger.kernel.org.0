@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C4C638885
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32954638889
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230395AbiKYLTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 06:19:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46040 "EHLO
+        id S229770AbiKYLTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 06:19:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbiKYLTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:19:43 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8626027B0F;
-        Fri, 25 Nov 2022 03:19:42 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id t4so3200097wmj.5;
-        Fri, 25 Nov 2022 03:19:42 -0800 (PST)
+        with ESMTP id S230232AbiKYLTs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:19:48 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A61E28E17;
+        Fri, 25 Nov 2022 03:19:45 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id cl5so6270649wrb.9;
+        Fri, 25 Nov 2022 03:19:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Fl6GRHmDwXTkupYiop0EErlDiZv2DZKUPdgh77pu4+I=;
-        b=bZvwjPkKOEGihx59nh4uidHxJrPCbUvQpYbhLXdUzPswveM4bbAPcx2AfxM0GxV65U
-         gEDxIVX1v9Ahnj1Yxqm35oOORkIy4ObbLnK/GSiTO0PVWoPCbRuMZhvsiiy8kkgofHPm
-         6WF29o678DSOo0RmjuQRDFhajdlDXOUPVM7AU5JcISGjOEmLQdzbDS3YpboMZg6VV2U2
-         4kkFW027bQRBKNRpgLK8TCft8ddSP89OssBzRGzXgQX3ay1lAnkuKvIyW6hE/stdHBFs
-         3hKVB6i25eax2KFRBW7V8RLz4yWrxjqV6UUVUJYKiDb1nV0Vy0REj6EAqGxSWjAH0UMA
-         l/fg==
+        bh=H4DbuMCnCKfZ/X33NVzzgb/ifknYJFeQAyg/fDbKILM=;
+        b=MJTopbFMxXVgGa3ngdb1kcHRAh4vMZ7fbyu1UeoKxPOAleRmO4pX76dgm81YUUB17L
+         F8E/IUYa937tek8muSzdgfgLC+gchdb/UUJ1fizl22ErU4DeH9Qomk838IG7xCMgCTXn
+         noBYTatzIC89Wa0fx7WmDnBuvOVY2w01/ynG1veOgO2OsK/JRwkBhq57e4umTHkyEXQ+
+         QHdpiG60Cl11EtDF5+aqQPkZavx1VKTJqzKjWsOmnVKUoPlOtrmmE6M/yMtl06qb3mpL
+         I3UJeAxD5tVLP7ktD1CevI9ga+4W640YEFsV3HXPg3XPbez2c1fp7B6jH6+USJQp9S0+
+         ZW5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Fl6GRHmDwXTkupYiop0EErlDiZv2DZKUPdgh77pu4+I=;
-        b=gc73ITkphA4jT72cf7eqJdZMTraDGN/j4UGlqRx0D/5rCAe3Dbxty1xMFJyxchruoy
-         9+O8G0CPQ+EdSQRwolobbr7RFhWw56l9CJJUU7SDDwO5bSTXg3pdWL6sJNiFbHmYZQLc
-         A2TgWz4p8jrGhomePZD5yMTG82yYf+Txy8BOufYPI4lPA6SQ3rKANFkLJXYh4L9K/Wbn
-         95744nJHRAarQx6d6xHZ5vHd/37keVRTV0dp6UXbUTWh5Uw9WIClnU9tRQWcuSInOUu4
-         Zru3GRmPMEYY2ihTlWenMGKYyZ5nba+9X9E7Rw7qpJG2CeMxYicS5s70GMFiYo3LRdqu
-         u99Q==
-X-Gm-Message-State: ANoB5pmc4cn5m5O3psiMggh3TPNDkwkkRuUPVtjyS5SQ7W/BvNrYE4OQ
-        cQJiq/SG5HNzAtvVl+AZvY8=
-X-Google-Smtp-Source: AA0mqf6eAtIlDdCwbMKZ0vP7/JzHXc++3weMINUQ93oarLXwbQKfH/KLvspYKAT/dQ+fAFQJlQrQFA==
-X-Received: by 2002:a05:600c:3b18:b0:3cf:6ab3:49ce with SMTP id m24-20020a05600c3b1800b003cf6ab349cemr27089016wms.137.1669375181147;
-        Fri, 25 Nov 2022 03:19:41 -0800 (PST)
+        bh=H4DbuMCnCKfZ/X33NVzzgb/ifknYJFeQAyg/fDbKILM=;
+        b=PzI7Zj/y/kx+7JzIJVZLYcZM6ccXHSFIH5VCXdKPAoLGocMTmS+go1/eKIckmd34lB
+         9EcCVFgFc5JH7L2kIXhO9IvXO82737aVI2UP67uFbtcEbosTTMf/U76lUSXRx2z+bIrd
+         4MvZjkFI6ufcyBJ59IfD64XDXCezo2YvDiuyEC0JfFv1rk8lhCMyJRPe6aGmEeWd7jiJ
+         6isDhpJQN4A3BxmhK6Ur+jvyT6BIrX6iTndIsa3xhW1y7zcHbB291p405cIBv9LnZEU3
+         BQ+WnZt49iN7aMdKh/bHl8DXHZBc4P6C0YpdnkYZgR91MHBfd3zgTGxihdbea27/Vays
+         ASAw==
+X-Gm-Message-State: ANoB5pltrTk9H1M/BYSwYPZLvWccsYJSfrnmdr2Tvg1zD+T2W70o+TmS
+        VfbG7DyayyYOGAlZaivpQEw=
+X-Google-Smtp-Source: AA0mqf7R0O/iMKw+/pY3QRSPGLMqpoZMk6Y+6iqjJv+P2qnYsq8Eff8A9TxL5wfpOu5YfjJ8gs1hYw==
+X-Received: by 2002:a5d:6dcf:0:b0:236:78b7:87c9 with SMTP id d15-20020a5d6dcf000000b0023678b787c9mr22664039wrz.556.1669375184088;
+        Fri, 25 Nov 2022 03:19:44 -0800 (PST)
 Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id v11-20020a5d4b0b000000b002368f6b56desm4207406wrq.18.2022.11.25.03.19.40
+        by smtp.gmail.com with ESMTPSA id v11-20020a5d4b0b000000b002368f6b56desm4207406wrq.18.2022.11.25.03.19.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 03:19:40 -0800 (PST)
+        Fri, 25 Nov 2022 03:19:43 -0800 (PST)
 Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
 From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
 Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
@@ -64,9 +64,9 @@ Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
         SoC support),
         linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
         support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/6] dt-bindings: power: Add NNA power domain
-Date:   Fri, 25 Nov 2022 12:19:15 +0100
-Message-Id: <20221125111921.37261-3-tomeu.vizoso@collabora.com>
+Subject: [PATCH 4/6] arm64: dts: meson-g12-common: Add reference to NNA reset to pwrc
+Date:   Fri, 25 Nov 2022 12:19:17 +0100
+Message-Id: <20221125111921.37261-5-tomeu.vizoso@collabora.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
 References: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
@@ -83,22 +83,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Based on the power sequence in the downstream driver.
+
 Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
 ---
- include/dt-bindings/power/meson-g12a-power.h | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
-index bb5e67a842de..93b03bdd60b7 100644
---- a/include/dt-bindings/power/meson-g12a-power.h
-+++ b/include/dt-bindings/power/meson-g12a-power.h
-@@ -9,5 +9,6 @@
- 
- #define PWRC_G12A_VPU_ID		0
- #define PWRC_G12A_ETH_ID		1
-+#define PWRC_G12A_NNA_ID		2
- 
- #endif
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 45947c1031c4..fa96fddf4633 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1625,10 +1625,11 @@ pwrc: power-controller {
+ 							 <&reset RESET_VDAC>,
+ 							 <&reset RESET_VDI6>,
+ 							 <&reset RESET_VENCL>,
+-							 <&reset RESET_VID_LOCK>;
++							 <&reset RESET_VID_LOCK>,
++							 <&reset RESET_NNA>;
+ 						reset-names = "viu", "venc", "vcbus", "bt656",
+ 							      "rdma", "venci", "vencp", "vdac",
+-							      "vdi6", "vencl", "vid_lock";
++							      "vdi6", "vencl", "vid_lock", "nna";
+ 						clocks = <&clkc CLKID_VPU>,
+ 							 <&clkc CLKID_VAPB>;
+ 						clock-names = "vpu", "vapb";
 -- 
 2.38.1
 
