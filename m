@@ -2,80 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE20A638A91
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD61638A93
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:54:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiKYMxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 07:53:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52616 "EHLO
+        id S229585AbiKYMyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 07:54:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiKYMxa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:53:30 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC1320F5E
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:53:28 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id s5so6230400edc.12
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:53:28 -0800 (PST)
+        with ESMTP id S229572AbiKYMyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:54:12 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEFA820F70
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:54:10 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id i64-20020a1c3b43000000b003d016c21100so6126781wma.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:54:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MW9qEDvEypwtmNeKhaakCVB5v+cR7tGbD9IvNzHyZUw=;
-        b=CkqYr0u3f2/Rsjhv3hBUgSdVzrg7HoivocSQLG3BJFUAhERGyTNQM9Z0O8DyC+jcs0
-         BFXPwet7kB3qJav0qH4qmYfHWZY78q6nPwAr1urIKpSQsAYds2h6Tw1EpTrd/jmtaUEd
-         gPEsO/gOmVusl80JUhD7bdMFhJRbC9rl0KRLqLs3ShT6Q/aQHwmK5ZFEMfDXEjm38Fq1
-         SNaSx/FWpqf4ditIO3cD+D105r8mo9djiEfY1bWtvn3vPVpkmMNg3Nh6tLZj4/wn1XJO
-         H31CqjLhMdHg30Qniv1RaJARPw3fPROKl8/4+mlvJTlQasH0gbx9bxJaPnLFKNONaQYZ
-         JkfQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+L0OH+CqCrtKGjPWmm+w9b2BzfAcQ+LiOOKvg/k27GY=;
+        b=wvDY0pWbo6THktZFD4aifCIxFvHXKL7viQcPE/adaQ5CNQZoa9l46JTneVViRi4V7T
+         k0ufBv95R6X4aAwvhyQE2YLpaHAJk+qGibfFnH0zfvL3JLrffCfLvVcMj4IROGSh2C1V
+         yZ7UTNPpOWRz1ounE6CfNLUoutWq7ACVTXSI5biIYCf+vKbT9JyeKsuYo1789XPxkfY3
+         Ci2Ib87jwCrw3S4Eo/4RL3W0IkmAK0t6JRJutc1ari90thY1oYKbfrkBh57TcxlqS0Uw
+         /5p4BglUyjLt7Z8CtZZ1V/URUEOz963ya0LmUYU36jTqwRNLNAcc3Mr52dnoW5iTQyfW
+         42ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MW9qEDvEypwtmNeKhaakCVB5v+cR7tGbD9IvNzHyZUw=;
-        b=gToEgniRKeG+Z3oUSVZcA2+4MX0jqyUUqM6A5a0vkNyixnYmMP9EtvaBFCUzwGeIAK
-         Vo8A/3U4x5pTnsJBWKA9h/MmrZe6lzMx+fKrIawdpUtycxogAClYDMK3X//tKnzrAzGx
-         jQ0CyjoIepWnTYRMuRAhiMcWaSITV6in45HRM/3Za+ympSwZdnmgfiHg1/CQsDSCFOpG
-         vjWpeLukwTaEwS9reQQr5CyJhP3TeBYlCAVDNPV1w5tPh5C+PVN9l7VB1ADt+JyqZm40
-         BEdxO6FZbQQufdHk1MnbHIDxNaygs3p4hWJeeSICHtJ6TPW8lbVhy1o1jmdF2eubV7Sq
-         MuGw==
-X-Gm-Message-State: ANoB5pnYXLaGAdj8KwxNMvB0qOnXz4kUlQAwhTTQ9cuqwR+pX71HmZoD
-        L6bponHrAz/rmBxTIlTA2rQfTg==
-X-Google-Smtp-Source: AA0mqf5DIHq5RVrb3cKy2+JrviZoyXnxfbejTJMHZXd1JAsHQOIw50ZjTBwxibzDDFX+TcPP7ZqnMg==
-X-Received: by 2002:a05:6402:4515:b0:461:cf2b:627b with SMTP id ez21-20020a056402451500b00461cf2b627bmr33936125edb.73.1669380806834;
-        Fri, 25 Nov 2022 04:53:26 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id gu21-20020a170906f29500b007ad86f86b4fsm1525631ejb.69.2022.11.25.04.53.25
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+L0OH+CqCrtKGjPWmm+w9b2BzfAcQ+LiOOKvg/k27GY=;
+        b=hkiVnW7Pzcqe0T1o8hTiJ1ej5kdIEjLf9UHE9L2KjzCIKfoUDhVRNJWFovXY0BqBtD
+         avYpue69u0kN/XyEgmUJIpwt1blosA73p+8DQo6YI8srzT4TDfEIeSwNjLrNewjuLfeT
+         gIUPzfrAfpwdcbfqEJWpAnhVNLBMtJi15n8syRvOa6iXhgMx7rm54H8RD2cgh57SFqwb
+         4tpaiWAnKsRFFpU/dAjYAhCpTF82q8UwMlubAPxeRrPwACvs5dIB6m3CNwUMYwq9BvsY
+         KP0z9FI+00lZgoc2se7+1cFOQqDN6k8Xtc7AgP0K2N1jkkShAMXlwZ7xZR44KFPXxoRN
+         WX0A==
+X-Gm-Message-State: ANoB5pm9TrCbJ9McFhoEEHxuwaqQ32nW8rCI7i40zWVrOgBCSmxyT3t2
+        5q/yzhyyS6DHHcYqvURWSMBxb58W51qfSw==
+X-Google-Smtp-Source: AA0mqf6QaUOeyJHGelkdGQQDqg9Cr3tOC9ZY97MzYk83EKyrbG639t0bn4eiUyXQ/Mg/djl5bTpecg==
+X-Received: by 2002:a05:600c:5113:b0:3cf:77c0:48ea with SMTP id o19-20020a05600c511300b003cf77c048eamr30706150wms.130.1669380849331;
+        Fri, 25 Nov 2022 04:54:09 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
+        by smtp.gmail.com with ESMTPSA id m24-20020a05600c3b1800b003cf47556f21sm10620871wms.2.2022.11.25.04.54.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 04:53:26 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 25 Nov 2022 13:53:25 +0100
-Message-Id: <COLE3UWQCQ8R.XY36EY07DDDK@otso>
-Cc:     <linux-arm-msm@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add
- sm6350 compatible
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Johan Hovold" <johan@kernel.org>
-X-Mailer: aerc 0.13.0
-References: <20221125092749.46073-1-luca.weiss@fairphone.com>
- <Y4CP9fwhDXsLu57Q@hovoldconsulting.com> <COLABNHBQ1DG.1PB8SDY3FW1YY@otso>
- <Y4CWoT52Q8jnm/dF@hovoldconsulting.com>
-In-Reply-To: <Y4CWoT52Q8jnm/dF@hovoldconsulting.com>
+        Fri, 25 Nov 2022 04:54:08 -0800 (PST)
+Message-ID: <84c685c5-9205-237d-588c-57d33f956325@linaro.org>
+Date:   Fri, 25 Nov 2022 13:54:08 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/6] dt-bindings: reset: meson-g12a: Add missing NNA reset
+Content-Language: en-US
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Amlogic Meson SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221125111921.37261-1-tomeu.vizoso@collabora.com>
+ <20221125111921.37261-2-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221125111921.37261-2-tomeu.vizoso@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,123 +89,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri Nov 25, 2022 at 11:19 AM CET, Johan Hovold wrote:
-> On Fri, Nov 25, 2022 at 10:55:31AM +0100, Luca Weiss wrote:
-> > Hi Johan,
-> >=20
-> > On Fri Nov 25, 2022 at 10:50 AM CET, Johan Hovold wrote:
-> > > On Fri, Nov 25, 2022 at 10:27:47AM +0100, Luca Weiss wrote:
-> > > > Add the compatible describing the combo phy found on SM6350.
-> > > >=20
-> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > > ---
-> > > > @Johan Hovold, I've sent this v2 as RFC because there are several t=
-hings
-> > > > where I have questions on how it should be done.
-> > > >=20
-> > > > In this patch, you can see there's cfg_ahb (&xo_board) and power-do=
-mains
-> > > > is not set. In msm-4.19 &gcc_usb30_prim_gdsc is only used in the
-> > > > ssusb@a600000 node, or should I also add it to qmpphy?
-> > >
-> > > Yeah, you may need to add a platform specific section of the clocks,
-> > > which appear to be different, even if I'm not sure they are currently
-> > > described correctly (xo_board as cfg_ahb and "QLINK" as ref). How are
-> > > they named in the vendor's dts?
-> >=20
-> > This is the msm-4.19 dts:
-> > https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/hea=
-ds/android-msm-bramble-4.19-android11-qpr1/qcom/lagoon-usb.dtsi#354
->
-> 		clocks =3D <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> 			<&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
-> 			<&rpmhcc RPMH_QLINK_CLK>,
-> 			<&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> 			<&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> 		clock-names =3D "aux_clk", "pipe_clk", "ref_clk_src",
-> 				"ref_clk", "com_aux_clk";
->
-> So it looks like you don't need update the binding for the clocks as the
-> above matches sc8280xp:
->
-> 	aux
-> 	ref
-> 	com_aux
-> 	usb3_pipe
-
-Thanks for checking!
-
->
-> Parent clocks (ref_clk_src) should not be included in the binding, but
-> rather be handled by the clock driver. For example, see:
->
-> 	https://lore.kernel.org/all/20221121085058.31213-4-johan+linaro@kernel.o=
-rg/
-> 	https://lore.kernel.org/all/20221115152956.21677-1-quic_shazhuss@quicinc=
-.com/
-
-So I assume you mean that I shouldn't do this:
-
-clocks =3D <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-     <&rpmhcc RPMH_QLINK_CLK>,
-     <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-     <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-clock-names =3D "aux", "ref", "com_aux", "usb3_pipe";
-
-But for "ref" use GCC_USB3_PRIM_CLKREF_CLK? That also seems to work
-fine, also if RPMH_QLINK_CLK is not used from Linux-side (checked in
-debugfs).
+On 25/11/2022 12:19, Tomeu Vizoso wrote:
+> Doesn't appear in the TRM I have, but it is used by the downstream
+> galcore driver.
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> ---
+>   include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> index 6d487c5eba2c..45f6b8a951d0 100644
+> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> @@ -69,7 +69,9 @@
+>   #define RESET_PARSER_FETCH		72
+>   #define RESET_CTL			73
+>   #define RESET_PARSER_TOP		74
+> -/*					75-77	*/
+> +/*					75	*/
+> +#define RESET_NNA			76
+> +/*					77	*/
+>   #define RESET_DVALIN			78
+>   #define RESET_HDMITX			79
+>   /*					80-95	*/
 
 
-And for the driver patch, I've discovered that this phy doesn't have
-separate txa/tbx region, so dts was also wrong there. Do you know if
-there's a way to test DP phy initialization without having all the USB-C
-plumbing in place? Might be good to validate at least phy init works if
-we're already touching all of this.
 
-Regards
-Luca
-
->
-> > > >  .../bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml          | 5 +=
-++--
-> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qm=
-p-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qm=
-p-usb43dp-phy.yaml
-> > > > index 6f31693d9868..3e39e3e0504d 100644
-> > > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43=
-dp-phy.yaml
-> > > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43=
-dp-phy.yaml
-> > > > @@ -17,16 +17,18 @@ properties:
-> > > >    compatible:
-> > > >      enum:
-> > > >        - qcom,sc8280xp-qmp-usb43dp-phy
-> > > > +      - qcom,sm6350-qmp-usb3-dp-phy
-> > > > =20
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > =20
-> > > >    clocks:
-> > > > -    maxItems: 4
-> > > > +    maxItems: 5
-> > > > =20
-> > > >    clock-names:
-> > > >      items:
-> > > >        - const: aux
-> > > > +      - const: cfg_ahb
-> > > >        - const: ref
-> > > >        - const: com_aux
-> > > >        - const: usb3_pipe
-> > >
-> > > So this would need to be moved to an allOf: construct at the end with
-> > > one section each for sc8280xp and sm6350.
-> >=20
-> > Ack.
->
-> So no need to change this it seems.
->
-> Johan
-
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
