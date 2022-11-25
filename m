@@ -2,208 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B617638431
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 07:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2B96384D1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 08:55:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiKYG7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 01:59:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59856 "EHLO
+        id S229541AbiKYHzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 02:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiKYG7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 01:59:12 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2589D2CC9B
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 22:59:11 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id ho10so8304117ejc.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 22:59:11 -0800 (PST)
+        with ESMTP id S229529AbiKYHzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 02:55:08 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407651F2E6
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 23:55:07 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g12so5690985lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Nov 2022 23:55:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hoX4Z40MQwuszANnlGBImjuiii34Bm6IVdSkNEROGlk=;
-        b=DYIALqhs5m9PNMHPE8yqYIxFmhgXWCNuD1nJkRncSHnTb9KsT2SEjTxLyCLcf07SND
-         BuT1B67WTp6kKWo3FOST5wFfrrVouCr3lzbeI1KGFJ8ZBam/NFoSzrxJ91QWhGAFY65h
-         a9xen1l7WE8m+vLpAI2NRR5TH2Q/wtYpx+7Hs=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rsiycKeSmvcnoJAe+kYcU5wAQg8YUTRMCAWTbJ7c74c=;
+        b=zhZN1lS1gQOW3HSo8t3vDaCBYcU4oaH/Ilcys8xi6Llh1QDXau713rkNlNUa0pXlt0
+         7QVi8zglr33K8ysYoZu/i38b6CldNy8ybuk9RoWI6D86HvJniff6XvUmI4/em8cBk7nr
+         3tTBwiU6zPq+vIAWf1a5tXwO4y3/LOc4Wfb0QCR7VbDiC2lpu5JS+fgoDLWpbEfoxI+8
+         BHUd+mMiYurY0tOw8lFx7xf2HpxNYynSs33DKU+hjn62PqGKPL2eFiqtiiOEMQy7l57N
+         OuoOZSkS+PAZUYvbHKum+topP76CKxp/icN5wbJbELxJ2cNr++gsqFUHg3fFeuUMO4yH
+         w2SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hoX4Z40MQwuszANnlGBImjuiii34Bm6IVdSkNEROGlk=;
-        b=knGb50UUE3sq5NwMyx3zyQYfUdiqlMM24hkyXgBndAxVX7newsaoN2sO3VZhR64hbg
-         Ol5mf/fmMJc5woEI9sthxrL/Z5LO1rNWi37EbKsLZOoxRGOrwvyceL3CHqZqkcNssOz9
-         Fskw8DPWfvqOiiTs9sn7EV4OIIsVKD6JFewVyo4GNW6qna2vIdFZ2fTKx+nKjdiUG11P
-         XC9lM3+v7tsP97CCWIYMBcHRFAGlQFrNoJ0nM38GLjcUBnPf7+KIgJBMTndvVITx/mgd
-         lrPyYWAi78x657M0wvjCgmWi+ZfIWNGV+4nGFY1b4ZbByF54f42pWALKpY78bS4g4JJu
-         CoBQ==
-X-Gm-Message-State: ANoB5pmLcOq4Ge5ZQA3zzKwv61gpTY9cCkOf8yxuLri03hOyzYRJUil9
-        vlFVhsr3MndS7LbGeuNyA6yf/mYdMK51OS3FYcW/sg==
-X-Google-Smtp-Source: AA0mqf61omTI/URQcHXxO27ayXnv2S/Msse51DzkeZiQ+oIxOTmaxkcc1G6pL7lsFhNXP8G7IxSxXZbVbQkqQ2kKVNQ=
-X-Received: by 2002:a17:906:b1c6:b0:7ad:e82b:b66b with SMTP id
- bv6-20020a170906b1c600b007ade82bb66bmr14937894ejb.453.1669359549666; Thu, 24
- Nov 2022 22:59:09 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rsiycKeSmvcnoJAe+kYcU5wAQg8YUTRMCAWTbJ7c74c=;
+        b=c6A3m45CUfZfhsNUuKQGIjZ/yvbdaJZi6mpOzY3P9t1wiNx83k6rlesGsf6kkbIZOt
+         zvKpX1e1XCoaHGcRMGRharDB3kKz5H4Bpvl7XjQ3Ku4F3b14tWOtaA+AEgzUJXzudAQg
+         XqpWdF2i7K5Rc5R6ndpQZQdLzVy5CCzF8Sh8uVaVVoKEbV7w24RVwet7LXY6rOSMDgRp
+         OvpVjJCu5xLb7SILp+3JS4nxha19896vezbynjf9whxgO36VP7Dde/npWe4pebuExhYl
+         xGvf2eW4UOsJn598nicyoxPs8jdbdXoKMtTyJonq9CrDOz2aa9fbJHXQT3NVXlT4iMPK
+         CCzA==
+X-Gm-Message-State: ANoB5pm8n4aFqNJOQaY/7bYtcC9sZLiyr5tOqBAVIOeDI0f/+dg/DEcC
+        QakkeN6NyIhrPVLk+WwUhMpcIw==
+X-Google-Smtp-Source: AA0mqf6Lro0NwHNKX3e0q8Qj/JIhc57lKqxVMiiyGmoA9sP15U/Iajy9e3TDhiiXGwJcwodW7AQ7iQ==
+X-Received: by 2002:a05:6512:12ca:b0:4aa:e519:a065 with SMTP id p10-20020a05651212ca00b004aae519a065mr7592406lfg.455.1669362905467;
+        Thu, 24 Nov 2022 23:55:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r30-20020ac25c1e000000b004ac088fdfd2sm429697lfp.85.2022.11.24.23.55.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Nov 2022 23:55:04 -0800 (PST)
+Message-ID: <0ce922e3-33d4-3df6-1def-a4e44742f215@linaro.org>
+Date:   Fri, 25 Nov 2022 08:55:03 +0100
 MIME-Version: 1.0
-References: <20221124102056.393220-1-treapking@chromium.org>
- <20221124102056.393220-6-treapking@chromium.org> <Y39g/OBLW3pt9qdy@smile.fi.intel.com>
-In-Reply-To: <Y39g/OBLW3pt9qdy@smile.fi.intel.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 25 Nov 2022 14:58:58 +0800
-Message-ID: <CAEXTbpeX7cfzBhvFvhCtP42LYDZ9OZQhDJ805VacQOE=-EVv0g@mail.gmail.com>
-Subject: Re: [PATCH v6 5/7] drm/bridge: anx7625: Register Type C mode switches
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
+ MT7986
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        dri-devel@lists.freedesktop.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-acpi@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Xin Ji <xji@analogixsemi.com>, Lyude Paul <lyude@redhat.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, Allen Chen <allen.chen@ite.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Zhi Mao <zhi.mao@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>
+References: <Y39PjU1BqBB8tZ98@makrotopia.org>
+ <e5e87795-12d7-699e-1539-2e60b8b51957@linaro.org>
+ <Y39fe3oHgMTyAHBm@makrotopia.org>
+ <add5675c-b7a9-7f6e-e977-ac79c5c4086a@linaro.org>
+ <Y3/NQBzU/R6XubBf@makrotopia.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y3/NQBzU/R6XubBf@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On 24/11/2022 21:00, Daniel Golle wrote:
+> Hi Krzysztof,
+> 
+> On Thu, Nov 24, 2022 at 02:33:35PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/11/2022 13:11, Daniel Golle wrote:
+>>> On Thu, Nov 24, 2022 at 12:30:44PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 24/11/2022 12:03, Daniel Golle wrote:
+>>>>> Add new compatible string for MT7986 PWM and list compatible units for
+>>>>> existing entries. Also make sure the number of pwm1-X clocks is listed
+>>>>> for all supported units.
+>>>>>
+>>>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>>>> ---
+>>>>> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
+>>>>>
+>>>>> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
+>>>>> makes sure dt maintainers are included. This has been requested by
+>>>>> Krzysztof Kozlowski.
+>>>>>
+>>>>>  .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
+>>>>>  1 file changed, 12 insertions(+), 8 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> index 554c96b6d0c3..952a338e06e7 100644
+>>>>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> @@ -2,14 +2,15 @@ MediaTek PWM controller
+>>>>>  
+>>>>>  Required properties:
+>>>>>   - compatible: should be "mediatek,<name>-pwm":
+>>>>> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
+>>>>> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
+>>>>>     - "mediatek,mt6795-pwm": found on mt6795 SoC.
+>>>>> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
+>>>>> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
+>>>>> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
+>>>>
+>>>> This does not look right. What you are saying is mt7622 is compatible
+>>>> with mt8195, which is compatible with mt8183, which is compatible with
+>>>> mt7986. It could be true, but I feel you wanted to say something else -
+>>>> mt7622 is compatible with one SoC which is generic and common to all
+>>>> other implementations.
+>>>
+>>> MT7622 has 6 PWM channels, it does have CK_26M_SEL register and does
+>>> not need pwm45_fixup. Hence, when using a driver made for MT8195, only
+>>> 4 out of 6 channels woukd work. MT8183 PWM is identical to MT8195,
+>>> hence also compatible. When using driver for MT7986, only 2 channels
+>>> would work, but otherwise it is also compatible.
+>>>
+>>> So unfortunately, that one generic implementation ("common ancestor")
+>>> does not exist and development of the PWM unit found in MediaTek SoCs
+>>> did not necessarily increase features in more recent iterations, but
+>>> rather just reduce or increase the number of PWM channels available.
+>>> Ironically, the unit with least features (only 2 channels) is found in
+>>> the most recent SoC (MT7986).
+>>
+>> None of these explain listing four compatibles.
+> 
+> So do I understand correctly that in this case only the newly
+> introduced "mediatek,mt7986-pwm" should be listed as more generic
+> compatible after the more specific "mediatek,mt7622-pwm", everything in
+> between should be dropped? Or only drop "mediatek,mt8195-pwm" here?
 
-Thanks for reviewing the patch.
+I know nothing about Mediatek PWM and which one is more generic than
+others. The patch submitter should rather know...
 
-On Thu, Nov 24, 2022 at 8:18 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Nov 24, 2022 at 06:20:54PM +0800, Pin-yen Lin wrote:
-> > Register USB Type-C mode switches when the "mode-switch" property and
-> > relevant port are available in Device Tree. Configure the crosspoint
-> > switch based on the entered alternate mode for a specific Type-C
-> > connector.
->
-> ...
->
-> > +static void anx7625_typec_two_ports_update(struct anx7625_data *ctx)
-> > +{
-> > +     if (ctx->typec_ports[0].dp_connected && ctx->typec_ports[1].dp_connected)
-> > +             /* Both ports available, do nothing to retain the current one. */
-> > +             return;
->
-> > +     else if (ctx->typec_ports[0].dp_connected)
->
-> This 'else' is redundant. I would rewrite above as
->
->         /* Check if both ports available and do nothing to retain the current one */
->         if (ctx->typec_ports[0].dp_connected && ctx->typec_ports[1].dp_connected)
->                 return;
->
->         if (ctx->typec_ports[0].dp_connected)
->
-> > +             anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_NORMAL);
-> > +     else if (ctx->typec_ports[1].dp_connected)
-> > +             anx7625_set_crosspoint_switch(ctx, TYPEC_ORIENTATION_REVERSE);
-> > +}
+> 
+> I'm asking because in your message from 23/10/2022 you were quoting
+> Devicetree specification:
+>> "The property value consists of a concatenated list of null terminated
+>> strings, from most specific to most general. They allow a device to
+>> express its compatibility with a family of similar devices, potentially
+>> allowing a single device driver to match against several devices."
+> 
+> And we have discussed in great length (as I had misunderstood it) that
+> this should mean that units with the lowest number of channels are to
+> be considered the "most general" if otherwise identical.
 
-Thanks for the detailed suggestion. I'll adapt this in v7.
->
-> ...
->
-> > +     data->dp_connected = (state->alt && state->alt->svid == USB_TYPEC_DP_SID &&
-> > +                           state->alt->mode == USB_TYPEC_DP_MODE);
->
-> Parentheses are not needed.
+Yes, but we do not discuss this part.
 
-Will fix this in v7.
->
-> ...
->
-> > +     /*
-> > +      * <0 1> refers to SSRX1/SSTX1, and <2 3> refers to SSRX2/SSTX2.
-> > +      */
-> > +     for (i = 0; i < num_lanes; i++) {
->
-> > +             if (port_num != -1 && port_num != dp_lanes[i] / 2) {
-> > +                     dev_err(dev, "Invalid data lane numbers\n");
-> > +                     return -EINVAL;
-> > +             }
->
-> According to Rob Linux must not validate device tree. If you need it, use
-> proper YAML schema.
->
-> > +             port_num = dp_lanes[i] / 2;
-> > +     }
->
+In most cases you have one generic device and several devices compatible
+with it. You on the other hand created here one device compatible with
+three other devices! And that raised all my questions.
 
-I'll remove this from the driver in v7.
+> 
+> 
+>>
+>>>
+>>>>
+>>>>> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
+>>>>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+>>>>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
+>>>>> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
+>>>>> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
+>>>>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+>>>>> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
+>>>>> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+>>>>
+>>>> This as well looks excessive.
+>>>
+>>> I agree. But it's difficult to say which one should be ommitted.
+> 
+> So are you suggesting to drop the "mediatek,mt8183-pwm" string here?
 
-> ...
->
-> > +     if (!ctx->num_typec_switches) {
-> > +             dev_warn(dev, "No Type-C switches node found\n");
->
-> > +             return ret;
->
-> Why not to return 0 explicitly?
 
-Will update to just "return 0" in v7.
+Yes. Why mt183 is even there? commit msg was not explaining it.
 
->
-> > +     }
->
-> ...
->
-> > +     ctx->typec_ports = devm_kcalloc(
->
-> Broken indentation.
+Best regards,
+Krzysztof
 
-Will fix in v7
->
-> > +             dev, ctx->num_typec_switches, sizeof(struct anx7625_port_data),
-> > +             GFP_KERNEL);
-> > +     if (!ctx->typec_ports)
-> > +             return -ENOMEM;
->
-> ...
->
-> > +struct anx7625_port_data {
->
-> > +     bool dp_connected;
->
-> You can save some bytes on some architectures if move this to be last field.
-
-Thanks for the suggestion. I'll do so in v7
->
-> > +     struct typec_mux_dev *typec_mux;
-> > +     struct anx7625_data *ctx;
-> > +};
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
