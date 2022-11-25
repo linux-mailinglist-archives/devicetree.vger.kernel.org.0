@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CB0638DCF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:53:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 876EB638DE8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:55:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbiKYPw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:52:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
+        id S229773AbiKYPzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:55:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiKYPwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:52:55 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC933D910
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:52:54 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id p8so7479380lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:52:54 -0800 (PST)
+        with ESMTP id S229853AbiKYPz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:55:29 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D92B43ADC
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:55:15 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id t10so5666468ljj.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:55:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DpQGpxdfbdlTnJsvlWY89+wp3XHFdGWgbsddTZ6kjtg=;
-        b=Kh6BpNHbqaUj5w/c4K1/cgC1ulEpKWE9LFCS2e0gGw4Cg7yS1Vb3InheQAysxC6TKC
-         buIcYF132mMYIKJ3E0Pag5qkAkD2VeKT7ThvNHAeW8ecZ/JAS5uBU7Fs9eZVkRq2Wqjd
-         qDVofOCqyFVxEfTjCw30q+68EZ1QYIOpd+qDogmw0B/wJWVzByc9B9WKiQD+2Dhrd3f9
-         jfo4V/Hx044Iyrlg8v2twIPjQfXKnx1wU7lxq017IRGKIZiefR+N19FeiCH7pKxuoJp0
-         fE6vpTT+Pzl3BhyfrA96mt7Cw7DTA7D9f6JaFXfAIgIeajNGwKOwQ82c2Mm5sct8CiwR
-         tQsQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N75qs6mFE+82rJ2tMLVbCwIvCda7QU+ZxRGf1iXfJdE=;
+        b=vy7Yttm0R2M2h+VkrKBw2oXKSpzAnkKl1SJuZhacqQO+f4BEi4LeNpl+MGuBisVBAC
+         ai/3rRBKIzJBuEhWFHHM6hJiJcug3rN0vvbQTNam/ZOcP8cIZoh1D8CaXhm/dzbJUM1n
+         Z6Z+8hgJv2ZSKuqmk518M5Pv/G2kgjN0q8iRxPFM+LtmtlxvGtE6geKLI2HRWR6Um7O+
+         aobhGGDuZM7gE/6bZNR1V1MJqWM9hvvjTdvEFzZBnWvOlPnL/Z64aKh5KnWxSCqK8EZr
+         mWG+XWyZXXleWjRIJqR8RN2ZhSu1tfB7JsNVlbVq/Ajg/D2tWEm6NVSIXmPwsqVN/Dmx
+         5pcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DpQGpxdfbdlTnJsvlWY89+wp3XHFdGWgbsddTZ6kjtg=;
-        b=JNxXHzoDOu0IT+nMABvypo7giuBtJZnj03uBD6yeeC33bYeLE3GX5naHBEGnLbp5j+
-         LgJU4PxPms1jHeqc4cLNDzomwOk36sml4z6Sh3poMXVvtM85MjbDbihI9o6eaEujVF3f
-         DHnAwsxhJ13TOvfT9vctq6d6q2c/ETJcGBqLAvu3ko7mhD6c0M6piu8BZ91OooLdCgsE
-         SFLGaI/oNTkDk+yoz11O38o9YZq0EslNjqyHIOZfUiOMsUgrKsiEQlwytA5ZsN7aKrLd
-         tHRyC24pwYowpsd4vd7iQPNoQSZe1mJG6WuQwJrKDGiX36HUS7pPoINT1UIStF4EN9IP
-         MM5Q==
-X-Gm-Message-State: ANoB5pkeAeGn3xLXOy6sFCGVLoXsklVN4VG3gadymEMQUIV9Bz2YcYCa
-        2eV4h1sxcgqU97kACjwRLIZ5iQ==
-X-Google-Smtp-Source: AA0mqf6qLy/0CY7gK3gouE6sQ/qsgNeBybkUvLPnkUq2Lk7upu7SqSdaLbZuwSLYcJ2IejJLnMWQbw==
-X-Received: by 2002:a19:6514:0:b0:4ab:f05c:d667 with SMTP id z20-20020a196514000000b004abf05cd667mr9648706lfb.551.1669391573570;
-        Fri, 25 Nov 2022 07:52:53 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05651c204e00b002778a76a3c3sm391488ljo.112.2022.11.25.07.52.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 07:52:53 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N75qs6mFE+82rJ2tMLVbCwIvCda7QU+ZxRGf1iXfJdE=;
+        b=qEJofGF3gtyTxXQ5Cq7PyPWI4zLZ3bh82LTQWarHe57T+1LUaPyCahtAZRVIzn5Yt0
+         +mmVVzNINPEKQ8b9kETF/OEOylYFcCffUkZVb/N2pxwbPPQ7yyWQ8CPHbUOY2YOxKIvf
+         AK7XvVG9hboOmGi0PcJJIcqqUbp/0n8WfqDEDoNybGYEi2FAHvLwAKeZ4/V0I4IAawjS
+         Rz1HBK1RgavyoIMwZ2xDiS7adDhVQy557zIZs+yJQfuqojeXxNR6Kr5xthIDnUt+jzxI
+         WZz5zqMtdUwyxAB9uxghTFVh2cISJhaRl9LGEf+PCoi6ksjzSAptByfe+Q5xWHF+hUHU
+         QoHw==
+X-Gm-Message-State: ANoB5plkbG0bbydgNbaMvwQ39Df2+GLggZ+z6FZ09DRb/6BhP7jraD4/
+        2EibgoFy3s1sHfpketnMLkEL8Q==
+X-Google-Smtp-Source: AA0mqf42151/tVAc9fD5z3KO3qH9yTDBjI5DNvMIYHqsvGQQgYJaTtByflQpt5PYo8sRqWP1eP7w9g==
+X-Received: by 2002:a2e:93d7:0:b0:279:7294:5e42 with SMTP id p23-20020a2e93d7000000b0027972945e42mr5917318ljh.81.1669391713514;
+        Fri, 25 Nov 2022 07:55:13 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z25-20020a195e59000000b004aa14caf6e9sm577178lfi.58.2022.11.25.07.55.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 07:55:13 -0800 (PST)
+Message-ID: <ab0e55a2-d99a-328e-4f54-6a75936a1c81@linaro.org>
+Date:   Fri, 25 Nov 2022 16:55:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 6/7] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
+ binding documentation for L2 cache controller
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sm8450-hdk: add sound support
-Date:   Fri, 25 Nov 2022 16:52:47 +0100
-Message-Id: <20221125155247.501203-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221125155247.501203-1-krzysztof.kozlowski@linaro.org>
-References: <20221125155247.501203-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <70d1bfde-f57f-1741-08d3-23e362793595@linaro.org>
+ <CA+V-a8s2awLp=YvbhA1Ohe500Oh1easLUcG9V4_FWov7Pf2i6g@mail.gmail.com>
+ <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org> <Y4C0Jn1hl81ZCxOt@wendy>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y4C0Jn1hl81ZCxOt@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,212 +96,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+On 25/11/2022 13:25, Conor Dooley wrote:
+> On Fri, Nov 25, 2022 at 01:12:18PM +0100, Krzysztof Kozlowski wrote:
+>> On 25/11/2022 11:34, Lad, Prabhakar wrote:
+>>>>> +/* Device, Non-bufferable */
+>>>>> +#define AX45MP_PMACFG_MTYP_DEV_NON_BUF                       (0 << 2)
+>>>>> +/* Device, bufferable */
+>>>>> +#define AX45MP_PMACFG_MTYP_DEV_BUF                   (1 << 2)
+>>>>> +/* Memory, Non-cacheable, Non-bufferable */
+>>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF     (2 << 2)
+>>>>> +/* Memory, Non-cacheable, Bufferable */
+>>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF         (3 << 2)
+>>>>
+>>>> What are all these? They don't look like flags, because 3 = 1 | 2...
+>>>> they don't look like constants, because we do not use shifts in
+>>>> constants. Are these some register values? I also do not see the header
+>>>> being used in the code, so why having a bindings header if it is not
+>>>> used (DTS is not usage...)?
+>>>>
+>>> These are register bit values for the MTYP[5:2] field. The DTS example
+>>> in the binding doc (above) uses these macros. I haven't included the
+>>> DTS/I patches with this patchset yet do think I should?
+>>
+>> Then why storing it as bindings? Bindings headers describe the interface
+>> implemented by drivers and used by DTS, but this is not implemented by
+>> drivers.
+> 
+> IIUC, some of these properties are non-discoverable attributes of the
+> cache controller. I see two things that could be done here that are
+> "better" than #defining bits:
 
-Add sound support to SM8450 HDK board.  Tested setup so far is only two
-speakers (working) and head-phones (only one channel working).
+I did not comment about properties. I comment about constants. Why
+register values/offsets/addresses are in this particular case suitable
+for binding headers?
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> - add an RZ/Five specific compatible and use match data to set the
+>   attributes which is only possible if the pma-regions are set on a
+>   per SoC basis
+> - make pma-regions into a child node, in which andestech,non-cacheable
+>   andestech,non-bufferable etc are properties of the child node
+> 
+> Prabhakar, does that make sense or am I off with my understanding of the
+> attributes?
 
----
 
-Changes since v2:
-1. Use ACTIVE_LOW for qcom,wcd9380-codec reset-gpios.
-   https://lore.kernel.org/all/20221116053817.2929810-11-dmitry.torokhov@gmail.com/
-
-Changes since v1:
-1. Sort.
-2. Correct include - do not use deprecated one and drop q6asm.h (not
-   used).
----
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 160 ++++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index 4d75f9db08c2..1e1393e732ca 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
- #include "sm8450.dtsi"
- 
- / {
-@@ -406,6 +407,147 @@ &sdhc_2 {
- 	status = "okay";
- };
- 
-+&soc {
-+	wcd938x: codec {
-+		compatible = "qcom,wcd9380-codec";
-+
-+		qcom,micbias1-microvolt = <1800000>;
-+		qcom,micbias2-microvolt = <1800000>;
-+		qcom,micbias3-microvolt = <1800000>;
-+		qcom,micbias4-microvolt = <1800000>;
-+		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-+		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-+		qcom,rx-device = <&wcd_rx>;
-+		qcom,tx-device = <&wcd_tx>;
-+
-+		reset-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <1>;
-+
-+		vdd-buck-supply = <&vreg_s10b_1p8>;
-+		vdd-rxtx-supply = <&vreg_s10b_1p8>;
-+		vdd-io-supply = <&vreg_s10b_1p8>;
-+		vdd-mic-bias-supply = <&vreg_bob>;
-+	};
-+};
-+
-+&sound {
-+	compatible = "qcom,sm8450-sndcard";
-+	model = "SM8450-HDK";
-+	audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
-+			"SpkrRight IN", "WSA_SPK2 OUT",
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC1", "MIC BIAS1",
-+			"AMIC2", "MIC BIAS2",
-+			"AMIC3", "MIC BIAS3",
-+			"AMIC4", "MIC BIAS3",
-+			"AMIC5", "MIC BIAS4";
-+
-+	wcd-playback-dai-link {
-+		link-name = "WCD Playback";
-+		cpu {
-+			sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-+		};
-+
-+		codec {
-+			sound-dai = <&wcd938x 0>, <&swr1 0>, <&rxmacro 0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wcd-playback-dai-link {
-+		link-name = "WCD Playback";
-+		cpu {
-+			sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-+		};
-+
-+		codec {
-+			sound-dai = <&wcd938x 0>, <&swr1 0>, <&rxmacro 0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	wsa-dai-link {
-+		link-name = "WSA Playback";
-+		cpu {
-+			sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
-+		};
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>, <&swr0 0>, <&wsamacro 0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+
-+	va-dai-link {
-+		link-name = "VA Capture";
-+		cpu {
-+			sound-dai = <&q6apmbedai VA_CODEC_DMA_TX_0>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6apm>;
-+		};
-+	};
-+};
-+
-+&swr0 {
-+	right_spkr: speaker@0,1{
-+		compatible = "sdw10217020200";
-+		reg = <0 1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&spkr_1_sd_n_active>;
-+		powerdown-gpios = <&tlmm 1 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "SpkrRight";
-+		#thermal-sensor-cells = <0>;
-+		vdd-supply = <&vreg_s10b_1p8>;
-+	};
-+
-+	left_spkr: speaker@0,2{
-+		compatible = "sdw10217020200";
-+		reg = <0 2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&spkr_2_sd_n_active>;
-+		powerdown-gpios = <&tlmm 89 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "SpkrLeft";
-+		#thermal-sensor-cells = <0>;
-+		vdd-supply = <&vreg_s10b_1p8>;
-+	};
-+};
-+
-+&swr1 {
-+	status = "okay";
-+
-+	wcd_rx: codec@0,4 {
-+		compatible = "sdw20217010d00";
-+		reg = <0 4>;
-+		qcom,rx-port-mapping = <1 2 3 4 5>;
-+	};
-+};
-+
-+&swr2 {
-+	status = "okay";
-+
-+	wcd_tx: codec@0,3 {
-+		compatible = "sdw20217010d00";
-+		reg = <0 3>;
-+		/* ports: adc1_2, adc3_4, dmic0_3_mbhc, dmic4_7 */
-+		qcom,tx-port-mapping = <1 1 2 3>;
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <28 4>, <36 4>;
- 
-@@ -461,3 +603,21 @@ &usb_1_qmpphy {
- 	vdda-phy-supply = <&vreg_l6b_1p2>;
- 	vdda-pll-supply = <&vreg_l1b_0p91>;
- };
-+
-+&tlmm {
-+	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
-+		pins = "gpio1";
-+		function = "gpio";
-+		drive-strength = <4>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	spkr_2_sd_n_active: spkr-2-sd-n-active-state {
-+		pins = "gpio89";
-+		function = "gpio";
-+		drive-strength = <4>;
-+		bias-disable;
-+		output-low;
-+	};
-+};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
