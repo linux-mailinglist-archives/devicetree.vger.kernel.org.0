@@ -2,154 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F4B638CBF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49B4E638CC4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:55:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbiKYOxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:53:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51362 "EHLO
+        id S229852AbiKYOzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:55:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiKYOxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:53:46 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A677028730
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:53:45 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id o5-20020a17090a678500b00218cd5a21c9so4347981pjj.4
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:53:45 -0800 (PST)
+        with ESMTP id S229495AbiKYOza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:55:30 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50F428E27
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:55:29 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bp15so7214443lfb.13
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tEL6Kbr+HdwY+UWUkv0USE/Ww2DAfRqHJN30xRQuHfE=;
-        b=HPoo/A6uH3qT91Mz1+v25Mzk5kNO0o9889sZJX0Uro3IG6jlAkYFS3DjVSmSIvjaWN
-         mUHa4LQx5fE6NmB4Hgo1XTqHT+gla/K47bmNyybaVV7PBYz7mS7ieGF67qMR8VAC8SK8
-         /e/oJE39ih8FfwTvb5DYDBm9lPMkUqpeCLnEda+82BRkYR84Os9W7/fGrCgT8xt2MbA4
-         /V8tMAa4L55AA36SrrxT2Dj+UX65pZqod2HCTDHxQZWavBQjzEsOay+SkAvKt6r01zeG
-         ngp02iYwXPDJFd/6E4Jl7Hom2+3gwKtvrC90FUNUV/vH2kGnsbD2qQ1xjyyYaA0IdSAY
-         ASTw==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ptvcI10luTBZiVVBFz4/ilrVxDAvmrtYyie3Ti+0rs0=;
+        b=FN/dzwAoQJuHkYBYb5uOz5qDGLcqAaCODQHHpchoZ62kw4bpPq+3S9Uv681iafViLf
+         41T5LU+FgWXz4dzCCcYeXEGd79qWlqBn4uxfQp2/7zp6F1imRhKeYTfV+AXjqhTEJZf7
+         fMK4Nh6w1+MJjBNNCPG7/WEiidEYncCcCptjv/Zq5h8VxCG3aAdwq5CnYf4G8g1IsYvI
+         d+Z5I03rluLOVe3xaQA/LK+k3opMM7FEfbFIzjDcRd1i61FOKt9SyUu5MNxTP/11UGx4
+         8sBtRke+2cMPTB883a95KOE6Lr2H9SMfBrCx8jpeau9iKc6Aqybjjlpc4nOFXadp8Re1
+         tx5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tEL6Kbr+HdwY+UWUkv0USE/Ww2DAfRqHJN30xRQuHfE=;
-        b=tNueOldzqOUkMfITUCfRYq2RYt9RJZpU7oSosRfrBZBg0CfBW3rWxpXOeRo+qlhyaM
-         y8n/ROMlG8QU+mw4t1YWzqM59DZuWE3ykWhBPdj18lCA5wlmPjwq3jd3rPxxNI3JbVP7
-         1gMX6YEhYTaRFLzb8Fz2SWBgWSFLSGuXrtziYEWu1Y2ioj/+SURAk6riyquAHFt9yiHx
-         QuLfbwFWUMJN9n/ddrqMgvqlVRLW2uelGYFrVR5G7E9RopQpVRSqorCPbHeEgvWhD/hY
-         9ATN9i7ceJhOLI984GUaC8eBlC8XMMDB/sxylJzYOZ6BR+RLS6RvrFmPfHD7OAAXc3Az
-         n0mw==
-X-Gm-Message-State: ANoB5pntrB4LVziLOU+tRYVfDshXzmVCksbY+2vBmzoszhP7tPnDr9pC
-        h1U55NcCyU7y7lhwzQk3CXCd
-X-Google-Smtp-Source: AA0mqf7HjBLKze1SBILKxPgmoDtboSFCsmzP286bDV9AxMFHqsThNG+9U+uA0jo2ztDAw52O07U33A==
-X-Received: by 2002:a17:90a:2f23:b0:218:72e0:307b with SMTP id s32-20020a17090a2f2300b0021872e0307bmr40753662pjd.183.1669388025066;
-        Fri, 25 Nov 2022 06:53:45 -0800 (PST)
-Received: from thinkpad ([117.202.190.212])
-        by smtp.gmail.com with ESMTPSA id 15-20020a630f4f000000b0047702d44861sm2659303pgp.18.2022.11.25.06.53.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 06:53:44 -0800 (PST)
-Date:   Fri, 25 Nov 2022 20:23:36 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        bh=ptvcI10luTBZiVVBFz4/ilrVxDAvmrtYyie3Ti+0rs0=;
+        b=UpBQpbSvF9Cm/vF5dPehGcs2FEvPJBm+IW0RqEul/BPdrmsYw3etX6DuEEMTdNTF4s
+         4CPDXCAx+t3zvWGtjkoXtE58NDLUK7g1iV9GjzfGmu6CoFxxonHJU0GXwMkEc9JrucpR
+         s7idudAbOZmO6rMvejyYJN9A5VqxM+bmbHph/6szmNnOt/nJoBQJWZ6LJiTij6o8yjAX
+         IisvJkpny8ZNHAZeT3Cuj4OyCZog8SwUMo6UkxVpT0F6jkZ3M492wqdTGpnrzBpExtKd
+         xSZDQuaFyj0EtdWb20Ynzh1g8as48/0NK49lUEZblpEQAlyhX+1UL49BHF05l7CEt6Ih
+         K1Vw==
+X-Gm-Message-State: ANoB5pkKwB5dX0ZGycVU4nQpVbcuD8MpqV1bnovmoqT+R7mla0meUpAH
+        HrMvaEh17XaaWvTV1uKDpOHFdAym+MbBds/r
+X-Google-Smtp-Source: AA0mqf61fTgjgw9ZGP3SPPQ6IHP2AxKJXa6/s+ZyOO/C6xPQjtfuwbieVuXwvRLsR5KpQG06sLkbag==
+X-Received: by 2002:a05:6512:340b:b0:4a2:5897:2b44 with SMTP id i11-20020a056512340b00b004a258972b44mr14499027lfr.431.1669388128044;
+        Fri, 25 Nov 2022 06:55:28 -0800 (PST)
+Received: from [192.168.1.101] (95.49.32.48.neoplus.adsl.tpnet.pl. [95.49.32.48])
+        by smtp.gmail.com with ESMTPSA id g7-20020a0565123b8700b00494978b0caesm538857lfv.276.2022.11.25.06.55.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 06:55:27 -0800 (PST)
+Message-ID: <6e1af6bf-d10c-c70b-e23f-690fb9242e4c@linaro.org>
+Date:   Fri, 25 Nov 2022 15:55:26 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: align LED node names with dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-Message-ID: <20221125145336.GB9892@thinkpad>
-References: <20221124142501.29314-1-johan+linaro@kernel.org>
- <20221125142625.GA9892@thinkpad>
- <Y4DUr7tVqnFT5HV9@hovoldconsulting.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y4DUr7tVqnFT5HV9@hovoldconsulting.com>
+References: <20221125144209.477328-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221125144209.477328-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 03:43:59PM +0100, Johan Hovold wrote:
-> On Fri, Nov 25, 2022 at 07:56:25PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Nov 24, 2022 at 03:25:01PM +0100, Johan Hovold wrote:
-> > > The devices on the SC8280XP PCIe buses are cache coherent and must be
-> > > marked as such to avoid data corruption.
-> > > 
-> > > A coherent device can, for example, end up snooping stale data from the
-> > > caches instead of using data written by the CPU through the
-> > > non-cacheable mapping which is used for consistent DMA buffers for
-> > > non-coherent devices.
-> > > 
-> > 
-> > Also, the device may write into the L2 cache (or whatever cache that is
-> > accessible) if there is an entry and the CPU may invalidate it before reading
-> > from the DMA buffer. This will end up in a data loss.
+
+
+On 25.11.2022 15:42, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern:
 > 
-> I mentioned the above as an example, but clearly it can affect also the
-> other direction (e.g. as described below).
+>   qcom/msm8998-oneplus-cheeseburger.dtb: leds: 'button-backlight' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>   qcom/sc7180-trogdor-coachz-r1.dtb: pwmleds: 'keyboard-backlight' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
 > 
-> > > Note that this is much more likely to happen since commit c44094eee32f
-> > > ("arm64: dma: Drop cache invalidation from arch_dma_prep_coherent()")
-> > > that was added in 6.1 and which removed the cache invalidation when
-> > > setting up the non-cacheable mapping.
-> > > 
-> > > Marking the PCIe devices as coherent specifically fixes the intermittent
-> > > NVMe probe failures observed on the Thinkpad X13s, which was due to
-> > > corruption of the submission and completion queues. This was typically
-> > > observed as corruption of the admin submission queue (with well-formed
-> > > completion):
-> > > 
-> > > 	could not locate request for tag 0x0
-> > > 	nvme nvme0: invalid id 0 completed on queue 0
-> > > 
-> > > or corruption of the admin or I/O completion queues (malformed
-> > > completion):
-> > > 
-> > > 	could not locate request for tag 0x45f
-> > > 	nvme nvme0: invalid id 25695 completed on queue 25965
-> > > 
-> > > presumably as these queues are small enough to not be allocated using
-> > > CMA which in turn make them more likely to be cached (e.g. due to
-> > > accesses to nearby pages through the cacheable linear map). Increasing
-> > > the buffer sizes to two pages to force CMA allocation also appears to
-> > > make the problem go away.
-> > > 
-> > 
-> > I don't think the problem will go away if the allocation happens from CMA
-> > region. It may just decrease the chances of cache hit but it could always
-> > happen due to the existence of linear mapping with cacheable attribute.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+>  arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi              | 2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi            | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> I never claimed it would fix the problem, I explicitly wrote that it
-> made it less likely to occur (to the point where my reproducer no longer
-> triggers).
-> 
-
-> Increasing the buffer sizes to two pages to force CMA allocation also appears
-> to make the problem go away.
-
-The "go away" part sounded like a claim to me and hence I added the statement.
-But no worries :)
-
-Thanks,
-Mani
-
-> Johan
-
--- 
-மணிவண்ணன் சதாசிவம்
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+> index b951f98d1b7b..9fb1fb9b8529 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts
+> @@ -22,7 +22,7 @@ leds {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&button_backlight_default>;
+>  
+> -		button-backlight {
+> +		led-keypad-backlight {
+>  			gpios = <&pmi8998_gpio 5 GPIO_ACTIVE_HIGH>;
+>  			color = <LED_COLOR_ID_WHITE>;
+>  			function = LED_FUNCTION_KBD_BACKLIGHT;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 65601bea0797..74a90948db6b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -354,7 +354,7 @@ max98360a: audio-codec-0 {
+>  
+>  	pwmleds {
+>  		compatible = "pwm-leds";
+> -		keyboard_backlight: keyboard-backlight {
+> +		keyboard_backlight: led-0 {
+>  			status = "disabled";
+>  			label = "cros_ec::kbd_backlight";
+>  			function = LED_FUNCTION_KBD_BACKLIGHT;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index 448da9794722..27f479ff9d80 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -307,7 +307,7 @@ max98360a: audio-codec-0 {
+>  	pwmleds: pwmleds {
+>  		compatible = "pwm-leds";
+>  		status = "disabled";
+> -		keyboard_backlight: keyboard-backlight {
+> +		keyboard_backlight: led-0 {
+>  			label = "cros_ec::kbd_backlight";
+>  			function = LED_FUNCTION_KBD_BACKLIGHT;
+>  			pwms = <&cros_ec_pwm 0>;
