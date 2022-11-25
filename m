@@ -2,122 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E406389D2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:32:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E35B6389E6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:36:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbiKYMc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 07:32:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58618 "EHLO
+        id S229989AbiKYMgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 07:36:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbiKYMc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:32:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0F6186FE;
-        Fri, 25 Nov 2022 04:32:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C39E7623B1;
-        Fri, 25 Nov 2022 12:32:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A3DC433D6;
-        Fri, 25 Nov 2022 12:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669379575;
-        bh=p7ss/fqibxOK0PX8EdO8U+TTo07V8zCu5SpOcHojgAA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=qdi5lDv2Jtp8LCdCcgMfP5C4RRZxR57BJfgLSOyiEnHVpRDME342qmcYoL6eAF7G7
-         b4WKDJVKVgPaib2FJSPdZx2FRe+sDMG6W7JxggOXaP2UtZwMn7ZOjmGrMji5O2UrAu
-         +EKQJ+ywNrW7vCo9rJE9J0RRIbAGEJVDDOCTwJreYZXUAF5rVl3EGb72QWqQ4cQ52X
-         Xjjc0hH+1knU92nBAC0hPVMzAYNK7Cl9+ciX+yMRnJ1AU8wRBxtjxe3/bX2myovB4a
-         Xcohx33ZtmFbxAgnAPKlAqKy2gcphnH0tLvDDJVtjLwzHBbDJh9NEy0JAfILoNYPIS
-         9A6Gty8kU70GA==
-Message-ID: <e0f4d411-2345-a13e-b7e1-fd4a5622f701@kernel.org>
-Date:   Fri, 25 Nov 2022 14:32:49 +0200
+        with ESMTP id S229788AbiKYMgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:36:43 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6838B2D1C1
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:36:42 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id m7-20020a05600c090700b003cf8a105d9eso3289854wmp.5
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 04:36:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F8QEr1U+4DdwT5X6CEZxWsT4dF4Ejt6T8JypPrPO5rI=;
+        b=K1xi5tAQLXN9sLEIHr9BFO77DXOhF/h+p2Te8YWE54iOn1IeUtcnLo90aaRsxW20W5
+         rZVEcSEaRhabtLkuR0NeGOtMxgEZZotZzAzoHiA9UL2BZETO7Y4wWT8wDedQ9Z0YgHdu
+         n5PHhsvP51wHsF0Ysd5M7CCE7wpBlA9BgIN9e5xLPXWW8Iuy2NrnfFZX2KcB7lQhuMTb
+         ckk8NdpZ7uYvZGI3sP/hNvAuFcRVdVRIQfZ9rW3SLuDmGTygd6rAHWbfy5SEI9znwF+u
+         akM+qLLW7oSTGMNWAeNhmf+qlyHWx438NqeWmTvr8wVuaQEZDKpzVIvomFZQiG+yZrvi
+         RS6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F8QEr1U+4DdwT5X6CEZxWsT4dF4Ejt6T8JypPrPO5rI=;
+        b=h7vmAofEuC79P3FYXBE8JrEA6HCaIuNXW2FJB6IdKNz3AybfaweFPqU7SQCuF0L4fo
+         Pb7RlzMd0L3qIdj65Qkmr/BNH4puSRt2zcRP+nOVx54gDnaR/aQxVNCmFajff70H7MSr
+         uriN3U0rLaKPutz5nb5pn4ypru8vvAhbbx1L9olG/w5IGdJQNUcfTiig0j+OsARFsoch
+         2g89lfQ4PW0xX82wLQLMPbA9WjDi9uZGNTo+D4Fi0MS9//GhI58ggxe/E9by2PwAwD3z
+         jvovW/sHYf/rmt1moXJJfPvmTmS5/5dAIuBPGQIqzKNUTzi0tNnx69Qhy3ajROf1YUwg
+         iiCQ==
+X-Gm-Message-State: ANoB5pnwYhrHyymOcaPHaMK3wwtFplMUqTux8mWTQDx6aFyhWa8yzRET
+        +xgBVg30Hxo3l9unN2l6Z8SzIA==
+X-Google-Smtp-Source: AA0mqf7i/gSH7GGQvOSqsgv9xi7K0jb2aAWSKxgFmGXT6Puc65tmss7R9tmharjDtcFbJgZW8DFsoA==
+X-Received: by 2002:a05:600c:1e85:b0:3cf:84be:aaf9 with SMTP id be5-20020a05600c1e8500b003cf84beaaf9mr14204871wmb.111.1669379800868;
+        Fri, 25 Nov 2022 04:36:40 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k15-20020a5d6d4f000000b002366dd0e030sm3574111wri.68.2022.11.25.04.36.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 04:36:40 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        bryan.odonoghue@linaro.org
+Subject: [PATCH v4 00/18] mdss-dsi-ctrl binding and dts fixes
+Date:   Fri, 25 Nov 2022 12:36:20 +0000
+Message-Id: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 5/5] PCI: j721e: add j784s4 PCIe configuration
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, lpieralisi@kernel.org,
-        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
-        krzysztof.kozlowski@linaro.org, vigneshr@ti.com,
-        tjoseph@cadence.com, sergio.paracuellos@gmail.com,
-        pthombar@cadence.com, linux-pci@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Achal Verma <a-verma1@ti.com>
-References: <20221124081221.1206167-1-mranostay@ti.com>
- <20221124081221.1206167-6-mranostay@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20221124081221.1206167-6-mranostay@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+V4:
+- Moves the update of the example from patch #5 to patch #4
+
+V3:
+- Moves declaration of mdss-dsi-ctrl into compat string declaration
+  patch - Krzysztof, Dmitry
+- Renames qcm-2290 compat string to agreed compat "qcom,socname-dsi-ctrl"
+  Dmirty, Krzysztof
+- Adds empty line after if clause in yaml control flow section - Dmirty
+- Adds Rb/Ack - Krzysztof, Dmitry, Doug, David
+- vdd*
+  Looking into this some more, I don't believe vdd, vdda, vddio ought to be
+  required properties. Its up to the PCB manufacturer and the panel in-use
+  how that panel is powered. Powering the panel is not something that
+  even necessarily needs to be done from the dsi-ctrl driver.
+  Originally marking vdd* as required in the .txt was an error, its not a
+  SoC level dtsi requirement.
+- clock-names
+  Rather than replicate the clock-name in each if block I listed them with
+  a specific description from a similar reference in usb/qcom,dwc3.yaml.
+ 
+https://lore.kernel.org/linux-arm-msm/eb80681f-2e0b-605f-0444-ec65562f74b8@linaro.org/
+
+V2:
+https://www.spinics.net/lists/linux-arm-msm/msg116326.html
+
+- Moves the DSI PHY changes to a different later series.
+  There are enough dsi-controller-main changes to justify its own
+  standalone series.
+
+- The original phy-name binding change given discussion with Rob and
+  Krzysztof became its own standalone series that has since been merged.
+  https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403214.html
+
+- Retains the drop of power-domain from yaml as a required property.
+  I dug into the available dtsi. The apq8064 doesn't appear to have any
+  GDSC which can be attached as a power-domain, which means the
+  power-domain requirement is not universal across the various silicon
+  versions.
+
+- Adds Dmitry's RB to power-domain drop
+
+- For the clock declarations I've
+  * I noticed that the simple change I had worked for msm8939 but
+    subsquently broke other dtsi which drove a bigger change to document
+    the clocks on a per compatible basis.
+  * Added compat strings in yaml.
+  * Moved the allOf down later in the file to acomodate the if/then.
+  * Number of clocks validated on a per compatible basis
+  * The driver code which doesn't care about the number of clocks
+    can still operate on the mdss-dsi-ctrl compat but the dts checks will
+    validate against the compat string and yaml.
+
+- vdd descriptions
+  Took the previous text I missed from the .txt file - Krzysztof, Dmitry
+  Adds vdd, vdda and vddio to the required list. This exposes warnings in
+  existing dtsi but the previous .txt declared these regulators as
+  required. - Krzysztof
+ 
+V1:
+This series fixes up a number of dtbs checks which are being flagged adding
+in the msm8939 dtsi.
 
 
-On 24/11/2022 10:12, Matt Ranostay wrote:
-> Add PCIe configuration for j784s4 platform which has 4x lane support.
-> 
-> Tested-by: Achal Verma <a-verma1@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+When converting from .txt to .yaml a number of the parameters for the older
+msm8916 silicon were not transmitted into the yaml.
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Adding in the msm8939 which is a near 1:1 copy of the msm8916 in terms of
+dtsi triggers a rake of dtbs checks as a result.
 
-> ---
->  drivers/pci/controller/cadence/pci-j721e.c | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
-> index dab3db9be6d8..c484d658c18a 100644
-> --- a/drivers/pci/controller/cadence/pci-j721e.c
-> +++ b/drivers/pci/controller/cadence/pci-j721e.c
-> @@ -330,6 +330,21 @@ static const struct j721e_pcie_data am64_pcie_ep_data = {
->  	.max_lanes = 1,
->  };
->  
-> +static const struct j721e_pcie_data j784s4_pcie_rc_data = {
-> +	.mode = PCI_MODE_RC,
-> +	.quirk_retrain_flag = true,
-> +	.is_intc_v1 = true,
-> +	.byte_access_allowed = false,
-> +	.linkdown_irq_regfield = LINK_DOWN,
-> +	.max_lanes = 4,
-> +};
-> +
-> +static const struct j721e_pcie_data j784s4_pcie_ep_data = {
-> +	.mode = PCI_MODE_EP,
-> +	.linkdown_irq_regfield = LINK_DOWN,
-> +	.max_lanes = 4,
-> +};
-> +
->  static const struct of_device_id of_j721e_pcie_match[] = {
->  	{
->  		.compatible = "ti,j721e-pcie-host",
-> @@ -355,6 +370,14 @@ static const struct of_device_id of_j721e_pcie_match[] = {
->  		.compatible = "ti,am64-pcie-ep",
->  		.data = &am64_pcie_ep_data,
->  	},
-> +	{
-> +		.compatible = "ti,j784s4-pcie-host",
-> +		.data = &j784s4_pcie_rc_data,
-> +	},
-> +	{
-> +		.compatible = "ti,j784s4-pcie-ep",
-> +		.data = &j784s4_pcie_ep_data,
-> +	},
->  	{},
->  };
->  
+https://www.mail-archive.com/dri-devel@lists.freedesktop.org/msg403211.html
 
---
-cheers,
--roger
+Bryan O'Donoghue (18):
+  dt-bindings: msm: dsi-controller-main: Fix operating-points-v2
+    constraint
+  dt-bindings: msm: dsi-controller-main: Fix power-domain constraint
+  dt-bindings: msm: dsi-controller-main: Rename qcom,dsi-ctrl-6g-qcm2290
+    to qcom,qcm2290-dsi-ctrl
+  dt-bindings: msm: dsi-controller-main: Add compatible strings for
+    every current SoC
+  dt-bindings: msm: dsi-controller-main: Document clocks on a per
+    compatible basis
+  dt-bindings: msm: dsi-controller-main: Fix description of core clock
+  dt-bindings: msm: dsi-controller-main: Fix clock declarations
+  dt-bindings: msm: dsi-controller-main: Add vdd* descriptions back in
+  ARM: dts: qcom: apq8064: add compat qcom,apq8064-dsi-ctrl
+  ARM: dts: qcom: msm8974: Add compat qcom,msm8974-dsi-ctrl
+  arm64: dts: qcom: msm8916: Add compat qcom,msm8916-dsi-ctrl
+  arm64: dts: qcom: msm8996: Add compat qcom,msm8996-dsi-ctrl
+  arm64: dts: qcom: sc7180: Add compat qcom,sc7180-dsi-ctrl
+  arm64: dts: qcom: sc7280: Add compat qcom,sc7280-dsi-ctrl
+  arm64: dts: qcom: sdm630: Add compat qcom,sdm630-dsi-ctrl
+  arm64: dts: qcom: sdm660: Add compat qcom,sdm660-dsi-ctrl
+  arm64: dts: qcom: sdm845: Add compat qcom,sdm845-dsi-ctrl
+  arm64: dts: qcom: sm8250: Add compat qcom,sm8250-dsi-ctrl
+
+ .../display/msm/dsi-controller-main.yaml      | 205 ++++++++++++++++--
+ arch/arm/boot/dts/qcom-apq8064.dtsi           |   3 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           |   3 +-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   3 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   6 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   6 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   6 +-
+ 11 files changed, 208 insertions(+), 36 deletions(-)
+
+-- 
+2.38.1
+
