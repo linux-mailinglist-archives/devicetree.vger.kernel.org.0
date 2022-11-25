@@ -2,139 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9410638D6B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C58638D8A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiKYPXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:23:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48418 "EHLO
+        id S229611AbiKYPhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:37:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbiKYPXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:23:30 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C4C1E3EF
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:23:29 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p8so7361740lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:23:29 -0800 (PST)
+        with ESMTP id S229598AbiKYPhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:37:31 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06306BB9
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:37:28 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id t10so5614773ljj.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:37:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wFHAlxkiZpUZ5hPbRPKH2HFMbjaXBev0Ro4GJeC1cAM=;
-        b=aaRbvgGyLJ6+00U9JLZJxO2Rliyo1ziWXa3tKsB4Y9JQz+nXW8/QXELTyaeFBxcTHp
-         bpvMZ3uRS1mOk1fP+bvnS5P5g7MrDf1DrRzzCdczIWGd9RzA55vxqlfN18W2SoNVbaW/
-         evX5yZPJRjsa/zpSgiVpUtWijPqEIT+/6uZqr8/8CqtS8wftVwZ7r/daezLtxttK2OeK
-         LpCt44AOTIHwo5S+V4+rCS4ccrRG9LRoRQuG7e4NmPPNcXpefZ7v7IqxVokhArz/nCnW
-         FKbXe51biFe+mNmby3dPBn9VOZnD/ixuAjHi9s/tGHQzCWtHDnatZaFeH0Wll7QFa66p
-         rM5A==
+        d=melexis.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cy7rH5pyJVnH/+6lKqlr5TaljKJablOrGP9ii/rIiII=;
+        b=pDHesMp1btaqc/TUfkbEP1d2tiYcYMBbqO2TfVSWFgK3WXApD3WEeAyuGAx57+uO3X
+         Otbl+HR83ZPO5r4I/mH1imRhToX5EdNfMupigVdZkRaHY4gRD8L2aIafExiNQw4AK2Vq
+         dLECruzCU04SKJiT3ul92Mvy5TjFxR5i/VQ2X3/KAiXftx8aePW4e5wL/TuxZyiwZ+GH
+         EiUY+5j8iNIRJNYIloZFHV1R3z8nt+Hbikzp66ZgG8U1M35lS0NhoIeVTUfL59I/Zuz3
+         wvG0nDdlnQk/dPE9hQBDbsSqXW4wec6gFzl9uHhBUClT9QpdWwHaitdibDz6jEXORFsv
+         Kgnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wFHAlxkiZpUZ5hPbRPKH2HFMbjaXBev0Ro4GJeC1cAM=;
-        b=qaFgYdqNmoWMwIynVjAnc5aewaSHHzpEt5BjieEKAGv4vwydSuPpHiIjhsYB2GHPsE
-         VAMuMhDI9LG6JTOIL6Lt7NrRFJQji2aQlrb2LQ83UxmnkeI4M+2CbhZEMzTQbI7m7hUH
-         RjHH0lwLserSk9kEMIMfojaS7HIWqaVNTArgZctoFD59pm63/kHcAtnsUJPJfvnio3Gu
-         J+yt7XFsoGJpVb9kDLFs0WlXkz6Kg8PrCuk5rTg8zQY3qqKqE1UO7fgNy/oTcoc0qBRn
-         W20/QsZ8lQLE95Mo9sCD6KUSuYo4iLX866Kly9UK7r+sxlAIji5y9JdCY1JDhqVvoHkU
-         cBEw==
-X-Gm-Message-State: ANoB5pknJ2+w4y7MpI3KKiLd0ZFQxg/qfRs29ulS1P3JZV3GWVILgyMI
-        JWgKXePPAviQwHHyogjrpQuHOQ==
-X-Google-Smtp-Source: AA0mqf6pvs2Ot7tvrbn/hAGy2dWaL6aheYF7QSXxMPfRF3XoXTcWJmjuwbOL3xWmKDrCeuxZLZsEIw==
-X-Received: by 2002:ac2:5281:0:b0:4b3:ff4b:80a2 with SMTP id q1-20020ac25281000000b004b3ff4b80a2mr6608868lfm.281.1669389807525;
-        Fri, 25 Nov 2022 07:23:27 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l11-20020a2ea80b000000b002771888fda1sm389514ljq.84.2022.11.25.07.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 07:23:27 -0800 (PST)
-Message-ID: <65314720-30ea-fdc1-4002-cce12d9f3cb9@linaro.org>
-Date:   Fri, 25 Nov 2022 16:23:25 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cy7rH5pyJVnH/+6lKqlr5TaljKJablOrGP9ii/rIiII=;
+        b=Y47L3eJPixCQJ8OfVdGyrFKFdMNjVcEgF1OqeeiqmB0uHQKdlvg1OcTuH85QrGvf3n
+         HmBw0+Z3uJTEsG3ODqxv+gulC5NoOVJrku6yoHD3tBaRecEVYw6pQL3g6V8Kt9bae3Jj
+         FEA1bF/Bq88e4VXF5oHeTfKhygtaOrrMgxR9ahdc9IY9P2rgXMcoGqbrmuuepWS8ByBB
+         vpr4tmv9rIUA37MfXOdprYx5qGc/V9SHz4PcJUAEZrAx0Vu+se8/o3gd8WuSpTn4dD0G
+         XJjqnb23wsV4eq6bU82hUikHxs/iuBnt9vY1Ih7EFXJrcxRVOYC8Hi9RDe1Cce80Srdh
+         0QyQ==
+X-Gm-Message-State: ANoB5pkp5opbFwaNMmwvmd/fZsUwCx/DjwtUuzFY7Pb7Hgz9ELqZa/Ij
+        I9Mehy+3dzb2+pflNVq7geumxw==
+X-Google-Smtp-Source: AA0mqf5K+x97VLQnH3hlsKXfJmEoZzglbn0gl1ASwDslzHBNOHw8t7x5/ZFMQCaxMBNHh0HFbx93NQ==
+X-Received: by 2002:a2e:3c18:0:b0:279:8173:4396 with SMTP id j24-20020a2e3c18000000b0027981734396mr3072327lja.345.1669390646369;
+        Fri, 25 Nov 2022 07:37:26 -0800 (PST)
+Received: from melexis.com ([91.192.183.26])
+        by smtp.gmail.com with ESMTPSA id q21-20020a05651232b500b004ac980a1ba1sm567760lfe.24.2022.11.25.07.37.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 07:37:25 -0800 (PST)
+Date:   Fri, 25 Nov 2022 17:37:22 +0200
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: Re: [PATCH v3 7/8] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor
+Message-ID: <Y4DhMvjLNertB2xp@melexis.com>
+References: <cover.1669381013.git.vkh@melexis.com>
+ <343c0ab708ab35ec101bcefbe2fda5c15d5e6bfd.1669381013.git.vkh@melexis.com>
+ <756daf8d-9d4e-12f7-4d3a-e9da8480ed6a@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: clocks: imx8mp: Add ID for usb
- suspend clock
-Content-Language: en-US
-To:     Jun Li <jun.li@nxp.com>, Abel Vesa <abel.vesa@linaro.org>
-Cc:     "sboyd@kernel.org" <sboyd@kernel.org>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-References: <1664549663-20364-1-git-send-email-jun.li@nxp.com>
- <Y3ufuH1UAT+rsjl7@linaro.org>
- <PA4PR04MB964010FFDD808E0078913C1F890E9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PA4PR04MB964010FFDD808E0078913C1F890E9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <756daf8d-9d4e-12f7-4d3a-e9da8480ed6a@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 11:55, Jun Li wrote:
+On Fri, Nov 25, 2022 at 04:19:16PM +0100, Krzysztof Kozlowski wrote:
+> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
+> > Add device tree binding of the mlx7502x and update MAINTAINERS
+> > 
+> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> > ---
+> >  .../bindings/media/i2c/melexis,mlx7502x.yaml  | 126 ++++++++++++++++++
+> 
+> I mentioned you have wrong subject prefix. Only one "media" in the
+> subject prefix is needed, so:
+> "media: dt-bindings: Add melexis,mlx7502x camera sensor"
+Ah, I missed it. Thanks for review.
+> 
+> >  MAINTAINERS                                   |   1 +
+> >  2 files changed, 127 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+> > 
 > 
 > 
->> -----Original Message-----
->> From: Abel Vesa <abel.vesa@linaro.org>
->> Sent: Monday, November 21, 2022 11:57 PM
->> To: Jun Li <jun.li@nxp.com>
->> Cc: sboyd@kernel.org; abelvesa@kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
->> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
->> dl-linux-imx <linux-imx@nxp.com>; mturquette@baylibre.com;
->> l.stach@pengutronix.de; Peng Fan <peng.fan@nxp.com>;
->> alexander.stein@ew.tq-group.com; gregkh@linuxfoundation.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linux-clk@vger.kernel.org
->> Subject: Re: [PATCH v4 1/3] dt-bindings: clocks: imx8mp: Add ID for usb
->> suspend clock
->>
->> On 22-09-30 22:54:21, Li Jun wrote:
->>> usb suspend clock has a gate shared with usb_root_clk.
->>>
->>> Fixes: 9c140d9926761 ("clk: imx: Add support for i.MX8MP clock driver")
->>> Cc: stable@vger.kernel.org # v5.19+
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>> Signed-off-by: Li Jun <jun.li@nxp.com>
->>
->> Applied all. Thanks.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Hi Abel,
+> Best regards,
+> Krzysztof
 > 
-> Could you please also take the dts patch[1] in this series?
-> As the dts patch has a build dependency on the clk patches,
-> So Shawn suggested you take the dts patch too [2].
-> 
-> [1] https://www.spinics.net/lists/linux-clk/msg75904.html
-> [2] https://www.spinics.net/lists/arm-kernel/msg1013220.html
 
-DTS cannot go via driver tree. Share the header from DTS tree to driver
-to solve it... or add defines to your DTS.
-
-Best regards,
-Krzysztof
+-- 
+--
+Volodymyr Kharuk
+Embedded Software Engineer
+Melexis-Ukraine
+Mykhaila Kotel'nykova St, 4, Kyiv
+Mobile phone: +38 050 346 5527
+www.melexis.com
+---
+The contents of this e-mail are CONFIDENTIAL AND PROPRIETARY. Please read
+our disclaimer at http://www.melexis.com/mailpolicy
 
