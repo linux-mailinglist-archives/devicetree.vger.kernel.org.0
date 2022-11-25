@@ -2,59 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FD4638BCE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:05:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40943638BE5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 15:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiKYOF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 09:05:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59040 "EHLO
+        id S229798AbiKYOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 09:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbiKYOF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:05:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC231E71F;
-        Fri, 25 Nov 2022 06:05:27 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9C50BB82A92;
-        Fri, 25 Nov 2022 14:05:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC909C433C1;
-        Fri, 25 Nov 2022 14:05:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669385125;
-        bh=DRn5Jso4mMhB2yfvIbIsbzLAh0LJRniW2BI/aXXkdw4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aeDB3wI00BtU1YX7z0iwD/DGtnFkNSSvkfG69YeGaIh+RBOgWyxQLhl3zJFgibl67
-         sk38YAOFs2go1I1/FiFZz2mdWNxi5Nw/eILM2kFXJ0C/b/DRQji2aLd5EpJgAYKrpR
-         NC8ccLP5jy1a4FNFpwG/hi132JAWyjiWUO/shFbTgvvXh0H559OB5e/piwJgw/8DcJ
-         ivVI3Ne26KUMEIFYGDYtA/unAxlx3mwHmPjoOlR1VlRq+GGlzYYIFz1tULhfd2qEoF
-         ug8wW05+w/9Iu+PMgYpbX+Cqpj1U3CqkfaJQeMGsJ4FojzhqXnD85gqNCLXVLGwPcS
-         OFUrNMMEFbsuQ==
-Date:   Fri, 25 Nov 2022 14:05:19 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Sriranjani P <sriranjani.p@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Subject: Re: [PATCH 2/4] dt-bindings: soc: samsung: exynos-sysreg: split from
- syscon
-Message-ID: <Y4DLn3BkC2SCahee@google.com>
-References: <20221125112201.240178-1-krzysztof.kozlowski@linaro.org>
- <20221125112201.240178-2-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221125112201.240178-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        with ESMTP id S229589AbiKYOMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 09:12:30 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B34D4D
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:12:27 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id s5so6511980edc.12
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 06:12:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rm7cR6ae+qOInD+66DgxiENpanQtPaQwJadOEH3Sp+I=;
+        b=nVWakQVqW5tEZpFHHiKt0Psz1twbLwXTUSuYUj0W6+XMkAH0yLZYOcNvKrUcqZro0h
+         acVL/kmiLOek1ZtQC+e1XVOLM9jJwQsPxhdyWJRVMa6JwI0n1TrMMcEXTeSbL3j5JsD+
+         3NnSLoa1bjJG0cf7NrxG0WrhZ55LUKll9/IMgc+7oU9LDA1oG2CsbmAbuynewWZsePr5
+         htR95SphAqEHdAGqWKnoGeFCR6p1D23GCh4eZvG9stI85P+p49y0q3XIg/1e4KoKZ7Y/
+         exd9y9pBkr+QT7lYMOnjfv/IdIM6f5O+fgzrw+z6qx0TWK3dj4ZhTRjdyHCOHZkOK51u
+         XS5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rm7cR6ae+qOInD+66DgxiENpanQtPaQwJadOEH3Sp+I=;
+        b=7k77Nj1nhq+cOPVHoUVvSW83nB4CmvDkl53BSHEG4dpy+u8Fo0ogSaYeUNFVMa6PzW
+         /y6YbwEpPggY7YK/kWIZtX6IQFdTIeo4K9qJC7KzgZ5+Ldg5GqoGWXLvc2LMQzyQBTPK
+         4YwbQOieM04GfCY2kpBN22RNG9ePkVoqS0eUhG3jbKsGiESmMTbNjJy4bOWLAnWWFUP0
+         pFQha8xaBe7WV+9HI93uTfqd95d6fbzJlWQQT5Rxc/6Py+VvGM2P6z7yI/NgKxkDL/Vz
+         BhxQR8Hti2FKHvNthboVtKmbidb9OHtRfv4/PmOgyHrV43xw3eWizFpmnZIjPxVAR77n
+         7/Cw==
+X-Gm-Message-State: ANoB5pkfYGsGPgum9/dSQ3jJrh1PQVN2cpUufA3vPu+20hvaDGhs6CjV
+        aaWnUU/9P6OusFbK6w83i69hgw==
+X-Google-Smtp-Source: AA0mqf7x6SFiLyww87SyC8IGDI3uH4romvj+1/ZEa3aKkBGiDIMGQ9K99FuPICtZ1IRErGGVVqPvIw==
+X-Received: by 2002:a05:6402:5011:b0:469:9c84:3bdd with SMTP id p17-20020a056402501100b004699c843bddmr22477624eda.302.1669385545972;
+        Fri, 25 Nov 2022 06:12:25 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id p35-20020a056402502300b00463b9d47e1fsm1805512eda.71.2022.11.25.06.12.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Nov 2022 06:12:25 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 25 Nov 2022 15:12:24 +0100
+Message-Id: <COLFSBYDJQVH.1Q9V9ISPWR6ZX@otso>
+To:     "Johan Hovold" <johan@kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add
+ sm6350 compatible
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.13.0
+References: <20221125092749.46073-1-luca.weiss@fairphone.com>
+ <Y4CP9fwhDXsLu57Q@hovoldconsulting.com> <COLABNHBQ1DG.1PB8SDY3FW1YY@otso>
+ <Y4CWoT52Q8jnm/dF@hovoldconsulting.com> <COLE3UWQCQ8R.XY36EY07DDDK@otso>
+ <Y4DImjwHQNlWPEKh@hovoldconsulting.com>
+In-Reply-To: <Y4DImjwHQNlWPEKh@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,27 +84,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Nov 2022, Krzysztof Kozlowski wrote:
+On Fri Nov 25, 2022 at 2:52 PM CET, Johan Hovold wrote:
+> On Fri, Nov 25, 2022 at 01:53:25PM +0100, Luca Weiss wrote:
+> > > Parent clocks (ref_clk_src) should not be included in the binding, bu=
+t
+> > > rather be handled by the clock driver. For example, see:
+> > >
+> > > 	https://lore.kernel.org/all/20221121085058.31213-4-johan+linaro@kern=
+el.org/
+> > > 	https://lore.kernel.org/all/20221115152956.21677-1-quic_shazhuss@qui=
+cinc.com/
+> >=20
+> > So I assume you mean that I shouldn't do this:
+> >=20
+> > clocks =3D <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> >      <&rpmhcc RPMH_QLINK_CLK>,
+> >      <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> >      <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> > clock-names =3D "aux", "ref", "com_aux", "usb3_pipe";
+> >=20
+> > But for "ref" use GCC_USB3_PRIM_CLKREF_CLK? That also seems to work
+> > fine, also if RPMH_QLINK_CLK is not used from Linux-side (checked in
+> > debugfs).
+>
+> Exactly. Since the vendor dts describes RPMH_QLINK_CLK as parent of ref,
+> I'd suggest modelling that in the clock driver. Perhaps it has just been
+> left on by the boot firmware. Someone with access to docs may be able
+> explain how it is supposed to be used.
 
-> Split Samsung Exynos SoC SYSREG bindings to own file to narrow the
-> bindings and do not allow other parts of syscon.yaml.  This allows
-> further customization of Samsung SoC bindings.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Cc: Sriranjani P <sriranjani.p@samsung.com>
-> Cc: Chanho Park <chanho61.park@samsung.com>
-> Cc: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../devicetree/bindings/mfd/syscon.yaml       |  6 ---
+RPMH_QLINK_CLK is also in msm-4.19 ref_clk_src for
+GCC_UFS_MEM_CLKREF_CLK (ufsphy_mem) and also ref_clk (ufshc_mem).
 
-Acked-by: Lee Jones <lee@kernel.org>
+Honestly since it works fine without adding this to gcc driver and I
+don't really know much about clk (and have no docs for this) would it be
+okay to just ignore RPMH_QLINK_CLK?
 
->  .../soc/samsung/samsung,exynos-sysreg.yaml    | 39 +++++++++++++++++++
->  2 files changed, 39 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+>
+> > And for the driver patch, I've discovered that this phy doesn't have
+> > separate txa/tbx region, so dts was also wrong there. Do you know if
+> > there's a way to test DP phy initialization without having all the USB-=
+C
+> > plumbing in place? Might be good to validate at least phy init works if
+> > we're already touching all of this.
+>
+> Do you mean that it appears to work as sc8280xp with txa/txb shared by
+> both the USB and DP parts?
 
--- 
-Lee Jones [李琼斯]
+Yes, looks like it. Can't find any evidence pointing in any other
+direction at least, everything I've seen shows .txa =3D 0x1200 & .txb =3D
+0x1600.
+
+>
+> I guess you need a proper setup to test it properly. Not sure what
+> you'll be able to learn otherwise, apart from whether it passes basic
+> smoke testing.
+
+Currently it's not even smoke testing because dp phy is never getting
+enabled because there's no consumer. That's why I guess it was never
+noticed it's wrongly described in dts.
+
+Regards
+Luca
+
+>
+> Johan
+
