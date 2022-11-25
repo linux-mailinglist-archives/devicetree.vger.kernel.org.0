@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1398D638EC2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 18:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B9E638EC7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 18:06:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbiKYRF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 12:05:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43460 "EHLO
+        id S229960AbiKYRGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 12:06:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiKYRF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 12:05:56 -0500
+        with ESMTP id S230053AbiKYRGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 12:06:01 -0500
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D1CC4509E;
-        Fri, 25 Nov 2022 09:05:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9123247333;
+        Fri, 25 Nov 2022 09:06:00 -0800 (PST)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 880BB2B;
-        Fri, 25 Nov 2022 09:06:01 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E0C3C2B;
+        Fri, 25 Nov 2022 09:06:06 -0800 (PST)
 Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id BE9453F73B;
-        Fri, 25 Nov 2022 09:05:53 -0800 (PST)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 23E203F73B;
+        Fri, 25 Nov 2022 09:05:59 -0800 (PST)
 From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        James Clark <james.clark@arm.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
+To:     devicetree@vger.kernel.org,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH] arm64: dts: fvp: Add SPE to Foundation FVP
-Date:   Fri, 25 Nov 2022 17:05:51 +0000
-Message-Id: <166939568020.1879157.14080669349145298758.b4-ty@arm.com>
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH] ARM: dts: vexpress: align LED node names with dtschema
+Date:   Fri, 25 Nov 2022 17:05:57 +0000
+Message-Id: <166939568022.1879157.7297800855222309879.b4-ty@arm.com>
 X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221117102536.237515-1-james.clark@arm.com>
-References: <20221117102536.237515-1-james.clark@arm.com>
+In-Reply-To: <20221125144112.476817-1-krzysztof.kozlowski@linaro.org>
+References: <20221125144112.476817-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,15 +46,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Nov 2022 10:25:36 +0000, James Clark wrote:
-> Add SPE DT node to FVP model. If the model doesn't support SPE (e.g.,
-> turned off via parameter), the driver will skip the initialisation
-> accordingly and thus is safe.
+On Fri, 25 Nov 2022 15:41:12 +0100, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern.
+> 
+>   vexpress-v2p-ca9.dtb: leds: 'user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
 >
+> 
+
 Applied to sudeep.holla/linux (for-next/juno), thanks!
 
-[1/1] arm64: dts: fvp: Add SPE to Foundation FVP
-      https://git.kernel.org/sudeep.holla/c/3bd7a0219082
+[1/1] ARM: dts: vexpress: align LED node names with dtschema
+      https://git.kernel.org/sudeep.holla/c/e15031539490
 --
 Regards,
 Sudeep
