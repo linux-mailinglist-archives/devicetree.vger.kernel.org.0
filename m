@@ -2,125 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FC06389B3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 037956389BB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 13:27:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiKYMZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 07:25:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
+        id S229493AbiKYM1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 07:27:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiKYMZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:25:34 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31AB0450AC;
-        Fri, 25 Nov 2022 04:25:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669379133; x=1700915133;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1MH4WmgIg0ZlYvyJXa/5tJQIPZf6/zpnA84EQYEbUiY=;
-  b=I71gNujIcpCa85on50Gw8CVKvthmEtnpQ2ZYV3+WQlI5Sn+88HblYAf4
-   eDqd6yUsmgW1J1JBvEr4JSErIiAV/smLBF2eQeLOsnGH/z3NwdAoT5E17
-   9oxRUeWqo/WrrH0F62XznoCfdhv2ma//rVz347j2GwHfTjvZXQIqqgLWx
-   oSXfGufW3afVrZg7HtjxvKZ7WOUpAkKXD1fXCSJCjIpc1rs9bObZyvA1E
-   sYGG1vAxCAQFpVJKfvQAy+TdE2USayKP75u9Bsjeum53VKVQ3Hm/U8rJb
-   1f8fAn1XMLR2P33rXa4dH6IlZ97hIO00F4pYxVuRiUcoPY2+NU6jH2NPp
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
-   d="scan'208";a="185169434"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 05:25:32 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 25 Nov 2022 05:25:31 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Fri, 25 Nov 2022 05:25:28 -0700
-Date:   Fri, 25 Nov 2022 12:25:10 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v4 6/7] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
- binding documentation for L2 cache controller
-Message-ID: <Y4C0Jn1hl81ZCxOt@wendy>
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <70d1bfde-f57f-1741-08d3-23e362793595@linaro.org>
- <CA+V-a8s2awLp=YvbhA1Ohe500Oh1easLUcG9V4_FWov7Pf2i6g@mail.gmail.com>
- <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org>
+        with ESMTP id S229491AbiKYM1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 07:27:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20801DDFB;
+        Fri, 25 Nov 2022 04:27:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4C2CB82A92;
+        Fri, 25 Nov 2022 12:27:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B504C433D6;
+        Fri, 25 Nov 2022 12:27:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669379269;
+        bh=PVmnxrUgHUfQVAVze+UCc6oLNX2A8iRf2P5L11tfoN8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZtGpgHJfPzraVTm7xpYBum+KkpJ5ZEY5ZfvYqxbeKXjclEHVuEjPPKJ+b7ZlM7adC
+         5IiEbHqztwFnRAjYQmHerigmds9daLNuTpkNf//6+M1a+XszUjkOTZtykeIgsepRH+
+         RIoJoMZsq+lEzehJ0Pc2CAkt+5YLlUL9U544tSyKr1Z8Y+dqo5S01/UrxOqAlBrS1T
+         AoK13jv/9IYY3xqTduLI5SrqyAHxEbYyQdJCZ1hhWY/oa4kxJjDV1jObVor2s0YU5w
+         dpy+dfZK1ZPvZU5WajvzwV0OpzTdNmpm/Pk1iH9lKSolD6G2qGesbpO15upwrh3+Dg
+         i/oVc+nK/O0Kw==
+Message-ID: <cd9051ca-9f79-31fc-870d-04dce5139ca9@kernel.org>
+Date:   Fri, 25 Nov 2022 14:27:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 2/5] PCI: j721e: Add per platform maximum lane settings
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, lpieralisi@kernel.org,
+        robh@kernel.org, kw@linux.com, bhelgaas@google.com,
+        krzysztof.kozlowski@linaro.org, vigneshr@ti.com,
+        tjoseph@cadence.com, sergio.paracuellos@gmail.com,
+        pthombar@cadence.com, linux-pci@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221124081221.1206167-1-mranostay@ti.com>
+ <20221124081221.1206167-3-mranostay@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221124081221.1206167-3-mranostay@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 01:12:18PM +0100, Krzysztof Kozlowski wrote:
-> On 25/11/2022 11:34, Lad, Prabhakar wrote:
-> >>> +/* Device, Non-bufferable */
-> >>> +#define AX45MP_PMACFG_MTYP_DEV_NON_BUF                       (0 << 2)
-> >>> +/* Device, bufferable */
-> >>> +#define AX45MP_PMACFG_MTYP_DEV_BUF                   (1 << 2)
-> >>> +/* Memory, Non-cacheable, Non-bufferable */
-> >>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF     (2 << 2)
-> >>> +/* Memory, Non-cacheable, Bufferable */
-> >>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF         (3 << 2)
-> >>
-> >> What are all these? They don't look like flags, because 3 = 1 | 2...
-> >> they don't look like constants, because we do not use shifts in
-> >> constants. Are these some register values? I also do not see the header
-> >> being used in the code, so why having a bindings header if it is not
-> >> used (DTS is not usage...)?
-> >>
-> > These are register bit values for the MTYP[5:2] field. The DTS example
-> > in the binding doc (above) uses these macros. I haven't included the
-> > DTS/I patches with this patchset yet do think I should?
+Hi Matt,
+
+On 24/11/2022 10:12, Matt Ranostay wrote:
+> Various platforms have different maximum amount of lanes that can be
+> selected. Add max_lanes to struct j721e_pcie to allow for detection of this
+> which is needed to calculate the needed bitmask size for the possible lane
+> count.
 > 
-> Then why storing it as bindings? Bindings headers describe the interface
-> implemented by drivers and used by DTS, but this is not implemented by
-> drivers.
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  drivers/pci/controller/cadence/pci-j721e.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
+> index cc83a8925ce0..8990f58d64d5 100644
+> --- a/drivers/pci/controller/cadence/pci-j721e.c
+> +++ b/drivers/pci/controller/cadence/pci-j721e.c
+> @@ -47,8 +47,6 @@ enum link_status {
+>  
+>  #define GENERATION_SEL_MASK		GENMASK(1, 0)
+>  
+> -#define MAX_LANES			2
+> -
+>  struct j721e_pcie {
+>  	struct cdns_pcie	*cdns_pcie;
+>  	struct clk		*refclk;
+> @@ -71,6 +69,7 @@ struct j721e_pcie_data {
+>  	unsigned int		quirk_disable_flr:1;
+>  	u32			linkdown_irq_regfield;
+>  	unsigned int		byte_access_allowed:1;
+> +	unsigned int		max_lanes;
+>  };
+>  
+>  static inline u32 j721e_pcie_user_readl(struct j721e_pcie *pcie, u32 offset)
+> @@ -290,11 +289,13 @@ static const struct j721e_pcie_data j721e_pcie_rc_data = {
+>  	.quirk_retrain_flag = true,
+>  	.byte_access_allowed = false,
+>  	.linkdown_irq_regfield = LINK_DOWN,
+> +	.max_lanes = 2,
+>  };
+>  
+>  static const struct j721e_pcie_data j721e_pcie_ep_data = {
+>  	.mode = PCI_MODE_EP,
+>  	.linkdown_irq_regfield = LINK_DOWN,
+> +	.max_lanes = 2,
+>  };
+>  
+>  static const struct j721e_pcie_data j7200_pcie_rc_data = {
+> @@ -302,23 +303,27 @@ static const struct j721e_pcie_data j7200_pcie_rc_data = {
+>  	.quirk_detect_quiet_flag = true,
+>  	.linkdown_irq_regfield = J7200_LINK_DOWN,
+>  	.byte_access_allowed = true,
+> +	.max_lanes = 2,
+>  };
+>  
+>  static const struct j721e_pcie_data j7200_pcie_ep_data = {
+>  	.mode = PCI_MODE_EP,
+>  	.quirk_detect_quiet_flag = true,
+>  	.quirk_disable_flr = true,
+> +	.max_lanes = 2,
+>  };
+>  
+>  static const struct j721e_pcie_data am64_pcie_rc_data = {
+>  	.mode = PCI_MODE_RC,
+>  	.linkdown_irq_regfield = J7200_LINK_DOWN,
+>  	.byte_access_allowed = true,
+> +	.max_lanes = 1,
+>  };
+>  
+>  static const struct j721e_pcie_data am64_pcie_ep_data = {
+>  	.mode = PCI_MODE_EP,
+>  	.linkdown_irq_regfield = J7200_LINK_DOWN,
+> +	.max_lanes = 1,
+>  };
+>  
+>  static const struct of_device_id of_j721e_pcie_match[] = {
+> @@ -432,7 +437,7 @@ static int j721e_pcie_probe(struct platform_device *pdev)
+>  	pcie->user_cfg_base = base;
+>  
+>  	ret = of_property_read_u32(node, "num-lanes", &num_lanes);
+> -	if (ret || num_lanes > MAX_LANES)
+> +	if (ret || num_lanes > data->max_lanes)
+>  		num_lanes = 1;
 
-IIUC, some of these properties are non-discoverable attributes of the
-cache controller. I see two things that could be done here that are
-"better" than #defining bits:
-- add an RZ/Five specific compatible and use match data to set the
-  attributes which is only possible if the pma-regions are set on a
-  per SoC basis
-- make pma-regions into a child node, in which andestech,non-cacheable
-  andestech,non-bufferable etc are properties of the child node
+num_lanes = data->max_lanes; ?
 
-Prabhakar, does that make sense or am I off with my understanding of the
-attributes?
+Should we also print an error message saying that invalid num-lanes
+was supplied in device tree?
+Is it better to error out of probe?
 
-Thanks,
-Conor.
+>  	pcie->num_lanes = num_lanes;
+>  
 
+cheers,
+-roger
