@@ -2,63 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0A76386E1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B9D6386F4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:03:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiKYJ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 04:58:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48766 "EHLO
+        id S229810AbiKYKC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 05:02:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiKYJ5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:57:48 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947372C6;
-        Fri, 25 Nov 2022 01:56:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669370215; x=1700906215;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lydKM6kU5fun6DC5IqmhCzMnSTfb8qo1b4UPgphoXdk=;
-  b=gQZAoOLFd+fPbYuAmmmzfQI59cX8qk5ohV6geGhmozUKLK69UyZjYCD/
-   aUd4fmE8C40nhkSt+utaD3kEpi1sZdtKCR2Mwb2bYuC/c0RZdAn2GmTFo
-   To1HPLrxCXVGcFY2tGDfKmuwYAv5bbsBu+dXQ8SUPjeNw47S9Z7QMkaSD
-   bB1zAp87cC6zAp4IpFqShBk2BNEWmrzY1S3J7WuPNoVsLvcVE7cTI0C9j
-   amXhur/t7vqXkegyKarLKepi9j5X46Ow9qPsta9bQzbt58ktHAVVMpGE4
-   KgiX9RYZp5q6xTTeeA7deZ/APQLmOfN40H81zTFZJ9+j5l8gByH9x4k2D
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
-   d="scan'208";a="190496059"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 02:56:54 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 25 Nov 2022 02:56:53 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Fri, 25 Nov 2022 02:56:53 -0700
-Date:   Fri, 25 Nov 2022 11:01:44 +0100
-From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
-To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
-        UNGLinuxDriver <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH] ARM: dts: lan966x: Add otp support
-Message-ID: <20221125100144.332tizam7tonqqtz@soft-dev3-1>
-References: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
- <bdce1cb7-a771-4ec6-c75b-f547d26f95b3@microchip.com>
+        with ESMTP id S229773AbiKYKCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:02:50 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD3625C61;
+        Fri, 25 Nov 2022 02:02:49 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id s5so5660372edc.12;
+        Fri, 25 Nov 2022 02:02:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WHVG/ftyLvsI2SLH3rhoCHZquoZnr7zU2xMaBrAelgg=;
+        b=nBSz6UY3qO3u7pzvCu/9sA4R5b3f0sCG0JEJ6y5sDJmo4jOuZljZSY5Kx85GcQBqUH
+         u7+e9RK1KwZnZHpTcDlT9gYxMmCQL2AfWK/E5W4fh98OKTdQEpPPCjGQg035INwJVfnZ
+         jukZLROa1+QwmCyRT8jtBdW8sfUBvhYjVwdA/ghxCPDp8stJxjhLb8n8/h9GyIARHNqv
+         syA/KbDn+Oxd57kaAbwCdPZaJhklrLgy4mtczKkR3d1R67fIjJVMsctbq5wcomOqnblG
+         FpSCcjWxeUtKlvLSNpJyt7YzfT9S42QEdDeKtBmAmZTVpxiBrcWvho5guuA1hauRwJwR
+         f75g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WHVG/ftyLvsI2SLH3rhoCHZquoZnr7zU2xMaBrAelgg=;
+        b=8ByzG+Z1QeXoMaxd2C+MrFj6ECffwwLry48VXFx8qvi1KeeH6UgP+p8X2SoNfpsEzg
+         fK5uaHW5ytlNWcNbTX4CnlaqxnriL5sI4L0ZreXJbCp+Z0HEu12pQNfwzgkHD10Ls2A/
+         o1ry6YdzLfxuQsDYDf79HdPV26VoU4c2At/A4dtT8bjCTufbN6O4VWpCY78tn+LRSkA4
+         a04KGY0JcaKxzngo2HWOyjGUSauUhTFTuSKy+H8vENgT7qCKaWKA/ucSvR+mfEOyL8BP
+         gKA1c1Nuzc0dMnlSWgTE+k8TskG2x90ELzt5oJbDRBbYecmkRdbC+xBiYw4DGwd8aqoQ
+         AnUg==
+X-Gm-Message-State: ANoB5pkSZ+kq3QJIV4xXc8Z2NkHHXockx7DQvMZ2ecB89WIKTOLs7oxZ
+        6h7roCL5UR/709f6Aorz/Vl6aH3CmDjaSYVhzno=
+X-Google-Smtp-Source: AA0mqf6qdSUyHdl8QC7NBwyDgjeso78W0GVOCIlAOjzRLR1Pa8cTfhmrPWjNmHdP97HIJya+K4baeTLeV83DY1C7pMo=
+X-Received: by 2002:a05:6402:2987:b0:45c:a9d3:d535 with SMTP id
+ eq7-20020a056402298700b0045ca9d3d535mr33749986edb.0.1669370568259; Fri, 25
+ Nov 2022 02:02:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <bdce1cb7-a771-4ec6-c75b-f547d26f95b3@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y3/LgZkR1hkblJ8D@spud> <4801607.MHq7AAxBmi@diego>
+In-Reply-To: <4801607.MHq7AAxBmi@diego>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 25 Nov 2022 10:02:21 +0000
+Message-ID: <CA+V-a8sT8VxpeM=eBgmDeojOka-LDmvP4JkhVfEDKi3D3VOsmw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] riscv: asm: alternative-macros: Introduce
+ ALTERNATIVE_3() macro
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,51 +89,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/25/2022 09:23, Claudiu Beznea - M18063 wrote:
-> Hi, Horatiu,
+Hi Heiko,
 
-Hi Claudiu,
+On Thu, Nov 24, 2022 at 7:58 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Donnerstag, 24. November 2022, 20:52:33 CET schrieb Conor Dooley:
+> > On Thu, Nov 24, 2022 at 05:22:01PM +0000, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Introduce ALTERNATIVE_3() macro.
+> >
+> > Bit perfunctory I think! There's a lovely comment down below that would
+> > make for a better commit message if you were to yoink it.
+> > Content looks about what I'd expect to see though.
+>
+> Also both the comment on the original ALTERNATIVE_2 and the new ALTERNATI=
+VE_3
+> should probably be merged into a single comment explaining this once for =
+all
+> ALTERNATIVE_x variants.
+>
+> Especially with the dma stuff, I'm pretty sure we'll get at least an ALTE=
+RNATIVE_4
+> if not even more ;-) . So we defnitly don't want to repeat this multiple =
+times.
+>
+Do agree. How about the below?
 
-> 
-> On 16.09.2022 22:49, Horatiu Vultur wrote:
-> > Add OTP (one time programmable) support.
-> > The both lan966x SocS (lan9662 and lan9668) have the same OTP IP.
-> 
-> If OTP IP is the same for both lan966x is there a reason you've added
-> compatibles for each SoC variants?
+/*
+ * Similar to what ALTERNATIVE_2() macro does but with an additional
+ * vendor content.
+ */
 
-When I was adding the device tree binding, Krzystof mention not to have
-any wilcards in compatible string [0].
+So the other ALTERNATIVE_2+() macros will keep on building on it.
 
-[0] https://lore.kernel.org/lkml/550e652e-4541-c1e6-33a7-d5555f0cb266@linaro.org/
-
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> > 
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  arch/arm/boot/dts/lan966x.dtsi | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-> > index 23665a0429906..784caba369485 100644
-> > --- a/arch/arm/boot/dts/lan966x.dtsi
-> > +++ b/arch/arm/boot/dts/lan966x.dtsi
-> > @@ -163,6 +163,11 @@ port7: port@7 {
-> >  			};
-> >  		};
-> >  
-> > +		otp: otp@e0021000 {
-> > +			compatible = "microchip,lan9668-otpc", "microchip,lan9662-otpc";
-> > +			reg = <0xe0021000 0x300>;
-> > +		};
-> > +
-> >  		flx0: flexcom@e0040000 {
-> >  			compatible = "atmel,sama5d2-flexcom";
-> >  			reg = <0xe0040000 0x100>;
-> 
-
--- 
-/Horatiu
+Cheers,
+Prabhakar
