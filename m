@@ -2,153 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D470638856
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E449B63887C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 12:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbiKYLM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 06:12:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36262 "EHLO
+        id S229502AbiKYLSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 06:18:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiKYLMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:12:25 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF06122B23;
-        Fri, 25 Nov 2022 03:12:23 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 538146602B09;
-        Fri, 25 Nov 2022 11:12:21 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669374742;
-        bh=yrGzlYyUJPuHN8Ic2oxE9qynptqYof+6qB23kgdmUJM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=G+ubczkD8YTiVw5jS7J4Sy4StxTZ7mOtUU4yMZPy4LeiF+B6WWeQO8W1iP/rcRzc2
-         5j6rV5MNGp66G89nKFaz/DNMiF3F6noRSrUtAzjRtFpx2uDP9hHbiIAdsJwIEqu2w/
-         0IseGaeWs01mmFd2QmN4zPWBDTK2PWILjfXKY1e3rhm1SEGb4htuhd2+ub6WQi/COz
-         o/Y+i9R5ESajKuivLjYvCz3mf6YqQjiMk0wWD8S5FtXMNWrOUGZxyDIJ9BpOEIzhgZ
-         cvxKpbN7UQhHkwBvy2IHx03sVRRNwXGH7XOIjIxfUAmWYAnXc5aYJpzyaOxtu+PC15
-         MrrZ6AwI87SOg==
-Message-ID: <375d45fa-fdfc-37a5-9d32-b0412cad7bc0@collabora.com>
-Date:   Fri, 25 Nov 2022 12:12:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
- MT7986
-To:     Daniel Golle <daniel@makrotopia.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229452AbiKYLSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 06:18:13 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC565233A9;
+        Fri, 25 Nov 2022 03:18:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669375091; x=1700911091;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=exPqwwcPvWlmDULPLtKdVviUlO9FBM4xFir3ZuZSLAQ=;
+  b=ZTSyUdmhVjkgmqKrvIhtqvr0KildAnt7x8C3GJE6qJutJnMUtxxXN4gw
+   F2jhpmB6P+p+bjPyhtjvMrM94hvHZclHJR7plrFnedS455LHDglaPW9tH
+   wLJxo3Jq6W6SUCTGX0N1kealjUyYd3Mz+CT9gVtso9iycgLTrJPEcObvr
+   81VlKpUAFAfls9GZtQI3ENIp+dSXIhmsUSciCxLMskt5AeIQVSyTyuAf8
+   kc4f1loLtSA5QcWrGoiF8y2Zzcgo+ah8URU9dN37evbNgviVUgS64aFlG
+   cw4TOJ0jDzPFpU/eZTGMRfYVBEjxT6y6Bg9NDEu1nIYvq0RZcyfcnT6/c
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="188642591"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 04:18:10 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 25 Nov 2022 04:18:02 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Fri, 25 Nov 2022 04:18:00 -0700
+Date:   Fri, 25 Nov 2022 11:17:42 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Walker Chen <walker.chen@starfivetech.com>
+CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Zhi Mao <zhi.mao@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-References: <Y39PjU1BqBB8tZ98@makrotopia.org>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <Y39PjU1BqBB8tZ98@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/4] soc: starfive: Add StarFive JH71XX pmu driver
+Message-ID: <Y4CkVnmdEhCsyckH@wendy>
+References: <20221118133216.17037-1-walker.chen@starfivetech.com>
+ <20221118133216.17037-4-walker.chen@starfivetech.com>
+ <Y3giSQ0YccyY2tVk@spud>
+ <95b05ac3-31a9-50dc-8eeb-eb3a9f883a6b@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <95b05ac3-31a9-50dc-8eeb-eb3a9f883a6b@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/11/22 12:03, Daniel Golle ha scritto:
-> Add new compatible string for MT7986 PWM and list compatible units for
-> existing entries. Also make sure the number of pwm1-X clocks is listed
-> for all supported units.
+On Fri, Nov 25, 2022 at 06:04:59PM +0800, Walker Chen wrote:
+> On 2022/11/19 8:24, Conor Dooley wrote:
+> > On Fri, Nov 18, 2022 at 09:32:15PM +0800, Walker Chen wrote:
+
+> >> +void starfive_pmu_hw_event_turn_off(u32 mask)
+> >> +{
+> >> +	pmu_writel(mask, HW_EVENT_TURN_OFF_MASK);
+> >> +}
+> >> +EXPORT_SYMBOL(starfive_pmu_hw_event_turn_off);
+> > 
+> > Where are the users for these exports? Also, should they be exported as
+> > GPL?
+> > 
+> > Either way, what is the point of the extra layer of abstraction here
+> > around the writel()?
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
+> The two export functions are only prepared for GPU module. But accordint to
+>  the latest information, it seems that there is no open source plan for GPU. 
+> So the two functions will be drop in next version of patch.
+
+That's a shame!
+
+> >> +static int starfive_pmu_get_state(struct starfive_power_dev *pmd, bool *is_on)
+> >> +{
+> >> +	struct starfive_pmu *pmu = pmd->power;
+> >> +
+> >> +	if (!pmd->mask) {
+> >> +		*is_on = false;
+> >> +		return -EINVAL;
+> >> +	}
+> >> +
+> >> +	*is_on = __raw_readl(pmu->base + CURR_POWER_MODE) & pmd->mask;
+> > 
+> > Is there a specific reason that you are using the __raw variants here
+> > (and elsewhere) in the driver?
 > 
-> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
-> makes sure dt maintainers are included. This has been requested by
-> Krzysztof Kozlowski.
+> Will use unified function '__raw_readl' and '__raw_writel'
+
+No no, I want to know *why* you are using the __raw accessors here. My
+understanding was that __raw variants are unbarriered & unordered with
+respect to other io accesses.
+
+I do notice that the bcm driver you mentioned uses the __raw variants,
+but only __raw variants - whereas you use readl() which is ordered and
+barriered & __raw_readl().
+
+Is there a reason why you would not use readl() or readl_relaxed()?
+
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int starfive_pmu_set_state(struct starfive_power_dev *pmd, bool on)
+> >> +{
+> >> +	struct starfive_pmu *pmu = pmd->power;
+> >> +	unsigned long flags;
+> >> +	uint32_t val;
+> >> +	uint32_t mode;
+> >> +	uint32_t encourage_lo;
+> >> +	uint32_t encourage_hi;
+> >> +	bool is_on;
+> >> +	int ret;
+> >> +
+> >> +	if (!pmd->mask)
+> >> +		return -EINVAL;
+> >> +
+> >> +	if (is_on == on) {
+> >> +		dev_info(pmu->pdev, "pm domain [%s] is already %sable status.\n",
+> >> +				pmd->genpd.name, on ? "en" : "dis");
+> > 
+> > Am I missing something here: you've just declared is_on, so it must be
+> > false & therefore this check is all a little pointless? The check just
+> > becomes if (false == on) which I don't think is what you're going for
+> > here? Or did I miss something obvious?
 > 
->   .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
->   1 file changed, 12 insertions(+), 8 deletions(-)
+> Sorry, indeed I missed several lines of code. It should be witten like this:
+> 	ret = jh71xx_pmu_get_state(pmd, &is_on);
+>         if (ret) {
+>                 dev_dbg(pmu->pdev, "unable to get current state for %s\n",
+>                         pmd->genpd.name);
+>                 return ret;
+>         }
+
+Heh, this looks more sane :)
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> index 554c96b6d0c3..952a338e06e7 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> @@ -2,14 +2,15 @@ MediaTek PWM controller
->   
->   Required properties:
->    - compatible: should be "mediatek,<name>-pwm":
-> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
-> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
->      - "mediatek,mt6795-pwm": found on mt6795 SoC.
-> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
-> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
-> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
-> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
->      - "mediatek,mt7628-pwm": found on mt7628 SoC.
->      - "mediatek,mt7629-pwm": found on mt7629 SoC.
-> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
-> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
-> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
-> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
-> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+>         if (is_on == on) {
+>                 dev_dbg(pmu->pdev, "pm domain [%s] is already %sable status.\n",
+>                         pmd->genpd.name, on ? "en" : "dis");
+>                 return 0;
+>         }
+> 
+> > 
+> >> +		return 0;
+> >> +	}
+> >> +
+> >> +	spin_lock_irqsave(&pmu->lock, flags);
+> >> +
+> >> +	if (on) {
+> >> +		mode = SW_TURN_ON_POWER_MODE;
+> >> +		encourage_lo = SW_MODE_ENCOURAGE_EN_LO;
+> >> +		encourage_hi = SW_MODE_ENCOURAGE_EN_HI;
+> >> +	} else {
+> >> +		mode = SW_TURN_OFF_POWER_MODE;
+> >> +		encourage_lo = SW_MODE_ENCOURAGE_DIS_LO;
+> >> +		encourage_hi = SW_MODE_ENCOURAGE_DIS_HI;
+> >> +	}
+> >> +
+> >> +	__raw_writel(pmd->mask, pmu->base + mode);
+> >> +
+> >> +	/* write SW_ENCOURAGE to make the configuration take effect */
+> >> +	__raw_writel(SW_MODE_ENCOURAGE_ON, pmu->base + SW_ENCOURAGE);
+> > 
+> > Is register "sticky"? IOW, could you set it in probe and leave this mode
+> > always on? Or does it need to be set every time you want to use this
+> > feature?
+> 
+> These power domain registers need to be set by other module according to the
+> specific situation. 
+> For example some power domains should be turned off via System PM mechanism
+> when system goes to sleep, 
+> and then they are turned on when system resume.
 
-I'm sorry, but all these compatibles make little sense at best.
-Each of these PWM controllers have different properties as they may *by hardware*
-be featuring more or less channels, they may be a different IP revision and/or
-sub-revision requiring even ever-so-slightly different handling (check pwm45_fixup
-and has_ck_26m_sel).
+I was just wondering if SW_MODE_ENCOURAGE_ON would retain it's value
+during operation or if it had to be written every time. It's fine if
+that's not the case.
 
-If you want to add MT7986, the best thing that you can do is to simply add
+> >> +	__raw_writel(encourage_lo, pmu->base + SW_ENCOURAGE);
+> >> +	__raw_writel(encourage_hi, pmu->base + SW_ENCOURAGE);
+> >> +
+> >> +	spin_unlock_irqrestore(&pmu->lock, flags);
+> >> +
+> >> +	if (on) {
+> >> +		ret = readl_poll_timeout_atomic(pmu->base + CURR_POWER_MODE, val,
+> >> +						val & pmd->mask, DELAY_US,
+> >> +						TIMEOUT_US);
+> >> +		if (ret) {
+> >> +			dev_err(pmu->pdev, "%s: failed to power on\n", pmd->genpd.name);
+> >> +			return -ETIMEDOUT;
+> >> +		}
+> >> +	} else {
+> >> +		ret = readl_poll_timeout_atomic(pmu->base + CURR_POWER_MODE, val,
+> >> +						!(val & pmd->mask), DELAY_US,
+> >> +						TIMEOUT_US);
+> > 
+> > Could you not just decide the 3rd arg outside of the readl_poll..() and
+> > save on duplicating the wait logic here?
+> 
+> Seems that the readl_poll..() can only be called in two cases 
+> because the CURR_POWER_MODE register is read to val and then operation with mask every time.
+> 
 
-+   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+I'm sorry, I completely forgot that read*_poll..() actually not actually
+a function. Please ignore this comment!
 
-this line ^
+> >> +static int starfive_pmu_probe(struct platform_device *pdev)
+> >> +{
+> >> +	struct device *dev = &pdev->dev;
+> >> +	struct device_node *np = dev->of_node;
+> >> +	const struct starfive_pmu_data *entry, *table;
+> >> +	struct starfive_pmu *pmu;
+> >> +	unsigned int i;
+> >> +	uint8_t max_bit = 0;
+> >> +	int ret;
+> >> +
+> >> +	pmu = devm_kzalloc(dev, sizeof(*pmu), GFP_KERNEL);
+> >> +	if (!pmu)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	pmu_base = pmu->base = devm_platform_ioremap_resource(pdev, 0);
+> >> +	if (IS_ERR(pmu->base))
+> >> +		return PTR_ERR(pmu->base);
+> >> +
+> >> +	/* initialize pmu interrupt  */
+> >> +	pmu->irq = platform_get_irq(pdev, 0);
+> >> +	if (pmu->irq < 0)
+> >> +		return pmu->irq;
+> >> +
+> >> +	ret = devm_request_irq(dev, pmu->irq, starfive_pmu_interrupt,
+> >> +			       0, pdev->name, pmu);
+> >> +	if (ret)
+> >> +		dev_err(dev, "request irq failed.\n");
+> >> +
+> >> +	table = of_device_get_match_data(dev);
+> >> +	if (!table)
+> >> +		return -EINVAL;
+> >> +
+> >> +	pmu->pdev = dev;
+> >> +	pmu->genpd_data.num_domains = 0;
+> >> +	i = 0;
+> >> +	for (entry = table; entry->name; entry++) {
+> >> +		max_bit = max(max_bit, entry->bit);
+> >> +		i++;
+> >> +	}
+> > 
+> > This looks like something that could be replaced by the functions in
+> > linux/list.h, no? Same below.
+> 
+> Nowadays other platforms on linux mainline mostly write in this way or write like this: 
+> 	for (i = 0; i < num; i++) {
+> 		...
+> 		pm_genpd_init(&pmd[i]->genpd, NULL, !is_on);
+> 	}
 
-...and then please don't touch the others.
+That's not what this specific bit of code is doing though, right? You're
+walking jh7110_power_domains to find the highest bit. I was looking at what
+some other drivers do, and took a look at drivers/soc/qcom/rpmhpd.c
+where they know the size of this struct at compile time & so can do
+store the number of power domains in the match data. If you did that,
+you could use a loop like the one other platforms use.
 
->      - "mediatek,mt8365-pwm": found on mt8365 SoC.
->      - "mediatek,mt8516-pwm": found on mt8516 SoC.
->    - reg: physical base address and length of the controller's registers.
-> @@ -20,11 +21,14 @@ Required properties:
->                   has no clocks
->      - "top": the top clock generator
->      - "main": clock used by the PWM core
-> +   - "pwm1"  : the PWM1 clock for mt7629
-> +   - "pwm1-2": the two per PWM clocks for mt7986
+> >> +	if (!pmu->genpd)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	pmu->genpd_data.domains = pmu->genpd;
+> >> +
+> >> +	i = 0;
+> >> +	for (entry = table; entry->name; entry++) {
 
-That's not your fault, but the binding is already wrong (yes it must be fixed!) and
-unless my brain is failing somewhere, there's only one clock per pwm (as if there's
-any children, it must be parented to .. well, its parent, in the clock driver), and
-note that the driver is actually parsing "pwmX" clocks, never "pwmX-Y" clocks.
+And it's the same here. By now, you should know how many power domains
+you have, no?
 
-Relevant snippet:
+Anyways, as I said before I don't know much about this power domain
+stuff, it's just that these two loops seem odd.
 
-		char name[8];
+> >> +		struct starfive_power_dev *pmd = &pmu->dev[i];
+> >> +		bool is_on;
+> >> +
+> >> +		pmd->power = pmu;
+> >> +		pmd->mask = BIT(entry->bit);
+> >> +		pmd->genpd.name = entry->name;
+> >> +		pmd->genpd.flags = entry->flags;
+> >> +
+> >> +		ret = starfive_pmu_get_state(pmd, &is_on);
+> >> +		if (ret)
+> >> +			dev_warn(dev, "unable to get current state for %s\n",
+> >> +				 pmd->genpd.name);
 
-		snprintf(name, sizeof(name), "pwm%d", i + 1);
+> >> +static const struct starfive_pmu_data jh7110_power_domains[] = {
+> > 
+> > Is this driver jh7110 only or actually jh71XX? Have you just started out
+> > by implementing one SoC both intend to support both?
+> 
+> JH7110 is our first SoC, probably the next generation of SoC jh7120 still
+> use this controller driver.
+> Maybe now the naming for JH71XX is not very suitable.
 
-		pc->clk_pwms[i] = devm_clk_get(&pdev->dev, name);
+Right. My question was more about if this supported the JH7100 too, but
+I saw from your answer to Emil that it won't. I don't have a preference
+as to whether you call it jh71xx or jh7110, I'll leave that up to
+yourselves and Emil. This particular struct should still be called
+`jh7110_power_domains` though since it is particular to this SoC, no
+matter what you end up calling the file etc.
 
-Just... please don't keep doing the same mistake that is already inside of here...
+> > I don't know /jack/ about power domain stuff, so I can barely review
+> > this at all sadly.
 
-So, coming to an end: I think that this commit should be a one-liner that documents
-your "mediatek,mt7986-pwm" compatible and that's it.
+> Thank you for taking the time to review the code, you helped me a lot.
+> Thank you so much.
 
-A schema conversion would be welcome: in that regard, I can make a conversion
-and send it next week, along with that clock-names fix.
+No worries, looking forward to getting my board :)
 
-Regards,
-Angelo
