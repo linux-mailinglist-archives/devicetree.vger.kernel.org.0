@@ -2,144 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 876EB638DE8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E03638E03
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 17:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbiKYPzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:55:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42688 "EHLO
+        id S229870AbiKYQBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 11:01:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbiKYPz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:55:29 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D92B43ADC
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:55:15 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id t10so5666468ljj.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:55:15 -0800 (PST)
+        with ESMTP id S229852AbiKYQBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 11:01:45 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70EB4B741
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 08:01:43 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id l8so5619762ljh.13
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 08:01:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N75qs6mFE+82rJ2tMLVbCwIvCda7QU+ZxRGf1iXfJdE=;
-        b=vy7Yttm0R2M2h+VkrKBw2oXKSpzAnkKl1SJuZhacqQO+f4BEi4LeNpl+MGuBisVBAC
-         ai/3rRBKIzJBuEhWFHHM6hJiJcug3rN0vvbQTNam/ZOcP8cIZoh1D8CaXhm/dzbJUM1n
-         Z6Z+8hgJv2ZSKuqmk518M5Pv/G2kgjN0q8iRxPFM+LtmtlxvGtE6geKLI2HRWR6Um7O+
-         aobhGGDuZM7gE/6bZNR1V1MJqWM9hvvjTdvEFzZBnWvOlPnL/Z64aKh5KnWxSCqK8EZr
-         mWG+XWyZXXleWjRIJqR8RN2ZhSu1tfB7JsNVlbVq/Ajg/D2tWEm6NVSIXmPwsqVN/Dmx
-         5pcA==
+        d=melexis.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QzEV4++7bXQHfd6gsAbxp8XUPvUs+nkOTyY83Sr3UTY=;
+        b=ZAiDK5yd/xeqy+ZSFr/KfpvNyJ0zNSZPAnup7G/ynZV+BOLO63vAp6mSvi0yyXtjhs
+         fGKGHUZApe+Mx42JNbZD7ZGJQYjYlpRfaCMj8JFeU1jOAILfXDT7zmibzV4GYJurNokt
+         VcZUwm5JesMnYBAMjv6roTAOig7PTMaIHF0JZRWJ/srodncvnorOyfLqKwnxpj5wP9HI
+         +TNWtSLBBa0Y16DL2iFrHAvCsJkzviMlKJy4dbTY2skZdTRBtIbODZjSl+wL5+RjC+aC
+         ocuFFThxggVRcTo14DAE0Rqh985y/quw++JJta5skK+JciZ4IPmITH63sTTHh4ra68wS
+         /XKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N75qs6mFE+82rJ2tMLVbCwIvCda7QU+ZxRGf1iXfJdE=;
-        b=qEJofGF3gtyTxXQ5Cq7PyPWI4zLZ3bh82LTQWarHe57T+1LUaPyCahtAZRVIzn5Yt0
-         +mmVVzNINPEKQ8b9kETF/OEOylYFcCffUkZVb/N2pxwbPPQ7yyWQ8CPHbUOY2YOxKIvf
-         AK7XvVG9hboOmGi0PcJJIcqqUbp/0n8WfqDEDoNybGYEi2FAHvLwAKeZ4/V0I4IAawjS
-         Rz1HBK1RgavyoIMwZ2xDiS7adDhVQy557zIZs+yJQfuqojeXxNR6Kr5xthIDnUt+jzxI
-         WZz5zqMtdUwyxAB9uxghTFVh2cISJhaRl9LGEf+PCoi6ksjzSAptByfe+Q5xWHF+hUHU
-         QoHw==
-X-Gm-Message-State: ANoB5plkbG0bbydgNbaMvwQ39Df2+GLggZ+z6FZ09DRb/6BhP7jraD4/
-        2EibgoFy3s1sHfpketnMLkEL8Q==
-X-Google-Smtp-Source: AA0mqf42151/tVAc9fD5z3KO3qH9yTDBjI5DNvMIYHqsvGQQgYJaTtByflQpt5PYo8sRqWP1eP7w9g==
-X-Received: by 2002:a2e:93d7:0:b0:279:7294:5e42 with SMTP id p23-20020a2e93d7000000b0027972945e42mr5917318ljh.81.1669391713514;
-        Fri, 25 Nov 2022 07:55:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z25-20020a195e59000000b004aa14caf6e9sm577178lfi.58.2022.11.25.07.55.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 07:55:13 -0800 (PST)
-Message-ID: <ab0e55a2-d99a-328e-4f54-6a75936a1c81@linaro.org>
-Date:   Fri, 25 Nov 2022 16:55:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 6/7] dt-bindings: cache: r9a07g043f-l2-cache: Add DT
- binding documentation for L2 cache controller
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QzEV4++7bXQHfd6gsAbxp8XUPvUs+nkOTyY83Sr3UTY=;
+        b=BBp5ZLY8diZT7qGCHsHbqw5Ok3etcXLjA9+WxlPeaTuFTblzoNPRDklqMjmcXrexTx
+         6oQGabwe7fbPLoUveJXvP0/WOQKq769cPIgECZmaVk5hjKO7j/4dWmK4amp6hWtHYWpE
+         tBtx/xChl6Ls5hZEtYnjo1jhZvVvloe5DkC8pxjqw/QAMPbZnRzfLOgqqAPqxuuuLO0E
+         i9KF/zCZM9kCwdrmxgjSZa4vV0jEO2P7N1cwXZiRdomBpJVxxAh3Cw2vdUw1H1uWPUcT
+         3PrBK0ED8j90F90AtfHhwyxVAfWIx9WepTrkQWp+oB/hz9meZMU/czMEOgLAvrknPFn1
+         x7Jg==
+X-Gm-Message-State: ANoB5pleHZLOyOaw2y39xCioTF7bOeOnlQCHNNATNo7TE8e+zQ9ESjW4
+        0OCgROay0IW2pxifH64jNPUwZQ==
+X-Google-Smtp-Source: AA0mqf6uPCogSlP5rPSi0t3jnuQe0YhGzLoBriMSzf9EMfOMiNHRouH14/pDsZF8A/CO7aR9dN/T4g==
+X-Received: by 2002:a05:651c:1954:b0:277:43c4:a864 with SMTP id bs20-20020a05651c195400b0027743c4a864mr11777535ljb.463.1669392098910;
+        Fri, 25 Nov 2022 08:01:38 -0800 (PST)
+Received: from melexis.com ([91.192.183.26])
+        by smtp.gmail.com with ESMTPSA id bt14-20020a056512260e00b00499d70c0310sm571160lfb.3.2022.11.25.08.01.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 08:01:38 -0800 (PST)
+Date:   Fri, 25 Nov 2022 18:01:34 +0200
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <70d1bfde-f57f-1741-08d3-23e362793595@linaro.org>
- <CA+V-a8s2awLp=YvbhA1Ohe500Oh1easLUcG9V4_FWov7Pf2i6g@mail.gmail.com>
- <9b0f8312-2caa-b9f3-edf3-1b720532f559@linaro.org> <Y4C0Jn1hl81ZCxOt@wendy>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y4C0Jn1hl81ZCxOt@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: Re: [PATCH v3 3/8] media: Documentation: v4l: Add TOF class controls
+Message-ID: <Y4Dm3pghvTTlXBNx@melexis.com>
+References: <cover.1669381013.git.vkh@melexis.com>
+ <01cfeb602d52456bed08c89da356474474361e73.1669381013.git.vkh@melexis.com>
+ <de7a776e-3fb2-3631-c301-847502fc1a39@xs4all.nl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de7a776e-3fb2-3631-c301-847502fc1a39@xs4all.nl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 13:25, Conor Dooley wrote:
-> On Fri, Nov 25, 2022 at 01:12:18PM +0100, Krzysztof Kozlowski wrote:
->> On 25/11/2022 11:34, Lad, Prabhakar wrote:
->>>>> +/* Device, Non-bufferable */
->>>>> +#define AX45MP_PMACFG_MTYP_DEV_NON_BUF                       (0 << 2)
->>>>> +/* Device, bufferable */
->>>>> +#define AX45MP_PMACFG_MTYP_DEV_BUF                   (1 << 2)
->>>>> +/* Memory, Non-cacheable, Non-bufferable */
->>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_NON_BUF     (2 << 2)
->>>>> +/* Memory, Non-cacheable, Bufferable */
->>>>> +#define AX45MP_PMACFG_MTYP_MEM_NON_CACHE_BUF         (3 << 2)
->>>>
->>>> What are all these? They don't look like flags, because 3 = 1 | 2...
->>>> they don't look like constants, because we do not use shifts in
->>>> constants. Are these some register values? I also do not see the header
->>>> being used in the code, so why having a bindings header if it is not
->>>> used (DTS is not usage...)?
->>>>
->>> These are register bit values for the MTYP[5:2] field. The DTS example
->>> in the binding doc (above) uses these macros. I haven't included the
->>> DTS/I patches with this patchset yet do think I should?
->>
->> Then why storing it as bindings? Bindings headers describe the interface
->> implemented by drivers and used by DTS, but this is not implemented by
->> drivers.
+Thanks for review.
+
+On Fri, Nov 25, 2022 at 03:28:30PM +0100, Hans Verkuil wrote:
+> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
+> > Add description about V4L2_CID_TOF_PHASE_SEQ, V4L2_CID_TOF_FMOD
+> > and V4L2_CID_TOF_TINT.
+> > Also updated MAINTAINERS with new ext-ctrls-tof file.
+> > 
+> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> > ---
+> >  .../userspace-api/media/v4l/common.rst        |  1 +
+> >  .../userspace-api/media/v4l/ext-ctrls-tof.rst | 35 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 ++++
+> >  3 files changed, 43 insertions(+)
+> >  create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> > 
+> > diff --git a/Documentation/userspace-api/media/v4l/common.rst b/Documentation/userspace-api/media/v4l/common.rst
+> > index ea0435182e44..1ea79e453066 100644
+> > --- a/Documentation/userspace-api/media/v4l/common.rst
+> > +++ b/Documentation/userspace-api/media/v4l/common.rst
+> > @@ -52,6 +52,7 @@ applicable to all devices.
+> >      ext-ctrls-fm-rx
+> >      ext-ctrls-detect
+> >      ext-ctrls-colorimetry
+> > +    ext-ctrls-tof
+> >      fourcc
+> >      format
+> >      planar-apis
+> > diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> > new file mode 100644
+> > index 000000000000..8902cc7cd47b
+> > --- /dev/null
+> > +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> > @@ -0,0 +1,35 @@
+> > +.. SPDX-License-Identifier: GFDL-1.1-no-invariants-or-later
+> > +
+> > +.. _tof-controls:
+> > +
+> > +***************************************
+> > +Time of Flight Camera Control Reference
+> > +***************************************
+> > +
+> > +The Time of Flight class includes controls for digital features
+> > +of TOF camera.
 > 
-> IIUC, some of these properties are non-discoverable attributes of the
-> cache controller. I see two things that could be done here that are
-> "better" than #defining bits:
-
-I did not comment about properties. I comment about constants. Why
-register values/offsets/addresses are in this particular case suitable
-for binding headers?
-
-> - add an RZ/Five specific compatible and use match data to set the
->   attributes which is only possible if the pma-regions are set on a
->   per SoC basis
-> - make pma-regions into a child node, in which andestech,non-cacheable
->   andestech,non-bufferable etc are properties of the child node
+> You might want to extend this description a bit and give more info
+> about how they work. Perhaps a link to wikipedia or something
+> might help too.
+I was not sure what to add here. Ok, I will update.
 > 
-> Prabhakar, does that make sense or am I off with my understanding of the
-> attributes?
+> > +
+> > +.. _tof-control-id:
+> > +
+> > +Time of Flight Camera Control IDs
+> > +=================================
+> > +
+> > +``V4L2_CID_TOF_CLASS (class)``
+> > +    The TOF class descriptor. Calling :ref:`VIDIOC_QUERYCTRL` for
+> > +    this control will return a description of this control class.
+> > +
+> > +``V4L2_CID_TOF_PHASE_SEQ (dynamic array u16)``
+> > +    Change the shift between illumination and sampling for each phase
+> > +    in degrees. A distance/confidence picture is obtained by merging
+> > +    3..8 captures of the same scene using different phase shifts(some
+> 
+> Space before (
+> 
+> > +    TOF sensors use different frequency modulation).
+> 
+> Either: use -> use a
+> Or:     modulation -> modulations
+> 
+> It's not clear right now whether "frequency modulation" is meant to be singular
+> or plural.
+> 
+> > +
+> > +    The maximum array size is driver specific.
+> > +
+> > +``V4L2_CID_TOF_FMOD (dynamic array u8)``
+> > +    The control sets the modulation frequency(in Mhz) per each phase.
+> 
+> Space before (
+> 
+> per each phase -> for each phase
+> 
+> > +    The maximum array size is driver specific.
+> 
+> What does the maximum array size signify? The number of phases?
+> It's not clear from the spec (and I have to admit I know very little
+> about TOF sensors).
+yes, array size defines the number of phases.
+But the maximum number of phases can be different and depend on the sensor.
+I'll update the doc.
+> 
+> > +
+> > +``V4L2_CID_TOF_TINT (dynamic array u16)``
+> > +    The control sets the integration time(in us) per each phase.
+> 
+> Add space before (
+> 
+> per each phase -> for each phase
+> 
+> > +    The maximum array size is driver specific.
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index aa1974054fce..a2bc2ce53056 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -13111,6 +13111,13 @@ S:	Supported
+> >  W:	http://www.melexis.com
+> >  F:	drivers/iio/temperature/mlx90632.c
+> >  
+> > +MELEXIS MLX7502X DRIVER
+> > +M:	Volodymyr Kharuk <vkh@melexis.com>
+> > +L:	linux-media@vger.kernel.org
+> > +S:	Supported
+> > +W:	http://www.melexis.com
+> > +F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+> > +
+> >  MELFAS MIP4 TOUCHSCREEN DRIVER
+> >  M:	Sangwon Jee <jeesw@melfas.com>
+> >  S:	Supported
+> 
+> Regards,
+> 
+> 	Hans
 
-
-Best regards,
-Krzysztof
+-- 
+--
+Volodymyr Kharuk
+Embedded Software Engineer
+Melexis-Ukraine
+Mykhaila Kotel'nykova St, 4, Kyiv
+Mobile phone: +38 050 346 5527
+www.melexis.com
+---
+The contents of this e-mail are CONFIDENTIAL AND PROPRIETARY. Please read
+our disclaimer at http://www.melexis.com/mailpolicy
 
