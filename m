@@ -2,151 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB51638608
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1CB563860C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiKYJYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 04:24:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39872 "EHLO
+        id S229635AbiKYJY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 04:24:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbiKYJXy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:23:54 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E411431F8E;
-        Fri, 25 Nov 2022 01:23:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669368225; x=1700904225;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=iO9Hg4rIbf3Sky7D6XQPVeSOkHC5WoAvIlicPP8njKo=;
-  b=rrPxejFgionWH6+Fs4lKfsZqaJVonM0JZ+nRlBhXxtPfNkO2g0mWEaFA
-   v+cb1NV0n7CTJZiykt4eUksjs+p15+9BRwYPylCBbJRlfgLe665sNBWO0
-   cmRpJRghip6/5kpnyUve7axi62PCba0CJ/OywO6YUK9WpCCNzPYPoSrTj
-   /XshsSXaPmQRlJz5s/GzrihKVHw40FC0DTgrEd08Y68bVIf7M5RMGxyyF
-   lee5dxnfxjGHNUwz3MUlO0DzAMnSxPWVgykLA3RuWDvk+hir/Sof/JXGV
-   0znVM1PLHLzbf5x7X6mkKxA9LXbTNGpgKlctMXab4bBuCS8TuuajVTfqg
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
-   d="scan'208";a="190514640"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2022 02:23:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 25 Nov 2022 02:23:45 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Fri, 25 Nov 2022 02:23:44 -0700
+        with ESMTP id S229583AbiKYJY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:24:58 -0500
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03BE275F7;
+        Fri, 25 Nov 2022 01:24:56 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K6eUjW+kZl6T7g+PvQ/A5HTPvnWrIx+yx+FVawoc6STNTrmRxzbDmiL3kyvh0VEhxkZ5EHTxLK1iV/Faf1eziE/vLJdQYQUWzt3Ll7Wz4Ms5MG2BDDfwH0NXv1KWsKr59Xud68wGmur/bk8bJiwtHJ/m6n88AxLc+18dABt9UZTjVR9ndoYBjaDcvjQklXQPBc1+EHS0FeFmEhxI5JfEgi9A7EhbTNTpbgTvqlSXIli4YIkzQSn/LF3+9sr6uW2INiOks+psb/ZQaAbIy5rcOztTrT0YqkID1dJAhbHgAC/HMC+RbiiGMUO+r1DNUO2YYO5AN71HqMh2T+uycG3EOQ==
+ b=lzlRA/MXwTVOoeF9MWtdJovWW+C1bueRWS/TIR/D2NHZW+DdciNAwBB6pjQb+uoO05U7pq+g/WIJg3OKYq3gvrPvwvh7hUYR0d6X7m5n5Om0RqyGuFaCQs2TxRJdaNnnnWagk9LDeI4sfG97q72nGDgoZO3GnGebHkYWZ65P3IAeOKvn6qXM9JfXkkYyG800ZInBfd5wKavpbKVttU9nKY/JiUQhnFYP8MQ/MKvMRSw787YZe+PIw4G+p9g02mf6tLHaqaC80Bztr2PPmBR7VbslxOKV5aFMxZNjdTh3z29vE2vc8+ICdpMY2Mb7DfClhaAfhkoj/yBH0IFs6Ca3xg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iO9Hg4rIbf3Sky7D6XQPVeSOkHC5WoAvIlicPP8njKo=;
- b=RiXwwZDaPqz4hjyJsVSBdhdR1fiSMN8iUS6MlknZ8wpJri10tYx6ODOeUXKriSF/DnvI4enSaSAbWfJRymbNuoxqmNMEfalgu5/2nXl8mLftor9J/G6Ee4bS9Y38gE5+HCyoREolquiwf0FppQJzR4ETmFduBuOd/ZZAzjRfZgX2kOftmT2mPj1OpiRaRGNyUaSYIuT1zDhCZhnJms6badQF5/3ZiV2K2gKdXUDaO9VkAGJwcrdt+/xyDWHU8oEQ96WFwkWbFY3KKhyBkGOzDSNEe7lOpbsdgzfsMEaQ9FaSocBg+JO+uEqGXaE1fAjF3JCTsVn1kX/RbEw7F6wHoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ bh=Jj4NVYZwSw9NqFsGFP2qaH1sOQWciz6pFjl3agybzcE=;
+ b=fXiEPNlnrVzsazUwVcPh9LgJzbp04gsszqhjBIwWusyRGRaM2z7clhhVnsFh6aZNK41atqGNn08a1hWfbXnXA3F0Ps4OH764euZ7AfCnTLL1S+Ziw9ZiHVqh0SGQrQFbxjhWxJo9EnAMjO9JqfelNiGpQGqR+U4HluNE375e4eta6ml5gUwkFjDOF8O08k59XxDzydhC7LSnkuykMJNs7etGEkrbke348fbtPDF6+xf1yH4GnzVR82i4v5UhsyBLV1TqtjQJ0lIOQL6PI2q5bvzRZtQkgG+YEWWjctOpIb5yVdNKSthBpYGyJkHzJL1+A47lbznh/ysWL3UGNRHfJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iO9Hg4rIbf3Sky7D6XQPVeSOkHC5WoAvIlicPP8njKo=;
- b=vhGYR/XEGdr3PqidPLFlA5JSuyiC2AqkQ+7HWAFwLRaMn/QFAnzvL/O1dEfx/kzG6iQI8BY+DOtxnfLZjXaDRXZCcY6wX0bGA1yuNHxbBefagU8xkcbu4rdCZHZPskxs+uxEV7bYKtDaYLHNOCkPyTnPrznxMHXM6pP3tIrurRU=
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
- by DM4PR11MB5374.namprd11.prod.outlook.com (2603:10b6:5:395::23) with
+ bh=Jj4NVYZwSw9NqFsGFP2qaH1sOQWciz6pFjl3agybzcE=;
+ b=0K0u/gNvJiNE9GiID+V1LtWagBy0PsdRYr8z6CnzVPxMvrRZ4Lq4wHdWLOuR7+U672XmtylWUHrE6DM8S2zJbGupamHHATBoY5k6W5x+A0/vkng98UEsnFALp3x0xKfxJ5lcolCiBXqMQ9E8uGelQHL6KYKXyGdg9K1xXWL62Gg=
+Received: from DS7PR05CA0027.namprd05.prod.outlook.com (2603:10b6:5:3b9::32)
+ by IA0PR12MB7505.namprd12.prod.outlook.com (2603:10b6:208:443::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.19; Fri, 25 Nov
- 2022 09:23:42 +0000
-Received: from BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::98f6:c9d1:bb68:1c15]) by BN6PR11MB1953.namprd11.prod.outlook.com
- ([fe80::98f6:c9d1:bb68:1c15%10]) with mapi id 15.20.5857.017; Fri, 25 Nov
- 2022 09:23:42 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <Horatiu.Vultur@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <Nicolas.Ferre@microchip.com>, <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH] ARM: dts: lan966x: Add otp support
-Thread-Topic: [PATCH] ARM: dts: lan966x: Add otp support
-Thread-Index: AQHZAK+bDDrCqgr1WESzQT9bOyCpdQ==
-Date:   Fri, 25 Nov 2022 09:23:42 +0000
-Message-ID: <bdce1cb7-a771-4ec6-c75b-f547d26f95b3@microchip.com>
-References: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
-In-Reply-To: <20220916194946.2869510-1-horatiu.vultur@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN6PR11MB1953:EE_|DM4PR11MB5374:EE_
-x-ms-office365-filtering-correlation-id: 73c9238f-63d1-4f45-5e0e-08dacec6be91
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: H3mt4dXUQlon9Xr9nN+DRYouQbg4HvnSXTkXd7uuFhqYI7MTZpKxHpOjOWItESegHJVXOWNTaEIXgrbqFXs/rr0+hord6PhhPOKt2xJBfcXKnMsyRcNkHXQLMgOba6Tr3rV9IF9LuJH+HeGtvWfCFpGRATKWXMmWC/8l0ovn4M5c9avB0yTjP1PMcaP0N17AFXZwxSlJDpu5uf1H5YNY8b43vse4jQ5GIxzerA2CWOW/NKnJx9pugj/tHRS4zJuSDRk/Pbw2TgBGf0nJucA6WC5oCsAEBJSntLwS0fQ4/q4WhiutP/FZkuP78y5yQD5Xs1ktbTmiMi7/oNm9pKoRlOT/ctSTcK6x9U4PoSPi6h4DYXQJ0FnELs4j2kmOjIH9mtmL3DmJtkA56KLJTcWXX6yAgO3zFgN93+ab3XikNnP3B8xnyyyRrvMZO4EqVJDI7kkB5CvAcDBbYrKMLBp5Hrlvy3HzzwNyNdwWBkCCGmzHF+I2mLI2fm0Ez5ktt5C7AJ10rc5Ls5ZM8b05B4h5+dNDHjk3CIOvuvRxKcV3KtaUN640yEjwR/ophjKkJCjSso1AMg9IOsh/Ob1ftqciH5ZjUQNuxR+BkAS2zMyeGnt3SZ71s0D9KaMdzvLAYkHi31QYVHrUBFVyjNhL/PPZpKbIdn9rdXAMWvn8iBZfokqNqgk02bp8QG3tCL+0a1NImsq8L9GH3VMQihZfX30daeprm0Xj00tGg9kiSEQNG0LHzKa5XHwdq3ZGjlbWAv/5dFnJd/nSmd4FIbMRl2ADJg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(39860400002)(366004)(346002)(136003)(376002)(396003)(451199015)(36756003)(31686004)(38070700005)(122000001)(8676002)(76116006)(66446008)(71200400001)(66556008)(4326008)(66946007)(66476007)(31696002)(64756008)(91956017)(86362001)(38100700002)(6512007)(478600001)(53546011)(2616005)(26005)(6506007)(107886003)(41300700001)(4744005)(8936002)(316002)(5660300002)(110136005)(54906003)(2906002)(186003)(6486002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eFZnVDRheWZ4R3hkcktlNmxSOE94V2JuUFNoTkUzL0J3UHZKU0lTaXpPL2JK?=
- =?utf-8?B?ZWs0QmRxbVZSL1pFZkNsM0d0WlFCOXJUTkdSbS94aStYR21UZUpaaTdnVEFC?=
- =?utf-8?B?N0VZcExubUFKUEFWOGVva2YzTXRuTGtWck5WMVRiR0ZGWVJCbzNVSTF1Ym1i?=
- =?utf-8?B?VG8rVnN3bG9MYThCeUNFd1R5ZWx4eDViQkNqZE4wVHEzZXo4Zm5BeTlWU0Nx?=
- =?utf-8?B?cUg2eng4a1dnK01NTisxUzA3bENwYXBBUXRETUlvMDhzSE03c3RRUG1TR1Vv?=
- =?utf-8?B?L2k2b1RkdWd0blFBeHFRRFV6TzZETjRUOTZhbjRrRzhCWDNCN0U0V05vRHFK?=
- =?utf-8?B?aldqUFc1Z01Yb0hTcVZ2dC9qSWFJUlBBd1RFWXlnRXNqYk0zdlhGRUpUVXlN?=
- =?utf-8?B?U0kwQW5Ycnc0bVRlVWp2R3REWUIvUjg0WUNjY1RHQWxWcEt2alNzUndZMDh5?=
- =?utf-8?B?MmZuMmppSFhZRnVpY2VOVjIrNnBaajVFMy81dTluNXhTUjV3Vnp0TUtRRitX?=
- =?utf-8?B?d1plVG42SDJueTRvM0RFbU5VaTVNbks4dmJ6TXhHM3lDRUV4UHFteHZTaWQw?=
- =?utf-8?B?MCtqdVExMVpIOEhibkQreVNLdUpBUTZNQWVPaTNqK3Bqa0UxNUlGNzNJMFJl?=
- =?utf-8?B?QnpOSFY3dExiS3lzN1Y5cWJYVzRMVTlpNVpkd3FWb3p5MnUrWDNYY2s1ZjBF?=
- =?utf-8?B?bzREU0JYN09VSy9OZW41UFk0K3RWejVLSSt3dSt0NXQwU0R1VDV5UGdSWGxO?=
- =?utf-8?B?UXd2aHZIYWZUb25PZnkyaXdnUmhYZVFHdmJyV3FYYnYvL1lvQy9tVUsvbGhF?=
- =?utf-8?B?Qi9oTHZDbUxPelArVEc3OEY4R21BbXRsdXJQWEJBWGlsaGtkMmtmcFQxVGhh?=
- =?utf-8?B?R2lHSEErWHRPZmF5bi9xMi90eDhwRHg0ZlpweTFtcW1EQUhwNmZaUTFQdk9x?=
- =?utf-8?B?KzE5OXY1WDZPbW1BWG0xVUM4UFJlclE4MGdKaTRmOGdjL0VCTGlnTFNEYXRt?=
- =?utf-8?B?Yy9oblBZV0FTQmlmZnVQM3orbEZTcjFlRk1XQVpacE1nOGdlcWxDTGREenRq?=
- =?utf-8?B?NWpVQm8rM05CeWRXQmEwMXlJYnFacHBDV2k2TGVZRVAzUkljckE4S2VnRjhX?=
- =?utf-8?B?SXkxVlMya3lUSTdLM0R1aWg2dUxsdTZtbC9La2UzNzQzbHROQ25Yb2lYU3dv?=
- =?utf-8?B?VmszUkdIb2hYZ2lsd2szTDlLMmNFSlRRTytVTjhmWFM0cXA3dko2OFJiaDVU?=
- =?utf-8?B?L1BlVUJSOGlVaWRxVS8yZ3JyV0NTR2x4a0ovcEVyZHhHUnIzZW5TcUtIelpq?=
- =?utf-8?B?aysrQjdMb1BWTDJDT0Q1bzI5eEZ2Z01IM24wamt4bWpxTGZKZlB4WHRaditJ?=
- =?utf-8?B?dnUxdTg2RDh5S2dPSEtQZE1RaGpoREd0VlhNQ21Lb3ZBRFc2OG93ZmZDdHJD?=
- =?utf-8?B?VzU4bEpyWCt3UmFXWjQ3ajBXd3kwRVFvdFd4TlNqRDlESmFvWlJpcDUyL1Ru?=
- =?utf-8?B?TnlrL1dKQ1FBTU5kaSsreFo0Ym5CVzh1MElBeDBpdzBDZU13RFF2TzIzN3oz?=
- =?utf-8?B?R1JjbzNTNWJ2Zm43RmdiSzBpZDdYMVl3VEdxbE16UnZpU29PY3lMM3JoTTRz?=
- =?utf-8?B?VCtXWWlsbXlQR0lsb3RLams3Qk1mV0pOTE9IWmZpRzZUajJkQzd1RWlwOUlp?=
- =?utf-8?B?QytOdDdxSVQyajZuSHRIUjBrY1pVLzBiVnNKejBmYTdJc1o2bVhKZll0K2gr?=
- =?utf-8?B?Y0liMlpJZ2ppc283NVRtVXNnNTR3TE1GWlpRTC9wekV5SmQ1RUhUNUY4eWlK?=
- =?utf-8?B?TWo0a1dxamhQL3FJdXE2M3dIbFdkRnlYUE1Sekgxb0FBMVRGRUx2a2h6Mmh2?=
- =?utf-8?B?TWVLMGMvTTVadWVmOUxhb3RycERoc2lpS0E1RkNkNVlqbis4REw3akg2RG42?=
- =?utf-8?B?TUtVdnM0bGh6OHFPTnVmay9vU3JMb0Jjb1pHc0RqVGxZbnV0RXgxOWFLc3VC?=
- =?utf-8?B?K3g5S2hBcC8raTl4UGlldDRUREpjbkFycFlETEI4cE9yT2g2VkwxaURZNk0y?=
- =?utf-8?B?MGtyaVcvY0d3QTVsVEtyQXBhU05QVVh5a0M5TzlBbVU2RTRZcVhmYzFrQldW?=
- =?utf-8?B?Uzdobkp0bFUvUUZsYngwWHR0ZmJaemNUeE1WdjdUREVHVzc2Ykt6OW5qMnpD?=
- =?utf-8?B?WXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <053677930F951C48894688B0253921FF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.11; Fri, 25 Nov
+ 2022 09:24:54 +0000
+Received: from DM6NAM11FT086.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b9:cafe::ac) by DS7PR05CA0027.outlook.office365.com
+ (2603:10b6:5:3b9::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.17 via Frontend
+ Transport; Fri, 25 Nov 2022 09:24:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT086.mail.protection.outlook.com (10.13.173.75) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5834.8 via Frontend Transport; Fri, 25 Nov 2022 09:24:54 +0000
+Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 25 Nov
+ 2022 03:24:27 -0600
+Message-ID: <6ed85ced-1d85-5620-881e-943fa4bc71d9@amd.com>
+Date:   Fri, 25 Nov 2022 10:24:24 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73c9238f-63d1-4f45-5e0e-08dacec6be91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2022 09:23:42.1922
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v11 4/6] firmware: xilinx: Add shutdown/wakeup APIs
+Content-Language: en-US
+To:     Tanmay Shah <tanmay.shah@amd.com>, <andersson@kernel.org>,
+        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <bill.mills@linaro.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Ben Levinsky <ben.levinsky@amd.com>
+References: <20221114233940.2096237-1-tanmay.shah@amd.com>
+ <20221114233940.2096237-5-tanmay.shah@amd.com>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <20221114233940.2096237-5-tanmay.shah@amd.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT086:EE_|IA0PR12MB7505:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0adc978-6a31-4911-23d1-08dacec6e9a2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ebgLXcnjyIvK2y9GUuVjLO2EZmg5bVl79iJCN+trvJEspJ5dwdarDZLAFE2B8pBFY1TANwUaT69FpGEk+70zTtrrxEt2YnfAWjROjoJ5VAOs/gW9mivPmegdvtoNSJ9aaC69b8zu5ObqUZ0I0pogwKRko4zCAIH3MmIfTK+nRDTJl2qQzGZ0m0gYjq7c0Iu6Z5wll2rvHAHu7avxTOKc2PV7usoaTrEAXQCuM+SlFjYv8gu6zQ11IWUYuFDmzWKMq5IZJCnxuX01Bbf4Xwquq4RqwzC3NJ/+OKjkWhQtXRqmLWMoDiHyvbVmS6HCJv+7QtooTS0L65oZ0bUZrVKRxs4wMDaGMHnIDiUb5HY+JENKQsaI2LMcevt953zB0A93JXccU0T9JP2R3RdhRqI6Sa34a1oh68mK2QQ442WPieByRnrKvEKHicPWwWjfqwnAHObsbJmQZF9LpvySXA5td1sMCoRCLhCcwXelyDu+r604yZ+1qoAFMrjPwG26nA1aM4ObG2SfEHNJ2BHx8sKVj9xSAKo0FlxxymYh7/f280KR2v4Ruij0DMANgdonQF7vSNHFv+7O+AxrzgXZXn9UZFJ5jSNH32V47SJlU0GZJUFDE3PNWtAa4YyRN5IDIpyyVvAB1xGx3mzF2gk9Prx1R5jpB19b4ceIYxpZnYmU1JS01DHSGbMa0SMWY/thk0I3u0tboYNk4f5VDQqMQP+9YsqNWPpwK6HXFIPCuQG/U+CvzrVpdL9dtnASB5EBm5X7WRUz5xZlWF1AUbu/+BOGFg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(346002)(376002)(39860400002)(451199015)(46966006)(40470700004)(36840700001)(336012)(44832011)(47076005)(83380400001)(36756003)(8676002)(5660300002)(316002)(54906003)(26005)(40460700003)(426003)(70206006)(4326008)(478600001)(2616005)(110136005)(16576012)(41300700001)(8936002)(16526019)(82310400005)(356005)(70586007)(81166007)(53546011)(186003)(36860700001)(82740400003)(2906002)(40480700001)(6666004)(31696002)(31686004)(86362001)(36900700001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2022 09:24:54.4129
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZNuui5UnZhGdp4FujvpV5I9X2aF6Bc/OsKxDelM7HcqdQPM11WP7lmobKj2+nMgIePBxrW+6C0oQmnt6OUHAPsUvRyE9252KA+EX41Due0g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5374
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0adc978-6a31-4911-23d1-08dacec6e9a2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT086.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7505
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -155,21 +105,156 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEhvcmF0aXUsDQoNCk9uIDE2LjA5LjIwMjIgMjI6NDksIEhvcmF0aXUgVnVsdHVyIHdyb3Rl
-Og0KPiBBZGQgT1RQIChvbmUgdGltZSBwcm9ncmFtbWFibGUpIHN1cHBvcnQuDQo+IFRoZSBib3Ro
-IGxhbjk2NnggU29jUyAobGFuOTY2MiBhbmQgbGFuOTY2OCkgaGF2ZSB0aGUgc2FtZSBPVFAgSVAu
-DQoNCklmIE9UUCBJUCBpcyB0aGUgc2FtZSBmb3IgYm90aCBsYW45NjZ4IGlzIHRoZXJlIGEgcmVh
-c29uIHlvdSd2ZSBhZGRlZA0KY29tcGF0aWJsZXMgZm9yIGVhY2ggU29DIHZhcmlhbnRzPw0KDQpU
-aGFuayB5b3UsDQpDbGF1ZGl1IEJlem5lYQ0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBIb3JhdGl1
-IFZ1bHR1ciA8aG9yYXRpdS52dWx0dXJAbWljcm9jaGlwLmNvbT4NCj4gLS0tDQo+ICBhcmNoL2Fy
-bS9ib290L2R0cy9sYW45NjZ4LmR0c2kgfCA1ICsrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNSBp
-bnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2
-eC5kdHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2eC5kdHNpDQo+IGluZGV4IDIzNjY1YTA0
-Mjk5MDYuLjc4NGNhYmEzNjk0ODUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2xh
-bjk2NnguZHRzaQ0KPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9sYW45NjZ4LmR0c2kNCj4gQEAg
-LTE2Myw2ICsxNjMsMTEgQEAgcG9ydDc6IHBvcnRANyB7DQo+ICAJCQl9Ow0KPiAgCQl9Ow0KPiAg
-DQo+ICsJCW90cDogb3RwQGUwMDIxMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWljcm9jaGlw
-LGxhbjk2Njgtb3RwYyIsICJtaWNyb2NoaXAsbGFuOTY2Mi1vdHBjIjsNCj4gKwkJCXJlZyA9IDww
-eGUwMDIxMDAwIDB4MzAwPjsNCj4gKwkJfTsNCj4gKw0KPiAgCQlmbHgwOiBmbGV4Y29tQGUwMDQw
-MDAwIHsNCj4gIAkJCWNvbXBhdGlibGUgPSAiYXRtZWwsc2FtYTVkMi1mbGV4Y29tIjsNCj4gIAkJ
-CXJlZyA9IDwweGUwMDQwMDAwIDB4MTAwPjsNCg0K
+
+
+On 11/15/22 00:39, Tanmay Shah wrote:
+> From: Ben Levinsky <ben.levinsky@amd.com>
+> 
+> Add shutdown/wakeup a resource eemi operations to shutdown
+> or bringup a resource.
+> 
+> Note alignment of args matches convention of other fn's in this file.
+> The reason being that the long fn name results in aligned args that
+> otherwise go over 80 chars so shift right to avoid this
+> 
+> Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v11:
+>    - Rebase on latest rproc-next branch and resolve merge conflicts
+> 
+> Changes in v10:
+>    - None
+> 
+> Changes in v9:
+>    - None
+> 
+> Changes in v8:
+>    - None
+> 
+> Changes in v7:
+>    - None
+> 
+> Changes in v6:
+>    - None
+> 
+> Changes in v5:
+>    - None
+> 
+> Changes in v4:
+>    - None
+> 
+> Changes in v3:
+>    - None
+> 
+>   drivers/firmware/xilinx/zynqmp.c     | 35 ++++++++++++++++++++++++++++
+>   include/linux/firmware/xlnx-zynqmp.h | 23 ++++++++++++++++++
+>   2 files changed, 58 insertions(+)
+> 
+> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+> index ff5cabe70a2b..1865e43ed7e7 100644
+> --- a/drivers/firmware/xilinx/zynqmp.c
+> +++ b/drivers/firmware/xilinx/zynqmp.c
+> @@ -1159,6 +1159,41 @@ int zynqmp_pm_release_node(const u32 node)
+>   }
+>   EXPORT_SYMBOL_GPL(zynqmp_pm_release_node);
+>   
+> +/**
+> + * zynqmp_pm_force_pwrdwn - PM call to request for another PU or subsystem to
+> + *             be powered down forcefully
+> + * @node:  Node ID of the targeted PU or subsystem
+> + * @ack:   Flag to specify whether acknowledge is requested
+> + *
+> + * Return: status, either success or error+reason
+> + */
+> +int zynqmp_pm_force_pwrdwn(const u32 node,
+> +			   const enum zynqmp_pm_request_ack ack)
+> +{
+> +	return zynqmp_pm_invoke_fn(PM_FORCE_POWERDOWN, node, ack, 0, 0, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_force_pwrdwn);
+> +
+> +/**
+> + * zynqmp_pm_request_wake - PM call to wake up selected master or subsystem
+> + * @node:  Node ID of the master or subsystem
+> + * @set_addr:  Specifies whether the address argument is relevant
+> + * @address:   Address from which to resume when woken up
+> + * @ack:   Flag to specify whether acknowledge requested
+> + *
+> + * Return: status, either success or error+reason
+> + */
+> +int zynqmp_pm_request_wake(const u32 node,
+> +			   const bool set_addr,
+> +			   const u64 address,
+> +			   const enum zynqmp_pm_request_ack ack)
+> +{
+> +	/* set_addr flag is encoded into 1st bit of address */
+> +	return zynqmp_pm_invoke_fn(PM_REQUEST_WAKEUP, node, address | set_addr,
+> +				   address >> 32, ack, NULL);
+> +}
+> +EXPORT_SYMBOL_GPL(zynqmp_pm_request_wake);
+> +
+>   /**
+>    * zynqmp_pm_set_requirement() - PM call to set requirement for PM slaves
+>    * @node:		Node ID of the slave
+> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+> index bdbf855b5eef..ad3f2bd0c470 100644
+> --- a/include/linux/firmware/xlnx-zynqmp.h
+> +++ b/include/linux/firmware/xlnx-zynqmp.h
+> @@ -12,6 +12,7 @@
+>   
+>   #ifndef __FIRMWARE_ZYNQMP_H__
+>   #define __FIRMWARE_ZYNQMP_H__
+> +#include <linux/types.h>
+>   
+>   #include <linux/err.h>
+>   
+> @@ -87,6 +88,8 @@ enum pm_api_cb_id {
+>   enum pm_api_id {
+>   	PM_GET_API_VERSION = 1,
+>   	PM_REGISTER_NOTIFIER = 5,
+> +	PM_FORCE_POWERDOWN = 8,
+> +	PM_REQUEST_WAKEUP = 10,
+>   	PM_SYSTEM_SHUTDOWN = 12,
+>   	PM_REQUEST_NODE = 13,
+>   	PM_RELEASE_NODE = 14,
+> @@ -521,6 +524,12 @@ int zynqmp_pm_is_function_supported(const u32 api_id, const u32 id);
+>   int zynqmp_pm_set_feature_config(enum pm_feature_config_id id, u32 value);
+>   int zynqmp_pm_get_feature_config(enum pm_feature_config_id id, u32 *payload);
+>   int zynqmp_pm_register_sgi(u32 sgi_num, u32 reset);
+> +int zynqmp_pm_force_pwrdwn(const u32 target,
+> +			   const enum zynqmp_pm_request_ack ack);
+> +int zynqmp_pm_request_wake(const u32 node,
+> +			   const bool set_addr,
+> +			   const u64 address,
+> +			   const enum zynqmp_pm_request_ack ack);
+>   int zynqmp_pm_set_sd_config(u32 node, enum pm_sd_config_type config, u32 value);
+>   int zynqmp_pm_set_gem_config(u32 node, enum pm_gem_config_type config,
+>   			     u32 value);
+> @@ -795,6 +804,20 @@ static inline int zynqmp_pm_register_sgi(u32 sgi_num, u32 reset)
+>   	return -ENODEV;
+>   }
+>   
+> +static inline int zynqmp_pm_force_pwrdwn(const u32 target,
+> +					 const enum zynqmp_pm_request_ack ack)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+> +static inline int zynqmp_pm_request_wake(const u32 node,
+> +					 const bool set_addr,
+> +					 const u64 address,
+> +					 const enum zynqmp_pm_request_ack ack)
+> +{
+> +	return -ENODEV;
+> +}
+> +
+>   static inline int zynqmp_pm_set_sd_config(u32 node,
+>   					  enum pm_sd_config_type config,
+>   					  u32 value)
+
+Acked-by: Michal Simek <michal.simek@amd.com>
+
+Thanks,
+Michal
