@@ -2,90 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4353D638DBE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:51:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4756638DCA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiKYPvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:51:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
+        id S229698AbiKYPwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:52:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiKYPvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:51:18 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3357247329;
-        Fri, 25 Nov 2022 07:51:13 -0800 (PST)
-Received: (Authenticated sender: thomas.petazzoni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A50931BF203;
-        Fri, 25 Nov 2022 15:51:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669391472;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=GPaT39sAq6bB/8jycs8Qu4XNOLXdQXN9CIa8CNq+0DU=;
-        b=d/iWI35QnhWrUQmu3eK7MTp+CL19nh+Yxmv+C3PgagomoCjafmL46X4+idl8P6GeM7d7W/
-        IuyPuItiyYGPs6TsLADAGD0fSGx6to8UDVu3P9UK3lyMkSj/644Y+Y5bjxkZyDmYKd2Qga
-        DUF4/VbHFuiaCTiZ0UHRpzPT1DjliCWV4/upp90Fv1szfz/rUHVVRGz1w5qZJuqmV8DlmS
-        cNOkK0+d9366JLreDe2UDAfAZ62wxQCkvsA9I3ZhrdFmqD0kW5jtdEEkWlnU2CmcNCVjUK
-        Fkf7YKCimzEimQEb0AaOSeczhQyCpHoJCRmyNQeq1OscLIz4gU7xdWoeIXLmHA==
-Date:   Fri, 25 Nov 2022 16:51:09 +0100
-From:   Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-To:     Vadym Kochan <vadym.kochan@plvision.eu>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        with ESMTP id S229623AbiKYPwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:52:53 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5162715B
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:52:52 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id p8so7479217lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:52:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1S80mqqzZPV4x0fjfvSYuvzqcnujfLUcEw9LE2vdO30=;
+        b=rxTk+ofk5/kp/tBgvUncx34Wmy8PgkdH58ZnTcqVFqL6NiwtquGNdY9uMuSjTxWRU4
+         3ABUuer/n0skicY6HzPI/ItzipsC74K25KnLi71x6JCoC4olV7sXe815Frn+7irN2KBI
+         OggqKwajRyS7oiMjBW9sF+eQoLtbULqADkFczb69mTXl573T/acIro0SXY4bVxOVTFv+
+         IdDONAr3bVmK5L5A1DrmgAYz4xWZSK0YAuPR/ISkMJUCESleloB4Ra4PvliqpfJsRJJH
+         uqmhmgT/CxRAQT+y3ZBuqEXVDIaYHb9ATpEaCKoJyYFF+Er8bDb1d2j/scrgK6YtTPqM
+         nA9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1S80mqqzZPV4x0fjfvSYuvzqcnujfLUcEw9LE2vdO30=;
+        b=SDXh2RMEb1R9lPhfbI5nuSZ+DI0kafYgY1HtbOcrEcVRkAOFfwzvKgqUr2y4tJZNKh
+         P5YxSuioGzkCt2v91+zHmMKdglm1MbbamS/bPxyajyMKGmtKWrzSnyz5eXw95yG9JivT
+         eelflQlftzQ145FRqwnfj5azr+uj2vz/EmQH56qeFwn+p1bprHTR5M5+JRJh5VqAMv4c
+         tHf9KL58nKFW3Ln8bn8Xw8R25+pdOvNC9dZwHbiPjh/ISygawm7FcLRTwHoDvbVk3Qxa
+         /MHhoJ3IZO2DE7RChA+gYYh5VDsYpB5hhEkLqCH3nddEimXK5bXeLBq9WCIOsWTrS/s1
+         q83A==
+X-Gm-Message-State: ANoB5pnZwgi0srrzChVX+Pfii09fVG8E43w6ZseXERx8KQ5L7602m/Qr
+        gTk5nQ7XhwcXi5i14eXPLsAWqw==
+X-Google-Smtp-Source: AA0mqf6X/KnbJCFxPa7UnT2OxSIX0wk6JLemR+lPA+e4v/zQ+I1V5mQKQC1w//ayTYER8W7yYAXiIQ==
+X-Received: by 2002:a19:5e58:0:b0:4a7:5a63:71e1 with SMTP id z24-20020a195e58000000b004a75a6371e1mr6959397lfi.399.1669391570441;
+        Fri, 25 Nov 2022 07:52:50 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t14-20020a05651c204e00b002778a76a3c3sm391488ljo.112.2022.11.25.07.52.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 07:52:50 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Elad Nachman <enachman@marvell.com>,
-        Raz Adashi <raza@marvell.com>, Yuval Shaia <yshaia@marvell.com>
-Subject: Re: [PATCH v2 2/3] PCI: armada8k: Add AC5 SoC support
-Message-ID: <20221125165109.6059d3a5@windsurf>
-In-Reply-To: <VI1P190MB03173DB0A16402C8AB670D91950E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
-References: <20221124135829.2551873-1-vadym.kochan@plvision.eu>
-        <20221124135829.2551873-3-vadym.kochan@plvision.eu>
-        <20221124155817.5f372417@windsurf>
-        <VI1P190MB03173DB0A16402C8AB670D91950E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 0/3] arm64: dts: qcom: sm8450-hdk: add sound support
+Date:   Fri, 25 Nov 2022 16:52:44 +0100
+Message-Id: <20221125155247.501203-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Hi,
 
-On Fri, 25 Nov 2022 08:43:06 +0000
-Vadym Kochan <vadym.kochan@plvision.eu> wrote:
+Changes since v3
+================
+1. Re-order reg and sound-dai-cells.
 
-> [quote]
-> this is not needed, as by the time Linux is loaded, link has already been established (by boot loaders)
-> 
-> So this code is not needed.
-> [/quote]
+Changes since v2
+================
+1. Patch 2: Use lower-case hex.
+2. Patch 3: Use ACTIVE_LOW for qcom,wcd9380-codec reset-gpios.
+   https://lore.kernel.org/all/20221116053817.2929810-11-dmitry.torokhov@gmail.com
+3. Add Rb tags.
 
-Not ideal to rely on the bootloader for this sort of initialization,
-and if we want to do this change, perhaps it should be done in another
-patch.
+Changes since v1
+================
+1. Patch 2:
+   - Whitespace cleanups.
+   - Correct include - do not use deprecated one.
+2. Patch 3:
+   - Sort.
+   - Add Rb tag.
+   - Correct include - do not use deprecated one and drop q6asm.h (not used).
 
-But again, the fact that "it works for Marvell because their vendor
-U-Boot does the right thing prior to loading Linux" is not really a
-very solid argument to drop kernel code :-/
+Description
+===========
+Initial work (still partially in progress) adding audio to HDK8450 board.
 
-Thomas
+Working/tested:
+ - speakers
+ - one channel of headset
+
+The DTS patches do not have particular dependencies, however they:
+1. Use updated ASoC bindings:
+   https://lore.kernel.org/linux-arm-msm/20221111113547.100442-1-krzysztof.kozlowski@linaro.org/T/#t
+
+2. For full operation need changes in Soundwire and Qualcomm ASoC drivers, not
+   yet upstreamed:
+   https://github.com/krzk/linux/commits/wip/sm8450
+   Booting remoteproc without these changes will report errors, but these are
+   expected at this stage.
+
+Best regards,
+Krzysztof
+
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+Srinivas Kandagatla (3):
+  arm64: dts: qcom: sm8450: add GPR node
+  arm64: dts: qcom: sm8450: add Soundwire and LPASS
+  arm64: dts: qcom: sm8450-hdk: add sound support
+
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 160 ++++++++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 334 ++++++++++++++++++++++++
+ 2 files changed, 494 insertions(+)
+
 -- 
-Thomas Petazzoni, co-owner and CEO, Bootlin
-Embedded Linux and Kernel engineering and training
-https://bootlin.com
+2.34.1
+
