@@ -2,129 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4CA5638718
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21D2963871A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:12:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiKYKKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 05:10:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36622 "EHLO
+        id S229877AbiKYKMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 05:12:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiKYKKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:10:48 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 684AE1FFAD;
-        Fri, 25 Nov 2022 02:10:47 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id b8so5708232edf.11;
-        Fri, 25 Nov 2022 02:10:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IUCM0LE2Qdll2KQhXqeTAiIGjjD6iG7iWRvqL9i1T/s=;
-        b=Ns29kwRrHv7Ip/kcPlqzvmLf+DOhGJwpNWyUvTpOBGtbV5cZHzGhPvN0INYbebjz5O
-         oX3sgyukJbtrz+blPsF3Cw/Tl87sIlhFOhnzvoXY0RtmuNnSXASazX4+3BDwUX1R9c/l
-         Mc+73ig0zJjLkH5Ukr347y8q9SivewP+aGZDKM0A5JsYQtTOASMpS4EJq7yfPUC1SldM
-         QSM6/zAlId8XGwAghhcBcz82f8SvpvEUN1/luNYYeA4jHR25lwDy1Jfkcn6x9tPRvZxN
-         T/ppXxFKqwZTFvrqz1bhW1F88p5cW7jpwWyU4J/fc8FRFEY/xgI1NursXSuRyXMsh9/8
-         Aj9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IUCM0LE2Qdll2KQhXqeTAiIGjjD6iG7iWRvqL9i1T/s=;
-        b=dd+PDPWD/vy3ChzYPNRNlpeg0gJ8+xhadlU6ti/UdDSoqXS7QO9xsFg3GXqwGeylau
-         AiSJ8+b/nTL+vp8/Ruv1+UCP2pcsbJmlOgJX6WnwOyMoV/NwheFQVzgRrcH6sE+1lbZd
-         IIqt15V054Ov+E6coslbnybll8R52tyvFjuLQqBCdod3dQNJDLsOskIDphT+M6xSI9sQ
-         t7TzV+DknVmzji+WcOu5y40w0+tW5gmUcZDkyDgScFtIUFYgip86mJRnvahcNGgK36pa
-         G0SXwdFW6+0JJCmk9J/FeySpAJcQ5XLwSzpaVi2Zc9eZv/+pn0NUc3dWp3nnDTAXE8a6
-         ytHw==
-X-Gm-Message-State: ANoB5pmMNO8PAS7Qq3SSN4Wi+Je0kSrSdfbivs9FpV+U94o2ZPxOXKgp
-        rYgdOUGYXIWRTmCzD424RodO/b60iFqhCfzCtH8=
-X-Google-Smtp-Source: AA0mqf74kk78BGZ9XqzWiJe0v91Q/kxGQ61MMser1Tuvs6dPAkMcXojiHnTRgz2VPD2O0Krfp5XnCHbHh8QBUvCIXNw=
-X-Received: by 2002:a05:6402:f:b0:468:56c3:7c8 with SMTP id
- d15-20020a056402000f00b0046856c307c8mr34662608edu.109.1669371045850; Fri, 25
- Nov 2022 02:10:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221124172207.153718-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAJF2gTT7XEXmLWpP6nnSNRms9kj2NQR2dOA5N+V2UmnsurJogQ@mail.gmail.com>
-In-Reply-To: <CAJF2gTT7XEXmLWpP6nnSNRms9kj2NQR2dOA5N+V2UmnsurJogQ@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 25 Nov 2022 10:10:19 +0000
-Message-ID: <CA+V-a8uA=U72Mq7Rqu09BoWRG0jNHXUK=C5VFq=jb0iHLjom5w@mail.gmail.com>
-Subject: Re: [PATCH DO NOT REVIEW v4 4/7] riscv: errata: andes: Fix auipc-jalr
- addresses in patched alternatives
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+        with ESMTP id S229536AbiKYKMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:12:05 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159E61FFAD;
+        Fri, 25 Nov 2022 02:11:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D9D826231F;
+        Fri, 25 Nov 2022 10:11:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29B49C433C1;
+        Fri, 25 Nov 2022 10:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669371113;
+        bh=CtuOyTzwbNMD8uQ5rLP+h3ZAPmaYchqlqNUidC/4VKY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OiS+a2JQ8OWVB2U+bpcfHNg8bYFoGqb33LPVPwU9wZeFNW0SElLBVm/O8Uh8HoPKm
+         YD5+VxeA1WC7lyHKQR418KIOgXDnsbp5cxu9HgWFMnuhyNIp5KKcFLeLnejN/0CU/a
+         xcOir2W/EU5DEvOlZzn3n3XM+i/pgoY6hWlKwLEFyDwKMalq6xSWKHqom2eP5mrPeo
+         xZjLF0Ob5T6U7eX/1p8jWZoPfT92Yo4K1jQuIgzOl2lESqW7rDpWvqbsCk8Gpk+jkg
+         XxTfdqGmMEc512AxznV6ixlY2wKh3HACZLCMKlMMOzz3PYicIaarCiHiqmYQePvrti
+         4Q5aEh1OKr4Qg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oyVg7-0002QB-Si; Fri, 25 Nov 2022 11:11:28 +0100
+Date:   Fri, 25 Nov 2022 11:11:27 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 3/3] arm64: dts: qcom: sm6350: Use specific qmpphy
+ compatible
+Message-ID: <Y4CUz+qLVgnPoxU5@hovoldconsulting.com>
+References: <20221125092749.46073-1-luca.weiss@fairphone.com>
+ <20221125092749.46073-3-luca.weiss@fairphone.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221125092749.46073-3-luca.weiss@fairphone.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guo,
+On Fri, Nov 25, 2022 at 10:27:49AM +0100, Luca Weiss wrote:
+> The sc7180 phy compatible works fine for some cases, but it turns out
+> sm6350 does need proper phy configuration in the driver, so use the
+> newly added sm6350 compatible.
+> 
+> Because the sm6350 compatible is using the new binding, we need to
+> change the node quite a bit to match it.
+> 
+> This fixes qmpphy init when no USB cable is plugged in during bootloader
+> stage.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> @Johan Hovold, in this patch there's also the question about cfg_ahb,
+> power-domains but I'm also not happy about using the
+> QMP_USB43DP_USB3_PHY define for the phy reference. Do you think it's a
+> good idea to introduce e.g. QMP_USB3DP_USB3_PHY with the same value so
+> it's essentially just an alias to the other?
 
-On Fri, Nov 25, 2022 at 1:09 AM Guo Ren <guoren@kernel.org> wrote:
->
-> On Fri, Nov 25, 2022 at 1:22 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > This patch is added just for building purpose, as patch [0] will export
-> > this in its next version.
-> >
-> > https://patchwork.kernel.org/project/linux-riscv/patch/20221110164924.529386-6-heiko@sntech.de/
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > Note, as Heiko will be exporting riscv_alternative_fix_auipc_jalr() function
-> > so that it can be used other erratas Ive just included for compilation.
-> > ---
-> >  arch/riscv/errata/andes/errata.c | 71 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 71 insertions(+)
-> >
-> > diff --git a/arch/riscv/errata/andes/errata.c b/arch/riscv/errata/andes/errata.c
-> > index ec3e052ca8c7..4061ad4983bc 100644
-> > --- a/arch/riscv/errata/andes/errata.c
-> > +++ b/arch/riscv/errata/andes/errata.c
-> > @@ -13,9 +13,80 @@
-> >  #include <asm/alternative.h>
-> >  #include <asm/cacheflush.h>
-> >  #include <asm/errata_list.h>
-> > +#include <asm/parse_asm.h>
-> >  #include <asm/patch.h>
-> > +#include <asm/sbi.h>
-> >  #include <asm/vendorid_list.h>
-> >
-> > +/* Copy of Heiko's code from patch [0]
-> > + * [0] https://patchwork.kernel.org/project/linux-riscv/patch/20221110164924.529386-6-heiko@sntech.de/
-> Move it to commit-msg. No link in the code.
->
-This patch is *not* to be merged and is just included for compilation
-purposes only.
+We had that discussion the other week and I believe we agreed that
+reusing the define with a more general infix (USB43DP) was fine as it's
+just a name for a constant (and the USB43DP constants will be a superset
+of the ones needed for USB3-DP PHYs).
 
-Cheers,
-Prabhakar
+> This series is tested on next-20221124 with next branch of linux-phy
+> repo (commit bea3ce759b46) merged in.
+
+The dependencies should all be in linux-next as of today.
+
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi | 46 +++++++---------------------
+>  1 file changed, 11 insertions(+), 35 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> index 0f01ff4feb55..923c8bb7e5f8 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+> @@ -11,6 +11,7 @@
+>  #include <dt-bindings/interconnect/qcom,sm6350.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+> +#include <dt-bindings/phy/phy-qcom-qmp.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>  
+> @@ -1119,50 +1120,25 @@ usb_1_hsphy: phy@88e3000 {
+>  			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+>  		};
+>  
+> -		usb_1_qmpphy: phy@88e9000 {
+> -			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
+> -			reg = <0 0x088e9000 0 0x200>,
+> -			      <0 0x088e8000 0 0x40>,
+> -			      <0 0x088ea000 0 0x200>;
+> -			status = "disabled";
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> +		usb_1_qmpphy: phy@88e8000 {
+> +			compatible = "qcom,sm6350-qmp-usb3-dp-phy";
+> +			reg = <0 0x088e8000 0 0x3000>;
+>  
+>  			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+>  				 <&xo_board>,
+>  				 <&rpmhcc RPMH_QLINK_CLK>,
+> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +			clock-names = "aux", "cfg_ahb", "ref", "com_aux", "usb3_pipe";
+
+As I mentioned in my reply to the binding, we should double check the
+vendor dts and hardware documentation (if possible) before settling on
+these names which appears to just have been reused from some older
+platform.
+
+>  
+>  			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+>  				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+>  			reset-names = "phy", "common";
+>  
+> -			usb_1_ssphy: usb3-phy@88e9200 {
+> -				reg = <0 0x088e9200 0 0x200>,
+> -				      <0 0x088e9400 0 0x200>,
+> -				      <0 0x088e9c00 0 0x400>,
+> -				      <0 0x088e9600 0 0x200>,
+> -				      <0 0x088e9800 0 0x200>,
+> -				      <0 0x088e9a00 0 0x100>;
+> -				#clock-cells = <0>;
+> -				#phy-cells = <0>;
+> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> -				clock-names = "pipe0";
+> -				clock-output-names = "usb3_phy_pipe_clk_src";
+> -			};
+> +			#clock-cells = <1>;
+> +			#phy-cells = <1>;
+>  
+> -			dp_phy: dp-phy@88ea200 {
+> -				reg = <0 0x088ea200 0 0x200>,
+> -				      <0 0x088ea400 0 0x200>,
+> -				      <0 0x088eac00 0 0x400>,
+> -				      <0 0x088ea600 0 0x200>,
+> -				      <0 0x088ea800 0 0x200>,
+> -				      <0 0x088eaa00 0 0x100>;
+
+Note that these registers were not correct to begin with and a fix has
+been posted here:
+
+	https://lore.kernel.org/all/20221111094729.11842-2-johan+linaro@kernel.org/
+
+Will hopefully show up in linux-next next week so this can be rebased on
+top.
+
+> -				#phy-cells = <0>;
+> -				#clock-cells = <1>;
+> -			};
+> +			status = "disabled";
+>  		};
+>  
+>  		dc_noc: interconnect@9160000 {
+> @@ -1236,7 +1212,7 @@ usb_1_dwc3: usb@a600000 {
+>  				snps,dis_enblslpm_quirk;
+>  				snps,has-lpm-erratum;
+>  				snps,hird-threshold = /bits/ 8 <0x10>;
+> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
+> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>  				phy-names = "usb2-phy", "usb3-phy";
+>  			};
+>  		};
+
+Johan
