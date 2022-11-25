@@ -2,153 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E436387AB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:39:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 999176387B4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 11:41:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiKYKjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 05:39:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36816 "EHLO
+        id S229740AbiKYKle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 05:41:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbiKYKjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:39:16 -0500
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2068.outbound.protection.outlook.com [40.107.244.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D8383F04A;
-        Fri, 25 Nov 2022 02:39:15 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BREf6AMmKAAG0OK6GctZ/iP6YlOSogLzoGFQ5YVDi39OzdRmssa1oDk7lLhV3wimGnMqSnhnKEOgapd3LbmCIy5OJMoiwWhqYJSh39hnIfzOeHbYasvz+g4AeLzazCZSZ0uH6enYSSQXpRlv2lJPYFOR4il1gw5FTv1Nlna1SIHPjmINzazHIDp/5N0PBjyAPnTr8tuE5vZ3Eg+nZrajv/o3iISoAfFUpY1h/c2YexzxUcBP7paHBh8czRN1WDX8bd3rUf8/QDkGAPyHpqW2dMiGSdpVAzUEqtER/CgBnvtQ8HpBXz8LFIFecqhYkxMzWJc0nPj7ZEZLB32Ua+Uxdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xBAGiCLR/S0r3SzzhqkhxFvMrhuI+l06PcKFn9bDk9I=;
- b=bifn6goCe3Ni5nMVD3HhUrpUCLjuHBy/Nd5Wn0JWIXdgZrPYHyMhgHPt07WQSOtCzW+c5ngOjITKCR0ebpqM5cKjd3KE6GZC+6PR2/6ROcyr0Lbog/aZtuee4gw3QSlh8UPqa7I2PNjh74XSlsz8gmkMQxC90zsB+ALaOiw2GI+HbCIiO4x5mGlF8tS6No6bOnycCq8rqQJLL1Zvz7Db7NpGx87UF58MmlQD19taM0mNm78JPF9mYOd7gdLXyrRPEEYedoQ72ZtMN/VMEr2O9uA2kDXQx09wloJxJEYfIJMuOw0L4dSa/9lnuuUTIhTgamvVNI6v+Jwlbf+mNfDtww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xBAGiCLR/S0r3SzzhqkhxFvMrhuI+l06PcKFn9bDk9I=;
- b=OWuBCR8giiD+r2dqWMK5SKDYvbXHqdfid27lKOKeLUMsxJjrQlgDOJYaXpuaUMyw22ww9Fw3BQvK97LDkuYEA8AbmPzZI9pDfsREf4uGWExpr+mJI/sw67Z1Wp45KGN+mz1EtZ1oiYBRlePraTXnbMzS15KkBPqBa8I4AnGghyE=
-Received: from DM5PR08CA0034.namprd08.prod.outlook.com (2603:10b6:4:60::23) by
- CH0PR12MB5171.namprd12.prod.outlook.com (2603:10b6:610:ba::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5857.20; Fri, 25 Nov 2022 10:39:13 +0000
-Received: from DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:60:cafe::9e) by DM5PR08CA0034.outlook.office365.com
- (2603:10b6:4:60::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.20 via Frontend
- Transport; Fri, 25 Nov 2022 10:39:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT061.mail.protection.outlook.com (10.13.173.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5857.19 via Frontend Transport; Fri, 25 Nov 2022 10:39:13 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 25 Nov
- 2022 04:39:08 -0600
-Message-ID: <a36d4573-e0ed-89c8-436f-d3fe28f1f59f@amd.com>
-Date:   Fri, 25 Nov 2022 11:39:05 +0100
+        with ESMTP id S229529AbiKYKld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 05:41:33 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE0848400;
+        Fri, 25 Nov 2022 02:41:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669372892; x=1700908892;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=m0y5KGOTPY1Jx4UVgieKKzfqxOu+aPjraVBANCkc9tQ=;
+  b=O3fphiP1SFpxaJSHkqW6+O38CD/sfEiwY44yni3fzD0hlcLDrGv1uwDH
+   hIi/Ofbf7bRT3IF/E4DenMaqLuLdGzCmcTLUYy1ngQ2o9KkQeSMnc+ljl
+   zjS9dWIw/qsL77BnoP/YUL80F56d6yb8r8WWt+poIlXTEdj8IP3JRyMiK
+   XOdI+bZu5zjldanSNqVSvC8fDturnVqlGFql+bW5IkDZR+/N9xXpUFQG2
+   ylKCqZHQwSJw+NN5/nxL1CMNkjSV7mTNlq2trtg4EQUlKpMiofZ6dz1T9
+   aqS4wZIzGonAowWq790NUwzNPOj4ZOPV/WgBs/PH8F9878E4z/0fBuz0W
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="400748631"
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="400748631"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2022 02:41:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10541"; a="706030849"
+X-IronPort-AV: E=Sophos;i="5.96,193,1665471600"; 
+   d="scan'208";a="706030849"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP; 25 Nov 2022 02:41:29 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oyW99-00HBvZ-0w;
+        Fri, 25 Nov 2022 12:41:27 +0200
+Date:   Fri, 25 Nov 2022 12:41:27 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+Subject: Re: [PATCH V3 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
+ controller
+Message-ID: <Y4Cb19PM97M9HaiB@smile.fi.intel.com>
+References: <cover.1669359515.git.zhoubinbin@loongson.cn>
+ <822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 00/13] Remove unused microblaze PCIe bus architecture
-Content-Language: en-US
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
-CC:     <bhelgaas@google.com>, <michals@xilinx.com>, <robh+dt@kernel.org>,
-        <lorenzo.pieralisi@arm.com>, <bharat.kumar.gogada@amd.com>
-References: <20221025065214.4663-1-thippeswamy.havalige@amd.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20221025065214.4663-1-thippeswamy.havalige@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT061:EE_|CH0PR12MB5171:EE_
-X-MS-Office365-Filtering-Correlation-Id: 461dcb68-028b-4092-b7ff-08daced14b6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N84y0uwsjzK2PK/EjOa2ZVvY1eoqx2OfFWPnD2NKuretfdyMYDJD4SEPYAa36KpJAKCk2OnH1pEL2CdjnfeWrFSyEdjP2TDFmILJo3TFjzNCSYkUW4iO5/INwTeCIYZhljPa3mPfXXfJT7yAlnje05n4I+iDZdHn2kzERrjhJz4w2OwCHTW+62zMb621wJoBDGvP20r8mFevnEvpJtgjaz0ajgW8Lv+8ubsPYmyA8/x+QTTjnl/HSGCuzTfX0Bmdi2k9fgyn+KyMDpze20qMQ03ll21l7wfyo1WttSdtDps1oGIOqRGkAVgEJS7c2269sNckF01SwA0ulR3s41PMVc430YeSPK7VG5g+HQ5xX/eH4Zn7bb1CtfmNrbgwvbgCMpUWkOCMvAch28VHePHP87aTA/Mvpot6QYVckSKj9GesbH7TkCBhZraF6jVVNrHhUuqQi9sQvtQtM8xh+cg3d0/BmBxo1+pZvrpMaAPPmiTXZbMwaCk9zI2GcK+bMn7DVBEgsap7vJpabkWNx6391TnHExJQjDmofn6cHeh5mO9xyK5WJ9Yfoq0JRPOaSlde2A8Wt7htWzvzi14cPYFoI1c3VziDsz7yVKv278M/0GZm5q8Rl2ZlZeHvr2vxx3kmwg49ctJnimw4WvgL/9WmUef0kmqt2kZO70A3SNptHQsSIWzC8xX4jIYmVwuE8P6qX+rZdVAUf0xIDu66S1guxKIcs5P6FEDkLsElV1L60pUPO3uXFrdTHLm7zFNgh+moUdpvSRw/lDoSytPZc8yogA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(39860400002)(396003)(136003)(451199015)(36840700001)(46966006)(40470700004)(5660300002)(44832011)(426003)(336012)(47076005)(40480700001)(36756003)(8676002)(4326008)(70586007)(70206006)(110136005)(54906003)(26005)(53546011)(186003)(316002)(2616005)(16576012)(16526019)(41300700001)(40460700003)(8936002)(82310400005)(356005)(81166007)(82740400003)(83380400001)(2906002)(36860700001)(31696002)(86362001)(6666004)(478600001)(31686004)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2022 10:39:13.4402
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 461dcb68-028b-4092-b7ff-08daced14b6b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5171
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Nov 25, 2022 at 04:55:20PM +0800, Binbin Zhou wrote:
+> This I2C module is integrated into the Loongson-2K SoCs and Loongson
+> LS7A bridge chip.
+
+...
+
+Missing bits.h.
+
+> +#include <linux/completion.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+
+> +#include <linux/of_device.h>
+
+There is no user of this header.
+Why?
+
+> +#include <linux/platform_device.h>
+
+...
+
+> +/* LS2X I2C clock frequency 50M */
+> +#define HZ_PER_MHZ		(50 * 1000000)
+
+units.h ?
+
+...
+
+> +struct ls2x_i2c_dev {
+> +	struct device		*dev;
+> +	void __iomem		*base;
+> +	int			irq;
+> +	u32			bus_clk_rate;
+> +	struct completion	cmd_complete;
+
+> +	struct i2c_adapter	adapter;
+
+Check if moving this to be the first field makes code generation better
+(bloat-o-meter is your friend).
+
+> +	unsigned int		suspended:1;
+> +};
+
+> +	return ls2x_i2c_send_byte(adap, LS2X_CR_STOP);
+> +}
+
+...
+
+> +static int ls2x_i2c_start(struct i2c_adapter *adap, struct i2c_msg *msgs)
+> +{
+> +	struct ls2x_i2c_dev *dev = i2c_get_adapdata(adap);
+> +	unsigned char addr = i2c_8bit_addr_from_msg(msgs);
+> +
+> +	reinit_completion(&dev->cmd_complete);
+
+> +	addr |= (msgs->flags & I2C_M_RD) ? 1 : 0;
+
+Why is this needed?
+
+> +	writeb(addr, dev->base + I2C_LS2X_TXR);
+> +
+> +	return ls2x_i2c_send_byte(adap, (LS2X_CR_START | LS2X_CR_WRITE));
+> +}
+
+...
+
+> +	while (len--) {
+
+> +		if (len == 0)
+> +			cmd |= LS2X_CR_ACK;
+> +
+> +		writeb(cmd, dev->base + I2C_LS2X_CR);
+
+Can be written as
+
+		writeb(cmd | (len ? 0 : LS2X_CR_ACK), dev->base + I2C_LS2X_CR);
+
+but it's up to you.
+
+> +		time_left = wait_for_completion_timeout(&dev->cmd_complete,
+> +							adap->timeout);
+> +		if (unlikely(!time_left)) {
+> +			dev_err(dev->dev, "transaction timeout\n");
+> +			return -ETIMEDOUT;
+> +		}
+> +
+> +		*buf++ = readb(dev->base + I2C_LS2X_RXR);
+> +	}
+
+...
+
+> +	for (retry = 0; retry < adap->retries; retry++) {
+
+> +
+
+Unneeded blank line.
+
+> +		ret = ls2x_i2c_doxfer(adap, msgs, num);
+> +		if (ret != -EAGAIN)
+> +			return ret;
+> +
+> +		dev_dbg(dev->dev, "Retrying transmission (%d)\n", retry);
+> +		udelay(100);
+> +	}
+
+Can something from iopoll.h be utilized here?
+
+...
+
+> +	if (iflag & LS2X_SR_IF) {
+> +		writeb(LS2X_CR_IACK, dev->base + I2C_LS2X_CR);
+> +		complete(&dev->cmd_complete);
+> +	} else
+> +		return IRQ_NONE;
 
 
-On 10/25/22 08:52, Thippeswamy Havalige wrote:
-> The current Xilinx AXI PCIe Host Bridge driver uses generic PCIe
-> subsystem framework. This driver works on both Microblaze and Zynq
-> architecture based platforms.
-> 
-> The microblaze architecture specific code has unused PCIe host bridge
-> supported API's which are no longer needed.
-> 
-> This series of patch removes unused architecture specific
-> microblaze PCIe code.
-> 
-> Thippeswamy Havalige (13):
->    microblaze/PCI: Remove unused early_read_config_byte() et al
->      declarations
->    microblaze/PCI: Remove Null PCI config access unused functions
->    microblaze/PCI: Remove unused PCI bus scan if configured as a host
->    microblaze/PCI: Remove unused PCI legacy IO's access on a bus
->    microblaze/PCI: Remove unused device tree parsing for a host bridge
->      resources
->    microblaze/PCI: Remove unused allocation & free of PCI host bridge
->      structure
->    microblaze/PCI: Remove unused PCI BIOS resource allocation
->    microblaze/PCI: Remove unused PCI Indirect ops
->    microblaze/PCI: Remove unused pci_address_to_pio() conversion of CPU
->      address to I/O port
->    microblaze/PCI: Remove unused sys_pciconfig_iobase() and et al
->      declaration
->    microblaze/PCI: Remove unused pci_iobar_pfn() and et al declarations
->    microblaze/PCI: Remove support for Xilinx PCI host bridge
->    microblaze/PCI: Moving PCI iounmap and dependent code
-> 
->   arch/microblaze/Kconfig                  |    8 -
->   arch/microblaze/include/asm/pci-bridge.h |   92 ---
->   arch/microblaze/include/asm/pci.h        |   29 -
->   arch/microblaze/pci/Makefile             |    3 +-
->   arch/microblaze/pci/indirect_pci.c       |  158 -----
->   arch/microblaze/pci/iomap.c              |   36 +
->   arch/microblaze/pci/pci-common.c         | 1067 ------------------------------
->   arch/microblaze/pci/xilinx_pci.c         |  170 -----
->   8 files changed, 37 insertions(+), 1526 deletions(-)
->   delete mode 100644 arch/microblaze/pci/indirect_pci.c
->   delete mode 100644 arch/microblaze/pci/pci-common.c
->   delete mode 100644 arch/microblaze/pci/xilinx_pci.c
-> 
+Use usual pattern: checking for error condition first.
 
-Applied with also removing PCI_XILINX from defconfig.
+	if (!(iflag & LS2X_SR_IF))
+		return IRQ_NONE;
 
-Thanks,
-Michal
+	writeb(LS2X_CR_IACK, dev->base + I2C_LS2X_CR);
+	complete(&dev->cmd_complete);
+
+> +	return IRQ_HANDLED;
+
+...
+
+> +	writeb((val & 0xff00) >> 8, dev->base + I2C_LS2X_PRER_HI);
+
+
+What ' & 0xff00' part is for?
+
+...
+
+> +	dev = devm_kzalloc(&pdev->dev,
+> +			sizeof(struct ls2x_i2c_dev), GFP_KERNEL);
+
+sizeof(*dev) and make it one line.
+
+> +	if (unlikely(!dev))
+
+Why unlikely()?
+
+> +		return -ENOMEM;
+
+...
+
+> +	dev->irq = platform_get_irq(pdev, 0);
+> +	if (unlikely(dev->irq <= 0))
+
+Why 'unlikely()'? Why == 0 is here?
+
+> +		return -ENODEV;
+
+...
+
+> +	r = devm_request_irq(&pdev->dev, dev->irq, ls2x_i2c_isr,
+> +			      IRQF_SHARED, "ls2x-i2c", dev);
+
+> +	if (unlikely(r)) {
+
+Why 'unlikely()'? You must explain all likely() / unlikely() use in the code.
+
+> +		dev_err(dev->dev, "failure requesting irq %i\n", dev->irq);
+> +		return r;
+
+	return dev_err_probe(...);
+
+> +	}
+
+...
+
+> +	/*
+> +	 * The I2C controller has a fixed I2C bus frequency by default, but to
+> +	 * be compatible with more client devices, we can obtain the set I2C
+> +	 * bus frequency from ACPI or FDT.
+> +	 */
+> +	dev->bus_clk_rate = i2c_acpi_find_bus_speed(&pdev->dev);
+
+> +	if (!dev->bus_clk_rate)
+> +		device_property_read_u32(&pdev->dev, "clock-frequency",
+> +					&dev->bus_clk_rate);
+
+This should be done via
+
+        i2c_parse_fw_timings(&pdev->dev, ...);
+
+no?
+
+...
+
+> +	adap->dev.of_node = pdev->dev.of_node;
+> +	ACPI_COMPANION_SET(&adap->dev, ACPI_COMPANION(&pdev->dev));
+
+device_set_node()
+
+...
+
+> +	/* i2c device drivers may be active on return from add_adapter() */
+> +	r = i2c_add_adapter(adap);
+> +	if (r) {
+> +		dev_err(dev->dev, "failure adding adapter\n");
+> +		return r;
+
+	return dev_err_probe(...);
+
+> +	}
+
+...
+
+> +static int __maybe_unused ls2x_i2c_suspend_noirq(struct device *dev)
+
+No __maybe_unused, use proper PM macros and definitions.
+(look for pm_ptr() / pm_sleep_ptr() and corresponding defines)
+
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct ls2x_i2c_dev *i2c_dev = platform_get_drvdata(pdev);
+> +
+> +	i2c_dev->suspended = 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused ls2x_i2c_resume(struct device *dev)
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct ls2x_i2c_dev *i2c_dev = platform_get_drvdata(pdev);
+> +
+> +	i2c_dev->suspended = 0;
+> +	ls2x_i2c_reginit(i2c_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops ls2x_i2c_dev_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(ls2x_i2c_suspend_noirq, ls2x_i2c_resume)
+> +};
+
+As per above.
+
+...
+
+> +static const struct of_device_id ls2x_i2c_id_table[] = {
+> +	{ .compatible = "loongson,ls2k-i2c" },
+> +	{ .compatible = "loongson,ls7a-i2c" },
+> +	{ /* sentinel */ },
+
+No comma for terminator entry.
+
+> +};
+
+...
+
+> +	{ "LOON0004", 0 },
+
+', 0' is redundant.
+
+...
+
+> +static struct platform_driver ls2x_i2c_driver = {
+> +	.probe		= ls2x_i2c_probe,
+> +	.remove		= ls2x_i2c_remove,
+> +	.driver		= {
+> +		.name	= "ls2x-i2c",
+
+> +		.owner	= THIS_MODULE,
+
+Why?
+
+> +		.pm	= &ls2x_i2c_dev_pm_ops,
+> +		.of_match_table = ls2x_i2c_id_table,
+> +		.acpi_match_table = ls2x_i2c_acpi_match,
+> +	},
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
