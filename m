@@ -2,99 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C159B638EE4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 18:16:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB9A9638F16
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 18:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbiKYRQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 12:16:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53364 "EHLO
+        id S229450AbiKYRcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 12:32:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbiKYRQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 12:16:26 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F1A5215A
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 09:16:25 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id p13-20020a05600c468d00b003cf8859ed1bso3878915wmo.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 09:16:25 -0800 (PST)
+        with ESMTP id S229629AbiKYRcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 12:32:01 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A3252167;
+        Fri, 25 Nov 2022 09:32:00 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id z20so7237049edc.13;
+        Fri, 25 Nov 2022 09:32:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=47IViwB02OvhSucg0Ac9RBJB2CEi9LYnQsnlhOV4/Dc=;
-        b=k+QNQ6ArRaSCIYlpyHOjcAdzHLXEbOX4EWSHmtIlbjASNH1LVCpmwAVozTErJQYpWr
-         9nJxw6U8Ern0FTBK7R5UweSYBbiw51PeKFAW77S2waqhW2u7NX8Ha9O8rc1O9Jsc2lrS
-         +3SOJq9WC2o9qcXHIz/e8EOvbL68K9VCF+V2msmlSbsbGPS/KW+XY2oBhl7aOsTjwepu
-         nNSIsp40btxpgQ171iV6HPzopEsL3UcHIkJY/RqYRuMygCpxTGcVQfNfMnlRGw+kSRKq
-         FhUyDTcAM5WBh0DkG3EZPYaymeGwf4YJFMmmmfzdRi+74CN0YBqQxHHzCbZF9B6e0OKI
-         /TWw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BS344EZ01Swu2ynnOXhwyOBzth0IMIZXcxGTSI686xc=;
+        b=XpcMQbiaFOJya7+qzk3tnkNJAE8KKxSFEXhrvtyFqav0cioW2lMSpRfguFb7I1aa4A
+         lioHIqrmVRCYOUMFDWf61SAhSWxCIGfwgQfMjs0y6N5bBm9vjb2ts1xUJfKQ8//WATah
+         LmIBVB9FqZj3yoLKuSrquIe4J+0V3dbXwcjlumFQLphwRAVsCq6R605AIPJbzLdJrxJ6
+         P35u+du2aQakbPkN+M3/6G5t3Of8Hz/K74V3T4/3G75B9m1K8ssYpciBhJsAji53S0K5
+         9tOFtdLxxEXfDWS1/UuOv02+0L3ZGjs+EEh/lWKaaxX67keIAIVQKW7iF6GQrF4+gElx
+         ZmEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=47IViwB02OvhSucg0Ac9RBJB2CEi9LYnQsnlhOV4/Dc=;
-        b=6k0eNTZ7KkYIHV5AkeN56KfB7LQjyCktywRLaoW+ClGAB8QXxjYt1y8X97xP0W9hgp
-         XK8gZwXa4o7jZvpy/tBDN30adXTVZBq5d2teW5aZE7j0UzjFp1Kg6D+0BMdW885+3HH6
-         motrSMw+PS7RfInYspn9GsLPbTTK6S4XE1P6X+zIusIcAg8uMdxQ1Fc0eDkoTcYfSoDL
-         E8NeJ5MWQT8Mkdt1ywSv1BZqE+rfKipfJyBt865hA0wNF/cLD+jKFqcrwig7II/4QbZT
-         SEybC4HhIpuBRbio8nzyxQPnNN6QNyIaMnhvOqxsD/zdyCUB8gfiYU3jJbLtHNdhtQXH
-         xNug==
-X-Gm-Message-State: ANoB5plHK3DvUNwYZIrF9KMn0EmCqZXSnKbbIzPBJQUEP5zSQ/zBwS+P
-        EOiIyo5FlVEym0THwVIyvUAuAA==
-X-Google-Smtp-Source: AA0mqf69w6Yfu0TTbOHoIejvP3nOKghM7cjzJMlbSt2JYFq8gseJKVxI0YYjK3qo2In2faT5105xeA==
-X-Received: by 2002:a7b:cd18:0:b0:3cf:a359:de90 with SMTP id f24-20020a7bcd18000000b003cfa359de90mr18862740wmj.122.1669396584441;
-        Fri, 25 Nov 2022 09:16:24 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe? ([2a01:e0a:982:cbb0:84a5:7e09:b15:f1fe])
-        by smtp.gmail.com with ESMTPSA id d8-20020a5d6dc8000000b002415dd45320sm4071606wrz.112.2022.11.25.09.16.23
+        h=content-transfer-encoding:content-language:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BS344EZ01Swu2ynnOXhwyOBzth0IMIZXcxGTSI686xc=;
+        b=o4Pu6wATt82WTs9xFMTAWHX5lPX94/D1N9BVzymdPIee8qg1Jejot0HgneZhrS03ka
+         5+uGDpOBTtdu4rjW0gZPDQ4ccI2hV2sCaxl2jEHlv1ii3Z+ub1a2mLSOxheWpmm+NIml
+         1MQMQgw1hStefuIVkV+iXpB7cJeNj5JswNyNW3SJ18kPmle6XOfTDKMA1UHYTWx96cRV
+         NYFtopHBLjQcm4vD7Yf2EJ0CWY/aR3o2KwrUKMl3l09ELyLzv675yiY5T5ru6upKDl5P
+         3fQCUTZRtm0YS0YkkkR8MVmKbGF/zbZ0MvdIu+CE/xYJpXpPApq7Py8KMNsDaNJhGbHg
+         RQhg==
+X-Gm-Message-State: ANoB5pnfPckZjDGbBxiEB/umywXLddOfFojyom/ILTo5T3vRJXm6e7h3
+        TCVxn2uk5Y4lFhGfMacFVhE9d+fM9NZ/Hw==
+X-Google-Smtp-Source: AA0mqf4izwakw2gafJPDqWGogXbrDNIRO5y3QcetsRjPQBUysZcYUXpN2rDFH3P7EnbYBJUJ5FfGXw==
+X-Received: by 2002:a05:6402:1a28:b0:469:7546:60fe with SMTP id be8-20020a0564021a2800b00469754660femr21831195edb.408.1669397519015;
+        Fri, 25 Nov 2022 09:31:59 -0800 (PST)
+Received: from [192.168.178.2] (dslb-092-072-004-196.092.072.pools.vodafone-ip.de. [92.72.4.196])
+        by smtp.gmail.com with ESMTPSA id j9-20020a1709066dc900b007ba46867e6asm1823024ejt.16.2022.11.25.09.31.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Nov 2022 09:16:24 -0800 (PST)
-Message-ID: <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
-Date:   Fri, 25 Nov 2022 18:16:23 +0100
+        Fri, 25 Nov 2022 09:31:58 -0800 (PST)
+Message-ID: <f5668d69-806a-f8c6-5279-7e84b824bd7a@gmail.com>
+Date:   Fri, 25 Nov 2022 18:31:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thunderbird/102.5.0
+From:   =?UTF-8?Q?Otto_Pfl=c3=bcger?= <affenull2345@gmail.com>
+Subject: [PATCH 1/4] drm/mipi-dbi: Support separate I/O regulator
+To:     =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern:
-> 
->    amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+The MIPI DBI specification defines separate vdd (panel power) and
+vddi (I/O power) supplies. Displays that require different voltages
+for the different supplies do exist, so the supplies cannot be
+combined into one as they are now. Add a new io_regulator property to
+the mipi_dbi_dev struct which can be set by the panel driver along
+with the regulator property.
 
+Signed-off-by: Otto Pflüger <affenull2345@gmail.com>
+---
+  drivers/gpu/drm/drm_mipi_dbi.c | 14 ++++++++++++++
+  include/drm/drm_mipi_dbi.h     |  7 ++++++-
+  2 files changed, 20 insertions(+), 1 deletion(-)
 
-<snip>
+diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+index a6ac56580876..047cab93a041 100644
+--- a/drivers/gpu/drm/drm_mipi_dbi.c
++++ b/drivers/gpu/drm/drm_mipi_dbi.c
+@@ -427,6 +427,8 @@ void mipi_dbi_pipe_disable(struct 
+drm_simple_display_pipe *pipe)
 
+  	if (dbidev->regulator)
+  		regulator_disable(dbidev->regulator);
++	if (dbidev->io_regulator)
++		regulator_disable(dbidev->io_regulator);
+  }
+  EXPORT_SYMBOL(mipi_dbi_pipe_disable);
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+@@ -652,6 +654,16 @@ static int 
+mipi_dbi_poweron_reset_conditional(struct mipi_dbi_dev *dbidev, bool
+  		}
+  	}
+
++	if (dbidev->io_regulator) {
++		ret = regulator_enable(dbidev->io_regulator);
++		if (ret) {
++			DRM_DEV_ERROR(dev, "Failed to enable I/O regulator (%d)\n", ret);
++			if (dbidev->regulator)
++				regulator_disable(dbidev->regulator);
++			return ret;
++		}
++	}
++
+  	if (cond && mipi_dbi_display_is_on(dbi))
+  		return 1;
+
+@@ -661,6 +673,8 @@ static int mipi_dbi_poweron_reset_conditional(struct 
+mipi_dbi_dev *dbidev, bool
+  		DRM_DEV_ERROR(dev, "Failed to send reset command (%d)\n", ret);
+  		if (dbidev->regulator)
+  			regulator_disable(dbidev->regulator);
++		if (dbidev->io_regulator)
++			regulator_disable(dbidev->io_regulator);
+  		return ret;
+  	}
+
+diff --git a/include/drm/drm_mipi_dbi.h b/include/drm/drm_mipi_dbi.h
+index 14eaecb1825c..e4efbd8ffc9d 100644
+--- a/include/drm/drm_mipi_dbi.h
++++ b/include/drm/drm_mipi_dbi.h
+@@ -122,10 +122,15 @@ struct mipi_dbi_dev {
+  	struct backlight_device *backlight;
+
+  	/**
+-	 * @regulator: power regulator (optional)
++	 * @regulator: power regulator (Vdd) (optional)
+  	 */
+  	struct regulator *regulator;
+
++	/**
++	 * @io_regulator: I/O power regulator (Vddi) (optional)
++	 */
++	struct regulator *io_regulator;
++
+  	/**
+  	 * @dbi: MIPI DBI interface
+  	 */
+-- 
+2.30.2
 
