@@ -2,160 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770FD639147
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 23:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E75639159
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 23:24:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbiKYWJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 17:09:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59946 "EHLO
+        id S229774AbiKYWYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 17:24:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiKYWJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 17:09:06 -0500
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C413230F62;
-        Fri, 25 Nov 2022 14:09:05 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 39F325C00BB;
-        Fri, 25 Nov 2022 17:09:05 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 25 Nov 2022 17:09:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm2; t=1669414145; x=1669500545; bh=4cM7oNUdfCrlaSJutCnkmr2DS
-        EvNa89l2bj+Gk9Ktgs=; b=s+lO9y6IgAxAoQATpo319Vik09JCjdzjRLrVMaR1k
-        xBK5BVySFXV1Yb8z/yFCqh5wYMOtJ25nfqmgixBxaw5MUUzIlLAIvGIMQdS6WBVG
-        j81xPq1JfwJeGLt1fTQdm3aquX8PhavOu+9rsJdecBYgwnLJJh0Fk8uGeVnP1ytS
-        +r/x7NBBJr4vm3IkPkTNzVDKemWzmgvkoVsp/q95B8KqG3BEJoqCdN1Ni1N/Actp
-        LG58R+kzjp8fE2aAz8NI2l/AXg2uRLUuVI/N01EJ4ZHiJjztZe/Fyyi/ZVsz0FoW
-        19PeW9IWINS2dGtXsYyU8ypr1S6exs0HjAbz3OvHl3RcA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:message-id
-        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1669414145; x=1669500545; bh=4cM7oNUdfCrlaSJutCnkmr2DSEvNa89l2bj
-        +Gk9Ktgs=; b=umPjCECfK0vyccZOO8bYUymxE1owvvdzLy1lIJ9l1Hay4l0WGLl
-        RR9kriJ6iQ0VqwKd9GwmoF1UwCCezK7WWGfcjmFlwp+/2PtrHSGUGw9vo0gpB7Fj
-        N6EOWLZKtpykRW2Ks84nNn7RFZnjHP+56FPNyRHWmvP/Nim1jsg5MYHWOL+HLwxC
-        xq9B5T4IMokHdTa2gpROJ+J7pjvzsw6QDwhrVgVqFykzHqjM0cd2YhBRwBce5V72
-        GvJwvbEJr8ZjO1wNtUq3oA9oKkQW8EPWPgPERKFOrenpZJTfYxZUjFlAtRtoveir
-        WbokxlrBr6eBYHODXqBfhyKWMbgmwsq43Mg==
-X-ME-Sender: <xms:AD2BY0JTU6omxzpP6sx6hBl5No1dMDnQXvoJfWVO4r9eLfRpnmEsEw>
-    <xme:AD2BY0LbFad5cs34sCzfK3bu5Tz6UATmaWYL0-1jqPtWHEcC5TkLoghoZWHftMnxT
-    8EN7Hdx7FgCJpqzVA>
-X-ME-Received: <xmr:AD2BY0v_gxu97xqmrhrO2sWPQ_6O8cRvb-xX2d6X44XvyAA3RmG_3CZtzrR1I91Xk8EkQhfA_SY0ST18yz_PNAYcehUYw-A7Xf23IJYMpHyYWkVDnH-h2v5-WweRH5MGlZ9ssw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrieehgdduheekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepfeduffffueetveefudehueelgefgvdfffeelledtjeegudeiudehffdt
-    jefhgefhnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
-    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhl
-    lhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:AT2BYxaBmPZQTLwvqAa8Ke1sl2cMmTjVVWygheylE_E0wdi4Uq5AAw>
-    <xmx:AT2BY7Z-dFPDXQUkN6y-ZlfzAW_pRI08_IRs1ALZjr8YMuTreDiftw>
-    <xmx:AT2BY9ATIFdM0QRZ988gbyjXBzhfyTBp4WSKGKtV74OhpDgrsYmsYA>
-    <xmx:AT2BYwMNJAsMm5ZR8YdE9lLYoZQMvzW9x0NvhGjrJLfihooMjUTUNw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 25 Nov 2022 17:09:04 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio: adc: ti,adc081c: Document the binding
-Date:   Fri, 25 Nov 2022 16:09:03 -0600
-Message-Id: <20221125220903.8632-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.4
+        with ESMTP id S229454AbiKYWYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 17:24:10 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB032655B;
+        Fri, 25 Nov 2022 14:24:10 -0800 (PST)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 169BD6602B6F;
+        Fri, 25 Nov 2022 22:24:06 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669415048;
+        bh=n/JLhB9y1lHTrAqStH1aXYwPM6mB/oILrr8xuIpUxBM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hL1D4Rz9csbBTpf1Zc8BME8cRYbNoiwVf+91duBmWBmSu3hj0B/x0mxj9IayaaEIF
+         ZuRYN0f0bP4uheKt2VXEj61N1VnnDAzSmNKXfudty00OIalGaLuSTbLN/Hkgt23QOQ
+         Lkd0dCcu5gqhI3S7O5m+O4ePoMFPq2dV4ybUNFRuVJIOLHiQUJ4NXJOrrGySa78inN
+         ke/aQ/9ywGMunB4khwu9lr2l6PyFcvejc9M2a5d+4t7xePZKCqbNez4bkA/zopnbVZ
+         eLjJySiDFw+mxFZW2jVoiFaXV8VW7/YY3jktdQ8LKTnULKmrPAMYL5tSmFXvTxp6+c
+         KxtGmHbs3kcZQ==
+Date:   Fri, 25 Nov 2022 17:24:02 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v28 6/7] drm/mediatek: add drm ovl_adaptor sub driver for
+ MT8195
+Message-ID: <20221125222402.u4qiolkqi2nsv7ae@notapiano>
+References: <20221107072413.16178-1-nancy.lin@mediatek.com>
+ <20221107072413.16178-7-nancy.lin@mediatek.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221107072413.16178-7-nancy.lin@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linux has a driver for these ADCs at drivers/iio/adc/ti-adc081c.c, but
-the compatible strings were undocumented. Add a binding for them. The
-hardware has an alert interrupt output, but existing ti,adc081c users
-do not provide the 'interrupts' property, so leave it as optional.
+On Mon, Nov 07, 2022 at 03:24:12PM +0800, Nancy.Lin wrote:
+> Add drm ovl_adaptor sub driver. Bring up ovl_adaptor sub driver if
+> the component exists in the path.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+[..]
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> index 30dcb65d8a5a..ce5617ad04cb 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+[..]
+> @@ -897,22 +906,18 @@ int mtk_drm_crtc_create(struct drm_device *drm_dev,
+>  		crtc_i++;
+>  
+>  	for (i = 0; i < path_len; i++) {
+> -		enum mtk_ddp_comp_id comp_id = path[i];
+> +		unsigned int comp_id = path[i];
+>  		struct device_node *node;
+> -		struct mtk_ddp_comp *comp;
+>  
+>  		node = priv->comp_node[comp_id];
+> -		comp = &priv->ddp_comp[comp_id];
+> -
+> -		if (!node) {
+> -			dev_info(dev,
+> -				 "Not creating crtc %d because component %d is disabled or missing\n",
+> -				 crtc_i, comp_id);
+> -			return 0;
+> -		}
+>  
+> -		if (!comp->dev) {
+> -			dev_err(dev, "Component %pOF not initialized\n", node);
+> +		/* Not all drm components have a DTS device node, such as ovl_adaptor,
+> +		 * which is the drm bring up sub driver
+> +		 */
+> +		if (!node && comp_id != DDP_COMPONENT_DRM_OVL_ADAPTOR) {
+> +			dev_err(dev,
+> +				"Not creating crtc %d because component %d is disabled, missing or not initialized\n",
+> +				crtc_i, comp_id);
+>  			return -ENODEV;
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Why do you change the behavior here? If !node, the return should be 0, because
+there are two separate data streams, for internal and external display, and they
+are optional. It should be possible to for example have the nodes for external
+display disabled in DT and still have the driver probe and have a working
+internal display. But with this change you're breaking that. Also, this message
+should stay as dev_info and not mention "not initialized", so basically it
+should stay the same as before the change.
 
- .../bindings/iio/adc/ti,adc081c.yaml          | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
-new file mode 100644
-index 000000000000..caaad777580c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,adc081c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI Single-channel I2C ADCs
-+
-+maintainers:
-+  - Jonathan Cameron <jic23@kernel.org>
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+
-+description: |
-+  Single-channel ADC supporting 8, 10, or 12-bit samples and high/low alerts.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,adc081c
-+      - ti,adc101c
-+      - ti,adc121c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vref-supply:
-+    description:
-+      Regulator for the combined power supply and voltage reference
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vref-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@52 {
-+            compatible = "ti,adc081c";
-+            reg = <0x52>;
-+            vref-supply = <&reg_2p5v>;
-+        };
-+    };
-+...
--- 
-2.37.4
-
+Thanks,
+Nícolas
