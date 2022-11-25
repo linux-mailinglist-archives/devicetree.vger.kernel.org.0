@@ -2,103 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979E8638604
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:23:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5E263868C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 10:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbiKYJX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 04:23:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39370 "EHLO
+        id S229810AbiKYJrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 04:47:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiKYJX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:23:27 -0500
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6357F21E3E;
-        Fri, 25 Nov 2022 01:23:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KbodE+IyduvqISaDTdzW5kaufECepevCynawr1/AV+s8JOpk5MsyFMeANpvsYr8yhFSfe848aji174W8O5YVCy4M2wUOhX3bvzo50gzLL26O+wVmgFi0WCITj6cFLknjqIqi9QgUwWaaLUeZN2WeSYdtgj5XvsAqy/byhEErxs7kILczOpJCD3CoJ468Cmp7z6LiGvW0Stq2pCkFcVPr/z5zyxs5WnQRKfQ69V22AizbRWvLMZG0Cl4rC3aMmn2vCdKuvtm3zsBtq6ljXwF4ylWZuFgOfEuYOe53Qjc6YgAEOm9qfswZl8pbrxVcTsbMAh7dvxbmpbKeXL2lcVXHOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hNY5CV7v2iViqJvrFDinOpdP6cWWHLstHosZbwm2PsA=;
- b=fNWISL/g1G785FVnHWLt1d0mWPRhWWG1kr4wbTXtx/AdiNyYw1VBtrg69uZfuC/MJxWYtp1VGHWd6Tq3AEoANXMfPiXCTtmcFrnPmcU/1AHLv2xVEuQ8l3j3eeER1ethNCIiR1Av0yn8PicZFYgF2+m2jZ/SrQG6ucoQtJ+5n9fFeIYEgZ3m2unckFTyFIUFIrbMF+s9YA8N9UamoPG0digla6gu8fwUMTcCH0JJ9cT5tRcwXEapR4D7Ibw20LUDmHscjD0HMMBMyj/5YTKJ+GOpArbP/tj95XWEvb8vzVYqAJWoZcH47nq0AcDtMpckFULpu/yGN7XbECFrGQLNEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hNY5CV7v2iViqJvrFDinOpdP6cWWHLstHosZbwm2PsA=;
- b=1qzQ31eeEG0rKvNMa9W1Xy8zd+aY558xbIK5dk/z+f/FxA5jL1jwXiY68gwi/QBrQ/uGXQMfQJbKptwWCkv0FO0Vcl86FDrg9ZQqaMQoIlRoWhANUlIJzB011ra/xOkVcPrbEfQreMMZJcb6SCE/TpBaPEjeYQU33ZIZCkpaqBk=
-Received: from DM6PR14CA0037.namprd14.prod.outlook.com (2603:10b6:5:18f::14)
- by MW4PR12MB6682.namprd12.prod.outlook.com (2603:10b6:303:1e3::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5834.15; Fri, 25 Nov
- 2022 09:23:24 +0000
-Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:18f:cafe::f6) by DM6PR14CA0037.outlook.office365.com
- (2603:10b6:5:18f::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.20 via Frontend
- Transport; Fri, 25 Nov 2022 09:23:24 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5857.18 via Frontend Transport; Fri, 25 Nov 2022 09:23:24 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 25 Nov
- 2022 03:23:20 -0600
-Message-ID: <90fbb273-510b-279f-1582-8336136c5a0c@amd.com>
-Date:   Fri, 25 Nov 2022 10:22:47 +0100
+        with ESMTP id S229805AbiKYJqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 04:46:51 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5103B419B5
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:45:44 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id s5so5955592wru.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 01:45:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NRHQGS+MoseEWu2yP0z89M73Jh0x//1y0OJv+t/zrF4=;
+        b=VHenaF9GA9zau2yTbhZLVlj/UOicgW8VqYY9JP+GKLrUZKstFV4JeYJC14+igFZ5jo
+         ivV6GZPYQCSu6F/41h4fNLdg5NXdV6JOc1seY/dmy447b1+Ry/DWlKbMbrEECVWopaFS
+         ZbdlzdkDTZKhTb8cp7tdSX8OVFEMKdNNXwJ2BmeCDzKARD9QAKA95dkXrn/WfbadyLPh
+         QiKFe5V6aScDowFY2Cb1rsOLTZdBihkp+l7BW/H++uTzBjXCUIWvyIXrSGB4/TCuz7U1
+         CVbvKY0EBFGYkXYfBTAAm+zyPCx5lUGCGnJY1WNxYXhwefWSMujvZiQi4FVG0FdYmOZK
+         vtOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NRHQGS+MoseEWu2yP0z89M73Jh0x//1y0OJv+t/zrF4=;
+        b=H51GsbuCVv7ZEIc2uiiBem0v2lC+rmaQm0BgwZSTDO8pH9Ch0rMy/tPzoy7D7GsCWw
+         WZjCe6jx8mscBb8X03koHdH6BWh2fkXf6EfcDtplnXKiHZsJr6rezDO29TLpiNn1SkFn
+         Rw+Puup3xZ0STFNwZR29BMn0GmvAXJcl+5NNwk2nD74vlJHkfugu9D+nxkYVpko6xhUj
+         84gT5zw1QitPNwDjXJHrkamcolNKnYKGvGMSykv6F/KVVMMGou4jphQ2jw5YEuvIfybg
+         mmMdNLdaHAo65aSK5U6UykYqM8MD3phrg1NKQpcwRNq6X0aXt8LPF5W+Z2FMQ6lc/u6b
+         WgpQ==
+X-Gm-Message-State: ANoB5pn44/AJ7Eiz4Ro9qi4Hu+P9QB/DUvolLp7xJKZBOLYhoe1jOlA3
+        vvbQQ73UYOA0a/nkSjHNnznixw==
+X-Google-Smtp-Source: AA0mqf77dAkSUmh1pzGht0Y8PIR6ERxk7qG/8Cmgq5KSMALFlw0aHhnbmfPpk9f+8tHdo0LVxfsSgw==
+X-Received: by 2002:a5d:5b19:0:b0:241:dea3:ad48 with SMTP id bx25-20020a5d5b19000000b00241dea3ad48mr12678300wrb.357.1669369542781;
+        Fri, 25 Nov 2022 01:45:42 -0800 (PST)
+Received: from localhost (253.35.17.109.rev.sfr.net. [109.17.35.253])
+        by smtp.gmail.com with ESMTPSA id h12-20020a056000000c00b00241cfa9333fsm3488340wrx.5.2022.11.25.01.45.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Nov 2022 01:45:42 -0800 (PST)
+References: <20221123021346.18136-1-yu.tu@amlogic.com>
+ <20221123021346.18136-2-yu.tu@amlogic.com>
+ <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
+ <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
+ <eb56ed39-cfaa-3368-a2c0-0a4e89440e40@linaro.org>
+ <5b7176b4-d7a2-c67f-31c6-e842e0870836@linaro.org>
+User-agent: mu4e 1.8.10; emacs 28.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        neil.armstrong@linaro.org, Yu Tu <yu.tu@amlogic.com>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com
+Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC
+ PLL clock driver and bindings
+Date:   Fri, 25 Nov 2022 10:23:28 +0100
+In-reply-to: <5b7176b4-d7a2-c67f-31c6-e842e0870836@linaro.org>
+Message-ID: <1jfse72wqk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>, <andersson@kernel.org>,
-        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <bill.mills@linaro.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221114233940.2096237-1-tanmay.shah@amd.com>
- <20221114233940.2096237-3-tanmay.shah@amd.com>
-From:   Michal Simek <michal.simek@amd.com>
-Subject: Re: [PATCH v11 2/6] arm64: dts: xilinx: zynqmp: Add RPU subsystem
- device node
-In-Reply-To: <20221114233940.2096237-3-tanmay.shah@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT028:EE_|MW4PR12MB6682:EE_
-X-MS-Office365-Filtering-Correlation-Id: d50a5f52-c285-4bd2-de70-08dacec6b3f7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kbWYXCeLELB3zZDZuMxChjAs80Lfo4/y2/WvULVi/cc9C3rBDubVyVdoweuypeI4e1vibGvkNFAvdWYoqI7t3AygCe5J155WvCufLN9a3Qz5D/eGdtb1TK0y7jDnTpA7nAamSCGAn02TQJUspMTF+4uAnPaviSellj+pWICQ8UT8tI5j0P5L4sbxHiY47o8lf+Btphlt6wUNpGeoqajlQO1zyIBVVEpTSugplXw3sP4k6p66E7fkiwB6HcGN7bdxRFDou2sI1hT0wwMKcMJcXnxmspcEhtdWK7bBiLkTPkHfqP8RBx0TxNFqgoA0D5EDrkYTN2q9Br24E+98vZpNJ1Buus5UQDCtjDWVGtXhEnZ2ybhwUI37c3q6E2uKyvX6knXMBprMRNWvI2kB6ZIUIqnSqzLJKmuM3t2iGMk6UII7N8PQ2LNqW9dFmvxuOHe/slmOFNJ3eQ1RKtFiRwnGtS4X1X+xzXFLZBPQlnwYcrQwarmDdLs5yZCYK6MBnoK2vmlxxct0My3YH7BFoAbYo/vOGSdjleFUeKrj4iK+z3qsl7+bt6HzEOvgjge83CXWYuUtHgV4vqn06W9DNnDwGeijjuL3SwWGfjYHkcudcKUQNpkYgu+EoOBGO+j+3Bho+IZrRN4S1iM1n7/ikC+JrNXAgsXAAupetkk9TKtLrXl7WJWltk+274b16Vt8HRdMzWgSzQnL6OXf72jG0MDaIzKCj1IW2tp6baJQkfH1VIMdUGLunWtpRiOb7zdYtFGxataJRkjMmgaebWIbLki7kQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(136003)(39860400002)(346002)(396003)(376002)(451199015)(40470700004)(46966006)(36840700001)(47076005)(36756003)(316002)(40480700001)(186003)(2616005)(86362001)(110136005)(16526019)(336012)(36860700001)(16576012)(83380400001)(41300700001)(8936002)(82740400003)(31696002)(44832011)(70586007)(2906002)(81166007)(40460700003)(70206006)(8676002)(4326008)(54906003)(82310400005)(5660300002)(356005)(426003)(478600001)(31686004)(53546011)(6666004)(26005)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2022 09:23:24.3777
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d50a5f52-c285-4bd2-de70-08dacec6b3f7
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6682
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,102 +86,208 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Wed 23 Nov 2022 at 14:53, Krzysztof Kozlowski <krzysztof.kozlowski@linar=
+o.org> wrote:
 
-On 11/15/22 00:39, Tanmay Shah wrote:
-> RPU subsystem can be configured in cluster-mode or split mode.
-> Also each r5 core has separate power domains.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
-> 
-> Changes in v11:
->    - None
-> 
-> Changes in v10:
->    - Rename node name to remoteproc
-> 
-> Changes in v9:
->    - remove unused labels
-> 
-> Changes in v8:
->    - None
-> 
-> Changes in v7:
->    - None
-> 
-> Changes in v6:
->    - None
-> 
-> Changes in v5:
->    - Remove optional reg property from r5fss node
->    - Move r5fss node out of axi node
-> 
-> Changes in v4:
->    - Add reserved memory region node and use it in RPU subsystem node
-> 
-> Changes in v3:
->    - Fix checkpatch.pl style warning
-> 
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 33 ++++++++++++++++++++++++++
->   1 file changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index a549265e55f6..c0f60833c0ae 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -100,6 +100,22 @@ opp03 {
->   		};
->   	};
->   
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		rproc_0_fw_image: memory@3ed00000 {
-> +			no-map;
-> +			reg = <0x0 0x3ed00000 0x0 0x40000>;
-> +		};
-> +
-> +		rproc_1_fw_image: memory@3ef00000 {
-> +			no-map;
-> +			reg = <0x0 0x3ef00000 0x0 0x40000>;
-> +		};
-> +	};
-> +
->   	zynqmp_ipi: zynqmp_ipi {
->   		compatible = "xlnx,zynqmp-ipi-mailbox";
->   		interrupt-parent = <&gic>;
-> @@ -203,6 +219,23 @@ fpga_full: fpga-full {
->   		ranges;
->   	};
->   
-> +	remoteproc {
-> +		compatible = "xlnx,zynqmp-r5fss";
-> +		xlnx,cluster-mode = <1>;
-> +
-> +		r5f-0 {
-> +			compatible = "xlnx,zynqmp-r5f";
-> +			power-domains = <&zynqmp_firmware PD_RPU_0>;
-> +			memory-region = <&rproc_0_fw_image>;
-> +		};
-> +
-> +		r5f-1 {
-> +			compatible = "xlnx,zynqmp-r5f";
-> +			power-domains = <&zynqmp_firmware PD_RPU_1>;
-> +			memory-region = <&rproc_1_fw_image>;
-> +		};
-> +	};
-> +
->   	amba: axi {
->   		compatible = "simple-bus";
->   		#address-cells = <2>;
+> On 23/11/2022 14:23, Neil Armstrong wrote:
+>> Hi,
+>>=20
+>> On 23/11/2022 12:16, Yu Tu wrote:
+>>> Hi Krzysztof,
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0Thank you for your reply.
+>>>
+>>> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On 23/11/2022 03:13, Yu Tu wrote:
+>>>>> Add the S4 PLL clock controller found and bindings in the s4 SoC fami=
+ly.
+>>>>>
+>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>> ---
+>>>>> =C2=A0 .../bindings/clock/amlogic,s4-pll-clkc.yaml=C2=A0=C2=A0 |=C2=
+=A0 51 +
+>>>>
+>>>> This is v5 and still bindings are here? Bindings are always separate
+>>>> patches. Use subject prefixes matching the subsystem (git log --oneline
+>>>> -- ...).
+>>>>
+>>>> And this was split, wasn't it? What happened here?!?
+>>>
+>>> Put bindings and clock driver patch together from Jerome. Maybe you can=
+ read this chat history.
+>>> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
+>>=20
+>> Jerome was asking you to send 2 patchsets, one with :
+>> - bindings in separate patches
+>> - drivers in separate patches
+>> and a second with DT changes.
 
-Matthieu: If you want to take this via your tree here is mine.
+Indeed, this is what was asked. It is aligned with Krzysztof's request.
 
-Acked-by: Michal Simek <michal.simek@amd.com>
+>>=20
+>> Then when the bindings + clocks patches are merged, a pull request of th=
+e bindings
+>> can be done to me so I can merge it with DT.
+>>=20
+>>>
+>>>>
+>>>>
+>>>>> =C2=A0 MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 1 +
+>>>>> =C2=A0 drivers/clk/meson/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 13 +
+>>>>> =C2=A0 drivers/clk/meson/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 1 +
+>>>>> =C2=A0 drivers/clk/meson/s4-pll.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 875 ++++++++++++++++++
+>>>>> =C2=A0 drivers/clk/meson/s4-pll.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 88 ++
+>>>>> =C2=A0 .../dt-bindings/clock/amlogic,s4-pll-clkc.h=C2=A0=C2=A0 |=C2=
+=A0 30 +
+>>>>> =C2=A0 7 files changed, 1059 insertions(+)
+>>>>> =C2=A0 create mode 100644 Documentation/devicetree/bindings/clock/aml=
+ogic,s4-pll-clkc.yaml
+>>>>> =C2=A0 create mode 100644 drivers/clk/meson/s4-pll.c
+>>>>> =C2=A0 create mode 100644 drivers/clk/meson/s4-pll.h
+>>>>> =C2=A0 create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-cl=
+kc.h
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-c=
+lkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..fd517e8ef14f
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+>>>>> @@ -0,0 +1,51 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Amlogic Meson S serials PLL Clock Controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +=C2=A0 - Neil Armstrong <narmstrong@baylibre.com>
+>>>>> +=C2=A0 - Jerome Brunet <jbrunet@baylibre.com>
+>>>>> +=C2=A0 - Yu Tu <yu.hu@amlogic.com>
+>>>>> +
+>>>> One blank line.
+>>>
+>>>  =C2=A0I will delete this, on next version patch.
+>>>
+>>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +=C2=A0 compatible:
+>>>>> +=C2=A0=C2=A0=C2=A0 const: amlogic,s4-pll-clkc
+>>>>> +
+>>>>> +=C2=A0 reg:
+>>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+>>>>> +
+>>>>> +=C2=A0 clocks:
+>>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+>>>>> +
+>>>>> +=C2=A0 clock-names:
+>>>>> +=C2=A0=C2=A0=C2=A0 items:
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: xtal
+>>>>> +
+>>>>> +=C2=A0 "#clock-cells":
+>>>>> +=C2=A0=C2=A0=C2=A0 const: 1
+>>>>> +
+>>>>> +required:
+>>>>> +=C2=A0 - compatible
+>>>>> +=C2=A0 - reg
+>>>>> +=C2=A0 - clocks
+>>>>> +=C2=A0 - clock-names
+>>>>> +=C2=A0 - "#clock-cells"
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +=C2=A0 - |
+>>>>> +=C2=A0=C2=A0=C2=A0 clkc_pll: clock-controller@fe008000 {
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "amlogic,s4-pll-clkc";
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0xfe008000 0x1e8>;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =3D <&xtal>;
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock-names =3D "xtal";
+>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #clock-cells =3D <1>;
+>>>>> +=C2=A0=C2=A0=C2=A0 };
+>>>>
+>>>>
+>>>>> +#endif /* __MESON_S4_PLL_H__ */
+>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/includ=
+e/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..345f87023886
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+>>>>
+>>>> This belongs to bindings patch, not driver.
+>>>>
+>>>>> @@ -0,0 +1,30 @@
+>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>>>> +/*
+>>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+>>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
+>>>>> + */
+>>>>> +
+>>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
+>>>>> +
+>>>>> +/*
+>>>>> + * CLKID index values
+>>>>> + */
+>>>>> +
+>>>>> +#define CLKID_FIXED_PLL=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 1
+>>>>> +#define CLKID_FCLK_DIV2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 3
+>>>>
+>>>> Indexes start from 0 and are incremented by 1. Not by 2.
+>>>>
+>>>> NAK.
+>>>
+>>> I remember Jerome discussing this with you.You can look at this submiss=
+ion history.
+>>> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro=
+.org/
+>>=20
+>> Historically we did that by only exposing part of the numbers, controlli=
+ng which
+>> clocks were part of the bindings.
+>>=20
+>> But it seems this doesn't make sens anymore, maybe it would be time to p=
+ut all the
+>> clock ids in the bindings for this new SoC and break with the previous s=
+trategy.
 
-In another case I will queue it for next release when dt binding is applied.
+Krzysztof and I agreed there is nothing wrong with the current
+approach, I believe.
 
-Thanks,
-Michal
+It does not prevent someone from using an un-exposed clock, sure, or
+exposing it in the future if necessary.
+
+However, I think it clearly shows that an un-exposed element is not
+expected to be used by an external consumers. It should be enough to
+trigger a discussion if this expectation is wrong.
+
+>
+> So the outcome of the previous discussion was somewhere later in that
+> thread:
+>
+>> It is just a choice to not expose some IDs.
+>> It is not tied to the implementation at all.
+>> I think we actually follow the rules and the idea behind it.
+>
+>
+> Best regards,
+> Krzysztof
+
