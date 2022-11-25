@@ -2,197 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072FB639264
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 00:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E33639273
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 00:53:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbiKYXsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 18:48:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36974 "EHLO
+        id S229601AbiKYXw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 18:52:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbiKYXsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 18:48:00 -0500
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7215B842;
-        Fri, 25 Nov 2022 15:47:19 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2D83A5C00FB;
-        Fri, 25 Nov 2022 18:47:19 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Fri, 25 Nov 2022 18:47:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1669420039; x=1669506439; bh=V6
-        MbhYfVD6c6BFLlGZgGaEzDFxsQdBBvIonrpxOU5Qg=; b=koo8/vrroIQVqYzhBI
-        rUrRwJV9sFPs6v4eSOvU7lLJ4GLK0O2cub1nIJz8BWubb9G6bhAIKWvI+lwKBSa7
-        DNBDiyi8t63u6QMFaWf1YDHxJvuXeEC++LkhmPlMwXzexaH1zILo7KTL5raTtefg
-        3rfH+xGjK/qdv1QyPA4amXQZeKvStOlO59VmMlHEX/a6UuEdbJz2oC1wwCbXpzXx
-        kb0xioVke0MyJGHA3kxIz3LjI4hF4FSkbQIVOZejUqxg67TqbW+2Vjd/YWDYHCgd
-        tkU4WB3ss86B421pfRrP7STIlf1oRuwqFNdLiHK5b2q5ygpS4Q1QMVCDYhZU/I21
-        UeRQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1669420039; x=1669506439; bh=V6MbhYfVD6c6B
-        FLlGZgGaEzDFxsQdBBvIonrpxOU5Qg=; b=idB09pC3M92di/zk5tX9bwUx2Q2qh
-        EsHoyCcbfr3JzpEAsny/ORy5vn8+JlhytVQvkfrUocOAOE1RFSqsoTx/JRi6zxWO
-        4bRQaPKBtky9MIMGVvtS7Nt/98eA/fsxAHQvOBUzkBui6eurZTRUjdvocYERrlPZ
-        Y4WvKTmRCRbPV4kqwjc8uxgYQTK9e3YuCiD+t3Y1Unxc5q1F29z8XMJP+5oqJJeR
-        /VBK4JWYsj/1riQUmJxrc7gMtHoV7AHzk/oyUjdloN6UZPZHN7HmDtBshScDLqDy
-        l0uuyRwpj4LWmFYNYvd5jYBWoYDgud53QanT/o6b+vsdfkrs+rtJ65RrQ==
-X-ME-Sender: <xms:B1SBY6C8KqXA0dE9hUvfpPDH5oyCI68qZZU7BFfF8NG-eYNgYaEX_g>
-    <xme:B1SBY0gsIKSc9dtSE4Zel9-ekjQnwtboWp6CG6rAEw7K8GxODvUjAVJyrkOPX2FBo
-    gCyxW0oRuBS-lqC5A>
-X-ME-Received: <xmr:B1SBY9niOwOisXgxkTBGDXdBFKcb6lGsfXar9Ss84RiCV3PHnpWYLime3Xut7j2a30p92qSCULLg8029NSnzHAf2xr6OUVHXnG4wvBwdtglFdC7JfS1lEeUt2oXE2yo2MSJ1nA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrieeigdduudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeehgfdu
-    feeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:B1SBY4z4PcHDCQrP_3iT4XxzxrK_CZyAVr6OAmF_kW1NpCGj6GMxnw>
-    <xmx:B1SBY_RfBLpY3zoVhUB-qKrsdglu1LUE6JPN-wW6lbKjPSB4zltAbQ>
-    <xmx:B1SBYzav6K8W1tcOclM2kWBm7itcpd1eG1MC7OzfJ8vhH3rpOx1jWg>
-    <xmx:B1SBY0DgGAvA9S2pyZ0ti9TH0O_dk9qTqZmTV2w1phcOh0nrIv_pYw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 25 Nov 2022 18:47:17 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Subject: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1 platform and drivers
-Date:   Fri, 25 Nov 2022 17:46:56 -0600
-Message-Id: <20221125234656.47306-13-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221125234656.47306-1-samuel@sholland.org>
-References: <20221125234656.47306-1-samuel@sholland.org>
+        with ESMTP id S229514AbiKYXwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 18:52:54 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DCC1DA68;
+        Fri, 25 Nov 2022 15:52:51 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 384D96602B72;
+        Fri, 25 Nov 2022 23:52:50 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669420370;
+        bh=tNb/Byxv+XfP3SsenGloDIQ1IxNNx5zlya+c7RliDy4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=URwB0snqpYeWAIz8pJzMN5fkbQmeXKAn0DGdk453QnUgdjjNJLi3cGtTwWAkyYrJq
+         eX2t3OcfwdRwXdmiXJRyS5EKnsetuljG6liX7vQn03WUVMVrtOFOEb3YWv6WvV9FMk
+         KAxp3ZVrVzvlbaLNumQ9VK9G3h85LzB+MZbUo0YXTAP+mYOotxl4RmSOIlULb+ZHGj
+         wZZ1WPRKpj+JOFjhKeMwemkwNceVWS1ogP9+bsrq9l49yGQdZ1Yf4korD84Fw2jB9x
+         vkuVWDeZdKm0FSOg07TK97GQrJDOt62WpQO6cTu3XVUoQ3FSBwIl5gVmzeDEbA/nOb
+         gonKKNJPp/t+g==
+Received: by mercury (Postfix, from userid 1000)
+        id 2C92B10613A9; Sat, 26 Nov 2022 00:52:48 +0100 (CET)
+Date:   Sat, 26 Nov 2022 00:52:48 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv4 03/13] rtc: rk808: reduce 'struct rk808' usage
+Message-ID: <20221125235248.in6g5ynxmjm2zoc5@mercury.elektranox.org>
+References: <20221020204251.108565-1-sebastian.reichel@collabora.com>
+ <20221020204251.108565-4-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        UPPERCASE_50_75 autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="swyl53gknpslotjl"
+Content-Disposition: inline
+In-Reply-To: <20221020204251.108565-4-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that several D1-based boards are supported, enable the platform in
-our defconfig. Build in the drivers which are necessary to boot, such as
-the pinctrl, MMC, RTC (which provides critical clocks), SPI (for flash),
-and watchdog (which may be left enabled by the bootloader). Other common
-onboard peripherals are enabled as modules.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+--swyl53gknpslotjl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-(no changes since v1)
+Hi Alexandre,
 
- arch/riscv/configs/defconfig | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+On Thu, Oct 20, 2022 at 10:42:41PM +0200, Sebastian Reichel wrote:
+> Reduce usage of 'struct rk808' (driver data of the parent MFD), so
+> that only the chip variant field is still being accessed directly.
+> This allows restructuring the MFD driver to support SPI based
+> PMICs.
+>=20
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 05fd5fcf24f9..8dfe0550c0e6 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -25,6 +25,7 @@ CONFIG_BLK_DEV_INITRD=y
- CONFIG_EXPERT=y
- # CONFIG_SYSFS_SYSCALL is not set
- CONFIG_PROFILING=y
-+CONFIG_ARCH_SUNXI=y
- CONFIG_SOC_MICROCHIP_POLARFIRE=y
- CONFIG_SOC_SIFIVE=y
- CONFIG_SOC_STARFIVE=y
-@@ -118,22 +119,31 @@ CONFIG_VIRTIO_NET=y
- CONFIG_MACB=y
- CONFIG_E1000E=y
- CONFIG_R8169=y
-+CONFIG_STMMAC_ETH=m
- CONFIG_MICROSEMI_PHY=y
- CONFIG_INPUT_MOUSEDEV=y
-+CONFIG_KEYBOARD_SUN4I_LRADC=m
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
-+CONFIG_SERIAL_8250_DW=y
- CONFIG_SERIAL_OF_PLATFORM=y
- CONFIG_VIRTIO_CONSOLE=y
- CONFIG_HW_RANDOM=y
- CONFIG_HW_RANDOM_VIRTIO=y
-+CONFIG_I2C_MV64XXX=m
- CONFIG_SPI=y
- CONFIG_SPI_SIFIVE=y
-+CONFIG_SPI_SUN6I=y
- # CONFIG_PTP_1588_CLOCK is not set
--CONFIG_GPIOLIB=y
- CONFIG_GPIO_SIFIVE=y
-+CONFIG_WATCHDOG=y
-+CONFIG_SUNXI_WATCHDOG=y
-+CONFIG_REGULATOR=y
-+CONFIG_REGULATOR_FIXED_VOLTAGE=y
- CONFIG_DRM=m
- CONFIG_DRM_RADEON=m
- CONFIG_DRM_NOUVEAU=m
-+CONFIG_DRM_SUN4I=m
- CONFIG_DRM_VIRTIO_GPU=m
- CONFIG_FB=y
- CONFIG_FRAMEBUFFER_CONSOLE=y
-@@ -146,19 +156,30 @@ CONFIG_USB_OHCI_HCD=y
- CONFIG_USB_OHCI_HCD_PLATFORM=y
- CONFIG_USB_STORAGE=y
- CONFIG_USB_UAS=y
-+CONFIG_USB_MUSB_HDRC=m
-+CONFIG_USB_MUSB_SUNXI=m
-+CONFIG_NOP_USB_XCEIV=m
- CONFIG_MMC=y
- CONFIG_MMC_SDHCI=y
- CONFIG_MMC_SDHCI_PLTFM=y
- CONFIG_MMC_SDHCI_CADENCE=y
- CONFIG_MMC_SPI=y
-+CONFIG_MMC_SUNXI=y
- CONFIG_RTC_CLASS=y
-+CONFIG_RTC_DRV_SUN6I=y
-+CONFIG_DMADEVICES=y
-+CONFIG_DMA_SUN6I=m
- CONFIG_VIRTIO_PCI=y
- CONFIG_VIRTIO_BALLOON=y
- CONFIG_VIRTIO_INPUT=y
- CONFIG_VIRTIO_MMIO=y
-+CONFIG_SUN8I_DE2_CCU=m
-+CONFIG_SUN50I_IOMMU=y
- CONFIG_RPMSG_CHAR=y
- CONFIG_RPMSG_CTRL=y
- CONFIG_RPMSG_VIRTIO=y
-+CONFIG_PHY_SUN4I_USB=m
-+CONFIG_NVMEM_SUNXI_SID=y
- CONFIG_EXT4_FS=y
- CONFIG_EXT4_FS_POSIX_ACL=y
- CONFIG_EXT4_FS_SECURITY=y
--- 
-2.37.4
+You can take this patch. I don't think it makes sense to send
+another version of this series before the merge window considering
+it involves so many subystems. If the RTC patch is merged now it
+does not need to become part of the immutable branch later :)
 
+Thanks,
+
+-- Sebastian
+
+>  drivers/rtc/rtc-rk808.c | 47 ++++++++++++++++++-----------------------
+>  1 file changed, 20 insertions(+), 27 deletions(-)
+>=20
+> diff --git a/drivers/rtc/rtc-rk808.c b/drivers/rtc/rtc-rk808.c
+> index e920da8c08da..2d9bcb3ce1e3 100644
+> --- a/drivers/rtc/rtc-rk808.c
+> +++ b/drivers/rtc/rtc-rk808.c
+> @@ -14,7 +14,6 @@
+>  #include <linux/bcd.h>
+>  #include <linux/mfd/rk808.h>
+>  #include <linux/platform_device.h>
+> -#include <linux/i2c.h>
+> =20
+>  /* RTC_CTRL_REG bitfields */
+>  #define BIT_RTC_CTRL_REG_STOP_RTC_M		BIT(0)
+> @@ -51,7 +50,7 @@ struct rk_rtc_compat_reg {
+>  };
+> =20
+>  struct rk808_rtc {
+> -	struct rk808 *rk808;
+> +	struct regmap *regmap;
+>  	struct rtc_device *rtc;
+>  	struct rk_rtc_compat_reg *creg;
+>  	int irq;
+> @@ -97,12 +96,11 @@ static void gregorian_to_rockchip(struct rtc_time *tm)
+>  static int rk808_rtc_readtime(struct device *dev, struct rtc_time *tm)
+>  {
+>  	struct rk808_rtc *rk808_rtc =3D dev_get_drvdata(dev);
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	u8 rtc_data[NUM_TIME_REGS];
+>  	int ret;
+> =20
+>  	/* Force an update of the shadowed registers right now */
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->ctrl_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->ctrl_reg,
+>  				 BIT_RTC_CTRL_REG_RTC_GET_TIME,
+>  				 BIT_RTC_CTRL_REG_RTC_GET_TIME);
+>  	if (ret) {
+> @@ -116,7 +114,7 @@ static int rk808_rtc_readtime(struct device *dev, str=
+uct rtc_time *tm)
+>  	 * 32khz. If we clear the GET_TIME bit here, the time of i2c transfer
+>  	 * certainly more than 31.25us: 16 * 2.5us at 400kHz bus frequency.
+>  	 */
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->ctrl_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->ctrl_reg,
+>  				 BIT_RTC_CTRL_REG_RTC_GET_TIME,
+>  				 0);
+>  	if (ret) {
+> @@ -124,7 +122,7 @@ static int rk808_rtc_readtime(struct device *dev, str=
+uct rtc_time *tm)
+>  		return ret;
+>  	}
+> =20
+> -	ret =3D regmap_bulk_read(rk808->regmap, rk808_rtc->creg->seconds_reg,
+> +	ret =3D regmap_bulk_read(rk808_rtc->regmap, rk808_rtc->creg->seconds_re=
+g,
+>  			       rtc_data, NUM_TIME_REGS);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to bulk read rtc_data: %d\n", ret);
+> @@ -148,7 +146,6 @@ static int rk808_rtc_readtime(struct device *dev, str=
+uct rtc_time *tm)
+>  static int rk808_rtc_set_time(struct device *dev, struct rtc_time *tm)
+>  {
+>  	struct rk808_rtc *rk808_rtc =3D dev_get_drvdata(dev);
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	u8 rtc_data[NUM_TIME_REGS];
+>  	int ret;
+> =20
+> @@ -163,7 +160,7 @@ static int rk808_rtc_set_time(struct device *dev, str=
+uct rtc_time *tm)
+>  	rtc_data[6] =3D bin2bcd(tm->tm_wday);
+> =20
+>  	/* Stop RTC while updating the RTC registers */
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->ctrl_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->ctrl_reg,
+>  				 BIT_RTC_CTRL_REG_STOP_RTC_M,
+>  				 BIT_RTC_CTRL_REG_STOP_RTC_M);
+>  	if (ret) {
+> @@ -171,14 +168,14 @@ static int rk808_rtc_set_time(struct device *dev, s=
+truct rtc_time *tm)
+>  		return ret;
+>  	}
+> =20
+> -	ret =3D regmap_bulk_write(rk808->regmap, rk808_rtc->creg->seconds_reg,
+> +	ret =3D regmap_bulk_write(rk808_rtc->regmap, rk808_rtc->creg->seconds_r=
+eg,
+>  				rtc_data, NUM_TIME_REGS);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to bull write rtc_data: %d\n", ret);
+>  		return ret;
+>  	}
+>  	/* Start RTC again */
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->ctrl_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->ctrl_reg,
+>  				 BIT_RTC_CTRL_REG_STOP_RTC_M, 0);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to update RTC control: %d\n", ret);
+> @@ -191,12 +188,11 @@ static int rk808_rtc_set_time(struct device *dev, s=
+truct rtc_time *tm)
+>  static int rk808_rtc_readalarm(struct device *dev, struct rtc_wkalrm *al=
+rm)
+>  {
+>  	struct rk808_rtc *rk808_rtc =3D dev_get_drvdata(dev);
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	u8 alrm_data[NUM_ALARM_REGS];
+>  	uint32_t int_reg;
+>  	int ret;
+> =20
+> -	ret =3D regmap_bulk_read(rk808->regmap,
+> +	ret =3D regmap_bulk_read(rk808_rtc->regmap,
+>  			       rk808_rtc->creg->alarm_seconds_reg,
+>  			       alrm_data, NUM_ALARM_REGS);
+>  	if (ret) {
+> @@ -212,7 +208,7 @@ static int rk808_rtc_readalarm(struct device *dev, st=
+ruct rtc_wkalrm *alrm)
+>  	alrm->time.tm_year =3D (bcd2bin(alrm_data[5] & YEARS_REG_MSK)) + 100;
+>  	rockchip_to_gregorian(&alrm->time);
+> =20
+> -	ret =3D regmap_read(rk808->regmap, rk808_rtc->creg->int_reg, &int_reg);
+> +	ret =3D regmap_read(rk808_rtc->regmap, rk808_rtc->creg->int_reg, &int_r=
+eg);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to read RTC INT REG: %d\n", ret);
+>  		return ret;
+> @@ -228,10 +224,9 @@ static int rk808_rtc_readalarm(struct device *dev, s=
+truct rtc_wkalrm *alrm)
+> =20
+>  static int rk808_rtc_stop_alarm(struct rk808_rtc *rk808_rtc)
+>  {
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	int ret;
+> =20
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->int_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->int_reg,
+>  				 BIT_RTC_INTERRUPTS_REG_IT_ALARM_M, 0);
+> =20
+>  	return ret;
+> @@ -239,10 +234,9 @@ static int rk808_rtc_stop_alarm(struct rk808_rtc *rk=
+808_rtc)
+> =20
+>  static int rk808_rtc_start_alarm(struct rk808_rtc *rk808_rtc)
+>  {
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	int ret;
+> =20
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->int_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->int_reg,
+>  				 BIT_RTC_INTERRUPTS_REG_IT_ALARM_M,
+>  				 BIT_RTC_INTERRUPTS_REG_IT_ALARM_M);
+> =20
+> @@ -252,7 +246,6 @@ static int rk808_rtc_start_alarm(struct rk808_rtc *rk=
+808_rtc)
+>  static int rk808_rtc_setalarm(struct device *dev, struct rtc_wkalrm *alr=
+m)
+>  {
+>  	struct rk808_rtc *rk808_rtc =3D dev_get_drvdata(dev);
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+>  	u8 alrm_data[NUM_ALARM_REGS];
+>  	int ret;
+> =20
+> @@ -272,7 +265,7 @@ static int rk808_rtc_setalarm(struct device *dev, str=
+uct rtc_wkalrm *alrm)
+>  	alrm_data[4] =3D bin2bcd(alrm->time.tm_mon + 1);
+>  	alrm_data[5] =3D bin2bcd(alrm->time.tm_year - 100);
+> =20
+> -	ret =3D regmap_bulk_write(rk808->regmap,
+> +	ret =3D regmap_bulk_write(rk808_rtc->regmap,
+>  				rk808_rtc->creg->alarm_seconds_reg,
+>  				alrm_data, NUM_ALARM_REGS);
+>  	if (ret) {
+> @@ -313,20 +306,18 @@ static int rk808_rtc_alarm_irq_enable(struct device=
+ *dev,
+>  static irqreturn_t rk808_alarm_irq(int irq, void *data)
+>  {
+>  	struct rk808_rtc *rk808_rtc =3D data;
+> -	struct rk808 *rk808 =3D rk808_rtc->rk808;
+> -	struct i2c_client *client =3D rk808->i2c;
+>  	int ret;
+> =20
+> -	ret =3D regmap_write(rk808->regmap, rk808_rtc->creg->status_reg,
+> +	ret =3D regmap_write(rk808_rtc->regmap, rk808_rtc->creg->status_reg,
+>  			   RTC_STATUS_MASK);
+>  	if (ret) {
+> -		dev_err(&client->dev,
+> +		dev_err(&rk808_rtc->rtc->dev,
+>  			"%s:Failed to update RTC status: %d\n", __func__, ret);
+>  		return ret;
+>  	}
+> =20
+>  	rtc_update_irq(rk808_rtc->rtc, 1, RTC_IRQF | RTC_AF);
+> -	dev_dbg(&client->dev,
+> +	dev_dbg(&rk808_rtc->rtc->dev,
+>  		 "%s:irq=3D%d\n", __func__, irq);
+>  	return IRQ_HANDLED;
+>  }
+> @@ -404,10 +395,12 @@ static int rk808_rtc_probe(struct platform_device *=
+pdev)
+>  		break;
+>  	}
+>  	platform_set_drvdata(pdev, rk808_rtc);
+> -	rk808_rtc->rk808 =3D rk808;
+> +	rk808_rtc->regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!rk808_rtc->regmap)
+> +		return -ENODEV;
+> =20
+>  	/* start rtc running by default, and use shadowed timer. */
+> -	ret =3D regmap_update_bits(rk808->regmap, rk808_rtc->creg->ctrl_reg,
+> +	ret =3D regmap_update_bits(rk808_rtc->regmap, rk808_rtc->creg->ctrl_reg,
+>  				 BIT_RTC_CTRL_REG_STOP_RTC_M |
+>  				 BIT_RTC_CTRL_REG_RTC_READSEL_M,
+>  				 BIT_RTC_CTRL_REG_RTC_READSEL_M);
+> @@ -417,7 +410,7 @@ static int rk808_rtc_probe(struct platform_device *pd=
+ev)
+>  		return ret;
+>  	}
+> =20
+> -	ret =3D regmap_write(rk808->regmap, rk808_rtc->creg->status_reg,
+> +	ret =3D regmap_write(rk808_rtc->regmap, rk808_rtc->creg->status_reg,
+>  			   RTC_STATUS_MASK);
+>  	if (ret) {
+>  		dev_err(&pdev->dev,
+> --=20
+> 2.35.1
+>=20
+
+--swyl53gknpslotjl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOBVU8ACgkQ2O7X88g7
++ppxwA/+Lv/unAz8u9jb/2tRuBfZnMgzjlDrcSm/vyVk7ywy1+5yQ3Zq7rHkgEsC
+0ADE+/X8s8j30oSNV/tk+erosqaiKTcoR04pFFuP02h482Z128W0HaEQyudCR17S
+mJroMh4oAFxJ2nyV2hokuTYRAV7cy7x4bOORV95Y44n5JEqraHa2fSlKge3EnBJg
+/iRTSK0yPFm3DVi8p8dLh9Qd+FFOctSzbht4MTIwllva3T9SyxASMmHO9rUyNrCA
+mQEMcumiUI3bDKJH7LPEqkkCZvDnsmFaCkAUagecUSDM3LB5Nj6kTtdOq2sEOd0G
+ijc4jNQHHVAJbWwol5sJ/zzHdVgLsvKROkL2xsCCx7zaeXxgz/mcS0ZhR7x3KNle
+cm1L4gLrb6vbt2OmxVzoqAaN7QmnDorEUaa0/NCj50DpZ+8AuEoaa7YHGYqTlOqI
+StLCzLe/ETsWsuG5169/s12umsI2ITgGastL8zKraXWGOF14FzeHCoizCPOqDr6D
+qGwFRPptMJ9PkHnKjxZF/1upD97bdv4P/6hsJf6qUOoHxf4TXIjBgyOen5QiXwP9
+yPBVnBg7yDWOqw4JMju3HqL2tOBhQqQLOFp6/WH2bNH4GYmkMMsAiea7NBrH2UZL
+oko6ST1mYkjStYatd4OsZqzseN7pVyh7fG07M6agK9l/s314uX0=
+=Thkw
+-----END PGP SIGNATURE-----
+
+--swyl53gknpslotjl--
