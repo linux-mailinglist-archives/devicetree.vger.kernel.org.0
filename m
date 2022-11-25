@@ -2,199 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A31638D14
-	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28970638D18
+	for <lists+devicetree@lfdr.de>; Fri, 25 Nov 2022 16:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiKYPJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Nov 2022 10:09:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34904 "EHLO
+        id S229741AbiKYPLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Nov 2022 10:11:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbiKYPJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:09:33 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D956110FCB
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:09:32 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id z18so6739724edb.9
-        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:09:32 -0800 (PST)
+        with ESMTP id S229610AbiKYPLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Nov 2022 10:11:24 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D41A1CB23
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:11:22 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id t4so3671127wmj.5
+        for <devicetree@vger.kernel.org>; Fri, 25 Nov 2022 07:11:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ozh3pwg86FVwgjieqWWpm1hzWQIk7mfvK3o0wWrBzu4=;
-        b=jCg5C9UU92OwRrZbUzXLpweCXUn90+JxHOUG0YPUi7eYPcNXQUVqWpUuAAmkDZOwKY
-         BkookJ0P/6KnyWPgtqzzcdOKqGpAcz0fCyinhZOiF1iWCrL9KJUC1cGP2kCWjyr2rIVe
-         R0IS7cf5PIX4qgxQSJW1Bb5axWNbmqdxjOz56WZobvoughqVFQAXHVvVawtM/iD0nxVg
-         QuzR8CX1zP0lcPMLtASAZAIWVpzm9kgl63/QeWQfgdjwSH/vEQ77tMxfpB7E5yvlGlqP
-         6m3FmmvRM4f/maVLML5lPBhPkT4HWRguJgCh917x+8nylGyw+PVcvlaBlqamoTUaUZSC
-         ALgA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=XJxTDeXeIWQYLD7JipzsnC61wDCNzbvkJYjH3GkbQc4=;
+        b=f70FiwS+6LTA1RanYy/8t0VxONnDQjyBwpY+GUS7suJdPMiRPy+tIiuH6gcAubmKjK
+         wVAn5Uv/I9Ae+oPCKzv4wXUFHoCVwfp5oxXLAyQgcBlpO8qRz9DdlsRXW3VYw3Hx6Yi9
+         yMmxKc/PiivGCg6nso8aseq44GazboeAkgdz5jupauOrzdPoURcLAxV17pekN7Z8mG9o
+         6lfmsaKrcvwqq73WMi0X4RtyLleaic9DDMK02erYz1Rffml/DmxwJUuwvJdtqk69S1iI
+         nq7/oeO7F+/WQYZF1uInLl1VBzom0q7bT2WZxUhb+Q+NE+jFTvGiP0JmAUJpbCjmx5Kf
+         OuCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ozh3pwg86FVwgjieqWWpm1hzWQIk7mfvK3o0wWrBzu4=;
-        b=pEFKbY1OIC6lgvHLI4fUI8Au0uot1LV444k86NgMQPh+ZI4mImlDSqSAJ+jY43pOxf
-         LxDazqfOrOQtUxOzzfD/R76VjsDQTN3c5V1q5MLGU+iL9FD6YaL8Zyh3RsH4UNkGtXbr
-         AIlCJDgmxHpNos4qKNmrjQFjlNhXvzANh97EcVt/GkWdnd1mXuQTwLfKkOMRRLZwWNKe
-         W46JtpA9plkttAN4+QatdzuQZkzM2EBlo5Mf5IAoe/5ErTGn6CuXvp1C5Ak0D5vzdnI/
-         qWGlI273xFhB9jzijaDjag0Yl0Y5Nw2/j6uG6wuj0ZQvyPiJfmf8nV/InGxJ7i4BaoFD
-         1jwA==
-X-Gm-Message-State: ANoB5pnXeCvgz6MKiCfsxD43tHpitVxwPoU8xKvL7adHr/7H71rbYQ1b
-        5U9hGrytaraDBCLeLCiVWlC5yA==
-X-Google-Smtp-Source: AA0mqf5mgk8Kt1q+JGS5dt/N9C+KQrjEOfVAiuaNKlxvG4q8gENyrcpPKSZUrty4+UVGHedqXGrfIw==
-X-Received: by 2002:a05:6402:2421:b0:461:524f:a8f4 with SMTP id t33-20020a056402242100b00461524fa8f4mr34645374eda.260.1669388971310;
-        Fri, 25 Nov 2022 07:09:31 -0800 (PST)
-Received: from melexis.com ([2a02:2378:1085:b41d:bec4:93fd:8998:6d7a])
-        by smtp.gmail.com with ESMTPSA id 26-20020a170906329a00b0078d4ee47c82sm1642718ejw.129.2022.11.25.07.09.29
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XJxTDeXeIWQYLD7JipzsnC61wDCNzbvkJYjH3GkbQc4=;
+        b=DzZ1jlPXfqG21jkRFvIfv+T8aXxhPtT26lp7L26AScaT0m0V5WSbXvTzqp4J1qVxUV
+         976kY0GnEH+LQ8LlkwT4UhnvaTlxblvInLR+amWTGUwFk/vj8OHnKTEoWy9xtF0UvfEA
+         HrrZLj07LVSdwUC3WkJAmjMBycR1kyGrgk8j+O9STkeH0gZxZMpuHc0dF0sWJA6vNJmV
+         YR8gx6B7bIpj2w9DcDfhlMOMmfYYLRWgMr1A+kYcaeLHWZ6VisML04jcWi0f5ieKt7M0
+         QE/qSPXiVhRidV+Q7vjX2OdwWnYKxtU/eRhNXuvPKfiMs5OJKSG5YUB+fX61zhmFeeIV
+         NbEg==
+X-Gm-Message-State: ANoB5pl3nWwY3FE4iALuUAzqiJnRy4QuZgUvirK8HGCX6EWjVuhKLq6/
+        BAxuliSvOUj8HmrxtzHU0HIoCw==
+X-Google-Smtp-Source: AA0mqf7+7d/sQ3IiRQAa80tIBPWkqZ/V9yHRIDk37st4q9LcHQhMW6ZVgj75Mvyx5S/MhNjNVwccOQ==
+X-Received: by 2002:a1c:6a02:0:b0:3cf:71e4:75b with SMTP id f2-20020a1c6a02000000b003cf71e4075bmr16311984wmc.114.1669389080513;
+        Fri, 25 Nov 2022 07:11:20 -0800 (PST)
+Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.googlemail.com with ESMTPSA id w10-20020a05600c474a00b003b435c41103sm11565885wmo.0.2022.11.25.07.11.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Nov 2022 07:09:30 -0800 (PST)
-Date:   Fri, 25 Nov 2022 17:09:27 +0200
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Subject: Re: [PATCH v3 6/8] media: uapi: Add mlx7502x header file
-Message-ID: <Y4DapxID8+uKoZSI@melexis.com>
-References: <cover.1669381013.git.vkh@melexis.com>
- <cc798c882c35ef135179fba869d3f98507edde50.1669381013.git.vkh@melexis.com>
- <06d4c93d-3f94-cc95-f123-751e7bb2ab3b@xs4all.nl>
+        Fri, 25 Nov 2022 07:11:19 -0800 (PST)
+Subject: [PATCH v6 00/10] Add MediaTek MT6357 PMIC support
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <06d4c93d-3f94-cc95-f123-751e7bb2ab3b@xs4all.nl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIANPagGMC/33NQY7CMAwF0KugrCcodXATWHEPNIu4NtNIpUVJqYRQ7z7WLEfQlfVt/eeXqVKyVH
+ PavUyRJdc8jRrar53p+jT+iM2s2YADaJxDe5tbj8HWx/0+ldkiehcpgnh/NVqiVMVSSWPXa218DIMu
+ +1znqTz/niyg4/LRW8A6e20CJWBgl45nSs8hU5F9N93Mt2qL3xa8CkEcceh8gwRvhMO2cFABGYgwSu tieCPgtoAqRD3xEZHZ8z9hXddf4yU9+3oBAAA=
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Fri, 25 Nov 2022 16:10:11 +0100
+Message-Id: <20221005-mt6357-support-v6-0-4f589756befa@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Brown <broonie@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6755; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=FgsXPgRXvQqbCe+YwUjx2VoAtXg81wnZiWFINiOzpLo=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjgNsWBkcBpKvN/k3q2Z5kAYRf6DZ8FyMGz504eSgP
+ ZbiGMF6JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY4DbFgAKCRArRkmdfjHURcKNEA
+ C/Bkuh8P4rVzqqS7DJjIa2PgrRXckXRF5DQnKYYkQyVhtKQOXgXT0JCQ4C4kGiiriO9IYn9Turk0Ik
+ klJq+Sp2vaHbcEOocoTn7QeatBx4d9/HokgQJB5/VNvC6yKdW6/UrjKcO7YQP7KEYh/xenSR2fvgQ1
+ Hx5yhtChx8HYFe7p7daQ/mEu9X1h20bxv7FMrf8XUT/8UrbJkCE3KrqdZnFW2nE0lrGqSSl+x+o8tV
+ APYSRuLVOtBhKVoxH8a69G8YinOOZlyQEDgn0aBCZbC8q0sfVdEqR/38FwDMEfmrGhwICibGVDXMKC
+ D6W5JBXRGU+4usgZOIu1nBCNMh5x+GIVl2yn4OBaR0tgpviLnUuQz6UEaOVh2Ry6Q8xcnU/FxGeXZG
+ cCTuHIuEOlBrZsiDdEeLkAHm9EBzQxvgITNM7cHJYzDWHZZCAXR8JEyMVv7QcvgJ056CbXh8yVDzYl
+ 3QRZB5+92OZM4JWz/7TnnapfUO8FLQ1OhvwF7l2UnxgjsUbvCHFaNJ0JURh+sMX1y9iXt7MrhI9m0O
+ Kl54hqMlLNm2RU0+O0SHDeX7ggNAxXLfH1xqZPpSqXo0OGDpqymABsgdwBxZTpxCETXlFwwrzvqe7u
+ j8uLc1ahikc1eeXujWbhXdy2i+9G0k6M1xv/B6Z8v6/I7oyGHsSSBFK4ohjw==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 03:39:16PM +0100, Hans Verkuil wrote:
-> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
-> > Define user controls for mlx7502x driver, add its documentation and
-> > update MAINTAINERS
-> > 
-> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > ---
-> >  .../userspace-api/media/drivers/index.rst     |  1 +
-> >  .../userspace-api/media/drivers/mlx7502x.rst  | 28 +++++++++++++++++++
-> >  MAINTAINERS                                   |  2 ++
-> >  include/uapi/linux/mlx7502x.h                 | 20 +++++++++++++
-> >  4 files changed, 51 insertions(+)
-> >  create mode 100644 Documentation/userspace-api/media/drivers/mlx7502x.rst
-> >  create mode 100644 include/uapi/linux/mlx7502x.h
-> > 
-> > diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
-> > index 32f82aed47d9..f49e1b64c256 100644
-> > --- a/Documentation/userspace-api/media/drivers/index.rst
-> > +++ b/Documentation/userspace-api/media/drivers/index.rst
-> > @@ -37,5 +37,6 @@ For more details see the file COPYING in the source distribution of Linux.
-> >  	imx-uapi
-> >  	max2175
-> >  	meye-uapi
-> > +	mlx7502x
-> >  	omap3isp-uapi
-> >  	uvcvideo
-> > diff --git a/Documentation/userspace-api/media/drivers/mlx7502x.rst b/Documentation/userspace-api/media/drivers/mlx7502x.rst
-> > new file mode 100644
-> > index 000000000000..6f4874ec010d
-> > --- /dev/null
-> > +++ b/Documentation/userspace-api/media/drivers/mlx7502x.rst
-> > @@ -0,0 +1,28 @@
-> > +.. SPDX-License-Identifier: GPL-2.0
-> > +
-> > +Melexis mlx7502x ToF camera sensor driver
-> > +=========================================
-> > +
-> > +The mlx7502x driver implements the following driver-specific controls:
-> > +
-> > +``V4L2_CID_MLX7502X_OUTPUT_MODE (menu)``
-> > +----------------------------------------
-> > +	The sensor has two taps, which gather reflected light: A and B.
-> > +	The control sets the way data should be put in a buffer. The most
-> > +	common output mode is A-B which provides the best sunlight robustness.
-> > +
-> > +.. flat-table::
-> > +	:header-rows:  0
-> > +	:stub-columns: 0
-> > +	:widths:       1 4
-> > +
-> > +	* - ``(0)``
-> > +	  - A minus B
-> > +	* - ``(1)``
-> > +	  - A plus B
-> > +	* - ``(2)``
-> > +	  - only A
-> > +	* - ``(3)``
-> > +	  - only B
-> > +	* - ``(4)``
-> > +	  - A and B (this config will change PAD format)
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index a2bc2ce53056..0a6dda8da6bc 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -13116,7 +13116,9 @@ M:	Volodymyr Kharuk <vkh@melexis.com>
-> >  L:	linux-media@vger.kernel.org
-> >  S:	Supported
-> >  W:	http://www.melexis.com
-> > +F:	Documentation/userspace-api/media/drivers/mlx7502x.rst
-> >  F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
-> > +F:	include/uapi/linux/mlx7502x.h
-> >  
-> >  MELFAS MIP4 TOUCHSCREEN DRIVER
-> >  M:	Sangwon Jee <jeesw@melfas.com>
-> > diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
-> > new file mode 100644
-> > index 000000000000..68014f550ed2
-> > --- /dev/null
-> > +++ b/include/uapi/linux/mlx7502x.h
-> > @@ -0,0 +1,20 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> > +/*
-> > + * Melexis 7502x ToF cameras driver.
-> > + *
-> > + * Copyright (C) 2021 Melexis N.V.
-> > + *
-> > + */
-> > +
-> > +#ifndef __UAPI_MLX7502X_H_
-> > +#define __UAPI_MLX7502X_H_
-> > +
-> > +#include <linux/v4l2-controls.h>
-> > +
-> > +/*
-> > + * this is related to the taps in ToF cameras,
-> > + * usually A minus B is the best option
-> > + */
-> > +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 0)
-> 
-> You need to add an enum with the mode settings. E.g.:
-> 
-> enum v4l2_mlx7502x_output_mode {
->         V4L2_MLX7502X_OUTPUT_MODE_A_MINUS_B     = 0,
-> 	...
-> };
-> 
-> And you can use those enum defines in the documentation.
-Ok, thanks. That is is interesting. Will fix in next version.
-> 
-> Regards,
-> 
-> 	Hans
-> 
-> > +
-> > +#endif /* __UAPI_MLX7502X_H_ */
-> 
+Hi,
+This patch series adds MFD, PMIC keys, and regulator support for MT6357.
+MT6357 is a MediaTek PMIC very similar to MT6358.
 
+Currently, MTK bindings related to the PMICs are not converted yet (still .txt):
+
+soc/mediatek/pwrap.txt (all PMIC parent)
+      |
+      V
+mfd/mt6397.txt (support lot of mt63XX PMIC)
+      +---------------+----------------+---...
+      V               V                V
+regulator/...      rtc/...          codec/...
+
+1) Convert pwrap to yaml is ok.
+
+2) For the PMIC bindings, there are two option:
+- Convert mt6397.txt to mediatek,mt6397.yaml and continue to support multiple
+  PMIC with only one file. IMO, the file will be hard to read because
+  the supported features aren't the same for each PMIC.
+
+- Make a binding file for each PMIC ref:
+    - mfd/mediatek,mt6357.yaml
+    - mfd/mediatek,mt6358.yaml
+    - ...
+
+3) All PMIC daughter bindings (regulator, rtc, codec, led, ...) aren't fully
+converted yet. Refering to the two PMIC convertion options above:
+- To be clean, all daughter bindings should be converted. This is hard because
+  a good understanding of each device is requiered to write efficient bindings.
+- Only daughter bindings supported by the added PMIC should be converted, that
+  allows to do the task conversion step by step.
+
+In the V4 of this serie, I chose the second option.
+
+Regards,
+Alex
+
+Changes in v6:
+- Fix typo in documentations.
+- Remove mediatek,mt6397-rtc.yaml example.
+- Align pwrap convertion with the original .txt file.
+- Remove unecessary include in the mt6357-regulator driver.
+- Link to v5: https://lore.kernel.org/r/20221005-mt6357-support-v5-0-8210d955dd3d@baylibre.com
+
+Changes in v5:
+- Add missing maintainers
+- Improve RTC binding by adding rtc.yaml ref and start-year property
+- Split the txt->yaml conversion in one commit and the addition of the
+  new mt6357-rtc compatible in another commit.
+- Improve PWRAP binding:
+  - clocks and clock-name have been refactored.
+  - reset-names is now properly dependent to resets.
+  - additionalProperties change from true to false.
+  - change example for a most recent and popular SoC.
+  - "allOf" part has been simplified.
+- Pass binding tests with the updated tools. Here the command:
+  "make DT_CHECKER_FLAGS=-m dt_binding_check"
+- Link to v4: https://lore.kernel.org/r/20221005-mt6357-support-v4-0-5d2bb58e6087@baylibre.com
+
+Changes in v4:
+- "dt-bindings: mfd: mt6397: add binding for MT6357" has been applied
+  by Lee Jones
+- All fixed regulator are now refering to fixed-regulator.yaml
+- vfe28 and vcamio18 regulators have been added
+- pwrap binding has been converted and mt8365 support has been added
+- mt6357 PMIC binding has been created
+- mt6397 RTC binding has been converted and mt6357 support has been added
+- Link to v3: https://lore.kernel.org/r/20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com
+
+Changes in v3:
+- To be consistent with regulator/driver.h and helper.c, shift
+  variables have been removed and the mask values have been directly shifted.
+- Remove index tables and rework volt tables to use set/get helper functions.
+- Add comment to structure and function.
+- Fix Fabien Parent mail address.
+- Link to v2: https://lore.kernel.org/r/20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com
+
+Changes in v2:
+- Rebase
+- Fix typo
+- Remove dependencies with https://lore.kernel.org/all/20220415153629.1817202-1-fparent@baylibre.com/
+  which is no longer relevant.
+
+Previous versions:
+v1 - https://lore.kernel.org/all/20220531124959.202787-1-fparent@baylibre.com/
+
+To: Lee Jones <lee@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Chen Zhong <chen.zhong@mediatek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Fabien Parent <fabien.parent@linaro.org>
+To: Alessandro Zummo <a.zummo@towertech.it>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Sean Wang <sean.wang@mediatek.com>
+To: Pavel Machek <pavel@ucw.cz>
+To: Tianping Fang <tianping.fang@mediatek.com>
+To: Flora Fu <flora.fu@mediatek.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-input@vger.kernel.org
+Cc: Fabien Parent <fparent@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: linux-rtc@vger.kernel.org
+Cc: linux-leds@vger.kernel.org
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+
+---
+Alexandre Mergnat (6):
+      dt-bindings: rtc: mediatek: convert MT6397 rtc documentation
+      dt-bindings: rtc: mediatek: add MT6357 support
+      dt-bindings: soc: mediatek: convert pwrap documentation
+      dt-bindings: mfd: mediatek: Add bindings for MT6357 PMIC
+      arm64: dts: mt6358: change node names
+      arm64: dts: mt8173: change node name
+
+Fabien Parent (4):
+      dt-bindings: input: mtk-pmic-keys: add binding for MT6357 PMIC
+      regulator: dt-bindings: Add binding schema for mt6357 regulators
+      regulator: add mt6357 regulator
+      Input: mtk-pmic-keys: add MT6357 support
+
+ .../bindings/input/mediatek,pmic-keys.yaml         |   1 +
+ .../devicetree/bindings/leds/leds-mt6323.txt       |   2 +-
+ .../devicetree/bindings/mfd/mediatek,mt6357.yaml   | 105 +++++
+ Documentation/devicetree/bindings/mfd/mt6397.txt   |   4 +-
+ .../regulator/mediatek,mt6357-regulator.yaml       | 294 +++++++++++++
+ .../bindings/rtc/mediatek,mt6397-rtc.yaml          |  36 ++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt         |  31 --
+ .../bindings/soc/mediatek/mediatek,pwrap.yaml      | 147 +++++++
+ .../devicetree/bindings/soc/mediatek/pwrap.txt     |  75 ----
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi           |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi       |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts        |   2 +-
+ drivers/input/keyboard/mtk-pmic-keys.c             |  17 +
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/mt6357-regulator.c               | 453 +++++++++++++++++++++
+ include/linux/regulator/mt6357-regulator.h         |  51 +++
+ 17 files changed, 1122 insertions(+), 114 deletions(-)
+---
+base-commit: f6e37bb630736d880a319b7845e8837c8536dd59
+change-id: 20221005-mt6357-support-55308b82e33f
+
+Best regards,
 -- 
---
-BR,
-Volodymyr Kharuk
+Alexandre Mergnat <amergnat@baylibre.com>
