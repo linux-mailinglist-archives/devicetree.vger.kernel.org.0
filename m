@@ -2,145 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A40639548
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 11:24:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E70E63955C
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 11:33:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbiKZKYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 05:24:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47566 "EHLO
+        id S229509AbiKZKdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 05:33:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiKZKYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 05:24:11 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DEE525284;
-        Sat, 26 Nov 2022 02:24:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 10DAAB80937;
-        Sat, 26 Nov 2022 10:24:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B4A0C433C1;
-        Sat, 26 Nov 2022 10:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669458247;
-        bh=AkDR3oNI7rYW8PrF+zx6xgX1DzCDcfyJR4GUZe9yXrM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=boT6wd1t0uPTV/gqYWlt7gAI1wyVyxWPb4Xjm9HaGtz3ppPMB1rjF7q7zROBgxTAA
-         BsDWfN8JEhg91m20UDlHrC0SB+/uI1tjY6yn9pcQVo4e0yrBMoF7vd+AsAYiXy7iq9
-         pYIi/onxuWKLWTAYnc+BHfP4srYj+KvBVwYHdaSp6aWUEOd9X09059kWqZUQtVI+3L
-         oUmFh95ksY+8zGOsH5+3PERqUVLriAkSi9rXNyq6F4WDDiWuwQ5W6FLy/qzKFlsXnl
-         6dAXRdAGw6C71T26zlJARniNJ0JPlnJt9WHfDYJ7x919G+Fg+yc2cqkye5DuOZj68n
-         ybnbR8G40f8jw==
-Date:   Sat, 26 Nov 2022 10:24:00 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229500AbiKZKdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 05:33:18 -0500
+Received: from smtp4-g21.free.fr (smtp4-g21.free.fr [212.27.42.4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF802655F;
+        Sat, 26 Nov 2022 02:33:16 -0800 (PST)
+Received: from sopl295.home (unknown [IPv6:2a01:cb19:8d70:d500:b9f9:2ddd:cb4c:4b34])
+        (Authenticated sender: robert.jarzmik@free.fr)
+        by smtp4-g21.free.fr (Postfix) with ESMTPSA id A135419F58D;
+        Sat, 26 Nov 2022 11:33:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+        s=smtp-20201208; t=1669458795;
+        bh=trAIjXQgfCOT8mzOtZdvR3zVgqjE7H8j/IocuQbKRJk=;
+        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+        b=Bnu/qzCNRGjdyWnC0iBqjA+c8e8NRppn+0rODqBXa2M2Gr8Y7agMcXlgWyjTkc+ex
+         gteir53YVC5gzVR8YC17uG8PWG1FpHGCiJq8+s2or81HuHV9wgKA/IxQ5NrSFVMxo+
+         hVgCSo6Dq6UL78B1Zh7zjJLx3OPjM/2CtwpTaUu4K3UNN+AhtBNBzjLeYEO1JZUmZH
+         D2ew+zCMsJLNAFm9DzW/MKOCi+fw4029mLo/a9mWhVVKZIDnH+9Oi9rc5UvMo0LTAT
+         SzgeQbF0m+ke44EnqcPBrGayckNYxNOQPGz3dkPqfJpv92LyDW0hJzGY4/O7unURW7
+         Y6vf4PX4prX0Q==
+References: <20221124100112.4172513-1-j.neuschaefer@gmx.net>
+User-agent: mu4e 1.8.11; emacs 28.1
+From:   Robert Jarzmik <robert.jarzmik@free.fr>
+To:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Subject: Re: [PATCH v2 00/12] riscv: Allwinner D1/D1s platform support
-Message-ID: <Y4HpQCw74uuVWjSE@spud>
-References: <20221125234656.47306-1-samuel@sholland.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: pxa2xx: Don't mention &pwri2c where it
+ doesn't exist
+Date:   Sat, 26 Nov 2022 11:32:07 +0100
+In-reply-to: <20221124100112.4172513-1-j.neuschaefer@gmx.net>
+Message-ID: <m2a64ef1jz.fsf@sopl295.home>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221125234656.47306-1-samuel@sholland.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Samuel,
 
-On Fri, Nov 25, 2022 at 05:46:44PM -0600, Samuel Holland wrote:
-> This series adds the Kconfig/defconfig plumbing and devicetrees for a
-> range of Allwinner D1 and D1s-based boards. Many features are already
-> enabled, including USB, Ethernet, and WiFi.
-> 
-> The devicetrees use bindings from the following series which have not
-> yet been merged:
->  - In-package LDO regulators:
->    https://lore.kernel.org/lkml/20221125040112.18160-1-samuel@sholland.org/
->  - Ethernet MAC binding fixes (not a new issue with D1):
->    https://lore.kernel.org/lkml/20221125202008.64595-1-samuel@sholland.org/
->  - RTL8723DS Bluetooth (has driver support, missing documentation):
->    https://lore.kernel.org/lkml/20221125040956.18648-1-samuel@sholland.org/
->  - TI ADC101C ADC (has driver support, missing documentation):
->    https://lore.kernel.org/lkml/20221125220903.8632-1-samuel@sholland.org/
-> 
-> $ make ARCH=riscv CROSS_COMPILE=riscv64-linux-musl- dtbs_check
->   SYNC    include/config/auto.conf.cmd
->   LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-clockworkpi-v3.14.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dtb
->   DTC_CHK arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dtb
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> writes:
 
-Ran this last night, so before I go mess with your timer stuff & forget
-there were a good few warnings about surplus-to-requirements address &
-size cells. Other than that,
+> The pwri2c node does not exist in all PXA2xx SoCs (specifically=20
+> not
+> in PXA25x), and thus isn't defined in pxa2xx.dtsi. It is,=20
+> however,
+> currently mentioned in /aliases, causing an error when building=20
+> a
+> devicetree that doesn't define it.
+>
+> Move the mention of &pwri2c in /aliases to the files that define=20
+> it
+> (pxa27x.dtsi and pxa3xx.dtsi), to avoid the error mentioned=20
+> above.
+>
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+Acked-by: Robert Jarzmik <robert.jarzmik@free.fr>
 
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sun20i-d1-lichee-rv-86-panel.dtsi:24.32-36.5: Warning (unit_address_vs_reg): /dmic-sound/simple-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sun20i-d1-lichee-rv-86-panel.dtsi:18.13-37.4: Warning (avoid_unnecessary_addr_size): /dmic-sound: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sun20i-d1-lichee-rv-dock.dts:30.32-42.5: Warning (unit_address_vs_reg): /dmic-sound/simple-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sun20i-d1-lichee-rv-dock.dts:24.13-43.4: Warning (avoid_unnecessary_addr_size): /dmic-sound: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sun20i-d1-lichee-rv-86-panel.dtsi:24.32-36.5: Warning (unit_address_vs_reg): /dmic-sound/simple-audio-card,dai-link@0: node has a unit name, but no reg or ranges property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sun20i-d1-lichee-rv-86-panel.dtsi:18.13-37.4: Warning (avoid_unnecessary_addr_size): /dmic-sound: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:616.20-636.5: Warning (avoid_unnecessary_addr_size): /soc/dsi@5450000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
-sunxi-d1s-t113.dtsi:666.32-675.7: Warning (graph_child_address): /soc/tcon-top@5460000/ports/port@0: graph node has single child node 'endpoint@0', #address-cells/#size-cells are not necessary
+Cheers.
 
-> The only remaining DT validation issue is that gpio-fan is missing a
-> YAML conversion, although one is on the list here:
-> https://lore.kernel.org/lkml/20220126200350.3633576-1-clabbe@baylibre.com/
-> arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dtb:0:0: /fan: failed to match any schema with compatible: ['gpio-fan']
-
-Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-
-I actually didn't see this error on next-20221122 :)
-
+--
+Robert
