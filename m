@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EDC639615
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 14:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B781639618
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 14:26:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbiKZNZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 08:25:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57374 "EHLO
+        id S229599AbiKZN0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 08:26:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiKZNZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 08:25:15 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0DD272C
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:25:15 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id r8so8034001ljn.8
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:25:14 -0800 (PST)
+        with ESMTP id S229495AbiKZN0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 08:26:30 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 029091F9C2
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:26:29 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id r8so8036302ljn.8
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:26:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Na6FyrdsS1wwt6jy4jKZXGg53Il9zjDGwsbPs6Y7vs8=;
-        b=ojwqnhX4HWIRw/01nosPbAo+kI1IeXq4oX6pTqV7VqEAjHwiSgIMn8vz/cI9OG/fvZ
-         lwRlXt2Ob7aRq1D+/MBJQlUvc4cdmFsC+8i8jq2hfEqaFNwyITvTyja+ZySaXx9WiPbL
-         AhxTVSiyyTcurXiBz5+0uBt7dQP2fvzP+amc9BH1XQhwhtDeXAwKn7v4GVWaKeRG5FTr
-         oQoSF9ZqxnDo9qt2+F1geCe7WYPySfPEui0AKJe39HxvhG82a6QOUpxX1koK/CYvMMrt
-         Dx6zVKKQ94b/YCeYD/fQxWKOP128ad71EABMwSJxRnV/iRgWeHcxDGDX9EKfRqgK7Ofn
-         UnEg==
+        bh=o4HSsW8BSppm65SzOgKkp1ueBN0+yQmM4nOdtdewie4=;
+        b=fQ948lgQWtUyPvTbVqFz9q/GMnUuxAq/xfBCHkJL16BWRoGwSi7N3Ll1/vKlrlTWf1
+         LN96gsqTnvCQpGN5YjYG10xuR+YaL9zM4L9WUOz8Xvv/hqroWL6TL3HT309cLxm2/KBG
+         eCLfmz7owAKXhMPNkUHj3S0eRZidLboTGGrQwNMJE7IkX0/mvqgGT/rW5cwGPyNDqE7l
+         ghJ5zdtCgdSttJXsAZjStUGWjArFUF3kjd7WbsSD6HxDO++Jp1lZM81h3ML1cpov6FmI
+         82K6z1t3VYJgrwpxQfkNtIMovDVq3xdq/yyUPZ01D40tY1sWMoYYT774LPidZ0QcrhD/
+         rlFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Na6FyrdsS1wwt6jy4jKZXGg53Il9zjDGwsbPs6Y7vs8=;
-        b=wFo8DAUTDeGokLsnBZx4fsfGcKJXMcoYNWDXqDwZocWkduM13GqAarOu/Owxmy1/FR
-         JMKsM/LI4+z4k3w/V/sS+bo4UPxSPoX/doCrkmMyPbyPco06lq8j6ph1Cip7baAjkNm7
-         WHiz8HRAzxCiIzzJssEToyBLadXuroDjI032OMRjMtMEiBESq208rfvHKKCVAA2qbIzF
-         6b8DDFBhpJRvNl+OjJ0QDC2uMxFdRSmWn12IM9y8TMlEWh6u7QIu+ulBCES6l/346si7
-         tme1u+gsIkKhQJXBWyEzg8OWY1bmLp+4UOSKi7k6fFa8Ca9KDO4R6N7nqXl85Fhy5RD2
-         +62A==
-X-Gm-Message-State: ANoB5pk0FPXf+hxZWful3U3P1nI7GzZbTt28N78J5LvZPdJGyGTjpvTN
-        21BLTu+Si8LaC8id7VCW1umlTA==
-X-Google-Smtp-Source: AA0mqf4Hn5l8emZqaUsEMB85V+2yCjIoYVk6ezOS+6dfnBzhS/2LGcz8sUEWDiUDm0/4MtMTl8wmbA==
-X-Received: by 2002:a2e:aa14:0:b0:277:63f7:492c with SMTP id bf20-20020a2eaa14000000b0027763f7492cmr8428769ljb.259.1669469113410;
-        Sat, 26 Nov 2022 05:25:13 -0800 (PST)
+        bh=o4HSsW8BSppm65SzOgKkp1ueBN0+yQmM4nOdtdewie4=;
+        b=XTY9T7GW7ux+GR1Ji13o+BKPokkc9dYIt9VQ2XIiuJeML/l1VI482zV5oUy2fPsTqk
+         u4i64efmXMTosexTAwNFFeZbiv4lO05Zxgt0RKbZjvzx44OlZ05Kxh7O29ZS58nx0mzE
+         TPFfZ5zDldkjnhJspkGk1mXAOooz3KwZ6aQ4MAEV6ZxwvZSoreEh+q6VwirRqZa5senS
+         Ce+z1eynsI2UlyR4D94KnppjtThUkCIABKOpWc197SFdoAYtGwREH5fstH8tFtdV+gsf
+         6pUBOp28DjpEh8mT5zlWkalyXkksBF9nHuNx6nrcIlSB/odpa2OCdjD2g6vYgjpvBMd8
+         KY5Q==
+X-Gm-Message-State: ANoB5pnPrEMjyMEmyr6quuzOrFhjrI22CHOI3v6IPmPoYLXvjiUOFsgv
+        0nazEi3iJ9xRPktv44xaWI8wAQ==
+X-Google-Smtp-Source: AA0mqf4diqUCufc5o5ynb6ePA7iRhvGzndvX4FgyVTV8biyv9XJ3eZhD7JtIGLRQ2Y+XGxyaz98WZg==
+X-Received: by 2002:a05:651c:11c1:b0:279:7b1c:9add with SMTP id z1-20020a05651c11c100b002797b1c9addmr5996583ljo.151.1669469187372;
+        Sat, 26 Nov 2022 05:26:27 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t6-20020a199106000000b004b4b5d59cbcsm922230lfd.265.2022.11.26.05.25.12
+        by smtp.gmail.com with ESMTPSA id y30-20020a0565123f1e00b004a2386b8cf9sm931748lfa.206.2022.11.26.05.26.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Nov 2022 05:25:12 -0800 (PST)
-Message-ID: <d84ff258-d3e1-45e0-4473-7cd0707ae17f@linaro.org>
-Date:   Sat, 26 Nov 2022 14:25:11 +0100
+        Sat, 26 Nov 2022 05:26:26 -0800 (PST)
+Message-ID: <5b05317d-28cc-bfc8-f415-e6acf453dc7c@linaro.org>
+Date:   Sat, 26 Nov 2022 14:26:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 1/3] dt-bindings: net: sun7i-gmac: Fix snps,dwmac.yaml
+Subject: Re: [PATCH 2/3] dt-bindings: net: sun8i-emac: Fix snps,dwmac.yaml
  inheritance
 Content-Language: en-US
 To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
@@ -70,14 +70,15 @@ Cc:     LABBE Corentin <clabbe.montjoie@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
 References: <20221125202008.64595-1-samuel@sholland.org>
- <20221125202008.64595-2-samuel@sholland.org>
+ <20221125202008.64595-3-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125202008.64595-2-samuel@sholland.org>
+In-Reply-To: <20221125202008.64595-3-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,21 +86,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/11/2022 21:20, Samuel Holland wrote:
-> The sun7i-gmac binding extends snps,dwmac.yaml, and should accept all
+> The sun8i-emac binding extends snps,dwmac.yaml, and should accept all
 > properties defined there, including "mdio", "resets", and "reset-names".
 > However, validation currently fails for these properties because the
+
+validation does not fail:
+make dt_binding_check -> no problems
+
+Maybe you meant that DTS do not pass dtbs_check?
+
+
 > local binding sets "unevaluatedProperties: false", and snps,dwmac.yaml
 > is only included inside an allOf block. Fix this by referencing
 > snps,dwmac.yaml at the top level.
+
+There is nothing being fixed here...
+
 > 
-
-I don't understand where is the problem and how does your patch solve
-it. The old syntax is correct and your change does nothing, no fixing,
-no impact. It actually looks like noop with big explanation :(
-
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
-
+> 
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml     | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> index 1432fda3b603..34a47922296d 100644
+> --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> @@ -10,6 +10,8 @@ maintainers:
+>    - Chen-Yu Tsai <wens@csie.org>
+>    - Maxime Ripard <mripard@kernel.org>
+>  
+> +$ref: "snps,dwmac.yaml#"
+> +
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -60,7 +62,6 @@ required:
+>    - syscon
+>  
+>  allOf:
+> -  - $ref: "snps,dwmac.yaml#"
+>    - if:
+>        properties:
+>          compatible:
 
 Best regards,
 Krzysztof
