@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CAD6639870
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 23:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD6663986A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 23:25:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbiKZWZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 17:25:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
+        id S229612AbiKZWZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 17:25:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiKZWZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 17:25:39 -0500
+        with ESMTP id S229453AbiKZWZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 17:25:36 -0500
 Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04018E0C3;
-        Sat, 26 Nov 2022 14:25:38 -0800 (PST)
-Received: by mail-io1-f47.google.com with SMTP id i85so5247372ioa.5;
-        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E3DE0C3;
+        Sat, 26 Nov 2022 14:25:34 -0800 (PST)
+Received: by mail-io1-f47.google.com with SMTP id i85so5247319ioa.5;
+        Sat, 26 Nov 2022 14:25:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=/RMyYOFIS/k1shCeQijOTAmK/nl8iYEKcVhmij4E6XQ=;
-        b=D13Erg+D8DbrzX35QriFFSH5iFZjlehMtLZsaDbOue8wdOo2vgoR4F0e0MQmupThvs
-         Zrt2rAKhwPYEILB9f8LDxFB8klDdkRdqDLqhqooOLX07+bPbdgEiG0owtAXxR7ZVI6tC
-         Qs0pn49j/6l+umoQkKJWn6iqE3cI5VV42wRhxcsCt0I37+yBuWnGsWZtIytENxUgqPvI
-         GaF/N0frhSnArD+wV4YwJuqkgHSXPkBh6Gh5MUeBf0i244Os1RmByDPqJQK7ZffvaMcD
-         +jWkcaePxdZ/Uu6NNsoBP7TrR1Feauv/IAjgUCrfkCUgJgAn+ex1h5zbPxIxzMu5NZ5J
-         cdhA==
-X-Gm-Message-State: ANoB5plyWaSvC495quLEpb2y9fLg6y+HT6fL9hUT/G174Xs8RMZTzPTm
-        1arL/A+rRlIYnRX7H8yppFssA5VT+A==
-X-Google-Smtp-Source: AA0mqf6L5vpWQSgA/6k8bcYQ9iY//s4vl30Rngyl90snp4mmdp+Xi+UVan/7Qhv91B1sR/JhIJYCkg==
-X-Received: by 2002:a02:9547:0:b0:375:3dd1:743c with SMTP id y65-20020a029547000000b003753dd1743cmr13248207jah.281.1669501537580;
-        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
+        bh=ZlyB3iEQfZN2ouKWA070xdoCwtuTYqQ3/sG9m3p7/80=;
+        b=VAk7lsvtZ+DsBg+hvaW7dC+ZrMlGaPgCVqWKIYfm1mIJmE8viGV0SXeLkGIkupBb05
+         /TI0JCw6FV/LQn97dn/xrCUQPoQI0lq1a73YcnaqdTnnIGnLRci2P8HP+1t9GnN6y5CV
+         30IdQerHrLKrFJPQvYVHmzXr6eVDoAKIdQGWqzdQsK/Qk9CPlpoobMpo+AV3S95RU/Uc
+         zl4Q3dub0EpxkMU1RuGojsbrJhKVoIrThFPO8zq/H5eZFPk+X7wxUIHanTMcUZ5PQjXP
+         s5QPnABDDjkHB/XI0PXl1KCTKm7I6fgunm0iBYLkytlDaHYd+a40tZHlGlh1sT6KRcqQ
+         qtBg==
+X-Gm-Message-State: ANoB5pmyX99vc/+jno1i8hKjU1Gvi3ynP5unEaUgZierUwKwugdjkNYS
+        e5n9EWeZfE9a0XMMH4+18U1KOhYMlQ==
+X-Google-Smtp-Source: AA0mqf6yWHEStBRsGoTfckgJSkpmKT6XWvb9nkZy76Ew7cHLnrwvgiNck/FaNKmTl5/fQQkixWY/ew==
+X-Received: by 2002:a5d:8941:0:b0:6a1:2c0c:6084 with SMTP id b1-20020a5d8941000000b006a12c0c6084mr10279947iot.128.1669501533882;
+        Sat, 26 Nov 2022 14:25:33 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id c12-20020a02330c000000b003898778bed7sm2202159jae.134.2022.11.26.14.25.36
+        by smtp.gmail.com with ESMTPSA id z15-20020a05663822af00b00389d2ff28a5sm712108jas.47.2022.11.26.14.25.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
-Received: (nullmailer pid 35349 invoked by uid 1000);
+        Sat, 26 Nov 2022 14:25:33 -0800 (PST)
+Received: (nullmailer pid 35346 invoked by uid 1000);
         Sat, 26 Nov 2022 22:25:36 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     WANG Xuerui <kernel@xen0n.name>,
-        Jianmin Lv <lvjianmin@loongson.cn>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh+dt@kernel.org>, loongarch@lists.linux.dev,
-        Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To:  =?utf-8?q?=3C57339e73b6c0bfe446e19a7f55a48b7ca640b9ec=2E166935?=
- =?utf-8?q?9515=2Egit=2Ezhoubinbin=40loongson=2Ecn=3E?=
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>  =?utf-8?q?=3C5733?=
- =?utf-8?q?9e73b6c0bfe446e19a7f55a48b7ca640b9ec=2E1669359515=2Egit=2Ezhoubin?=
- =?utf-8?q?bin=40loongson=2Ecn=3E?=
-Message-Id: <166950113038.8130.14678253677023396314.robh@kernel.org>
-Subject: Re: [PATCH V3 3/5] dt-bindings: i2c: add bindings for Loongson LS2X I2C
+To:     Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <20221124191400.287918-2-j.neuschaefer@gmx.net>
+References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
+ <20221124191400.287918-2-j.neuschaefer@gmx.net>
+Message-Id: <166950112932.8087.6546134123286782729.robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: Add Nuvoton WPCM450 Flash
+ Interface Unit (FIU)
 Date:   Sat, 26 Nov 2022 16:25:36 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -74,15 +66,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 25 Nov 2022 16:54:13 +0800, Binbin Zhou wrote:
-> Add device tree bindings for the i2c controller on the Loongson-2K Soc
-> or Loongosn LS7A bridge.
+On Thu, 24 Nov 2022 20:13:58 +0100, Jonathan Neuschäfer wrote:
+> The Flash Interface Unit (FIU) is the SPI flash controller in the
+> Nuvoton WPCM450 BMC SoC. It supports four chip selects, and direct
+> (memory-mapped) access to 16 MiB per chip. Larger flash chips can be
+> accessed by software-defined SPI transfers.
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> The FIU in newer NPCM7xx SoCs is not compatible with the WPCM450 FIU.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
->  .../bindings/i2c/loongson,ls2x-i2c.yaml       | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+> 
+> v2:
+> - A few cleanups suggested by Krzysztof Kozlowski
+> - Simplify binding by making second reg item mandatory
+> 
+> v1:
+> - https://lore.kernel.org/lkml/20221105185911.1547847-4-j.neuschaefer@gmx.net/
+> ---
+>  .../bindings/spi/nuvoton,wpcm450-fiu.yaml     | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -91,14 +95,17 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.example.dtb: i2c@1fe21000: reg: [[0, 534908928], [0, 8]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.example.dtb: i2c@1fe21000: Unevaluated properties are not allowed ('reg' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.example.dts:18:18: fatal error: dt-bindings/clock/nuvoton,wpcm450-clk.h: No such file or directory
+   18 |         #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221124191400.287918-2-j.neuschaefer@gmx.net
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
