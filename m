@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FAA5639614
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 14:23:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3EDC639615
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 14:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiKZNX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 08:23:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57304 "EHLO
+        id S229585AbiKZNZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 08:25:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiKZNX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 08:23:27 -0500
+        with ESMTP id S229454AbiKZNZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 08:25:15 -0500
 Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A8A272C
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:23:26 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id bn5so8058298ljb.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:23:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0DD272C
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:25:15 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id r8so8034001ljn.8
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 05:25:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n/1roXOdySIxs1dS/N1VkID/IKrNoi7dXAED3KVDP+E=;
-        b=WFpJa/iywGsIj1TGouF0pb+548r06Vjwgcd5EyzUWhr333V4WJ1P7qdra6s5sRINCt
-         +cgeNylffxGiqUiXajyojXWDCDQ76Sm9nTx4BJRiQX0wqKt7UX+O3BT6F20KEZ5YlNCb
-         Xx91Uhwgwvrmfw6V7mi7qZTrhcIPHvQwoLRWWa7YcFNLcyiDgwWcPod1t8ybfqT8vLK7
-         V4eOT7aiSb3A9D10ownYCGBHG5D0jRetqlnWtOMteTwZn8dOqKPEQliiGv3n73dJzfrF
-         C49OoeafhrLgsmZoB7oH1Lh0xoE75lfdjKc6YggvNqZvIzSTBSZTQjJl9jX6IVvCets8
-         35/A==
+        bh=Na6FyrdsS1wwt6jy4jKZXGg53Il9zjDGwsbPs6Y7vs8=;
+        b=ojwqnhX4HWIRw/01nosPbAo+kI1IeXq4oX6pTqV7VqEAjHwiSgIMn8vz/cI9OG/fvZ
+         lwRlXt2Ob7aRq1D+/MBJQlUvc4cdmFsC+8i8jq2hfEqaFNwyITvTyja+ZySaXx9WiPbL
+         AhxTVSiyyTcurXiBz5+0uBt7dQP2fvzP+amc9BH1XQhwhtDeXAwKn7v4GVWaKeRG5FTr
+         oQoSF9ZqxnDo9qt2+F1geCe7WYPySfPEui0AKJe39HxvhG82a6QOUpxX1koK/CYvMMrt
+         Dx6zVKKQ94b/YCeYD/fQxWKOP128ad71EABMwSJxRnV/iRgWeHcxDGDX9EKfRqgK7Ofn
+         UnEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n/1roXOdySIxs1dS/N1VkID/IKrNoi7dXAED3KVDP+E=;
-        b=c3PCstkCKH1tVbp8uiaew4JB31APZgyrPDLXQ85HHSrM3GD43Tre6au8CiMSY1appt
-         JE0QkURj3tjexfVLN8Ajvch8bgPw7ZpYgMVqA9OQOp4LSu6TRFXiznAqoAPW17lLqQA6
-         gOw0Vv3Xua2WZE+vFlT2b5+0zWeCR7OYeDdnjUJSWMPsghKyVu0FMzH02LVqFc52lSVz
-         mz9P/XObri9EdAxYz4Tm39SagLxFVUTrPmYS7UKAlpBFJyZRDKY41COsy++pzhdhxVFu
-         auCuMxyxTniJOOOzyd/uJYQlc2P0NQnYkqgKtGZDDoNwU/ojXNy39BVoNebE7/jI3Iuu
-         NfGw==
-X-Gm-Message-State: ANoB5pmFvGqQAyuNiqS9gQQxC/9ZTxhPbiPOi7Cqp+EiSHLHsPVBDCpa
-        vzCRVLOgQ3yu339CS5HvR5zhQg==
-X-Google-Smtp-Source: AA0mqf5Ootwrl9wuLxNIE5DbCYxf+n8l6mn0DsE3XLw42RQMRT5o+l7A+yTMzswTsc+WvrxTVN8HvA==
-X-Received: by 2002:a2e:be8a:0:b0:26f:c081:9aed with SMTP id a10-20020a2ebe8a000000b0026fc0819aedmr13790332ljr.222.1669469005139;
-        Sat, 26 Nov 2022 05:23:25 -0800 (PST)
+        bh=Na6FyrdsS1wwt6jy4jKZXGg53Il9zjDGwsbPs6Y7vs8=;
+        b=wFo8DAUTDeGokLsnBZx4fsfGcKJXMcoYNWDXqDwZocWkduM13GqAarOu/Owxmy1/FR
+         JMKsM/LI4+z4k3w/V/sS+bo4UPxSPoX/doCrkmMyPbyPco06lq8j6ph1Cip7baAjkNm7
+         WHiz8HRAzxCiIzzJssEToyBLadXuroDjI032OMRjMtMEiBESq208rfvHKKCVAA2qbIzF
+         6b8DDFBhpJRvNl+OjJ0QDC2uMxFdRSmWn12IM9y8TMlEWh6u7QIu+ulBCES6l/346si7
+         tme1u+gsIkKhQJXBWyEzg8OWY1bmLp+4UOSKi7k6fFa8Ca9KDO4R6N7nqXl85Fhy5RD2
+         +62A==
+X-Gm-Message-State: ANoB5pk0FPXf+hxZWful3U3P1nI7GzZbTt28N78J5LvZPdJGyGTjpvTN
+        21BLTu+Si8LaC8id7VCW1umlTA==
+X-Google-Smtp-Source: AA0mqf4Hn5l8emZqaUsEMB85V+2yCjIoYVk6ezOS+6dfnBzhS/2LGcz8sUEWDiUDm0/4MtMTl8wmbA==
+X-Received: by 2002:a2e:aa14:0:b0:277:63f7:492c with SMTP id bf20-20020a2eaa14000000b0027763f7492cmr8428769ljb.259.1669469113410;
+        Sat, 26 Nov 2022 05:25:13 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c3-20020ac25f63000000b004a4754c5db5sm923547lfc.244.2022.11.26.05.23.23
+        by smtp.gmail.com with ESMTPSA id t6-20020a199106000000b004b4b5d59cbcsm922230lfd.265.2022.11.26.05.25.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Nov 2022 05:23:24 -0800 (PST)
-Message-ID: <1dcd1ac0-6a5f-6973-1ade-5480d81cfcac@linaro.org>
-Date:   Sat, 26 Nov 2022 14:23:23 +0100
+        Sat, 26 Nov 2022 05:25:12 -0800 (PST)
+Message-ID: <d84ff258-d3e1-45e0-4473-7cd0707ae17f@linaro.org>
+Date:   Sat, 26 Nov 2022 14:25:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH] arm64: dts: rockchip: add Hynitron cst340 for Anbernic
- 353 series
+Subject: Re: [PATCH 1/3] dt-bindings: net: sun7i-gmac: Fix snps,dwmac.yaml
+ inheritance
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20221126011432.22891-1-macroalpha82@gmail.com>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     LABBE Corentin <clabbe.montjoie@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
+References: <20221125202008.64595-1-samuel@sholland.org>
+ <20221125202008.64595-2-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221126011432.22891-1-macroalpha82@gmail.com>
+In-Reply-To: <20221125202008.64595-2-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,84 +84,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/11/2022 02:14, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 25/11/2022 21:20, Samuel Holland wrote:
+> The sun7i-gmac binding extends snps,dwmac.yaml, and should accept all
+> properties defined there, including "mdio", "resets", and "reset-names".
+> However, validation currently fails for these properties because the
+> local binding sets "unevaluatedProperties: false", and snps,dwmac.yaml
+> is only included inside an allOf block. Fix this by referencing
+> snps,dwmac.yaml at the top level.
 > 
-> Add support for the Hynitron cst340 touchscreen driver to the Anbernic
-> RG353P and RG353V devices. Note the RG353VS device does not have a
-> touchscreen.
-> 
-> https://lore.kernel.org/linux-input/Y1y9e9sgE%2FDck9fB@google.com/
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+I don't understand where is the problem and how does your patch solve
+it. The old syntax is correct and your change does nothing, no fixing,
+no impact. It actually looks like noop with big explanation :(
+
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  .../dts/rockchip/rk3566-anbernic-rg353p.dts   | 20 +++++++++++++++++++
->  .../dts/rockchip/rk3566-anbernic-rg353v.dts   | 13 ++++++++++++
->  2 files changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-> index 63cff402f3a8..06222dead921 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
-> @@ -95,6 +95,19 @@ &i2c2 {
->  	pintctrl-names = "default";
->  	pinctrl-0 = <&i2c2m1_xfer>;
->  	status = "okay";
-> +
-> +	touch@1a {
-> +		compatible = "hynitron,cst340";
-> +		reg = <0x1a>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <RK_PB1 IRQ_TYPE_EDGE_FALLING>;
-> +		pinctrl-0 = <&touch_rst>;
-> +		pinctrl-names = "default";
-> +		reset-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_LOW>;
-> +		touchscreen-size-x = <640>;
-> +		touchscreen-size-y = <480>;
-> +		status = "okay";
-
-Was it disabled anywhere?
-
-> +	};
->  };
->  
->  &pinctrl {
-> @@ -104,6 +117,13 @@ spk_amp_enable_h: spk-amp-enable-h {
->  				<4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
->  	};
-> +
-> +	touch {
-> +		touch_rst: touch-rst {
-> +			rockchip,pins =
-> +				<4 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
->  };
->  
->  &rk817 {
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-> index 885234a023e1..dc3fc67f5853 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
-> @@ -82,6 +82,19 @@ &i2c2 {
->  	pintctrl-names = "default";
->  	pinctrl-0 = <&i2c2m1_xfer>;
->  	status = "okay";
-> +
-> +	touch@1a {
-> +		compatible = "hynitron,cst340";
-> +		reg = <0x1a>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <RK_PB1 IRQ_TYPE_EDGE_FALLING>;
-> +		pinctrl-0 = <&touch_rst>;
-> +		pinctrl-names = "default";
-> +		reset-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_LOW>;
-> +		touchscreen-size-x = <640>;
-> +		touchscreen-size-y = <480>;
-> +		status = "okay";
-
-Same question.
 
 
 Best regards,
