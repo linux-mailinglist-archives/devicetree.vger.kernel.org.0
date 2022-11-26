@@ -2,56 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1123F63986C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 23:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAD6639870
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 23:26:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229622AbiKZWZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 17:25:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59564 "EHLO
+        id S229629AbiKZWZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 17:25:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiKZWZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 17:25:37 -0500
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64281E0C5;
-        Sat, 26 Nov 2022 14:25:36 -0800 (PST)
-Received: by mail-il1-f179.google.com with SMTP id f6so3442367ilu.13;
-        Sat, 26 Nov 2022 14:25:36 -0800 (PST)
+        with ESMTP id S229626AbiKZWZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 17:25:39 -0500
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04018E0C3;
+        Sat, 26 Nov 2022 14:25:38 -0800 (PST)
+Received: by mail-io1-f47.google.com with SMTP id i85so5247372ioa.5;
+        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=tc+sgoBt8SQSZNTnE/8ncNdspyRar+39pv2RWYZHvwY=;
-        b=i9NeR+oKcaozjz5yQkk7zDPhhU86bNhr2FTT06CoBXwO7dCSlD3Nejvn9nyHoZM2VU
-         gYhmYTsABor9NIKSbZGJTnatnDtKbjwWNLAeoVWp+Tx022JTVbSMtyeGIm1vTKDEW45B
-         LACc6Cr3XA154Tf17vW6sgZJLWkIRhAVl92JALLObYPbPWlo7nbNC4+0JscKNwlSW8VZ
-         sNv+oqFctFiM8JqCTVWMX2WwJjfH/yTjvgDCpxe5qHy98FHJRZ24SgbhJGXo1LRy7lmK
-         oNvB2vJD55VnZDw4OmNSaH1ZSyHQZfsO/10K1mSSPrwDFagmOl+CyiUDqBgXE1PDwRmP
-         SlQw==
-X-Gm-Message-State: ANoB5plv/+VOyoK0aSvMw6BVVBNVU2XaeWEn76kp5rdgFgfS1Z6sa0xn
-        WkmhwTp9LHr3jhNNit28JjBzZK/Ulg==
-X-Google-Smtp-Source: AA0mqf7DRRzlqrejLrBAkATMaLVC4GqP1xlmozdaX0Z5OUpt6lA2YxQMGPblqe8qEEDrvoAw0AvO7A==
-X-Received: by 2002:a92:1a49:0:b0:302:dcf1:59a with SMTP id z9-20020a921a49000000b00302dcf1059amr9322085ill.185.1669501535583;
-        Sat, 26 Nov 2022 14:25:35 -0800 (PST)
+        bh=/RMyYOFIS/k1shCeQijOTAmK/nl8iYEKcVhmij4E6XQ=;
+        b=D13Erg+D8DbrzX35QriFFSH5iFZjlehMtLZsaDbOue8wdOo2vgoR4F0e0MQmupThvs
+         Zrt2rAKhwPYEILB9f8LDxFB8klDdkRdqDLqhqooOLX07+bPbdgEiG0owtAXxR7ZVI6tC
+         Qs0pn49j/6l+umoQkKJWn6iqE3cI5VV42wRhxcsCt0I37+yBuWnGsWZtIytENxUgqPvI
+         GaF/N0frhSnArD+wV4YwJuqkgHSXPkBh6Gh5MUeBf0i244Os1RmByDPqJQK7ZffvaMcD
+         +jWkcaePxdZ/Uu6NNsoBP7TrR1Feauv/IAjgUCrfkCUgJgAn+ex1h5zbPxIxzMu5NZ5J
+         cdhA==
+X-Gm-Message-State: ANoB5plyWaSvC495quLEpb2y9fLg6y+HT6fL9hUT/G174Xs8RMZTzPTm
+        1arL/A+rRlIYnRX7H8yppFssA5VT+A==
+X-Google-Smtp-Source: AA0mqf6L5vpWQSgA/6k8bcYQ9iY//s4vl30Rngyl90snp4mmdp+Xi+UVan/7Qhv91B1sR/JhIJYCkg==
+X-Received: by 2002:a02:9547:0:b0:375:3dd1:743c with SMTP id y65-20020a029547000000b003753dd1743cmr13248207jah.281.1669501537580;
+        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
 Received: from robh_at_kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id f29-20020a02a11d000000b00372e2c4232asm2733142jag.121.2022.11.26.14.25.34
+        by smtp.gmail.com with ESMTPSA id c12-20020a02330c000000b003898778bed7sm2202159jae.134.2022.11.26.14.25.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Nov 2022 14:25:35 -0800 (PST)
-Received: (nullmailer pid 35351 invoked by uid 1000);
+        Sat, 26 Nov 2022 14:25:37 -0800 (PST)
+Received: (nullmailer pid 35349 invoked by uid 1000);
         Sat, 26 Nov 2022 22:25:36 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     luka.perkov@sartura.hr, linux-kernel@vger.kernel.org,
-        linux@roeck-us.net, devicetree@vger.kernel.org,
-        wim@linux-watchdog.org, robh+dt@kernel.org,
-        linux-watchdog@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20221125112904.48652-1-robert.marko@sartura.hr>
-References: <20221125112904.48652-1-robert.marko@sartura.hr>
-Message-Id: <166950120854.13025.2614107746698757914.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert GPIO binding to json-schema
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     WANG Xuerui <kernel@xen0n.name>,
+        Jianmin Lv <lvjianmin@loongson.cn>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Rob Herring <robh+dt@kernel.org>, loongarch@lists.linux.dev,
+        Wolfram Sang <wsa@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To:  =?utf-8?q?=3C57339e73b6c0bfe446e19a7f55a48b7ca640b9ec=2E166935?=
+ =?utf-8?q?9515=2Egit=2Ezhoubinbin=40loongson=2Ecn=3E?=
+References: <cover.1669359515.git.zhoubinbin@loongson.cn>  =?utf-8?q?=3C5733?=
+ =?utf-8?q?9e73b6c0bfe446e19a7f55a48b7ca640b9ec=2E1669359515=2Egit=2Ezhoubin?=
+ =?utf-8?q?bin=40loongson=2Ecn=3E?=
+Message-Id: <166950113038.8130.14678253677023396314.robh@kernel.org>
+Subject: Re: [PATCH V3 3/5] dt-bindings: i2c: add bindings for Loongson LS2X I2C
 Date:   Sat, 26 Nov 2022 16:25:36 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -64,29 +74,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 25 Nov 2022 12:29:04 +0100, Robert Marko wrote:
-> Convert the DT binding for GPIO WDT to JSON schema.
+On Fri, 25 Nov 2022 16:54:13 +0800, Binbin Zhou wrote:
+> Add device tree bindings for the i2c controller on the Loongson-2K Soc
+> or Loongosn LS7A bridge.
 > 
-> Cc: luka.perkov@sartura.hr
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 ----------
->  .../bindings/watchdog/gpio-wdt.yaml           | 55 +++++++++++++++++++
->  2 files changed, 55 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
+>  .../bindings/i2c/loongson,ls2x-i2c.yaml       | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221125112904.48652-1-robert.marko@sartura.hr
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.example.dtb: i2c@1fe21000: reg: [[0, 534908928], [0, 8]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.example.dtb: i2c@1fe21000: Unevaluated properties are not allowed ('reg' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
 
+doc reference errors (make refcheckdocs):
 
-watchdog-gpio: Unevaluated properties are not allowed ('always-enabled' was unexpected)
-	arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
 
