@@ -2,63 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E14C6397A8
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 19:38:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7EBE6397AF
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 19:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiKZSie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 13:38:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39726 "EHLO
+        id S229554AbiKZSyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 13:54:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiKZSid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 13:38:33 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9659512AD4
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:38:32 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 71B9F85073;
-        Sat, 26 Nov 2022 19:38:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1669487910;
-        bh=0soNJqMiRYMxyuqxJ7K59+HaFyH+vf2ttpoTXZTknZ4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=opYYilcr5sD/f4jBPtr1+6nraiipuFOEw0vZOLgMBMg5H3IpVm5FkHCWFeFmOeX0M
-         F71qoNLyG2uZw7+JsVpemykuBF9ltEUjwyOjAus33S2DqY6Kpdp2Vd99xXpPdf8GED
-         gfyBJwABX/w63oy0plBRokc06DEuuZT8CzPldu9f/VwATNkiq+8JD050G4LvvXuxZy
-         xHfm0iQmtWVBNJ9xDr+JQLTctYKgPo+LsaSciM3Xk/grhli2hmRlA8RKB6Z1kDCHYO
-         1/hojGc26a5ls/t9EqvSgEyotOKczReKr31bKqLVUI8HXs4gEmMQG+ojEqIQSrM2et
-         NRsAXh3MrDPLQ==
-Message-ID: <1103bf50-e24b-4f9e-06e6-42bc6a265014@denx.de>
-Date:   Sat, 26 Nov 2022 19:38:28 +0100
+        with ESMTP id S229548AbiKZSyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 13:54:15 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B672715A33
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:54:14 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id j16so11480743lfe.12
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:54:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=17Uu5jB5JSV5jcVLyNQKvZQt0F2pRwxcX8qU0oKH7qw=;
+        b=hd/b35FcuDguYSlqryOQKYBHU9QtBMOiMyUdY5h4wx7KHyOf/l9+c/A9bDpNTpzl6i
+         CeJtMBtmLLmS02vjN7cGtyelAF1womE/Ri0uolJ23roXhI4yop7dCkv4IaYPR0M2eKRq
+         ELj83xM+6tCWZa6tqQHl2HchVMdCETh/zJV+grmE+lP8ZFZNe2xL+Hm+XO1zKflqkx84
+         8dObKZontXoNls2yxo6gvW3jtTF0yUp3c85BmDNj/qgQ5Snv/+LNw4p9S3P9Rwump3Fp
+         Ud3wbFLqTqj8Q5JpDKylWVU38ycyTvsa1ySRV0PW02NUVDfmXjw7Zbr7OueoALA/cKfA
+         9KeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=17Uu5jB5JSV5jcVLyNQKvZQt0F2pRwxcX8qU0oKH7qw=;
+        b=FuPsDc9f3Vyx1I/+dnfcBxNaauMyXd+rs24VgR9PRqiyN7JIwG95s5mYsJFnSAremv
+         c315B9o6UJZDPaPKQUq/Cf0XHtW506Cx/5X6b6zTl/6bRtxyFxrMsquwVWmQSKoVJViT
+         N+KfvfQXel6z7FwxtHfgxI1ZOIBc7WJ7o6vGT7DJa2h5yTNcQKTtdXDTR07aAmbeHoJL
+         MynRjU+H0sa9yWz8DuV3yMYm8ARl500XrF5Q3Vmt8iFBdW5rPZZh8orNVtj0VeIYOGTK
+         ZknkoR73xTrFGTjEU+OMNIz/MP6LEcosBgi7iWmR0CFqOHtpdIrWNSWeAtpQoIFahNcA
+         eu/Q==
+X-Gm-Message-State: ANoB5pnDPXmGYVSQ5CZPdBnoiIm1zGbiZWmzrxbwO46KeIQ6hM6i9wqL
+        FYspwkUp5gQQPXPu+YRuhe0ZLw==
+X-Google-Smtp-Source: AA0mqf6Y7o7r7uQYiZDsghBFDuKtnMf9/K9SkY9AU9Mbkm5Kf98HI24HvIBkrxEmTFbQEGx9TreZMg==
+X-Received: by 2002:a05:6512:63:b0:4b4:f7a2:e4f2 with SMTP id i3-20020a056512006300b004b4f7a2e4f2mr5034714lfo.272.1669488853033;
+        Sat, 26 Nov 2022 10:54:13 -0800 (PST)
+Received: from [192.168.1.8] ([185.24.52.156])
+        by smtp.gmail.com with ESMTPSA id s2-20020a056512314200b004a2c447598fsm993270lfi.159.2022.11.26.10.54.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Nov 2022 10:54:12 -0800 (PST)
+Message-ID: <dc5df66c-2e2b-14f1-ce88-705d831f37d9@linaro.org>
+Date:   Sat, 26 Nov 2022 20:54:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v5 3/3] dt-bindings: imx6q-pcie: Handle more resets on
- legacy platforms
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Subject: Re: [PATCH v4 03/18] dt-bindings: msm: dsi-controller-main: Rename
+ qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl
+Content-Language: en-GB
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20221109002449.35936-1-marex@denx.de>
- <20221109002449.35936-3-marex@denx.de>
- <57f6dfef-5551-d186-4b0c-f4324f6c3350@linaro.org>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <57f6dfef-5551-d186-4b0c-f4324f6c3350@linaro.org>
+Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
+        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        dianders@chromium.org, david@ixit.cz,
+        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
+        konrad.dybcio@somainline.org, agross@kernel.org,
+        andersson@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+References: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
+ <20221125123638.823261-4-bryan.odonoghue@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221125123638.823261-4-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,16 +82,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/9/22 09:45, Krzysztof Kozlowski wrote:
-> On 09/11/2022 01:24, Marek Vasut wrote:
->> The i.MX6 and i.MX7D does not use block controller to toggle PCIe
->> reset, hence the PCIe DT description contains three reset entries
->> on these older SoCs. Add this exception into the binding document.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
+On 25/11/2022 14:36, Bryan O'Donoghue wrote:
+> We will add in a number of compat strings to dsi-controller-main.yaml in
+> the format "qcom,socname-dsi-ctrl" convert the currently unused
+> qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl.
 > 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-Are there still any open topics regarding this series ?
+I'd say, as you are going to introduce new bindings using two compat 
+strings, just leave this binding as is, marking it as deprecated.
+
+> ---
+>   .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index cf782c5f5bdb0..67d08dc338925 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -16,7 +16,7 @@ properties:
+>     compatible:
+>       enum:
+>         - qcom,mdss-dsi-ctrl
+> -      - qcom,dsi-ctrl-6g-qcm2290
+> +      - qcom,qcm2290-dsi-ctrl
+>   
+>     reg:
+>       maxItems: 1
+
+-- 
+With best wishes
+Dmitry
+
