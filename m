@@ -2,125 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE64639673
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 15:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9FB639677
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 15:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbiKZOaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 09:30:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38910 "EHLO
+        id S229453AbiKZOaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 09:30:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiKZOaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 09:30:05 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0AED51B7B6;
-        Sat, 26 Nov 2022 06:30:04 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0DBB12B;
-        Sat, 26 Nov 2022 06:30:10 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E6D763F587;
-        Sat, 26 Nov 2022 06:29:59 -0800 (PST)
-Date:   Sat, 26 Nov 2022 14:28:23 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        LABBE Corentin <clabbe.montjoie@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: net: sun8i-emac: Fix snps,dwmac.yaml
- inheritance
-Message-ID: <20221126142735.47dcca6d@slackpad.lan>
-In-Reply-To: <5b05317d-28cc-bfc8-f415-e6acf453dc7c@linaro.org>
-References: <20221125202008.64595-1-samuel@sholland.org>
-        <20221125202008.64595-3-samuel@sholland.org>
-        <5b05317d-28cc-bfc8-f415-e6acf453dc7c@linaro.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229616AbiKZOaY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 09:30:24 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FA81B9EB
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:30:23 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id g7so10886028lfv.5
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:30:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0FH6Qg/jduzi6PwcFvP6hRcgcF3jb6cJugtkH2wA03k=;
+        b=GZqbKSqt+e1ftphMnBrAMi19b1u4IAdImBmNTWqJrX8rdn1oVuFBFKOAfvvO64bKdM
+         NMKq6OpVDdPfw275d9Ldd19+I67ocoK8A0PLAKOoK3TKN78kVwSVYM1gfmZEORB3LoxU
+         ZEM09KjqYmuGjq9NTAGC6y3w6aA+Mkh5LE5mDZs0eyiQDPTK1s2WtUlH6KqTScWXCaLX
+         nzFPUN7+4E4TOPrRpcQE4eTJJowwJlA6OT71zDN8sbFl1ldqK3w/Ng4OFOi9OzYbeQkj
+         hXkh21S4ZmZ99b+vdxzxyRqAclye5TvOgH8dw3cVsw9Dlhqg7W3uvYAe1tqrYpra9qxV
+         +evQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0FH6Qg/jduzi6PwcFvP6hRcgcF3jb6cJugtkH2wA03k=;
+        b=WVvpcRrgUzxqIjSY4N39CMXYU19fO8YhqdI9MBTfHdlZk91d6MVldCWNsdPmTREZ7M
+         wj3mFDx1q5Ol+2YFEPmNlu6ynLlNzODe6R6s0K5G79Eh+ufiYiBj4i0Kva/ZYwr/vQ8V
+         G2xNLjvpP9CoRwRJEAkRkeSEtlj8ISLgCkM11YB4nMBBxRinLtQNcfGfVsytb/qgMGhg
+         UeyATuJnyUWuY2qiH9oBS+G+uH5hsA+DQ8C9iXX/KGzKzAn77TKDozPLWdRI0TfmFcyS
+         TIe7WPUjHdABjHE35XVmVY9iBxrnuXe+bPAW2D1OFRtZqXStSz/uT5+i59nHT+cOSK1d
+         nFDw==
+X-Gm-Message-State: ANoB5pmeE4pEp1nN8im72ZdROScqOHmPzYOrjUWkYfMhBFwDowHxyEuG
+        SnNvLpEWuur2QKmb2bUY7sYm+Q==
+X-Google-Smtp-Source: AA0mqf6OQNKG/3n825nCEeCAO06Iv5aI6Uk1mOESWJou2dOgsKu3cRwImPUH9aEIreGzTmYNvODxFA==
+X-Received: by 2002:ac2:5453:0:b0:4a2:2c23:a6d4 with SMTP id d19-20020ac25453000000b004a22c23a6d4mr13687688lfn.257.1669473021404;
+        Sat, 26 Nov 2022 06:30:21 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id p11-20020ac24ecb000000b004b50ae0bfe8sm262741lfr.208.2022.11.26.06.30.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Nov 2022 06:30:21 -0800 (PST)
+Message-ID: <2b399e95-70c9-0213-90e6-95f377976e95@linaro.org>
+Date:   Sat, 26 Nov 2022 15:30:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v7 1/5] dt-bindings: PCI: ti,j721e-pci-*: add checks for
+ num-lanes
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, rogerq@kernel.org,
+        lpieralisi@kernel.org, robh@kernel.org, kw@linux.com,
+        bhelgaas@google.com, vigneshr@ti.com, tjoseph@cadence.com,
+        sergio.paracuellos@gmail.com, pthombar@cadence.com,
+        linux-pci@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221124081221.1206167-1-mranostay@ti.com>
+ <20221124081221.1206167-2-mranostay@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221124081221.1206167-2-mranostay@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Nov 2022 14:26:25 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-Hi,
-
-> On 25/11/2022 21:20, Samuel Holland wrote:
-> > The sun8i-emac binding extends snps,dwmac.yaml, and should accept all
-> > properties defined there, including "mdio", "resets", and "reset-names".
-> > However, validation currently fails for these properties because the  
+On 24/11/2022 09:12, Matt Ranostay wrote:
+> Add num-lanes schema checks based on compatible string on available lanes
+> for that platform.
 > 
-> validation does not fail:
-> make dt_binding_check -> no problems
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 28 +++++++++++++++++--
+>  .../bindings/pci/ti,j721e-pci-host.yaml       | 28 +++++++++++++++++--
+>  2 files changed, 50 insertions(+), 6 deletions(-)
 > 
-> Maybe you meant that DTS do not pass dtbs_check?
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> index 10e6eabdff53..1aeea168d3d0 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> @@ -10,9 +10,6 @@ title: TI J721E PCI EP (PCIe Wrapper)
+>  maintainers:
+>    - Kishon Vijay Abraham I <kishon@ti.com>
+>  
+> -allOf:
+> -  - $ref: "cdns-pcie-ep.yaml#"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -65,6 +62,31 @@ properties:
+>      items:
+>        - const: link_state
+>  
+> +allOf:
+> +  - $ref: "cdns-pcie-ep.yaml#"
 
-Yes, that's what he meant: If a board actually doesn't have Ethernet
-configured, dt-validate complains. I saw this before, but didn't find
-any solution.
-An example is: $ dt-validate ... sun50i-a64-pinephone-1.2.dtb
-arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dtb:
-  ethernet@1c30000: Unevaluated properties are not allowed ('resets', 'reset-names', 'mdio' were unexpected)
-  From schema: Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+While moving it, drop the quotes.
 
-Why exactly is beyond me, but this patch removes this message.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - ti,am64-pcie-ep
+> +    then:
+> +      properties:
+> +        num-lanes:
+> +          minimum: 1
+> +          maximum: 1
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - ti,j7200-pcie-ep
+> +            - ti,j721e-pcie-ep
+> +    then:
+> +      properties:
+> +        num-lanes:
+> +          minimum: 1
+> +          maximum: 2
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> index b0513b197d08..8eca0d08303f 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> @@ -10,9 +10,6 @@ title: TI J721E PCI Host (PCIe Wrapper)
+>  maintainers:
+>    - Kishon Vijay Abraham I <kishon@ti.com>
+>  
+> -allOf:
+> -  - $ref: "cdns-pcie-host.yaml#"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -98,6 +95,31 @@ properties:
+>        interrupts:
+>          maxItems: 1
+>  
+> +allOf:
+> +  - $ref: "cdns-pcie-host.yaml#"
 
-Cheers,
-Andre
+Same here.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - ti,am64-pcie-host
+> +    then:
+> +      properties:
+> +        num-lanes:
+
+const: 1
 
 
-> > local binding sets "unevaluatedProperties: false", and snps,dwmac.yaml
-> > is only included inside an allOf block. Fix this by referencing
-> > snps,dwmac.yaml at the top level.  
-> 
-> There is nothing being fixed here...
-> 
-> > 
-> > Signed-off-by: Samuel Holland <samuel@sholland.org>
-> > ---
-> > 
-> >  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml     | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> > index 1432fda3b603..34a47922296d 100644
-> > --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> > @@ -10,6 +10,8 @@ maintainers:
-> >    - Chen-Yu Tsai <wens@csie.org>
-> >    - Maxime Ripard <mripard@kernel.org>
-> >  
-> > +$ref: "snps,dwmac.yaml#"
-> > +
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > @@ -60,7 +62,6 @@ required:
-> >    - syscon
-> >  
-> >  allOf:
-> > -  - $ref: "snps,dwmac.yaml#"
-> >    - if:
-> >        properties:
-> >          compatible:  
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+
+Best regards,
+Krzysztof
 
