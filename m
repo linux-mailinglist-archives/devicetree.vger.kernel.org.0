@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FAB639798
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 19:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89F5663979D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 19:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiKZSRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 13:17:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
+        id S229498AbiKZSTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 13:19:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiKZSRj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 13:17:39 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB92CA45B
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:17:36 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id i12so11043314wrb.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:17:36 -0800 (PST)
+        with ESMTP id S229489AbiKZSTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 13:19:44 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB9C918366
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:19:43 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id a11-20020a05600c2d4b00b003cf6f5fd9f1so5613107wmg.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 10:19:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2jWGZXUq/8NH1N5iaORK98xsLKjvX4aUS6R7xoBAWfQ=;
-        b=Yk5MtSvDrz2lDTvFv5gsRvSq/RqCktYOZF1CEjtsNASsLLFKNubrwQg2NYJnWnRITd
-         GL0KicO22ToPwOJU8pJ++LwRKSPJeznbWJW8bwGAMDvuO+r+z70M6BUMRw9X5D25JuY7
-         KlZKDKQaIWjcCt02MxOnTIRGb1asuP6swytqACX0niBGMj/nOQ1SMc5rlr4JAfi64P+C
-         zOPYariaXTC0f9gIvkl5oiATTQb8z4Txovjn6iivjX4CABwD5a3FBrjwrdgiLI0DiRR8
-         ss7NBDaDqzGFcsjXjEfZXYQiKx5MJSjV31Hg3txAe3xnWeYFfoOIEng0+K1uRrFBMH11
-         YsAw==
+        bh=0UpjTTETtcSExqVmm1nTB2R+TP2i/F9nDJvJKCWlEeQ=;
+        b=jmpZk8cQQ0XIRmafKBM1hhNj7pmRKA+uirP3diyah5m5z5rFNQ3FggLgUBB5AxmjR4
+         jG8XepfVssxY6aq+GeyKUat8leOEqUwcgx5UlPU6tfGFfcyRLIKrW9wSSTVZpNu97W8w
+         rHjaaUQfHDp6EDRL1vuz3FXaoddRN/eo/llfF2ltdkZnAeES5ieOLj0XEwpHCqI3hh4y
+         4vs2sLhltdlpXV21bALKRbH+u1UZfAn8XD83FL3gjq8ATv2vrbqR8daZCVuKcjLMKcfU
+         XYjI6Ijz97d8PNX+HKWVmJnI9UaKvbjCVI+GU8ssH38sy1Fgzs80I7Fd4f86B6z7iYTJ
+         pxkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2jWGZXUq/8NH1N5iaORK98xsLKjvX4aUS6R7xoBAWfQ=;
-        b=m/V6qx3lkVUOGAwFMp59xsyB70sQxC4nxV8YyqBinerCED7b0h63a1IClRzdsuql+m
-         iIrgWywAneSzkx6qr/Ryx8FFGK0OLbAUWYoJbyLI22Wwfg3mtTz3LRhzE+mGJdeRsAY9
-         2rNOYa3QVkMj+jnuBpdI0a4Y7ZO4x9HmPVjwyutpwMoNyM2LUFc+E1S4+wv+sfYHPd7K
-         C1UH+4ZNq64s87hzSlAmxMgiL553OonSHL/zOHIWr7qUzARwgXCsn7PNyxfIIYp4l6gB
-         9LPfeHw12EidjhnFD9nKZxTZ1JUDr5mbU/yGEWXPQUkFzWoLyA4/K7oReGJ9rEyHfnTO
-         UiQA==
-X-Gm-Message-State: ANoB5plQ5Xh89+dcbYYqYbY261dBQEIaBKmiRtBxvpkVLG4uypnWujtu
-        YTEacBaFnM01/rFcj17eEfQq8g==
-X-Google-Smtp-Source: AA0mqf7/vDq4XHW5zFgdG2Q9cyHchw3hTW3makpdYNiTuYZBdx1CLJjIc+CScDaZNEb+YfbJlhIJBQ==
-X-Received: by 2002:adf:f2d0:0:b0:242:7c:eb9c with SMTP id d16-20020adff2d0000000b00242007ceb9cmr8035275wrp.178.1669486655181;
-        Sat, 26 Nov 2022 10:17:35 -0800 (PST)
+        bh=0UpjTTETtcSExqVmm1nTB2R+TP2i/F9nDJvJKCWlEeQ=;
+        b=LmlS+TUeliTcsOJDSSZWH0gx+uh6ioanOmEQSr7RPtJF9KklF6NIkcTZu+hZzZVNYF
+         P9yo0bw5seB8sC35p/4b1eZpPrBsA8m9BrAOTmyp5z5FMEtunKqEBeL6z0fj1LwoA3Rd
+         lnfLRRInc3LSz9QKxz6xYEoQ0wqLVhSI7767/l4m6mR1MmTwkUqeRQbi72X11SoFEfiU
+         dJSObNwlan31mTvSQ8Ky1IhNZvvnikzK+jU3riri9CzSbM0I7QjWyDihk3LDQCjjgx0t
+         +/u4S/NOwA1IpTUnog/U9fqUNLtadLgpsmpt7D/CJzyg+YpNfhBGZJoAnQ6BHqMEAfrv
+         1aIw==
+X-Gm-Message-State: ANoB5plHvpqf4PlR8GNiQHY9On5DTcSp6O5y33EHxq5grNyvkLGZrKMj
+        9CNXkTrkIvkKI7WPNEVAmol/Fg==
+X-Google-Smtp-Source: AA0mqf7DFQ52pc1pbxMSQa3Nosikz/19JF/XJr/nS+Jgk2bxsKO1XcBU4NIn87IbIMkHrB1/D5heCA==
+X-Received: by 2002:a1c:7909:0:b0:3c6:f83e:d1b3 with SMTP id l9-20020a1c7909000000b003c6f83ed1b3mr19426534wme.190.1669486782495;
+        Sat, 26 Nov 2022 10:19:42 -0800 (PST)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id t6-20020adfeb86000000b00241e5b917d0sm7604113wrn.36.2022.11.26.10.17.34
+        by smtp.gmail.com with ESMTPSA id i17-20020adfe491000000b0022da3977ec5sm6412847wrm.113.2022.11.26.10.19.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Nov 2022 10:17:34 -0800 (PST)
-Message-ID: <bf70adbc-f52d-6355-6b7d-b19561fed731@linaro.org>
-Date:   Sat, 26 Nov 2022 18:17:33 +0000
+        Sat, 26 Nov 2022 10:19:42 -0800 (PST)
+Message-ID: <5f218d90-6582-9fa6-7cca-b243bb863f55@linaro.org>
+Date:   Sat, 26 Nov 2022 18:19:40 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 05/18] dt-bindings: msm: dsi-controller-main: Document
- clocks on a per compatible basis
+Subject: Re: [PATCH v3 08/18] dt-bindings: msm: dsi-controller-main: Add vdd*
+ descriptions back in
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
@@ -68,149 +68,28 @@ Cc:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         agross@kernel.org, andersson@kernel.org,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 References: <20221124004801.361232-1-bryan.odonoghue@linaro.org>
- <20221124004801.361232-6-bryan.odonoghue@linaro.org>
- <fb3f9ad7-7b6f-fe22-8787-5bfa1d7caf05@linaro.org>
+ <20221124004801.361232-9-bryan.odonoghue@linaro.org>
+ <b3a9f5e2-56ca-b112-e0f5-563404dcb05e@linaro.org>
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <fb3f9ad7-7b6f-fe22-8787-5bfa1d7caf05@linaro.org>
+In-Reply-To: <b3a9f5e2-56ca-b112-e0f5-563404dcb05e@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/11/2022 14:44, Krzysztof Kozlowski wrote:
-> On 24/11/2022 01:47, Bryan O'Donoghue wrote:
->> Each compatible has a different set of clocks which are associated with it.
->> Add in the list of clocks for each compatible.
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../display/msm/dsi-controller-main.yaml      | 154 ++++++++++++++++--
->>   1 file changed, 143 insertions(+), 11 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->> index c4da7179999d2..88aac7d33555c 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
->> @@ -9,9 +9,6 @@ title: Qualcomm Display DSI controller
->>   maintainers:
->>     - Krishna Manikandan <quic_mkrishn@quicinc.com>
->>   
->> -allOf:
->> -  - $ref: "../dsi-controller.yaml#"
->> -
->>   properties:
->>     compatible:
->>       items:
->> @@ -48,13 +45,8 @@ properties:
->>         - description: Display AXI clock
->>   
->>     clock-names:
->> -    items:
->> -      - const: byte
->> -      - const: byte_intf
->> -      - const: pixel
->> -      - const: core
->> -      - const: iface
->> -      - const: bus
->> +    minItems: 6
->> +    maxItems: 9
->>   
->>     phys:
->>       maxItems: 1
->> @@ -147,6 +139,146 @@ required:
->>     - assigned-clock-parents
->>     - ports
->>   
->> +allOf:
->> +  - $ref: "../dsi-controller.yaml#"
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,apq8064-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 7
->> +        clock-names:
->> +          items:
->> +            - const: iface
->> +            - const: bus
->> +            - const: core_mmss
->> +            - const: src
->> +            - const: byte
->> +            - const: pixel
->> +            - const: core
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,msm8916-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 6
->> +        clock-names:
->> +          items:
->> +            - const: mdp_core
->> +            - const: iface
->> +            - const: bus
->> +            - const: byte
->> +            - const: pixel
->> +            - const: core
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,msm8974-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 3
->> +        clock-names:
->> +          items:
->> +            - const: iface
->> +            - const: bus
->> +            - const: vsync
-> 
-> minItems are 6, so does it actually work?
+On 26/11/2022 14:46, Krzysztof Kozlowski wrote:
+> 1. vdd->VDD
 
 Hmm.
 
-I ran this using a recent version of dt-schema from github
+I honestly didn't pick that up from your previous comment but, np.
 
-DT_DOC_CHECKER=~/Development/qualcomm/dt-schema/tools/dt-doc-validate
-DT_EXTRACT_EX=~/Development/qualcomm/dt-schema/tools/dt-extract-example
-DT_MK_SCHEMA=~/Development/qualcomm/dt-schema/tools/dt-mk-schema
-DT_CHECKER=~/Development/qualcomm/dt-schema/tools/dt-validate
-
-make DT_CHECKER_FLAGS=-m dt_binding_check O=$BUILDDIR 
-DT_DOC_CHECKER=$DT_DOC_CHECKER DT_EXTRACT_EX=$DT_EXTRACT_EX 
-DT_MK_SCHEMA=$DT_MK_SCHEMA DT_CHECKER=$DT_CHECKER 
-DT_SCHEMA_FILES=display/msm/dsi-controller-main.yaml -j `nproc`
-
-Neither of these throw an warning in my compile log
-
-arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts:&dsi0
-arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts:&dsi0
-
-thanks for spotting
-
->> -           compatible = "qcom,mdss-dsi-ctrl";
->> +           compatible = "qcom,sc7180-dsi-ctrl", "qcom,mdss-dsi-ctrl";
-> 
-
-already dropped in v4
+---
+bod
 
