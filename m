@@ -2,109 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B8463964B
-	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 15:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 684DC63964F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Nov 2022 15:16:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiKZOPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Nov 2022 09:15:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58046 "EHLO
+        id S229521AbiKZOQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Nov 2022 09:16:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiKZOPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 09:15:34 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84291D30B
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:15:33 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id a7so8122582ljq.12
-        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:15:33 -0800 (PST)
+        with ESMTP id S229493AbiKZOQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Nov 2022 09:16:52 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081D01D30B
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:16:51 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id t10so8185166ljj.0
+        for <devicetree@vger.kernel.org>; Sat, 26 Nov 2022 06:16:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c7lsnrFz2J4XCfERjKRpvtXDg4lRZmdlG/n7oHHCiX0=;
-        b=uL6T+tjTFarMty+fOPuM9bBuM6CyZdwX1GD0aoo+VJMs0BKYtvvXXVag2uR/zCOA84
-         EBQ1xKdylwBPJxw+TG//u/mnfKBMaHT69pedL4/Pbav5Wro3iMc0LFNaznqaKJ7HEi7q
-         GYnVzDlks7f/xpGh8k0RDjorw3XR9d7sJs1kducgSNDos0LRAah/+D9yOAX+dXLtvylm
-         V/9VhLKefv1cbRT2IRWGiErIjijEPOUe7VPX7X4RR4cryLxlItC0erXt6t5OvrRk6MVD
-         gWIQjfFXfs3HxTIFpCJsxuMNyTG4XiHfB9u5sAS45mUSUgYrtR0CkYar4GKrX2yvR/rz
-         4KZg==
+        bh=OIMZD3XxyhT7mbxN3+O9EeY+atM1x1y6l6xsxzVqKFo=;
+        b=EaWjhKBu2mujx7WpVfhmDydUuW6097k7tvxgB0dRAxOdIx9bgLU8TrRCshsOeT+QK1
+         XzPvkNlUTDHmw4gVb8cv1ECC8SoDuKnMw1eewAV6BPfcDf75JWjqaPks0JEQvn+HRCzf
+         S0WtiSbG7ZUzZ53Nkxx2I8jfouvXyF89NqZQopIXIMNqqAX66cJJ6hA1vQC3zZ5zZMZM
+         8Xm8u/OChrurt+aZglid7hOhSQVQiNUC6HFKCCpQX/GXQkFL1jnuCoH/6YWHSFoRvxx/
+         MWwE6RnM7oKH7E6gxwqcKb1THTmDmJlApDNJ+BZcM5bTQM4CCrGPafqDQWSoy63K3zpT
+         9Irw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c7lsnrFz2J4XCfERjKRpvtXDg4lRZmdlG/n7oHHCiX0=;
-        b=RqON5Ij80I9uBTLeZmSSGCyhHF4/6zMrd0xTnBpSXP/jb93ki9GEaoX9Wsv/9gkPSj
-         bFP2Ykjerjsdmfb7sUmdghS6nnc0UVE1gp3gp+JgtDAzPakLgOZ23k7EzhQsKgoLbj30
-         3kPJoEXw1bKFSxj62jOT6YJ4Pos650OnbVqFDLndZ5PBWERRhuxlPIM3tMzA/cgxhSRs
-         d4DWFTa1lA6zxppIMsFW9FUQgdYxsEJZgdqqiq1pufJQjKbLiHYH50epGBSyAlmcsoLG
-         ue3nnG0k7NPAcBVFpuD/IS7JH4ASbP+3uQa+6Y0eWPdmMVmKuUc6lG9E06Qj/+ykNMqE
-         uC8g==
-X-Gm-Message-State: ANoB5plk6J5Yj/pY3ZUTkFln5O/zPNQGYKERluhCyoEGWjfqC0fg5lxe
-        I+xmk9wWqlYQb5S9vnmSEQs8pg==
-X-Google-Smtp-Source: AA0mqf5kbp78CpD4O/sFH3Y2H/x7l7cEvjdfpKdgvpKHpas8x9/CLSHdVCjquQ/ZPRvURYLneLCFAw==
-X-Received: by 2002:a2e:be8c:0:b0:26e:95bb:d7cc with SMTP id a12-20020a2ebe8c000000b0026e95bbd7ccmr11017551ljr.203.1669472130993;
-        Sat, 26 Nov 2022 06:15:30 -0800 (PST)
+        bh=OIMZD3XxyhT7mbxN3+O9EeY+atM1x1y6l6xsxzVqKFo=;
+        b=4991TAoR5fPUL3JVLWYPKxrzMxVOChmzbY/GacvfUWuX3uYwI3di+ImzrpoxqbADzn
+         l7w1SRjCQyRlYpKR38REr/qdMN980NvzbpyT2luk4R/74m/dp7H5MLSrdxOLR1ym04D1
+         iUeyQNABa3vY2abjD7+F716FljClkv7LiUCFY+FmEUmGr0F5NaRaMPB35AIBlkebyt/r
+         bMKVBfCTrOYwdUEFvjx7K+jczAUTwssr99Q3ZWx9d0lfb5hYb+xEbUDrIKjTwkw3cuLO
+         iLkbRLhF763SU8vvHjVFTD+X7vTpSzYWouSvk4oUgQ+0bktyAKgnHK1l+WyjtTJcgLCI
+         IrKQ==
+X-Gm-Message-State: ANoB5pkekQzL7eFpJrHjdivTCx6vJ5anjn5ruc0xMfDOakr01ilW4wD4
+        W2dSxTXtslXB8d4nd+6PbZ9v8A==
+X-Google-Smtp-Source: AA0mqf7U2YqAOIaKV8TxXn235bn6cK6igkK9AUjLBApqru9timelSNmL19AoXsWnLnrcyURNL9pwCg==
+X-Received: by 2002:a2e:be28:0:b0:278:f1a5:a361 with SMTP id z40-20020a2ebe28000000b00278f1a5a361mr8073946ljq.124.1669472209423;
+        Sat, 26 Nov 2022 06:16:49 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b4-20020a2eb904000000b0025e00e0116esm349417ljb.128.2022.11.26.06.15.29
+        by smtp.gmail.com with ESMTPSA id 2-20020ac24822000000b004a22599c4ddsm930015lft.268.2022.11.26.06.16.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Nov 2022 06:15:30 -0800 (PST)
-Message-ID: <d4a35381-1915-3a86-c211-4e49e696a66f@linaro.org>
-Date:   Sat, 26 Nov 2022 15:15:29 +0100
+        Sat, 26 Nov 2022 06:16:48 -0800 (PST)
+Message-ID: <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
+Date:   Sat, 26 Nov 2022 15:16:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: net: sun8i-emac: Fix snps,dwmac.yaml
- inheritance
+Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     LABBE Corentin <clabbe.montjoie@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
-References: <20221125202008.64595-1-samuel@sholland.org>
- <20221125202008.64595-3-samuel@sholland.org>
+To:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+ <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125202008.64595-3-samuel@sholland.org>
+In-Reply-To: <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 21:20, Samuel Holland wrote:
-> The sun8i-emac binding extends snps,dwmac.yaml, and should accept all
-> properties defined there, including "mdio", "resets", and "reset-names".
-> However, validation currently fails for these properties because the
-> local binding sets "unevaluatedProperties: false", and snps,dwmac.yaml
-> is only included inside an allOf block. Fix this by referencing
-> snps,dwmac.yaml at the top level.
+On 25/11/2022 18:16, Neil Armstrong wrote:
+> On 25/11/2022 15:41, Krzysztof Kozlowski wrote:
+>> The node names should be generic and DT schema expects certain pattern:
+>>
+>>    amlogic/meson-sm1-bananapi-m5.dtb: leds: 'blue' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
 > 
->  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml     | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> <snip>
 > 
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-I must admit you're right that this hides the warning from dtbs_check,
-but not because something in allOf should not be included. The problem
-is how disabled nodes are being parsed here by referenced schema
-(snps,dwmac.yaml) and probably is a bug in dtschema package.
-
+Aren't you maintainer of the platform? This means I should take care of
+this patch?
 
 Best regards,
 Krzysztof
