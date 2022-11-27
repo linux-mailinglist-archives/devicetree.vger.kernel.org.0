@@ -2,160 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8236639D24
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1CE639D27
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:09:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229624AbiK0VJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 16:09:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56050 "EHLO
+        id S229644AbiK0VJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 16:09:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbiK0VJX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:09:23 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CAA9B493
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:22 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id g7so14612817lfv.5
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:21 -0800 (PST)
+        with ESMTP id S229548AbiK0VJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:09:56 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E75558C
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:55 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id r12so14655437lfp.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bk3OVChHwOyqICTyQ+rx2LQ9mTbuf/Zlp6NcOI2QYiQ=;
-        b=IgcHJq5xCuXqgRhr3YzFVvKvIwot57Rsbx2sya6O+Ngy/Uf4JO647wXHi9T4Ma66kR
-         BSsbH5oZRKzVDOrtDx3nSCVtpKtYPk7Dbo1vk6L8buDAleST2+cwbKXmmhGsEuu9nhVr
-         ubGnaOH1SHzCl1hJ0UNEA5oTrzONM51FbjOabwqpTL+crJNdC7V3XP43zYLdSgKz/H+6
-         2bTQB0TTI1gHEUB1lCLEcp3g2hktzb5K8nKCrDepn3bVqqbrXxy8/ZABonEKFNB21S6H
-         NoJS3kELKpaOP0QKLsSFsa7Ntfs9fps7tZnbLUEfRWN0jvgs7SmFsOk6+NTcwJt0uquW
-         Fl0g==
+        bh=hDwaTCGVoj7wtYrjK6JVB1II3Z9a8V6hZsbZhHi2jv0=;
+        b=Dx5KKpZpr00x7pUt9HK6k4DVLt5Nf+piLNLTgXu0/AdMbfefx4WtHazziCRZAPEE/2
+         IvI2dkixwQ11tdYDYNBFjlFTBbIvVpdYMOxic1CEOMmkFoNrQ95jv+xLMiTkWDpUzq4E
+         O8/4becvQoLjPfPWdMUGh77m3Nf7yILiXvnkCRr4vL5yc5shd+oRB/Yrs13oRGoBt+MI
+         SArPitM88t+BXOojyTJ9Qru7Wudjpi8zR/ShgSACiWZezXpqnT1mtQBlYVbOJv1RTKrR
+         rd35SNQ3AwZa9wDUH8bDiU7Iy5rO3IaIq5BUWu5Ed/WFdLUqh4tbMcpSBAqAd5CAVfez
+         qMgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bk3OVChHwOyqICTyQ+rx2LQ9mTbuf/Zlp6NcOI2QYiQ=;
-        b=XqH1SYjWQC9AJCS1lFrDltesVQodXPJwKnoL1FPndbuw/LPg+lD+SII/7pWgdzc4je
-         5PtnNjGuudnRndHnJk05+8lE70utIYmYgq9gzkVgG0y7+jTYMkw6q6U4xKubv6LsrzZh
-         ZAO/kEWyhdB87b7xi3p9wbsFMzm+yvBOBktPIk2IZIefGjZwySL+JlR2gMqvyHoxJxZR
-         Ka0W8B89JJ8BTKEHPnajFFGFFyeC8/vXO5keAbNFq2p9jWbFc8PSYfwjyf9whgb2ktXS
-         XgcB1EilMRRxIvjvSLuunqZLEpmO6dhBm2gefqqMmcxyAHtILvvBJwdmy/p+nkpyFvtc
-         GKwA==
-X-Gm-Message-State: ANoB5pmx+Ov5ojp+7XYZ5ANR7D/e+ZyFDUopSROcC5Irxw/YcvAiKV98
-        fgWM74gbLpsDEXDZl+Vqpf1OaA==
-X-Google-Smtp-Source: AA0mqf4te/gm5I1huS/EdZaliP8msqFpV7zTVF0a4hJqEMXNLlS3XoGMBewedlFEDGNoP43GLAB5tw==
-X-Received: by 2002:a05:6512:2310:b0:4b5:da7:87ff with SMTP id o16-20020a056512231000b004b50da787ffmr1985122lfu.315.1669583360420;
-        Sun, 27 Nov 2022 13:09:20 -0800 (PST)
+        bh=hDwaTCGVoj7wtYrjK6JVB1II3Z9a8V6hZsbZhHi2jv0=;
+        b=8K7DMEUoc+wvwy2gM6jUHCQlpyS0VfqKaMKJmFqGyDA55WZodxyO5UcKhxN3gc4GVE
+         cwOehC/F8s9HDS5le+18lOZ8r4kB66jJNO/CXd9jKRhRIMirmiNODbEJ7on73jX/Nl2X
+         rnZ1OKW5NQBG0yftxC8PIBA9vb7hIO+zMyCirGgIyqcInjJ92KIFNSTetHDKB1+OtRh1
+         9espatU5otMonagVuNiSd8y+EIqQaqkq587/0uaUcrx3x9U2jj5cseKw0SL/C/4rQKVr
+         xs0Xgtpq9nNXJEyq2Pqr2tUbc431tl4UFMcAeNmgD7q2ax4F0P4+/auQ8IZJWPdyuMPM
+         tiMA==
+X-Gm-Message-State: ANoB5pnhu1Mw9fdNAWxlD+EGrpHQRqGSBHf1BGrJAAnsxjQjxRRBECHj
+        rXwCPAACfDVVANVzLHm9KxNQcg==
+X-Google-Smtp-Source: AA0mqf4DScqRVlpQ42cghb+X8aoHij/z2RupMCOuSaaluhqdVZ7QT5l3+DnGfZ3BWwzC9T0TYFCSVA==
+X-Received: by 2002:ac2:4e6e:0:b0:4a2:2210:f169 with SMTP id y14-20020ac24e6e000000b004a22210f169mr10525766lfs.317.1669583393728;
+        Sun, 27 Nov 2022 13:09:53 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p11-20020a05651212cb00b00497feee98basm1386185lfg.274.2022.11.27.13.09.19
+        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b0049f87fb416dsm1425087lfr.12.2022.11.27.13.09.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 13:09:20 -0800 (PST)
-Message-ID: <0ea76be9-dbb3-f439-a929-753cf2f1a5c1@linaro.org>
-Date:   Sun, 27 Nov 2022 22:09:19 +0100
+        Sun, 27 Nov 2022 13:09:53 -0800 (PST)
+Message-ID: <ef692f82-61c3-b812-b846-64bde04c8bb3@linaro.org>
+Date:   Sun, 27 Nov 2022 22:09:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
 Subject: Re: [PATCH] dt-bindings: iio: adc: ti,adc081c: Document the binding
 Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
+To:     Samuel Holland <samuel@sholland.org>,
+        Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221125220903.8632-1-samuel@sholland.org>
- <e4be94a3-cdfc-cdf8-5d69-0eef480033f9@linaro.org>
- <20221127174219.34d0406c@jic23-huawei>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221127174219.34d0406c@jic23-huawei>
+In-Reply-To: <20221125220903.8632-1-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/11/2022 18:42, Jonathan Cameron wrote:
-> On Sun, 27 Nov 2022 13:51:19 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 25/11/2022 23:09, Samuel Holland wrote:
+> Linux has a driver for these ADCs at drivers/iio/adc/ti-adc081c.c, but
+> the compatible strings were undocumented. Add a binding for them. The
+> hardware has an alert interrupt output, but existing ti,adc081c users
+> do not provide the 'interrupts' property, so leave it as optional.
 > 
->> On 25/11/2022 23:09, Samuel Holland wrote:
->>> Linux has a driver for these ADCs at drivers/iio/adc/ti-adc081c.c, but
->>> the compatible strings were undocumented. Add a binding for them. The
->>> hardware has an alert interrupt output, but existing ti,adc081c users
->>> do not provide the 'interrupts' property, so leave it as optional.
->>>
->>> Signed-off-by: Samuel Holland <samuel@sholland.org>
->>> ---
->>>
->>>  .../bindings/iio/adc/ti,adc081c.yaml          | 55 +++++++++++++++++++
->>>  1 file changed, 55 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
->>> new file mode 100644
->>> index 000000000000..caaad777580c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
->>> @@ -0,0 +1,55 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/iio/adc/ti,adc081c.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: TI Single-channel I2C ADCs
->>> +
->>> +maintainers:
->>> +  - Jonathan Cameron <jic23@kernel.org>
->>> +  - Lars-Peter Clausen <lars@metafoo.de>
->>> +
->>> +description: |
->>> +  Single-channel ADC supporting 8, 10, or 12-bit samples and high/low alerts.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - ti,adc081c
->>> +      - ti,adc101c
->>> +      - ti,adc121c
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  vref-supply:
->>> +    description:
->>> +      Regulator for the combined power supply and voltage reference
->>> +
->>> +  "#io-channel-cells":
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg  
->>
->> Why not requiring io-channel-cells? If it is an IIO ADC provider, you
->> need the cells, right?
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
 > 
-> Only if anyone is using it as a provider.  If it's purely being used via
-> IIO then there are no consumers registered.
-> 
-> So historically I've left it up to those defining the binding to decide if
-> they think #io-channel-cells should be required or optional.
-> 
-> It gets a bit non obvious with some of the more complex special ADCs on whether
-> they will ever be consumed.  This one is generic, so quite likely it will be.
 
-I remember I asked some time ago and got the same answer... need to
-write it down into my notes :)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
