@@ -2,532 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D41663999A
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 08:33:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC4C6399DA
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 10:55:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbiK0HdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 02:33:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38094 "EHLO
+        id S229506AbiK0JzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 04:55:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiK0HdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 02:33:04 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE1B11C08;
-        Sat, 26 Nov 2022 23:33:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669534368; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=AGvaJ/jG907SVOLpWsUVI6PrK6Sy/VmVmdAezPfoapCdIF6W04I9nwlaP5r3U7APLI/AH5/qzyr/qPcUFtCHmMO4M0l3c3svv/1oC/d4odxswor9davyiSscQJxDEbV/yISA6Cp5TjbkjJ1CbJnXgEoqgpMemh/uAEN/10kIcJM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669534368; h=Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=1XEKMIJhOKAg/21e74ntHbbKbFLVliPY169ToAcHKgY=; 
-        b=KzxG7K6c8o34+gTWtr4YxowMEXsGiky49jZlomE+Ocpd75r0at4YfyWBx3RJjNrDE0K0b1JM9yvW7uUW5ufxKqOr42njzJJCeAs0kxHx6GtwiWCRUAReidRRnRIAZcZ1QJ1SBPUQsdT6YzzZ3MZtQwmA1NFMUeHde6NACwXIsyc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669534368;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Reply-To;
-        bh=1XEKMIJhOKAg/21e74ntHbbKbFLVliPY169ToAcHKgY=;
-        b=It9TBGUkvi8phkuPQEmW5dEquwZslRwxh8avW5MW6xRZu52Cdzwo4boWmiW1id4L
-        8Pv5Jw8SuBEu0NovRxaIwcavmrpAt/bFhK4H2vJNtGOsoxvbTe5aKlkF9HMcos5yFr6
-        OLYb/+enkx8Bsg8Yyw+I3Qpf9zyLOmj5sE7mOq+0=
-Received: from edelgard.fodlan.icenowy.me (112.94.100.108 [112.94.100.108]) by mx.zohomail.com
-        with SMTPS id 1669534367101715.605287846263; Sat, 26 Nov 2022 23:32:47 -0800 (PST)
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH 6/6] arm64: dts: allwinner: h6: add Rongpin RP-H6C SoM and RP-H6B board
-Date:   Sun, 27 Nov 2022 15:31:40 +0800
-Message-Id: <20221127073140.2093897-7-uwu@icenowy.me>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221127073140.2093897-1-uwu@icenowy.me>
-References: <20221127073140.2093897-1-uwu@icenowy.me>
+        with ESMTP id S229498AbiK0JzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 04:55:23 -0500
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BF412760;
+        Sun, 27 Nov 2022 01:55:21 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id l2so4964056qtq.11;
+        Sun, 27 Nov 2022 01:55:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a/lRJw3Gs/dFweLCVLuIgos8ablOI2qBTJVe/3vTcrU=;
+        b=BTkSMIlD5lD3ZbnfiMATJDoG5jJXcSOvRxTeYzffskdwIygLy1uA+XE9NmLYjwMK49
+         9XKKfTBsEOjUCQSPhdYG9sIFia2NPP30n/GQ8qaNZgyoqIqwIkMTbXnQSiZ3sYtc+9fu
+         KZ0B3xkZ7eLpL84S0R2ldLif75qiBTglVO7GuOpyrHQwlqKh6fArTh4PP0OEkUW6eCoR
+         XTsOYo/RqF3/BHMTXm7VMPODRqKX/ceA7CcsBotlCl1l7iqW0bT3gJvZoxARq+bfBKOF
+         Hg753X1iBU7/FfZJSZ6kzhFTBbSywLRPBhiqI1xHwMmNpik9yn+YdzRgOTdaWCLEFBXP
+         Rp3g==
+X-Gm-Message-State: ANoB5pn9Fr73KUTVQAH8UYeB9QMlb9jZe0YZR3QI4/oEplbmDBMwSyo9
+        9xdo35oTZ0xEwKgjhB8nRzUT5vXLZyzB1A==
+X-Google-Smtp-Source: AA0mqf4T/nhr8ZGy2ehWS/7wryA+JgB2ugtouWdo7t2seYn/U4ECDoGawjw6OgCqsYO35+Vm4VCvqA==
+X-Received: by 2002:a05:622a:514e:b0:3a5:2988:c67c with SMTP id ew14-20020a05622a514e00b003a52988c67cmr31107413qtb.487.1669542920790;
+        Sun, 27 Nov 2022 01:55:20 -0800 (PST)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id z1-20020ac84541000000b003a530a32f67sm5044802qtn.65.2022.11.27.01.55.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Nov 2022 01:55:20 -0800 (PST)
+Received: by mail-yb1-f170.google.com with SMTP id y83so9941836yby.12;
+        Sun, 27 Nov 2022 01:55:19 -0800 (PST)
+X-Received: by 2002:a5b:24b:0:b0:6ca:3b11:8d76 with SMTP id
+ g11-20020a5b024b000000b006ca3b118d76mr25273660ybp.202.1669542919298; Sun, 27
+ Nov 2022 01:55:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <bf8e33fd-a752-d5d5-859e-14302d069f2d@sholland.org> <CA+V-a8sz4i_wenTyA5tVTVB8dQWLmuXCf3CGYOPC+C07GJ8WTw@mail.gmail.com>
+In-Reply-To: <CA+V-a8sz4i_wenTyA5tVTVB8dQWLmuXCf3CGYOPC+C07GJ8WTw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sun, 27 Nov 2022 10:55:07 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWQO_usrJwmVYDx6o-CpzmotVZLt176eKbqLzY-GXiDng@mail.gmail.com>
+Message-ID: <CAMuHMdWQO_usrJwmVYDx6o-CpzmotVZLt176eKbqLzY-GXiDng@mail.gmail.com>
+Subject: Re: [PATCH v4 7/7] soc: renesas: Add L2 cache management for RZ/Five SoC
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rongpin RP-H6C is an Allwinner H6 SoM by Rongpin, with Allwinner H6 SoC,
-AXP805 PMIC, LPDDR3 memory and eMMC storage on it.
+Hi Prabhakar,
 
-RP-H6B is their official evaluation board of RP-H6C, with an onboard
-GL850G USB hub, Ampak AP6212 Wi-Fi module and some circuits about LVDS
-display. It also exports the OTG USB port, the USB 3.0 port, PCIe bus
-(as mPCIe slot), internal Ethernet PHY, analog audio/video and HDMI
-port.
+On Sat, Nov 26, 2022 at 10:10 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Fri, Nov 25, 2022 at 7:43 PM Samuel Holland <samuel@sholland.org> wrote:
+> > On 11/24/22 11:22, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > On the AX45MP core, cache coherency is a specification option so it may
+> > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > in the device tree. Synchronization callbacks are implemented to
+> > > synchronize when doing DMA transactions.
+> > >
+> > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > It contains a configurable amount of PMA entries implemented as CSR
+> > > registers to control the attributes of memory locations in interest.
+> > >
+> > > Below are the memory attributes supported:
+> > > * Device, Non-bufferable
+> > > * Device, bufferable
+> > > * Memory, Non-cacheable, Non-bufferable
+> > > * Memory, Non-cacheable, Bufferable
+> > > * Memory, Write-back, No-allocate
+> > > * Memory, Write-back, Read-allocate
+> > > * Memory, Write-back, Write-allocate
+> > > * Memory, Write-back, Read and Write-allocate
+> > >
+> > > This patch adds support to configure the memory attributes of the memory
+> > > regions as passed from the l2 cache node and exposes the cache management
+> > > ops.
+> >
+> > Forgive my ignorance, but why do you need both a DMA pool and explicit
+> > cache maintenance? Wouldn't the purpose of marking a memory region as
+> > permanently non-cacheable be to avoid cache maintenance? And likewise,
+> > if you are doing cache maintenance anyway, why does it matter if/how the
+> > memory is cacheable?
+> >
+> "Memory, Non-cacheable, Bufferable" raises an AXI signal for
+> transactions hence needing SW implementation for cache maintenance.
+>
+> > > More info about PMA (section 10.3):
+> > > Link: http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add a DTSI file for the SoM and a DTS for the full board.
+> > > +static int ax45mp_configure_pma_regions(struct device_node *np)
+> > > +{
+> > > +     const char *propname = "andestech,pma-regions";
+> > > +     u32 start, size, flags;
+> > > +     unsigned int entry_id;
+> > > +     unsigned int i;
+> > > +     int count;
+> > > +     int ret;
+> > > +
+> > > +     count = of_property_count_elems_of_size(np, propname, sizeof(u32) * 3);
+> > > +     if (count < 0)
+> > > +             return count;
+> > > +
+> > > +     if (count > AX45MP_MAX_PMA_REGIONS)
+> > > +             return -EINVAL;
+> > > +
+> > > +     for (i = 0, entry_id = 0 ; entry_id < count ; i += 3, entry_id++) {
+> > > +             of_property_read_u32_index(np, propname, i, &start);
+> > > +             of_property_read_u32_index(np, propname, i + 1, &size);
+> > > +             of_property_read_u32_index(np, propname, i + 2, &flags);
+> > > +             ret = ax45mp_sbi_set_pma(start, size, flags, entry_id);
+> > > +             if (!ret)
+> > > +                     pr_err("Failed to setup PMA region 0x%x - 0x%x flags: 0x%x",
+> > > +                            start, start + size, flags);
+> > > +     }
+> > > +
+> > > +     return 0;
+> > > +}
+> >
+> > If firmware support is required to set up these PMA regions, why is
+> > Linux doing this at all? The firmware has access to the devicetree as
+> > well. It can set this up before entering S-mode, and then you don't need
+> > to expose this capability via an SBI extension. In fact, firmware could
+> > generate the reserved-memory node based on these regions at runtime (or
+> > vice versa).
+> >
+> That's a good point. I'll do some research on this and get back.
+>
+> Btw are there any existing examples where the firmware adds DT nodes?
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../boot/dts/allwinner/sun50i-h6-rp-h6b.dts   | 239 ++++++++++++++++++
- .../boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi  | 180 +++++++++++++
- 3 files changed, 420 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6b.dts
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi
+/memory, reserved-memory, optee on ARM, RPC status on R-Car Gen3/4, ...
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 6a96494a2e0a..e289fedcac29 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -36,6 +36,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-rp-h6b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6b.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6b.dts
-new file mode 100644
-index 000000000000..9fa40c365e63
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6b.dts
-@@ -0,0 +1,239 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2022 Icenowy Zheng <icenowy@aosc.io>
-+ */
-+/dts-v1/;
-+
-+#include "sun50i-h6-rp-h6c.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Rongpin RP-H6B baseboard";
-+	compatible = "rongpin,rp-h6b", "rongpin,rp-h6c",
-+		     "allwinner,sun50i-h6";
-+
-+	aliases {
-+		ethernet0 = &emac;
-+		serial0 = &uart0;
-+		/*
-+		 * Prioritize the external RTC because it's powered
-+		 * by a cell battery.
-+		 */
-+		rtc0 = &hym8563;
-+		rtc1 = &rtc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	hdmi_connector: connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led {
-+			label = "rongpin:red:link";
-+			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>; /* PL3 */
-+			/*
-+			 * On the schematics this LED is marked as "lit when
-+			 * powering on and blinking when running".
-+			 */
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	/*
-+	 * The VDD_5V power rail is connected to the internal regulator
-+	 * of GL850G, to power up the 3.3V core of it.
-+	 */
-+	reg_v33_hub: v33-hub {
-+		compatible = "regulator-fixed";
-+		regulator-name = "v33-hub";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_vdd_5v>;
-+	};
-+
-+	/*
-+	 * This board inputs 5V to AP6212 via a SS34 diode. Use this
-+	 * regulator as the model of the internal regulator of AP6212.
-+	 */
-+	reg_vcc3v3_ap6212: vcc3v3-ap6212 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3-ap6212";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_ps>;
-+	};
-+
-+	reg_vdd_5v: vdd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		startup-delay-us = <100000>;
-+		gpio = <&r_pio 0 5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_ps>;
-+	};
-+
-+	/* For mPCIe slot WWAN modules / PCIe cards */
-+	reg_vdd_3g: vdd-3g {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-3g";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		gpio = <&r_pio 0 7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_ps>;
-+		/*
-+		 * As a hack for lacking of control of a hub downstream
-+		 * port's Vbus.
-+		 */
-+		regulator-always-on;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-+		post-power-on-delay-ms = <200>;
-+	};
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hub@1 {
-+		/* Genesys Logic GL850G usb hub */
-+		compatible = "usb5e3,608";
-+		reg = <1>;
-+		vdd-supply = <&reg_v33_hub>;
-+		reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pins>;
-+	vmmc-supply = <&reg_cldo1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	vmmc-supply = <&reg_vcc3v3_ap6212>;
-+	vqmmc-supply = <&reg_bldo3>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	non-removable;
-+	bus-width = <4>;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&r_pio>;
-+		interrupts = <1 0 IRQ_TYPE_LEVEL_LOW>; /* PM0 */
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+/* Converted from 12v with a fixed DC-DC on the baseboard */
-+&reg_ps {
-+	regulator-min-microvolt = <5000000>;
-+	regulator-max-microvolt = <5000000>;
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
-+
-+/* Bluetooth */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		max-speed = <1500000>;
-+		clocks = <&rtc CLK_OSC32K_FANOUT>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_ps>;
-+		vddio-supply = <&reg_bldo3>;
-+		device-wakeup-gpios = <&r_pio 1 2 GPIO_ACTIVE_HIGH>; /* PM2 */
-+		shutdown-gpios = <&r_pio 1 4 GPIO_ACTIVE_HIGH>; /* PM4 */
-+		interrupt-parent = <&r_pio>;
-+		interrupts = <1 1 IRQ_TYPE_EDGE_FALLING>; /* PM1 */
-+		interrupt-names = "host-wakeup";
-+	};
-+};
-+
-+&uart1_pins {
-+	bias-pull-up;
-+};
-+
-+&uart1_rts_cts_pins {
-+	bias-pull-up;
-+};
-+
-+&usb2otg {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb2phy {
-+	usb0_vbus-supply = <&reg_vdd_5v>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi
-new file mode 100644
-index 000000000000..53822718e2d7
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2019-2022 Icenowy Zheng <icenowy@aosc.io>
-+ */
-+
-+#include "sun50i-h6.dtsi"
-+#include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
-+
-+/ {
-+	ext_osc32k: ext_osc32k_clk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <32768>;
-+		clock-output-names = "ext_osc32k";
-+	};
-+
-+	/* Marked 3.4v~5.5v on SoM schematics */
-+	reg_ps: ps {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ps";
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdca>;
-+};
-+
-+&gpu {
-+	mali-supply = <&reg_dcdcc>;
-+	status = "okay";
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_pins>;
-+	vmmc-supply = <&reg_cldo1>;
-+	vqmmc-supply = <&reg_bldo2>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	bus-width = <8>;
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_bldo2>;
-+	vcc-pd-supply = <&reg_aldo2>;
-+	vcc-pg-supply = <&reg_bldo3>;
-+};
-+
-+&r_pio {
-+	/*
-+	 * FIXME: We can't add that supply for now since it would
-+	 * create a circular dependency between pinctrl, the regulator
-+	 * and the RSB Bus.
-+	 *
-+	 * vcc-pl-supply = <&reg_aldo1>;
-+	 */
-+	vcc-pm-supply = <&reg_bldo3>;
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	axp805: pmic@745 {
-+		compatible = "x-powers,axp805", "x-powers,axp806";
-+		reg = <0x745>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_ps>;
-+		vinb-supply = <&reg_ps>;
-+		vinc-supply = <&reg_ps>;
-+		vind-supply = <&reg_ps>;
-+		vine-supply = <&reg_ps>;
-+		aldoin-supply = <&reg_ps>;
-+		bldoin-supply = <&reg_ps>;
-+		cldoin-supply = <&reg_ps>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-pl";
-+			};
-+
-+			reg_aldo2: aldo2 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-ac200";
-+				regulator-enable-ramp-delay = <100000>;
-+			};
-+
-+			aldo3 {
-+				/* unused */
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-bias-pll";
-+			};
-+
-+			reg_bldo2: bldo2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-efuse-pcie-hdmi-io";
-+			};
-+
-+			reg_bldo3: bldo3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-dcxoio";
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			reg_cldo1: cldo1 {
-+				/* This regulator is connected with ALDO3 */
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-3v3-2";
-+			};
-+
-+			cldo2 {
-+				/* unused */
-+			};
-+
-+			cldo3 {
-+				/* unused */
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1160000>;
-+				regulator-ramp-delay = <2500>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-gpu";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <960000>;
-+				regulator-max-microvolt = <960000>;
-+				regulator-name = "vdd-sys";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-name = "vcc-dram";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&rtc {
-+	clocks = <&ext_osc32k>;
-+};
--- 
-2.37.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
