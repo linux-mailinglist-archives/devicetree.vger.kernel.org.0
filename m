@@ -2,93 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1CE639D27
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1908E639D32
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:15:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbiK0VJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 16:09:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
+        id S229600AbiK0VP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 16:15:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiK0VJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:09:56 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E75558C
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:55 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id r12so14655437lfp.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:09:55 -0800 (PST)
+        with ESMTP id S229662AbiK0VPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:15:23 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C1DCE2B
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:15:22 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g12so14638452lfh.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:15:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hDwaTCGVoj7wtYrjK6JVB1II3Z9a8V6hZsbZhHi2jv0=;
-        b=Dx5KKpZpr00x7pUt9HK6k4DVLt5Nf+piLNLTgXu0/AdMbfefx4WtHazziCRZAPEE/2
-         IvI2dkixwQ11tdYDYNBFjlFTBbIvVpdYMOxic1CEOMmkFoNrQ95jv+xLMiTkWDpUzq4E
-         O8/4becvQoLjPfPWdMUGh77m3Nf7yILiXvnkCRr4vL5yc5shd+oRB/Yrs13oRGoBt+MI
-         SArPitM88t+BXOojyTJ9Qru7Wudjpi8zR/ShgSACiWZezXpqnT1mtQBlYVbOJv1RTKrR
-         rd35SNQ3AwZa9wDUH8bDiU7Iy5rO3IaIq5BUWu5Ed/WFdLUqh4tbMcpSBAqAd5CAVfez
-         qMgA==
+        bh=xMfZ7ojzEusZSXOR1+4lvLHDxR9DG6QpHq+z2MT/mFo=;
+        b=xjEG5ymX6soPm4/RckNuDvvkf2RtsoVsi0vqpsP0yCJRBDIFRaaksS2wAx/gfPr8Uc
+         ndJuBLLmLHbk5gSWzZZ6sfvK32WD7j+VI3gMZrdapz6rLNkK+6bYYdd69BsGlAay0Ujk
+         x5gZu0g98SfMRWr9Wgc3ZTk0r5+iLz87/gi7AyUDLVAd1T5ZZuFkwecykVJARdxTYs9D
+         YPZYEQNfYaqOHQawnAH8NZIBixcAbHkSzWnz/jKHE/JIvd8OCadeWGv5eCLOwEnqn8vi
+         N5nnNy05XHb0zRFkThjhlSbGwl8KQz6bUmTWaEv8AIi3QhY/+Odu6hZ2r752i/di3jEj
+         fIqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hDwaTCGVoj7wtYrjK6JVB1II3Z9a8V6hZsbZhHi2jv0=;
-        b=8K7DMEUoc+wvwy2gM6jUHCQlpyS0VfqKaMKJmFqGyDA55WZodxyO5UcKhxN3gc4GVE
-         cwOehC/F8s9HDS5le+18lOZ8r4kB66jJNO/CXd9jKRhRIMirmiNODbEJ7on73jX/Nl2X
-         rnZ1OKW5NQBG0yftxC8PIBA9vb7hIO+zMyCirGgIyqcInjJ92KIFNSTetHDKB1+OtRh1
-         9espatU5otMonagVuNiSd8y+EIqQaqkq587/0uaUcrx3x9U2jj5cseKw0SL/C/4rQKVr
-         xs0Xgtpq9nNXJEyq2Pqr2tUbc431tl4UFMcAeNmgD7q2ax4F0P4+/auQ8IZJWPdyuMPM
-         tiMA==
-X-Gm-Message-State: ANoB5pnhu1Mw9fdNAWxlD+EGrpHQRqGSBHf1BGrJAAnsxjQjxRRBECHj
-        rXwCPAACfDVVANVzLHm9KxNQcg==
-X-Google-Smtp-Source: AA0mqf4DScqRVlpQ42cghb+X8aoHij/z2RupMCOuSaaluhqdVZ7QT5l3+DnGfZ3BWwzC9T0TYFCSVA==
-X-Received: by 2002:ac2:4e6e:0:b0:4a2:2210:f169 with SMTP id y14-20020ac24e6e000000b004a22210f169mr10525766lfs.317.1669583393728;
-        Sun, 27 Nov 2022 13:09:53 -0800 (PST)
+        bh=xMfZ7ojzEusZSXOR1+4lvLHDxR9DG6QpHq+z2MT/mFo=;
+        b=2+WN3Pn3vDJSwT3MVXfBgYwdsGG+BfyMQIC35nWtOpJYGxqFICBEq4QLmt+f1Q4JdD
+         bnmoiBazxNnLY4LrQnz1AYoz3M9qxWIxn0PKR8WoubOA/V5Y6swExJRaYNVNCuvgHQYA
+         OPZdQjIO7Bfx6olX0P7Wex12guAOsKqsq/hLQS4zQP/UqIrGpvSaUs4n1LNXyLYINezu
+         SYdtJGC6aqDgxodur7qZ7dch0Zzndi1jvjIAxQs/i0L9uXXEy26y22l0OreMM9TEvwdg
+         x6REvPLU0vuUiT6gcbVsuysX5p34sXF+PsW0SuvKqhchHiUlu5tkBJOi7QNuE5LSJA8v
+         oq3A==
+X-Gm-Message-State: ANoB5pnWus+tjJuAYwfBk2W28++k7jvfqZNdJTghwoR4HO024YNZrO/B
+        tW42PjJfHKhMtXiguIrUxrUqmw==
+X-Google-Smtp-Source: AA0mqf4x1iSF+BS5FUF+PRtHJp/BUnje4H5BmmpwQhj0HY0pf7BnAAnNlJfsqzE/ove2zGOv/18oRw==
+X-Received: by 2002:a19:f010:0:b0:4a2:2e81:9be5 with SMTP id p16-20020a19f010000000b004a22e819be5mr16932099lfc.486.1669583720587;
+        Sun, 27 Nov 2022 13:15:20 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b0049f87fb416dsm1425087lfr.12.2022.11.27.13.09.52
+        by smtp.gmail.com with ESMTPSA id c13-20020a2e9d8d000000b0026dd4be2290sm1044112ljj.90.2022.11.27.13.15.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 13:09:53 -0800 (PST)
-Message-ID: <ef692f82-61c3-b812-b846-64bde04c8bb3@linaro.org>
-Date:   Sun, 27 Nov 2022 22:09:52 +0100
+        Sun, 27 Nov 2022 13:15:20 -0800 (PST)
+Message-ID: <9ec77e6e-55c0-4331-ad62-9ab001273652@linaro.org>
+Date:   Sun, 27 Nov 2022 22:15:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: iio: adc: ti,adc081c: Document the binding
+Subject: Re: [PATCH net-next v2 1/7] Revert "dt-bindings: marvell,prestera:
+ Add description for device-tree bindings"
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221125220903.8632-1-samuel@sholland.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michael Walle <michael@walle.cc>,
+        Marcin Wojtas <mw@semihalf.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Taras Chornyi <tchornyi@marvell.com>,
+        Rob Herring <robh@kernel.org>
+References: <20221124111556.264647-1-miquel.raynal@bootlin.com>
+ <20221124111556.264647-2-miquel.raynal@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125220903.8632-1-samuel@sholland.org>
+In-Reply-To: <20221124111556.264647-2-miquel.raynal@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 23:09, Samuel Holland wrote:
-> Linux has a driver for these ADCs at drivers/iio/adc/ti-adc081c.c, but
-> the compatible strings were undocumented. Add a binding for them. The
-> hardware has an alert interrupt output, but existing ti,adc081c users
-> do not provide the 'interrupts' property, so leave it as optional.
+On 24/11/2022 12:15, Miquel Raynal wrote:
+> This reverts commit 40acc05271abc2852c32622edbebd75698736b9b.
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+> marvell,prestera.txt is an old file describing the old Alleycat3
+> standalone switches. The commit mentioned above actually hacked these
+> bindings to add support for a device tree property for a more modern
+> version of the IP connected over PCI, using only the generic compatible
+> in order to retrieve the device node from the prestera driver to read
+> one static property.
 > 
+> The problematic property discussed here is "base-mac-provider". The
+> original intent was to point to a nvmem device which could produce the
+> relevant nvmem-cell. This property has never been acked by DT
+> maintainers and fails all the layering that has been brought with the nvmem
 
+It's funnier - it was never sent to DT maintainers nor to the
+devicetree@ list. :(
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
