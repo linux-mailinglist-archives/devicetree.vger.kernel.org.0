@@ -2,114 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDD3639B2F
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 14:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EC7639B90
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 16:43:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbiK0Nzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 08:55:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60854 "EHLO
+        id S229582AbiK0PnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 10:43:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiK0Nzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 08:55:46 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81844BE2A
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 05:55:45 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id 189so9683254ybe.8
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 05:55:45 -0800 (PST)
+        with ESMTP id S229575AbiK0PnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 10:43:21 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF043DEAA
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 07:43:19 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id 130so8265610pfu.8
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 07:43:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cQgkgCpTm47iZNFmlvpgr7O6Bta34qrOD+35DbgT7Hs=;
-        b=EaVgCDHNZAmj3FTD6fpaoEc9wMNz+9kvB4PAZQy5kNn23SojzQbpEWs6GaOzPvsijh
-         tTQOCRJfocFa5cnpH/2jIZxe9OGwHcHdb0hYDwFn+GlIWQoK7hR3tMAyAGsRSdWJLajN
-         X9PDaVkAdwnzjBDaLf1ThfnXj8008V65cP7HEFG2YwzGyWzwz0G3FZ5OUrq1wpZ1MSFH
-         Ocm89xeMa0a+bGfgWunWvALZAH75mkxk7eFk/Pe05nkqleto7FmfVqQrsx5AZ2tau8Zd
-         YuYoE9UzKWtRVOxGPkVeLmQQqV3E105sA49ENmQxr0CTxXux4TIUQ7UgtAQb173VMtrz
-         JyYg==
+        bh=QoqD+yoK4iUhwEviRcvAZ4p8z1xcTui7U2heAF5a4zQ=;
+        b=pW8oiV8k3BxvlYxvnp4Q2jio964NAuVqZNES+q7gkoqqg/8FcDZUrfghpnrhWQiLo0
+         qaGB96VmwMXaq9m8zR9gacxtVxmFPRNF+/RaRPP6CQwK9ZD8YxOgzB6Z/iTkgSaq08au
+         kv5R7Q9I72MfrCb+GXpOQkEGOvszZR2tWfKuBbgUKk12LE8Als8QTG7M2I0sZwgb2o2x
+         jaPRcMKjtyq9dtMvmCUifsOOgIns4i7lTbDllqLaQPOqaSZV2TOSHsuGLc90anGfqSaL
+         27wX8zF1m4geYBLpjHtsmHBaXqe0StL+KoIabRwu2eEh8DsfBJ2EuA8PI4fCjwJ8JrzV
+         uGQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cQgkgCpTm47iZNFmlvpgr7O6Bta34qrOD+35DbgT7Hs=;
-        b=KV0DQE+yWA2yBCed29bmmBWyt07b9nX+GwqHw+cQAvp2ob5r9N30tqQLQgY6NEeAn7
-         ENUp5636kgITHL6gQZZEEWnuGh/3DLXz1y0Sy9Geqa7mweAAuYAnt3pBAKhvsRgHdno1
-         tJH8PaM+PctmQTT8TjlSkT1YecTr1wtsovWSMOJsk7z9dgoYclmO5jLD51jmcI30kOTA
-         91ZCT6Le+g2k57KcAWq55d6AmcoDm8NByyQ3LS9Bvng8Hp8rtU0LV+PhLlm1ye9S8bYS
-         6mSdpms946672RpQ8WdKndfRqeggjvsQs4Xppy7DR9FBkHf1Lo9rRY6GRzCyA0EnkP47
-         o7Bw==
-X-Gm-Message-State: ANoB5pn4RcsHL+xHhDQZytoLtx6sgG0gPaQiFZ3KjVvlBGkDGZbZHASR
-        AOgsmcqpy9hkGByvjjAOxYqPTFYvwlbnwO7upUiWKQ==
-X-Google-Smtp-Source: AA0mqf78JJ01h/v6Znk5k947NIWBr4J7ggr8K9DBEkpFzpkdRkmGt8APOpa5H/tk8spvw1FfR8tFwTPtLwJNNvLkkcI=
-X-Received: by 2002:a25:cb92:0:b0:6f6:2c8c:e8ef with SMTP id
- b140-20020a25cb92000000b006f62c8ce8efmr1616167ybg.416.1669557344715; Sun, 27
- Nov 2022 05:55:44 -0800 (PST)
+        bh=QoqD+yoK4iUhwEviRcvAZ4p8z1xcTui7U2heAF5a4zQ=;
+        b=jB8Dgg0+CLLhX91rTgh2n+/QcxgoJ95EVHIw17lQWljVYAYWsU+vExpgWB2P2p1Naz
+         5gZB0B/AjTffFeCipW2xsbLNFN4O9zv0bJpUxKPgFKWGP1yQ4V9PAGFrvCAumn/BTA6D
+         mIgTM7jZtft+HZ9pzgRBtsHuN+j5+Z9C52lXRgX2D/LAWNzzMpaXJg+zAHB1Rr9tOT4X
+         FUjWfmKPgqeJPoOk1S+tH+ZxmIjFwk184bqugoGX46qRIXeXs3R46+vMgHdeSky4LhkI
+         FduIWqtIcKJkXp0c4UeelydssyiX3LL5JNp237MbnxWR9WvuH/dwt1WRHm/Imru18btD
+         ubgw==
+X-Gm-Message-State: ANoB5pkzm1iTnU5V2/GEkquVitvNFiuL9yC+Wh65JKx7BKoyYi75PEUb
+        p7pdrbQXJTuLow9kbnxx47dp72eK/oHDLk/XAe6SMwK0yAZo1Q==
+X-Google-Smtp-Source: AA0mqf6gFiXOwgh2CpDtU8yGb8UYkH6A8+wiyF5d0XjCWNcAnB42vY5fd/NpoZvaRmCfEOHRZScmoX1Aw0Jtrj8y5eg=
+X-Received: by 2002:aa7:854d:0:b0:56d:6e51:60ee with SMTP id
+ y13-20020aa7854d000000b0056d6e5160eemr27439275pfn.25.1669563799458; Sun, 27
+ Nov 2022 07:43:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20221108041400.157052-1-jagan@edgeble.ai> <20221108041400.157052-7-jagan@edgeble.ai>
- <429df965-bd4a-afa4-e66c-6907677fbf8c@linaro.org> <CA+VMnFxs06_KvZc5p_rNAep9aJ+t908CUtVcVTBV7c_b1mu+Xg@mail.gmail.com>
- <149c2614-d87a-4406-5552-f444709a6e09@linaro.org> <CA+VMnFybPA=6-LvSDd=7EXk6fo4oY_hNBwCcDURgnFs4DP_hzA@mail.gmail.com>
- <1f8eb33b-1979-ec28-e3cf-6e6552959b3a@linaro.org>
-In-Reply-To: <1f8eb33b-1979-ec28-e3cf-6e6552959b3a@linaro.org>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Sun, 27 Nov 2022 19:25:33 +0530
-Message-ID: <CA+VMnFz8czfLKoodnD2VkmoBBV18hSM_O40m+qrxz4qzaZxt3w@mail.gmail.com>
-Subject: Re: [PATCH v7 06/10] ARM: dts: rockchip: Add Rockchip RV1126 SoC
+References: <20221127123259.20339-1-krzysztof.kozlowski@linaro.org> <20221127123259.20339-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221127123259.20339-4-krzysztof.kozlowski@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sun, 27 Nov 2022 09:43:07 -0600
+Message-ID: <CAPLW+4=B=xx3gUsv7gj_AhDG44zyurFzaHvws8eCV+efcEdV_Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ clocks for Exynos850
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        Jon Lin <jon.lin@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
+        linux-samsung-soc@vger.kernel.org,
+        Sriranjani P <sriranjani.p@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Nov 2022 at 15:06, Krzysztof Kozlowski
+On Sun, 27 Nov 2022 at 06:33, Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 23/11/2022 17:35, Jagan Teki wrote:
+> Exynos850 has dedicated clock for accessing SYSREGs.  Allow it, even
+> though Linux currently does not enable them and relies on bootloader.
 >
-> >>>>> +     aliases {
-> >>>>> +             i2c0 = &i2c0;
-> >>>>> +             serial0 = &uart0;
-> >>>>> +             serial1 = &uart1;
-> >>>>> +             serial2 = &uart2;
-> >>>>> +             serial3 = &uart3;
-> >>>>> +             serial4 = &uart4;
-> >>>>> +             serial5 = &uart5;
-> >>>>
-> >>>> These are not properties of a SoC but board. They depend on the
-> >>>> particular routing on the board... unless this SoC is an exception from
-> >>>> all others?
-> >>>
-> >>> Was this a new feature to follow, didn't see this before at least
-> >>> rockchip SoC's.
-> >>>
-> >>
-> >> It's not exactly new comment, but rather not always enforced/given.
-> >
-> > It seems like i2c0 and serial aliases are required across SoC instead
-> > of the specific board. An example of which i2c0 connected via PMIC
-> > which indeed require aliases to get a probe, which is common across
-> > SoC.
-> >
-> > [    1.778941] i2c_dev: i2c /dev entries driver
-> > [    1.780877] rk3x-i2c ff3f0000.i2c: rk3x-i2c needs i2cX alias
-> > [    1.781410] rk3x-i2c: probe of ff3f0000.i2c failed with error -22
-> > [    1.791312] Bluetooth: HCI UART driver ver 2.3
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
-> I2C driver indeed seems to require them, so then it's fine. That's not
-> the argument for serials though.
+> ---
+>
+> Changes since v1:
+> 1. Make clocks required on Exynos850.
+> 2. Due to above change, do not add Rb tags.
+>
+> Cc: Sriranjani P <sriranjani.p@samsung.com>
+> Cc: Chanho Park <chanho61.park@samsung.com>
+> Cc: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
 
-Yes, I dropped serial aliases for the next version.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Jagan,
+>  .../soc/samsung/samsung,exynos-sysreg.yaml      | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 42357466005e..9f3fc6406d9d 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -36,10 +36,27 @@ properties:
+>    reg:
+>      maxItems: 1
+>
+> +  clocks:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - samsung,exynos850-sysreg
+> +    then:
+> +      required:
+> +        - clocks
+> +    else:
+> +      properties:
+> +        clocks: false
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> 2.34.1
+>
