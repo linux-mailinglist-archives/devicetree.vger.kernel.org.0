@@ -2,160 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1DD4639A96
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB70F639A9E
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:51:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbiK0Mo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 07:44:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37716 "EHLO
+        id S229631AbiK0MvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 07:51:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbiK0Mo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:44:26 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84026BF53
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:44:24 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id g7so13508621lfv.5
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:44:24 -0800 (PST)
+        with ESMTP id S229585AbiK0MvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:51:24 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714B16562
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:51:22 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g12so13539141lfh.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:51:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B0wTjTX8oc9gsfhtWKd9yy7AK5Y3/IIhH17ZCu5fZx4=;
-        b=T/PL1EZcdBp8VeEM1MTO7c2sNbEGNsfFvC9mNUOM5rg1dhvuw49Aw7AGDlZSYcT6T3
-         jFHpNBuykUv9RlbpWubxI86pJNYVdnCrZ0/MerOYOcjk0Hkb0tqC2//5aAsDFqTLbdJo
-         mz/8WeBpO73qlZ6UwPE/3u9wEYgoxvsP5M6knVNKmL7bH0EgZNu6LiMsiY8YcINwbqbL
-         OjIeQ1i+tDaaKpq+DBRU7bIk/0T5OUDXIOQ3XPGz15fhoOXgvMHnwWVr24vOwx9eMwKa
-         WBijznVtw8MqvbmeCgoyF1iwH0U1Kq/BvmZLJAmQCiOw/agPQruZ5LTMlZI7nlSjAbKl
-         SYTg==
+        bh=42d1uIdwpyKuYTq13kmw7mH6z8HdgyJFRMpcVjIqtRg=;
+        b=vdXR+OpCUsjgc3lkwZPgirtYD5MufsANbJ8oEJPmf+6kN4QfiXWwqsdN7vs0HA1J0H
+         sNxsYLm1GFb9tMbqQ1/F2g9muhvNUBCqfBI6dbujPUs2eUF6Ah/pAT39G63izyn8C8WW
+         yD+Mjt6d/1jjAP1K+ROVEjFWt9vFh9F9KViV9TjmL7G3L6XupNzkjL8NgHmxv3Nea31j
+         QaYRhXpHIEwZVMLEBZYsczWsTh5Za8VdvWLvxu1ybu4cKA466HOGaxvkq5xiOzklgeUG
+         LC0SRWOXe9lHsRNBONwXppPhtJAEk+KVubg1tfpvvEiHDf7skS4HySQpONWd+mEQs2pV
+         DIiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B0wTjTX8oc9gsfhtWKd9yy7AK5Y3/IIhH17ZCu5fZx4=;
-        b=goPM1Xoh9f/3F8SLXXUwwOgaqxYkrJOCHZAXX/7kpd19RhWMunyRWGjse7NX179w79
-         UybLpOeTIBKQ4YhUaIACzbk8OWdLvHgOmb8ZqlI8kLJLuhdItn4rdZERK116AYna9lXh
-         /v6v11tzyf75fXmXNTVtmvEb603tL3ls1HgSuFYgXw63iBAUUXXJSfvALEohKh1/+5eJ
-         aMqnJKkuusIDo+GbGh5J5XrZpda8t3klcEy9atqBFoRLiSBxVqjiFeZ+O1sDMoNfrAEL
-         TbLFPrKwuLxARIJJ11Bh1pACNUL8LKvQfRVYmS/nZEE7sFJlTS2pvl8cI/b1g3OPCKjT
-         /UAg==
-X-Gm-Message-State: ANoB5pmKel9fW3fYIFHxUEJ7vaKUDDpj5UkZ/oocjJz3uau6J5njRKRu
-        fBdfwQWiEzGaiEQueBU72g+kHjncnjuQ8p2m
-X-Google-Smtp-Source: AA0mqf49suwCpWlASIE/0UTr+rlkpTx39rlWSFK+oskELfLcmKeB0DbRwxLGwAPoErfjqYD77rZcOA==
-X-Received: by 2002:a05:6512:258b:b0:4b5:c8f:2b59 with SMTP id bf11-20020a056512258b00b004b50c8f2b59mr1812375lfb.536.1669553062933;
-        Sun, 27 Nov 2022 04:44:22 -0800 (PST)
+        bh=42d1uIdwpyKuYTq13kmw7mH6z8HdgyJFRMpcVjIqtRg=;
+        b=zOejWcj40jtHL97U67pYLLiAuiFceueVAa0Diuo/PIIbImJWy9bZI4qUJKNdJFgmC7
+         kGhsRsrV9oZ+Dh+1bsb7g4UAIUof0HpuGKvgzHpFdJXOirP7F4ZKHyw430OaNyQPSHtB
+         YTMAt/YCUGlk6MYvWISp6qF/IYakXqRF7utcsOsahd1qmAM0/dqOSyBezLRt+EdxDmng
+         xDX2HzuXFjMThK98G1BzYkKnF1sB6ZH5H9Vtz1/RrOIke/C8ker6AAJIiNvXXjJpW3VA
+         KiwoOnSanlB1bmYiBs0InkymgyX+Rj9b34pprU5mCGVtOUbdCvgvEHO16xDo5kuxHZ90
+         3YjA==
+X-Gm-Message-State: ANoB5pnMdQthdlAPpwZ3oWCZ65Uo5mMB5JP/qjpG+TUtnLp3agBlClP9
+        f12AX0r0W8wfPGlzbTuOIpZBzwokP9FXOz7P
+X-Google-Smtp-Source: AA0mqf6P7yDoGSrnTqjkCSz89GYycciOApljdH30M+ggbtc5LKgfW/rM+t6eKcq8WJGuNVib6SPRLw==
+X-Received: by 2002:a05:6512:20c1:b0:4a6:396d:a06a with SMTP id u1-20020a05651220c100b004a6396da06amr16473344lfr.514.1669553480829;
+        Sun, 27 Nov 2022 04:51:20 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m9-20020a056512358900b0049468f9e697sm1273347lfr.236.2022.11.27.04.44.21
+        by smtp.gmail.com with ESMTPSA id bf31-20020a2eaa1f000000b00279a25c2427sm111423ljb.139.2022.11.27.04.51.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 04:44:22 -0800 (PST)
-Message-ID: <a4ea3bd0-b716-5bda-c6c7-cad06e964fa1@linaro.org>
-Date:   Sun, 27 Nov 2022 13:44:20 +0100
+        Sun, 27 Nov 2022 04:51:20 -0800 (PST)
+Message-ID: <e4be94a3-cdfc-cdf8-5d69-0eef480033f9@linaro.org>
+Date:   Sun, 27 Nov 2022 13:51:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20221125223217.2409659-1-linus.walleij@linaro.org>
- <20221125223217.2409659-2-linus.walleij@linaro.org>
+Subject: Re: [PATCH] dt-bindings: iio: adc: ti,adc081c: Document the binding
 Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221125220903.8632-1-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221125223217.2409659-2-linus.walleij@linaro.org>
+In-Reply-To: <20221125220903.8632-1-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 23:32, Linus Walleij wrote:
-> This adds device tree bindings for the Ux500 CRYP block
-> as a compatible in the STM32 CRYP bindings.
+On 25/11/2022 23:09, Samuel Holland wrote:
+> Linux has a driver for these ADCs at drivers/iio/adc/ti-adc081c.c, but
+> the compatible strings were undocumented. Add a binding for them. The
+> hardware has an alert interrupt output, but existing ti,adc081c users
+> do not provide the 'interrupts' property, so leave it as optional.
 > 
-> The Ux500 CRYP binding has been used for ages in the kernel
-> device tree for Ux500 but was never documented, so fill in
-> the gap by making it a sibling of the STM32 CRYP block,
-> which is what it is.
-> 
-> The relationship to the existing STM32 CRYP block is pretty
-> obvious when looking at the register map, and I have written
-> patches to reuse the STM32 CRYP driver on the Ux500.
-> 
-> The two properties added are DMA channels and power domain.
-> Power domains are a generic SoC feature and the STM32 variant
-> also has DMA channels.
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lionel Debieve <lionel.debieve@foss.st.com>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
-> ChangeLog v1->v2:
-> - Drop the second (new) example.
-> ---
->  .../bindings/crypto/st,stm32-cryp.yaml        | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> index ed23bf94a8e0..6759c5bf3e57 100644
-> --- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
-> @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: STMicroelectronics STM32 CRYP bindings
->  
-> +description: The STM32 CRYP block is built on the CRYP block found in
-> +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
-> +  SoC in 2010.
+>  .../bindings/iio/adc/ti,adc081c.yaml          | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
+> new file mode 100644
+> index 000000000000..caaad777580c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,adc081c.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,adc081c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  maintainers:
->    - Lionel Debieve <lionel.debieve@foss.st.com>
->  
->  properties:
->    compatible:
->      enum:
-> +      - st,stn8820-cryp
-> +      - stericsson,ux500-cryp
->        - st,stm32f756-cryp
->        - st,stm32mp1-cryp
->  
-> @@ -27,6 +33,19 @@ properties:
->    resets:
->      maxItems: 1
->  
-> +  dmas:
-> +    items:
-> +      - description: mem2cryp DMA channel
-> +      - description: cryp2mem DMA channel
+> +title: TI Single-channel I2C ADCs
 > +
-> +  dma-names:
-> +    items:
-> +      - const: mem2cryp
-> +      - const: cryp2mem
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
+> +  - Lars-Peter Clausen <lars@metafoo.de>
+> +
+> +description: |
+> +  Single-channel ADC supporting 8, 10, or 12-bit samples and high/low alerts.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,adc081c
+> +      - ti,adc101c
+> +      - ti,adc121c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vref-supply:
+> +    description:
+> +      Regulator for the combined power supply and voltage reference
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-Usually these are called rx/tx, but I understand you are documenting
-existing usage from DTS or driver? In such case:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+Why not requiring io-channel-cells? If it is an IIO ADC provider, you
+need the cells, right?
 
 Best regards,
 Krzysztof
