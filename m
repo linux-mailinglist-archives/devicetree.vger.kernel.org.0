@@ -2,159 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FA1A639E49
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 00:55:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95B75639E4B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 00:56:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiK0Xzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 18:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44228 "EHLO
+        id S229582AbiK0X4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 18:56:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiK0Xzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 18:55:37 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD0BBC93;
-        Sun, 27 Nov 2022 15:55:36 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id f13so14958183lfa.6;
-        Sun, 27 Nov 2022 15:55:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rW/OaynwezcBfthmHN1eZjbIoAQJ+mwHqyK5yAvp5is=;
-        b=IqhJThko5CuzLdAN8rIyYd15uBg3KUIrcZPwmST2L2L0AacY3myyVXD1usMtQRtaVL
-         uSmwP470jIDbf/hHHt1YPizuOz8bTypsnhpuN/gRSLXC8rXPY8mIoQMhShc0L8YpVhrr
-         ov0XVkb5Ivvm+xAybcWi4crF1n19fSw6eG26QwftI32hVjQEqvlhXkDXFoWZwJ72W2Sg
-         xxi1B0b3+RJKIqk5x6GXqwTT/LEV8DoFJajuHsI2jY9W3MS8TZePapbLiQrbNgCDwaoN
-         OvhoeYWs14rmaFabfb7IocD82ROJdP/OQZuzt4W3JCN1FWg21YDMz7O+gTQ6ewLFy4rC
-         wB3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rW/OaynwezcBfthmHN1eZjbIoAQJ+mwHqyK5yAvp5is=;
-        b=BtpoFpYs3MYaTNapVQlTk8cNRuzautoMIIAhvybVRUQPylogKUZGkd3Pbw6hFlTpVl
-         w7AhQvWiPmY/dfERvdJeDtSYp1nn8Bqat3TPXBEOt2Z2YRH5GQwn/Y+N3CYwU0Fbcbaz
-         Fh6HjKY2NtRz7a/IHTkXfrUVIkUylUqq6Y+OwTSsL/jMx9ZdYCdvJ9xcI2aIKKGlLeaU
-         5rpZlzenDMoZSeI4pn+bkcjB907FLBw3ikDajM6VjPzVsAllywCjZES3ywa238HY+6C9
-         bRuVXG/OHs4jRIaiyBr8dxAmlhaYspjETBAHTIt1fT8Pf5ttXxHK2XF//+Rza8Vr1ri2
-         po0A==
-X-Gm-Message-State: ANoB5pkjXq6YwlqSWiH2TtnhG6qEnzTInWYqxKFM6I9fQZ29cZ6FG9Lt
-        LHPyhq/7edyolmY7YjDqTIOFxdbf+yLAgQ==
-X-Google-Smtp-Source: AA0mqf6wpRnM6tTvXjKD9WooPEYhWo6KG3+M3C+BtLQS3Pqi6jA/HitFqWQCvIAKqCf3gxLuyvPCwQ==
-X-Received: by 2002:ac2:4bc5:0:b0:4b4:c099:a994 with SMTP id o5-20020ac24bc5000000b004b4c099a994mr15436318lfq.193.1669593335085;
-        Sun, 27 Nov 2022 15:55:35 -0800 (PST)
-Received: from mobilestation ([95.79.133.202])
-        by smtp.gmail.com with ESMTPSA id u4-20020a05651220c400b004a4731f75a5sm1467071lfr.250.2022.11.27.15.55.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Nov 2022 15:55:34 -0800 (PST)
-Date:   Mon, 28 Nov 2022 02:55:32 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, krzk+dt@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Sergey.Semin@baikalelectronics.ru
-Subject: Re: [PATCH v7 5/9] PCI: dwc: Avoid reading a register to detect
- whether eDMA exists
-Message-ID: <20221127235532.u7q7oou36wymkpyf@mobilestation>
-References: <20221121124400.1282768-1-yoshihiro.shimoda.uh@renesas.com>
- <20221121124400.1282768-6-yoshihiro.shimoda.uh@renesas.com>
- <20221122135550.GD157542@thinkpad>
+        with ESMTP id S229509AbiK0X4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 18:56:07 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E701BC93;
+        Sun, 27 Nov 2022 15:56:06 -0800 (PST)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7E8DF40006;
+        Sun, 27 Nov 2022 23:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669593365;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2cLQyRvTObsQSLR0d1Gq8L390yP6Zpvaz75Y8uF4u+U=;
+        b=DdrpY7xoS3ciCKeMPN4cBm0Cz5UUQmtRY+1gdK9iJ8QL8a3UJbD8Pq3JGDUbbCFAHZSQJb
+        k3hnhlhCYZtUOn2YlixtLUs0v8cW0YLWXcGNgCee3CImITPWwNeUlZBQKFzJWg6ils46C+
+        RvnOEvhZNQnEaGDGbm2z82Lw2MxBlC9Nekm1kokqdIZfIZddiaderKcWID1ez1ja3bKVSm
+        nTuf/turaFPxCP/hVq1O7FOrW09zU87Qsgg7muy1q2yFd9/z71cXzraw+xECV6SbB0NPkR
+        Ukuuh/DslHXEHHnG3C20PuNfWq2dCKYRRH16XFEhQaXKi/AsGp1OjDvROBIfbw==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>
+Subject: Re: [PATCH 0/6] ARM: dts: pci-mvebu: Fix assigned-addresses for
+ every PCIe Root Port
+In-Reply-To: <20220817223053.31141-1-pali@kernel.org>
+References: <20220817223053.31141-1-pali@kernel.org>
+Date:   Mon, 28 Nov 2022 00:56:03 +0100
+Message-ID: <878rjw9cks.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221122135550.GD157542@thinkpad>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 07:25:50PM +0530, Manivannan Sadhasivam wrote:
-> + Serge (who authored EDMA support)
+Pali Roh=C3=A1r <pali@kernel.org> writes:
 
-Thanks @Mani. It's strange to see a fix for a patch which hasn't been even
-merged in yet and miss the patch author in the Cc list.)
+> Per IEEE Std 1275-1994 bindings documentation (to which kernel DT
+> bindings refers), DT property assigned-addresses contains BDF address
+> of resource. Currently more PCIe Root Port nodes have BDF address in
+> assigned-addresses which points to different PCIe Root Port nodes. This
+> obviously does not make sense as the address resource specified in
+> assigned-addresses of every PCIe Root Port describes address range of
+> internal registers which are specific for corresponding Marvell PCIe
+> Root Port. Fix this issue and align all BDF addresses in
+> assigned-addresses DT property to specify correct BDF address of the
+> current PCIe Root Port.
+>
+> Note that current version of pci-mvebu.c controller driver, which
+> registers Marvell PCIe Root Ports, ignores BDF value in DT property
+> assigned-addresses. It expects that Root Port's assigned-addresses
+> contains address range of that root port. That is why driver currently
+> works without any issue and nobody spotted it. But if driver or
+> something else would do device tree validation then this issue should be
+> spotted and throws error. Also device tree files may be used by other
+> projects where drivers may require correct values.
+>
+> This patch series aligns BDF address of every Marvell PCIe Root Port in
+> node name, config space in reg property and mem in assigned-address
+> property of internal registers resource.
+>
+> Pali Roh=C3=A1r (6):
+>   ARM: dts: dove: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-370: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-xp: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-375: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-38x: Fix assigned-addresses for every PCIe Root Port
+>   ARM: dts: armada-39x: Fix assigned-addresses for every PCIe Root Port
 
-@Yoshihiro, on the next patchset revisions please don't forget to add
-my email address to the copy list.
+Series applied on mvebu/dt
 
-> 
-> Thanks,
-> Mani
-> 
-> On Mon, Nov 21, 2022 at 09:43:56PM +0900, Yoshihiro Shimoda wrote:
-> > Since reading value of PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL was
-> > 0x00000000 on one of SoCs (R-Car S4-8), it cannot find the eDMA.
-> > So, directly read the eDMA register if edma.reg_base is not zero.
-> > 
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-designware.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > index 637d01807c67..2cc8584da6f4 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > @@ -836,8 +836,7 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
-> >  {
-> >  	u32 val;
-> >  
+Thanks,
 
-> > -	val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
-> > -	if (val == 0xFFFFFFFF && pci->edma.reg_base) {
-> > +	if (pci->edma.reg_base) {
-> >  		pci->edma.mf = EDMA_MF_EDMA_UNROLL;
-> >  
-> >  		val = dw_pcie_readl_dma(pci, PCIE_DMA_CTRL);
-> > @@ -845,6 +844,7 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
-> >  		pci->edma.mf = EDMA_MF_EDMA_LEGACY;
-> >  
-> >  		pci->edma.reg_base = pci->dbi_base + PCIE_DMA_VIEWPORT_BASE;
-> > +		val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
+Gregory
+>
+>  arch/arm/boot/dts/armada-370.dtsi        |  2 +-
+>  arch/arm/boot/dts/armada-375.dtsi        |  2 +-
+>  arch/arm/boot/dts/armada-380.dtsi        |  4 ++--
+>  arch/arm/boot/dts/armada-385.dtsi        |  6 +++---
+>  arch/arm/boot/dts/armada-39x.dtsi        |  6 +++---
+>  arch/arm/boot/dts/armada-xp-mv78230.dtsi |  8 ++++----
+>  arch/arm/boot/dts/armada-xp-mv78260.dtsi | 16 ++++++++--------
+>  arch/arm/boot/dts/dove.dtsi              |  2 +-
+>  8 files changed, 23 insertions(+), 23 deletions(-)
+>
+> --=20
+> 2.20.1
+>
 
-Look what you suggest here:
-< u32 val;
-< ...
-< if (pci->edma.reg_base) {
-< 	...
-< } else if (val != 0xFFFFFFFF) {
-< 	...
-< } else {
-< ...
-
-It would be strange if your compiler didn't warn about 'val' being used
-uninitialized here, which in its turn would introduce a regression for
-the platforms with the indirectly accessible eDMA registers.
-
-Anyway you can't just drop something what didn't work for you
-hardware. The method you suggest to fix here works fine for multiple
-DW PCIe IP-cores. Judging by the HW manuals it should work at least up
-to v5.30a. Are you sure that your controller is of v5.20a? I see you
-overwrite the IP-core version for the PCIe host driver only. Why is
-that necessary? Does the version auto-detection procedure work
-incorrectly for you? What does the dbi+0x8f8 CSR contain in the host
-and EP registers space? Similarly could you also provide a content of
-the +0x978 register?
-
--Sergey
-
-> >  	} else {
-> >  		return -ENODEV;
-> >  	}
-> > -- 
-> > 2.25.1
-> > 
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
