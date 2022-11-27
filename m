@@ -2,60 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C24BF639CA1
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 20:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8970639CA6
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 20:56:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiK0TyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 14:54:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60220 "EHLO
+        id S229558AbiK0T4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 14:56:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiK0TyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 14:54:18 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF526DEE0
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:54:16 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id o7-20020a05600c510700b003cffc0b3374so7048145wms.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:54:16 -0800 (PST)
+        with ESMTP id S229509AbiK0T4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 14:56:35 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDA2DF50
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:34 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id t17so7648606pjo.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:mime-version:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=biw1utCmNyI+ef9futimPqL2qrgw3YwY9eWMD1oBQZg=;
-        b=O/Qopswpf3pUwj0IecsVsM+cimJ+a2XfJKsB1fdMxKbCE6Rsx1P+/cbdlJ5dLGgIw/
-         xmeuDl/DzDPyA31ADuzik8a4kIW2fO7dkscqJV7cuVlyRvnhaEzqIhu07XNSBg1vuRNJ
-         p1POxfTExVc9f25LEy9EYa7gwKjVJUg/DM4e6lWstNrJMTwA1BIpyVo3nSGtcTNpJs56
-         /vjlr0q59SoEVDbk+TBQ92AmPFV4Lf1HJqSDmC1ZyjBT68LIl6ee3Wh6Y4WnQfmLw/50
-         u2fM0LYN0zJAV+msvvYxmpC13x00ryN4/QYVd6PqkQsEtQ4huxyFq8YaBiKjTI4rCczh
-         gqYQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=juq5/mjC/KKXPH5Eez7pJsfr8RT85fZqcCMfwuxrs/M=;
+        b=EJz24sx9HV4+nfAGByt9QAB3IEhPbrtR1EhvxRRae/kWs5PBc3/LGA7Di7A/LsofmL
+         Co2eXjPPEh5yzYPRtvsorqprGcrleudUWAa7cNRHsFrXEuHkuT+/zX3r/KvPWdTrNuxF
+         je009dBdNh5dJ5q7NCX0nBKbYgNOw+Bg1yhkk/vTjekHgtV2YajnTOwLsh2kt8a3G+gJ
+         TlLv5EfwGlJ35MPtzvLDul2O8qyzqVvVrG2ajFNWzEqeX+Bmn6IZFrZMCYByNs69RZWY
+         QzikZvw2FOII8kgZi8PELs9ijzJ7cLRWMFPMIf4cSeR6S7lV/rlUIxKWrXbIFXXu4zQz
+         W9KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:mime-version:from:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=biw1utCmNyI+ef9futimPqL2qrgw3YwY9eWMD1oBQZg=;
-        b=KP4UlJe2KmIPfH7bV4DuXKVR9NADCZ35knhy+LHwOFpvnHZNPckOV6d8Z/qB4jq7Hh
-         N/tVSYtMhbhCFaqcRy4ZoHpjYYzJQc8kB7BtfFn2mt2OSuFcUFlEH/j1P9yK34k7GZy6
-         r4GciCFQ+tYemkG4PZ820TDGW9X+3EMuJ4c+GZ8mCesyPEGybXEy+PMSgJSsrffOgxZT
-         ZAc+1SyGgJd3EDBOsRWyaRqdunDk9mY651yC9fSLKmLogA6xI4NqbOlyCE5/u9BcEhUe
-         m3N8uWm4mDtFnHf77+Txh+cJEOI2FzTfdxDxeF63u3fxHxviFEyXfhJqCiQv+GSDRCTz
-         2BwA==
-X-Gm-Message-State: ANoB5plzG+RjPdyP9db39rjlfmuGOBxMBWs0YTWVA/SKiXOngLdmlfyi
-        +PdUf0Nt2h6mYM1E7dBIPzM/8UsE11PJuN/Z8BEwKhRYsacKsoVk
-X-Google-Smtp-Source: AA0mqf5svgaVun3tspsXM91xa9Z9BkJ+YB73DdFC3Aw7AfOdqss8XN5qiDd5kBFxLogGDiC24dAaDjziOiu1dozqvo8=
-X-Received: by 2002:a05:600c:35cf:b0:3cf:aa11:93a8 with SMTP id
- r15-20020a05600c35cf00b003cfaa1193a8mr39082561wmq.31.1669578855150; Sun, 27
- Nov 2022 11:54:15 -0800 (PST)
-Received: from 332509754669 named unknown by gmailapi.google.com with
- HTTPREST; Sun, 27 Nov 2022 13:54:14 -0600
-From:   HAROLD COOPER <haroldcooper810@gmail.com>
-Mime-Version: 1.0
-Date:   Sun, 27 Nov 2022 13:54:14 -0600
-Message-ID: <CA+0JWio_nohbj_ENG27vHZOy1uNwpfDA4jyJuSNS4g79q5g7VQ@mail.gmail.com>
-Subject: HARD HAT
-To:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_40,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=juq5/mjC/KKXPH5Eez7pJsfr8RT85fZqcCMfwuxrs/M=;
+        b=DrI/8vv7gAq6RJFqXcThSQyK83hQBdrfbGg+kTrp9eYSH7FCQpZc66VzH58XOdRKsP
+         y2pY5O82MRseWB25TmXaF1FqTeEbTLQkDZby15OzUmuflkIQ3EijHIMENrfWiw1EraWU
+         o3eRWbyR0GAwaQN4gdlHs9ty1Z+wgCHW9tmKL9ALeBUEx+rgSgf1+zy0ap6sPnI99U+n
+         b4GziqAqfY9DDVZkYbEnlpDyq9YAHNU1y1mgZ8qgLbyNbYzkGIhVrQXPLn22EXxOMp0K
+         HPcyhlUnwV6ACQrfO7qxgQN6ip6vdR9yRqO0BPTqyxkVnkAMo1frpQlTDNCHjb3GuQ55
+         8soQ==
+X-Gm-Message-State: ANoB5pmlXvbKG8q0kq3b0BtG5A8iGilwKfo+aBPtfrtcKqViPBnD6BpL
+        Zi2R27SlC/9WU/5FW5LlQoY91g==
+X-Google-Smtp-Source: AA0mqf5Xy7d1FDxM3SQk8hovsH+Itwl6eIGMuNOyoH4njhj23ei2tlC26P5B6VDHB37sPWpVG5Mtxg==
+X-Received: by 2002:a17:902:db09:b0:188:7dca:6f4d with SMTP id m9-20020a170902db0900b001887dca6f4dmr42119770plx.68.1669578994168;
+        Sun, 27 Nov 2022 11:56:34 -0800 (PST)
+Received: from localhost.localdomain ([223.179.131.184])
+        by smtp.gmail.com with ESMTPSA id n1-20020a170902968100b00186616b8fbasm564636plp.10.2022.11.27.11.56.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Nov 2022 11:56:33 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     jassisinghbrar@gmail.com, devicetree@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, agross@kernel.org,
+        linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH 0/2] mailbox: Add SM4250 APCS IPC support
+Date:   Mon, 28 Nov 2022 01:24:16 +0530
+Message-Id: <20221127195418.1506876-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,10 +73,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To whom it may concern,
-I would like to order HARD HAT . I would be glad if you could email me
-back with the types and pricing you carry at the moment .
+This patchset adds the SM4250 APCS IPC support.
 
-Regards ,
-Mr HAROLD COOPER
-PH: 813 750 7707
+Cc: Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+Bhupesh Sharma (2):
+  dt-bindings: mailbox: qcom: Add SM4250 APCS compatible
+  mailbox: qcom-apcs-ipc: Add SM4250 APCS IPC support
+
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c                          | 1 +
+ 2 files changed, 2 insertions(+)
+
+-- 
+2.38.1
+
