@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFDBF639CD6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 21:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71E4D639CDB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 21:41:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbiK0Ucu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 15:32:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
+        id S229641AbiK0UlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 15:41:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiK0Uct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 15:32:49 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A85B1ED
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:32:47 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id z24so11024764ljn.4
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:32:46 -0800 (PST)
+        with ESMTP id S229469AbiK0UlF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 15:41:05 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82824C741
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:41:03 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id u27so3534130lfc.9
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:41:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jDF3wtVae7sFV7RHSN3RWyepCJgWam189Cxle5ELR+0=;
-        b=svDjpxjGgEYAtvQEU782VlP0v8qkhnR89/c3bV98qc+sPcuYmy9NlECraEuztBL/H9
-         +yagQWGEQ/Jf8d/SQYlAIBd0n+O3WBKmJLe5oOMOTUp0D9g88+KGpgCUUa/uf62AVFN2
-         dCu7gd/D6fE4sDMCIBbYe154EjfgAfuaNAjBskpzwYc8btoBwA/rBDquUqwI5X2h58R9
-         3HaBeJDl/UoPVioW8vEWJHuf8JRmk+NUST/cfGJdJr3yqj6D3SgneiYIViChc3zn11Hf
-         Dv4EiUbNrfW3S7ubpc0YQ9tXPlX2DMroWqgwW6BmsTlFR7od2U5hbylBAKoHFQ4m+0ny
-         fhig==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fnqM8n9PGKGOvzAFEIiFMORJd4lJURGGn2BL+kEfNIQ=;
+        b=vs2qhd9D4zvjiwLqg3Vfjy1XJCOSrrmrj9Fm4gBeZv2riWyP8Sbzb/j6TDcAv3txKL
+         /Ojqg6f2+NrgPtRI5vVr8cTH/7W4ZEoNEc/9r2uJ1FKQDTK7Lehoj2VsgMh4wJQiUQie
+         14qb2VlBUnJhmJ5CxVhjDeUBlLSWNhR646cAGp9fmymUw5Fw/jIKd/7bTrwCHLr6HS/I
+         LIeXh09TwEVuvfCo3E6RpwDl2VGeEFUrI1ouKieKaLg4u+Du1U/WPLV46T2L6XapopGE
+         o2wUlBgL2md+QslIWkOPzmqVhdRm+HuJqVbvgMrRMud6AEfJ4oA4AOevIHIj5qLL3F+s
+         Y59A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jDF3wtVae7sFV7RHSN3RWyepCJgWam189Cxle5ELR+0=;
-        b=7ZjE6r38qye7vW6tVdat6cAi0KCZC9EucVlcqtYzcLKwwl9yAoIyAbxwEc7i7hMGZQ
-         Al8j9vEfVesVoX4NlnrhJ0fWAmNiW/duRmApzhIP7pRJBhSJMT1AGkY+jwD1LGSnuk5R
-         Gz2Bv4p2BIpbghyE5G9+lr2Zh4x0WWu7TDhgclfgP/jpnOCW58pt5HZiz1WbrlBnfBPq
-         8EoOYGcbPwHUHZPWJ73BORpvdPpvkZwt4Jt8a1D8QRFz1jA87dyt5k90ZS/9DYKK+Uty
-         dj9hzUJV92TBsYqt1hnGAHXJ83Nh0bIwZSSSBuZGiBVnwQvH/fsHqy5/BzgF35n8c4xS
-         DWBg==
-X-Gm-Message-State: ANoB5pkrxZKJ6q/hftuuZLf1z++bmwxZ6GGH75dG/tQiqYU7cMDglTEA
-        /8JJ1i1G6onw8LaXC2VQIVD7ig==
-X-Google-Smtp-Source: AA0mqf5emVQaTM9KtZ2LkxfssBLpH/7Ag1JkNnoIUclLXQ0BN1SY+nseOw+cqpq0ULrLYl9T3ni5tw==
-X-Received: by 2002:a2e:3e17:0:b0:279:96c4:2c2d with SMTP id l23-20020a2e3e17000000b0027996c42c2dmr3088855lja.153.1669581165273;
-        Sun, 27 Nov 2022 12:32:45 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fnqM8n9PGKGOvzAFEIiFMORJd4lJURGGn2BL+kEfNIQ=;
+        b=Wc3pI1HTdwbfzXYTrQwLjaWVHHE7cTgGa0OkyjBqs1DfS+HJxZGMtQI+ZHp9xcwHiD
+         Q9xH7cgzeL1Kx1XoUgpsXMW0EITln5qut0i6VRgxdnP9bSxxctFWzq/bid0MQgqtqJpH
+         Evm/DdqRJjc7erfLOYSIyyTNpCesIJJSLoD+5CipVOJEQ97WeiG9sZBNLLFSCERSVSIl
+         ubXHur9LX2GY2JV3nPPoTXzQmVFUtBQRjdXZnPlvcpc1RCNJtv0EJ4x3d/v4kqUSH/PO
+         TX4ZICBZ8PczY1LakCjMpcjKp7OqMsZq/0q8PlzbUim33qTUZYImuCDH2T1ZpTQ8EER+
+         vmMQ==
+X-Gm-Message-State: ANoB5pkD8pLdBvItxnduYAmJi5YSsNi2k33x0unoBJjp+jUThsvvE87/
+        JO2SIsWygVFgPJnbsW4MWOSpOw==
+X-Google-Smtp-Source: AA0mqf6p5Yvfm9RBuO07olapiME1mbnRSXDUX3FGr319MQtgH4Z6VWefEbtTH5wZlK3lshfJ9H7zGQ==
+X-Received: by 2002:a05:6512:e9d:b0:4b1:8698:9f3e with SMTP id bi29-20020a0565120e9d00b004b186989f3emr15263055lfb.421.1669581661879;
+        Sun, 27 Nov 2022 12:41:01 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w10-20020a05651234ca00b00494942bec60sm1412827lfr.17.2022.11.27.12.32.44
+        by smtp.gmail.com with ESMTPSA id bi39-20020a05651c232700b002773ac59697sm644607ljb.0.2022.11.27.12.41.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Nov 2022 12:32:44 -0800 (PST)
+        Sun, 27 Nov 2022 12:41:01 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Nikita Travkin <nikitos.tr@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Andrew Davis <afd@ti.com>, Gene Chen <gene_chen@richtek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Neil Brown <neilb@suse.de>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 3/3] ARM: dts: qcom: align LED node names with dtschema
-Date:   Sun, 27 Nov 2022 21:32:40 +0100
-Message-Id: <20221127203240.54955-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/6] leds: dt-bindings: use unevaluatedProperties:false and few fixes
+Date:   Sun, 27 Nov 2022 21:40:52 +0100
+Message-Id: <20221127204058.57111-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221127203240.54955-1-krzysztof.kozlowski@linaro.org>
-References: <20221127203240.54955-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,83 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and DT schema expects certain pattern:
+Hi,
 
-  qcom-ipq4018-ap120c-ac.dtb: leds: 'wlan2g', 'wlan5g' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+Changes since v1
+================
+1. New patch #3: dt-bindings: leds: lp55xx: switch to preferred 'gpios' suffix
+   (Fixing DTS in separate patches, see [1] [2] which superseded [3])
+2. New patch #6: dt-bindings: leds: ti,tca6507: correct Neil's name
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+[1] https://lore.kernel.org/linux-devicetree/20221127203240.54955-1-krzysztof.kozlowski@linaro.org/T/#md1ccb03ee81f820e0c7b8043111d56b5ed0d1e2f
+[2] https://lore.kernel.org/linux-devicetree/20221127203034.54092-1-krzysztof.kozlowski@linaro.org/T/#m17f1d2f79a35fce43509edc351a84bc9dab980c1
+[3] https://lore.kernel.org/linux-devicetree/20221125173602.cnipos5oo4ncxsac@mercury.elektranox.org/
 
----
+Best regards,
+Krzysztof
 
-Changes since v1:
-1. Add Rb
----
- arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts | 6 +++---
- arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts     | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+Krzysztof Kozlowski (6):
+  dt-bindings: leds: use unevaluatedProperties for common.yaml
+  dt-bindings: leds: lp55xx: allow label
+  dt-bindings: leds: lp55xx: switch to preferred 'gpios' suffix
+  dt-bindings: leds: lp55xx: rework to match multi-led
+  dt-bindings: leds: mt6360: rework to match multi-led
+  dt-bindings: leds: ti,tca6507: correct Neil's name
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts
-index cf7da1ab177c..1b27edce9d4f 100644
---- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts
-+++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts
-@@ -9,7 +9,7 @@ / {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		power {
-+		led-power {
- 			label = "ap120c-ac:green:power";
- 			function = LED_FUNCTION_POWER;
- 			color = <LED_COLOR_ID_GREEN>;
-@@ -17,14 +17,14 @@ power {
- 			default-state = "on";
- 		};
- 
--		wlan {
-+		led-wlan {
- 			label = "ap120c-ac:green:wlan";
- 			function = LED_FUNCTION_WLAN;
- 			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
- 		};
- 
--		support {
-+		led-support {
- 			label = "ap120c-ac:green:support";
- 			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&tlmm 2 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts
-index c4f89b712fd9..a707057c887d 100644
---- a/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts
-+++ b/arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts
-@@ -7,7 +7,7 @@ / {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		status: status {
-+		status: led-status {
- 			label = "ap120c-ac:blue:status";
- 			function = LED_FUNCTION_STATUS;
- 			color = <LED_COLOR_ID_BLUE>;
-@@ -15,7 +15,7 @@ status: status {
- 			default-state = "keep";
- 		};
- 
--		wlan2g {
-+		led-wlan2g {
- 			label = "ap120c-ac:green:wlan2g";
- 			function = LED_FUNCTION_WLAN;
- 			color = <LED_COLOR_ID_GREEN>;
-@@ -23,7 +23,7 @@ wlan2g {
- 			linux,default-trigger = "phy0tpt";
- 		};
- 
--		wlan5g {
-+		led-wlan5g {
- 			label = "ap120c-ac:red:wlan5g";
- 			function = LED_FUNCTION_WLAN;
- 			color = <LED_COLOR_ID_RED>;
+ .../bindings/leds/issi,is31fl319x.yaml        |  1 +
+ .../devicetree/bindings/leds/leds-aw2013.yaml |  1 +
+ .../devicetree/bindings/leds/leds-gpio.yaml   |  2 +-
+ .../devicetree/bindings/leds/leds-lp50xx.yaml |  8 ++++
+ .../devicetree/bindings/leds/leds-lp55xx.yaml | 47 ++++++++++++++++++-
+ .../devicetree/bindings/leds/leds-mt6360.yaml | 43 +++++++++++++++--
+ .../devicetree/bindings/leds/leds-pwm.yaml    |  2 +-
+ .../bindings/leds/leds-qcom-lpg.yaml          | 12 ++++-
+ .../devicetree/bindings/leds/leds-rt4505.yaml |  1 +
+ .../bindings/leds/leds-sgm3140.yaml           |  1 +
+ .../devicetree/bindings/leds/ti,tca6507.yaml  |  4 +-
+ 11 files changed, 111 insertions(+), 11 deletions(-)
+
 -- 
 2.34.1
 
