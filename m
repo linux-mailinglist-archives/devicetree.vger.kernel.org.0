@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49A6639CEA
+	by mail.lfdr.de (Postfix) with ESMTP id 23F6D639CE9
 	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 21:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiK0UlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 15:41:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
+        id S229716AbiK0UlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 15:41:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbiK0UlU (ORCPT
+        with ESMTP id S229732AbiK0UlU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 15:41:20 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194BBDFF8
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203B2DFFF
         for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:41:10 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id p8so14528560lfu.11
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:41:09 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id s8so14546043lfc.8
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 12:41:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CaRc1qhxO0e/vPCyLXyooIUxaaj3mmT/bRHWf+I1C6o=;
-        b=YaaN2RQTcFm9ehc3OomVgPJID3UUmIVjbjh+CTy6n8rddMuHsrrJsVgFupJb4bX7dn
-         OLgeT30j5o+6DcuTUYFXzHkp9Hnht5ZLR+alchUwHgR9ci7BwLM5uDNkCEX3a5mpuOtN
-         g4/rwHTJf+gyxhEG5Y7aIztzRsuOwurKdYyxElv2li+qa1X5f0XR7xflznYRwWnYeWCN
-         XrBq2JFslCK+FoN86SML1aRbr//ngmo2/Tu+zJ5BF79vwreaIQ1zb2F+VlJIH2zFex5V
-         a3i1f2crNl8u+BfLIOfkcnqy/Wurrj7XUWtXIVqZZkp9q52QwNzHQCukzdikgcvIxUQR
-         5xpw==
+        bh=o6gNym63NgF+XTZH1xbf0NrIpXmryBatnYIRGs7yiA8=;
+        b=k8oaQKmaomgkAAn4gJZ6oz32ISeg+f7NDfvedrkcJke0EM6slwU20AqrWqz1Qz6RYK
+         fIhTcalN17IvM4dsYhOaQ0fpwL9ECK9z/7la/ySHXY4lly8cV6FufBwEBdFmXxWQOtQb
+         jPKe1cxmxY0r1cbtc12jE6NlqUOf1avSmAsYJJGWZzltlmoNFVaOJHtUthLVbYGZlMNx
+         0pDYFPTG5la8qLXlRG6hTmvbA29MeVOOscMTetTzK0v23Sbc/sQUGGE4sJH4PfFMAfwu
+         T2kurnS+tjWiwrgKn034hotN65ap0OkMKQxTzwG1RrmIL2FrLtspFa7gPjmJRE8HfE7Y
+         aarg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CaRc1qhxO0e/vPCyLXyooIUxaaj3mmT/bRHWf+I1C6o=;
-        b=Nu50D3FFebW6KGnDbBmTKJ+cTMqmYW5uO2vavBbqZYo2Mbx5u3lZIuPldp/aWFdU8g
-         Q+k6ohdHiVL8xzRWhsIl/rMSAr1WaFFucYsgjuLa101a/fIiwOBNd6VcIOqbe3Ub7XV9
-         eko71TfcW2sa67P5fzkinO9V4UiyPw1mA1G2DLjWOJYELIEYxK8xIuVn5GAVFsYuYqdL
-         /tQqqFk7rEsZWXvu2S6TGyyDPpMrFaQnVHiUXyx1qNFdnmo0OB5eyUoB0SQDdEgzRziX
-         wzXrzMA3fzMpaH17KMPufE9twYEK+Fbr8sgisELP87k+tt+1WW1Ns/EVk4alI2eo17Jo
-         XDMQ==
-X-Gm-Message-State: ANoB5pnyKocoEoi51eFGd8T3ywAAOMUC6gp3GFLVgLiJvAZ4Re3bdafB
-        qsW0SJb2hysOLUgvxz8ixdH+1RdTy0WMEZLm
-X-Google-Smtp-Source: AA0mqf4kiCEQv/GcWeelmFXWf1koVqKb26tmeRxQzTIETfLrfZpwkqyCr2NjkWpbblurW2uvjucVtQ==
-X-Received: by 2002:a19:5f03:0:b0:4a2:67ea:a06 with SMTP id t3-20020a195f03000000b004a267ea0a06mr15601668lfb.580.1669581668369;
-        Sun, 27 Nov 2022 12:41:08 -0800 (PST)
+        bh=o6gNym63NgF+XTZH1xbf0NrIpXmryBatnYIRGs7yiA8=;
+        b=dIagTDCowQh5Byo0SgLqeS0Tad0toZ7Drd1ZYi3BYjfTPKSo6rKuM8YsDGIvGcFohD
+         nsCyfO7qCStpxU/1OaDzPlhGlTwQv+QsF8WwV4LZvUV9ECmFMgdTUfDN0vPkNo8WQY5b
+         yV/5VbaJL8jX4+xvrUDT4zFDj8+8xmVXbH1o9uM2l/X4fl+yu9ADrqRgpZyTHIAbf6ou
+         0Pvhz+ywdrtHoIsujux6MlUdGe9B++EfjOSptKeSfdyugNIiStKFzNh5Z5qlRcrjMIvG
+         0toOIkE/LlXXxGOb/K1DZQniWgZpKp/+CGb6K6Blzb2cOagX4WfTwjPXPx+nM8l9yJw0
+         YOkA==
+X-Gm-Message-State: ANoB5pn7X1bKfdXk2jAMq//k+p+X8CbYanZf3Ph2rRAY1uQ8DmZBeGOK
+        ealhVbM1rmcjFD0gkfCwe0R+Fg==
+X-Google-Smtp-Source: AA0mqf7XYe3dUPoZMSEuEg/TAgy3ISspZE7CBYTflFcarO7QXTtqRm76Xx4NbAeRKrEux9dBLHLiEg==
+X-Received: by 2002:a19:6a14:0:b0:4b4:e24d:c617 with SMTP id u20-20020a196a14000000b004b4e24dc617mr8650030lfu.61.1669581669649;
+        Sun, 27 Nov 2022 12:41:09 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi39-20020a05651c232700b002773ac59697sm644607ljb.0.2022.11.27.12.41.07
+        by smtp.gmail.com with ESMTPSA id bi39-20020a05651c232700b002773ac59697sm644607ljb.0.2022.11.27.12.41.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Nov 2022 12:41:08 -0800 (PST)
+        Sun, 27 Nov 2022 12:41:09 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 5/6] dt-bindings: leds: mt6360: rework to match multi-led
-Date:   Sun, 27 Nov 2022 21:40:57 +0100
-Message-Id: <20221127204058.57111-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 6/6] dt-bindings: leds: ti,tca6507: correct Neil's name
+Date:   Sun, 27 Nov 2022 21:40:58 +0100
+Message-Id: <20221127204058.57111-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221127204058.57111-1-krzysztof.kozlowski@linaro.org>
 References: <20221127204058.57111-1-krzysztof.kozlowski@linaro.org>
@@ -74,84 +74,37 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding allows two type of LEDs - single and multi-color.  They
-differ with properties, so fix the bindings to accept both cases.
+scripts/get_maintainers.pl is confused when name and family name are
+without space:
+
+  $ scripts/get_maintainer.pl -f Documentation/devicetree/bindings/leds/ti,tca6507.yaml
+  - NeilBrown <neilb@suse.de> (in file)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/leds/leds-mt6360.yaml | 43 +++++++++++++++++--
- 1 file changed, 39 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/leds/ti,tca6507.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-index 69e579226d9b..d84e28e616d7 100644
---- a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-@@ -26,11 +26,10 @@ properties:
-     const: 0
+diff --git a/Documentation/devicetree/bindings/leds/ti,tca6507.yaml b/Documentation/devicetree/bindings/leds/ti,tca6507.yaml
+index 9ce5c0f16e17..f2c4e94b33c3 100644
+--- a/Documentation/devicetree/bindings/leds/ti,tca6507.yaml
++++ b/Documentation/devicetree/bindings/leds/ti,tca6507.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: TCA6507 LED and GPIO controller
  
- patternProperties:
--  "^(multi-)?led@[0-5]$":
-+  "^multi-led@[0-5]$":
-     type: object
--    $ref: common.yaml#
--    description:
--      Properties for a single LED.
-+    $ref: leds-class-multicolor.yaml#
-+    unevaluatedProperties: false
+ maintainers:
+-  - NeilBrown <neilb@suse.de>
++  - Neil Brown <neilb@suse.de>
  
-     properties:
-       reg:
-@@ -43,6 +42,42 @@ patternProperties:
-           - 4 # LED output FLASH1
-           - 5 # LED output FLASH2
- 
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^led@[0-2]$":
-+        type: object
-+        $ref: common.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg:
-+            enum: [0, 1, 2]
-+
-+        required:
-+          - reg
-+          - color
-+
-+    required:
-+      - reg
-+      - "#address-cells"
-+      - "#size-cells"
-+
-+  "^led@[0-5]$":
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+    description:
-+      Properties for a single LED.
-+
-+    properties:
-+      reg:
-+        enum: [0, 1, 2, 3, 4, 5]
-+
- required:
-   - compatible
-   - "#address-cells"
+ description:
+   The TCA6507 is a programmable LED controller connected via I2C that can drive
 -- 
 2.34.1
 
