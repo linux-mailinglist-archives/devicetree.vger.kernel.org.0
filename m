@@ -2,131 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 135F4639A82
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:33:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65501639A88
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:34:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbiK0MdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 07:33:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33810 "EHLO
+        id S229526AbiK0Md7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 07:33:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbiK0MdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:33:08 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AE7DFB5
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:07 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id f13so13479309lfa.6
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:07 -0800 (PST)
+        with ESMTP id S229554AbiK0Md6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:33:58 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447C0DFCF
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:57 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id r12so13529011lfp.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oPk7pZaW+Js07Ir4q7QUeJVschpmE3FAH9jHHWjWI84=;
-        b=xumMlNEqTKOZiUQdPQSK+tLh74W9IPD9qE2L6gqKpx+SpZubP2+FGcLUilHEKVAH8W
-         vliKGEci5dFSmd7kV3xcKPB/eZbPFivoOcAhvP7KL0oFLI+pLDvisdeMP6aMHmP4Bhut
-         ESu3J1QPow+DUwHCPiE9p1pwhcLuWBaVeW6jOSsNUhgjG3Q958Bwy2tj8DhmMPHim6ps
-         hCPTWLt5mZ47FVx7Vb6EM2rljIRid9Tk0CbWVQ57H6SaBm/ZXDcDwnNLAQl+JluZqJko
-         B9ubfZXBnKNJTepPpA++5A7BAAsP3d28Nh2D2hXdRo/lvwUXEhKZDMYnNUX6iBFhtXeM
-         Llww==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PENFU4tyb/ok0u+n8L5L/tdtIhAxV8WKIbXgJYCRZ4c=;
+        b=J83nB1R8JQt9tNXauygafshSrUhbkafXaTg6yFyYUo4kEIozy2DZTKr3HlH/uqUv6x
+         pnXk1U7+7OPJnzLeUw9S9wV8xZX44zdpjYrkIohA0Jc/Xody3tV8+qdKseqw5g8YOZfu
+         9t82f/n5VQ2lUW+xSd+dohxvz02pHGYifa+ZpSd5vV91p8OWTzpPfRw3E+p2m/7G/8hz
+         Yfta0w1hDUMR9Wgdzza5cUgN/S0vjhvzWc3U6N/1jxvap5kXSr1hN6PnrKmlxE1vZxFl
+         m0zLcaccrSPgtvtoKlMOOJa32dYRuWXtapbI8avr6FRhjNDvewt+lWK5lXDdu8XmiUqV
+         Nd6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oPk7pZaW+Js07Ir4q7QUeJVschpmE3FAH9jHHWjWI84=;
-        b=Z+2fQ5JqYIiJTwKdomMzpgAcTRAboXGEyb3Uyb9NFJRz71GAef61vgCV/5O+YGengg
-         2jrtSAnRpFbXIGr+wKJgO41nXiPRn3HBU0DfdoqNnFaRp3a6Dtb9t478m/+D+DfgfI3S
-         js6m9NSKSqorsohFjlQpl8aVxj2m+wNDVnZyVUhmSLa2ouLCyfryMaPjJsle7S/X56n8
-         jUCBGpuXGTdWX4RojpMy9yzKjDV/ovSdpXVYYGjyAOyDDyNni+7DUDg5EFptd2wvbtHX
-         6YOGqsNcUGujKoVHyES5syYXQZTIk5LeLhPrbV50fxGiQ6IepYBC2FYxv9M6S49xnVFq
-         sLsA==
-X-Gm-Message-State: ANoB5pnrAc6V9oJVcLAJFdJ9xPMYhDtOPkxw1+Xu7tKB2kWtmfM8TmK9
-        UbrLOikI03Bq0Vw0JEkDHe4oCQ==
-X-Google-Smtp-Source: AA0mqf7+3uqL0EY0aETJxt1pjKKSiEoQY9brryuF6lfSW8A7Qdcx8QvuqQwcqMbNDDC6q9LNfbRQtA==
-X-Received: by 2002:ac2:4c27:0:b0:4a2:4df9:4cab with SMTP id u7-20020ac24c27000000b004a24df94cabmr16094272lfq.56.1669552386021;
-        Sun, 27 Nov 2022 04:33:06 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bf36-20020a05651225a400b0049fff3f645esm1270435lfb.70.2022.11.27.04.33.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Nov 2022 04:33:05 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sriranjani P <sriranjani.p@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Subject: [PATCH v2 4/4] dt-bindings: soc: samsung: exynos-sysreg: add clocks for Exynos850
-Date:   Sun, 27 Nov 2022 13:32:59 +0100
-Message-Id: <20221127123259.20339-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221127123259.20339-1-krzysztof.kozlowski@linaro.org>
-References: <20221127123259.20339-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PENFU4tyb/ok0u+n8L5L/tdtIhAxV8WKIbXgJYCRZ4c=;
+        b=OqeoQJfIQOxxl6+12/sGl+yHGW72zkeutcNQnjWzkbifVupblM6JL0dTZAugg5Cj+4
+         YCRhH+N6akpizGbLMsKTBQMwFiMUno4gmCETd+5eYudha+TC2Qr+rSOlQx78D0m/NbVl
+         vpfaN2hkrmkzdLjEanajLLO4OxhncP1UICJXRsRf6yeNw9BOrwiDZOhvAenqzmEbpsKZ
+         7lyvwlR2H+FFSF/sMt/E/8RbJWQzPeCk+605TdSkCmvAyKvg3GEzIctKezXv09Bp/qFC
+         fy7LDVqx6ADUQW+clHLNu352Ay8QjwBtXXYWkf8J52vIEvMBec7yTuXt2+QFTTL15qlX
+         1dqw==
+X-Gm-Message-State: ANoB5pkM3lBGqsRU35PjLm+rTO7pXiou6vWPQn7dPRjCIeGoRbXL+qQw
+        A89eEl7iwNl8fERljp/eIdMAaw==
+X-Google-Smtp-Source: AA0mqf6bsk+mRHVIZABLjwUAjBvqFKFqx32LjqUAnS7Wc/4rBV5tVwipyYKVCpNUnUrh2y106pFFkg==
+X-Received: by 2002:a19:5e01:0:b0:4a2:2b5d:b95d with SMTP id s1-20020a195e01000000b004a22b5db95dmr15309572lfb.589.1669552435672;
+        Sun, 27 Nov 2022 04:33:55 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b13-20020a2e894d000000b0026a92616cd2sm923805ljk.35.2022.11.27.04.33.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Nov 2022 04:33:55 -0800 (PST)
+Message-ID: <e07bb325-e39f-8e40-dcd1-00adfadf3bf4@linaro.org>
+Date:   Sun, 27 Nov 2022 13:33:53 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/5] dt-bindings: thermal: imx8mm-thermal: Document
+ optional nvmem-cells
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Adam Ford <aford173@gmail.com>, Alice Guo <alice.guo@nxp.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org
+References: <20221126224740.311625-1-marex@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221126224740.311625-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynos850 has dedicated clock for accessing SYSREGs.  Allow it, even
-though Linux currently does not enable them and relies on bootloader.
+On 26/11/2022 23:47, Marek Vasut wrote:
+> The TMU TASR, TCALIVn, TRIM registers must be explicitly programmed with
+> calibration values from OCOTP. Document optional phandle to OCOTP nvmem
+> provider.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Changes since v1:
-1. Make clocks required on Exynos850.
-2. Due to above change, do not add Rb tags.
-
-Cc: Sriranjani P <sriranjani.p@samsung.com>
-Cc: Chanho Park <chanho61.park@samsung.com>
-Cc: Sam Protsenko <semen.protsenko@linaro.org>
----
- .../soc/samsung/samsung,exynos-sysreg.yaml      | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-index 42357466005e..9f3fc6406d9d 100644
---- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-@@ -36,10 +36,27 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  clocks:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos850-sysreg
-+    then:
-+      required:
-+        - clocks
-+    else:
-+      properties:
-+        clocks: false
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+Best regards,
+Krzysztof
 
