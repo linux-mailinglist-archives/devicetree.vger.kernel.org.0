@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8088C639CA8
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 20:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B05AB639CAB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 20:56:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiK0T4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 14:56:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
+        id S229589AbiK0T4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 14:56:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiK0T4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 14:56:40 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E89DF5F
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:38 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id e7-20020a17090a77c700b00216928a3917so12034938pjs.4
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:38 -0800 (PST)
+        with ESMTP id S229600AbiK0T4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 14:56:43 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8FBDF4C
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:42 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id b4so8594290pfb.9
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 11:56:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6fFn/YKE8jPSBUZvBBUeVp9MQ2tiONJsxtj+ufAwhww=;
-        b=ochlP3mYMyIUiJmaI0D7X7oaduxw2wgrT7rxHtg0Ojn6dw1dpfgSx1kDYyp3lby7PQ
-         JsWNT/OASkrthRpWr/u3wiv7P4W4LZ6FR+svfw9Uvz1FlvWlZBYmrLPTj4GI5EDJrb3Q
-         KPoHBU9SvoXj4V/YLsWYvwC+BZ0//JM6/HELh3+tGmGedAAb++2Nrqg9mnfcwvXNMCuZ
-         qmkI7QVITLFzaPdFhKvJoxOIDm0XNLJRIsGf8ZV0ka/qdwEGIj6uZuYZOAhXuzkdka5O
-         Rwoi2Ujis+OeUYvew8K0Dv3Cmpc/Dgqkq+T820eI+z8L77Cy5qSqWCtio4LMjaI7FpZ4
-         FLCw==
+        bh=Dt7gCiRU+QTmWH6bkeGBsrTCAMP3VsxMn4QpUawUMm0=;
+        b=v4N9hl1EyFHlA6KZaaPBGFB58m88TmGR+PZfL6VCaVDLqjK1xJLiYDpiefWq8A/eSB
+         d/hrZ1WpUaQznKroe9I2nfbwfGk9wcj7OUCf02Iq7bGUuwBBKkbdTQ8vYh0Uga+qnRsu
+         6T+kVZluuq6kdxTIpek7VpW100zjwjKYcPf93B590xpjsHklFId3Ze53MGPLo/mWfKLH
+         0y2791zj/nU8ghP/GWRR0Bs3VByqu0+OYQnWnPonCp+Z/Nqrfu6GQOywOW7Yr1HjF4Gj
+         kOn3LDck+hgMmR9xolSDuhVSO/WAiTXR2FjtmfOWI1NQcDJoobLSE9MiDWLPUmcJRjbq
+         Z/uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6fFn/YKE8jPSBUZvBBUeVp9MQ2tiONJsxtj+ufAwhww=;
-        b=oFxFaWTNnguirc54J5OefzEKBpyVpbRE6G8tIcFDOxkXjvQLgjRy3qNhDk09WSNAm0
-         80qUtQCNPMMFoovywIbF4jxWE/DDLezx36VNWR5YsRKLbYJfBi5YRwr/HD7moZjcHfCt
-         tIewmpDGi8qG/Vwn1mIFjuDhXHVShm1lDad97d4pHcrbGKVAoGmXz7EC32ydiwSQoel7
-         cIcA1FEIxOlbf9lajri8/3ZZRfZ0MY3q7WEBydyids41yQHgfoN+MoFbeLj9yDpYzeDb
-         E9bLfVqSCty6paV29p2WD6YB1puDSazM5fjQk6+qFfpeKVpEKz35gKGkE5f9HZSIQ8Bs
-         snAQ==
-X-Gm-Message-State: ANoB5pm/sNzwf8yK0QiXfQijrxV6cfCufAzknjh3F0g7N7L02nfB4AZ9
-        BSfKcs+66mzxffnSNsDGz31u3Q==
-X-Google-Smtp-Source: AA0mqf4otZZgHImjhiYMefW0riYu3ZM2VvHXjOJFvthJzin/lETGrkWlF4Kxn6KbVm4QutRluWdgxA==
-X-Received: by 2002:a17:902:cf03:b0:186:5d7e:7ca8 with SMTP id i3-20020a170902cf0300b001865d7e7ca8mr28080223plg.74.1669578998284;
-        Sun, 27 Nov 2022 11:56:38 -0800 (PST)
+        bh=Dt7gCiRU+QTmWH6bkeGBsrTCAMP3VsxMn4QpUawUMm0=;
+        b=WS0g1kJW1Wf845Hj2SD3AiAMIwg1UC6KsYIPYb8cxWBpBZPZgy5WwWD2uJyeYtXWSv
+         q4wUuVZoVH4MdyNAlhbc3p90qkpSzMuW5bqS+YTvPYrEFOJloXAJAdZ+BmNzbpuc4uhJ
+         PQiSOKQr30dNzJ95KzvDednAoaxd/sbN4wVt7yDledyyoRf/e62Sgw1cohu+CGph0UqL
+         o85C8U8jKxPu+iJhVj04CFN5wViqX9iuyvXRxwkcUCNy9lMRhWb7qJ4uHe+uDQBQlBys
+         3AhPlCbVZGn3E8ZqXl1l1An1hDvAkYozu/dodhYGqP2wNaY4sl0Eaqa+sXIJYvBwYxNT
+         yZsg==
+X-Gm-Message-State: ANoB5plvUXw9mjTSZ+7qB3oJDUZ8XZeY9/jgF3soS5m8kCvbkKI6T4Sw
+        ySMAxTwuwbkqSeXHH5MEPnxZgw==
+X-Google-Smtp-Source: AA0mqf4fbBoeVfMe/1K4ikBELh3iuW94LslZ/0oFH0/ogMA+aOCNPPr1/9nb8CW+zrTlPG1sxMb4XQ==
+X-Received: by 2002:a63:5544:0:b0:477:6fe2:c1d1 with SMTP id f4-20020a635544000000b004776fe2c1d1mr24459962pgm.444.1669579002420;
+        Sun, 27 Nov 2022 11:56:42 -0800 (PST)
 Received: from localhost.localdomain ([223.179.131.184])
-        by smtp.gmail.com with ESMTPSA id n1-20020a170902968100b00186616b8fbasm564636plp.10.2022.11.27.11.56.34
+        by smtp.gmail.com with ESMTPSA id n1-20020a170902968100b00186616b8fbasm564636plp.10.2022.11.27.11.56.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Nov 2022 11:56:37 -0800 (PST)
+        Sun, 27 Nov 2022 11:56:42 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     jassisinghbrar@gmail.com, devicetree@vger.kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org,
@@ -58,9 +58,9 @@ Cc:     linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH 1/2] dt-bindings: mailbox: qcom: Add SM4250 APCS compatible
-Date:   Mon, 28 Nov 2022 01:24:17 +0530
-Message-Id: <20221127195418.1506876-2-bhupesh.sharma@linaro.org>
+Subject: [PATCH 2/2] mailbox: qcom-apcs-ipc: Add SM4250 APCS IPC support
+Date:   Mon, 28 Nov 2022 01:24:18 +0530
+Message-Id: <20221127195418.1506876-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221127195418.1506876-1-bhupesh.sharma@linaro.org>
 References: <20221127195418.1506876-1-bhupesh.sharma@linaro.org>
@@ -76,29 +76,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for the Qualcomm SM4250 APCS block.
+Enable SM4250 APCS IPC support by adding the compatible.
+It reuses msm8994_apcs_data.
 
+Cc: Jassi Brar <jassisinghbrar@gmail.com>
 Cc: Bjorn Andersson <andersson@kernel.org>
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml       | 1 +
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index f24fd84b4b05..05fbef6486fe 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -28,6 +28,7 @@ properties:
-               - qcom,sc8180x-apss-shared
-               - qcom,sdm660-apcs-hmss-global
-               - qcom,sdm845-apss-shared
-+              - qcom,sm4250-apcs-hmss-global
-               - qcom,sm6125-apcs-hmss-global
-               - qcom,sm6115-apcs-hmss-global
-               - qcom,sm8150-apss-shared
+diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+index f1f0e87a79e6..0e9f9cba8668 100644
+--- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
++++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+@@ -156,6 +156,7 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+ 	{ .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
+ 	{ .compatible = "qcom,sdm660-apcs-hmss-global", .data = &msm8994_apcs_data },
+ 	{ .compatible = "qcom,sdm845-apss-shared", .data = &apps_shared_apcs_data },
++	{ .compatible = "qcom,sm4250-apcs-hmss-global", .data = &msm8994_apcs_data },
+ 	{ .compatible = "qcom,sm6125-apcs-hmss-global", .data = &msm8994_apcs_data },
+ 	{ .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
+ 	{ .compatible = "qcom,sm6115-apcs-hmss-global", .data = &msm8994_apcs_data },
 -- 
 2.38.1
 
