@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65501639A88
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:34:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1DD4639A96
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiK0Md7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 07:33:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34796 "EHLO
+        id S229633AbiK0Mo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 07:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbiK0Md6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:33:58 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447C0DFCF
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:57 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id r12so13529011lfp.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:33:57 -0800 (PST)
+        with ESMTP id S229622AbiK0Mo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:44:26 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84026BF53
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:44:24 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g7so13508621lfv.5
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:44:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PENFU4tyb/ok0u+n8L5L/tdtIhAxV8WKIbXgJYCRZ4c=;
-        b=J83nB1R8JQt9tNXauygafshSrUhbkafXaTg6yFyYUo4kEIozy2DZTKr3HlH/uqUv6x
-         pnXk1U7+7OPJnzLeUw9S9wV8xZX44zdpjYrkIohA0Jc/Xody3tV8+qdKseqw5g8YOZfu
-         9t82f/n5VQ2lUW+xSd+dohxvz02pHGYifa+ZpSd5vV91p8OWTzpPfRw3E+p2m/7G/8hz
-         Yfta0w1hDUMR9Wgdzza5cUgN/S0vjhvzWc3U6N/1jxvap5kXSr1hN6PnrKmlxE1vZxFl
-         m0zLcaccrSPgtvtoKlMOOJa32dYRuWXtapbI8avr6FRhjNDvewt+lWK5lXDdu8XmiUqV
-         Nd6g==
+        bh=B0wTjTX8oc9gsfhtWKd9yy7AK5Y3/IIhH17ZCu5fZx4=;
+        b=T/PL1EZcdBp8VeEM1MTO7c2sNbEGNsfFvC9mNUOM5rg1dhvuw49Aw7AGDlZSYcT6T3
+         jFHpNBuykUv9RlbpWubxI86pJNYVdnCrZ0/MerOYOcjk0Hkb0tqC2//5aAsDFqTLbdJo
+         mz/8WeBpO73qlZ6UwPE/3u9wEYgoxvsP5M6knVNKmL7bH0EgZNu6LiMsiY8YcINwbqbL
+         OjIeQ1i+tDaaKpq+DBRU7bIk/0T5OUDXIOQ3XPGz15fhoOXgvMHnwWVr24vOwx9eMwKa
+         WBijznVtw8MqvbmeCgoyF1iwH0U1Kq/BvmZLJAmQCiOw/agPQruZ5LTMlZI7nlSjAbKl
+         SYTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PENFU4tyb/ok0u+n8L5L/tdtIhAxV8WKIbXgJYCRZ4c=;
-        b=OqeoQJfIQOxxl6+12/sGl+yHGW72zkeutcNQnjWzkbifVupblM6JL0dTZAugg5Cj+4
-         YCRhH+N6akpizGbLMsKTBQMwFiMUno4gmCETd+5eYudha+TC2Qr+rSOlQx78D0m/NbVl
-         vpfaN2hkrmkzdLjEanajLLO4OxhncP1UICJXRsRf6yeNw9BOrwiDZOhvAenqzmEbpsKZ
-         7lyvwlR2H+FFSF/sMt/E/8RbJWQzPeCk+605TdSkCmvAyKvg3GEzIctKezXv09Bp/qFC
-         fy7LDVqx6ADUQW+clHLNu352Ay8QjwBtXXYWkf8J52vIEvMBec7yTuXt2+QFTTL15qlX
-         1dqw==
-X-Gm-Message-State: ANoB5pkM3lBGqsRU35PjLm+rTO7pXiou6vWPQn7dPRjCIeGoRbXL+qQw
-        A89eEl7iwNl8fERljp/eIdMAaw==
-X-Google-Smtp-Source: AA0mqf6bsk+mRHVIZABLjwUAjBvqFKFqx32LjqUAnS7Wc/4rBV5tVwipyYKVCpNUnUrh2y106pFFkg==
-X-Received: by 2002:a19:5e01:0:b0:4a2:2b5d:b95d with SMTP id s1-20020a195e01000000b004a22b5db95dmr15309572lfb.589.1669552435672;
-        Sun, 27 Nov 2022 04:33:55 -0800 (PST)
+        bh=B0wTjTX8oc9gsfhtWKd9yy7AK5Y3/IIhH17ZCu5fZx4=;
+        b=goPM1Xoh9f/3F8SLXXUwwOgaqxYkrJOCHZAXX/7kpd19RhWMunyRWGjse7NX179w79
+         UybLpOeTIBKQ4YhUaIACzbk8OWdLvHgOmb8ZqlI8kLJLuhdItn4rdZERK116AYna9lXh
+         /v6v11tzyf75fXmXNTVtmvEb603tL3ls1HgSuFYgXw63iBAUUXXJSfvALEohKh1/+5eJ
+         aMqnJKkuusIDo+GbGh5J5XrZpda8t3klcEy9atqBFoRLiSBxVqjiFeZ+O1sDMoNfrAEL
+         TbLFPrKwuLxARIJJ11Bh1pACNUL8LKvQfRVYmS/nZEE7sFJlTS2pvl8cI/b1g3OPCKjT
+         /UAg==
+X-Gm-Message-State: ANoB5pmKel9fW3fYIFHxUEJ7vaKUDDpj5UkZ/oocjJz3uau6J5njRKRu
+        fBdfwQWiEzGaiEQueBU72g+kHjncnjuQ8p2m
+X-Google-Smtp-Source: AA0mqf49suwCpWlASIE/0UTr+rlkpTx39rlWSFK+oskELfLcmKeB0DbRwxLGwAPoErfjqYD77rZcOA==
+X-Received: by 2002:a05:6512:258b:b0:4b5:c8f:2b59 with SMTP id bf11-20020a056512258b00b004b50c8f2b59mr1812375lfb.536.1669553062933;
+        Sun, 27 Nov 2022 04:44:22 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b13-20020a2e894d000000b0026a92616cd2sm923805ljk.35.2022.11.27.04.33.54
+        by smtp.gmail.com with ESMTPSA id m9-20020a056512358900b0049468f9e697sm1273347lfr.236.2022.11.27.04.44.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 04:33:55 -0800 (PST)
-Message-ID: <e07bb325-e39f-8e40-dcd1-00adfadf3bf4@linaro.org>
-Date:   Sun, 27 Nov 2022 13:33:53 +0100
+        Sun, 27 Nov 2022 04:44:22 -0800 (PST)
+Message-ID: <a4ea3bd0-b716-5bda-c6c7-cad06e964fa1@linaro.org>
+Date:   Sun, 27 Nov 2022 13:44:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 1/5] dt-bindings: thermal: imx8mm-thermal: Document
- optional nvmem-cells
+Subject: Re: [PATCH v2 1/4] dt-bindings: crypto: Let STM32 define Ux500 CRYP
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20221125223217.2409659-1-linus.walleij@linaro.org>
+ <20221125223217.2409659-2-linus.walleij@linaro.org>
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Adam Ford <aford173@gmail.com>, Alice Guo <alice.guo@nxp.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org
-References: <20221126224740.311625-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221126224740.311625-1-marex@denx.de>
+In-Reply-To: <20221125223217.2409659-2-linus.walleij@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,15 +82,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/11/2022 23:47, Marek Vasut wrote:
-> The TMU TASR, TCALIVn, TRIM registers must be explicitly programmed with
-> calibration values from OCOTP. Document optional phandle to OCOTP nvmem
-> provider.
+On 25/11/2022 23:32, Linus Walleij wrote:
+> This adds device tree bindings for the Ux500 CRYP block
+> as a compatible in the STM32 CRYP bindings.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> The Ux500 CRYP binding has been used for ages in the kernel
+> device tree for Ux500 but was never documented, so fill in
+> the gap by making it a sibling of the STM32 CRYP block,
+> which is what it is.
+> 
+> The relationship to the existing STM32 CRYP block is pretty
+> obvious when looking at the register map, and I have written
+> patches to reuse the STM32 CRYP driver on the Ux500.
+> 
+> The two properties added are DMA channels and power domain.
+> Power domains are a generic SoC feature and the STM32 variant
+> also has DMA channels.
+> 
+> Cc: devicetree@vger.kernel.org
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Drop the second (new) example.
+> ---
+>  .../bindings/crypto/st,stm32-cryp.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> index ed23bf94a8e0..6759c5bf3e57 100644
+> --- a/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/st,stm32-cryp.yaml
+> @@ -6,12 +6,18 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: STMicroelectronics STM32 CRYP bindings
+>  
+> +description: The STM32 CRYP block is built on the CRYP block found in
+> +  the STn8820 SoC introduced in 2007, and subsequently used in the U8500
+> +  SoC in 2010.
+> +
+>  maintainers:
+>    - Lionel Debieve <lionel.debieve@foss.st.com>
+>  
+>  properties:
+>    compatible:
+>      enum:
+> +      - st,stn8820-cryp
+> +      - stericsson,ux500-cryp
+>        - st,stm32f756-cryp
+>        - st,stm32mp1-cryp
+>  
+> @@ -27,6 +33,19 @@ properties:
+>    resets:
+>      maxItems: 1
+>  
+> +  dmas:
+> +    items:
+> +      - description: mem2cryp DMA channel
+> +      - description: cryp2mem DMA channel
+> +
+> +  dma-names:
+> +    items:
+> +      - const: mem2cryp
+> +      - const: cryp2mem
 
+Usually these are called rx/tx, but I understand you are documenting
+existing usage from DTS or driver? In such case:
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
 
 Best regards,
 Krzysztof
