@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEA40639AA2
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F27639AAC
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 13:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiK0Mw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 07:52:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
+        id S229568AbiK0MzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 07:55:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbiK0Mw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:52:58 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9054A472
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:52:56 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id b9so10194669ljr.5
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:52:56 -0800 (PST)
+        with ESMTP id S229551AbiK0MzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 07:55:17 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEF010578
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:55:15 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id d6so13519592lfs.10
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 04:55:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ss5EUFYPSLGMMtCcaAzc2NEgCFyiqQz6TqOrspmzT7k=;
-        b=yRgWk2ZV1ZvWEkkGQ2sMm4idAV4jCqZTJZQZWul9VNq35/Jecpnaq6m+o/bBLof/KK
-         B+n1vE5uih+kG4sLFEEi+Bt3+GeAM6gTFPlAmnWMXKF+d32BXBBJKJBqnhI8Rc519SoB
-         Ote1mVtEkWMdz0xQkc5NmNpevAlj+hBvhLH9D1NabJnZr21UGhYwIoSxbIVFdVx1LXjr
-         p60xa+1EcWNgvsikg9hVQnkQ/2q8m5OPQi0eDBHoyb8beuVZLeBmpxCCl7zHL5njZ5ka
-         DcZ1NHXZL+Iawih3/XT5Nx4Ohdnp1HUJxD5Wye2/FSzvU004n873jje7koAuMLBXOYqj
-         Mmlg==
+        bh=FNtSDMmxyyg/RnqkxVaNCA/q87Lago8y46jn3l+OIL8=;
+        b=TB2oC9sI0QlxmTMXR24HfLyCe/IrGrEEtdAD3t4Q7BJkD1rD7Nt1DoGimy3ExKMgKC
+         oDLkLgsfZU6KMyrDTvwNpNFpgOnhKmTjefzpYwBxGDRtK9HpKIjFFfN7jMjWZD5Zci/L
+         PlDbnnZ4qId1ORTjdTVxm6olFfL8Iaz2P99EfOZPeiU1usNkBouBvUQG1nda372ugHGJ
+         IWQlj1Xs+9w6A7ScvyFL7ASnRvjlfgWhwHGJRdD4dnNDcW14+UO40dS0SbMd+XbavvEV
+         Y1Fm7TNzNPNGA1bMIzTaoATsfePVylo3obKkw5egzvzAmChxliLk0Z1vz0Q2wcaZBJv5
+         hVYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ss5EUFYPSLGMMtCcaAzc2NEgCFyiqQz6TqOrspmzT7k=;
-        b=vsfIuzPQCm9rS/hHAws7sXrRuB82KM3ktJxjfqzhh0uT35tzmDhSHezEgqnHmSu16c
-         9eidUyngASW0nVkUeS78nU4P72aqYMT0U4eZKvMUdQ8eR0wCEcfvKu6Wj+0Qh5emnp67
-         qB/YFJfnKXfQ/HyKOb3Tmv0HO34N6AI9uuTJr035/VIJ+BGq2rqhxQKE4aGBMOnZvnpQ
-         4d6NtjiN8RXNAmTQT8h2aOHYeKDL5RZXI176oy8Com57CvDXNG1jt+aqHLptSYXU6j8A
-         JaZiHLbwGq+ljIXuyCvL4PJXbk2YedTMsvNYLIvtWwyJ81EVJQjSPKlHj2lttUnUG8ON
-         xE5w==
-X-Gm-Message-State: ANoB5pmLyR5k9jSQk95Vo5fAQ7e9QW+bxhtGeDBVNAbDsAL8Ch9/BmOU
-        wOeV4PWQITCpDhxYHedrVOrL9g==
-X-Google-Smtp-Source: AA0mqf4FJ/CyuhoSCfxd/ghP9L2qHeHhWw5y9hR1vY3+aLslf998u7GsJYanC/tq9NL8S+7j7DpLzA==
-X-Received: by 2002:a05:651c:220a:b0:277:2428:3682 with SMTP id y10-20020a05651c220a00b0027724283682mr16171606ljq.291.1669553575358;
-        Sun, 27 Nov 2022 04:52:55 -0800 (PST)
+        bh=FNtSDMmxyyg/RnqkxVaNCA/q87Lago8y46jn3l+OIL8=;
+        b=7jdaOZ38tLNhV5lw5h/5fyBMuOtX7cXy+Ns2fc0uTI4LwCWmCEcqbjL/Ut7H3B4Fgn
+         1CPx+Er7f+0wmhoBSXeUTPS/ndeD2OIupIq1SdYkMS5usTgBlwJLzWAPe/U0kppbrlxG
+         9vDixdft73PELFx9FZOsoA0H7nTF4LRkqCau9AppsB6I45TQkqvDkMO77MdbXnJZ4NN/
+         4FNNm+08xgVJ7jAQN7y/v6pWoDeAkvG9so238jkGVYTwU+wl5uCmOyRtDtn+yIJw/wAX
+         jMKVxJLQBgGyXvOsaGLC1eeg0sgmlalJVGRXz6+RvYhYNOQkI39ZGMKi6M4VggGr3G5j
+         Da7g==
+X-Gm-Message-State: ANoB5plPVfwXwlxtFmNuU4RvCpmcXbcxgUmDQpmZDOn2BuvmKp+ypxPb
+        iIL6KmMJmUKgUIyilhg7kNY0uw==
+X-Google-Smtp-Source: AA0mqf5vkcsqW1cgwx05osYSsMYb12Kk7MQKcP6zoK5MiylsKBasnlgshtQOyd9870u9wM1k6ZalCQ==
+X-Received: by 2002:ac2:5331:0:b0:4ab:35a8:2fa0 with SMTP id f17-20020ac25331000000b004ab35a82fa0mr13880098lfh.233.1669553714110;
+        Sun, 27 Nov 2022 04:55:14 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l14-20020a19c20e000000b004afd23cf7eesm1276073lfc.168.2022.11.27.04.52.54
+        by smtp.gmail.com with ESMTPSA id b24-20020a196458000000b004949a8df775sm1290214lfj.33.2022.11.27.04.55.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 04:52:54 -0800 (PST)
-Message-ID: <0a5cd856-c819-b084-a0e8-e97d551dab88@linaro.org>
-Date:   Sun, 27 Nov 2022 13:52:53 +0100
+        Sun, 27 Nov 2022 04:55:13 -0800 (PST)
+Message-ID: <ab645c2e-92c9-6b83-8587-abe1a81f2a65@linaro.org>
+Date:   Sun, 27 Nov 2022 13:55:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 3/4] dt-bindings: display: panel: mipi-dbi-spi: Add
- missing property
+Subject: Re: [PATCH 4/4] dt-bindings: display: panel: mipi-dbi-spi: Add
+ io-supply
 Content-Language: en-US
-To:     Affe null <affenull2345@gmail.com>,
+To:     =?UTF-8?Q?Otto_Pfl=c3=bcger?= <affenull2345@gmail.com>,
         =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
         Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -70,13 +70,11 @@ To:     Affe null <affenull2345@gmail.com>,
         Thomas Zimmermann <tzimmermann@suse.de>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <43ccb0fb-119b-1afe-758b-e413729dd704@gmail.com>
- <81722eba-3910-2117-8b07-bb030ab754dd@gmail.com>
- <CACYkpDr204QaCEmfFfuVH_=CWxH6mRixeRoyv6QXav9T7YP-sQ@mail.gmail.com>
+References: <d8b00afb-8c60-fe9d-dad3-280a0e0254ef@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACYkpDr204QaCEmfFfuVH_=CWxH6mRixeRoyv6QXav9T7YP-sQ@mail.gmail.com>
+In-Reply-To: <d8b00afb-8c60-fe9d-dad3-280a0e0254ef@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -86,13 +84,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2022 19:16, Affe null wrote:
-> Sorry for the spam, unfortunately I can use neither git-send-email nor
-> Mutt with GMail, so I had to use Thunderbird for sending the patches.
+On 25/11/2022 19:02, Otto Pflüger wrote:
+> Add the new io-supply property, which specifies the regulator for
+> the I/O voltage supply on platforms where the panel panel power and
+> I/O supplies are separate.
+> 
+> Signed-off-by: Otto Pflüger <affenull2345@gmail.com>
+> ---
+>   .../bindings/display/panel/panel-mipi-dbi-spi.yaml        | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git 
+> a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml 
+> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> index d55bf12ecead..68cbdfab5438 100644
+> --- 
+> a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> +++ 
+> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+> @@ -22,8 +22,9 @@ description: |
+>     The standard defines the following interface signals for type C:
+>     - Power:
+>       - Vdd: Power supply for display module
+> +      Called power-supply in this binding.
+>       - Vddi: Logic level supply for interface signals
+> -    Combined into one in this binding called: power-supply
+> +      Called io-supply in this binding.
 
-GMail does not have problem with git send-email or mutt (I was using it
-a lot), so you need to fix your setup. Unfortunately some of the patches
-are heavily corrupted.
+I have troubles understanding what is happening here and I am not sure
+if this is result of corrupted patch or just diff is like that. Anyway
+patch is not properly formatted, so you need to fix your setup.
 
 Best regards,
 Krzysztof
