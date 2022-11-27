@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26452639D43
-	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:26:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C57639D47
+	for <lists+devicetree@lfdr.de>; Sun, 27 Nov 2022 22:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbiK0V0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 16:26:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34270 "EHLO
+        id S229718AbiK0V01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 16:26:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbiK0V0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:26:12 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F29BDF0A
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:26:11 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id d128so11127136ybf.10
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:26:11 -0800 (PST)
+        with ESMTP id S229711AbiK0V00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 16:26:26 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA22E0CD
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:26:24 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id h5so6898725ljk.11
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 13:26:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HgkwP5Gr80kx+eoGWhH3ysjp0qUkMA9X8iHdrpzsq2s=;
-        b=OKJQqp4VyiAfqlu0X5PXSQ7tpF2LJEPqnDmcSV4+/9rQHlkzRgaRCFw04przmQqUQM
-         7+lA5rG1+pKUHVZLEexCqV2RTWphTRQPnDu+03bYgismKtCixMntR1a3HhgT8Mg0QyHC
-         z275aSefj99qRFPPmsDk/ExOf/+dkzGNgTsyxVkvR3R6NbDCfUIFbCZ+7+K6SrDEXeq2
-         Juj69zzXZR0ha78JwDjocolxL0zYruk0oQm71Qz+CQiBYOxA77y+fP/4DtztvBtcR8v9
-         hvAq0Xk7us+CM+h7aw9JteVSfizcXqvU5dH6eBjfxMVLTIuBYj2Td44kCppeIYOjBXil
-         bnuA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LpYPbhCIxdq9zb9RtQtEbIq7/DCEPoj36+5WZRRtCkY=;
+        b=AX0vLsCbgw8p+0tT8lQ3aebcqI+FvAoUVjgtrVuGupxDFsTrtFE3MWdXFgWYDWsgPD
+         wIMhMd0j04AuW1HwiDxn8pIjBnxbCGGNtg9TKZMxn1Yb1yykMODR3yudB/Nt803NaQ2t
+         p71Ulqlf4Fp7fI0aZ03mW59okyZM5xXSGKtZqLLX7N7YUTfaZ6Vz57olyVJMYRaV0oOu
+         Vn9Q2ivM6biaQAK3RKTE3O0gWfNVXgibtqON2rmgLTM4AivWjwJy1UJJbwiHMVZ26Jlr
+         Y/AaMGpNqIh2nLbCGezR/Jw2axTCYx506Ofn1I8q1c+8rzmpbDuqY+wfTyWrcliug0aH
+         M2Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HgkwP5Gr80kx+eoGWhH3ysjp0qUkMA9X8iHdrpzsq2s=;
-        b=TYMciYdfSaIc1yyZnCo8anHbOYmG9A8XnbE9mwSHkN7PYD7TjNyE73KxqaYUsMnryP
-         zRLOBMFxPu+k8iROXvePmAsDbfa4/RllrTX5aBuj2CSYSpJ4ZP+t2DR+bIJTUXxCI294
-         ESSBl26aZsPS/efEebQBPJn6THYJSkQrpNxr2eiVsfySeguoZvBPSQ2EbSfbrEIsmPtT
-         0SDrUDpbYk06iyBFRQ+A3AblGgH5tokCob/qD60MTeV4U1Vvpd3rUYvYVyNA8iPd7Z6W
-         2xWKZWwL2+tDM4Fl9kdrkZW5bXP45/A7ws62lRh9Uc7XWMBieZ9LD4Gzf44d71SI7BF9
-         ABOA==
-X-Gm-Message-State: ANoB5pm746AMss4z91vWkIMzZbEc2vc/AOF4xPQ8Mc2SGw5j0IcpKv0X
-        E2IPLj4WZu5ioQyKpvCi224JMetZ1YH1/cxH9+tR/g==
-X-Google-Smtp-Source: AA0mqf64g3pQHzizACdiWdG2+InatoZLEaDSdZ1QJS+X5/UwYFgxeO/dIIfDAWFCQz4vo1LXrEjab31B7HV8jsb7a68=
-X-Received: by 2002:a25:4282:0:b0:6f2:7d57:e51b with SMTP id
- p124-20020a254282000000b006f27d57e51bmr14291337yba.15.1669584370695; Sun, 27
- Nov 2022 13:26:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20221127181835.806410-1-luca@z3ntu.xyz>
-In-Reply-To: <20221127181835.806410-1-luca@z3ntu.xyz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 27 Nov 2022 23:25:59 +0200
-Message-ID: <CAA8EJpoe09FZcfVXuknmFWO5qg-iYDOBVN3=qr=DeJjvHw56Mw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document oneplus,bacon device
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LpYPbhCIxdq9zb9RtQtEbIq7/DCEPoj36+5WZRRtCkY=;
+        b=MJAOHxRFau2uDvdKs97qf0oTs7khdQx/eLRAlLJV7rjrIj7Wv/nQXDDrSyNO2LxKKB
+         UQct6wlOKPDJcZvVe6atkYjS6o8EFs/A8BumYbQ1yyiZRYyyBbEvJm47NneoAOuo9FHP
+         9GfzuFjczdFGWGarEuoiu0AEg65bjA2LyWaojcl4hh8HPxwnj/VFzvHFxwXaQv2dhqN5
+         Vip/5kw+ODLJFM31dwa3EkY4KJ7HlOODr00q0fWSBwWMk6u3jeyz5oh8IRkz6VKTuSFJ
+         pynhFFXYd2NJtOFE02dUExv5Yur3XEOF4nCR0j3Ra8ndDpBBQqrvvjEhcaDYtQPgYsad
+         WusA==
+X-Gm-Message-State: ANoB5pmFV4t6SdP09mlDILvsnzcYQOsdqEV7WCr16lLkfKZFokB6C666
+        vsVyRwymy9PGtvBv+22Dtkk7+A==
+X-Google-Smtp-Source: AA0mqf6Dg324ZZZEmjiJ2EXuM/mufU09uLC8mRgyCZS6eiLXXVFdX65fVC8xggbEcd3AtxwOKKW+vA==
+X-Received: by 2002:a2e:a224:0:b0:277:309:f1ad with SMTP id i4-20020a2ea224000000b002770309f1admr9712153ljm.244.1669584383311;
+        Sun, 27 Nov 2022 13:26:23 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 4-20020ac25f04000000b004b4b90a6992sm1074361lfq.95.2022.11.27.13.26.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Nov 2022 13:26:22 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     linux-kernel@vger.kernel.org,
+        Pierre Gondois <pierre.gondois@arm.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Arjun K V <arjun.kv@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Aswani Reddy <aswani.reddy@samsung.com>,
+        Shashank Prashar <s.prashar@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH v4 0/2] arm64: dts: [exynos|fsd]: Update cache properties
+Date:   Sun, 27 Nov 2022 22:26:21 +0100
+Message-Id: <166958437707.66932.13795451978278069331.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221123092449.88097-1-pierre.gondois@arm.com>
+References: <20221123092449.88097-1-pierre.gondois@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,53 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Nov 2022 at 20:19, Luca Weiss <luca@z3ntu.xyz> wrote:
->
-> Document the OnePlus One ("bacon") which is a smartphone based on the
-> Snapdragon 801 SoC.
->
-> Also allow msm8974 devices to use qcom,msm-id and qcom,board-id.
+On Wed, 23 Nov 2022 10:24:43 +0100, Pierre Gondois wrote:
+> v1:
+>  - exynos: [1]
+>  - fds: [2]
+> v2:
+>   No change.
+>  - exynos: [3]
+>  - fds: [4]
+> v3:
+>  - Update commit header for fsd platform. [5]
+> v4:
+>  - Update commit header for fsd platform.
+> 
+> [...]
 
-The patch itself is good. However it raised a broader question for me.
-Up to now all msm8974pro devices use qcom,msm8974 as a top-level
-compatibility string. Should it be changed to use pro-specific one
-(e.g. qcom,msm8974pro)?
+Applied, thanks!
 
-For the patch itself:
+[1/2] arm64: dts: exynos: Update cache properties
+      https://git.kernel.org/krzk/linux/c/784287950d8613132d3c3fd502906ba844d63166
+[2/2] arm64: dts: fsd: Update cache properties
+      https://git.kernel.org/krzk/linux/c/bf2ae716bc4a442e6e8270c18fd29441c031ace8
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
->
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 463509f0f23a..3d2cc8ae34d8 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -167,6 +167,7 @@ properties:
->            - enum:
->                - fairphone,fp2
->                - lge,hammerhead
-> +              - oneplus,bacon
->                - samsung,klte
->                - sony,xperia-amami
->                - sony,xperia-castor
-> @@ -896,6 +897,7 @@ allOf:
->                - qcom,apq8026
->                - qcom,apq8094
->                - qcom,apq8096
-> +              - qcom,msm8974
->                - qcom,msm8992
->                - qcom,msm8994
->                - qcom,msm8996
-> --
-> 2.38.1
->
-
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
