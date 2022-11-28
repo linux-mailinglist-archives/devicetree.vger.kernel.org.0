@@ -2,144 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A8663AFE3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:46:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3210063AFF3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:48:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233521AbiK1Rqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:46:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35010 "EHLO
+        id S233442AbiK1Rr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:47:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbiK1RqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:46:09 -0500
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154412CE3D
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:41:26 -0800 (PST)
-Received: by mail-il1-f180.google.com with SMTP id h17so5375119ila.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:41:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xbRKAUrPmnBiS6hCHyMw1jh/sJ1aupJyGNs4+wDuBfw=;
-        b=JbnKXHqx9V3W/+29zPrd/j1S2SNKWEbmATXkVgE1/G7KgT0TIOeGVuYV329lDtMcan
-         ildWK0vFKuESZ0G5x1pP6dUp1Otku5ikPaEhTzBqTHKmvS9q45hrFg2FGhYAlkX0cnwp
-         kw8Mvj8Muh2oQQCFoyrDJnswwWYfbkxif4Kc5QJEmJ5LpiyjZ0UykioFQR6oYS5jMWCY
-         5zaAPB9CX6IBvegpuF5mRyvCo6fmOsvl8lTyhoaTylJHjz2kMcSGGAmohVfPcnNMQRTS
-         4Ho7lslrDBaGY3eD/wtnSvCJ+cjHMRf6mUVQ540tzH9I45qsizSZ74h8Dq3t698J7QJ6
-         wZBA==
-X-Gm-Message-State: ANoB5plJI5q9UdTIVjy3R1TxbTb9twlk6tpVI9Piu+hXUNBHUhm3f9Lg
-        h+p4i9lYQywsk6hpXVEzuqAAZg==
-X-Google-Smtp-Source: AA0mqf506mtbJING1FaQH+qUD+TgZxe8QY5+GImTnpr+oiFjfC0dS6xS3ra4FGl0uBRaZC6gip956g==
-X-Received: by 2002:a05:6e02:def:b0:300:c33d:c8a8 with SMTP id m15-20020a056e020def00b00300c33dc8a8mr16478349ilj.166.1669657278190;
-        Mon, 28 Nov 2022 09:41:18 -0800 (PST)
-Received: from google.com (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with ESMTPSA id r5-20020a92c505000000b00300e6efca96sm4038626ilg.55.2022.11.28.09.41.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Nov 2022 09:41:17 -0800 (PST)
-Date:   Mon, 28 Nov 2022 17:41:14 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Doug Anderson <dianders@chromium.org>,
-        =?utf-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
-        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
-        Jason.Huang@ecs.com.tw
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
-Message-ID: <Y4TyuqPQtZBFChKD@google.com>
-References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
- <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
- <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
- <CAPao8GKbdK79Z7w91x0T6JW9v6VFoeYSaXGGAuzB_=ukR9g0_w@mail.gmail.com>
- <b54cd0a4-7ee8-e8c0-ceda-18b29588d535@linaro.org>
- <CAD=FV=X9C8nLDrEpZE2tLtq6Brn9cd-15+1JWFOL4cPYdJs5Dg@mail.gmail.com>
- <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
+        with ESMTP id S233784AbiK1RrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:47:17 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 955F22E698;
+        Mon, 28 Nov 2022 09:42:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 46207B80E81;
+        Mon, 28 Nov 2022 17:42:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10E05C433B5;
+        Mon, 28 Nov 2022 17:42:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669657324;
+        bh=Y0xCNIaSJ3X/oTRjurp0nzuDp0pUD7m3l6+SeEzBefs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=T9jrTha4l65zKjbPwVtIKD/XHAm8hlymkP7WnY3rJe6CP072hOY1GLZw1wL6X574f
+         YqGT64W7bqEYv3QxY8d4ktRSGATV2XksU3JNNbSCx8AhPfFMF14qeDC5tQkS+JzisJ
+         D2NEcCeaQJleHWudb6F5mH8p4ChU+zGAGt6yNwt5LkA4ScZ5ugi2XHE73sXMyf+BgW
+         Zj7lXwPoUyfFsI4cHb09LPmbXKwMOF7tBHl0B30XdPYYeIkEv77rSPIqMpgr/Fltwp
+         xszirywp6AV2rCf/vRJ75IA/gkgcEjyyyvzVv8++O1ZiYNlTT/L5j9bdCe8TuVqIZr
+         bkd+f6B6aJUeQ==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     FUKAUMI Naoki <naoki@radxa.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 01/16] arm64: dts: rockchip: keep I2S1 disabled for GPIO function on ROCK Pi 4 series
+Date:   Mon, 28 Nov 2022 12:41:44 -0500
+Message-Id: <20221128174201.1442499-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 06:22:39PM +0100, Krzysztof Kozlowski wrote:
-> On 28/11/2022 16:56, Doug Anderson wrote:
-> > Hi,
-> > 
-> > On Thu, Nov 24, 2022 at 3:27 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 24/11/2022 12:20, 楊宗翰 wrote:
-> >>> Hi Krzysztof, Matthias,
-> >>>
-> >>> How to use "get_maintainers.pl"?
-> >>>
-> >>> I find this script in path "<MyCodebase>/kernel/v5.15/script", and output
-> >>
-> >> This looks like v5.15 kernel which is heavily outdated. Please never
-> >> work on such kernels when interacting with upstream. The rule is you
-> >> work on either last mainline kernel (v6.1-rc6), maintainers for-next
-> >> branch (you should know who is the maintainer of subsystem you submit
-> >> to, get_maintainers.pl gives this information) or on moderately recent
-> >> linux-next. For bigger patchsets there might be exceptions for these
-> >> rules, but it's not the case here.
-> > 
-> > Just to add context here, it's a fairly standard workflow for ChromeOS
-> > kernel engineers to work in a "versioned" kernel directory but still
-> > checkout and work with the upstream kernel. I'm sure it's confusing to
-> > anyone not used to working with the ChromeOS source tree and build
-> > system. Sorry! :( So the fact that Owen is in a directory called
-> > "v5.15" doesn't mean that he's actually working with the v5.15 kernel.
-> > The fact that Bjorn's address is correct in his CC list implies to me
-> > that he's actually got a proper upstream kernel.
-> > 
-> > I had previously [0] instructed Owen to send against Bjorn's tree, so
-> > hopefully it's correct.
-> 
-> If it was on Bjorn's tree, get_maintainers.pl would not produce such result:
-> 
-> ---
-> Series-to: LKML <linux-kernel@vger.kernel.org>
-> Series-cc: Douglas Anderson <dianders@chromium.org>
-> Series-cc: Bob Moragues <moragues@chromium.org>
-> Series-cc: Harvey <hunge@google.com>
-> Series-cc: Stephen Boyd <swboyd@chromium.org>
-> Series-cc: Matthias Kaehlcke <mka@chromium.org>
-> Series-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: FUKAUMI Naoki <naoki@radxa.com>
 
-These look like manual entries for patman
+[ Upstream commit 849c19d14940b87332d5d59c7fc581d73f2099fd ]
 
-> or this:
-> 
-> ---
-> owen@buildsvr-HP-ProDesk-600-G4-MT:~/chromebook_zombie_os/src/third_party/kernel/v5.15$
-> perl scripts/get_maintainer.pl -f MAINTAINERS --email
-> linux-kernel@vger.kernel.org (open list)
-> ---
-> 
-> as Owen indicated earlier. They are either incomplete or not correct.
-> 
-> Of course I don't know whether the base tree is the problem or usage of
-> get_maintainers.pl...
+I2S1 pins are exposed on 40-pin header on Radxa ROCK Pi 4 series.
+their default function is GPIO, so I2S1 need to be disabled.
 
-That looks like an operator error, the above command produces the same result with
-an upstream tree.
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Link: https://lore.kernel.org/r/20220924112812.1219-1-naoki@radxa.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-Issue one is the use of '-f' which seems to expect a file with a list of e-mail
-addresses, which MAINTAINERS is not. The second issue is that no patch file or
-directory is specified.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+index da3b031d4bef..79d04a664b82 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+@@ -441,7 +441,6 @@ &i2s0 {
+ &i2s1 {
+ 	rockchip,playback-channels = <2>;
+ 	rockchip,capture-channels = <2>;
+-	status = "okay";
+ };
+ 
+ &i2s2 {
+-- 
+2.35.1
+
