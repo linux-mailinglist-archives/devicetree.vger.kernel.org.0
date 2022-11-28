@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9AF63B0DC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C49FA63B0E5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232333AbiK1SP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:15:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50142 "EHLO
+        id S234183AbiK1SQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:16:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232244AbiK1SPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:15:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AE8766A;
-        Mon, 28 Nov 2022 09:57:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D1AB061337;
-        Mon, 28 Nov 2022 17:57:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AB5CC433C1;
-        Mon, 28 Nov 2022 17:57:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669658263;
-        bh=HOm5tlWIniy5T1amAXM6Y8prJ7Kjyr4oEW5FOmYDoic=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lkZTBD09uxBmtzSZiuor8HjGnbbP1RV/lyx2WAeOihIR7vO4VrljoBY1MtGSNUK3E
-         98JP5V9jtxBTF8PDeS1XarMMo5dPw+/rlowPp8unwkO1PMiK6Ru1I65LBMcTSN9y1F
-         9GH0y3P0Dz2GPAMi0QFsGEEODDYzzO5cvYMhjnOMpDT/P6DG306vNIg/sGCjE87b9Y
-         pGcerHb/jNWALLUDd5Ibi7KJl7j/OtUgs77xojC1MVkaBYnhiZinT7MRSVPqm7rBZv
-         UE3nRqjJFcSb7VCYe7VKxKUBmw8jRLpE5LW2EE96f73kUoLNevfSJHiATVXCL4/B96
-         OCl7V7suyc6hg==
-Date:   Mon, 28 Nov 2022 17:57:38 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: Add Nuvoton WPCM450 Flash
- Interface Unit (FIU)
-Message-ID: <Y4T2kowzjQMqxckF@sirena.org.uk>
-References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
- <20221124191400.287918-2-j.neuschaefer@gmx.net>
- <166950112932.8087.6546134123286782729.robh@kernel.org>
- <Y4SV+5/3Y0dw5QeU@wendy>
- <Y4S+oWz8fNsQj5Gj@probook>
- <Y4TBIah6vJAG3kj2@wendy>
+        with ESMTP id S232907AbiK1SP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:15:29 -0500
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A070D2E6B9
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:58:28 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id k185so3804778vsc.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:58:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=k835onYIZmsMuurlywEhGfRyXKYROEnVcvL+bYuMNFg=;
+        b=qeAlsrxSTYrFNmaODPT2/lB5DxDq+uU+fCNqqy+mRXc+Af9X3azUb12ENwHsOoDqed
+         63QFTN4UFnImZsWpuhwXZmmk0pJVWe0EjZalYULvfIuAPSv6+67/LL8CMmLoRgVeo104
+         gGXXlVp7xDfgQGaDZDzAH6/hbVMQE5Rt7/PTgFVVcQKoJNfxNA3vCIOXA9W4vReoUFXW
+         Kya4ASz99JXKdpdfpOMAP5bXB+RuPRiGqCNONFyJMNYNPQFSCQLqYnm9DKo24lHOzZr1
+         eF0BLnHG+Vq2MNRUaCcSvgaMd7Dw89BMO1MjOVoRRK0Dd1AqwufbwATpNdU5kPVkOMGG
+         P59A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k835onYIZmsMuurlywEhGfRyXKYROEnVcvL+bYuMNFg=;
+        b=NP87J4a7PA0n2f4/FPUTeEbivw6BVD98USBguhCkWxPCkO/JdP9Pn6lSXz80HF895b
+         g8apFb/nkkbQWpPbG3EkICs7IN/04aQVUbx90lcppemi0wXAvcw5O1OHE2AZK3Aoc/tT
+         dAhy6804SMtaPmfIQC5HLWhqnZpsN3zYUUv0T3YR0a6XHcqjYBY3lta3qhY3r2ZOeTZF
+         K9ki6/dzHhqTUH+TIIEqEBZKZHerGwX80vvy/YaM7ZSCFsDpbLZ/YfUy6SPyBmjsPSWL
+         Tm5Rjw2KZSGhSZrzMcOTH4OGFI5gYGlX4ljhGK/qdOaeL+C0sVhEd0CkGBzf1EcO5brK
+         IdEg==
+X-Gm-Message-State: ANoB5pnCPqrxHMMYT2GnlHKKmBjeenypqws4ljmc8u3NbFl8bpbiYUam
+        QHrmXBEqk3QMDwUzUGItWvXDzSUF95mqfMwg9nc/IA==
+X-Google-Smtp-Source: AA0mqf48IEw+OIVt1k1bXjwXtS42iy/rgvamsgwyKVRPbDhgOrUIFCNugUYhB4LxZmQEbqe3FwwXtxhmz8941Q3A3UY=
+X-Received: by 2002:a67:1c85:0:b0:3b0:92e2:37b0 with SMTP id
+ c127-20020a671c85000000b003b092e237b0mr5455727vsc.9.1669658307802; Mon, 28
+ Nov 2022 09:58:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8hu38K+e8vZwubEp"
-Content-Disposition: inline
-In-Reply-To: <Y4TBIah6vJAG3kj2@wendy>
-X-Cookie: In the next world, you're on your own.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 28 Nov 2022 18:58:16 +0100
+Message-ID: <CAMRc=Mffq-RXt+huAT48zZvo0OJY=nhb6SV7kxSNzr1Xv=h1nQ@mail.gmail.com>
+Subject: Re: [PATCH] gpio: Do not include <linux/kernel.h> when not really needed.
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Nov 27, 2022 at 10:52 PM Christophe JAILLET
+<christophe.jaillet@wanadoo.fr> wrote:
+>
+> <linux/kernel.h> is included only for using container_of().
+> Include <linux/container_of.h> instead, it is much lighter.
+>
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> ---
+> Not sure if the prefix should be gpio or gpiolib.
+>
+> Let see if build-bots spot something which is inherit via kernel.h
+> ---
+>  include/linux/of_gpio.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/linux/of_gpio.h b/include/linux/of_gpio.h
+> index a5166eb93437..6db627257a7b 100644
+> --- a/include/linux/of_gpio.h
+> +++ b/include/linux/of_gpio.h
+> @@ -34,7 +34,7 @@ enum of_gpio_flags {
+>
+>  #ifdef CONFIG_OF_GPIO
+>
+> -#include <linux/kernel.h>
+> +#include <linux/container_of.h>
+>
+>  /*
+>   * OF GPIO chip for memory mapped banks
+> --
+> 2.34.1
+>
 
---8hu38K+e8vZwubEp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied, thanks!
 
-On Mon, Nov 28, 2022 at 02:09:37PM +0000, Conor Dooley wrote:
-
-> Without being a Responsible Adult^TM for either SPI or DT, my preference
-> would be for simplifying the binding so that if your clk stuff doesn't
-> land for 6.2 the binding checks still work.
-
-Yes, please simplify the example.
-
---8hu38K+e8vZwubEp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOE9pEACgkQJNaLcl1U
-h9Bs1wf+OUxEzRc8Sldcia8LNWHm678IKCqgxrejUeJvY8R7o/7LTsHa5JVhnTt3
-Ovq4CmMPJ+0bEF5DIDBxGFWNfEA5C1E9eNJOm9HWTpSYfxZTpBRcP+YC0p1bS9pS
-IQhoCxI4K+iYfERMqy6QDCiBCXr9y0+7QHQvwJGvjHNwOXrfEeGdP8GACFTYzCno
-3fMMk+tuTUHeRiLKCjdDSbEZwYzMwapBi5mXKS7Ocj+S8SIZFe4zQWY2ViO21GtA
-SYedntOzggayxP4PyoIdxyoju5UqteP59QHtE28ygxkzZZt9G1dKhbjhzQ8QAviL
-5rv8aCuy9lWvUL45v2NzDVf5/IzSwQ==
-=bB+P
------END PGP SIGNATURE-----
-
---8hu38K+e8vZwubEp--
+Bartosz
