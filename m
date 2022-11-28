@@ -2,142 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A6863A1DF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF94463A1FF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:35:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbiK1HRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 02:17:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
+        id S229586AbiK1Hf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 02:35:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229801AbiK1HRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:17:45 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C84610FFC
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 23:17:44 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id bx10so3169850wrb.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 23:17:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eG6Be3t23obGN2ATen8OVvK4rfTQoYDTZRglqML50dM=;
-        b=poG5sOzFpRAXOKgMdrCfvvkeYKjQN58l3yG8Y0RXCFeucW9p7tCSm2XJDB/DM2Uwjw
-         3/Y/na8LgamKOd7SmShUgO7J6B0oxo0mC3/UK16aji85NNE8emK0oIpso5ELBhGVu4bW
-         sgaNaJbVk11x9JsZhsDDJzmF8yHn4GCmFdNkrdflrScLGBhbU92dXfgTDlhZRwWaR3Th
-         WFHIN+Lf4JwcbjiLvKkRiUo+MHx1OIKsMpjn1ergLA5bSafz0z+WVyOjpd13JGT+gbLp
-         dtJdFYD/kx0h98IMtd+SPaYDuIa/nkD2rTbLO0uJyIOJ07hjfTQFRKbZ7jYPrCWZUHOy
-         wTnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eG6Be3t23obGN2ATen8OVvK4rfTQoYDTZRglqML50dM=;
-        b=r6lO/Jne20kT/ZKKM3n2RAg6nSJSd4VkJiN/bS5k/yd87L1+sCgXGlYT0UNg4yK/lZ
-         0wgXK0S/OFCOO+Yt/YgjQvIiaUsjLzXtUDi4dU84Xsym2EGgSOcz8qtNo4bAGkGjn/lA
-         CvquIF2M0GLe/qGOnneeuH3dk7HCVGXX+GfdrSllj0avg0GkTJ+xCXRqjH+TO+JRdDal
-         NlMDI0JwrwXnvqO1SiMy8D5ITDIzS+cDIkeYY/5ebUFmjDpFqH7fQ0C5QrdcEJf3t8C4
-         C2/efc71Rw24Sf4oZv+EphIGKVzd8faFQNQZ2ZNDJzLnj9yTmjO8PGbDIskwnfuCOhkN
-         HZKQ==
-X-Gm-Message-State: ANoB5pmW3Fhwgzx/+u81K1pt1VDc5A5jzVL1r+dolgJEMz2QEYhUuu4c
-        sF7MWFKgqBG7wWp3vIhfEgsQCw==
-X-Google-Smtp-Source: AA0mqf6Pw15Eqs2pCDoN5k8uvi+hNG9DvT5YpbugugAhcBiKU7PpmSSF7GYVBfsCF2jNQBm6vp50Ag==
-X-Received: by 2002:adf:eb92:0:b0:236:80a8:485e with SMTP id t18-20020adfeb92000000b0023680a8485emr22959279wrn.362.1669619863181;
-        Sun, 27 Nov 2022 23:17:43 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:9475:5832:6c06:e04d? ([2a01:e0a:982:cbb0:9475:5832:6c06:e04d])
-        by smtp.gmail.com with ESMTPSA id t2-20020a5d42c2000000b0023662d97130sm9879851wrr.20.2022.11.27.23.17.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 23:17:42 -0800 (PST)
-Message-ID: <669d0399-dbc7-965a-9e50-017f017ca823@linaro.org>
-Date:   Mon, 28 Nov 2022 08:17:41 +0100
+        with ESMTP id S229509AbiK1Hf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:35:27 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8770E11C39;
+        Sun, 27 Nov 2022 23:35:26 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 4B31AB8B;
+        Mon, 28 Nov 2022 08:35:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1669620924;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ocIpEc4oly3ThjoyxNnqhXwhEE8f24PzAQ3YyFZsq0E=;
+        b=GG/4fi2urRgj9huQRUua/FNJIWwhv3B1hDN4Ym4/Dg6HVd2bYkzqO/bV7gKuN3+PeT7bzD
+        r3alQ09y1EwPrSx+apphusNdMyd2h+dlr9wqj0NHi9Vkb/lJKkzvPbTKB78JSPAwhVF2UM
+        n/u3HAOZHS8en0x58QdmAxdrqkg0ZbB2vPyzyQ0SRucTbVB25pXWPJKTxYQliQCDpc5chQ
+        jvRMqnOgC7z2QHR+BNyrie2pSqjGPLMHvuAlIyg6rp9hbvmCcD/86K3HjBlaX+5b+Ns4ym
+        A6ObmnZVdq5BdB31knwrJypx8FsXg0FSeXVYgMIqNGrRoHfmN4kBYIDSohKEjQ==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.13.1
-Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 28 Nov 2022 08:35:24 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-mtd@lists.infradead.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
- <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
- <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
- <54f500cb-d7d0-8af1-eb58-99fbe71791a5@linaro.org>
- <CAB6niQ4808JEgdQEvRvaYqq8YmFCGo_YLnxXo+rjpSgxQxu+7g@mail.gmail.com>
- <615eb86b-a00a-56bc-ae1a-9f0e4e86f77c@linaro.org>
- <a3b7e1f0-16cb-4284-c740-5b5874612ea4@linaro.org>
- <c89f9330-715f-4830-49fb-64c0b533ed39@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <c89f9330-715f-4830-49fb-64c0b533ed39@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-kernel@vger.kernel.org, u-boot@lists.denx.de,
+        =?UTF-8?Q?Rafa?= =?UTF-8?Q?=C5=82_Mi=C5=82ecki?= 
+        <rafal@milecki.pl>
+Subject: Re: [PATCH V2 1/2] nvmem: core: refactor .cell_post_process() CB
+ arguments
+In-Reply-To: <20221128065923.1180-1-zajec5@gmail.com>
+References: <20221128065923.1180-1-zajec5@gmail.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <f2bb569404903bc937fbe3840582f3c4@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Le 27/11/2022 à 20:07, Krzysztof Kozlowski a écrit :
-> On 27/11/2022 14:33, Neil Armstrong wrote:
->>
->> Le 27/11/2022 à 13:25, Krzysztof Kozlowski a écrit :
->>> On 26/11/2022 17:03, Neil Armstrong wrote:
->>>>>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>>>> Aren't you maintainer of the platform? This means I should take care of
->>>>>> this patch?
->>>>> Ah, this will be picked up by Kevin or Jerome? So this tag means only
->>>>> Reviewer's statement of oversight, right?
->>>> Of course I'll pick it.
->>>>
->>> So that's confusing to see Review which does not mean review, but
->>> maintainer pick...
->>
->> Reviewed-by means reviewed, there's no confusion here, the significance
->> is clearly documented on https://docs.kernel.org/process/submitting-patches.html
->>
->>>
->>> Reviewed-by means, I should take your tag and add to v2 or the
->>> maintainer will add it when picking up.
->>
->> Reviewed-by means reviewed, fully reviewed patches are ready to
->> be picked unless a change is asked by a reviewer.
->>
->> Decision to pick or not a patch does not depend on any tags, but
->> is the sole decision of the maintainer adding it's Signed-off-by.
+Am 2022-11-28 07:59, schrieb Rafał Miłecki:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Then why giving review tag and not notifying about the pick, while the
-> pick actually happens? This is confusing. When the maintainer, which is
-> supposed to pick patch, gives reviewed it means always the same as
-> acked, so the patch is expected to go other way. Not through that
-> maintainer's tree.
+> Pass whole NVMEM cell struct and length pointer as arguments to 
+> callback
+> functions.
 > 
-> If you just apply it, say you apply it.
-
-This last reply goes beyond acceptability on my side, this thread
-went too far and I'll stop replying further after this.
-
-If your goal was to kindly ask me to use Acked-by to notify you I'll
-pick the patch in the future, while this "rule" is only implicit,
-the actual form is far from it.
-
-Concerning this patch, since I already sent the ARM64 DT PR for v6.2,
-and I usually don't take new changes except urgent ones after rc6, I'll
-pick this patch and "20221125144120.476933-1-krzysztof.kozlowski@linaro.org"
-after the next merge window and you'll be notified as I always do.
-
+> This allows:
 > 
-> Best regards,
-> Krzysztof
+> 1. Cells content to be modified based on more info
+>    Some cells (identified by their names) contain specific data that
+>    needs further processing. This can be e.g. MAC address stored in an
+>    ASCII format. NVMEM consumers expect MAC to be read in a binary 
+> form.
+>    More complex cells may be additionally described in DT. This change
+>    allows also accessing relevant DT nodes and reading extra info.
 > 
+> 2. Adjusting data length
+>    If cell processing results in reformatting it, it's required to
+>    adjust length. This again applies e.g. to the MAC format change from
+>    ASCII to the byte-based.
+> 
+> Later on we may consider more cleanups & features like:
+> 1. Dropping "const char *id" and just using NVMEM cell name
+> 2. Adding extra argument for cells providing multiple values
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> This solution conflicts with 1 part of Michael's work:
+> [PATCH v2 00/20] nvmem: core: introduce NVMEM layouts
+> https://lore.kernel.org/linux-arm-kernel/20220901221857.2600340-1-michael@walle.cc/
+> 
+> Instead of:
+> 1. Adding NVMEM cell-level post_process callback
+> 2. Adding callback (.fixup_cell_info()) for setting callbacks
+> 3. Dropping NVMEM device-level post_process callback
+> I decided to refactor existing callback.
+> 
+> Michael's work on adding #nvmem-cell-cells should be possible to easily
+> rebase on top of those changes.
 
-Neil
+As yours should be easily added on top of my series. I've showed that
+providing a global post process hook is bad because that way you need
+to have *all* cells of your device read-only.
+
+-michael
