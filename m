@@ -2,218 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4352263B122
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:21:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9340563B11F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:21:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232821AbiK1SVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:21:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59900 "EHLO
+        id S234098AbiK1SVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:21:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233992AbiK1SVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:21:12 -0500
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEE224F2A
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:08:15 -0800 (PST)
-Received: by mail-vs1-xe35.google.com with SMTP id v128so11402585vsb.13
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:08:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XiKD6ppGzG5ZpI3cTFBiLcU8vTXLdTb3vib9toIv4h8=;
-        b=kZVXla1pGI1G/+OHC2g0O2VBAu1aLsZtDuRFOiKZ+VXGSlVP1HWYVhNbUvgVv7WCCq
-         4AvwjmttHrl9vu4qR/yjzvjP0Rm85PECb/90hUfLNnuk4XVUOtALxI/3j3fm/NBrsFJF
-         mcmvFe4ExxMR/h447GvPvMsBH5+iDsdAwQumXH0NYpwewwJaH8sdkkwWLowTO9cNz1k5
-         0qRpQUA4SYxasVWlpwJKsgFI9HZjKxoPhtX8cxC59yur/shZCZeSRsw/BCn4uTuRXn1F
-         PFdwhpAUlyoRMgCBkKoKlwy2EZJLkcMsgmjaKsCG3czxQ4P7wB35vmpuBgBPuRth7Ol0
-         NcAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XiKD6ppGzG5ZpI3cTFBiLcU8vTXLdTb3vib9toIv4h8=;
-        b=laVHKfA5TsBM3ix9FnFuWoAEDkC1Q/dWeCcPgHO/xMSkL+RRYWLBO5w2GAfbSO2Po8
-         hvXMEjQ9WJHi7XN5X9GLYSCNn2W3DMRfKcNua3w8I+zwCztJ3GxSCuPJhG+F7pKfP8Id
-         TGt2ZcfsH10k27DsSD05xsV7xmuLAsxB7RA1Aha7MR9NLKPFaInu4mvP1LvTg8de/bxP
-         /LFwcB7n7jBk4cg9hH28uAvNHB9KFMPDEs+tzZlxoM1yzbu41GPn3sKCYb/6vm433ZWQ
-         le+vcfAN//kvkCmhtbmQqqI6TV95uaZFkyn36Boqu8okYjN8AtKjq5J7c56hiE4/ZRGk
-         nQUw==
-X-Gm-Message-State: ANoB5plFFTc2pCodRpYxWx8ywcGcUt8KdCTL9xwR5FQViq67fDAv9L7j
-        Qw7k9b0XusV9gu8Jmr7EzBN1XBPi/iXc9JH5p4bI5g==
-X-Google-Smtp-Source: AA0mqf6fPFJYgunNTLJH3p4ifumRkKwZ6waXF0adKpQmLaXx0pegGIEWEUuxjiyBpumotWSqLhYVGQLH0+SKWW5pPoA=
-X-Received: by 2002:a67:e8d7:0:b0:3b0:767f:e291 with SMTP id
- y23-20020a67e8d7000000b003b0767fe291mr14518815vsn.47.1669658892929; Mon, 28
- Nov 2022 10:08:12 -0800 (PST)
+        with ESMTP id S234171AbiK1SVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:21:11 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91D424BF5;
+        Mon, 28 Nov 2022 10:08:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8DFE2B80D57;
+        Mon, 28 Nov 2022 18:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE9F9C433C1;
+        Mon, 28 Nov 2022 18:08:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669658890;
+        bh=eyWmZfcSt1FxFqiqqUiJo8PogQtmS8k2hdJ7SpBKAIQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N/PEUa13PmOa/Q19PLkNRiYd/FiABQgqFaeNTfKS+m7wwsYugfQlOQ1Sh8eyA0xjP
+         LL02AiR3iZTF4uSMN1yUizvGRzqO2YwQ3nsLAgLXDIYZygYCIk1OV1FfdPFQD/t1Vq
+         YGOUPdDeNZ43bkGu9+qysMV1twiBGS1qG2KBnrnnS6flBQvwirQsgg9Lpxd9Ix7Zzs
+         imGbmCsEOG/orPEA/RhzV0iXGVBkwq36PdgKcTEx3ogjQTfd65A81+FOhiKySedTvG
+         BLjo3F+T0a3Vna6Xecc/hFfEFe17ZoF1z44c4x5WdZN+DnACNG8MZqkTmXVEa1V7U5
+         iPfoVcbiYrw9g==
+Date:   Mon, 28 Nov 2022 18:08:05 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     heiko@sntech.de, linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, ajones@ventanamicro.com, guoren@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: riscv: fix single letter canonical order
+Message-ID: <Y4T5BZTRZWqXpV2A@spud>
+References: <7034611.lOV4Wx5bFT@diego>
+ <mhng-fee0e650-fb2d-4e36-8f75-ef90d5028f41@palmer-ri-x1c9a>
 MIME-Version: 1.0
-References: <20221118092218.480147-1-mranostay@ti.com> <20221118092218.480147-5-mranostay@ti.com>
-In-Reply-To: <20221118092218.480147-5-mranostay@ti.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 28 Nov 2022 19:08:01 +0100
-Message-ID: <CAMRc=Mf1wSHfBhJz4z+SS3gH+ZKa5Hyar-gziteyfoOy8s7tsg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] gpio: gpio-tps6594x: add GPIO support for TPS6594x PMIC
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     vigneshr@ti.com, robh@kernel.org, krzysztof.kozlowski@linaro.org,
-        a.zummo@towertech.it, linus.walleij@linaro.org, lee@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <mhng-fee0e650-fb2d-4e36-8f75-ef90d5028f41@palmer-ri-x1c9a>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 10:22 AM Matt Ranostay <mranostay@ti.com> wrote:
->
-> Add support for TPS6594X PMICs GPIO interface that has 11 that can be
-> configured as input or outputs.
->
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->  drivers/gpio/Kconfig         |  9 +++++
->  drivers/gpio/Makefile        |  1 +
->  drivers/gpio/gpio-tps6594x.c | 78 ++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/tps6594x.h |  4 ++
->  4 files changed, 92 insertions(+)
->  create mode 100644 drivers/gpio/gpio-tps6594x.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index ec7cfd4f52b1..6b65c790efe7 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1405,6 +1405,15 @@ config GPIO_TPS65912
->         help
->           This driver supports TPS65912 GPIO chip.
->
-> +config GPIO_TPS6594X
-> +       tristate "TI TPS6594X GPIO driver"
-> +       depends on MFD_TPS6594X || COMPILE_TEST
-> +       select REGMAP
-> +       select GPIO_REGMAP
-> +       help
-> +         Select this option to enable GPIO driver for the TPS6954X
-> +         PMIC chip family. There are 11 GPIOs that can be configured.
-> +
->  config GPIO_TPS68470
->         tristate "TPS68470 GPIO"
->         depends on INTEL_SKL_INT3472
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 010587025fc8..9892f9adc5b5 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -159,6 +159,7 @@ obj-$(CONFIG_GPIO_TPS65218)         += gpio-tps65218.o
->  obj-$(CONFIG_GPIO_TPS6586X)            += gpio-tps6586x.o
->  obj-$(CONFIG_GPIO_TPS65910)            += gpio-tps65910.o
->  obj-$(CONFIG_GPIO_TPS65912)            += gpio-tps65912.o
-> +obj-$(CONFIG_GPIO_TPS6594X)            += gpio-tps6594x.o
->  obj-$(CONFIG_GPIO_TPS68470)            += gpio-tps68470.o
->  obj-$(CONFIG_GPIO_TQMX86)              += gpio-tqmx86.o
->  obj-$(CONFIG_GPIO_TS4800)              += gpio-ts4800.o
-> diff --git a/drivers/gpio/gpio-tps6594x.c b/drivers/gpio/gpio-tps6594x.c
-> new file mode 100644
-> index 000000000000..733fedba70cb
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-tps6594x.c
-> @@ -0,0 +1,78 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * GPIO driver for TI TPS6594x PMICs
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/mfd/tps6594x.h>
-> +
-> +#define GPIO_BANK_SIZE 8
-> +#define GPIO_CFG_MASK  BIT(0)
-> +
-> +static int tps6594x_regmap_xlate(struct gpio_regmap *gpio,
-> +                                   unsigned int base, unsigned int offset,
-> +                                   unsigned int *reg, unsigned int *mask)
-> +{
-> +       if (base == TPS6594X_GPIO_CONF) {
-> +               *reg = base + offset;
-> +               *mask = GPIO_CFG_MASK;
-> +       } else {
-> +               unsigned int line = offset % GPIO_BANK_SIZE;
-> +               unsigned int stride = offset / GPIO_BANK_SIZE;
-> +
-> +               *reg = base + stride;
-> +               *mask = BIT(line);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int tps6594x_gpio_probe(struct platform_device *pdev)
-> +{
-> +       struct gpio_regmap_config config = {0};
-> +       struct regmap *regmap;
-> +
-> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +       if (!regmap)
-> +               return -ENODEV;
-> +
-> +       config.regmap = regmap;
-> +       config.parent = &pdev->dev;
-> +       config.ngpio = 11;
-> +       config.ngpio_per_reg = GPIO_BANK_SIZE;
-> +
-> +       config.reg_dat_base = TPS6594X_GPIO_IN;
-> +       config.reg_set_base = TPS6594X_GPIO_OUT;
-> +       config.reg_dir_out_base = TPS6594X_GPIO_CONF;
-> +       config.reg_mask_xlate = tps6594x_regmap_xlate;
-> +
-> +       return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-> +}
-> +
-> +static const struct of_device_id of_tps6594x_gpio_match[] = {
-> +       { .compatible = "ti,tps6594-gpio", },
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(of, of_tps6594x_gpio_match);
-> +
-> +static struct platform_driver tps6594x_gpio_driver = {
-> +       .driver = {
-> +               .name = "tps6594-gpio",
-> +               .of_match_table = of_tps6594x_gpio_match,
-> +       },
-> +       .probe = tps6594x_gpio_probe,
-> +};
-> +module_platform_driver(tps6594x_gpio_driver);
-> +
-> +MODULE_ALIAS("platform:tps6594-gpio");
-> +MODULE_AUTHOR("Matt Ranostay <mranostay@ti.com>");
-> +MODULE_DESCRIPTION("TPS6594X GPIO driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/tps6594x.h b/include/linux/mfd/tps6594x.h
-> index 5a6af0da9223..155618e4d5d0 100644
-> --- a/include/linux/mfd/tps6594x.h
-> +++ b/include/linux/mfd/tps6594x.h
-> @@ -21,6 +21,10 @@
->  #define TPS6594X_FSM_I2C_TRIGGERS              0x85
->  #define TPS6594X_FSM_NSLEEP_TRIGGERS           0x86
->
-> +#define TPS6594X_GPIO_CONF                     0x31
-> +#define TPS6594X_GPIO_OUT                      0x3d
-> +#define TPS6594X_GPIO_IN                       0x3f
-> +
->  #define TPS6594X_RTC_SECONDS                   0xb5
->  #define TPS6594X_RTC_MINUTES                   0xb6
->  #define TPS6594X_RTC_HOURS                     0xb7
-> --
-> 2.38.GIT
->
+On Mon, Nov 28, 2022 at 09:41:03AM -0800, Palmer Dabbelt wrote:
+> On Thu, 24 Nov 2022 05:42:20 PST (-0800), heiko@sntech.de wrote:
+> > Am Donnerstag, 24. November 2022, 14:04:41 CET schrieb Conor Dooley:
+> > > I used the wikipedia table for ordering extensions when updating the
+> > > pattern here in foo.
+> > 
+> > 	    ^ foo? :-)
+> > 
+> > > Unfortunately that table did not match canonical order, as defined by
+> > > the RISC-V ISA Manual, which defines extension ordering in (what is
+> > > currently) Table 41, "Standard ISA extension names". Fix things up by
+> > > re-sorting v (vector) and adding p (packed-simd) & j (dynamic
+> > > languages). The e (reduced integer) and g (general) extensions are still
+> > > intentionally left out.
+> > > 
+> > > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
+> > > Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > So I have compared the new pattern to the isa manual,
+> > and it looks like the order checks out, so
+> 
+> Which ISA manual?
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+For me, isa manual is the above github repo.
+
+> There have been many mutually incompatible ISA string
+> encoding rules, at least one of them was a change to the extension ordering.
+> It's not entirely clear what the right answer is here, as we can't really
+> parse ISA strings without also knowing the version of the ISA manual we're
+> meant to parse them against.  Maybe we just accept everything?
+
+I don't think accepting everything is the right thing to do. A minimal
+amount of validation is still needed here, but I think we can deprecate
+the DT property entirely & make it optional if a new-and-improved way of
+encoding the in DT is used.
+
+> IMO it's time to just stop using the ISA string.  It's not a stable
+> interface, trying to treat it as such just leads to headaches.  We should
+> just come up with some DT-specific way of encoding whatever HW features are
+> in question.  Sure it'll be a bit of work to write that all down in the DT
+> bindings, but it's going to be way less work than trying to keep around all
+> this ISA string parsing code.
+
+I'm a glutton for punishment, I'll try and come up with some sort of
+other way to encode this information in DT that requires less parsing
+and validation. As I said on IRC, something that more resembles:
+if (of_property_wahtever("riscv,isa-foo")) { do_enable_foo() }
+
+> I know I've said the opposite before, but there's just been way too many
+> breakages here to assume they're going to stop.
+
+:upside_down_face:
+
+Either way, I think these two patches are worth taking in the mean time.
+
+> > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > 
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > index e80c967a4fa4..b7462ea2dbe4 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > @@ -80,7 +80,7 @@ properties:
+> > >        insensitive, letters in the riscv,isa string must be all
+> > >        lowercase to simplify parsing.
+> > >      $ref: "/schemas/types.yaml#/definitions/string"
+> > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+> > > +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+> > > 
+> > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+> > >    timebase-frequency: false
+> > > 
