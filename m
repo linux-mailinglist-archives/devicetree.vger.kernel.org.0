@@ -2,116 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5968639E64
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 01:10:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7685C639E6B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 01:16:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbiK1AKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 19:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49184 "EHLO
+        id S229529AbiK1AQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 19:16:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiK1AKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 19:10:54 -0500
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D27352BD7;
-        Sun, 27 Nov 2022 16:10:53 -0800 (PST)
+        with ESMTP id S229504AbiK1AQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 19:16:10 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51366101DC;
+        Sun, 27 Nov 2022 16:16:08 -0800 (PST)
 Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 90288100005;
-        Mon, 28 Nov 2022 00:10:51 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9ED7EE0005;
+        Mon, 28 Nov 2022 00:16:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669594252;
+        t=1669594566;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=mpLlXizBvFO1isoUI3KX5JXYNy0mSJGR1QxATUr1/VA=;
-        b=iKqUihgz0I723jh3Z6YgSHplx4VEc661gEgVbtX4ncH4jqnYfpSzTkPOzq1ZVfMzXpSUXv
-        pEmOqw0lL5DxyNxf3ooN479Jl18d2jHQ8rnjQnHlq9FOCerYGpUz0S+B+5E2qsqocEKFE8
-        MuJQQR9ipdJCbwV4l6WbXweRJrnnj4IkYrGHrwHo3qeDD2gKgGp81ZTAf8E0u04J88139T
-        H5+tcZGKnaKANsMLQqrM0si6gkvrfJ7kwtc9NhnGNY/k5uXxhQsgpjYUza5ddAw6smIC8C
-        aD1mRbEMlpIcRkoJULSRWzQbEp9h8qg6z8OSy9wQLYMOtqRuNeKMNrIrYiElQg==
+        bh=C4afrmCnsTFI1dYjoEJlWykktcfo6jeTgLdNCqzTc7I=;
+        b=HBgE3xveDP90YoSj69ZrgOK7AibdlGz8Rljko2tR4uKCUjeRc/DO4sgKGgwuOnT33eLx1w
+        rBpR2zrid1bJ+9g+qMPrO/hbfHG6HCIIbRPq1Wdp1+F6M3FesBJ3HY2LE3Nn3OezLeK5gU
+        7HuhSPqXUHRPoKiLqVnVkEIaIgHoQgZf5S4SeTiVJVyHODgJ2OBDusq9iUNyE73yEvUFqK
+        6aWax3+MNTduuXDwLAjjs27DUDxvvkPdvimVrvJtMrAvY7rYnw5vgem8ToZGn4/sbQ2DuH
+        N5h8fWxoO1G7MSAY3E81v9s+nrZhpKAlX/gVk2wcVjdBBoIau55Z1gLtP6HVFg==
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     kostap@marvell.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Konstantin Porotchkin <kostap@marvell.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH] arm64: dts: marvell: add optee FW definitions
-In-Reply-To: <20221109150743.1444103-1-kostap@marvell.com>
-References: <20221109150743.1444103-1-kostap@marvell.com>
-Date:   Mon, 28 Nov 2022 01:10:51 +0100
-Message-ID: <87o7ss7xbo.fsf@BL-laptop>
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: armada: align LED node names with dtschema
+In-Reply-To: <20221125144133.477116-1-krzysztof.kozlowski@linaro.org>
+References: <20221125144133.477116-1-krzysztof.kozlowski@linaro.org>
+Date:   Mon, 28 Nov 2022 01:16:05 +0100
+Message-ID: <87ilj07x2y.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-<kostap@marvell.com> writes:
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-> From: Konstantin Porotchkin <kostap@marvell.com>
+> The node names should be generic and DT schema expects certain pattern:
 >
-> Add reserved memory and ARM firmware definitions for optee
-> memory region in Marvell Armada SoCs to avoid protected memory
-> access.
+>   armada-370-seagate-personal-cloud.dtb: gpio-leds: 'red-sata0' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
 >
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied on mvebu/dt64
+Applied on mvebu/dt
 
 Thanks,
 
 Gregory
-
-> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Gregory Clement <gregory.clement@bootlin.com>
-> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
 > ---
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 5 +++++
->  arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 5 +++++
->  2 files changed, 10 insertions(+)
+>  arch/arm/boot/dts/armada-370-dlink-dns327l.dts           | 6 +++---
+>  arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts        | 4 ++--
+>  arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi       | 8 ++++----
+>  arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi | 2 +-
+>  arch/arm/boot/dts/armada-385-linksys-caiman.dts          | 4 ++--
+>  arch/arm/boot/dts/armada-385-linksys-cobra.dts           | 4 ++--
+>  arch/arm/boot/dts/armada-385-linksys-rango.dts           | 8 ++++----
+>  arch/arm/boot/dts/armada-385-linksys-shelby.dts          | 4 ++--
+>  arch/arm/boot/dts/armada-385-linksys.dtsi                | 4 ++--
+>  arch/arm/boot/dts/armada-385-synology-ds116.dts          | 2 +-
+>  arch/arm/boot/dts/armada-xp-linksys-mamba.dts            | 2 +-
+>  11 files changed, 24 insertions(+), 24 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> index df152c72276b..e300145ad1a6 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> @@ -35,6 +35,11 @@ psci-area@4000000 {
->  			reg = <0 0x4000000 0 0x200000>;
->  			no-map;
+> diff --git a/arch/arm/boot/dts/armada-370-dlink-dns327l.dts b/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
+> index 2008c6eaaa52..561195b749eb 100644
+> --- a/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
+> +++ b/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
+> @@ -86,19 +86,19 @@ &sata_l_white_pin
+>  
+>  		pinctrl-names = "default";
+>  
+> -		sata-r-amber-pin {
+> +		led-sata-r-amber {
+>  			label = "dns327l:amber:sata-r";
+>  			gpios = <&gpio1 20 GPIO_ACTIVE_HIGH>;
+>  			default-state = "keep";
 >  		};
-> +
-> +		tee@4400000 {
-> +			reg = <0 0x4400000 0 0x1000000>;
-> +			no-map;
-> +		};
+>  
+> -		sata-l-amber-pin {
+> +		led-sata-l-amber {
+>  			label = "dns327l:amber:sata-l";
+>  			gpios = <&gpio1 21 GPIO_ACTIVE_HIGH>;
+>  			default-state = "keep";
+>  		};
+>  
+> -		backup-led-pin {
+> +		led-backup {
+>  			label = "dns327l:white:usb";
+>  			gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
+>  			default-state = "keep";
+> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts b/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
+> index 3cf70c72c5ca..9cb69999b1db 100644
+> --- a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
+> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
+> @@ -72,11 +72,11 @@ regulator@4 {
 >  	};
 >  
->  	cpus {
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-> index a06a0a889c43..4e6d29ad32eb 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-> @@ -41,6 +41,11 @@ psci-area@4000000 {
->  			reg = <0x0 0x4000000 0x0 0x200000>;
->  			no-map;
+>  	gpio-leds {
+> -		red-sata2 {
+> +		led-red-sata2 {
+>  			label = "dart:red:sata2";
+>  			gpios = <&pca9554 0 GPIO_ACTIVE_LOW>;
 >  		};
-> +
-> +		tee@4400000 {
-> +			reg = <0 0x4400000 0 0x1000000>;
-> +			no-map;
-> +		};
+> -		red-sata3 {
+> +		led-red-sata3 {
+>  			label = "dart:red:sata3";
+>  			gpios = <&pca9554 3 GPIO_ACTIVE_LOW>;
+>  		};
+> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi b/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
+> index 866b8630d407..822f10734946 100644
+> --- a/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
+> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
+> @@ -132,21 +132,21 @@ button-reset {
+>  	gpio-leds {
+>  		compatible = "gpio-leds";
+>  
+> -		white-power {
+> +		led-white-power {
+>  			label = "dart:white:power";
+>  			gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "timer";
+>  
+>  		};
+> -		red-power {
+> +		led-red-power {
+>  			label = "dart:red:power";
+>  			gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
+>  		};
+> -		red-sata0 {
+> +		led-red-sata0 {
+>  			label = "dart:red:sata0";
+>  			gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+>  		};
+> -		red-sata1 {
+> +		led-red-sata1 {
+>  			label = "dart:red:sata1";
+>  			gpios = <&gpio1 21 GPIO_ACTIVE_LOW>;
+>  		};
+> diff --git a/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi b/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
+> index 702a85af2078..124a8ba279e3 100644
+> --- a/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
+> +++ b/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
+> @@ -107,7 +107,7 @@ button-usb {
+>  	gpio-leds {
+>  		compatible = "gpio-leds";
+>  
+> -		red-sata0 {
+> +		led-red-sata0 {
+>  			label = "cumulus:red:sata0";
+>  			gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+>  			default-state = "off";
+> diff --git a/arch/arm/boot/dts/armada-385-linksys-caiman.dts b/arch/arm/boot/dts/armada-385-linksys-caiman.dts
+> index a03050c97084..88b2921fed55 100644
+> --- a/arch/arm/boot/dts/armada-385-linksys-caiman.dts
+> +++ b/arch/arm/boot/dts/armada-385-linksys-caiman.dts
+> @@ -62,11 +62,11 @@ wps_amber@9 {
+>  };
+>  
+>  &gpio_leds {
+> -	power {
+> +	led-power {
+>  		label = "caiman:white:power";
 >  	};
 >  
->  	AP_NAME {
+> -	sata {
+> +	led-sata {
+>  		label = "caiman:white:sata";
+>  	};
+>  };
+> diff --git a/arch/arm/boot/dts/armada-385-linksys-cobra.dts b/arch/arm/boot/dts/armada-385-linksys-cobra.dts
+> index e3e4877a6f49..88200f930d0d 100644
+> --- a/arch/arm/boot/dts/armada-385-linksys-cobra.dts
+> +++ b/arch/arm/boot/dts/armada-385-linksys-cobra.dts
+> @@ -62,11 +62,11 @@ wps_amber@9 {
+>  };
+>  
+>  &gpio_leds {
+> -	power {
+> +	led-power {
+>  		label = "cobra:white:power";
+>  	};
+>  
+> -	sata {
+> +	led-sata {
+>  		label = "cobra:white:sata";
+>  	};
+>  };
+> diff --git a/arch/arm/boot/dts/armada-385-linksys-rango.dts b/arch/arm/boot/dts/armada-385-linksys-rango.dts
+> index 3c4af57ec2b9..4ab45f294de2 100644
+> --- a/arch/arm/boot/dts/armada-385-linksys-rango.dts
+> +++ b/arch/arm/boot/dts/armada-385-linksys-rango.dts
+> @@ -54,22 +54,22 @@ wps_amber@9 {
+>  };
+>  
+>  &gpio_leds {
+> -	power {
+> +	led-power {
+>  		gpios = <&gpio1 24 GPIO_ACTIVE_HIGH>;
+>  		label = "rango:white:power";
+>  	};
+>  
+> -	sata {
+> +	led-sata {
+>  		gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
+>  		label = "rango:white:sata";
+>  	};
+>  
+> -	wlan_2g {
+> +	led-wlan_2g {
+>  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+>  		label = "rango:white:wlan_2g";
+>  	};
+>  
+> -	wlan_5g {
+> +	led-wlan_5g {
+>  		gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
+>  		label = "rango:white:wlan_5g";
+>  	};
+> diff --git a/arch/arm/boot/dts/armada-385-linksys-shelby.dts b/arch/arm/boot/dts/armada-385-linksys-shelby.dts
+> index 3451cd3e5dff..f1b1f22413f1 100644
+> --- a/arch/arm/boot/dts/armada-385-linksys-shelby.dts
+> +++ b/arch/arm/boot/dts/armada-385-linksys-shelby.dts
+> @@ -62,11 +62,11 @@ wps_amber@9 {
+>  };
+>  
+>  &gpio_leds {
+> -	power {
+> +	led-power {
+>  		label = "shelby:white:power";
+>  	};
+>  
+> -	sata {
+> +	led-sata {
+>  		label = "shelby:white:sata";
+>  	};
+>  };
+> diff --git a/arch/arm/boot/dts/armada-385-linksys.dtsi b/arch/arm/boot/dts/armada-385-linksys.dtsi
+> index 116aca5e688f..85e8d966f6c1 100644
+> --- a/arch/arm/boot/dts/armada-385-linksys.dtsi
+> +++ b/arch/arm/boot/dts/armada-385-linksys.dtsi
+> @@ -71,12 +71,12 @@ gpio_leds: gpio-leds {
+>  		pinctrl-0 = <&gpio_leds_pins>;
+>  		pinctrl-names = "default";
+>  
+> -		power {
+> +		led-power {
+>  			gpios = <&gpio1 23 GPIO_ACTIVE_HIGH>;
+>  			default-state = "on";
+>  		};
+>  
+> -		sata {
+> +		led-sata {
+>  			gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
+>  			default-state = "off";
+>  			linux,default-trigger = "disk-activity";
+> diff --git a/arch/arm/boot/dts/armada-385-synology-ds116.dts b/arch/arm/boot/dts/armada-385-synology-ds116.dts
+> index 2622af73c9da..ea91ff964d94 100644
+> --- a/arch/arm/boot/dts/armada-385-synology-ds116.dts
+> +++ b/arch/arm/boot/dts/armada-385-synology-ds116.dts
+> @@ -149,7 +149,7 @@ gpio-leds {
+>  			 * sata0, and accesses to SATA disk 0 make it blink so it
+>  			 * doesn't need to be declared here.
+>  			 */
+> -			orange {
+> +			led-orange {
+>  				gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+>  				label = "ds116:orange:disk";
+>  				default-state = "off";
+> diff --git a/arch/arm/boot/dts/armada-xp-linksys-mamba.dts b/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
+> index 622ac40dd164..dbe8dfe236fb 100644
+> --- a/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
+> +++ b/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
+> @@ -195,7 +195,7 @@ gpio-leds {
+>  		pinctrl-0 = <&power_led_pin>;
+>  		pinctrl-names = "default";
+>  
+> -		power {
+> +		led-power {
+>  			label = "mamba:white:power";
+>  			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
+>  			default-state = "on";
 > -- 
-> 2.25.1
+> 2.34.1
 >
 
 -- 
