@@ -2,101 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9B5639EE7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 02:28:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A508639F34
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 03:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiK1B2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 20:28:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44778 "EHLO
+        id S229518AbiK1CHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 21:07:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiK1B2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 20:28:47 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 74006A479;
-        Sun, 27 Nov 2022 17:28:45 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8Cx7+vLDoRjyYcBAA--.3816S3;
-        Mon, 28 Nov 2022 09:28:43 +0800 (CST)
-Received: from [0.0.0.0] (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxNlfJDoRj58QcAA--.55015S3;
-        Mon, 28 Nov 2022 09:28:42 +0800 (CST)
-Message-ID: <b79a7f9e-d45d-aad9-8a34-4db609ce2c74@loongson.cn>
-Date:   Mon, 28 Nov 2022 09:28:41 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V3 2/5] i2c: gpio: Add support on ACPI-based system
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229504AbiK1CHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 21:07:44 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDB61021;
+        Sun, 27 Nov 2022 18:07:38 -0800 (PST)
+X-UUID: d1ef2638688e4c00813f811a0d5d5e61-20221128
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Vx9r4K8c2AmypEnlXhjtUj3PToclJWeeeHtuSZMQl/0=;
+        b=dAllR7dtiduK1fbYK88xkooh17LMapd6qeLL49sWQjvVDX2uU+lCbLlJ4K/a5vjPgBCjAGjcgNdAb4KG1BlFXZl+gSGfNS7bfUKUxwriG56IY8GEzPE6+gVGhSJu4LCfp0yYPo55kBtCJVPny+VROj1Ay/IFk66bocigb141PIA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:c3c7bd27-98d3-4498-b1d3-d64d44e37aa0,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:dcaaed0,CLOUDID:8615f72f-2938-482e-aafd-98d66723b8a9,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: d1ef2638688e4c00813f811a0d5d5e61-20221128
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <xiangsheng.hou@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 398116809; Mon, 28 Nov 2022 10:07:32 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 28 Nov 2022 10:07:31 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Mon, 28 Nov 2022 10:07:30 +0800
+From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <e0ed6dfa3dbf60b58ef4eaeb40ea46d2577a2834.1669359515.git.zhoubinbin@loongson.cn>
- <Y4CXrDh61D/f8V2A@smile.fi.intel.com>
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-In-Reply-To: <Y4CXrDh61D/f8V2A@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chuanhong Guo <gch981213@gmail.com>
+CC:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <benliang.zhao@mediatek.com>, <bin.zhang@mediatek.com>
+Subject: [PATCH 0/9] Add MediaTek MT7986 SPI NAND and ECC support
+Date:   Mon, 28 Nov 2022 10:06:04 +0800
+Message-ID: <20221128020613.14821-1-xiangsheng.hou@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxNlfJDoRj58QcAA--.55015S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7XF15JF4xWFy8Cr1xtF43Jrb_yoWxCFb_uF
-        yUZa1kAw1vvF18Aa1Ykr12gF48XF4DGF1UGF4ktwn3Kr1rJF93ZF95Zr92krn3Zry7GrsI
-        yryjvFy8KrW29jkaLaAFLSUrUUUU0b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        07kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7
-        xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAa
-        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
-        jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62
-        AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCa
-        FVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
-        IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
-        42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
-        IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280
-        aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUcbAwUUUUU
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series add MediaTek MT7986 SPI NAND and ECC controller
+support, split ECC engine with rawnand controller in bindings and
+change to YAML schema.
 
-在 2022/11/25 18:23, Andy Shevchenko 写道:
-> On Fri, Nov 25, 2022 at 04:54:12PM +0800, Binbin Zhou wrote:
->> Add support for the ACPI-based device registration, so that the driver
->> can be also enabled through ACPI table.
-> ...
->
->> +/* get i2c-gpio props from DT or ACPI table */
-> Get
->
-> ...
->
->> -	if (np) {
->> -		of_i2c_gpio_get_props(np, pdata);
->> +	if (np || has_acpi_companion(dev)) {
->> +		i2c_gpio_get_props(dev, pdata);
-> 	if (dev_fwnode() {
-> 		i2c_gpio_get_props(dev, pdata);
->
-> ...
->
->> +	{"LOON0005", 0}, /*LoongArch*/
-> ", 0" part is redundant. Also missing spaces in the comment.
->
-Hi Andy:
+Xiangsheng Hou (9):
+  spi: mtk-snfi: add snfi support for mt7986 IC
+  spi: mtk-snfi: change default page format to setup default setting
+  spi: mtk-snfi: add optional nfi_hclk which needed for mt7986
+  mtd: nand: ecc-mtk: add ecc support fot mt7986 IC
+  dt-bindings: spi: mtk-snfi: add mt7986 IC snfi bindings
+  spi: mtk-snfi: add snfi sample delay and read latency adjustment
+  dt-bindings: spi: mtk-snfi: add two timing delay property
+  dt-bindings: mtd: Split ECC engine with rawnand controller
+  dt-bindings: mtd: ecc-mtk: add mt7986 IC ecc bindings
 
-Thanks for your review. I will fix them in the V4 patchset.
+ .../bindings/mtd/mtk,nand-ecc-engine.yaml     |  61 ++++++
+ .../devicetree/bindings/mtd/mtk-nand.txt      | 176 ------------------
+ .../devicetree/bindings/mtd/mtk-nand.yaml     |  92 +++++++++
+ .../bindings/spi/mediatek,spi-mtk-snfi.yaml   |  22 +++
+ drivers/mtd/nand/ecc-mtk.c                    |  18 ++
+ drivers/spi/spi-mtk-snfi.c                    |  63 ++++++-
+ 6 files changed, 252 insertions(+), 180 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mtk,nand-ecc-engine.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/mtk-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/mtk-nand.yaml
 
-Binbin
+-- 
+2.25.1
 
