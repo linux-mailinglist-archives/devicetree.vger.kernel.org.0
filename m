@@ -2,98 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7600163B18E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 678DD63B1A4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:52:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232410AbiK1Sr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:47:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52716 "EHLO
+        id S232565AbiK1SwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:52:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbiK1Srt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:47:49 -0500
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECA8214030;
-        Mon, 28 Nov 2022 10:47:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Content-Type:From:Reply-To:
-        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-        bh=SjEaXE1aM3sAT5W9UJJ2Ph7aLEZJwNJ56ePTNEKDEp4=; b=JZ3xP6egL8IFaecQFMD0ZYq98a
-        WSandbky0gC70lDUDTuk55mDMvkKQPKjgFzNRd+9t94FWS7D/F9JAnjrrtxGGKmQQZq9/uZ5Sf7xr
-        1LiQ7jaZrGODgM3ZN+V4sWPG63QVMk3DdbEAYhUzsKHsLu+QBNCyZ4PpkB06op3vkkSUVHk7Jsp+/
-        r2GChUmEYRxuAfTERjUntLDl6sk+yfRZir1/i7UIKS4E7T6wi0XJw9QuDZwlkT+RX7YHt+7RGWD2d
-        GonXMaGZyhFwcnJVvRVz6zgwbDXTfxHNf427/dI0aREvS6pbr+i8LwK355xc22+8P5AP1pIlfwvy1
-        etqxjBBw==;
-Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1ozjA2-006BVA-Ij; Mon, 28 Nov 2022 19:47:22 +0100
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1ozjA1-008Elv-29;
-        Mon, 28 Nov 2022 19:47:21 +0100
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lin Jinhan <troy.lin@rock-chips.com>
-Cc:     linux-crypto@vger.kernel.org (open list:HARDWARE RANDOM NUMBER
-        GENERATOR CORE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
-        support),
-        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
-        linux-kernel@vger.kernel.org (open list),
-        Aurelien Jarno <aurelien@aurel32.net>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: add DT entry for RNG to RK356x
-Date:   Mon, 28 Nov 2022 19:47:18 +0100
-Message-Id: <20221128184718.1963353-4-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128184718.1963353-1-aurelien@aurel32.net>
-References: <20221128184718.1963353-1-aurelien@aurel32.net>
+        with ESMTP id S232410AbiK1SwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:52:04 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F299715A36
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:52:02 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id m19so15461006edj.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:52:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4onFK9mmn1PH3tAtZYrIxWVG00vIN2pNwdT/8GjGTW8=;
+        b=FjWlQ9WkBv5X/hTCQYrVCCSn4D0e91YLvqgatw2uxx8/aFRvqqaC0hM6QJ8bMIuOUh
+         Mpse1m7Zzo4Q57c+7dhSHpHYH+rn51LAIMslaFcyIW/8FZE7wKmVfiBmYXe45h5s9kej
+         3be/0LYze6WJBt4yU3quhiiYzKWpx3klmqHEs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4onFK9mmn1PH3tAtZYrIxWVG00vIN2pNwdT/8GjGTW8=;
+        b=zeQ7f7RQDWmkYIT7+8EVhwwp0R1ZRUnfyeK2JkCR8DIII7Uy8GGLrbbBqwcuJ7+lBq
+         InAv8o509i93EBD7eob9cI3rmDu0WQw13bs5wh4dRS4QaM32sFpASPXU20sTJQHhrJL2
+         LyHT+hQGZSzmotL48rVyMvpOZQ2eAuddsJq3htRz4yCN0XEXyQL3MIQ6FD3n9SSKfTI8
+         0waasJEMtVpqgxo8tYUMhSfdpZtKzDXWkD6SSBc/UVaKStUnXVJ/MsGb1MWHLfPpiego
+         yR2F4dBK7eI32qBix1M9baIuSkTdZwNMygUkicNnbdwiez4WDDDnCwjemmXN1YMLTOMI
+         xHlA==
+X-Gm-Message-State: ANoB5pkHvrwOqtUn2OginmRAV3HdNEPgadhgPSlOFTqFg/PkHLiIU58k
+        8Ndrao3id71yNFVmLgzdWTtVHT7x/LO6Hnn7
+X-Google-Smtp-Source: AA0mqf6yPpvQhmJGSpVHjq0SVfFuBu+GAY7OZ83vWBS19IM38oT3QBfGsfmmlPjqHS34Y6E0ow09xg==
+X-Received: by 2002:a05:6402:1f14:b0:461:c7ef:b09e with SMTP id b20-20020a0564021f1400b00461c7efb09emr35229505edb.58.1669661520164;
+        Mon, 28 Nov 2022 10:52:00 -0800 (PST)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id k13-20020a17090632cd00b007ad84cf1346sm5205887ejk.110.2022.11.28.10.51.59
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 10:51:59 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id h11so11143468wrw.13
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:51:59 -0800 (PST)
+X-Received: by 2002:adf:cd82:0:b0:238:b29e:4919 with SMTP id
+ q2-20020adfcd82000000b00238b29e4919mr32461837wrj.583.1669661518579; Mon, 28
+ Nov 2022 10:51:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
+ <Y3zck7tPA5WFd0p1@google.com> <CAPao8GKpXcRm3PmWnv+rsr2z53r6J-ScXAq+fOi4ydQg_Gy31A@mail.gmail.com>
+ <Y343IWgkli+y8HMn@google.com> <CAD=FV=X4GzCnmgnAQMzCNpCxzxkZXWONt4gNVCHniRYE_uFVyg@mail.gmail.com>
+ <Y4Tq5DFoc0kWIjTb@google.com>
+In-Reply-To: <Y4Tq5DFoc0kWIjTb@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 28 Nov 2022 10:51:46 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UBQjKhqYsfd2bGe0JVQ_SsxQ8aHVqSJnjLa2oJavP0QQ@mail.gmail.com>
+Message-ID: <CAD=FV=UBQjKhqYsfd2bGe0JVQ_SsxQ8aHVqSJnjLa2oJavP0QQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Adding DT binding for zombie
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     =?UTF-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Abner.Yen@ecs.com.tw,
+        Gavin.Lee@ecs.com.tw, Vicy.Lee@ecs.com.tw, Jason.Huang@ecs.com.tw,
+        Darren.Chen@ecs.com.tw
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the just added Rockchip RNG driver for RK356x SoCs.
+Hi,
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Mon, Nov 28, 2022 at 9:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> On Mon, Nov 28, 2022 at 08:20:36AM -0800, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Wed, Nov 23, 2022 at 7:07 AM Matthias Kaehlcke <mka@chromium.org> wr=
+ote:
+> > >
+> > > > My checkout steps as below:
+> > > > $ git remote add linux_qcom=C3=82 git://git.kernel.org/pub/scm/linu=
+x/kernel/git/
+> > > > qcom/linux.git
+> > > > $ git fetch --no-tags linux_qcom
+> > > > $ git checkout -b <MyLocalBranchName> linux_qcom/for-next
+> > > >
+> > > > Is my=C3=82 code base branch still worng?=C3=82  Am I=C3=82 missing=
+ something?=C3=82
+> > >
+> > > My understanding is that it is best to base you changes on a branch l=
+ike
+> > > 'arm64-for-6.2' as the 'for-next' branch is re-created every time cha=
+nges
+> > > land in one of the '${area}-for-${version}' branches.
+> > >
+> > > No big issue in this case, just use the corresponding '${area}-for-${=
+version}'
+> > > branch for future patches/versions :)
+> >
+> > FWIW, I usually just use Bjron's for-next branch for stuff like this.
+> > While the merge commits in the the Qualcomm "for-next" branch are
+> > re-created every time, because of the way "git" works the git hashes
+> > of the actual patches are the same as the git hashes of the patches in
+> > the separate branches. All the patches in "for-next" should be ones
+> > that are fine to base your patches on.
+>
+> I had minor concerns that occasionally tools might get confused it they
+> try to find the parent tree of a patch based on the unstable hash of
+> the merge commit in "for-next". Not sure if it is much of an issue in
+> practice.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 164708f1eb67..4be94ff45180 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -1770,6 +1770,15 @@ usb2phy1_otg: otg-port {
- 		};
- 	};
- 
-+	rng: rng@fe388000 {
-+		compatible = "rockchip,rk3568-rng";
-+		reg = <0x0 0xfe388000 0x0 0x4000>;
-+		clocks = <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
-+		clock-names = "trng_clk", "trng_hclk";
-+		resets = <&cru SRST_TRNG_NS>;
-+		reset-names = "reset";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
--- 
-2.35.1
+It's a fair concern, but I don't _think_ it matters. I think git is
+smart enough to handle this in nearly all the cases and I think the
+cases where git can't handle it are cases where (perhaps) the for-next
+was the correct thing to use anyway.
 
+As a test:
+
+atop for-next:
+echo "foo" >> arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+git add -u
+git commit -m "add foo"
+git format-patch HEAD~
+
+atop arm64-for-6.2:
+echo "foo" >> arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+git add -u
+git commit -m "add foo arm64"
+git format-patch HEAD~
+
+If you diff the two patches created, you can see that they both
+contain "index" line. In my case:
+
+index 65601bea0797..b5c9f39737f6 100644
+
+That appears to basically just show a hash of the affected file both
+before and after your patch. The merge commits and commits to other
+files don't affect this. Specifically, you can see this before making
+the change
+
+$ git hash-object -w arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+65601bea07972e75cd1ac880bd43aa3dac62fb76
+
+...and after making the change:
+
+$ git hash-object -w arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+b5c9f39737f67e9ba0a115355ecf95df9a04dba7
+
+
+So tl;dr is that as long as the files you're touching are identical in
+"for-next" and in a specific branch (like arm64-for-6.2) that the
+patch files created will actually be exactly the same because all they
+contain are the object hashes. You could also imagine the files being
+_not_ exactly the same. If two different branches touched the same
+file and were merged into "for-next" then it could make a difference.
+In that case, though, it would still at least be a plausible choice to
+post it against the "for-next" branch because that should represent
+the final state.
+
+-Doug
