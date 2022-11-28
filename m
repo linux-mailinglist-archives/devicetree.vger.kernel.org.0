@@ -2,104 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C49FA63B0E5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCA763B0F5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:18:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234183AbiK1SQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:16:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50732 "EHLO
+        id S232847AbiK1SSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:18:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232907AbiK1SP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:15:29 -0500
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A070D2E6B9
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:58:28 -0800 (PST)
-Received: by mail-vs1-xe2c.google.com with SMTP id k185so3804778vsc.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:58:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k835onYIZmsMuurlywEhGfRyXKYROEnVcvL+bYuMNFg=;
-        b=qeAlsrxSTYrFNmaODPT2/lB5DxDq+uU+fCNqqy+mRXc+Af9X3azUb12ENwHsOoDqed
-         63QFTN4UFnImZsWpuhwXZmmk0pJVWe0EjZalYULvfIuAPSv6+67/LL8CMmLoRgVeo104
-         gGXXlVp7xDfgQGaDZDzAH6/hbVMQE5Rt7/PTgFVVcQKoJNfxNA3vCIOXA9W4vReoUFXW
-         Kya4ASz99JXKdpdfpOMAP5bXB+RuPRiGqCNONFyJMNYNPQFSCQLqYnm9DKo24lHOzZr1
-         eF0BLnHG+Vq2MNRUaCcSvgaMd7Dw89BMO1MjOVoRRK0Dd1AqwufbwATpNdU5kPVkOMGG
-         P59A==
+        with ESMTP id S233058AbiK1SSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:18:15 -0500
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1992A95F
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:01:54 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id z9so5401228ilu.10
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:01:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k835onYIZmsMuurlywEhGfRyXKYROEnVcvL+bYuMNFg=;
-        b=NP87J4a7PA0n2f4/FPUTeEbivw6BVD98USBguhCkWxPCkO/JdP9Pn6lSXz80HF895b
-         g8apFb/nkkbQWpPbG3EkICs7IN/04aQVUbx90lcppemi0wXAvcw5O1OHE2AZK3Aoc/tT
-         dAhy6804SMtaPmfIQC5HLWhqnZpsN3zYUUv0T3YR0a6XHcqjYBY3lta3qhY3r2ZOeTZF
-         K9ki6/dzHhqTUH+TIIEqEBZKZHerGwX80vvy/YaM7ZSCFsDpbLZ/YfUy6SPyBmjsPSWL
-         Tm5Rjw2KZSGhSZrzMcOTH4OGFI5gYGlX4ljhGK/qdOaeL+C0sVhEd0CkGBzf1EcO5brK
-         IdEg==
-X-Gm-Message-State: ANoB5pnCPqrxHMMYT2GnlHKKmBjeenypqws4ljmc8u3NbFl8bpbiYUam
-        QHrmXBEqk3QMDwUzUGItWvXDzSUF95mqfMwg9nc/IA==
-X-Google-Smtp-Source: AA0mqf48IEw+OIVt1k1bXjwXtS42iy/rgvamsgwyKVRPbDhgOrUIFCNugUYhB4LxZmQEbqe3FwwXtxhmz8941Q3A3UY=
-X-Received: by 2002:a67:1c85:0:b0:3b0:92e2:37b0 with SMTP id
- c127-20020a671c85000000b003b092e237b0mr5455727vsc.9.1669658307802; Mon, 28
- Nov 2022 09:58:27 -0800 (PST)
-MIME-Version: 1.0
-References: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
-In-Reply-To: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 28 Nov 2022 18:58:16 +0100
-Message-ID: <CAMRc=Mffq-RXt+huAT48zZvo0OJY=nhb6SV7kxSNzr1Xv=h1nQ@mail.gmail.com>
-Subject: Re: [PATCH] gpio: Do not include <linux/kernel.h> when not really needed.
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xmy4KXaQFNlqj17WY1ADV6bqsA77u7z6qE1PaxwlJXo=;
+        b=fq6uvrRVAKqTjx7HwRR4upRN/tB8+kuBeBc2v51izAC/RFBxeLkXJNcyyCaBriPTq6
+         Fwkt2JrP/KDGA3lRPGONrr9c0sAsLiQ1OITak8P3K3unVm2w/7uaj0mqjZMRXVH/C8Xo
+         xKKL3bvPffHTAPQFqw0SAkAjb3k4/yN5BoTyM3mtNtxeSpUtajqFqQ2nwcTDHlAevW3q
+         KfQ1C3kIzkobySgryZrw5cpH/rkVSvpY1F3ixuwEMmBMfOj0qTcotHj/nA1ZF6+9Rja7
+         ezZDLrAYmKRQtAgWafiJXtEML1FvY/gSzoDIV++ZcdZNAfEBdNnTExEHebBROSCRKz2V
+         Y/oQ==
+X-Gm-Message-State: ANoB5pkh4vsQD5a3CQ7JeMJgvHpnFA0RfE9gVfrhZ34POR62FA9cUPIN
+        Act5ATzhMqF2RjpL1LmgjhwN/Q==
+X-Google-Smtp-Source: AA0mqf70pG2zhhWmQ9tBm9b/zMsiZnG4JD+s+a0G/ChoykXinRgJm8GCPsBwkj7EV/Ro3wduiUVaCA==
+X-Received: by 2002:a05:6e02:c65:b0:302:f4f5:8691 with SMTP id f5-20020a056e020c6500b00302f4f58691mr9364754ilj.206.1669658513537;
+        Mon, 28 Nov 2022 10:01:53 -0800 (PST)
+Received: from google.com (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with ESMTPSA id o3-20020a02a1c3000000b0037477c3d04asm4326772jah.130.2022.11.28.10.01.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 10:01:52 -0800 (PST)
+Date:   Mon, 28 Nov 2022 18:01:50 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Icenowy Zheng <uwu@icenowy.me>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 3/6] usb: misc: onboard_usb_hub: add Genesys Logic GL850G
+ hub support
+Message-ID: <Y4T3ju7FTb6994HT@google.com>
+References: <20221127073140.2093897-1-uwu@icenowy.me>
+ <20221127073140.2093897-4-uwu@icenowy.me>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221127073140.2093897-4-uwu@icenowy.me>
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 27, 2022 at 10:52 PM Christophe JAILLET
-<christophe.jaillet@wanadoo.fr> wrote:
->
-> <linux/kernel.h> is included only for using container_of().
-> Include <linux/container_of.h> instead, it is much lighter.
->
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+On Sun, Nov 27, 2022 at 03:31:37PM +0800, Icenowy Zheng wrote:
+> This is a 4-port USB 2.0 STT hub.
+
+The commit message is supposed the describe the change, which
+is almost certainly not a 4-port USB 2.0 STT hub :)
+
+It could be something like "Add support for the Genesys Logic
+GL850G, which is a 4-port USB 2.0 STT hub."
+
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 > ---
-> Not sure if the prefix should be gpio or gpiolib.
->
-> Let see if build-bots spot something which is inherit via kernel.h
-> ---
->  include/linux/of_gpio.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/include/linux/of_gpio.h b/include/linux/of_gpio.h
-> index a5166eb93437..6db627257a7b 100644
-> --- a/include/linux/of_gpio.h
-> +++ b/include/linux/of_gpio.h
-> @@ -34,7 +34,7 @@ enum of_gpio_flags {
->
->  #ifdef CONFIG_OF_GPIO
->
-> -#include <linux/kernel.h>
-> +#include <linux/container_of.h>
->
+>  drivers/usb/misc/onboard_usb_hub.c | 2 ++
+>  drivers/usb/misc/onboard_usb_hub.h | 5 +++++
+>  2 files changed, 7 insertions(+)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index d63c63942af1..f5c71d724be6 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -334,6 +334,7 @@ static struct platform_driver onboard_hub_driver = {
+>  #define VENDOR_ID_MICROCHIP	0x0424
+>  #define VENDOR_ID_REALTEK	0x0bda
+>  #define VENDOR_ID_TI		0x0451
+> +#define VENDOR_ID_GENESYS	0x05e3
+
+Please insert the new entry in alphabetical order, i.e. before
+VENDOR_ID_MICROCHIP.
+
+>  
 >  /*
->   * OF GPIO chip for memory mapped banks
-> --
-> 2.34.1
->
+>   * Returns the onboard_hub platform device that is associated with the USB
+> @@ -414,6 +415,7 @@ static const struct usb_device_id onboard_hub_id_table[] = {
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
+>  	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
+>  	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
+> +	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 */
 
-Applied, thanks!
+Same here, the table is ordered alphabetically
 
-Bartosz
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
+> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> index 34beab8bce3d..1ca188713b1f 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.h
+> +++ b/drivers/usb/misc/onboard_usb_hub.h
+> @@ -22,6 +22,10 @@ static const struct onboard_hub_pdata ti_tusb8041_data = {
+>  	.reset_us = 3000,
+>  };
+>  
+> +static const struct onboard_hub_pdata genesys_gl850g_data = {
+> +	.reset_us = 3,
+> +};
+> +
+>  static const struct of_device_id onboard_hub_match[] = {
+>  	{ .compatible = "usb424,2514", .data = &microchip_usb424_data, },
+>  	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
+> @@ -30,6 +34,7 @@ static const struct of_device_id onboard_hub_match[] = {
+>  	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
+>  	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
+>  	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
+> +	{ .compatible = "usb5e3,608", .data = &genesys_gl850g_data, },
+
+These table is ordered by compatible string, the new entry should be
+inserted after "usb451,8142".
+
+Thanks
+
+m.
