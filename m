@@ -2,136 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA3B363B233
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 20:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9CF863B268
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 20:40:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbiK1TZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 14:25:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S233652AbiK1TkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 14:40:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232664AbiK1TZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 14:25:36 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 730E526AF3;
-        Mon, 28 Nov 2022 11:25:35 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ASJPCBe029215;
-        Mon, 28 Nov 2022 13:25:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669663512;
-        bh=MmlPSR7nZwn4QYm46rRfgKRTrwJeh/kdGb4dtj4UxYw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=voipzgXAURJe11BzmUnNi9lS6mSC9/P1iyivt5AGXHEOhnTj16FLsSmEsRZPQeKAz
-         KkA7qiaTfKBRUAeSsvs0R6epAR9/k8bTnNAuFKwdyEuMkegxkn8Jg+vijfY0M2Erht
-         AoG2yhccKONRPxg58Xbb/WRx2/LeUn5NVcZTk72M=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ASJPCeb093111
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 28 Nov 2022 13:25:12 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 28
- Nov 2022 13:25:11 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 28 Nov 2022 13:25:11 -0600
-Received: from [10.250.232.104] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ASJP7eC033643;
-        Mon, 28 Nov 2022 13:25:08 -0600
-Message-ID: <94ac28e5-2920-c6d0-2659-a0626540a91e@ti.com>
-Date:   Tue, 29 Nov 2022 00:55:06 +0530
+        with ESMTP id S232231AbiK1TkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 14:40:13 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A722A2A70C
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 11:40:12 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id g12so19081604lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 11:40:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1X++ZaligKAG6LkPIexjBiKopBxcNHqsvb5zqb0R6nA=;
+        b=iNMVlHUsjwLrJrks1vvhHe/Geot63a1ksPxeCQISSqZ5aiG1tgo4oa/KdGa57JHE/I
+         eijJCwMYSV0g3fUD/A5aYsouMPOtpihSAoBEes0tXXhJESjomdESVMMuNeSegOkWGIJS
+         vlh/kTi5uVAuV119WsBjOQuIPe0NIRmODt3Ek=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1X++ZaligKAG6LkPIexjBiKopBxcNHqsvb5zqb0R6nA=;
+        b=wOgNFk/brcZU5FeMx7dVZcZl5dvMxR1fLUK83AklPk81F/zxU4e72GIWRAtFfZu5q1
+         +itmjBNSiHTeKedZjyfxhShQyQfXBOTQZ6F07pHzCRqjiwnOwQ7Qryu3Qe0ZNVmls0q6
+         +xJsfedRwv2lpMhnfHh9P9lIYO0gSMAuym4UwZAevPw0dQlDuUIIWycOqxjkymCdhGQM
+         f+ZTmgCLDclERB/SfS/hNUFB7qUcPfT03vNkg8aByc3l1iPCUhMuj8PQCC2VBK1Imqiw
+         NRyBSYviPYsA4YHnrgOaXpMRNvgS95opqwpIbkamHCpq+w8rWDO88KUdP41Q5Ryk3dTL
+         CAGw==
+X-Gm-Message-State: ANoB5pkIlUNFrhUvERsSDoEvAm9LYdbAFmf2SoDmOZfX0wKcEDDdSF/L
+        bJhg8Oe00Q3bDMHkHS6pyQ0TVFHzjSPYy9E3YAcHKg==
+X-Google-Smtp-Source: AA0mqf6V3sD0dfIeXkvuFyXVlvYnyFq1swuenyPZM4OvYIuywP3NvLESQNKs2ZpfMxSP9GcQI9ETNaPM19XxIazd1VA=
+X-Received: by 2002:a05:6512:33d1:b0:4b5:1c86:9267 with SMTP id
+ d17-20020a05651233d100b004b51c869267mr1501925lfg.297.1669664410971; Mon, 28
+ Nov 2022 11:40:10 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 28 Nov 2022 14:40:10 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 0/4] mfd: add tps6594 support for Jacinto platforms
-To:     Matt Ranostay <mranostay@ti.com>, <michael@walle.cc>,
-        <vigneshr@ti.com>, <robh@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <a.zummo@towertech.it>,
-        <linus.walleij@linaro.org>, <lee@kernel.org>, <brgl@bgdev.pl>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>
-References: <20221123053512.1195309-1-mranostay@ti.com>
-Content-Language: en-US
-From:   "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <20221123053512.1195309-1-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 28 Nov 2022 14:40:10 -0500
+Message-ID: <CAE-0n519fURgt4x-4maBGBEm-OWk7rbfRgNJNzR-XDcMB5b4jA@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add system suspend/resume PM ops
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        andersson@kernel.org, bgoswami@quicinc.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Srinivasa Rao Mandadapu (2022-11-27 23:49:02)
+> Update lpass sc7180 platform driver with PM ops, such as
+> system supend and resume callbacks.
+> This update is required to disable clocks during supend and
+> avoid XO shutdown issue.
+>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
+> ---
+>  sound/soc/qcom/lpass-sc7180.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>
+> diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+> index 77a556b..6ad1c5b 100644
+> --- a/sound/soc/qcom/lpass-sc7180.c
+> +++ b/sound/soc/qcom/lpass-sc7180.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
 
+Why is this include needed? Did you mean to include linux/pm.h?
 
-On 11/23/2022 11:05 AM, Matt Ranostay wrote:
-> This patchset series adds support for the TPS6594 PMIC along with
-> initial support for its RTC + GPIO interface, and poweroff sequence.
+>  #include <dt-bindings/sound/sc7180-lpass.h>
+>  #include <sound/pcm.h>
+>  #include <sound/soc.h>
+> @@ -156,10 +157,34 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
+>         struct lpass_data *drvdata = platform_get_drvdata(pdev);
+>
+>         clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
+> +       return 0;
+> +}
+> +
+> +static int sc7180_lpass_dev_resume(struct device *dev)
+> +{
+> +       int ret = 0;
 
-For the series:
+Please don't assign ret and then assign it again. It hides use before
+true assignment bugs.
 
-Reviewed-by: Keerthy <j-keerthy@ti.com>
+> +       struct lpass_data *drvdata = dev_get_drvdata(dev);
+>
+> +       ret = clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
+> +       if (ret) {
+> +               dev_err(dev, "sc7180 clk prepare and enable failed\n");
+> +               return ret;
+> +       }
+> +       return ret;
 
-- Keerthy
-> 
-> Changes from v1:
-> * Corrected devicetree documentation issues found with dt-schema
-> * Changed MFD references to PMIC reflecting the more valid use of driver
-> * Cleaning up variable naming and ordering within functions
-> * Adding gpio + regulator cells for upcoming driver support
-> * Switching from .probe to .probe_new API
-> * Revising comments within drivers to be more concise
-> * Adding device tree nodes for j721s2 and j721e platforms
-> 
-> Changes from v2:
-> * Adding gpio-tps6594x driver support
-> * Enabling gpio cell in MFD driver
-> 
-> Changes from v3:
-> * Refactoring gpio driver to use regmap gpio helpers
-> * Changing rtc driver to use more of device resource management
-> * Minor code changes related to error messages that aren't useful
->    being dropped
-> * Dropped wildcard in device-tree compatible, and i2c device id
-> * Dropped device tree changes from the series; since these should
->    be in their own series later
-> 
-> Changes from v4:
-> * Corrected commit messages for device tree documentation
-> * Added TPS6954 datasheet PDF to devicetree documentation
-> * Renamed all references, including filenames + configuration options,
->    from tps6594x to tps6594 dropping the unneeded wildcard
-> 
-> Keerthy (2):
->    mfd: tps6594: Add support for TPS6594 PMIC devices
->    rtc: rtc-tps6594: Add support for TPS6594 PMIC RTC
-> 
-> Matt Ranostay (2):
->    dt-bindings: mfd: ti,tps6594: add TPS6594 PMIC support
->    gpio: gpio-tps6594: add GPIO support for TPS6594 PMIC
-> 
->   .../devicetree/bindings/mfd/ti,tps6594.yaml   |  69 ++++++++
->   drivers/gpio/Kconfig                          |   9 +
->   drivers/gpio/Makefile                         |   1 +
->   drivers/gpio/gpio-tps6594.c                   |  78 +++++++++
->   drivers/mfd/Kconfig                           |  14 ++
->   drivers/mfd/Makefile                          |   1 +
->   drivers/mfd/tps6594.c                         | 113 +++++++++++++
->   drivers/rtc/Kconfig                           |  10 ++
->   drivers/rtc/Makefile                          |   1 +
->   drivers/rtc/rtc-tps6594.c                     | 155 ++++++++++++++++++
->   include/linux/mfd/tps6594.h                   |  88 ++++++++++
->   11 files changed, 539 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
->   create mode 100644 drivers/gpio/gpio-tps6594.c
->   create mode 100644 drivers/mfd/tps6594.c
->   create mode 100644 drivers/rtc/rtc-tps6594.c
->   create mode 100644 include/linux/mfd/tps6594.h
-> 
+This could be simplified to
+
+	ret = clk_bulk_prepare_enable(...);
+	if (ret)
+		dev_err(dev, ...);
+
+	return ret;
