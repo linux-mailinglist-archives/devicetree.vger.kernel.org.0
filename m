@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E975D63AF35
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8715B63AF98
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:43:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233191AbiK1Rj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:39:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S233407AbiK1Rnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:43:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233145AbiK1Rj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:39:27 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310FA28E14;
-        Mon, 28 Nov 2022 09:38:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 32144612E7;
-        Mon, 28 Nov 2022 17:38:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF32C433C1;
-        Mon, 28 Nov 2022 17:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669657115;
-        bh=HOWAd5nwQ+lGF+ukq+i+s7e6yeo+kQXM8u2DmzBWNxI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fA0utH1n9tbRyGPb6cbtcHm8b6LbC1KxeoP/Ft6drkOPaLMu3ESObeOwIWZRL3Da1
-         72ex6Yz3uPIqigCfw4lGYWwU9fa2/Ng/oNW1PyTf6aCfGUvlzKe321GRrx4WNVr7li
-         rXjIc0w/huOs4PIpFZ9Py3b81zqpz1o8eSVt7EM5j4/5mNrwjA0zlNA6rq8uG9VIjp
-         b3KH/BtLDD+p/gjSk2JZ4Sl25wS7vc6MfOLtlncDy0rLYOwaQeybhUbPw0VAXc5zKR
-         9CAVmR0JbziMzC89NaMvr+UHy8escI8TrKCWAtdLl2IHRw65VCYH4ZG9oLxJIvfBE6
-         xbokIHzlQCWwA==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.0 18/39] ARM: dts: rockchip: disable arm_global_timer on rk3066 and rk3188
-Date:   Mon, 28 Nov 2022 12:35:58 -0500
-Message-Id: <20221128173642.1441232-18-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128173642.1441232-1-sashal@kernel.org>
-References: <20221128173642.1441232-1-sashal@kernel.org>
+        with ESMTP id S233034AbiK1RnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:43:12 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B18A72934E;
+        Mon, 28 Nov 2022 09:40:36 -0800 (PST)
+Received: from g550jk.arnhem.chello.nl (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9705BD05C0;
+        Mon, 28 Nov 2022 17:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1669657204; bh=8fCUumEsdqkqA0wdfT7gwwUflnlTnVBWF8E3m/S4G+k=;
+        h=From:To:Cc:Subject:Date;
+        b=C1YfUKwJjRSvqFiT7zSYcoesmxWpiWZDRgiaMceSoXhL8CB9w7/jX6B1v5IfSVaq/
+         dhS2i0ShYcHgilXERHm1MRBysnYeusAznSUtS1rj+sn6JQ82x7Fwr+lJuE2X9TJdCB
+         GI1Gv5HDJhQEMzN0Lpjo5t1Dwro4x6uvtVrjsszQ=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH 1/2] dt-bindings: nfc: nxp,nci: Document NQ310 compatible
+Date:   Mon, 28 Nov 2022 18:37:43 +0100
+Message-Id: <20221128173744.833018-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
+The NQ310 is another NFC chip from NXP, document the compatible in the
+bindings.
 
-[ Upstream commit da74858a475782a3f16470907814c8cc5950ad68 ]
-
-The clock source and the sched_clock provided by the arm_global_timer
-on Rockchip rk3066a/rk3188 are quite unstable because their rates
-depend on the CPU frequency.
-
-Recent changes to the arm_global_timer driver makes it impossible to use.
-
-On the other side, the arm_global_timer has a higher rating than the
-ROCKCHIP_TIMER, it will be selected by default by the time framework
-while we want to use the stable Rockchip clock source.
-
-Keep the arm_global_timer disabled in order to have the
-DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/f275ca8d-fd0a-26e5-b978-b7f3df815e0a@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
- arch/arm/boot/dts/rk3188.dtsi | 1 -
- arch/arm/boot/dts/rk3xxx.dtsi | 7 +++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
+RESEND to fix Cc
 
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index b8f34bef0efa..44b54af0bbf9 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -607,7 +607,6 @@ &emac {
+ Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
+index b2558421268a..6924aff0b2c5 100644
+--- a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
++++ b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
+@@ -14,7 +14,9 @@ properties:
+     oneOf:
+       - const: nxp,nxp-nci-i2c
+       - items:
+-          - const: nxp,pn547
++          - enum:
++              - nxp,nq310
++              - nxp,pn547
+           - const: nxp,nxp-nci-i2c
  
- &global_timer {
- 	interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
--	status = "disabled";
- };
- 
- &local_timer {
-diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
-index 616a828e0c6e..17e89d30de78 100644
---- a/arch/arm/boot/dts/rk3xxx.dtsi
-+++ b/arch/arm/boot/dts/rk3xxx.dtsi
-@@ -76,6 +76,13 @@ global_timer: global-timer@1013c200 {
- 		reg = <0x1013c200 0x20>;
- 		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 		clocks = <&cru CORE_PERI>;
-+		status = "disabled";
-+		/* The clock source and the sched_clock provided by the arm_global_timer
-+		 * on Rockchip rk3066a/rk3188 are quite unstable because their rates
-+		 * depend on the CPU frequency.
-+		 * Keep the arm_global_timer disabled in order to have the
-+		 * DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-+		 */
- 	};
- 
- 	local_timer: local-timer@1013c600 {
+   enable-gpios:
 -- 
-2.35.1
+2.38.1
 
