@@ -2,123 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E924B63AA96
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF33063AAA0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:15:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232327AbiK1ONE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:13:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40790 "EHLO
+        id S232410AbiK1OPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:15:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbiK1ONB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:13:01 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8C6205CC
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:13:00 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id q7so13268598ljp.9
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:13:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xTh1nEEe1sZRF8M0HBvSAqoj/WogzsicuLZxTaiVtEk=;
-        b=cnGclIVTIKCjEAuQSzJYnC7wk8mdlCiLluFSrAmgb0ybDl4nhlr9Gd6tNHSrPiflp3
-         lnbpE+R1iEXEC+yLedMHs0Z6SkiDoVBj+nMrZ90QuQGiLmHBTp7HVlqM8AIxddxP2KAT
-         sbIzJFvNJxy+LP0qB7aZE1xNlmQIvtlruGRIyYNP6OVSeSI7GaG/D2FhVUKQW01qWWIs
-         SRxx8WGbcISDj7VNirmDOQizwfl9+7Z5AUpkDLchFrNSVAgDF2FAG2+BcH+WSMh3CXH3
-         /VX/u3om6/wPKoK0W4U7VSXZf62Pf1dn9EdnPRQBhwK2gULy06Ya1uVZNQAus7l+uhHz
-         f+sg==
+        with ESMTP id S232427AbiK1OPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:15:06 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A6C220F8;
+        Mon, 28 Nov 2022 06:15:02 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id m204so11670416oib.6;
+        Mon, 28 Nov 2022 06:15:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xTh1nEEe1sZRF8M0HBvSAqoj/WogzsicuLZxTaiVtEk=;
-        b=ClCs37Mrqrrx4oySR/80TRV3wtZpD4ATUVXu/k+2WfqmDlgJU7bTlvNfpEwIcbm4wV
-         phoKnUP0sGGz5V4GFtx31HmdARQWtQlkFq5vKuo4umUaSy2XXQyUa5Sh4fSZdE8EVtnr
-         vzV43vWjXPpBN1bm39QtBSTFu7qs8EDVL5HUXJSrO21vzUoae+rCHNZ13BdKuHxNnMVE
-         Uki6gKLVPXDsmy6V0E6X9LbDB38uqHoKVlenNUlY4bimw0HS6L7vc06Ytt9eIfsgzQU3
-         6OMd5tu4wyD3e3zF07zogW8/rTkhivhhhVwqbJ/Won4IYOT+/B9wErvwTZVCjUMsFgLm
-         kctQ==
-X-Gm-Message-State: ANoB5pkpVgnQN7W/b6UxzMnSdcTFFuuvcqIfKM1eHEUS0b5RHJe11g7b
-        m/Lz62UjEyMmrVDDKbo44BveJw==
-X-Google-Smtp-Source: AA0mqf4RTqCSdVc2fh4P/K+7P/sOstE+KCYSuuoGYLYuBYboJ4/i1E5DomK6dGz+ooHuSLU2nOY2XQ==
-X-Received: by 2002:a05:651c:12c7:b0:26f:c03d:f99b with SMTP id 7-20020a05651c12c700b0026fc03df99bmr17132650lje.190.1669644776127;
-        Mon, 28 Nov 2022 06:12:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m1-20020a056512114100b004972b0bb426sm1759227lfg.257.2022.11.28.06.12.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 06:12:55 -0800 (PST)
-Message-ID: <ee52f463-f54c-70cb-5a31-5748f26f40bc@linaro.org>
-Date:   Mon, 28 Nov 2022 15:12:54 +0100
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rMDrKJM1JYq9frHiDAV6QjHrjgaT+Wd+P/w7Ou0pGrc=;
+        b=FJMqrqaggu+xu84dmIACxHlCmKBZBO92yLaeIT6fVNe2woR7EQQurkeEYbMUhV2S6X
+         aFJD79J9DgeOOiRrp5eEwEeYEsF8cMwquzOsgvyOdOIHvjiWGHijVqUv6jSDBQyZhGxy
+         +pEDKxkmasI9nuwJf4K/9bVmB5/9aZr/XaceWnPr/A34kiaZz7S36P/oyI73tflIvf+I
+         ZMD0HJvwfjbMTrM9zjmDbIbWK6zzZSZvGm5CT4TZa4zYlLMlAAo3fZP6RLn8OOaNgESi
+         wz2UsetPI0ijOiBwKu0xyl3BRSUDy/y7km1z9f87h3evIIbiFeqlud7niACuk6FOMRpZ
+         m2rg==
+X-Gm-Message-State: ANoB5plBF2UjrxR8FIUdyCHi4Xh+L1u9wssNJQ5wj6GBvBoR/8T3EXI9
+        98sxd1w+Z4HX2AegQ595Kw==
+X-Google-Smtp-Source: AA0mqf7GaLmT+j6KXYSEaDabzZGvwPVlEA86w3Pu8lzi8pqWtO//a4CTd3PVxjYaNKvONEotUcwvLA==
+X-Received: by 2002:a05:6808:22a1:b0:35b:8a39:ab76 with SMTP id bo33-20020a05680822a100b0035b8a39ab76mr8955735oib.196.1669644902054;
+        Mon, 28 Nov 2022 06:15:02 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t12-20020a056870e74c00b001375188dae9sm5946085oak.16.2022.11.28.06.15.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 06:15:01 -0800 (PST)
+Received: (nullmailer pid 722965 invoked by uid 1000);
+        Mon, 28 Nov 2022 14:15:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/2] i2c: loongson: add bus driver for the loongson i2c
- controller
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        William Zhang <william.zhang@broadcom.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jan Dabros <jsd@semihalf.com>,
-        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221128130025.23184-1-zhuyinbo@loongson.cn>
- <Y4S/dh9lztpOHxkD@smile.fi.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y4S/dh9lztpOHxkD@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        asahi@lists.linux.dev
+In-Reply-To: <20221128124216.13477-3-marcan@marcan.st>
+References: <20221128124216.13477-1-marcan@marcan.st>
+ <20221128124216.13477-3-marcan@marcan.st>
+Message-Id: <166964486801.717655.2608444925832576232.robh@kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
+Date:   Mon, 28 Nov 2022 08:15:00 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 15:02, Andy Shevchenko wrote:
-> On Mon, Nov 28, 2022 at 09:00:24PM +0800, Yinbo Zhu wrote:
->> This bus driver supports the Loongson i2c hardware controller in the
->> Loongson platforms and supports to use DTS and ACPI framework to
->> register i2c adapter device resources.
->>
->> The Loongson i2c controller supports operating frequencty is 50MHZ
->> and supports the maximum transmission rate is 400kbps.
+
+On Mon, 28 Nov 2022 21:42:14 +0900, Hector Martin wrote:
+> This binding represents the cpufreq/DVFS hardware present in Apple SoCs.
+> The hardware has an independent controller per CPU cluster, and we
+> represent them as unique nodes in order to accurately describe the
+> hardware. The driver is responsible for binding them as a single cpufreq
+> device (in the Linux cpufreq model).
 > 
-> ...
-
-
-> Why not using the usual pattern, i.e.
+> Acked-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../cpufreq/apple,cluster-cpufreq.yaml        | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
 > 
-> 	if (!(...))
-> 		return IRQ_NONE;
-> 
-> ?
-> 
-> It seems you ignored some of my comments...
-> I stopped here, please check what was given against v1 and try again.
 
-I propose to wait with wasting more time on reviews because you might do
-the same work twice:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-https://lore.kernel.org/all/822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn/
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml: properties:compatible:oneOf:0:items: 'anyOf' conditional failed, one must be fixed:
+	[{'oneOf': ['apple,t8103-cluster-cpufreq', 'apple,t8112-cluster-cpufreq']}, {'const': 'apple,cluster-cpufreq'}] is not of type 'object', 'boolean'
+	'apple,t8103-cluster-cpufreq' is not of type 'object', 'boolean'
+	'apple,t8112-cluster-cpufreq' is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml: properties:compatible:oneOf:0:items: 'oneOf' conditional failed, one must be fixed:
+	[{'oneOf': ['apple,t8103-cluster-cpufreq', 'apple,t8112-cluster-cpufreq']}, {'const': 'apple,cluster-cpufreq'}] is not of type 'object'
+	['apple,t8103-cluster-cpufreq', 'apple,t8112-cluster-cpufreq'] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
+		hint: Use 'enum' rather than 'oneOf' + 'const' entries
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml: properties:compatible:oneOf:0:items: 'oneOf' conditional failed, one must be fixed:
+	[{'oneOf': ['apple,t8103-cluster-cpufreq', 'apple,t8112-cluster-cpufreq']}, {'const': 'apple,cluster-cpufreq'}] is not of type 'object'
+	Additional properties are not allowed ('oneOf' was unexpected)
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml: ignoring, error in schema: properties: compatible: oneOf: 0: items
+Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.example.dtb:0:0: /example-0/soc/performance-controller@210e20000: failed to match any schema with compatible: ['apple,t8103-cluster-cpufreq', 'apple,cluster-cpufreq']
+Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.example.dtb:0:0: /example-0/soc/performance-controller@210e20000: failed to match any schema with compatible: ['apple,t8103-cluster-cpufreq', 'apple,cluster-cpufreq']
+Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.example.dtb:0:0: /example-0/soc/performance-controller@211e20000: failed to match any schema with compatible: ['apple,t8103-cluster-cpufreq', 'apple,cluster-cpufreq']
+Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.example.dtb:0:0: /example-0/soc/performance-controller@211e20000: failed to match any schema with compatible: ['apple,t8103-cluster-cpufreq', 'apple,cluster-cpufreq']
 
-Best regards,
-Krzysztof
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221128124216.13477-3-marcan@marcan.st
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command.
 
