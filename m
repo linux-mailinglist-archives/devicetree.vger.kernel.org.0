@@ -2,66 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB72D63A259
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1A6863A1DF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:17:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiK1H4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 02:56:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
+        id S229709AbiK1HRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 02:17:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbiK1H4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:56:41 -0500
-X-Greylist: delayed 451 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 27 Nov 2022 23:56:38 PST
-Received: from mail.steuer-voss.de (mail.steuer-voss.de [85.183.69.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9049AA44E;
-        Sun, 27 Nov 2022 23:56:38 -0800 (PST)
-X-Virus-Scanned: Debian amavisd-new at mail.steuer-voss.de
-Received: by mail.steuer-voss.de (Postfix, from userid 1000)
-        id 8D80B135A; Mon, 28 Nov 2022 08:49:01 +0100 (CET)
-From:   Nikolaus Voss <nikolaus.voss@haag-streit.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S229801AbiK1HRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:17:45 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C84610FFC
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 23:17:44 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id bx10so3169850wrb.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Nov 2022 23:17:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eG6Be3t23obGN2ATen8OVvK4rfTQoYDTZRglqML50dM=;
+        b=poG5sOzFpRAXOKgMdrCfvvkeYKjQN58l3yG8Y0RXCFeucW9p7tCSm2XJDB/DM2Uwjw
+         3/Y/na8LgamKOd7SmShUgO7J6B0oxo0mC3/UK16aji85NNE8emK0oIpso5ELBhGVu4bW
+         sgaNaJbVk11x9JsZhsDDJzmF8yHn4GCmFdNkrdflrScLGBhbU92dXfgTDlhZRwWaR3Th
+         WFHIN+Lf4JwcbjiLvKkRiUo+MHx1OIKsMpjn1ergLA5bSafz0z+WVyOjpd13JGT+gbLp
+         dtJdFYD/kx0h98IMtd+SPaYDuIa/nkD2rTbLO0uJyIOJ07hjfTQFRKbZ7jYPrCWZUHOy
+         wTnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eG6Be3t23obGN2ATen8OVvK4rfTQoYDTZRglqML50dM=;
+        b=r6lO/Jne20kT/ZKKM3n2RAg6nSJSd4VkJiN/bS5k/yd87L1+sCgXGlYT0UNg4yK/lZ
+         0wgXK0S/OFCOO+Yt/YgjQvIiaUsjLzXtUDi4dU84Xsym2EGgSOcz8qtNo4bAGkGjn/lA
+         CvquIF2M0GLe/qGOnneeuH3dk7HCVGXX+GfdrSllj0avg0GkTJ+xCXRqjH+TO+JRdDal
+         NlMDI0JwrwXnvqO1SiMy8D5ITDIzS+cDIkeYY/5ebUFmjDpFqH7fQ0C5QrdcEJf3t8C4
+         C2/efc71Rw24Sf4oZv+EphIGKVzd8faFQNQZ2ZNDJzLnj9yTmjO8PGbDIskwnfuCOhkN
+         HZKQ==
+X-Gm-Message-State: ANoB5pmW3Fhwgzx/+u81K1pt1VDc5A5jzVL1r+dolgJEMz2QEYhUuu4c
+        sF7MWFKgqBG7wWp3vIhfEgsQCw==
+X-Google-Smtp-Source: AA0mqf6Pw15Eqs2pCDoN5k8uvi+hNG9DvT5YpbugugAhcBiKU7PpmSSF7GYVBfsCF2jNQBm6vp50Ag==
+X-Received: by 2002:adf:eb92:0:b0:236:80a8:485e with SMTP id t18-20020adfeb92000000b0023680a8485emr22959279wrn.362.1669619863181;
+        Sun, 27 Nov 2022 23:17:43 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:9475:5832:6c06:e04d? ([2a01:e0a:982:cbb0:9475:5832:6c06:e04d])
+        by smtp.gmail.com with ESMTPSA id t2-20020a5d42c2000000b0023662d97130sm9879851wrr.20.2022.11.27.23.17.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Nov 2022 23:17:42 -0800 (PST)
+Message-ID: <669d0399-dbc7-965a-9e50-017f017ca823@linaro.org>
+Date:   Mon, 28 Nov 2022 08:17:41 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.13.1
+Subject: Re: [PATCH] arm64: dts: amlogic: align LED node names with dtschema
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, nv@vosn.de
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Thu, 24 Nov 2022 17:50:34 +0100
-Subject: [PATCH 1/2] nvmem: imx-ocotp: reverse MAC on imx6qdl
-Message-Id: <20221128074901.8D80B135A@mail.steuer-voss.de>
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221125144141.477253-1-krzysztof.kozlowski@linaro.org>
+ <3719828c-0ac5-34c9-a04b-251cbeb5f6ef@linaro.org>
+ <a135f93a-235a-27b8-f649-69d62f6ebd30@linaro.org>
+ <54f500cb-d7d0-8af1-eb58-99fbe71791a5@linaro.org>
+ <CAB6niQ4808JEgdQEvRvaYqq8YmFCGo_YLnxXo+rjpSgxQxu+7g@mail.gmail.com>
+ <615eb86b-a00a-56bc-ae1a-9f0e4e86f77c@linaro.org>
+ <a3b7e1f0-16cb-4284-c740-5b5874612ea4@linaro.org>
+ <c89f9330-715f-4830-49fb-64c0b533ed39@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <c89f9330-715f-4830-49fb-64c0b533ed39@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ethernet MAC on iMX6Q/DL is stored in OTP in little-endian byte order. I
-suspect that this is true for all iMX flavors. If so, we could get rid
-of the .reverse_mac_address attribute entirely.
+Hi Krzysztof,
 
-Signed-off-by: Nikolaus Voss <nikolaus.voss@haag-streit.com>
----
- drivers/nvmem/imx-ocotp.c | 1 +
- 1 file changed, 1 insertion(+)
+Le 27/11/2022 à 20:07, Krzysztof Kozlowski a écrit :
+> On 27/11/2022 14:33, Neil Armstrong wrote:
+>>
+>> Le 27/11/2022 à 13:25, Krzysztof Kozlowski a écrit :
+>>> On 26/11/2022 17:03, Neil Armstrong wrote:
+>>>>>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>>> Aren't you maintainer of the platform? This means I should take care of
+>>>>>> this patch?
+>>>>> Ah, this will be picked up by Kevin or Jerome? So this tag means only
+>>>>> Reviewer's statement of oversight, right?
+>>>> Of course I'll pick it.
+>>>>
+>>> So that's confusing to see Review which does not mean review, but
+>>> maintainer pick...
+>>
+>> Reviewed-by means reviewed, there's no confusion here, the significance
+>> is clearly documented on https://docs.kernel.org/process/submitting-patches.html
+>>
+>>>
+>>> Reviewed-by means, I should take your tag and add to v2 or the
+>>> maintainer will add it when picking up.
+>>
+>> Reviewed-by means reviewed, fully reviewed patches are ready to
+>> be picked unless a change is asked by a reviewer.
+>>
+>> Decision to pick or not a patch does not depend on any tags, but
+>> is the sole decision of the maintainer adding it's Signed-off-by.
+> 
+> Then why giving review tag and not notifying about the pick, while the
+> pick actually happens? This is confusing. When the maintainer, which is
+> supposed to pick patch, gives reviewed it means always the same as
+> acked, so the patch is expected to go other way. Not through that
+> maintainer's tree.
+> 
+> If you just apply it, say you apply it.
 
-diff --git a/drivers/nvmem/imx-ocotp.c b/drivers/nvmem/imx-ocotp.c
-index 14284e866f26e..a39a0defb070a 100644
---- a/drivers/nvmem/imx-ocotp.c
-+++ b/drivers/nvmem/imx-ocotp.c
-@@ -496,6 +496,7 @@ static const struct ocotp_params imx6q_params = {
- 	.bank_address_words = 0,
- 	.set_timing = imx_ocotp_set_imx6_timing,
- 	.ctrl = IMX_OCOTP_BM_CTRL_DEFAULT,
-+	.reverse_mac_address = true,
- };
- 
- static const struct ocotp_params imx6sl_params = {
--- 
-2.34.1
+This last reply goes beyond acceptability on my side, this thread
+went too far and I'll stop replying further after this.
 
+If your goal was to kindly ask me to use Acked-by to notify you I'll
+pick the patch in the future, while this "rule" is only implicit,
+the actual form is far from it.
+
+Concerning this patch, since I already sent the ARM64 DT PR for v6.2,
+and I usually don't take new changes except urgent ones after rc6, I'll
+pick this patch and "20221125144120.476933-1-krzysztof.kozlowski@linaro.org"
+after the next merge window and you'll be notified as I always do.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Neil
