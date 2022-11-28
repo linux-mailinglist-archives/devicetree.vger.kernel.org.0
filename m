@@ -2,141 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B1B863B5D4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3D663B5F1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234602AbiK1X2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 18:28:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45312 "EHLO
+        id S234727AbiK1XcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 18:32:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233914AbiK1X2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:28:03 -0500
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13479303E7;
-        Mon, 28 Nov 2022 15:28:02 -0800 (PST)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-14279410bf4so15031256fac.8;
-        Mon, 28 Nov 2022 15:28:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tkm1rZJjYKH+0e9XPZ9u8/k0fPDDDPFuGFSeOnuxztc=;
-        b=a48QLAhy9596GHqxirjRR600UZtVmJgk717cAI5ueGLBZiTlDzzGNfjqbySuRQmgBE
-         gopBJSWHPJKX5z9N3SAJqFkPvkDjM2r8eixh6jBsobnNotoI3e03dWYydPN7y2Bss6bC
-         +XJWuteHpwDDyZZq02xjsCHWSvBhal7d8ALjI0YWkbfg02z285NCcChzR1i2X8Af3749
-         JBeI1IGTWHRqVw2cXxZ3rIMEGa1Wb7L8ZTggZrcYBqk7/0F46P8+wa5LiQW8otoYxBWa
-         FXwYusDUkd9fcyNYOHXznlE/LmevhqJhT8liJUUWUZ8LvFPajN/Cfa9uMYzBH0n6T30I
-         i+uA==
-X-Gm-Message-State: ANoB5pluewewhbuCvqeGfDwycaeBUWyY7Vp3ZObDDiXCpStTERIUPBci
-        8ibSkD64qe+kL7er3A61vA==
-X-Google-Smtp-Source: AA0mqf6qF068jOcZq5Clqc6PLJt0qCSUkbx+Op8bIK1f/R2Musri8+9p2qalTkmaXTGmtt/SSb+sHw==
-X-Received: by 2002:a05:6871:438a:b0:13b:a9ac:ad64 with SMTP id lv10-20020a056871438a00b0013ba9acad64mr21826598oab.290.1669678081277;
-        Mon, 28 Nov 2022 15:28:01 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b5-20020a056870d1c500b00143776f70d3sm5043217oac.29.2022.11.28.15.27.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Nov 2022 15:28:00 -0800 (PST)
-Received: (nullmailer pid 1691394 invoked by uid 1000);
-        Mon, 28 Nov 2022 23:27:59 -0000
-Date:   Mon, 28 Nov 2022 17:27:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>
-Subject: Re: [PATCH v3 net-next 04/10] dt-bindings: net: dsa: allow
- additional ethernet-port properties
-Message-ID: <20221128232759.GB1513198-robh@kernel.org>
-References: <20221127224734.885526-1-colin.foster@in-advantage.com>
- <20221127224734.885526-5-colin.foster@in-advantage.com>
+        with ESMTP id S234702AbiK1Xb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:31:59 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5EDD930558;
+        Mon, 28 Nov 2022 15:31:56 -0800 (PST)
+Received: from loongson.cn (unknown [117.133.84.114])
+        by gateway (Coremail) with SMTP id _____8BxXevrRIVjw9gBAA--.4439S3;
+        Tue, 29 Nov 2022 07:31:55 +0800 (CST)
+Received: from [192.168.1.7] (unknown [117.133.84.114])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bxj+DqRIVjIskdAA--.9504S3;
+        Tue, 29 Nov 2022 07:31:54 +0800 (CST)
+Message-ID: <c1f46cb8-dfbb-8b2a-5617-173bb62084ec@loongson.cn>
+Date:   Tue, 29 Nov 2022 07:31:53 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221127224734.885526-5-colin.foster@in-advantage.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v8 1/2] gpio: loongson: add gpio driver support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20221128064300.12021-1-zhuyinbo@loongson.cn>
+ <CACRpkdZoD8v6pPStaKLf14houZk5e89ZBz5wZJVQJxJ1Xq37Ug@mail.gmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+In-Reply-To: <CACRpkdZoD8v6pPStaKLf14houZk5e89ZBz5wZJVQJxJ1Xq37Ug@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Bxj+DqRIVjIskdAA--.9504S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7CFW5XF1Dtw1kKr17tFyxXwb_yoW8Jw4xpF
+        W7Cay7KFWUKr45CrWDKryrZFyfGFZ8Krsxtr4v9rWDK34DJ3Z2q3y3uF1j9F1xAFyrCr15
+        ZrZ3CrW09an8JFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUGVWUXwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jbWrXUUUUU=
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 27, 2022 at 02:47:28PM -0800, Colin Foster wrote:
-> Explicitly allow additional properties for both the ethernet-port and
-> ethernet-ports properties. This specifically will allow the qca8k.yaml
-> binding to use shared properties.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> ---
-> 
-> v2 -> v3
->   * No change
-> 
-> v1 -> v2
->   * New patch
-> 
-> ---
->  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> index bd1f0f7c14a8..87475c2ab092 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> @@ -38,6 +38,8 @@ patternProperties:
->        '#size-cells':
->          const: 0
->  
-> +    additionalProperties: true
-> +
 
-Where then do we restrict adding properties to ethernet-ports nodes?
+在 2022/11/29 4:35, Linus Walleij 写道:
+> On Mon, Nov 28, 2022 at 7:43 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>
+>> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
+>> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
+>> with other functions. Each GPIO can set input/output and has the
+>> interrupt capability.
+>>
+>> This driver added support for Loongson GPIO controller and support to
+>> use DTS or ACPI to descibe GPIO device resources.
+>>
+>> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
+>> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
+>> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+>> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> v8 looks really nice.
+>
+>> +static int loongson_gpio_to_irq(
+>> +                       struct gpio_chip *chip, unsigned int offset)
+>> +{
+>> +       struct platform_device *pdev =
+>> +               container_of(chip->parent, struct platform_device, dev);
+>> +
+>> +       if (offset >= chip->ngpio)
+>> +               return -EINVAL;
+> You forgot to drop this.
 
->      patternProperties:
->        "^(ethernet-)?port@[0-9]+$":
->          type: object
-> @@ -45,7 +47,7 @@ patternProperties:
->  
->          $ref: dsa-port.yaml#
->  
-> -        unevaluatedProperties: false
-> +        unevaluatedProperties: true
+You mean to remove this if judgment?
 
-Same question for ethernet-port nodes.
+"if(offset >= chip->ngpio)"
 
->  
->  oneOf:
->    - required:
-> -- 
-> 2.25.1
-> 
-> 
+         return -EINVAL;
+
+>
+> With this fixed (and Bartosz requested fix):
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Yours,
+> Linus Walleij
+
