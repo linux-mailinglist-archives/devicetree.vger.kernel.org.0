@@ -2,298 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFAE63A98D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DDF63A9A9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:35:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231966AbiK1NcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 08:32:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56832 "EHLO
+        id S231951AbiK1NfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 08:35:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231723AbiK1NcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:32:02 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70031CFF0;
-        Mon, 28 Nov 2022 05:31:02 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 28 Nov
- 2022 21:30:59 +0800
-Message-ID: <29f06ea8-3795-46a4-fcd2-3f0d4c313ae7@amlogic.com>
-Date:   Mon, 28 Nov 2022 21:30:58 +0800
+        with ESMTP id S231956AbiK1Ne6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:34:58 -0500
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.221.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2018A462
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 05:34:52 -0800 (PST)
+X-QQ-mid: bizesmtp62t1669642464tmqe2hiy
+Received: from ubuntu.. ( [111.196.130.244])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Mon, 28 Nov 2022 21:34:21 +0800 (CST)
+X-QQ-SSF: 01200000000000B0B000000A0000000
+X-QQ-FEAT: 3Kbt82ri5O0eMleRC3Z+cU8DJP2xNHM5zgMCVLnxKekzWTzLaVN/7xk6AKwc8
+        0cIuOBmZvyKrRzJqLGIs3HwJzxHOXDnb0gG03/b0E/DZOA5T3J9vCLBUi6mRv7yXePSv1Gm
+        tfJNvlmNjhSwNig/hLR9l8dUoOjb+IkkQEldSjRCUDQYeUd54DZp8cgpfot5KOin6PusWEO
+        sYQNCQ7bKaToJxXdHg2/BQCr8C0gq9nkviBXBFu0+ZYAyQBQLFcyxjYiOeqyqBFrluXNJUy
+        3+xDLuzd1D4LCLGnlmd/dciSEJcKBytn2fdF5WIb8ai1byigdPNrN9srvRBV0hQGxlOC4ai
+        n7kyujzJZPjDsVAiaXc5n5W6VyhEsJ6gISSIGuLVEXwNh/sfWaIwiOOy9ny0Q==
+X-QQ-GoodBg: 0
+From:   Bin Meng <bmeng@tinylab.org>
+To:     samuel@sholland.org
+Cc:     andre.przywara@arm.com, aou@eecs.berkeley.edu,
+        apatel@ventanamicro.com, atishp@rivosinc.com,
+        christianshewitt@gmail.com, conor.dooley@microchip.com,
+        conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org,
+        heiko@sntech.de, heinrich.schuchardt@canonical.com,
+        jernej.skrabec@gmail.com, jszhang@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        stano.jakubek@gmail.com, wens@csie.org
+Subject: Re: [PATCH v2 04/12] riscv: dts: allwinner: Add the D1/D1s SoC devicetree
+Date:   Mon, 28 Nov 2022 21:34:21 +0800
+Message-Id: <20221128133421.58614-1-bmeng@tinylab.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221125234656.47306-5-samuel@sholland.org>
+References: <20221125234656.47306-5-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver and bindings
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <neil.armstrong@linaro.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <kelvin.zhang@amlogic.com>
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-2-yu.tu@amlogic.com>
- <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
- <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
- <eb56ed39-cfaa-3368-a2c0-0a4e89440e40@linaro.org>
- <5b7176b4-d7a2-c67f-31c6-e842e0870836@linaro.org>
- <1jfse72wqk.fsf@starbuckisacylon.baylibre.com>
- <a6cf1b3f-259d-44b7-8a9a-2a0cd29c714b@amlogic.com>
- <1jedtnp7db.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1jedtnp7db.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:tinylab.org:qybglogicsvr:qybglogicsvr3
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RCVD_IN_SBL,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome ,
+> D1 (aka D1-H), D1s (aka F133), R528, and T113 are a family of SoCs based
+> on a single die, or at a pair of dies derived from the same design.
+> 
+> D1 and D1s contain a single T-HEAD Xuantie C906 CPU, whereas R528 and
+> T113 contain a pair of Cortex-A7's. D1 and R528 are the full version of
+> the chip with a BGA package, whereas D1s and T113 are low-pin-count QFP
+> variants.
+> 
+> Because the original design supported both ARM and RISC-V CPUs, some
+> peripherals are duplicated. In addition, all variants except D1s contain
+> a HiFi 4 DSP with its own set of peripherals.
+> 
+> The devicetrees are organized to minimize duplication:
+>  - Common perhiperals are described in sunxi-d1s-t113.dtsi
+>  - DSP-related peripherals are described in sunxi-d1-t113.dtsi
+>  - RISC-V specific hardware is described in sun20i-d1s.dtsi
+>  - Functionality unique to the D1 variant is described in sun20i-d1.dtsi
+> 
+> The SOC_PERIPHERAL_IRQ macro handles the different #interrupt-cells
+> values between the ARM (GIC) and RISC-V (PLIC) versions of the SoC.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+> Changes in v2:
+>  - Split into separate files for sharing with D1s/R528/T113
+>  - Use SOC_PERIPHERAL_IRQ macro for interrupts
+>  - Rename osc24M to dcxo and move the frequency to the board DTs
+>  - Drop analog LDOs due to the missing binding
+>  - Correct tcon_top DSI clock reference
+>  - Add DMIC, DSI controller, and DPHY (bindings are in linux-next)
+>  - Add CPU OPP table
+> 
+>  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  |  66 ++
+>  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |  76 ++
+>  .../boot/dts/allwinner/sunxi-d1-t113.dtsi     |  15 +
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    | 844 ++++++++++++++++++
+>  4 files changed, 1001 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
+>  create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
 
-On 2022/11/28 20:33, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Mon 28 Nov 2022 at 15:39, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Hi Jerome,
->> 	Thank you for your reply.
->>
->> On 2022/11/25 17:23, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>> On Wed 23 Nov 2022 at 14:53, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>>> On 23/11/2022 14:23, Neil Armstrong wrote:
->>>>> Hi,
->>>>>
->>>>> On 23/11/2022 12:16, Yu Tu wrote:
->>>>>> Hi Krzysztof,
->>>>>>        Thank you for your reply.
->>>>>>
->>>>>> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
->>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>
->>>>>>> On 23/11/2022 03:13, Yu Tu wrote:
->>>>>>>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
->>>>>>>>
->>>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>>>>> ---
->>>>>>>>     .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
->>>>>>>
->>>>>>> This is v5 and still bindings are here? Bindings are always separate
->>>>>>> patches. Use subject prefixes matching the subsystem (git log --oneline
->>>>>>> -- ...).
->>>>>>>
->>>>>>> And this was split, wasn't it? What happened here?!?
->>>>>>
->>>>>> Put bindings and clock driver patch together from Jerome. Maybe you can read this chat history.
->>>>>> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
->>>>>
->>>>> Jerome was asking you to send 2 patchsets, one with :
->>>>> - bindings in separate patches
->>>>> - drivers in separate patches
->>>>> and a second with DT changes.
->>> Indeed, this is what was asked. It is aligned with Krzysztof's request.
->>
->> According to your discussion, I still should send patches in the previous
->> way in series. But I'm going to change it like you suggested.
->> I don't know, am I getting it right?
-> 
-> 3 people tried to explain this already and we all told you the same thing.
-> 
-> * 1 patchset per maintainer: clk and dt
-> * bindings must be dedicated patches - never mixed with driver code.
-> 
-> I strongly suggest that you take some time to (re)read:
-> * https://docs.kernel.org/process/submitting-patches.html
-> * https://docs.kernel.org/devicetree/bindings/submitting-patches.html
-> 
-> If still unclear, please take some time to look at the kernel mailing
-> list archive and see how others have done the same things.
-> 
-> Thx.
+<snip>
+ 
+> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +// Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
+> +
+> +#define SOC_PERIPHERAL_IRQ(nr)	(nr + 16)
+> +
+> +#include "sunxi-d1s-t113.dtsi"
+> +
+> +/ {
+> +	cpus {
+> +		timebase-frequency = <24000000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "thead,c906", "riscv";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			clocks = <&ccu CLK_RISCV>;
+> +			d-cache-block-size = <64>;
+> +			d-cache-sets = <256>;
+> +			d-cache-size = <32768>;
+> +			i-cache-block-size = <64>;
+> +			i-cache-sets = <128>;
+> +			i-cache-size = <32768>;
+> +			mmu-type = "riscv,sv39";
+> +			operating-points-v2 = <&opp_table_cpu>;
+> +			riscv,isa = "rv64imafdc";
+> +			#cooling-cells = <2>;
+> +
+> +			cpu0_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +	};
+> +
+> +	opp_table_cpu: opp-table-cpu {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <900000 900000 1100000>;
+> +		};
+> +
+> +		opp-1080000000 {
+> +			opp-hz = /bits/ 64 <1008000000>;
+> +			opp-microvolt = <900000 900000 1100000>;
+> +		};
+> +	};
+> +
+> +	soc {
+> +		interrupt-parent = <&plic>;
+> +
+> +		riscv_wdt: watchdog@6011000 {
+> +			compatible = "allwinner,sun20i-d1-wdt";
+> +			reg = <0x6011000 0x20>;
+> +			interrupts = <SOC_PERIPHERAL_IRQ(131) IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&dcxo>, <&rtc CLK_OSC32K>;
+> +			clock-names = "hosc", "losc";
+> +		};
+> +
+> +		plic: interrupt-controller@10000000 {
+> +			compatible = "allwinner,sun20i-d1-plic",
+> +				     "thead,c900-plic";
+> +			reg = <0x10000000 0x4000000>;
+> +			interrupts-extended = <&cpu0_intc 11>,
+> +					      <&cpu0_intc 9>;
+> +			interrupt-controller;
+> +			riscv,ndev = <176>;
 
-I'll change it as you suggest.But I still don't understand what you 
-suggested in V3.
+The D1-H user manual says starting from interrupt number 176, interrupts are
+CPUX related which I assume are CPU internal interrupts?
 
-I remember discussing it with you at V3.
-https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
+If yes, for external ones, valid interrupt source range is [1, 175]. And this
+field should be 175, no?
 
-">>>> Also it would be nice to split this in two series.
- >>>> Bindings and drivers in one, arm64 dt in the other. These changes goes
- >>>> in through different trees.
- >>> At present, Bindings, DTS and drivers are three series. Do you mean 
-to put
- >>> Bindings and drivers together? If so, checkpatch.pl will report a 
-warning.
- >> Yes because patches are not in yet so there is a good reason to ignore
- >> the warning. Warning will never show up on the actual tree if the
- >> patches are correctly ordered.
- >
- > I think Binding, DTS and drivers use three series and you said two series
- > is not a big problem. Three series are recommended for checkpatch.pl, I
- > think it should be easy for that to separate and merge。
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
 
-No - There is only 2 series. 1 for the bindings and clock drivers and
-one for the DT once things are in"
+<snip>
 
-> 
->>
->>>
->>>>>
->>>>> Then when the bindings + clocks patches are merged, a pull request of the bindings
->>>>> can be done to me so I can merge it with DT.
->>>>>
->>>>>>
->>>>>>>
->>>>>>>
->>>>>>>>     MAINTAINERS                                   |   1 +
->>>>>>>>     drivers/clk/meson/Kconfig                     |  13 +
->>>>>>>>     drivers/clk/meson/Makefile                    |   1 +
->>>>>>>>     drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
->>>>>>>>     drivers/clk/meson/s4-pll.h                    |  88 ++
->>>>>>>>     .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
->>>>>>>>     7 files changed, 1059 insertions(+)
->>>>>>>>     create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>>     create mode 100644 drivers/clk/meson/s4-pll.c
->>>>>>>>     create mode 100644 drivers/clk/meson/s4-pll.h
->>>>>>>>     create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>>
->>>>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>> new file mode 100644
->>>>>>>> index 000000000000..fd517e8ef14f
->>>>>>>> --- /dev/null
->>>>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>> @@ -0,0 +1,51 @@
->>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>>>> +%YAML 1.2
->>>>>>>> +---
->>>>>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
->>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>> +
->>>>>>>> +title: Amlogic Meson S serials PLL Clock Controller
->>>>>>>> +
->>>>>>>> +maintainers:
->>>>>>>> +  - Neil Armstrong <narmstrong@baylibre.com>
->>>>>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>>>>>> +  - Yu Tu <yu.hu@amlogic.com>
->>>>>>>> +
->>>>>>> One blank line.
->>>>>>
->>>>>>     I will delete this, on next version patch.
->>>>>>
->>>>>>>
->>>>>>>> +
->>>>>>>> +properties:
->>>>>>>> +  compatible:
->>>>>>>> +    const: amlogic,s4-pll-clkc
->>>>>>>> +
->>>>>>>> +  reg:
->>>>>>>> +    maxItems: 1
->>>>>>>> +
->>>>>>>> +  clocks:
->>>>>>>> +    maxItems: 1
->>>>>>>> +
->>>>>>>> +  clock-names:
->>>>>>>> +    items:
->>>>>>>> +      - const: xtal
->>>>>>>> +
->>>>>>>> +  "#clock-cells":
->>>>>>>> +    const: 1
->>>>>>>> +
->>>>>>>> +required:
->>>>>>>> +  - compatible
->>>>>>>> +  - reg
->>>>>>>> +  - clocks
->>>>>>>> +  - clock-names
->>>>>>>> +  - "#clock-cells"
->>>>>>>> +
->>>>>>>> +additionalProperties: false
->>>>>>>> +
->>>>>>>> +examples:
->>>>>>>> +  - |
->>>>>>>> +    clkc_pll: clock-controller@fe008000 {
->>>>>>>> +      compatible = "amlogic,s4-pll-clkc";
->>>>>>>> +      reg = <0xfe008000 0x1e8>;
->>>>>>>> +      clocks = <&xtal>;
->>>>>>>> +      clock-names = "xtal";
->>>>>>>> +      #clock-cells = <1>;
->>>>>>>> +    };
->>>>>>>
->>>>>>>
->>>>>>>> +#endif /* __MESON_S4_PLL_H__ */
->>>>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>> new file mode 100644
->>>>>>>> index 000000000000..345f87023886
->>>>>>>> --- /dev/null
->>>>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>
->>>>>>> This belongs to bindings patch, not driver.
->>>>>>>
->>>>>>>> @@ -0,0 +1,30 @@
->>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>>>>>>> +/*
->>>>>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->>>>>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
->>>>>>>> + */
->>>>>>>> +
->>>>>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>>>> +
->>>>>>>> +/*
->>>>>>>> + * CLKID index values
->>>>>>>> + */
->>>>>>>> +
->>>>>>>> +#define CLKID_FIXED_PLL            1
->>>>>>>> +#define CLKID_FCLK_DIV2            3
->>>>>>>
->>>>>>> Indexes start from 0 and are incremented by 1. Not by 2.
->>>>>>>
->>>>>>> NAK.
->>>>>>
->>>>>> I remember Jerome discussing this with you.You can look at this submission history.
->>>>>> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->>>>>
->>>>> Historically we did that by only exposing part of the numbers, controlling which
->>>>> clocks were part of the bindings.
->>>>>
->>>>> But it seems this doesn't make sens anymore, maybe it would be time to put all the
->>>>> clock ids in the bindings for this new SoC and break with the previous strategy.
->>> Krzysztof and I agreed there is nothing wrong with the current
->>> approach, I believe.
->>> It does not prevent someone from using an un-exposed clock, sure, or
->>> exposing it in the future if necessary.
->>> However, I think it clearly shows that an un-exposed element is not
->>> expected to be used by an external consumers. It should be enough to
->>> trigger a discussion if this expectation is wrong.
->>>
->>>>
->>>> So the outcome of the previous discussion was somewhere later in that
->>>> thread:
->>>>
->>>>> It is just a choice to not expose some IDs.
->>>>> It is not tied to the implementation at all.
->>>>> I think we actually follow the rules and the idea behind it.
->>>>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>> .
-> 
-> .
+Regards,
+Bin
