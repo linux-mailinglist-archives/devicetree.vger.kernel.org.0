@@ -2,162 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A225463B2D6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 21:17:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FF063B2E6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 21:21:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232783AbiK1URH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 15:17:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59870 "EHLO
+        id S233139AbiK1UVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 15:21:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233173AbiK1URG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 15:17:06 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BBC827FCE
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:17:03 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D27382C038A;
-        Tue, 29 Nov 2022 09:16:58 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1669666618;
-        bh=RPcW+ftZttjSXd+yRPvwtCbGy40cVtIyHjEHz59IFyQ=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=jp6ZTfDU4qgqp35Qr0W2321fmUCuF0rtqNP13OBBghJPlMr2Z5YnV8kcIQ6sQJwS5
-         QyG67DLHSsPTtZ5qi3UlaHK2ILAVIrFdc69votnXVgSJ4uYCOSFDlEu2eH1Pg6uvcu
-         5Z+fLQsDPQ9bG7rnKPeyGLeHmIqvLbZ0HABTLDsCcHklFWRtQpf4K5GeirTDyA3Lg7
-         70iTii8+/npLOHv95+bow8woNHNlhbqsBJpGLB7HFq+fxwWgHhHDNOj+dxRGmhu+ek
-         L/4k1kWgoyxMZVK/3vl7xTlGZChXtOfbs67AwkgvV+LxBIwMXB4B2jwTMlaeXH5872
-         W7Ht2H8W8dvcQ==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6385173a0001>; Tue, 29 Nov 2022 09:16:58 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.42; Tue, 29 Nov 2022 09:16:58 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.044; Tue, 29 Nov 2022 09:16:58 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     =?utf-8?B?UGFsaSBSb2jDoXI=?= <pali@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "thomas.petazzoni@free-electrons.com" 
-        <thomas.petazzoni@free-electrons.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: gpio: gpio-mvebu: deprecate
- armadaxp-gpio
-Thread-Topic: [PATCH v4 2/3] dt-bindings: gpio: gpio-mvebu: deprecate
- armadaxp-gpio
-Thread-Index: AQHYcKAX7vPs34W8ukmHKj5eMF08ma5UQ6SAgADN6IA=
-Date:   Mon, 28 Nov 2022 20:16:57 +0000
-Message-ID: <887c89b1-5efc-e058-7ccc-58d1473f491e@alliedtelesis.co.nz>
-References: <20220526012946.3862776-1-chris.packham@alliedtelesis.co.nz>
- <20220526012946.3862776-3-chris.packham@alliedtelesis.co.nz>
- <20221128075959.3a3io5nhaizm7uxj@pali>
-In-Reply-To: <20221128075959.3a3io5nhaizm7uxj@pali>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DF82FAC90C8B0D478858DCC008C3C239@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S232993AbiK1UVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 15:21:39 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D9E213F39
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:21:38 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id 189so14176328ybe.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:21:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TjoT5TDE+r7cM4/cxzaRtmx/EQ7hkpYtYFeVLk7DIiw=;
+        b=Tegs0vU1lxQyFLgxYk9K/CgMgnC3Pug93SCFq53nyd8nzGJFVZJe23sizEt7pAyTem
+         IErvnVRzqlmlKT8L7idEBMGUl0OsPoEeDls+BSiW2tEJcDGNgBTTTn35rBQU5C49182V
+         M43e8H+uwGNAr2zT8a6aW435ngKhS5gW173hkUYK5w2MOAaemyokfXHeMyxktV6njc77
+         Z6FXjai4FguNQtN0iDvjE21EOKLjNVzWrYNZ6nn3EbY8b+H87pOdScxPL0AA9acF048p
+         s+AS5YxXJZyISbxkMe7AbtDLGelZwQrP/itQkKBUgnVQeLBlOYLqsSfRMbtVT0+nCtJx
+         RF9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TjoT5TDE+r7cM4/cxzaRtmx/EQ7hkpYtYFeVLk7DIiw=;
+        b=jx2PIW8l9Cv4VtzxHVKmKA8jsQhETFv5Uc00+JN4Qt/GjMeA093ilFfSKA5qH+poK5
+         y/wvZBhZkCbMpFQVurGsMsNn6EfeujQhslP4Ik2PqZkMi/4hv5vF0I/p9EcWtdswwFxn
+         /3PHQUKdjKFBj8vJpsebOZ6oYMKlEyAdTpS9n62Bgoe7UELgcHuyUybsB796PTlbfoRr
+         PRwYgeyecrQF+4PC5AAk6/h1er9MN8TJYZO59cn1T/lj9T152IyOX9/u5neB0JzYeBUI
+         wY9FWyxmLweElRoYhU+IDQf9RJTrk20zx874WjBMbK/W1/7XOa1bhCae+M+cbXipHkfx
+         b3Dw==
+X-Gm-Message-State: ANoB5pnPAb7/v37+HU5SbhUi2pXtlQs8yeMvaGZiAj3+nteDaxmbw3/P
+        Pjl4BO4fupbXJYFIZn4EpTxaOHzWDhmQY43PfBz/TQ==
+X-Google-Smtp-Source: AA0mqf6BPbabzFNaWtiGqHDoUARIK1B690FEkWvfP29g/kDoV64k/3lLmcND0FoPdk1PeTC8p8tl5cIhxajriwjMB8A=
+X-Received: by 2002:a25:c7c8:0:b0:6bd:1ca1:afd6 with SMTP id
+ w191-20020a25c7c8000000b006bd1ca1afd6mr48535520ybe.43.1669666897696; Mon, 28
+ Nov 2022 12:21:37 -0800 (PST)
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=PqrtkDE3 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=9xFQ1JgjjksA:10 a=VwQbUJbxAAAA:8 a=ZK0KQZw8tARzpkxUnbQA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
-X-SEG-SpamProfiler-Score: 0
+References: <20221127224734.885526-1-colin.foster@in-advantage.com> <20221127224734.885526-4-colin.foster@in-advantage.com>
+In-Reply-To: <20221127224734.885526-4-colin.foster@in-advantage.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 28 Nov 2022 21:21:26 +0100
+Message-ID: <CACRpkdYkD-=y0mCnVkkQ9+4m9-nx6jQu=TfL-TPePbps6x+7Xw@mail.gmail.com>
+Subject: Re: [PATCH v3 net-next 03/10] dt-bindings: net: dsa: utilize base
+ definitions for standard dsa switches
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUGFsaSwNCg0KT24gMjgvMTEvMjIgMjA6NTksIFBhbGkgUm9ow6FyIHdyb3RlOg0KPiBPbiBU
-aHVyc2RheSAyNiBNYXkgMjAyMiAxMzoyOTo0NSBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gQ29t
-bWl0IDVmNzljNjUxZTgxZSAoImFybTogbXZlYnU6IHVzZSBnbG9iYWwgaW50ZXJydXB0cyBmb3Ig
-R1BJT3Mgb24NCj4+IEFybWFkYSBYUCIpIHRoZSBtYXJ2ZWxsLGFybWFkYXhwLWdwaW8gY29tcGF0
-aWJsZSBvYnNvbGV0ZS4NCj4gTm8sIG1hcnZlbGwsYXJtYWRheHAtZ3BpbyBpcyByZXF1aXJlZCBm
-b3IgcGVyLWNwdSBpbnRlcnJ1cHQgc3VwcG9ydC4gSSBmaXhlZCBpdCByZWNlbnRseToNCj4gaHR0
-cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtZGV2aWNldHJlZS8yMDIyMDcxNDExNTUxNS41NzQ4
-LTItcGFsaUBrZXJuZWwub3JnLw0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1kZXZp
-Y2V0cmVlLzIwMjIwNzE0MTgzMzI4LjQxMzctMy1wYWxpQGtlcm5lbC5vcmcvDQoNCkknbGwgcmVw
-bHkgdG8gdGhlc2UgZGlyZWN0bHkgYnV0IHdoZW4geW91IGNoYW5nZWQgdGhlIGNvbXBhdGlibGUg
-dG8gDQphcm1hZGF4cCB5b3UgY2hhbmdlZCB0aGUgbWVhbmluZyBvZiB0aGUgMm5kIHJlZyBwcm9w
-ZXJ0eS4NCg0KPg0KPj4gVGhlIGRyaXZlciBjb2RlIHN0aWxsIGV4aXN0cyB0byBoYW5kbGUgdGhl
-IGFybWFkYXhwIGJlaGF2aW91ciBidXQgYWxsDQo+PiB0aGUgaW4tdHJlZSBib2FyZHMgdXNlIHRo
-ZSBtYXJ2ZWxsLGFybWFkYS0zNzAtZ3Bpby4gIERvY3VtZW50IHRoZQ0KPj4gbWFydmVsbCxhcm1h
-ZGF4cC1ncGlvIGNvbXBhdGlibGUgYXMgZGVwcmVjYXRlZC4NCj4gRm9yIHBlci1jcHUgaW50ZXJy
-dXB0IHN1cHBvcnQgaXMgbWFydmVsbCxhcm1hZGF4cC1ncGlvIG5lZWRlZCBhbmQNCj4gdGhlcmVm
-b3JlIGl0IGNhbm5vdCBiZSBkZXByZWNhdGVkLg0KT0suIFdlIGNhbiBtYWtlIGl0IHVuLWRlcHJl
-Y2F0ZWQgKGFzIHlvdSBzYXkgdGhlIGNvZGUgZXhpc3RzLCBqdXN0IG5vIA0KYm9hcmQgdXNlcyBp
-dCBjdXJyZW50bHkpLg0KPg0KPiBXaGF0IGNhbiBiZSBkZXByZWNhdGVkIGlzIG1hcnZlbGwsYXJt
-YWRhLTM3MC1ncGlvIGFuZCBpdCBjYW4gYmUgcmVwbGFjZWQNCj4gYnkgbWFydmVsbCxvcmlvbi1n
-cGlvLCB3aGljaCBjb3ZlcnMgX2FsbF8gU29DcyBzdGFydGluZyBmcm9tIHRoZSBvbGRlc3QNCj4g
-b25lID0gT3Jpb24uIFNlZSBkaXNjdXNzaW9uIGZvciBtb3JlIGRldGFpbHM6DQo+IGh0dHBzOi8v
-bG9yZS5rZXJuZWwub3JnL2xpbnV4LWRldmljZXRyZWUvMjAyMjA3MjUyMDA0MTcubnd0aHh6dmR2
-MmJ6ZDVlakBwZW5ndXRyb25peC5kZS8NCg0KWWVzIEkgY2FuIHNlZSB0aGF0IHRoZXkncmUgdHJl
-YXRlZCB0aGUgc2FtZSBpbnRlcm5hbGx5LiBUaGVyZSBoYWQgYmVlbiBhIA0KdHJlbmQgb2YgYWRk
-aW5nIHNwZWNpYWxpemF0aW9uIGNvbXBhdGlibGUgc3RyaW5ncyBqdXN0IGluIGNhc2UgdGhleSB3
-ZXJlIA0KbmVlZGVkIGluIHRoZSBmdXR1cmUgZXZlbiBpZiB0aGVyZSB3YXMgY3VycmVudGx5IG5v
-IGRpZmZlcmVuY2UgYmV0d2VlbiANCnRoZSBiYXNlIHZhcmlhbnQgYW5kIHRoZSBuZXdlciB2ZXJz
-aW9uLiBUaGF0IGFyZ3VtZW50IGZhbGxzIGEgYml0IGZsYXQgDQpzaW5jZSB3ZSBuZXZlciBhZGRl
-ZCBhcm1hZGEtMzh4LWdwaW8uDQoNClNvIHdoYXQgcGF0aCBmb3J3YXJkIHdvdWxkIHlvdSBsaWtl
-IHRvIHNlZT8gSSdkIGhhcHBpbHkgc2VuZCBhIHBhdGNoIA0KdW4tZGVwcmVjYXRpbmcgdGhlIGFy
-bWFkYXhwIGNvbXBhdGlibGUuIEknbSBhIGxpdHRsZSBoZXNpdGFudCB0byBtYXJrIA0KdGhlIGFy
-bWFkYS0zNzAgYXMgZGVwcmVjYXRlZCBnaXZlbiBpdCdzIGN1cnJlbnQgdXNhZ2Ugd2l0aCB0aGUg
-aW4tdHJlZSANCmR0c2VzLg0KDQo+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFtIDxj
-aHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+PiAtLS0NCj4+DQo+PiBOb3RlczoN
-Cj4+ICAgICAgVGhpcyBjb3VsZCBwb3RlbnRpYWxseSBiZSBzcXVhc2hlZCBpbnRvIHRoZSBmaXJz
-dCBjb21taXQgYnV0IGl0IHNlZW1lZA0KPj4gICAgICBtb3JlIHByb3BlciB0byBkbyBhIHN0cmFp
-Z2h0IDE6MSBjb252ZXJzaW9uIG9mIHRoZSBvbGQgYmluZGluZyB0aGVuDQo+PiAgICAgIGNsZWFu
-IHRoaW5ncyB1cCB0byBtYXRjaCByZWFsaXR5Lg0KPj4gICAgICANCj4+ICAgICAgQ2hhbmdlcyBp
-biB2NDoNCj4+ICAgICAgLSBOZXcNCj4+DQo+PiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dw
-aW8vZ3Bpby1tdmVidS55YW1sICB8IDI0ICsrKysrKystLS0tLS0tLS0tLS0NCj4+ICAgMSBmaWxl
-IGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pDQo+Pg0KPj4gZGlmZiAt
-LWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncGlvL2dwaW8tbXZlYnUu
-eWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncGlvL2dwaW8tbXZlYnUu
-eWFtbA0KPj4gaW5kZXggZDE2OTVlN2JkODI1Li40NTllYzM1ODY0ZmUgMTAwNjQ0DQo+PiAtLS0g
-YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9ncGlvLW12ZWJ1LnlhbWwN
-Cj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncGlvL2dwaW8tbXZl
-YnUueWFtbA0KPj4gQEAgLTIxLDE3ICsyMSwyMSBAQCBwcm9wZXJ0aWVzOg0KPj4gICAgICAgICAg
-ICAgLSBlbnVtOg0KPj4gICAgICAgICAgICAgICAgIC0gbWFydmVsbCxtdjc4MjAwLWdwaW8NCj4+
-ICAgICAgICAgICAgICAgICAtIG1hcnZlbGwsYXJtYWRhLTM3MC1ncGlvDQo+PiAtICAgICAgICAg
-ICAgICAtIG1hcnZlbGwsYXJtYWRheHAtZ3Bpbw0KPj4gICAgICAgICAgICAgLSBjb25zdDogbWFy
-dmVsbCxvcmlvbi1ncGlvDQo+PiAgIA0KPj4gKyAgICAgIC0gZGVzY3JpcHRpb246IERlcHJlY2F0
-ZWQgYmluZGluZw0KPj4gKyAgICAgICAgaXRlbXM6DQo+PiArICAgICAgICAgIC0gY29uc3Q6IG1h
-cnZlbGwsYXJtYWRheHAtZ3Bpbw0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBtYXJ2ZWxsLG9yaW9u
-LWdwaW8NCj4+ICsgICAgICAgIGRlcHJlY2F0ZWQ6IHRydWUNCj4+ICsNCj4+ICAgICByZWc6DQo+
-PiAgICAgICBkZXNjcmlwdGlvbjogfA0KPj4gICAgICAgICBBZGRyZXNzIGFuZCBsZW5ndGggb2Yg
-dGhlIHJlZ2lzdGVyIHNldCBmb3IgdGhlIGRldmljZS4gTm90IHVzZWQgZm9yDQo+PiAgICAgICAg
-IG1hcnZlbGwsYXJtYWRhLThrLWdwaW8uDQo+PiAgIA0KPj4gLSAgICAgIEZvciB0aGUgIm1hcnZl
-bGwsYXJtYWRheHAtZ3BpbyIgdmFyaWFudCBhIHNlY29uZCBlbnRyeSBpcyBleHBlY3RlZCBmb3IN
-Cj4+IC0gICAgICB0aGUgcGVyLWNwdSByZWdpc3RlcnMuIEZvciBvdGhlciB2YXJpYW50cyBzZWNv
-bmQgZW50cnkgY2FuIGJlIHByb3ZpZGVkLA0KPj4gLSAgICAgIGZvciB0aGUgUFdNIGZ1bmN0aW9u
-IHVzaW5nIHRoZSBHUElPIEJsaW5rIENvdW50ZXIgb24vb2ZmIHJlZ2lzdGVycy4NCj4+ICsgICAg
-ICBBIHNlY29uZCBlbnRyeSBjYW4gYmUgcHJvdmlkZWQsIGZvciB0aGUgUFdNIGZ1bmN0aW9uIHVz
-aW5nIHRoZSBHUElPIEJsaW5rDQo+PiArICAgICAgQ291bnRlciBvbi9vZmYgcmVnaXN0ZXJzLg0K
-Pj4gICAgICAgbWluSXRlbXM6IDENCj4+ICAgICAgIG1heEl0ZW1zOiAyDQo+PiAgIA0KPj4gQEAg
-LTEwMywxOCArMTA3LDYgQEAgYWxsT2Y6DQo+PiAgICAgICAgIHJlcXVpcmVkOg0KPj4gICAgICAg
-ICAgIC0gcmVnDQo+PiAgIA0KPj4gLSAgLSBpZjoNCj4+IC0gICAgICBwcm9wZXJ0aWVzOg0KPj4g
-LSAgICAgICAgY29tcGF0aWJsZToNCj4+IC0gICAgICAgICAgY29udGFpbnM6DQo+PiAtICAgICAg
-ICAgICAgY29uc3Q6IG1hcnZlbGwsYXJtYWRheHAtZ3Bpbw0KPj4gLSAgICB0aGVuOg0KPj4gLSAg
-ICAgIHByb3BlcnRpZXM6DQo+PiAtICAgICAgICByZWc6DQo+PiAtICAgICAgICAgIG1pbkl0ZW1z
-OiAyDQo+PiAtICAgICAgICByZWctbmFtZXM6DQo+PiAtICAgICAgICAgIG1pbkl0ZW1zOiAyDQo+
-PiAtDQo+PiAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogdHJ1ZQ0KPj4gICANCj4+ICAgZXhhbXBs
-ZXM6DQo+PiAtLSANCj4+IDIuMzYuMQ0KPj4=
+On Sun, Nov 27, 2022 at 11:47 PM Colin Foster
+<colin.foster@in-advantage.com> wrote:
+
+> DSA switches can fall into one of two categories: switches where all ports
+> follow standard '(ethernet-)?port' properties, and switches that have
+> additional properties for the ports.
+>
+> The scenario where DSA ports are all standardized can be handled by
+> swtiches with a reference to 'dsa.yaml#'.
+>
+> The scenario where DSA ports require additional properties can reference
+> the new '$dsa.yaml#/$defs/base'. This will allow switches to reference
+> these base defitions of the DSA switch, but add additional properties under
+> the port nodes.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+
+This is neat.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
