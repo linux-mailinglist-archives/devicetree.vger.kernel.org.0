@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B27563AF83
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0742863AF93
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:43:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233223AbiK1RnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:43:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52130 "EHLO
+        id S232783AbiK1Rni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:43:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233336AbiK1Rmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:42:42 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0DBB2AC5D;
-        Mon, 28 Nov 2022 09:40:06 -0800 (PST)
-Received: from g550jk.arnhem.chello.nl (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 41157D1E0D;
-        Mon, 28 Nov 2022 17:40:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1669657205; bh=TWqeYHtpfShiGBY9gIUol/DHR5TcnuSKzaWiN7BTc38=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=TVVsX0g9zlGL4sd9s2Be0rq1T8qZFmmyqUXDVdPDfEvWv8Ammmm8R2MgXPYQ5iw8X
-         ZwV1FjEqkJB5QwqPEtP8deTjIRzzGsh/EXjAj++lQ8ZYHGqZjrVRRwhCl3X8AB8Oqo
-         RAW7BNygBVO7QKa0cjb6B3bbobY0WBle2VF9tzV4=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH 2/2] arm64: dts: qcom: sdm632-fairphone-fp3: Add NFC
-Date:   Mon, 28 Nov 2022 18:37:44 +0100
-Message-Id: <20221128173744.833018-2-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221128173744.833018-1-luca@z3ntu.xyz>
-References: <20221128173744.833018-1-luca@z3ntu.xyz>
+        with ESMTP id S233112AbiK1RnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:43:07 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B78A2934C;
+        Mon, 28 Nov 2022 09:40:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2CB31B80EA1;
+        Mon, 28 Nov 2022 17:40:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDA6CC433D6;
+        Mon, 28 Nov 2022 17:40:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669657229;
+        bh=6EVL06EKmQLLO098KWtUicdZHL7THTd3FmfR2UBoFHo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KeK2MEer+nbL8ziBDtaAr0lx0i7voH9mjXv8FS9z4ZzoK/lUOm9Wixl6jPrVKPbnw
+         4+pbQotUO6Zm9O3efQslFEAG+2RFf162Ck7EsR5v1tGiR5K0wtfP2a9yOFCJtrvJbf
+         5JU//y7goblnHRifL+3Vobc6Lb9M4EdKPyMPdKhc4XfC69Fw7XfI4Y37DoAfz/2bci
+         sDAKpjsD76TB/aEkGIWkiwhF8b8SsRNsA+YRwLp8HwO6AoNzum095OZt4HoDFxRV8i
+         O0RpQuOZaMpI2HLWwROgLncQuOj3D/WnM5G9MzoFARNYF+B+jMAZ4rDEjfZTrMl7Mt
+         2Cg8urNXcwLYA==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     FUKAUMI Naoki <naoki@radxa.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.15 01/24] arm64: dts: rockchip: keep I2S1 disabled for GPIO function on ROCK Pi 4 series
+Date:   Mon, 28 Nov 2022 12:40:01 -0500
+Message-Id: <20221128174027.1441921-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the node for the NQ310 chip found on this device, which is
-compatible with generic nxp-nci-i2c driver.
+From: FUKAUMI Naoki <naoki@radxa.com>
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+[ Upstream commit 849c19d14940b87332d5d59c7fc581d73f2099fd ]
+
+I2S1 pins are exposed on 40-pin header on Radxa ROCK Pi 4 series.
+their default function is GPIO, so I2S1 need to be disabled.
+
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+Link: https://lore.kernel.org/r/20220924112812.1219-1-naoki@radxa.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-RESEND to fix Cc
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
- arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-index 2920504461d3..fde93cbcd180 100644
---- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-@@ -63,6 +63,21 @@ touchscreen@48 {
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+index 100a769165ef..a7ec81657503 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+@@ -446,7 +446,6 @@ &i2s0 {
+ &i2s1 {
+ 	rockchip,playback-channels = <2>;
+ 	rockchip,capture-channels = <2>;
+-	status = "okay";
  };
  
-+&i2c_5 {
-+	status = "okay";
-+
-+	nfc@28 {
-+		compatible = "nxp,nq310", "nxp,nxp-nci-i2c";
-+		reg = <0x28>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-+		firmware-gpios = <&tlmm 62 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
- &pm8953_resin {
- 	status = "okay";
- 	linux,code = <KEY_VOLUMEDOWN>;
+ &i2s2 {
 -- 
-2.38.1
+2.35.1
 
