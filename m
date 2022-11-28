@@ -2,161 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0631263A102
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 06:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E69C63A113
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 07:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiK1F6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 00:58:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
+        id S229778AbiK1GKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 01:10:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiK1F6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 00:58:04 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D458462D0;
-        Sun, 27 Nov 2022 21:58:03 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AS5q49p021247;
-        Mon, 28 Nov 2022 05:57:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=y5/ncHheL1o1gobhmEVQuzWuUcGwoYEQWC5+lWTUqwU=;
- b=IokTAgjnV4yNaOV6RJFvXL0itoheGd6+YfFdngFuDF8Gj/e9xkwjhnWZCfJkIz9Z07ys
- bceGMY5Q8LNX2hmTN99XqJpG6T9pwG5Bz74jSMwcZimm0TOZLJPTF31ORQ1KmPix995c
- qa3b9rFSCCQCNyogN7/hmLwnAQ1Uhirf3vkVd3YU7TeOnMYrf1U8Arkq1sZ9zaMF2ZSI
- Fmsqt5xmoZ0XUz+RnmShl+/7Q65AVIuc7d6kFfnVLPT0Y9pBFzNfKJ2ueyMDnbFfghX5
- yFEjAWQL0AXnIrlD47L1pxmrcoBs3Anbel4Q8sKe7raMD476P797PXqH7Kkvem4E4DHR 7Q== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m38gq39qu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 28 Nov 2022 05:57:50 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AS5vnvD022578
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 28 Nov 2022 05:57:49 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Sun, 27 Nov
- 2022 21:57:45 -0800
-Message-ID: <7b6ffbb4-80fb-610a-c839-e3bf1668d4ed@quicinc.com>
-Date:   Mon, 28 Nov 2022 11:27:42 +0530
+        with ESMTP id S229751AbiK1GKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 01:10:46 -0500
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78FF13F45;
+        Sun, 27 Nov 2022 22:10:45 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id g12so15057687wrs.10;
+        Sun, 27 Nov 2022 22:10:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LNcHyBDLc5jdtnLBN8748IdlIq3jeqAUsM7MsspQYq8=;
+        b=hhrDcGj3lcmGsh7XLPOKXYX647Wme5iMWJzRP1QfHzffnXnI86JLKbsI2uCYrPpJCH
+         K1yVDRq+0oWBwmnL5KJyOVTrlqMEVGetd+s5oB1Vw5H4ifxqG8F7plTQt5Xu5pHguQqF
+         hYEp+ZSTUsw74T2CFnCkc6NqEGVwtQWMXLlQ0ZTJKtbET+tiayugwXytFVGvk1TJnusn
+         +YpmRSrTomDxHhwq5aGiFP1l/OaGqhTncqspGC3ucO5JqXPyGN9gPX7To2OGsXz4C0MM
+         Xh1O+7rJHtchnT5Zbj6RA/QAH9cCm0o/Qgf3kikMeidNkEmKIFTxN3gNOgG2DTLjz8O8
+         lCtw==
+X-Gm-Message-State: ANoB5pl//OZcWPQ2DBj0wVES3hrTjqcGuCsae792LVpZJp/b4z1CFv6w
+        fOti4JExh/dUiVp8Sdujy1w=
+X-Google-Smtp-Source: AA0mqf4U7mqwsR/kHM0iUuatuXazzkLjLDSblw4PHIluzbs1vltm1jgpwfhnnsZFOTu0BmvEDK3Osw==
+X-Received: by 2002:adf:fb4c:0:b0:236:5270:735e with SMTP id c12-20020adffb4c000000b002365270735emr18959992wrs.659.1669615844299;
+        Sun, 27 Nov 2022 22:10:44 -0800 (PST)
+Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
+        by smtp.gmail.com with ESMTPSA id n8-20020a05600c4f8800b003cfd64b6be1sm21801135wmq.27.2022.11.27.22.10.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Nov 2022 22:10:43 -0800 (PST)
+Message-ID: <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org>
+Date:   Mon, 28 Nov 2022 07:10:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V5 1/2] dt-bindings: firmware: qcom-scm: Add optional
- interrupt
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 2/9] serial: bflb_uart: add Bouffalolab UART Driver
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <quic_rjendra@quicinc.com>
-References: <20221123204615.25358-1-quic_sibis@quicinc.com>
- <20221123204615.25358-2-quic_sibis@quicinc.com>
- <3cda9005-d7a5-56f0-d1d2-fd6c1cb36fc3@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <3cda9005-d7a5-56f0-d1d2-fd6c1cb36fc3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-3-jszhang@kernel.org>
+From:   Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <20221127132448.4034-3-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SCeeMyhlpibqW61-ummGvW7yrK3HfJnq
-X-Proofpoint-ORIG-GUID: SCeeMyhlpibqW61-ummGvW7yrK3HfJnq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-28_04,2022-11-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
- suspectscore=0 impostorscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211280046
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Krzysztof,
+On 27. 11. 22, 14:24, Jisheng Zhang wrote:
+> +static void bflb_uart_tx_chars(struct uart_port *port)
 
-Thanks for taking time to review the series.
+Again:
 
-On 11/24/22 16:43, Krzysztof Kozlowski wrote:
-> On 23/11/2022 21:46, Sibi Sankar wrote:
->> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
->>
->> Add an interrupt specification to the bindings to support the wait-queue
->> feature.
-> 
-> Subject - this is qcom,scm, not qcom-scm.
+Are you unable to use the TX helper? If so:
+* why?
+* use uart_advance_xmit() at least.
 
-ack
+> +{
+> +	struct circ_buf *xmit = &port->state->xmit;
+> +	unsigned int count;
+> +
+> +	if (port->x_char) {
+> +		/* Send special char - probably flow control */
+> +		wrl(port, UART_FIFO_WDATA, port->x_char);
+> +		port->x_char = 0;
+> +		port->icount.tx++;
+> +		return;
+> +	}
+> +
+> +	if (uart_circ_empty(xmit) || uart_tx_stopped(port)) {
+> +		bflb_uart_stop_tx(port);
+> +		return;
+> +	}
+> +
+> +	count = BFLB_UART_TX_FIFO_TH;
+> +	do {
+> +		wrl(port, UART_FIFO_WDATA, xmit->buf[xmit->tail]);
+> +		xmit->tail = (xmit->tail + 1) & (UART_XMIT_SIZE - 1);
+> +		port->icount.tx++;
+> +		if (uart_circ_empty(xmit))
+> +			break;
+> +	} while (--count > 0);
+> +
+> +	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
+> +		uart_write_wakeup(port);
+> +
+> +	if (uart_circ_empty(xmit))
+> +		bflb_uart_stop_tx(port);
+> +}
 
-> 
-> 
->>
->> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>
->> v5:
->> - Pick up R-b
->>
->> v4:
->> - Qualify bindings [Krzysztoff]
->>
->>   Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> index 25688571ee7c..aea6e0c86a89 100644
->> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
->> @@ -73,6 +73,12 @@ properties:
->>     '#reset-cells':
->>       const: 1
->>   
->> +  interrupts:
->> +    description:
->> +      The wait-queue interrupt that firmware raises as part of handshake
->> +      protocol to handle sleeping SCM calls.
->> +    maxItems: 1
-> 
-> Which devices have interrupts?
-> 
-> We talked about it here:
-> https://lore.kernel.org/all/2464d90f-64e9-5e3c-404b-10394c3bc302@quicinc.com/
-> and here:
-> https://lore.kernel.org/all/c20edd0d-7613-5683-60e7-54317cac6e0b@linaro.org/
-> 
-> But I still don't get which devices support it and which do not.
+-- 
+js
+suse labs
 
-lol, I thought we reached a consensus earlier because of the "ok" and
-R-b. Like I explained earlier the bootloader would be adding interrupt
-on the fly, wouldn't such cases cause binding check failure if we list
-all the devices supporting it? Also some of the SM8450 devices in the
-wild would be running firmware not having the feature but I guess
-eventually most of the them will end up supporting the feature in the
-end.
-
-> 
-> 
-> BTW: > 
-https://lore.kernel.org/all/20221122092345.44369-2-krzysztof.kozlowski@linaro.org/
-
-Yup had a look at ^^, IIRC there are additional SoCs that can have the
-interconnects specified in their device tree.
-
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
