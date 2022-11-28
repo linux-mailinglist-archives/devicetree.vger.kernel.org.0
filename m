@@ -2,101 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B19F63A344
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:40:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AC9C63A34C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:43:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiK1Ikr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 03:40:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
+        id S229758AbiK1InF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 03:43:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiK1Iko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:40:44 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419F417A99
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:40:36 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id r12so16270746lfp.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:40:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NT5n4PWr0MoKZ+W7e/CnXrYaYWD8yksdvO5HBo9+w+c=;
-        b=T1hyooHLRNRp/uwq07Iqz6ddP5xGghoOwv3ZQK24KU+J5TtuEeFdvR43Rg2LIDXGZu
-         TO2DTD+w3P7WJteaTiGYzvhUUeHaaUTO1qeJgqmvuGwlsulCbLJAxDoaBbK8hplu5crU
-         3Pp3gT6XEYAkpusMBcRlCM/SpnHtB8+LEcVAGnfBNdpHm3tHAH8ziJ3GcbtYijt+CNh4
-         8ahsUAu+dBut9LF0fW6eO00Ie3NLLkTzDQ3vYC1Jk/mAxv4RBWmDEYlI6Ay2uvPSfpnm
-         KCE9Jf6YI5W91eJ22O+9JPmi+Q9TYl6A1T9R+S42y0uBl9av7boBFODyFWZRpmz4KaMr
-         sxaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NT5n4PWr0MoKZ+W7e/CnXrYaYWD8yksdvO5HBo9+w+c=;
-        b=KGXqOH7o6OZosvHV4gVVgcaIR/UAhqVVGCL/865SkDEg+/Jjy/uHo5AJYgfYY1mXAz
-         PRWuElyBcqOfz5nWOi+I6vfx9b1mfkX0RARJ5fd8CamQcskIrMHMr4kiXODiNSRnM1nz
-         V27XGFZNtvoSfARJyLsQul2iGzFIKK6UQNPpC5s0GXJNiIWfDOuyw69RZ+1H4soXOxg9
-         rdryCOqMzbjnAPT8Q1j19DQrwkL16ZCPgxeSzVcWVqnumuMIGETP29LJyOSJWDxvJgzB
-         +rNo30QKlVgWnzq0sC6kUC/FQQS94hnj/eP2EvuppeguH/qSNFfLIhD6ao+Mg+c5srq1
-         C0QA==
-X-Gm-Message-State: ANoB5pkWuLpzvpDcXLknkwtDyhluhX8P0L7F2LAX8AT/CSQGUhgEvjC1
-        zU25CSilEvoQoKu1BK6HrnDt8w==
-X-Google-Smtp-Source: AA0mqf4LwcPkyyNRLeEgjR8nqFpVVF/Wc6JWGQngl/W5gyVVtjd4nnTsKRXTf+AW4sQHI1z4oBseMg==
-X-Received: by 2002:a05:6512:33d0:b0:4a2:2af6:98e5 with SMTP id d16-20020a05651233d000b004a22af698e5mr16354539lfg.5.1669624834596;
-        Mon, 28 Nov 2022 00:40:34 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t14-20020a05651c204e00b002778a76a3c3sm1151126ljo.112.2022.11.28.00.40.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 00:40:34 -0800 (PST)
-Message-ID: <d294edf4-9df3-5958-5a12-0f93bc74f28f@linaro.org>
-Date:   Mon, 28 Nov 2022 09:40:33 +0100
+        with ESMTP id S229732AbiK1InF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:43:05 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7A6654B
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:43:03 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1ozZjB-0008M9-90; Mon, 28 Nov 2022 09:43:01 +0100
+Message-ID: <a13c2e92-cfa6-04fd-c32a-c4d444894660@pengutronix.de>
+Date:   Mon, 28 Nov 2022 09:42:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom: Add SM4250 APCS
- compatible
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        jassisinghbrar@gmail.com, devicetree@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-sabre: Add mmc aliases
+To:     Detlev Casanova <detlev.casanova@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20221127195418.1506876-1-bhupesh.sharma@linaro.org>
- <20221127195418.1506876-2-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221127195418.1506876-2-bhupesh.sharma@linaro.org>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221028141811.101122-1-detlev.casanova@collabora.com>
+ <20221111025232.GI125525@dragon> <2868543.tdWV9SEqCh@falcon9>
+Content-Language: en-US
+In-Reply-To: <2868543.tdWV9SEqCh@falcon9>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/11/2022 20:54, Bhupesh Sharma wrote:
-> Add compatible for the Qualcomm SM4250 APCS block.
+Hello Detlev,
+Hello Shawn,
+
+On 11.11.22 20:35, Detlev Casanova wrote:
+> On Thursday, November 10, 2022 9:52:32 P.M. EST Shawn Guo wrote:
+>> On Fri, Oct 28, 2022 at 10:18:11AM -0400, Detlev Casanova wrote:
+>>> If not specified, the mmc0 and mmc1 devices will be the devices
+>>> mmc@2190000 and mmc@2194000, which are in disabled state on the iMX.6
+>>> Sabrelite devices.
+>>>
+>>> The actual SD card reader devices are the ones at mmc@2198000 and
+>>> mmc@219c000.
+>>>
+>>> Set aliases to use the correct mmc devices order.
+>>
+>> Is this something never worked or a regression?  For the latter, we may
+>> need a Fixes tag?
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> These were apparently never set in the kernel device-tree and added manually 
+> in u-boot when dts are synced.
+> 
+> Because most distributions use UUIDs in fstab, it is not a big problem in 
+> Linux, just that the SD card is called /dev/mmcblk2. I would say that this has 
+> always been an issue in Linux.
 
-There is no need to store the regular CC list (coming from automated
-output - get_maintainer.pl) in the Git history. Store it under ---.
+We already have aliases in imx6qdl.dtsi. Existing Installations that hardcode
+root=mmcblk2 _will_ be broken by this change. Installations that are fixed
+by this change have never worked properly, because prior to commit fa2d0aa96941
+("mmc: core: Allow setting slot index via device tree alias"), it depended
+on probe order and/or whether a card was present.
 
-> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
+Whether SD/eMMC comes first or if they start at 0 or 2 is just cosmetic.
+The alias order corresponds with the order in the data sheet and that's a
+good default and I see no reason to change this here and risk breakage.
 
+I thus don't think this patch should go mainline.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
+Ahmad
 
-Best regards,
-Krzysztof
+> 
+>> Shawn
+>>
+>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+>>> ---
+>>>
+>>>  arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+>>> b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi index
+>>> 22f8e2783cdf..12573e1f917c 100644
+>>> --- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+>>> +++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+>>> @@ -14,6 +14,11 @@ chosen {
+>>>
+>>>  		stdout-path = &uart2;
+>>>  	
+>>>  	};
+>>>
+>>> +	aliases {
+>>> +		mmc0 = &usdhc3;
+>>> +		mmc1 = &usdhc4;
+>>> +	};
+>>> +
+>>>
+>>>  	memory@10000000 {
+>>>  	
+>>>  		device_type = "memory";
+>>>  		reg = <0x10000000 0x40000000>;
+> 
+> 
+> 
+> 
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
