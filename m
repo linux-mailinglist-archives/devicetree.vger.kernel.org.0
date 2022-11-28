@@ -2,140 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8640063B402
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 371D063B415
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:17:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234447AbiK1VMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 16:12:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48374 "EHLO
+        id S229929AbiK1VRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 16:17:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234544AbiK1VMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:12:09 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72FFBE0
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:12:08 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id u27so8403951lfc.9
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:12:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0Wg0FgM2Orw88oTGpYnOUGrRTtFH/7dZwXha7m3Sb08=;
-        b=j4YxivKfu8MyQ0dLW0qfVvluU36t7AQnA4ZjkVERLv18LWW3+Q7aBKSo+pdlkRik+y
-         dF8K3U1nIIOkBUDayIR+LGOqTyRSg+3CXJog8ns4nXkt5gU2DJKJ/5BEjonEbOxOoou/
-         d9zSaV/Vet6flJWHpyc58ZHof0HFvA7jecTTEUwcpSVE2/xK7AaU8laWap6N9FTBVglL
-         v0ZT9E+cMklQk8PiKvUmxI2+RF2bs0NShVH15uOQjMZWYPNYfCcnwhj3IRYP/osQG+q0
-         XJ95met7AKXYSYo5FadJpTHhoclQreI0QB/jpR4Qmpt8z1qVfYJqcmxfw20l94gGbaME
-         GyiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Wg0FgM2Orw88oTGpYnOUGrRTtFH/7dZwXha7m3Sb08=;
-        b=5/KFQXhb7M4coE9VZwuqRU+BxcvhZnyOrTqdU4fR6e2/moLhayMrOONNplyYxXPlEZ
-         jrKJfi4gZ3wIC2qxfcmm+ybloHAt/MUwYNhKY6R7F66Y4KxpBIs97x5SfkHRw0TzhRXa
-         MncFi5eIGJOixPNJgUfn2inxCqn+r52/Mo8NC2gvwU4fO2Vig58DEQ0eALxyj7kekT7M
-         hzI0090cP85UBM5hj9cOxXQabHVDpAatoCKUQJ4ALlyhXCWlsvbAd5HMvyMg44oCgjr0
-         HMplnqQldH8nuGGkmcJkb+A1amBlOQhkpTg2kguiFgsfTEp4Gbge7qKPE6bw/w48RkUk
-         xlPQ==
-X-Gm-Message-State: ANoB5pnGJpUBmvKxVp7WoF5DLUSb4s9CAJyt58QtMTqZCFbrEMYuwHDl
-        ILShJBpo+nOG6agyXsN4G2pWbnm09ODTKQ==
-X-Google-Smtp-Source: AA0mqf5NrZJbHLEbExj+hXBM+igCd5Wmefbf4DR51zlmRJrxDv9pmNXUka4OCThviiOrgFyIE9w5TA==
-X-Received: by 2002:ac2:4bd4:0:b0:4b4:aed7:4aa5 with SMTP id o20-20020ac24bd4000000b004b4aed74aa5mr11972463lfq.447.1669669927117;
-        Mon, 28 Nov 2022 13:12:07 -0800 (PST)
-Received: from [192.168.1.101] (95.49.125.236.neoplus.adsl.tpnet.pl. [95.49.125.236])
-        by smtp.gmail.com with ESMTPSA id k5-20020ac257c5000000b004a2511b8224sm1859403lfo.103.2022.11.28.13.12.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 13:12:06 -0800 (PST)
-Message-ID: <e8524b45-8d85-d491-d9b9-749d3c1c7a92@linaro.org>
-Date:   Mon, 28 Nov 2022 22:12:05 +0100
+        with ESMTP id S234098AbiK1VRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:17:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4861B495;
+        Mon, 28 Nov 2022 13:17:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 72389B80E9A;
+        Mon, 28 Nov 2022 21:17:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D31AC433D7;
+        Mon, 28 Nov 2022 21:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669670264;
+        bh=wR2vdYn7jxfskOVqXRDFR2xx2Bh5pit2zrFi6YtSvFA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=r+pIGF/O69EpN3z6euPpIMgazagQE7FEA6RWFRgsVQYtt8TLAaZ9FEWYFPTYD6+OC
+         FTJRX2CvpbxoGy8xZ2as10rOn6NE7W7S+UAl9O5Y5U1JWEKTHTeRYP0SyLPGVxlHSw
+         eOfTKqKtJ8BZ+PtDxt4h542vz13uyGbYVzvhfJoR3eJyFtNqeX18G+F8Z0WWz/sROq
+         UcL1HrjboQojqRU8uctCQbCUyg545fvt+jrRG2DOj5r/Xxir4mKaEPwmI+eiMlYppS
+         Dt5BgKPdOopYmwT8jha9ECjs4a6HTNsnKyfB8TFd9zd2qEHItHOhHyuE11WGfYh+Xe
+         D9CiPaGAa33WA==
+Message-ID: <6aad3b63-498e-b13a-af49-b5af0d4e721e@kernel.org>
+Date:   Mon, 28 Nov 2022 21:17:38 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Enable ADSP
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1
+ platform and drivers
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>,
-        =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Samuel Holland <samuel@sholland.org>, palmer@dabbelt.com
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221125223400.94515-1-matti.lehtimaki@gmail.com>
- <90d231c6-1f16-74ea-ddf7-5e09a51a93ea@gmail.com>
- <cce01dbd-e2b7-3d6b-9c83-af3790f3ee89@linaro.org> <1912229.PYKUYFuaPT@g550jk>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1912229.PYKUYFuaPT@g550jk>
+        Rob Herring <robh+dt@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>
+References: <20221125234656.47306-1-samuel@sholland.org>
+ <20221125234656.47306-13-samuel@sholland.org> <Y4JBa52o4Yemv/uj@spud>
+ <11740765.nUPlyArG6x@diego>
+From:   Conor Dooley <conor@kernel.org>
+In-Reply-To: <11740765.nUPlyArG6x@diego>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 28.11.2022 22:06, Luca Weiss wrote:
-> On Montag, 28. November 2022 21:59:06 CET Konrad Dybcio wrote:
->> On 28.11.2022 18:01, Matti Lehtimäki wrote:
->>> On 28.11.2022 16.41, Konrad Dybcio wrote:
->>>> On 25.11.2022 23:34, Matti Lehtimäki wrote:
->>>>> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->>>>> b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts index
->>>>> 1c52337af560..859e91c16c61 100644
->>>>> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->>>>> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->>>>> @@ -133,7 +133,8 @@ wcnss@d200000 {
->>>>>               no-map;
->>>>>           };
->>>>>   -        adsp@d900000 {
->>>>> +        /delete-node/ adsp@dc00000;
->>>>
->>>> Please delete nodes by referencing the label like so:
->>>>
->>>> /delete-node/ &adsp_region;
->>>
->>> When I created the devicetree I was asked to do the opposite for the
->>> smem_region [1] which I had originally deleted using the label near top of
->>> the file but then moved next to the relevant node, where I cannot use
->>> label when deleting it. Should the smem_region also be moved to the top
->>> of the file if I move this delete-node there so the file would be
->>> consistent?
->> In [1] you were asked to move the delete-node statement, not to alter
->> the argument. Referencing nodes by label is allowed globally in the DTS.
->> The removal should stay inside reserved-memory.
-> 
-> Having e.g. this doesn't build, you get "syntax error" error
-> 
->   reserved-memory {
->       /delete-node/ &venus_region;
->   };
-> 
-> Not sure exactly why, but that's the reason everything's outside of the root 
-> node if you use labels (don't ask me why labels lead to syntax error but 
-> specifying the name manually works)
-> 
-Hm.. The DT spec does not seem to limit where this syntax should work..
-Perhaps it's a bug in DTC then.
-
-Unless it does and I simply don't see it.
-
-Konrad
+On 28/11/2022 21:11, Heiko Stübner wrote:
+> Am Samstag, 26. November 2022, 17:40:11 CET schrieb Conor Dooley:
+>> On Fri, Nov 25, 2022 at 05:46:56PM -0600, Samuel Holland wrote:
+>>> Now that several D1-based boards are supported, enable the platform in
+>>> our defconfig. Build in the drivers which are necessary to boot, such as
+>>> the pinctrl, MMC, RTC (which provides critical clocks), SPI (for flash),
+>>> and watchdog (which may be left enabled by the bootloader).
 >>
->> Konrad
+>> All of that looks good.
 >>
->>> [1]
->>> https://lore.kernel.org/linux-arm-msm/CAA8EJpqUH_v1GXEYF62Z3DBtFu_305_h4D
->>> 36aCnBr38bo5HoJw@mail.gmail.com/
+>>> Other common
+>>> onboard peripherals are enabled as modules.
+>>
+>> This I am not sure about though. I'll leave that to Palmer since I'm
+>> pretty sure it was him that said it, but I thought the plan was only
+>> turning on stuff required to boot to a console & things that are
+>> generally useful rather than enabling modules for everyone's "random"
+>> drivers. Palmer?
 > 
+> Isn't the defconfig meant as a starting point to get working systems
+> with minimal config effort? At least that was always the way to go on arm
+> so far :-) .
 > 
+> So having boot-required drivers built-in with the rest enabled as modules
+> for supported boards will allow people to boot theirs without headaches.
 > 
-> 
+> Disabling unneeded drivers if you're starved for storage space in a special
+> project is always easier than hunting down all the drivers to enable for a
+> specific board. 
+
+I wouldn't mind being able to turn on all the PolarFire SoC stuff and
+yeah, that would be the way that arm64 does it. But I do recall hearing
+that I should not turn stuff on this way, when I initially tried to
+turn stuff on via selects, got a nack and asked if I could do this instead.
+
+But it may be that I misremember, which is why I appealed to the Higher
+Powers for clarification :)
