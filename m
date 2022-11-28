@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D0763B177
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4383063B190
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:48:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232030AbiK1Sgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:36:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43348 "EHLO
+        id S232474AbiK1Sr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:47:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232767AbiK1SgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:36:22 -0500
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF3FF08;
-        Mon, 28 Nov 2022 10:36:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1669660218;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=GKZLgAKbgAJsBsUL/AQjiQQ9KI6oNqWjLldVq5sSTCo=;
-    b=bnuUZZti3OLRZwh+fgHiXl9FHmurJEVCn+3NNH8xZBdWfB93XmCKJQWotwR71yyV3r
-    JFuxcC4VnT0s1btD1CDlnd90obC+xMwNzTP1fMghluBrF3rAh/pWrltgjriOqT4FgW3I
-    Ac5dKaMgLLqGBwCo8qSo6X1ccDNhPCz59VfJX8M7iUMKvPNi/PUEjshwH6Mm8T+E1/TB
-    MFx9Hp+vAnCX2k+/tIKsoZ3o6Jzt1Mf210PNdSw1+IIgty06jkBzG1zOZfNXxIFCp9DT
-    b5cuKbwR//ndjKsC53kc3ZEqva4GJowo3mJdViSOFDXzL+IV96LHhO2yiFk07skLM9Ha
-    +XDg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJAhdlWxfrI"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 48.2.1 DYNA|AUTH)
-    with ESMTPSA id Yce349yASIUHtUH
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 28 Nov 2022 19:30:17 +0100 (CET)
-Date:   Mon, 28 Nov 2022 19:30:10 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S232492AbiK1Srt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:47:49 -0500
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED05E1403C;
+        Mon, 28 Nov 2022 10:47:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Content-Type:From:Reply-To:Subject:Content-ID:
+        Content-Description:In-Reply-To:References:X-Debbugs-Cc;
+        bh=2nc6ETieocz1/MF7D4a379nzMdeyEycYLQGwrA8DsAQ=; b=Shn+niV8Dwihi1yTofxwyKMWTu
+        +zIt+swVCw1jCd4qzUK8xUpPMOupBnWuWw1qppfhsrrKQQzf1PFqSJChwmqV9iaRWW6YkmTI8WDA7
+        YQbaZjjCmF0JXrlDBBHlSxQAiZTpGe4D/tL5gy+HfjaMpNECY/aEe9Vp1PyxN5LaDPRZe/Ddde5nP
+        le25Zdm3BNTreQI1LPlbYYhfa8jsFxpYQT1EgdlSyO9ByAY+jy7L83PTHnBK+vvW3sYbLhlPxz2m+
+        sqbPonHFgOSi8/TGjgho9yei9aH22ewVBzFG+va+qSO6d1pMrGFPIEtLnJHfpmqh4+Nqobx/EU7eb
+        xnnrevqw==;
+Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
+        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1ozjA2-006BV6-Ih; Mon, 28 Nov 2022 19:47:22 +0100
+Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1ozjA1-008Ell-1p;
+        Mon, 28 Nov 2022 19:47:21 +0100
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-        Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916-wingtech-wt88047: Add flash LED
-Message-ID: <Y4T+Mv+uIx7jQwky@gerhold.net>
-References: <20221128051512.125148-1-linmengbo0689@protonmail.com>
- <43c24e7e-49b6-ff46-2f40-9413af7ac252@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lin Jinhan <troy.lin@rock-chips.com>
+Cc:     linux-crypto@vger.kernel.org (open list:HARDWARE RANDOM NUMBER
+        GENERATOR CORE),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support),
+        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
+        linux-kernel@vger.kernel.org (open list),
+        Aurelien Jarno <aurelien@aurel32.net>
+Subject: [PATCH v2 0/3] hwrng: add hwrng support for Rockchip RK3568
+Date:   Mon, 28 Nov 2022 19:47:15 +0100
+Message-Id: <20221128184718.1963353-1-aurelien@aurel32.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <43c24e7e-49b6-ff46-2f40-9413af7ac252@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Rockchip SoCs used to have a random number generator as part of their
+crypto device, and support for it has to be added to the corresponding
+driver.
 
-On Mon, Nov 28, 2022 at 09:56:47AM +0100, Krzysztof Kozlowski wrote:
-> On 28/11/2022 06:16, Lin, Meng-Bo wrote:
-> > WT88047 uses OCP 8110 Flash LED driver. Add it to the device tree.
-> > 
-> > Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> > ---
-> >  .../dts/qcom/msm8916-wingtech-wt88047.dts     | 22 +++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> > index 166bed05996f..a87be1d95b14 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> > +++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> > @@ -23,6 +23,20 @@ chosen {
-> >  		stdout-path = "serial0";
-> >  	};
-> >  
-> > +	flash-led-controller {
-> > +		compatible = "ocs,ocp8110";
-> 
-> The compatible is not documented. Checkpatch warns about it. You need to
-> document devices before using them.
-> 
+However newer Rockchip SoCs like the RK3568 have an independent True
+Random Number Generator device. This patchset adds a driver for it and
+enable it in the device tree.
 
-Unfortunately Pavel never applied the dt-bindings patch for this - only
-the driver patch was applied. André already sent a kind reminder [1] and
-two resends [2, 3] without success. Since it's a documentation-only
-patch, maybe you could take it through the dt-bindings tree?
+v1 -> v2:
+ * Patch 1: fix issues reported by Rob Herring and Krzysztof Kozlowski:
+   - Rename rockchip-rng.yaml into rockchip,rk3568-rng.yaml
+   - Fix binding title and description
+   - Fix compatible property
+   - Rename clocks and add the corresponding descriptions
+   - Drop reset-names
+   - Add a bus definition with #address-cells and #size-cells to the
+     example.
 
-Even the original version [1] still applies cleanly to linux-next. :)
+ * Patch 2: fix issue reported by kernel test robot <lkp@intel.com>
+   - Do not read the random registers as big endian, looking at the
+     RK3568 TRM this is actually not needed. This fixes a sparse
+     warning.
 
-Thanks,
-Stephan
+ * Patch 3: unchanged
 
-[1]: https://lore.kernel.org/linux-leds/20220212180942.8241-2-git@apitzsch.eu/
-[2]: https://lore.kernel.org/linux-leds/20220404161428.17175-1-git@apitzsch.eu/
-[3]: https://lore.kernel.org/linux-leds/20220505185344.10067-1-git@apitzsch.eu/
+Aurelien Jarno (3):
+  dt-bindings: RNG: Add Rockchip RNG bindings
+  hwrng: add Rockchip SoC hwrng driver
+  arm64: dts: rockchip: add DT entry for RNG to RK356x
+
+ .../bindings/rng/rockchip,rk3568-rng.yaml     |  60 +++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   9 +
+ drivers/char/hw_random/Kconfig                |  14 +
+ drivers/char/hw_random/Makefile               |   1 +
+ drivers/char/hw_random/rockchip-rng.c         | 250 ++++++++++++++++++
+ 5 files changed, 334 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+ create mode 100644 drivers/char/hw_random/rockchip-rng.c
+
+-- 
+2.35.1
+
