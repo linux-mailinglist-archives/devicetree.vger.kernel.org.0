@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C2063AE46
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:01:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D9763AE78
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232182AbiK1RBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:01:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47292 "EHLO
+        id S232817AbiK1RIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232196AbiK1RBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:01:14 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 080032DFB;
-        Mon, 28 Nov 2022 09:01:13 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id be13so18392551lfb.4;
-        Mon, 28 Nov 2022 09:01:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/GpRyDK/46++YKz2EFwIeDbSAjaRlIbxnLXBLKlVstM=;
-        b=b3QD0v4al1qJqnBl/vris9v0AeyQVbu1VFPxBZbgKIDBiPGb4cMW9uDvmhTiTwrfaI
-         MzKU3/U7DnUtrNfrzqLC93sda7bjb4PDp45kdGZQ7twTHb5BZndmjYl3BO1M4BafSxgW
-         RFraXOc/UuT8LhvGaxwCGzT9KLOovxKydh4RbMSOyckWTs4EuFuAwxKKFVIXnrZ8H6+e
-         OgkP45zamkKRGV/sWuGc5aitnfDLS9Uco2oLqwvIbHy85vAWxq8Uw1ZaZBtU20TTaT7R
-         I6R3p2CemGo1zAMxNL4An5P1OCPL4KvnjM24rf9u/Fvh/oFIa4ekJGDcRXDSqXNQR2Xw
-         vTMA==
+        with ESMTP id S232645AbiK1RHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:07:54 -0500
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55180644E
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:07:52 -0800 (PST)
+Received: by mail-io1-f46.google.com with SMTP id 11so8104625iou.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:07:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/GpRyDK/46++YKz2EFwIeDbSAjaRlIbxnLXBLKlVstM=;
-        b=N8KPeTymRsuEdRCP2DJQLwp0LtKhL8M/76o0LfsdKbAC2UEirzfHW6/cuDvFrQ9tti
-         sZteGsG83FQI+MoMM7W/O4HdWiYrSOytzrnuHX5yIcarAaUpYvFYcAJxy4aJwVP2bME9
-         hgG7wPXtm5sQ9MB+v8l+sfpKzD2mVdIIC4nqUy0HiuUNlG78+TrIWpDO0vpmeYwPMO5w
-         vf7guR6gLof/5KWHwQlcLMeX26/8pYrdOppnpsQ3q/CjSS94A5+CiSwZB4G39Q++xwm2
-         Ice4ETEswaEZqkSKYWkLiDoHy28bcAwkJr4Z/eo19msusV/W+GZTOpKK6SURUleYdGr4
-         igoA==
-X-Gm-Message-State: ANoB5plEoCHWedcohyxSr0SRhbN85l32mthT1vACWubbbow9Nmo8WjUD
-        2fFvtaRDCEY+9BXVAgDSU0P82AKczpffDw==
-X-Google-Smtp-Source: AA0mqf7GjM56yI7ibfyIeX/9Yjd43Ezpc7UZ0t1luF9D869H/74eJ853fXC+TpaBY7Aij7yDCKDIAA==
-X-Received: by 2002:a05:6512:3e2a:b0:4ab:534b:1b2c with SMTP id i42-20020a0565123e2a00b004ab534b1b2cmr12791293lfv.426.1669654871020;
-        Mon, 28 Nov 2022 09:01:11 -0800 (PST)
-Received: from [192.168.0.251] (dsl-hkibng42-56733b-36.dhcp.inet.fi. [86.115.59.36])
-        by smtp.gmail.com with ESMTPSA id j12-20020a056512028c00b004b40c1f1c70sm1801315lfp.212.2022.11.28.09.01.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 09:01:10 -0800 (PST)
-Message-ID: <90d231c6-1f16-74ea-ddf7-5e09a51a93ea@gmail.com>
-Date:   Mon, 28 Nov 2022 19:01:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Enable ADSP
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        bh=igPdFyjO35ZpKO+vYdPwkIUVgK4YYNs5Tn93PDEG5qo=;
+        b=xFO5zLyxfS5kTkuUpRNLzplEbOnpIKl3k8wvdLLONeeYHgrYy+waTUKm8bUfGRqHGW
+         +RTJ8J69AyXub/KicMu+8KHtRGg1l5tqQgMS4FF9oqQV+8xxeA7o0TwlM0+k6KspEBaT
+         +7dnFLKEFlz4iOHO7/rIu4dht0jJsF7zTjBUmzjlsGTh/D4xpLiSTPF/M77nFQitv+Wi
+         rLZf9vgYwXsbTX+FJI/ChuvZkuAoxPxBT7InVlMTYUi52DADBd4/9ep9AFZtE2IBSfSI
+         n/eGjSMywoyl4H/Q51QmpJT7flSxKrrP8yMoUJ/Lo+owM1pqyDlacXDxD0brJLjOqz5P
+         W/Kw==
+X-Gm-Message-State: ANoB5plgQ0QL51rjfK/ph2av9VM5NmjKGLklD8Aj/iiLzwPyXzb6PNpQ
+        sW0Byh36HZmHnzTuWg0qqD3PyQ==
+X-Google-Smtp-Source: AA0mqf6dZyZDdW7YMXoUdCdKsv4wcvFxNrCZ9SnWjpdxJctmmOaXVtUYw9WlNujpMLLqsz8mrCy7XA==
+X-Received: by 2002:a6b:f616:0:b0:6df:2c14:f642 with SMTP id n22-20020a6bf616000000b006df2c14f642mr10368857ioh.43.1669655271371;
+        Mon, 28 Nov 2022 09:07:51 -0800 (PST)
+Received: from google.com (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with ESMTPSA id p7-20020a02b007000000b0037fbfe86e77sm4540557jah.3.2022.11.28.09.07.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 09:07:51 -0800 (PST)
+Date:   Mon, 28 Nov 2022 17:07:48 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     =?utf-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221125223400.94515-1-matti.lehtimaki@gmail.com>
- <a64d31a5-5e55-35b9-57e3-bb4214fe3e28@linaro.org>
-Content-Language: en-US
-From:   =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>
-In-Reply-To: <a64d31a5-5e55-35b9-57e3-bb4214fe3e28@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Abner.Yen@ecs.com.tw,
+        Gavin.Lee@ecs.com.tw, Vicy.Lee@ecs.com.tw, Jason.Huang@ecs.com.tw,
+        Darren.Chen@ecs.com.tw
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Adding DT binding for
+ zombie
+Message-ID: <Y4Tq5DFoc0kWIjTb@google.com>
+References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
+ <Y3zck7tPA5WFd0p1@google.com>
+ <CAPao8GKpXcRm3PmWnv+rsr2z53r6J-ScXAq+fOi4ydQg_Gy31A@mail.gmail.com>
+ <Y343IWgkli+y8HMn@google.com>
+ <CAD=FV=X4GzCnmgnAQMzCNpCxzxkZXWONt4gNVCHniRYE_uFVyg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <CAD=FV=X4GzCnmgnAQMzCNpCxzxkZXWONt4gNVCHniRYE_uFVyg@mail.gmail.com>
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,31 +73,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.11.2022 16.41, Konrad Dybcio wrote:
+On Mon, Nov 28, 2022 at 08:20:36AM -0800, Doug Anderson wrote:
+> Hi,
 > 
-> On 25.11.2022 23:34, Matti Lehtimäki wrote:
->> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->> index 1c52337af560..859e91c16c61 100644
->> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
->> @@ -133,7 +133,8 @@ wcnss@d200000 {
->>   			no-map;
->>   		};
->>   
->> -		adsp@d900000 {
->> +		/delete-node/ adsp@dc00000;
-> Please delete nodes by referencing the label like so:
+> On Wed, Nov 23, 2022 at 7:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > > My checkout steps as below:
+> > > $ git remote add linux_qcomÂ git://git.kernel.org/pub/scm/linux/kernel/git/
+> > > qcom/linux.git
+> > > $ git fetch --no-tags linux_qcom
+> > > $ git checkout -b <MyLocalBranchName> linux_qcom/for-next
+> > >
+> > > Is myÂ code base branch still worng?Â  Am IÂ missing something?Â
+> >
+> > My understanding is that it is best to base you changes on a branch like
+> > 'arm64-for-6.2' as the 'for-next' branch is re-created every time changes
+> > land in one of the '${area}-for-${version}' branches.
+> >
+> > No big issue in this case, just use the corresponding '${area}-for-${version}'
+> > branch for future patches/versions :)
 > 
-> /delete-node/ &adsp_region;
+> FWIW, I usually just use Bjron's for-next branch for stuff like this.
+> While the merge commits in the the Qualcomm "for-next" branch are
+> re-created every time, because of the way "git" works the git hashes
+> of the actual patches are the same as the git hashes of the patches in
+> the separate branches. All the patches in "for-next" should be ones
+> that are fine to base your patches on.
 
-When I created the devicetree I was asked to do the opposite for the
-smem_region [1] which I had originally deleted using the label near top 
-of the
-file but then moved next to the relevant node, where I cannot use label
-when deleting it. Should the smem_region also be moved to the top of the
-file if I move this delete-node there so the file would be consistent?
-
-[1] 
-https://lore.kernel.org/linux-arm-msm/CAA8EJpqUH_v1GXEYF62Z3DBtFu_305_h4D36aCnBr38bo5HoJw@mail.gmail.com/
--- 
-Matti
+I had minor concerns that occasionally tools might get confused it they
+try to find the parent tree of a patch based on the unstable hash of
+the merge commit in "for-next". Not sure if it is much of an issue in
+practice.
