@@ -2,94 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 942B463B443
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B50A463B448
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232895AbiK1VdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 16:33:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33960 "EHLO
+        id S231608AbiK1Vf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 16:35:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231252AbiK1VdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:33:25 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAE51CB37;
-        Mon, 28 Nov 2022 13:33:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669671187; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=R/S87fl94BFiPI5qMA2RIlbkHvMFcCzvqUxQQvPSUQ0EyE5C18479+pA97bx3FR8bX/f2PbCWK6t6m7yszAVPVaiMCZbWkQandLqayVVm+w0ri15afC5tKALkafUEamieCDaeB3PsborJgPjKP8yGYnxOYUIJsLO/0Is8QszHkk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669671187; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=QVXbcaj0HG2V69BRM9WHD2nb8nYMSoGDBdtG+KKs/r8=; 
-        b=WiDE7CPPDeoy7lWxl26RSsiZ0sqWcePZWpUbxA/QSpv9AgHFxc0hSkvZGh3uDredoHLwxC6RV1b7qEnfY6/PDtuS6zzbGnmyLoh0xEs8fCVLq6cluVHT11sVKV/6iouYKGLlrL3bX6ovWBnQ1xqeOs54PPyzo8ox5dpn7d/3S1Q=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669671187;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=QVXbcaj0HG2V69BRM9WHD2nb8nYMSoGDBdtG+KKs/r8=;
-        b=W8DrlAuiZWEAivLGMb3xsjUYZfLC5DqzMnIodHeElRWu/ZzGOSOPFNDQnXH8B0aZ
-        BP8zq50oJiG+HbBCO+bkkOU8xZAGSPdzaNY1OYYU+2oGkXXIZuxYco7GXrVPcEmmorN
-        /ewPLsYcnHA0E36mVKAbuTv4+VB+YjYBKJ6lJMDo=
-Received: from arinc9-Xeront.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1669671186041271.1969592308891; Mon, 28 Nov 2022 13:33:06 -0800 (PST)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Petr Louda <petr.louda@outlook.cz>
-Subject: [PATCH] mips: ralink: mt7621: fix phy-mode of external phy on GB-PC2
-Date:   Tue, 29 Nov 2022 00:32:38 +0300
-Message-Id: <20221128213238.3959-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231252AbiK1Vf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:35:57 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E1B2FFCA
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:35:57 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id e7-20020a17090a77c700b00216928a3917so15361052pjs.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:35:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yIf9zTBU9LJIPPKaIChcDQl5vn+DKZB/SGb/n+qAnQQ=;
+        b=BUPX2sEuLleYl8uzjufreHFNzYcx0xDOqwP5+BOz0vyBN27YprZ6eUwiIvOZQgPvUt
+         r/f2xqwM6YytgRfIfdIn7Zk0LaClIGi/1D5eTXKOp3Y9C7Sx7dyL7hQV4TXOlz8ZAP3+
+         kNz4BoGAIcDtayE8WTm9pgOFqqk6uc7hCI3sO27D9lRIZqegQDqeg8TJ9DvQCp9Fbdlq
+         0QPfERZc9bLn035ONTIdy7qz349lPyNkxM4mgxk2fLiG8LlwQ79kQlfTJKUn+L4jgOCG
+         uQfGm3AmuYt6a/39KueF0j6IjIvlzc4u3xLu8VfT2KrzAs+ruJimZGGc28r2Du7pFbzy
+         x2TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yIf9zTBU9LJIPPKaIChcDQl5vn+DKZB/SGb/n+qAnQQ=;
+        b=B5uMBzpXLuk5EujGEcSKJcSmKNcPl1mlmliwm8yr0YndPt4qORQtCV9lukooXepO9v
+         s6HwQ+LGlj4XCj8q4LGOO24rYlWTRQh20GjymkMfLs1PWkigZeVA/Cmbc/uIA2L5CQEi
+         thMRFM2XIaPZbWuvdxV5w5B21DpuMt/TbaV2AKNVzQ+FoEnly6CTVK6S+zU9K22p66qG
+         QJLJpQHsfRbRvEqHhQCZP5F1+/cjePEBrhV5YHC9VPtRC+YcR0B02/4NWYHXBn68dg+5
+         fZEFjG0HZH2sPJPy43vPGP3muA6XjB4RChxwn+IprZMMT6qJbDz+NEDZq5OLvTStOe/F
+         HpNA==
+X-Gm-Message-State: ANoB5pmGqj0yNwCI2YQCv41QabHnR5uiqj8hHuvfcnGskHlRnUZIBJpJ
+        +0ebUMgblwFnzMMRtNy7iCjxhJA/N3fnT7ft+76R9w==
+X-Google-Smtp-Source: AA0mqf5RktKdkGI0WORSQWighrvazh4o6HKFmGtuOokCNdiP9g0J/XJYgCYKpNG8xy023/G3IZeEo+xm1L0RWVgLyLc=
+X-Received: by 2002:a17:902:d58d:b0:187:2502:888f with SMTP id
+ k13-20020a170902d58d00b001872502888fmr38671699plh.136.1669671356493; Mon, 28
+ Nov 2022 13:35:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221121202259.2415821-1-festevam@gmail.com>
+In-Reply-To: <20221121202259.2415821-1-festevam@gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 28 Nov 2022 13:35:43 -0800
+Message-ID: <CAJ+vNU35SFFNyxe+zmNJ=wKjfTV_pVCAijOh6zP=WzL6nidGNA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-gw560x: Remove incorrect 'uart-has-rtscts'
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The phy-mode property must be defined on the MAC instead of the PHY. Define
-phy-mode under gmac1 which the external phy is connected to.
+On Mon, Nov 21, 2022 at 12:23 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> From: Fabio Estevam <festevam@denx.de>
+>
+> The following build warning is seen when running:
+>
+> make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
+>
+> arch/arm/boot/dts/imx6dl-gw560x.dtb: serial@2020000: rts-gpios: False schema does not allow [[20, 1, 0]]
+>         From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
+>
+> The imx6qdl-gw560x board does not expose the UART RTS and CTS
+> as native UART pins, so 'uart-has-rtscts' should not be used.
+>
+> Using 'uart-has-rtscts' with 'rts-gpios' is an invalid combination
+> detected by serial.yaml.
+>
+> Fix the problem by removing the incorrect 'uart-has-rtscts' property.
+>
+> Fixes: b8a559feffb2 ("ARM: dts: imx: add Gateworks Ventana GW5600 support")
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  arch/arm/boot/dts/imx6qdl-gw560x.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
+> index 4bc4371e6bae..4b81a975c979 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
+> @@ -632,7 +632,6 @@ &ssi1 {
+>  &uart1 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_uart1>;
+> -       uart-has-rtscts;
+>         rts-gpios = <&gpio7 1 GPIO_ACTIVE_HIGH>;
+>         status = "okay";
+>  };
+> --
+> 2.25.1
+>
 
-Tested-by: Petr Louda <petr.louda@outlook.cz>
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Fabio,
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-index 7515555388ae..e31417569e09 100644
---- a/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-+++ b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-@@ -113,13 +113,13 @@ &pcie {
- 
- &gmac1 {
- 	status = "okay";
-+	phy-mode = "rgmii-rxid";
- 	phy-handle = <&ethphy5>;
- };
- 
- &mdio {
- 	ethphy5: ethernet-phy@5 {
- 		reg = <5>;
--		phy-mode = "rgmii-rxid";
- 	};
- };
- 
--- 
-2.34.1
+Thanks,
 
+Acked-by: Tim Harvey <tharvey@gateworks.com>
+
+Best Regards,
+
+Tim
