@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC2763ACC0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 16:38:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2F563ACFE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 16:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231223AbiK1Pid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 10:38:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48062 "EHLO
+        id S232152AbiK1Pv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 10:51:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbiK1Pib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 10:38:31 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11FC21A8
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 07:38:30 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id v7so8779684wmn.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 07:38:30 -0800 (PST)
+        with ESMTP id S232340AbiK1PvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 10:51:23 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F154B21A8
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 07:51:20 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id f7so16002037edc.6
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 07:51:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+5amvz7msIQE/Aa+SDeT9RjytpJTz/H0MFfzRFpbJzU=;
-        b=LQziLqGWjTaXkBZAob4Y/r7XrXzAVVTbeG3m3Tn+0JMjAnE4ZXo2oDhV3ZRNpFk2G0
-         UdfQ12X2ReGkDIMk1367ji/ovCu0R8v+XwCApr/+y+JGu2nTLqLSpFk6Fi47APqIqA5v
-         IlkUoVWDah4pQAj0JwF6gjwWbv9y4/+kUfdld8WvqyZy0CK06Loc4ecPRp6mszQEAwIA
-         BqxQOLkbAi862mI8WQqF3QRXeIhOl55Ee2eDZJnnmssV1axdBypDVsGIa1WyKOlqA3G6
-         AqDBuJygIq3H04Xx45zwVV0xsK2/2xkA9Mqry9RydqHAp5Jq9sc406IoR6XqriVAuDjW
-         STjA==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gxG+EkRus6rhlH9PRO/Fl75BWcHi0qNFQ20NSLLna24=;
+        b=nx7GCKRFLL47qNWuL85bW7jEZbEvLQrpLeKgX+4ToR8wPAZ+YwMFp4qjwGK7a3OZ16
+         U4TdjV2p2mISH7yXy2ozLk23QmMbfOxzNIQ1glT+3GbKj9RIZgfBYW9AfbJb5lDgg3Nu
+         oDJLFWa5zndoh5Py/ZXUqmVByH/gMEBjdAvLo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+5amvz7msIQE/Aa+SDeT9RjytpJTz/H0MFfzRFpbJzU=;
-        b=7zJnl87h0IMVoazrIP+BTxhioCC7R+jgdXiJI7xBtBzjaSMujnSR3Ddib4/YAcpL0z
-         O/KglZyMKYay7COIZ/w5UutJv4GPFna2aTw+m3b8H/ugYuot7slv4OlK8UinUCNMMUxO
-         lB30BTl8yzbaD+jVG3UQQ5zwvrkMZ5Y3RiVDbcxfgPm1MiAYPlHQ4jOwh/XNiTPw66a7
-         o1IJhcxk4J2Sf9IZLN0okYurb0SuPX4d6m7G8Fthoghq+n0bMkx1aiKJ+xhynbXuBZkU
-         s9zvPCUSxS7cydaUxj9ZmcMU//veEqfed50NjbvMe6NUKF2tiEeZqcXUBRE9sEpL3Xns
-         OVuQ==
-X-Gm-Message-State: ANoB5pmRm0CsPyWrqmTPaDqFU8/zIyA3mJCxOgivkRJCLsAwF/vKGieD
-        QU4pBHjJxIYQ3Gfm/gWcSlEb5g==
-X-Google-Smtp-Source: AA0mqf5z4fFiLd0UdHJzUN6cbB9OrKwYlpsWzFxFdd02NQOSp9fP5r617waROunK5rncX2t2s/vUiA==
-X-Received: by 2002:a05:600c:298:b0:3d0:2707:ad98 with SMTP id 24-20020a05600c029800b003d02707ad98mr23955074wmk.171.1669649909080;
-        Mon, 28 Nov 2022 07:38:29 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id m7-20020a05600c4f4700b003cf37c5ddc0sm16377632wmq.22.2022.11.28.07.38.27
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gxG+EkRus6rhlH9PRO/Fl75BWcHi0qNFQ20NSLLna24=;
+        b=3t9yO5nLRHrP3ANnShfUoC3m9rPl2nerRurE9hGA8z5CjLgymovTjHpz85brck4Wof
+         trmwIR3JmSXD/uo2ojRSKbVHRm8x4DDhlPWVwuhXpu8uZckg9aGET3eMejzEWL1xD6N9
+         WepSBdznByRiFVyqvxty0S4iLcibas+6yLFXNe2LXvZQnz38qCzgE4zSXrhNosRrwPos
+         zM1MXFQe2/erVYhFf9h/8yqnn5RC41VEBKmtCKL7yhXpp0ko6AeERGSLvrcHiTi35pRH
+         FA4iSygA+R9eX9AVHH25fYGYPPVR+QevYA10WF0EPKfNLw0dyeG0EtTxf4wlznLLra2K
+         OTvg==
+X-Gm-Message-State: ANoB5pkyz38Apn2aBokzv0J+QEtqhOtvtYho5x+8rHmQm6apfA89ktpH
+        1qTjN8mnYJjpwMQQ6Y1iG9hefrjgsOPlHg==
+X-Google-Smtp-Source: AA0mqf404NIsUdvRH4dihq2kx8u7Wmwo5/UJmuyeXPLxQ6wSb47j5GX0naoK1a65QZoOC7r7TxHaDQ==
+X-Received: by 2002:a05:6402:d5d:b0:469:2071:1b5c with SMTP id ec29-20020a0564020d5d00b0046920711b5cmr42249238edb.279.1669650679239;
+        Mon, 28 Nov 2022 07:51:19 -0800 (PST)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
+        by smtp.gmail.com with ESMTPSA id c17-20020a17090618b100b007bd1ef2cccasm3788009ejf.48.2022.11.28.07.51.18
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 07:38:28 -0800 (PST)
-Message-ID: <c017342d-711a-f10f-4154-3ff17ec100d5@linaro.org>
-Date:   Mon, 28 Nov 2022 15:38:27 +0000
+        Mon, 28 Nov 2022 07:51:18 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id p16so8808543wmc.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 07:51:18 -0800 (PST)
+X-Received: by 2002:a1c:cc04:0:b0:3cf:7716:8954 with SMTP id
+ h4-20020a1ccc04000000b003cf77168954mr38239298wmb.57.1669650677812; Mon, 28
+ Nov 2022 07:51:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: Add soundcard
- support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-References: <20221123104342.26140-1-srinivas.kandagatla@linaro.org>
- <20221123104342.26140-4-srinivas.kandagatla@linaro.org>
- <30be93a3-c57f-d4c9-c154-6f12b9dc5dc5@linaro.org>
- <b647750a-65e1-3cd2-6e66-1b8c2823b354@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <b647750a-65e1-3cd2-6e66-1b8c2823b354@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+ <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com> <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
+In-Reply-To: <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 28 Nov 2022 07:51:06 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UtiBYg_S-n7ZGFEChQcaMiima19qfYPibyW9DbQEsivA@mail.gmail.com>
+Message-ID: <CAD=FV=UtiBYg_S-n7ZGFEChQcaMiima19qfYPibyW9DbQEsivA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
+        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
+        Jason.Huang@ecs.com.tw
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,65 +84,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Thu, Nov 24, 2022 at 1:29 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> > 2.
+> > I notice Kryzysztof say he didn't in cc mail loop at beggin, and below is
+> > my updated mail list:
+> > ---
+> > Series-to: LKML <linux-kernel@vger.kernel.org>
+> > Series-cc: Douglas Anderson <dianders@chromium.org>
+> > Series-cc: Bob Moragues <moragues@chromium.org>
+> > Series-cc: Harvey <hunge@google.com>
+> > Series-cc: Stephen Boyd <swboyd@chromium.org>
+> > Series-cc: Matthias Kaehlcke <mka@chromium.org>
+> > Series-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > Is there anyone I missed?
+>
+> These are not correct addresses and not complete list of them. Don't
+> invent the entries, don't add there some weird addresses.
+>
+> Use get_maintainers.pl. That's it. Nothing more, nothing less.
 
-On 28/11/2022 12:58, Krzysztof Kozlowski wrote:
-> On 28/11/2022 13:44, Krzysztof Kozlowski wrote:
->> On 23/11/2022 11:43, Srinivas Kandagatla wrote:
->>> +
->>> +&swr1 {
->>> +	status = "okay";
->>> +
->>> +	wcd_rx: wcd9380-rx@0,4 {
->>> +		compatible = "sdw20217010d00";
->>> +		reg = <0 4>;
->>> +		qcom,rx-port-mapping = <1 2 3 4 5>;
->>> +	};
->>> +};
->>> +
->>> +&swr2 {
->>> +	status = "okay";
->>> +
->>> +	wcd_tx: wcd9380-tx@0,3 {
->>> +		compatible = "sdw20217010d00";
->>> +		reg = <0 3>;
->>> +		qcom,tx-port-mapping = <1 1 2 3>;
->>
->> I think I solved my head-phones one-channel problem.
->> This should be <1 2 3> and in DTSI:
->> qcom,din-ports = <3>;
+Just to give context here, I think Owen is using `patman` [0] to send
+patches. Yes, it's part of the u-boot tree but it's designed for
+sending Linux patches too.
 
-WCD938x TX device has 4 SoundWire ports and LPASS TX macro SoundWire 
-Master has 3 ports this mapping qcom,tx-port-mapping = <1 1 2 3>; 
-defines how wcd device SoundWire ports are connected to SoundWire Master 
-port.
+By default, that means that get_maintainer is automatically called on
+all patches and those entries are CCed. The extra "Series-cc" just
+lets you add extra people. It's fine to add extra people to patches if
+you think that those people are interested in getting it.
 
-
->>
->> The downstream waipio-audio-overlay.dtsi says:
->>
->>   56                         qcom,swr-port-mapping = <1 SWRM_TX1_CH1 0x1>,
->>   57                                 <1 SWRM_TX1_CH2 0x2>,
->>   58                                 <1 SWRM_TX1_CH3 0x4>, <1 SWRM_TX1_CH4 0x8>,
->>   59                                 <2 SWRM_TX2_CH1 0x1>, <2 SWRM_TX2_CH2 0x2>,
->>   60                                 <2 SWRM_TX2_CH3 0x4>, <2 SWRM_TX2_CH4 0x8>,
->>   61                                 <3 SWRM_TX3_CH1 0x1>, <3 SWRM_TX3_CH2 0x2>,
->>   62                                 <3 SWRM_TX3_CH3 0x4>, <3 SWRM_TX3_CH4 0x8>;
->>
->> I just don't know what how to trim the port config properties - we
->> have there four entries, but channels are only three?
->>
->> Where do these come from? The downstream:
->> asoc/waipio-port-config.h / lahaina-port-config.h
->> Do do not have port config for this SWR.
-
-yes, that along with dts is the source for this information.
-
---srini
-> 
-> Eh, not sure anymore. My second headphone started to work without these
-> changes, so I have no clue.
-> 
-> Best regards,
-> Krzysztof
-> 
+[0] https://source.denx.de/u-boot/u-boot/-/blob/master/tools/patman/patman.rst
