@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C486D63AB85
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:47:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF14463AB88
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbiK1OrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230460AbiK1OrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 28 Nov 2022 09:47:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35720 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232594AbiK1Oqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:46:48 -0500
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A6924BE9
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:46:07 -0800 (PST)
-Received: by mail-il1-x134.google.com with SMTP id z9so5095975ilu.10
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:46:07 -0800 (PST)
+        with ESMTP id S232210AbiK1Oqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:46:31 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D7924BD5
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:46:00 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id be13so17726774lfb.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:46:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lu3AlxX7xiP1ZxkhGpBJWzH6KwfLmbx8l4QHA9JroSg=;
-        b=rrWYrJyZkE2pdYbxfljiQg5+IEKZbzIQTllpY5PfSnTFeevo0mTZDCP5n1dhPxeoSp
-         QsnsD0+RZtix46wAEVTxbsKWPj2kKQo+ORGstMizAbMrR8KAPtLBpnLgkt3mlzCwI/S4
-         Yyj7UNa7Vxi+GHvgYz9KK9dlD9eDvGY2ZiIEyaM10HpEMYc4gClR2R0GuZPW833/HXoW
-         fTR8QKbqWbodOYTgwO5HzWjPSmT6/zjZQH+pYhT8o+747YjPmJljFqIFXYbLRwXeNAbZ
-         wmgXLU6dkAjdlwKbjF2hyRsnfyaveny28XF3aKLWVIOfxq38S6E8xCz5wdGHNCQXIW4J
-         /Z7w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O3XOI8aagEXjvz3ZIFWEleJahhUT3rHSOr/3d1Pis4w=;
+        b=OQGXazctgO495vx3GkjHDyUyrY92OtXrh1WGOo34zc756/xBv6COpNjGT4Gn+GL1Tv
+         IhsSys34UMRv21BoqVfSuhlkOCgQy3GzqribJYKK80xP50U8SUjo6/rY5HJwU2jXPVhn
+         a/GhC53Ig8WHMyVkWNZiwka8dLUB701NjmTDv+GiXdDZ8RvXa1MD2PxYPwjIyX4DSfnq
+         1Kuu8sd4l5KegB81zcBBeKH3+SWVNPLsYoqTI9jCJlYBU9IdrmfwunOqq51HO/jr3jqh
+         7T57W92MvnErGtvVnV2Lza79+nQiHHaYKBaOO7XhjuIYsKpgII1A4cTjBOOMl/9VlOtw
+         b3yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lu3AlxX7xiP1ZxkhGpBJWzH6KwfLmbx8l4QHA9JroSg=;
-        b=fMeb0qGuTHHXcCNZ04jagj/O5Y5WeSrkW4UQsRyT/cyv00tP3+u8VRUUt9BnMSzF56
-         MBxXmHTaPKuhGN2JxnamLibLKgwlueJLVTCuCfikoltsbzG6fnuDyH0hxy4lChMEl8HJ
-         sRHkeZHG0D2E8rxQ37S8Gj3G3HQv/aZViziK/vAoFEiut1QhRMa5Sg4LFnREWfJmeYru
-         SQLTIH5VkEiZ2vMnJmp+SHSm4wgRSTKQK0GSEYL7zehxk140NOh0kW2OyHBGjIEn5OkI
-         puCc+AHPIqmc7twTZBbFKRIPIqc7vOcYtjP/FEqHa2lgci1/Mg2jTRu/w9O/ul/ARw5x
-         XloQ==
-X-Gm-Message-State: ANoB5pn4tbHuVB3rnikyOqSRyjmWko1Fzl7340vgL9JZP3AaaNPt+DVR
-        JI5y2asBkW2TG65VQ568dB2ffBPnE2SLHM+J60ZkJA==
-X-Google-Smtp-Source: AA0mqf6k0j5aKNWsLdcfK+c8nQIAQroYGM0pV6aAOfrdI+oKV8n2EKppasPmqOSHsArBjS64Wy6MV0g+2S9q1IfZ8hA=
-X-Received: by 2002:a92:c844:0:b0:302:f785:c9a1 with SMTP id
- b4-20020a92c844000000b00302f785c9a1mr7912296ilq.165.1669646766794; Mon, 28
- Nov 2022 06:46:06 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O3XOI8aagEXjvz3ZIFWEleJahhUT3rHSOr/3d1Pis4w=;
+        b=rAK+SqjvjZdIGhP8Zhf7mvGDyLJMOmtSDf2MMLpZcJlypAbw30rqnMT0oh88et7lxP
+         ajWuC9qHtkPJyadQte/uHAhaNsbsdDIcA4UDc4vuA63oAI9gyD6ihEN/uI4bt7hFFX25
+         o0cjDPZCkr46c/4Rlxp7+rRcHppqYijJOx7zL8/k9YCTYRYhY9GVaoiqJb8k0tWtU6yP
+         nk79QuR3QPDtv+vjqW4XVq2Df2ofOCZF0wrcZ+f/J6VfhOFgINt2IiMVeitYWFgWFutH
+         rUm6s0LSdGseKh2hLoQsi7J+cWMY8xDzsNKAhTn9jzNqJRGBbh4af5ifDHJGCPG/rXQl
+         0RiQ==
+X-Gm-Message-State: ANoB5pkXJvCXk7FxSkzjzwDMSjrdLVy0eTqButda2yyu1B4ceqQkoKQI
+        ZHYLbBiyWMkchhTl85Sm6JxPzQ==
+X-Google-Smtp-Source: AA0mqf4DIUCr9hdSQputkw9RS3YWWU2CI9QYtMI6yFdaIVG0D4YpUCkL5wOnFcI154jrb/4Hd3W9NA==
+X-Received: by 2002:ac2:4ed4:0:b0:4a2:c701:b330 with SMTP id p20-20020ac24ed4000000b004a2c701b330mr12364964lfr.307.1669646758963;
+        Mon, 28 Nov 2022 06:45:58 -0800 (PST)
+Received: from [192.168.1.101] (95.49.125.236.neoplus.adsl.tpnet.pl. [95.49.125.236])
+        by smtp.gmail.com with ESMTPSA id a13-20020a056512374d00b004a05767bc07sm1754389lfs.28.2022.11.28.06.45.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 06:45:58 -0800 (PST)
+Message-ID: <5ef6c52f-6a24-f403-f8df-6bc103b1c1f3@linaro.org>
+Date:   Mon, 28 Nov 2022 15:45:56 +0100
 MIME-Version: 1.0
-References: <20221124102959.1605202-1-alexander.stein@ew.tq-group.com>
- <538d4c30-aa78-ed05-4c46-84018fd9afdd@xs4all.nl> <Y4S+kroyBqhohW22@valkosipuli.retiisi.eu>
-In-Reply-To: <Y4S+kroyBqhohW22@valkosipuli.retiisi.eu>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Mon, 28 Nov 2022 14:45:49 +0000
-Message-ID: <CAPY8ntCesbv_GPAbjHjn1ewdgyg1t-oXRfAQqU1WD5KrD6rO9w@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] ov9282: Add ov9281 support
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 2/2] arm: dts: qcom: use qcom,msm8974pro for pro
+ devices
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221128131550.858724-1-dmitry.baryshkov@linaro.org>
+ <20221128131550.858724-2-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221128131550.858724-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,65 +78,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans & Sakari
 
-On Mon, 28 Nov 2022 at 13:58, Sakari Ailus <sakari.ailus@iki.fi> wrote:
->
-> Hi Hans,
->
-> On Mon, Nov 28, 2022 at 02:52:28PM +0100, Hans Verkuil wrote:
-> > Hi Alexander,
-> >
-> > On 11/24/22 11:29, Alexander Stein wrote:
-> > > Hello all,
-> > >
-> > > This is v5 of the ov9281 support series. Thanks for the feedback I received
-> > > over the time.
-> > >
-> > > Changes in v5:
-> > > * Removed unrelated patches from the series
-> > > * Squashed previous patch 3 & 6 (now patch 2)
-> > > * Removed error handling for device_get_match_data() call
-> > > * Added Kieran's r-b to patch 2
-> > >
-> > > Best regards,
-> > > Alexander
-> > >
-> > > Alexander Stein (2):
-> > >   media: dt-bindings: media: Add compatible for ov9281
-> > >   media: i2c: ov9282: Add ov9281 compatible
-> > >
-> > >  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 5 ++++-
-> > >  drivers/media/i2c/ov9282.c                                   | 5 ++++-
-> > >  2 files changed, 8 insertions(+), 2 deletions(-)
-> > >
-> >
-> > With the latest staging tree I am now getting these smatch and sparse warnings:
-> >
-> > sparse:
-> >
-> > drivers/media/i2c/ov9282.c:267:24: warning: symbol 'common_regs_list' was not declared. Should it be static?
-> > drivers/media/i2c/ov9282.c:145: warning: Function parameter or member 'crop' not described in 'ov9282_mode'
-> > drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'supplies' not described in 'ov9282'
-> > drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'pixel_rate' not described in 'ov9282'
-> > drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'noncontinuous_clock' not described in 'ov9282'
-> >
-> > smatch also has this:
-> >
-> > drivers/media/i2c/ov9282.c:1262 ov9282_power_on() warn: 'ov9282->inclk' from clk_prepare_enable() not released on lines: 1252.
-> >
-> > Can you take a look and post a patch on top fixing this?
->
-> The two patches aren't the culprit. I've seen a report on this, too. Let's
-> continue on the other thread once found.
 
-These look to come from my series [1]. I'll send patches in a moment.
+On 28.11.2022 14:15, Dmitry Baryshkov wrote:
+> Use new qcom,msm8974pro compatible string instead of qcom,msm8974 to
+> clearly mark that the device is using the Pro version of the SoC.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-  Dave
-
-[1] https://patchwork.linuxtv.org/project/linux-media/patch/20221028160902.2696973-2-dave.stevenson@raspberrypi.com/
-
-> --
-> Kind regards,
->
-> Sakari Ailus
+Konrad
+>  arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts             | 2 +-
+>  arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts              | 2 +-
+>  .../arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> index 38e69ed4fd1b..6523257815a0 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
+> @@ -8,7 +8,7 @@
+>  
+>  / {
+>  	model = "Fairphone 2";
+> -	compatible = "fairphone,fp2", "qcom,msm8974";
+> +	compatible = "fairphone,fp2", "qcom,msm8974pro", "qcom,msm8974";
+>  	chassis-type = "handset";
+>  
+>  	aliases {
+> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
+> index 38a95430c7d4..52ece17986e4 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
+> @@ -7,7 +7,7 @@
+>  
+>  / {
+>  	model = "Samsung Galaxy S5";
+> -	compatible = "samsung,klte", "qcom,msm8974";
+> +	compatible = "samsung,klte", "qcom,msm8974pro", "qcom,msm8974";
+>  	chassis-type = "handset";
+>  
+>  	aliases {
+> diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> index 8265a0ff7857..07131db2e35d 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+> @@ -8,7 +8,7 @@
+>  
+>  / {
+>  	model = "Sony Xperia Z2 Tablet";
+> -	compatible = "sony,xperia-castor", "qcom,msm8974";
+> +	compatible = "sony,xperia-castor", "qcom,msm8974pro", "qcom,msm8974";
+>  	chassis-type = "tablet";
+>  
+>  	aliases {
