@@ -2,151 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8F863A2FE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49BE63A311
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229827AbiK1I3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 03:29:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42198 "EHLO
+        id S230085AbiK1Ia4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 03:30:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiK1I3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:29:45 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD5813CC5;
-        Mon, 28 Nov 2022 00:29:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669624122; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=SlruZNjijJZzyYkvFL6OElHpvJ5NcnjnDm7tGquBFAJmCmXXZ7xyEIdvDkQNKukAaVmlVi9Bc3+T1BoMHqR4WMPHWfitmKcMQV9Qj1Z0RpcsXmHFVX1okyuAaL25m94+FDZ1/45k0UH9DWRCBCIZN2m+OW5eV4U6+fKAV6njUKw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669624122; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=AS/14WaE2LN43smbHuSpmejZfg+JalHV2YhgqWmQEAE=; 
-        b=bIFBF87ok3heWqT6Z4w322m6ip6W7S6qKVz4ihZKSzxbjoH2NheiWIRQf32n7ELZm2Vq4IubEexB1TCaDl8wy/4B5zClr8J6End6YIxYT0Y2H67doigDBMLbzLKl2UlubFKSOiQ62YMWZZZ0RB3eSViz+aWppC9gr/3t0rlMZAI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669624122;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=AS/14WaE2LN43smbHuSpmejZfg+JalHV2YhgqWmQEAE=;
-        b=JyGzTO7/cV3Df/8rep2Kwe+HTHBxB6ASQWVOwe3f4YCQRiaxNNvQEndBCMwcYe5k
-        1aua5HNDimYl5QcSpfwqtl1Hw4ilAqL50Uwa9FKyisQG2QyEKCeOG0XJ0pzEb3v/dgJ
-        +dE3f36wwKkyE/vzjVCX1quNzRai5Ua82TU22g74=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1669624120094627.872459276059; Mon, 28 Nov 2022 00:28:40 -0800 (PST)
-Message-ID: <08784493-7e85-9224-acfa-9a87cbd325e7@arinc9.com>
-Date:   Mon, 28 Nov 2022 11:28:31 +0300
+        with ESMTP id S230076AbiK1Iaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:30:55 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F195E17061;
+        Mon, 28 Nov 2022 00:30:52 -0800 (PST)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AS22oSW017482;
+        Mon, 28 Nov 2022 09:30:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=O1GD3Cc5SiRNhAGzpwqKhlM5QBrOnjwf+vXokg6eu6g=;
+ b=NSdONKQLK5BTWM4IwZaI4QRbSlDg3PE0LzPEM97p7u9wl+Gd0Of6kv2gl93pnV+BG55L
+ bHD83duGYOPauJXpXzSvjNhmcKeU2PSJqxCTBUYP6bAgMUgAKhAj9RS9rFIiXddi4GhT
+ LFSujjEQC39jT8RwMQxJdyIvyxVen0/JrUkVh57iRf3PKa+uBBcwCAf0Sp/wuqF9XxKq
+ UcQZFfOEhfieNa0Qll559TufODmPW2r0Eti16DibqVmh6Jtoj7WOfBtc0b7tev8jElQQ
+ OzG63OEkuCEIm34LiKHT9z+yGlDXabhYPpDYFjtzTtGUT1MFJVaCtEIgWTto7yKAIV6h 8w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3m393rhmqh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Nov 2022 09:30:25 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D86AD100034;
+        Mon, 28 Nov 2022 09:30:19 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BA98F2132E2;
+        Mon, 28 Nov 2022 09:30:19 +0100 (CET)
+Received: from [10.211.0.247] (10.211.0.247) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 28 Nov
+ 2022 09:30:19 +0100
+Message-ID: <9cece196-97ed-4d4b-79e0-f34adb785bf4@foss.st.com>
+Date:   Mon, 28 Nov 2022 09:30:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 net-next 06/10] dt-bindings: net: dsa: mediatek,mt7530:
- fix port description location
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Subject: Re: [PATCH] ARM: dts: sti: align LED node names with dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Rob Herring <robh@kernel.org>
-References: <20221127224734.885526-1-colin.foster@in-advantage.com>
- <20221127224734.885526-7-colin.foster@in-advantage.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221125144116.476877-1-krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20221127224734.885526-7-colin.foster@in-advantage.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <20221125144116.476877-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.211.0.247]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-28_07,2022-11-25_01,2022-06-22_01
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.11.2022 01:47, Colin Foster wrote:
-> The description property was located where it applies to every port, not
-> just ports 5 or 6 (CPU ports). Fix this description.
+Hi Krzysztof 
 
-I'm not sure I understand. The description for reg does apply to every 
-port. Both CPU ports and user ports are described. This patch moves the 
-description to under CPU ports only.
-
+On 11/25/22 15:41, Krzysztof Kozlowski wrote:
+> The node names should be generic and DT schema expects certain pattern:
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+>   stih407-b2120.dtb: leds: 'green', 'red' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  arch/arm/boot/dts/stih410-b2260.dts  | 8 ++++----
+>  arch/arm/boot/dts/stih418-b2199.dts  | 4 ++--
+>  arch/arm/boot/dts/stih418-b2264.dts  | 2 +-
+>  arch/arm/boot/dts/stihxxx-b2120.dtsi | 4 ++--
+>  4 files changed, 9 insertions(+), 9 deletions(-)
 > 
-> v2 -> v3
->    * New patch.
-> 
-> ---
->   .../bindings/net/dsa/mediatek,mt7530.yaml          | 14 +++-----------
->   1 file changed, 3 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index 7df4ea1901ce..415e6c40787e 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -156,17 +156,6 @@ patternProperties:
->   
->       patternProperties:
->         "^(ethernet-)?port@[0-9]+$":
-> -        type: object
-> -        description: Ethernet switch ports
-> -
-> -        unevaluatedProperties: false
-> -
+> diff --git a/arch/arm/boot/dts/stih410-b2260.dts b/arch/arm/boot/dts/stih410-b2260.dts
+> index 26d93f26f6d0..240b62040000 100644
+> --- a/arch/arm/boot/dts/stih410-b2260.dts
+> +++ b/arch/arm/boot/dts/stih410-b2260.dts
+> @@ -27,26 +27,26 @@ aliases {
+>  
+>  	leds {
+>  		compatible = "gpio-leds";
+> -		user_green_1 {
+> +		led-user-green-1 {
+>  			label = "User_green_1";
+>  			gpios = <&pio1 3 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "heartbeat";
+>  			default-state = "off";
+>  		};
+>  
+> -		user_green_2 {
+> +		led-user-green-2 {
+>  			label = "User_green_2";
+>  			gpios = <&pio4 1 GPIO_ACTIVE_LOW>;
+>  			default-state = "off";
+>  		};
+>  
+> -		user_green_3 {
+> +		led-user-green-3 {
+>  			label = "User_green_3";
+>  			gpios = <&pio2 1 GPIO_ACTIVE_LOW>;
+>  			default-state = "off";
+>  		};
+>  
+> -		user_green_4 {
+> +		led-user-green-4 {
+>  			label = "User_green_4";
+>  			gpios = <&pio2 5 GPIO_ACTIVE_LOW>;
+>  			default-state = "off";
+> diff --git a/arch/arm/boot/dts/stih418-b2199.dts b/arch/arm/boot/dts/stih418-b2199.dts
+> index d21bcc7c1271..53ac6c2b7b7d 100644
+> --- a/arch/arm/boot/dts/stih418-b2199.dts
+> +++ b/arch/arm/boot/dts/stih418-b2199.dts
+> @@ -26,12 +26,12 @@ aliases {
+>  
+>  	leds {
+>  		compatible = "gpio-leds";
+> -		red {
+> +		led-red {
+>  			label = "Front Panel LED";
+>  			gpios = <&pio4 1 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+> -		green {
+> +		led-green {
+>  			gpios = <&pio1 3 GPIO_ACTIVE_HIGH>;
+>  			default-state = "off";
+>  		};
+> diff --git a/arch/arm/boot/dts/stih418-b2264.dts b/arch/arm/boot/dts/stih418-b2264.dts
+> index a99604bebf8c..34a518b037ab 100644
+> --- a/arch/arm/boot/dts/stih418-b2264.dts
+> +++ b/arch/arm/boot/dts/stih418-b2264.dts
+> @@ -76,7 +76,7 @@ aliases {
+>  	soc {
+>  		leds {
+>  			compatible = "gpio-leds";
+> -			green {
+> +			led-green {
+>  				gpios = <&pio1 3 GPIO_ACTIVE_HIGH>;
+>  				default-state = "off";
+>  			};
+> diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> index 2aa94605d3d4..920a0bad7494 100644
+> --- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> +++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
+> @@ -9,12 +9,12 @@
+>  / {
+>  	leds {
+>  		compatible = "gpio-leds";
+> -		red {
+> +		led-red {
+>  			label = "Front Panel LED";
+>  			gpios = <&pio4 1 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+> -		green {
+> +		led-green {
+>  			gpios = <&pio1 3 GPIO_ACTIVE_HIGH>;
+>  			default-state = "off";
+>  		};
 
-Would be nice to mention these being removed on the patch log. Or remove 
-them while doing ("dt-bindings: net: dsa: utilize base definitions for 
-standard dsa switches").
+Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
 
-> -        properties:
-> -          reg:
-> -            description:
-> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
-> -              for user ports.
-> -
->           allOf:
->             - $ref: dsa-port.yaml#
->             - if:
-> @@ -174,6 +163,9 @@ patternProperties:
->               then:
->                 properties:
->                   reg:
-> +                  description:
-> +                    Port address described must be 5 or 6 for CPU port and from
-> +                    0 to 5 for user ports
->                     enum:
->                       - 5
->                       - 6
-
-Thank you for your efforts.
-
-Arınç
+Thanks
+Patrice
