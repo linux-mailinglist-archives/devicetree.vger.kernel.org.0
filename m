@@ -2,99 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B22263B5DA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781BB63B5CB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:23:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234661AbiK1XaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 18:30:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
+        id S234671AbiK1XXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 18:23:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234651AbiK1XaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:30:05 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AE5317D0;
-        Mon, 28 Nov 2022 15:30:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 72720614F0;
-        Mon, 28 Nov 2022 23:30:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA60C433C1;
-        Mon, 28 Nov 2022 23:30:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669678203;
-        bh=oQ1NXyRzlFb173JCqIW8f1hvYKMUAyVNiwLTT7sk8vs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K4aplWhPIs7iqJ6AIaWGsS/0dP/m7uG+YwVnF6ol5zTqZJGcZ61WOk4Lbhse0+rUJ
-         Gcs7nZFG2URkBSY7k4TT0AiQCdsKU9Q+PIQSUvBLVNnw9RCJlg6tXpSPctOSf3qqN4
-         LDuASRQC7uXiqM6eRsR3yw6eFizPwXCl2GAYZT/SkRYAya3BKcnCV7co0wljbK+r1I
-         s6rzLM6xdc6wB/JllmnInmwYBJz5kVfzB2DYK5zqKRReTfy0g3k3t75UmDZjJZupxf
-         +NuTw3SKSvHwghFW8SyjnGlnFPAb6GzK+Dgp8h4qcj3zDULS1uCqNUaYVXucpNY++/
-         Pvz2hWUzApaQQ==
-Date:   Tue, 29 Nov 2022 07:20:09 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Jiri Slaby <jirislaby@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
+        with ESMTP id S234570AbiK1XXm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:23:42 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BEE31370;
+        Mon, 28 Nov 2022 15:23:40 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id l127so13387665oia.8;
+        Mon, 28 Nov 2022 15:23:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q5dZdPYvUfozQhqkmlonGbI8EniXavdtqXfZRx36D18=;
+        b=2KUzR/rGh13yVKqBidaKmBq5efLqvZrqTa33r+JL0hZsPyszKtu1WRZpeHJ3L7jaFZ
+         xedyCXP/fgAkPoQIXiskvOABEjU4lo3lfFcmS7YLIc02za3e5Pe1AxjBe/WqwAv+OpR9
+         HQlUrPKo9PUOVVm30SbncSs0/IsvUKU3CcByyiqeK15jlZvyAtayciK7gAgWeuVYSCQ/
+         /wY7iY5SwEtozI/nGsoCuezQFowxjEICw/bsr788qODWIaz2YlWOUZ0dtr/Jk2NiMegJ
+         xr4NsQKj7B7YIa3d/tnhB+OmCOO/uFmvrXI4gfMTwY+hqlcQuwAGw87ABWUEDAhci+cX
+         /UGg==
+X-Gm-Message-State: ANoB5pmwlp3m6EM3HwJD7DCit0g5KfDewDWD3PMEo3I7xnGt9ygbKTDQ
+        mXcGf897XyXvzGt5I6OGXg==
+X-Google-Smtp-Source: AA0mqf6Xi0RitObRTHWEfRmcg3CLjY1g6LEw6t9+uwWWjYPmvv4KJPFIiDn1ezDuYbdQF9T8u3CZeQ==
+X-Received: by 2002:aca:c108:0:b0:354:946b:f72f with SMTP id r8-20020acac108000000b00354946bf72fmr19606267oif.48.1669677820060;
+        Mon, 28 Nov 2022 15:23:40 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m25-20020a056870059900b001422f9b5c17sm6565028oap.8.2022.11.28.15.23.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 15:23:39 -0800 (PST)
+Received: (nullmailer pid 1685201 invoked by uid 1000);
+        Mon, 28 Nov 2022 23:23:37 -0000
+Date:   Mon, 28 Nov 2022 17:23:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v2 2/9] serial: bflb_uart: add Bouffalolab UART Driver
-Message-ID: <Y4VCKeeTS2zV1xcZ@xhacker>
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-3-jszhang@kernel.org>
- <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org>
- <Y4TD48v84CJcMS+S@xhacker>
- <e1f689d2-d337-5a42-e4c9-91c1d338b42b@linux.intel.com>
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>
+Subject: Re: [PATCH v3 net-next 03/10] dt-bindings: net: dsa: utilize base
+ definitions for standard dsa switches
+Message-ID: <20221128232337.GA1513198-robh@kernel.org>
+References: <20221127224734.885526-1-colin.foster@in-advantage.com>
+ <20221127224734.885526-4-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e1f689d2-d337-5a42-e4c9-91c1d338b42b@linux.intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221127224734.885526-4-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 06:01:28PM +0200, Ilpo Järvinen wrote:
-> On Mon, 28 Nov 2022, Jisheng Zhang wrote:
+On Sun, Nov 27, 2022 at 02:47:27PM -0800, Colin Foster wrote:
+> DSA switches can fall into one of two categories: switches where all ports
+> follow standard '(ethernet-)?port' properties, and switches that have
+> additional properties for the ports.
 > 
-> > On Mon, Nov 28, 2022 at 07:10:41AM +0100, Jiri Slaby wrote:
-> > > On 27. 11. 22, 14:24, Jisheng Zhang wrote:
-> > > > +static void bflb_uart_tx_chars(struct uart_port *port)
-> > > 
-> > > Again:
-> > > 
-> > > Are you unable to use the TX helper? If so:
-> > 
-> > You know serial subsystem better than me, may I ask for more
-> > details? For example,
-> > Besides uart_xmit_advance(), do you expect other TX helpers? If yes,
-> > can you please list them?
+> The scenario where DSA ports are all standardized can be handled by
+> swtiches with a reference to 'dsa.yaml#'.
 > 
-> Please take on look on commit 8275b48b278096edc1e3ea5aa9cf946a10022f79.
-> The changes following that commit convert some drivers to use the tx 
-> helper so you can look into them to see examples.
+> The scenario where DSA ports require additional properties can reference
+> the new '$dsa.yaml#/$defs/base'. This will allow switches to reference
+> these base defitions of the DSA switch, but add additional properties under
+> the port nodes.
 
-Thanks a lot for the hint. Will those tx helpers(uart_port_tx,
-uart_port_tx_limited etc.) be in v6.2-rc1? Or I need to patch
-based on Jiri's devel branch? Aha, Jiri says "at least uart_xmit_advance
+You have this backwards. '$dsa.yaml#/$defs/base' can't be extended. 
+Perhaps '$defs/ethernet-ports' would be a better name.
 
 > 
-> > > * why?
-> > > * use uart_advance_xmit() at least.
-> > 
-> > Do you mean uart_xmit_advance()? in the do while loop below?
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> ---
 > 
-> Yes, Jiri had the name wrong. But your code looked like it could use 
-> the tx helper instead.
+> v3
+>   * New patch
+> 
+> ---
+>  .../bindings/net/dsa/arrow,xrs700x.yaml       |  2 +-
+>  .../devicetree/bindings/net/dsa/brcm,b53.yaml |  2 +-
+>  .../devicetree/bindings/net/dsa/dsa.yaml      | 19 ++++++++++++++++---
+>  .../net/dsa/hirschmann,hellcreek.yaml         |  2 +-
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     |  2 +-
+>  .../bindings/net/dsa/microchip,ksz.yaml       |  2 +-
+>  .../bindings/net/dsa/microchip,lan937x.yaml   |  2 +-
+>  .../bindings/net/dsa/mscc,ocelot.yaml         |  2 +-
+>  .../bindings/net/dsa/nxp,sja1105.yaml         |  2 +-
+>  .../devicetree/bindings/net/dsa/realtek.yaml  |  2 +-
+>  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |  2 +-
+>  11 files changed, 26 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> index 259a0c6547f3..8d5abb05abdf 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
+>  
+>  allOf:
+> -  - $ref: dsa.yaml#
+> +  - $ref: dsa.yaml#/$defs/base
+>  
+>  maintainers:
+>    - George McCollister <george.mccollister@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> index 1219b830b1a4..f323fc01b224 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> @@ -66,7 +66,7 @@ required:
+>    - reg
+>  
+>  allOf:
+> -  - $ref: dsa.yaml#
+> +  - $ref: dsa.yaml#/$defs/base
+>    - if:
+>        properties:
+>          compatible:
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index b9d48e357e77..bd1f0f7c14a8 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -19,9 +19,6 @@ description:
+>  select: false
+>  
+>  properties:
+> -  $nodename:
+> -    pattern: "^(ethernet-)?switch(@.*)?$"
+> -
+>    dsa,member:
+>      minItems: 2
+>      maxItems: 2
+> @@ -58,4 +55,20 @@ oneOf:
+>  
+>  additionalProperties: true
+>  
+> +$defs:
+> +  base:
+> +    description: A DSA switch without any extra port properties
+> +    $ref: '#/'
+> +
+> +    patternProperties:
+> +      "^(ethernet-)?ports$":
+
+This node at the top level needs 'additionalProperties: false' assuming 
+we don't allow extra properties in 'ports' nodes. If we do, then we'll 
+need to be able to reference the 'ports' schema to extend it like is 
+done with dsa-ports.yaml.
+
+> +        type: object
+> +
+> +        patternProperties:
+> +          "^(ethernet-)?ports@[0-9]+$":
+> +            description: Ethernet switch ports
+> +            $ref: dsa-port.yaml#
+> +            unevaluatedProperties: false
+> +
+> +
+
+One blank line.
+
+>  ...
