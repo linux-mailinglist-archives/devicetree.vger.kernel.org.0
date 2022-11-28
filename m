@@ -2,158 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF6763A83D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 147D563A846
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:28:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiK1M0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 07:26:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
+        id S230078AbiK1M2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 07:28:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230078AbiK1MZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:25:41 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 268911D8;
-        Mon, 28 Nov 2022 04:24:22 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8AxSul1qIRjVa4BAA--.891S3;
-        Mon, 28 Nov 2022 20:24:21 +0800 (CST)
-Received: from [0.0.0.0] (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxiFdzqIRjHlIdAA--.56711S3;
-        Mon, 28 Nov 2022 20:24:20 +0800 (CST)
-Message-ID: <654be437-f4f0-4c98-b124-ac2d8f78fdbe@loongson.cn>
-Date:   Mon, 28 Nov 2022 20:24:18 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V3 3/5] dt-bindings: i2c: add bindings for Loongson LS2X
- I2C
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229910AbiK1M2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:28:37 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5FFDF10
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:28:34 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id q7so15645080wrr.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:28:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRbycICMlh6MzVLeROs9V0fuaWLhFxskewtEQHYdgC0=;
+        b=BkXhnII9LnGEO0cfog3xYqFDi3Ly3wHmI0Q4i0q/24bvvi+yHNky1EuVYJQ42m1dgL
+         AqESCAuBWGFFwznAXx1QT+MrPpLZk12Pd0a7HGP4ph5Fl13BU70ix+uYxjGmXrQfsP8K
+         JnsFXpWFPumJ6GAsVi2RcfRc7eaMQjd0Ny0+ZlAT8viqdHUe2qi8D8NxWvHCcqd0SUa6
+         o3Zn7gaZWwS8O4fRp8ME1UgbDQWcFmX5YduYxynjy2mL5kx8hyh+DfIXFICf7ZJ4jkT8
+         dTCeDmBFphrYw9KBpcyNf5qjY8rk0fF6ay0kXs+/stGJQgyyyH4TEOEZ/DXmLsrQU+4l
+         FE1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vRbycICMlh6MzVLeROs9V0fuaWLhFxskewtEQHYdgC0=;
+        b=ZKZz/aGctPGldwoDwY5BTnxM9Dv5dF6pIrfH/9JyMZsbImFf7r7owvYBnQJQE7wddK
+         tg4Nx2qGUn4Atpx6bNdCxKUX4lhUEK/27ZcZqw23x9mHq4BI1BERX8IVp2K7y80J2O3I
+         DXNeAoLe0lqrQuCn8gvApVVHAUkgHlRLrQf+T7jZ7Lqs5al1PE0XCDsuUEWt02A6/9+F
+         rXl2vCtoZxxwsrcITJC6GnaBh9tUCynqB7QEypdLCSKg3YQob+mAxU95x+st6l+haoOB
+         KQlP3TsMwM2k5fz0HWGEHeKshTsbvlHqyhNadmLW4YP5d3NWlvDzX3eoB0YkErI6iGEb
+         zr5A==
+X-Gm-Message-State: ANoB5plu5I2GhM29yTq37OZzMAHUb8KpL4hDz6tJsLKMRe61U5bI2YAI
+        DkIgcmTCtwqhg0QOlBil7Fifhw==
+X-Google-Smtp-Source: AA0mqf6o7O86dAX13xPVwmED8xdJy3JfoN8fCDfnBTFvip/GNTKkDrrvXF0lZcqbunQbi3zxCqFPSw==
+X-Received: by 2002:a5d:5d0f:0:b0:236:6f6f:8dd7 with SMTP id ch15-20020a5d5d0f000000b002366f6f8dd7mr21003296wrb.4.1669638513509;
+        Mon, 28 Nov 2022 04:28:33 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id u18-20020adfdd52000000b002421db5f279sm598405wrm.78.2022.11.28.04.28.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 04:28:33 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn>
- <61541d15-fbfd-3f99-fc05-663ebf4a2b54@linaro.org>
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-In-Reply-To: <61541d15-fbfd-3f99-fc05-663ebf4a2b54@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v3 0/9] clk: qcom: Add support for SM8550
+Date:   Mon, 28 Nov 2022 14:28:11 +0200
+Message-Id: <20221128122820.798610-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxiFdzqIRjHlIdAA--.56711S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7ZryktFyDXFW7ZFyrWFyxGrg_yoW8tw45pa
-        17CrsxAF40vF17uws3KFy8Gr15ZrZ5A3ZxGFW7tw1DGF98C3Wvqryakrn8Zrn5ur1FqFW2
-        vFyFgw4DuFZ7AFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa
-        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
-        jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
-        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
-        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
-        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
-        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
-        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
-        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jb_-PUUUUU=
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+This patchset adds clock support for the Qualcomm SM8550 SoC,
+It adds support for the new type of PLL, the TCSR clock controller
+driver, support for configurable poll timeout, the RPMh clocks
+and the bindings.
 
-在 2022/11/28 04:49, Krzysztof Kozlowski 写道:
-> On 25/11/2022 09:54, Binbin Zhou wrote:
->> Add device tree bindings for the i2c controller on the Loongson-2K Soc
->> or Loongosn LS7A bridge.
-> It's a v3 which is for the first time sent to DT maintainers...
-Sorry, it was my mistake, I didn't double check the mail recipients in 
-my .git/config.
->
-> Subject: drop second, redundant "bindings for".
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Michael Turquette <mturquette@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Ok. I get it.
+Abel Vesa (9):
+  dt-bindings: clock: Add SM8550 GCC clocks
+  dt-bindings: clock: Add SM8550 TCSR CC clocks
+  clk: qcom: gdsc: Add configurable poll timeout
+  clk: qcom: Add LUCID_OLE PLL type for SM8550
+  clk: qcom: Add GCC driver for SM8550
+  dt-bindings: clock: Add RPMHCC for SM8550
+  dt-bindings: clock: qcom,rpmh: Add CXO PAD clock IDs
+  clk: qcom: rpmh: Add support for SM8550 rpmh clocks
+  clk: qcom: Add TCSR clock driver for SM8550
 
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ .../bindings/clock/qcom,sm8550-gcc.yaml       |   62 +
+ .../bindings/clock/qcom,sm8550-tcsrcc.yaml    |   45 +
+ drivers/clk/qcom/Kconfig                      |   15 +
+ drivers/clk/qcom/Makefile                     |    2 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   16 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    5 +
+ drivers/clk/qcom/clk-rpmh.c                   |  110 +-
+ drivers/clk/qcom/gcc-sm8550.c                 | 3396 +++++++++++++++++
+ drivers/clk/qcom/gdsc.c                       |    5 +-
+ drivers/clk/qcom/gdsc.h                       |    1 +
+ drivers/clk/qcom/tcsrcc-sm8550.c              |  193 +
+ include/dt-bindings/clock/qcom,rpmh.h         |    2 +
+ include/dt-bindings/clock/qcom,sm8550-gcc.h   |  231 ++
+ .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    |   18 +
+ 15 files changed, 4081 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-gcc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm8550.c
+ create mode 100644 drivers/clk/qcom/tcsrcc-sm8550.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8550-gcc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
 
->
->> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->> ---
->>   .../bindings/i2c/loongson,ls2x-i2c.yaml       | 48 +++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
->> new file mode 100644
->> index 000000000000..8c785f329d2f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
->> @@ -0,0 +1,48 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/i2c/loongson,ls2x-i2c.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> Drop quotes form both.
->
->> +
->> +title: Loongson LS2X I2C Controller
->> +
->> +maintainers:
->> +  - Binbin Zhou <zhoubinbin@loongson.cn>
->> +
->> +allOf:
->> +  - $ref: /schemas/i2c/i2c-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - loongson,ls2k-i2c # Loongson-2K SoCs
->> +      - loongson,ls7a-i2c # Loongson LS7A Bridge
-> Isn't your comment exactly the same as compatible? Where is the
-> difference? I propose to drop the comment entirely, unless it explains
-> something.
-
-OK, I will drop the useless comment.
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
-> No clocks? I2C controller without clocks? Are you sure the binding is
-> complete?
-
-We previously set the default CLOCK in the driver. Of course, we also 
-provide the path to read the clock-frequency field for redo. In any 
-case, I will add the clock-frequency field to the V4 patchset.
-
-Thanks for your review.
-
-Binbin
-
-
->
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
-> Best regards,
-> Krzysztof
+-- 
+2.34.1
 
