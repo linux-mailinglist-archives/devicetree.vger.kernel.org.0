@@ -2,141 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABD063A6FA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 12:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE2B563A6F2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 12:18:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbiK1LSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 06:18:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
+        id S231228AbiK1LSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 06:18:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231243AbiK1LSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 06:18:06 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1E39590;
-        Mon, 28 Nov 2022 03:18:04 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id b12so16259713wrn.2;
-        Mon, 28 Nov 2022 03:18:04 -0800 (PST)
+        with ESMTP id S231225AbiK1LRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 06:17:52 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAE2635E
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 03:17:50 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id p8so16786357lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 03:17:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MZ/yfW2uv4L2OBEMjogEawvHGxQ+pctbkljRiIAmmkE=;
-        b=hGj6yWExeA6aOxOP28/1HTpYw/34JrQ7Esvqizyi96Ucx4ABRX8kMiUxEHL9qfsiE0
-         PqAAPfTyE97mJzH7BnkNxb3dOEga0uSP6vmgicBtIKcXdG99+CaH6p+PH9l+ZDP1e+WW
-         bvWsY2p6m6fkKh3/oi+1jwK7HQfx8vQmNaC6gKZjnzqvXx+H47P+7SPY3H4dzQ+Hp74W
-         Maf4pZjT7qBSotYev3Ay7J2G570YJp1d3WrXwJaswh4oY7DqJTL4fmuUpeP8Bub2rO05
-         5wZiV+82TgrY+Hlq8t5ZQkzqjc34D8BEbJspYKcRy3D3zE9ySXLJoPo7D3c2r6K+cdZp
-         qoOA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tBmx5gM1HUSGFAXNgKvH4/Z5Wwc3nSXAxC+/qB18ydM=;
+        b=d8P29DNgM6zk6DvP7foPnQjFiGLcCG93PrYsmwjoD8PgpUNBVhDBgt0/jB4jfO5EqJ
+         zwd5pAIcXybs3emROmpUpWQa4JcAKQSq6m5VejGtL7+pS/AcM6C7HlCmgqBx4X+hdpI6
+         NccIZqwOZln0jwHauWRITUW7BT1RwqzurcDPm+3RPqxlnoilCG2lMwc+2PHcjyQ8PIs3
+         c3zGNfyCh0oI/aYqSzENtxM4vSeOC9F+AiZo3cdMbDzS6ccdXf4aIhMtbfJvWl6zOdp2
+         LI4mxl4i0qUpKXtOZ/fgSKHIkicqaXcp7AlonvlUHTorWvcbLk2UOPLIc4nKCwo/GxJX
+         RilQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=MZ/yfW2uv4L2OBEMjogEawvHGxQ+pctbkljRiIAmmkE=;
-        b=ZGUsc6qo+W75f8tpb27mSO8gfChXnxmx8ziLFC+jY3fxpWQxvCpfwX8VArdgzItK5C
-         4Qse05CJJkhrcOlDwCQr7apEoGSSuX2O+RYLIONGVzSibThcwr/kJirz07ZO3vz8J4qL
-         /OVsN2CqHmZnA6Xrt5B663wMa0J+nvXToaU4XU9B8fRuHdHj5w6fcG/9gE71CLv8kAA0
-         SniLnLz2ETUQXdEbHXWI6+r4AkF7eZn7Ua/y5JGN1dVn76bTJqKhTjKls6gSu8Zk+pGW
-         6Yyd+9+E/cG0x6n9rWyppYi/XQmb0EDfcUIW/r483Vi5j1GAmOZMSH1ynC/jwWV0yNkn
-         CRfA==
-X-Gm-Message-State: ANoB5plGMjvFZfH4PlA3SqlVO+udmomxf4JF40Wx0YeHgdxEi3o3nbgr
-        49X0JGhz6jWFWhLUs6qrbAFeBIFM94w=
-X-Google-Smtp-Source: AA0mqf6SjstKcXwXEz6uOwVDgqeAXY8Z2rREjLqZqBUwe7/hkRY+JXxFuZitbclFTEy6qjt90aucIA==
-X-Received: by 2002:adf:a1c8:0:b0:236:72f1:f124 with SMTP id v8-20020adfa1c8000000b0023672f1f124mr30428869wrv.161.1669634283786;
-        Mon, 28 Nov 2022 03:18:03 -0800 (PST)
-Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id g3-20020adffc83000000b0024207ed4ce0sm7711817wrr.58.2022.11.28.03.18.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Nov 2022 03:18:03 -0800 (PST)
-Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     italonicola@collabora.com,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
-        SoC support),
-        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 4/5] arm64: dts: Add DT node for the VIPNano-QI on the A311D
-Date:   Mon, 28 Nov 2022 12:17:37 +0100
-Message-Id: <20221128111740.39003-5-tomeu.vizoso@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221128111740.39003-1-tomeu.vizoso@collabora.com>
-References: <20221128111740.39003-1-tomeu.vizoso@collabora.com>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tBmx5gM1HUSGFAXNgKvH4/Z5Wwc3nSXAxC+/qB18ydM=;
+        b=oRu2y7/6r9K1vKaGuQGowSBtiZthjZDuN8ICRE/+dLdeAyoTvaJ27qyHA4OPuYAXu5
+         9YXWZh0k15BBf10RLAisfIGnjqRgr5wKC86f0vYx+6rbAYm6eaaRe+nlXzCZJGvbtPq5
+         9YRmKSrhKGZDXZhl1oawEEUVc4y9SOJuS2BWz3cehAsdHCiYnVGoP/vsgBN4FMHdykgB
+         zaCILxKkhccZEpPnIQSKueMudjiajeOdABmR/NZV7ugMVntd/iDRm7mJ/CB989uXex5I
+         5etttEOVgjzflaYO9zDVIX46f0zcjeM4Kei/BhDDDvCKz/owFgewrizhzr6ulfEB4xCz
+         vjkA==
+X-Gm-Message-State: ANoB5pnvIuFxMzrfF9VBMZoT20e0JL9xxsBtTtJfVF7vU9iGy+nlSr0p
+        i/3BKxw9RDfGB8BskW1wVaeVeg==
+X-Google-Smtp-Source: AA0mqf58DjNRcqLx332BX2KbrAmcyHS1EHrpnKwFkJJpWTuwx5iOEtDmizl4E6ASsmL2TwdG887eYg==
+X-Received: by 2002:ac2:4189:0:b0:4b1:2447:6971 with SMTP id z9-20020ac24189000000b004b124476971mr11783136lfh.83.1669634268446;
+        Mon, 28 Nov 2022 03:17:48 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h16-20020ac250d0000000b00498fe38ea0fsm1691138lfm.174.2022.11.28.03.17.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 03:17:47 -0800 (PST)
+Message-ID: <f244d3c1-e52d-8226-0d6f-58f6b5503f47@linaro.org>
+Date:   Mon, 28 Nov 2022 12:17:46 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v5 04/10] dt-bindings: display/msm: add support for the
+ display on SM8450
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221123210403.3593366-1-dmitry.baryshkov@linaro.org>
+ <20221123210403.3593366-5-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221123210403.3593366-5-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-with it with just a few small changes.
+On 23/11/2022 22:03, Dmitry Baryshkov wrote:
+> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
+> SM8450 platform.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/display/msm/qcom,sm8450-dpu.yaml | 139 +++++++
+>  .../display/msm/qcom,sm8450-mdss.yaml         | 343 ++++++++++++++++++
+>  2 files changed, 482 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+> 
 
-v2: Add reference to RESET_NNA (Neil)
 
-Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
- .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
- 2 files changed, 15 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 45947c1031c4..aaa629816e41 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/power/meson-g12a-power.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -2484,4 +2485,14 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	npu: npu@ff100000 {
-+		compatible = "vivante,gc";
-+		reg = <0x0 0xff100000 0x0 0x20000>;
-+		interrupts = <0 147 4>;
-+		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-+			<&clkc CLKID_NNA_AXI_CLK>;
-+		clock-names = "core", "bus";
-+		resets = <&reset RESET_NNA>;
-+		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 124a80901084..73f3d87dcefd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -15,6 +15,10 @@ / {
- 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- /*
-  * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
-  * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
--- 
-2.38.1
+Best regards,
+Krzysztof
 
