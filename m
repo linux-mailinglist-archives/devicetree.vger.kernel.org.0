@@ -2,140 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AC9C63A34C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B2163A356
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:45:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbiK1InF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 03:43:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52944 "EHLO
+        id S229729AbiK1IpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 03:45:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbiK1InF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:43:05 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF7A6654B
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:43:03 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1ozZjB-0008M9-90; Mon, 28 Nov 2022 09:43:01 +0100
-Message-ID: <a13c2e92-cfa6-04fd-c32a-c4d444894660@pengutronix.de>
-Date:   Mon, 28 Nov 2022 09:42:59 +0100
+        with ESMTP id S229922AbiK1IpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:45:03 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 171AF11C1C
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:45:01 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id s8so16239528lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:45:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Nenci7t4rhCZdpWVoRxbMnQAdlppXCobPbi7wEBQtJY=;
+        b=THlpyONNZdQgCWbS1nPUbGlrjy7aLrSQSgr5nxOn94srvrNVV1E9iiBaMWwkdvVPjP
+         wfeIT1KR0qdEGzKORsWz4uV/skULyk14PVaH99PblmmW1b2+M7SxwGLl2+FgwvR3XQpw
+         Mb6MjJ7rIGPkwbo1ZL99Ah6MJhMFe4qNtEEMkVeWdorV5JFgVIi4Qbqomo7VH5eWWCoi
+         tx32qaw0sjUH4cQJuxavrKpOP+Imm4rpTaFAR7YZzqUQBHp5pnZUwwfSjrcSGLBobBdU
+         KbWQdBQh+XpT4OItk5xOlklNH17Ln+GSrmxYO4JgOTdkxHz/4pA6MLrr1RVaIO3eL0GY
+         sAYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nenci7t4rhCZdpWVoRxbMnQAdlppXCobPbi7wEBQtJY=;
+        b=Mh76LI6zUhSyMTwOuTcD79NeFCC+F0bG7GU99GZ/nApEXIAmR5Vg2JGPWdjAdtNHKg
+         uCt6V/IrrWCRbI2wAk0oGKibab8gJtT7u2nLlWab/W07zxHma9d6S8CtZPwKjQFvPCFC
+         liKmGrGPrX4YTMu9TXTRUU/xt1Jkvma9pIuncey++ipOlrUwb/HwZ0KUsPeDLC+U7ohV
+         ipL3g6gCHft1GNBexvtXKtljFpNs6Tfept2v39Qh2MVR47NVBOL9TttG9iynLEdX/ZLu
+         iL8lcu+EXeks3pBjH1dS992RPB7Tdz1Z3gVZb53/ua0xdBzGHdh4hCpKU+YqSyY4mY4t
+         0LTQ==
+X-Gm-Message-State: ANoB5plRVt+l+Sm9lR6F7BuF4DvpM1/A6Anoujwvj+GYDy+wD/BNIyzY
+        IHZsZIPMrYjMZQ18lxnoog119w==
+X-Google-Smtp-Source: AA0mqf5n4p6pcFE0b6JaosOzLcEa0TroXRfYPjChVw+bV7Typ63sv24F7H3QKzd6B6431QojswjUFw==
+X-Received: by 2002:ac2:4bd0:0:b0:4af:ad36:7a85 with SMTP id o16-20020ac24bd0000000b004afad367a85mr16358692lfq.617.1669625098004;
+        Mon, 28 Nov 2022 00:44:58 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bs21-20020a05651c195500b0026c35c4720esm1158464ljb.24.2022.11.28.00.44.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 00:44:57 -0800 (PST)
+Message-ID: <26577515-0681-60be-17ff-dbceb7b9a083@linaro.org>
+Date:   Mon, 28 Nov 2022 09:44:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-sabre: Add mmc aliases
-To:     Detlev Casanova <detlev.casanova@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221028141811.101122-1-detlev.casanova@collabora.com>
- <20221111025232.GI125525@dragon> <2868543.tdWV9SEqCh@falcon9>
+Subject: Re: [PATCH 1/6] dt-bindings: vendor-prefixes: add Genesys Logic
 Content-Language: en-US
-In-Reply-To: <2868543.tdWV9SEqCh@falcon9>
+To:     Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20221127073140.2093897-1-uwu@icenowy.me>
+ <20221127073140.2093897-2-uwu@icenowy.me>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221127073140.2093897-2-uwu@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Detlev,
-Hello Shawn,
+On 27/11/2022 08:31, Icenowy Zheng wrote:
+> Genesys Logic, Inc. is a manufacturer for interface chips, especially
+> USB hubs.
+> 
+> https://www.genesyslogic.com.tw/
 
-On 11.11.22 20:35, Detlev Casanova wrote:
-> On Thursday, November 10, 2022 9:52:32 P.M. EST Shawn Guo wrote:
->> On Fri, Oct 28, 2022 at 10:18:11AM -0400, Detlev Casanova wrote:
->>> If not specified, the mmc0 and mmc1 devices will be the devices
->>> mmc@2190000 and mmc@2194000, which are in disabled state on the iMX.6
->>> Sabrelite devices.
->>>
->>> The actual SD card reader devices are the ones at mmc@2198000 and
->>> mmc@219c000.
->>>
->>> Set aliases to use the correct mmc devices order.
->>
->> Is this something never worked or a regression?  For the latter, we may
->> need a Fixes tag?
-> 
-> These were apparently never set in the kernel device-tree and added manually 
-> in u-boot when dts are synced.
-> 
-> Because most distributions use UUIDs in fstab, it is not a big problem in 
-> Linux, just that the SD card is called /dev/mmcblk2. I would say that this has 
-> always been an issue in Linux.
 
-We already have aliases in imx6qdl.dtsi. Existing Installations that hardcode
-root=mmcblk2 _will_ be broken by this change. Installations that are fixed
-by this change have never worked properly, because prior to commit fa2d0aa96941
-("mmc: core: Allow setting slot index via device tree alias"), it depended
-on probe order and/or whether a card was present.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Whether SD/eMMC comes first or if they start at 0 or 2 is just cosmetic.
-The alias order corresponds with the order in the data sheet and that's a
-good default and I see no reason to change this here and risk breakage.
-
-I thus don't think this patch should go mainline.
-
-Thanks,
-Ahmad
-
-> 
->> Shawn
->>
->>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
->>> ---
->>>
->>>  arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
->>> b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi index
->>> 22f8e2783cdf..12573e1f917c 100644
->>> --- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
->>> +++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
->>> @@ -14,6 +14,11 @@ chosen {
->>>
->>>  		stdout-path = &uart2;
->>>  	
->>>  	};
->>>
->>> +	aliases {
->>> +		mmc0 = &usdhc3;
->>> +		mmc1 = &usdhc4;
->>> +	};
->>> +
->>>
->>>  	memory@10000000 {
->>>  	
->>>  		device_type = "memory";
->>>  		reg = <0x10000000 0x40000000>;
-> 
-> 
-> 
-> 
-> 
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best regards,
+Krzysztof
 
