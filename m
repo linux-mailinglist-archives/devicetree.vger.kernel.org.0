@@ -2,200 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4737663A87B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF6763A83D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:26:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiK1Mdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 07:33:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44744 "EHLO
+        id S230138AbiK1M0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 07:26:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbiK1Mdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:33:33 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306551A069
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:33:31 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id v7so8353561wmn.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:33:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=+gmo9nIirdbed4J/LDnU4BNvdJRcxPBpHK1YwQWHx3A=;
-        b=Ov/KaEuWs1Y8eHtYdGfDUCbL84zNHUFESCRmPJbwiL4b4IkVYPUs0G1f90nHsfQ/zv
-         ehKTVNWofEcOeyX9H++dsbFfqvqpLv4UI5SpMeltJX+7PhkxVUhqbOS5sWWAgao/afWy
-         Vmu2IYeujw1lNxavecWXZtBV2Xt7zVVCw10XpuwEZq0dkxd13hpGwtmlvIqyQeE/KNoX
-         rA3Xh3b7GEY59tYVfwF7IRQcBMpp4dMqeAK/0dBG+Bw03kgBT6s60v17KxK+pPdPro6G
-         FLxZbP+uH3QEA3DqFca6aUkawOebjlWwlLD1jmOpKkTr40d27MyLfvvmN0ta9OMOThQY
-         4WLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+gmo9nIirdbed4J/LDnU4BNvdJRcxPBpHK1YwQWHx3A=;
-        b=5w9A6Dw5rjy9Iz6RfONiNtk8tKiQEkYdyuJzBWGjVO7Y/Stv4kx1YD4XgSBhk8du7q
-         05jSY8GpBNUFRKIKG/LLqgR2KFQr/9ztftXZ2G5AwKLln2bS0wqNFmrvdFgtS9+kvf3z
-         3f+ZekJYAYdDuPJJuCpfxn+dERup9BxoJsQALYDlhYos6mmcPGYKE19qMDedTzNZD+e3
-         Ck6ZxOV/qjq21h22x/hyT5jertONB4CTIVDu5qORYJEKLu7YFTMtGHkuQADziTJB5v04
-         W7G+wFV5Jnc4K5BhqV6Td5m7B8RW0XmQdvSqE5jxxCuENIc5DKEhfnqkbwt2CD5xKo5y
-         XTpQ==
-X-Gm-Message-State: ANoB5pmMwloMDeSnxe1PHfZuf62/WjghZ7l8yzs5pxPVFfQ6NcvBCIml
-        /ItlyiwBwOakEcyDT76jjhmbXQ==
-X-Google-Smtp-Source: AA0mqf4jVHezM2bL21HVhzKH1EZ/A3CxuShkRmJj0N14THKAhU4L/c00faHr4CoC1CPZ4bH3MFrAHA==
-X-Received: by 2002:a05:600c:35cf:b0:3cf:aa11:93a8 with SMTP id r15-20020a05600c35cf00b003cfaa1193a8mr41173747wmq.31.1669638809617;
-        Mon, 28 Nov 2022 04:33:29 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id bs30-20020a056000071e00b002364c77bcacsm10489898wrb.38.2022.11.28.04.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Nov 2022 04:33:28 -0800 (PST)
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-4-yu.tu@amlogic.com>
- <1jbkov2vb9.fsf@starbuckisacylon.baylibre.com>
- <81d9a794-2920-64f1-1d80-50653113624c@amlogic.com>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com
-Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
- controller driver and bindings
-Date:   Mon, 28 Nov 2022 13:23:08 +0100
-In-reply-to: <81d9a794-2920-64f1-1d80-50653113624c@amlogic.com>
-Message-ID: <1jilizp8bs.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S230078AbiK1MZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:25:41 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 268911D8;
+        Mon, 28 Nov 2022 04:24:22 -0800 (PST)
+Received: from loongson.cn (unknown [112.20.109.110])
+        by gateway (Coremail) with SMTP id _____8AxSul1qIRjVa4BAA--.891S3;
+        Mon, 28 Nov 2022 20:24:21 +0800 (CST)
+Received: from [0.0.0.0] (unknown [112.20.109.110])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxiFdzqIRjHlIdAA--.56711S3;
+        Mon, 28 Nov 2022 20:24:20 +0800 (CST)
+Message-ID: <654be437-f4f0-4c98-b124-ac2d8f78fdbe@loongson.cn>
+Date:   Mon, 28 Nov 2022 20:24:18 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V3 3/5] dt-bindings: i2c: add bindings for Loongson LS2X
+ I2C
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org
+Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+References: <cover.1669359515.git.zhoubinbin@loongson.cn>
+ <57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn>
+ <61541d15-fbfd-3f99-fc05-663ebf4a2b54@linaro.org>
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+In-Reply-To: <61541d15-fbfd-3f99-fc05-663ebf4a2b54@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxiFdzqIRjHlIdAA--.56711S3
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7ZryktFyDXFW7ZFyrWFyxGrg_yoW8tw45pa
+        17CrsxAF40vF17uws3KFy8Gr15ZrZ5A3ZxGFW7tw1DGF98C3Wvqryakrn8Zrn5ur1FqFW2
+        vFyFgw4DuFZ7AFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bqkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa
+        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
+        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
+        jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
+        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
+        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
+        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
+        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
+        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jb_-PUUUUU=
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof:
 
-On Mon 28 Nov 2022 at 16:08, Yu Tu <yu.tu@amlogic.com> wrote:
-
->>> +
->>> +/*
->>> + * This RTC clock can be supplied by an external 32KHz crystal oscillator.
->>> + * If it is used, it should be documented in using fw_name and documented in the
->>> + * Bindings. Not currently in use on this board, so skip it.
->>> + */
->>> +static u32 rtc_clk_sel[] = { 0, 1 };
->> No reason to do that
+在 2022/11/28 04:49, Krzysztof Kozlowski 写道:
+> On 25/11/2022 09:54, Binbin Zhou wrote:
+>> Add device tree bindings for the i2c controller on the Loongson-2K Soc
+>> or Loongosn LS7A bridge.
+> It's a v3 which is for the first time sent to DT maintainers...
+Sorry, it was my mistake, I didn't double check the mail recipients in 
+my .git/config.
 >
-> I'm going to change it to static u32 rtc_clk_sel[] = { 0, 1, 2 };.
-> I don't know if that's okay with you?
+> Subject: drop second, redundant "bindings for".
 
-... then there is no need to specify this table.
-
+Ok. I get it.
 
 
 >
->> 
->>> +static const struct clk_parent_data rtc_clk_sel_parent_data[] = {
->>> +	{ .hw = &s4_rtc_32k_by_oscin.hw },
->>> +	{ .hw = &s4_rtc_32k_by_oscin_div.hw },
->>> +	{ .fw_name = "ext_32k",  }
->>> +};
->>> +
->>> +static struct clk_regmap s4_rtc_clk = {
->>> +	.data = &(struct clk_regmap_mux_data) {
->>> +		.offset = CLKCTRL_RTC_CTRL,
->>> +		.mask = 0x3,
->>> +		.shift = 0,
->>> +		.table = rtc_clk_sel,
->>> +		.flags = CLK_MUX_ROUND_CLOSEST,
->>> +	},
->>> +	.hw.init = &(struct clk_init_data){
->>> +		.name = "rtc_clk_sel",
->>> +		.ops = &clk_regmap_mux_ops,
->>> +		.parent_data = rtc_clk_sel_parent_data,
->>> +		.num_parents = 2,
->>> +		.flags = CLK_SET_RATE_PARENT,
->>> +	},
->>> +};
->>> +
-
-[...]
-
->>> +
->>> +/* Video Clocks */
->>> +static struct clk_regmap s4_vid_pll_div = {
->>> +	.data = &(struct meson_vid_pll_div_data){
->>> +		.val = {
->>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>> +			.shift   = 0,
->>> +			.width   = 15,
->>> +		},
->>> +		.sel = {
->>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>> +			.shift   = 16,
->>> +			.width   = 2,
->>> +		},
->>> +	},
->>> +	.hw.init = &(struct clk_init_data) {
->>> +		.name = "vid_pll_div",
->>> +		/* Same to g12a */
->>> +		.ops = &meson_vid_pll_div_ro_ops,
->> Please add an helpful explanation.
->> 'Same to g12a' is not helpful.
->> 
+>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>> ---
+>>   .../bindings/i2c/loongson,ls2x-i2c.yaml       | 48 +++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+>> new file mode 100644
+>> index 000000000000..8c785f329d2f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+>> @@ -0,0 +1,48 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/i2c/loongson,ls2x-i2c.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> Drop quotes form both.
 >
-> "Because the vid_pll_div clock is a clock that does not need to change the
-> divisor, ops only provides meson_vid_pll_div_ro_ops."
-> I wonder if this description is ok for you?
+>> +
+>> +title: Loongson LS2X I2C Controller
+>> +
+>> +maintainers:
+>> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - loongson,ls2k-i2c # Loongson-2K SoCs
+>> +      - loongson,ls7a-i2c # Loongson LS7A Bridge
+> Isn't your comment exactly the same as compatible? Where is the
+> difference? I propose to drop the comment entirely, unless it explains
+> something.
 
-I understand this divider will not change with RO ops.
-I'm interrested why it does not change and how it is expected to be setup.
+OK, I will drop the useless comment.
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+> No clocks? I2C controller without clocks? Are you sure the binding is
+> complete?
+
+We previously set the default CLOCK in the driver. Of course, we also 
+provide the path to read the clock-frequency field for redo. In any 
+case, I will add the clock-frequency field to the V4 patchset.
+
+Thanks for your review.
+
+Binbin
+
 
 >
->>> +		.parent_data = (const struct clk_parent_data []) {
->>> +			{ .fw_name = "hdmi_pll", }
->>> +		},
->>> +		.num_parents = 1,
->>> +		.flags = CLK_SET_RATE_PARENT,
->>> +	},
->>> +};
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+> Best regards,
+> Krzysztof
 
-[...]
-
->>> +
->>> +static struct clk_regmap s4_vclk_sel = {
->>> +	.data = &(struct clk_regmap_mux_data){
->>> +		.offset = CLKCTRL_VID_CLK_CTRL,
->>> +		.mask = 0x7,
->>> +		.shift = 16,
->>> +	},
->>> +	.hw.init = &(struct clk_init_data){
->>> +		.name = "vclk_sel",
->>> +		.ops = &clk_regmap_mux_ops,
->>> +		.parent_data = s4_vclk_parent_data,
->>> +		.num_parents = ARRAY_SIZE(s4_vclk_parent_data),
->>> +	},
->> You are stopping rate propagation here.
->> It deserves an explanation. Same goes below.
->
-> "When the driver uses this clock, needs to specify the patent clock he
-> wants in the dts."
-> Is ok for you?
-
-Then you still don't understand the clock flag usage.
-
-Preserving the parent selection (CLK_SET_RATE_NO_REPARENT) and rate
-propagation (CLK_SET_RATE_PARENT) is not the same thing.
-
-As it stands, your comment is not aliged with what you do.
-
->
->> 
->>> +};
