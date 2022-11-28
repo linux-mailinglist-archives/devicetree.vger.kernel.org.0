@@ -2,58 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8116063B008
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FA7463B037
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:49:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233665AbiK1RsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:48:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35242 "EHLO
+        id S233641AbiK1RtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:49:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233889AbiK1Rr3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:47:29 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3518C21AD
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:42:36 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ozi9L-0006hp-0U; Mon, 28 Nov 2022 18:42:35 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ozi9I-000tFv-G5; Mon, 28 Nov 2022 18:42:33 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ozi9I-0011Vx-8G; Mon, 28 Nov 2022 18:42:32 +0100
-Date:   Mon, 28 Nov 2022 18:42:32 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to
- dt-schema
-Message-ID: <20221128174232.irad6caswhz2y2jk@pengutronix.de>
-References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
- <20221116174921.GA25509@pengutronix.de>
- <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
+        with ESMTP id S233631AbiK1RsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:48:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B0652AC44;
+        Mon, 28 Nov 2022 09:43:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D2CD612E4;
+        Mon, 28 Nov 2022 17:43:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD5B3C433D6;
+        Mon, 28 Nov 2022 17:43:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669657386;
+        bh=MvGJJVjZ91EWjQWadWODUI40kPEyxz6YNn7HirD9pQs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pbaq3OcnfGaOPoTWTT2lX/2OLPL1FTNtQxywpkOjJuLMDuUrYrbmECqM5eQCaVW1o
+         Gd8Vxr7Ln7oXOquctpsmHw70CtY9IKPc9rpxdQwQNuUNLtp6V3vTXC+GZ1Td+y71wg
+         rU7e1QJm3vSgxJXv3miy+zQrerrmgvQloQtbNASarAfFaRZAICGo81tejgK3QuA4Tq
+         MK2gWRStEifZEy54VPFXbny+QPIC1XAGFXp9jwdUMusKdv+d+np5f0DPamkABDX7au
+         18U6ugrRknAFvrkkeyXYv99Fx3MFOZXx1wzqqjxO2VbMIPNHBoYmOVU0yP0wWcvfMf
+         fwGGqjFoIcVHA==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 1/9] arm: dts: rockchip: fix node name for hym8563 rtc
+Date:   Mon, 28 Nov 2022 12:42:54 -0500
+Message-Id: <20221128174303.1443008-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3f6icgljmgqv3qn4"
-Content-Disposition: inline
-In-Reply-To: <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,120 +56,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
 
---3f6icgljmgqv3qn4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[ Upstream commit 17b57beafccb4569accbfc8c11390744cf59c021 ]
 
-On Thu, Nov 17, 2022 at 06:49:02PM +0100, Krzysztof Kozlowski wrote:
-> On 16/11/2022 18:49, Philipp Zabel wrote:
-> > On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-K=F6nig wrote:
-> > [...]
-> >> new file mode 100644
-> >> index 000000000000..c3cf6f92a766
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-> >> @@ -0,0 +1,110 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 =
-and i.MX27
-> >> +
-> >> +maintainers:
-> >> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> >> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - enum:
-> >> +              - fsl,imx1-fb
-> >> +              - fsl,imx21-fb
-> >=20
-> > Are the items/enum keywords superfluous here? Couldn't this just be two
-> >=20
-> >          - const: fsl,imx1-fb
-> >          - const: fsl,imx21-fb
-> >=20
-> > entries?
->=20
-> Only "items" is, so should be dropped.
+Fix the node name for hym8563 in all arm rockchip devicetrees.
 
-Status quo are the following settings:
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Link: https://lore.kernel.org/r/20221024165549.74574-4-sebastian.reichel@collabora.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/rk3036-evb.dts          | 2 +-
+ arch/arm/boot/dts/rk3288-evb-act8846.dts  | 2 +-
+ arch/arm/boot/dts/rk3288-firefly.dtsi     | 2 +-
+ arch/arm/boot/dts/rk3288-miqi.dts         | 2 +-
+ arch/arm/boot/dts/rk3288-rock2-square.dts | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-imx25.dtsi uses:
-	compatible =3D "fsl,imx25-fb", "fsl,imx21-fb";
-imx27.dtsi uses:
-	compatible =3D "fsl,imx27-fb", "fsl,imx21-fb";
+diff --git a/arch/arm/boot/dts/rk3036-evb.dts b/arch/arm/boot/dts/rk3036-evb.dts
+index c0953410121b..41309de6c91d 100644
+--- a/arch/arm/boot/dts/rk3036-evb.dts
++++ b/arch/arm/boot/dts/rk3036-evb.dts
+@@ -69,7 +69,7 @@ phy0: ethernet-phy@0 {
+ &i2c1 {
+ 	status = "okay";
+ 
+-	hym8563: hym8563@51 {
++	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+ 		#clock-cells = <0>;
+diff --git a/arch/arm/boot/dts/rk3288-evb-act8846.dts b/arch/arm/boot/dts/rk3288-evb-act8846.dts
+index b9418d170502..e5231ecb8279 100644
+--- a/arch/arm/boot/dts/rk3288-evb-act8846.dts
++++ b/arch/arm/boot/dts/rk3288-evb-act8846.dts
+@@ -91,7 +91,7 @@ vdd_gpu: syr828@41 {
+ 		vin-supply = <&vcc_sys>;
+ 	};
+ 
+-	hym8563@51 {
++	rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+ 
+diff --git a/arch/arm/boot/dts/rk3288-firefly.dtsi b/arch/arm/boot/dts/rk3288-firefly.dtsi
+index b9e6f3a97240..5b14e9105070 100644
+--- a/arch/arm/boot/dts/rk3288-firefly.dtsi
++++ b/arch/arm/boot/dts/rk3288-firefly.dtsi
+@@ -270,7 +270,7 @@ vdd_gpu: syr828@41 {
+ 		vin-supply = <&vcc_sys>;
+ 	};
+ 
+-	hym8563: hym8563@51 {
++	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+ 		#clock-cells = <0>;
+diff --git a/arch/arm/boot/dts/rk3288-miqi.dts b/arch/arm/boot/dts/rk3288-miqi.dts
+index 4d923aa6ed11..2fd39bbf0b01 100644
+--- a/arch/arm/boot/dts/rk3288-miqi.dts
++++ b/arch/arm/boot/dts/rk3288-miqi.dts
+@@ -183,7 +183,7 @@ vdd_gpu: syr828@41 {
+ 		vin-supply = <&vcc_sys>;
+ 	};
+ 
+-	hym8563: hym8563@51 {
++	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+ 		#clock-cells = <0>;
+diff --git a/arch/arm/boot/dts/rk3288-rock2-square.dts b/arch/arm/boot/dts/rk3288-rock2-square.dts
+index 0e084b8a86ac..6011b117ab68 100644
+--- a/arch/arm/boot/dts/rk3288-rock2-square.dts
++++ b/arch/arm/boot/dts/rk3288-rock2-square.dts
+@@ -177,7 +177,7 @@ &hdmi {
+ };
+ 
+ &i2c0 {
+-	hym8563: hym8563@51 {
++	hym8563: rtc@51 {
+ 		compatible = "haoyu,hym8563";
+ 		reg = <0x51>;
+ 		#clock-cells = <0>;
+-- 
+2.35.1
 
-The fb driver (drivers/video/fbdev/imxfb.c) supports devices with
-"fsl,imx1-fb" and "fsl,imx21-fb" in their comaptible list.
-
-So my best guess is to assume an i.MX21 would use
-
-	compatible =3D "fsl,imx21-fb";
-
-and an i.MX1 would use:
-
-	compatible =3D "fsl,imx1-fb";
-
-=2E Looking at the driver it might be that it works in i.MX1 mode on an
-i.MX2x. The latter has some additional registers, higher y-resolution
-and supports 16, 18 and 24 bpp.
-
-However my actual plan was to support the drm driver with the saner
-binding on i.MX25 and not cleanup the driver and binding I want to
-deprecate.
-
-So I'd go for putting into the legacy binding what is currently done in
-arch/arm/boot/dts and the driver allowing exactly:
-
-	compatible =3D "fsl,imx27-fb", "fsl,imx21-fb";
-	compatible =3D "fsl,imx25-fb", "fsl,imx21-fb";
-	compatible =3D "fsl,imx21-fb";
-	compatible =3D "fsl,imx1-fb";
-
-I thinks this is accomplished using:
-
-  compatible:
-    oneOf:
-      - enum:
-          - fsl,imx1-fb
-	  - fsl,imx21-fb
-      - items
-          - enum:
-	      - fsl,imx25-fb
-	      - fsl,imx27-fb
-	  - const: fsl,imx21-fb
-
-right?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---3f6icgljmgqv3qn4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOE8wQACgkQwfwUeK3K
-7AlT0QgAgovHzvz271l8Ti2LI57evWjmOB5E6M2++U4ZgHIMTxWCgxzks1HoRrQI
-KAVy5S2qRUAHjwAncrgzwAGvdg9Ha31EzeK4fYIpF2iOvWoCiXOhCZYnT5PEegZu
-n8s5z4W7XT0qQeEg6c417mSq2wVsMgtZE9ZVE2k9o2PH3rSs6syz6fJsKGxyZPCG
-P4IxC2NiFqIJ+nlefeAuhjiluseQd3LC5NPUo7Uz9/KrSCOJN/QBFDNWMr4wTg/g
-DgZd0ZRuDctEss+D9rdFzKhXcCYrRMfXKZr0LeOohNdvlnf2j8YHs4pP/hsrNPaQ
-pEaZuDzrbThnJAp5GYY13i9WAwGWYQ==
-=4JL6
------END PGP SIGNATURE-----
-
---3f6icgljmgqv3qn4--
