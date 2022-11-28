@@ -2,371 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6711063AAFA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1837463AB40
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232617AbiK1OaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:30:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
+        id S232583AbiK1OkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:40:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232565AbiK1O3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:29:44 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76FCA22504;
-        Mon, 28 Nov 2022 06:29:42 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S232555AbiK1OkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:40:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B5322501;
+        Mon, 28 Nov 2022 06:40:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sendonly@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id A852341E2F;
-        Mon, 28 Nov 2022 14:29:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1669645781; bh=59CSFOX97npsoJgTAQusPWIZ1PoRhHaim0uMHhjm+K0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=HLu7Zwn9C6DoiPJmcVGLSVIkC2dKmcxpsOjGsN/JLbs/EHno/FqJCKdL7zfFCmGGE
-         g1CcfFG4fn9sljNMBuoPsKPMa/4sJlAMShnYp0nGFLxo6dHeImJp+cRTs/3nK+9ZLf
-         41qSe0nRUudMYGDO75PWVvZhoiykQJ3d4jkJy9g8bJTPHM+TKRR0eX3qjbI9ZXowHm
-         U0WqtpDSBWeGS8xSwELFflDJr4f0JtY7LJXHeemI6kKDqjEEdAfsMWtHjiHRUSMxzC
-         NMFyyHDlEsl8V3Mt148jeGggRRKXePqUKEPxEh/3EGdiN+hdHAIrufUnvq+ujMFsnb
-         9lsraulqQCrVA==
-From:   Hector Martin <marcan@marcan.st>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4729E611CF;
+        Mon, 28 Nov 2022 14:40:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 364F4C433C1;
+        Mon, 28 Nov 2022 14:39:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669646403;
+        bh=NvJorZr2n6+50Td4fDEE5U9WvCuKu2rwqwYX9x/uSbY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b/T6loHbagLo3jI9KjpAzMEvqaMA39G7a7kCR9PSNmOV415m3vD5xGHcBKfZLE65L
+         VxUHPPzZeSHRpNqv3kST7LSciy3QKcEKLPvH7XYWYvd6PClISSMtP2r51HTVkeaILk
+         nwLSrUHhk1eT08SY6OsT6iXt7XGPd9F98L9d7GcovC1V02MEyr9IWGtfIPoW+Kqf6T
+         6i86wJNWyaWMteBCloIOYtm5aK+KtGCsJD+CHsPRQcQYp6Fro5Lt3wkLHGe8BePSsy
+         pX2hIgPYjB+/kdOwuU6B6sn135tJPksOCK9D4u/ofy1oWVKAI0PFiTwgt2UXwiCBxs
+         hNVD0RHKICcgg==
+Date:   Mon, 28 Nov 2022 22:30:08 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] arm64: dts: apple: Add CPU topology & cpufreq nodes for t8103
-Date:   Mon, 28 Nov 2022 23:29:12 +0900
-Message-Id: <20221128142912.16022-5-marcan@marcan.st>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128142912.16022-1-marcan@marcan.st>
-References: <20221128142912.16022-1-marcan@marcan.st>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2 8/9] MAINTAINERS: riscv: add entry for Bouffalolab SoC
+Message-ID: <Y4TF8FzX19puws37@xhacker>
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-9-jszhang@kernel.org>
+ <Y4Of7s6UGpD0/Iga@spud>
+ <Y4OgNW6uOe60Pi09@spud>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Y4OgNW6uOe60Pi09@spud>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing CPU topology/capacity information and the cpufreq nodes,
-so we can have CPU frequency scaling and the scheduler has the
-information it needs to make the correct decisions.
+On Sun, Nov 27, 2022 at 05:36:53PM +0000, Conor Dooley wrote:
+> On Sun, Nov 27, 2022 at 05:35:48PM +0000, Conor Dooley wrote:
+> > Hey Jisheng,
+> > 
+> > On Sun, Nov 27, 2022 at 09:24:47PM +0800, Jisheng Zhang wrote:
+> > > Add Jisheng Zhang as Bouffalolab SoC maintainer.
+> > > 
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > ---
+> > >  MAINTAINERS | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > > 
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 00ff4a2949b8..a6b04249853c 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -17729,6 +17729,15 @@ F:	arch/riscv/
+> > >  N:	riscv
+> > >  K:	riscv
+> > >  
+> > > +RISC-V BOUFFALOLAB SOC SUPPORT
+> > > +M:	Jisheng Zhang <jszhang@kernel.org>
+> > > +L:	linux-riscv@lists.infradead.org
+> > > +S:	Maintained
+> > > +F:	Documentation/devicetree/bindings/riscv/bouffalolab.yaml
+> > > +F:	Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
+> > > +F:	arch/riscv/boot/dts/bouffalolab/
+> > > +F:	drivers/tty/serial/bflb_uart.c
+> > 
+> > I think I asked last time but I didn't see an answer on lore or my
+> > mailbox - if you intend sending Arnd PRs for this stuff, please add a
 
-Boost states are commented out, as they are not yet available (that
-requires CPU deep sleep support, to be eventually done via PSCI).
-The driver supports them fine; the hardware will just refuse to ever
-go into them at this time, so don't expose them to users until that's
-done.
+Per my past experience of synaptics/mrvl arm SoCs, I usually sent PRs to Arnd
+if there are two or more commits/patches; If there's only one patch, I
+asked Arnd for picking it up directly. So in bouffalolab SoC case, I
+want to do similar, but with one difference -- if there's only one
+patch, may I ask you for picking it up directly?
 
-Acked-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 204 +++++++++++++++++++++++++--
- 1 file changed, 194 insertions(+), 10 deletions(-)
+> > git tree here. Otherwise, LMK and I'll bundle it with the other "misc
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 51a63b29d404..d56708038d05 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -22,71 +22,243 @@ cpus {
- 		#address-cells = <2>;
- 		#size-cells = <0>;
- 
--		cpu0: cpu@0 {
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu_e0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_e1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_e2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_e3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu_p0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_p1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_p2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_p3>;
-+				};
-+			};
-+		};
-+
-+		cpu_e0: cpu@0 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu1: cpu@1 {
-+		cpu_e1: cpu@1 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu2: cpu@2 {
-+		cpu_e2: cpu@2 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu3: cpu@3 {
-+		cpu_e3: cpu@3 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu4: cpu@10100 {
-+		cpu_p0: cpu@10100 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10100>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu5: cpu@10101 {
-+		cpu_p1: cpu@10101 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10101>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu6: cpu@10102 {
-+		cpu_p2: cpu@10102 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10102>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu7: cpu@10103 {
-+		cpu_p3: cpu@10103 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10103>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 	};
- 
-+	ecluster_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <7500>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <972000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <22000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1332000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <27000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <33000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <2064000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <50000>;
-+		};
-+	};
-+
-+	pcluster_opp: opp-table-1 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <8000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <828000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <19000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1056000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <21000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1284000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <23000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <24000>;
-+		};
-+		opp06 {
-+			opp-hz = /bits/ 64 <1728000000>;
-+			opp-level = <6>;
-+			clock-latency-ns = <29000>;
-+		};
-+		opp07 {
-+			opp-hz = /bits/ 64 <1956000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <31000>;
-+		};
-+		opp08 {
-+			opp-hz = /bits/ 64 <2184000000>;
-+			opp-level = <8>;
-+			clock-latency-ns = <34000>;
-+		};
-+		opp09 {
-+			opp-hz = /bits/ 64 <2388000000>;
-+			opp-level = <9>;
-+			clock-latency-ns = <36000>;
-+		};
-+		opp10 {
-+			opp-hz = /bits/ 64 <2592000000>;
-+			opp-level = <10>;
-+			clock-latency-ns = <51000>;
-+		};
-+		opp11 {
-+			opp-hz = /bits/ 64 <2772000000>;
-+			opp-level = <11>;
-+			clock-latency-ns = <54000>;
-+		};
-+		opp12 {
-+			opp-hz = /bits/ 64 <2988000000>;
-+			opp-level = <12>;
-+			clock-latency-ns = <55000>;
-+		};
-+#if 0
-+		/* Not available until CPU deep sleep is implemented */
-+		opp13 {
-+			opp-hz = /bits/ 64 <3096000000>;
-+			opp-level = <13>;
-+			clock-latency-ns = <55000>;
-+			turbo-mode;
-+		};
-+		opp14 {
-+			opp-hz = /bits/ 64 <3144000000>;
-+			opp-level = <14>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+		opp15 {
-+			opp-hz = /bits/ 64 <3204000000>;
-+			opp-level = <15>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+#endif
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupt-parent = <&aic>;
-@@ -124,6 +296,18 @@ soc {
- 		ranges;
- 		nonposted-mmio;
- 
-+		cpufreq_e: performance-controller@210e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x10e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
-+		cpufreq_p: performance-controller@211e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x11e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
- 		i2c0: i2c@235010000 {
- 			compatible = "apple,t8103-i2c", "apple,i2c";
- 			reg = <0x2 0x35010000 0x0 0x4000>;
-@@ -229,12 +413,12 @@ aic: interrupt-controller@23b100000 {
- 			affinities {
- 				e-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_E>;
--					cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
-+					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
- 				};
- 
- 				p-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_P>;
--					cpus = <&cpu4 &cpu5 &cpu6 &cpu7>;
-+					cpus = <&cpu_p0 &cpu_p1 &cpu_p2 &cpu_p3>;
- 				};
- 			};
- 		};
--- 
-2.35.1
+Hmm, is "git tree" necessary?
 
+> > riscv devicetree" stuff.
+> 
+> I forgot:
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> > >  RISC-V MICROCHIP FPGA SUPPORT
+> > >  M:	Conor Dooley <conor.dooley@microchip.com>
+> > >  M:	Daire McNamara <daire.mcnamara@microchip.com>
+> > > -- 
+> > > 2.38.1
+> > > 
+> > > 
+> > > _______________________________________________
+> > > linux-riscv mailing list
+> > > linux-riscv@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
