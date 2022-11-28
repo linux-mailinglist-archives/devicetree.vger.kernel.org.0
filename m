@@ -2,54 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D98E63B03B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8116063B008
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:48:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233800AbiK1RtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:49:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
+        id S233665AbiK1RsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:48:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233918AbiK1Rrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:47:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CEF1A223;
-        Mon, 28 Nov 2022 09:42:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9333CB80E96;
-        Mon, 28 Nov 2022 17:42:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5956DC433B5;
-        Mon, 28 Nov 2022 17:42:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669657368;
-        bh=eVRo4bHlsQx6r8wW61Kgeyqm8gZl5vPhd/u+YKEWw0g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CWnM9YQiF6Ya6rIFymFsQwEGkHHQKv0vpwXzw2hIGrsguLW6TvMOanlSTuRz9H1Ud
-         yfLb80NmjzEJIbx9GKtjy0/8lZ8UsHXkMl1Q1IevvvoBJv34K3YyXJa6T1oNtxl4UL
-         erCd3czY8sLe5C1c/ABD0bVFm9hi+BrU6aMPGqSOsZ1VE/MMe0tsOtHs5TsFLyvEyr
-         ICTZBHbsC6Oay46ceoZkNOBOzeLbFuYzEmducdpXKZCGk6bvktP83Ip1UKl1hQSIbL
-         xZScQ7zf7KkJSzT9YFgl6YIGG9OmIzJE3L+O3PNCx6XRH4aqR4rrznQFREQXQNX6mx
-         jhir2Iref6MBw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 05/12] ARM: dts: rockchip: disable arm_global_timer on rk3066 and rk3188
-Date:   Mon, 28 Nov 2022 12:42:28 -0500
-Message-Id: <20221128174235.1442841-5-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128174235.1442841-1-sashal@kernel.org>
-References: <20221128174235.1442841-1-sashal@kernel.org>
+        with ESMTP id S233889AbiK1Rr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:47:29 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3518C21AD
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:42:36 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ozi9L-0006hp-0U; Mon, 28 Nov 2022 18:42:35 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ozi9I-000tFv-G5; Mon, 28 Nov 2022 18:42:33 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ozi9I-0011Vx-8G; Mon, 28 Nov 2022 18:42:32 +0100
+Date:   Mon, 28 Nov 2022 18:42:32 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1] dt-bindings: display: Convert fsl,imx-fb.txt to
+ dt-schema
+Message-ID: <20221128174232.irad6caswhz2y2jk@pengutronix.de>
+References: <20221110094945.191100-1-u.kleine-koenig@pengutronix.de>
+ <20221116174921.GA25509@pengutronix.de>
+ <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3f6icgljmgqv3qn4"
+Content-Disposition: inline
+In-Reply-To: <2b0463c1-7fee-b7f0-5cf7-0448a6aab4a7@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,62 +61,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit da74858a475782a3f16470907814c8cc5950ad68 ]
+--3f6icgljmgqv3qn4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The clock source and the sched_clock provided by the arm_global_timer
-on Rockchip rk3066a/rk3188 are quite unstable because their rates
-depend on the CPU frequency.
+On Thu, Nov 17, 2022 at 06:49:02PM +0100, Krzysztof Kozlowski wrote:
+> On 16/11/2022 18:49, Philipp Zabel wrote:
+> > On Thu, Nov 10, 2022 at 10:49:45AM +0100, Uwe Kleine-K=F6nig wrote:
+> > [...]
+> >> new file mode 100644
+> >> index 000000000000..c3cf6f92a766
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+> >> @@ -0,0 +1,110 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 =
+and i.MX27
+> >> +
+> >> +maintainers:
+> >> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> >> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - enum:
+> >> +              - fsl,imx1-fb
+> >> +              - fsl,imx21-fb
+> >=20
+> > Are the items/enum keywords superfluous here? Couldn't this just be two
+> >=20
+> >          - const: fsl,imx1-fb
+> >          - const: fsl,imx21-fb
+> >=20
+> > entries?
+>=20
+> Only "items" is, so should be dropped.
 
-Recent changes to the arm_global_timer driver makes it impossible to use.
+Status quo are the following settings:
 
-On the other side, the arm_global_timer has a higher rating than the
-ROCKCHIP_TIMER, it will be selected by default by the time framework
-while we want to use the stable Rockchip clock source.
+imx25.dtsi uses:
+	compatible =3D "fsl,imx25-fb", "fsl,imx21-fb";
+imx27.dtsi uses:
+	compatible =3D "fsl,imx27-fb", "fsl,imx21-fb";
 
-Keep the arm_global_timer disabled in order to have the
-DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
+The fb driver (drivers/video/fbdev/imxfb.c) supports devices with
+"fsl,imx1-fb" and "fsl,imx21-fb" in their comaptible list.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/f275ca8d-fd0a-26e5-b978-b7f3df815e0a@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/rk3188.dtsi | 1 -
- arch/arm/boot/dts/rk3xxx.dtsi | 7 +++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
+So my best guess is to assume an i.MX21 would use
 
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index 3b7cae6f4127..24efc9b31d89 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -509,7 +509,6 @@ &emac {
- 
- &global_timer {
- 	interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
--	status = "disabled";
- };
- 
- &local_timer {
-diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
-index 86a0d98d28ff..1b6429843bd4 100644
---- a/arch/arm/boot/dts/rk3xxx.dtsi
-+++ b/arch/arm/boot/dts/rk3xxx.dtsi
-@@ -108,6 +108,13 @@ global_timer: global-timer@1013c200 {
- 		reg = <0x1013c200 0x20>;
- 		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 		clocks = <&cru CORE_PERI>;
-+		status = "disabled";
-+		/* The clock source and the sched_clock provided by the arm_global_timer
-+		 * on Rockchip rk3066a/rk3188 are quite unstable because their rates
-+		 * depend on the CPU frequency.
-+		 * Keep the arm_global_timer disabled in order to have the
-+		 * DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-+		 */
- 	};
- 
- 	local_timer: local-timer@1013c600 {
--- 
-2.35.1
+	compatible =3D "fsl,imx21-fb";
 
+and an i.MX1 would use:
+
+	compatible =3D "fsl,imx1-fb";
+
+=2E Looking at the driver it might be that it works in i.MX1 mode on an
+i.MX2x. The latter has some additional registers, higher y-resolution
+and supports 16, 18 and 24 bpp.
+
+However my actual plan was to support the drm driver with the saner
+binding on i.MX25 and not cleanup the driver and binding I want to
+deprecate.
+
+So I'd go for putting into the legacy binding what is currently done in
+arch/arm/boot/dts and the driver allowing exactly:
+
+	compatible =3D "fsl,imx27-fb", "fsl,imx21-fb";
+	compatible =3D "fsl,imx25-fb", "fsl,imx21-fb";
+	compatible =3D "fsl,imx21-fb";
+	compatible =3D "fsl,imx1-fb";
+
+I thinks this is accomplished using:
+
+  compatible:
+    oneOf:
+      - enum:
+          - fsl,imx1-fb
+	  - fsl,imx21-fb
+      - items
+          - enum:
+	      - fsl,imx25-fb
+	      - fsl,imx27-fb
+	  - const: fsl,imx21-fb
+
+right?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3f6icgljmgqv3qn4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOE8wQACgkQwfwUeK3K
+7AlT0QgAgovHzvz271l8Ti2LI57evWjmOB5E6M2++U4ZgHIMTxWCgxzks1HoRrQI
+KAVy5S2qRUAHjwAncrgzwAGvdg9Ha31EzeK4fYIpF2iOvWoCiXOhCZYnT5PEegZu
+n8s5z4W7XT0qQeEg6c417mSq2wVsMgtZE9ZVE2k9o2PH3rSs6syz6fJsKGxyZPCG
+P4IxC2NiFqIJ+nlefeAuhjiluseQd3LC5NPUo7Uz9/KrSCOJN/QBFDNWMr4wTg/g
+DgZd0ZRuDctEss+D9rdFzKhXcCYrRMfXKZr0LeOohNdvlnf2j8YHs4pP/hsrNPaQ
+pEaZuDzrbThnJAp5GYY13i9WAwGWYQ==
+=4JL6
+-----END PGP SIGNATURE-----
+
+--3f6icgljmgqv3qn4--
