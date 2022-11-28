@@ -2,254 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DECA463B4E3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 23:39:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D05B963B57D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232919AbiK1WjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 17:39:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40504 "EHLO
+        id S234459AbiK1XEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 18:04:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232580AbiK1WjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 17:39:24 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B37827B0D;
-        Mon, 28 Nov 2022 14:39:23 -0800 (PST)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1669675161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=v+UGv7VC5HMGlrxxyoqmeanzHAHeNeTk4zGAjjF1eag=;
-        b=QQdbDaUs4b/mblLU59gl1oxkKxGJ7BQGdOGRFGol7xy9OT40cc78djrAImuk70Yxf2QK+x
-        HC24Pt1/5H1tiMuKSEmw580fSBnBHMMCliSWDbufvQeMySpDssf+Q2RBNkALk1wsOpdW8h
-        SBFD7jC/PWnDMaaZOejsp96PDCtr5YOubbIGIzQ1xaZhxR3jXBlwvj0sdwnwcrFE4jKRmT
-        GGfr+LQADVI7pFmEeCFGpSLlt3Dc60rkrJEe2S3dLGpy9fZbGrjyXmakJXPoguOmfgsK0G
-        mijksubxgH07ygg6IXCvJwGqSEjbwpeZpOSHt1W3rDwHEkJcK5wvMu/F0yjE/g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1669675161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=v+UGv7VC5HMGlrxxyoqmeanzHAHeNeTk4zGAjjF1eag=;
-        b=C3Q8q8XKZ9rSjpMwBKIGxAOcrST4QkuE4JYyB6ZVmjIOWr+rHEM/lpcTG7G3wYUrCiHBwU
-        kSyNfBFKwK7LvJCQ==
-To:     Frank Li <frank.li@nxp.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>
-Cc:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "lznuaa@gmail.com" <lznuaa@gmail.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
-        Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-Subject: RE: [EXT] Re: [PATCH v13 2/2] PCI: endpoint: pci-epf-vntb: using
- platform MSI as doorbell
-In-Reply-To: <HE1PR0401MB2331DA6C4A52272B08E1661D88139@HE1PR0401MB2331.eurprd04.prod.outlook.com>
-References: <20221124055036.1630573-1-Frank.Li@nxp.com>
- <20221124055036.1630573-3-Frank.Li@nxp.com> <87wn7evql7.ffs@tglx>
- <HE1PR0401MB2331DA6C4A52272B08E1661D88139@HE1PR0401MB2331.eurprd04.prod.outlook.com>
-Date:   Mon, 28 Nov 2022 23:39:20 +0100
-Message-ID: <87r0xmvh47.ffs@tglx>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234279AbiK1XEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:04:25 -0500
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678612B249;
+        Mon, 28 Nov 2022 15:04:24 -0800 (PST)
+Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ASMCR1k017358;
+        Mon, 28 Nov 2022 23:03:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=KfcFH3MOy6fuzSNAw8UyiHiM41rjSKFf8+hOai5NNV4=;
+ b=Dq0Zb0m+zWg7bSkvXYk51y3nJNSWXjT9sEZz0jbxedgBK7HKFkxYb7P9HC1edvi7/kMm
+ cwwWmRvCtN6CIW9f4oHzpRMDjrRCbD9DIYOEuz1Ec77DTvxjUcKuH0O2BFx6NA7wMuaw
+ N9Z8Ku4el4seR7c2qgmY5GPT4HTxgKR6WslUt33bgHR++lYPBS1VBoN7z9oZlLKBvnvF
+ KNbaUayVQN2p+QQezQqQax5/m4RIsC09T9wHQyC0VNfwN0HOAjxvYqLYFLlUY7AEBJdI
+ M5jCNaGhHgKeW0Iofm9pDokJNdKfZPwuFjA1M7AdoqKAxDsDCkhi93NTJQHiiSEkZE5f +w== 
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3m4x6av7pa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Nov 2022 23:03:49 +0000
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id DD7B0806B7E;
+        Mon, 28 Nov 2022 23:03:47 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 9181D806133;
+        Mon, 28 Nov 2022 23:03:46 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
+        nick.hawkins@hpe.com, corbet@lwn.net, linux@armlinux.org.uk,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/6] ARM: Add GXP Fan and SPI controllers
+Date:   Mon, 28 Nov 2022 17:02:13 -0600
+Message-Id: <20221128230219.39537-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-GUID: 2rkTC8pkTepI9rsMCROewBBMLXnSj-Y5
+X-Proofpoint-ORIG-GUID: 2rkTC8pkTepI9rsMCROewBBMLXnSj-Y5
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-28_17,2022-11-28_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=999 malwarescore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211280166
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Frank!
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-On Mon, Nov 28 2022 at 21:25, Frank Li wrote:
+The GXP SoC can support up to 16 fans through the interface provided by
+the CPLD. The fans speeds are controlled via a pwm value 0-255. The fans
+are also capable of reporting if they have failed to the CPLD which in
+turn reports the status to the GXP SoC. Based on previous feedback the
+registers required for fan control have been regmaped individualy to fan
+driver. Specifically these registers are the function 2 registers and the
+programmable logic registers from the CPLD. Additionally in this patchset
+there is support for the SPI driver which already exists as spi-gxp.c in
+the SPI driver.
 
-Can you please fix your mail client to not copy the whole CC list into
-the reply? It's just pointless noise. A simple:
+---
 
-On Mon, Nov 28 200 at 1:15 PM Thomas Gleixner wrote:
+Changes since v1:
 
-instead of:
+*Renamed fn2reg to fn2 in dtsi file and documentation
+*Renamed plreg to pl in dtsi file and documentation
+*Renamed fanctrl to fan-controller in dtsi file and documentation
+*Adjusted base register range for fan ctrl in dtsi
+*Changed commit description on fan-ctrl device-tree binding
+*Changed register description on fan-ctrl device-tree binding
+*Changed number of supported fans from 16 to 8 in driver code and
+ documentation
+*Modified commit description of fan code
+*Removed support for fan[0-15]_input
+*Removed PWM defines in driver code
+*Added gxp-fan-ctrl to hwmon's index.rst
+*Removed mutex in driver code
+*Added fan_enable support in fan code and documentation
+*Fixed comment in driver code presents -> present
+*Removed unecessary include files in fan code
+*Added comments to describe what power state is and
+ calculations for accessing plreg in fan code
+*Removed use of variable offsets in fan code
+*Fixed GPL header in fan code
+*Changed module description for fan controller
+*Added kfree in case of failure to initialize driver
+*Added missing yaml file to MAINTAINERS
 
->> -----Original Message-----
->> From: Thomas Gleixner <tglx@linutronix.de>
->> Sent: Monday, November 28, 2022 1:15 PM
->> To: Frank Li <frank.li@nxp.com>; lpieralisi@kernel.org
->> Cc: Frank Li <frank.li@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
->> bhelgaas@google.com; devicetree@vger.kernel.org; festevam@gmail.com;
->> imx@lists.linux.dev; jdmason@kudzu.us; kernel@pengutronix.de;
->> kishon@ti.com; krzysztof.kozlowski+dt@linaro.org; kw@linux.com; linux-
->> arm-kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>; linux-
->> kernel@vger.kernel.org; linux-pci@vger.kernel.org;
->> lorenzo.pieralisi@arm.com; lznuaa@gmail.com;
->> manivannan.sadhasivam@linaro.org; maz@kernel.org; ntb@lists.linux.dev;
->> Peng Fan <peng.fan@nxp.com>; robh+dt@kernel.org;
->> s.hauer@pengutronix.de; shawnguo@kernel.org
->> Subject: [EXT] Re: [PATCH v13 2/2] PCI: endpoint: pci-epf-vntb: using platform
->> MSI as doorbell
+Nick Hawkins (6):
+  hwmon: (gxp-fan-ctrl) Add GXP fan controller
+  ABI: sysfs-class-hwmon: add a description for fanY_fault
+  dt-bindings: hwmon: Add hpe,gxp-fan-ctrl
+  ARM: dts: add GXP Support for fans and SPI
+  ARM: multi_v7_defconfig: Add GXP Fan and SPI support
+  MAINTAINERS: add gxp fan controller and documents
 
-is completely sufficient.
+ Documentation/ABI/testing/sysfs-class-hwmon   |   9 +
+ .../bindings/hwmon/hpe,gxp-fan-ctrl.yaml      |  41 +++
+ Documentation/hwmon/gxp-fan-ctrl.rst          |  28 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ MAINTAINERS                                   |   3 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  58 ++++
+ arch/arm/boot/dts/hpe-gxp.dtsi                |  64 ++--
+ arch/arm/configs/multi_v7_defconfig           |   2 +
+ drivers/hwmon/Kconfig                         |   9 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/gxp-fan-ctrl.c                  | 305 ++++++++++++++++++
+ 11 files changed, 502 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
+ create mode 100644 Documentation/hwmon/gxp-fan-ctrl.rst
+ create mode 100644 drivers/hwmon/gxp-fan-ctrl.c
 
->> Caution: EXT Email
-
-We are neither interested in the oddities of NXP's mail categorization system.
-
->> On Thu, Nov 24 2022 at 00:50, Frank Li wrote:
->> >
->> > Using platform MSI interrupt controller as endpoint(EP)'s doorbell.
->> 
->> Can you please explain what the MSI controller is in this picture? MSI
->> controller is not a term which is common in the interrupt handling
->> landscape despite the fact that it's pretty wide spread in device tree
->> bindings presumably through intensive copy & pasta cargo cult.
->
-> I use irq-imx-mu-msi to do test. I supposed it should work for all kinds
-> general msi controller.
-
-Sure it works by some definition of "works" because obviously that
-implementation does not care about where a particular message originates
-from.
-
-But that's still wrong at the conceptual level because it very much
-matters where a message originates from. PCIe devices and general
-platform devices have very distinct mechanisms to transport that
-information.
-
-Just because it "works" does not prove that it is correct.
-
-How are you going to do proper shielding with that approach?
-
-> Our test platform have not GIC ITS supported yet.
-
-And therefore the originating device is irrelevant, right? Get to the
-point where you have ITS and it all falls apart.
-
->> You're explaining what the code does, but fail to explain the underlying
->> mechanisms.
->> 
->> Platform MSI is definitely the wrong mechanism here. Why?
->
-> This patch use Platform MSI.  I never said " Platform MSI is
-> definitely the wrong mechanism here".
-
-I did not claim that _you_ said that. _I_ said that this is wrong. See
-above.
-
-> Base logic is that, get msi controller's message address by irq API. 
-> Map this physical address to DB BAR,  so PCI host write this DB bar, then
-> EP generate irq.
-
-Again, you are explaining what your implementation is doing, but you are
-not describing the conceptual level.
-
->> This is about a PCIe endpoint, which is usually handled by a PCI/MSI
->> interrupt domain. Obviously this usage does not fit into the way how the
->> "global" PCI/MSI domains work.
->
-> PCI endpoint have not standard PCI configure space to enable/disable MSI irq and
-> MSI address (CAP 05).
-
-I'm very well aware of the fact that a PCI endpoint does not have the
-standard MSI configuration space mechanism.
-
->  That's reason why need "platform msi", or you called "global"
-
-Again: platform MSI does not convey the PCIe device originator. It might
-be irrelevant for your actual platform, but that does not make it more
-correct. Once you have the need to track the origin of a MSI message
-then the distinction between platform and MSI matters.
-
-Sure you can argue that you don't care, but that does neither make it
-correct nor future proof and there is no point to rework this whole
-thing 6 month down the road when you actually have to support GIC-ITS.
-
->> There is upcoming work and at least the generic parts should show up in
->> 6.2 which addresses exactly the problem you are trying to solve:
->> 
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.k
->> ernel.org%2Fall%2F20221124225331.464480443%40linutronix.de&amp;data
->> =05%7C01%7CFrank.Li%40nxp.com%7C6a07e33e56af45ffc1ff08dad174d02d
->> %7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6380525969049530
->> 06%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
->> IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Q8jr
->> eVGGLa2M4yhjGO7Njqwdm59XDC0GyLEwkr0k6B0%3D&amp;reserved=0
->> 
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.k
->> ernel.org%2Fall%2F20221124230505.073418677%40linutronix.de&amp;data
->> =05%7C01%7CFrank.Li%40nxp.com%7C6a07e33e56af45ffc1ff08dad174d02d
->> %7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6380525969049530
->> 06%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
->> IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=Tc9p
->> XNJ499ETFgNWQBNLViFk8D5GbvrrwYDlBW%2Bf2qg%3D&amp;reserved=0
->> 
->> plus the prove that the platform MSI mess can be replaced by this:
->> 
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.k
->> ernel.org%2Fall%2F20221121135653.208611233%40linutronix.de&amp;data
->> =05%7C01%7CFrank.Li%40nxp.com%7C6a07e33e56af45ffc1ff08dad174d02d
->> %7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6380525969049530
->> 06%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
->> IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=R5K
->> NVfcGqxoCam%2FYhY57ihsloWGhGLM3Kh9IkyME4lk%3D&amp;reserved=0
-
-Those outlook artifacts are helpful to our conversation in which way?
- 
->> NTB in it's current form should never have happened, but that's water
->> down the bridge.
->> 
->> What you really want is:
->> 
->>   1) Convert your platform to the new MSI parent model
->> 
->>   2) Utilize PCI/IMS which is giving you exactly what you need with
->>      proper PCI semantics
->
-> Sorry, I still don't understand yet. This patch is just user of msi
-> controller.
-
-As I explained to you before: The concept of MSI controller does not
-exist in the kernel. It might exist in your NXP nomenclature, but that's
-irrelevant here.
-
-> Your patches focus on the msi controller itself. 
-
-No. They focus on changing the hierarchy model from "global" MSI domains
-to per device MSI domains so that the weird constructs of platform MSI
-can be replaced by something which actually matches the hardware and
-provides a proper abstraction for PCIe/NTB at the right level.
-
-> Interface platform_msi_domain_alloc_irqs still exist at your devmsi-v2-part3. 
-
-Sure, but at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
-
-platform_msi_domain_alloc_irqs() does not exist anymore.
-
-You replied to exactly that series which builds on top of devmsi-v2-part3, no?
-
-So what are you trying to tell me?
-
-Thanks,
-
-        tglx
+-- 
+2.17.1
 
