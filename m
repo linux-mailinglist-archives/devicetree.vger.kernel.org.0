@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0684563A59F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 11:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7525A63A5D2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 11:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbiK1KEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 05:04:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44880 "EHLO
+        id S230218AbiK1KOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 05:14:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbiK1KEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 05:04:02 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC551A206
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 02:04:01 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id w23so9636680ply.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 02:04:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/IW5LWVVRI9kkHa5NwPWDaXFbPj7S5Bv6GzAU5EdZjU=;
-        b=keSuQkLR1LuBponYgjAFjTjF8JyLLs5E6fzwQSoIquhMstq7nV3WLFgBsIYhttXACY
-         mq5u/vf9XjXqdqtlgCh/GzwcGx7qAiHiXsx43HWcvjX9uqXWnNzkW6FTnrqt57rodg3O
-         tYKLBh4iEU20FPK8678rDVGN7Ae/S/qyy94si2NFcXGDa1E+nC9CtkeIk/TzeY2N0rpN
-         vS7Cr9QuQK+aIiGwyscOGxzvqPRJ1os9DaRs7U9HvT05e3X7nrjevpLhBTFqTTBz5t3Q
-         XwLXzTN6vZciOFA416Qj2y4vgCjRcshY8sY2E5qqnzQQrKP4rIqjKbwa9pqoSYzTUWnl
-         4drg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/IW5LWVVRI9kkHa5NwPWDaXFbPj7S5Bv6GzAU5EdZjU=;
-        b=oZoBDtq5kto6t6zGgLqkwXcsxvQEFOA/EszDa0d0O+ye651qTyeX7BCCtUg0V3k4M0
-         64NMgdFUId7hS0MNBtY02/dioCxL9CwqCpWrgFef/BBl/h2LBmfx+7RBoh2AXBd5YjFv
-         0fcN/dyeHIIXrK2RtF3rzxfdt49FuYpF1X/X/w3UPXr7h1gkXet5TMsIFY6KVfcx4dR7
-         E1k619vX6FtxhbQ6pRqhPwTvTuyHr9rfWxYBuEg1c9hW8fqIHOsmBRGtonZJ0nQrPYmv
-         GRIy+70XEPnKt5bjYRdxaCo0KJtmASZ1euD2kaR5xHaVuIhUipo9pku/tnjMrY13+iIp
-         Z3OQ==
-X-Gm-Message-State: ANoB5pmDIwvDLW8RLyxh+c7CRyp2arRC4jxdSoOW85ELohQKwWb+RXKg
-        Q2Fi/IIr13/yuCeqwyKC4NgBdpBHnWYTIHOnWDKsnA==
-X-Google-Smtp-Source: AA0mqf4Gp+pVhmwbvUZVt7ZQTkdaSastAOQgb0R9mo3rJRs7Clc2ULqM0v3qxeECp9HvfCvmWVzXF67UrXHYTI6k9xc=
-X-Received: by 2002:a17:902:8601:b0:189:7372:144c with SMTP id
- f1-20020a170902860100b001897372144cmr11515722plo.106.1669629840651; Mon, 28
- Nov 2022 02:04:00 -0800 (PST)
+        with ESMTP id S229911AbiK1KOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 05:14:32 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693D013E35;
+        Mon, 28 Nov 2022 02:14:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669630471; x=1701166471;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x0vkDNxcTGDBQx1tdJF7VOl/Y7E12BTrTMtu7ZOaq8Y=;
+  b=FiLEkTPsu5Gt8yKtJGSkVj2+Fb3GuJrmkwSpbyW2V4yr4lsTTrqhI8/f
+   +RUfpb6h6m4zM52mRIa1WBduu1XJoQHWzhstFLiAo3M38SYmJE9M6k8kB
+   pf+JTo3QgfIOsVKGVHkzGFKZPRLPLCjf2ou3dJb1x5A/rel+Qq8uRD7t0
+   N9JESRUyPWF5HKBDIOo8wTRl1DncsrYWeob8TAEgJKx+8TFL/7OOcVQSo
+   uBYPBoqnZr6kNSMTZRgatvtlUGRnl40lwuAhsaeoSf8nAhlFBSOm0BLrO
+   iPJxui2HZ67Y3n/NO1PkkxUrTDkGTtVPJoK7kiK+5+3Zr25CRvhrLj0Ul
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="341710981"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; 
+   d="scan'208";a="341710981"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 02:14:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10544"; a="637168198"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; 
+   d="scan'208";a="637168198"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga007.jf.intel.com with ESMTP; 28 Nov 2022 02:14:27 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1ozb9d-0014Vw-37;
+        Mon, 28 Nov 2022 12:14:25 +0200
+Date:   Mon, 28 Nov 2022 12:14:25 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] gpio: Do not include <linux/kernel.h> when not really
+ needed.
+Message-ID: <Y4SKAbUM52tanAvc@smile.fi.intel.com>
+References: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
 MIME-Version: 1.0
-References: <20221125112904.48652-1-robert.marko@sartura.hr> <166950120854.13025.2614107746698757914.robh@kernel.org>
-In-Reply-To: <166950120854.13025.2614107746698757914.robh@kernel.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 28 Nov 2022 11:03:49 +0100
-Message-ID: <CA+HBbNEVbu4DEuazeR4MUGoBDvB==iHFQo=+yXDgs8R7E0C-Kg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert GPIO binding to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     luka.perkov@sartura.hr, linux-kernel@vger.kernel.org,
-        linux@roeck-us.net, devicetree@vger.kernel.org,
-        wim@linux-watchdog.org, robh+dt@kernel.org,
-        linux-watchdog@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3f75784c57dc0682b5e1758daddd93fee6bb4b27.1669585920.git.christophe.jaillet@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 26, 2022 at 11:25 PM Rob Herring <robh@kernel.org> wrote:
->
->
-> On Fri, 25 Nov 2022 12:29:04 +0100, Robert Marko wrote:
-> > Convert the DT binding for GPIO WDT to JSON schema.
-> >
-> > Cc: luka.perkov@sartura.hr
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> >  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 ----------
-> >  .../bindings/watchdog/gpio-wdt.yaml           | 55 +++++++++++++++++++
-> >  2 files changed, 55 insertions(+), 28 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-> >  create mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.yaml
-> >
->
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->
-> Full log is available here: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221125112904.48652-1-robert.marko@sartura.hr
->
->
-> watchdog-gpio: Unevaluated properties are not allowed ('always-enabled' was unexpected)
->         arch/arm64/boot/dts/freescale/imx8mm-data-modul-edm-sbc.dtb
+On Sun, Nov 27, 2022 at 10:52:10PM +0100, Christophe JAILLET wrote:
+> <linux/kernel.h> is included only for using container_of().
+> Include <linux/container_of.h> instead, it is much lighter.
 
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-This is expected as always-enabled was not documented in TXT bindings
-nor the driver actually parses it,
-it is looking for always-running only.
+Thanks for doing this! We really don't want to see kernel.h to be included by
+other headers in the include/linux, include/asm, etc.
 
-Regards,
-Robert
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> ---
+> Not sure if the prefix should be gpio or gpiolib.
+
+I'm not sure either because this more for the consumers, I would leave gpio.
+
+> Let see if build-bots spot something which is inherit via kernel.h
+> ---
+>  include/linux/of_gpio.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/of_gpio.h b/include/linux/of_gpio.h
+> index a5166eb93437..6db627257a7b 100644
+> --- a/include/linux/of_gpio.h
+> +++ b/include/linux/of_gpio.h
+> @@ -34,7 +34,7 @@ enum of_gpio_flags {
+>  
+>  #ifdef CONFIG_OF_GPIO
+>  
+> -#include <linux/kernel.h>
+> +#include <linux/container_of.h>
+>  
+>  /*
+>   * OF GPIO chip for memory mapped banks
+> -- 
+> 2.34.1
+> 
+> 
+
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+With Best Regards,
+Andy Shevchenko
+
+
