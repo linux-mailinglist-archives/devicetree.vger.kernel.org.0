@@ -2,84 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8F1563AAA2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE7163AB0A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:32:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbiK1OPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:15:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
+        id S232465AbiK1OcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:32:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232416AbiK1OPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:15:30 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C62121E3D
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:15:28 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id bn5so13309361ljb.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:15:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JDk+RgMXh2bcnf3sUSR69iJbOx6/yOw6ydW/1FhZE54=;
-        b=k365y/G3nBImPTN8GetA9qitbyHs5nzSNJbtyU1VpJJs7siH8YxrOxNDp5raL7VcmR
-         HEcxW+x1MesHwYYf8EdOfLAlMVR5l15YaTQklQxDJdZC7lG4DyVYfV4Jf3Ik2lvpCjcf
-         eTDWYC5ZNueOl23RaCj6krfOdCBlc0uNgfW9/49feJBsyt+FSk5dM3Gd2dMo6SUehKr3
-         rJ2y4kxhh2+XLtnBKvDu06rRDccOCwsNnMY7BeVvgoCNyMZ7MsI02bmwGTC68I0A55Zh
-         0Sv5vU73WdMV2m19Aja1zLmNq58hql+ttR7OAXKMXD58B1qwA2kCIH748uNveGLzdizK
-         LnQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JDk+RgMXh2bcnf3sUSR69iJbOx6/yOw6ydW/1FhZE54=;
-        b=2chaBjhToJz4ZdIlgnpp5HMffZ1x/4KdUoXS/cAuCRQl9kUa9gYmHwOFvegqezKIUh
-         zKEfMb2JGeEMMJDLOSgWrxq1b08Ht8kuguql0zGLQtyTm2ABVM/K5rom0nqRCn67sZBa
-         FksRXHj1lJDO+Wg4QGBDN1Egc+Q6qzx6fRCK4X7JaCIU3wzWWanadbieadyRWY3hfSpj
-         mJ3MI8/0GCwlV2Rtc/oXQOIMr2OwJIKB36VMF0hTLs0MID1Bd7e9P9j+dCf6g2zyJTuk
-         BLVyFB95kAw9R45mF/D3Esm4U3KalKd4eCo+EElKuV3paGuxhuejRewDuisDPSBGzb4D
-         J6RA==
-X-Gm-Message-State: ANoB5pkqmYUct74RVYDLsb/qPeD9cCDkAzWFd1fryKa2LA6vQSx6g2Iz
-        hfWCCq/RMMVAmIbQuTDzzuLnm7zuk8C+9N8G
-X-Google-Smtp-Source: AA0mqf4w8/6dh9E18VGn4p+sg3dHASbUTnSG3xCMqbJhl35aK2YZUFEI3d97RxH8LPvRVfs4XWFzxA==
-X-Received: by 2002:a2e:2a84:0:b0:279:9500:4b19 with SMTP id q126-20020a2e2a84000000b0027995004b19mr4847785ljq.71.1669644926645;
-        Mon, 28 Nov 2022 06:15:26 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z4-20020a05651c11c400b0027998486803sm817266ljo.130.2022.11.28.06.15.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 06:15:26 -0800 (PST)
-Message-ID: <026d3af4-1903-4486-f127-691b8ea7a2fc@linaro.org>
-Date:   Mon, 28 Nov 2022 15:15:24 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH V3 3/5] dt-bindings: i2c: add bindings for Loongson LS2X
- I2C
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232609AbiK1Obr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:31:47 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85707222B8;
+        Mon, 28 Nov 2022 06:31:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 21B14611CC;
+        Mon, 28 Nov 2022 14:31:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF8F8C433C1;
+        Mon, 28 Nov 2022 14:31:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669645877;
+        bh=o6vs9x16gtpUsWQXrNUt1RAdeTIsOsJrIh1//CI7WcU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Cvl/V8Cdke02ytFWeQMSOfxV3zHGc1NmsEpKtrNhyfgGO1lEP62W2rmIndHnkful9
+         lDAHRxaTVcId6ZfW8aNbYOBso3/cQccmdpjo1ztEEqiWLPfaGwPGlWYeR2imhWUSy7
+         rSXLFrTckP8/lbRuNZuwnaqZ2eGH66mZ3Kl3WFyzSnGlGJCsr2eBMKdKhfBsdd/76S
+         n98FZztU6y9Btv0HpPpxEy0FfVIUPvSXLpEMKttXHdLtim9fhJ1rnUE9S5YXj5OEV6
+         01bOaG93q2gw3gOPcdhXAQW4QcXmjg/Uu/C3zrcERB5q3obnQwXku1CjvvpX4fDOf1
+         AJ27pLmtsPKzA==
+Date:   Mon, 28 Nov 2022 22:21:23 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Jiri Slaby <jirislaby@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn>
- <61541d15-fbfd-3f99-fc05-663ebf4a2b54@linaro.org>
- <654be437-f4f0-4c98-b124-ac2d8f78fdbe@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <654be437-f4f0-4c98-b124-ac2d8f78fdbe@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v2 2/9] serial: bflb_uart: add Bouffalolab UART Driver
+Message-ID: <Y4TD48v84CJcMS+S@xhacker>
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-3-jszhang@kernel.org>
+ <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,28 +61,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 13:24, Binbin Zhou wrote:
-> Hi Krzysztof:
+On Mon, Nov 28, 2022 at 07:10:41AM +0100, Jiri Slaby wrote:
+> On 27. 11. 22, 14:24, Jisheng Zhang wrote:
+> > +static void bflb_uart_tx_chars(struct uart_port *port)
 > 
-> 在 2022/11/28 04:49, Krzysztof Kozlowski 写道:
->> On 25/11/2022 09:54, Binbin Zhou wrote:
->>> Add device tree bindings for the i2c controller on the Loongson-2K Soc
->>> or Loongosn LS7A bridge.
->> It's a v3 which is for the first time sent to DT maintainers...
-> Sorry, it was my mistake, I didn't double check the mail recipients in 
-> my .git/config.
->>
->> Subject: drop second, redundant "bindings for".
+> Again:
 > 
-> Ok. I get it.
+> Are you unable to use the TX helper? If so:
 
-Actually, sending bindings and patches for same devices is a waste of
-everyone's time:
-https://lore.kernel.org/all/20221117075938.23379-2-zhuyinbo@loongson.cn/
+You know serial subsystem better than me, may I ask for more
+details? For example,
+Besides uart_xmit_advance(), do you expect other TX helpers? If yes,
+can you please list them?
 
-Get your upstream process synchronized. Perform reviews on each other
-patches, check mailing lists.
+> * why?
+> * use uart_advance_xmit() at least.
 
-Best regards,
-Krzysztof
+Do you mean uart_xmit_advance()? in the do while loop below?
 
+I'm not sure I understand the meaning, correct me If I misunderstand
+something.
+
+thanks
+> 
+> > +{
+> > +	struct circ_buf *xmit = &port->state->xmit;
+> > +	unsigned int count;
+> > +
+> > +	if (port->x_char) {
+> > +		/* Send special char - probably flow control */
+> > +		wrl(port, UART_FIFO_WDATA, port->x_char);
+> > +		port->x_char = 0;
+> > +		port->icount.tx++;
+> > +		return;
+> > +	}
+> > +
+> > +	if (uart_circ_empty(xmit) || uart_tx_stopped(port)) {
+> > +		bflb_uart_stop_tx(port);
+> > +		return;
+> > +	}
+> > +
+> > +	count = BFLB_UART_TX_FIFO_TH;
+> > +	do {
+> > +		wrl(port, UART_FIFO_WDATA, xmit->buf[xmit->tail]);
+> > +		xmit->tail = (xmit->tail + 1) & (UART_XMIT_SIZE - 1);
+> > +		port->icount.tx++;
+> > +		if (uart_circ_empty(xmit))
+> > +			break;
+> > +	} while (--count > 0);
+> > +
+> > +	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
+> > +		uart_write_wakeup(port);
+> > +
+> > +	if (uart_circ_empty(xmit))
+> > +		bflb_uart_stop_tx(port);
+> > +}
+> 
+> -- 
+> js
+> suse labs
+> 
