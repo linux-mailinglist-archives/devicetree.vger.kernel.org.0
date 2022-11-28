@@ -2,308 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7685C639E6B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 01:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4224639E83
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 01:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiK1AQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Nov 2022 19:16:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50490 "EHLO
+        id S229552AbiK1AwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Nov 2022 19:52:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbiK1AQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 19:16:10 -0500
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51366101DC;
-        Sun, 27 Nov 2022 16:16:08 -0800 (PST)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9ED7EE0005;
-        Mon, 28 Nov 2022 00:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1669594566;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=C4afrmCnsTFI1dYjoEJlWykktcfo6jeTgLdNCqzTc7I=;
-        b=HBgE3xveDP90YoSj69ZrgOK7AibdlGz8Rljko2tR4uKCUjeRc/DO4sgKGgwuOnT33eLx1w
-        rBpR2zrid1bJ+9g+qMPrO/hbfHG6HCIIbRPq1Wdp1+F6M3FesBJ3HY2LE3Nn3OezLeK5gU
-        7HuhSPqXUHRPoKiLqVnVkEIaIgHoQgZf5S4SeTiVJVyHODgJ2OBDusq9iUNyE73yEvUFqK
-        6aWax3+MNTduuXDwLAjjs27DUDxvvkPdvimVrvJtMrAvY7rYnw5vgem8ToZGn4/sbQ2DuH
-        N5h8fWxoO1G7MSAY3E81v9s+nrZhpKAlX/gVk2wcVjdBBoIau55Z1gLtP6HVFg==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ARM: dts: armada: align LED node names with dtschema
-In-Reply-To: <20221125144133.477116-1-krzysztof.kozlowski@linaro.org>
-References: <20221125144133.477116-1-krzysztof.kozlowski@linaro.org>
-Date:   Mon, 28 Nov 2022 01:16:05 +0100
-Message-ID: <87ilj07x2y.fsf@BL-laptop>
+        with ESMTP id S229515AbiK1AwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Nov 2022 19:52:11 -0500
+X-Greylist: delayed 177 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 27 Nov 2022 16:52:05 PST
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7535BC2C;
+        Sun, 27 Nov 2022 16:52:05 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7CDB324DE73;
+        Mon, 28 Nov 2022 08:49:05 +0800 (CST)
+Received: from EXMBX065.cuchost.com (172.16.6.65) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 28 Nov
+ 2022 08:49:06 +0800
+Received: from [192.168.125.66] (183.27.97.81) by EXMBX065.cuchost.com
+ (172.16.6.65) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 28 Nov
+ 2022 08:49:04 +0800
+Message-ID: <0ceba170-f844-e733-a49e-e67746f9f836@starfivetech.com>
+Date:   Mon, 28 Nov 2022 08:48:54 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add StarFive JH7110 pinctrl
+ definitions
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118011108.70715-1-hal.feng@starfivetech.com>
+ <20221118011108.70715-2-hal.feng@starfivetech.com>
+ <eb3974a3-f715-f5b0-cac7-551af26bd17b@linaro.org>
+ <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
+Content-Language: en-US
+From:   Jianlong Huang <jianlong.huang@starfivetech.com>
+In-Reply-To: <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [183.27.97.81]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX065.cuchost.com
+ (172.16.6.65)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+On Mon, 21 Nov 2022 09:39:46 +0100, Krzysztof Kozlowski wrote:
+> On 21/11/2022 09:38, Krzysztof Kozlowski wrote:
+>> On 18/11/2022 02:11, Hal Feng wrote:
+>>> From: Jianlong Huang <jianlong.huang@starfivetech.com>
+>>>
+>>> Add pinctrl definitions for StarFive JH7110 SoC.
+>>>
+>>> Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
+>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>>> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
+>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>>> ---
+>>>  .../pinctrl/pinctrl-starfive-jh7110.h         | 427 ++++++++++++++++++
+>>>  1 file changed, 427 insertions(+)
+>>>  create mode 100644 include/dt-bindings/pinctrl/pinctrl-starfive-jh7110.h
+>>>
+>>> diff --git a/include/dt-bindings/pinctrl/pinctrl-starfive-jh7110.h b/include/dt-bindings/pinctrl/pinctrl-starfive-jh7110.h
+>>> new file mode 100644
+>>> index 000000000000..fb02345caa27
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/pinctrl/pinctrl-starfive-jh7110.h
+>>> @@ -0,0 +1,427 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+>>> +/*
+>>> + * Copyright (C) 2022 Emil Renner Berthing <kernel@esmil.dk>
+>>> + * Copyright (C) 2022 StarFive Technology Co., Ltd.
+>>> + */
+>>> +
+>>> +#ifndef __DT_BINDINGS_PINCTRL_STARFIVE_JH7110_H__
+>>> +#define __DT_BINDINGS_PINCTRL_STARFIVE_JH7110_H__
+>>> +
+>>> +/*
+>>> + * mux bits:
+>>> + *  | 31 - 24 | 23 - 16 | 15 - 10 |  9 - 8   |  7 - 0  |
+>>> + *  |  din    |  dout   |  doen   | function | gpio nr |
+>>> + *
+>>> + * dout:     output signal
+>>> + * doen:     output enable signal
+>>> + * din:      optional input signal, 0xff = none
+>>> + * function:
+>>> + * gpio nr:  gpio number, 0 - 63
+>>> + */
+>>> +#define GPIOMUX(n, dout, doen, din) ( \
+>>> +		(((din)  & 0xff) << 24) | \
+>>> +		(((dout) & 0xff) << 16) | \
+>>> +		(((doen) & 0x3f) << 10) | \
+>>> +		((n) & 0x3f))
+>>> +
+>> 
+>> 
+>> (...)
+>> 
+>>> +/* sys_iomux doen */
+>>> +#define GPOEN_ENABLE				 0
+>>> +#define GPOEN_DISABLE				 1
+>>> +#define GPOEN_SYS_HDMI_CEC_SDA			 2
+>>> +#define GPOEN_SYS_HDMI_DDC_SCL			 3
+>>> +#define GPOEN_SYS_HDMI_DDC_SDA			 4
+>>> +#define GPOEN_SYS_I2C0_CLK			 5
+>>> +#define GPOEN_SYS_I2C0_DATA			 6
+>>> +#define GPOEN_SYS_HIFI4_JTAG_TDO		 7
+>>> +#define GPOEN_SYS_JTAG_TDO			 8
+>>> +#define GPOEN_SYS_PWM0_CHANNEL0			 9
+>>> +#define GPOEN_SYS_PWM0_CHANNEL1			10
+>>> +#define GPOEN_SYS_PWM0_CHANNEL2			11
+>>> +#define GPOEN_SYS_PWM0_CHANNEL3			12
+>>> +#define GPOEN_SYS_SPI0_NSSPCTL			13
+>>> +#define GPOEN_SYS_SPI0_NSSP			14
+>>> +#define GPOEN_SYS_TDM_SYNC			15
+>>> +#define GPOEN_SYS_TDM_TXD			16
+>>> +#define GPOEN_SYS_I2C1_CLK			17
+>>> +#define GPOEN_SYS_I2C1_DATA			18
+>>> +#define GPOEN_SYS_SDIO1_CMD			19
+>>> +#define GPOEN_SYS_SDIO1_DATA0			20
+>>> +#define GPOEN_SYS_SDIO1_DATA1			21
+>>> +#define GPOEN_SYS_SDIO1_DATA2			22
+>>> +#define GPOEN_SYS_SDIO1_DATA3			23
+>>> +#define GPOEN_SYS_SDIO1_DATA4			24
+>>> +#define GPOEN_SYS_SDIO1_DATA5			25
+>>> +#define GPOEN_SYS_SDIO1_DATA6			26
+>>> +#define GPOEN_SYS_SDIO1_DATA7			27
+>>> +#define GPOEN_SYS_SPI1_NSSPCTL			28
+>>> +#define GPOEN_SYS_SPI1_NSSP			29
+>>> +#define GPOEN_SYS_I2C2_CLK			30
+>>> +#define GPOEN_SYS_I2C2_DATA			31
+>>> +#define GPOEN_SYS_SPI2_NSSPCTL			32
+>>> +#define GPOEN_SYS_SPI2_NSSP			33
+>>> +#define GPOEN_SYS_I2C3_CLK			34
+>>> +#define GPOEN_SYS_I2C3_DATA			35
+>>> +#define GPOEN_SYS_SPI3_NSSPCTL			36
+>>> +#define GPOEN_SYS_SPI3_NSSP			37
+>>> +#define GPOEN_SYS_I2C4_CLK			38
+>>> +#define GPOEN_SYS_I2C4_DATA			39
+>>> +#define GPOEN_SYS_SPI4_NSSPCTL			40
+>>> +#define GPOEN_SYS_SPI4_NSSP			41
+>>> +#define GPOEN_SYS_I2C5_CLK			42
+>>> +#define GPOEN_SYS_I2C5_DATA			43
+>>> +#define GPOEN_SYS_SPI5_NSSPCTL			44
+>>> +#define GPOEN_SYS_SPI5_NSSP			45
+>>> +#define GPOEN_SYS_I2C6_CLK			46
+>>> +#define GPOEN_SYS_I2C6_DATA			47
+>>> +#define GPOEN_SYS_SPI6_NSSPCTL			48
+>>> +#define GPOEN_SYS_SPI6_NSSP			49
+>>> +
+>>> +/* aon_iomux doen */
+>>> +#define GPOEN_AON_PTC0_OE_N_4			2
+>>> +#define GPOEN_AON_PTC0_OE_N_5			3
+>>> +#define GPOEN_AON_PTC0_OE_N_6			4
+>>> +#define GPOEN_AON_PTC0_OE_N_7			5
+>>> +
+>> 
+>> It looks like you add register constants to the bindings. Why? The
+>> bindings are not the place to represent hardware programming model. Not
+>> mentioning that there is no benefit in this.
+> 
+> Also: this entire file should be dropped, but if it stays, you have to
+> name it matching bindings or compatible (vendor,device.h).
 
-> The node names should be generic and DT schema expects certain pattern:
->
->   armada-370-seagate-personal-cloud.dtb: gpio-leds: 'red-sata0' does not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks your comments.
+These macros are used to configure pinctrl in dts, so the file should stay,
+and will change the name as "starfive,jh7110-pinctrl.h" to match bindings or compatible.
 
-Applied on mvebu/dt
+Best regards,
+Jianlong Huang
 
-Thanks,
 
-Gregory
-> ---
->  arch/arm/boot/dts/armada-370-dlink-dns327l.dts           | 6 +++---
->  arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts        | 4 ++--
->  arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi       | 8 ++++----
->  arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi | 2 +-
->  arch/arm/boot/dts/armada-385-linksys-caiman.dts          | 4 ++--
->  arch/arm/boot/dts/armada-385-linksys-cobra.dts           | 4 ++--
->  arch/arm/boot/dts/armada-385-linksys-rango.dts           | 8 ++++----
->  arch/arm/boot/dts/armada-385-linksys-shelby.dts          | 4 ++--
->  arch/arm/boot/dts/armada-385-linksys.dtsi                | 4 ++--
->  arch/arm/boot/dts/armada-385-synology-ds116.dts          | 2 +-
->  arch/arm/boot/dts/armada-xp-linksys-mamba.dts            | 2 +-
->  11 files changed, 24 insertions(+), 24 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/armada-370-dlink-dns327l.dts b/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
-> index 2008c6eaaa52..561195b749eb 100644
-> --- a/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
-> +++ b/arch/arm/boot/dts/armada-370-dlink-dns327l.dts
-> @@ -86,19 +86,19 @@ &sata_l_white_pin
->  
->  		pinctrl-names = "default";
->  
-> -		sata-r-amber-pin {
-> +		led-sata-r-amber {
->  			label = "dns327l:amber:sata-r";
->  			gpios = <&gpio1 20 GPIO_ACTIVE_HIGH>;
->  			default-state = "keep";
->  		};
->  
-> -		sata-l-amber-pin {
-> +		led-sata-l-amber {
->  			label = "dns327l:amber:sata-l";
->  			gpios = <&gpio1 21 GPIO_ACTIVE_HIGH>;
->  			default-state = "keep";
->  		};
->  
-> -		backup-led-pin {
-> +		led-backup {
->  			label = "dns327l:white:usb";
->  			gpios = <&gpio1 29 GPIO_ACTIVE_HIGH>;
->  			default-state = "keep";
-> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts b/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
-> index 3cf70c72c5ca..9cb69999b1db 100644
-> --- a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
-> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
-> @@ -72,11 +72,11 @@ regulator@4 {
->  	};
->  
->  	gpio-leds {
-> -		red-sata2 {
-> +		led-red-sata2 {
->  			label = "dart:red:sata2";
->  			gpios = <&pca9554 0 GPIO_ACTIVE_LOW>;
->  		};
-> -		red-sata3 {
-> +		led-red-sata3 {
->  			label = "dart:red:sata3";
->  			gpios = <&pca9554 3 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi b/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
-> index 866b8630d407..822f10734946 100644
-> --- a/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
-> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-xbay.dtsi
-> @@ -132,21 +132,21 @@ button-reset {
->  	gpio-leds {
->  		compatible = "gpio-leds";
->  
-> -		white-power {
-> +		led-white-power {
->  			label = "dart:white:power";
->  			gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
->  			linux,default-trigger = "timer";
->  
->  		};
-> -		red-power {
-> +		led-red-power {
->  			label = "dart:red:power";
->  			gpios = <&gpio1 31 GPIO_ACTIVE_HIGH>;
->  		};
-> -		red-sata0 {
-> +		led-red-sata0 {
->  			label = "dart:red:sata0";
->  			gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
->  		};
-> -		red-sata1 {
-> +		led-red-sata1 {
->  			label = "dart:red:sata1";
->  			gpios = <&gpio1 21 GPIO_ACTIVE_LOW>;
->  		};
-> diff --git a/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi b/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
-> index 702a85af2078..124a8ba279e3 100644
-> --- a/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
-> +++ b/arch/arm/boot/dts/armada-370-seagate-personal-cloud.dtsi
-> @@ -107,7 +107,7 @@ button-usb {
->  	gpio-leds {
->  		compatible = "gpio-leds";
->  
-> -		red-sata0 {
-> +		led-red-sata0 {
->  			label = "cumulus:red:sata0";
->  			gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
->  			default-state = "off";
-> diff --git a/arch/arm/boot/dts/armada-385-linksys-caiman.dts b/arch/arm/boot/dts/armada-385-linksys-caiman.dts
-> index a03050c97084..88b2921fed55 100644
-> --- a/arch/arm/boot/dts/armada-385-linksys-caiman.dts
-> +++ b/arch/arm/boot/dts/armada-385-linksys-caiman.dts
-> @@ -62,11 +62,11 @@ wps_amber@9 {
->  };
->  
->  &gpio_leds {
-> -	power {
-> +	led-power {
->  		label = "caiman:white:power";
->  	};
->  
-> -	sata {
-> +	led-sata {
->  		label = "caiman:white:sata";
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/armada-385-linksys-cobra.dts b/arch/arm/boot/dts/armada-385-linksys-cobra.dts
-> index e3e4877a6f49..88200f930d0d 100644
-> --- a/arch/arm/boot/dts/armada-385-linksys-cobra.dts
-> +++ b/arch/arm/boot/dts/armada-385-linksys-cobra.dts
-> @@ -62,11 +62,11 @@ wps_amber@9 {
->  };
->  
->  &gpio_leds {
-> -	power {
-> +	led-power {
->  		label = "cobra:white:power";
->  	};
->  
-> -	sata {
-> +	led-sata {
->  		label = "cobra:white:sata";
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/armada-385-linksys-rango.dts b/arch/arm/boot/dts/armada-385-linksys-rango.dts
-> index 3c4af57ec2b9..4ab45f294de2 100644
-> --- a/arch/arm/boot/dts/armada-385-linksys-rango.dts
-> +++ b/arch/arm/boot/dts/armada-385-linksys-rango.dts
-> @@ -54,22 +54,22 @@ wps_amber@9 {
->  };
->  
->  &gpio_leds {
-> -	power {
-> +	led-power {
->  		gpios = <&gpio1 24 GPIO_ACTIVE_HIGH>;
->  		label = "rango:white:power";
->  	};
->  
-> -	sata {
-> +	led-sata {
->  		gpios = <&gpio0 21 GPIO_ACTIVE_LOW>;
->  		label = "rango:white:sata";
->  	};
->  
-> -	wlan_2g {
-> +	led-wlan_2g {
->  		gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
->  		label = "rango:white:wlan_2g";
->  	};
->  
-> -	wlan_5g {
-> +	led-wlan_5g {
->  		gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
->  		label = "rango:white:wlan_5g";
->  	};
-> diff --git a/arch/arm/boot/dts/armada-385-linksys-shelby.dts b/arch/arm/boot/dts/armada-385-linksys-shelby.dts
-> index 3451cd3e5dff..f1b1f22413f1 100644
-> --- a/arch/arm/boot/dts/armada-385-linksys-shelby.dts
-> +++ b/arch/arm/boot/dts/armada-385-linksys-shelby.dts
-> @@ -62,11 +62,11 @@ wps_amber@9 {
->  };
->  
->  &gpio_leds {
-> -	power {
-> +	led-power {
->  		label = "shelby:white:power";
->  	};
->  
-> -	sata {
-> +	led-sata {
->  		label = "shelby:white:sata";
->  	};
->  };
-> diff --git a/arch/arm/boot/dts/armada-385-linksys.dtsi b/arch/arm/boot/dts/armada-385-linksys.dtsi
-> index 116aca5e688f..85e8d966f6c1 100644
-> --- a/arch/arm/boot/dts/armada-385-linksys.dtsi
-> +++ b/arch/arm/boot/dts/armada-385-linksys.dtsi
-> @@ -71,12 +71,12 @@ gpio_leds: gpio-leds {
->  		pinctrl-0 = <&gpio_leds_pins>;
->  		pinctrl-names = "default";
->  
-> -		power {
-> +		led-power {
->  			gpios = <&gpio1 23 GPIO_ACTIVE_HIGH>;
->  			default-state = "on";
->  		};
->  
-> -		sata {
-> +		led-sata {
->  			gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
->  			default-state = "off";
->  			linux,default-trigger = "disk-activity";
-> diff --git a/arch/arm/boot/dts/armada-385-synology-ds116.dts b/arch/arm/boot/dts/armada-385-synology-ds116.dts
-> index 2622af73c9da..ea91ff964d94 100644
-> --- a/arch/arm/boot/dts/armada-385-synology-ds116.dts
-> +++ b/arch/arm/boot/dts/armada-385-synology-ds116.dts
-> @@ -149,7 +149,7 @@ gpio-leds {
->  			 * sata0, and accesses to SATA disk 0 make it blink so it
->  			 * doesn't need to be declared here.
->  			 */
-> -			orange {
-> +			led-orange {
->  				gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
->  				label = "ds116:orange:disk";
->  				default-state = "off";
-> diff --git a/arch/arm/boot/dts/armada-xp-linksys-mamba.dts b/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
-> index 622ac40dd164..dbe8dfe236fb 100644
-> --- a/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
-> +++ b/arch/arm/boot/dts/armada-xp-linksys-mamba.dts
-> @@ -195,7 +195,7 @@ gpio-leds {
->  		pinctrl-0 = <&power_led_pin>;
->  		pinctrl-names = "default";
->  
-> -		power {
-> +		led-power {
->  			label = "mamba:white:power";
->  			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
->  			default-state = "on";
-> -- 
-> 2.34.1
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
