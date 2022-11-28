@@ -2,117 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6607863AFF1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:48:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A8663AFE3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:46:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233396AbiK1Rr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:47:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35140 "EHLO
+        id S233521AbiK1Rqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:46:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233632AbiK1Rqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:46:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5B527CCE;
-        Mon, 28 Nov 2022 09:41:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DC7E4612D0;
-        Mon, 28 Nov 2022 17:41:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43162C43470;
-        Mon, 28 Nov 2022 17:41:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669657301;
-        bh=EKzhoSPC9eVZ1/kHObi9Rsuwob1sDSFrdymB7pV96a0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kSAZ6plHOCcKRFYraXnxXW17Hik2mSxI0iPik5E8gTHdrwuR9/rQ7fOok7zSZl4TB
-         lPpPLGDfe0XFv7hBewuIioiPaMwm27sac7meRjvyzOc5bOh3QCySrV6a0oxi4oudHM
-         KAzQVNBuv3Y1eNq+1MYkdn7JWVWPWwETF0WcL3azyz3cNVLjiXfpRfXLp8IkGdFzWL
-         0T3J5HWmZNjlbbCYe45QwAW1+WfEiuKJOiGYvyQZy7456N3Lh3lZC8k1VsalxJvlG3
-         x3Awg5BhSgP/YxyD6fnv+wnUnFPkN/f9yzvZIfZ4aAWVKJoQd3NttUjG6ZuNnGI5LI
-         bWt0Ml9JcYo1g==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 09/19] ARM: dts: rockchip: disable arm_global_timer on rk3066 and rk3188
-Date:   Mon, 28 Nov 2022 12:41:09 -0500
-Message-Id: <20221128174120.1442235-9-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128174120.1442235-1-sashal@kernel.org>
-References: <20221128174120.1442235-1-sashal@kernel.org>
+        with ESMTP id S233418AbiK1RqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:46:09 -0500
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154412CE3D
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:41:26 -0800 (PST)
+Received: by mail-il1-f180.google.com with SMTP id h17so5375119ila.6
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 09:41:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xbRKAUrPmnBiS6hCHyMw1jh/sJ1aupJyGNs4+wDuBfw=;
+        b=JbnKXHqx9V3W/+29zPrd/j1S2SNKWEbmATXkVgE1/G7KgT0TIOeGVuYV329lDtMcan
+         ildWK0vFKuESZ0G5x1pP6dUp1Otku5ikPaEhTzBqTHKmvS9q45hrFg2FGhYAlkX0cnwp
+         kw8Mvj8Muh2oQQCFoyrDJnswwWYfbkxif4Kc5QJEmJ5LpiyjZ0UykioFQR6oYS5jMWCY
+         5zaAPB9CX6IBvegpuF5mRyvCo6fmOsvl8lTyhoaTylJHjz2kMcSGGAmohVfPcnNMQRTS
+         4Ho7lslrDBaGY3eD/wtnSvCJ+cjHMRf6mUVQ540tzH9I45qsizSZ74h8Dq3t698J7QJ6
+         wZBA==
+X-Gm-Message-State: ANoB5plJI5q9UdTIVjy3R1TxbTb9twlk6tpVI9Piu+hXUNBHUhm3f9Lg
+        h+p4i9lYQywsk6hpXVEzuqAAZg==
+X-Google-Smtp-Source: AA0mqf506mtbJING1FaQH+qUD+TgZxe8QY5+GImTnpr+oiFjfC0dS6xS3ra4FGl0uBRaZC6gip956g==
+X-Received: by 2002:a05:6e02:def:b0:300:c33d:c8a8 with SMTP id m15-20020a056e020def00b00300c33dc8a8mr16478349ilj.166.1669657278190;
+        Mon, 28 Nov 2022 09:41:18 -0800 (PST)
+Received: from google.com (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with ESMTPSA id r5-20020a92c505000000b00300e6efca96sm4038626ilg.55.2022.11.28.09.41.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 09:41:17 -0800 (PST)
+Date:   Mon, 28 Nov 2022 17:41:14 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        =?utf-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
+        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
+        Jason.Huang@ecs.com.tw
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
+Message-ID: <Y4TyuqPQtZBFChKD@google.com>
+References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+ <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
+ <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org>
+ <CAPao8GKbdK79Z7w91x0T6JW9v6VFoeYSaXGGAuzB_=ukR9g0_w@mail.gmail.com>
+ <b54cd0a4-7ee8-e8c0-ceda-18b29588d535@linaro.org>
+ <CAD=FV=X9C8nLDrEpZE2tLtq6Brn9cd-15+1JWFOL4cPYdJs5Dg@mail.gmail.com>
+ <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
+X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
+On Mon, Nov 28, 2022 at 06:22:39PM +0100, Krzysztof Kozlowski wrote:
+> On 28/11/2022 16:56, Doug Anderson wrote:
+> > Hi,
+> > 
+> > On Thu, Nov 24, 2022 at 3:27 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 24/11/2022 12:20, 楊宗翰 wrote:
+> >>> Hi Krzysztof, Matthias,
+> >>>
+> >>> How to use "get_maintainers.pl"?
+> >>>
+> >>> I find this script in path "<MyCodebase>/kernel/v5.15/script", and output
+> >>
+> >> This looks like v5.15 kernel which is heavily outdated. Please never
+> >> work on such kernels when interacting with upstream. The rule is you
+> >> work on either last mainline kernel (v6.1-rc6), maintainers for-next
+> >> branch (you should know who is the maintainer of subsystem you submit
+> >> to, get_maintainers.pl gives this information) or on moderately recent
+> >> linux-next. For bigger patchsets there might be exceptions for these
+> >> rules, but it's not the case here.
+> > 
+> > Just to add context here, it's a fairly standard workflow for ChromeOS
+> > kernel engineers to work in a "versioned" kernel directory but still
+> > checkout and work with the upstream kernel. I'm sure it's confusing to
+> > anyone not used to working with the ChromeOS source tree and build
+> > system. Sorry! :( So the fact that Owen is in a directory called
+> > "v5.15" doesn't mean that he's actually working with the v5.15 kernel.
+> > The fact that Bjorn's address is correct in his CC list implies to me
+> > that he's actually got a proper upstream kernel.
+> > 
+> > I had previously [0] instructed Owen to send against Bjorn's tree, so
+> > hopefully it's correct.
+> 
+> If it was on Bjorn's tree, get_maintainers.pl would not produce such result:
+> 
+> ---
+> Series-to: LKML <linux-kernel@vger.kernel.org>
+> Series-cc: Douglas Anderson <dianders@chromium.org>
+> Series-cc: Bob Moragues <moragues@chromium.org>
+> Series-cc: Harvey <hunge@google.com>
+> Series-cc: Stephen Boyd <swboyd@chromium.org>
+> Series-cc: Matthias Kaehlcke <mka@chromium.org>
+> Series-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[ Upstream commit da74858a475782a3f16470907814c8cc5950ad68 ]
+These look like manual entries for patman
 
-The clock source and the sched_clock provided by the arm_global_timer
-on Rockchip rk3066a/rk3188 are quite unstable because their rates
-depend on the CPU frequency.
+> or this:
+> 
+> ---
+> owen@buildsvr-HP-ProDesk-600-G4-MT:~/chromebook_zombie_os/src/third_party/kernel/v5.15$
+> perl scripts/get_maintainer.pl -f MAINTAINERS --email
+> linux-kernel@vger.kernel.org (open list)
+> ---
+> 
+> as Owen indicated earlier. They are either incomplete or not correct.
+> 
+> Of course I don't know whether the base tree is the problem or usage of
+> get_maintainers.pl...
 
-Recent changes to the arm_global_timer driver makes it impossible to use.
+That looks like an operator error, the above command produces the same result with
+an upstream tree.
 
-On the other side, the arm_global_timer has a higher rating than the
-ROCKCHIP_TIMER, it will be selected by default by the time framework
-while we want to use the stable Rockchip clock source.
-
-Keep the arm_global_timer disabled in order to have the
-DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/f275ca8d-fd0a-26e5-b978-b7f3df815e0a@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/rk3188.dtsi | 1 -
- arch/arm/boot/dts/rk3xxx.dtsi | 7 +++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index a837a9a34e3e..ddf23748ead4 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -630,7 +630,6 @@ &emac {
- 
- &global_timer {
- 	interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
--	status = "disabled";
- };
- 
- &local_timer {
-diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
-index 859a7477909f..5edc46a5585c 100644
---- a/arch/arm/boot/dts/rk3xxx.dtsi
-+++ b/arch/arm/boot/dts/rk3xxx.dtsi
-@@ -111,6 +111,13 @@ global_timer: global-timer@1013c200 {
- 		reg = <0x1013c200 0x20>;
- 		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 		clocks = <&cru CORE_PERI>;
-+		status = "disabled";
-+		/* The clock source and the sched_clock provided by the arm_global_timer
-+		 * on Rockchip rk3066a/rk3188 are quite unstable because their rates
-+		 * depend on the CPU frequency.
-+		 * Keep the arm_global_timer disabled in order to have the
-+		 * DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-+		 */
- 	};
- 
- 	local_timer: local-timer@1013c600 {
--- 
-2.35.1
-
+Issue one is the use of '-f' which seems to expect a file with a list of e-mail
+addresses, which MAINTAINERS is not. The second issue is that no patch file or
+directory is specified.
