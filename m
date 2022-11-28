@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3751863AFEE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:47:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6607863AFF1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 18:48:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233004AbiK1Rrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 12:47:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34236 "EHLO
+        id S233396AbiK1Rr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 12:47:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233551AbiK1RqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:46:19 -0500
+        with ESMTP id S233632AbiK1Rqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 12:46:53 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D372D1CC;
-        Mon, 28 Nov 2022 09:41:34 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5B527CCE;
+        Mon, 28 Nov 2022 09:41:42 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7BF5D612F3;
-        Mon, 28 Nov 2022 17:41:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 039D9C43148;
-        Mon, 28 Nov 2022 17:41:28 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC7E4612D0;
+        Mon, 28 Nov 2022 17:41:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43162C43470;
+        Mon, 28 Nov 2022 17:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669657289;
-        bh=NWO6d1r0dHwtcLXY8X9EZUX4b6ox/W0fdh6vYEyrTlc=;
+        s=k20201202; t=1669657301;
+        bh=EKzhoSPC9eVZ1/kHObi9Rsuwob1sDSFrdymB7pV96a0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YQ0BdKWol9M6gsgwn7BoO2RbPyeWwp0QGaZctLvuqXI2QoQIwYOKUhsStJVkpt3Oi
-         u3SimNVRDgrDEmMN1hGGZIfzhxG4rOLrzG32gCb4/duaMoqjIWRoOdZoYAzsOcxJDD
-         kIxETHCBDUXRgxK46FaG0inPSEDSACwReSylqOoEhZBjAM+2tbuavuLw1SvsrA4zRw
-         +cuo4AUFQGNsoXTyokCSPC5k+VMFmfeEXJMQkRN6EPuTUbi5synjD2HHoKkpzCFDqX
-         PRRdcp7qzpqOWEHw1aFHfSFqwVolKCztVBbd7hJAUQZ4SsM5Dh1sL8AbYn+msZ8Yv2
-         ZTtJne0CltxmA==
+        b=kSAZ6plHOCcKRFYraXnxXW17Hik2mSxI0iPik5E8gTHdrwuR9/rQ7fOok7zSZl4TB
+         lPpPLGDfe0XFv7hBewuIioiPaMwm27sac7meRjvyzOc5bOh3QCySrV6a0oxi4oudHM
+         KAzQVNBuv3Y1eNq+1MYkdn7JWVWPWwETF0WcL3azyz3cNVLjiXfpRfXLp8IkGdFzWL
+         0T3J5HWmZNjlbbCYe45QwAW1+WfEiuKJOiGYvyQZy7456N3Lh3lZC8k1VsalxJvlG3
+         x3Awg5BhSgP/YxyD6fnv+wnUnFPkN/f9yzvZIfZ4aAWVKJoQd3NttUjG6ZuNnGI5LI
+         bWt0Ml9JcYo1g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
@@ -38,9 +38,9 @@ Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
         krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 05/19] ARM: dts: rockchip: rk3188: fix lcdc1-rgb24 node name
-Date:   Mon, 28 Nov 2022 12:41:05 -0500
-Message-Id: <20221128174120.1442235-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 09/19] ARM: dts: rockchip: disable arm_global_timer on rk3066 and rk3188
+Date:   Mon, 28 Nov 2022 12:41:09 -0500
+Message-Id: <20221128174120.1442235-9-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221128174120.1442235-1-sashal@kernel.org>
 References: <20221128174120.1442235-1-sashal@kernel.org>
@@ -59,32 +59,60 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 11871e20bcb23c00966e785a124fb72bc8340af4 ]
+[ Upstream commit da74858a475782a3f16470907814c8cc5950ad68 ]
 
-The lcdc1-rgb24 node name is out of line with the rest
-of the rk3188 lcdc1 node, so fix it.
+The clock source and the sched_clock provided by the arm_global_timer
+on Rockchip rk3066a/rk3188 are quite unstable because their rates
+depend on the CPU frequency.
+
+Recent changes to the arm_global_timer driver makes it impossible to use.
+
+On the other side, the arm_global_timer has a higher rating than the
+ROCKCHIP_TIMER, it will be selected by default by the time framework
+while we want to use the stable Rockchip clock source.
+
+Keep the arm_global_timer disabled in order to have the
+DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/7b9c0a6f-626b-07e8-ae74-7e0f08b8d241@gmail.com
+Link: https://lore.kernel.org/r/f275ca8d-fd0a-26e5-b978-b7f3df815e0a@gmail.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/rk3188.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/rk3188.dtsi | 1 -
+ arch/arm/boot/dts/rk3xxx.dtsi | 7 +++++++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index b6bde9d12c2b..a837a9a34e3e 100644
+index a837a9a34e3e..ddf23748ead4 100644
 --- a/arch/arm/boot/dts/rk3188.dtsi
 +++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -402,7 +402,7 @@ lcdc1_vsync: lcdc1-vsync {
- 				rockchip,pins = <2 RK_PD3 1 &pcfg_pull_none>;
- 			};
+@@ -630,7 +630,6 @@ &emac {
  
--			lcdc1_rgb24: ldcd1-rgb24 {
-+			lcdc1_rgb24: lcdc1-rgb24 {
- 				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_none>,
- 						<2 RK_PA1 1 &pcfg_pull_none>,
- 						<2 RK_PA2 1 &pcfg_pull_none>,
+ &global_timer {
+ 	interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
+-	status = "disabled";
+ };
+ 
+ &local_timer {
+diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
+index 859a7477909f..5edc46a5585c 100644
+--- a/arch/arm/boot/dts/rk3xxx.dtsi
++++ b/arch/arm/boot/dts/rk3xxx.dtsi
+@@ -111,6 +111,13 @@ global_timer: global-timer@1013c200 {
+ 		reg = <0x1013c200 0x20>;
+ 		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+ 		clocks = <&cru CORE_PERI>;
++		status = "disabled";
++		/* The clock source and the sched_clock provided by the arm_global_timer
++		 * on Rockchip rk3066a/rk3188 are quite unstable because their rates
++		 * depend on the CPU frequency.
++		 * Keep the arm_global_timer disabled in order to have the
++		 * DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
++		 */
+ 	};
+ 
+ 	local_timer: local-timer@1013c600 {
 -- 
 2.35.1
 
