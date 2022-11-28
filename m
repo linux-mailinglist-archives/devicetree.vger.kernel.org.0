@@ -2,132 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 424C963AA3F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A187A63AA43
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:59:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbiK1N6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 08:58:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55696 "EHLO
+        id S231872AbiK1N7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 08:59:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbiK1N6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:58:47 -0500
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 526D92B6;
-        Mon, 28 Nov 2022 05:58:46 -0800 (PST)
-Received: from hillosipuli.retiisi.eu (dkxjnptf9d2bpn7gcmbty-3.rev.dnainternet.fi [IPv6:2001:14ba:44ce:b640:9d1d:82c5:eca2:5060])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 46AE320335;
-        Mon, 28 Nov 2022 15:58:43 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1669643923;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fjhSV9eVKOK8jVAdgZB5oP8tArGtwRVNHCNvz0wa3qs=;
-        b=FCmSDafEbTDpvfu/Af/WuiwcUyg1olZVkDsoX8MmSrQ1mG479jc0feshKOo4rDdFrwBfrN
-        rQWvZj+whnIPxc1eAvN+pouADJ9q35MECI/bmYF2vfEF0dt6tmL4CVU/3QvO3QV9/7zDcY
-        eTP3NxfrXnS7E1ikhz2Yi0QV0gC0pro=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1669643923;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=fjhSV9eVKOK8jVAdgZB5oP8tArGtwRVNHCNvz0wa3qs=;
-        b=jx5p/62ThNv1g3Ao4AW5mvqcZA7Y+DUuL3VWFl2EiNshist/eErOywx0+yBCXtgvpENN3h
-        shd8P9csoooCI96AxihGPSWQMdFKOdwplvky+5O3F/XPOuGtapQ0IwiUnkyb/bbeUpqZHx
-        jmyfCNFWWZfMgOLkXfiaXQLZcpE7sQI=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1669643923; a=rsa-sha256; cv=none;
-        b=WNGMWQK1It8GpjsmiMWrdUehfq8mYlJ/O++AEfscczB2L9WrvaIqIi840Pe01cxIenychg
-        2q9Ys8eGyTqBsCNNsMUZHWw4WwpBYiQMSjU4Np92XQBfqV7ltVBTDa7DhitSYGo+Rm5MWm
-        U/+S8J1PnL1BBhJZo9OdDSUlIh+vyfo=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 81EE0634C8E;
-        Mon, 28 Nov 2022 15:58:42 +0200 (EET)
-Date:   Mon, 28 Nov 2022 15:58:42 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231502AbiK1N7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:59:13 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E850610BA;
+        Mon, 28 Nov 2022 05:59:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1669643943; bh=fNLBITOrzGNURlqG24wTjvnHcc19rTJ6Nep3M1Y2cME=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=HdbpTayxuzNk2XxYuXkY575V2md9LGvaVJ9FqzpOptTWpFQ7+T1FHwoOhslZ6CPRD
+         frjZ4JLLxu+X6rBhfqoLpjkTb76wx8cvTV8u/5EWf/3sriewZRRG4fuXycdbqdNswh
+         dPXM8sqaWPhNGPVzQdjmGXyjoQV9SOroNovjboZsNv7RFg+P6TJGBAQhlEG2npy5IS
+         0P5FBNFLZWAe+n5gtyMYvzlU44C/+aH0H66kHzr9x61JQ5+it2yqPXjDeG/7UMp6sR
+         auMSKkX4GIxjI+NgmAmIlAU8N8x3odBh2asIlczXcyAYfZe+EWgekzuSU0l5YM1Wle
+         LH+5Kx+fv4odA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MIMfW-1pBhLP1Gzs-00EIyB; Mon, 28
+ Nov 2022 14:59:03 +0100
+Date:   Mon, 28 Nov 2022 14:58:57 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 0/2] ov9282: Add ov9281 support
-Message-ID: <Y4S+kroyBqhohW22@valkosipuli.retiisi.eu>
-References: <20221124102959.1605202-1-alexander.stein@ew.tq-group.com>
- <538d4c30-aa78-ed05-4c46-84018fd9afdd@xs4all.nl>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: Add Nuvoton WPCM450 Flash
+ Interface Unit (FIU)
+Message-ID: <Y4S+oWz8fNsQj5Gj@probook>
+References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
+ <20221124191400.287918-2-j.neuschaefer@gmx.net>
+ <166950112932.8087.6546134123286782729.robh@kernel.org>
+ <Y4SV+5/3Y0dw5QeU@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wYhQfr4TaDMG5L5b"
 Content-Disposition: inline
-In-Reply-To: <538d4c30-aa78-ed05-4c46-84018fd9afdd@xs4all.nl>
+In-Reply-To: <Y4SV+5/3Y0dw5QeU@wendy>
+X-Provags-ID: V03:K1:UawUwTljaFZmjHPp2WDWznD+ZA5rr9lNR8hGceNy7bXH8HDhghq
+ HiHSibk1k7KbSN4q7661mwuf2SlaH/3g009UcuHwI+v2OdIY9ezahSXNPCyu1qsxtrQ4ahV
+ 1biS9yI6fd2kRP9ehQ6t23oJzkVe2fVkaSqAmH6bptyCGkkZDjf4bdz29/Y0L2Lc1nvN4UT
+ eRLD1DWqA9lWGmUfQSYwQ==
+UI-OutboundReport: notjunk:1;M01:P0:d5FSRnk8sg8=;1dfz6LqfVWOJA+qmsrchA9aS1xk
+ ZM1AjqtOeb9gV2tO9qVWStnbkL+e22yneih7+aUpfXjpZFtdFzHYPznTMl52s3kE0A0LP8eNA
+ MHofqaK/Q3IQhJgWnWt87lIaFAFk4Y4MSDyBSbp59xS9R4rceUzku/KnzVP97UJzaFFjRkFlr
+ GeaSoaSWOC6H4jePSmEmaC7Q1mFw5GDreXXw8na7XZEvJKnPXcAaQBTeBbIgi7+I3oF15MaJn
+ 2h2yEaZdiFxuDiYjIgwMCCmQN8gRAQqYTzBJWcFBP0J9zkNASo6Oru5gTg7R5zG/iyItGryJG
+ dye40ZHjHbbpyx+NgUkymIq4J95LwaPnv6LZqCiE+yQOxwVpxCkTGxUFbPGv8ltC/LKPjNnzT
+ 535QemRd7ckj3jLWmeBWX/MIyOiYxkIwYrxOBiKdptYQzwCLN1Usc3AKCRijPl4R327ePlkKf
+ vCsHLKkx61bez0D3vJKcXOZERZrFz6qDh0b/yFkvsucA0dqKpcWVrXzoyx17SCeMynmJhVK/C
+ Om7I5PduESVnpqiSTaOB4kSPgOe1t1CnLh5vJDTcDYskg5D9BKzWcSiQwQe+8okWMWEZUagDh
+ U86jxkXJzu5GoK+GlMoN2zDrnNDTEIkJce1CMWx0HHty2RhguwK1McunFSUsqitH2HfCkAiJk
+ aPukkVUbsqDoiORBIdPESDzjBiVL1yTNt/9w0x+4jPUZVUKNQvlhWenPv00KDjxPMRphyII2o
+ AuCyRtEM5NDWE/nSckJAMcuyPeyTd2X09yL9xbN+gmSuA+SsDD3rJjuqftUuYosFasGkaA6Q5
+ QrnCUtZe4YK8qS4Ac4KjsbjGTFR+V21cm8P49BFiHz7KgaQRdtJwLyiD4b/D1OZGI2yanolfZ
+ X0SMtH6R0CxI7Mh0mPj+g0gGDGxIe0f8G6TbxHm1IHc7bbiaHVbnTP+qFSr28sLzAM4OeFbgp
+ 0R34I5L+8ptvJRzPl+J1tT33NH8=
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
 
-On Mon, Nov 28, 2022 at 02:52:28PM +0100, Hans Verkuil wrote:
-> Hi Alexander,
-> 
-> On 11/24/22 11:29, Alexander Stein wrote:
-> > Hello all,
-> > 
-> > This is v5 of the ov9281 support series. Thanks for the feedback I received
-> > over the time.
-> > 
-> > Changes in v5:
-> > * Removed unrelated patches from the series
-> > * Squashed previous patch 3 & 6 (now patch 2)
-> > * Removed error handling for device_get_match_data() call
-> > * Added Kieran's r-b to patch 2
-> > 
-> > Best regards,
-> > Alexander
-> > 
-> > Alexander Stein (2):
-> >   media: dt-bindings: media: Add compatible for ov9281
-> >   media: i2c: ov9282: Add ov9281 compatible
-> > 
-> >  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 5 ++++-
-> >  drivers/media/i2c/ov9282.c                                   | 5 ++++-
-> >  2 files changed, 8 insertions(+), 2 deletions(-)
-> > 
-> 
-> With the latest staging tree I am now getting these smatch and sparse warnings:
-> 
-> sparse:
-> 
-> drivers/media/i2c/ov9282.c:267:24: warning: symbol 'common_regs_list' was not declared. Should it be static?
-> drivers/media/i2c/ov9282.c:145: warning: Function parameter or member 'crop' not described in 'ov9282_mode'
-> drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'supplies' not described in 'ov9282'
-> drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'pixel_rate' not described in 'ov9282'
-> drivers/media/i2c/ov9282.c:190: warning: Function parameter or member 'noncontinuous_clock' not described in 'ov9282'
-> 
-> smatch also has this:
-> 
-> drivers/media/i2c/ov9282.c:1262 ov9282_power_on() warn: 'ov9282->inclk' from clk_prepare_enable() not released on lines: 1252.
-> 
-> Can you take a look and post a patch on top fixing this?
+--wYhQfr4TaDMG5L5b
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The two patches aren't the culprit. I've seen a report on this, too. Let's
-continue on the other thread once found.
+On Mon, Nov 28, 2022 at 11:05:31AM +0000, Conor Dooley wrote:
+> On Sat, Nov 26, 2022 at 04:25:36PM -0600, Rob Herring wrote:
+[...]
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.example.dts:1=
+8:18: fatal error: dt-bindings/clock/nuvoton,wpcm450-clk.h: No such file or=
+ directory
+> >    18 |         #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
+> >       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > compilation terminated.
+> > make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindin=
+gs/spi/nuvoton,wpcm450-fiu.example.dtb] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1492: dt_binding_check] Error 2
+>=20
+> FWIW this seems to now be in linux-next as dd71cd4dd6c9 ("spi: Add Nuvoton
+> WPCM450 Flash Interface Unit (FIU) bindings") & is breaking
+> dt_binding_check.
 
--- 
-Kind regards,
+Ah, sorry about that. It should resolve itself once nuvoton,wpcm450-clk
+binding gets merged, but I don't see a definite timeframe for that, yet.
 
-Sakari Ailus
+Alternatively, I can send a patch to simplify the example in the FIU
+binding.
+
+Jonathan
+
+--wYhQfr4TaDMG5L5b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmOEvkYACgkQCDBEmo7z
+X9s7JA//b0x5Wz3oWxpKspCo0vQX9Pc0tbPMfyZfEmViSkIhrXBGDLxKDfgfBLc1
+NkyS9KBRngGQmn7mk1fR40Vc0iZ9wpEfvqmKY47PPqEP+dC4bJmxwXbKLC5Npl/F
+Nv8VuBy0CAHrdH3KvVG4KZRHMEPhKPmwAEuXeDuiqdLrB4UiKx+gjtreHuFrBujN
+1VYronrrBG3vMsYlJha2zud4nQZw0Iz7fCJMXXEIV9OPrDoFHYP9kiPxowrbanHt
+suK8RpvCBJcOkZZnpQmUEeSluIoe5y8VSORdMswttxYU+ft3Lg67W0Gl4A6Snrfp
+h3bFxdkFqyxuKfk7fcr4IjG1DDhw3wXhxb5iJev4DzjGq545XwScdKDhkBR1jTRZ
+BQYV4fjF6iSDo+HbhhF6hYAt+XO+THeTvkNJUt4A6X8McPnj724eOg9ngRPgGHEy
+yGge/tPHa4GDa5EEJxd5QYdDP4oGV3/UdZFcn5Amox6dovIt2s/WJVn2DY1vP8mM
+B0m1LO/WOk5JkGsWhH4amNN0+o1vboDvptAf0BgVkmXMuBFQA7R1qGn9M87VFLVu
+BunTjZd1q5ELSVYWwBHDhoEPgoOd5AzLaZCAsYR2l5iZOIdvnzBtVok1wDgfQNaz
+A4uo6W0O6mVxXYaM68TihdgKVjnSJFjImuY/rreq4RNYTty8KNs=
+=uIeB
+-----END PGP SIGNATURE-----
+
+--wYhQfr4TaDMG5L5b--
