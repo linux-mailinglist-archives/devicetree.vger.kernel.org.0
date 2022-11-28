@@ -2,110 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 472A563A32A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D18F63A33C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbiK1IfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 03:35:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
+        id S229729AbiK1IkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 03:40:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbiK1Ie7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:34:59 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EFBC64F8
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:34:55 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id j4so16248338lfk.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 00:34:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bkk5qJOE/VryR0ieeP2IB27nwP5PcGUzPajxP73VPy4=;
-        b=RyNUCF7DIdcBaeiOO+4l1RdqwPSkuTV/DKV2RCcU2ByM4W+Jlk+lCSxHwz3u3Yx97p
-         QE9AgoC9w9yXM/dcSpHjbD5h99jxKKOqMsCt70v20BlvrJ+OT0OuhZQspO2g/CuqmG8f
-         Gt63wSMiSKPpGn+JUnHPzqpy6qRiOKbwNvz5xwWCjhQVrK7AT4phhuiy+4xr5FzdrL4g
-         jMK0fqJH3E+DJIPeYtsU5oXFhFJDwPvcNLeGl9n0MgvK9RHpG81CUS/sa2XPEnxpcqyM
-         nzEqzZKg12KGHhHz30ZyiezkcyQezGqNMubHqOrPI6F6bPlaKqkicTLQ/Aq7M1aGkgdL
-         tBLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bkk5qJOE/VryR0ieeP2IB27nwP5PcGUzPajxP73VPy4=;
-        b=6sa/jibojwdWvtV0K5DskGN8heJTMs7bT7sUfWqAd+sOZfLs8Zv+VDtiEMj6B48/7S
-         hh8DN2Lpl9MspMneG/3bCjBSUWkD3En3VnAcizwSz7qK2n6GND2ej/wSs2E4iXhIr/qw
-         bINGf1d/R9KT3yG14HnvymMWQdVImkojb0N0kOvn0H8J39CkkRiVqdkqQPW/UgnA7e6V
-         Ebx80NX93cYWoiOSr78t2ipuB3HFN3vUv7XafXWacVOWs40XKanR6Dom2MQon5WBmdDT
-         5yXgXKF5fFyZBsnfNxUlQsxfiPyFcmjEMESdI1bdC+d55ajL4dNS1WZ01WjoDZwv2sUo
-         7xcA==
-X-Gm-Message-State: ANoB5plwbZvggPsDdp2pV0FLvEctej0KYfcCExoeRbAsexNYRT8GBvsX
-        j5MFROSgTrNBe7NuXYf5nZV/BQ==
-X-Google-Smtp-Source: AA0mqf5aVBlZGW/MVwnVh0IXkD7kUGTSF7mWoGHUIYNw0Z6CKWdYuycbqyE//gvbfon36dwMH98lxQ==
-X-Received: by 2002:ac2:5ddb:0:b0:4a2:500d:f031 with SMTP id x27-20020ac25ddb000000b004a2500df031mr10606791lfq.266.1669624493519;
-        Mon, 28 Nov 2022 00:34:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a3-20020a2eb543000000b002770f0a742bsm1159037ljn.41.2022.11.28.00.34.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 00:34:53 -0800 (PST)
-Message-ID: <f6bb5759-453b-fa05-c6e1-f1d57abeaffa@linaro.org>
-Date:   Mon, 28 Nov 2022 09:34:52 +0100
+        with ESMTP id S229831AbiK1IkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:40:02 -0500
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D1317052;
+        Mon, 28 Nov 2022 00:40:00 -0800 (PST)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A8E04240015;
+        Mon, 28 Nov 2022 08:39:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669624799;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=s1BQQ9G+xK7IXAGECc06dmEoJcmIhpgzMPmtbolzDto=;
+        b=eNQbHacYgXkAjec52BZTg4E67IqRzzpnEGpGZ6N57ZgtjOGb4jKrcn1bFkqMroUAyouT13
+        mjG+z325B0qRVkQMkwyP2ZfpJwXj7vHVZF0tCB527pT6I8x3FRjsrFTqG9q1aIQ0Sb74KP
+        6hGTf5r368Cd8TJSKD1rfVDGHJJno+8f7NNiV/E8ojAWXzLX5UhkETw6AbvOona328IESj
+        bj9XWeJDI5BIO1qKBZyzNanr9jSOVXcKwg6XM84GS0Qg2M7ujiHupcp9Mucvz9yHcLd3Gu
+        ru0VVP0sLNdEdLFBsyXtKzwc3hx5QGHJwE4Vl/2YYbmqj/0DAkX7oLXXrDCmaQ==
+Date:   Mon, 28 Nov 2022 09:39:56 +0100
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 0/3] net: pcs: altera-tse: simplify and
+ clean-up the driver
+Message-ID: <20221128093956.19067242@pc-8.home>
+In-Reply-To: <Y4Ofvemx5AnWJHrp@shell.armlinux.org.uk>
+References: <20221125131801.64234-1-maxime.chevallier@bootlin.com>
+        <Y4Ofvemx5AnWJHrp@shell.armlinux.org.uk>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document oneplus,bacon device
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221127181835.806410-1-luca@z3ntu.xyz>
- <CAA8EJpoe09FZcfVXuknmFWO5qg-iYDOBVN3=qr=DeJjvHw56Mw@mail.gmail.com>
- <f0a15b01-81b6-5c73-6c35-ce3a8c71b4ad@linaro.org>
- <CAA8EJppEXpv-wVAAXhZ6NiPzDGzP+evnKrT=an5esOx610D+dw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppEXpv-wVAAXhZ6NiPzDGzP+evnKrT=an5esOx610D+dw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/11/2022 22:43, Dmitry Baryshkov wrote:
-> On Sun, 27 Nov 2022 at 23:30, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 27/11/2022 22:25, Dmitry Baryshkov wrote:
->>> On Sun, 27 Nov 2022 at 20:19, Luca Weiss <luca@z3ntu.xyz> wrote:
->>>>
->>>> Document the OnePlus One ("bacon") which is a smartphone based on the
->>>> Snapdragon 801 SoC.
->>>>
->>>> Also allow msm8974 devices to use qcom,msm-id and qcom,board-id.
->>>
->>> The patch itself is good. However it raised a broader question for me.
->>> Up to now all msm8974pro devices use qcom,msm8974 as a top-level
->>> compatibility string. Should it be changed to use pro-specific one
->>> (e.g. qcom,msm8974pro)?
->>
->> Yes, makes sense.
+Hello Russell,
+
+On Sun, 27 Nov 2022 17:34:53 +0000
+"Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
+
+> On Fri, Nov 25, 2022 at 02:17:58PM +0100, Maxime Chevallier wrote:
+> > Hello everyone,
+> > 
+> > This small series does a bit of code cleanup in the altera TSE pcs
+> > driver, removong unused register definitions, handling 1000BaseX
+> > speed configuration correctly according to the datasheet, and
+> > making use of proper poll_timeout helpers.
+> > 
+> > No functional change is introduced.
+> > 
+> > Best regards,
+> > 
+> > Maxime
+> > 
+> > Maxime Chevallier (3):
+> >   net: pcs: altera-tse: use read_poll_timeout to wait for reset
+> >   net: pcs: altera-tse: don't set the speed for 1000BaseX
+> >   net: pcs: altera-tse: remove unnecessary register definitions  
 > 
-> Would you make the patch?
+> Hi Maxime,
+> 
+> Please can you check the link timer settings:
+> 
+>         /* Set link timer to 1.6ms, as per the MegaCore Function User
+> Guide */ tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_0, 0x0D40);
+>         tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_1, 0x03);
+> 
+> This is true for Cisco SGMII mode - which is specified to use a 1.6ms
+> link timer, but 1000baseX is specified by 802.3 to use a 10ms link
+> timer interval, so this is technically incorrect for 1000base-X. So,
+> if the MegaCore Function User Guide specifies 1.6ms for everything, it
+> would appear to contradict 802.3.
+> 
+> From what I gather from the above, the link timer uses a value of
+> 200000 for 1.6ms, which means it is using a 8ns clock period or
+> 125MHz.
+> 
+> If you wish to correct the link timer, you can use this:
+> 
+> 	int link_timer;
+> 
+> 	link_timer = phylink_get_link_timer_ns(interface) / 8;
+> 	if (link_timer > 0) {
+> 		tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_0,
+> link_timer); tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_1,
+> link_timer >> 16); }
+> 
+> so that it gets set correctly depending on 'interface'.
+> phylink_get_link_timer_ns() is an inline static function, so you
+> should end up with the above fairly optimised, not that it really
+> matters. Also worth documenting that the "8" there is 125MHz in
+> nanoseconds - maybe in a similar way to pcs-lynx does.
 
-I do not plan to. I don't know which ones are Pro which aren't.
+Ouh that's perfect, thanks !
 
-Best regards,
-Krzysztof
+> It does look like this Altera TSE PCS is very similar to pcs-lynx,
+> maybe there's a possibility of refactoring both drivers to share
+> code?
+
+Indeed, I've some patches I'm testing to port pcs-lynx to regmap then
+do the merge. The one thing that would differ is the reset
+handling in the TSE driver, since we need to perform it at every
+configuration change basically. But that's not worth having duplicate
+drivers just for that, I agree.
+
+I'll post that merge when I'll have the chance to give it a more
+thourough test.
+
+Thanks,
+
+Maxime
 
