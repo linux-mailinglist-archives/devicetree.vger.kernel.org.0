@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9DE63B3E2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 274BF63B3EF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:07:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234410AbiK1VFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 16:05:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41304 "EHLO
+        id S234474AbiK1VHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 16:07:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234415AbiK1VF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:05:28 -0500
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95CC2F39A;
-        Mon, 28 Nov 2022 13:05:18 -0800 (PST)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1ozlJN-00086j-Tx; Mon, 28 Nov 2022 22:05:09 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Conor Dooley <conor@kernel.org>, Guo Ren <guoren@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S234562AbiK1VHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:07:07 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9722A303EB;
+        Mon, 28 Nov 2022 13:06:48 -0800 (PST)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 644C3D05C5;
+        Mon, 28 Nov 2022 21:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1669669576; bh=Sa86+AagUehDF0ksSiVhkM9xysNYLZt4WDI8S+0fsCo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=XpmQdM4VodA5P4jXVe2afw/JhSEqmjSUONCmpiDFPwmq3E53LHitMQ+ObA+E6FMNb
+         VcPXxRzioZcflGhy+ZPWWs/C4V90ZSvwyvVC0mCOzwUZVq7AKNMKzpXbpt45piEloY
+         opdFokO2xUbyX4HXCazVy8eUlduhiGCZ0fVavPSc=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Subject: Re: [PATCH v2 11/12] riscv: Add the Allwinner SoC family Kconfig option
-Date:   Mon, 28 Nov 2022 22:05:08 +0100
-Message-ID: <4413987.e9J7NaK4W3@diego>
-In-Reply-To: <CAJF2gTRpL7X+Td6cHhzJ5u2sRo15e4BGh+RKjKwB7fh8v8J2-g@mail.gmail.com>
-References: <20221125234656.47306-1-samuel@sholland.org> <Y4JAh72RUJFS/RtR@spud> <CAJF2gTRpL7X+Td6cHhzJ5u2sRo15e4BGh+RKjKwB7fh8v8J2-g@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Enable ADSP
+Date:   Mon, 28 Nov 2022 22:06:15 +0100
+Message-ID: <1912229.PYKUYFuaPT@g550jk>
+In-Reply-To: <cce01dbd-e2b7-3d6b-9c83-af3790f3ee89@linaro.org>
+References: <20221125223400.94515-1-matti.lehtimaki@gmail.com> <90d231c6-1f16-74ea-ddf7-5e09a51a93ea@gmail.com> <cce01dbd-e2b7-3d6b-9c83-af3790f3ee89@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, 27. November 2022, 12:31:15 CET schrieb Guo Ren:
-> On Sun, Nov 27, 2022 at 12:36 AM Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Fri, Nov 25, 2022 at 05:46:55PM -0600, Samuel Holland wrote:
-> > > Allwinner manufactures the sunxi family of application processors. This
-> > > includes the "sun8i" series of ARMv7 SoCs, the "sun50i" series of ARMv8
-> > > SoCs, and now the "sun20i" series of 64-bit RISC-V SoCs.
-> > >
-> > > The first SoC in the sun20i series is D1, containing a single T-HEAD
-> > > C906 core. D1s is a low-pin-count variant of D1 with co-packaged DRAM.
-> > >
-> > > Most peripherals are shared across the entire chip family. In fact, the
-> > > ARMv7 T113 SoC is pin-compatible and almost entirely register-compatible
-> > > with the D1s.
-> > >
-> > > This means many existing device drivers can be reused. To facilitate
-> > > this reuse, name the symbol ARCH_SUNXI, since that is what the existing
-> > > drivers have as their dependency.
-> > >
-> > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> > > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > > Signed-off-by: Samuel Holland <samuel@sholland.org>
-> > > ---
-> > >
-> > > Changes in v2:
-> > >  - Sort Kconfig as if we had done s/SOC_/ARCH_/ for future-proofing
-> > >
-> > >  arch/riscv/Kconfig.socs | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> > > index 69774bb362d6..4c1dc2ca11f9 100644
-> > > --- a/arch/riscv/Kconfig.socs
-> > > +++ b/arch/riscv/Kconfig.socs
-> > > @@ -26,6 +26,15 @@ config SOC_STARFIVE
-> > >       help
-> > >         This enables support for StarFive SoC platform hardware.
-> > >
-> > > +config ARCH_SUNXI
-> > > +     bool "Allwinner sun20i SoCs"
-> > > +     select ERRATA_THEAD if MMU && !XIP_KERNEL
-> 
-> depend on MMU
-> depend on !XIP_KERNEL
-> select ERRATA_THEAD
+On Montag, 28. November 2022 21:59:06 CET Konrad Dybcio wrote:
+> On 28.11.2022 18:01, Matti Lehtim=E4ki wrote:
+> > On 28.11.2022 16.41, Konrad Dybcio wrote:
+> >> On 25.11.2022 23:34, Matti Lehtim=E4ki wrote:
+> >>> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> >>> b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts index
+> >>> 1c52337af560..859e91c16c61 100644
+> >>> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> >>> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
+> >>> @@ -133,7 +133,8 @@ wcnss@d200000 {
+> >>>               no-map;
+> >>>           };
+> >>>   -        adsp@d900000 {
+> >>> +        /delete-node/ adsp@dc00000;
+> >>=20
+> >> Please delete nodes by referencing the label like so:
+> >>=20
+> >> /delete-node/ &adsp_region;
+> >=20
+> > When I created the devicetree I was asked to do the opposite for the
+> > smem_region [1] which I had originally deleted using the label near top=
+ of
+> > the file but then moved next to the relevant node, where I cannot use
+> > label when deleting it. Should the smem_region also be moved to the top
+> > of the file if I move this delete-node there so the file would be
+> > consistent?
+> In [1] you were asked to move the delete-node statement, not to alter
+> the argument. Referencing nodes by label is allowed globally in the DTS.
+> The removal should stay inside reserved-memory.
 
-That sounds like a better variant.
+Having e.g. this doesn't build, you get "syntax error" error
 
-The D1 / C906 _needs_ the errata for the memory handling
-and the other alternative constraints require the !XIP
+  reserved-memory {
+      /delete-node/ &venus_region;
+  };
 
-With the select, a xip-kernel would not boot at all on a D1
+Not sure exactly why, but that's the reason everything's outside of the roo=
+t=20
+node if you use labels (don't ask me why labels lead to syntax error but=20
+specifying the name manually works)
+
+>=20
+> Konrad
+>=20
+> > [1]
+> > https://lore.kernel.org/linux-arm-msm/CAA8EJpqUH_v1GXEYF62Z3DBtFu_305_h=
+4D
+> > 36aCnBr38bo5HoJw@mail.gmail.com/
 
 
-Heiko
 
 
