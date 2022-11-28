@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B50A463B448
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C47FE63B479
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 22:49:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbiK1Vf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 16:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34630 "EHLO
+        id S234333AbiK1Vto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 16:49:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231252AbiK1Vf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:35:57 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E1B2FFCA
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:35:57 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id e7-20020a17090a77c700b00216928a3917so15361052pjs.4
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 13:35:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yIf9zTBU9LJIPPKaIChcDQl5vn+DKZB/SGb/n+qAnQQ=;
-        b=BUPX2sEuLleYl8uzjufreHFNzYcx0xDOqwP5+BOz0vyBN27YprZ6eUwiIvOZQgPvUt
-         r/f2xqwM6YytgRfIfdIn7Zk0LaClIGi/1D5eTXKOp3Y9C7Sx7dyL7hQV4TXOlz8ZAP3+
-         kNz4BoGAIcDtayE8WTm9pgOFqqk6uc7hCI3sO27D9lRIZqegQDqeg8TJ9DvQCp9Fbdlq
-         0QPfERZc9bLn035ONTIdy7qz349lPyNkxM4mgxk2fLiG8LlwQ79kQlfTJKUn+L4jgOCG
-         uQfGm3AmuYt6a/39KueF0j6IjIvlzc4u3xLu8VfT2KrzAs+ruJimZGGc28r2Du7pFbzy
-         x2TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yIf9zTBU9LJIPPKaIChcDQl5vn+DKZB/SGb/n+qAnQQ=;
-        b=B5uMBzpXLuk5EujGEcSKJcSmKNcPl1mlmliwm8yr0YndPt4qORQtCV9lukooXepO9v
-         s6HwQ+LGlj4XCj8q4LGOO24rYlWTRQh20GjymkMfLs1PWkigZeVA/Cmbc/uIA2L5CQEi
-         thMRFM2XIaPZbWuvdxV5w5B21DpuMt/TbaV2AKNVzQ+FoEnly6CTVK6S+zU9K22p66qG
-         QJLJpQHsfRbRvEqHhQCZP5F1+/cjePEBrhV5YHC9VPtRC+YcR0B02/4NWYHXBn68dg+5
-         fZEFjG0HZH2sPJPy43vPGP3muA6XjB4RChxwn+IprZMMT6qJbDz+NEDZq5OLvTStOe/F
-         HpNA==
-X-Gm-Message-State: ANoB5pmGqj0yNwCI2YQCv41QabHnR5uiqj8hHuvfcnGskHlRnUZIBJpJ
-        +0ebUMgblwFnzMMRtNy7iCjxhJA/N3fnT7ft+76R9w==
-X-Google-Smtp-Source: AA0mqf5RktKdkGI0WORSQWighrvazh4o6HKFmGtuOokCNdiP9g0J/XJYgCYKpNG8xy023/G3IZeEo+xm1L0RWVgLyLc=
-X-Received: by 2002:a17:902:d58d:b0:187:2502:888f with SMTP id
- k13-20020a170902d58d00b001872502888fmr38671699plh.136.1669671356493; Mon, 28
- Nov 2022 13:35:56 -0800 (PST)
+        with ESMTP id S233349AbiK1Vtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 16:49:43 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADFF22F392;
+        Mon, 28 Nov 2022 13:49:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1669672170; bh=KZocglb62rgjODaBbkno94BEG+p/TUD9NyE6UtXNSMI=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=Un8L87AXYW6DcHMDEk2pFW6/XvseeM2hQ0I89dl8O3lniA7Kij4+WwHIFn79ENjtN
+         LX3xZENKl6MrzzqYjyXRqhgo/gWQFdXHaYZFQJ73ii+qyV3XX1gqXuVTHoNf5ivTxs
+         3B6jgK8KzQHVuB66icHTpYKfciDYWs2A5o4bL38ip08H0f1v0/skQQZVHdWPpV4PHX
+         YoJzqfWYQ4cgFqda1Cn56h4moi/G//+zgI3+22WRTVqas08KLgvMVt6bhSdOgK/0Ld
+         bJqINfu1eLSpV3AwpPvTqGvSmB32dUcEqACtcojL4YOWq8YzQEbGBbLlWt4KTKNwMG
+         Tx1KMsecelSlQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N5VHG-1oyIyW3NmM-016sti; Mon, 28
+ Nov 2022 22:49:30 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Subject: [PATCH 0/2] nuvoton,wpcm450-fiu binding example fixes
+Date:   Mon, 28 Nov 2022 22:49:26 +0100
+Message-Id: <20221128214928.3531463-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20221121202259.2415821-1-festevam@gmail.com>
-In-Reply-To: <20221121202259.2415821-1-festevam@gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 28 Nov 2022 13:35:43 -0800
-Message-ID: <CAJ+vNU35SFFNyxe+zmNJ=wKjfTV_pVCAijOh6zP=WzL6nidGNA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6qdl-gw560x: Remove incorrect 'uart-has-rtscts'
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:hjvlACbizoHf3myeGqWxikJT7tGRQF2OIb7M6rNnhtAv/VyctUi
+ YwXCbpI4aHFBeZlOY8tCPtq3ka7sshh/l+ZaqdM00woYskeJl8yAGjNUOznGrDiPu5oM9zv
+ HHWgqKrHlHn7fzrm0cmBD2TS6vb3PrC3928zA9cKOujKetWqzkZ2CmFtlWHB4VTOsbbwK7x
+ 7kNruwJMXmSBn9B1DBqJA==
+UI-OutboundReport: notjunk:1;M01:P0:UYcNhDvDYjc=;Zc0nqRk/l5vx1T3vmnRIYwZIYfW
+ YtPmYmU2oSlqn+ffQogolisOCMagJb3rZZ3EG/BDrWC8yzVl8+AzAasIXXyBzU8X6yTGReh9i
+ Pm53+r21du2nxjvISfAzzGbJEsEpKrF3QEA12f7gbyHf/Oh4FT4hNro/hXNZ385q95Inxttsz
+ bige4juB3LXWQzcfjRwHZWaoIfrOqtjz6loo3UboqelnoUywnDi9oHxtX90WwHLORf0rFN4I1
+ /kvC3uJbRxvKFCWkPlSn+64J9TnMnApXIiM0hXnH0cbUa8eQb2AKeTIW3mjAqnFQsayo5FMsH
+ zgY3+yZxyb5yqJl8yVvwmcwATPbMU3YC5XJOo9HILtHQ3hhXPdnKfRl44RqEYcd6ZtW0GFx6z
+ cImNzPF3hBdbvReXOYiaqgllzZr0xBm8O8p6EW/GOEOAPweLbiVHArlwrc++IZATDOgM+onO5
+ zzQdXXts6yIP+eAAIptzhiQvHfXFN/1q2JD68lAuI9EVnou21wvtJOhXa0BEHdcDyk3o1lDHT
+ 1F2UimzVztBV/JHybS3dvwtwgRCqDeo17HOjygTXilVxhTB9MLwz1RJ8JjBBo3fQLF/HI+Bxl
+ zzjeCpLXUmH1CYP/37bQz+IAf9YQnWOyPirAnB5YKinovyZVB2qCsXDx4fRxHSPib1Bx9gn5n
+ +Cn2zIwRzPrPjqUX/V2ycwOLTxw9Ft46txwO+YZW1z9NwQhlD+O1Lj+FZNmPaVahnmkT8HTx3
+ j4EL5VqvhNjH8t6+day/LUWsc4mczEYVJmzNciyxoIYe8fx2voNWgGhg0ZAtaqTt1pH8eW1Sa
+ tMFNEw2WY4AQwsKjS6qKf+jiW2oGnPPubJnSR82ywKVPw2P/42wQZ3Nl6SSb6voTsRHrWkRiK
+ sZ+lVKI/QBx52t7WDCWmNCAWmKxN6PRz+PrPyVVVaMOoG/e1IowIuiaLAlJfLr95FAI5fJEPr
+ /J8G0TRKY0yeZbTYowWxiS8YBY8=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,53 +69,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 12:23 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> The following build warning is seen when running:
->
-> make dtbs_check DT_SCHEMA_FILES=fsl-imx-uart.yaml
->
-> arch/arm/boot/dts/imx6dl-gw560x.dtb: serial@2020000: rts-gpios: False schema does not allow [[20, 1, 0]]
->         From schema: Documentation/devicetree/bindings/serial/fsl-imx-uart.yaml
->
-> The imx6qdl-gw560x board does not expose the UART RTS and CTS
-> as native UART pins, so 'uart-has-rtscts' should not be used.
->
-> Using 'uart-has-rtscts' with 'rts-gpios' is an invalid combination
-> detected by serial.yaml.
->
-> Fix the problem by removing the incorrect 'uart-has-rtscts' property.
->
-> Fixes: b8a559feffb2 ("ARM: dts: imx: add Gateworks Ventana GW5600 support")
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  arch/arm/boot/dts/imx6qdl-gw560x.dtsi | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> index 4bc4371e6bae..4b81a975c979 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> @@ -632,7 +632,6 @@ &ssi1 {
->  &uart1 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_uart1>;
-> -       uart-has-rtscts;
->         rts-gpios = <&gpio7 1 GPIO_ACTIVE_HIGH>;
->         status = "okay";
->  };
-> --
-> 2.25.1
->
+My recently merged nuvoton,wpcm450-fiu DT binding caused some
+dt_binding_check issues in linux-next. This series attempts to fix them
+before the breakage spreads any further.
 
-Fabio,
+Thanks to Conor Dooley, who notified me.
 
-Thanks,
+Jonathan Neusch=C3=A4fer (2):
+  spi: dt-bindings: nuvoton,wpcm450-fiu: Fix error in example (bogus
+    include)
+  spi: dt-bindings: nuvoton,wpcm450-fiu: Fix warning in example (missing
+    reg property)
 
-Acked-by: Tim Harvey <tharvey@gateworks.com>
+ .../devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Best Regards,
+=2D-
+2.35.1
 
-Tim
