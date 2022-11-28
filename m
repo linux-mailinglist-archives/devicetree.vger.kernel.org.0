@@ -2,114 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F289263B356
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 21:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C81D63B36F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 21:39:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232860AbiK1UgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 15:36:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45450 "EHLO
+        id S232662AbiK1UjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 15:39:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234157AbiK1UgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 15:36:10 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14002B25F
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:36:08 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id z192so14913623yba.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:36:08 -0800 (PST)
+        with ESMTP id S233897AbiK1UjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 15:39:05 -0500
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A0B2AE29
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:38:57 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-381662c78a9so118227227b3.7
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 12:38:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ffVK8yqAhUy/OhUiWpfwiQeRb9vfkg2xW2w/cRvgmp4=;
-        b=nu3s1s0tkqgG/V6gfUUR0jDBHO241Z2Q02/3bsAJgUH9hyDxN8+Wmwv5hSoESD2hwE
-         mbAzn7ZXAq7nElQ8hXp3zX4HQrsN/dTCnfpNSSuqC61K4Wz7vm1Hou2VlYXsT7rILsMK
-         2e5MMc3Wc12gqhOx+ObgrKNXadDAg6HNg2x1ZCgPLGt4aUupga/UyzM/z54RmxsBih30
-         2vhm3OwFvRX7H6vu85Kz9wwCCqOCWnxz/CkjDI00qR6F8WJMAZnsL+78qCN4Wlo3UG7j
-         rVITfThiY0FU/FnrBMzabKitY9erhvExF4Iu32yS7EoQvr7jVCjoMPxK/5b70XxODCk9
-         elHQ==
+        bh=muN8RjWN+Kk1tkZlkfOhxDOhOOQmpR5jlCuN7XjP+2E=;
+        b=q5JM7pHFmELZeHnpHidYiCODzHF+QAGAhFU217+CTT57oE4dVif6++o6K50hwFHvub
+         GqUZVVnHlpYs1zjxVbAACaMd4QnJXeFhC5lWpxZq2GIXKhLl0zp1jrupPQQYsw7GcPRr
+         Frl7yriSDyKqGj1m4M5F6otjH8Zfepn268EWl9ozmboLJ0SZSZjMgQwjwXpOSQgi6pXt
+         Xs0uO92CvOriyA7EdwoDwtsOLDYLrFhJk7V3mwI/uCXV0X8e6u9rqhv49jBuUAtBG0B9
+         p22y91enUq8tASBQdtQA4p4VaN+7Z2msm8a04CA/5MDXLVmoLxm1seI5gvBpAuoZrTQP
+         xHzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ffVK8yqAhUy/OhUiWpfwiQeRb9vfkg2xW2w/cRvgmp4=;
-        b=7vIuPQroueFi8N0+mKISYTQ/U49Jl867S0m7/puVJS2GmlzE6Eg5L46XhnRomOGNPt
-         ZgA9It0H54ULqUBa19hXyZZMSXJ/LozcJ67G6llVm7adYb/NuU7wOMR4Ifjuo8Vryboh
-         FSwxMGKAGUrdiGjisCCq77U7U2cg5yFlO3reY6ERxA79rkaCOcCococFydoL8Zo5LanY
-         eFrvB8pfutZoerbK4MvAb4mFE1MT+qXB+V6R7hud4dspJq1ycw4JCFDgQI8c4bTlbsCE
-         jAEwC3nONnjSpVJUaRX27/YSjG6cJ8Vj/G/0pLlFAqgvS4ZdYOFANLNCsKGmczRDNGzC
-         I5ew==
-X-Gm-Message-State: ANoB5pmq2OYOCcv4Bncbx1Usc55jwK6Ill33R6ZDG2XpytPGCOIcDbW4
-        aktYNjkQjJzCOl6beXBJ9ez1M9ZLr9K7Cb13xNgNtw==
-X-Google-Smtp-Source: AA0mqf4CS52Hau/+WD0GVr3Atq6ZuHXn54OHpA8BjNuCq5Qb6+eIDNPSWbaHzJSKIECaXQPMyGcq4UuR2YB9ZaGuAG8=
-X-Received: by 2002:a25:a241:0:b0:6ee:e865:c2e2 with SMTP id
- b59-20020a25a241000000b006eee865c2e2mr29663269ybi.206.1669667768154; Mon, 28
- Nov 2022 12:36:08 -0800 (PST)
+        bh=muN8RjWN+Kk1tkZlkfOhxDOhOOQmpR5jlCuN7XjP+2E=;
+        b=yh5nZkv7c2nbBjwe9qJhA/uGptogcn2tFYZDmcFMuo8gq0cXToYlhL6IfVH1YYCa/j
+         Zy9p81ZXK7HzzDi0X4w601j/kSiuX/hPuS873HWAMNB6bjvUaDje1bfWNAyXZXmzNRo4
+         Oqer4kbapGvskZ6Wku4GgoN1U9liJriuHHgTZpsHyImvxB779nB7cY++IyOMo+Kmcaow
+         z1hUvmOt3XxK4CEUivgEv/LKjZXnWZ+5CAxW9qgnirCda8aYADwZ02PBeLGfPp9wJKyb
+         JYXBZYOE0C4OErdo72g/OA7haQY4Km8ee48RYnxF9lqH6DHtG+Hbd8rPLSjLNd1PKwqr
+         emEg==
+X-Gm-Message-State: ANoB5pncVG9Q1pCAMHyOXq1yulu2OdlMMyGlMGpVrIadCMkPxBtYhorE
+        U68Rg4FnqwJJbYhJTjckmMaoEDNr8WAHDg28E/Rt1A==
+X-Google-Smtp-Source: AA0mqf6gWm+H1zYyuY1SDwCQ3Sa/CADq5W0A5MpWNxSJDYAUdfP1Y2O6xr6J4M+q7rShfdBptLBQ1OEZfYKCsYNKDH4=
+X-Received: by 2002:a81:7909:0:b0:36f:d2d9:cdc4 with SMTP id
+ u9-20020a817909000000b0036fd2d9cdc4mr34522067ywc.380.1669667937231; Mon, 28
+ Nov 2022 12:38:57 -0800 (PST)
 MIME-Version: 1.0
-References: <20221128064300.12021-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221128064300.12021-1-zhuyinbo@loongson.cn>
+References: <20221118092218.480147-1-mranostay@ti.com> <20221118092218.480147-5-mranostay@ti.com>
+In-Reply-To: <20221118092218.480147-5-mranostay@ti.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 28 Nov 2022 21:35:56 +0100
-Message-ID: <CACRpkdZoD8v6pPStaKLf14houZk5e89ZBz5wZJVQJxJ1Xq37Ug@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] gpio: loongson: add gpio driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Hongchen Zhang <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>
+Date:   Mon, 28 Nov 2022 21:38:46 +0100
+Message-ID: <CACRpkdZ9Ld7OMFXJW8zrEjMG1rxp_emi5iVWxE4F8h94BXe4og@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] gpio: gpio-tps6594x: add GPIO support for TPS6594x PMIC
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     vigneshr@ti.com, robh@kernel.org, krzysztof.kozlowski@linaro.org,
+        a.zummo@towertech.it, lee@kernel.org, brgl@bgdev.pl,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 7:43 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+On Fri, Nov 18, 2022 at 10:22 AM Matt Ranostay <mranostay@ti.com> wrote:
 
-> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
-> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
-> with other functions. Each GPIO can set input/output and has the
-> interrupt capability.
+> Add support for TPS6594X PMICs GPIO interface that has 11 that can be
+> configured as input or outputs.
 >
-> This driver added support for Loongson GPIO controller and support to
-> use DTS or ACPI to descibe GPIO device resources.
->
-> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
-> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
-> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 
-v8 looks really nice.
-
-> +static int loongson_gpio_to_irq(
-> +                       struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       struct platform_device *pdev =
-> +               container_of(chip->parent, struct platform_device, dev);
-> +
-> +       if (offset >= chip->ngpio)
-> +               return -EINVAL;
-
-You forgot to drop this.
-
-With this fixed (and Bartosz requested fix):
+This looks really neat and clean with gpio-regmap.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
