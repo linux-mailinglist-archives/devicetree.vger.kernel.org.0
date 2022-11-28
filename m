@@ -2,96 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2CB63AA88
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:10:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA5863AA91
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:11:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231733AbiK1OKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:10:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
+        id S232276AbiK1OLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:11:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231846AbiK1OKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:10:00 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D5310C8;
-        Mon, 28 Nov 2022 06:09:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669644599; x=1701180599;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=Hi8mtuMtBxkZtTKEz9kvonjsKm5H9vDF/St1rZpRREA=;
-  b=FU0obIdLLE1uDOSB2LZ07jJxkgAEncGluY+GSjdapww6paPV/A434/Jc
-   vJ4CYjRwKrINhdfoqA7Ot8Lb24Julzih+T+TYsk2mj+M9FCBh+m8TZbrZ
-   J0N7AW83qKvNni0w65GtNNYI4ySflGOqY88gkcXxlMsZR3B4I+VlUlhgO
-   1CN77mDJniOE25QyffhdeC9ySIL6U0mYYwnxFIr4bdpvaysKzClYjN12d
-   r3Y/DucRVMm3pR+dOTSPg4jMEBm8h4weoCYnGIAoqKN7u8JfW+7CGYg4W
-   dxYfzEHXzi6YTf/1UVku/JZoxA8rll9VFVlObFQmJHyCWQsA0GMKQHP9U
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; 
-   d="scan'208";a="185487674"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Nov 2022 07:09:58 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 28 Nov 2022 07:09:58 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Mon, 28 Nov 2022 07:09:56 -0700
-Date:   Mon, 28 Nov 2022 14:09:37 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-CC:     Rob Herring <robh@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <openbmc@lists.ozlabs.org>, <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: Add Nuvoton WPCM450 Flash
- Interface Unit (FIU)
-Message-ID: <Y4TBIah6vJAG3kj2@wendy>
-References: <20221124191400.287918-1-j.neuschaefer@gmx.net>
- <20221124191400.287918-2-j.neuschaefer@gmx.net>
- <166950112932.8087.6546134123286782729.robh@kernel.org>
- <Y4SV+5/3Y0dw5QeU@wendy>
- <Y4S+oWz8fNsQj5Gj@probook>
+        with ESMTP id S231638AbiK1OLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:11:19 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC583AB
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:11:17 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id c1so17515408lfi.7
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:11:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f7WMk8JdnukYc8uZcl1PFgG4y0ztQpkC05f+mmdnbaM=;
+        b=a0xNI0KvjKVFPDMZ/k4JUSjljzMUST52etgZLEHZ5qeR06e0BippLuxPbQpLssxAFw
+         NhnIBi6vxow0mtdTpzluOgPhXyz7eFCA2Q3hRxyuybzkvWiFklR7SJ25zGLv0zathbfw
+         994PTySe4FmQmVcgqLvxwWdkM73vc7o81MbLvfghnbZAbPhTPGzb0Hg8+/pjSUCYESKT
+         8RA1hPlwdmosXbzfXSnCj3xEob+hZOb9+PBFlKhrEU9bMVl7CcQsuyKPaU1iGE0gTrUl
+         4x6+7+rd4LgUZ2Q5xHh+SQB0oyuWdlxcAFNkyJgvAmf2FiyTMNguwsgJc524hsSXzfra
+         r76w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f7WMk8JdnukYc8uZcl1PFgG4y0ztQpkC05f+mmdnbaM=;
+        b=0BiMArD7HFtku+83J1b1ZbsK3av6NHdcV9Q/6X1O8gFpCKLIGGehiyjJY8OSMa2RRk
+         /OdKWtVYVPPf/IUGuew20HJ0D/IEvfgMPjWZqXpzRKWmqvf6X5OHEdKC/4i5GEH00Pxy
+         1NxaSBJ7qzfKjpT55Nxlt+glNpZotVcmAhc22hUhTBzLoT1OGCJuPv2zW37E+4TlKx7D
+         bG1FEh9RFdWrBhtgwZbNZI02HaOodONq1ej3jrJN23sKiTxI4F30/TZqavYntiN8rPaD
+         EwP+xmjnW+HkIeZ+N2v7KrQeDNfi6l8yXVIv2A4k8K8cvIJZMiFz65CdQ01VvMGe+x3Z
+         BZkg==
+X-Gm-Message-State: ANoB5pklRV1G1kLf8B+e0eFmHjH1xLTZnWSXnQLVU1O5ULQRUsryxye5
+        mWuYQlixmtjcDYtV12HUPWLqQQ==
+X-Google-Smtp-Source: AA0mqf5Ev00V0oh+yCBMf2uHkbcJepQVFr0ujgek8EZrJvA62M4r9mCMjdscgP5kHDDAudpsdD55/A==
+X-Received: by 2002:a05:6512:308f:b0:4b4:b8a8:69fe with SMTP id z15-20020a056512308f00b004b4b8a869femr16221464lfd.333.1669644675762;
+        Mon, 28 Nov 2022 06:11:15 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f20-20020a056512361400b0047f7722b73csm1735219lfs.142.2022.11.28.06.11.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 06:11:15 -0800 (PST)
+Message-ID: <9cc53272-6828-91b5-30a9-384168a9f94f@linaro.org>
+Date:   Mon, 28 Nov 2022 15:11:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y4S+oWz8fNsQj5Gj@probook>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: add loongson i2c
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Jan Dabros <jsd@semihalf.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20221128130025.23184-1-zhuyinbo@loongson.cn>
+ <20221128130025.23184-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221128130025.23184-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 02:58:57PM +0100, Jonathan Neuschäfer wrote:
-> On Mon, Nov 28, 2022 at 11:05:31AM +0000, Conor Dooley wrote:
-> > On Sat, Nov 26, 2022 at 04:25:36PM -0600, Rob Herring wrote:
-> [...]
-> > > dtschema/dtc warnings/errors:
-> > > Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.example.dts:18:18: fatal error: dt-bindings/clock/nuvoton,wpcm450-clk.h: No such file or directory
-> > >    18 |         #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
-> > >       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > > compilation terminated.
-> > > make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.example.dtb] Error 1
-> > > make[1]: *** Waiting for unfinished jobs....
-> > > make: *** [Makefile:1492: dt_binding_check] Error 2
-> > 
-> > FWIW this seems to now be in linux-next as dd71cd4dd6c9 ("spi: Add Nuvoton
-> > WPCM450 Flash Interface Unit (FIU) bindings") & is breaking
-> > dt_binding_check.
+On 28/11/2022 14:00, Yinbo Zhu wrote:
+> Add the Loongson platform i2c binding with DT schema format using
+> json-schema.
 > 
-> Ah, sorry about that. It should resolve itself once nuvoton,wpcm450-clk
-> binding gets merged, but I don't see a definite timeframe for that, yet.
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Change in v2:
+> 		1. Removed the "#address-cells" and "#size-cells" in requied.
+> 		2. Add the reviewed-by information.
 > 
-> Alternatively, I can send a patch to simplify the example in the FIU
-> binding.
+>  .../bindings/i2c/loongson,ls-i2c.yaml         | 47 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml b/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+> new file mode 100644
+> index 000000000000..0e4aee9146f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/loongson,ls-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson I2C controller
+> +
+> +maintainers:
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - loongson,ls2k-i2c
+> +      - loongson,ls7a-i2c
 
-Without being a Responsible Adult^TM for either SPI or DT, my preference
-would be for simplifying the binding so that if your clk stuff doesn't
-land for 6.2 the binding checks still work.
+Why do we have the same bindings twice, with different people and file
+names?
+
+https://lore.kernel.org/all/57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn/
+
+Best regards,
+Krzysztof
+
