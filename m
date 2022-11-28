@@ -2,198 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D55E363B611
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:41:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A4263B627
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 00:52:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234411AbiK1XlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 18:41:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55394 "EHLO
+        id S234790AbiK1XwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 18:52:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232141AbiK1XlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:41:22 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB1935FBB
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 15:41:20 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id r18so11370001pgr.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 15:41:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hQvlx+1Mw3aNuJTA2b+/LRz8ikSIvWj9nKVnNpG8ijo=;
-        b=uV0AGKeAUIsWOqhlt5UuZ8kTLBjmmuQI+QG30kdN2Vvo7an9ynfTxtYC3V9hOTue1Z
-         mTHRDJJHY9e244Rn8QR+HFYm19V0lKYZ4AkO2PDJpMncIo9ykS666xf4rHkQpTMsDoUm
-         mlpG5zo8yMsfnh5jz8+b7gd36tTCeu+akBDTlPERR1Ggs4ld1vY1DEkCiuz6lzn2zxkQ
-         G5yFedaJyIhbk6DBeE6wobCcd+d+ku8l4GzO6/MUzL+ReIvlbnRV+14NbjvyUhERptyJ
-         LFx1gl5mXs2HSLN5yJBSCyf1/1YIAib3iqije43C9hJUNANDG6wIdYfHZTeWOSP+BH5T
-         aYQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hQvlx+1Mw3aNuJTA2b+/LRz8ikSIvWj9nKVnNpG8ijo=;
-        b=Vlios2x8MCzKlTeG9fJikzcH+QxZQ2DMbEf15WByvKxtF587mn+Zt37pgKAlCbnTuY
-         RouSzzMUOC9c3Dr/ZdZLAOLFZyfgGoC+9ykduoVwF8aT5C44wjMixcqeP9hDDKfuJiBu
-         ilR3uIQZiEdxfPaUZxxXc8W/I8vs9NSe6GkLaypU7rXoShass/KtGQ10v6j1R0EwsEJX
-         d4mD4YmXkDe0esl2G8yQM8UMnSjRiEa3mcehcjqzKQeCLPepP25r0PBjAuUv1+9hUjEQ
-         OkKkWXMH0WCGlYEybA23fCo9nflZE1gvB/abYTGl85JcLd9ZZGCUwQExuabSYoKS3/K+
-         yWLw==
-X-Gm-Message-State: ANoB5pnR26MIcgQNhjEhEwd6tQT138EK4FAzyeMNqrKdCAz1g6S/QXsI
-        C7ZiOjWnACOY2xNN8i6MqhJbRA==
-X-Google-Smtp-Source: AA0mqf7iqQc7XiA9Gtrgo5HG5Kpi2s1j0qBOVrnj75f4/YdH7FPftm9bTLLH6l19kQQt4C3qgHk7qg==
-X-Received: by 2002:a63:e411:0:b0:45f:b2a7:2659 with SMTP id a17-20020a63e411000000b0045fb2a72659mr30146688pgi.132.1669678880217;
-        Mon, 28 Nov 2022 15:41:20 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id z13-20020a170903018d00b0018853416bbcsm9484405plg.7.2022.11.28.15.41.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Nov 2022 15:41:19 -0800 (PST)
-Date:   Mon, 28 Nov 2022 15:41:19 -0800 (PST)
-X-Google-Original-Date: Mon, 28 Nov 2022 15:41:11 PST (-0800)
-Subject:     Re: [PATCH 2/2] dt-bindings: riscv: fix single letter canonical order
-In-Reply-To: <Y4UJQYgCpnZJji9o@spud>
-CC:     heiko@sntech.de, linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, ajones@ventanamicro.com, guoren@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-8141aa74-17c6-4692-a658-b5e4faad0c14@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        with ESMTP id S234805AbiK1Xv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 18:51:59 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 16EE431F97;
+        Mon, 28 Nov 2022 15:51:57 -0800 (PST)
+Received: from loongson.cn (unknown [117.133.84.114])
+        by gateway (Coremail) with SMTP id _____8DxM_CcSYVj+tkBAA--.4421S3;
+        Tue, 29 Nov 2022 07:51:56 +0800 (CST)
+Received: from [192.168.1.7] (unknown [117.133.84.114])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cxb+KZSYVj8sodAA--.10214S3;
+        Tue, 29 Nov 2022 07:51:53 +0800 (CST)
+Message-ID: <4920a652-cc08-6602-7886-80b86a619d0a@loongson.cn>
+Date:   Tue, 29 Nov 2022 07:51:53 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: i2c: add loongson i2c
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Jan Dabros <jsd@semihalf.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>
+References: <20221128130025.23184-1-zhuyinbo@loongson.cn>
+ <20221128130025.23184-2-zhuyinbo@loongson.cn>
+ <9cc53272-6828-91b5-30a9-384168a9f94f@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+In-Reply-To: <9cc53272-6828-91b5-30a9-384168a9f94f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-CM-TRANSID: AQAAf8Cxb+KZSYVj8sodAA--.10214S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7AFWDKr4fKw4UZr18Kw43trb_yoW8CFyUp3
+        W7CFsIyFW0qF12g393Wa48Cr15Zrn7A3W7Wr42gw1UCas8u3Z8XFWakrn8ua95ur1rWFW7
+        XFWIga1j9a1kAaDanT9S1TB71UUUUbDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jsWrXUUUUU=
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Nov 2022 11:17:21 PST (-0800), Conor Dooley wrote:
-> On Mon, Nov 28, 2022 at 10:12:17AM -0800, Palmer Dabbelt wrote:
->> On Mon, 28 Nov 2022 10:08:05 PST (-0800), Conor Dooley wrote:
->> > On Mon, Nov 28, 2022 at 09:41:03AM -0800, Palmer Dabbelt wrote:
->> > > On Thu, 24 Nov 2022 05:42:20 PST (-0800), heiko@sntech.de wrote:
->> > > > Am Donnerstag, 24. November 2022, 14:04:41 CET schrieb Conor Dooley:
->> > > > > I used the wikipedia table for ordering extensions when updating the
->> > > > > pattern here in foo.
->> > > >
->> > > > 	    ^ foo? :-)
->> > > >
->> > > > > Unfortunately that table did not match canonical order, as defined by
->> > > > > the RISC-V ISA Manual, which defines extension ordering in (what is
->> > > > > currently) Table 41, "Standard ISA extension names". Fix things up by
->> > > > > re-sorting v (vector) and adding p (packed-simd) & j (dynamic
->> > > > > languages). The e (reduced integer) and g (general) extensions are still
->> > > > > intentionally left out.
->> > > > >
->> > > > > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
->> > > > > Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
->> > > > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> > > >
->> > > > So I have compared the new pattern to the isa manual,
->> > > > and it looks like the order checks out, so
->> > >
->> > > Which ISA manual?
->> >
->> > For me, isa manual is the above github repo.
+
+在 2022/11/28 22:11, Krzysztof Kozlowski 写道:
+> On 28/11/2022 14:00, Yinbo Zhu wrote:
+>> Add the Loongson platform i2c binding with DT schema format using
+>> json-schema.
 >>
->> Which commit, though?
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>> Change in v2:
+>> 		1. Removed the "#address-cells" and "#size-cells" in requied.
+>> 		2. Add the reviewed-by information.
+>>
+>>   .../bindings/i2c/loongson,ls-i2c.yaml         | 47 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml b/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+>> new file mode 100644
+>> index 000000000000..0e4aee9146f3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/i2c/loongson,ls-i2c.yaml
+>> @@ -0,0 +1,47 @@
+>> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/i2c/loongson,ls-i2c.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson I2C controller
+>> +
+>> +maintainers:
+>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - loongson,ls2k-i2c
+>> +      - loongson,ls7a-i2c
+> Why do we have the same bindings twice, with different people and file
+> names?
 >
-> mutt won't let me paste a clown face emoticon.
+> https://lore.kernel.org/all/57339e73b6c0bfe446e19a7f55a48b7ca640b9ec.1669359515.git.zhoubinbin@loongson.cn/
 >
->> > > There have been many mutually incompatible ISA string
->> > > encoding rules, at least one of them was a change to the extension ordering.
->> > > It's not entirely clear what the right answer is here, as we can't really
->> > > parse ISA strings without also knowing the version of the ISA manual we're
->> > > meant to parse them against.  Maybe we just accept everything?
->> >
->> > I don't think accepting everything is the right thing to do. A minimal
->> > amount of validation is still needed here, but I think we can deprecate
->> > the DT property entirely & make it optional if a new-and-improved way of
->> > encoding the in DT is used.
->>
->> Sorry, by "everything" I meant "everything that's even been allowed by the
->> ISA manual".  Just accetping anything would be bad ;)
->>
->> > > IMO it's time to just stop using the ISA string.  It's not a stable
->> > > interface, trying to treat it as such just leads to headaches.  We should
->> > > just come up with some DT-specific way of encoding whatever HW features are
->> > > in question.  Sure it'll be a bit of work to write that all down in the DT
->> > > bindings, but it's going to be way less work than trying to keep around all
->> > > this ISA string parsing code.
->> >
->> > I'm a glutton for punishment, I'll try and come up with some sort of
->> > other way to encode this information in DT that requires less parsing
->> > and validation. As I said on IRC, something that more resembles:
->> > if (of_property_wahtever("riscv,isa-foo")) { do_enable_foo() }
->>
->> That seems way simpler to me, thanks!  We'll still need to support whatever
->> was here as a legacy format, but at least we won't need to add a bunch of
->> new stuff to it -- that's where the parsing starts to get really
->> complicated.
->
-> Yah, and "deprecated" in dt-schema doesn't actually do anything at the
-> moment other than let humans know not to use something. Just gonna have
-> to do some sort of "feature-wise AND" between the existing things we
-> parse from the isa string & whatever riscv,isa-foo stuff later on.
+> Best regards,
+> Krzysztof
 
-I suppose this is more of a Rob question, but could we just make the DT 
-bindings match the current ISA manual's rules and then have the kernel's 
-"riscv,isa" string parser accept more orderings to remain compatible?
+Inthe previous internal discussion, I was assigned to go to upstream for 
+i2c, but I
 
-Sort of a API vs ABI stability question, but for DTB and bindngs.
+don't know why other people are also working on the patch. I will go to
 
->> FWIW, there's a similar dicussion going on in GCC land right now.
->>
->> > > I know I've said the opposite before, but there's just been way too many
->> > > breakages here to assume they're going to stop.
->> >
->> > :upside_down_face:
->> >
->> > Either way, I think these two patches are worth taking in the mean time.
->>
->> Yep, just as long as it doesn't break any of the strings that were valid
->> according to previous versions of the ISA manual I'm fine with it.
->
-> I don't think so. I had been looking around for a supposed order for
-> where to actually put H, which had been dropped - and the only place I
-> recall seeing that was Wikipedia - which now seems like an awful
-> decision since the order there looks kinda off anything I see in dozen
-> or so spec PDFs I have downloaded. But that's where I got the K & V
-> ordering from that I now think is wrong (and doesn't match any PDF I
-> have). The other changes relax rules and add letters so they should be
-> okay too.
+internal communication.
 
-Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-
-as it sounds like there aren't even any fixed rules, so I guess none of 
-this even matters?
-
->
->> > > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
->> > > >
->> > > > > ---
->> > > > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
->> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
->> > > > >
->> > > > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
->> > > > > index e80c967a4fa4..b7462ea2dbe4 100644
->> > > > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
->> > > > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
->> > > > > @@ -80,7 +80,7 @@ properties:
->> > > > >        insensitive, letters in the riscv,isa string must be all
->> > > > >        lowercase to simplify parsing.
->> > > > >      $ref: "/schemas/types.yaml#/definitions/string"
->> > > > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
->> > > > > +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
->> > > > >
->> > > > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
->> > > > >    timebase-frequency: false
->> > > > >
