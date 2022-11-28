@@ -2,118 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E69C63A113
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 07:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAFFB63A124
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 07:25:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbiK1GKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 01:10:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59494 "EHLO
+        id S229676AbiK1GZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 01:25:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229751AbiK1GKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 01:10:46 -0500
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78FF13F45;
-        Sun, 27 Nov 2022 22:10:45 -0800 (PST)
-Received: by mail-wr1-f46.google.com with SMTP id g12so15057687wrs.10;
-        Sun, 27 Nov 2022 22:10:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LNcHyBDLc5jdtnLBN8748IdlIq3jeqAUsM7MsspQYq8=;
-        b=hhrDcGj3lcmGsh7XLPOKXYX647Wme5iMWJzRP1QfHzffnXnI86JLKbsI2uCYrPpJCH
-         K1yVDRq+0oWBwmnL5KJyOVTrlqMEVGetd+s5oB1Vw5H4ifxqG8F7plTQt5Xu5pHguQqF
-         hYEp+ZSTUsw74T2CFnCkc6NqEGVwtQWMXLlQ0ZTJKtbET+tiayugwXytFVGvk1TJnusn
-         +YpmRSrTomDxHhwq5aGiFP1l/OaGqhTncqspGC3ucO5JqXPyGN9gPX7To2OGsXz4C0MM
-         Xh1O+7rJHtchnT5Zbj6RA/QAH9cCm0o/Qgf3kikMeidNkEmKIFTxN3gNOgG2DTLjz8O8
-         lCtw==
-X-Gm-Message-State: ANoB5pl//OZcWPQ2DBj0wVES3hrTjqcGuCsae792LVpZJp/b4z1CFv6w
-        fOti4JExh/dUiVp8Sdujy1w=
-X-Google-Smtp-Source: AA0mqf4U7mqwsR/kHM0iUuatuXazzkLjLDSblw4PHIluzbs1vltm1jgpwfhnnsZFOTu0BmvEDK3Osw==
-X-Received: by 2002:adf:fb4c:0:b0:236:5270:735e with SMTP id c12-20020adffb4c000000b002365270735emr18959992wrs.659.1669615844299;
-        Sun, 27 Nov 2022 22:10:44 -0800 (PST)
-Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
-        by smtp.gmail.com with ESMTPSA id n8-20020a05600c4f8800b003cfd64b6be1sm21801135wmq.27.2022.11.27.22.10.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Nov 2022 22:10:43 -0800 (PST)
-Message-ID: <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org>
-Date:   Mon, 28 Nov 2022 07:10:41 +0100
+        with ESMTP id S229534AbiK1GZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 01:25:31 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 07A43BF72;
+        Sun, 27 Nov 2022 22:25:28 -0800 (PST)
+Received: from loongson.cn (unknown [117.133.84.114])
+        by gateway (Coremail) with SMTP id _____8CxrutXVIRjZpcBAA--.3934S3;
+        Mon, 28 Nov 2022 14:25:27 +0800 (CST)
+Received: from [192.168.1.7] (unknown [117.133.84.114])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx5VZVVIRjbQcdAA--.54968S3;
+        Mon, 28 Nov 2022 14:25:26 +0800 (CST)
+Message-ID: <a749cb75-eea8-c1af-5a07-5d85c7fc17ff@loongson.cn>
+Date:   Mon, 28 Nov 2022 14:25:25 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v2 2/9] serial: bflb_uart: add Bouffalolab UART Driver
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v6 1/2] gpio: loongson: add gpio driver support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-3-jszhang@kernel.org>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <20221127132448.4034-3-jszhang@kernel.org>
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+References: <20221123080414.14005-1-zhuyinbo@loongson.cn>
+ <CACRpkdZ5OJpMFH1Wi31TKQZskQtCmNGyySdkOpouiNW2t_jV6Q@mail.gmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+In-Reply-To: <CACRpkdZ5OJpMFH1Wi31TKQZskQtCmNGyySdkOpouiNW2t_jV6Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Cx5VZVVIRjbQcdAA--.54968S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxurWDuF4kGr4xKFW5Wry8Xwb_yoW5KFyxpF
+        WxWayakF45JrWUCr1DXrW5ZFyakrZ0yrsrJFsFk3yv93s8Awn7XrWUWF15Zr97ur95uF17
+        ZFW8CFWv9a1DAFJanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j1SoXUUUUU=
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27. 11. 22, 14:24, Jisheng Zhang wrote:
-> +static void bflb_uart_tx_chars(struct uart_port *port)
 
-Again:
+在 2022/11/24 6:14, Linus Walleij 写道:
+> On Wed, Nov 23, 2022 at 9:04 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>
+>> The Loongson platforms GPIO controller contains 60 GPIO pins in total,
+>> 4 of which are dedicated GPIO pins, and the remaining 56 are reused
+>> with other functions. Each GPIO can set input/output and has the
+>> interrupt capability.
+>>
+>> This driver added support for Loongson GPIO controller and support to
+>> use DTS or ACPI to descibe GPIO device resources.
+>>
+>> Signed-off-by: Jianmin Lv <lvjianmin@loongson.cn>
+>> Signed-off-by: Hongchen Zhang <zhanghongchen@loongson.cn>
+>> Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
+>> Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>> Change in v6:
+> This is way better :)
+>
+> I guess you notice how the driver gets smaller and smaller.
+> This is a good sign!
+It's thanks to your advice！
+>> +static int loongson_gpio_request(
+>> +                       struct gpio_chip *chip, unsigned int pin)
+>> +{
+>> +       if (pin >= chip->ngpio)
+>> +               return -EINVAL;
+>> +
+>> +       return 0;
+>> +}
+> Drop this altogether as discussed in my other reply.
+okay , I got it.
+>
+>> +static inline void __set_direction(struct loongson_gpio_chip *lgpio,
+>> +                       unsigned int pin, int input)
+>> +static void __set_level(struct loongson_gpio_chip *lgpio, unsigned int pin,
+>> +                       int high)
+> I missed this before. Also the use of __underscore for inner functions
+> is a bad habit IMO (because __underscore is also used for compiler
+> primitives such as __init which is confusing) The signature of these
+> functions is too generic. Name them loongson_commit_direction() or
+> loongson_commit_level() or something.
+okay , I got it.
+>
+>> +static int loongson_gpio_get_direction(
+>> +                               struct gpio_chip *chip, unsigned int pin)
+> thanks for implementing this!
+>
+>> +       if (lgpio->p_data->mode == BIT_CTRL_MODE) {
+>> +               ret = bgpio_init(&lgpio->chip, dev, 8,
+>> +                               LOONGSON_GPIO_IN(lgpio),
+>> +                               LOONGSON_GPIO_OUT(lgpio), 0,
+>> +                               LOONGSON_GPIO_OEN(lgpio), NULL, 0);
+>> +               if (ret) {
+>> +                       dev_err(dev, "unable to init generic GPIO\n");
+>> +                       return ret;
+>> +               }
+>> +               lgpio->chip.ngpio = ngpios;
+> Neat!
+>
+>> +               lgpio->chip.base = 0;
+> Drop this. It is good that the base is unpredictable so
+> people don't start to rely on it. (drivers/gpio/TODO)
+okay, I got it.
+>
+>> +       rval = device_property_read_u16_array(dev, "gsi_idx_map", NULL, 0);
+> But this gsi_idx_map is missing from your device tree bindings,
+> is it not?
+>
+> Or what am I missing here? Sorry I might overlook something...
 
-Are you unable to use the TX helper? If so:
-* why?
-* use uart_advance_xmit() at least.
+gsi_idx_map is for acpi, the dts doesn't use it, and acpi should be 
+follow dts,
 
-> +{
-> +	struct circ_buf *xmit = &port->state->xmit;
-> +	unsigned int count;
-> +
-> +	if (port->x_char) {
-> +		/* Send special char - probably flow control */
-> +		wrl(port, UART_FIFO_WDATA, port->x_char);
-> +		port->x_char = 0;
-> +		port->icount.tx++;
-> +		return;
-> +	}
-> +
-> +	if (uart_circ_empty(xmit) || uart_tx_stopped(port)) {
-> +		bflb_uart_stop_tx(port);
-> +		return;
-> +	}
-> +
-> +	count = BFLB_UART_TX_FIFO_TH;
-> +	do {
-> +		wrl(port, UART_FIFO_WDATA, xmit->buf[xmit->tail]);
-> +		xmit->tail = (xmit->tail + 1) & (UART_XMIT_SIZE - 1);
-> +		port->icount.tx++;
-> +		if (uart_circ_empty(xmit))
-> +			break;
-> +	} while (--count > 0);
-> +
-> +	if (uart_circ_chars_pending(xmit) < WAKEUP_CHARS)
-> +		uart_write_wakeup(port);
-> +
-> +	if (uart_circ_empty(xmit))
-> +		bflb_uart_stop_tx(port);
-> +}
+so remove it.
 
--- 
-js
-suse labs
+>
+>> +static int loongson_gpio_probe(struct platform_device *pdev)
+>> +{
+>> +       void __iomem *reg_base;
+>> +       struct loongson_gpio_chip *lgpio;
+>> +       struct device_node *np = pdev->dev.of_node;
+>> +       struct device *dev = &pdev->dev;
+>> +
+>> +       lgpio = devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
+>> +       if (!lgpio)
+>> +               return -ENOMEM;
+>> +
+>> +       loongson_gpio_get_props(pdev, lgpio);
+>> +
+>> +       lgpio->p_data = device_get_match_data(&pdev->dev);
+> lgpio->p_data = device_get_match_data(dev);
+>
+>
+>> +static int __init loongson_gpio_setup(void)
+>> +{
+>> +       return platform_driver_register(&loongson_gpio_driver);
+>> +}
+>> +postcore_initcall(loongson_gpio_setup);
+> Why does this have to be postcore_initcall()?
+
+it was refer other gpio driver. other perpherial driver will use gpio, 
+the gpio driver
+
+  should be loaded as early as possible,so use postcore_initcall();
+
+>
+> Yours,
+> Linus Walleij
 
