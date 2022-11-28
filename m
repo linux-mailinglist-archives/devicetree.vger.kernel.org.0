@@ -2,371 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A2F63A8A3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB6863A8AC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:45:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbiK1MnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 07:43:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49556 "EHLO
+        id S230281AbiK1MpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 07:45:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229827AbiK1MnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:43:12 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75CE212610;
-        Mon, 28 Nov 2022 04:43:10 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sendonly@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 9F0FD41EF0;
-        Mon, 28 Nov 2022 12:43:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1669639389; bh=59CSFOX97npsoJgTAQusPWIZ1PoRhHaim0uMHhjm+K0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=eiMgEvH9Gq8Evo/7/2aD1YTMc//vmh2UlB75CxJZe8yPAhlqeMOX65BtRHA7RS3gR
-         RF6SmulVZ7379M01zIYQK+we7QY4+32QW5azjIvmH654SCqgE3aFquhaiKPuIoqi3q
-         glGPkEHk2QEb8NGNM9zD8zx24Zp0Amqdz2M4MWdD1KEBf90CtBdCnKHMNG2lWPBZke
-         0QbGu96ynP7gpB3blDErbjBQHWhE3t7HW9S7RjbH82CxTaRl6X01uZ5qLDeow9lzhB
-         eBQqY0XMuwjmITWRqd27iCuBMUuA6MjmO4hvf5JrdJSiSSF9wqEEKOHX9kZ1sUaClk
-         /7F+LfvdfABsQ==
-From:   Hector Martin <marcan@marcan.st>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        with ESMTP id S231187AbiK1Mo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:44:58 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507729587
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:44:57 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id l67so13134782ybl.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 04:44:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=x5L92L6sWI/+mEWBmBL3DtHPyW1jrzK/QlQTZzSwQBI=;
+        b=Mygr6yQSUM5fS8H6tqebwAnMYYMV5asAEjAdIHLZWUuRsaaJh47JXIwLyq6w7kU9fH
+         Dx8VY3uEtrRnPXOExf0PqEUZygw09IAuWk1vo9KEXrTEPkE5I5jNBlzcGOz7e3m6Z/TB
+         qSIphXTQSA6T0gWAZoPOKVkMyaxj+QZlVMiznxElGNykjYLe00WkX3JDBxOTJ/F4KUGr
+         E0dF2hVqVTZohzaqRjaqdFfnRS8fJMzUlFdSoTuNnxPetqNtaXGqJ8k2VRz2+dOmDJn2
+         VDHTKCXrC9KdovNkpJnr9YnumkZBZfiF+dV2zXvMYXkpqffwCCVErvSgl+vi6F+Mluor
+         W7ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x5L92L6sWI/+mEWBmBL3DtHPyW1jrzK/QlQTZzSwQBI=;
+        b=ioR4opkmXz0T3ckOLA+ogoWkp42fB/GFw4seDC7LznLHWiwdvTWACRM8z+LGT9zK7Y
+         kW0FvGfGaGYPC/3leyXCGAj2Xabn1Hniko44vXIs84sKpeNIQ9XDlAlGLUT4WYMWnOvE
+         ue1ejlpCtWTLxQHJx9kOhMXe4SpwkEy9Ui6yu6IDu4hOBLF9VxKRfl1mDuP/mANWSDWA
+         xMgEojZ8qTPoiYTAKm1X2Y7egjsrU6JlfKqtqhGtWIvYMENv/ruT5DagRbPf6nfd/l50
+         oi2c625Rl+P7uzWOvUoGw9Bdde588AcpRjP23owaBCwvz3K+OZHm6qeUinC71CIGv9Rk
+         w1QA==
+X-Gm-Message-State: ANoB5pk5IUgOFXyca9j/pb6vaSx9OEpP38qdNuQS7UKxSlBG6ODOfUCh
+        lP5LEVU0Vg1xEmPMNKn+4SnfI+TXof/GEEGkxfS23g==
+X-Google-Smtp-Source: AA0mqf5Sn4jHKFKdQcFa691WYR9rNCynIRXa9CGR9ccLIcawSxkCvfobdAo43wTafqOGnZNywSN2TTxO5daqjB41s2s=
+X-Received: by 2002:a25:910c:0:b0:6dd:ac4a:65e1 with SMTP id
+ v12-20020a25910c000000b006ddac4a65e1mr48492491ybl.288.1669639496489; Mon, 28
+ Nov 2022 04:44:56 -0800 (PST)
+MIME-Version: 1.0
+References: <20221127181835.806410-1-luca@z3ntu.xyz> <CAA8EJpoe09FZcfVXuknmFWO5qg-iYDOBVN3=qr=DeJjvHw56Mw@mail.gmail.com>
+ <f0a15b01-81b6-5c73-6c35-ce3a8c71b4ad@linaro.org> <CAA8EJppEXpv-wVAAXhZ6NiPzDGzP+evnKrT=an5esOx610D+dw@mail.gmail.com>
+ <f6bb5759-453b-fa05-c6e1-f1d57abeaffa@linaro.org>
+In-Reply-To: <f6bb5759-453b-fa05-c6e1-f1d57abeaffa@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 28 Nov 2022 14:44:45 +0200
+Message-ID: <CAA8EJpofyGs=OEvDB5vx_odJBYHMCsry09PnjgH86bfsyo63jw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document oneplus,bacon device
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] arm64: dts: apple: Add CPU topology & cpufreq nodes for t8103
-Date:   Mon, 28 Nov 2022 21:42:16 +0900
-Message-Id: <20221128124216.13477-5-marcan@marcan.st>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221128124216.13477-1-marcan@marcan.st>
-References: <20221128124216.13477-1-marcan@marcan.st>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing CPU topology/capacity information and the cpufreq nodes,
-so we can have CPU frequency scaling and the scheduler has the
-information it needs to make the correct decisions.
+On Mon, 28 Nov 2022 at 10:34, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/11/2022 22:43, Dmitry Baryshkov wrote:
+> > On Sun, 27 Nov 2022 at 23:30, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 27/11/2022 22:25, Dmitry Baryshkov wrote:
+> >>> On Sun, 27 Nov 2022 at 20:19, Luca Weiss <luca@z3ntu.xyz> wrote:
+> >>>>
+> >>>> Document the OnePlus One ("bacon") which is a smartphone based on the
+> >>>> Snapdragon 801 SoC.
+> >>>>
+> >>>> Also allow msm8974 devices to use qcom,msm-id and qcom,board-id.
+> >>>
+> >>> The patch itself is good. However it raised a broader question for me.
+> >>> Up to now all msm8974pro devices use qcom,msm8974 as a top-level
+> >>> compatibility string. Should it be changed to use pro-specific one
+> >>> (e.g. qcom,msm8974pro)?
+> >>
+> >> Yes, makes sense.
+> >
+> > Would you make the patch?
+>
+> I do not plan to. I don't know which ones are Pro which aren't.
 
-Boost states are commented out, as they are not yet available (that
-requires CPU deep sleep support, to be eventually done via PSCI).
-The driver supports them fine; the hardware will just refuse to ever
-go into them at this time, so don't expose them to users until that's
-done.
+Ack, I'll do it then.
 
-Acked-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 204 +++++++++++++++++++++++++--
- 1 file changed, 194 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 51a63b29d404..d56708038d05 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -22,71 +22,243 @@ cpus {
- 		#address-cells = <2>;
- 		#size-cells = <0>;
- 
--		cpu0: cpu@0 {
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu_e0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_e1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_e2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_e3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu_p0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_p1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_p2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_p3>;
-+				};
-+			};
-+		};
-+
-+		cpu_e0: cpu@0 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu1: cpu@1 {
-+		cpu_e1: cpu@1 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu2: cpu@2 {
-+		cpu_e2: cpu@2 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu3: cpu@3 {
-+		cpu_e3: cpu@3 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu4: cpu@10100 {
-+		cpu_p0: cpu@10100 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10100>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu5: cpu@10101 {
-+		cpu_p1: cpu@10101 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10101>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu6: cpu@10102 {
-+		cpu_p2: cpu@10102 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10102>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu7: cpu@10103 {
-+		cpu_p3: cpu@10103 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10103>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 	};
- 
-+	ecluster_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <7500>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <972000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <22000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1332000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <27000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <33000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <2064000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <50000>;
-+		};
-+	};
-+
-+	pcluster_opp: opp-table-1 {
-+		compatible = "operating-points-v2";
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <8000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <828000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <19000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1056000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <21000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1284000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <23000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <24000>;
-+		};
-+		opp06 {
-+			opp-hz = /bits/ 64 <1728000000>;
-+			opp-level = <6>;
-+			clock-latency-ns = <29000>;
-+		};
-+		opp07 {
-+			opp-hz = /bits/ 64 <1956000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <31000>;
-+		};
-+		opp08 {
-+			opp-hz = /bits/ 64 <2184000000>;
-+			opp-level = <8>;
-+			clock-latency-ns = <34000>;
-+		};
-+		opp09 {
-+			opp-hz = /bits/ 64 <2388000000>;
-+			opp-level = <9>;
-+			clock-latency-ns = <36000>;
-+		};
-+		opp10 {
-+			opp-hz = /bits/ 64 <2592000000>;
-+			opp-level = <10>;
-+			clock-latency-ns = <51000>;
-+		};
-+		opp11 {
-+			opp-hz = /bits/ 64 <2772000000>;
-+			opp-level = <11>;
-+			clock-latency-ns = <54000>;
-+		};
-+		opp12 {
-+			opp-hz = /bits/ 64 <2988000000>;
-+			opp-level = <12>;
-+			clock-latency-ns = <55000>;
-+		};
-+#if 0
-+		/* Not available until CPU deep sleep is implemented */
-+		opp13 {
-+			opp-hz = /bits/ 64 <3096000000>;
-+			opp-level = <13>;
-+			clock-latency-ns = <55000>;
-+			turbo-mode;
-+		};
-+		opp14 {
-+			opp-hz = /bits/ 64 <3144000000>;
-+			opp-level = <14>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+		opp15 {
-+			opp-hz = /bits/ 64 <3204000000>;
-+			opp-level = <15>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+#endif
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupt-parent = <&aic>;
-@@ -124,6 +296,18 @@ soc {
- 		ranges;
- 		nonposted-mmio;
- 
-+		cpufreq_e: performance-controller@210e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x10e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
-+		cpufreq_p: performance-controller@211e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x11e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
- 		i2c0: i2c@235010000 {
- 			compatible = "apple,t8103-i2c", "apple,i2c";
- 			reg = <0x2 0x35010000 0x0 0x4000>;
-@@ -229,12 +413,12 @@ aic: interrupt-controller@23b100000 {
- 			affinities {
- 				e-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_E>;
--					cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
-+					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
- 				};
- 
- 				p-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_P>;
--					cpus = <&cpu4 &cpu5 &cpu6 &cpu7>;
-+					cpus = <&cpu_p0 &cpu_p1 &cpu_p2 &cpu_p3>;
- 				};
- 			};
- 		};
 -- 
-2.35.1
-
+With best wishes
+Dmitry
