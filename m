@@ -2,204 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C1963AA59
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC2B963AA5C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:03:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232269AbiK1ODw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:03:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59072 "EHLO
+        id S231263AbiK1ODy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:03:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231232AbiK1ODu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:03:50 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82D08A478;
-        Mon, 28 Nov 2022 06:02:50 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 28 Nov
- 2022 22:02:47 +0800
-Message-ID: <c9551542-6224-f443-bfce-cc537771220b@amlogic.com>
-Date:   Mon, 28 Nov 2022 22:02:47 +0800
+        with ESMTP id S231614AbiK1ODv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:03:51 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5035262C
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:03:49 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id f7so15545154edc.6
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:03:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zygFH3C0HCyE/GmLBlI4erRi5TTs6QvY4G7d/Jx5gtk=;
+        b=Dn0wZMFZCBiSUOy3MR8qgPiAfaoxuvZkJTAsFiSrMLVeGFxV9Repk5BiwfPTy3N8XT
+         W9M+0YX8+efYC4xDqmVtNcgexKzjUIL6BPzynngSPCSEId9T+l1GwNc4F2cbOrOIHKjJ
+         wzImkn5Oxu6LkxnQ8nO061HWlzpn5Y3kGlnLE0Bj7byBj+tIEEc3W6bHUYhgOH0vEj14
+         1DyL1CF/DKXYYANdii68cyHjJ8LAnivhF2G3d+oujcYFfqamwUwxaunxpR1HyZp/7zyX
+         TYQB4U+JnOMsrcTOEDej79HpPMXuU6Yhd9uDObPA7efbLEwFfaRDxnbdjbuTI6FQoKOk
+         Qe6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zygFH3C0HCyE/GmLBlI4erRi5TTs6QvY4G7d/Jx5gtk=;
+        b=PG86GFIGtYE0efUNNUofS0I6lpLtHg5pFKP0shlPnaCxPYtCuNTV0yo8Scs7XofEkF
+         QcT5dc3cjUjB0KmK2oQHUjAWc0cvOpSSJuDAMMKiL6/U5toHeRgzpbBI2JIM4AjONYbG
+         1Zv3bMlKkrMSAmgJRSP81SLMeozrfoPfoiipAjBKUuewLFfCnhUAri1wC0L8ABODKtuI
+         RP63mmFx+HRSOb4/AOtqsdcfZcxTBk8uVsA1Er7HEXuZ/CDkrZtdqSWehYu1+ozgw+7D
+         qDxwLUct6hhzfnzronE5K78lg2b235NwpVEKS5k/rm4n7ugW3Vnl4inZaGpf8bxaLXj9
+         eD1g==
+X-Gm-Message-State: ANoB5pkIEzTS0XupjS+oI4ZiSghqEdKBwmfGwrpYd1+lsbC6hscJI/XI
+        e4tKjfB4Ohyecqpw6GEuQNfZgRF3nn4CnGE0x369iw==
+X-Google-Smtp-Source: AA0mqf4G4fhVU8w+DttZ3I3UxPAgiaBDQuB51NYNfRQ3JXQ1lw3xInj3Qa9i3uU5+uGApZakiSG/gtoAil6IEl2XlDc=
+X-Received: by 2002:aa7:dbc3:0:b0:461:6b61:81ae with SMTP id
+ v3-20020aa7dbc3000000b004616b6181aemr47156519edt.62.1669644222784; Mon, 28
+ Nov 2022 06:03:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V5 3/4] clk: meson: s4: add s4 SoC peripheral clock
- controller driver and bindings
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+References: <20221005-mt6357-support-v6-0-4f589756befa@baylibre.com>
+ <20221005-mt6357-support-v6-5-4f589756befa@baylibre.com> <a9a47e08-1a08-abe5-1dbe-1537d3414af6@linaro.org>
+ <c94d15bf-c5ed-b400-abdf-8cca4102b078@linaro.org>
+In-Reply-To: <c94d15bf-c5ed-b400-abdf-8cca4102b078@linaro.org>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 28 Nov 2022 15:03:31 +0100
+Message-ID: <CAFGrd9pueans7Z_GHassY7ouGOwDmj4oJHAXS4ZtbYK4KH58Bw@mail.gmail.com>
+Subject: Re: [PATCH v6 05/10] dt-bindings: soc: mediatek: convert pwrap documentation
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Wang <sean.wang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <kelvin.zhang@amlogic.com>
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-4-yu.tu@amlogic.com>
- <1jbkov2vb9.fsf@starbuckisacylon.baylibre.com>
- <81d9a794-2920-64f1-1d80-50653113624c@amlogic.com>
- <1jilizp8bs.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1jilizp8bs.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Brown <broonie@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+Le dim. 27 nov. 2022 =C3=A0 14:11, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
+>
+> >> +  pmic:
+> >> +    type: object
+> >
+> > What's here? Other schema? If not then maybe compatible? What about
+> > description?
+>
+> I guess this was comment from Rob, so it's fine.
 
-On 2022/11/28 20:23, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Mon 28 Nov 2022 at 16:08, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->>>> +
->>>> +/*
->>>> + * This RTC clock can be supplied by an external 32KHz crystal oscillator.
->>>> + * If it is used, it should be documented in using fw_name and documented in the
->>>> + * Bindings. Not currently in use on this board, so skip it.
->>>> + */
->>>> +static u32 rtc_clk_sel[] = { 0, 1 };
->>> No reason to do that
->>
->> I'm going to change it to static u32 rtc_clk_sel[] = { 0, 1, 2 };.
->> I don't know if that's okay with you?
-> 
-> ... then there is no need to specify this table.
-> 
+Yes it is.
 
-I got it.I'll change it as you suggest.
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: mediatek,mt8365-pwrap
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          minItems: 4
+> >> +
+> >> +        clock-names:
+> >> +          minItems: 4
+> >
+> > else:
+> > ???
+>
+> Actually this looks less complete than your previous patch.
+>
+> else:
+>   clocks:
+>     maxItems: 2
+> same for clock-names
+>
 
-> 
-> 
->>
->>>
->>>> +static const struct clk_parent_data rtc_clk_sel_parent_data[] = {
->>>> +	{ .hw = &s4_rtc_32k_by_oscin.hw },
->>>> +	{ .hw = &s4_rtc_32k_by_oscin_div.hw },
->>>> +	{ .fw_name = "ext_32k",  }
->>>> +};
->>>> +
->>>> +static struct clk_regmap s4_rtc_clk = {
->>>> +	.data = &(struct clk_regmap_mux_data) {
->>>> +		.offset = CLKCTRL_RTC_CTRL,
->>>> +		.mask = 0x3,
->>>> +		.shift = 0,
->>>> +		.table = rtc_clk_sel,
->>>> +		.flags = CLK_MUX_ROUND_CLOSEST,
->>>> +	},
->>>> +	.hw.init = &(struct clk_init_data){
->>>> +		.name = "rtc_clk_sel",
->>>> +		.ops = &clk_regmap_mux_ops,
->>>> +		.parent_data = rtc_clk_sel_parent_data,
->>>> +		.num_parents = 2,
->>>> +		.flags = CLK_SET_RATE_PARENT,
->>>> +	},
->>>> +};
->>>> +
-> 
-> [...]
-> 
->>>> +
->>>> +/* Video Clocks */
->>>> +static struct clk_regmap s4_vid_pll_div = {
->>>> +	.data = &(struct meson_vid_pll_div_data){
->>>> +		.val = {
->>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>> +			.shift   = 0,
->>>> +			.width   = 15,
->>>> +		},
->>>> +		.sel = {
->>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->>>> +			.shift   = 16,
->>>> +			.width   = 2,
->>>> +		},
->>>> +	},
->>>> +	.hw.init = &(struct clk_init_data) {
->>>> +		.name = "vid_pll_div",
->>>> +		/* Same to g12a */
->>>> +		.ops = &meson_vid_pll_div_ro_ops,
->>> Please add an helpful explanation.
->>> 'Same to g12a' is not helpful.
->>>
->>
->> "Because the vid_pll_div clock is a clock that does not need to change the
->> divisor, ops only provides meson_vid_pll_div_ro_ops."
->> I wonder if this description is ok for you?
-> 
-> I understand this divider will not change with RO ops.
-> I'm interrested why it does not change and how it is expected to be setup.
-> 
+I think I=E2=80=99ve followed the feedback done here [1]
+I=E2=80=99ve declared `minItems: 2` globally and override it to 4 if
+mediatek,mt8365-pwrap is used. Isn=E2=80=99t it the right way to implement =
+it
+?
 
-Maybe you can be more specific, I don't understand, you're interested in 
-that part of it specifically.
+> >> +            compatible =3D "mediatek,mt8135-pwrap";
+> >> +            reg =3D <0 0x1000f000 0 0x1000>,
+> >
+> > This does not match your unit address. No warnings when compile testing=
+?
+> >
 
-I don't know if you have the document of chip. If not, I can provide it 
-to you privately. You can ask specific questions in conjunction with 
-your documentation and submission(The original submission came from you.).
-I can give you a specific answer or ask the chip designer to give you a 
-reply.Do you think that's okay with you
+There are no warnings when compile testing. I will fix the unit
+address anyway, sorry.
 
->>
->>>> +		.parent_data = (const struct clk_parent_data []) {
->>>> +			{ .fw_name = "hdmi_pll", }
->>>> +		},
->>>> +		.num_parents = 1,
->>>> +		.flags = CLK_SET_RATE_PARENT,
->>>> +	},
->>>> +};
-> 
-> [...]
-> 
->>>> +
->>>> +static struct clk_regmap s4_vclk_sel = {
->>>> +	.data = &(struct clk_regmap_mux_data){
->>>> +		.offset = CLKCTRL_VID_CLK_CTRL,
->>>> +		.mask = 0x7,
->>>> +		.shift = 16,
->>>> +	},
->>>> +	.hw.init = &(struct clk_init_data){
->>>> +		.name = "vclk_sel",
->>>> +		.ops = &clk_regmap_mux_ops,
->>>> +		.parent_data = s4_vclk_parent_data,
->>>> +		.num_parents = ARRAY_SIZE(s4_vclk_parent_data),
->>>> +	},
->>> You are stopping rate propagation here.
->>> It deserves an explanation. Same goes below.
->>
->> "When the driver uses this clock, needs to specify the patent clock he
->> wants in the dts."
->> Is ok for you?
-> 
-> Then you still don't understand the clock flag usage.
-> 
-> Preserving the parent selection (CLK_SET_RATE_NO_REPARENT) and rate
-> propagation (CLK_SET_RATE_PARENT) is not the same thing.
-> 
-> As it stands, your comment is not aliged with what you do.
-> 
+> >> +                  <0 0x11017000 0 0x1000>;
+> >> +            reg-names =3D "pwrap", "pwrap-bridge";
+> >> +            interrupts =3D <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
+> >> +            clocks =3D <&clk26m>, <&clk26m>;
+> >> +            clock-names =3D "spi", "wrap";
+> >> +            resets =3D <&infracfg MT8135_INFRA_PMIC_WRAP_RST>,
+> >> +                     <&pericfg MT8135_PERI_PWRAP_BRIDGE_SW_RST>;
+> >> +            reset-names =3D "pwrap", "pwrap-bridge";
+> >
+> > Missing pmic. Make your example complete.
+>
+> Probably pmic should be skipped, I understand it is described in MFD
+> binding.
+>
 
-Thanks for the explanation of flag.
-My goal is to have the clock user describe themselves in DTS using the 
-parent, or using the assigned-clocks and assigned-clock-parents settings 
-in DTS. According to your explanation, some clocks like this should use 
-CLK_SET_RATE_NO_REPARENT, right?
+Put the pmic in the example have 2 constraints:
+- The original pmic "mediatek,mt6397" isn=E2=80=99t supported by a yaml
+schema, so I=E2=80=99ve a dt_binding_check fail: `failed to match any schem=
+a
+with compatible: ['mediatek,mt6397']`
+- If I put another pmic that supports a yaml schema, I need to put all
+required properties for the pmic, which I thought was unnecessary
+since it=E2=80=99s already done in its own schema and can change for anothe=
+r
+pmic, so less consistent.
 
->>
->>>
->>>> +};
-> 
-> .
+Then yes, IMHO, PMIC should be skipped in the example.
+
+[1] https://lore.kernel.org/all/fe898d24-54fa-56bb-8067-b422a3a52ff5@collab=
+ora.com/
+
+Alex
