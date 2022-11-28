@@ -2,190 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D9863A730
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 12:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9B363A745
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 12:40:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiK1L01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 06:26:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44580 "EHLO
+        id S230164AbiK1LkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 06:40:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231321AbiK1LZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 06:25:48 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 319D7CE39;
-        Mon, 28 Nov 2022 03:25:46 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 19B6C6600012;
-        Mon, 28 Nov 2022 11:25:44 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669634744;
-        bh=8Cm4VhPg8SKswy2s3/jV+9mFidnrlrr9zoP/ffITeQ0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GHQlxwXc5qu+1SLI0jHTdtMONMXw9UDBkP3u3OrH8BtRQGLEXqBL5A6oH+JW2p8s+
-         K6DdW4RWgShaQZYfYxtlKaXwGKPhJWbcMnWyHoFZkam95AWGL4CZRYDKmhMuuDcVPf
-         ku8/nz1wA0gSJlT6v6hah2fFeufGiLTbZK3REVZOZKAoqjhGffMy4EVvrqfDTuc9Nz
-         jOf6zpwkRPRS6lJfE4mo0zm2RAkxkqVt0UOZ4/tMjYIi3B879TECbwp8YfjvMvkUsr
-         XxG8QH5NyujRKZpZL3CgL8xAkgAQ4RGRETg4GkHUdq6Klk/6Dij6nPA9yVdc4evUKV
-         jvdmuUuGw33lA==
-Message-ID: <18401729-5c01-5fba-ce57-b530c5db53f0@collabora.com>
-Date:   Mon, 28 Nov 2022 12:25:40 +0100
+        with ESMTP id S230085AbiK1LkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 06:40:01 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8102012AC0
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 03:39:59 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id b3so16903899lfv.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 03:39:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q5/k763LzFoFuWo55mEOX4nHny09SXn5+85xs+SSYFM=;
+        b=cndDVYR86+qxtjT4dYnGzL+SlcaUkjq5APaUECvdfxyde320Q604GGE1KZgdPjY3FN
+         f8GP9/75+NYZm0mJQp53X6Ir93lNv4n1mVxpOkzguCy6LlFyZ3JxPgQ5o4gmV3YmwrrT
+         uqzS41RWhxfLKNw0Kia7I+qO7+cAZpQvs0QC3sHU+iCI/Zc27Z3HcDjzjNQa5bDSYMEu
+         CRE2oU8sBppy+mD8Kma0qWTmxvhkDg0rnhhTgk0mBn22FMKCps2RHEwUWYZch1B4KEF8
+         zEOI4+aU0wmzVe7Ii+D93KIk2ZVy2lnMZ86wNB2sU9Wtol5lbkQM2wiiUL8CISV6iRmW
+         l1FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q5/k763LzFoFuWo55mEOX4nHny09SXn5+85xs+SSYFM=;
+        b=loxkz7PZhcgPCPmfpusmPu64qbXDt1KN6F4mPg3PTj/nmfC7IgO8z9zS+a3mzu+Og7
+         Twdv8zITOvUT+d9LXsnPDxekkJojj+FQV9gbQMT7uT/5wyZJqMcVMhG5p9fP8RptFw58
+         CpgcKXuc7JUWYx7+e6sKC+jQgS2G/hB2bm+rBfVm+bdFhC/P9w+xKU3xAHWDRK+91BJN
+         DbubcL5dN/g8VkJ1DrFkK7yux5YtwlxCEsI24QRc/9BE4QVI1RLXLAE3ujHz+idJKkkn
+         VdWV22Gz90gQ9yJ+b9Q1cR+YHNoTM60LGeuRXQ5HW/7iiSmRsJTZMXq4eXcQHUcDE3oc
+         5Z+g==
+X-Gm-Message-State: ANoB5pmWtZ1Cfskc0Ct0VUr9HXhBhFIplUleO16Nk/tLQy5+zSp+jLpI
+        +M7+Ig7vYXaFr7nIOfK7Ynse0w==
+X-Google-Smtp-Source: AA0mqf4X5IsiG+TfK09V/fgjLPWDISphWOF+HNbXb+lAquq7bCCoNsr0BUoerJZB3bbb6+nIXwYybQ==
+X-Received: by 2002:ac2:4153:0:b0:4b0:f505:919b with SMTP id c19-20020ac24153000000b004b0f505919bmr16141581lfi.306.1669635597842;
+        Mon, 28 Nov 2022 03:39:57 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id be20-20020a056512251400b00492f0f66956sm1695895lfb.284.2022.11.28.03.39.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 03:39:57 -0800 (PST)
+Message-ID: <fdbdd905-c233-cf76-c16f-92fb59eb35ef@linaro.org>
+Date:   Mon, 28 Nov 2022 12:39:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH RESEND v2] dt-bindings: pwm: mediatek: Add compatible for
- MT7986
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.or,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Zhi Mao <zhi.mao@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-References: <Y39PjU1BqBB8tZ98@makrotopia.org>
- <375d45fa-fdfc-37a5-9d32-b0412cad7bc0@collabora.com>
- <Y4CoX1sfJd2Q8lHj@makrotopia.org>
+Subject: Re: [PATCH 1/8] dt-bindings: power: supply: Add DT schema for
+ Qualcomm SMBCHG
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <Y4CoX1sfJd2Q8lHj@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alejandro Tafalla <atafalla@dnyon.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>
+References: <20221120154625.57095-1-y.oudjana@protonmail.com>
+ <795deac4-71fe-d40b-a3b6-855eb3875ad1@linaro.org>
+ <1H1PLR.S9UFOHIJCU6S@gmail.com>
+ <1419e9da-98f7-c477-9f07-4b54e82be4c4@linaro.org>
+ <CAA8EJpor_LnxLGYy25i-D6RBBO+-G9MsVWw=Qfm1Emp88KRJzQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJpor_LnxLGYy25i-D6RBBO+-G9MsVWw=Qfm1Emp88KRJzQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/11/22 12:34, Daniel Golle ha scritto:
-> On Fri, Nov 25, 2022 at 12:12:17PM +0100, AngeloGioacchino Del Regno wrote:
->> Il 24/11/22 12:03, Daniel Golle ha scritto:
->>> Add new compatible string for MT7986 PWM and list compatible units for
->>> existing entries. Also make sure the number of pwm1-X clocks is listed
->>> for all supported units.
+On 22/11/2022 14:30, Dmitry Baryshkov wrote:
+> Hi,
+> 
+> On Mon, 21 Nov 2022 at 19:07, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 21/11/2022 11:36, Yassine Oudjana wrote:
 >>>
->>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
->>> ---
->>> Changes since v1: list compatibles, fix pwm1-n clocks for all SoCs
+>>> On Mon, Nov 21 2022 at 09:26:59 +01:00:00, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>> On 20/11/2022 16:46, Yassine Oudjana wrote:
+>>>>>>>  +  interrupts:
+>>>>>>>  +    items:
+>>>>>>>  +      - description: Charger error
+>>>>>>>  +      - description: Charger inhibited
+>>>>>>>  +      - description: Charger precharge safety timer timeout
+>>>>>>>  +      - description: Charger charge safety timer timeout
+>>>>>>>  +      - description: Charger pre to fast charging switch
+>>>>>>> threshold reached
+>>>>>>>  +      - description: Charger recharge threshold reached
+>>>>>>>  +      - description: Charger taper threshold reached
+>>>>>>>  +      - description: Charger charge termination threshold reached
+>>>>>>>  +      - description: Battery hot
+>>>>>>>  +      - description: Battery warm
+>>>>>>>  +      - description: Battery cold
+>>>>>>>  +      - description: Battery cool
+>>>>>>>  +      - description: Battery overvoltage
+>>>>>>>  +      - description: Battery low
+>>>>>>>  +      - description: Battery missing
+>>>>>>>  +      - description: Battery thermistor missing # unconfirmed
+>>>>>>>  +      - description: USB input undervolt
+>>>>>>>  +      - description: USB input overvolt
+>>>>>>>  +      - description: USB input source detected
+>>>>>>>  +      - description: OTG regulator failure
+>>>>>>>  +      - description: OTG regulator overcurrent
+>>>>>>>  +      - description: Automatic input current limiting done
+>>>>>>>  +      - description: USB ID pin changed
+>>>>>>>  +      - description: DC input undervolt
+>>>>>>>  +      - description: DC input overvolt
+>>>>>>>  +      - description: Power OK
+>>>>>>>  +      - description: Temperature shutdown
+>>>>>>>  +      - description: Watchdog timeout
+>>>>>>>  +      - description: Flash failure
+>>>>>>>  +      - description: OTST2 # unknown
+>>>>>>>  +      - description: OTST3 # unknown
+>>>>>>
+>>>>>>  It seems you listed register interrupts, not physical pins. This
+>>>>>> should
+>>>>>>  be interrupt lines.
+>>>>>
+>>>>>  I'm not sure what I'm supposed to do here. I couldn't find an
+>>>>> interrupt-lines
+>>>>>  property used anywhere so that's not what you meant, right?
+>>>>
+>>>> Are these physical interrupt lines this device has, register offsets
+>>>> or
+>>>> virtual interrupts (e.g. passed via irq_chip)? Definitely not the
+>>>> first
+>>>> and rather offsets for qpnpint_irq_domain_translate. Devicetree is not
+>>>> for describing register layout of devices. IOW, register layout does
+>>>> not
+>>>> change on different boards, because the device is exactly the same, so
+>>>> there is no point to put it into DTS.
+>>>>
 >>>
->>> Rebased on linux-next and re-run scripts/get_maintainers.pl on patch to
->>> makes sure dt maintainers are included. This has been requested by
->>> Krzysztof Kozlowski.
->>>
->>>    .../devicetree/bindings/pwm/pwm-mediatek.txt  | 20 +++++++++++--------
->>>    1 file changed, 12 insertions(+), 8 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
->>> index 554c96b6d0c3..952a338e06e7 100644
->>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
->>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
->>> @@ -2,14 +2,15 @@ MediaTek PWM controller
->>>    Required properties:
->>>     - compatible: should be "mediatek,<name>-pwm":
->>> -   - "mediatek,mt2712-pwm": found on mt2712 SoC.
->>> +   - "mediatek,mt2712-pwm", "mediatek,mt6795-pwm": found on mt2712 SoC.
->>>       - "mediatek,mt6795-pwm": found on mt6795 SoC.
->>> -   - "mediatek,mt7622-pwm": found on mt7622 SoC.
->>> -   - "mediatek,mt7623-pwm": found on mt7623 SoC.
->>> +   - "mediatek,mt7622-pwm", "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt7622 SoC.
->>> +   - "mediatek,mt7623-pwm", "mediatek,mt7628-pwm": found on mt7623 SoC.
->>>       - "mediatek,mt7628-pwm": found on mt7628 SoC.
->>>       - "mediatek,mt7629-pwm": found on mt7629 SoC.
->>> -   - "mediatek,mt8183-pwm": found on mt8183 SoC.
->>> -   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm": found on mt8195 SoC.
->>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
->>> +   - "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8183 SoC.
->>> +   - "mediatek,mt8195-pwm", "mediatek,mt8183-pwm", "mediatek,mt7986-pwm": found on mt8195 SoC.
+>>> So how would I describe the interrupts then? Or if you are saying I
+>>> shouldn't have these interrupts in DT at all, how would I get them and
+>>> register handlers for them in the driver? the PMIC arbiter takes 4
+>>> interrupt cells, 3 of which are these offsets specifying the peripheral
+>>> and interrupt. All other PMIC peripherals currently described in DT
+>>> (examples being qcom,pm8916-wcd-analog-codec, qcom,pm8941-pwrkey and
+>>> qcom-wled) have their interrupts (if any) described this way, with the
+>>> only exceptions perhaps being the GPIO and MPP controllers which are
+>>> themselves interrupt controllers. Changing the way PMIC peripheral
+>>> interrupts are described would require changing PMIC arbiter bindings
+>>> and code which I believe is out of the scope of this patch series.
 >>
->> I'm sorry, but all these compatibles make little sense at best.
->> Each of these PWM controllers have different properties as they may *by hardware*
->> be featuring more or less channels, they may be a different IP revision and/or
->> sub-revision requiring even ever-so-slightly different handling (check pwm45_fixup
->> and has_ck_26m_sel).
+>> I don't think this would touch PMIC arbiter bindings, rather the PMIC
+>> itself. Usually complex devices (like PMICs) have one few physical
+>> interrupt lines and many registers related to some specific interrupts.
+>> For example:
+>> 1. One IRQ line,
+>> 2. Register with bits for overvoltage, undervoltage, vharger error etc.
+>>
+>> Now how the MFD child device accesses them. Since this is strictly
+>> related to hardware programming model, it's not something you put to
+>> Devicetree. Instead parent device (PMIC) registers IRQ chip for its one
+>> interrupt line with several Linux (or virtual) interrupts. The children
+>> then just get a virtual IRQ from the parent (PMIC) and setup a
+>> handler(s) for them.
 > 
-> I did check the two pwm45_fixup and has_ck_26m_sel for each supported
-> compatible and listed them accordingly.
-> Ie. the ones listed as compatible in this submission really only differ
-> by the number of channels offered from the driver's point of view and
-> share the same boolean values for pwm45_fixup and has_ck_26m_sel.
-> 
->>
->> If you want to add MT7986, the best thing that you can do is to simply add
->>
->> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
->>
->> this line ^
->>
->> ...and then please don't touch the others.
->>
->>>       - "mediatek,mt8365-pwm": found on mt8365 SoC.
->>>       - "mediatek,mt8516-pwm": found on mt8516 SoC.
->>>     - reg: physical base address and length of the controller's registers.
->>> @@ -20,11 +21,14 @@ Required properties:
->>>                    has no clocks
->>>       - "top": the top clock generator
->>>       - "main": clock used by the PWM core
->>> +   - "pwm1"  : the PWM1 clock for mt7629
->>> +   - "pwm1-2": the two per PWM clocks for mt7986
->>
->> That's not your fault, but the binding is already wrong (yes it must be fixed!) and
->> unless my brain is failing somewhere, there's only one clock per pwm (as if there's
->> any children, it must be parented to .. well, its parent, in the clock driver), and
->> note that the driver is actually parsing "pwmX" clocks, never "pwmX-Y" clocks.
->>
->> Relevant snippet:
->>
->> 		char name[8];
->>
->> 		snprintf(name, sizeof(name), "pwm%d", i + 1);
->>
->> 		pc->clk_pwms[i] = devm_clk_get(&pdev->dev, name);
->>
->> Just... please don't keep doing the same mistake that is already inside of here...
-> 
-> Maybe better to write "pwm1"..."pwm2" or something like that...
-> But I just won't bother with it if you are planning to convert this to
-> YAML schema anyway.
-> 
->>
->> So, coming to an end: I think that this commit should be a one-liner that documents
->> your "mediatek,mt7986-pwm" compatible and that's it.
->>
-> 
-> This is exactly what I did in the first submission of this patch:
-> https://www.spinics.net/lists/devicetree/msg542568.html
-> 
-> Should I just re-submit this then?
-> 
-> 
->> A schema conversion would be welcome: in that regard, I can make a conversion
->> and send it next week, along with that clock-names fix.
-> 
-> Should I wait for you doing that and then re-submit or just re-submit
-> immediately?
-> 
+> Unfortunately this is not how SPMI PMICs work (at least on the
+> Qualcomm platforms). Access to interrupt registers is handled via the
+> SPMI bus arbiter writes, not through the GPIO pin or typical spmi's
+> bus interface (in the other words, not through the PMIC's SPMI
+> regmap). 
 
-I'm sorry but I forgot to Cc you on the schema conversion that I've just sent...
+I am not sure how this is related... Just because they do not use same
+regmap/interface does not mean that child device should have register
+bits as interrupt sources. Do you model I2C PMICs devices the same way?
+No. They get the interrupts from the parent and how the parent handles
+them (same or different regmap) is separate problem.
 
-Find it here:
+The charger node does not make SPMI bus as interrupt parent, so these
+interrupts are going to the SPMI PMIC don't they? or is it mistake in
+DTS - lack of interrupt-parent?
 
-https://lore.kernel.org/linux-mediatek/20221128112028.58021-1-angelogioacchino.delregno@collabora.com/
 
-...and yes at this point you should document mt7986 on the new yaml, but
-please wait for some feedback on that series before doing anything so that
-you won't find yourself rebasing over and over.
+> I guess we can add an intermediate irq chip to automatically
+> handle the USID, etc. However I doubt that it will really bring a lot
+> in our case.
 
-Cheers,
-Angelo
+The charger node defines all interrupts with SID=2, which is also not
+really correct. The parent device is SID=2. The child - does not matter.
+DT is a tree for some reason...
+
+Best regards,
+Krzysztof
 
