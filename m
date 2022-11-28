@@ -2,252 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4CF63A12D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 07:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E261063A13D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 07:31:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbiK1G0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 01:26:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35664 "EHLO
+        id S229634AbiK1Gbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 01:31:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbiK1G0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 01:26:15 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6366013F9F;
-        Sun, 27 Nov 2022 22:26:13 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8BxnuuEVIRjqZcBAA--.4003S3;
-        Mon, 28 Nov 2022 14:26:12 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axf+B7VIRjpAcdAA--.8407S3;
-        Mon, 28 Nov 2022 14:26:09 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229621AbiK1Gbs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 01:31:48 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC0412D35;
+        Sun, 27 Nov 2022 22:31:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A8981CE0A25;
+        Mon, 28 Nov 2022 06:31:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A120FC433D6;
+        Mon, 28 Nov 2022 06:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669617103;
+        bh=GoMPjr5XsVPNgE8a7EZDAqFErocF043LS2O0MhMI8uE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nuUMVY/m7QpEi5j3ZUXuVzKX48kyIktz+8oGrms1mxwO3gFhPahaWakPyGUEp2wJP
+         KjvePJS5XucxQM3wKk9KGFYE8d4kkZv0D3/ELB5JAJJA5oVoIAi+ucKUdhnBsP6E+y
+         GdMfUK1NzYgQ/hphGoQZ1QfpZ5C9VMn5BUUJIGVxl2cgF3amNkzYjw34J4W3n7Cb1B
+         CQp5ji3dVoZDWt8Wf6K8BUQyQK/qYkevIE8w8QNaVlV113B9Q0srkWx91uOZ569oUG
+         /N8QO574kH45ZkkMgBp+L1SXIYs2QIFhUjoikAuOFvNMS8RR+bPhkm0Dbv/BOGvkIf
+         4XTP1CtUamZwg==
+Date:   Sun, 27 Nov 2022 23:31:41 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 2/2] dt-bindings: gpio: add loongson gpio
-Date:   Mon, 28 Nov 2022 14:26:02 +0800
-Message-Id: <20221128062602.11473-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221128062602.11473-1-zhuyinbo@loongson.cn>
-References: <20221128062602.11473-1-zhuyinbo@loongson.cn>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        llvm@lists.linux.dev
+Subject: Re: [PATCH v8 3/6] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <Y4RVzSM4FQ/tYQAV@dev-arch.thelio-3990X>
+References: <20221103163717.246217-1-paul.kocialkowski@bootlin.com>
+ <20221103163717.246217-4-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Axf+B7VIRjpAcdAA--.8407S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF45Wry5Zw45GFWxWFg_yoWrKF15pF
-        1DZFZxX3y2gr13tF45Ka17Zr4fAr1kC3WruwnxC3yxtrWUKw13XFWfWFykG3Z3WrWUXF13
-        JwsxurWrta43Aw7anT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr
-        1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkE
-        cVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F4
-        0Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2
-        Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj
-        6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-        0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUv
-        cSsGvfC2KfnxnUUI43ZEXa7IU86yIUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103163717.246217-4-paul.kocialkowski@bootlin.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson platform gpio binding with DT schema format using
-json-schema.
+Hi Paul,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v7:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v6:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v5:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v4:
-		1. Remove the string "series".
-		2. Add the reviewed-by information.
-Change in v3:
-		1. Separate some changes of MAINTAINERS file and enter the first patch.
-Change in v2:
-		1. Drop "loongson,gpio_base" and "gpio-ranges" will cover it.
-		1. Drop "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
-		   "loongson,support_irq" and kernel driver will initial them that depend
-		   compatible in kernel.
-		3. Fixup maintainer for this driver.
+On Thu, Nov 03, 2022 at 05:37:14PM +0100, Paul Kocialkowski wrote:
+> Some Allwinner platforms come with an Image Signal Processor, which
+> supports various features in order to enhance and transform data
+> received by image sensors into good-looking pictures. In most cases,
+> the data is raw bayer, which gets internally converted to RGB and
+> finally YUV, which is what the hardware produces.
+> 
+> This driver supports ISPs that are similar to the A31 ISP, which was
+> the first standalone ISP found in Allwinner platforms. Simpler ISP
+> blocks were found in the A10 and A20, where they are tied to a CSI
+> controller. Newer generations of Allwinner SoCs (starting with the
+> H6, H616, etc) come with a new camera subsystem and revised ISP.
+> Even though these previous and next-generation ISPs are somewhat
+> similar to the A31 ISP, they have enough significant differences to
+> be out of the scope of this driver.
+> 
+> While the ISP supports many features, including 3A and many
+> enhancement blocks, this implementation is limited to the following:
+> - V3s (V3/S3) platform support;
+> - Bayer media bus formats as input;
+> - Semi-planar YUV (NV12/NV21) as output;
+> - Debayering with per-component gain and offset configuration;
+> - 2D noise filtering with configurable coefficients.
+> 
+> Since many features are missing from the associated uAPI, the driver
+> is aimed to integrate staging until all features are properly
+> described.
+> 
+> On the technical side, it uses the v4l2 and media controller APIs,
+> with a video node for capture, a processor subdev and a video node
+> for parameters submission. A specific uAPI structure and associated
+> v4l2 meta format are used to configure parameters of the supported
+> modules.
+> 
+> One particular thing about the hardware is that configuration for
+> module registers needs to be stored in a DMA buffer and gets copied
+> to actual registers by the hardware at the next vsync, when instructed
+> by a flag. This is handled by the "state" mechanism in the driver.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
- .../bindings/gpio/loongson,ls-gpio.yaml       | 126 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+This patch is now in -next as commit e3185e1d7c14 ("media: staging:
+media: Add support for the Allwinner A31 ISP"), where it causes the
+following clang warnings:
 
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-new file mode 100644
-index 000000000000..fb86e8ce6349
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-@@ -0,0 +1,126 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson GPIO controller.
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-gpio
-+      - loongson,ls7a-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 64
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 64
-+
-+required:
-+  - compatible
-+  - reg
-+  - ngpios
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - gpio-ranges
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gpio0: gpio@1fe00500 {
-+      compatible = "loongson,ls2k-gpio";
-+      reg = <0x1fe00500 0x38>;
-+      ngpios = <64>;
-+      #gpio-cells = <2>;
-+      gpio-controller;
-+      gpio-ranges = <&pctrl 0 0 15>,
-+                    <&pctrl 16 16 15>,
-+                    <&pctrl 32 32 10>,
-+                    <&pctrl 44 44 20>;
-+      interrupt-parent = <&liointc1>;
-+      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
-+                   <29 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2854da69cabb..b8a02a60973d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12055,6 +12055,7 @@ LOONGSON GPIO DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
- F:	drivers/gpio/gpio-loongson-64bit.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.31.1
+> +void sun6i_isp_capture_configure(struct sun6i_isp_device *isp_dev)
+> +{
+> +	unsigned int width, height;
+> +	unsigned int stride_luma, stride_chroma = 0;
+> +	unsigned int stride_luma_div4, stride_chroma_div4;
+> +	const struct sun6i_isp_capture_format *format;
+> +	const struct v4l2_format_info *info;
+> +	u32 pixelformat;
+> +
+> +	sun6i_isp_capture_dimensions(isp_dev, &width, &height);
+> +	sun6i_isp_capture_format(isp_dev, &pixelformat);
+> +
+> +	format = sun6i_isp_capture_format_find(pixelformat);
+> +	if (WARN_ON(!format))
+> +		return;
+> +
+> +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_SIZE_CFG_REG,
+> +			     SUN6I_ISP_MCH_SIZE_CFG_WIDTH(width) |
+> +			     SUN6I_ISP_MCH_SIZE_CFG_HEIGHT(height));
+> +
+> +	info = v4l2_format_info(pixelformat);
+> +	if (WARN_ON(!info))
+> +		return;
+> +
+> +	stride_luma = width * info->bpp[0];
+> +	stride_luma_div4 = DIV_ROUND_UP(stride_luma, 4);
+> +
+> +	if (info->comp_planes > 1) {
+> +		stride_chroma = width * info->bpp[1] / info->hdiv;
+> +		stride_chroma_div4 = DIV_ROUND_UP(stride_chroma, 4);
+> +	}
+> +
+> +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_CFG_REG,
+> +			     SUN6I_ISP_MCH_CFG_EN |
+> +			     SUN6I_ISP_MCH_CFG_OUTPUT_FMT(format->output_format) |
+> +			     SUN6I_ISP_MCH_CFG_STRIDE_Y_DIV4(stride_luma_div4) |
+> +			     SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_chroma_div4));
+> +}
 
+
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:6: error: variable 'stride_chroma_div4' is used uninitialized whenever 'if' condition is false [-Werror,-Wsometimes-uninitialized]
+          if (info->comp_planes > 1) {
+              ^~~~~~~~~~~~~~~~~~~~~
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:144:42: note: uninitialized use occurs here
+                              SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_chroma_div4));
+                                                                ^~~~~~~~~~~~~~~~~~
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_reg.h:249:48: note: expanded from macro 'SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4'
+  #define SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(v)     (((v) << 20) & GENMASK(30, 20))
+                                                    ^
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:2: note: remove the 'if' if its condition is always true
+          if (info->comp_planes > 1) {
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:112:51: note: initialize the variable 'stride_chroma_div4' to silence this warning
+          unsigned int stride_luma_div4, stride_chroma_div4;
+                                                          ^
+                                                            = 0
+
+Does stride_chroma_div4 want to just be initialized to zero?
+
+> +static int sun6i_isp_proc_notifier_bound(struct v4l2_async_notifier *notifier,
+> +					 struct v4l2_subdev *remote_subdev,
+> +					 struct v4l2_async_subdev *async_subdev)
+> +{
+> +	struct sun6i_isp_device *isp_dev =
+> +		container_of(notifier, struct sun6i_isp_device, proc.notifier);
+> +	struct sun6i_isp_proc_async_subdev *proc_async_subdev =
+> +		container_of(async_subdev, struct sun6i_isp_proc_async_subdev,
+> +			     async_subdev);
+> +	struct sun6i_isp_proc *proc = &isp_dev->proc;
+> +	struct sun6i_isp_proc_source *source = proc_async_subdev->source;
+> +	bool enabled;
+> +
+> +	switch (source->endpoint.base.port) {
+> +	case SUN6I_ISP_PORT_CSI0:
+> +		source = &proc->source_csi0;
+> +		enabled = true;
+> +		break;
+> +	case SUN6I_ISP_PORT_CSI1:
+> +		source = &proc->source_csi1;
+> +		enabled = !proc->source_csi0.expected;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	source->subdev = remote_subdev;
+> +
+> +	return sun6i_isp_proc_link(isp_dev, SUN6I_ISP_PROC_PAD_SINK_CSI,
+> +				   remote_subdev, enabled);
+> +}
+
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:418:2: error: variable 'enabled' is used uninitialized whenever switch default is taken [-Werror,-Wsometimes-uninitialized]
+          default:
+          ^~~~~~~
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:425:23: note: uninitialized use occurs here
+                                    remote_subdev, enabled);
+                                                    ^~~~~~~
+  drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:407:14: note: initialize the variable 'enabled' to silence this warning
+          bool enabled;
+                      ^
+                      = 0
+
+Should there be an early return in the default case?
+
+I do not mind sending patches if you are unable to, assuming I have the
+right fixes.
+
+Cheers,
+Nathan
