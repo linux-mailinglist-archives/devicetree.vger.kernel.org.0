@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFBF363A245
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B09F463A267
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 09:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiK1HuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 02:50:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49936 "EHLO
+        id S229629AbiK1IAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 03:00:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiK1HuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:50:12 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7315A958A;
-        Sun, 27 Nov 2022 23:50:10 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AS5pvbm013085;
-        Mon, 28 Nov 2022 07:49:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=EvOYNr5YwYsIS+9C2KVrBrkRa6q4/RNX1EkrAtgxSz0=;
- b=pRMT6liRzaCzEJ+gyyAB9TSBPVuSRM2WcXU9/mavI0Kkf4QQqKhYNqhf2GFRiqVxmoJ4
- if1wzu6Fb3WewGZxUy6u9a8z8d494yKiKvZBnK9SM4bubVGharcdcvAvcFyiOzk1RYds
- wAGJ2S5F2ncHHjbjZozbF2KCTC5NVXkJCyWUsMeA+kLcYe4jPE0KFbXHrCpQszCozQrv
- o6vhHFj0V1NXDQ0WnjFITdHdc2oGJgNsaKASUWZcPQvcUmlKNmEADFltw/OB3eAVhG/n
- rKuWSoccanMC2q/z9TJuXpNy8RD54Z+yXpEtCcF4dkuDQ09McUfzlUFsUK4DE70m2MVF dg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m3bjrkpca-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 28 Nov 2022 07:49:21 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AS7nLi5009840
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 28 Nov 2022 07:49:21 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Sun, 27 Nov 2022 23:49:15 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH] ASoC: qcom: lpass-sc7180: Add system suspend/resume PM ops
-Date:   Mon, 28 Nov 2022 13:19:02 +0530
-Message-ID: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S229744AbiK1IAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 03:00:08 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A0711A3E;
+        Mon, 28 Nov 2022 00:00:03 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B5EF61018;
+        Mon, 28 Nov 2022 08:00:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BFB0C433C1;
+        Mon, 28 Nov 2022 08:00:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669622402;
+        bh=sSP+y58dUYdr/Ye6OLHQOoGvusu/KoVqOieYdy6sw9A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dU8AM9dy2tYGxHKw1fk6Zik0APTZu5x6iKL3BDP2vPnO+Xm9Rcr15Dp7HStEgXKPM
+         4wKyn5Ghl+x4pCCmKt4BAT9RJmM2dszRnm8CkdtDf92CfPXjm5KtsSSKB2r1brXFGT
+         PAeqqoZRT0AQ2TZbqM8HhRLK3mpX6lfhFjbaPbs+O57O2gfHmAqJ+HUoaPi+DcAGQd
+         xBSnS0TABr23O549lTBGLHH4DabQkk9aFf5XX//X2D5Ze/Cj5RDlZxuD83Foitm0L7
+         xA+TvvkzMTfYycZzFJ5TNeoP5TI8BvMMekUQV55fNJsKC5dS8WWY3DuDeLoHwe243x
+         hRGKFhQ4fbxeg==
+Received: by pali.im (Postfix)
+        id 900AD87A; Mon, 28 Nov 2022 08:59:59 +0100 (CET)
+Date:   Mon, 28 Nov 2022 08:59:59 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        andrew@lunn.ch, thomas.petazzoni@free-electrons.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: gpio: gpio-mvebu: deprecate
+ armadaxp-gpio
+Message-ID: <20221128075959.3a3io5nhaizm7uxj@pali>
+References: <20220526012946.3862776-1-chris.packham@alliedtelesis.co.nz>
+ <20220526012946.3862776-3-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oyKsuhqYmd0bM19Akig8BJRQ_oIBWATw
-X-Proofpoint-GUID: oyKsuhqYmd0bM19Akig8BJRQ_oIBWATw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-28_06,2022-11-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0
- impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2211280061
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220526012946.3862776-3-chris.packham@alliedtelesis.co.nz>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,72 +61,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update lpass sc7180 platform driver with PM ops, such as
-system supend and resume callbacks.
-This update is required to disable clocks during supend and
-avoid XO shutdown issue.
+On Thursday 26 May 2022 13:29:45 Chris Packham wrote:
+> Commit 5f79c651e81e ("arm: mvebu: use global interrupts for GPIOs on
+> Armada XP") the marvell,armadaxp-gpio compatible obsolete.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
----
- sound/soc/qcom/lpass-sc7180.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+No, marvell,armadaxp-gpio is required for per-cpu interrupt support. I fixed it recently:
+https://lore.kernel.org/linux-devicetree/20220714115515.5748-2-pali@kernel.org/
+https://lore.kernel.org/linux-devicetree/20220714183328.4137-3-pali@kernel.org/
 
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 77a556b..6ad1c5b 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -12,6 +12,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
- #include <dt-bindings/sound/sc7180-lpass.h>
- #include <sound/pcm.h>
- #include <sound/soc.h>
-@@ -156,10 +157,34 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
- 	struct lpass_data *drvdata = platform_get_drvdata(pdev);
- 
- 	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
-+	return 0;
-+}
-+
-+static int sc7180_lpass_dev_resume(struct device *dev)
-+{
-+	int ret = 0;
-+	struct lpass_data *drvdata = dev_get_drvdata(dev);
- 
-+	ret = clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
-+	if (ret) {
-+		dev_err(dev, "sc7180 clk prepare and enable failed\n");
-+		return ret;
-+	}
-+	return ret;
-+}
-+
-+static int sc7180_lpass_dev_suspend(struct device *dev)
-+{
-+	struct lpass_data *drvdata = dev_get_drvdata(dev);
-+
-+	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
- 	return 0;
- }
- 
-+static const struct dev_pm_ops sc7180_lpass_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(sc7180_lpass_dev_suspend, sc7180_lpass_dev_resume)
-+};
-+
- static struct lpass_variant sc7180_data = {
- 	.i2sctrl_reg_base	= 0x1000,
- 	.i2sctrl_reg_stride	= 0x1000,
-@@ -293,6 +318,7 @@ static struct platform_driver sc7180_lpass_cpu_platform_driver = {
- 	.driver = {
- 		.name = "sc7180-lpass-cpu",
- 		.of_match_table = of_match_ptr(sc7180_lpass_cpu_device_id),
-+		.pm = &sc7180_lpass_pm_ops,
- 	},
- 	.probe = asoc_qcom_lpass_cpu_platform_probe,
- 	.remove = asoc_qcom_lpass_cpu_platform_remove,
--- 
-2.7.4
+> The driver code still exists to handle the armadaxp behaviour but all
+> the in-tree boards use the marvell,armada-370-gpio.  Document the
+> marvell,armadaxp-gpio compatible as deprecated.
 
+For per-cpu interrupt support is marvell,armadaxp-gpio needed and
+therefore it cannot be deprecated.
+
+What can be deprecated is marvell,armada-370-gpio and it can be replaced
+by marvell,orion-gpio, which covers _all_ SoCs starting from the oldest
+one = Orion. See discussion for more details:
+https://lore.kernel.org/linux-devicetree/20220725200417.nwthxzvdv2bzd5ej@pengutronix.de/
+
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     This could potentially be squashed into the first commit but it seemed
+>     more proper to do a straight 1:1 conversion of the old binding then
+>     clean things up to match reality.
+>     
+>     Changes in v4:
+>     - New
+> 
+>  .../devicetree/bindings/gpio/gpio-mvebu.yaml  | 24 +++++++------------
+>  1 file changed, 8 insertions(+), 16 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+> index d1695e7bd825..459ec35864fe 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml
+> @@ -21,17 +21,21 @@ properties:
+>            - enum:
+>                - marvell,mv78200-gpio
+>                - marvell,armada-370-gpio
+> -              - marvell,armadaxp-gpio
+>            - const: marvell,orion-gpio
+>  
+> +      - description: Deprecated binding
+> +        items:
+> +          - const: marvell,armadaxp-gpio
+> +          - const: marvell,orion-gpio
+> +        deprecated: true
+> +
+>    reg:
+>      description: |
+>        Address and length of the register set for the device. Not used for
+>        marvell,armada-8k-gpio.
+>  
+> -      For the "marvell,armadaxp-gpio" variant a second entry is expected for
+> -      the per-cpu registers. For other variants second entry can be provided,
+> -      for the PWM function using the GPIO Blink Counter on/off registers.
+> +      A second entry can be provided, for the PWM function using the GPIO Blink
+> +      Counter on/off registers.
+>      minItems: 1
+>      maxItems: 2
+>  
+> @@ -103,18 +107,6 @@ allOf:
+>        required:
+>          - reg
+>  
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          contains:
+> -            const: marvell,armadaxp-gpio
+> -    then:
+> -      properties:
+> -        reg:
+> -          minItems: 2
+> -        reg-names:
+> -          minItems: 2
+> -
+>  unevaluatedProperties: true
+>  
+>  examples:
+> -- 
+> 2.36.1
+> 
