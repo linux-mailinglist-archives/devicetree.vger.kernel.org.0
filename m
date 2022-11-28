@@ -2,92 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 994AA63A9AA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF9B63A9AF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 14:35:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231841AbiK1NfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 08:35:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60702 "EHLO
+        id S230253AbiK1Nfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 08:35:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231927AbiK1NfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:35:05 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520411EAFA
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 05:35:04 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id c1so17343176lfi.7
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 05:35:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wsZXuCZWGLIj/MyVmu79fPcyhniJiOlB1BUNtXl5esA=;
-        b=weD4JtCYS5tQpKpPJ67AMbJIestPmcykdCD9Y+JqH6azXU+y4MEF2gw+/cUSGIKI8j
-         JCIITEUrP3WtXQKukmg4YUg+sXzQ3amaJuhbDv3o11hCFgRC6Hvebtrlq09SJzM549zf
-         LSjyM/QWWrlivap3K+ejSoft/g34G8oTt7cudEfvptSFweqUVnZkylH3RS9b10Nbe4Me
-         Qkh85pLUYvxgV8OVoT4aH171niN/Y7c+yQfI7vw6FDxRgz0s3+PvUYcr+aeYfMaBe1S9
-         977VbPaQ8JPm2bdEAUogyhZLv4aPcs9V3o4UNFCkKYfFhmxpGhpMkA3BkOoVjiaPQmzk
-         1rvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wsZXuCZWGLIj/MyVmu79fPcyhniJiOlB1BUNtXl5esA=;
-        b=Bz3/neXdZ4MOWqgiFMgARoWTXeN07OiEl1wK3rQeosWv6ffvqZ0ukIxfpNPbcxiuFc
-         kEnBscSr20eIV9C6CGcL2KTgg8j7mQNVnFQ2XicREAehJq+BgLX7OhZmKyCi9AeozanK
-         RSkNVzsT+tUfPB4GaqsLI5pBNTqi+fI8AXfPUSSh5+OBwZZwBShMkNEKlh0mV1M4kPVg
-         azu8f4ZWbTfZWiIkPRs3xxd5wzzoDxzWKnohONL95LAwQPYK9Q7y0FaCkrh+X0BrkNaP
-         t1XXkfQRqZIu6cz+J+PrADkW1eGILa9zSsZYnXCvqSJ2QSn3oKVxvsEO/c2RM1vK/gvs
-         8wRg==
-X-Gm-Message-State: ANoB5pl4DIfos6/jjXHlBLDDFOTu428oauftkTiMs6/Km000SmPcmc89
-        IBvqJv+mPHhBHJvEIwP+ACD2RsLDgm6QvZYf
-X-Google-Smtp-Source: AA0mqf4eqUl+APdJR3tWlxbmvgmvcjYqlM0uMmtqBCJ+RtM7rWMOhP8HzzsLDa1s8Ay3jEOlHtAMag==
-X-Received: by 2002:a05:6512:1304:b0:4b5:ef0:7f3d with SMTP id x4-20020a056512130400b004b50ef07f3dmr2640720lfu.584.1669642502736;
-        Mon, 28 Nov 2022 05:35:02 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a18-20020a194f52000000b00494643db68fsm1732098lfk.81.2022.11.28.05.35.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 05:35:02 -0800 (PST)
-Message-ID: <b42486d4-2b2a-b7c5-5d64-c2ec7d67d6b7@linaro.org>
-Date:   Mon, 28 Nov 2022 14:35:01 +0100
+        with ESMTP id S231267AbiK1Nfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 08:35:40 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5EE6546
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 05:35:39 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1ozeID-0004QU-2T; Mon, 28 Nov 2022 14:35:29 +0100
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1ozeIB-000pYj-Hl; Mon, 28 Nov 2022 14:35:28 +0100
+Received: from lgo by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1ozeIB-005gmA-Lu; Mon, 28 Nov 2022 14:35:27 +0100
+From:   =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
+To:     =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        kernel@pengutronix.de, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: iio: adc: add TI LMP92064 controller
+Date:   Mon, 28 Nov 2022 14:35:02 +0100
+Message-Id: <20221128133503.1355898-1-l.goehrs@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/2] arm: dts: qcom: use qcom,msm8974pro for pro
- devices
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221128131550.858724-1-dmitry.baryshkov@linaro.org>
- <20221128131550.858724-2-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221128131550.858724-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: lgo@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 14:15, Dmitry Baryshkov wrote:
-> Use new qcom,msm8974pro compatible string instead of qcom,msm8974 to
-> clearly mark that the device is using the Pro version of the SoC.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Add binding documentation for the TI LMP92064 dual channel SPI ADC.
+
+Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+---
+
+Changes from v2 -> v3:
+
+ - Use unevaluatedProperties: false instead of additionalProperties: false
+
+Changes from v1 -> v2:
+
+ - Rename the "shunt-resistor" devicetree property to
+   "shunt-resistor-micro-ohms".
+ - Add supply regulator support for the two voltage domains of the chip
+   (vdd and vdig).
+ - Add reference to spi-peripheral-props.yaml
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ .../bindings/iio/adc/ti,lmp92064.yaml         | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
+new file mode 100644
+index 0000000000000..5fb65bf7749d0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,lmp92064.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments LMP92064 Precision Current and Voltage Sensor.
++
++maintainers:
++  - Leonard Göhrs <l.goehrs@pengutronix.de>
++
++description: |
++  The LMP92064 is a two channel ADC intended for combined voltage and current
++  measurements.
++
++  The device contains two ADCs to allow simultaneous sampling of voltage and
++  current and thus of instantaneous power consumption.
++
++properties:
++  compatible:
++    enum:
++      - ti,lmp92064
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: Regulator that provides power to the main part of the chip
++
++  vdig-supply:
++    description: |
++      Regulator that provides power to the digital I/O part of the chip
++
++  shunt-resistor-micro-ohms:
++    description: |
++      Value of the shunt resistor (in µΩ) connected between INCP and INCN,
++      across which current is measured. Used to provide correct scaling of the
++      raw ADC measurement.
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - shunt-resistor-micro-ohms
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "ti,lmp92064";
++            reg = <0>;
++            vdd-supply = <&vdd>;
++            vdig-supply = <&vdd>;
++            spi-max-frequency = <20000000>;
++            shunt-resistor-micro-ohms = <15000>;
++            reset-gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
++        };
++    };
++...
+
+base-commit: b7b275e60bcd5f89771e865a8239325f86d9927d
+-- 
+2.30.2
 
