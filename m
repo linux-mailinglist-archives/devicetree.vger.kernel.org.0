@@ -2,177 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC2B963AA5C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B82B63AA6F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 15:06:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231263AbiK1ODy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 09:03:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
+        id S232318AbiK1OGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 09:06:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231614AbiK1ODv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:03:51 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5035262C
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:03:49 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id f7so15545154edc.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 06:03:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zygFH3C0HCyE/GmLBlI4erRi5TTs6QvY4G7d/Jx5gtk=;
-        b=Dn0wZMFZCBiSUOy3MR8qgPiAfaoxuvZkJTAsFiSrMLVeGFxV9Repk5BiwfPTy3N8XT
-         W9M+0YX8+efYC4xDqmVtNcgexKzjUIL6BPzynngSPCSEId9T+l1GwNc4F2cbOrOIHKjJ
-         wzImkn5Oxu6LkxnQ8nO061HWlzpn5Y3kGlnLE0Bj7byBj+tIEEc3W6bHUYhgOH0vEj14
-         1DyL1CF/DKXYYANdii68cyHjJ8LAnivhF2G3d+oujcYFfqamwUwxaunxpR1HyZp/7zyX
-         TYQB4U+JnOMsrcTOEDej79HpPMXuU6Yhd9uDObPA7efbLEwFfaRDxnbdjbuTI6FQoKOk
-         Qe6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zygFH3C0HCyE/GmLBlI4erRi5TTs6QvY4G7d/Jx5gtk=;
-        b=PG86GFIGtYE0efUNNUofS0I6lpLtHg5pFKP0shlPnaCxPYtCuNTV0yo8Scs7XofEkF
-         QcT5dc3cjUjB0KmK2oQHUjAWc0cvOpSSJuDAMMKiL6/U5toHeRgzpbBI2JIM4AjONYbG
-         1Zv3bMlKkrMSAmgJRSP81SLMeozrfoPfoiipAjBKUuewLFfCnhUAri1wC0L8ABODKtuI
-         RP63mmFx+HRSOb4/AOtqsdcfZcxTBk8uVsA1Er7HEXuZ/CDkrZtdqSWehYu1+ozgw+7D
-         qDxwLUct6hhzfnzronE5K78lg2b235NwpVEKS5k/rm4n7ugW3Vnl4inZaGpf8bxaLXj9
-         eD1g==
-X-Gm-Message-State: ANoB5pkIEzTS0XupjS+oI4ZiSghqEdKBwmfGwrpYd1+lsbC6hscJI/XI
-        e4tKjfB4Ohyecqpw6GEuQNfZgRF3nn4CnGE0x369iw==
-X-Google-Smtp-Source: AA0mqf4G4fhVU8w+DttZ3I3UxPAgiaBDQuB51NYNfRQ3JXQ1lw3xInj3Qa9i3uU5+uGApZakiSG/gtoAil6IEl2XlDc=
-X-Received: by 2002:aa7:dbc3:0:b0:461:6b61:81ae with SMTP id
- v3-20020aa7dbc3000000b004616b6181aemr47156519edt.62.1669644222784; Mon, 28
- Nov 2022 06:03:42 -0800 (PST)
-MIME-Version: 1.0
-References: <20221005-mt6357-support-v6-0-4f589756befa@baylibre.com>
- <20221005-mt6357-support-v6-5-4f589756befa@baylibre.com> <a9a47e08-1a08-abe5-1dbe-1537d3414af6@linaro.org>
- <c94d15bf-c5ed-b400-abdf-8cca4102b078@linaro.org>
-In-Reply-To: <c94d15bf-c5ed-b400-abdf-8cca4102b078@linaro.org>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Mon, 28 Nov 2022 15:03:31 +0100
-Message-ID: <CAFGrd9pueans7Z_GHassY7ouGOwDmj4oJHAXS4ZtbYK4KH58Bw@mail.gmail.com>
-Subject: Re: [PATCH v6 05/10] dt-bindings: soc: mediatek: convert pwrap documentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Wang <sean.wang@mediatek.com>,
+        with ESMTP id S232322AbiK1OGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 09:06:17 -0500
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B406C2124F;
+        Mon, 28 Nov 2022 06:06:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669644369; x=1701180369;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kK1XSdb8aoZkJ8xeQsAIDo4KCW0OUls0hSDk9JxDYEU=;
+  b=gO1dsKvX0Xc/OEnGUxrN8sB5/1HDwKzgj/2JF3OCdd0Ys5fkb8hAS0Fw
+   uQc2Edl1y8p+YAp+69tAjzI+nJkn7FcRsXWe//UzxJqvxGu2wPQnjtsNQ
+   /e+jqBvvIdEU++oBoqh8BlxjE2/72RgW8El4gA6dLZaP7ATpI2s7Crtd9
+   h3mr4FDC/8IN+i6oRUjXd1oKrfRCFBOlvMhq6LWBfJq3JU2GQkt8Y4vqv
+   /eTZNtdFr2esZNuYIZqgsVv02TivlWhLcAGseajOQ3Eq8ayGTrxF8VchA
+   rB7imVtmZhtYK2cIyJf96uyMfBYZCmlpjDtrmIuRFUpWja0GXzGUP3DqV
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="379096714"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; 
+   d="scan'208";a="379096714"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 06:05:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="785640121"
+X-IronPort-AV: E=Sophos;i="5.96,200,1665471600"; 
+   d="scan'208";a="785640121"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP; 28 Nov 2022 06:05:13 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1ozekx-001AIf-1z;
+        Mon, 28 Nov 2022 16:05:11 +0200
+Date:   Mon, 28 Nov 2022 16:05:11 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Gerald Loacker <gerald.loacker@wolfvision.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        Fabien Parent <fabien.parent@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Subject: Re: [PATCH v3 1/3] iio: add struct declarations for iio types
+Message-ID: <Y4TAF1hn0l1CziUh@smile.fi.intel.com>
+References: <20221125083526.2422900-1-gerald.loacker@wolfvision.net>
+ <20221125083526.2422900-2-gerald.loacker@wolfvision.net>
+ <Y4CcspD1xkmhmWbh@smile.fi.intel.com>
+ <Y4CgiMd4XQMV4KFV@smile.fi.intel.com>
+ <a55e73f7-4daf-6892-34dc-61c6f6581d8e@wolfvision.net>
+ <Y4S3WnYWVnmiVFc+@smile.fi.intel.com>
+ <4d1b0054-efd4-e10e-17a6-d236052afa49@wolfvision.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4d1b0054-efd4-e10e-17a6-d236052afa49@wolfvision.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le dim. 27 nov. 2022 =C3=A0 14:11, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
->
-> >> +  pmic:
-> >> +    type: object
-> >
-> > What's here? Other schema? If not then maybe compatible? What about
-> > description?
->
-> I guess this was comment from Rob, so it's fine.
+On Mon, Nov 28, 2022 at 02:48:48PM +0100, Michael Riesch wrote:
+> On 11/28/22 14:27, Andy Shevchenko wrote:
+> > On Mon, Nov 28, 2022 at 01:18:04PM +0100, Gerald Loacker wrote:
+> >> Am 25.11.2022 um 12:01 schrieb Andy Shevchenko:
 
-Yes it is.
+...
 
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: mediatek,mt8365-pwrap
-> >> +    then:
-> >> +      properties:
-> >> +        clocks:
-> >> +          minItems: 4
-> >> +
-> >> +        clock-names:
-> >> +          minItems: 4
-> >
-> > else:
-> > ???
->
-> Actually this looks less complete than your previous patch.
->
-> else:
->   clocks:
->     maxItems: 2
-> same for clock-names
->
+> > It's a rule to use _t for typedef:s in the kernel. That's why
+> > I suggested to leave struct definition and only typedef the same structures
+> > (existing) to new names (if needed).
+> 
+> Andy, excuse our ignorance but we are not sure how this typedef approach
+> is supposed to look like...
+> 
+> >> or
+> > 
+> >> 	typedef iio_val_int_plus_micro iio_val_int_plus_micro_db;
+> 
+> ... because
+> 
+> #include <stdio.h>
+> 
+> struct iio_val_int_plus_micro {
+> 	int integer;
+> 	int micro;
+> };
+> 
+> typedef iio_val_int_plus_micro iio_val_int_plus_micro_db;
+> 
+> int main()
+> {
+>   struct iio_val_int_plus_micro a = { .integer = 100, .micro = 10, };
+>   struct iio_val_int_plus_micro_db b = { .integer = 20, .micro = 10, };
+>   return 0;
+> }
+> 
+> won't compile.
 
-I think I=E2=80=99ve followed the feedback done here [1]
-I=E2=80=99ve declared `minItems: 2` globally and override it to 4 if
-mediatek,mt8365-pwrap is used. Isn=E2=80=99t it the right way to implement =
-it
-?
+I see. Thanks for pointing this out.
 
-> >> +            compatible =3D "mediatek,mt8135-pwrap";
-> >> +            reg =3D <0 0x1000f000 0 0x1000>,
-> >
-> > This does not match your unit address. No warnings when compile testing=
-?
-> >
+Then the question is why do we need the two same structures with different
+names?
 
-There are no warnings when compile testing. I will fix the unit
-address anyway, sorry.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> >> +                  <0 0x11017000 0 0x1000>;
-> >> +            reg-names =3D "pwrap", "pwrap-bridge";
-> >> +            interrupts =3D <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-> >> +            clocks =3D <&clk26m>, <&clk26m>;
-> >> +            clock-names =3D "spi", "wrap";
-> >> +            resets =3D <&infracfg MT8135_INFRA_PMIC_WRAP_RST>,
-> >> +                     <&pericfg MT8135_PERI_PWRAP_BRIDGE_SW_RST>;
-> >> +            reset-names =3D "pwrap", "pwrap-bridge";
-> >
-> > Missing pmic. Make your example complete.
->
-> Probably pmic should be skipped, I understand it is described in MFD
-> binding.
->
 
-Put the pmic in the example have 2 constraints:
-- The original pmic "mediatek,mt6397" isn=E2=80=99t supported by a yaml
-schema, so I=E2=80=99ve a dt_binding_check fail: `failed to match any schem=
-a
-with compatible: ['mediatek,mt6397']`
-- If I put another pmic that supports a yaml schema, I need to put all
-required properties for the pmic, which I thought was unnecessary
-since it=E2=80=99s already done in its own schema and can change for anothe=
-r
-pmic, so less consistent.
-
-Then yes, IMHO, PMIC should be skipped in the example.
-
-[1] https://lore.kernel.org/all/fe898d24-54fa-56bb-8067-b422a3a52ff5@collab=
-ora.com/
-
-Alex
