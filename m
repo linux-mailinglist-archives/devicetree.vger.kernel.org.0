@@ -2,84 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 678DD63B1A4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:52:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E176D63B1B0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 19:56:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232565AbiK1SwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 13:52:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
+        id S231710AbiK1S4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 13:56:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232410AbiK1SwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:52:04 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F299715A36
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:52:02 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id m19so15461006edj.8
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:52:02 -0800 (PST)
+        with ESMTP id S230218AbiK1S4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 13:56:00 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5751F623
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:55:58 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id vv4so28259700ejc.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:55:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4onFK9mmn1PH3tAtZYrIxWVG00vIN2pNwdT/8GjGTW8=;
-        b=FjWlQ9WkBv5X/hTCQYrVCCSn4D0e91YLvqgatw2uxx8/aFRvqqaC0hM6QJ8bMIuOUh
-         Mpse1m7Zzo4Q57c+7dhSHpHYH+rn51LAIMslaFcyIW/8FZE7wKmVfiBmYXe45h5s9kej
-         3be/0LYze6WJBt4yU3quhiiYzKWpx3klmqHEs=
+        bh=i7TE3xTXHxdiPDqToBEWb9svQo97suw8gwZaCnVq0Pk=;
+        b=aVHKrbjVR6RMBzgskzOOJX3n9se5rG6SNBpczzN6sx49SsQagI8ySWu1eWrAS82a25
+         1VtP5sG0l2SyzqLy8HSg/XT6g+6M0QNhfPNKCWzt5SUpD5S6zy52Z6I+hC609fD64GI6
+         jb+MdADYxZquZEKxDNUGYPaoCBRTDAWnCtKlM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4onFK9mmn1PH3tAtZYrIxWVG00vIN2pNwdT/8GjGTW8=;
-        b=zeQ7f7RQDWmkYIT7+8EVhwwp0R1ZRUnfyeK2JkCR8DIII7Uy8GGLrbbBqwcuJ7+lBq
-         InAv8o509i93EBD7eob9cI3rmDu0WQw13bs5wh4dRS4QaM32sFpASPXU20sTJQHhrJL2
-         LyHT+hQGZSzmotL48rVyMvpOZQ2eAuddsJq3htRz4yCN0XEXyQL3MIQ6FD3n9SSKfTI8
-         0waasJEMtVpqgxo8tYUMhSfdpZtKzDXWkD6SSBc/UVaKStUnXVJ/MsGb1MWHLfPpiego
-         yR2F4dBK7eI32qBix1M9baIuSkTdZwNMygUkicNnbdwiez4WDDDnCwjemmXN1YMLTOMI
-         xHlA==
-X-Gm-Message-State: ANoB5pkHvrwOqtUn2OginmRAV3HdNEPgadhgPSlOFTqFg/PkHLiIU58k
-        8Ndrao3id71yNFVmLgzdWTtVHT7x/LO6Hnn7
-X-Google-Smtp-Source: AA0mqf6yPpvQhmJGSpVHjq0SVfFuBu+GAY7OZ83vWBS19IM38oT3QBfGsfmmlPjqHS34Y6E0ow09xg==
-X-Received: by 2002:a05:6402:1f14:b0:461:c7ef:b09e with SMTP id b20-20020a0564021f1400b00461c7efb09emr35229505edb.58.1669661520164;
-        Mon, 28 Nov 2022 10:52:00 -0800 (PST)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id k13-20020a17090632cd00b007ad84cf1346sm5205887ejk.110.2022.11.28.10.51.59
+        bh=i7TE3xTXHxdiPDqToBEWb9svQo97suw8gwZaCnVq0Pk=;
+        b=dKX8isvBeOoG/kW9Z5kPtQnSld2fdOmFiN3KwTi4pZPo+8StVH8cybGxoLO8yJgcmK
+         l9S0ffcucc3m5UmsaOnXwwsYwHSQ4uMJOxieX8XIo9I/r9sVxl0gZMwg+JqJ9usE3ap/
+         cty5/4QJYgBD3IaFoCULlLEJH9bIdYnYuNw0LUTZJfvSs+am3jRTIdXsdm65M/wDI1CU
+         hW838lN5BJJBp3GcJ/BAcOAZOSsrDTxqJLN1wMb59WlvN2JKXjTn0tii+m6Xt/Ll/kSe
+         s4cWZ8tiPvMK5+7eGmnZH1ROS5NtTKG1z/x/+0//aa7CytJLNavvfml2Xtt7s4Asjaxs
+         CJuw==
+X-Gm-Message-State: ANoB5pk4LZgdRuppfwIEAIBzosxdMR5f5fhroDKg+s7UEJW/hKcb68tt
+        XV3P1MAat90ye2w+jMb6ghCSAYhkrFGb0gfE
+X-Google-Smtp-Source: AA0mqf4lzDyuuKyAkvtY+YNvoBIKFfKVpK7mJ4XIh28FaJO0wutOc1CvvmxTqVujapJdCsLHwvVgdw==
+X-Received: by 2002:a17:906:504:b0:7b5:2d9f:4019 with SMTP id j4-20020a170906050400b007b52d9f4019mr35088327eja.536.1669661756692;
+        Mon, 28 Nov 2022 10:55:56 -0800 (PST)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
+        by smtp.gmail.com with ESMTPSA id i13-20020a17090639cd00b0078d957e65b6sm5282408eje.23.2022.11.28.10.55.55
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 10:51:59 -0800 (PST)
-Received: by mail-wr1-f45.google.com with SMTP id h11so11143468wrw.13
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:51:59 -0800 (PST)
-X-Received: by 2002:adf:cd82:0:b0:238:b29e:4919 with SMTP id
- q2-20020adfcd82000000b00238b29e4919mr32461837wrj.583.1669661518579; Mon, 28
- Nov 2022 10:51:58 -0800 (PST)
+        Mon, 28 Nov 2022 10:55:55 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id v1so18423853wrt.11
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 10:55:55 -0800 (PST)
+X-Received: by 2002:a5d:4950:0:b0:242:1f80:6cd9 with SMTP id
+ r16-20020a5d4950000000b002421f806cd9mr681565wrs.405.1669661755148; Mon, 28
+ Nov 2022 10:55:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20221122203635.v2.1.Ie05fd439d0b271b927acb25c2a6e41af7a927e90@changeid>
- <Y3zck7tPA5WFd0p1@google.com> <CAPao8GKpXcRm3PmWnv+rsr2z53r6J-ScXAq+fOi4ydQg_Gy31A@mail.gmail.com>
- <Y343IWgkli+y8HMn@google.com> <CAD=FV=X4GzCnmgnAQMzCNpCxzxkZXWONt4gNVCHniRYE_uFVyg@mail.gmail.com>
- <Y4Tq5DFoc0kWIjTb@google.com>
-In-Reply-To: <Y4Tq5DFoc0kWIjTb@google.com>
+References: <20221124115712.v4.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+ <CAPao8GK93KMrtaXw7mNWOCE60zk=uCENLfBXhNRVxJXEnnaGFg@mail.gmail.com>
+ <f58866c8-0164-2e59-4ff3-f9a4f9334e49@linaro.org> <CAPao8GKbdK79Z7w91x0T6JW9v6VFoeYSaXGGAuzB_=ukR9g0_w@mail.gmail.com>
+ <b54cd0a4-7ee8-e8c0-ceda-18b29588d535@linaro.org> <CAD=FV=X9C8nLDrEpZE2tLtq6Brn9cd-15+1JWFOL4cPYdJs5Dg@mail.gmail.com>
+ <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
+In-Reply-To: <f92ce2ed-80b5-eb26-36a4-2384a7a8510f@linaro.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 28 Nov 2022 10:51:46 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UBQjKhqYsfd2bGe0JVQ_SsxQ8aHVqSJnjLa2oJavP0QQ@mail.gmail.com>
-Message-ID: <CAD=FV=UBQjKhqYsfd2bGe0JVQ_SsxQ8aHVqSJnjLa2oJavP0QQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Adding DT binding for zombie
-To:     Matthias Kaehlcke <mka@chromium.org>
+Date:   Mon, 28 Nov 2022 10:55:41 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Xfo713SmTpuOJYDavWCciCR0p47Qx7U+6gEN+f4FrB=w@mail.gmail.com>
+Message-ID: <CAD=FV=Xfo713SmTpuOJYDavWCciCR0p47Qx7U+6gEN+f4FrB=w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: Add zombie
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     =?UTF-8?B?5qWK5a6X57+w?= <ecs.taipeikernel@gmail.com>,
         LKML <linux-kernel@vger.kernel.org>,
         Bob Moragues <moragues@chromium.org>,
-        Harvey <hunge@google.com>, Stephen Boyd <swboyd@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>, Harvey <hunge@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Abner.Yen@ecs.com.tw,
-        Gavin.Lee@ecs.com.tw, Vicy.Lee@ecs.com.tw, Jason.Huang@ecs.com.tw,
-        Darren.Chen@ecs.com.tw
+        linux-arm-msm@vger.kernel.org, Gavin.Lee@ecs.com.tw,
+        Darren.Chen@ecs.com.tw, Abner.Yen@ecs.com.tw, Vicy.Lee@ecs.com.tw,
+        Jason.Huang@ecs.com.tw
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,92 +91,87 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Mon, Nov 28, 2022 at 9:07 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Mon, Nov 28, 2022 at 9:22 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Mon, Nov 28, 2022 at 08:20:36AM -0800, Doug Anderson wrote:
+> On 28/11/2022 16:56, Doug Anderson wrote:
 > > Hi,
 > >
-> > On Wed, Nov 23, 2022 at 7:07 AM Matthias Kaehlcke <mka@chromium.org> wr=
-ote:
-> > >
-> > > > My checkout steps as below:
-> > > > $ git remote add linux_qcom=C3=82 git://git.kernel.org/pub/scm/linu=
-x/kernel/git/
-> > > > qcom/linux.git
-> > > > $ git fetch --no-tags linux_qcom
-> > > > $ git checkout -b <MyLocalBranchName> linux_qcom/for-next
-> > > >
-> > > > Is my=C3=82 code base branch still worng?=C3=82  Am I=C3=82 missing=
- something?=C3=82
-> > >
-> > > My understanding is that it is best to base you changes on a branch l=
-ike
-> > > 'arm64-for-6.2' as the 'for-next' branch is re-created every time cha=
-nges
-> > > land in one of the '${area}-for-${version}' branches.
-> > >
-> > > No big issue in this case, just use the corresponding '${area}-for-${=
-version}'
-> > > branch for future patches/versions :)
+> > On Thu, Nov 24, 2022 at 3:27 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 24/11/2022 12:20, =E6=A5=8A=E5=AE=97=E7=BF=B0 wrote:
+> >>> Hi Krzysztof, Matthias,
+> >>>
+> >>> How to use "get_maintainers.pl"?
+> >>>
+> >>> I find this script in path "<MyCodebase>/kernel/v5.15/script", and ou=
+tput
+> >>
+> >> This looks like v5.15 kernel which is heavily outdated. Please never
+> >> work on such kernels when interacting with upstream. The rule is you
+> >> work on either last mainline kernel (v6.1-rc6), maintainers for-next
+> >> branch (you should know who is the maintainer of subsystem you submit
+> >> to, get_maintainers.pl gives this information) or on moderately recent
+> >> linux-next. For bigger patchsets there might be exceptions for these
+> >> rules, but it's not the case here.
 > >
-> > FWIW, I usually just use Bjron's for-next branch for stuff like this.
-> > While the merge commits in the the Qualcomm "for-next" branch are
-> > re-created every time, because of the way "git" works the git hashes
-> > of the actual patches are the same as the git hashes of the patches in
-> > the separate branches. All the patches in "for-next" should be ones
-> > that are fine to base your patches on.
+> > Just to add context here, it's a fairly standard workflow for ChromeOS
+> > kernel engineers to work in a "versioned" kernel directory but still
+> > checkout and work with the upstream kernel. I'm sure it's confusing to
+> > anyone not used to working with the ChromeOS source tree and build
+> > system. Sorry! :( So the fact that Owen is in a directory called
+> > "v5.15" doesn't mean that he's actually working with the v5.15 kernel.
+> > The fact that Bjorn's address is correct in his CC list implies to me
+> > that he's actually got a proper upstream kernel.
+> >
+> > I had previously [0] instructed Owen to send against Bjorn's tree, so
+> > hopefully it's correct.
 >
-> I had minor concerns that occasionally tools might get confused it they
-> try to find the parent tree of a patch based on the unstable hash of
-> the merge commit in "for-next". Not sure if it is much of an issue in
-> practice.
+> If it was on Bjorn's tree, get_maintainers.pl would not produce such resu=
+lt:
+>
+> ---
+> Series-to: LKML <linux-kernel@vger.kernel.org>
+> Series-cc: Douglas Anderson <dianders@chromium.org>
+> Series-cc: Bob Moragues <moragues@chromium.org>
+> Series-cc: Harvey <hunge@google.com>
+> Series-cc: Stephen Boyd <swboyd@chromium.org>
+> Series-cc: Matthias Kaehlcke <mka@chromium.org>
+> Series-cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-It's a fair concern, but I don't _think_ it matters. I think git is
-smart enough to handle this in nearly all the cases and I think the
-cases where git can't handle it are cases where (perhaps) the for-next
-was the correct thing to use anyway.
-
-As a test:
-
-atop for-next:
-echo "foo" >> arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-git add -u
-git commit -m "add foo"
-git format-patch HEAD~
-
-atop arm64-for-6.2:
-echo "foo" >> arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-git add -u
-git commit -m "add foo arm64"
-git format-patch HEAD~
-
-If you diff the two patches created, you can see that they both
-contain "index" line. In my case:
-
-index 65601bea0797..b5c9f39737f6 100644
-
-That appears to basically just show a hash of the affected file both
-before and after your patch. The merge commits and commits to other
-files don't affect this. Specifically, you can see this before making
-the change
-
-$ git hash-object -w arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-65601bea07972e75cd1ac880bd43aa3dac62fb76
-
-...and after making the change:
-
-$ git hash-object -w arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-b5c9f39737f67e9ba0a115355ecf95df9a04dba7
+So the above is the _manual_ set of names to add atop get_maintainers.
+Patman starts with the list you've manually added (via Series-to and
+Series-cc) and then automatically CCs the results of
+get_maintainers.pl
 
 
-So tl;dr is that as long as the files you're touching are identical in
-"for-next" and in a specific branch (like arm64-for-6.2) that the
-patch files created will actually be exactly the same because all they
-contain are the object hashes. You could also imagine the files being
-_not_ exactly the same. If two different branches touched the same
-file and were merged into "for-next" then it could make a difference.
-In that case, though, it would still at least be a plausible choice to
-post it against the "for-next" branch because that should represent
-the final state.
+> or this:
+>
+> ---
+> owen@buildsvr-HP-ProDesk-600-G4-MT:~/chromebook_zombie_os/src/third_party=
+/kernel/v5.15$
+> perl scripts/get_maintainer.pl -f MAINTAINERS --email
+> linux-kernel@vger.kernel.org (open list)
 
--Doug
+Wow, really? Maybe I don't have Bjorn's tree correctly checked out
+either. ...or you can tell me what I'm doing wrong.
+
+$ git checkout linux_qcom/for-next
+HEAD is now at 4d2b529bce12 Merge branches 'arm64-defconfig-for-6.2',
+'arm64-for-6.2', 'clk-for-6.2', 'defconfig-for-6.2',
+'drivers-for-6.2', 'dts-for-6.2' and 'arm64-fixes-for-6.1' into
+for-next
+
+$ perl scripts/get_maintainer.pl -f MAINTAINERS --email
+linux-kernel@vger.kernel.org (open list)
+
+
+> as Owen indicated earlier. They are either incomplete or not correct.
+>
+> Of course I don't know whether the base tree is the problem or usage of
+> get_maintainers.pl...
+
+I suspect it's because the only "maintainer" of the file MAINTAINERS is LKM=
+L.
