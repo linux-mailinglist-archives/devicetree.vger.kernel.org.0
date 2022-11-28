@@ -2,352 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE9D63A7F8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E77B63A807
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 13:17:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231687AbiK1MLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 07:11:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49524 "EHLO
+        id S231535AbiK1MRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 07:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbiK1MKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:10:51 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5FF8E220E3;
-        Mon, 28 Nov 2022 04:04:38 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8DxOemeo4RjoKwBAA--.864S3;
-        Mon, 28 Nov 2022 20:03:42 +0800 (CST)
-Received: from [0.0.0.0] (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxXuCco4Rj+k0dAA--.8254S3;
-        Mon, 28 Nov 2022 20:03:41 +0800 (CST)
-Message-ID: <8b0e2e61-2e54-127e-7cb8-9e1068dbc390@loongson.cn>
-Date:   Mon, 28 Nov 2022 20:03:40 +0800
+        with ESMTP id S231598AbiK1MR2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 07:17:28 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B0C51EC46;
+        Mon, 28 Nov 2022 04:08:42 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id ud5so25243083ejc.4;
+        Mon, 28 Nov 2022 04:08:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=R+LQlj7xgpzysitHuN8QQ6CAzeMP7xdAT3qKXB4PYg8=;
+        b=T557FQNjTVqcQOajSa+tqlb3v2VcbLQdUR5oEF8sRgBv4KpD9q5lv66/LsoQxTI1QD
+         VRL80QCcumabZVPr0ajn4eqPVxQ+3Bb4C3v1N3O5ygkpzQE+mY6PvGDW9aKgP5UWn3L6
+         hquZ8rbMqEolm01p0qR4Vczv8Jn/+kO4TIvvokceNwyKgL0XJHLv66Jko7IhhHMXc5vE
+         wXTXbRE6lYKXItc5AEkJN0zvvaWn2Fk89PYzenMeMeEKxNqDvgi791M7KkoH8y0rl0BK
+         sNK4rNpG3Xqx2BxRO4ATvP0gnhU9DT1gHcb1qdUrXyQwKcSYQiskXAb2ckfdDPuHLpKx
+         oFLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R+LQlj7xgpzysitHuN8QQ6CAzeMP7xdAT3qKXB4PYg8=;
+        b=zleUURx/XXHgdamHv4/KbXmNqDOtpVlpSXYxY2KNy9Mo4MUKcWP33Y/T84oxsVwb4L
+         45kvOogfGQJC9olLn7GylK+/+CCAEp8z5M9ABGdMRLxMwlIvISoJpDIcbvRfcfacDD47
+         43V5edrblW/sbI1CNn0q8K3RmbJlGSZu936myYjpkf57f2M3j6YOqDX0g9ULmBsZJQvU
+         c3DTHkcqFt46m4N+3sCRFOCNyh2KsMvbENlGjciXUkXeeJ5dfgkHLZCxKFEKTit6gcNM
+         7MeTkStBF/EU6GNFD05pBbp0byhOui2kgrQLm9NGQ8BfjRjS1ef33FyzhMBi26Dnz8tZ
+         WCfw==
+X-Gm-Message-State: ANoB5pluVMaTOuJMbiRexbmDyYL67ZBBPt3QmMCh3Ka1ZWHAvpZy3Z87
+        4d27tX3uZVlnTFTSyiCnQPtHzyb2p/dh8gIrNGw=
+X-Google-Smtp-Source: AA0mqf42kWuFtJ0CyH8eGK/mbhy1LFxCynd+E1aiulOuYYYtVUh6FL5P8SGKbop++R7wLRWgwYnPbYmShNX57VojT+E=
+X-Received: by 2002:a17:907:9895:b0:7c0:7db3:82e3 with SMTP id
+ ja21-20020a170907989500b007c07db382e3mr1223559ejc.480.1669637320781; Mon, 28
+ Nov 2022 04:08:40 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V3 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221124172207.153718-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <bf8e33fd-a752-d5d5-859e-14302d069f2d@sholland.org> <CA+V-a8sz4i_wenTyA5tVTVB8dQWLmuXCf3CGYOPC+C07GJ8WTw@mail.gmail.com>
+ <CAMuHMdWQO_usrJwmVYDx6o-CpzmotVZLt176eKbqLzY-GXiDng@mail.gmail.com>
+In-Reply-To: <CAMuHMdWQO_usrJwmVYDx6o-CpzmotVZLt176eKbqLzY-GXiDng@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 28 Nov 2022 12:08:14 +0000
+Message-ID: <CA+V-a8s5mZoLMhjjpo_89taaBx+M_EwXMZUu-TUpZc8Q3bw4ug@mail.gmail.com>
+Subject: Re: [PATCH v4 7/7] soc: renesas: Add L2 cache management for RZ/Five SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Samuel Holland <samuel@sholland.org>, opensbi@lists.infradead.org,
+        Anup Patel <apatel@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn>
- <Y4Cb19PM97M9HaiB@smile.fi.intel.com>
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-In-Reply-To: <Y4Cb19PM97M9HaiB@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxXuCco4Rj+k0dAA--.8254S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3Jr1xXrW5Xw15Cr4kKr1UGFg_yoW3JFyUpF
-        WkJFy5KFW8Xr10grnrXr1YyFy2qrZ3Jw1xtFWrKFy29r90vwn2vFWrWr1Y9r1kWrWkC3yx
-        Aw4qgr45u3yFgFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa
-        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
-        jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62
-        AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCa
-        FVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
-        IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
-        42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
-        IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280
-        aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8uc_3UUUUU==
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy:
+Hi Geert,
 
-Firstly, thanks for your careful review.
+On Sun, Nov 27, 2022 at 9:55 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Sat, Nov 26, 2022 at 10:10 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Fri, Nov 25, 2022 at 7:43 PM Samuel Holland <samuel@sholland.org> wrote:
+> > > On 11/24/22 11:22, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > On the AX45MP core, cache coherency is a specification option so it may
+> > > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > > in the device tree. Synchronization callbacks are implemented to
+> > > > synchronize when doing DMA transactions.
+> > > >
+> > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > > It contains a configurable amount of PMA entries implemented as CSR
+> > > > registers to control the attributes of memory locations in interest.
+> > > >
+> > > > Below are the memory attributes supported:
+> > > > * Device, Non-bufferable
+> > > > * Device, bufferable
+> > > > * Memory, Non-cacheable, Non-bufferable
+> > > > * Memory, Non-cacheable, Bufferable
+> > > > * Memory, Write-back, No-allocate
+> > > > * Memory, Write-back, Read-allocate
+> > > > * Memory, Write-back, Write-allocate
+> > > > * Memory, Write-back, Read and Write-allocate
+> > > >
+> > > > This patch adds support to configure the memory attributes of the memory
+> > > > regions as passed from the l2 cache node and exposes the cache management
+> > > > ops.
+> > >
+> > > Forgive my ignorance, but why do you need both a DMA pool and explicit
+> > > cache maintenance? Wouldn't the purpose of marking a memory region as
+> > > permanently non-cacheable be to avoid cache maintenance? And likewise,
+> > > if you are doing cache maintenance anyway, why does it matter if/how the
+> > > memory is cacheable?
+> > >
+> > "Memory, Non-cacheable, Bufferable" raises an AXI signal for
+> > transactions hence needing SW implementation for cache maintenance.
+> >
+> > > > More info about PMA (section 10.3):
+> > > > Link: http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> > > > +static int ax45mp_configure_pma_regions(struct device_node *np)
+> > > > +{
+> > > > +     const char *propname = "andestech,pma-regions";
+> > > > +     u32 start, size, flags;
+> > > > +     unsigned int entry_id;
+> > > > +     unsigned int i;
+> > > > +     int count;
+> > > > +     int ret;
+> > > > +
+> > > > +     count = of_property_count_elems_of_size(np, propname, sizeof(u32) * 3);
+> > > > +     if (count < 0)
+> > > > +             return count;
+> > > > +
+> > > > +     if (count > AX45MP_MAX_PMA_REGIONS)
+> > > > +             return -EINVAL;
+> > > > +
+> > > > +     for (i = 0, entry_id = 0 ; entry_id < count ; i += 3, entry_id++) {
+> > > > +             of_property_read_u32_index(np, propname, i, &start);
+> > > > +             of_property_read_u32_index(np, propname, i + 1, &size);
+> > > > +             of_property_read_u32_index(np, propname, i + 2, &flags);
+> > > > +             ret = ax45mp_sbi_set_pma(start, size, flags, entry_id);
+> > > > +             if (!ret)
+> > > > +                     pr_err("Failed to setup PMA region 0x%x - 0x%x flags: 0x%x",
+> > > > +                            start, start + size, flags);
+> > > > +     }
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > >
+> > > If firmware support is required to set up these PMA regions, why is
+> > > Linux doing this at all? The firmware has access to the devicetree as
+> > > well. It can set this up before entering S-mode, and then you don't need
+> > > to expose this capability via an SBI extension. In fact, firmware could
+> > > generate the reserved-memory node based on these regions at runtime (or
+> > > vice versa).
+> > >
+> > That's a good point. I'll do some research on this and get back.
+> >
+> > Btw are there any existing examples where the firmware adds DT nodes?
+>
+> /memory, reserved-memory, optee on ARM, RPC status on R-Car Gen3/4, ...
+>
+On the TF-A we pass the FDT blob to u-boot and this does the magic.
 
-在 2022/11/25 18:41, Andy Shevchenko 写道:
-> On Fri, Nov 25, 2022 at 04:55:20PM +0800, Binbin Zhou wrote:
->> This I2C module is integrated into the Loongson-2K SoCs and Loongson
->> LS7A bridge chip.
-> ...
->
-> Missing bits.h.
+On the RISC-V what would be the correct approach?
+- We setup the PMA regions in OpenSBI
+- We provide a vendor specific EXT to check if the PMA is setup
+- In u-boot ft_board_setup() callback add the reserved-memory node
 
-Is it needed? I found it already included in I2c.h.
+Does the above approach sound good or is there a better approach I'm missing?
 
->
->> +#include <linux/completion.h>
->> +#include <linux/delay.h>
->> +#include <linux/device.h>
->> +#include <linux/i2c.h>
->> +#include <linux/init.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
-> There is no user of this header.
-> Why?
->
->> +#include <linux/platform_device.h>
-> ...
->
->> +/* LS2X I2C clock frequency 50M */
->> +#define HZ_PER_MHZ		(50 * 1000000)
-> units.h ?
-I misunderstood your previous comment, and  the HZ_PER_MHZ in units.h 
-will be used.
->
-> ...
->
->> +struct ls2x_i2c_dev {
->> +	struct device		*dev;
->> +	void __iomem		*base;
->> +	int			irq;
->> +	u32			bus_clk_rate;
->> +	struct completion	cmd_complete;
->> +	struct i2c_adapter	adapter;
-> Check if moving this to be the first field makes code generation better
-> (bloat-o-meter is your friend).
-
-vmlinux.old: original order
-
-vmlinux:  adapter to be the first field
-
-[zhoubinbin@kernelserver github]$ scripts/bloat-o-meter vmlinux.old vmlinux
-add/remove: 0/0 grow/shrink: 0/2 up/down: 0/-8 (-8)
-Function                                     old     new   delta
-ls2x_i2c_remove                               36      32      -4
-ls2x_i2c_probe                               424     420      -4
-
-Total: Before=19302026, After=19302018, chg -0.00%
-
-
->
->> +	unsigned int		suspended:1;
->> +};
->> +	return ls2x_i2c_send_byte(adap, LS2X_CR_STOP);
->> +}
-> ...
->
->> +static int ls2x_i2c_start(struct i2c_adapter *adap, struct i2c_msg *msgs)
->> +{
->> +	struct ls2x_i2c_dev *dev = i2c_get_adapdata(adap);
->> +	unsigned char addr = i2c_8bit_addr_from_msg(msgs);
->> +
->> +	reinit_completion(&dev->cmd_complete);
->> +	addr |= (msgs->flags & I2C_M_RD) ? 1 : 0;
-> Why is this needed?
-In the ls2x I2C controller, the bit 0 of TXR indicates the read/write 
-status when transferring the address.
->
->> +	writeb(addr, dev->base + I2C_LS2X_TXR);
->> +
->> +	return ls2x_i2c_send_byte(adap, (LS2X_CR_START | LS2X_CR_WRITE));
->> +}
-> ...
->
->> +	while (len--) {
->> +		if (len == 0)
->> +			cmd |= LS2X_CR_ACK;
->> +
->> +		writeb(cmd, dev->base + I2C_LS2X_CR);
-> Can be written as
->
-> 		writeb(cmd | (len ? 0 : LS2X_CR_ACK), dev->base + I2C_LS2X_CR);
->
-> but it's up to you.
->
->> +		time_left = wait_for_completion_timeout(&dev->cmd_complete,
->> +							adap->timeout);
->> +		if (unlikely(!time_left)) {
->> +			dev_err(dev->dev, "transaction timeout\n");
->> +			return -ETIMEDOUT;
->> +		}
->> +
->> +		*buf++ = readb(dev->base + I2C_LS2X_RXR);
->> +	}
-> ...
->
->> +	for (retry = 0; retry < adap->retries; retry++) {
->> +
-> Unneeded blank line.
->
->> +		ret = ls2x_i2c_doxfer(adap, msgs, num);
->> +		if (ret != -EAGAIN)
->> +			return ret;
->> +
->> +		dev_dbg(dev->dev, "Retrying transmission (%d)\n", retry);
->> +		udelay(100);
->> +	}
-> Can something from iopoll.h be utilized here?
-I think udelay() should be suitable because it is just the time interval 
-between two retry.
->
-> ...
->
->> +	if (iflag & LS2X_SR_IF) {
->> +		writeb(LS2X_CR_IACK, dev->base + I2C_LS2X_CR);
->> +		complete(&dev->cmd_complete);
->> +	} else
->> +		return IRQ_NONE;
->
-> Use usual pattern: checking for error condition first.
->
-> 	if (!(iflag & LS2X_SR_IF))
-> 		return IRQ_NONE;
->
-> 	writeb(LS2X_CR_IACK, dev->base + I2C_LS2X_CR);
-> 	complete(&dev->cmd_complete);
->
->> +	return IRQ_HANDLED;
-> ...
->
->> +	writeb((val & 0xff00) >> 8, dev->base + I2C_LS2X_PRER_HI);
->
-> What ' & 0xff00' part is for?
-Emm... I'll use  writel(val, priv->base + I2C_LS2X_PRER_LO); instead.
-> ...
->
->> +	dev = devm_kzalloc(&pdev->dev,
->> +			sizeof(struct ls2x_i2c_dev), GFP_KERNEL);
-> sizeof(*dev) and make it one line.
->
->> +	if (unlikely(!dev))
-> Why unlikely()?
->
->> +		return -ENOMEM;
-> ...
->
->> +	dev->irq = platform_get_irq(pdev, 0);
->> +	if (unlikely(dev->irq <= 0))
-> Why 'unlikely()'? Why == 0 is here?
->
->> +		return -ENODEV;
-> ...
->
->> +	r = devm_request_irq(&pdev->dev, dev->irq, ls2x_i2c_isr,
->> +			      IRQF_SHARED, "ls2x-i2c", dev);
->> +	if (unlikely(r)) {
-> Why 'unlikely()'? You must explain all likely() / unlikely() use in the code.
-These 'unlikely()' may not be quite right, at that time I just thought 
-these anomalies were infrequent.
->
->> +		dev_err(dev->dev, "failure requesting irq %i\n", dev->irq);
->> +		return r;
-> 	return dev_err_probe(...);
->
->> +	}
-> ...
->
->> +	/*
->> +	 * The I2C controller has a fixed I2C bus frequency by default, but to
->> +	 * be compatible with more client devices, we can obtain the set I2C
->> +	 * bus frequency from ACPI or FDT.
->> +	 */
->> +	dev->bus_clk_rate = i2c_acpi_find_bus_speed(&pdev->dev);
->> +	if (!dev->bus_clk_rate)
->> +		device_property_read_u32(&pdev->dev, "clock-frequency",
->> +					&dev->bus_clk_rate);
-> This should be done via
->
->          i2c_parse_fw_timings(&pdev->dev, ...);
->
-> no?
-
-Yes, I get it，and the i2c_ls2x_adjust_bus_speed() function will be 
-introduced to calculate i2c bus_freq_hz.
-
->
-> ...
->
->> +	adap->dev.of_node = pdev->dev.of_node;
->> +	ACPI_COMPANION_SET(&adap->dev, ACPI_COMPANION(&pdev->dev));
-> device_set_node()
->
-> ...
->
->> +	/* i2c device drivers may be active on return from add_adapter() */
->> +	r = i2c_add_adapter(adap);
->> +	if (r) {
->> +		dev_err(dev->dev, "failure adding adapter\n");
->> +		return r;
-> 	return dev_err_probe(...);
->
->> +	}
-> ...
->
->> +static int __maybe_unused ls2x_i2c_suspend_noirq(struct device *dev)
-> No __maybe_unused, use proper PM macros and definitions.
-> (look for pm_ptr() / pm_sleep_ptr() and corresponding defines)
->
->> +{
->> +	struct platform_device *pdev = to_platform_device(dev);
->> +	struct ls2x_i2c_dev *i2c_dev = platform_get_drvdata(pdev);
->> +
->> +	i2c_dev->suspended = 1;
->> +
->> +	return 0;
->> +}
->> +
->> +static int __maybe_unused ls2x_i2c_resume(struct device *dev)
->> +{
->> +	struct platform_device *pdev = to_platform_device(dev);
->> +	struct ls2x_i2c_dev *i2c_dev = platform_get_drvdata(pdev);
->> +
->> +	i2c_dev->suspended = 0;
->> +	ls2x_i2c_reginit(i2c_dev);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct dev_pm_ops ls2x_i2c_dev_pm_ops = {
->> +	SET_SYSTEM_SLEEP_PM_OPS(ls2x_i2c_suspend_noirq, ls2x_i2c_resume)
->> +};
-> As per above.
-
-The pm_sleep_ptr(&ls2x_i2c_dev_pm_ops) will be used in ls2x_i2c_driver 
-and drop __maybe_unused.
-
-Binbin
-
-> ...
->
->> +static const struct of_device_id ls2x_i2c_id_table[] = {
->> +	{ .compatible = "loongson,ls2k-i2c" },
->> +	{ .compatible = "loongson,ls7a-i2c" },
->> +	{ /* sentinel */ },
-> No comma for terminator entry.
->
->> +};
-> ...
->
->> +	{ "LOON0004", 0 },
-> ', 0' is redundant.
->
-> ...
->
->> +static struct platform_driver ls2x_i2c_driver = {
->> +	.probe		= ls2x_i2c_probe,
->> +	.remove		= ls2x_i2c_remove,
->> +	.driver		= {
->> +		.name	= "ls2x-i2c",
->> +		.owner	= THIS_MODULE,
-> Why?
->
->> +		.pm	= &ls2x_i2c_dev_pm_ops,
->> +		.of_match_table = ls2x_i2c_id_table,
->> +		.acpi_match_table = ls2x_i2c_acpi_match,
->> +	},
->> +};
-
+Cheers,
+Prabhakar
