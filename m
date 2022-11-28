@@ -2,58 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 818A763A234
-	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:40:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFBF363A245
+	for <lists+devicetree@lfdr.de>; Mon, 28 Nov 2022 08:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbiK1Hkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 02:40:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42918 "EHLO
+        id S229880AbiK1HuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 02:50:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbiK1HkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:40:16 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25D115737;
-        Sun, 27 Nov 2022 23:39:03 -0800 (PST)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 28 Nov
- 2022 15:39:01 +0800
-Message-ID: <a6cf1b3f-259d-44b7-8a9a-2a0cd29c714b@amlogic.com>
-Date:   Mon, 28 Nov 2022 15:39:00 +0800
+        with ESMTP id S229509AbiK1HuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 02:50:12 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7315A958A;
+        Sun, 27 Nov 2022 23:50:10 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AS5pvbm013085;
+        Mon, 28 Nov 2022 07:49:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=EvOYNr5YwYsIS+9C2KVrBrkRa6q4/RNX1EkrAtgxSz0=;
+ b=pRMT6liRzaCzEJ+gyyAB9TSBPVuSRM2WcXU9/mavI0Kkf4QQqKhYNqhf2GFRiqVxmoJ4
+ if1wzu6Fb3WewGZxUy6u9a8z8d494yKiKvZBnK9SM4bubVGharcdcvAvcFyiOzk1RYds
+ wAGJ2S5F2ncHHjbjZozbF2KCTC5NVXkJCyWUsMeA+kLcYe4jPE0KFbXHrCpQszCozQrv
+ o6vhHFj0V1NXDQ0WnjFITdHdc2oGJgNsaKASUWZcPQvcUmlKNmEADFltw/OB3eAVhG/n
+ rKuWSoccanMC2q/z9TJuXpNy8RD54Z+yXpEtCcF4dkuDQ09McUfzlUFsUK4DE70m2MVF dg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m3bjrkpca-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Nov 2022 07:49:21 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AS7nLi5009840
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Nov 2022 07:49:21 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Sun, 27 Nov 2022 23:49:15 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] ASoC: qcom: lpass-sc7180: Add system suspend/resume PM ops
+Date:   Mon, 28 Nov 2022 13:19:02 +0530
+Message-ID: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver and bindings
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <neil.armstrong@linaro.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <kelvin.zhang@amlogic.com>
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-2-yu.tu@amlogic.com>
- <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
- <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
- <eb56ed39-cfaa-3368-a2c0-0a4e89440e40@linaro.org>
- <5b7176b4-d7a2-c67f-31c6-e842e0870836@linaro.org>
- <1jfse72wqk.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1jfse72wqk.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: oyKsuhqYmd0bM19Akig8BJRQ_oIBWATw
+X-Proofpoint-GUID: oyKsuhqYmd0bM19Akig8BJRQ_oIBWATw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-28_06,2022-11-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0
+ impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211280061
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,193 +77,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
-	Thank you for your reply.
+Update lpass sc7180 platform driver with PM ops, such as
+system supend and resume callbacks.
+This update is required to disable clocks during supend and
+avoid XO shutdown issue.
 
-On 2022/11/25 17:23, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Wed 23 Nov 2022 at 14:53, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 23/11/2022 14:23, Neil Armstrong wrote:
->>> Hi,
->>>
->>> On 23/11/2022 12:16, Yu Tu wrote:
->>>> Hi Krzysztof,
->>>>       Thank you for your reply.
->>>>
->>>> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
->>>>> [ EXTERNAL EMAIL ]
->>>>>
->>>>> On 23/11/2022 03:13, Yu Tu wrote:
->>>>>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
->>>>>>
->>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>>> ---
->>>>>>    .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
->>>>>
->>>>> This is v5 and still bindings are here? Bindings are always separate
->>>>> patches. Use subject prefixes matching the subsystem (git log --oneline
->>>>> -- ...).
->>>>>
->>>>> And this was split, wasn't it? What happened here?!?
->>>>
->>>> Put bindings and clock driver patch together from Jerome. Maybe you can read this chat history.
->>>> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
->>>
->>> Jerome was asking you to send 2 patchsets, one with :
->>> - bindings in separate patches
->>> - drivers in separate patches
->>> and a second with DT changes.
-> 
-> Indeed, this is what was asked. It is aligned with Krzysztof's request.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
+---
+ sound/soc/qcom/lpass-sc7180.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-According to your discussion, I still should send patches in the 
-previous way in series. But I'm going to change it like you suggested.
-I don't know, am I getting it right?
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index 77a556b..6ad1c5b 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -12,6 +12,7 @@
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_runtime.h>
+ #include <dt-bindings/sound/sc7180-lpass.h>
+ #include <sound/pcm.h>
+ #include <sound/soc.h>
+@@ -156,10 +157,34 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
+ 	struct lpass_data *drvdata = platform_get_drvdata(pdev);
+ 
+ 	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
++	return 0;
++}
++
++static int sc7180_lpass_dev_resume(struct device *dev)
++{
++	int ret = 0;
++	struct lpass_data *drvdata = dev_get_drvdata(dev);
+ 
++	ret = clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
++	if (ret) {
++		dev_err(dev, "sc7180 clk prepare and enable failed\n");
++		return ret;
++	}
++	return ret;
++}
++
++static int sc7180_lpass_dev_suspend(struct device *dev)
++{
++	struct lpass_data *drvdata = dev_get_drvdata(dev);
++
++	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
+ 	return 0;
+ }
+ 
++static const struct dev_pm_ops sc7180_lpass_pm_ops = {
++	SET_SYSTEM_SLEEP_PM_OPS(sc7180_lpass_dev_suspend, sc7180_lpass_dev_resume)
++};
++
+ static struct lpass_variant sc7180_data = {
+ 	.i2sctrl_reg_base	= 0x1000,
+ 	.i2sctrl_reg_stride	= 0x1000,
+@@ -293,6 +318,7 @@ static struct platform_driver sc7180_lpass_cpu_platform_driver = {
+ 	.driver = {
+ 		.name = "sc7180-lpass-cpu",
+ 		.of_match_table = of_match_ptr(sc7180_lpass_cpu_device_id),
++		.pm = &sc7180_lpass_pm_ops,
+ 	},
+ 	.probe = asoc_qcom_lpass_cpu_platform_probe,
+ 	.remove = asoc_qcom_lpass_cpu_platform_remove,
+-- 
+2.7.4
 
-> 
->>>
->>> Then when the bindings + clocks patches are merged, a pull request of the bindings
->>> can be done to me so I can merge it with DT.
->>>
->>>>
->>>>>
->>>>>
->>>>>>    MAINTAINERS                                   |   1 +
->>>>>>    drivers/clk/meson/Kconfig                     |  13 +
->>>>>>    drivers/clk/meson/Makefile                    |   1 +
->>>>>>    drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
->>>>>>    drivers/clk/meson/s4-pll.h                    |  88 ++
->>>>>>    .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
->>>>>>    7 files changed, 1059 insertions(+)
->>>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>    create mode 100644 drivers/clk/meson/s4-pll.c
->>>>>>    create mode 100644 drivers/clk/meson/s4-pll.h
->>>>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..fd517e8ef14f
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>> @@ -0,0 +1,51 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Amlogic Meson S serials PLL Clock Controller
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Neil Armstrong <narmstrong@baylibre.com>
->>>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>>>> +  - Yu Tu <yu.hu@amlogic.com>
->>>>>> +
->>>>> One blank line.
->>>>
->>>>    I will delete this, on next version patch.
->>>>
->>>>>
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    const: amlogic,s4-pll-clkc
->>>>>> +
->>>>>> +  reg:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  clocks:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  clock-names:
->>>>>> +    items:
->>>>>> +      - const: xtal
->>>>>> +
->>>>>> +  "#clock-cells":
->>>>>> +    const: 1
->>>>>> +
->>>>>> +required:
->>>>>> +  - compatible
->>>>>> +  - reg
->>>>>> +  - clocks
->>>>>> +  - clock-names
->>>>>> +  - "#clock-cells"
->>>>>> +
->>>>>> +additionalProperties: false
->>>>>> +
->>>>>> +examples:
->>>>>> +  - |
->>>>>> +    clkc_pll: clock-controller@fe008000 {
->>>>>> +      compatible = "amlogic,s4-pll-clkc";
->>>>>> +      reg = <0xfe008000 0x1e8>;
->>>>>> +      clocks = <&xtal>;
->>>>>> +      clock-names = "xtal";
->>>>>> +      #clock-cells = <1>;
->>>>>> +    };
->>>>>
->>>>>
->>>>>> +#endif /* __MESON_S4_PLL_H__ */
->>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>> new file mode 100644
->>>>>> index 000000000000..345f87023886
->>>>>> --- /dev/null
->>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>
->>>>> This belongs to bindings patch, not driver.
->>>>>
->>>>>> @@ -0,0 +1,30 @@
->>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>>>>> +/*
->>>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->>>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
->>>>>> + */
->>>>>> +
->>>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>> +
->>>>>> +/*
->>>>>> + * CLKID index values
->>>>>> + */
->>>>>> +
->>>>>> +#define CLKID_FIXED_PLL            1
->>>>>> +#define CLKID_FCLK_DIV2            3
->>>>>
->>>>> Indexes start from 0 and are incremented by 1. Not by 2.
->>>>>
->>>>> NAK.
->>>>
->>>> I remember Jerome discussing this with you.You can look at this submission history.
->>>> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->>>
->>> Historically we did that by only exposing part of the numbers, controlling which
->>> clocks were part of the bindings.
->>>
->>> But it seems this doesn't make sens anymore, maybe it would be time to put all the
->>> clock ids in the bindings for this new SoC and break with the previous strategy.
-> 
-> Krzysztof and I agreed there is nothing wrong with the current
-> approach, I believe.
-> 
-> It does not prevent someone from using an un-exposed clock, sure, or
-> exposing it in the future if necessary.
-> 
-> However, I think it clearly shows that an un-exposed element is not
-> expected to be used by an external consumers. It should be enough to
-> trigger a discussion if this expectation is wrong.
-> 
->>
->> So the outcome of the previous discussion was somewhere later in that
->> thread:
->>
->>> It is just a choice to not expose some IDs.
->>> It is not tied to the implementation at all.
->>> I think we actually follow the rules and the idea behind it.
->>
->>
->> Best regards,
->> Krzysztof
-> 
-> .
