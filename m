@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6DF63C3C6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 999F363C3CD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235228AbiK2P3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 10:29:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59042 "EHLO
+        id S235914AbiK2PbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 10:31:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235212AbiK2P3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:29:51 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8626013EAC;
-        Tue, 29 Nov 2022 07:29:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1DEA66176F;
-        Tue, 29 Nov 2022 15:29:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B681C433C1;
-        Tue, 29 Nov 2022 15:29:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669735789;
-        bh=LcLxGc0JJF4Y9hWKi36NBEOqASyjERCHhf229KIalLQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W18al4QIssBUGlHaJSbuzmXtvkWgmxk2N5i7DIut8Nxy3ysCvHhMCMSHDvP5DMrfG
-         0wWPme5DrYNNTRWyQl6RYolbCm5jf1AIiubRS0JyuzAWzUsneuSjfbmjaIGQMPC9Hi
-         9UX/mKX8fZfsSG/BdLHP7IqJkI9eM4yKhO1guYXCtoZqdtWA+E7uFtLfE4dmlgU9TU
-         cnhd0jpYcbvNKphuNYIYmjW6Vbp6azO2Vjo6GjJHwCrkXQBN5sXEiNI4gF6KBAgC8I
-         Lsh7CTkV0GrBfYaPWS8nTPLwzPspp4HCeVGQi+4iFnsBdg0G/y+se2uPUmfPNgy08x
-         qDctGIBXbzAiw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1p02YP-0004V6-2i; Tue, 29 Nov 2022 16:29:49 +0100
-Date:   Tue, 29 Nov 2022 16:29:49 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/3] dt-bindings: phy: qcom,qmp-usb3-dp: Add
- sm6350 compatible
-Message-ID: <Y4YlbWL5uDXElBbi@hovoldconsulting.com>
-References: <20221125092749.46073-1-luca.weiss@fairphone.com>
- <Y4CP9fwhDXsLu57Q@hovoldconsulting.com>
- <COLABNHBQ1DG.1PB8SDY3FW1YY@otso>
- <Y4CWoT52Q8jnm/dF@hovoldconsulting.com>
- <COLE3UWQCQ8R.XY36EY07DDDK@otso>
- <Y4DImjwHQNlWPEKh@hovoldconsulting.com>
- <COLFSBYDJQVH.1Q9V9ISPWR6ZX@otso>
+        with ESMTP id S235698AbiK2PbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:31:18 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4766E63CF3
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:31:14 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id b11so13012844pjp.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:31:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3fVszqxgQ016BSb5qNf+hCvyWQbfpRSMkXlPPrp4GVI=;
+        b=bSoOisz9I9mHhMJiRBlqA98mcW26hkx7Xp/+fcTXZMmZBqyh1NAeNuhydDzv6eniZC
+         UnhSBrDa3rOJUZ0VLUoEvXiSqNsAhcw3I5PiP8hpBWT6Pt33fbt+MTOr3911YUILLMsx
+         X7d39KEEaQg0aOqHk6fOE6sy6Y5atjhFiv53VzRKof/3dSjO4BVCCWNCgZLcku1xFegj
+         eNnGq+i7vNumxfZVraDv0AlhybJTPThiFPFGXaHDCFRAv3Q96CyDdeGMCILaRv82dd6z
+         y3jPFZvGNVxeggjlx8KnjL0sl1novb60iZwlh0keCyMvHVdG11rFb6lmUFPdi/NOyK8K
+         sLoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3fVszqxgQ016BSb5qNf+hCvyWQbfpRSMkXlPPrp4GVI=;
+        b=ahej3EXijequ1xHZDoCq/a7PEXEppBDSSYq9z/sv7dVQIlz6sUF09NB/CwC0S1RCB9
+         8z+tqKWFrOrOcUNM0lPoCU+x2hgJmiETTf+2wLbFbrhiWPlKtWpdCQFenhnDgsMhdoLT
+         UaejkYX+3tHREScRhw5+4APUAQU0vzpS8K0C9dmYVcnZT6n61xYNnjSQz37suytZchTw
+         aiipyc3KW8CGQEnNqSBtmYIXHmofKVXoZ8rZnnpfi6fMVzT2eT9fr5UCjeuUNgepzYHD
+         mvBlfiXTnzFCQWkjdXxolXylZKjI2RV58PdK6ygwnwOwUOaEZCtkHnS08rQC9fcbJeIm
+         BhXA==
+X-Gm-Message-State: ANoB5pnH5Pm1WZqH1SkNDKzfoGSYDM2OA0v2xleuzl/URszN8J7BOJxD
+        dCPKZ2IZnxzwNrif0G+sWE5NcrKw7yDRGAKOuvwkaw==
+X-Google-Smtp-Source: AA0mqf5ik5i4ChFnRvy/bmtuc8PRZp06XQinOIdUlzKVikOtmWsKfjSysf196kcbBAdsx08nJT52ptjgdMON40RNQ9k=
+X-Received: by 2002:a17:902:d68b:b0:188:cca8:df29 with SMTP id
+ v11-20020a170902d68b00b00188cca8df29mr44499277ply.148.1669735873662; Tue, 29
+ Nov 2022 07:31:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <COLFSBYDJQVH.1Q9V9ISPWR6ZX@otso>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
+ <20221122111124.6828-3-cniedermaier@dh-electronics.com> <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
+In-Reply-To: <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 29 Nov 2022 16:30:37 +0100
+Message-ID: <CAPDyKFparoXMJ-sRxgqi8zDGn5AoNDLfsAF9YkdoaKpTU3EchQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less confusing
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,75 +69,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 25, 2022 at 03:12:24PM +0100, Luca Weiss wrote:
-> On Fri Nov 25, 2022 at 2:52 PM CET, Johan Hovold wrote:
-> > On Fri, Nov 25, 2022 at 01:53:25PM +0100, Luca Weiss wrote:
-> > > > Parent clocks (ref_clk_src) should not be included in the binding, but
-> > > > rather be handled by the clock driver. For example, see:
-> > > >
-> > > > 	https://lore.kernel.org/all/20221121085058.31213-4-johan+linaro@kernel.org/
-> > > > 	https://lore.kernel.org/all/20221115152956.21677-1-quic_shazhuss@quicinc.com/
-> > > 
-> > > So I assume you mean that I shouldn't do this:
-> > > 
-> > > clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> > >      <&rpmhcc RPMH_QLINK_CLK>,
-> > >      <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > >      <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > > clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-> > > 
-> > > But for "ref" use GCC_USB3_PRIM_CLKREF_CLK? That also seems to work
-> > > fine, also if RPMH_QLINK_CLK is not used from Linux-side (checked in
-> > > debugfs).
+On Tue, 29 Nov 2022 at 13:36, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 22/11/2022 12:11, Christoph Niedermaier wrote:
+> > The current comment on wakeup-source is a bit confusing, because it isn't
+> > clear at first sight which property is actually deprecated.
+> > Change the comment to one that is less confusing.
+>
+> It's still confusing - you mention some non-existing property. I don't
+> think it's worth to touch it. If you insist, drop entire comment...
+
+Hmm, it doesn't look that easy to me. The "enable-sdio-wakeup" is
+indeed a deprecated wakeup property [1], but it seems like it's not
+really described somewhere. I wouldn't mind removing it (as it seems
+to add some confusions), but in that case it needs to be entirely
+removed from the DT docs, right?
+
+Another option, would be to add a proper description of the property
+and mark it with "deprecated: true".
+
+>
 > >
-> > Exactly. Since the vendor dts describes RPMH_QLINK_CLK as parent of ref,
-> > I'd suggest modelling that in the clock driver. Perhaps it has just been
-> > left on by the boot firmware. Someone with access to docs may be able
-> > explain how it is supposed to be used.
-> 
-> RPMH_QLINK_CLK is also in msm-4.19 ref_clk_src for
-> GCC_UFS_MEM_CLKREF_CLK (ufsphy_mem) and also ref_clk (ufshc_mem).
-> 
-> Honestly since it works fine without adding this to gcc driver and I
-> don't really know much about clk (and have no docs for this) would it be
-> okay to just ignore RPMH_QLINK_CLK?
-
-Preferably it should be fixed now as it may be harder to figure out
-what's missing in case this causes trouble in some setup later.
-
-But, yeah, the lack of documentation is a pain.
-
-Hopefully Bjorn or Vinod can help out with getting this sorted properly.
-
-> > > And for the driver patch, I've discovered that this phy doesn't have
-> > > separate txa/tbx region, so dts was also wrong there. Do you know if
-> > > there's a way to test DP phy initialization without having all the USB-C
-> > > plumbing in place? Might be good to validate at least phy init works if
-> > > we're already touching all of this.
+> > Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> > ---
+> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Marek Vasut <marex@denx.de>
+> > Cc: kernel@dh-electronics.com
+> > Cc: linux-mmc@vger.kernel.org
+> > Cc: devicetree@vger.kernel.org
+> > To: linux-kernel@vger.kernel.org
+> > ---
+> >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > Do you mean that it appears to work as sc8280xp with txa/txb shared by
-> > both the USB and DP parts?
-> 
-> Yes, looks like it. Can't find any evidence pointing in any other
-> direction at least, everything I've seen shows .txa = 0x1200 & .txb =
-> 0x1600.
+> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> > index 802e3ca8be4d..a921442c6c1d 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> > @@ -293,7 +293,7 @@ properties:
+> >      description:
+> >        SDIO only. Preserves card power during a suspend/resume cycle.
+> >
+> > -  # Deprecated: enable-sdio-wakeup
+> > +  # Use wakeup-source instead of the deprecated enable-sdio-wakeup
+> >    wakeup-source:
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> >      description:
 
-Ok. I've also only seen indirect references to the DP registers
-for the older platforms, but at least of them do have the separate DP TX
-regions.
+Kind regards
+Uffe
 
-> > I guess you need a proper setup to test it properly. Not sure what
-> > you'll be able to learn otherwise, apart from whether it passes basic
-> > smoke testing.
-> 
-> Currently it's not even smoke testing because dp phy is never getting
-> enabled because there's no consumer. That's why I guess it was never
-> noticed it's wrongly described in dts.
-
-Yeah, people shouldn't be adding (copy-pasted) nodes for peripherals
-that they are not able to test (especially given the lack of
-documentation), but I guess the USB3-DP case is a bit of a grey area as
-the USB part can have been verified. Fortunately, this should be less of
-any issue with the new binding scheme.
-
-Johan
+[1]
+Documentation/devicetree/bindings/power/wakeup-source.txt
