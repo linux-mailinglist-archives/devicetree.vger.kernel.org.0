@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33E2263C905
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 21:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1B8363C979
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 21:41:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237249AbiK2UNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 15:13:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
+        id S236188AbiK2UlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 15:41:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237242AbiK2UNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 15:13:43 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540D22B197
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:13:42 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id a19so2807234ljk.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:13:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
-        b=fM2wi5GCSslz9CIyZBqJ6Udlyv0ggnfAc0ToenEo3YH4B7+Tl74tXXdEb5EKWkn2Wu
-         DIs7Qd8CDoudOH9YwohFYngsDQ9eCPghIM38/LWagmk9cGphExczFuqtUy/bGB9d7Pqw
-         YVh9ccSRgw291h59omJ1P20R9/ybbwpZoN3qp0TugbORvlQPA/QDp8KlGHc7ZTTuKkcu
-         6WmDWiSHuUHNnpsDYR8ju/sHsfkUFY9wld5yIlzuFpBJnUYYNjp7/Qa+lrHFccgnfU5e
-         9nY+xCPnFS5/Yss+sn0ObgtuuAqpMKmiqDcPNqJ0d7KbTPqKIvWDl8Bil/6pXZIZrxTa
-         ADyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
-        b=1bVeWpxiaSgpcCXROSyD/tJgivnn1rGpXRfmNXxzO3xnraNS0JSffbc6UTeSLgGDyq
-         VYQMCpShQwhVjzHhErVLdOdXjyk72bsUVlJQoQ8umOcsruMlVpAEVp9WnNDQx/vVv9W6
-         IUeYh60jKUMrtAZA0iSysXv5xchwC/AkE2w9LYWJjtbI2KNn2SsGQb1sDpPhE3ZUwJ0Q
-         y6j2fjyMaucElJyHfffcwM6PpOtUpbheOrd//P6MyD/9NHowB6vnoKvufYoIb1OQaWCh
-         cLRGPxHmGNdaplmC/U4W9uag9wjE/fI7qw74jm1HAsCAfHvsrHukjG9kBBMOQa9uUHnv
-         QO7g==
-X-Gm-Message-State: ANoB5pkmvEANk5Rsxcm7ff1jxay2w9ggc9zdRFdHJrzoWKUJ6ZX7JmzH
-        GB6izxO3Us87PN8TbUYb6iMMk/cVeASkRrXSwHc=
-X-Google-Smtp-Source: AA0mqf4+F9TyDQP1Ce2PfnR/pYBFWTAEF62pD7GZYkg7CduLXEkkJypQXMVWDo+1vw39/WFBYPCVnCuXdFNJSBE+AXs=
-X-Received: by 2002:a2e:a543:0:b0:277:8f64:f9fa with SMTP id
- e3-20020a2ea543000000b002778f64f9famr14243228ljn.282.1669752820449; Tue, 29
- Nov 2022 12:13:40 -0800 (PST)
+        with ESMTP id S236177AbiK2UlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 15:41:20 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F0969ABF;
+        Tue, 29 Nov 2022 12:41:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A7671B818F6;
+        Tue, 29 Nov 2022 20:41:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C8D4C433D6;
+        Tue, 29 Nov 2022 20:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669754477;
+        bh=K/qBsbp0/BjS2c7vO/taj/9RoO4bN4ZoqYNajRSMNss=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=pY3GfC9OgDOUrpwx/P2V2w0/9CDRCGgHSitWarZX6qh0zzknj63KnV29nWRflCz8M
+         pApCgE+CfMz7fM4vZ0f4HhsZ9hbigeVPMf/zO7UGE1VOclrGXA+IO6c+FrEFyncDL7
+         qN1uivxPnUuHlHqvoQ3cWMDnj5d1zZTntRLKiDn2o5uY6bjNzqVHVIrpIhf69u0M4c
+         Z0AGmeZZOxIzKW1jULs3sitUvpC9Mfb5qIAS/ylHojRnEAQ427XqM9hZZ6dAX9KPuR
+         bW0mVQ8TH9lAyQ6bQL08LkL0Xb5rLjnI55zt1UVoegMLE0iz5shdK5eY6rlQDGuGkH
+         GjZEoRtpneKVA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Received: by 2002:a05:6520:2542:b0:22c:9bbc:bff with HTTP; Tue, 29 Nov 2022
- 12:13:39 -0800 (PST)
-Reply-To: mr.abraham022@gmail.com
-From:   "Mr.Abraham" <joykekeli2@gmail.com>
-Date:   Tue, 29 Nov 2022 20:13:39 +0000
-Message-ID: <CAOikvbtX13y9cXe+vd11-fxb5BMQHxP-R2ju-NE4AaEGAMxSuA@mail.gmail.com>
-Subject: hi
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221128122820.798610-4-abel.vesa@linaro.org>
+References: <20221128122820.798610-1-abel.vesa@linaro.org> <20221128122820.798610-4-abel.vesa@linaro.org>
+Subject: Re: [PATCH v3 3/9] clk: qcom: gdsc: Add configurable poll timeout
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 29 Nov 2022 12:41:13 -0800
+User-Agent: alot/0.10
+Message-Id: <20221129204117.4C8D4C433D6@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My Greeting, Did you receive the letter i sent to you. Please answer me.
-Regard, Mr.Abraham
+Quoting Abel Vesa (2022-11-28 04:28:14)
+> Depending on the platform, the poll timeout delay might be different,
+> so allow the platform specific drivers to specify their own values.
+
+It's a timeout, why not just increase the timeout define? I don't think
+we really care that some platforms have slower GDSCs, eventually they'll
+toggle status.
