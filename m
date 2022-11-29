@@ -2,211 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC1B63BB07
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87AF963BB0E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbiK2Hxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 02:53:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45942 "EHLO
+        id S230049AbiK2Hyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 02:54:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbiK2Hxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:53:53 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E426E1A83B
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:53:51 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id g12so21242170lfh.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:53:51 -0800 (PST)
+        with ESMTP id S230083AbiK2Hyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:54:46 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0774D5655F
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:54:41 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id b21so12623296plc.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:54:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KQybg/xOF6FhEZDOaOULtUoNETXBOqOsgADe67aMXLE=;
-        b=UpbOptFUEiLzsBoX8bI44BnQ76xUx3UuYWpuBhe2dKYIm8oMJrJ/xo8z6OMkxu7HiD
-         OvzjZz2VrPxTDDDoyXxH5Yl8g6ipP6FDTuMvUUHcw3kNZw/PXMkfkDHSoo9mHUZXHoFP
-         OylNm8ch6ZPui25H3KaxDEbXIUB24DvWKgRfUErBMelTv7k9FW04Y94QUc5mnA7ZUqF1
-         gT0fdh+4Y7hpPPuFcr7yMwL/xt/8DRCZSeCBAxS4VQHMFisHMlhpqe4FF21uFnLtOtkL
-         nfVfeqCHBzarhnbV7gzabyklUaYZk+XkEIYLgiyQQCwZTUUthwmcSImZ7tVZvU0Jg2kv
-         IoKw==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5NIkFI1kwIuAqgBdLDYftZkp+cYs7Gl+rkFXhfcDd9E=;
+        b=671OaoAhQS6Dwo5rXwzhsZrb9wnzvq8auH+g2vCFikMZNfNmPGJeViiVEy1iBiysvS
+         1AwZ9srBxL0jeF74JKR01XfTQfGUlNaytgQhJ9zFNKb4MzaNoIG0RgjR9+jzA4RocMO9
+         EDigzpg5Lj2C61PvF2IZDO4yG4xkvtNVRGaNF43I3KeYUHCc6rsQmyCGor/cvRb8Lu7S
+         01XPxuATf28et7EJfvbUFe7i2pAS5EjGwf/X0PGeZrU6uEsTS7l3zCBCRMeJG4Hw1cUF
+         FlETYQXl/ejRN9n225C6pQV5817GaoEfq5lixg3CZ6mXOJf8UavQduDDx9aMPTF96qWV
+         J0JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KQybg/xOF6FhEZDOaOULtUoNETXBOqOsgADe67aMXLE=;
-        b=jLUrKlBcGn/f7NTNn8tBbPLd32ET5kXPhM65iy6nPUvTFWEyZhWxknMZTpTtETn8SC
-         49IYZUpONDQEKcgi3LQxte+I+SRvE+9H1v8osUxKw1ZFwcxJzYwoPjOLBApFueUVpG8T
-         8lerF/OprMPgc9wVTaQoB8blIFKsuDkf7S6EaJzunUnRX+Xy4idC/4E4SFnOACrU/rwm
-         Zkhz8WGU+0WjH6A1BSQAH1nSo2w7wmlSBmSjCKg6j5E6r9xJgmKM5dP/wMDxvMTc55N6
-         9e8QD7gBBw+2nEZvA2zG20u5/CpcS+4AOVEjZ808fQ+9mO3xxsHAx4vn3TlmsJ/kVnlj
-         lfQw==
-X-Gm-Message-State: ANoB5pnExSo+/sIYGIVrSyqyI/DXa3Y0zKG0HIT0BO5LMdTYy8x7/DLF
-        7a1CP0EQJj6o/CSwDz3YZhh8BA==
-X-Google-Smtp-Source: AA0mqf5dJhrQO41ryq6m1BJXGW5hy/Q5lxwkYtSEPrZdima5tVcNCUG7xlI2pcPStT+BfOlClvCVYA==
-X-Received: by 2002:ac2:5dd9:0:b0:4b4:e433:477b with SMTP id x25-20020ac25dd9000000b004b4e433477bmr11060037lfq.541.1669708430322;
-        Mon, 28 Nov 2022 23:53:50 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o25-20020ac25e39000000b004979ec19380sm2097789lfg.285.2022.11.28.23.53.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 23:53:49 -0800 (PST)
-Message-ID: <893717a9-14f0-1aa4-bf33-e5630cb0e769@linaro.org>
-Date:   Tue, 29 Nov 2022 08:53:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3328: Add Orange Pi R1 Plus
-Content-Language: en-US
-To:     Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5NIkFI1kwIuAqgBdLDYftZkp+cYs7Gl+rkFXhfcDd9E=;
+        b=BTPchEr2JYCDimfC2FQN37qMvEpfdTKc/Peqk+REPt5GCXXy+UAZTllrdDWpcL60rm
+         1uiIJ67ETKSMnuH3zO12OfoTLw7DzZWYdNofzkf3Cr8WU4GkW7yVlZ4R66V6IKmRLlLd
+         af2VZH4l0IU7n95pwO5WM1dD/MZ+RJ6A9eGUTzZdawXQZjYLwmUHhBf7FbWfT1/QHk/+
+         aBG0h+pZqRM2Dk+cEME30TUxNN6X28o+hgBTlqlcT2vhdRvjxNrG7hmvJuIMdZbTEthV
+         FN9aOYyO8IKAbvp0C0oQVXhVygmNUl4zpeRYBtUbTTYD2Jv3c4t78QnfJ7blW4LgRBC1
+         VApA==
+X-Gm-Message-State: ANoB5plo8gPC5qNuwFUGBGWosUIXWe8Rrl3fRwl1JFqihMXCmhpIOADk
+        o8/BNi1uxHrAl/PKMfl3NF/fxw==
+X-Google-Smtp-Source: AA0mqf6tHj/JFi5wscb2Ij7FHO0Ur6MXOowSG+cufz0ow97qWTxxagj5+QMSTGxC8iKB0LL/WK4XRg==
+X-Received: by 2002:a17:90a:588b:b0:219:c40:e5f with SMTP id j11-20020a17090a588b00b002190c400e5fmr21519016pji.49.1669708480743;
+        Mon, 28 Nov 2022 23:54:40 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a809:5c9c:86cb:4472:916b])
+        by smtp.gmail.com with ESMTPSA id 13-20020a170902c24d00b0017f72a430adsm10106342plg.71.2022.11.28.23.54.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 23:54:40 -0800 (PST)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20221129064042.17806-1-amadeus@jmu.edu.cn>
- <20221129064042.17806-2-amadeus@jmu.edu.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221129064042.17806-2-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>, Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH v9 0/8] ARM: Add Rockchip RV1126 support
+Date:   Tue, 29 Nov 2022 13:24:16 +0530
+Message-Id: <20221129075424.189655-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 07:40, Chukun Pan wrote:
-> Orange Pi R1 Plus is a Rockchip RK3328 based SBC by Xunlong.
-> 
-> This device is similar to the NanoPi R2S, and has a 16MB
-> SPI NOR (mx25l12805d). The reset button is changed to
-> directly reset the power supply, another detail is that
-> both network ports have independent MAC addresses.
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../dts/rockchip/rk3328-orangepi-r1-plus.dts  | 373 ++++++++++++++++++
->  2 files changed, 374 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 0a76a2ebb5f6..27e00f4f3c86 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go3.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
-> new file mode 100644
-> index 000000000000..daa4da0bd5e4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
-> @@ -0,0 +1,373 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Based on rk3328-nanopi-r2s.dts, which is:
-> + *   Copyright (c) 2020 David Bauer <mail@david-bauer.net>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include "rk3328.dtsi"
-> +
-> +/ {
-> +	model = "Xunlong Orange Pi R1 Plus";
-> +	compatible = "xunlong,orangepi-r1-plus", "rockchip,rk3328";
-> +
-> +	aliases {
-> +		ethernet1 = &rtl8153;
-> +		mmc0 = &sdmmc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
-> +
-> +	gmac_clk: gmac-clock {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "gmac_clkin";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-0 = <&lan_led_pin>, <&sys_led_pin>, <&wan_led_pin>;
-> +		pinctrl-names = "default";
-> +
-> +		led-0 {
-> +			function = LED_FUNCTION_LAN;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-1 {
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		led-2 {
-> +			function = LED_FUNCTION_WAN;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			gpios = <&gpio2 RK_PC2 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	vcc_sd: sdmmc-regulator {
-> +		compatible = "regulator-fixed";
-> +		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
-> +		pinctrl-0 = <&sdmmc0m1_pin>;
-> +		pinctrl-names = "default";
-> +		regulator-name = "vcc_sd";
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc_io>;
-> +	};
-> +
-> +	vcc_sys: vcc-sys {
+This patch series combined the next level dts patches for 
+Rockchip RV1126 support.
 
-Use consistent prefix/suffix, so -regulator.
+Changes for v9:
+- fix serial2 alias
+- collect Krzysztof ack
+Changes for v8:
+- fix rv1126 dtsi
+- remove uart aliases
+- add adc node name
+- add uart dma-names
+- add timer0 node name
+Changes for v7:
+- fix dtbs_check
+- new dt-bindings patches
+- collect Rob Ack
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	vdd_5v_lan: vdd-5v-lan {
+Any inputs?
+Jagan.
 
-Dutto
+Jagan Teki (8):
+  dt-bindings: arm: rockchip: Add pmu compatible for rv1126
+  dt-bindings: timer: rk-timer: Add rktimer for rv1126
+  ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+  ARM: dts: rockchip: Add Rockchip RV1126 SoC
+  dt-bindings: vendor-prefixes: Add Edgeble AI Technologies Pvt. Ltd.
+  dt-bindings: arm: rockchip: Add Edgeble Neural Compute Module 2
+  ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2)
+  ARM: dts: rockchip: rv1126: Add Edgeble Neural Compute Module 2(Neu2) IO
 
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&lan_vdd_pin>;
-> +		pinctrl-names = "default";
-> +		regulator-name = "vdd_5v_lan";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc_sys>;
-> +	};
-> +};
-> +
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ .../devicetree/bindings/arm/rockchip/pmu.yaml |   2 +
+ .../bindings/timer/rockchip,rk-timer.yaml     |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts  |  42 ++
+ arch/arm/boot/dts/rv1126-edgeble-neu2.dtsi    | 338 ++++++++++++++
+ arch/arm/boot/dts/rv1126-pinctrl.dtsi         | 211 +++++++++
+ arch/arm/boot/dts/rv1126.dtsi                 | 438 ++++++++++++++++++
+ 10 files changed, 1042 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2-io.dts
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-neu2.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126.dtsi
 
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
