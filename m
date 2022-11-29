@@ -2,143 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E2163BC1B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0268763BC43
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiK2Ivj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:51:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
+        id S229712AbiK2I5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:57:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbiK2IvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:51:20 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B291D5803A;
-        Tue, 29 Nov 2022 00:51:19 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id vv4so32074404ejc.2;
-        Tue, 29 Nov 2022 00:51:19 -0800 (PST)
+        with ESMTP id S229641AbiK2I5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:57:12 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DAB9D75
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:57:11 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id be13so21449257lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:57:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
-        b=nhKapcQ66LsxA85JQdzV2oZbWTII+lECh4PRQcH4mDiqEm4ojDHv7H95e1Yu9UhPbu
-         qgXFEJe5IBj9/8AlpNKHmA92xYsyC4SZqZLvK6OLaPMuyeq4lmmUx9S6AraqRskOLIc0
-         sqDRTVS1XH6eQTpbbz2NXSWwHn2MgMncpfuDlJlmwa1XYivMD6NL9zGnWYa6ijPckc7c
-         c2mkdLJpg7sVYVQgFSS+T86beZvtahhhakiO/RCC/l6JEGECGPLz+RSYnW7Oegj286j8
-         zPENNFHaBXDfvD0DIMp2vnBNikzzZAbi0CqXctM2F2ra4pGsxVa61JCC589gAilD2WC6
-         ju6w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qOArE8my8J/ipU9oMYClbJVsW3lHXFxVNxDO1jO7EJM=;
+        b=zQScKMkcDPLb0VbjVjZbxuia8pV+1yNLJkwoOz5+7uEaU+6msIwDGKIXO6YPKZol+E
+         M9XqTRkg0g9A2cXSGGy/jIz9rC5o8vGonCgrSvqpL4B9T6jWMrMRpMU6DqROQ9aQvN9j
+         dJBuHZfMLbDTc8RSnsufVA52LDzaq9PVCwo8++dceJAbqtj9++MgCIlGUq1df3KRyfvg
+         DkPklmj3A5QvgkGxK2hd9xinWidw30yeQHfNindqR+gPkyi/8W37sTa9TemdN2BtSDZu
+         LhY72igp/L0YRGzG9vo23ai9ah5MOsiGcntbrPMT3QCw4pnG1uwlqyeGTYbfwJ8lV2DM
+         8Ktg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
-        b=0tpv00KUklS1K9yx+aknKP/xctIExTEXDjTN18oJMVEse+BdVxdeGJfzMYU2is0dAt
-         lQkwV91TiNJfvXGteY38HbYHfk2VkOIddYR6zxvLCiMz5BymLjoHiyySUEk3Ng38FGEa
-         /F7nK1uEJlpS3fg8E0wViROtWanw24QZvLYyVtjpf4o009HwGVpjBIVMvtgy0CvTGQ57
-         DWut6mkJhsXNKol5+WxXEw89ifG7NkSk9fy/jiwuXQiVWQNoplnazipbY3sBRfHvyluG
-         iUtAdLUtdkcY04X6LUhLejIrKznpLidhmqxLSCuz8xPgs2v2R58k4q7VSAFBVw2MrqnV
-         1hhQ==
-X-Gm-Message-State: ANoB5pn+r/20A2Eh9P8I6JhsW6832jAIqIhkw8htK6uAPzxSz5Nxs1Bd
-        jNP7qlQ9Oj9GoEC3dMO7aK432J9JxJHm/w==
-X-Google-Smtp-Source: AA0mqf6g0V291RCuJE/6a7lckAJbDgRfo/msdIC8flyucHI+AJKI3XL0ggAyX2RdNHUyh2wH0hgteQ==
-X-Received: by 2002:a17:906:ca18:b0:781:c97c:84d1 with SMTP id jt24-20020a170906ca1800b00781c97c84d1mr46678807ejb.147.1669711878319;
-        Tue, 29 Nov 2022 00:51:18 -0800 (PST)
-Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id kz1-20020a17090777c100b0078de26f66b9sm5873219ejc.114.2022.11.29.00.51.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 00:51:17 -0800 (PST)
-Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
-From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     italonicola@collabora.com,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
-        SoC support),
-        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 4/5] arm64: dts: Add DT node for the VIPNano-QI on the A311D
-Date:   Tue, 29 Nov 2022 09:50:44 +0100
-Message-Id: <20221129085047.49813-5-tomeu.vizoso@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
-References: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qOArE8my8J/ipU9oMYClbJVsW3lHXFxVNxDO1jO7EJM=;
+        b=5mtMDm1PbKd0YB3T3aBAnDQOy9KIn8rUWR2GlVgmSQs5RJJcFgBX1/9IQdvhGCkQ2H
+         vKBnMDzJmwpu94jY31K3BbKsLJUP0i/U2ghOtzvGtdLgBYCxSEgDeo+fzaFXXPqeLAT6
+         h0DDS/U11eOMaPK6UQqmMSD3cXPY/kTQBoRWFHJU07bwHE99AMrIDpdFEvSPrNXzsWHG
+         vbA82rlhWcSqRTk2hpUsQJ4HwbA/PoQspDqi56LgeJiLemTK3NnKBhRWqTQhxiwdOdGK
+         HNQZGw4ZFcyTr2bkppX5gdfKt5Zk2xxLClGTaE11Kl7wOOBpkIavlaNNK88m827no0pr
+         U96g==
+X-Gm-Message-State: ANoB5pl8xuVJm2j7WeLnljgixVMwUK3P8k32BwNUBAEjr+atbKGvfuIM
+        /RTG2BD7AWBSJxibOBE5I2m6VJdDNeJdksNy
+X-Google-Smtp-Source: AA0mqf6nzwvf2RmaoCBMIPu+kzJXafNijvrUgD0Yz45ncIT5YtlHx/jG9cgKZI04TjMh48z5zZWvnw==
+X-Received: by 2002:a05:6512:3049:b0:4a2:3f4b:839 with SMTP id b9-20020a056512304900b004a23f4b0839mr16695594lfb.483.1669711895956;
+        Tue, 29 Nov 2022 00:51:35 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id l18-20020a194952000000b004aa427febe5sm2111342lfj.64.2022.11.29.00.51.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Nov 2022 00:51:35 -0800 (PST)
+Message-ID: <979d220c-525c-ad57-89b8-b65bda55fe55@linaro.org>
+Date:   Tue, 29 Nov 2022 09:51:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rk3568 xpcs
+ compatible
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Chukun Pan <amadeus@jmu.edu.cn>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221129072714.22880-1-amadeus@jmu.edu.cn>
+ <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
+In-Reply-To: <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-with it with just a few small changes.
+On 29/11/2022 09:49, Krzysztof Kozlowski wrote:
+> On 29/11/2022 08:27, Chukun Pan wrote:
+>> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
+>> This patch adds a compatible string for the required clock.
+>>
+>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+>> ---
+>>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> index 42fb72b6909d..36b1e82212e7 100644
+>> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+>> @@ -68,6 +68,7 @@ properties:
+>>          - mac_clk_rx
+>>          - aclk_mac
+>>          - pclk_mac
+>> +        - pclk_xpcs
+>>          - clk_mac_ref
+>>          - clk_mac_refout
+>>          - clk_mac_speed
+>> @@ -90,6 +91,11 @@ properties:
+>>        The phandle of the syscon node for the peripheral general register file.
+>>      $ref: /schemas/types.yaml#/definitions/phandle
+>>  
+>> +  rockchip,xpcs:
+>> +    description:
+>> +      The phandle of the syscon node for the peripheral general register file.
+> 
+> You used the same description as above, so no, you cannot have two
+> properties which are the same. syscons for GRF are called
+> "rockchip,grf", aren't they?
 
-v2: Add reference to RESET_NNA (Neil)
-v3: Fix indentation (Neil)
+Also:
+1. Your commit msg does not explain it at all.
+2. Your driver code uses this as some phy? Don't use syscon as
+workaround for missing drivers.
 
-Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
- .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
- 2 files changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 45947c1031c4..61c8461df614 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- #include <dt-bindings/thermal/thermal.h>
-+#include <dt-bindings/power/meson-g12a-power.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -2484,4 +2485,14 @@ xtal: xtal-clk {
- 		#clock-cells = <0>;
- 	};
- 
-+	npu: npu@ff100000 {
-+		compatible = "vivante,gc";
-+		reg = <0x0 0xff100000 0x0 0x20000>;
-+		interrupts = <0 147 4>;
-+		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-+			 <&clkc CLKID_NNA_AXI_CLK>;
-+		clock-names = "core", "bus";
-+		resets = <&reset RESET_NNA>;
-+		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-index 124a80901084..73f3d87dcefd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-@@ -15,6 +15,10 @@ / {
- 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- /*
-  * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
-  * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
--- 
-2.38.1
+Best regards,
+Krzysztof
 
