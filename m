@@ -2,86 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7CC63CA22
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 22:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F8D63CAB9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 22:56:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236919AbiK2VL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 16:11:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38534 "EHLO
+        id S236332AbiK2V4s convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Nov 2022 16:56:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236992AbiK2VLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 16:11:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E93D70469;
-        Tue, 29 Nov 2022 13:10:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BBF5618DE;
-        Tue, 29 Nov 2022 21:10:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 84F9CC43142;
-        Tue, 29 Nov 2022 21:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669756239;
-        bh=NrCuAivPv3qzyDvI/rHbjvPlp31xALKnnxmZZ7zY+mg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=WZ1Ifuyh8ehomMO7obYf7e569GVymyaRtRxEFXRnAnm0M2CiRKpxTQv0VOZn9swXY
-         BctDv0FJL48NhbfZhB3pZwKFYaXEVVg9piKzDkJwBYO71DGRCUnZuyKa/VgvL1SkzW
-         vEm30eKyJm6DbqQNvN8nFIWt6l79jbKoRZB1dgUHZAg3+4Cq5ewm+NbrWbgiAeDxUI
-         Ngx7Wv/09xft3PbVFKkFlOT+2U352A4WwDt4zQKsc5aCHd7vboahFJAO4synbWY8uW
-         gdZWktWnbf7W5a8e660xPXEAoQg8sLfvpgZe0VZEndnMA3YuhA9rxoYMuaLZRZIwPB
-         pIgsNpm/Yji6A==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 600D4C395EC;
-        Tue, 29 Nov 2022 21:10:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S236259AbiK2V4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 16:56:47 -0500
+Received: from correos.bolipuertos.gob.ve.bolipuertos.gob.ve (correo.bolipuertos.gob.ve [190.202.28.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4161A6C733;
+        Tue, 29 Nov 2022 13:56:46 -0800 (PST)
+Received: from correo.bolipuertos.gob.ve ([10.50.23.160])
+        by correos.bolipuertos.gob.ve.bolipuertos.gob.ve  with ESMTP id 2ATLsW0d005433-2ATLsW0f005433
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Tue, 29 Nov 2022 17:54:32 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by correo.bolipuertos.gob.ve (Postfix) with ESMTP id DFE40AC1C07;
+        Tue, 29 Nov 2022 17:54:32 -0400 (-04)
+Received: from correo.bolipuertos.gob.ve ([127.0.0.1])
+        by localhost (correo.bolipuertos.gob.ve [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id BaP1bCQ1VLdQ; Tue, 29 Nov 2022 17:54:32 -0400 (-04)
+Received: from localhost (localhost [127.0.0.1])
+        by correo.bolipuertos.gob.ve (Postfix) with ESMTP id A7A48AC280E;
+        Tue, 29 Nov 2022 17:54:32 -0400 (-04)
+X-Virus-Scanned: amavisd-new at bolipuertos.gob.ve
+Received: from correo.bolipuertos.gob.ve ([127.0.0.1])
+        by localhost (correo.bolipuertos.gob.ve [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id UarZmg97qjkT; Tue, 29 Nov 2022 17:54:32 -0400 (-04)
+Received: from [103.125.190.179] (unknown [103.125.190.179])
+        by correo.bolipuertos.gob.ve (Postfix) with ESMTPSA id 90DE6AC1C07;
+        Tue, 29 Nov 2022 17:54:26 -0400 (-04)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] dt-bindings: net: realtek-bluetooth: Add RTL8723DS
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <166975623937.18742.13348891788442486147.git-patchwork-notify@kernel.org>
-Date:   Tue, 29 Nov 2022 21:10:39 +0000
-References: <20221125040956.18648-1-samuel@sholland.org>
-In-Reply-To: <20221125040956.18648-1-samuel@sholland.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     marcel@holtmann.org, johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        linux-bluetooth@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com, kuba@kernel.org,
-        robh@kernel.org, alistair@alistair23.me,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        anarsoul@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Strategic plan on(ROI)
+To:     Recipients <cindy@cgracephoto.com>
+From:   "Mr.IgorS. Lvovich" <cindy@cgracephoto.com>
+Date:   Tue, 29 Nov 2022 13:54:20 -0800
+Reply-To: richad.tang@yahoo.com.hk
+Message-Id: <20221129215426.90DE6AC1C07@correo.bolipuertos.gob.ve>
+X-FE-Last-Public-Client-IP: 103.125.190.179
+X-FE-Policy-ID: 1:1:2:SYSTEM
+X-Spam-Status: Yes, score=6.7 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,HK_NAME_MR_MRS,KHOP_HELO_FCRDNS,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_H2,RCVD_IN_SBL,
+        RCVD_IN_VALIDITY_RPBL,SPF_FAIL,SPF_HELO_NONE,TO_EQ_FM_DOM_SPF_FAIL,
+        TO_EQ_FM_SPF_FAIL autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  1.3 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
+        *      bl.spamcop.net
+        *      [Blocked - see <https://www.spamcop.net/bl.shtml?103.125.190.179>]
+        *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
+        *      [103.125.190.179 listed in zen.spamhaus.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [190.202.28.106 listed in bl.score.senderscore.com]
+        *  0.0 SPF_FAIL SPF: sender does not match SPF record (fail)
+        *      [SPF failed: Please see http://www.openspf.org/Why?s=mfrom;id=cindy%40cgracephoto.com;ip=190.202.28.106;r=lindbergh.monkeyblade.net]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
+        *      [190.202.28.106 listed in wl.mailspike.net]
+        *  1.0 HK_NAME_MR_MRS No description available.
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+        *  0.0 TO_EQ_FM_SPF_FAIL To == From and external SPF failed
+        *  0.0 TO_EQ_FM_DOM_SPF_FAIL To domain == From domain and external SPF
+        *       failed
+        *  0.0 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
+X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hello
+I will like to use the liberty of this medium to inform you as a consultant,that my principal is interested in investing his bond/funds as a silent business partner in your company.Taking into proper
+consideration the Return on Investment(ROI) based on a ten (10) year strategic plan.
+I shall give you details when you reply.
 
-This patch was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
-
-On Thu, 24 Nov 2022 22:09:56 -0600 you wrote:
-> RTL8723DS is another variant of the RTL8723 WiFi + Bluetooth chip. It is
-> already supported by the hci_uart/btrtl driver. Document the compatible.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Alistair Francis <alistair@alistair23.me>
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> 
-> [...]
-
-Here is the summary with links:
-  - [v2] dt-bindings: net: realtek-bluetooth: Add RTL8723DS
-    https://git.kernel.org/bluetooth/bluetooth-next/c/b05684f9f99b
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Regards,
+Igor Lvovich
