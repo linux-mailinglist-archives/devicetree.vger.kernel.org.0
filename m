@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F47B63BD7A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 11:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF6AA63BDAA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 11:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbiK2KFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 05:05:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58724 "EHLO
+        id S229603AbiK2KL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 05:11:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbiK2KFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 05:05:18 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3314C5C77A;
-        Tue, 29 Nov 2022 02:05:17 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AT8Zd0P009615;
-        Tue, 29 Nov 2022 10:05:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=bcU1Cz33wc+5pqdkkQnRDcKJ+Q19F6js9Zw3sAIyvhY=;
- b=VeNAoflVyjQjU4YZd/cZLW9NxFk8iRpzPx6SZFvziVbsE7fSBs3wBbAvUPdU7NpY39qi
- Ma8EviUa3qhQZX9F01bqtf1sNJU+GKrqaihCMOk4YR391kTkXcmBAud7xgq7aFqO8tZp
- R6OG/YLvfDHRQuBOdItY4oF5oG/lTCUFHwx/wUXh3+iI1+20E7+v8XHy0/v7aSccwFYf
- 3zO+Jyud4s4PL7MPNPW0QB83ulnRZ852Iuj1rFX8b0B+ziq/lUzKrR38t8e++KvTiM3v
- roZXzRQjR/IPKL3iK9aq0MJU77gnyNS94DRKezE8jEGlYx/HJUccoBABRr71ZMhCU6W5 HQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m5a52h1fv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Nov 2022 10:05:10 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ATA59au026032
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Nov 2022 10:05:09 GMT
-Received: from [10.79.43.91] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 29 Nov
- 2022 02:05:05 -0800
-Message-ID: <c21737b3-cb72-6a4e-0ab2-b8231a7119fe@quicinc.com>
-Date:   Tue, 29 Nov 2022 15:35:02 +0530
+        with ESMTP id S232478AbiK2KLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 05:11:36 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83945E3CF;
+        Tue, 29 Nov 2022 02:10:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4480A61620;
+        Tue, 29 Nov 2022 10:10:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 895FAC433D7;
+        Tue, 29 Nov 2022 10:10:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669716616;
+        bh=3eKCHItsWSnQNAWASvCBxxLNZqKr4Q2+OOVfLGrAh6g=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=lFawjEVSME8aySxx+WiLk5T86VKrIXeryQt0Mvs3Z1cPBeYz5lI17wshNMLurUpjT
+         P9oKFLTOdIYBtyh397s8CrCrbSSMsK4IIA18y/33zaBFdg2D8T8KD2dOLWEb3M24qD
+         CxQQGbyGb2rYIpUfWS7ofWv2LGV9Qj42GV2pWo5NK5Jvh3s7au/IKJbTs3Xg6Ot/AI
+         yVd2lR25t2ubCnUsPOb2tgB/cJYLAivgQB5RJedQnkTmvUILL4DJHeLhB6mFuVelBK
+         BngfgbSU7lUrAqZlIydXtcuHQopHrXwCQ7/NTwoZVWXgfjjzR7Piq68LXqhQTmkiRL
+         3P3k7CvD9LEzA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6CF15C395EC;
+        Tue, 29 Nov 2022 10:10:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH V5 1/2] dt-bindings: firmware: qcom-scm: Add optional
- interrupt
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>
-CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <konrad.dybcio@somainline.org>, <robimarko@gmail.com>,
-        <quic_gurus@quicinc.com>, <quic_rjendra@quicinc.com>
-References: <20221123204615.25358-1-quic_sibis@quicinc.com>
- <20221123204615.25358-2-quic_sibis@quicinc.com>
- <3cda9005-d7a5-56f0-d1d2-fd6c1cb36fc3@linaro.org>
- <7b6ffbb4-80fb-610a-c839-e3bf1668d4ed@quicinc.com>
- <61f1a1e5-bd2c-4a22-66f7-1935154b35ad@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <61f1a1e5-bd2c-4a22-66f7-1935154b35ad@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SlLFheIA1SsYwJjUg1zlz4b6AE40QSUZ
-X-Proofpoint-ORIG-GUID: SlLFheIA1SsYwJjUg1zlz4b6AE40QSUZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-29_07,2022-11-28_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- phishscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 bulkscore=0
- mlxlogscore=663 mlxscore=0 malwarescore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211290061
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v2 0/7] Marvell nvmem mac addresses support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166971661643.29836.9423706129492957108.git-patchwork-notify@kernel.org>
+Date:   Tue, 29 Nov 2022 10:10:16 +0000
+References: <20221124111556.264647-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20221124111556.264647-1-miquel.raynal@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
+        edumazet@google.com, netdev@vger.kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        robert.marko@sartura.hr, luka.perkov@sartura.hr,
+        thomas.petazzoni@bootlin.com, michael@walle.cc, mw@semihalf.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        vadym.kochan@plvision.eu
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/28/22 14:00, Krzysztof Kozlowski wrote:
-> On 28/11/2022 06:57, Sibi Sankar wrote:
-> 
->>>
->>> Which devices have interrupts?
->>>
->>> We talked about it here:
->>> https://lore.kernel.org/all/2464d90f-64e9-5e3c-404b-10394c3bc302@quicinc.com/
->>> and here:
->>> https://lore.kernel.org/all/c20edd0d-7613-5683-60e7-54317cac6e0b@linaro.org/
->>>
->>> But I still don't get which devices support it and which do not.
->>
->> lol, I thought we reached a consensus earlier because of the "ok" and
->> R-b. Like I explained earlier the bootloader would be adding interrupt
->> on the fly, wouldn't such cases cause binding check failure if we list
->> all the devices supporting it?
-> 
-> What type of failure? I don't get. Is this interrupt valid for SM8250?
-> SDM845? MSM8996? and so on? Now you make it valid.
+Hello:
 
-ok if we mark the interrupt as required for SM8450 and not specify the
-interrupt in the board file (since the bootloader will be adding it on
-the fly), dtbs_check will throw 'interrupts' is a required property for
-the board file. This was the failure I was talking about.
+This series was applied to netdev/net-next.git (master)
+by Paolo Abeni <pabeni@redhat.com>:
 
+On Thu, 24 Nov 2022 12:15:49 +0100 you wrote:
+> Hello,
 > 
->> Also some of the SM8450 devices in the
->> wild would be running firmware not having the feature but I guess
->> eventually most of the them will end up supporting the feature in the
->> end.
+> Now that we are aligned on how to make information available from static
+> storage media to drivers like Ethernet controller drivers or switch
+> drivers by using nvmem cells and going through the whole nvmem
+> infrastructure, here are two driver updates to reflect these changes.
 > 
-> That's not what I meant. Your patch describes the case for one variant
-> but you are affecting all of them.
+> [...]
 
-Not really, the driver treats interrupts as optional. If the interrupt
-isn't present we assume that the feature isn't supported. If the
-bootloader adds the property during boot then we assume the fw has
-waitqueue support.
+Here is the summary with links:
+  - [net-next,v2,1/7] Revert "dt-bindings: marvell,prestera: Add description for device-tree bindings"
+    https://git.kernel.org/netdev/net-next/c/98eb05dc99fd
+  - [net-next,v2,2/7] dt-bindings: net: marvell,dfx-server: Convert to yaml
+    https://git.kernel.org/netdev/net-next/c/63b956f99175
+  - [net-next,v2,3/7] dt-bindings: net: marvell,prestera: Convert to yaml
+    https://git.kernel.org/netdev/net-next/c/a429ab01163c
+  - [net-next,v2,4/7] dt-bindings: net: marvell,prestera: Describe PCI devices of the prestera family
+    https://git.kernel.org/netdev/net-next/c/39d103862015
+  - [net-next,v2,5/7] of: net: export of_get_mac_address_nvmem()
+    https://git.kernel.org/netdev/net-next/c/4c47867bc789
+  - [net-next,v2,6/7] net: marvell: prestera: Avoid unnecessary DT lookups
+    https://git.kernel.org/netdev/net-next/c/a48acad789ff
+  - [net-next,v2,7/7] net: mvpp2: Consider NVMEM cells as possible MAC address source
+    https://git.kernel.org/netdev/net-next/c/7a74c1265ab4
 
-- Sibi
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+
