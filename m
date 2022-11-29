@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E372863C4A5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E0663C4B3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235350AbiK2QGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 11:06:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34660 "EHLO
+        id S234009AbiK2QJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 11:09:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235019AbiK2QGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:06:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F9B686B3;
-        Tue, 29 Nov 2022 08:05:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9C1EAB81694;
-        Tue, 29 Nov 2022 16:05:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59839C433C1;
-        Tue, 29 Nov 2022 16:05:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669737949;
-        bh=J1V3lMbkah+OkD2VRvQKWFgOy3p2gZiM1S+bTvQGf2Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WZLJ14E89JorGzLxOMTFFH4QVsaSRTIM12lhAOCSyXUvHqve1H6SQVeqaKnCYSXgy
-         9p/NgKzhuQRHiNhMwSA0HZKq3z3QU7nLqYdJfcfwJS7jktWDoGvPrPpHO1HaTvbcvc
-         I+0vzuIeugtNjMgCXuI52GbvCe41lg55NVX2wRyAPJO5xVYVbvrOEqdaXJz6FPiu0v
-         52rsov2Cs+wI9+cqlNbP2lT/tKTw6MyBYa+ZRyXKx8AU5SZO8wYj86ShUAc7xEdLaP
-         /TvX2CH+9TLnRsI+Q272sYX2irtlykNIfjNfNggR5rAgV7TGt/CoW9/GaQ5NANveNe
-         FUnW0owfZn2dQ==
-Date:   Tue, 29 Nov 2022 09:05:46 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add maybe_unused tag for
- system PM ops
-Message-ID: <Y4Yt2oEZm+Yb/wyr@dev-arch.thelio-3990X>
-References: <1669726428-3140-1-git-send-email-quic_srivasam@quicinc.com>
- <Y4YpELN4/0cesonb@dev-arch.thelio-3990X>
- <65fd2068-4744-221f-f398-da4303b64fca@quicinc.com>
+        with ESMTP id S232360AbiK2QJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:09:31 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C67A9FE4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:09:29 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id y16so3113898wrm.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:09:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fYLdV6GRz5Ju2T6ejCA2CmepPlL7SuUYQ7FRznedctw=;
+        b=jYiHLFqOzZLG1j+pjWz3AH7IM8pRmb89wDhPWOj050yt7ulonCIUPPlmdHUXqyLm3c
+         2JnEThxfKWvEmMc30NRLkeWqg/d5QBCH2xZTeeDYUTdLgmQgvVA5K9CE/WvWWd69wgU0
+         p0YG8ZxDjxlERjpZtU4NgRN0y0dNy1i5Xqi6l4oegCnKvNXkqxXGZ6/o5vR06oR+OCu8
+         6+7/vKlRhl1B8SuRCAS1PNGH4gOAL/kF3OB5oxVyFwDPuw8akJ9Zx83X9tKFQw6BYC79
+         S2Y8xrMbYcy8HAzWlkkVY4tTG2ercCS9JABHjHAUAiYGUFzYFphA4qNV9yJ5QaggfodN
+         1uuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fYLdV6GRz5Ju2T6ejCA2CmepPlL7SuUYQ7FRznedctw=;
+        b=xIL1yNabJwTQhWxVB47BRokTFzHtY/mhsGL0hyTw68zL8/dpa0MDf5z4/Jl8rrJ/GR
+         yKRfFx03Ne2xRqxrAKXk3ZvVaod6Bi+yca6l7EeYq8FBQS0/JJqhfZQJHI/1Aic6ADEt
+         CCJ64CJrH8j7hwtQisuCaKOKHTEt1WAKOEYwDwR9CdpS5A32APNuntpDCBaMBHuPvN2R
+         QoSNd9W6bnHi8Nh+Ms5duK8FsMb/OptgZWfavbG1l4KjVuQkrlkNIruZ7V+00QbNcbGc
+         9RvFLT+TkbDb+tJCkG+Ri158b6h806L7DX57LbU74QbmWWAEr/0/fQ729xubMybny5x3
+         O8Uw==
+X-Gm-Message-State: ANoB5pm8J5aBMnJZ40MrO+26pV+ApJZfZvJ41gcnt0sNxwUE2ZPBglPT
+        WgOAz7iAvCnbBHL7bZcklCJXSw==
+X-Google-Smtp-Source: AA0mqf4a5SSO8mDdt20c5jrNJQkujidPLN82ecG3rW05pAhfzqI/eGUhHmBBkimplPn+4iQfWF1drg==
+X-Received: by 2002:adf:fdc7:0:b0:241:d7ab:db8f with SMTP id i7-20020adffdc7000000b00241d7abdb8fmr26275541wrs.285.1669738167548;
+        Tue, 29 Nov 2022 08:09:27 -0800 (PST)
+Received: from mpfj-unity.. ([94.12.112.226])
+        by smtp.gmail.com with ESMTPSA id y18-20020a05600c365200b003c6c5a5a651sm2477572wmq.28.2022.11.29.08.09.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 08:09:26 -0800 (PST)
+From:   Mark Jackson <mpfj@newflow.co.uk>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Mark Jackson <mpfj@newflow.co.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] ARM: dts: nanobone: Fix missing/incorrect features
+Date:   Tue, 29 Nov 2022 16:08:13 +0000
+Message-Id: <20221129160818.276696-1-mpfj@newflow.co.uk>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <65fd2068-4744-221f-f398-da4303b64fca@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 09:28:33PM +0530, Srinivasa Rao Mandadapu wrote:
-> Thanks for your tie Nathan!!!
-> 
-> On 11/29/2022 9:15 PM, Nathan Chancellor wrote:
-> > On Tue, Nov 29, 2022 at 06:23:48PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > Add __maybe_unused tag for system PM ops suspend and resume.
-> > > This is required to fix allmodconfig compilation issue.
-> > > Fixes: c3bf7699747c ("ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops")
-> > > 
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > A better solution would be replacing SET_SYSTEM_SLEEP_PM_OPS() with
-> > SYSTEM_SLEEP_PM_OPS(), which was added to avoid needing to add these
-> > '__maybe_unused' attributes to these functions. See commit 1a3c7bb08826
-> > ("PM: core: Add new *_PM_OPS macros, deprecate old ones") for more info.
-> 
-> Tried this option but as this patch required for Kernel 5.4 version code
-> base,
-> 
-> SYSTEM_SLEEP_PM_OPS didn't work.
+This patch series updates the NanoBone DTS file to address various missing or
+incorrect features.
 
-Ah right, it is a more recent macro. I did not realize this patch was
-needed to fix a patch destined for stable.
+v1 -> v2:
+  - Move temperature sensor definition under I2C heirarchy
 
-Perhaps keep this patch but add a second patch after it that converts
-to using SYSTEM_SLEEP_PM_OPS() for future releases?
+Mark Jackson (5):
+  ARM: dts: am335x-nano: Fix GPIO settings for RTS/CTS pins on UART3 & 4
+  ARM: dts: am335x-nano: Enable RS485 mode for UART3 & 4
+  ARM: dts: am335x-nano: Enable I2C temperature sensor
+  ARM: dts: am335x-nano: Fix GPIO settings for MMC pins
+  ARM: dts: am335x-nano: Enable USB host
 
-> > > ---
-> > >   sound/soc/qcom/lpass-sc7180.c | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-> > > index b96b85a..41db661 100644
-> > > --- a/sound/soc/qcom/lpass-sc7180.c
-> > > +++ b/sound/soc/qcom/lpass-sc7180.c
-> > > @@ -163,14 +163,14 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
-> > >   	return 0;
-> > >   }
-> > > -static int sc7180_lpass_dev_resume(struct device *dev)
-> > > +static int __maybe_unused sc7180_lpass_dev_resume(struct device *dev)
-> > >   {
-> > >   	struct lpass_data *drvdata = dev_get_drvdata(dev);
-> > >   	return clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
-> > >   }
-> > > -static int sc7180_lpass_dev_suspend(struct device *dev)
-> > > +static int __maybe_unused sc7180_lpass_dev_suspend(struct device *dev)
-> > >   {
-> > >   	struct lpass_data *drvdata = dev_get_drvdata(dev);
-> > > -- 
-> > > 2.7.4
-> > > 
-> > > 
+ arch/arm/boot/dts/am335x-nano.dts | 32 +++++++++++++++++++++++++------
+ 1 file changed, 26 insertions(+), 6 deletions(-)
+
+-- 
+2.34.1
+
