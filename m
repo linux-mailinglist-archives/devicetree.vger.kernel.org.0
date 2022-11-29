@@ -2,154 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 936F063C6BE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 167EA63C6D0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:54:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236239AbiK2Rte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 12:49:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45666 "EHLO
+        id S235974AbiK2RyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 12:54:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236256AbiK2RtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:49:21 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5CE69A8B
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:49:19 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id k2-20020a17090a4c8200b002187cce2f92so18078443pjh.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:49:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=70/eD63Y0IWUOAJT90ZgbeWA+KDFcK6DEdj8lIs5MAg=;
-        b=rQaHWhcip1/xyHCotaGLRwF25yKo8TFHi9SEEUV427xcEckhP0gJHXTSQvWF2dV+ml
-         ZL0FtTFWyPNXMsefQSzmEj4p56pxvDb+0cTBu5IQnD3QFMkKyqYtItaZjaKHdND/DirZ
-         kGq7qPM30uCsPFLxQbw+kXffbVOpPal9IYwtTcE94iu0aP11dzInOH13gMQRbXUfvmga
-         4CKVhYkKRJ0LfOrDYJhTlbO1KVHGENc9rzsXCW8qkdz9ljtTghwgOBlRiJcZiG+8z3b/
-         9zLRTSKJBbKXvnYSb+0x+8J7Ig4HrTiAVn0YBWPpeayvVjyUr9LBSXV+Vfsi0OOkaToA
-         t42A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=70/eD63Y0IWUOAJT90ZgbeWA+KDFcK6DEdj8lIs5MAg=;
-        b=PL6rrK04neL5LUOaQYwbPVJHXT0qyrmf43f4WRDO50HHCr4r/MSpZmHLAaBOo1m0X/
-         esnX13xJ2S04un6ABUQHsOdpmmKGizCu6sJY5e8OT0/IHNaYMt0rb5aYGypmCRmpSxGS
-         ApZtIQx63gPw5qZb6ebf6VaUF+MjUkLcD/f3pzouXnpJv0hT5CXtdr3eYCbNgn0/aWTu
-         ly8EAjFNwM/21zWzOfie5OeJnWN1XQuZf4AxLzqjvjOhAiu2g9he0NWrfnPCk0SRkV0h
-         IBPk+GiM47gSKFEs1Rcu/VkXSytY1YCdcMiizNChP7jCs97bnkNG+PdT7XPek8I6W1Sp
-         5UCA==
-X-Gm-Message-State: ANoB5pk2EHMBbPD35bC24/tNBC2K6s7qkv9FfjxzOxWCBm2aSP2lJeOS
-        zQmRLj/Wb1NhkEXiSpqr1BV9
-X-Google-Smtp-Source: AA0mqf5SwjQeTa2dWnKTNHmaU1s3XfC5hwfF4g4aDmQFAllp89FcBTKVsFagRH08lOFJwwfoy3snOQ==
-X-Received: by 2002:a17:903:2112:b0:186:cf82:91d5 with SMTP id o18-20020a170903211200b00186cf8291d5mr51332655ple.87.1669744159116;
-        Tue, 29 Nov 2022 09:49:19 -0800 (PST)
-Received: from localhost.localdomain ([117.217.187.207])
-        by smtp.gmail.com with ESMTPSA id k1-20020a170902c40100b0016d9b101413sm11176333plk.200.2022.11.29.09.49.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 09:49:18 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
-        festevam@gmail.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v4] dt-bindings: leds: Document commonly used LED triggers
-Date:   Tue, 29 Nov 2022 23:19:06 +0530
-Message-Id: <20221129174906.97749-1-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S236202AbiK2RyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:54:01 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7AE3134B;
+        Tue, 29 Nov 2022 09:53:59 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ATHrl5e129474;
+        Tue, 29 Nov 2022 11:53:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1669744427;
+        bh=OlbUvwSRO5NoPFoWtyXeblUmFGtTGFTosZPDs/UZ6QQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Y2j79Eze27aIAEA/RmC5XYAT5mqToFBbgUUL61XLUv9PSCwrGoxAQKKepRFt+7Y2Y
+         Zd7hHopizWLuFaXzHR1PkcFZ8pGuPXi5t3fPbreu/Z0/sJNQiJQLa4wNLVlduDMjoF
+         fAcmE064jYxMhHH8DLb0/NaMHDRkPe84OWqSmrRA=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ATHrlsU021148
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 29 Nov 2022 11:53:47 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 29
+ Nov 2022 11:53:47 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Tue, 29 Nov 2022 11:53:47 -0600
+Received: from [10.250.38.44] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ATHrksN025398;
+        Tue, 29 Nov 2022 11:53:46 -0600
+Message-ID: <a88349a2-94ac-1980-1998-a45ac5525f6b@ti.com>
+Date:   Tue, 29 Nov 2022 11:53:46 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v7 7/8] arm64: dts: ti: k3-j721s2-main: Add PCIe device
+ tree node
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
+        <r-gunasekaran@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221122101616.770050-1-mranostay@ti.com>
+ <20221122101616.770050-8-mranostay@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221122101616.770050-8-mranostay@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the commonly used LED triggers by the SoCs. Not all triggers
-are documented as some of them are very application specific. Most of the
-triggers documented here are currently used in devicetrees of many SoCs.
+On 11/22/22 4:16 AM, Matt Ranostay wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
+> 
+> Add PCIe1 RC device tree node for the single PCIe instance present on
+> the j721s2.
+> 
+> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 41 ++++++++++++++++++++++
+>   1 file changed, 41 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index 2858ba589d54..27631ef32bf5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -841,6 +841,47 @@ serdes0: serdes@5060000 {
+>   		};
+>   	};
+>   
+> +	pcie1_rc: pcie@2910000 {
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
+NIT: Not sure we need to call this "_rc", and "1", 0 index these names for
+consistency, "pcie0".
 
-Changes in v4:
+> +		compatible = "ti,j7200-pcie-host", "ti,j721e-pcie-host";
+> +		reg = <0x00 0x02910000 0x00 0x1000>,
+> +		      <0x00 0x02917000 0x00 0x400>,
+> +		      <0x00 0x0d800000 0x00 0x00800000>,
+> +		      <0x00 0x18000000 0x00 0x00001000>;
+> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
+> +		interrupt-names = "link_state";
+> +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+> +		device_type = "pci";
+> +		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
+> +		max-link-speed = <3>;
+> +		num-lanes = <4>;
+> +		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 276 41>;
+> +		clock-names = "fck";
+> +		#address-cells = <3>;
+> +		#size-cells = <2>;
+> +		bus-range = <0x0 0xff>;
+> +		vendor-id = <0x104c>;
+> +		device-id = <0xb013>;
+> +		msi-map = <0x0 &gic_its 0x0 0x10000>;
+> +		dma-coherent;
+> +		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
+> +			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
+> +		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+> +		#interrupt-cells = <1>;
 
-* Removed the sorting of triggers
-* Removed the "items" as they were not needed
-* Reworded the description
-* Dropped Zhen Lei's tested-by tag as the patch has changed
-* Added kbd-capslock trigger
+Is this node the interrupt controller or is it the "interrupt-controller"?
+Actually, what is that node? I don't see it in the binding docs..
 
-Changes in v3:
+Andrew
 
-* Rebased on top of v6.1-rc1
-* Added WLAN Rx trigger
-* Added tested tag from Zhen Lei
-
-Changes in v2:
-
-* Added more triggers, fixed the regex
-* Sorted triggers in ascending order
-
- .../devicetree/bindings/leds/common.yaml      | 40 ++++++++++++++++++-
- 1 file changed, 38 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 3c14a98430e1..68da651f29a8 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -98,8 +98,44 @@ properties:
-             # LED alters the brightness for the specified duration with one software
-             # timer (requires "led-pattern" property)
-           - pattern
--        # LED is triggered by SD/MMC activity
--      - pattern: "^mmc[0-9]+$"
-+            # LED indicates mic mute state
-+          - audio-micmute
-+            # LED indicates audio mute state
-+          - audio-mute
-+            # LED indicates bluetooth power state
-+          - bluetooth-power
-+            # LED indicates activity of all CPUs
-+          - cpu
-+            # LED indicates disk read activity
-+          - disk-read
-+            # LED indicates disk write activity
-+          - disk-write
-+            # LED indicates camera flash state
-+          - flash
-+            # LED indicated keyboard capslock
-+          - kbd-capslock
-+            # LED indicates MTD memory activity
-+          - mtd
-+            # LED indicates NAND memory activity (deprecated),
-+            # in new implementations use "mtd"
-+          - nand-disk
-+            # No trigger assigned to the LED. This is the default mode
-+            # if trigger is absent
-+          - none
-+            # LED indicates camera torch state
-+          - torch
-+            # LED indicates USB gadget activity
-+          - usb-gadget
-+            # LED indicates USB host activity
-+          - usb-host
-+        # LED indicates [N]th MMC storage activity
-+      - pattern: "^mmc[0-9]{1,2}$"
-+        # LED indicates activity of [N]th CPU
-+      - pattern: "^cpu[0-9]{1,2}$"
-+        # LED indicates power status of [N]th Bluetooth HCI device
-+      - pattern: "^hci[0-9]{1,2}-power$"
-+        # LED indicates [N]th WLAN Tx/Rx activity
-+      - pattern: "^phy[0-9]{1,2}(tx|rx)$"
- 
-   led-pattern:
-     description: |
--- 
-2.25.1
-
+> +		interrupt-map-mask = <0 0 0 7>;
+> +		interrupt-map = <0 0 0 1 &pcie1_intc 0>, /* INT A */
+> +				<0 0 0 2 &pcie1_intc 0>, /* INT B */
+> +				<0 0 0 3 &pcie1_intc 0>, /* INT C */
+> +				<0 0 0 4 &pcie1_intc 0>; /* INT D */
+> +
+> +		pcie1_intc: interrupt-controller {
+> +			interrupt-controller;
+> +			#interrupt-cells = <1>;
+> +			interrupt-parent = <&gic500>;
+> +			interrupts = <GIC_SPI 324 IRQ_TYPE_EDGE_RISING>;
+> +		};
+> +	};
+> +
+>   	main_mcan0: can@2701000 {
+>   		compatible = "bosch,m_can";
+>   		reg = <0x00 0x02701000 0x00 0x200>,
