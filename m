@@ -2,157 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B021663BE43
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 11:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A2063BE99
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 12:07:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiK2Kx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 05:53:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39044 "EHLO
+        id S229952AbiK2LHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 06:07:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbiK2Kx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 05:53:27 -0500
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D9C5F87C;
-        Tue, 29 Nov 2022 02:53:24 -0800 (PST)
-Received: by mail-qv1-f54.google.com with SMTP id c14so5399781qvq.0;
-        Tue, 29 Nov 2022 02:53:24 -0800 (PST)
+        with ESMTP id S232995AbiK2LGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 06:06:33 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E49FB62055;
+        Tue, 29 Nov 2022 03:04:06 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id u15-20020a17090a3fcf00b002191825cf02so8726696pjm.2;
+        Tue, 29 Nov 2022 03:04:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0QeTQq6wzF697oGF5V/c7AcE3tcQdYXM/Tpo1+r5kqU=;
+        b=VFn92dDYFOjUbV6MdgTMzJj5V9Pknq4wx6y3WZA3YSFJ05mGk4kGTuJOZySZkregoX
+         R09H4U69mqs7UcFlb7WdVrI6FSlLH3BFV4dfmntynPM37mTsPqRmY10D1PcNr021TndO
+         ZJtZT0DZVQOTZVxo5J/TnA2wAB6U4FGrXZ+H2hzG0Al+fVoKV7fQaK6c4SrCQRzz2xNO
+         olnT7FldajgQXGJ3VWtI9ztaAaj6GHsuc8tUY2uGp0TcZiATPhatjrtYQVCgb/ZFsXv0
+         bqcAuIG7TyxgHWPHNXiComhYtC9wYH8JhbKlT2q8vG0tbV+XV0CJOMp/8JzD8+E5h5Dr
+         AIdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=byCqNO9wNjp3bMa2bdQ4RMa3BFEO/vUEjR67iUdLdSk=;
-        b=Zr9w5CXNPza4SXy4/wnvS0hynIMja0EhHkNKP1HpBDPhCmfhi7nSL1lG2Iub0w/vnf
-         +Ma0/Ej/R5G2fns31DnwdCuGTJY8BVZ7QGWxtaHGdkH4S9TipAid68aoXZog6tXNF9pH
-         Ci27nOEOres2BCMeSJRWJf+NcwKxKd4WkGvJImkTC/4a+n6/pMhQGBe0HgPzKq7QPDpE
-         PtygfjANsr+Mrtjw59pokbU3bZyInAI67PVVJysJcdnRevs8dKiWN3lD8OJsX6vYsBju
-         pjQj6U5kasLgO/fol4hJmmV1G5LVconDICD61Xm9E/NeQYmEK/K1FNFEPbEG44Kuw/DU
-         twdg==
-X-Gm-Message-State: ANoB5plfNkY+buDrQppwoOW1XyoAnf45jPjp3EHFHD5qNwPlMfRlfhoe
-        aVINsdkszb6iqTdrUvAHrGHOKeJReVrjfg==
-X-Google-Smtp-Source: AA0mqf4T4HwW/qrOTYVVjX1M1jxfRCBkXN5GVrTmzffjzY38wXuxrhTgEl/mjRQobDW6EyuSIh+mxQ==
-X-Received: by 2002:a0c:edd0:0:b0:4b1:8d88:1982 with SMTP id i16-20020a0cedd0000000b004b18d881982mr36484357qvr.33.1669719203657;
-        Tue, 29 Nov 2022 02:53:23 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id x26-20020ac8539a000000b00398df095cf5sm8316486qtp.34.2022.11.29.02.53.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 02:53:23 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-3b56782b3f6so134072637b3.13;
-        Tue, 29 Nov 2022 02:53:22 -0800 (PST)
-X-Received: by 2002:a05:690c:b81:b0:37e:6806:a5f9 with SMTP id
- ck1-20020a05690c0b8100b0037e6806a5f9mr36739244ywb.47.1669719202235; Tue, 29
- Nov 2022 02:53:22 -0800 (PST)
-MIME-Version: 1.0
-References: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
- <CAMuHMdUBojHkaAPsjOEadfaikth+L0R_NrKzvqXrmZS9Kc5zHw@mail.gmail.com> <3b00c04c-cb6d-9e9a-ba0c-0ce093b4a3fb@quicinc.com>
-In-Reply-To: <3b00c04c-cb6d-9e9a-ba0c-0ce093b4a3fb@quicinc.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 29 Nov 2022 11:53:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUfRJmy56eO=ET-Togg-EOgxSjnTgAUYWmixD_zVonipA@mail.gmail.com>
-Message-ID: <CAMuHMdUfRJmy56eO=ET-Togg-EOgxSjnTgAUYWmixD_zVonipA@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add system suspend/resume PM ops
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0QeTQq6wzF697oGF5V/c7AcE3tcQdYXM/Tpo1+r5kqU=;
+        b=NfPCOehJkIaQd5BhV7IR11TeJ4LWHU9NeVy03nMYMdJhX6e3Pb37+uxdXLh3eWEkob
+         wb5fLlFK/mpNS+V6nVjOOoxktaU4dsrs8icOasjy3N69TmJzfky4039b+fp7NGs+c9kk
+         rIvv+T9S0HqvdSPKSpg84qIjpWcY6LAPclicWtOM8sLZnDXm4++XXJfJYvQDQUCyRVRi
+         heMfI6MEL+D5q5VmZ6/INuhuHaNM9YQEg37U/ploaqsxnl0T2Tasl/ycbtW+GVOx17sB
+         li7w1WGzPh8HfIgQSVhrobC7PbaxjpL7/akX0CeF32kMCeocGLKZySF9itKMVrPPs/PD
+         94Cg==
+X-Gm-Message-State: ANoB5plnFr/aYy4qB0n+QDJ6b84C8pqnqZnFXsmVAGj7OWc35BYaPvpP
+        U6VnonKENnxAwkiAK9NHl1O7gQc3z6s=
+X-Google-Smtp-Source: AA0mqf4WkqY8Eem3Omh2NZ+cUvtx3SzsTQZD9LY5jNFj/Jcqfz3tMr5vZFx3brcefjh0aY216O27dA==
+X-Received: by 2002:a17:90a:a588:b0:218:8eb8:8502 with SMTP id b8-20020a17090aa58800b002188eb88502mr52114855pjq.179.1669719846009;
+        Tue, 29 Nov 2022 03:04:06 -0800 (PST)
+Received: from localhost.localdomain (2001-b400-e2d4-7fe5-5c2c-fa0a-e67b-3955.emome-ip6.hinet.net. [2001:b400:e2d4:7fe5:5c2c:fa0a:e67b:3955])
+        by smtp.gmail.com with ESMTPSA id g8-20020a1709026b4800b001868981a18esm10566761plt.6.2022.11.29.03.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 03:04:05 -0800 (PST)
+From:   Owen Yang <ecs.taipeikernel@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Doug Anderson <dianders@chromium.org>, Harvey <hunge@google.com>,
+        Bob Moragues <moragues@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Abner Yen <abner.yen@ecs.com.tw>,
+        Gavin Lee <gavin.lee@ecs.com.tw>,
+        Matthias Kaehlcke <mka@google.com>,
+        Owen Yang <ecs.taipeikernel@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: arm: qcom: Add zombie
+Date:   Tue, 29 Nov 2022 19:03:57 +0800
+Message-Id: <20221129190339.v6.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+Add an entry in the device tree binding for sc7280-zombie.
 
-On Tue, Nov 29, 2022 at 11:36 AM Srinivasa Rao Mandadapu
-<quic_srivasam@quicinc.com> wrote:
-> On 11/29/2022 1:23 PM, Geert Uytterhoeven wrote:
-> > On Mon, Nov 28, 2022 at 8:50 AM Srinivasa Rao Mandadapu
-> > <quic_srivasam@quicinc.com> wrote:
-> >> Update lpass sc7180 platform driver with PM ops, such as
-> >> system supend and resume callbacks.
-> >> This update is required to disable clocks during supend and
-> >> avoid XO shutdown issue.
-> >>
-> >> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> >> Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
-> > Thanks for your patch, which is now commit 2d68148f8f85ca5a ("ASoC:
-> > qcom: lpass-sc7180: Add system suspend/resume PM ops") in next-20221129.
-> >
-> >> --- a/sound/soc/qcom/lpass-sc7180.c
-> >> +++ b/sound/soc/qcom/lpass-sc7180.c
-> >> @@ -12,6 +12,7 @@
-> >>   #include <linux/module.h>
-> >>   #include <linux/of.h>
-> >>   #include <linux/platform_device.h>
-> >> +#include <linux/pm_runtime.h>
-> >>   #include <dt-bindings/sound/sc7180-lpass.h>
-> >>   #include <sound/pcm.h>
-> >>   #include <sound/soc.h>
-> >> @@ -156,10 +157,34 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
-> >>          struct lpass_data *drvdata = platform_get_drvdata(pdev);
-> >>
-> >>          clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
-> >> +       return 0;
-> >> +}
-> >> +
-> >> +static int sc7180_lpass_dev_resume(struct device *dev)
-> >> +{
-> >> +       int ret = 0;
-> >> +       struct lpass_data *drvdata = dev_get_drvdata(dev);
-> >>
-> >> +       ret = clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
-> >> +       if (ret) {
-> >> +               dev_err(dev, "sc7180 clk prepare and enable failed\n");
-> >> +               return ret;
-> >> +       }
-> >> +       return ret;
-> >> +}
-> >> +
-> >> +static int sc7180_lpass_dev_suspend(struct device *dev)
-> >> +{
-> >> +       struct lpass_data *drvdata = dev_get_drvdata(dev);
-> >> +
-> >> +       clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
-> >>          return 0;
-> >>   }
-> > noreply@ellerman.id.au reports for e.g. m68k-allmodconfig:
-> >
-> >      sound/soc/qcom/lpass-sc7180.c:179:12: error:
-> > 'sc7180_lpass_dev_suspend' defined but not used
-> > [-Werror=unused-function]
-> >      sound/soc/qcom/lpass-sc7180.c:166:12: error:
-> > 'sc7180_lpass_dev_resume' defined but not used
-> > [-Werror=unused-function]
-> >
-> >> +static const struct dev_pm_ops sc7180_lpass_pm_ops = {
-> >> +       SET_SYSTEM_SLEEP_PM_OPS(sc7180_lpass_dev_suspend, sc7180_lpass_dev_resume)
-> >> +};
-> > Please use DEFINE_SIMPLE_DEV_PM_OPS()...
-> Actually, we need to use this patch in in previous kernels 5.4 and 5.15.
-> I think these changes won't apply on previous kernel.
-> Hence ignoring for now and will take care next time.
+Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+---
 
-In that case you should add __maybe_unused tags to
-sc7180_lpass_dev_suspend() and sc7180_lpass_dev_resume() first, so it
-can be backported to 5.4 and 5.15, and do the DEFINE_SIMPLE_DEV_PM_OPS()
-conversion later.
+(no changes since v1)
 
-Gr{oetje,eeting}s,
+ Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-                        Geert
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..7ec6240311db 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -655,6 +655,16 @@ properties:
+           - const: google,villager-sku512
+           - const: qcom,sc7280
+ 
++      - description: Google Zombie (newest rev)
++        items:
++          - const: google,zombie
++          - const: qcom,sc7280
++
++      - description: Google Zombie with LTE (newest rev)
++        items:
++          - const: google,zombie-sku512
++          - const: qcom,sc7280
++
+       - items:
+           - enum:
+               - lenovo,flex-5g
+-- 
+2.17.1
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
