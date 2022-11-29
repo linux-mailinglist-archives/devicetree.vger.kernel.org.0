@@ -2,180 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2F763C32F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:52:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8081663C340
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:58:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235494AbiK2OwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:52:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58364 "EHLO
+        id S235816AbiK2O6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:58:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234653AbiK2OwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:52:16 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C566C0A
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:52:15 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id f13so22399358lfa.6
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:52:15 -0800 (PST)
+        with ESMTP id S234988AbiK2O6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:58:17 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CC625E96
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:58:15 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id z24so17572544ljn.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:58:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=THbXrSPilThQmkL3HqLJtz8bSKPIZex2SgERauDeY9k=;
-        b=w1Ya/H9RW3WgwQIGW3c6zugj0Cxk0KZmbF4u2y54l9S9eLu95Fbh46p8TjHNUsjOPj
-         QHpkRwjhqSeT4Nh4SXwjO1Iv8wxCmpXUJwePrVL+Y2/mKyUM1w1BQ4qsk15q7e+AHEjK
-         B7q/iwPjtlc8qQgAlk9pzDSO33WEnQhpo4o+Y/k4UUf4rwzIJki0S0WjgtAEEBSgLWVS
-         KczYOWqxOCzNrRQJxH9gtvoTLxibDtNoDpxcgkunFbhvtXHCf04Yqc2Qnb/9GxPcPb8W
-         KWIlPgYyOJyeRlyY/5iClYn4VAKlpDPMl4+qZgNsMTpfwetOBM+fdifyTuhR6gZ+rCzT
-         lkOA==
+        bh=3rMzROJizPl93HGtOKCLbNrY7oFQ4h6JFqbBwgiPoQw=;
+        b=HK7NNJ+m0uo/8YiZigjIrMXrWT37vfCzE7ov3f7OWCf7ekUevZr/VqIA7JEZ2GKayk
+         NRRVL9YSxbesfRYHWDaQuOX+C3/nCgmBSaPtE/344PBJuxVwlIrdUXUU++oqaf9G2qN6
+         EA8zpZKOLeRklTG1AROPnVm+qvCAS9JQm2XG84OxkYA82ZH5d8ay6/OjOEuYmXuV6/vz
+         84cqiQLfQ4fTOoVC4lrGW2dGf5ibfzL4uUZa2bN+ONpzydOi4ONItIRz0XxcdjnC1bAY
+         zWgzwbqm9dmm+XOY5N6W4/zjzXOqa8JoaxQgtz3O6T4BmE72V9m4x+j+wawmEgu7P+9j
+         WNUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=THbXrSPilThQmkL3HqLJtz8bSKPIZex2SgERauDeY9k=;
-        b=2mHiR110SlpdSTI0ARafkQTTA7Xuhbq4NG6hWLl7E87Er3/8wB9+yRC6eYlcIFGLRY
-         CkxCGddrdrdgoERIVTV/zgAwnhdTo6jNnbBwUjxmuuwh1lTLAL2NvEuCixlPYuik2/i2
-         VfLyFwi2s3VgQ11SopzT26sJVOJRZVJaem/hw63KB6TeVm9lQ15VPcle4ERTCBXvPn6i
-         xytoLsU5Gnt3s8nvCBE3dXYfuWbCQBCPsHTCsPGpr8X14qa/Lx8leNqw3Y7PEZeCL8eZ
-         M0ZzSdcinh7JLJR6yYsh/yU/BLCQYIe0irn1ttstYuEa2PgymoIr8oCl/8En53XY5s18
-         PwlA==
-X-Gm-Message-State: ANoB5plk0Y0k+T6FyWdlUYSTAj89FOSbtEP9kPwh0/8HuDwSU5E/GKDY
-        ii8dNUII3JNrF8MQzNjnjmK3Ow==
-X-Google-Smtp-Source: AA0mqf7kC2lA2X4hdT5USucUNxqF83rk3L/+mbNQDtSoUMtSIaVsXjsMHT6yyN59hx2BC055eUbNmw==
-X-Received: by 2002:a19:2d0e:0:b0:4a2:4f32:6062 with SMTP id k14-20020a192d0e000000b004a24f326062mr17726652lfj.188.1669733533413;
-        Tue, 29 Nov 2022 06:52:13 -0800 (PST)
+        bh=3rMzROJizPl93HGtOKCLbNrY7oFQ4h6JFqbBwgiPoQw=;
+        b=j/I4YWUoC2cwZcUXs7gO3LpqOVMTkx/zonhhmqVpIzERY0EEO1gTNmPccJygfJnr3p
+         KjOh5OgjcgfjX2cIZqWvnroJbmtVzHHWOctP4rEVGdMyKO5QZ2U+N8CmaetHAMqWUR7u
+         H5ysEAkMelfjDnp8L4ScziA7WEU7NgnNcIElLSUsxTgqzS+vXp6oRNmJEWfevDxXHPwF
+         PmGInDIbVXPRRS70YZ+5CRlRqfTYY9OGJ/llniJV4RP7okDYs7wMJJ86mR85xWX2ID/7
+         x2WUzmpouCa2PBh3iJWUzhPpAc95W7xcPA/uyCIdKjEmjjB+3pDt5JugZvU8R0L0FZWe
+         kCqg==
+X-Gm-Message-State: ANoB5pnSiTYd2V0BxNlRQUKHDtNpvkfrWeLynPsVOUjdGqMEMlIy/cnH
+        2HlYs33ua54WyqBWC9/DR6o78NAbnu57PDzX
+X-Google-Smtp-Source: AA0mqf6H7HysSViJIaGj4Ohg+efF0OL6qEvNKbtfijn0aiuYjc56hcFvmqwVVrFHWxq9fJmbcsxrdQ==
+X-Received: by 2002:a2e:800e:0:b0:279:8e27:b42f with SMTP id j14-20020a2e800e000000b002798e27b42fmr6914373ljg.106.1669733894163;
+        Tue, 29 Nov 2022 06:58:14 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u4-20020ac248a4000000b0049944ab6895sm2209703lfg.260.2022.11.29.06.52.12
+        by smtp.gmail.com with ESMTPSA id 13-20020ac2484d000000b004aac23e0dd6sm2232708lfy.29.2022.11.29.06.58.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 06:52:12 -0800 (PST)
-Message-ID: <12a98c77-5464-0f25-9081-13217f396484@linaro.org>
-Date:   Tue, 29 Nov 2022 15:52:12 +0100
+        Tue, 29 Nov 2022 06:58:13 -0800 (PST)
+Message-ID: <f52e31a5-a12a-b95e-b99c-1af8f8b41c3b@linaro.org>
+Date:   Tue, 29 Nov 2022 15:58:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 7/8] dt-bindings: soc: socionext: Add UniPhier DWC3 USB
- glue layer
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add StarFive JH7110 pinctrl
+ definitions
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+To:     Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
- <20221129103509.9958-8-hayashi.kunihiko@socionext.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20221118011108.70715-1-hal.feng@starfivetech.com>
+ <20221118011108.70715-2-hal.feng@starfivetech.com>
+ <eb3974a3-f715-f5b0-cac7-551af26bd17b@linaro.org>
+ <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
+ <0ceba170-f844-e733-a49e-e67746f9f836@starfivetech.com>
+ <093ea507-4c42-1af9-4896-64c1a918432e@linaro.org>
+ <30c21787-0c48-ff50-1d63-8e69bdcdbe30@starfivetech.com>
+ <339be655-aee7-e1a4-51be-28ea20de6792@linaro.org>
+ <3db802d6-114f-097a-6c69-e7b40e4d2764@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221129103509.9958-8-hayashi.kunihiko@socionext.com>
+In-Reply-To: <3db802d6-114f-097a-6c69-e7b40e4d2764@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 11:35, Kunihiko Hayashi wrote:
-> Add DT binding schema for components belonging to the platform-specific
-> DWC3 USB glue layer implemented in UniPhier SoCs.
+On 29/11/2022 15:46, Jianlong Huang wrote:
+> On Tue, 29 Nov 2022 08:49:49 +0100, Krzysztof Kozlowski wrote:
+>> On 29/11/2022 02:47, Jianlong Huang wrote:
+>>> On Mon, 28 Nov 2022 09:32:45 +0100, Krzysztof Kozlowski wrote:
+>>>> On 28/11/2022 01:48, Jianlong Huang wrote:
+>>>>
+>>>>>>>> +/* aon_iomux doen */
+>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_4			2
+>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_5			3
+>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_6			4
+>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_7			5
+>>>>>>>> +
+>>>>>>>
+>>>>>>> It looks like you add register constants to the bindings. Why? The
+>>>>>>> bindings are not the place to represent hardware programming model. Not
+>>>>>>> mentioning that there is no benefit in this.
+>>>>>>
+>>>>>> Also: this entire file should be dropped, but if it stays, you have to
+>>>>>> name it matching bindings or compatible (vendor,device.h).
+>>>>>
+>>>>> Thanks your comments.
+>>>>> These macros are used to configure pinctrl in dts, so the file should stay,
+>>>>
+>>>> Why they should stay? What's the reason? If it is not a constant used by
+>>>> driver, then register values should not be placed in the bindings, so
+>>>> drop it.
+>>>>
+>>>
+>>> Thanks.
+>>>
+>>> These macros in binding header(example, DOUT, DOEN etc) will be used in DTS,
+>>> and driver will parse the DT for pinctrl configuration.
+>>>
+>>> Example in dts:
+>>> uart0_pins: uart0-0 {
+>>> 	tx-pins {
+>>> 		pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
+>>
+>> This is usage in DTS and is not an argument to store register
+>> addresses/offsets as bindings. What is the usage (of define, not value)
+>> in the driver?
+>>
 > 
-> This USB glue layer works as a sideband logic for the host controller,
-> including core reset, vbus control, PHYs, and some signals to the
-> controller.
+> The existing implementation reuse the macros for DTS and driver.
+
+Where in the driver? Grep gives zero results.
+
+> Do you mean we need to separate the macros, one for DTS and one for driver usage?
+
+No, if driver uses them it is fine. The problem is I cannot find it
+anywhere.
+
+> Or you have any better suggestion?
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../socionext,uniphier-dwc3-glue.yaml         | 106 ++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
+> These macros are the value of register, not register addresses/offsets,
+> except for with prefix of GPI.
+
+Still, values are not usually part of bindings.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
-> new file mode 100644
-> index 000000000000..66f8786dd305
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-dwc3-glue.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Socionext UniPhier SoC DWC3 USB3.0 glue layer
-> +
-> +maintainers:
-> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> +
-> +description: |+
-> +  DWC3 USB3.0 glue layer implemented on Socionext UniPhier SoCs is
-> +  a sideband logic handling signals to DWC3 host controller inside
-> +  USB3.0 component.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - socionext,uniphier-pro4-dwc3-glue
-> +          - socionext,uniphier-pro5-dwc3-glue
-> +          - socionext,uniphier-pxs2-dwc3-glue
-> +          - socionext,uniphier-ld20-dwc3-glue
-> +          - socionext,uniphier-pxs3-dwc3-glue
-> +          - socionext,uniphier-nx1-dwc3-glue
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^reset-controller@[0-9a-f]+$":
-> +    $ref: /schemas/reset/socionext,uniphier-glue-reset.yaml#
-> +
-> +  "^regulator@[0-9a-f]+$":
-> +    $ref: /schemas/regulator/socionext,uniphier-regulator.yaml#
-> +
-> +  "^phy@[0-9a-f]+$":
-> +    oneOf:
-> +      - $ref: /schemas/phy/socionext,uniphier-usb3hs-phy.yaml#
-> +      - $ref: /schemas/phy/socionext,uniphier-usb3ss-phy.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usb-controller@65b00000 {
+> Drivers rarely reference macros directly, mostly parsing dts and writing them to registers.
 
-Node name: usb. There is no usage of "usb-controller".
-
-> +        compatible = "socionext,uniphier-ld20-dwc3-glue", "simple-mfd";
-> +        reg = <0x65b00000 0x400>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x65b00000 0x400>;
-> +
-> +        reset-controller@0 {
-> +            compatible = "socionext,uniphier-ld20-usb3-reset";
-> +            reg = <0x0 0x4>;
-
-So now I see the unit addresses, which means none of your previous
-patches needed them. This raises next question - why this device is
-special and does not use syscon but own unit address?
-
-Are the children here - regulator, reset controller and phys - related
-to the USB?
+So drivers do not use macros? Then there is no reason to store them in
+bindings? What do you "bind" if there is no usage (and we do not talk
+about DTS...)?
 
 Best regards,
 Krzysztof
