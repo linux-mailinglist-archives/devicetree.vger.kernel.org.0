@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B92D863C1F8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:10:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 797D063C2AD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:34:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235204AbiK2OKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:10:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46000 "EHLO
+        id S231902AbiK2Oeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:34:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235125AbiK2OKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:10:21 -0500
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539E65FBBA;
-        Tue, 29 Nov 2022 06:10:20 -0800 (PST)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 11A6221B30;
-        Tue, 29 Nov 2022 14:10:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1669731019; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bNCCZNV8OGv2lGF4X9G7d9QfW4BFyQYsCaGorsDK6GE=;
-        b=iTpJX2ZXzAqixvLgPLBpDZgiVgphQVCQBrkVZsD7M+pTpTdrPDayT998sG9s0EZJmYCfqk
-        icumrQr4JDbRupSSWpRw9QDDPqix1jxm28xLivCIJTVsF0zgdj5rnz2jIxHTJj/V7v2/IZ
-        k74uwtzQuxl5Cwl9J//uCrXnV4wKDb0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1669731019;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bNCCZNV8OGv2lGF4X9G7d9QfW4BFyQYsCaGorsDK6GE=;
-        b=W6QXk1P1i2wXZtJ9BgVFpJ8uupCXZ7EHI6uNLC/BI9zIE2Bs06hHDUkj803+EMcpr2hKWH
-        EVufHhpC6zUemlAw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id E478B13428;
-        Tue, 29 Nov 2022 14:10:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 4E17N8oShmMcSAAAMHmgww
-        (envelope-from <afaerber@suse.de>); Tue, 29 Nov 2022 14:10:18 +0000
-Message-ID: <2d9c0d89-15c1-bd10-18ac-2e10d451c20f@suse.de>
-Date:   Tue, 29 Nov 2022 15:10:18 +0100
+        with ESMTP id S235592AbiK2Oeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:34:31 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE791124
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:34:29 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id a19so1732489ljk.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:34:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yb4TSztLyoh4rIPeJX6N8PljKLgPvaOweLMv0t2KeKo=;
+        b=MFmeuTaqhysIJMoAymRaSNWqDORiLpwZc2g/jhyKH4uzOsVSy2XFdhXSxKw6YsEXQ2
+         qr4VsxkTe8Ju6uBUJcp1OLQDMMvF/i1Ik4yYs7rMySNM/QrKgVtXj47aVtW1MFQQU4Xr
+         RqxMMpOlMoOPxNr3VuejX5YC9Ij1qpRMT0ANuNlrwhlN3N1zCz4DUpIz7oskgGIKI9wu
+         SMTFCEIIx29L73IDZWxHFP1K5DYiGa1RpN24Qkov6a/c1IIch1cD5bXqSTAfBvQIPGO4
+         IbS5y7X7Gq0LTNgAEubBjRylZERLFAi6l5dCRoszXBg+Y4+qUnXU+GZuQj5NVCJkKIC9
+         777w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yb4TSztLyoh4rIPeJX6N8PljKLgPvaOweLMv0t2KeKo=;
+        b=gtcAJ8S5i490ThxbV2f0V27775lfqgRUuDDv0PopYmAsuQGVYwWSsKCiaTqHKKpNWE
+         U9Ml1tpF8Zg8WoUnw+1KeiSwpaBQCvPbhTTs7OOTHjzAtpXbr+5LxKF0rdEb8UQJhjPr
+         Q4uiJ3PbF+6lv3vGeF3NCXCaBSiQjVGHbPqDEf3tm0Al4Jt0zyYv2hSm0M2GvVwKcvkJ
+         JHC33E2cPz1BrUMCf1tFAcmjwuW2n3/6p49hPohFNUnqm8fyDZXeijTZQLROiYJmjcwp
+         +ScjmoIOQNvUcKERfaMtS60xTaKBHWHlzpv8XmXyF64NlMKnFie8p5HsobwGz8WR7aVi
+         V26w==
+X-Gm-Message-State: ANoB5pnbkK72q4dpkRd0OCGg0y9dnZfAkelJsMSYZ06mQJAis0fPBMsg
+        ra0RbdElarHNakV6HVEJ+CVD1g==
+X-Google-Smtp-Source: AA0mqf4Chw0LBirQnmKUx27euTDQ7XNz3zaqy80g5zFnYAsoozD6M4CZTVp58Bq40rr05Yo5WQ+EEg==
+X-Received: by 2002:a05:6512:2a8d:b0:498:7c7:b98f with SMTP id dt13-20020a0565122a8d00b0049807c7b98fmr18078871lfb.625.1669732467866;
+        Tue, 29 Nov 2022 06:34:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r10-20020a2e994a000000b00279a5b85791sm669608ljj.88.2022.11.29.06.34.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Nov 2022 06:34:27 -0800 (PST)
+Message-ID: <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
+Date:   Tue, 29 Nov 2022 15:34:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: net: snps, dwmac: add NXP S32CC
- support
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
 Content-Language: en-US
-To:     Chester Lin <clin@suse.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
+To:     Hector Martin <marcan@marcan.st>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, s32@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Jan Petrous <jan.petrous@nxp.com>
-References: <20221128054920.2113-1-clin@suse.com>
- <20221128054920.2113-2-clin@suse.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-In-Reply-To: <20221128054920.2113-2-clin@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+References: <20221128142912.16022-1-marcan@marcan.st>
+ <20221128142912.16022-3-marcan@marcan.st>
+ <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com>
+ <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,48 +88,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chester,
-
-Am 28.11.22 um 06:49 schrieb Chester Lin:
-> Add a new compatible string for NXP S32CC DWMAC glue driver. The maxItems
-> of clock and clock-names need be increased because S32CC has up to 11
-> clocks for its DWMAC.
+On 29/11/2022 15:00, Hector Martin wrote:
+> On 29/11/2022 20.36, Ulf Hansson wrote:
+>> On Mon, 28 Nov 2022 at 15:29, Hector Martin <marcan@marcan.st> wrote:
+>>> +examples:
+>>> +  - |
+>>> +    // This example shows a single CPU per domain and 2 domains,
+>>> +    // with two p-states per domain.
+>>> +    // Shipping hardware has 2-4 CPUs per domain and 2-6 domains.
+>>> +    cpus {
+>>> +      #address-cells = <2>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      cpu@0 {
+>>> +        compatible = "apple,icestorm";
+>>> +        device_type = "cpu";
+>>> +        reg = <0x0 0x0>;
+>>> +        operating-points-v2 = <&ecluster_opp>;
+>>
+>> To me, it looks like the operating-points-v2 phandle better belongs in
+>> the performance-domains provider node. I mean, isn't the OPPs really a
+>> description of the performance-domain provider?
+>>
+>> That said, I suggest we try to extend the generic performance-domain
+>> binding [1] with an "operating-points-v2". In that way, we should
+>> instead be able to reference it from this binding.
+>>
+>> In fact, that would be very similar to what already exists for the
+>> generic power-domain binding [2]. I think it would be rather nice to
+>> follow a similar pattern for the performance-domain binding.
 > 
-> Signed-off-by: Chester Lin <clin@suse.com>
-> ---
+> While I agree with the technical rationale and the proposed approach
+> being better in principle...
 > 
-> No change in v2.
+> We're at v5 of bikeshedding this trivial driver's DT binding, and the
+> comment could've been made at v3. To quote IRC just now:
 > 
->   Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
+>> this way the machines will be obsolete before things are fully upstreamed
 > 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 13b984076af5..c174d173591e 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -65,6 +65,7 @@ properties:
->           - ingenic,x2000-mac
->           - loongson,ls2k-dwmac
->           - loongson,ls7a-dwmac
-> +        - nxp,s32cc-dwmac
+> I think it's long overdue for the kernel community to take a deep look
+> at itself and its development and review process, because it is quite
+> honestly insane how pathologically inefficient it is compared to,
+> basically, every other large and healthy open source project of similar
+> or even greater impact and scope.
+> 
+> Cc Linus, because this is for your Mac and I assume you care. We're at
+> v5 here for this silly driver. Meanwhile, rmk recently threw the towel
+> on upstreaming macsmc for us. We're trying, and I'll keep trying because
+> I actually get paid (by very generous donors) to do this, but if I
+> weren't I'd have given up a long time ago. And while I won't give up, I
+> can't deny this situation affects my morale and willingness to keep
+> pushing on upstreaming on a regular basis.
+> 
+> Meanwhile, OpenBSD has been *shipping* full M1 support for a while now
+> in official release images (and since Linux is the source of truth for
+> DT bindings, every time we re-bikeshed it we break their users because
+> they, quite reasonably, aren't interested in waiting for us Linux
+> slowpokes to figure it out first).
+> 
+> Please, let's introspect about this for a moment. Something is deeply
+> broken if people with 25+ years being an arch maintainer can't get a
 
-As we had discussed offline, please change this to nxp,s32g2-dwmac.
-S32G3 and S32R45 can then reuse it if they don't require changes; there 
-is no difference here to how i.MX family or other vendors inherit IP 
-across SoC models, so Rob's rules apply equally.
+If arch maintainer sends patches which does not build (make
+dt_binding_check), then what do you exactly expect? Accept them just
+because it is 25+ years of experience or a maintainer? So we have
+difference processes - for beginners code should compile. For
+experienced people, it does not have to build because otherwise they
+will get discouraged?
 
-Also affects the following patches.
+> 700-line mfd driver upstreamed before giving up. I don't know how we
+> expect to ever get a Rust GPU driver merged if it takes 6+ versions to
+> upstream the world's easiest cpufreq hardware.
 
-Thanks,
-Andreas
+While I understand your point about bikeschedding, but I think your
+previous bindings got pretty nice and fast reviews, so using examples of
+non-building case is poor choice.
 
->           - renesas,r9a06g032-gmac
->           - renesas,rzn1-gmac
->           - rockchip,px30-gmac
-[snip]
+Best regards,
+Krzysztof
 
--- 
-SUSE Software Solutions Germany GmbH
-Frankenstraße 146, 90461 Nürnberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nürnberg)
