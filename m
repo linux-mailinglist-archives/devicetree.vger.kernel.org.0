@@ -2,94 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B65B63C2EE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:44:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE37C63C2F8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235728AbiK2Ooj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51084 "EHLO
+        id S234622AbiK2Oqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:46:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230391AbiK2Ooj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:44:39 -0500
-Received: from smtp-out-01.comm2000.it (smtp-out-01.comm2000.it [212.97.32.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6957550D7C
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:44:38 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-01.comm2000.it (Postfix) with ESMTPSA id 5CADC844911;
-        Tue, 29 Nov 2022 15:44:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1669733075;
-        bh=DJETYg4L4LGpD3CLysXDZ7uf+K13ie8KvyfwuJtKuBA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=eDf9QD91rTob6GJegpJ+77oqLFfAYHwYh2fj/8KtoGB6cjGegd7wg3rN16DW13OzV
-         Jsdj7aYWFiSjnQB4MoU1FPbeC8O56dAFjsk9sLDbXmuccPAHvuU9E4n14d2xrjJSv2
-         Z/YiKweHHeg+BuK/hdLqBIFYUVM6ONYSPcOiruD0xqYEzZ4biw8ewseE+wbZx2VTOd
-         bbVx32PSqJ84OvdRCFWlOchy+qdCXPkeDxKNpZ8EnLb1eQVsDSfGRzhjtXnMhitG3x
-         S8P8T6BweX5LuNCsKk3zEjKpU8CoDJ8zwdMAc9kkLJHtzMXl9OKdvO7J9lbXbS5GgR
-         A9L2DF2R4Ra4A==
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 2/2] arm64: dts: imx8mp-verdin: add dsi to lvds functionality
-Date:   Tue, 29 Nov 2022 15:44:12 +0100
-Message-Id: <20221129144412.37497-3-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221129144412.37497-1-francesco@dolcini.it>
-References: <20221129144412.37497-1-francesco@dolcini.it>
+        with ESMTP id S235782AbiK2Oqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:46:53 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25EAB4D5F9
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:46:52 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id b9so17530026ljr.5
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:46:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n6gLQDJB4Aeu5+QPBkWwLv3KtxQcciMjzSQTNC8JPuk=;
+        b=XPnMupSDFSrZtZJ09yCjl6p2g3pKdP7kr4R4nd+WQEBEg5boxKHwd43EUZIWpVywkB
+         TvV6ha+aODOWpOcDj/84opdBNXFBScFxhkHzqtkPe1caEQiS/OxR9Fndk15U77SjkCUJ
+         RPx7D6yp3yK+0/zxhq0PLX5eG18oIjl4M0QUfUFDkJ/PPe++iLSTE6mgFYNxUmEk1J0B
+         oC+Rt8/Drg4DLp96rJvqQCgwCs9j3AUgw+C6R3ZPSVYJ/kPNFL+HzmDWtllDR9MNkid8
+         x+eVarttTXQJQg/Qv2aEJ/gEw1xQYpwoU55cm8+tt3NpH5kSfV18GzgEOfms6C6VW0Fl
+         Frlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n6gLQDJB4Aeu5+QPBkWwLv3KtxQcciMjzSQTNC8JPuk=;
+        b=bxuirJYJuN2fnNDhgXXbp23s3RaoVjsDWJ3uNSFFuORW6cUqKDFgZhzfS6ezm4VVcs
+         Hrva2KG0HOmopFSHZKpxEzg3F8qfzQaFHo/TphNUD0EYhGmx+HFYguaOgG9KYhtLdkMS
+         5laGKIiO8aBl8SYRy6qeOP29EvjITZ7Pg45/g3hmlkk97Vt9iyqWUkgqRtSew8HtzX4L
+         wTXNayoaH5PDTOiZKQc9u8ct8K/cf3+LKe609k9gT3FJcfLH/A2KxWMmCtWj7uI35or/
+         FU2Y1WN+igmgp6MuRcNAlSFNVGq047MIsIAUo7YpM+zgtnG1O6/XRXWuwg0uDNUXFOF7
+         fE0Q==
+X-Gm-Message-State: ANoB5pmKVVnDxn6gQyoBeoMHaHLjqWcYPm05wRoqe2Hqjr7NiADqnifz
+        oo54ALdgeMwPHp+yoWHjmZnGmg==
+X-Google-Smtp-Source: AA0mqf48Yj1LUWCyAfXCiMOU6lWC9GRNpiwNtC3QiIfb8b6ZdQpves8Yp5vcxpjbbW3iRpC9p2Tp1A==
+X-Received: by 2002:a2e:95c4:0:b0:277:3dd2:beca with SMTP id y4-20020a2e95c4000000b002773dd2becamr19460866ljh.485.1669733209843;
+        Tue, 29 Nov 2022 06:46:49 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bf19-20020a2eaa13000000b0026bf43a4d72sm175158ljb.115.2022.11.29.06.46.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Nov 2022 06:46:49 -0800 (PST)
+Message-ID: <b910e717-86a6-6123-e8a3-9fdf0618fca2@linaro.org>
+Date:   Tue, 29 Nov 2022 15:46:48 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 3/8] dt-bindings: soc: socionext: Add UniPhier peripheral
+ block
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
+ <20221129103509.9958-4-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221129103509.9958-4-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On 29/11/2022 11:35, Kunihiko Hayashi wrote:
+> Add devicetree binding schema for the peripheral block implemented on
+> Socionext Uniphier SoCs.
+> 
+> Peripheral block implemented on Socionext UniPhier SoCs is an integrated
+> component of the peripherals including UART, I2C/FI2C, and SCSSI.
+> 
+> Peripheral block has some function logics to control the component.
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  .../socionext,uniphier-perictrl.yaml          | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml
+> new file mode 100644
+> index 000000000000..080b6ab3ea1a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-perictrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Socionext UniPhier peripheral block controller
+> +
+> +maintainers:
+> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> +
+> +description: |+
+> +  Peripheral block implemented on Socionext UniPhier SoCs is an integrated
+> +  component of the peripherals including UART, I2C/FI2C, and SCSSI.
+> +  Peripheral block controller is a logic to control the component.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - socionext,uniphier-ld4-perictrl
+> +          - socionext,uniphier-pro4-perictrl
+> +          - socionext,uniphier-pro5-perictrl
+> +          - socionext,uniphier-pxs2-perictrl
+> +          - socionext,uniphier-ld6b-perictrl
+> +          - socionext,uniphier-sld8-perictrl
+> +          - socionext,uniphier-ld11-perictrl
+> +          - socionext,uniphier-ld20-perictrl
+> +          - socionext,uniphier-pxs3-perictrl
+> +          - socionext,uniphier-nx1-perictrl
+> +          - socionext,uniphier-perictrl
+> +      - const: simple-mfd
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^clock-controller(@[0-9a-f]+)?$":
+> +    $ref: /schemas/clock/socionext,uniphier-clock.yaml#
+> +
+> +  "^reset-controller(@[0-9a-f]+)?$":
+> +    $ref: /schemas/reset/socionext,uniphier-reset.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@59820000 {
+> +        compatible = "socionext,uniphier-ld20-perictrl",
+> +                     "simple-mfd", "syscon";
+> +        reg = <0x59820000 0x200>;
+> +
+> +        clock-controller {
 
-Add a panel-lvds node and use the correct dsi to lvds chip name.
-Both to be later extended in a dt overlay according to the exact
-board HW configuration.
+None of your children in examples and in DTS have unit addresses.
+However you explicitly mentioned them in the patternProperties. Do you
+expect adding unit addresses?
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index c9c64433cf70..aefe10de4778 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -72,6 +72,13 @@ hdmi_connector: hdmi-connector {
- 		status = "disabled";
- 	};
- 
-+	panel_lvds: panel-lvds {
-+		compatible = "panel-lvds";
-+		backlight = <&backlight>;
-+		data-mapping = "vesa-24";
-+		status = "disabled";
-+	};
-+
- 	/* Carrier Board Supplies */
- 	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
--- 
-2.25.1
+Best regards,
+Krzysztof
 
