@@ -2,118 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C0363B9CE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 07:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B95FA63B9D0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 07:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbiK2Gbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 01:31:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53058 "EHLO
+        id S229514AbiK2GcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 01:32:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiK2Gbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 01:31:47 -0500
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8404FF8F;
-        Mon, 28 Nov 2022 22:31:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669703506; x=1701239506;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=2ZevteJEeuBWIB8ThPdy5oJKhP3is8ThlHKOG6tF9XU=;
-  b=Sr32CTI19u5MXq8pk9Zp+BXJw+3hKWWWy7RrbSArbd3Q28lBniESSusG
-   9La2YnBraO9SxvqksjNKjaiFCA4qJQpgH2Sltk7yocl6uyzfva3kMD+lq
-   VVPgfZDMhpUboBhj0Z5p3uroZWnwat4jmEShtKzO+evIwPArF0XUxYygg
-   lHhMYcRAcYT8s05+jeC6g5WhYNaplekinThRKXPc7JxK1zL6mfgsQ1KuP
-   qKwZ1TQpglzj0z/iBnZUbfpqOgveEo01v2JnzoOmTI8WzpwW5iVDoQC/9
-   uiEvwmR9/yUAR8cxf15KMlUK0P9RN0IDt5HW12+ub3unxRk/h1Si0nRmm
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="312661910"
-X-IronPort-AV: E=Sophos;i="5.96,202,1665471600"; 
-   d="scan'208";a="312661910"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 22:31:46 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="749707908"
-X-IronPort-AV: E=Sophos;i="5.96,202,1665471600"; 
-   d="scan'208";a="749707908"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.34.177])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 22:31:43 -0800
-Message-ID: <117f119b-96d3-342d-f03e-1176653be133@intel.com>
-Date:   Tue, 29 Nov 2022 08:31:39 +0200
+        with ESMTP id S229449AbiK2GcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 01:32:18 -0500
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7F64FFA9;
+        Mon, 28 Nov 2022 22:32:15 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id ja4-20020a05600c556400b003cf6e77f89cso430813wmb.0;
+        Mon, 28 Nov 2022 22:32:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UGouC9aHtzSXLihgGalVY3YwbBFH6yJ0O83fDRF8rsU=;
+        b=RGlhOIKqcnat4s5xdnvEJsJHyhylyFWzFur7lnRrCFEJrvIK+pDcNiZ1PuQujEpAXC
+         E+Ro5wy2/8OftafsxpoUnszlKbCv/pVAEiX+4x3wyHkLh/ZsGTjAAFSrXVyzL/PAGVVF
+         zd5T934hpJoQurpq5dOrLK8wVQFzq5XY6X4QQf4YQYA//N/mkBb65sTG1AsHZ38OAR9q
+         vv8g7ADqBK7tW6HY9oN3+NWTg+0qmgAqPXQJUo1aNiZuCaLMrB1q11K1yBld/YhA4IwP
+         zX/xL+SfGZUhD4hz6oJgr8LCC4p7LJrH4OWCN+1hwY2BjeUf8WLZA6FqML2GcV6VFIhZ
+         2c3g==
+X-Gm-Message-State: ANoB5pmbl5SpiOmIZgKOHEsPdKtl4mGoDSyEzL7+Cv2ApYCxbhgF/1Ex
+        dT/1ZMEfsZvIPXzticUNH8M=
+X-Google-Smtp-Source: AA0mqf5cUNXgY52ua04z8ynuvEJc/3a/cDcljqCZ4LVhYaDNw5WQ9o4CB6eG3RGA4un7Bt6ynmedTQ==
+X-Received: by 2002:a05:600c:5408:b0:3d0:1c3f:e3ae with SMTP id he8-20020a05600c540800b003d01c3fe3aemr31016843wmb.27.1669703533886;
+        Mon, 28 Nov 2022 22:32:13 -0800 (PST)
+Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b003c6f8d30e40sm881201wmq.31.2022.11.28.22.32.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 22:32:13 -0800 (PST)
+Message-ID: <2b020f4c-5c2b-f905-27e9-a3f603a2568a@kernel.org>
+Date:   Tue, 29 Nov 2022 07:32:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.0
-Subject: Re: [PATCH 3/8] mmc: sdhci-pxav2: add register workaround for PXA168
- silicon bug
-To:     Doug Brown <doug@schmorgal.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221128024407.224393-1-doug@schmorgal.com>
- <20221128024407.224393-4-doug@schmorgal.com>
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 2/9] serial: bflb_uart: add Bouffalolab UART Driver
 Content-Language: en-US
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20221128024407.224393-4-doug@schmorgal.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-serial <linux-serial@vger.kernel.org>
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-3-jszhang@kernel.org>
+ <c0406076-04e1-6b81-1bba-ac684516d898@kernel.org> <Y4TD48v84CJcMS+S@xhacker>
+ <e1f689d2-d337-5a42-e4c9-91c1d338b42b@linux.intel.com>
+ <Y4VCKeeTS2zV1xcZ@xhacker>
+From:   Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <Y4VCKeeTS2zV1xcZ@xhacker>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/22 04:44, Doug Brown wrote:
-> The PXA168 has a documented silicon bug that results in a data abort
-> exception when accessing the SDHCI_HOST_VERSION register on SDH2 and
-> SDH4 through a 16-bit read. Implement the workaround described in the
-> errata, which performs a 32-bit read from a lower address instead. This
-> is safe to use on all four SDH peripherals.
+On 29. 11. 22, 0:20, Jisheng Zhang wrote:
+> On Mon, Nov 28, 2022 at 06:01:28PM +0200, Ilpo Järvinen wrote:
+>> On Mon, 28 Nov 2022, Jisheng Zhang wrote:
+>>
+>>> On Mon, Nov 28, 2022 at 07:10:41AM +0100, Jiri Slaby wrote:
+>>>> On 27. 11. 22, 14:24, Jisheng Zhang wrote:
+>>>>> +static void bflb_uart_tx_chars(struct uart_port *port)
+>>>>
+>>>> Again:
+>>>>
+>>>> Are you unable to use the TX helper? If so:
+>>>
+>>> You know serial subsystem better than me, may I ask for more
+>>> details? For example,
+>>> Besides uart_xmit_advance(), do you expect other TX helpers? If yes,
+>>> can you please list them?
+>>
+>> Please take on look on commit 8275b48b278096edc1e3ea5aa9cf946a10022f79.
+>> The changes following that commit convert some drivers to use the tx
+>> helper so you can look into them to see examples.
 > 
-> Signed-off-by: Doug Brown <doug@schmorgal.com>
-> ---
->  drivers/mmc/host/sdhci-pxav2.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-> index 2f9fa0ecbddd..d76131b8986b 100644
-> --- a/drivers/mmc/host/sdhci-pxav2.c
-> +++ b/drivers/mmc/host/sdhci-pxav2.c
-> @@ -80,6 +80,18 @@ static void pxav2_reset(struct sdhci_host *host, u8 mask)
->  	}
->  }
->  
-> +static inline u16 pxav1_readw(struct sdhci_host *host, int reg)
-> +{
-> +	u32 temp;
-> +	/* Workaround for data abort exception on SDH2 and SDH4 on PXA168 */
-> +	if (reg == SDHCI_HOST_VERSION) {
-> +		temp = readl(host->ioaddr + SDHCI_HOST_VERSION - 2) >> 16;
-> +		return temp & 0xffff;
+> Thanks a lot for the hint. Will those tx helpers(uart_port_tx,
+> uart_port_tx_limited etc.) be in v6.2-rc1? Or I need to patch
+> based on Jiri's devel branch?
 
-Isn't this the same as just:
+It's in tty-next and so in -next. You should base on either of those 
+anyway ;). And yes, the plan is to have them in v6.2-rc1.
 
-		return readl(host->ioaddr + SDHCI_HOST_VERSION - 2) >> 16;
-
-> +	}
-> +
-> +	return readw(host->ioaddr + reg);
-> +}
-> +
->  static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->  {
->  	u8 ctrl;
-> @@ -102,6 +114,7 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->  }
->  
->  static const struct sdhci_ops pxav1_sdhci_ops = {
-> +	.read_w        = pxav1_readw,
->  	.set_clock     = sdhci_set_clock,
->  	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
->  	.set_bus_width = pxav2_mmc_set_bus_width,
+thanks,
+-- 
+js
 
