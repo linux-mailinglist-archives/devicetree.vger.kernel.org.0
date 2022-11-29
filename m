@@ -2,125 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D3B63BAEC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F0263BAF7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiK2HsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 02:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
+        id S229501AbiK2HuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 02:50:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbiK2Hr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:47:57 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA2551C21
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:47:56 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id g7so21210388lfv.5
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:47:56 -0800 (PST)
+        with ESMTP id S229953AbiK2Htx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:49:53 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E57352147
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:49:52 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id r12so21252502lfp.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:49:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=etxMVrTTVJSTddGDgARHAHEO1RrGD5Hs7SuIw9ap/3I=;
-        b=rJ2CHbAyVDgULRTpj4MDVg2dwBK1HADystIZFbvhbTYoLIME+/tt+UNXjiftguq7ib
-         w244K+6QPoVERfMg79BoElJO38d82eLScZZat5sFVE49snZOfOK2/+f0fnJIKBPDeYwr
-         FMbKUIjfcevvcaBgXAKIO3MbRsFR3P6ZtMV7rNa9PIY4woHjOWMCcZuqv4pX0tOMHtUg
-         i6K9FHqMYrX/NmhNXcCLLkLhSjNQEx5ifmowHQHPkWFrl7Bjgf4qKioahqfbJwtbyu+O
-         kUj+dvJ58qD1SX7rLqgkoUAxuWicMcWgz3BzKtCsL8WBGDD+0gJi4HnxuReDXO62n9lO
-         ykmQ==
+        bh=Z7AuujM8+aeCGquyh830lAMw8HGWJigyKqEFa19drNo=;
+        b=JnFA7pQpspbBCPizM4zXsJ2NveZL9iZ/llMZEhzqu7vCVdKlZ4PTn0pq+bfzFkzg3d
+         IS+b2xLwuCS21piN8BlNpd06VA8M0S+7CWR+R03IecplidnP28JkUyt/g5WTgwoVvXgp
+         tuvDxCox7+cWHOihucgZ6qTF6VvdamNeBjQMJD+jm7UorwcUWlwzviKR9GAi0QvrceHA
+         lHdNl7TIkKuZpiArMc5X4ctiMD+OPvyLTuv99KbfY4YZNda7oAChMjuMqxfcEozTZ2Bi
+         8R1MlDP5ueTcz8zha7imXyQ9ssyQcYvwyM90VP75nW1FfeN120UmNvovCs46BNksfKZ7
+         DGxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=etxMVrTTVJSTddGDgARHAHEO1RrGD5Hs7SuIw9ap/3I=;
-        b=r7GV9F2ZbD5vnHxtsIZ8WvvZpnC6YWUU3JRvRY1vebKa6kpZodu5l7Ouhv7WtA06IB
-         fOuxJP6ht03vmMtMcc+P3CYlBgD08FFeDPnTfxHEdiCxn4rrZncB9Woe9opnrOh6H8U9
-         iIQiEUn2VwuN+EpVKZJUk1O9JXnpFVVOfWT4GRaTHxiuXnfmOtAHrGCnx3SG7bCE1aEr
-         ma4Wf5W6gMLZ+h8/g62/kSj2aCIhMrqIuKX0rz6up65C+rUqG+Zjshb8ATH+El++bUps
-         d0qtRq4I5mwfqXwVr/Lvkm/K5qClmoDPWPOxfBU8PfdTCp9amrQDADT9UkSx+5eX3uHL
-         7K1w==
-X-Gm-Message-State: ANoB5pmCK5dJ/oWgNb3NJiNMd2gnc6mQ8nGLiHwKhut2UmeVSxwzhyQi
-        8h4rDUHC+ld+U5DnbLt7hORD/w==
-X-Google-Smtp-Source: AA0mqf67TcbUg0koPs/HiroxNXgbbcwrSRcrk/nihBw0w3MO/AQgLVDwdMtZH+S68ivSZKmzzQx01Q==
-X-Received: by 2002:a19:ae18:0:b0:4aa:c879:5bc with SMTP id f24-20020a19ae18000000b004aac87905bcmr12172113lfc.498.1669708074608;
-        Mon, 28 Nov 2022 23:47:54 -0800 (PST)
+        bh=Z7AuujM8+aeCGquyh830lAMw8HGWJigyKqEFa19drNo=;
+        b=BG9en/WFJiRNMANcvbzJ0aFA6n+6pWV6vH8EbqqBbamy1tCAgfRZy7omLM8WQHM/7e
+         1auKphsdT0kwvDiZcb5C9oEvy2dwrZHaQEKtrhEbzufHxI7YGmwGC+0epizEUI1tCt8R
+         LA8vIn0nuv6PxhEWDWuu2iB6l/1P/A96JNpnngdlvF8hxJvDOaJQhnmdSyqhdbmGmNHk
+         oJQjrUSyIeDz68QuYFNbYaJL5GO3OZgQiaIqPfWyy+Nix0Qqn5cMCnr9/1NdCMAAk1A/
+         uA0maI1gvEtYvtItaPwD5lztVDx4EAUdcBahXHUsJGOMLkNXDkNNz+2onxCMrfy6G2Z9
+         PkqQ==
+X-Gm-Message-State: ANoB5plKdT/yNWr6QEStyNxQeSRvpGjbvSEGIZw7vuEqhg0NaoWI+dBs
+        MDE6Eb7PDRgudvPZLrdHddmwIw==
+X-Google-Smtp-Source: AA0mqf64LWlV5ymRt0Y4uGdG28tz9Pfe50jqdaNDybjAyLGTK+WsiZup0t4YfLvpdkzBf8U5SobnWA==
+X-Received: by 2002:a19:7708:0:b0:4a2:6b44:d742 with SMTP id s8-20020a197708000000b004a26b44d742mr20417340lfc.191.1669708190485;
+        Mon, 28 Nov 2022 23:49:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k16-20020a0565123d9000b0049e9122bd1bsm2080686lfv.164.2022.11.28.23.47.53
+        by smtp.gmail.com with ESMTPSA id w9-20020a05651234c900b004b4823f02b0sm2084055lfr.152.2022.11.28.23.49.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 23:47:54 -0800 (PST)
-Message-ID: <e512b7fd-3404-3c2d-dbf6-dc66ee662a06@linaro.org>
-Date:   Tue, 29 Nov 2022 08:47:53 +0100
+        Mon, 28 Nov 2022 23:49:50 -0800 (PST)
+Message-ID: <339be655-aee7-e1a4-51be-28ea20de6792@linaro.org>
+Date:   Tue, 29 Nov 2022 08:49:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 5/9] dt-bindings: spi: mtk-snfi: add mt7986 IC snfi
- bindings
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add StarFive JH7110 pinctrl
+ definitions
 Content-Language: en-US
-To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
-        <Xiangsheng.Hou@mediatek.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "gch981213@gmail.com" <gch981213@gmail.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "richard@nod.at" <richard@nod.at>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
-        <Benliang.Zhao@mediatek.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
-References: <20221128020613.14821-1-xiangsheng.hou@mediatek.com>
- <20221128020613.14821-6-xiangsheng.hou@mediatek.com>
- <8b8e4b23-a3bc-7e3d-199a-e8f591d05d71@linaro.org>
- <5f76482d33933c19e191ea618f8622cd0660597f.camel@mediatek.com>
+To:     Jianlong Huang <jianlong.huang@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20221118011108.70715-1-hal.feng@starfivetech.com>
+ <20221118011108.70715-2-hal.feng@starfivetech.com>
+ <eb3974a3-f715-f5b0-cac7-551af26bd17b@linaro.org>
+ <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
+ <0ceba170-f844-e733-a49e-e67746f9f836@starfivetech.com>
+ <093ea507-4c42-1af9-4896-64c1a918432e@linaro.org>
+ <30c21787-0c48-ff50-1d63-8e69bdcdbe30@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5f76482d33933c19e191ea618f8622cd0660597f.camel@mediatek.com>
+In-Reply-To: <30c21787-0c48-ff50-1d63-8e69bdcdbe30@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 03:50, Xiangsheng Hou (侯祥胜) wrote:
-> Hi Krzysztof,
-> 
-> On Mon, 2022-11-28 at 10:00 +0100, Krzysztof Kozlowski wrote:
->> On 28/11/2022 03:06, Xiangsheng Hou wrote:
->>> 1. add mt7986 IC bindings
+On 29/11/2022 02:47, Jianlong Huang wrote:
+> On Mon, 28 Nov 2022 09:32:45 +0100, Krzysztof Kozlowski wrote:
+>> On 28/11/2022 01:48, Jianlong Huang wrote:
 >>
->> Subject: drop second, redundant "bindings".
-> Will be fixed in next series.
-> 
->>>    clocks:
->>> +    minItems: 2
->>>      items:
->>>        - description: clock used for the controller
->>>        - description: clock used for the SPI bus
->>> +      - description: clock used for the AHB bus dma bus, this
->>> depends on
->>> +                     hardware design, so this is optional.
+>>>>>> +/* aon_iomux doen */
+>>>>>> +#define GPOEN_AON_PTC0_OE_N_4			2
+>>>>>> +#define GPOEN_AON_PTC0_OE_N_5			3
+>>>>>> +#define GPOEN_AON_PTC0_OE_N_6			4
+>>>>>> +#define GPOEN_AON_PTC0_OE_N_7			5
+>>>>>> +
+>>>>>
+>>>>> It looks like you add register constants to the bindings. Why? The
+>>>>> bindings are not the place to represent hardware programming model. Not
+>>>>> mentioning that there is no benefit in this.
+>>>>
+>>>> Also: this entire file should be dropped, but if it stays, you have to
+>>>> name it matching bindings or compatible (vendor,device.h).
+>>>
+>>> Thanks your comments.
+>>> These macros are used to configure pinctrl in dts, so the file should stay,
 >>
->> Optional for which variants? For all of them?
-> It`s only needed for the item 3 nfi_hclk. Is it proper with this
-> description or any other suggestion.
+>> Why they should stay? What's the reason? If it is not a constant used by
+>> driver, then register values should not be placed in the bindings, so
+>> drop it.
+>>
+> 
+> Thanks.
+> 
+> These macros in binding header(example, DOUT, DOEN etc) will be used in DTS,
+> and driver will parse the DT for pinctrl configuration.
+> 
+> Example in dts:
+> uart0_pins: uart0-0 {
+> 	tx-pins {
+> 		pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
 
-I understand third clock is optional. For which variants/compatibles it
-is optional? Add allOf:if:then restricting it.
+This is usage in DTS and is not an argument to store register
+addresses/offsets as bindings. What is the usage (of define, not value)
+in the driver?
+
 
 Best regards,
 Krzysztof
