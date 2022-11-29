@@ -2,120 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CD263C028
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 765B563C057
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:53:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234419AbiK2MgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 07:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
+        id S234644AbiK2MxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 07:53:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232773AbiK2MgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:36:09 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057375E9EF
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 04:36:03 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id q7so16631435ljp.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 04:36:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3LQJ+cCc9NOa8jrY4H9ep7uK2jfhtra5Brk7j5Z7ahw=;
-        b=rlOXqhcK6HcETIcR46fo7JqvEoGuf+bvwebPal7lLKieOwvwnhXNtinRImZDGZn2gn
-         THV9vcrmuM7pkSZvLlZ9yj0io2FwwgTyaP5QE6wLb66SV365f5IBEqRC24hP6hnKxve2
-         W0+vS1k5fiXuzcNUwH5kzDW9XyGWSj51UzaRqA4xTw4h3SPcE8+ctwxyE57YkGKRThFX
-         rlEMDMMg4MQfW05pK1G1tl4V8AuRjVA8qXGOyLfFaAdyuh0V8dOywMefcdRbo+S7XCe3
-         wn4PGsi8FIiXAIwAAw8JylnN2I3arCnfMErQcwqQMYlkXftmlsw0nb63gYl5wJxFGSnI
-         hRXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3LQJ+cCc9NOa8jrY4H9ep7uK2jfhtra5Brk7j5Z7ahw=;
-        b=t98vU/uYUPbNpR6PqJK1TrNQzwjdQQEDkLxNoe5qnsJ9cDRqIJ3t62vT0xoHTwIPiU
-         /h2p7axHQm9jXSpPJCfhGoSWzGBNPJOXpSA41lCBnVCmRXVAuMbjNl9DWuVm+gR2R9vy
-         YWeqPlX1y6QLJB/HktVgbFpF/SFQ1zxArA6Kp2lodvP+p/PAnKx1xFM2KTXYWgu8qmE3
-         v2W/ZYRQnFmfWeNP2p7mrMdJztUNY5J5gWQZ14YR43EzjudIfkOViqeB8rP3KY6s1FMM
-         ey3zoJ1BE/Tq3Jdd+zIFoXQBCh+EKTRTBXDY38OeWMkobSZOnTUckZ+ZnvF707Ps9Bjd
-         HqKA==
-X-Gm-Message-State: ANoB5pnkbKuUSDG2G6+SkmGQDW04bpCT8lBIPokg8EruGQpCBROR7hpy
-        lWuhN4giugGobpQiy84X6Q9nrQ==
-X-Google-Smtp-Source: AA0mqf4Wzd+tkSR0h0HrNP/m2vp/ZfQGB+dbeW5OT0nfwAntTmPs+0PYKNNHM76ZgEDCmFPOD5IEIA==
-X-Received: by 2002:a2e:2c0e:0:b0:279:8d29:193c with SMTP id s14-20020a2e2c0e000000b002798d29193cmr7855968ljs.167.1669725361364;
-        Tue, 29 Nov 2022 04:36:01 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h19-20020a05651c159300b0026de0c8098csm1511874ljq.26.2022.11.29.04.36.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 04:36:00 -0800 (PST)
-Message-ID: <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
-Date:   Tue, 29 Nov 2022 13:35:59 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less
- confusing
-Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S234622AbiK2MxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:53:16 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8069ACE35;
+        Tue, 29 Nov 2022 04:53:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669726395; x=1701262395;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=4TIcraaCxf/dMYd1sdlaTzEiJLlznhpgFTgyakz4LBY=;
+  b=FjdccjaDWoEKM+s63Ts/JlMlIlbgWny8we3oQ9a01Ksb/AWKxJjbkvmc
+   hWFQA2Dfqt3Ggd3NBJEIe2uW96Gmry7deCqLZR2OiOwCra27YQkx0T1Dm
+   Rm0452OyddNXp2++HcWEiBXPngvLCDTUbdUKhA5FjNQl03FL555eDlKcI
+   EYW2T1SriLSRf1J12xYe+w+8dr1xhbOKhr3T5JjBR0GslFOE8c9wavK8l
+   gZ+rWy2eL0AXmM4MGZfiE5lnLTZn9r2xwx2B2VYg53RuD0cmlOs7l+g5e
+   RHstbEPmraxHkUZXVV23iZlPSKkLhq+ftU4F0GQq71B7Q9WC5g3LhkYi1
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="401389048"
+X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
+   d="scan'208";a="401389048"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2022 04:53:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="637581976"
+X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
+   d="scan'208";a="637581976"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga007.jf.intel.com with ESMTP; 29 Nov 2022 04:53:11 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p006n-001hw1-2a;
+        Tue, 29 Nov 2022 14:53:09 +0200
+Date:   Tue, 29 Nov 2022 14:53:09 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <20221122111124.6828-3-cniedermaier@dh-electronics.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221122111124.6828-3-cniedermaier@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jianmin Lv <lvjianmin@loongson.cn>
+Subject: Re: [PATCH V3 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
+ controller
+Message-ID: <Y4YAtWgQieDJV1bG@smile.fi.intel.com>
+References: <cover.1669359515.git.zhoubinbin@loongson.cn>
+ <822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn>
+ <Y4Cb19PM97M9HaiB@smile.fi.intel.com>
+ <8b0e2e61-2e54-127e-7cb8-9e1068dbc390@loongson.cn>
+ <Y4S2cnlAm3YYvZ8E@smile.fi.intel.com>
+ <ada74168-4aef-b73e-ec47-437dfcdcea77@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ada74168-4aef-b73e-ec47-437dfcdcea77@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/11/2022 12:11, Christoph Niedermaier wrote:
-> The current comment on wakeup-source is a bit confusing, because it isn't
-> clear at first sight which property is actually deprecated.
-> Change the comment to one that is less confusing.
+On Tue, Nov 29, 2022 at 07:34:58PM +0800, Binbin Zhou wrote:
+> 在 2022/11/28 21:24, Andy Shevchenko 写道:
+> > On Mon, Nov 28, 2022 at 08:03:40PM +0800, Binbin Zhou wrote:
+> > > 在 2022/11/25 18:41, Andy Shevchenko 写道:
+> > > > On Fri, Nov 25, 2022 at 04:55:20PM +0800, Binbin Zhou wrote:
 
-It's still confusing - you mention some non-existing property. I don't
-think it's worth to touch it. If you insist, drop entire comment...
+...
 
+> > > > > +static int ls2x_i2c_start(struct i2c_adapter *adap, struct i2c_msg *msgs)
+> > > > > +{
+> > > > > +	struct ls2x_i2c_dev *dev = i2c_get_adapdata(adap);
+> > > > > +	unsigned char addr = i2c_8bit_addr_from_msg(msgs);
+> > > > > +
+> > > > > +	reinit_completion(&dev->cmd_complete);
+> > > > > +	addr |= (msgs->flags & I2C_M_RD) ? 1 : 0;
+> > > > Why is this needed?
+> > > In the ls2x I2C controller, the bit 0 of TXR indicates the read/write status
+> > > when transferring the address.
+> > Yes, I understand this. I don't understand why do you need this twice.
 > 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> ---
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: kernel@dh-electronics.com
-> Cc: linux-mmc@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> To: linux-kernel@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Are you saying that the "is_read" variable in ls2x_i2c_xfer_one() already
+> indicates the read/write state of data transfer?
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 802e3ca8be4d..a921442c6c1d 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -293,7 +293,7 @@ properties:
->      description:
->        SDIO only. Preserves card power during a suspend/resume cycle.
->  
-> -  # Deprecated: enable-sdio-wakeup
-> +  # Use wakeup-source instead of the deprecated enable-sdio-wakeup
->    wakeup-source:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
+> I just didn't think it was necessary to take "is_read" as an argument to
+> ls2x_i2c_start() at the time, since we could get it from "msg".
 
-Best regards,
-Krzysztof
+Have you checked what i2c_8bit_addr_from_msg() is doing?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
