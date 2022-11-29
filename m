@@ -2,124 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51B7863C737
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 026BD63C73E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235697AbiK2Sc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 13:32:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45342 "EHLO
+        id S235779AbiK2Sfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 13:35:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236002AbiK2ScX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:32:23 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03ABC68C6E;
-        Tue, 29 Nov 2022 10:32:20 -0800 (PST)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id D6176C7D94;
-        Tue, 29 Nov 2022 18:31:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1669746709; bh=xI6kMiCf4Tsqu4BZfjhWwUhGCtpCyijEZHJ1c16Hm8w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=rYg1wZXp2d2ADKVSmTfn7SCKk0IHjoZ/9J6vaRQR8xWiYIbZGV2GtRqsBxl7p0s1X
-         rcmOTLT1uOfN9f5yptEZFr4YifrmqQQJuf7rJ03EezmzSur3k/3yhSjavwysZ2vRnf
-         M4H8tqYMCrPVLkJ91VJfLrLCuharuwnbzEcV20DY=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S235761AbiK2Sfr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:35:47 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424C04B982;
+        Tue, 29 Nov 2022 10:35:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D9D03B817C0;
+        Tue, 29 Nov 2022 18:35:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 651B3C433B5;
+        Tue, 29 Nov 2022 18:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669746944;
+        bh=fbQH4j08U1ful5CJFqNWUrgI0E0LWc7WjkdOchpGdgM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=vDqzkdJbrOmenpuFzaWfjlmsDjJTMleGqzEcYW5cYhJg00PQwOuHwyOhijfE/MeeN
+         wV+7mkJwwEYHTHcofg6H6WFnTdGogKE8cORv1Ge0LAAno7/r+j4cdU2V675ZSa4iFx
+         YLqE2/iKpo0GK6bRNs8uXFOdcoLQXoBN20BwqGG+8C1oBCzrTxLItE+XF1QUIHoiEP
+         2lqb0AQTSEi/OkK5d8CBC29jtNUpvdqhkLasStquq970/d3AamhOw8U05vm1Jg738C
+         Z/Qvna6Hh3O7LGySyH/ukLRy7Q1HhAqcX7EKXkL2wGyVr6YeeF/mDaIK8f4KkeAjEg
+         BTplrl5OuxQyw==
+Date:   Tue, 29 Nov 2022 12:35:43 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH 2/2] arm64: dts: qcom: sdm632-fairphone-fp3: Add NFC
-Date:   Tue, 29 Nov 2022 19:31:47 +0100
-Message-ID: <3134585.5fSG56mABF@g550jk>
-In-Reply-To: <b20432e8-115c-407f-2480-6dd429ce5c25@linaro.org>
-References: <20221128173744.833018-1-luca@z3ntu.xyz> <20221128173744.833018-2-luca@z3ntu.xyz> <b20432e8-115c-407f-2480-6dd429ce5c25@linaro.org>
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cai Huoqing <cai.huoqing@linux.dev>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        caihuoqing <caihuoqing@baidu.com>, Vinod Koul <vkoul@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 17/20] PCI: dwc: Introduce generic resources getter
+Message-ID: <20221129183543.GA729294@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221127011005.cjzcd6slb6ezy7ix@mobilestation>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Dienstag, 29. November 2022 14:29:36 CET Konrad Dybcio wrote:
-> On 28.11.2022 18:37, Luca Weiss wrote:
-> > Configure the node for the NQ310 chip found on this device, which is
-> > compatible with generic nxp-nci-i2c driver.
+On Sun, Nov 27, 2022 at 04:10:05AM +0300, Serge Semin wrote:
+> On Wed, Nov 23, 2022 at 01:44:36PM -0600, Bjorn Helgaas wrote:
+> > On Sun, Nov 13, 2022 at 10:12:58PM +0300, Serge Semin wrote:
+
+> > Thanks for these new generic interfaces in the DWC core!  And thanks
+> > for the changes in this patch to take advantage of them in the
+> > pcie-designware drivers.
 > > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > RESEND to fix Cc
-> > 
-> >  arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> > b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts index
-> > 2920504461d3..fde93cbcd180 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> > @@ -63,6 +63,21 @@ touchscreen@48 {
-> > 
-> >  	};
-> >  
-> >  };
-> > 
-> > +&i2c_5 {
-> > +	status = "okay";
-> > +
-> > +	nfc@28 {
-> > +		compatible = "nxp,nq310", "nxp,nxp-nci-i2c";
+> > Do you plan similar changes to other drivers to take advantage of
+> > these DWC-generic data and interfaces?  If you add generic things to
+> > the DWC core but only take advantage of them in your driver, I don't
+> > think they are really usefully generic.
 > 
-> Unless there was some binding change (that was not emailed to me with
-> this email, I only got 2/2), only "nxp,nxp-nci-i2c" and
-> "nxp,pn547", "nxp,nxp-nci-i2c" are allowed.
+> Could you be more specific what generic things you are referring to? I
+> am asking because the only part of the changes which is used in my
+> low-level driver only is introduced in another patch of this series.
 
-Yes, I've added the double compatible to the yaml.
-https://lore.kernel.org/lkml/20221128173744.833018-1-luca@z3ntu.xyz/
+I asked because three of your patches mention "generic" things, but I
+didn't see any changes to drivers except pcie-designware:
 
-I'll try to work on my Cc-script setup, currently it adds the output of 
-get_maintainers.pl for each patch (and adds all for the cover letter), which 
-is based on some script I found a while ago online.
+  PCI: dwc: Introduce generic platform clocks and reset
+  PCI: dwc: Introduce generic resources getter
+  PCI: dwc: Introduce generic controller capabilities interface
 
-Is there like a recommended way to put all people in Cc for a series, I'm not 
-aware of anything at least...
+I hoped that we would be able to use these to remove some code from
+existing drivers, but if they only improve maintainability of future
+drivers, that's useful, too.
 
-Perhaps I'll look into b4 for sending patches, that seems to have some goodies 
-there.
-
-Regards
-Luca
-
-> 
-> The node looks good though.
-> 
-> Konrad
-> 
-> > +		reg = <0x28>;
-> > +
-> > +		interrupt-parent = <&tlmm>;
-> > +		interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +		enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-> > +		firmware-gpios = <&tlmm 62 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +};
-> > +
-> > 
-> >  &pm8953_resin {
-> >  
-> >  	status = "okay";
-> >  	linux,code = <KEY_VOLUMEDOWN>;
-
-
-
-
+Bjorn
