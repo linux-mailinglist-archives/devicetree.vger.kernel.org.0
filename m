@@ -2,94 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC21563C067
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C043E63C081
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230508AbiK2MzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 07:55:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41518 "EHLO
+        id S230194AbiK2M70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 07:59:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234738AbiK2Myx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:54:53 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227EC3056C;
-        Tue, 29 Nov 2022 04:54:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B52E061716;
-        Tue, 29 Nov 2022 12:54:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD3A0C433D6;
-        Tue, 29 Nov 2022 12:54:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669726490;
-        bh=z8Q1QJRm2KKkxLQHH/2XVuF74pYD7S/glQUMAD+4R7s=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=CPd0UDwhiuI9KEPa3X2HUiZIyj1IQuycQb8SLzJjL78b2+bQ2uQw7wC9tRw9qTQlj
-         icdA4Nt+a2xJ3qJz5/c2kCk4/DymXF7sPJpQWI0uTpjtbaTHPtZ+2aW6mdKFPmeoJ0
-         7Un7ul2vsm41QCvo6M2dbAB5z7Fj+qDfzcLzgavapX7KMHYc4xjq7PRToo6P79Lbut
-         /K9f0ZvZBfkUvfJGllo/uYqlSnDYSN+LxfULdlv/LuZsTfL1NtbtS/10U5E7pNpPXL
-         EpFG9uuM+ndporCtHHBRgdR8oq/HeSA4/O+ee9i6cViJgNmx6aU+xO78Dyll30lmQi
-         GGHhXSGS8OsUQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     tiwai@suse.com, lgirdwood@gmail.com, bgoswami@quicinc.com,
-        quic_plai@quicinc.com, srinivas.kandagatla@linaro.org,
-        perex@perex.cz, andersson@kernel.org, judyhsiao@chromium.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        robh+dt@kernel.org, agross@kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <1669724411-14840-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1669724411-14840-1-git-send-email-quic_srivasam@quicinc.com>
-Subject: Re: [PATCH v2] ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops
-Message-Id: <166972648662.69085.11100963944342452925.b4-ty@kernel.org>
-Date:   Tue, 29 Nov 2022 12:54:46 +0000
+        with ESMTP id S229900AbiK2M7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:59:25 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0110E0F;
+        Tue, 29 Nov 2022 04:59:24 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9FAB84E6;
+        Tue, 29 Nov 2022 13:59:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1669726762;
+        bh=Sv4JjA1T3CLcNJwfpw43GPVNyfDqomlM5uT0+4ozKS8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jc1+VXleXR5a7JFtLGFpu7N+IeJaJnI8DKQaBP//Vm5SbiaxnYpCbbNG2R4C6JM2s
+         endSU0TbkKonx5+UKHeVgLa6WtIasgc/3lb06ZbH1Ayfe8n+t3ZOrmq/grC8bVQNvK
+         D4YAHk/j6h2XBTnjm5SSqjdjVV6e33qmtm5ibncY=
+Message-ID: <d710ac65-655a-6a5a-ce6e-6dee4fd1760b@ideasonboard.com>
+Date:   Tue, 29 Nov 2022 14:59:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 7/7] drm: rcar-du: dsi: Add r8a779g0 support
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+References: <20221123065946.40415-1-tomi.valkeinen+renesas@ideasonboard.com>
+ <20221123065946.40415-8-tomi.valkeinen+renesas@ideasonboard.com>
+ <Y4VlHIpS9UnvWwt/@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+In-Reply-To: <Y4VlHIpS9UnvWwt/@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Nov 2022 17:50:11 +0530, Srinivasa Rao Mandadapu wrote:
-> Update lpass sc7280 platform driver with PM ops, such as
-> system supend and resume callbacks.
-> This update is required to disable clocks during supend and
-> avoid XO shutdown issue.
+On 29/11/2022 03:49, Laurent Pinchart wrote:
+
+>> @@ -198,70 +436,53 @@ static void rcar_mipi_dsi_parameters_calc(struct rcar_mipi_dsi *dsi,
+>>   	 */
+>>   	fout_target = target * mipi_dsi_pixel_format_to_bpp(dsi->format)
+>>   		    / (2 * dsi->lanes);
+>> -	if (fout_target < 40000000 || fout_target > 1250000000)
+>> +	if (fout_target < MHZ(40) || fout_target > MHZ(1250))
+>>   		return;
+>>   
+>>   	/* Find vco_cntrl */
+>> -	for (vco_cntrl = vco_cntrl_table; vco_cntrl->min_freq != 0; vco_cntrl++) {
+>> -		if (fout_target > vco_cntrl->min_freq &&
+>> -		    fout_target <= vco_cntrl->max_freq) {
+>> -			setup_info->vco_cntrl = vco_cntrl->value;
+>> -			if (fout_target >= 1150000000)
+>> -				setup_info->prop_cntrl = 0x0c;
+>> -			else
+>> -				setup_info->prop_cntrl = 0x0b;
+>> +	for (clkset = dsi->info->clk_cfg; clkset->min_freq != 0; clkset++) {
+>> +		if (fout_target > clkset->min_freq &&
+>> +		    fout_target <= clkset->max_freq) {
+>> +			setup_info->clkset = clkset;
+>>   			break;
+>>   		}
+>>   	}
+>>   
+>> -	/* Add divider */
+>> -	setup_info->div = (setup_info->vco_cntrl & 0x30) >> 4;
+>> +	switch (dsi->info->model) {
+>> +	case RCAR_DSI_R8A779A0:
+>> +		setup_info->vclk_divider = 1 << ((clkset->vco_cntrl >> 4) & 0x3);
 > 
-> 
+> If you stored (clkset->vco_cntrl >> 4) & 0x3 in setup_info->vclk_divider
+> you wouldn't have to use __ffs() in rcar_mipi_dsi_startup(). You could
+> also drop the - 1 there, which would allow dropping one of the
+> switch(dsi->info->model). You can store the real divider value in
+> setup_info separately for rcar_mipi_dsi_pll_calc_r8a779a0(), or pass it
+> to the function.
 
-Applied to
+That's true. The reason I chose this approach was to keep dsi_setup_info 
+"neutral", containing only the logical values, and the register specific 
+tinkering is done only where the register is written. Mixing the logical 
+and the register values in the old dsi_setup_info was confusing, and 
+implementing your suggestion would again go that direction. But as you 
+noticed, this is uglified a bit by the need to get the divider from the 
+vco_cntrl.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+We could store the logical divider in the dsi_clk_config table, though, 
+which would remove the need for the above code.
 
-Thanks!
+  Tomi
 
-[1/1] ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops
-      commit: a3a96e93cc888c652e47e4d7346abe99b1b44c53
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
