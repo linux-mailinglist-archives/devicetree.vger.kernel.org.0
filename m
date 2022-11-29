@@ -2,127 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E24BF63C8F5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 21:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33E2263C905
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 21:13:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237222AbiK2UIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 15:08:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
+        id S237249AbiK2UNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 15:13:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237220AbiK2UIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 15:08:43 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95645916E
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:08:41 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id z131so282211iof.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:08:41 -0800 (PST)
+        with ESMTP id S237242AbiK2UNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 15:13:43 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540D22B197
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:13:42 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id a19so2807234ljk.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 12:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=584i24IeUmKZ9FcpWXtTGuzuY6S08oVRL30Y7AAE/c0=;
-        b=OusJZI2DkUTTnSZw7asCvGiqP1rEgrNCYXdAsZ+IYRCHLN05pkpGPpyI2O4+torBtE
-         CQAt55m4X3ZFv4zSy66ey3R+hYRJ1kmMH3RhGm8+etelW95tQF6Q1cTXjMU0FDKS3+28
-         jqi3uByUKBG6Kz2BVYPVQLPlVlpCJglP5wcr4=
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
+        b=fM2wi5GCSslz9CIyZBqJ6Udlyv0ggnfAc0ToenEo3YH4B7+Tl74tXXdEb5EKWkn2Wu
+         DIs7Qd8CDoudOH9YwohFYngsDQ9eCPghIM38/LWagmk9cGphExczFuqtUy/bGB9d7Pqw
+         YVh9ccSRgw291h59omJ1P20R9/ybbwpZoN3qp0TugbORvlQPA/QDp8KlGHc7ZTTuKkcu
+         6WmDWiSHuUHNnpsDYR8ju/sHsfkUFY9wld5yIlzuFpBJnUYYNjp7/Qa+lrHFccgnfU5e
+         9nY+xCPnFS5/Yss+sn0ObgtuuAqpMKmiqDcPNqJ0d7KbTPqKIvWDl8Bil/6pXZIZrxTa
+         ADyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=584i24IeUmKZ9FcpWXtTGuzuY6S08oVRL30Y7AAE/c0=;
-        b=EPAUbXlI7+hB67nr29kla7GNEsrQF5vxo9lMDumLRiOVlo1sBBZZ4RI7r1KF0FvHHr
-         52qrAGDtxR37cD/CUhhLMNaXRKzyw6xRSMezbFJUS2dPhISVNYH3vlgnggBfnZjBf3+S
-         D4ZXSW+xpXeqapU0EVcv8B+xbSgW50zgV7oBU0NFB3keXp+H7FxdSi4legjvNf0fO76a
-         r9Fo6GJfeMhNly3Qd0phqpeclzSo+ex4zFInuSQECCzM/SJ8V8tTh6gemdljcKkLenyQ
-         ya/s1sQSzC1buzZDfDyuZ4GRNUIDIPvAuiVxpZLhNRovb5eHQyrGREj0uP2IHQMdnqYo
-         RcUg==
-X-Gm-Message-State: ANoB5pmSwtQC+Mc0M7B3kI/knWl928Kt45XFq4Yg5WQFlmonfe2n8iiF
-        lI6+UIawz7Q3sNw8nTkOXtyOIQ==
-X-Google-Smtp-Source: AA0mqf6ol8N3/GmPVhHSQInbDQajrGI6x+Tajc/TzT1e611+PD/fYR0YwQGfVz90iFMJHGOaq/7w9w==
-X-Received: by 2002:a6b:d314:0:b0:6bc:2a47:a874 with SMTP id s20-20020a6bd314000000b006bc2a47a874mr19340506iob.126.1669752521298;
-        Tue, 29 Nov 2022 12:08:41 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id k37-20020a026625000000b003758bcba4b5sm5592509jac.153.2022.11.29.12.08.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 12:08:40 -0800 (PST)
-Date:   Tue, 29 Nov 2022 20:08:40 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     Nathan Chancellor <nathan@kernel.org>, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add maybe_unused tag for
- system PM ops
-Message-ID: <Y4ZmyO0o6SvrvaWq@google.com>
-References: <1669726428-3140-1-git-send-email-quic_srivasam@quicinc.com>
- <Y4YpELN4/0cesonb@dev-arch.thelio-3990X>
- <65fd2068-4744-221f-f398-da4303b64fca@quicinc.com>
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SzBlYeGeT15Xra75w9IZDBjQ7Da3XKSmRdlnDJDYrko=;
+        b=1bVeWpxiaSgpcCXROSyD/tJgivnn1rGpXRfmNXxzO3xnraNS0JSffbc6UTeSLgGDyq
+         VYQMCpShQwhVjzHhErVLdOdXjyk72bsUVlJQoQ8umOcsruMlVpAEVp9WnNDQx/vVv9W6
+         IUeYh60jKUMrtAZA0iSysXv5xchwC/AkE2w9LYWJjtbI2KNn2SsGQb1sDpPhE3ZUwJ0Q
+         y6j2fjyMaucElJyHfffcwM6PpOtUpbheOrd//P6MyD/9NHowB6vnoKvufYoIb1OQaWCh
+         cLRGPxHmGNdaplmC/U4W9uag9wjE/fI7qw74jm1HAsCAfHvsrHukjG9kBBMOQa9uUHnv
+         QO7g==
+X-Gm-Message-State: ANoB5pkmvEANk5Rsxcm7ff1jxay2w9ggc9zdRFdHJrzoWKUJ6ZX7JmzH
+        GB6izxO3Us87PN8TbUYb6iMMk/cVeASkRrXSwHc=
+X-Google-Smtp-Source: AA0mqf4+F9TyDQP1Ce2PfnR/pYBFWTAEF62pD7GZYkg7CduLXEkkJypQXMVWDo+1vw39/WFBYPCVnCuXdFNJSBE+AXs=
+X-Received: by 2002:a2e:a543:0:b0:277:8f64:f9fa with SMTP id
+ e3-20020a2ea543000000b002778f64f9famr14243228ljn.282.1669752820449; Tue, 29
+ Nov 2022 12:13:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <65fd2068-4744-221f-f398-da4303b64fca@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Received: by 2002:a05:6520:2542:b0:22c:9bbc:bff with HTTP; Tue, 29 Nov 2022
+ 12:13:39 -0800 (PST)
+Reply-To: mr.abraham022@gmail.com
+From:   "Mr.Abraham" <joykekeli2@gmail.com>
+Date:   Tue, 29 Nov 2022 20:13:39 +0000
+Message-ID: <CAOikvbtX13y9cXe+vd11-fxb5BMQHxP-R2ju-NE4AaEGAMxSuA@mail.gmail.com>
+Subject: hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 09:28:33PM +0530, Srinivasa Rao Mandadapu wrote:
-> Thanks for your tie Nathan!!!
-> 
-> On 11/29/2022 9:15 PM, Nathan Chancellor wrote:
-> > On Tue, Nov 29, 2022 at 06:23:48PM +0530, Srinivasa Rao Mandadapu wrote:
-> > > Add __maybe_unused tag for system PM ops suspend and resume.
-> > > This is required to fix allmodconfig compilation issue.
-> > > Fixes: c3bf7699747c ("ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops")
-> > > 
-> > > Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> > A better solution would be replacing SET_SYSTEM_SLEEP_PM_OPS() with
-> > SYSTEM_SLEEP_PM_OPS(), which was added to avoid needing to add these
-> > '__maybe_unused' attributes to these functions. See commit 1a3c7bb08826
-> > ("PM: core: Add new *_PM_OPS macros, deprecate old ones") for more info.
-> 
-> Tried this option but as this patch required for Kernel 5.4 version code
-> base,
-> 
-> SYSTEM_SLEEP_PM_OPS didn't work.
-
-Older downstream trees needing a change shouldn't impact how a change is done
-upstream. The change should be what's best for the upstream kernel. Downstream
-kernels can do backports which might differ from the upstream solution or
-pick the missing dependencies (which might not be too hard in this case).
-
-> > > ---
-> > >   sound/soc/qcom/lpass-sc7180.c | 4 ++--
-> > >   1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-> > > index b96b85a..41db661 100644
-> > > --- a/sound/soc/qcom/lpass-sc7180.c
-> > > +++ b/sound/soc/qcom/lpass-sc7180.c
-> > > @@ -163,14 +163,14 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
-> > >   	return 0;
-> > >   }
-> > > -static int sc7180_lpass_dev_resume(struct device *dev)
-> > > +static int __maybe_unused sc7180_lpass_dev_resume(struct device *dev)
-> > >   {
-> > >   	struct lpass_data *drvdata = dev_get_drvdata(dev);
-> > >   	return clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
-> > >   }
-> > > -static int sc7180_lpass_dev_suspend(struct device *dev)
-> > > +static int __maybe_unused sc7180_lpass_dev_suspend(struct device *dev)
-> > >   {
-> > >   	struct lpass_data *drvdata = dev_get_drvdata(dev);
-> > > -- 
-> > > 2.7.4
-> > > 
-> > > 
+My Greeting, Did you receive the letter i sent to you. Please answer me.
+Regard, Mr.Abraham
