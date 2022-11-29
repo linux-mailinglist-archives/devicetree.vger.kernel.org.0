@@ -2,141 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBEE763C1B8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2996663C1CF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:06:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbiK2ODo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:03:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
+        id S233851AbiK2OGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:06:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230391AbiK2ODk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:03:40 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 644E249B7E
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:03:39 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id l7so11302688pfl.7
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:03:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qNSMrXgsDIBPEX+PmJvz8brS+pMGDNnHF9xsxir/K4U=;
-        b=Cb46EIpE/tkYJPACGyaHcw2+ptUE7exJNbHGl27WcXfyM1EOc3nGk+CObprwdy27ef
-         U+aVJETgJ2CYDsbQ8m6siWEqZVs4s/BB0joVRVjic6sTEoRdIxqgxCXGSajLDpC/Va04
-         U/46K57G2DuhVpWHU7fxamK+YHIK8zGlTJJFxCDJGaohPBIXrs2HJgQ6QF1ggb9zg/RR
-         QbUXw/KPKcohgvAhol2crhcSwNF9rNlz5u5qw6V6Kw2e21MNpjs/Ftyd/7nwhS32s1cP
-         NQhHUkDvzoe7X7oLw5eB7NdmVcIV3z1KScqsgrqNpHUu+j4UCPDnoUNK5Q44ftKyqiaO
-         mlzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qNSMrXgsDIBPEX+PmJvz8brS+pMGDNnHF9xsxir/K4U=;
-        b=viVuqbD/0xCrUO5J9jLmVatkNvTKRYz5FMrE6KjkV9aQbMC0RqI1OjQgdXuO7VIKX/
-         n7SU/rzcTRTeCwVZFuk2ba28EexPJLlFVHvc/B1rCLNzu82nU9l4lFKBeRxcO5W8WBFC
-         bVQOvO5XfIW4zlQL/Q0aXoqN5RqefltCLCFiIFjz0Ksi7R4w195x3K3I6U4f6sWhVnZb
-         tfAlrNX9esBR9OEiSdOexcFPXH6BHjVZLAuceQLhQRtD+dhglCCoHy7SWFxgJJoKcpWL
-         V53ap9zDq8OGbCsw50RsAmx6sTKgx7ZMlc7VbFYdoYwpdTkRQNzk0le1ZdyZC2ApNDdQ
-         8mDA==
-X-Gm-Message-State: ANoB5pk81mcziEwCxjQQkwuFFbS83PBRh+tpmqpZa6uN5WNFexwLoNUZ
-        3NWVjfk2W2ur0hYltD7HjKHPsA==
-X-Google-Smtp-Source: AA0mqf6wA1xMMJ+XGdsKXVP6/5eeQ/x+7jlt4ea0RqVH9dsfvmiqVWh5efps+XVqeEBt3lBauTHsUg==
-X-Received: by 2002:a05:6a00:4c0b:b0:562:ebc8:6195 with SMTP id ea11-20020a056a004c0b00b00562ebc86195mr37357270pfb.38.1669730618613;
-        Tue, 29 Nov 2022 06:03:38 -0800 (PST)
-Received: from anup-ubuntu-vm.localdomain ([171.76.84.98])
-        by smtp.gmail.com with ESMTPSA id k30-20020aa79d1e000000b00574f83c5d51sm6013747pfp.198.2022.11.29.06.03.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 06:03:38 -0800 (PST)
-From:   Anup Patel <apatel@ventanamicro.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234979AbiK2OGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:06:04 -0500
+Received: from smtp-out-05.comm2000.it (smtp-out-05.comm2000.it [212.97.32.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FFA2B273
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:06:00 -0800 (PST)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-05.comm2000.it (Postfix) with ESMTPSA id 9EEB2825CF7;
+        Tue, 29 Nov 2022 15:05:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1669730757;
+        bh=ppnWKo+T2iOXu6K5xdyOO9k93h0u1SwJWycpsdSijtA=;
+        h=From:To:Cc:Subject:Date;
+        b=Mt/6GngWTUJeapkqa0kpwYYbeRzGisQhXObMKrgStu6ui9NjrW7JViNl2/yvgXiW+
+         /8FBsDdw2t1VtLjkTLC1O8ZAwpGFHQlcOQrcZokqAzpc8yIIvE2eelUBAJzf2D81kM
+         Xs8r0GaASTaT2442QymF+nT0jurvuCyeYm3kKmMEYkYggq2ezZdzxKF6RgdR3Zg/QU
+         x2eGJmDq74RtzXy9pUiE2ETwDmF8KyqPEFv/QbW9z+VmzyssCpFXbdpcWC5om5674e
+         817Z5Ibfp1K2pGUxXmDxFpURXzyNsvxHb5rSixtbYBD+tTV8MpTdPVeUpbGkSTrkxq
+         eR7hv+KMHhaZw==
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v4 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
-Date:   Tue, 29 Nov 2022 19:33:13 +0530
-Message-Id: <20221129140313.886192-4-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221129140313.886192-1-apatel@ventanamicro.com>
-References: <20221129140313.886192-1-apatel@ventanamicro.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: imx8mm-verdin: enable hpd on hdmi-connector
+Date:   Tue, 29 Nov 2022 15:05:29 +0100
+Message-Id: <20221129140529.33782-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
-when riscv,timer-cant-wake-up DT property is present in the RISC-V
-timer DT node.
+From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
-based on RISC-V platform capabilities rather than having it set for
-all RISC-V platforms.
+Add hot plug detect gpio to the HDMI connector.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 ---
- drivers/clocksource/timer-riscv.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-index 969a552da8d2..0c8bdd168a45 100644
---- a/drivers/clocksource/timer-riscv.c
-+++ b/drivers/clocksource/timer-riscv.c
-@@ -28,6 +28,7 @@
- #include <asm/timex.h>
- 
- static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-+static bool riscv_timer_cant_wake_cpu;
- 
- static int riscv_clock_next_event(unsigned long delta,
- 		struct clock_event_device *ce)
-@@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
- static unsigned int riscv_clock_event_irq;
- static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
- 	.name			= "riscv_timer_clockevent",
--	.features		= CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
-+	.features		= CLOCK_EVT_FEAT_ONESHOT,
- 	.rating			= 100,
- 	.set_next_event		= riscv_clock_next_event,
- };
-@@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
- 
- 	ce->cpumask = cpumask_of(cpu);
- 	ce->irq = riscv_clock_event_irq;
-+	if (riscv_timer_cant_wake_cpu)
-+		ce->features |= CLOCK_EVT_FEAT_C3STOP;
- 	clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
- 
- 	enable_percpu_irq(riscv_clock_event_irq,
-@@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
- 	if (cpuid != smp_processor_id())
- 		return 0;
- 
-+	child = of_find_compatible_node(NULL, NULL, "riscv,timer");
-+	if (child) {
-+		riscv_timer_cant_wake_cpu = of_property_read_bool(child,
-+						"riscv,timer-cant-wake-cpu");
-+		of_node_put(child);
-+	}
-+
- 	domain = NULL;
- 	child = of_get_compatible_child(n, "riscv,cpu-intc");
- 	if (!child) {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index bcab830c6e95..8cc8a80ea255 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -56,7 +56,11 @@ key-wakeup {
+ 	hdmi_connector: hdmi-connector {
+ 		compatible = "hdmi-connector";
+ 		ddc-i2c-bus = <&i2c2>;
++		/* Verdin PWM_3_DSI (SODIMM 19) */
++		hpd-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+ 		label = "hdmi";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pwm_3_dsi_hpd_gpio>;
+ 		type = "a";
+ 		status = "disabled";
+ 	};
+@@ -598,7 +602,7 @@ hwmon: hwmon@40 {
+ 	hdmi_lontium_lt8912: hdmi@48 {
+ 		compatible = "lontium,lt8912b";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_gpio_10_dsi>, <&pinctrl_pwm_3_dsi_hpd_gpio>;
++		pinctrl-0 = <&pinctrl_gpio_10_dsi>;
+ 		reg = <0x48>;
+ 		/* Verdin GPIO_9_DSI (LT8912 INT, SODIMM 17, unused) */
+ 		/* Verdin GPIO_10_DSI (SODIMM 21) */
 -- 
-2.34.1
+2.25.1
 
