@@ -2,95 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D74663BCAF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 10:14:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D456B63BCDB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 10:24:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbiK2JOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 04:14:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
+        id S231313AbiK2JYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 04:24:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiK2JOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 04:14:51 -0500
-Received: from mail.groupteam.pl (mail.groupteam.pl [51.75.73.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F5A3E085
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 01:14:50 -0800 (PST)
-Received: by mail.groupteam.pl (Postfix, from userid 1002)
-        id 4A802A87E6; Tue, 29 Nov 2022 09:11:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groupteam.pl; s=mail;
-        t=1669713181; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
-        h=Date:From:To:Subject:From;
-        b=HwqDiYIsEARzG3UjdhybkBGPABgPgalBqSSHMgyBsFwGtn3q21f3NeOmUlWqEwMNM
-         J3tKccwiDXdVzUXA2ZZ2wFBQklgmvh1lx+rFqhQD3sG/2QZHLYoy8dn5XY3ppUN7E7
-         3hLVAdGtYuU8BlwGtuGwzca5bKRqakayjSuJMci+ufDOsG1rAYPEtAofBe14wnTipA
-         dW8aFwXp7JeVZ3ZXqHh7/HFs/KLXaJBXIbhxMS31n2k9tJK3VgUXTxZBbpSr4fAf9D
-         qJLvAVNH05JU4dTOjdDrhp7xm9vWyeP5Te8psIDxvKDjXGhQpiclmeKwTTy8P6h51k
-         FxusYqOAQS2fg==
-Received: by mail.groupteam.pl for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:10:21 GMT
-Message-ID: <20221129074500-0.1.6x.2jajt.0.vjscp9cpg5@groupteam.pl>
-Date:   Tue, 29 Nov 2022 09:10:21 GMT
-From:   "Krzysztof Maj" <krzysztof.maj@groupteam.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Biznesowy angielski
-X-Mailer: mail.groupteam.pl
+        with ESMTP id S230287AbiK2JYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 04:24:39 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DE24509C
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 01:24:38 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id c1so21512855lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 01:24:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hBDc9CcCcTklSkLn2omn0o3yNWgPbE363k3eUvI/h7M=;
+        b=Es2zzDQYxQUOfxd+vsDHLcyrTM7DQmqyh+D+PB6b6KhjmVs66Iw1Yqn2XrszY+3//i
+         5RLbkf9b92gJuqqo1Dcn4Sux20Vw1n0CPi7Ke64abWlPlfmhommdQrQUIxgOJdGGToSg
+         qbosMJRC5XYGV013mo52sFACgUI7X1YVshzxbvCRPn6Eh0BYWrwogP9+PEhrxVbavV94
+         DtQ9LtSdgav1KAawshTUb5+1VjwGdS4an4dnVX7dC/QNLQ2f+TnuqtAwtw20Kn2H7JbQ
+         DvdiclwVseLcof0Uo+d1HokEk58wRZUBMK2ErsQF7+07VhYMGQGghGATi+F8UODoNC/x
+         AfLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hBDc9CcCcTklSkLn2omn0o3yNWgPbE363k3eUvI/h7M=;
+        b=CXLv8qCuj1Xnu2uDo3uC/DeHVxuIZuLnL8IJY+gvASnAk45xWluT7zxKg1BOBGoUOa
+         olgAk6zT2JJPkU+GG7DloN0kLS1vFzy85t/ZbSyNKEtZC0uDTDJbnftKRO4v0hit2swZ
+         VvQRaf8rWrknJxn+q0Sl/a2kTczLYt7ch9NRetFGVabdAh12XG5HkgQhnyANK84zspwC
+         rIN/qx7dNluBbAFYrft9fYInUvFOtURxxPUbYe0EpOIv8L3hIXDfyJcRYQyTp5PF7Sha
+         9YNs3k67hBB9LjiFf5y1xi1kZgL9zMc1O288m4hreEpt8mc47FbqeWLi5BMlB5txWriN
+         vJjQ==
+X-Gm-Message-State: ANoB5pngz2naKv8UNtGxgL/bxkLlaPPJuI4/Z1th/wLw6cgyYMrA9Uam
+        ZgbZUmD2cZR4XpU7/2BdROJfcQ==
+X-Google-Smtp-Source: AA0mqf7Di+vA1MHihgiN372ZA1nFRb+Z/G5naXPqvEmAfNO2xwioDDiYClbUnBMUTROvQc29I6mipg==
+X-Received: by 2002:a19:4f52:0:b0:4a6:2ff5:ddd2 with SMTP id a18-20020a194f52000000b004a62ff5ddd2mr20497054lfk.166.1669713876371;
+        Tue, 29 Nov 2022 01:24:36 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id a2-20020ac25202000000b004acff58a951sm1603246lfl.133.2022.11.29.01.24.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Nov 2022 01:24:35 -0800 (PST)
+Message-ID: <89b16ec5-f9a5-f836-f51a-8325448e4775@linaro.org>
+Date:   Tue, 29 Nov 2022 10:24:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SBL_CSS,
-        RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,
-        URIBL_DBL_SPAM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-        *      [score: 0.0000]
-        *  2.5 URIBL_DBL_SPAM Contains a spam URL listed in the Spamhaus DBL
-        *      blocklist
-        *      [URIs: groupteam.pl]
-        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
-        *      [51.75.73.133 listed in zen.spamhaus.org]
-        *  0.1 URIBL_CSS_A Contains URL's A record listed in the Spamhaus CSS
-        *      blocklist
-        *      [URIs: groupteam.pl]
-        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
-        *      https://senderscore.org/blocklistlookup/
-        *      [51.75.73.133 listed in bl.score.senderscore.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
+Content-Language: en-US
+To:     Aurelien Jarno <aurelien@aurel32.net>,
+        Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lin Jinhan <troy.lin@rock-chips.com>
+Cc:     "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221128184718.1963353-1-aurelien@aurel32.net>
+ <20221128184718.1963353-2-aurelien@aurel32.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221128184718.1963353-2-aurelien@aurel32.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,=20
+On 28/11/2022 19:47, Aurelien Jarno wrote:
+> Add the RNG bindings for the RK3568 SoC from Rockchip
 
-czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
-swoich pracownik=C3=B3w?
+Use subject prefixes matching the subsystem (git log --oneline -- ...),
+so it is rng, not RNG. Also, you are not adding all-Rockhip RNG but a
+specific device.
 
-Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
-w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
-ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
-=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+Subject: drop second, redundant "bindings".
 
-Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
-=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
-re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
-o=C5=BCliwo=C5=9Bci biznesowe.=20
+> 
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> ---
+>  .../bindings/rng/rockchip,rk3568-rng.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> new file mode 100644
+> index 000000000000..c2f5ef69cf07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/rockchip,rk3568-rng.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip TRNG
+> +
+> +description: True Random Number Generator for some Rockchip SoCs
 
-Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
- kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
-za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
-=2E
+s/for some Rockchip SoCs/on Rokchip RK3568 SoC/
 
-Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
-w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+> +
+> +maintainers:
+> +  - Aurelien Jarno <aurelien@aurel32.net>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-rng
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: TRNG clock
+> +      - description: TRNG AHB clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: trng_clk
+> +      - const: trng_hclk
 
+These are too vague names. Everything is a clk in clock-names, so no
+need usually to add it as name suffix. Give them some descriptive names,
+e.g. core and ahb.
 
-Pozdrawiam
-Krzysztof Maj
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+
+Best regards,
+Krzysztof
+
