@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0268763BC43
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6FD263BC30
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:54:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiK2I5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38348 "EHLO
+        id S229712AbiK2IyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:54:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbiK2I5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:57:12 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DAB9D75
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:57:11 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id be13so21449257lfb.4
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:57:11 -0800 (PST)
+        with ESMTP id S231540AbiK2IyE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:54:04 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4CE4AF1F
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:53:52 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id be13so21438135lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:53:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qOArE8my8J/ipU9oMYClbJVsW3lHXFxVNxDO1jO7EJM=;
-        b=zQScKMkcDPLb0VbjVjZbxuia8pV+1yNLJkwoOz5+7uEaU+6msIwDGKIXO6YPKZol+E
-         M9XqTRkg0g9A2cXSGGy/jIz9rC5o8vGonCgrSvqpL4B9T6jWMrMRpMU6DqROQ9aQvN9j
-         dJBuHZfMLbDTc8RSnsufVA52LDzaq9PVCwo8++dceJAbqtj9++MgCIlGUq1df3KRyfvg
-         DkPklmj3A5QvgkGxK2hd9xinWidw30yeQHfNindqR+gPkyi/8W37sTa9TemdN2BtSDZu
-         LhY72igp/L0YRGzG9vo23ai9ah5MOsiGcntbrPMT3QCw4pnG1uwlqyeGTYbfwJ8lV2DM
-         8Ktg==
+        bh=/392GykBtHnWPhSp8IdLCn51RY5siGcKVRp0TZIw73Y=;
+        b=AfYOt9xgm8N8sshzqyj5GnPwFJ+Ud+2wHuhE1yU3oqhrEDFnCD4wJ2lbOzn4uBuEqA
+         MmcMBM/HS258xdVZOPmlsr5Uas2/bX4R7UcVjJFhEweaWCbGW0YGXzQizUo8Y/N9EluR
+         m8vQaDohkKsTnOb2yYTpBzNB9LwCda3WIj/pzf1uZyzvjCJWWHazyjFIAc2dl8otHUre
+         +TwGaKsmEzid8rfKECqH9ajtV48SGwvPjZ9Amehm/jOcLDuvTXO63YEqq96IfoZjvgoc
+         I+gdbV5hF9a31nqhycfBvK+iWVglwEoi459sE6Z1PNunrHNbIBL0PwPLup+s6WQK1nAg
+         6kog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qOArE8my8J/ipU9oMYClbJVsW3lHXFxVNxDO1jO7EJM=;
-        b=5mtMDm1PbKd0YB3T3aBAnDQOy9KIn8rUWR2GlVgmSQs5RJJcFgBX1/9IQdvhGCkQ2H
-         vKBnMDzJmwpu94jY31K3BbKsLJUP0i/U2ghOtzvGtdLgBYCxSEgDeo+fzaFXXPqeLAT6
-         h0DDS/U11eOMaPK6UQqmMSD3cXPY/kTQBoRWFHJU07bwHE99AMrIDpdFEvSPrNXzsWHG
-         vbA82rlhWcSqRTk2hpUsQJ4HwbA/PoQspDqi56LgeJiLemTK3NnKBhRWqTQhxiwdOdGK
-         HNQZGw4ZFcyTr2bkppX5gdfKt5Zk2xxLClGTaE11Kl7wOOBpkIavlaNNK88m827no0pr
-         U96g==
-X-Gm-Message-State: ANoB5pl8xuVJm2j7WeLnljgixVMwUK3P8k32BwNUBAEjr+atbKGvfuIM
-        /RTG2BD7AWBSJxibOBE5I2m6VJdDNeJdksNy
-X-Google-Smtp-Source: AA0mqf6nzwvf2RmaoCBMIPu+kzJXafNijvrUgD0Yz45ncIT5YtlHx/jG9cgKZI04TjMh48z5zZWvnw==
-X-Received: by 2002:a05:6512:3049:b0:4a2:3f4b:839 with SMTP id b9-20020a056512304900b004a23f4b0839mr16695594lfb.483.1669711895956;
-        Tue, 29 Nov 2022 00:51:35 -0800 (PST)
+        bh=/392GykBtHnWPhSp8IdLCn51RY5siGcKVRp0TZIw73Y=;
+        b=jJyU3X0qZ7gWBNopJsFMlcxim2g2Hs5hzeimPQIZIs3zAW42SCMmG4Fgz6hieXiixg
+         t/+VZUt9JZN+/FG0pigPcIGpJV4RE3kv7FC26Wi2ihgcl20E06i8ebfMBlfU9Q6tOhYQ
+         BuZh49B5QVlto0rxIG+ywGUgxcOzfS5QGmd//NFPMI5O+03r08QKLcZENXXdPsct4CYB
+         ulFXnkBxIauGYo0Z44xYjBC8ECd70zPTyGbUscwWmlcSgy3F2x2UaB4PNVkWIOKVb+P4
+         spPUrCcqcx2OYQFBI1rIGsgv1gujIp951vI/Zgb1c0opvnoYfcCU4SX98rkJ9SnEIy+4
+         2t2A==
+X-Gm-Message-State: ANoB5pnlcu7Xc5ZWMkGC16MPqxgD1DeMjMyyL8bAVXSjZ1PSClr9Kp31
+        xt7EugaqP7NWBuTh/uSuDHF5Ug==
+X-Google-Smtp-Source: AA0mqf6qdim8gakdaimBGD+ZKNfFkTChiA2i2Pgz4m5bIeVxjSENpVtYCe5fSjJHTQfXRwe9Xutn2A==
+X-Received: by 2002:a05:6512:3703:b0:4a2:22cf:f44d with SMTP id z3-20020a056512370300b004a222cff44dmr13149775lfr.118.1669712030458;
+        Tue, 29 Nov 2022 00:53:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l18-20020a194952000000b004aa427febe5sm2111342lfj.64.2022.11.29.00.51.34
+        by smtp.gmail.com with ESMTPSA id c13-20020a056512324d00b004b40f2e25d3sm2133465lfr.122.2022.11.29.00.53.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:51:35 -0800 (PST)
-Message-ID: <979d220c-525c-ad57-89b8-b65bda55fe55@linaro.org>
-Date:   Tue, 29 Nov 2022 09:51:34 +0100
+        Tue, 29 Nov 2022 00:53:50 -0800 (PST)
+Message-ID: <e4676089-7ce2-e123-4e2a-a7d8835e9118@linaro.org>
+Date:   Tue, 29 Nov 2022 09:53:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rk3568 xpcs
- compatible
+Subject: Re: [PATCH 2/2] ethernet: stmicro: stmmac: Add SGMII/QSGMII support
+ for RK3568
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Chukun Pan <amadeus@jmu.edu.cn>,
         "David S . Miller" <davem@davemloft.net>
 Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
@@ -73,58 +72,59 @@ Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20221129072714.22880-1-amadeus@jmu.edu.cn>
- <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
-In-Reply-To: <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
+ <20221129072714.22880-2-amadeus@jmu.edu.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221129072714.22880-2-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 09:49, Krzysztof Kozlowski wrote:
-> On 29/11/2022 08:27, Chukun Pan wrote:
->> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
->> This patch adds a compatible string for the required clock.
->>
->> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
->> ---
->>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
->> index 42fb72b6909d..36b1e82212e7 100644
->> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
->> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
->> @@ -68,6 +68,7 @@ properties:
->>          - mac_clk_rx
->>          - aclk_mac
->>          - pclk_mac
->> +        - pclk_xpcs
->>          - clk_mac_ref
->>          - clk_mac_refout
->>          - clk_mac_speed
->> @@ -90,6 +91,11 @@ properties:
->>        The phandle of the syscon node for the peripheral general register file.
->>      $ref: /schemas/types.yaml#/definitions/phandle
->>  
->> +  rockchip,xpcs:
->> +    description:
->> +      The phandle of the syscon node for the peripheral general register file.
+On 29/11/2022 08:27, Chukun Pan wrote:
+> From: David Wu <david.wu@rock-chips.com>
 > 
-> You used the same description as above, so no, you cannot have two
-> properties which are the same. syscons for GRF are called
-> "rockchip,grf", aren't they?
+> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
+> This patch adds the remaining SGMII/QSGMII support.
 
-Also:
-1. Your commit msg does not explain it at all.
-2. Your driver code uses this as some phy? Don't use syscon as
-workaround for missing drivers.
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> 
+> Run-tested-on: Ariaboard Photonicat (GMAC0 SGMII)
+> 
+> Signed-off-by: David Wu <david.wu@rock-chips.com>
+> [rebase, rewrite commit message]
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 210 +++++++++++++++++-
+>  1 file changed, 207 insertions(+), 3 deletions(-)
+> 
+
+>  
+> -static int phy_power_on(struct rk_priv_data *bsp_priv, bool enable)
+> +static int rk_gmac_phy_power_on(struct rk_priv_data *bsp_priv, bool enable)
+>  {
+>  	struct regulator *ldo = bsp_priv->regulator;
+>  	int ret;
+> @@ -1728,6 +1909,18 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
+>  							"rockchip,grf");
+>  	bsp_priv->php_grf = syscon_regmap_lookup_by_phandle(dev->of_node,
+>  							    "rockchip,php-grf");
+> +	bsp_priv->xpcs = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +							 "rockchip,xpcs");
+> +	if (!IS_ERR(bsp_priv->xpcs)) {
+> +		struct phy *comphy;
+> +
+> +		comphy = devm_of_phy_get(&pdev->dev, dev->of_node, NULL);
+
+So instead of having PHY driver, you added a syscon and implemented PHY
+driver here. No. Make a proper PHY driver.
 
 Best regards,
 Krzysztof
