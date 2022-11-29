@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2583263BB3D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E1263BB41
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:09:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbiK2II6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:08:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
+        id S230097AbiK2IJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:09:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiK2II5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:08:57 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BC953EC0
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:08:56 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id r8so15914534ljn.8
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:08:56 -0800 (PST)
+        with ESMTP id S229780AbiK2IJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:09:49 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF2754758
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:09:48 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id d9so547093lja.11
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:09:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AyQezi0/J2KyskoRyI6bR8Ni9hlnp2xfvLQVd8nenLw=;
-        b=YMy7OXY8z0RXA3F9hAit19mlpsv1NovMvIOVgqid1RiwOTaNE60CK+ctxvmY5/YUl4
-         UIqNl9Mh5EPflHQmwCXILhkC96lv+g2f51zrefV7PnXXoKlQopbFKr+BwInQio9DXyHO
-         yxCbBSoRL15TWXMN3kmjIM9GpE6tIYtiXwanNevPKPQKbylmo1eMHGkYtAxKRDMrxldC
-         l6fR0jTI4QhFYEhYVXKjj3stOdeuFt+JXX/wTDfzuavOmEvMtUn1eVVAceWBnWGVoarT
-         KhNnZZCh4SztKAd/A7OL6Z5rV7+4tZ9Y0ywlYdKWyLt0qE8BPJYkWaPPWmu8x3dgHpDc
-         G1Dw==
+        bh=q81LRK3T/EuQJCNdVN6VMMo84qLhMFEYBVI6xieT8fc=;
+        b=ChkSiQTgCeqtYFGMZueziZTw7QgAtEKAsmKs9hSQZtZiauHvC9Od+YZ76QEZWGZeBR
+         J5Im6a3PxuAPS180+BGY0cu6mEgeqpHJS5CvlJROxNcuOgeBLWtCjCfW75EHEbnQ+gAn
+         Dr6LEFFwg59tBNyMWTWD1my001eZ1sUZvQ0Yu3h0CIumsyWkL8Ws4YyGt3Y/TzNl1P7b
+         6VRSVvQz1YAlgti+hZQLa3uHr3DBt9hwGlyXpMmuD5G5lLBXl2rYHPd9aQVZzxjHi3e+
+         5scQa2GY7UlNPFN3gb6KJYSm3uhMkztodZarqQW760jurX4MNEsgRDEDVeibys2FAVeu
+         331Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AyQezi0/J2KyskoRyI6bR8Ni9hlnp2xfvLQVd8nenLw=;
-        b=muF0pJNPVwJQ71mhcw+7kOJe12A9xwOVZaQcHS7vxWWhprN/KX863f4qxflWqHicdj
-         gD1IvhSu7w1OOaWwbRMU+1LJRnevkBfG8JbywnLzOJ3dSC9rqP8F+aDZ7wQVHESENbNp
-         tip9DnOsIaGROvsiIqkElllStAmdprBKbKhIEE2f9RMuFZIk50c1utfDD9zH0AMVAKEd
-         hjimGHQqrZUpsFk+T5HkIy0WMyCh2ZwSQGW3sdIigYfeboFmxaeFS6DhD8oSfLWEVe4U
-         ecBuRyky0Wg0X0oQXGD5KiuOrv7o9ECMd+b0B3+8tl1UMDeoB2c6lhVkrF41fIR3B1rP
-         IRhA==
-X-Gm-Message-State: ANoB5pmY+qagioYnJ9f9fUq78lrKV7d3i5n8qC43y/1Z6TkxaxR6yXt3
-        xyQKJfTuZoddczVohMSuIu4ycx3W00CkFZY4
-X-Google-Smtp-Source: AA0mqf7IQGcYq6JZxyQ9gjLLRjHcHeH1Ia5EOQO5Ps8RYsyCz9Cqm+9sqNoTPtXfJLG0wRmeYjO6sQ==
-X-Received: by 2002:a05:651c:1195:b0:279:941e:15ae with SMTP id w21-20020a05651c119500b00279941e15aemr5949207ljo.179.1669709334645;
-        Tue, 29 Nov 2022 00:08:54 -0800 (PST)
+        bh=q81LRK3T/EuQJCNdVN6VMMo84qLhMFEYBVI6xieT8fc=;
+        b=mKt9UiHTstPHqu2F/yh1LNVMvbWMBLbJJyvHNwEN7uYYQG16RzizpVP/Bo2ql7SLyh
+         DRNvZg1MrRkd8I3e67DbB6Damx57FRHP3GszkPxyt3YPklV4eph+BhFnVbriI+NReaPK
+         Hqoncnt0OG0fiDfUa0cQBlukIffMqqVrvVrNlKtBnneXcvThaWcbXBLiRVbbOz52ksFW
+         Auj2UpZgbDD/vD01HWLVZ+bo8UHU0lc7Grw7Eu9yiAQh5Ywq10cvvQwO470ScAQ/BuAt
+         qyGv8qz3mt/oWP/2lVgdpKx/FQZIdh+OGC/TCxRNJQqdnFY/9rJxjtfhbw4Xos1nzDiT
+         pdMg==
+X-Gm-Message-State: ANoB5pmJDJiYtc885irT0LAe9NbVPzhXWhHGUXlJnk9RQy+IWq2umTuw
+        DXTYV4sTgYDnHHk9X7ri8606CA==
+X-Google-Smtp-Source: AA0mqf7mXV3xue4WBidHzjSc01+0VNE7mNNq4JiQjZrsZi/lPuomV7rVS24BsId/4Hv2JoqpPtEsIA==
+X-Received: by 2002:a05:651c:2205:b0:26e:33f:3c3c with SMTP id y5-20020a05651c220500b0026e033f3c3cmr18005476ljq.52.1669709386697;
+        Tue, 29 Nov 2022 00:09:46 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s5-20020a05651c200500b00279aca77a54sm215985ljo.60.2022.11.29.00.08.53
+        by smtp.gmail.com with ESMTPSA id u12-20020a2eb80c000000b002778d482800sm1437488ljo.59.2022.11.29.00.09.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:08:54 -0800 (PST)
-Message-ID: <85b638f0-57dd-3114-6cac-42b0ccca49ac@linaro.org>
-Date:   Tue, 29 Nov 2022 09:08:53 +0100
+        Tue, 29 Nov 2022 00:09:46 -0800 (PST)
+Message-ID: <a7a705b5-64b1-e735-9f1c-5318c2bdf5db@linaro.org>
+Date:   Tue, 29 Nov 2022 09:09:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v6 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
+Subject: Re: [PATCH v7 1/4] dt-bindings: hwmon: fan: Add fan binding to schema
 Content-Language: en-US
 To:     Naresh Solanki <naresh.solanki@9elements.com>,
         devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
@@ -63,22 +63,23 @@ To:     Naresh Solanki <naresh.solanki@9elements.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
         Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221116213615.1256297-1-Naresh.Solanki@9elements.com>
- <20221116213615.1256297-2-Naresh.Solanki@9elements.com>
+References: <20221121122932.2493174-1-Naresh.Solanki@9elements.com>
+ <20221121122932.2493174-2-Naresh.Solanki@9elements.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221116213615.1256297-2-Naresh.Solanki@9elements.com>
+In-Reply-To: <20221121122932.2493174-2-Naresh.Solanki@9elements.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 22:36, Naresh Solanki wrote:
+On 21/11/2022 13:29, Naresh Solanki wrote:
 > Add common fan properties bindings to a schema.
 > 
 > Bindings for fan controllers can reference the common schema for the
@@ -93,16 +94,16 @@ On 16/11/2022 22:36, Naresh Solanki wrote:
 > 
 > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 > ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
+>  .../devicetree/bindings/hwmon/fan-common.yaml | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
 > 
 > diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
 > new file mode 100644
-> index 000000000000..1954882eed77
+> index 000000000000..0535d37624cc
 > --- /dev/null
 > +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,42 @@
+> @@ -0,0 +1,47 @@
 > +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
 > +%YAML 1.2
 > +---
@@ -111,8 +112,7 @@ On 16/11/2022 22:36, Naresh Solanki wrote:
 > +
 > +title: Common fan properties
 
-If there is going to be resend - capitalize title, so:
-
+I responded to v6, so let me paste here as well:
 Common Fan Properties
 
 > +
@@ -123,6 +123,11 @@ Common Fan Properties
 > +  max-rpm:
 > +    description:
 > +      Max RPM supported by fan.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  min-rpm:
+> +    description:
+> +      Min RPM supported by fan.
 > +    $ref: /schemas/types.yaml#/definitions/uint32
 > +
 > +  pulses-per-revolution:
@@ -139,9 +144,10 @@ Common Fan Properties
 > +    description:
 > +      PWM provider.
 
-Isn't this object? If so, maybe:
-  type: object
+Maybe:
+type: object
 
+> +
 
 
 Best regards,
