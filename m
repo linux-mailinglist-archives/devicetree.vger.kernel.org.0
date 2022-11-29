@@ -2,114 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C043E63C081
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D526263C0B8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 14:13:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbiK2M70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 07:59:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
+        id S232932AbiK2NNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 08:13:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbiK2M7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:59:25 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0110E0F;
-        Tue, 29 Nov 2022 04:59:24 -0800 (PST)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9FAB84E6;
-        Tue, 29 Nov 2022 13:59:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1669726762;
-        bh=Sv4JjA1T3CLcNJwfpw43GPVNyfDqomlM5uT0+4ozKS8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jc1+VXleXR5a7JFtLGFpu7N+IeJaJnI8DKQaBP//Vm5SbiaxnYpCbbNG2R4C6JM2s
-         endSU0TbkKonx5+UKHeVgLa6WtIasgc/3lb06ZbH1Ayfe8n+t3ZOrmq/grC8bVQNvK
-         D4YAHk/j6h2XBTnjm5SSqjdjVV6e33qmtm5ibncY=
-Message-ID: <d710ac65-655a-6a5a-ce6e-6dee4fd1760b@ideasonboard.com>
-Date:   Tue, 29 Nov 2022 14:59:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 7/7] drm: rcar-du: dsi: Add r8a779g0 support
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        with ESMTP id S232420AbiK2NN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 08:13:29 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9385162E86
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 05:12:09 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id d20so8927053edn.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 05:12:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yvGYMXBpX4kCTXFb7In42mmUQ0TnJwaY3tVruVQALiM=;
+        b=qYzyHHRuHsbiBL4KnYqHuAcMAfaAL6Cryp5vPg0Zjb0XGggP+M1b6b2KiQyenpLQr6
+         TZl0yUUe8OSlDVO97gTkjaI3cKSmCrkRPnkgXY5bi/29pGrePfz4Ly/6k25TZZmhGPUp
+         KqfVBm7cAiQ4LuPz0NMfBPeO+ScQ4L+Gw065HaMzBznWX6D0fKsZ49WBcwdQ7veW18S8
+         I3+kYptVPermoS64iqUo48NfRXMp8HKOHiXbAHIElXRkDRIGCLSQnZpJMhBXMlfnCAqM
+         Bme7wERG7/zwLQ63Tl45wAIh98JfoCd2geWVlwOVNNryD8OfEr0H7TLone6ZNHKJ8CVN
+         h/Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yvGYMXBpX4kCTXFb7In42mmUQ0TnJwaY3tVruVQALiM=;
+        b=2Fqqgax3tu5FgPKx71jaNNo7Ht+8RZQv3jh1JqT1ZCZ5LS2v7IQC6a8ug6qai5PZAe
+         eqPTYd7fwTAMcvoiuoByM3ylIji268EEJ6c+Bb2pzT0xrPc4C0R8AdRu7IEFaB5iTbN+
+         2WO+3ur2pWnSPa4vmW/MwwJcpAdQ7XiKHMtUy54YA2AIDJWp13PpWq4jEWlwIIIPv2ih
+         2Am8Mg2kc/mldWOTlwuetC8fG8QIuRRLmhFTHbn4HWW95HjyhTi8tp6EhRenr76g+QkK
+         SeZ5K3ZvwplT5cQg45rXjCAMP8B5MSBXEtN96S/mPS8Mhojor8sO7hqjzSg+1TAeg98w
+         MOKQ==
+X-Gm-Message-State: ANoB5pkZ5BYVdSFbQfoKftMj6PxEHXd/3Eo6xrHUKsJ2HGZ5mVaOLK+6
+        kQ7tIAuoomvayY5AAYV8xKM+Tg==
+X-Google-Smtp-Source: AA0mqf4mE6fmy2qJlzqH6rEehX2y9w2oMpqP6Zc2O9ZYfPeOLu+kRcI0MUTEUxfh31doNKzOYGj5BA==
+X-Received: by 2002:a05:6402:2949:b0:468:fb6b:3a79 with SMTP id ed9-20020a056402294900b00468fb6b3a79mr50642882edb.63.1669727528092;
+        Tue, 29 Nov 2022 05:12:08 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id p21-20020a05640210d500b0046b25b93451sm2620541edu.85.2022.11.29.05.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 05:12:07 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-References: <20221123065946.40415-1-tomi.valkeinen+renesas@ideasonboard.com>
- <20221123065946.40415-8-tomi.valkeinen+renesas@ideasonboard.com>
- <Y4VlHIpS9UnvWwt/@pendragon.ideasonboard.com>
-From:   Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <Y4VlHIpS9UnvWwt/@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH v3 0/2] interconnect: qcom: Add support for SM8550
+Date:   Tue, 29 Nov 2022 15:12:01 +0200
+Message-Id: <20221129131203.2197959-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 03:49, Laurent Pinchart wrote:
+This patchset adds interconnect support for SM8550.
 
->> @@ -198,70 +436,53 @@ static void rcar_mipi_dsi_parameters_calc(struct rcar_mipi_dsi *dsi,
->>   	 */
->>   	fout_target = target * mipi_dsi_pixel_format_to_bpp(dsi->format)
->>   		    / (2 * dsi->lanes);
->> -	if (fout_target < 40000000 || fout_target > 1250000000)
->> +	if (fout_target < MHZ(40) || fout_target > MHZ(1250))
->>   		return;
->>   
->>   	/* Find vco_cntrl */
->> -	for (vco_cntrl = vco_cntrl_table; vco_cntrl->min_freq != 0; vco_cntrl++) {
->> -		if (fout_target > vco_cntrl->min_freq &&
->> -		    fout_target <= vco_cntrl->max_freq) {
->> -			setup_info->vco_cntrl = vco_cntrl->value;
->> -			if (fout_target >= 1150000000)
->> -				setup_info->prop_cntrl = 0x0c;
->> -			else
->> -				setup_info->prop_cntrl = 0x0b;
->> +	for (clkset = dsi->info->clk_cfg; clkset->min_freq != 0; clkset++) {
->> +		if (fout_target > clkset->min_freq &&
->> +		    fout_target <= clkset->max_freq) {
->> +			setup_info->clkset = clkset;
->>   			break;
->>   		}
->>   	}
->>   
->> -	/* Add divider */
->> -	setup_info->div = (setup_info->vco_cntrl & 0x30) >> 4;
->> +	switch (dsi->info->model) {
->> +	case RCAR_DSI_R8A779A0:
->> +		setup_info->vclk_divider = 1 << ((clkset->vco_cntrl >> 4) & 0x3);
-> 
-> If you stored (clkset->vco_cntrl >> 4) & 0x3 in setup_info->vclk_divider
-> you wouldn't have to use __ffs() in rcar_mipi_dsi_startup(). You could
-> also drop the - 1 there, which would allow dropping one of the
-> switch(dsi->info->model). You can store the real divider value in
-> setup_info separately for rcar_mipi_dsi_pll_calc_r8a779a0(), or pass it
-> to the function.
+The v2 of this patchset is here:
+https://lore.kernel.org/all/20221124112232.1704144-1-abel.vesa@linaro.org/
 
-That's true. The reason I chose this approach was to keep dsi_setup_info 
-"neutral", containing only the logical values, and the register specific 
-tinkering is done only where the register is written. Mixing the logical 
-and the register values in the old dsi_setup_info was confusing, and 
-implementing your suggestion would again go that direction. But as you 
-noticed, this is uglified a bit by the need to get the divider from the 
-vco_cntrl.
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Georgi Djakov <djakov@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-pm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-We could store the logical divider in the dsi_clk_config table, though, 
-which would remove the need for the above code.
+Abel Vesa (2):
+  dt-bindings: interconnect: Add Qualcomm SM8550
+  interconnect: qcom: Add SM8550 interconnect provider driver
 
-  Tomi
+ .../interconnect/qcom,sm8550-rpmh.yaml        |  139 +
+ drivers/interconnect/qcom/Kconfig             |    9 +
+ drivers/interconnect/qcom/Makefile            |    2 +
+ drivers/interconnect/qcom/sm8550.c            | 2319 +++++++++++++++++
+ drivers/interconnect/qcom/sm8550.h            |  178 ++
+ .../interconnect/qcom,sm8550-rpmh.h           |  190 ++
+ 6 files changed, 2837 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
+ create mode 100644 drivers/interconnect/qcom/sm8550.c
+ create mode 100644 drivers/interconnect/qcom/sm8550.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,sm8550-rpmh.h
+
+-- 
+2.34.1
 
