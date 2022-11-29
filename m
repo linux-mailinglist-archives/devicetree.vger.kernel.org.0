@@ -2,103 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E1663C41F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:49:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7097F63C42F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:52:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236038AbiK2Pti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 10:49:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
+        id S232155AbiK2Pwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 10:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236043AbiK2PtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:49:21 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8586869C
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:48:36 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id f7so20355919edc.6
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:48:36 -0800 (PST)
+        with ESMTP id S232502AbiK2Pw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:52:29 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964CDBE2A
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:52:27 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id h28so503614pfq.9
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VIRe95Z6jcNjLS0kWdXMlZ6r3LFNPa2W1G5woacMJko=;
-        b=meU+ykcNyiAq6Ope/bgI1B6cXVFFCv8w5gGeixY5B4f/VQ1ZuJkGoo66jb2d2xfIgh
-         DXDg1OF1N5lOE7QH1BTuURIYVuG6EQkJ2nDZE2+AcvcM++OoJ0I9vi/ddhhFfeVoT+65
-         8VUn4blseN0/qhD746KdFJq36mVXIET3ERHbcVcTNd/W3AwLYSN53x1EahSFZSohu9nY
-         uhbOmyrUUbQe85kxJ8Poz7eLXRcijVLPmZxRRdbQY+ygoqLXnONTPzz65w5aroAqLtD3
-         z33KeTPnVXYf+7pDR2BnSpTQu9Y4w/az6q3NOGvOzJWuVmuOt31Vn0x6zb5M+cECyxFU
-         dcag==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gUXPD428lBYhvSvCQztehA2Z3LbCwL5Ik8XHuLVfb/M=;
+        b=CmCcjDj3JCqVJtYLhUw4QDs200UMxPYISi8vse95iApevLls+sDrHmvVzRIAqcTmh3
+         8kI/5WcdO1uyn2GHEGW+1lOWH5jn4/Si2m/aePArWyrQ0cvzWbFMZGpGgQ91oNK/pqeB
+         GK1NZOrrV4GyGZt+RBNYvKxvtmZi0kJZoTPvuUeGv2amsYPZbdfhwM05qHw5FOb54tkg
+         5PVOfEo0vLuhjCbnGX5VDTFq39aqGGctyGxRfcoSAhAij7Csns+1E+1vZG7fxSaXYaHN
+         fcSFj9uVAHRbi3RhWkTy5Fszw1LtWLgla2YVxx1VOZGUWZol3c4yYvJ8O0G5GqZ/k01S
+         XRDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VIRe95Z6jcNjLS0kWdXMlZ6r3LFNPa2W1G5woacMJko=;
-        b=EeybhqDBQHmkj3IF2gAZKKjvgxVh8mjG5N964QLss8hnkkEUNOcqTfo54Ux3poFF5N
-         23pWM26IL3AilJqAsuk2VnLX4rvWQteitXNw16jkld4aEdNOL0sVqYfGAth78/Y8s0Nn
-         y96MtuIxk9Lx2u47D9yAWCVleuN43Sb4j35L5jW3wvaSieNqd/iqEXf0vgFc82IT0k1z
-         uoNMYIz5fZoySXZDJhuLE85D3SAsHUBRpOPoORlWFUCuOpn2Clb4mqM8MWsN58CnRCBO
-         xK65Lp2v6+T6gNNo42Pfozl4UWSZvijwZUuAqnYZ8zqqlKN2MLleKr6HgptG5z0aQlBF
-         OHtw==
-X-Gm-Message-State: ANoB5pn5Ch/N4SH1xTYF94Y0fPoDDnEnI5Vo+CjDOiwo1+NfHuwfSMVd
-        PREiENCR4q4OTVABc6Lh9ulzdQ==
-X-Google-Smtp-Source: AA0mqf5s58TQL7Mgsv2sX2m9+Mz1iCbc1RBtYKkkrGp3bN34Zcsvk1cIPnxBuOBedDqeyZsDPTsW8Q==
-X-Received: by 2002:a05:6402:5413:b0:458:211d:cbe4 with SMTP id ev19-20020a056402541300b00458211dcbe4mr3453537edb.11.1669736914018;
-        Tue, 29 Nov 2022 07:48:34 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-748-2a9a-a2a6-1362.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:748:2a9a:a2a6:1362])
-        by smtp.gmail.com with ESMTPSA id t7-20020a1709063e4700b007be4d8a50d8sm3918194eji.70.2022.11.29.07.48.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 07:48:33 -0800 (PST)
-Date:   Tue, 29 Nov 2022 16:48:32 +0100
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
-        conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, robh+dt@kernel.org
-Subject: Re: [RFC 0/2] Putting some basic order on isa extension stuff
-Message-ID: <20221129154832.27or3ywsx7npuqzq@kamzik>
-References: <Y4XvnHIPw8ZuBZEk@wendy>
- <20221129144742.2935581-1-conor.dooley@microchip.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gUXPD428lBYhvSvCQztehA2Z3LbCwL5Ik8XHuLVfb/M=;
+        b=6gPEE/oyPq0TsmgidxLyL5YVSb9kS3t95mefcw7JkceLzOFAmeO8h1fa1MTSeM7Z6i
+         EU9fKEj7RATOMJ8lADSgrYLKjW0IOVyxEIzFcqMNyrHcNaLK3GrLamfihRajqMevtjGK
+         lfwZB9EWS2LHw/sIenZBKlNmZaoFKewV6xHpUaShcDekcgHcMPGR/QKYKgkFEe+/qnZT
+         CHDV+aXpC25bKCcoprGTT5qiWMKQPOgqwbgSVj/HDZLZNQ3Y5q5b9QJf5zkE9w+hkWDL
+         /XAcHrxu/pUZaneQnUMLhb5y+8RTeVByVA+6LHWu8UGeDUDN43dHunaDT7/3C/nnIjy7
+         6nfQ==
+X-Gm-Message-State: ANoB5pk46cSfAfZHwb2fee8M9TSMSGztn3RUJzT/4P+EI34wSdB9979/
+        wJFaA3qMAYki/RSKgBrDt45XDA==
+X-Google-Smtp-Source: AA0mqf58k9X2ecMsq50j2paFChgEdufVtlAKglPxBmptmeIobeVtP6mbLKMyoJ1xZl86jybLkdSJlw==
+X-Received: by 2002:a63:e411:0:b0:45f:b2a7:2659 with SMTP id a17-20020a63e411000000b0045fb2a72659mr33175657pgi.132.1669737147134;
+        Tue, 29 Nov 2022 07:52:27 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id b5-20020a170903228500b00176ba091cd3sm11073557plh.196.2022.11.29.07.52.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Nov 2022 07:52:26 -0800 (PST)
+Message-ID: <dad4d480-8c72-46da-b0ad-4a8235bb03cf@9elements.com>
+Date:   Tue, 29 Nov 2022 21:22:22 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221129144742.2935581-1-conor.dooley@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v7 2/4] dt-bindings: hwmon: Add binding for max6639
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Roland Stigge <stigge@antcom.de>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221121122932.2493174-1-Naresh.Solanki@9elements.com>
+ <20221121122932.2493174-3-Naresh.Solanki@9elements.com>
+ <b6943ec7-8fcd-08dc-605d-4a23629bc39c@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <b6943ec7-8fcd-08dc-605d-4a23629bc39c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 02:47:41PM +0000, Conor Dooley wrote:
-> RFC:
-> - I have not even tested this, I just did an allmodconfig
-> - I don't know if I re-ordered something that is sacrosanct
-> - I don't know if I changed all of the instances
-> - I didn't write a proper commit message for "patch" 2/2
-> 
-> With those caveats out of the way - all I did here was try to make
-> things consistent so that it'd be easier to point patch submitters at a
-> "do this order please".
-> 
-> I never know which of these can be moved without breaking stuff - but
-> they all seem to be internal use stuff since they're not in uapi?
-> 
-> @drew, I didn't touch the KVM ones - are they re-sortable too? My base
-> here is rc7 so if you did a reorder at any point there I'd not see it ;)
+Hi Krzysztof,
 
-Right, we can't touch enum KVM_RISCV_ISA_EXT_ID as that's UAPI. All new
-extensions must be added at the bottom. We originally also had to keep
-kvm_isa_ext_arr[] in that order, but commit 1b5cbb8733f9 ("RISC-V: KVM:
-Make ISA ext mappings explicit") allows us to list its elements in any
-order, which means we could sort them in canonical order, if we wanted
-to. I think I'd rather have them in alphabetical order, though (they
-nearly are at the moment, except for the bottom two...) The only other
-place we have ISA extensions listed in KVM is in a switch statement,
-which of course doesn't matter, and it's currently in alphabetical order.
+On 29-11-2022 01:44 pm, Krzysztof Kozlowski wrote:
+> On 21/11/2022 13:29, Naresh Solanki wrote:
+>> From: Marcello Sylvester Bauer <sylv@sylv.io>
+>>
+>> Add Devicetree binding documentation for Maxim MAX6639 temperature
+>> monitor with PWM fan-speed controller.
+>>
+>> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> ---
+>>   .../bindings/hwmon/maxim,max6639.yaml         | 93 +++++++++++++++++++
+>>   1 file changed, 93 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>> new file mode 100644
+>> index 000000000000..da040b11d2ab
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+>> @@ -0,0 +1,93 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +
+>> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Maxim max6639
+>> +
+>> +maintainers:
+>> +  - Roland Stigge <stigge@antcom.de>
+>> +
+>> +description: |
+>> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
+>> +  fan-speed controller.  It monitors its own temperature and one external
+>> +  diode-connected transistor or the temperatures of two external diode-connected
+>> +  transistors, typically available in CPUs, FPGAs, or GPUs.
+>> +
+>> +  Datasheets:
+>> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - maxim,max6639
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  '#pwm-cells':
+>> +    const: 3
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +patternProperties:
+>> +  "^fan@[0-1]$":
+>> +    type: object
+>> +    description: |
+>> +      Represents the two fans and their specific configuration.
+>> +
+>> +    $ref: fan-common.yaml#
+> 
+> unevalauatedProperties: false
+> 
+Sure
+>> +
+>> +    properties:
+>> +      reg:
+>> +        description: |
+>> +          The fan number.
+>> +        items:
+>> +          minimum: 0
+>> +          maximum: 1
+> 
+> This is a bit unusual syntax. Drop "items", I think it should be more
+> obvious.
+> 
+Sure
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        fan1: fan-controller@10 {
+>> +            compatible = "maxim,max6639";
+>> +            reg = <0x10>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +            #pwm-cells = <3>;
+>> +
+>> +            fan@0 {
+>> +                reg = <0x0>;
+>> +                pulses-per-revolution = <2>;
+>> +                max-rpm = <4000>;
+>> +                target-rpm = <1000>;
+>> +                pwms = <&fan1 0 25000 0>;
+>> +            };
+>> +
+>> +            fan@1 {
+>> +                reg = <0x1>;
+>> +                pulses-per-revolution = <2>;
+>> +                max-rpm = <8000>;
+>> +                pwms = <&fan1 1 25000 0>;
+>> +            };
+>> +            };
+> 
+> Fix indentation.
+>
+Sure
 
-Thanks,
-drew
+>> +    };
+>> +...
+> 
+> Best regards,
+> Krzysztof
+> 
+Regards,
+Naresh
