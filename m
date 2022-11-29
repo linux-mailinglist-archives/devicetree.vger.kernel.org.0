@@ -2,147 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 167EA63C6D0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC4A63C700
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235974AbiK2RyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 12:54:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
+        id S232468AbiK2SEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 13:04:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236202AbiK2RyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:54:01 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7AE3134B;
-        Tue, 29 Nov 2022 09:53:59 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2ATHrl5e129474;
-        Tue, 29 Nov 2022 11:53:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1669744427;
-        bh=OlbUvwSRO5NoPFoWtyXeblUmFGtTGFTosZPDs/UZ6QQ=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Y2j79Eze27aIAEA/RmC5XYAT5mqToFBbgUUL61XLUv9PSCwrGoxAQKKepRFt+7Y2Y
-         Zd7hHopizWLuFaXzHR1PkcFZ8pGuPXi5t3fPbreu/Z0/sJNQiJQLa4wNLVlduDMjoF
-         fAcmE064jYxMhHH8DLb0/NaMHDRkPe84OWqSmrRA=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2ATHrlsU021148
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 29 Nov 2022 11:53:47 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 29
- Nov 2022 11:53:47 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 29 Nov 2022 11:53:47 -0600
-Received: from [10.250.38.44] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2ATHrksN025398;
-        Tue, 29 Nov 2022 11:53:46 -0600
-Message-ID: <a88349a2-94ac-1980-1998-a45ac5525f6b@ti.com>
-Date:   Tue, 29 Nov 2022 11:53:46 -0600
+        with ESMTP id S235210AbiK2SE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:04:26 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A9225A
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:04:24 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p04xy-0007bB-Ub; Tue, 29 Nov 2022 19:04:22 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p04xw-0018MV-8f; Tue, 29 Nov 2022 19:04:21 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1p04xw-001HXM-BE; Tue, 29 Nov 2022 19:04:20 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: display: Convert fsl,imx-fb.txt to dt-schema
+Date:   Tue, 29 Nov 2022 19:04:14 +0100
+Message-Id: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 7/8] arm64: dts: ti: k3-j721s2-main: Add PCIe device
- tree node
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-vadapalli@ti.com>,
-        <r-gunasekaran@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221122101616.770050-1-mranostay@ti.com>
- <20221122101616.770050-8-mranostay@ti.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20221122101616.770050-8-mranostay@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6324; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=DvIV4HYaKMOHhRZZ9BFQMck2c1xBdZcv3zmxYbeH/x4=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBjhkmVlfJhpGvZR/g7+qMBEOOg9M2j7V0Pr+1Mc0ip qpFd09eJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY4ZJlQAKCRDB/BR4rcrsCUZaB/ 95e3vBWHk9dJeaXqBOZxzbs7y8ZA3KvfawQ+4cyiJx8mhv5SmDZNqt4OsrG+kW2O2Frld/9apDyY8H CsFTx92U3wtW+ojrlespcMOr6kYC5xffKzYv6LV65A/fjGLF/X/GOQGip+5B6VXKiuyaICT/Pjt0G5 5vsqq/0RzQ4DIQODzD/rtrsuLsNMpFuSeYHNef/n+f7k0DNsyOz/JkRwwSfrChl8NjWyTZBDjhFaEc To7TdTUUQxtPSdJPhoNAYAr2dcqBccDC3F0SsKhrvwxsnF/JlbikJv630LOAtX9eYoN2obKpp+sSeH R9yx9UBCNNHk/6EqIHYVQdug6m0TV5
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/22/22 4:16 AM, Matt Ranostay wrote:
-> From: Aswath Govindraju <a-govindraju@ti.com>
-> 
-> Add PCIe1 RC device tree node for the single PCIe instance present on
-> the j721s2.
-> 
-> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 41 ++++++++++++++++++++++
->   1 file changed, 41 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> index 2858ba589d54..27631ef32bf5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -841,6 +841,47 @@ serdes0: serdes@5060000 {
->   		};
->   	};
->   
-> +	pcie1_rc: pcie@2910000 {
+Compared to the txt description this adds clocks and clock-names to
+match reality.
 
-NIT: Not sure we need to call this "_rc", and "1", 0 index these names for
-consistency, "pcie0".
+Note that fsl,imx-lcdc was picked as the new name as this is the actual
+hardware's name. There will be a new binding implementing the saner drm
+concept that is supposed to supersede this legacy fb binding
 
-> +		compatible = "ti,j7200-pcie-host", "ti,j721e-pcie-host";
-> +		reg = <0x00 0x02910000 0x00 0x1000>,
-> +		      <0x00 0x02917000 0x00 0x400>,
-> +		      <0x00 0x0d800000 0x00 0x00800000>,
-> +		      <0x00 0x18000000 0x00 0x00001000>;
-> +		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-> +		interrupt-names = "link_state";
-> +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-> +		device_type = "pci";
-> +		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
-> +		max-link-speed = <3>;
-> +		num-lanes = <4>;
-> +		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 276 41>;
-> +		clock-names = "fck";
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-> +		bus-range = <0x0 0xff>;
-> +		vendor-id = <0x104c>;
-> +		device-id = <0xb013>;
-> +		msi-map = <0x0 &gic_its 0x0 0x10000>;
-> +		dma-coherent;
-> +		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
-> +			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
-> +		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-> +		#interrupt-cells = <1>;
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+Changes since v1, sent with Message-Id:
+ - mention clock stuff being added (Philipp)
+ - dropped some quotes (Rob)
+ - fix specification of compatible
+   (I kept claiming though that imx21 isn't compatible to imx1. While
+   that might be true, I don't have an i.MX1 to check the details and
+   currently the imx*.dtsi don't claim that compatibility.)
 
-Is this node the interrupt controller or is it the "interrupt-controller"?
-Actually, what is that node? I don't see it in the binding docs..
+I tried to implement the suggestion by Rob to formalize the display
+binding. But I learned that this doesn't change how the display property
+is formalized in the fsl,imx-lcdc.yaml (which is just a phandle without
+means to specify that it should point to a node which fulfills a certain
+binding.)
 
-Andrew
+Best regards
+Uwe
 
-> +		interrupt-map-mask = <0 0 0 7>;
-> +		interrupt-map = <0 0 0 1 &pcie1_intc 0>, /* INT A */
-> +				<0 0 0 2 &pcie1_intc 0>, /* INT B */
-> +				<0 0 0 3 &pcie1_intc 0>, /* INT C */
-> +				<0 0 0 4 &pcie1_intc 0>; /* INT D */
-> +
-> +		pcie1_intc: interrupt-controller {
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +			interrupt-parent = <&gic500>;
-> +			interrupts = <GIC_SPI 324 IRQ_TYPE_EDGE_RISING>;
-> +		};
-> +	};
-> +
->   	main_mcan0: can@2701000 {
->   		compatible = "bosch,m_can";
->   		reg = <0x00 0x02701000 0x00 0x200>,
+ .../bindings/display/imx/fsl,imx-fb.txt       |  57 ----------
+ .../bindings/display/imx/fsl,imx-lcdc.yaml    | 102 ++++++++++++++++++
+ 2 files changed, 102 insertions(+), 57 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt b/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
+deleted file mode 100644
+index f4df9e83bcd2..000000000000
+--- a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Freescale imx21 Framebuffer
+-
+-This framebuffer driver supports devices imx1, imx21, imx25, and imx27.
+-
+-Required properties:
+-- compatible : "fsl,<chip>-fb", chip should be imx1 or imx21
+-- reg : Should contain 1 register ranges(address and length)
+-- interrupts : One interrupt of the fb dev
+-
+-Required nodes:
+-- display: Phandle to a display node as described in
+-	Documentation/devicetree/bindings/display/panel/display-timing.txt
+-	Additional, the display node has to define properties:
+-	- bits-per-pixel: Bits per pixel
+-	- fsl,pcr: LCDC PCR value
+-	A display node may optionally define
+-	- fsl,aus-mode: boolean to enable AUS mode (only for imx21)
+-
+-Optional properties:
+-- lcd-supply: Regulator for LCD supply voltage.
+-- fsl,dmacr: DMA Control Register value. This is optional. By default, the
+-	register is not modified as recommended by the datasheet.
+-- fsl,lpccr: Contrast Control Register value. This property provides the
+-	default value for the contrast control register.
+-	If that property is omitted, the register is zeroed.
+-- fsl,lscr1: LCDC Sharp Configuration Register value.
+-
+-Example:
+-
+-	imxfb: fb@10021000 {
+-		compatible = "fsl,imx21-fb";
+-		interrupts = <61>;
+-		reg = <0x10021000 0x1000>;
+-		display = <&display0>;
+-	};
+-
+-	...
+-
+-	display0: display0 {
+-		model = "Primeview-PD050VL1";
+-		bits-per-pixel = <16>;
+-		fsl,pcr = <0xf0c88080>;	/* non-standard but required */
+-		display-timings {
+-			native-mode = <&timing_disp0>;
+-			timing_disp0: 640x480 {
+-				hactive = <640>;
+-				vactive = <480>;
+-				hback-porch = <112>;
+-				hfront-porch = <36>;
+-				hsync-len = <32>;
+-				vback-porch = <33>;
+-				vfront-porch = <33>;
+-				vsync-len = <2>;
+-				clock-frequency = <25000000>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+new file mode 100644
+index 000000000000..35a8fff036ca
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 and i.MX27
++
++maintainers:
++  - Sascha Hauer <s.hauer@pengutronix.de>
++  - Pengutronix Kernel Team <kernel@pengutronix.de>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,imx1-fb
++          - fsl,imx21-fb
++      - items:
++          - enum:
++              - fsl,imx25-fb
++              - fsl,imx27-fb
++          - const: fsl,imx21-fb
++
++  clocks:
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: ipg
++      - const: ahb
++      - const: per
++
++  display:
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  interrupts:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  lcd-supply:
++    description:
++      Regulator for LCD supply voltage.
++
++  fsl,dmacr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Override value for DMA Control Register
++
++  fsl,lpccr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Contrast Control Register value.
++
++  fsl,lscr1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      LCDC Sharp Configuration Register value.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - display
++  - interrupts
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    imxfb: fb@10021000 {
++        compatible = "fsl,imx21-fb";
++        interrupts = <61>;
++        reg = <0x10021000 0x1000>;
++        display = <&display0>;
++        clocks = <&clks 103>, <&clks 49>, <&clks 66>;
++        clock-names = "ipg", "ahb", "per";
++    };
++
++    display0: display0 {
++        model = "Primeview-PD050VL1";
++        bits-per-pixel = <16>;
++        fsl,pcr = <0xf0c88080>; /* non-standard but required */
++
++        display-timings {
++            native-mode = <&timing_disp0>;
++            timing_disp0: timing0 {
++                hactive = <640>;
++                vactive = <480>;
++                hback-porch = <112>;
++                hfront-porch = <36>;
++                hsync-len = <32>;
++                vback-porch = <33>;
++                vfront-porch = <33>;
++                vsync-len = <2>;
++                clock-frequency = <25000000>;
++            };
++        };
++    };
+-- 
+2.38.1
+
