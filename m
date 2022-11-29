@@ -2,193 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2430F63B8D9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 04:42:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC82363B8E2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 04:44:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235503AbiK2DmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 22:42:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59202 "EHLO
+        id S235506AbiK2Dou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 22:44:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235538AbiK2DmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 22:42:07 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC0EE4B985;
-        Mon, 28 Nov 2022 19:42:05 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8CxruuMf4Vjd+gBAA--.4653S3;
-        Tue, 29 Nov 2022 11:42:04 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxPuCGf4VjjecdAA--.10584S5;
-        Tue, 29 Nov 2022 11:42:03 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v10 4/4] dt-bindings: clock: add loongson-2 clock
-Date:   Tue, 29 Nov 2022 11:41:57 +0800
-Message-Id: <20221129034157.15036-4-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221129034157.15036-1-zhuyinbo@loongson.cn>
-References: <20221129034157.15036-1-zhuyinbo@loongson.cn>
+        with ESMTP id S234975AbiK2Dot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 22:44:49 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543CE10FDC
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 19:44:48 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id d6so12174011pll.7
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 19:44:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=schmorgal.com; s=google;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cc6YZeu86MLhbPIXSljwWJJn8NbPxcgy7OA0BHwk7uA=;
+        b=SCAOlPPooD/APYwTsXkzkioVUSqcnKSOk7t5hrhs4bXxb1EVMcpXSZPyWGyliWZKWe
+         Z9GzpWLVYalirAQ0qRzfbOPdl1ZJTz/vkX5kO9G0NfmnRHABxGldcQAZElikf+5iKI3z
+         U70mS8vv46YAjv7ZK8/CF+afnJcgWYs82qMeQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cc6YZeu86MLhbPIXSljwWJJn8NbPxcgy7OA0BHwk7uA=;
+        b=YFeV71NpUIB96gXtzX+QyBOZw5AHLloJMZZvnNDGGrByIb0jfWbg9aJTVVxoM0nfoW
+         Jd5fyNaWK25Csp18dilhKAqIrK3hiyaCxWjHnPWsgDAjE7w7QMTtcdGPeVPfro+33A3I
+         3Y579aRvlUyS6MC0ZBPN/ejGPro5rmMzrtdqEBZoKvOqLztlTStS7Mfgj4tszq7DY2Ho
+         6/+XKjUbeyaDmCCZFCzVAipl05UxXBjoILW+YiSEyjpoi7aEGhbTicdqAZOpdZ5LIVNW
+         comnTy/N8K716rRf54H5W8PjG5gZYs0TuOgDq0uHR0T9zN0D5Fi8HZIPIRRjkMMgxINC
+         Z/Pw==
+X-Gm-Message-State: ANoB5pkDdNdHqB6zisSntg8xfAWrjT2nHppRbwhb8yEJOn8ussdklc4N
+        WKzzOH9uOpTtVqamiX+apNI8og==
+X-Google-Smtp-Source: AA0mqf6VE44fM8ZN+/MCjrsKz/vmsa3nEc9iyrgxnJbdY7NRiouCGIfiNOXJtaStWUulWRyZ3CGHBQ==
+X-Received: by 2002:a17:90a:9908:b0:213:b6c7:53e1 with SMTP id b8-20020a17090a990800b00213b6c753e1mr64739389pjp.35.1669693487748;
+        Mon, 28 Nov 2022 19:44:47 -0800 (PST)
+Received: from [192.168.1.33] ([192.183.212.197])
+        by smtp.googlemail.com with ESMTPSA id b194-20020a621bcb000000b00574898527c8sm8781165pfb.74.2022.11.28.19.44.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 19:44:47 -0800 (PST)
+Message-ID: <08abea27-a751-d861-c526-80b41dd72ff2@schmorgal.com>
+Date:   Mon, 28 Nov 2022 19:44:46 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxPuCGf4VjjecdAA--.10584S5
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4DJw1xAFWruF1xKrg_yoW5tr1DpF
-        sxCr95JrWIyF13uFsxKFyIywn5Za4xAFWDAw42ka42yr90gw15XF1xKa4UZ39xXr17Za9F
-        vFyS9r4UCa1Uuw7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr
-        1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2
-        Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj
-        6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-        0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxUwD7aUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221128024407.224393-1-doug@schmorgal.com>
+ <20221128024407.224393-9-doug@schmorgal.com>
+ <263b5e29-f0b4-27b4-a753-592153edc3c3@linaro.org>
+From:   Doug Brown <doug@schmorgal.com>
+Subject: Re: [PATCH 8/8] dt-bindings: mmc: sdhci-pxa: add pxav1
+In-Reply-To: <263b5e29-f0b4-27b4-a753-592153edc3c3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 clock binding with DT schema format using
-json-schema.
+Hi Krzysztof and Rob,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v10:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v9:
-		1. Add all history changlog information.
-Change in v8:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v7:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v6:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v5:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v4:
-		1. NO change, but other patch in this series of patches has
-		   changes.
-Change in v3:
-		1. Drop redundant (last) binding from the title.
-		2. Drop "- |" between ref_100m node and clk node.
-Change in v2:
-		1. Drop "Binding" string in the title.
-		2. Drop entire allOf and move the contents to top level.
-		3. Change string "refclk_100m" to "ref_100m". 
+On 11/28/2022 12:58 AM, Krzysztof Kozlowski wrote:
 
- .../bindings/clock/loongson,ls2k-clk.yaml     | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+> No need for minItems.
+> 
+> Start with capital letter if this is a sentence with full stop. It's
+> anyway looking different then the rest of the file, right?
+> 
+> Why maxItems: 1? What if one wants to add here more entries? Drop maxItems.
+> 
+> Ditto
 
-diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-new file mode 100644
-index 000000000000..63a59015987e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/loongson,ls2k-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC Clock Control Module
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson-2 SoC clock control module is an integrated clock controller, which
-+  generates and supplies to all modules.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-clk
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: 100m ref
-+
-+  clock-names:
-+    items:
-+      - const: ref_100m
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The clock consumer should specify the desired clock by having the clock
-+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-+      for the full list of Loongson-2 SoC clock IDs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ref_100m: clock-ref-100m {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <100000000>;
-+        clock-output-names = "ref_100m";
-+    };
-+
-+    clk: clock-controller@1fe00480 {
-+        compatible = "loongson,ls2k-clk";
-+        reg = <0x1fe00480 0x58>;
-+        #clock-cells = <1>;
-+        clocks = <&ref_100m>;
-+        clock-names = "ref_100m";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 73fa56f1fd5d..0cdd1437c093 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12025,6 +12025,7 @@ LOONGSON-2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-clk@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
- F:	drivers/clk/clk-loongson2.c
- F:	include/dt-bindings/clock/loongson,ls2k-clk.h
- 
--- 
-2.31.1
+Thanks for the fast review. Will fix this all in V2 after I receive
+feedback on the other patches. I was trying to follow the pattern from
+another similar schema and didn't fully understand.
 
+On 11/28/2022 4:20 AM, Rob Herring wrote:
+
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13)
+Well this is embarrassing! I forgot to run dt_binding_check. Sorry about
+that.
+
+Doug
