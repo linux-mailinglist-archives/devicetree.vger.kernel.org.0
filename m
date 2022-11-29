@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DCC63C78B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:56:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E23C263C79B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233312AbiK2S4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 13:56:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S236087AbiK2S5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 13:57:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235854AbiK2Szi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:55:38 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB33E68C6E
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:55:11 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g12so23496669lfh.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:55:11 -0800 (PST)
+        with ESMTP id S236408AbiK2S4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:56:45 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054AA68C6B
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:56:20 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bp15so23412019lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:56:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7i7xLaLGc79LQhOkqoCltEFokPDR1NnWcxiPD8dqrqM=;
-        b=h6l+C6EGLfXNPNWLozZz3Kb1ThB5ZSqO8B7mBTY8eLoI+Tiq6wYTuBnkSPhLx5b1FI
-         NmVs1HcsE4wF/yIfs7uyZCvSJebD7nO/A/QPO2Lvn3nXu+Na+laCJ+AiYdBI4k0sFrxz
-         YJccbNprMQumAJvEjANCgCHmM1+MVHu5XSyoAJw32gA0Kcf2+xntjWsztj283SBfnEXD
-         6EOk4chqm57FoFvIOLKhFYwzHqvPk2woXiKU9y1vrGb2DtrFqqccEjVWiBNiAMEHPgBb
-         V5gYGwqupiSSh/PAOAi9tYVDWKU/EhvExUs5mRUDypUhCk4BLQkYDiaxe+eYUV+gCfVf
-         11WQ==
+        bh=PBCgjAiK04IrCUOE9G7u0BiUPXBGDsDlbQIwI9V4K7I=;
+        b=qvPNXvQ8mIOkgMit1jOXIEGp+9D6AyhCZwYFZW+vUm4D+mfdpwIJHQ0Y6BIaWRCm6a
+         4g6uT/PtBTkrPebCOI1di3aZc047awsFSg9En23R3hHcCA+zCSYjt1Ofy/lNUK/5ZFx/
+         oDe/AZCn3muCQ6e4qJbUnx0B+YqhVOAqwgpHWhAn6fgC3btduHb+4E+h49I8p0RGmMD0
+         2CNoDKW6GChvPUk4KGgu0uRhH5pRTDRcwZ4/6iGyFwCZo8Z2fV2NBiVhvRKByBl7y1nG
+         Osa8pDvV4M6je7VkWEnQmlIEc2VC0YdAhulURtbudk/qoarWBiOgHy/ArxuBiNPAI+Ml
+         PKgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7i7xLaLGc79LQhOkqoCltEFokPDR1NnWcxiPD8dqrqM=;
-        b=B+rjn362/7LjdDtsrkDgDDB1fEtCMsmt/5t8vT37aAD7Ed/dhsYr/kBY344F1cEEH8
-         ChvyAKcHVisCVZFIdnTFZ0wF/HYRs1ZlGU5LFeWKBMVMlJTeXsq4rZZyiKNwNcpgiPsI
-         r2N87y7j2sg3v9BsgPszh2UaAOFPivmqlcJDSOTuge1Yfxjen2Vk53l+9UyjK4Uq2l0E
-         5viTlwJ+CdE0umAIXgPQhV8cKjIRlTPTbLjJEUJ9zJznQZGgUiZsbc7GcfzdyHMc+B3H
-         szI4XiPDAbJL7oDrGONGpSsJdsGfpzK5QrLs3bppqxY9Vj0ZHhH66RCT45QPN21yIfhE
-         MyAw==
-X-Gm-Message-State: ANoB5plcXJ7gAjFsW/hqHqtF19mde5Cnxpdml+BZswGOJGv4Q8xJKd/C
-        alrIJQxpR8O75/oHpmAGgbmB1okISTr4ZiytbPyMY5E6j2U=
-X-Google-Smtp-Source: AA0mqf6Z/JK+9KigSFUS+aXUfMML/RKLi5QOLEzN/JEaOZjKN1mlBo67pp6CkV44w09gsepzyp2L+Dmmc8ew5dWreos=
-X-Received: by 2002:a05:6512:34d0:b0:4a8:ebec:7140 with SMTP id
- w16-20020a05651234d000b004a8ebec7140mr19548194lfr.150.1669748109731; Tue, 29
- Nov 2022 10:55:09 -0800 (PST)
+        bh=PBCgjAiK04IrCUOE9G7u0BiUPXBGDsDlbQIwI9V4K7I=;
+        b=j6xdlQUzirSmLm8SxwflQRwscxyQBSPoabYYLFxQSvXTXGviZZr3M/dduRS/q7SvoZ
+         xxnYaNJhoH9+s4zgLn/oOgaP7RtDNtshAZZbuzEKti1q1EZPcYUafn8Ne8CtJ49BzQed
+         j3T/9LOFv4oBunP5vRE4DSxkKFMouBPsqIrobFQcU+KW2VXBkXHbfq5CUy/OOsqoFUwi
+         Bq08HH6z1HCLYq3LAktF+j5n3D5bXh1jODIPXSPmGS2M4m1QhHWqwZl8Wy6cuABzQgaR
+         cxPU1XUE7F8XjkwX5l1BGaAOZ2BlbZWun3U+8bX1xJ3SW0lk2e8fVljy0nhkPZEtPpx3
+         GSpA==
+X-Gm-Message-State: ANoB5pl4gNP4FHKc/Lq0iG22+H7abDSNA5ie0J+qSsZwP1uaBxrsTEUW
+        c9kCTm5hGC53wbJfNAnto9vlrg+i5A961pe0AhsULg==
+X-Google-Smtp-Source: AA0mqf4kWEf92W8sf08ba2plrUdzCvVW44+8ePjCefWcLRT+llNZCInV7JsXkcg6KhMH8q7tS/tQWafeweU02OnrVEw=
+X-Received: by 2002:a19:7b1c:0:b0:4a2:701c:f252 with SMTP id
+ w28-20020a197b1c000000b004a2701cf252mr18758852lfc.125.1669748178063; Tue, 29
+ Nov 2022 10:56:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20221128171215.1768745-1-bhupesh.sharma@linaro.org> <65c9cd0a-ef4e-5d38-3b15-0126b1eb7a7f@linaro.org>
-In-Reply-To: <65c9cd0a-ef4e-5d38-3b15-0126b1eb7a7f@linaro.org>
+References: <20221127195418.1506876-1-bhupesh.sharma@linaro.org>
+ <20221127195418.1506876-2-bhupesh.sharma@linaro.org> <d294edf4-9df3-5958-5a12-0f93bc74f28f@linaro.org>
+In-Reply-To: <d294edf4-9df3-5958-5a12-0f93bc74f28f@linaro.org>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 30 Nov 2022 00:24:58 +0530
-Message-ID: <CAH=2Ntw-U1sLgbVxab7zAkFRHCnew6kYzLqqrqeUMtJJR8TmrQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Add geni debug uart node for qup0
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, me@iskren.info,
-        Bjorn Andersson <andersson@kernel.org>
+Date:   Wed, 30 Nov 2022 00:26:06 +0530
+Message-ID: <CAH=2Ntwc7TvXZf8MLCwmkzzbnmPayKfdcX2dFZL_r2Q9vGmX5A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: qcom: Add SM4250 APCS compatible
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     jassisinghbrar@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -69,58 +72,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Nov 2022 at 19:00, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On Mon, 28 Nov 2022 at 14:10, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
->
->
-> On 28.11.2022 18:12, Bhupesh Sharma wrote:
-> > qup0 on sm6115 / sm4250 has 6 SEs, with SE4 as debug uart.
-> > Add the debug uart node in sm6115 dtsi file.
+> On 27/11/2022 20:54, Bhupesh Sharma wrote:
+> > Add compatible for the Qualcomm SM4250 APCS block.
 > >
 > > Cc: Bjorn Andersson <andersson@kernel.org>
 > > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> > - Based on linux-next.
-> >
-> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 20 ++++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > index 0340ed21be05..e4a2440ce544 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-> > @@ -649,6 +649,26 @@ ufs_mem_phy_lanes: phy@4807400 {
-> >                       };
-> >               };
-> >
-> > +             qupv3_id_0: geniqup@4ac0000 {
-> > +                     compatible = "qcom,geni-se-qup";
-> > +                     reg = <0x4ac0000 0x2000>;
-> Please pad address to 8 hex digits, same below.
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>
+> There is no need to store the regular CC list (coming from automated
+> output - get_maintainer.pl) in the Git history. Store it under ---.
 
-Sure, I will fix it in v2.
+Got it. Will keep in mind for future patches.
+Thanks for the review.
 
-Thanks,
+Regards,
 Bhupesh
 
-> > +                     clock-names = "m-ahb", "s-ahb";
-> > +                     clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
-> > +                              <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <1>;
-> > +                     ranges;
-> > +
-> > +                     uart4: serial@4a90000 {
-> > +                             compatible = "qcom,geni-debug-uart";
-> > +                             reg = <0x4a90000 0x4000>;
-> > +                             clock-names = "se";
-> > +                             clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-> > +                             interrupts = <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             status = "disabled";
-> > +                     };
-> > +             };
-> > +
-> >               usb_1: usb@4ef8800 {
-> >                       compatible = "qcom,sm6115-dwc3", "qcom,dwc3";
-> >                       reg = <0x04ef8800 0x400>;
+> > Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Best regards,
+> Krzysztof
+>
