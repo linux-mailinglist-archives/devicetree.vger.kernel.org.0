@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F8D63CAB9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 22:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E8E63CB01
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 23:24:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236332AbiK2V4s convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Nov 2022 16:56:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38402 "EHLO
+        id S236132AbiK2WYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 17:24:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236259AbiK2V4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 16:56:47 -0500
-Received: from correos.bolipuertos.gob.ve.bolipuertos.gob.ve (correo.bolipuertos.gob.ve [190.202.28.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4161A6C733;
-        Tue, 29 Nov 2022 13:56:46 -0800 (PST)
-Received: from correo.bolipuertos.gob.ve ([10.50.23.160])
-        by correos.bolipuertos.gob.ve.bolipuertos.gob.ve  with ESMTP id 2ATLsW0d005433-2ATLsW0f005433
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Tue, 29 Nov 2022 17:54:32 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by correo.bolipuertos.gob.ve (Postfix) with ESMTP id DFE40AC1C07;
-        Tue, 29 Nov 2022 17:54:32 -0400 (-04)
-Received: from correo.bolipuertos.gob.ve ([127.0.0.1])
-        by localhost (correo.bolipuertos.gob.ve [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id BaP1bCQ1VLdQ; Tue, 29 Nov 2022 17:54:32 -0400 (-04)
-Received: from localhost (localhost [127.0.0.1])
-        by correo.bolipuertos.gob.ve (Postfix) with ESMTP id A7A48AC280E;
-        Tue, 29 Nov 2022 17:54:32 -0400 (-04)
-X-Virus-Scanned: amavisd-new at bolipuertos.gob.ve
-Received: from correo.bolipuertos.gob.ve ([127.0.0.1])
-        by localhost (correo.bolipuertos.gob.ve [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id UarZmg97qjkT; Tue, 29 Nov 2022 17:54:32 -0400 (-04)
-Received: from [103.125.190.179] (unknown [103.125.190.179])
-        by correo.bolipuertos.gob.ve (Postfix) with ESMTPSA id 90DE6AC1C07;
-        Tue, 29 Nov 2022 17:54:26 -0400 (-04)
-Content-Type: text/plain; charset="iso-8859-1"
+        with ESMTP id S235889AbiK2WYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 17:24:10 -0500
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF986CA1A
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 14:24:09 -0800 (PST)
+Received: by mail-vs1-xe2d.google.com with SMTP id i2so15510417vsc.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 14:24:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nrFwTN9BiLta33FPLi07/p55YMkunEvw0W6UmazSgw8=;
+        b=BlCjgvxAXRfz2cB0ZnD1GJamzbgE2qhLaJ5cZjEyxc5ARqTULxWlMjD3n5MSgrx4FX
+         uOr5bdaz1wOWTpigoXW59uw1v0ROySPkSvoELsCBGz7SpnL44tLEhE7DKRfKy5nbdiEK
+         GX0UM2pvRatjgUJICrmq3tvGDdUTikCQjSLmAfKA+THtBnCKZeDl2TKJwjYLuXJxSrcN
+         +jS0fhR9f1r6yvAIXUcV0hLecp/1ZNpIPOh6CcoWQPm3rhQ5XNsXoShCsnRCftmIvo8Z
+         NfQs45Er4xK/D3mgRrui4x4Kj4pHFP7h5J5rsP4xxaKSBsrLV9QwxFMb4iRyCFAawA+8
+         7WPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nrFwTN9BiLta33FPLi07/p55YMkunEvw0W6UmazSgw8=;
+        b=yV1Vm6iEzAykONOdVawv2sFTf7GfDM8ymeRGouXCZitJi/37KaRTomxN35izu2lkEe
+         eF6L5KYUZ9t1QPv/ez0RsqvSNr1UH+i1cn7+xNKb8k5wc8ndjMMdTZq5OCSwHgXXBQeJ
+         4k84PlWZfGFMv3AgQl5mKKFh1NJ4kX4YASn6O40O0PYThaTWulByTTywmxcbPKHkSjUo
+         SSiD0pUaPo4VORv2G+UDajBNVQlXVOV7FQz50Qwwup3wGC5iR57krW2c0oOPGZpWE20A
+         sPWZ+8fwtNqSZ1vEJiXB793a8GSgaR+KwCxuwCrz8BPz75IUsgC/4sdlMXgnAe2ZaES7
+         KEiw==
+X-Gm-Message-State: ANoB5pkXv0XXezkm8GInrjUbDLKPhKxemGEXlaeC9aCCMXGzMRIg+kom
+        RJFfMl6/2lLTm1ex8nNLtVQlgFxGDDFPL41X9c36hO7fXUA=
+X-Google-Smtp-Source: AA0mqf7HfGTAHXCCT13SHUgSIuXmRCuGItUx/SW5De9fMEX0/RkE5pGZaLfxAyhdepZrLJnH6SM2sMoSQ8E2NEavvi4=
+X-Received: by 2002:a67:fe52:0:b0:3ad:c930:b9bb with SMTP id
+ m18-20020a67fe52000000b003adc930b9bbmr24553815vsr.10.1669760648641; Tue, 29
+ Nov 2022 14:24:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Strategic plan on(ROI)
-To:     Recipients <cindy@cgracephoto.com>
-From:   "Mr.IgorS. Lvovich" <cindy@cgracephoto.com>
-Date:   Tue, 29 Nov 2022 13:54:20 -0800
-Reply-To: richad.tang@yahoo.com.hk
-Message-Id: <20221129215426.90DE6AC1C07@correo.bolipuertos.gob.ve>
-X-FE-Last-Public-Client-IP: 103.125.190.179
-X-FE-Policy-ID: 1:1:2:SYSTEM
-X-Spam-Status: Yes, score=6.7 required=5.0 tests=BAYES_50,
-        FREEMAIL_FORGED_REPLYTO,HK_NAME_MR_MRS,KHOP_HELO_FCRDNS,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_H2,RCVD_IN_SBL,
-        RCVD_IN_VALIDITY_RPBL,SPF_FAIL,SPF_HELO_NONE,TO_EQ_FM_DOM_SPF_FAIL,
-        TO_EQ_FM_SPF_FAIL autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: *  1.3 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
-        *      bl.spamcop.net
-        *      [Blocked - see <https://www.spamcop.net/bl.shtml?103.125.190.179>]
-        *  0.1 RCVD_IN_SBL RBL: Received via a relay in Spamhaus SBL
-        *      [103.125.190.179 listed in zen.spamhaus.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
-        *      https://senderscore.org/blocklistlookup/
-        *      [190.202.28.106 listed in bl.score.senderscore.com]
-        *  0.0 SPF_FAIL SPF: sender does not match SPF record (fail)
-        *      [SPF failed: Please see http://www.openspf.org/Why?s=mfrom;id=cindy%40cgracephoto.com;ip=190.202.28.106;r=lindbergh.monkeyblade.net]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
-        *      [190.202.28.106 listed in wl.mailspike.net]
-        *  1.0 HK_NAME_MR_MRS No description available.
-        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-        *  0.0 TO_EQ_FM_SPF_FAIL To == From and external SPF failed
-        *  0.0 TO_EQ_FM_DOM_SPF_FAIL To domain == From domain and external SPF
-        *       failed
-        *  0.0 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
-X-Spam-Level: ******
+References: <20220929080210.3189925-1-paweldembicki@gmail.com>
+In-Reply-To: <20220929080210.3189925-1-paweldembicki@gmail.com>
+From:   =?UTF-8?Q?Pawe=C5=82_Dembicki?= <paweldembicki@gmail.com>
+Date:   Tue, 29 Nov 2022 23:23:57 +0100
+Message-ID: <CAJN1KkzR7NR8TguS7uDs6peDOpkFn0duVBqvKKzm3xnMs9iJ7A@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: kirkwood: Add drivetemp thermal zone in Ctera C200V1
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
-I will like to use the liberty of this medium to inform you as a consultant,that my principal is interested in investing his bond/funds as a silent business partner in your company.Taking into proper
-consideration the Return on Investment(ROI) based on a ten (10) year strategic plan.
-I shall give you details when you reply.
+czw., 29 wrz 2022 o 10:02 Pawel Dembicki <paweldembicki@gmail.com> napisa=
+=C5=82(a):
+>
+> Ctera C200 V1 have two SATA bays, but thermal zone is handled for only on=
+e.
+> For some reason thermal zone works only with first disk.
+> It was reported one year ago [1].
+>
+> [1] https://www.mail-archive.com/openwrt-devel@lists.openwrt.org/msg56599=
+.html
+>
+> Suggested-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-Regards,
-Igor Lvovich
+Hi all,
+
+Gentle reminder for this patch. Is something blocking it?
+
+Best Regards,
+Pawe=C5=82 Dembicki
