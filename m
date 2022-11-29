@@ -2,112 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 765B563C057
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:53:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F50963C05B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:54:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbiK2MxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 07:53:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40676 "EHLO
+        id S234639AbiK2Mya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 07:54:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234622AbiK2MxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:53:16 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8069ACE35;
-        Tue, 29 Nov 2022 04:53:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669726395; x=1701262395;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=4TIcraaCxf/dMYd1sdlaTzEiJLlznhpgFTgyakz4LBY=;
-  b=FjdccjaDWoEKM+s63Ts/JlMlIlbgWny8we3oQ9a01Ksb/AWKxJjbkvmc
-   hWFQA2Dfqt3Ggd3NBJEIe2uW96Gmry7deCqLZR2OiOwCra27YQkx0T1Dm
-   Rm0452OyddNXp2++HcWEiBXPngvLCDTUbdUKhA5FjNQl03FL555eDlKcI
-   EYW2T1SriLSRf1J12xYe+w+8dr1xhbOKhr3T5JjBR0GslFOE8c9wavK8l
-   gZ+rWy2eL0AXmM4MGZfiE5lnLTZn9r2xwx2B2VYg53RuD0cmlOs7l+g5e
-   RHstbEPmraxHkUZXVV23iZlPSKkLhq+ftU4F0GQq71B7Q9WC5g3LhkYi1
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="401389048"
-X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
-   d="scan'208";a="401389048"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2022 04:53:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="637581976"
-X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
-   d="scan'208";a="637581976"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga007.jf.intel.com with ESMTP; 29 Nov 2022 04:53:11 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1p006n-001hw1-2a;
-        Tue, 29 Nov 2022 14:53:09 +0200
-Date:   Tue, 29 Nov 2022 14:53:09 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V3 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y4YAtWgQieDJV1bG@smile.fi.intel.com>
-References: <cover.1669359515.git.zhoubinbin@loongson.cn>
- <822356908305580d601e5b3e424371ed7f220b85.1669359515.git.zhoubinbin@loongson.cn>
- <Y4Cb19PM97M9HaiB@smile.fi.intel.com>
- <8b0e2e61-2e54-127e-7cb8-9e1068dbc390@loongson.cn>
- <Y4S2cnlAm3YYvZ8E@smile.fi.intel.com>
- <ada74168-4aef-b73e-ec47-437dfcdcea77@loongson.cn>
+        with ESMTP id S234673AbiK2My2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:54:28 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AF23056C;
+        Tue, 29 Nov 2022 04:54:27 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ATBgYh2029555;
+        Tue, 29 Nov 2022 12:54:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=Ms/u7f3WQsulzis1Sc71w6uYczIWKQc2HIWrZ+b7vy8=;
+ b=RqhnBuQuBnK8rcXP+/PAXyhMRH9l31fxH1tdoTaH6t54EsA55RmOmZWVFQ5UEv872GS/
+ LwJfmJOvC3GB7jHIf2ajNPxcSrWrpI6SnavWGcM7lX+gPZEkzMzujyZ2ulBvV+Wl6Res
+ PvrLqk7RLcFISuG3/BYA9qID1XSJD/mI/8JJQ4uK1sWVuHEFJkiZleJeVkcW4wZMHLj/
+ mk5eh32XBBnOw2T47j8ddaNHQXwBbi2jYtJqiuNJfVdH3XY9JermnIkB1ziw4UfylLke
+ fe0Z90pOtbivJ84hLBhVujlTPW13Og5HR7G+AenR1m4QRamOo71l01ou91x/rk9l1P2s rA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m56c69rth-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Nov 2022 12:54:08 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2ATCs7TX018211
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Nov 2022 12:54:07 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Tue, 29 Nov 2022 04:54:02 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] ASoC: qcom: lpass-sc7180: Add maybe_unused tag for system PM ops
+Date:   Tue, 29 Nov 2022 18:23:48 +0530
+Message-ID: <1669726428-3140-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ada74168-4aef-b73e-ec47-437dfcdcea77@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FrlZGPdlHW4pFRva2WCsKjdQ4BRhaDhe
+X-Proofpoint-GUID: FrlZGPdlHW4pFRva2WCsKjdQ4BRhaDhe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-29_08,2022-11-29_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxscore=0 phishscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 mlxlogscore=804 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211290075
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 07:34:58PM +0800, Binbin Zhou wrote:
-> 在 2022/11/28 21:24, Andy Shevchenko 写道:
-> > On Mon, Nov 28, 2022 at 08:03:40PM +0800, Binbin Zhou wrote:
-> > > 在 2022/11/25 18:41, Andy Shevchenko 写道:
-> > > > On Fri, Nov 25, 2022 at 04:55:20PM +0800, Binbin Zhou wrote:
+Add __maybe_unused tag for system PM ops suspend and resume.
+This is required to fix allmodconfig compilation issue.
+Fixes: c3bf7699747c ("ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops")
 
-...
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+---
+ sound/soc/qcom/lpass-sc7180.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> > > > > +static int ls2x_i2c_start(struct i2c_adapter *adap, struct i2c_msg *msgs)
-> > > > > +{
-> > > > > +	struct ls2x_i2c_dev *dev = i2c_get_adapdata(adap);
-> > > > > +	unsigned char addr = i2c_8bit_addr_from_msg(msgs);
-> > > > > +
-> > > > > +	reinit_completion(&dev->cmd_complete);
-> > > > > +	addr |= (msgs->flags & I2C_M_RD) ? 1 : 0;
-> > > > Why is this needed?
-> > > In the ls2x I2C controller, the bit 0 of TXR indicates the read/write status
-> > > when transferring the address.
-> > Yes, I understand this. I don't understand why do you need this twice.
-> 
-> Are you saying that the "is_read" variable in ls2x_i2c_xfer_one() already
-> indicates the read/write state of data transfer?
-> 
-> I just didn't think it was necessary to take "is_read" as an argument to
-> ls2x_i2c_start() at the time, since we could get it from "msg".
-
-Have you checked what i2c_8bit_addr_from_msg() is doing?
-
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index b96b85a..41db661 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -163,14 +163,14 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
+-static int sc7180_lpass_dev_resume(struct device *dev)
++static int __maybe_unused sc7180_lpass_dev_resume(struct device *dev)
+ {
+ 	struct lpass_data *drvdata = dev_get_drvdata(dev);
+ 
+ 	return clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
+ }
+ 
+-static int sc7180_lpass_dev_suspend(struct device *dev)
++static int __maybe_unused sc7180_lpass_dev_suspend(struct device *dev)
+ {
+ 	struct lpass_data *drvdata = dev_get_drvdata(dev);
+ 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.7.4
 
