@@ -2,122 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E01463C49C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 880C663C4A2
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:06:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236156AbiK2QFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 11:05:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34512 "EHLO
+        id S235646AbiK2QGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 11:06:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236096AbiK2QEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:04:48 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4112569DD2
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:03:12 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id e7-20020a17090a77c700b00216928a3917so17776671pjs.4
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:03:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TsITLE+ecJEDs+fMIMyIS1u642edYlb6N5jZ2J6E0Xo=;
-        b=TT1ct+yusnHIyzhkoGHfVrA9karnrHsnV1WS8EgPmRgEtX+Z86/pIOh3aB1zaLkp7K
-         yB9ACqAGtXjMoqh0bY6bnp8b/EW6SqH0JMdp6jP53dRaIISsl2gC2UiP6aK0jeSoRD28
-         RQBSugLJi5kCDcNCXliErgSVSpCQCe0uwK+bpeX3jqBpHVjGM8787D1Pw6Zjn8jA3KnX
-         lJwhqP4PfEFyOp6oVcydwocCb3vdtZryN7HFDMR86iYvJNVKCwvik75rAlZIPkuGSBVy
-         1By2UgB5UrTJpY7bh84t3Syoe7HQ0ydX7DRWiUSOPax06utzIA1B+CluVBWrY5i+S/cu
-         Am6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TsITLE+ecJEDs+fMIMyIS1u642edYlb6N5jZ2J6E0Xo=;
-        b=k51gCfb+QRyg/tzF6Hg5yV51rG3xmdUj5GOGmQZ8tAo6lBICW1NEujS2NOsDhU33/A
-         X/rOeTqFAFpc3SZk37MtFY7edSKpiz8XrUGAiWRF7vQNCoDprExWM+YHqLjTj/i/8PGG
-         N+z8fvB32wqzzvVqSiP92dJzz3sy/XB7QFGwC3Ce0HGUvX4+b+kmqO9ECEcz1r4/Kg6u
-         SPH5nU5QQIWAlhzwx7/qWjJKZRa0ON0jUoONbRrZbOGil2XsokOPg8k3BOOCM76brPrl
-         VsF5Lt/g2583sWZnQPKHbvQKje+lbBosOsWwRZbqdMWLyYAi1trzpXr2EipcJ+E9VJP7
-         oYaQ==
-X-Gm-Message-State: ANoB5pmAEbaHW9iYFBTmuppp9QNUH+QJVmYXwHfx0QLhsq3TZNS7c19m
-        mW+MUFY6jq+ztOXbCkUZMy0duQ==
-X-Google-Smtp-Source: AA0mqf4dNkeQ6AsDEfu9i04EvW/zAcxwq8dWCioxe1co0/ItsfGe96PZlSLREYLF1wdvQR1DoqHYbg==
-X-Received: by 2002:a17:90a:d681:b0:213:d08f:a455 with SMTP id x1-20020a17090ad68100b00213d08fa455mr67354403pju.130.1669737792151;
-        Tue, 29 Nov 2022 08:03:12 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id e7-20020a170902b78700b001782a6fbcacsm11056862pls.101.2022.11.29.08.03.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 08:03:11 -0800 (PST)
-Message-ID: <120f9acb-ed28-52cc-2ca0-f434a6cf4afa@9elements.com>
-Date:   Tue, 29 Nov 2022 21:33:08 +0530
+        with ESMTP id S236016AbiK2QF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:05:56 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B3349083;
+        Tue, 29 Nov 2022 08:05:15 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id C18E941E2F;
+        Tue, 29 Nov 2022 16:05:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1669737913; bh=+fXKO7nYcSqOfbCc7xjBkYcmUHsZizo/Xgv/Sfz9gTw=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To;
+        b=GrWvkywUFBvAgljJBeOX4iz7MQrnlt0WVX65RzvluTRP9Xa76AYt5fmpnq2Bp0bRY
+         MuRmcFkbcowdxv8K7Kto28HLhHC0PmolIlHNeW5oQR52p8mXDevBcO817IfqGna5H5
+         hOlyKN+wxbQZzyB+izJSSyzyy7zL1pEApAlewsPZXSbySy307bnGlxfpaNTB6NjUcS
+         a6ORitLsMZD1Bj7u3Xo7bPoGw0Z9VvrYBIx1IYuIOhZveoH9YUqWywMZb8RtkFzBIE
+         GwYKNCyDM72J6J6X9/bN+VvJaO1xFuVI7nwwWJoyaQr5quw0s5jaKtVJp347C7Q0GM
+         4n/KUI9pzc1Dg==
+Message-ID: <ff4273fe-e57f-8ce0-be60-b6b05386ffb4@marcan.st>
+Date:   Wed, 30 Nov 2022 01:05:01 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v7 1/4] dt-bindings: hwmon: fan: Add fan binding to schema
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221121122932.2493174-1-Naresh.Solanki@9elements.com>
- <20221121122932.2493174-2-Naresh.Solanki@9elements.com>
- <c35917d1-dfbd-f7d9-5c94-a9f0ee3b7ed8@linaro.org>
- <2487f032-1261-be6e-2e2a-38ca0af7c83c@9elements.com>
- <a5e9ecca-b17e-3045-db37-e109ecca3235@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <a5e9ecca-b17e-3045-db37-e109ecca3235@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+References: <20221128142912.16022-1-marcan@marcan.st>
+ <20221128142912.16022-3-marcan@marcan.st>
+ <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com>
+ <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
+ <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
+ <e8c481ba-02a7-f1c7-6314-ea1ddf136998@marcan.st>
+ <4c6b5d55-f6a0-f042-ef10-e282e153a358@linaro.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
+In-Reply-To: <4c6b5d55-f6a0-f042-ef10-e282e153a358@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/11/2022 00.46, Krzysztof Kozlowski wrote:
+> On 29/11/2022 16:17, Hector Martin wrote:
+>> When it takes 10 times more man-hours to upstream a driver than to
+>> reverse engineer and write it with zero documentation, never mind the
+>> calendar time it takes, something is very wrong. 
+> 
+> Yes, that's a point. Yet we (community) still have another goal here
+> than the pure goal of submitter. The submitter wants its stuff upstream.
+> Therefore this upstreaming effort is for submitter a bit wasted (as I
+> agree that reverse-engineering should be the biggest task).
+> 
+> However the community (expressed maybe mostly as maintainers) wants
+> something which will be maintainable and usable also for others, not
+> only for patch submitters.
+> 
+> Indeed maybe 10x difference between writing code and upstreaming is
+> something to improve, but please do not forget that the concept is here
+> to be able to manage this big codebase.
 
+You're misunderstanding me here. The problem isn't the goal of keeping
+things maintainable. The problem is that the process involved makes the
+entire experience take much, much longer than it should. A more
+efficient process could maintain the same (actual) code quality with a
+lot less time wasted for everyone, both in process issues and in
+bikeshedding details that don't actually increase code quality.
 
-On 29-11-2022 09:27 pm, Krzysztof Kozlowski wrote:
-> On 29/11/2022 16:46, Naresh Solanki wrote:
->> Hi Krzysztof,
+>> I actively dread
+>> submitting new drivers to new subsystems or some existing ones now. How
+>> much pain will the next one be? Will I be asked to move files around 3
+>> times? Spend 4 rounds bikeshedding the DT schema? Think it's finally
+>> ready only for someone to show up and ask to change a major part of the
+>> design at the last minute?
 >>
->> On 29-11-2022 01:42 pm, Krzysztof Kozlowski wrote:
->>> On 21/11/2022 13:29, Naresh Solanki wrote:
->>>
->>>> +  pulses-per-revolution:
->>>> +    description:
->>>> +      The number of pulse from fan sensor per revolution.
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +
->>>> +  target-rpm:
->>>> +    description:
->>>> +      Target RPM the fan should be configured during driver probe.
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +
->>>> +  pwms:
->>>> +    description:
->>>> +      PWM provider.
->>>
->>> Ah, so it is not a PWM provider by this FAN controller? A bit confusing
->>> description. Instead maybe:
->>> 	PWM signal for the fan
->> Sure.
->>>
->>> and do you expect more than one PWM for one fan?
->> One pwm per fan
+>> And this all when we're actually submitting code of decent quality (I
+>> think I have enough experience not to submit crap most of the time). Now
+>> imagine how much worse this all is for a newbie who submits a
+>> well-intentioned but definitely not up to standard patch. There's a huge
+>> chance they'll give up before ever getting the submission through.
 > 
-> then:
->    maxItems: 1
-> 
-Sure
-> Best regards,
-> Krzysztof
-> 
-Regards,
-Naresh
+> You say this like any newbie should be able to send a patch and get it
+> accepted right away, regardless of actually what is in that patch (not
+> up to standard). It's not newbie's right. No one said it's easy and fast
+> process... If you want easy and fast, do JavaScript... If you want to
+> make it easier and faster in the kernel, then we need more reviewers and
+> maintainers. Somehow many, many people want to send patches, but not
+> that many want to review them.
+
+Again, I'm not saying the bad code should go in. I'm saying the
+*process* is so frustrating that most newbies will give up before the
+code has a chance to evolve from bad to good and go in. The solution
+isn't to let more bad code in, it's to make the process less painful.
+
+And yes, some of it does mean either relaxing style rules or just
+adopting a formatter, because let's face it: complaints that a line is
+81 characters instead of 80 don't *actually* increase code quality to
+any measurable extent, they just waste everyone's time, and if that
+level of style pickiness is desired, that's what formatters are for.
+
+I have personal experience with this with the Asahi Linux bootloader
+(m1n1). We use a formatter for C; the CI tells people when they have to
+run `make format` to fix their style and that solves all our C
+formatting issues (incidentally, we also have a CI bot to check for
+S-o-b lines - very handy). We don't use a formatter for Python, and as a
+result, I don't impose overly strict rules on things like exactly how
+many lines of whitespace should exist between functions or exactly how
+expression continuations should be indented or what the maximum line
+length is (within reason), because code doesn't have to look like it was
+written by a homogeneous robot to still be completely understandable and
+readable to humans using modern editing tools, and trying to teach every
+contributor my own personal style (which isn't even 100% consistent, I'm
+not a robot either!) would be a waste of my and their time. Most
+contributors are capable of defaulting to a readable coding style
+similar to the rest of the code around it, and it's rare I have to tell
+someone to fix the formatting because something is clearly wrong (like
+blatantly inconsistent block indentation).
+
+- Hector
