@@ -2,142 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C04BF63C541
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F087563C54C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235987AbiK2Qf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 11:35:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33270 "EHLO
+        id S235767AbiK2QiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 11:38:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235553AbiK2Qf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:35:56 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5B765E53
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:35:55 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id u27so11885325lfc.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:35:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DozG8slifYUbIeG4p5hbkPUxWwGRFcCdA+vVxiWXmfs=;
-        b=I9CBZQoGxjED9f6Xxs7R1Rh6NnUMmuWqQXJdRRmpJ19Mz89DIjvjAoIuZf7K9iWSBb
-         BiuLtCwS1l8gbw3kmoN3yBnAy0UNEWGDVWoL2sM0tJjSRAYvll5qomZ569ewA9ysgSxU
-         JzfdKhZGEjom0GwBUbMn2PSvs3xj6oK1LcdbY+Tk/SBTR5WTvgMJBNv2HG66Cws6pPO9
-         Sia8hauW5d44/JN0lbQF8CYJlynN0e2tJ0r9jPqXIbic6wHazU6w0R3BFFReizNVGZHf
-         3nghfdGrmHKOK8Kcx91mFYj0lzTVx4zPIFCmuqQfPRQHqdG09bfrB8NBJpuESEprcOvX
-         cnnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DozG8slifYUbIeG4p5hbkPUxWwGRFcCdA+vVxiWXmfs=;
-        b=qT2n2wkGF9gV/cMQFTalHIizcV8EAo5JDAjyoeM5p/BsnYJhca+QTjHk9jtDZOb5W1
-         n5rRFBxIkm5EpKIZmWwXhu0uKzKmsReivnhAJkSMuaRFeQu6pxzTtcvF6R9X8POV+D1X
-         Ma+wKv0ZfDj9Vsv3c+5BGtN5w2lBgZ0ZXlnhsRnyM5ETNXdNmRGYgJho88EsNoM1PicW
-         8I3Y0kkVbEJPk2yskb5FZd5dEBIxKhoP6zb41b+9mT7Fo+OU9y5jOzi5RLuPersa/ixN
-         bP8LPbCvZ9XBqUdsa9+U47gZ/cmQc6Jc7TQpdzMF3sXrIOivtlKweP3YtEQOiZdxRH8s
-         tayQ==
-X-Gm-Message-State: ANoB5pmg/AmIaO6jI8M/SygW1uQJzfDHxV+K1ZnoYdt2zNl9SeQyO0ep
-        p9UMy2j+w5p0aIbq6utbSJlWTA==
-X-Google-Smtp-Source: AA0mqf6nIP2Y/A3+PfTGlbmjvNTL2zsWVEGp5bBox8UJh3b4flIMVZs/UJDXUOiNFTamoISUgQ+TEQ==
-X-Received: by 2002:ac2:4346:0:b0:4b4:a5c8:cc0f with SMTP id o6-20020ac24346000000b004b4a5c8cc0fmr21241693lfl.138.1669739753191;
-        Tue, 29 Nov 2022 08:35:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a26-20020a056512201a00b0049496608d58sm2240486lfb.155.2022.11.29.08.35.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 08:35:52 -0800 (PST)
-Message-ID: <bc230481-1c31-6121-6647-8e2b4b80512e@linaro.org>
-Date:   Tue, 29 Nov 2022 17:35:51 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: interconnect: Add Qualcomm SM8550
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S234622AbiK2QiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:38:19 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D286F57B5B;
+        Tue, 29 Nov 2022 08:38:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669739898; x=1701275898;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Pl0aGdARfvWS523S5l0UgKlIzt2EKDvOzbaOvuIoHjk=;
+  b=dnFAzfJMRmUqrPiaHGaQTOgVFugc8VWDDlbFsaHJVzKjT9sTO0WCJ7Uk
+   bZXRmpSpXpPCaJx3iu/4BJgz7npvTYvV6SEQ8YmI5ey+qjmxHYKshAXu4
+   I4HsIlTu7Byoa5TVLj6rJT0AMGbULZhH9dqGcMRyVU17Uy/9Z53S5O4cN
+   iPOOKObPBge5xdVJfBV1BLUfpAuT3yJZQgNc+YZ+ExiORWSOxQZgJ5Bg1
+   x9F4X8zpr461Gqz2kiPvCyB7qYUzkrI6XPOiJQwJwa13i2u8xyUcrrxJH
+   UhJeSvYJKZnG41/9B//zYTR579jAwNTSH16hJpYeLgnldvRmBxqB0P+nX
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="315190281"
+X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
+   d="scan'208";a="315190281"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2022 08:37:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="768486521"
+X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
+   d="scan'208";a="768486521"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga004.jf.intel.com with ESMTP; 29 Nov 2022 08:37:44 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p03c6-001muh-15;
+        Tue, 29 Nov 2022 18:37:42 +0200
+Date:   Tue, 29 Nov 2022 18:37:42 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20221129131203.2197959-1-abel.vesa@linaro.org>
- <20221129131203.2197959-2-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221129131203.2197959-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v4 3/3] iio: magnetometer: add ti tmag5273 driver
+Message-ID: <Y4Y1VqvYS0XsWi1r@smile.fi.intel.com>
+References: <20221129064540.3218982-1-gerald.loacker@wolfvision.net>
+ <20221129064540.3218982-4-gerald.loacker@wolfvision.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221129064540.3218982-4-gerald.loacker@wolfvision.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 14:12, Abel Vesa wrote:
-> The Qualcomm SM8550 SoC has several bus fabrics that could be
-> controlled and tuned dynamically according to the bandwidth demand.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
+On Tue, Nov 29, 2022 at 07:45:40AM +0100, Gerald Loacker wrote:
+> Add support for TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor.
+> Additionally to temperature and magnetic X, Y and Z-axes the angle and
+> magnitude are reported.
+> The sensor is operating in continuous measurement mode and changes to sleep
+> mode if not used for 5 seconds.
 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-aggre1-noc
-> +              - qcom,sm8550-aggre2-noc
-> +              - qcom,sm8550-pcie-anoc
-> +    then:
-> +      required:
-> +        - clocks
-> +    else:
-> +      properties:
-> +        clocks: false
+...
+
+> +static int tmag5273_get_measure(struct tmag5273_data *data, s16 *t, s16 *x,
+> +				s16 *y, s16 *z, u16 *angle, u16 *magnitude)
+> +{
+> +	unsigned int status, val;
+> +	__be16 reg_data[4];
+> +	int ret;
 > +
-> +required:
-> +  - compatible
+> +	mutex_lock(&data->lock);
 > +
-> +unevaluatedProperties: false
+> +	/*
+> +	 * Max. conversion time is 2425 us in 32x averaging mode for all three
+> +	 * channels. Since we are in continuous measurement mode, a measurement
+> +	 * may already be there, so poll for completed measurement with
+> +	 * timeout.
+> +	 */
+> +	ret = regmap_read_poll_timeout(data->map, TMAG5273_CONV_STATUS, status,
+> +				       status & TMAG5273_CONV_STATUS_COMPLETE,
+> +				       100, 10000);
+> +	if (ret) {
+
+> +		dev_err_probe(data->dev, ret,
+> +			      "timeout waiting for measurement\n");
+
+Is it called from ->probe()? I don't think so...
+
+> +		goto out_unlock;
+> +	}
 > +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/clock/qcom,sm8550-gcc.h>
-> +      #include <dt-bindings/interconnect/qcom,sm8550-rpmh.h>
-> +      #include <dt-bindings/clock/qcom,rpmh.h>
-
-Keep headers sorted.... but actually these two look like not used. If
-you want to mention the header for interconnect IDs, you can add it in
-top level descritpion.
-
+> +	ret = regmap_bulk_read(data->map, TMAG5273_T_MSB_RESULT, reg_data,
+> +			       sizeof(reg_data));
+> +	if (ret)
+> +		goto out_unlock;
+> +	*t = be16_to_cpu(reg_data[0]);
+> +	*x = be16_to_cpu(reg_data[1]);
+> +	*y = be16_to_cpu(reg_data[2]);
+> +	*z = be16_to_cpu(reg_data[3]);
 > +
-> +      clk_virt: interconnect-0 {
-> +             compatible = "qcom,sm8550-clk-virt";
-> +             #interconnect-cells = <2>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
+> +	ret = regmap_bulk_read(data->map, TMAG5273_ANGLE_RESULT_MSB,
+> +			       &reg_data[0], sizeof(reg_data[0]));
+> +	if (ret)
+> +		goto out_unlock;
+> +	/*
+> +	 * angle has 9 bits integer value and 4 bits fractional part
+> +	 * 15 14 13 12 11 10 9  8  7  6  5  4  3  2  1  0
+> +	 * 0  0  0  a  a  a  a  a  a  a  a  a  f  f  f  f
+> +	 */
+> +	*angle = be16_to_cpu(reg_data[0]);
 > +
-> +      aggre1_noc: interconnect@16e0000 {
-> +             compatible = "qcom,sm8550-aggre1-noc";
-> +             reg = <0x016e0000 0x14400>;
-> +             #interconnect-cells = <2>;
-> +             clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> +                      <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
-> +             qcom,bcm-voters = <&apps_bcm_voter>;
-> +      };
+> +	ret = regmap_read(data->map, TMAG5273_MAGNITUDE_RESULT, &val);
+> +	if (ret < 0)
+> +		goto out_unlock;
+> +	*magnitude = val;
+> +
+> +out_unlock:
+> +	mutex_unlock(&data->lock);
+> +	return ret;
+> +}
 
-Your DTS example is oddly indented. I missed it during previous review.
-DTS examples go either with 2 or 4 spaces.
+...
 
+> +static const struct iio_info tmag5273_info = {
+> +	.read_avail = &tmag5273_read_avail,
+> +	.read_raw = &tmag5273_read_raw,
+> +	.write_raw = &tmag5273_write_raw,
+> +};
 
-Best regards,
-Krzysztof
+Functions when being assigned are already pointers, no?
+
+...
+
+> +	ret = match_string(tmag5273_angle_names,
+> +			   ARRAY_SIZE(tmag5273_angle_names), str);
+> +	if (ret < 0)
+> +		dev_warn(dev, "unexpected read angle-measurement property: %s\n", str);
+
+		dev_warn(dev, "unexpected value in angle-measurement property: %s\n", str);
+
+?
+
+> +	else
+> +		data->angle_measurement = ret;
+
+...
+
+> +		snprintf(data->name, sizeof(data->name), "tmag5273x%1u", data->version);
+
+Thinking more about this format, perhaps
+
+		snprintf(data->name, sizeof(data->name), "tmag5273x-v%1u", data->version);
+
+?
+
+...
+
+> +static int tmag5273_runtime_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct tmag5273_data *data = iio_priv(indio_dev);
+> +	int ret;
+
+> +	/*
+> +	 * Time to go to stand-by mode from sleep mode is 50us
+> +	 * typically. During this time no I2C access is possible.
+> +	 */
+
+Shouldn't be this comment closer to usleep_range()?
+
+> +	tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
+> +	usleep_range(80, 200);
+> +	ret = tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
+> +	if (ret)
+> +		dev_err(dev, "failed to power on device (%pe)\n", ERR_PTR(ret));
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static DEFINE_RUNTIME_DEV_PM_OPS(tmag5273_pm_ops, tmag5273_runtime_suspend,
+> +				 tmag5273_runtime_resume, NULL);
+
+I would logically split it like:
+
+static DEFINE_RUNTIME_DEV_PM_OPS(tmag5273_pm_ops,
+				 tmag5273_runtime_suspend, tmag5273_runtime_resume, NULL);
+
+or like:
+
+static DEFINE_RUNTIME_DEV_PM_OPS(tmag5273_pm_ops,
+				 tmag5273_runtime_suspend, tmag5273_runtime_resume,
+				 NULL);
+
+or like:
+
+static DEFINE_RUNTIME_DEV_PM_OPS(tmag5273_pm_ops,
+				 tmag5273_runtime_suspend,
+				 tmag5273_runtime_resume,
+				 NULL);
+
+Depending on your preferences.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
