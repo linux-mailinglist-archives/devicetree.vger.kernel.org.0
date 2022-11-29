@@ -2,239 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DED2863B9D2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 07:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F5C63B9DC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 07:37:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbiK2GdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 01:33:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54500 "EHLO
+        id S229555AbiK2Ghs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 01:37:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiK2GdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 01:33:05 -0500
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2124.outbound.protection.outlook.com [40.107.220.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9162A51C30;
-        Mon, 28 Nov 2022 22:33:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ac89ux4OT1CW4YSTudg0gBVcMQtLH5qFCHq/E8tAQSTaFh4lPr0er4xppx2pOJ70m4cL/9cQprtUl+IhfKRgaxf91nnZaSAK6qdPTCk7VDWOM5GEVdeq4JozwmLbQho4LeQM1Qt8cR/i3gSxueqeldyEMCZO2qrm5jxTs8kNjafRPtJV/5qLMpAyQ9+U0nU/dfaD5K0X4VAFqWvGVWJGAPN04UgsZEiEIBLgoXuH3eicX1zdiSi1bKM4zrfke+i2fOO4UvHQqsoyJXXPBB+PnhHTF9pzN3utLrm5WEWSUH5zrx3mAPKxv2WoNc8RD1qWDmqMdc0dz9YUfx6riKNoFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pl5u0A2tSkTto/yeYGigTXESkRSviMXULG916nTYdLw=;
- b=hasKXeDrGSek8Is9NVIRe7D0/5YwrtdrRw14L0lWAyEVJ7aZ1MFYE1PV/yYCbmr1m2nyFYVLfdi6/dNQixU4SMqKYdUzPc8XTT+yR3JRHAiAk6v4rEiwEnT6tlZV5h+pfaOKbb9Z+djcV6/47ARvyTFlMW3iPiUxptEt0dNJGnDi/TrW/ycaRml+9qkH6Y6fhTpAB1D3b6zKZ2P4Smr9MGGcw33dHeVH5DFkUCEdMLBYvWxlb00TksNrj+mcqPZHrdcnade/3OwvkZSS0zeFK8ds+9rdjtcl90VjtuuVcfD3Ghe54djXxNKEWW43wfTKF7O2KmeSNl39RKBcx6IgqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pl5u0A2tSkTto/yeYGigTXESkRSviMXULG916nTYdLw=;
- b=ovc0BCWYrsR2R+EqQovUgh+ezPDNHMrAt2bKl3aMjLoo2sOP9Vpd3aBtM7qbe0hKjQTKKcxqRjCzP/7LisSn+znd5Sk+PwK5lXThdTvzIqCP73xqQ4rutx1vXLAsZLtZJwfarBu465Bbrzz8WBjTW6FT8EKVCBbBBh5j6nEbraQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by SJ0PR10MB4509.namprd10.prod.outlook.com
- (2603:10b6:a03:2d9::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Tue, 29 Nov
- 2022 06:33:01 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
- 06:33:01 +0000
-Date:   Mon, 28 Nov 2022 22:32:46 -0800
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 net-next 06/10] dt-bindings: net: dsa:
- mediatek,mt7530: fix port description location
-Message-ID: <Y4WnjiE2IxDgi5mc@euler>
-References: <20221127224734.885526-1-colin.foster@in-advantage.com>
- <20221127224734.885526-7-colin.foster@in-advantage.com>
- <08784493-7e85-9224-acfa-9a87cbd325e7@arinc9.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <08784493-7e85-9224-acfa-9a87cbd325e7@arinc9.com>
-X-ClientProxiedBy: BY3PR05CA0013.namprd05.prod.outlook.com
- (2603:10b6:a03:254::18) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        with ESMTP id S229449AbiK2Ghr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 01:37:47 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E27610BF;
+        Mon, 28 Nov 2022 22:37:41 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2AT4wgDc005078;
+        Tue, 29 Nov 2022 06:36:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=caj+s+czmNQi0XmGAmJvS2ybhS2pZZke9jRdHEJLPhY=;
+ b=iI86H45LC9FR453Ijd+dvBe58idGPajCB0ZHu+PNNzqegJL41mTNo4wcC7fP+gB1KwBe
+ FuitXRobIy1tVRjkltcSSG6koVLmWiLt7le4yVx1O8WxQPIYpkV+/bxq+Rb2bov6n7XH
+ vXbFEM3jZiurEGf0VSpXMeDrJQyuGwWRHkK5XU+OdArvC6k0rF8m141cvFQtVWeE1o/o
+ 7h4dwE/1PcnVb3CooaltGf1+70Ktpm8Xh3+BVJhH6sxFM/rT1pQJIJCi8NuQo4iKL16b
+ B+qcek23Hk0NwRP6jxUXYFzc3oIuOfNPnWT+zNYXOhpDhge8tcgpmYR31huvIygosPIF GA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m56c68s0b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Nov 2022 06:36:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2AT6aiIb029608
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Nov 2022 06:36:44 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 28 Nov 2022 22:36:38 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops
+Date:   Tue, 29 Nov 2022 12:06:24 +0530
+Message-ID: <1669703784-27589-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|SJ0PR10MB4509:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe7ae3db-2d10-4271-e77c-08dad1d39016
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6xtZgg6RhFUVdm/84A0G2qQD3flwsPDuGMgxizz457guEzROUzEvNXTG2tKNKaMRTXxHMdQQc6F6dYqnu8BqMejfXdV0EMc+9YAT66+IqHMGGR/5y7+OaJUciO+0IWpmkQSKxRWfbT9LiL74Ts/e51VbJMiFOmeCZXeZRXpcO6oP2KcXsooPhRWX/Lf3Jxqoz5xBR0LJ8R33IUHRvmUQc815qhh9RSjjbXeP2PWUXZ1L8UHIVlFgFIdZeQDjzu7F1JQGZsMxrAYuobxRr2XuReUKgJk1XzLB6iJMsvMg4sENCzLUu+CZLFGOSWEdCycATUw6dVmxuWeRHcGjZ8v8livLFvIQmtJbBNgckzYOpcS/hfkvG701uHdrdw5KOftmnfPEBRHnssDIX7oErfYNSZY92tO9Bp1HiBOTDBOpqhmcjY+UY/TfwReVXqTpEbFAHUbSkRNCRuUyC95Nzzpk19DqwIitbMWJeaGCgup1awm5hXtdSEwFvA9qcb6pIbIT3QToTBdtyUkxfPZW5uG6+GvH7Cw0SqyOejrdA4oIO3xCDbxTOYq9CoJP5Snln0gAQEAk+PabuDC+/2H53SlURKzFVIpa+qdvlu+YOPODSG1SHaiwXTjsGq4VJyaJ2SVrh+pbHYkslYFYMDkitFAGIg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(366004)(346002)(376002)(39840400004)(136003)(396003)(451199015)(5660300002)(8936002)(66574015)(44832011)(7406005)(83380400001)(7416002)(8676002)(66946007)(66556008)(66476007)(4326008)(41300700001)(186003)(38100700002)(33716001)(53546011)(6916009)(6512007)(2906002)(86362001)(6506007)(478600001)(6666004)(54906003)(26005)(9686003)(6486002)(316002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V1ZNbDZWWWI0VS81WStxbGtIbHFjRmxFM1RoL1gvUTd5a29WTHZTOWthcjBT?=
- =?utf-8?B?WUh2R0NOZEJqdVVLVjZyems1UU11c1NIWENubGp6WVdSL2w3ZTVZTkpYelJW?=
- =?utf-8?B?d2FKVDNTaW5tc0RNSVpkQzJIT0hnOWlNRU1QdlZmNC9ab2s3d2pRcGRnL0JH?=
- =?utf-8?B?UkxwZUo5WmpnNnhwMkJDc0E5R21lNHpYNzQ1TlhUMDIxNHhEM01idEVaQzdh?=
- =?utf-8?B?bTQySFlnR0pDckZYLzVkcnpTZHB6RGVqT2duS0pTTW9ET3lVZWRHamE2SUdY?=
- =?utf-8?B?d2dJNHhUR0RwOXdTazc2aW9kYVhNV0tnQmVxTkwxVzZDTS9JQWwreFRua1Vm?=
- =?utf-8?B?RDh6L1NZK2pDd1NzNlZaTFRvVkFCd0R3em1GUlNwL2ZXcEFwVXJUa3dPZHRF?=
- =?utf-8?B?NmQ5U0pOT1NGcTNDSHNhOW50SlYvb0hsZTVsYmd6d1FUTUs1MFM3ZWpxaU9W?=
- =?utf-8?B?UE9BRzhFNW1DdkRDVW1JMXZmRmNjZVExRjF6YU5VbDhTT0I1bXRTWWxQOWNp?=
- =?utf-8?B?NWVPT21nR0lZc2FzVlphMHhVdU5YbU8vb3FlMWlhOHhkMXhuQ3B4V1ZsOGxE?=
- =?utf-8?B?Q0lEc2RBMmtwZHFWN0FtV1J6eHJJZG02S0s4Qkc0UGEyV3NvSUV6aURRemVn?=
- =?utf-8?B?OThWb1RXdlZDVURZOHhnVTBvV25ScDk3bExZMzNic284aEpOOGJMbXFZNHB0?=
- =?utf-8?B?OGVvcTgxRzF5eHQ1dmJvMkhLSUxubXkrTWozanU4a0ZvL0NaYlBOWXFlSTJw?=
- =?utf-8?B?dFd5NVZlUktLNkFtM0tvdUpPcmsxNkNHUXQ5REp5cXlhQkJkYVhsb2MxMlZQ?=
- =?utf-8?B?clUwcjhZTCtUb3ZqR3NDZkdiUDZ0MEwwWklkWUNFTGt6dG1DQ1JVR2dZeWhq?=
- =?utf-8?B?UVZiS2dyRXYwZ3hZZnFLVENOSk9WQmRIUDd2WStXTDlZUkNHcS9Lc3hqMExn?=
- =?utf-8?B?R3NoR1p0M0JheUtqS0d5Rjl1ZFFDanQ5N09oNThZOXdhb0hNdGEwNzdRZHgy?=
- =?utf-8?B?dm1FLzVubExNb1NCeUhoT2RxUHB6VGFlcDdpNG9tM2Q1Z0VNdVFJYVdZNndj?=
- =?utf-8?B?bkhkME0wdXpQUHQ2NVVKK2U2ejNTQTVIS0IyOVVmdXorOE4yRVVXaC9NcXZV?=
- =?utf-8?B?d1A2Y0IwcEhiSFhRR1Uzck1DWk1qdVdnNHFtb1Z3R0p0SkNLQVBaUkRiQlBO?=
- =?utf-8?B?cFVhV2pVVjMyNzBISWpXWVRMRXRCY3AzUzZEUlk5NEdNa3pWOVppK1pxNzdR?=
- =?utf-8?B?NjRDbVdhbU9wTjNxbHNraVhPWW8zT3BUeCsxVm41UHg0eTZCempOSHFDSEU4?=
- =?utf-8?B?T3ZrUUZXUHh5RjhjZWJwajh6ZjZqMGZXbllsMitWSGxCdzNkSFBOY2FidHQz?=
- =?utf-8?B?OWdEbE9jS3pScGVJdXNuTFNZcFVxOWFYbmEwcmhGQSszQzRhTXAvWjA1azBh?=
- =?utf-8?B?ZXdYSVQ4ZHEyUk1waHN4UEJZdExucm40bCtlRGUzbEpiT2hJcFVBaDhxMlVy?=
- =?utf-8?B?N0U0NTgzeDBxaDVPdHlSRU9VS1ZQRlN6emVGRTArcUZ2VTc2S1h6bDI0MVRV?=
- =?utf-8?B?VnEwYWhySFpwNmlnSjg4OUtTSDlMK1lnekIxeEV0aEI2RXFFYjZSRXFsbCtF?=
- =?utf-8?B?cTBCOFQ5N2hGOUdhRlZ1bnp0QkQxOXd4MDBnZExXb2hMODh2aG9pZ1RnVWdV?=
- =?utf-8?B?Snpib1JtK2RTc2JUUm53eDIxaTRPUVJkRHAwZDAxRjRCaDMvQVFONUFCN1B4?=
- =?utf-8?B?bUM2ZEU5Tk1SNjFHbG1jZnBNU3JueE1ZMkEzWmdPZTNQNWx1WlhiZi8rckg3?=
- =?utf-8?B?aWt3QXAwVGJxb0FaajRreDd4Tk5JY3lEVkI4WTc2eVQ3NXR3eVE2aGxIMld0?=
- =?utf-8?B?Y28wdURZZkh0UEpkcGFGeGsydHNPNzRqWTZPM3lQbzQ1ZHlaUVVZMStpM0ZE?=
- =?utf-8?B?bDg0YytJeUEycmhZTHA2S0xKZUF1Wll3czVNN1hkamlGWXE3RTQwUlRNMzRS?=
- =?utf-8?B?dXFJYXErLzg1RmFJeW9JTzRxclBHQVBHUWc5LzZVUkwzVkt0RmxaZDBCaFRG?=
- =?utf-8?B?dmZwU3FBVGVjd25xTWpFeEtKRzZ1VnhRbGJkZWdmU3RUQTh5TDdiZjdidm9j?=
- =?utf-8?B?U3E3RUVvYmJSbGw4anJTenRaQnRPaVg0VzRwdFpuSFlRaXlYY1krb3F2Ylly?=
- =?utf-8?Q?aHwVzXoGJ0AwZuj+HlDTqcI=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe7ae3db-2d10-4271-e77c-08dad1d39016
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 06:33:01.5196
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7F8+koJRGxXvk0dKCkRUa59Dq89wMezGflxPdBgspG3p70IRA6HOq5vo5hzlH69l8srYXy7ZktGsQ/6aqTaqOucPbWri1BnMzLNmUnR5DF0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4509
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xZ2XiQUcoNkUT8SkfIcv5q2dsdGpLfDU
+X-Proofpoint-GUID: xZ2XiQUcoNkUT8SkfIcv5q2dsdGpLfDU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-29_04,2022-11-28_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxscore=0 phishscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 mlxlogscore=923 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211290042
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arınç,
+Update lpass sc7280 platform driver with PM ops, such as
+system supend and resume callbacks.
+This update is required to disable clocks during supend and
+avoid XO shutdown issue.
 
-On Mon, Nov 28, 2022 at 11:28:31AM +0300, Arınç ÜNAL wrote:
-> On 28.11.2022 01:47, Colin Foster wrote:
-> > The description property was located where it applies to every port, not
-> > just ports 5 or 6 (CPU ports). Fix this description.
-> 
-> I'm not sure I understand. The description for reg does apply to every port.
-> Both CPU ports and user ports are described. This patch moves the
-> description to under CPU ports only.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
+---
+ sound/soc/qcom/lpass-sc7280.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-You're right. I misinterpreted what Rob suggested, so the commit message
-isn't correct. I see now that reg applies to every port, but is only
-restricted for CPU ports (if: required: [ ethernet ]).  I'll clean this
-message up.
+diff --git a/sound/soc/qcom/lpass-sc7280.c b/sound/soc/qcom/lpass-sc7280.c
+index 70c4df8..65a04d3 100644
+--- a/sound/soc/qcom/lpass-sc7280.c
++++ b/sound/soc/qcom/lpass-sc7280.c
+@@ -232,10 +232,27 @@ static int sc7280_lpass_exit(struct platform_device *pdev)
+ 	struct lpass_data *drvdata = platform_get_drvdata(pdev);
+ 
+ 	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
++	return 0;
++}
++
++static int sc7280_lpass_dev_resume(struct device *dev)
++{
++	struct lpass_data *drvdata = dev_get_drvdata(dev);
++
++	return clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
++}
++
++static int sc7280_lpass_dev_suspend(struct device *dev)
++{
++	struct lpass_data *drvdata = dev_get_drvdata(dev);
+ 
++	clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
+ 	return 0;
+ }
+ 
++static const struct dev_pm_ops sc7280_lpass_pm_ops = {
++	SET_SYSTEM_SLEEP_PM_OPS(sc7280_lpass_dev_suspend, sc7280_lpass_dev_resume)
++};
+ static struct lpass_variant sc7280_data = {
+ 	.i2sctrl_reg_base		= 0x1000,
+ 	.i2sctrl_reg_stride		= 0x1000,
+@@ -426,6 +443,7 @@ static struct platform_driver sc7280_lpass_cpu_platform_driver = {
+ 	.driver = {
+ 		.name = "sc7280-lpass-cpu",
+ 		.of_match_table = of_match_ptr(sc7280_lpass_cpu_device_id),
++		.pm = &sc7280_lpass_pm_ops,
+ 	},
+ 	.probe = asoc_qcom_lpass_cpu_platform_probe,
+ 	.remove = asoc_qcom_lpass_cpu_platform_remove,
+-- 
+2.7.4
 
-> 
-> > 
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> > ---
-> > 
-> > v2 -> v3
-> >    * New patch.
-> > 
-> > ---
-> >   .../bindings/net/dsa/mediatek,mt7530.yaml          | 14 +++-----------
-> >   1 file changed, 3 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > index 7df4ea1901ce..415e6c40787e 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> > @@ -156,17 +156,6 @@ patternProperties:
-> >       patternProperties:
-> >         "^(ethernet-)?port@[0-9]+$":
-> > -        type: object
-> > -        description: Ethernet switch ports
-> > -
-> > -        unevaluatedProperties: false
-> > -
-> 
-> Would be nice to mention these being removed on the patch log. Or remove
-> them while doing ("dt-bindings: net: dsa: utilize base definitions for
-> standard dsa switches").
-
-Agreed. My gut is telling me this wants to be in a separate patch from
-the generic DSA base definitions patch... but I can't say why for
-certain. I'll plan to move these to the patch you suggest and add a comment
-in there about how the type, description, and unevaluatedProperties of
-mediatek,mt7530 is no longer needed as a result? Keep this patch as more
-of a "restrict custom port description to CPU ports only" patch?
-
-I also see that ("dt-bindings: net: dsa: mediatek,mt7530: remove unnecessary
-dsa-port reference") should probably be earlier in this patch set. I'll
-plan to move that earlier in the series, before  ("dt-bindings: net: dsa:
-utilize base definitions for standard dsa switches").
-
-> 
-> > -        properties:
-> > -          reg:
-> > -            description:
-> > -              Port address described must be 5 or 6 for CPU port and from 0 to 5
-> > -              for user ports.
-> > -
-> >           allOf:
-> >             - $ref: dsa-port.yaml#
-> >             - if:
-> > @@ -174,6 +163,9 @@ patternProperties:
-> >               then:
-> >                 properties:
-> >                   reg:
-> > +                  description:
-> > +                    Port address described must be 5 or 6 for CPU port and from
-> > +                    0 to 5 for user ports
-> >                     enum:
-> >                       - 5
-> >                       - 6
-> 
-> Thank you for your efforts.
-
-I greatly appreciate your help and feedback!
-
-> 
-> Arınç
