@@ -2,102 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 512B563C74C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE44C63C74E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:43:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbiK2Slq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 13:41:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
+        id S236080AbiK2Snw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 13:43:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236084AbiK2Sln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:41:43 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E3D5D69B
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:41:42 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 724E74E6;
-        Tue, 29 Nov 2022 19:41:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1669747300;
-        bh=ebxVCwZt3kwf13qYwc3wFQXHD5yQGXK3fvDmjW9blCg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vgz9F3lWPzOebNMDOXRRGEyTJ0J9LUMks043bZKXDu/7Rv6+pY4iu3Snoi6MGkjX6
-         lVlh9HvWqEnXUpTbkA53X0exvmZFdpoGFSTJjs7/2KVOq8/G1mCmvb54FParaib8CZ
-         rD5KbTMfYCEuIcBlnwHO6jOx5aisEzBp0dDopyBQ=
-Date:   Tue, 29 Nov 2022 20:41:25 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH v2 0/2] arm64: dts: imx8mp-verdin: Add DSI Bridges
-Message-ID: <Y4ZSVfWvr2MXxcoD@pendragon.ideasonboard.com>
-References: <20221129144412.37497-1-francesco@dolcini.it>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221129144412.37497-1-francesco@dolcini.it>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235082AbiK2Snv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:43:51 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E0B424F2B
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:43:50 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id g10so14295193plo.11
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:43:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IIP9oJ9P+APqb6Nuc1oFCXi9Ku92JtxYoKl2iytzunU=;
+        b=q3vblXcbmKuJHwVKfmwgfjy9/h4v0009YQb+0/FuwZ3Iz1csn6IZnsw5WdOAK6Bu+s
+         lIsdvWmKpPYbHoqKvFZXyVqvjv1uy74XWP8+h1ZCm+EgJYF3Nw/b000sk+ErQNOyW+16
+         N9nqb0EChxhay9SNzmCT53O0LKeIHgWshnVZH6cHxYm1s3qlsSJWYnBM8RAw5d6K+lja
+         wYA/EX6BkBs0tJrwy69C64qsAQJgHNE936RwiiRtC/dsOQ9XDSuQfxkzSoAfxSnzoCvB
+         vvWyI20zoJNU0tu6q2KvDXH8CS4tEH+/qWYMLrSoZKZWS0mc1E+GwOHwvaRxj6+bmhpO
+         dwIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IIP9oJ9P+APqb6Nuc1oFCXi9Ku92JtxYoKl2iytzunU=;
+        b=MAfBC8AXwDao/Z1cjNDFMXv7zjkODrF1fA4kyTYif8oavClRv2Ybwg68vfvfqUIMYb
+         7QQOWPWLLgATR1nbP4jfXhlUCoOxJtkUiD0ADBk7wyvNq7LQov/R+dfDxQy92PScmb1w
+         QuZy+6SzRQODCJTDzFfLRaAE5lSBloGRNAE39VOi1aRxfDQXw8zcPMUKSFIUMPSdcwsE
+         fMMLOPVQag8Z3iFwajLPmUuyYrW6xyQM5xO6zvTZNPd51YSCCGCSU3mpYjMPud8gqDyF
+         0DRPr4ukKSLblesfPp6JY5dtaEw6D/2sVeGW7XJVVC2Er2mnaJ3cZ/cMWbj0dDm3zEGe
+         cyqQ==
+X-Gm-Message-State: ANoB5pljFdRZBGU7fqvr1yzA7poo+crpJfL7u28GoX2fC0MqfgnhMV9u
+        qEA67QlXXypBcEHGvX3SMeZDew==
+X-Google-Smtp-Source: AA0mqf4IeSQwsDl+1u45CxVm1HfRMtXFY7QhkodjxiwdD7ipkX2OKjUhJJbujpe8qWB0ItynPWazag==
+X-Received: by 2002:a17:902:7443:b0:189:82da:7b70 with SMTP id e3-20020a170902744300b0018982da7b70mr13878354plt.159.1669747429462;
+        Tue, 29 Nov 2022 10:43:49 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id u11-20020a170902e80b00b001743ba85d39sm11243785plg.110.2022.11.29.10.43.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 10:43:48 -0800 (PST)
+Date:   Tue, 29 Nov 2022 10:43:48 -0800 (PST)
+X-Google-Original-Date: Tue, 29 Nov 2022 10:43:38 PST (-0800)
+Subject:     Re: [PATCH v4 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
+In-Reply-To: <CAK9=C2VtgCOk9S_FucJbwsG+nMuBqEsFk3sAMt7_doAKsMHQ8w@mail.gmail.com>
+CC:     Conor Dooley <conor@kernel.org>, anup@brainfault.org,
+        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        daniel.lezcano@linaro.org, tglx@linutronix.de,
+        ajones@ventanamicro.com, atishp@atishpatra.org,
+        samuel@sholland.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     apatel@ventanamicro.com
+Message-ID: <mhng-7ff4d7f4-bbf5-45bf-b4c5-30bc2a53119c@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francisco,
+On Tue, 29 Nov 2022 09:22:22 PST (-0800), apatel@ventanamicro.com wrote:
+> On Tue, Nov 29, 2022 at 10:47 PM Conor Dooley <conor@kernel.org> wrote:
+>>
+>> On Tue, Nov 29, 2022 at 10:41:09PM +0530, Anup Patel wrote:
+>> > On Tue, Nov 29, 2022 at 8:06 PM Conor Dooley <conor.dooley@microchip.com> wrote:
+>> > >
+>> > > On Tue, Nov 29, 2022 at 07:33:13PM +0530, Anup Patel wrote:
+>> > > > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
+>> > > > when riscv,timer-cant-wake-up DT property is present in the RISC-V
+>> > > > timer DT node.
+>> > > >
+>> > > > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
+>> > > > based on RISC-V platform capabilities rather than having it set for
+>> > > > all RISC-V platforms.
+>> > > >
+>> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+>> > >
+>> > > I thought I had left an R-b on this one?
+>> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> > >
+>> > > Also, I think that we need to backport *something* that disables C3STOP
+>> > > which is why I had suggested keeping the revert in place.
+>> > > Patch 1 of this series only solves the timer issues but does not restore
+>> > > sleep states to their prior behaviour, right?
+>> > > Either this patch or the revert needs to go to stable IMO.
+>> >
+>> > Since it works for you with the C3STOP set and broadcast timer enabled,
+>> > we can directly go with this patch. I am fine including the revert as well.
+>>
+>> I don't mind which gets backported. To me, this one is preferable as it
+>> is more "complete" but it is a bit on the new feature side of things,
+>> no?
+>>
+>> Whoever applies it can decide, and I'll backport the revert if they
+>> decide that this patch is not stable material :)
 
-On Tue, Nov 29, 2022 at 03:44:10PM +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> This series add DSI to HDMI and DSI to LVDS functionality to the Verdin iMX8M
-> Plus device tree.
-> 
-> Previous v1 [1] triggered some discussion with Laurent since these bridges are not
-> strictly part of the SoM, but are part of the whole board that is made out of
-> SoM + Carrier Board (e.g. Yavia [2]) or SoM + Carrier Board + Adapter
-> (e.g. Dahlia [3]). For this reason they are disabled by default.
-> 
-> I have not addressed his concerns here apart for the explanation I gave him in
-> the previous discussion thread, I do still believe that this could be merged as
-> it is.
+IIRC the clock folks took the original C3 patch, so that's probably the 
+best way to take these as well?
 
-I still think those should not be part of the SoM .dtsi if the
-peripherals are not in the SoM. I would model them either as part of the
-carrier board, or as overlays, depending on the case. It would be fine
-creating a .dtsi that is included by both carrier board .dts and overlay
-.dts.
-
-The final decision belongs to the maintainers, I'm only a reviewer :-)
-
-> This series is based on next-20221129.
-> 
-> Francesco
-> 
-> [1] https://lore.kernel.org/all/20220905211703.GA6180@francesco-nb.int.toradex.com/
-> [2] https://www.toradex.com/products/carrier-board/yavia
-> [3] https://www.toradex.com/products/carrier-board/dahlia-carrier-board-kit
-> 
-> v2: 
->  - Added HDMI hot plug detect GPIO
-> 
-> Max Krummenacher (2):
->   arm64: dts: imx8mp-verdin: add dsi to hdmi functionality
->   arm64: dts: imx8mp-verdin: add dsi to lvds functionality
-> 
->  .../boot/dts/freescale/imx8mp-verdin.dtsi     | 21 ++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
-
--- 
-Regards,
-
-Laurent Pinchart
+>>
+>> Thanks again for helping sort this mess out, I see it helped with your
+>> IPI series too!
+>
+> Yes, I was surprised to see that it helped the IPI series as well.
+> Thanks for your patch.
+>
+> Regards,
+> Anup
+>
+>>
+>> Conor.
+>>
+>> > > > ---
+>> > > >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
+>> > > >  1 file changed, 11 insertions(+), 1 deletion(-)
+>> > > >
+>> > > > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+>> > > > index 969a552da8d2..0c8bdd168a45 100644
+>> > > > --- a/drivers/clocksource/timer-riscv.c
+>> > > > +++ b/drivers/clocksource/timer-riscv.c
+>> > > > @@ -28,6 +28,7 @@
+>> > > >  #include <asm/timex.h>
+>> > > >
+>> > > >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
+>> > > > +static bool riscv_timer_cant_wake_cpu;
+>> > > >
+>> > > >  static int riscv_clock_next_event(unsigned long delta,
+>> > > >               struct clock_event_device *ce)
+>> > > > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
+>> > > >  static unsigned int riscv_clock_event_irq;
+>> > > >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
+>> > > >       .name                   = "riscv_timer_clockevent",
+>> > > > -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
+>> > > > +     .features               = CLOCK_EVT_FEAT_ONESHOT,
+>> > > >       .rating                 = 100,
+>> > > >       .set_next_event         = riscv_clock_next_event,
+>> > > >  };
+>> > > > @@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
+>> > > >
+>> > > >       ce->cpumask = cpumask_of(cpu);
+>> > > >       ce->irq = riscv_clock_event_irq;
+>> > > > +     if (riscv_timer_cant_wake_cpu)
+>> > > > +             ce->features |= CLOCK_EVT_FEAT_C3STOP;
+>> > > >       clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
+>> > > >
+>> > > >       enable_percpu_irq(riscv_clock_event_irq,
+>> > > > @@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
+>> > > >       if (cpuid != smp_processor_id())
+>> > > >               return 0;
+>> > > >
+>> > > > +     child = of_find_compatible_node(NULL, NULL, "riscv,timer");
+>> > > > +     if (child) {
+>> > > > +             riscv_timer_cant_wake_cpu = of_property_read_bool(child,
+>> > > > +                                             "riscv,timer-cant-wake-cpu");
+>> > > > +             of_node_put(child);
+>> > > > +     }
+>> > > > +
+>> > > >       domain = NULL;
+>> > > >       child = of_get_compatible_child(n, "riscv,cpu-intc");
+>> > > >       if (!child) {
+>> > > > --
+>> > > > 2.34.1
+>> > > >
