@@ -2,64 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52FFD63C64B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 244DC63C64F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236396AbiK2RR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 12:17:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50608 "EHLO
+        id S235803AbiK2RT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 12:19:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236566AbiK2RR5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:17:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EAEC26124;
-        Tue, 29 Nov 2022 09:17:56 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AF9CF6186D;
-        Tue, 29 Nov 2022 17:17:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2278CC433C1;
-        Tue, 29 Nov 2022 17:17:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669742275;
-        bh=j4z3J0ry4LI3/VTORpWZJtphzv1izE78JWgG7lR/3Zk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h0XZp60OUgaSX9b2oURE0NkBldWPiVzpBd1f8qCCQykExGnSfJCu+dSv2kEcaCf9N
-         qu2Ok1ai439ftZYrxZWXyc2KsvsH7bHc2+T1Ums7BnYLd5sgZvTsg5gmrHgwJX0MAE
-         s/otXrepDuTD/9Z1fo8cH5t8grwebLxpleWyRST2SJETJoSkB4XpE36S+FBReHL4PP
-         EwUFwUWrpD85E6mIjFkbHPSTn2n1L2I/XJWfNWIgQtyiyebm1D5v1S4GonRIPFf275
-         HzpJfee0pDKysM3nGnmhapFEPxkyInzOOsMnvRU8F+ENemHgI3dPzGXn5g8V4oNdVI
-         oaaQNlgoa0H+w==
-Date:   Tue, 29 Nov 2022 17:17:49 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Anup Patel <anup@brainfault.org>
+        with ESMTP id S235518AbiK2RT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:19:56 -0500
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A635CD3C
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:19:54 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id ho10so35506299ejc.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:19:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rcfNJDB/SPFar05tRAQ4XbFIBs41bTotwtAiczfQytA=;
+        b=pKfr46NivMRoazFYCmMgGr86P0DCpWLWIZq54gg7bYNcUwAnUKIpE8Uh5dMxrOsXND
+         Jh1GEnDD1tVjdgQiLrQWYgOGDn2szQYeRgKLhdiGaWnGt87ha4lG5iAZ8+2vTQkikk7A
+         ydlz405bXk/FZiGtcbJbSzwzIKjgWjIt48Zp6A0rOWxO+VIyrCsum5BN8tvkGVTGtN8u
+         ZItmq/k3qNdFSaukLi0EAAo96AHOxbuESBOqskkbQEWDhW6rfb9RWkb8NdiUR+O8YB6D
+         bDyUTAj3t/VO8j0MHqP1X/340B/PFIu5rC34XIPHj7k3s3GxcumMI4eq49/Jg+C5mWIL
+         O5iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rcfNJDB/SPFar05tRAQ4XbFIBs41bTotwtAiczfQytA=;
+        b=KvVWywG6pXvLpLk7E1rqQiUWY03AfvQSBC6zaAYOBJzoOkkZgvfv77W/1GnYh1z9Id
+         +Zubldch9BgyQDW8mzZDTEvj14xUMkU5QU3H7UUXV7msxp0Rm3gypxgHDCAs/Jpra+jB
+         C2rNa4syHj5NhJfF7lqgxXLGVJAieVZqnBSU9M1IlJHWs1DDL+vZB5AkkPTDRO8y0AWD
+         X2DThUwKzaC8FHxfdreiRz7urvf/gVtkqT6SBBW49KNRNE7dZmf19pE03DI6lArPyP5e
+         sAxD/mTrLxKXvV7mpDFxubPdrl81eIFmi1W/RKI3PzC2dDDyvX8wowmR30QqiY7jE1uG
+         2AKg==
+X-Gm-Message-State: ANoB5pnmYL52YlUNoOFsZDIevTEqXwgHRkpZpdv0SAIBrpTAOmc5/rK2
+        IlzSA6kKOxHFQlMpZHZ00+qewg==
+X-Google-Smtp-Source: AA0mqf5fK0juVQzXx7vLs2lrbZZ3iyStH9xvDM2YhCQfNv3ohLBkWAHl1/ZYl9thPwx3ZmDYFwVleg==
+X-Received: by 2002:a17:906:7f96:b0:7b2:b782:73 with SMTP id f22-20020a1709067f9600b007b2b7820073mr33042080ejr.641.1669742393483;
+        Tue, 29 Nov 2022 09:19:53 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-748-2a9a-a2a6-1362.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:748:2a9a:a2a6:1362])
+        by smtp.gmail.com with ESMTPSA id g18-20020a17090670d200b00773f3ccd989sm6366572ejk.68.2022.11.29.09.19.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 09:19:53 -0800 (PST)
+Date:   Tue, 29 Nov 2022 18:19:51 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor@kernel.org>
 Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] clocksource: timer-riscv: Set
- CLOCK_EVT_FEAT_C3STOP based on DT
-Message-ID: <Y4Y+vZ7qndV2c5Ai@spud>
-References: <20221129140313.886192-1-apatel@ventanamicro.com>
- <20221129140313.886192-4-apatel@ventanamicro.com>
- <Y4YY6kBBEBdZoUIp@wendy>
- <CAAhSdy3dWGVV=jh5mzK=m63A3UAqwJhxidcAZQU_WC4TRNfCjQ@mail.gmail.com>
+        linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
+        devicetree@vger.kernel.org, guoren@kernel.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org
+Subject: Re: [RFC 1/2] RISC-V: clarify ISA string ordering rules in cpu.c
+Message-ID: <20221129171951.6kvvleeny5e2x2nk@kamzik>
+References: <Y4XvnHIPw8ZuBZEk@wendy>
+ <20221129144742.2935581-2-conor.dooley@microchip.com>
+ <20221129161223.gelsvctfnqg7pdwb@kamzik>
+ <Y4Y5O83NCNr1TOAy@spud>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAAhSdy3dWGVV=jh5mzK=m63A3UAqwJhxidcAZQU_WC4TRNfCjQ@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <Y4Y5O83NCNr1TOAy@spud>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,92 +75,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 10:41:09PM +0530, Anup Patel wrote:
-> On Tue, Nov 29, 2022 at 8:06 PM Conor Dooley <conor.dooley@microchip.com> wrote:
-> >
-> > On Tue, Nov 29, 2022 at 07:33:13PM +0530, Anup Patel wrote:
-> > > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
-> > > when riscv,timer-cant-wake-up DT property is present in the RISC-V
-> > > timer DT node.
-> > >
-> > > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
-> > > based on RISC-V platform capabilities rather than having it set for
-> > > all RISC-V platforms.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >
-> > I thought I had left an R-b on this one?
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Also, I think that we need to backport *something* that disables C3STOP
-> > which is why I had suggested keeping the revert in place.
-> > Patch 1 of this series only solves the timer issues but does not restore
-> > sleep states to their prior behaviour, right?
-> > Either this patch or the revert needs to go to stable IMO.
-> 
-> Since it works for you with the C3STOP set and broadcast timer enabled,
-> we can directly go with this patch. I am fine including the revert as well.
-
-I don't mind which gets backported. To me, this one is preferable as it
-is more "complete" but it is a bit on the new feature side of things,
-no?
-
-Whoever applies it can decide, and I'll backport the revert if they
-decide that this patch is not stable material :)
-
-Thanks again for helping sort this mess out, I see it helped with your
-IPI series too!
-
-Conor.
-
+On Tue, Nov 29, 2022 at 04:54:19PM +0000, Conor Dooley wrote:
+> On Tue, Nov 29, 2022 at 05:12:23PM +0100, Andrew Jones wrote:
+> > On Tue, Nov 29, 2022 at 02:47:42PM +0000, Conor Dooley wrote:
+> > > While the list of rules may have been accurate when created, it now
+> > > lacks some clarity in the face of isa-manual updates. Specifically:
+> > > 
+> > > - there is no mention here of a distinction between regular 'Z'
+> > >   extensions which are "Additional Standard Extensions" and "Zxm"
+> > >   extensions which are "Standard Machine-Level Extensions"
+> > > 
+> > > - there is also no explicit mention of where either should be sorted in
+> > >   the list
+> > > 
+> > > - underscores are only required between two *multi-letter* extensions but
+> > >   the list of rules implies that this is required between a multi-letter
+> > >   extension and any other extension. IOW "rv64imafdzicsr_zifencei" is a
+> > >   valid string
+> > > 
+> > > Attempt to clean up the list of rules, by adding information on the
+> > > above & sprinkling in some white space for readability.
+> > > 
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > > > ---
-> > >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
-> > >  1 file changed, 11 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-> > > index 969a552da8d2..0c8bdd168a45 100644
-> > > --- a/drivers/clocksource/timer-riscv.c
-> > > +++ b/drivers/clocksource/timer-riscv.c
-> > > @@ -28,6 +28,7 @@
-> > >  #include <asm/timex.h>
-> > >
-> > >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-> > > +static bool riscv_timer_cant_wake_cpu;
-> > >
-> > >  static int riscv_clock_next_event(unsigned long delta,
-> > >               struct clock_event_device *ce)
-> > > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
-> > >  static unsigned int riscv_clock_event_irq;
-> > >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
-> > >       .name                   = "riscv_timer_clockevent",
-> > > -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
-> > > +     .features               = CLOCK_EVT_FEAT_ONESHOT,
-> > >       .rating                 = 100,
-> > >       .set_next_event         = riscv_clock_next_event,
-> > >  };
-> > > @@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
-> > >
-> > >       ce->cpumask = cpumask_of(cpu);
-> > >       ce->irq = riscv_clock_event_irq;
-> > > +     if (riscv_timer_cant_wake_cpu)
-> > > +             ce->features |= CLOCK_EVT_FEAT_C3STOP;
-> > >       clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
-> > >
-> > >       enable_percpu_irq(riscv_clock_event_irq,
-> > > @@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
-> > >       if (cpuid != smp_processor_id())
-> > >               return 0;
-> > >
-> > > +     child = of_find_compatible_node(NULL, NULL, "riscv,timer");
-> > > +     if (child) {
-> > > +             riscv_timer_cant_wake_cpu = of_property_read_bool(child,
-> > > +                                             "riscv,timer-cant-wake-cpu");
-> > > +             of_node_put(child);
-> > > +     }
+> > >  arch/riscv/kernel/cpu.c | 22 +++++++++++++++++-----
+> > >  1 file changed, 17 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> > > index 852ecccd8920..5e42c92a8456 100644
+> > > --- a/arch/riscv/kernel/cpu.c
+> > > +++ b/arch/riscv/kernel/cpu.c
+> > > @@ -120,20 +120,32 @@ device_initcall(riscv_cpuinfo_init);
+> > >  		.uprop = #UPROP,				\
+> > >  		.isa_ext_id = EXTID,				\
+> > >  	}
 > > > +
-> > >       domain = NULL;
-> > >       child = of_get_compatible_child(n, "riscv,cpu-intc");
-> > >       if (!child) {
-> > > --
-> > > 2.34.1
+> > >  /*
+> > >   * Here are the ordering rules of extension naming defined by RISC-V
+> > >   * specification :
+> > > - * 1. All extensions should be separated from other multi-letter extensions
+> > > - *    by an underscore.
+> > > + *
+> > > + * 1. All multi-letter extensions should be separated from other multi-letter
+> > > + *    extensions by an underscore.
+> > > + *
+> > >   * 2. The first letter following the 'Z' conventionally indicates the most
+> > >   *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
+> > > - *    If multiple 'Z' extensions are named, they should be ordered first
+> > > - *    by category, then alphabetically within a category.
+> > > + *    'Z' extensions should be sorted after single-letter extensions and before
+> > > + *    any higher-privileged extensions.
+> > > + *    If multiple 'Z' extensions are named, they should be ordered first by
+> > > + *    category, then alphabetically within a category.
+> > > + *
+> > >   * 3. Standard supervisor-level extensions (starts with 'S') should be
+> > >   *    listed after standard unprivileged extensions.  If multiple
+> > >   *    supervisor-level extensions are listed, they should be ordered
+> > >   *    alphabetically.
+> > > - * 4. Non-standard extensions (starts with 'X') must be listed after all
+> > > + *
+> > > + * 4  Standard machine-level extensions (starts with 'Zxm') should be
+> > > + *    listed after any lower-privileged, standard extensions.  If multiple
+> > > + *    machine-level extensions are listed, they should be ordered
+> > > + *    alphabetically.
+> > > + *
+> > > + * 5. Non-standard extensions (starts with 'X') must be listed after all
+> > >   *    standard extensions. They must be separated from other multi-letter
+> > >   *    extensions by an underscore.
+> > >   */
+> > > -- 
+> > > 2.38.1
 > > >
+> > 
+> > Alternatively, we could change the comment to just point out the spec
+> > chapter and provide an example, e.g.
+> 
+> IDK, maybe add the reference & the example but keep the summary?
+
+It risks needing to synchronize the comment with the spec. Also, the
+comment doesn't need to reproduce the flexible specifications, since
+Linux has a single implementation (it always puts an underscore between
+single-letter extensions and the first multi-letter extension, for
+example). So, rather than paraphrase too much of the spec, we could just
+point out Linux's specific implementation (with the help of an example).
+
+I don't feel that strongly about it though, so we can keep the text
+the spec paraphrasing too.
+
+Thanks,
+drew
+
+> 
+> > /*
+> >  * The canonical order of ISA extension names in the ISA string is defined in
+> >  * chapter 27 of the unprivileged spec. An example string following the
+> >  * order is
+> >  *
+> >  *   rv64imadc_zifoo_zigoo_zafoo_sbar_scar_zxmbaz_xqux_xrux
+> >  *
+> >  * Notice how Z-extensions are first sorted by category using the canonical
+> >  * order of the first letter following the Z. Extension groups are in the
+> >  * order specified in chapter 27. Extensions within each group are sorted
+> >  * alphabetically.
+> >  */
+> > 
+> > 
+> > Thanks,
+> > drew
