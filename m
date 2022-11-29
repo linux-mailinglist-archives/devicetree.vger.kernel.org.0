@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F9063C308
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B57963C30C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:47:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235820AbiK2OrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:47:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52518 "EHLO
+        id S233428AbiK2OrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:47:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235771AbiK2OrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:47:10 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A225C0EA
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:47:08 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id t25-20020a1c7719000000b003cfa34ea516so957366wmi.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:47:08 -0800 (PST)
+        with ESMTP id S232360AbiK2OrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:47:12 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1346B59FD4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:47:09 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id t1so11088693wmi.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:47:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T0Q5MXbXZSDNK30Oz1UpNS2OJdhndmv3wBdEHLEBaLM=;
-        b=UMc+xQ4qZhQB/7QZU4DR/+z7qm8VeDWnv5SP3X72fx4USl0XYSjvXYpCioKc2oAmRP
-         WFkjyZsWiWU+PcnEVikqrzMKUer5bbBxQNtFqopCvzR0eU7+hucfzS9aJhqGf3ii3P+o
-         OTwaEtfTdHj2UKRkiqTc1X+WF84WOE8NOD//jaCnyP4wYHQouNRPpcJi14qP5W5Qw9FM
-         VxlqlK+M3h+BUDlKOWD9vkCsTXe6B5etW+PRtIiTGAEE7yNONxtGFRbbqyKdQATux3Es
-         Z9DU+w1huF2QslKpnfkkl8IhNqXX95k0aHHGM9mFiCcpz70PV4dlsJF1NxIjXmfPIPHj
-         U8gQ==
+        bh=r8Au/1u0YFc5wyAQ+jpg2qjjEheMb69WJesiWy0RQrA=;
+        b=sqVV6mE5EDGMLCdQ0r2xOMxQYA/ZiB+py+Zu5HitjrgvKRSlD/3xogpgtlk9Fi7De2
+         MBruJUji9QX7cgkXHXg9So8hpIeosiveFPMLJMUa0gMlGfS1I49ad803GetMB8lzcoSM
+         Er/O6qdjw9lI7kzs4B7kd5MyU8j8bcgvTzZHym5B1CDpo7Kra3u1NMk4ybOnAKWMpxmE
+         7g2vBpH1vX8GmKG5w5Fsed3Tp2mgZ9oSiIQ/P/h5o/RT7GSkolSX7TiLbOQl7JkXVH+A
+         DlYGqNKc/Rbq8XXaMR8zz4YvicNjRlzmqS/MQboUBZ41TOAK6ZYV92GWFqpRJAALJmCM
+         k+tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=T0Q5MXbXZSDNK30Oz1UpNS2OJdhndmv3wBdEHLEBaLM=;
-        b=L7+Ogz914fwYt/fEKy/UQCSZZ+X4J2Sl8rV/Q/qECwoCFUusrV+3HZQ1QgJWEE99n/
-         e136Z+FBBL7glhyq1RhhLpTpuPj8RQzJrIeQI+Uz1gXGLurm4WfRUSETOg0dGoLUdmex
-         Pi9W7slTOGjnYOH0hDUHquOHPBrsw85C1HiMhN8GVf4R41RkWRX1tDV+gBOX/p+IgyVh
-         3Th/N7nPinx5r9L0Lh7IT1CcNBL9TIHT7ZITNPg7nv6tsXxC5htnzyL7aI52igBfTHRW
-         xigaRFAAWvigyZCwQj/oL41rKE2a7dUAibDkBn1C2dmLWkt08L1GGYz7aJrFT+0GVH+O
-         Do+w==
-X-Gm-Message-State: ANoB5pkE88OPW9Y2MNo+Lmo2iKiJFOAlKMl1XVxtkn91veWACyr05Gmy
-        xkk9v+bi+Jok3GBF9zHuv2wE2Q==
-X-Google-Smtp-Source: AA0mqf4PuGpNaXKcfWSP85aNCRlRaooV/CN1/rauzi3yNoTCDVZ1r0n8DBnjPUqy0JWrtdZ/tOZJPQ==
-X-Received: by 2002:a7b:c2aa:0:b0:3cf:5d41:bea1 with SMTP id c10-20020a7bc2aa000000b003cf5d41bea1mr29866594wmk.118.1669733226685;
-        Tue, 29 Nov 2022 06:47:06 -0800 (PST)
+        bh=r8Au/1u0YFc5wyAQ+jpg2qjjEheMb69WJesiWy0RQrA=;
+        b=umWcHXLrifWt5Ibn7/7VthBB+BxU6+/lp2HujRCAIl5S7XCfhpd1M/vmp62zz+bzji
+         cESpiKgMUNhMFcav/mSkkXJjLV91VEB8BsGMlC+DykGEKQf0+7OoCsXedVsdUTzXVZWr
+         rIUafEUowKh7BARJjgxnOC4s3jBi2KMT1g7T5VMg4g7KgdyVP3aD8TjHwu53uxEFd7w0
+         uPV0vlnqrdto8kcwO6bdW6Nulb45uUcGmRffvPqCd6mvm90mqMCb3A8xLGXrj574xwVC
+         4JELwfWJWUuXm/HTfPpHFDbLdfR48b3Np2DhIG4ETKvwm957B9RPHdJhuzfBl2ztuWJC
+         69Gw==
+X-Gm-Message-State: ANoB5pnjKm5V9jPbXKBPNZoY3WlGjQDYMeIYaWYrCXCTWL7U3dpAKcHR
+        5fW72riYxXuBq1Vm+HmYgvXsPA==
+X-Google-Smtp-Source: AA0mqf7s4DMmTBdo0+HD1SGfzOoK0yl8tS4opOjcQMyXT3Q9m6LbsxEH2hD7kcHPEEdWGlSwnuO6Zw==
+X-Received: by 2002:a05:600c:4e47:b0:3cf:5657:4717 with SMTP id e7-20020a05600c4e4700b003cf56574717mr45112311wmq.87.1669733227577;
+        Tue, 29 Nov 2022 06:47:07 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id b10-20020adfee8a000000b00241dec4ad16sm13717792wro.96.2022.11.29.06.47.05
+        by smtp.gmail.com with ESMTPSA id b10-20020adfee8a000000b00241dec4ad16sm13717792wro.96.2022.11.29.06.47.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 06:47:06 -0800 (PST)
+        Tue, 29 Nov 2022 06:47:07 -0800 (PST)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 29 Nov 2022 15:47:04 +0100
-Subject: [PATCH v3 4/6] soc: qcom: geni-se: add support for I2C Master Hub wrapper
- variant
+Date:   Tue, 29 Nov 2022 15:47:05 +0100
+Subject: [PATCH v3 5/6] i2c: qcom-geni: add desc struct to prepare support for I2C
+ Master Hub variant
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-4-f6a20dc9996e@linaro.org>
+Message-Id: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-5-f6a20dc9996e@linaro.org>
 References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
 In-Reply-To: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
@@ -83,38 +83,159 @@ The I2C Master Hub is a stripped down version of the GENI Serial Engine
 QUP Wrapper Controller but only supporting I2C serial engines without
 DMA support.
 
-Add the clock list for the I2C Master Hub variant to a new desc struct
-then pass it through the I2C Master Hub compatible match data.
+Those I2C serial engines variants have some requirements:
+- a separate "core" clock
+- doesn't support DMA, thus no memory interconnect path
+- fixed FIFO size not discoverable in the HW_PARAM_0 register
+
+Add a desc struct specifying all those requirements which will be used in
+a next change when adding the I2C Master Hub serial engine compatible.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/soc/qcom/qcom-geni-se.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/i2c/busses/i2c-qcom-geni.c | 50 +++++++++++++++++++++++++++++++++++---
+ 1 file changed, 47 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-index 9ddee9fd11ba..f0475b93ca73 100644
---- a/drivers/soc/qcom/qcom-geni-se.c
-+++ b/drivers/soc/qcom/qcom-geni-se.c
-@@ -942,8 +942,18 @@ static const struct geni_se_desc qup_desc = {
- 	.num_clks = ARRAY_SIZE(qup_clks),
+diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+index 84a77512614d..75dd0718c5a1 100644
+--- a/drivers/i2c/busses/i2c-qcom-geni.c
++++ b/drivers/i2c/busses/i2c-qcom-geni.c
+@@ -88,6 +88,7 @@ struct geni_i2c_dev {
+ 	int cur_wr;
+ 	int cur_rd;
+ 	spinlock_t lock;
++	struct clk *core_clk;
+ 	u32 clk_freq_out;
+ 	const struct geni_i2c_clk_fld *clk_fld;
+ 	int suspended;
+@@ -100,6 +101,13 @@ struct geni_i2c_dev {
+ 	bool abort_done;
  };
  
-+static const char * const i2c_master_hub_clks[] = {
-+	"s-ahb",
++struct geni_i2c_desc {
++	bool has_core_clk;
++	char *icc_ddr;
++	bool no_dma_support;
++	unsigned int tx_fifo_depth;
 +};
 +
-+static const struct geni_se_desc i2c_master_hub_desc = {
-+	.clks = i2c_master_hub_clks,
-+	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
-+};
+ struct geni_i2c_err_log {
+ 	int err;
+ 	const char *msg;
+@@ -764,6 +772,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	u32 proto, tx_depth, fifo_disable;
+ 	int ret;
+ 	struct device *dev = &pdev->dev;
++	const struct geni_i2c_desc *desc = NULL;
+ 
+ 	gi2c = devm_kzalloc(dev, sizeof(*gi2c), GFP_KERNEL);
+ 	if (!gi2c)
+@@ -776,6 +785,14 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	if (IS_ERR(gi2c->se.base))
+ 		return PTR_ERR(gi2c->se.base);
+ 
++	desc = device_get_match_data(&pdev->dev);
 +
- static const struct of_device_id geni_se_dt_match[] = {
- 	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
-+	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, geni_se_dt_match);
++	if (desc && desc->has_core_clk) {
++		gi2c->core_clk = devm_clk_get(dev, "core");
++		if (IS_ERR(gi2c->core_clk))
++			return PTR_ERR(gi2c->core_clk);
++	}
++
+ 	gi2c->se.clk = devm_clk_get(dev, "se");
+ 	if (IS_ERR(gi2c->se.clk) && !has_acpi_companion(dev))
+ 		return PTR_ERR(gi2c->se.clk);
+@@ -819,7 +836,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	gi2c->adap.dev.of_node = dev->of_node;
+ 	strscpy(gi2c->adap.name, "Geni-I2C", sizeof(gi2c->adap.name));
+ 
+-	ret = geni_icc_get(&gi2c->se, "qup-memory");
++	ret = geni_icc_get(&gi2c->se, desc ? desc->icc_ddr : "qup-memory");
+ 	if (ret)
+ 		return ret;
+ 	/*
+@@ -829,12 +846,17 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	 */
+ 	gi2c->se.icc_paths[GENI_TO_CORE].avg_bw = GENI_DEFAULT_BW;
+ 	gi2c->se.icc_paths[CPU_TO_GENI].avg_bw = GENI_DEFAULT_BW;
+-	gi2c->se.icc_paths[GENI_TO_DDR].avg_bw = Bps_to_icc(gi2c->clk_freq_out);
++	if (!desc || desc->icc_ddr)
++		gi2c->se.icc_paths[GENI_TO_DDR].avg_bw = Bps_to_icc(gi2c->clk_freq_out);
+ 
+ 	ret = geni_icc_set_bw(&gi2c->se);
+ 	if (ret)
+ 		return ret;
+ 
++	ret = clk_prepare_enable(gi2c->core_clk);
++	if (ret)
++		return ret;
++
+ 	ret = geni_se_resources_on(&gi2c->se);
+ 	if (ret) {
+ 		dev_err(dev, "Error turning on resources %d\n", ret);
+@@ -844,10 +866,15 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	if (proto != GENI_SE_I2C) {
+ 		dev_err(dev, "Invalid proto %d\n", proto);
+ 		geni_se_resources_off(&gi2c->se);
++		clk_disable_unprepare(gi2c->core_clk);
+ 		return -ENXIO;
+ 	}
+ 
+-	fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
++	if (desc && desc->no_dma_support)
++		fifo_disable = false;
++	else
++		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
++
+ 	if (fifo_disable) {
+ 		/* FIFO is disabled, so we can only use GPI DMA */
+ 		gi2c->gpi_mode = true;
+@@ -859,6 +886,16 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 	} else {
+ 		gi2c->gpi_mode = false;
+ 		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
++
++		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
++		if (!tx_depth && desc)
++			tx_depth = desc->tx_fifo_depth;
++
++		if (!tx_depth) {
++			dev_err(dev, "Invalid TX FIFO depth\n");
++			return -EINVAL;
++		}
++
+ 		gi2c->tx_wm = tx_depth - 1;
+ 		geni_se_init(&gi2c->se, gi2c->tx_wm, tx_depth);
+ 		geni_se_config_packing(&gi2c->se, BITS_PER_BYTE,
+@@ -867,6 +904,7 @@ static int geni_i2c_probe(struct platform_device *pdev)
+ 		dev_dbg(dev, "i2c fifo/se-dma mode. fifo depth:%d\n", tx_depth);
+ 	}
+ 
++	clk_disable_unprepare(gi2c->core_clk);
+ 	ret = geni_se_resources_off(&gi2c->se);
+ 	if (ret) {
+ 		dev_err(dev, "Error turning off resources %d\n", ret);
+@@ -932,6 +970,8 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+ 		gi2c->suspended = 1;
+ 	}
+ 
++	clk_disable_unprepare(gi2c->core_clk);
++
+ 	return geni_icc_disable(&gi2c->se);
+ }
+ 
+@@ -944,6 +984,10 @@ static int __maybe_unused geni_i2c_runtime_resume(struct device *dev)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = clk_prepare_enable(gi2c->core_clk);
++	if (ret)
++		return ret;
++
+ 	ret = geni_se_resources_on(&gi2c->se);
+ 	if (ret)
+ 		return ret;
 
 -- 
 b4 0.10.1
