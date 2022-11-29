@@ -2,101 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC82363B8E2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 04:44:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A46563B8EF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 04:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235506AbiK2Dou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 22:44:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
+        id S235075AbiK2D7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Nov 2022 22:59:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234975AbiK2Dot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 22:44:49 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543CE10FDC
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 19:44:48 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id d6so12174011pll.7
-        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 19:44:48 -0800 (PST)
+        with ESMTP id S235039AbiK2D7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 22:59:05 -0500
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2095.outbound.protection.outlook.com [40.107.101.95])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF002BE36;
+        Mon, 28 Nov 2022 19:59:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ke6730yFTB+LY/mRDkVCxS6PHN3dMey4NDRqWsIuyrK/PYv/Pb77/E17s0oFb5edQpGB3N1PUW3KY9byUTOrGkvFVwXy5c2UHz2cUxteumZdf7dWwxZE8ZYF0H+4TuPnuFw5VINtWCGTSuovoZ4dv3Iv6pF3E5PSRIPrRdIPQIjROP+Fv2C6S45m7bcD979zR1dIBtxqHsw4riFW71dVgAB0EMfxHrCrhurLIK3C5juYWMaYcu+p5MBSBWXYS7Xc2ezZGfGbccZbT4MCp/jh92BlBQ2FkWNm2Gz2zbsQZ+f83gluqX02Nh0x1tZ6OgMwq3jz5Y5Aqsz30c1EdE4sDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aruHhMppQa60kz095e3jTuWRJu8UywEQMtbuUmU6xDU=;
+ b=J7KQi0ETSqwVXS93ZinIONHSbBiZzcC5sbu6K/DM8zWDzBLrqB3H12NQ0YaKtoKNYzzH+yHtIzpQjlMKzQknCVI+ya9Ayhy0uQLiMaiwyA2NrdJJhh4QegbuYT/PxHOpmbWQ4lSju0sRdOPZ1tEKkp7triPo7khVQi0Xw+xnKIrajCrJetJzySEM6M48ukFa552tVNuTBT/WfZz/H/bcKAffi9IyMxNKASYAfXywpYkXVjGY//r509Oav06GtJbeBzoX8ICQfedn4+q0wdNInZl3csqsCDkHGtt/cVvwJZz0piVacgwwXE/gskANYHj2gJHZcGhYGujiXbRxpDSIug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cc6YZeu86MLhbPIXSljwWJJn8NbPxcgy7OA0BHwk7uA=;
-        b=SCAOlPPooD/APYwTsXkzkioVUSqcnKSOk7t5hrhs4bXxb1EVMcpXSZPyWGyliWZKWe
-         Z9GzpWLVYalirAQ0qRzfbOPdl1ZJTz/vkX5kO9G0NfmnRHABxGldcQAZElikf+5iKI3z
-         U70mS8vv46YAjv7ZK8/CF+afnJcgWYs82qMeQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cc6YZeu86MLhbPIXSljwWJJn8NbPxcgy7OA0BHwk7uA=;
-        b=YFeV71NpUIB96gXtzX+QyBOZw5AHLloJMZZvnNDGGrByIb0jfWbg9aJTVVxoM0nfoW
-         Jd5fyNaWK25Csp18dilhKAqIrK3hiyaCxWjHnPWsgDAjE7w7QMTtcdGPeVPfro+33A3I
-         3Y579aRvlUyS6MC0ZBPN/ejGPro5rmMzrtdqEBZoKvOqLztlTStS7Mfgj4tszq7DY2Ho
-         6/+XKjUbeyaDmCCZFCzVAipl05UxXBjoILW+YiSEyjpoi7aEGhbTicdqAZOpdZ5LIVNW
-         comnTy/N8K716rRf54H5W8PjG5gZYs0TuOgDq0uHR0T9zN0D5Fi8HZIPIRRjkMMgxINC
-         Z/Pw==
-X-Gm-Message-State: ANoB5pkDdNdHqB6zisSntg8xfAWrjT2nHppRbwhb8yEJOn8ussdklc4N
-        WKzzOH9uOpTtVqamiX+apNI8og==
-X-Google-Smtp-Source: AA0mqf6VE44fM8ZN+/MCjrsKz/vmsa3nEc9iyrgxnJbdY7NRiouCGIfiNOXJtaStWUulWRyZ3CGHBQ==
-X-Received: by 2002:a17:90a:9908:b0:213:b6c7:53e1 with SMTP id b8-20020a17090a990800b00213b6c753e1mr64739389pjp.35.1669693487748;
-        Mon, 28 Nov 2022 19:44:47 -0800 (PST)
-Received: from [192.168.1.33] ([192.183.212.197])
-        by smtp.googlemail.com with ESMTPSA id b194-20020a621bcb000000b00574898527c8sm8781165pfb.74.2022.11.28.19.44.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Nov 2022 19:44:47 -0800 (PST)
-Message-ID: <08abea27-a751-d861-c526-80b41dd72ff2@schmorgal.com>
-Date:   Mon, 28 Nov 2022 19:44:46 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aruHhMppQa60kz095e3jTuWRJu8UywEQMtbuUmU6xDU=;
+ b=kSVcdN5ipBDPeGLPzBhB5AoNhABZXa+7BRWxLZHcyhTrJ7fSSYHp5650pMuX6HwcBmCDOgHrNlI4rrv/Xwd7HEb47nvEZ7vg66MGpUzZ/E9MSUY4ESewSu1B9x5X7Hp/NJPXdkSyADArFsG1izajidPn25r0eT96weIl3OvpFjw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by PH0PR10MB4565.namprd10.prod.outlook.com
+ (2603:10b6:510:31::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Tue, 29 Nov
+ 2022 03:59:01 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5857.023; Tue, 29 Nov 2022
+ 03:59:01 +0000
+Date:   Mon, 28 Nov 2022 19:58:56 -0800
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221128024407.224393-1-doug@schmorgal.com>
- <20221128024407.224393-9-doug@schmorgal.com>
- <263b5e29-f0b4-27b4-a753-592153edc3c3@linaro.org>
-From:   Doug Brown <doug@schmorgal.com>
-Subject: Re: [PATCH 8/8] dt-bindings: mmc: sdhci-pxa: add pxav1
-In-Reply-To: <263b5e29-f0b4-27b4-a753-592153edc3c3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>
+Subject: Re: [PATCH v3 net-next 03/10] dt-bindings: net: dsa: utilize base
+ definitions for standard dsa switches
+Message-ID: <Y4WDgL8k9uDsVx4X@euler>
+References: <20221127224734.885526-1-colin.foster@in-advantage.com>
+ <20221127224734.885526-4-colin.foster@in-advantage.com>
+ <20221128232337.GA1513198-robh@kernel.org>
+ <Y4XSPMMDgiFipdIW@COLIN-DESKTOP1.localdomain>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y4XSPMMDgiFipdIW@COLIN-DESKTOP1.localdomain>
+X-ClientProxiedBy: SJ0PR13CA0086.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::31) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|PH0PR10MB4565:EE_
+X-MS-Office365-Filtering-Correlation-Id: a278b17e-4647-468a-9d2d-08dad1be0c8c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: o106zyhasV35ufYAEShJKA77VDqgCF2+BLn6Z4vvRkYXiv8SBD0RQzaa5Ls8EaJZOwnDqHtHjWZvVBxtJ9OrtGydraEB6e89NdZKZDoWp2hAZDxfZ7znPBS9ZnNxj8fzAAXZyhIWWhFBAdOWASzVq/peUtu/wDFfeMrxQ7fqrUpMjWk6GGDn+TOxml5rpPgkS/es2geUhl5wH7BkhzLwl6ny/7bxcSog8QQWhklFzEGKM/z4lt/ZjQNF1nwMGlVXcQ6PguVenke28uoYXBIYfaK8c4C3QSfIouVZ5Y5kuDvNMbU/3lkH2lLSYaz8mlgW2KSr6W2bv7cdp9C3zu+seA07ry+qKUR6Dik8FlegZrOxIPIz2xDWW9KBYbsn3kkHt8MsoIMuMMDGrtNAZp00uHEKY8GOM1gzr/91ObzG4g4O5B1/izsR5nZv1kOSi1nQNZSOnPgoVj/FzYzxmOdM7HpKg6mzaZeiHIgx0kCH3nzKJ1F1cCxhTX7yejD8Maoc1Wa91twfcmmmnQo2WuP1FwrpLltcgGyULQ/G/cAdd6Z3T6hyYk1PLOPDn/F7hq8OsJ8dKVoXcuGUtNiRF1Pz6yXKqVrNH9YPmA5kH8R4OQ26bQWB0OcoKYVcn3AGhzytvnPS2562Foqny8WnZNELwQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(39830400003)(366004)(376002)(346002)(396003)(136003)(451199015)(86362001)(6666004)(478600001)(6486002)(7406005)(7416002)(2906002)(186003)(6512007)(9686003)(38100700002)(66946007)(6506007)(44832011)(41300700001)(316002)(33716001)(66556008)(26005)(4326008)(8676002)(8936002)(54906003)(5660300002)(6916009)(66476007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OXKNlaykjjV1wN3mUyWxm4EOBor4FSM55bTW3g+JQdAnSg+s4HBQ2NoaxdfM?=
+ =?us-ascii?Q?Cd6kDbYvt8lDisl53dbX5Ps1ZQKC2vu4YK9bmbazNnoNb6fmSj8qRsV3QoYN?=
+ =?us-ascii?Q?3qeyLN7qFmBrm9RIVek8Aqr/O5bttzc/J7UZG6QfM6FcxRDZa3MWyVGDp56p?=
+ =?us-ascii?Q?1/BJrgL3tHjKHQ/85i1o8+SAVzqZpr9LiRSABsDg22FUF+84IrXzXrcCPE1M?=
+ =?us-ascii?Q?R4M/pFscEOeeNZhbWsHfwFfItv0FDJLhAlj4fE0wH5S6jPJYAyBh3XoDyMoL?=
+ =?us-ascii?Q?MiuPylHPYKGTEuvl42VOv3bseGL9Ih0QUWHNw5e6E5UkKeVGPm7dUPgcS8WV?=
+ =?us-ascii?Q?K156cH/rLLc6OyRb9EgL17slwu/eMVCzn6CvlzobrYdQybaQmwNyc4oBq8Vp?=
+ =?us-ascii?Q?VuK/JWu0Mb3+WPsph4iEZCkIVAvfAG5I43mMsfZ5tYIANEcMz89bpsniW77Z?=
+ =?us-ascii?Q?EKbfk+c/uqyztLNKhBrh4+aqZ96OpDbJk0l7WWwRAxP54H2ct5u0xcDPiuXv?=
+ =?us-ascii?Q?dTtuQ+DJarLmrwm/7JRY8nmbby1/1ZYmPVaQgMGCTl+bup2FDcIC1anLk+JU?=
+ =?us-ascii?Q?osAkDK7GCtyMgI1YyGXYCZ6H2k1jAecj2ao3yzhcolWzGJQJcujWtxjW/dmQ?=
+ =?us-ascii?Q?REpsnjYmcujagPFJ35cMx8jWxGbN516p0PC8AeBBe59+BXidZUmOwKRGp9ko?=
+ =?us-ascii?Q?cTIL/hFEeIfUsyOmdFSA/6Xxl7/zj7PCX84eVaO5RhH8V/EgwKhFvuuTBgjh?=
+ =?us-ascii?Q?yAcJV5qREjf0ZyG2b273RA+Z73LZ+U6brgecGH9kwhbji+pfuekte84//ugT?=
+ =?us-ascii?Q?vphy+tD1VlHUrgo5UVmrqQrMVXcMjY0v1gIHAcHzTWgcOdPPLFLRU66l9NdM?=
+ =?us-ascii?Q?alae7zlOTMQnB1oXlpwN4u7KIQz1GG0mcLxwGL6qZj9lpRU8nGV83Uxp8gxL?=
+ =?us-ascii?Q?AMgfg1zP+p3hD37Rx9tPKBnyrRO3kBIgd6XGA/Sx6I99S33LxLhZ/QRfLPTv?=
+ =?us-ascii?Q?GteMHI+lfHIQK9iYcF6RbvDgViy/FwQBf0OJHRwCUp8h7xveGYxne5oVxgQF?=
+ =?us-ascii?Q?IjxhVIpYkBkLose9mtP72wDt4Xh8QismaXCbyKFOZ+Jm8PtCUuJildt7y2xv?=
+ =?us-ascii?Q?7QiTOYsLnvrbwCxdqMk5alo+96/g2egSyodsj3PX6+jlRuMOC1woLjw/eC2w?=
+ =?us-ascii?Q?eopFX1jR6ZyYH6bNXhVMAjJCeOTMkxzjM/f3x4XZJUu8ZK6+FeynLl8ImciU?=
+ =?us-ascii?Q?0IUR5I/IyMHQN10uiE4yu/FCT1ba3LWbpEAzICQmPRZ2Jwptmc868y+ImeXT?=
+ =?us-ascii?Q?sb9C/5oiYclZKhGRl2hvv3f4hXKDguyjcVpc8Kktnlbew82qj3SuDYp8XWOK?=
+ =?us-ascii?Q?Wzh/vTTyFicX3euUCpOBM3r+bxjn/LZofN9vlYxP+lBf0k4EvpsceTEfEEm2?=
+ =?us-ascii?Q?mXXeYqV7Aq3yenxTnhkIUllBqZgtCJmWmUidTFXqnlgm82h/l6dDyk9wYrBq?=
+ =?us-ascii?Q?0JS/Cn6ulf1RkC1fOPrhWjDIYErcqKC76DXbg5f+EwO5Yo11KBvo6JWPZMzE?=
+ =?us-ascii?Q?MhQEjPGgn+s7mkfJ/DPCpSBjCeC62stzVA35JkGnd4H9K9B3AB2WoIWE9iP4?=
+ =?us-ascii?Q?G+EaRscee5y6C0qguiqEPq0=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a278b17e-4647-468a-9d2d-08dad1be0c8c
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2022 03:59:01.4317
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qrr8YeSle6iW9skuIdyQMXq/tEVOq+aPvoONMaH6WASKUzefy5U4Iy0/4IzBczRwpfwGwUe7MMMM9i/lQIiTNAXkjT3wuQfx7E/vKi+Lfds=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB4565
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof and Rob,
-
-On 11/28/2022 12:58 AM, Krzysztof Kozlowski wrote:
-
-> No need for minItems.
+On Tue, Nov 29, 2022 at 01:34:52AM -0800, Colin Foster wrote:
+> Hi Rob,
 > 
-> Start with capital letter if this is a sentence with full stop. It's
-> anyway looking different then the rest of the file, right?
+> On Mon, Nov 28, 2022 at 05:23:37PM -0600, Rob Herring wrote:
+> > On Sun, Nov 27, 2022 at 02:47:27PM -0800, Colin Foster wrote:
+> > > diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > > index b9d48e357e77..bd1f0f7c14a8 100644
+> > > --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > > @@ -19,9 +19,6 @@ description:
+> > >  select: false
+> > >  
+> > >  properties:
+> > > -  $nodename:
+> > > -    pattern: "^(ethernet-)?switch(@.*)?$"
+> > > -
+> > >    dsa,member:
+> > >      minItems: 2
+> > >      maxItems: 2
+> > > @@ -58,4 +55,20 @@ oneOf:
+> > >  
+> > >  additionalProperties: true
+> > >  
+> > > +$defs:
+> > > +  base:
+> > > +    description: A DSA switch without any extra port properties
+> > > +    $ref: '#/'
+> > > +
+> > > +    patternProperties:
+> > > +      "^(ethernet-)?ports$":
+> > 
+> > This node at the top level needs 'additionalProperties: false' assuming 
+> > we don't allow extra properties in 'ports' nodes. If we do, then we'll 
+> > need to be able to reference the 'ports' schema to extend it like is 
+> > done with dsa-ports.yaml.
 > 
-> Why maxItems: 1? What if one wants to add here more entries? Drop maxItems.
-> 
-> Ditto
+> I'll double check if there's anything that adds any properties. If there
+> is, would that be a separate file pair: "dsa-ports.yaml" and
+> "ethernet-switch-ports.yaml"? Or do you think that could be contained in
+> the existing dsa.yaml, ethernet-switch.yaml?
 
-Thanks for the fast review. Will fix this all in V2 after I receive
-feedback on the other patches. I was trying to follow the pattern from
-another similar schema and didn't fully understand.
+I came up with this change. It also fixes my accidental 's' affix to
+^(ethernet-)port@[0-9]+.
 
-On 11/28/2022 4:20 AM, Rob Herring wrote:
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+index 616753ba85a2..c1900363a6ab 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -41,12 +41,18 @@ $defs:
+     patternProperties:
+       "^(ethernet-)?ports$":
+         type: object
++        additionalProperties: false
++
++        properties:
++          '#address-cells':
++            const: 1
++          '#size-cells':
++            const: 0
 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13)
-Well this is embarrassing! I forgot to run dt_binding_check. Sorry about
-that.
+         patternProperties:
+-          "^(ethernet-)?ports@[0-9]+$":
++          "^(ethernet-)?port@[0-9]+$":
+             description: Ethernet switch ports
+             $ref: dsa-port.yaml#
+             unevaluatedProperties: false
 
-Doug
+-
+ ...
+
