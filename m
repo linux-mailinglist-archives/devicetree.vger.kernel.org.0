@@ -2,132 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7667F63BB98
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E00D263BBA5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:31:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbiK2IaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:30:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39472 "EHLO
+        id S229973AbiK2Ibf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:31:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbiK2I3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:29:20 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139095984C
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:28:48 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id z4so20870659wrr.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:28:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UsdFpV0/mKDiXztrE9lqloezboDBtAsqnTTRBiOVtQ8=;
-        b=Lt2YZeLSZM3s91FD+Cb0iXVLAQ7owCjKjUS3Ae1jNlIFM57h8NDDsrdMoGpW7NxjJa
-         Rm8jNQBM0CsA5pty/Bg3BlqfgA0EMOOWKsjso8ekNmvzv7Y0S1J7erclbRbZEQqinaT/
-         gVVrh8W8ZYGjPrjoky8mP++kBkSABMYMc3U2fuidvKGXyp9Tx1Ow6wAxnq5iJZHZdM3r
-         TJi8XcPA8zVgd5aDMCWieNA/HklwLLcgdUsOqu0tEx/W7DQhuBfkJxGdC5NUWn069GFM
-         PfUnT7ajbkDUVv3REcjyLLjLpbC0M1uQMnE2XKM8PA7RuGDz2TTlUlC6ntyIxYIzP1KA
-         kZzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UsdFpV0/mKDiXztrE9lqloezboDBtAsqnTTRBiOVtQ8=;
-        b=Q9h2wZivnk29Hl4jSxJlhIprfOU1jZGIgOdgeFOZXH2RKKEUfIqnyM3LuzjTh4hsHg
-         MBT/ptgquCqNElSzfl1C/5HeekXi0gPzE9qJFwqDkSrU/QlRMBu/uegTWnviQKrt+eyN
-         1ml4kAZrdggQPPbiTAYkkjSbcz3NsdOG62bicW7NGApLXDtwMLlCvhZ43usMpdZEwIz6
-         aJWZiRRafLhWovu41nymPqC8Ff5Ah659dz/A8KiI/8Nq2usQgm9o9pfxXVheUUIvuHUE
-         sSaWLl/dAnRegRZfO5wpAMotUV2kWvw8D4mJxa9Cv5i9MTp5ujDiS5FYvCTkXVUseSBk
-         FY9Q==
-X-Gm-Message-State: ANoB5pmU10TnH8v7gVphb/q6s8ahEcWX5JFcs/gkzvWFF5s8aqdhMT0o
-        SHlVvRMtxczWOgzGHUotWq7hvg==
-X-Google-Smtp-Source: AA0mqf5Z0ZWZ9WQn5gBf/30EXFOX91ieTBWgfiEIeO5U9aZafcjJQFiEzNfLFKEoKitug8Bt471FDA==
-X-Received: by 2002:a5d:68cc:0:b0:242:1c1a:37e6 with SMTP id p12-20020a5d68cc000000b002421c1a37e6mr4279056wrw.549.1669710526889;
-        Tue, 29 Nov 2022 00:28:46 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2? ([2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2])
-        by smtp.gmail.com with ESMTPSA id h18-20020adff4d2000000b00242269c8b8esm83142wrp.25.2022.11.29.00.28.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:28:46 -0800 (PST)
-Message-ID: <301cfc50-5452-7e71-559e-2586f89464d6@linaro.org>
-Date:   Tue, 29 Nov 2022 09:28:47 +0100
+        with ESMTP id S230339AbiK2Iap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:30:45 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C3F59844;
+        Tue, 29 Nov 2022 00:30:02 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 973A766023A1;
+        Tue, 29 Nov 2022 08:29:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669710600;
+        bh=XnYqiFVLP4BtH3oXv8+Wi85TZoEBQEB4dmv9jhrnXLo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=GnSd9BQuynt5Ll+SAJX0Wv2Wp5gdL5erByXb769tHIfyJ6b7loqfpKNyFpYU87J9y
+         /1Kfpa1zrUYHneQ93OPXC+Gxi2VmChmkr5Hex92ruzEzJJxe0arVP96XSuJS8tHNGk
+         uXsl44HT6vYEOIxQxSQ8hT83Zdxw94bYxMaib4VIvueYMldCnqGuWeWNaRCBSZXt0g
+         O9OJ6Vlke/xa7JT45ic9W+QZNOT0YAyZDHGV+kgZ9AyX4q80TI+kLargPaa4if4xV1
+         wpiszhZuihW+JxoPLtcFarfp87jtsU/164769C2xCn0JKq2vnm0I4kXUxw+NnITV2R
+         AuRpb2dmD6/hA==
+Message-ID: <e30a76e7-3bb7-5e19-2bc1-ab8a0c67d73e@collabora.com>
+Date:   Tue, 29 Nov 2022 09:29:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 0/2] soc: qcom: Add support for Qualcomm Modem
- Processing SubSystem DSM memory
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 3/7] dt-bindings: pinctrl: mediatek,mt65xx: Deprecate
+ pins-are-numbered
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-mpss_dsm-v2-0-f7c65d6f0e55@linaro.org>
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        devicetree@vger.kernel.org
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        krzysztof.kozlowski@linaro.org, matthias.bgg@gmail.com,
+        khilman@baylibre.com, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org
+References: <20221129023401.278780-1-bero@baylibre.com>
+ <20221129023401.278780-4-bero@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221129023401.278780-4-bero@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/11/2022 09:53, Neil Armstrong wrote:
-> The Qualcomm SM8550 SoC Modem Processing SubSystem requires that a memory
-> region named DSM should be shared with the Application Processor SubSystem.
+Il 29/11/22 03:33, Bernhard Rosenkränzer ha scritto:
+> Make pins-are-numbered optional and deprecate it
 > 
-> This adds bindings for this MPSS DSM memory and driver implementation to
-> share this memory region with the Modem Processing SubSystem.
-> 
-> The MPSS DSM memory must be shared between the APPS SubSystem and the MPSS
-> SubSystems, for the whole lifetime of the system.
-> 
-> To: Andy Gross <agross@kernel.org>
-> To: Bjorn Andersson <andersson@kernel.org>
-> To: Konrad Dybcio <konrad.dybcio@somainline.org>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Frank Rowand <frowand.list@gmail.com>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> ---
-> Changes in v2:
-> - Fixed the bindings
-> - Added some precision on the MPSS DSM in commit messages
-> - Link to v1: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org
-> 
-> ---
-> Neil Armstrong (2):
->        dt-bindings: reserved-memory: document Qualcomm MPSS DSM memory
->        soc: qcom: add MDSS DSM memory driver
-> 
->   .../reserved-memory/qcom,mpss-dsm-mem.yaml         | 37 +++++++++
->   drivers/of/platform.c                              |  1 +
->   drivers/soc/qcom/Kconfig                           | 10 +++
->   drivers/soc/qcom/Makefile                          |  1 +
->   drivers/soc/qcom/mpss_dsm_mem.c                    | 95 ++++++++++++++++++++++
->   5 files changed, 144 insertions(+)
-> ---
-> base-commit: 999e0145579c0e04174044a39257a4d96ee30020
-> change-id: 20221114-narmstrong-sm8550-upstream-mpss_dsm-21c438c65f9b
-> 
-> Best regards,
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-After discussions on https://lore.kernel.org/all/20221114-narmstrong-sm8550-upstream-mpss_dsm-v1-0-158dc2bb6e96@linaro.org/,
-handling of this memory zone will be integrated into the remoteproc PAS changes.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Neil
+
