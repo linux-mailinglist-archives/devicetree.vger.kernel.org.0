@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E1263BB41
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EBBB63BB47
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:12:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbiK2IJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:09:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
+        id S230121AbiK2IMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:12:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbiK2IJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:09:49 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF2754758
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:09:48 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id d9so547093lja.11
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:09:48 -0800 (PST)
+        with ESMTP id S229602AbiK2IMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:12:13 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3D656D54
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:12:11 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id j4so21311137lfk.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:12:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q81LRK3T/EuQJCNdVN6VMMo84qLhMFEYBVI6xieT8fc=;
-        b=ChkSiQTgCeqtYFGMZueziZTw7QgAtEKAsmKs9hSQZtZiauHvC9Od+YZ76QEZWGZeBR
-         J5Im6a3PxuAPS180+BGY0cu6mEgeqpHJS5CvlJROxNcuOgeBLWtCjCfW75EHEbnQ+gAn
-         Dr6LEFFwg59tBNyMWTWD1my001eZ1sUZvQ0Yu3h0CIumsyWkL8Ws4YyGt3Y/TzNl1P7b
-         6VRSVvQz1YAlgti+hZQLa3uHr3DBt9hwGlyXpMmuD5G5lLBXl2rYHPd9aQVZzxjHi3e+
-         5scQa2GY7UlNPFN3gb6KJYSm3uhMkztodZarqQW760jurX4MNEsgRDEDVeibys2FAVeu
-         331Q==
+        bh=xeIAyDjEJnBvYeV0qZkCC/xSer38lroB7hlZ6Bpy9D8=;
+        b=QIhiG3sxHhzx3SogiNBl8JXjMovrhbAelVJRtEYkDjciVO5+Y+halevHvlFz3SP3AQ
+         k4WOmqGDcE8tUCfJgvn74q0LFazOCrO2/F1rMFVMboV0AuMipElzYiLats/ZLjbPP9SB
+         MRlGal7BnqUNwfOuy31YiAQhOqSBMpxdWPBuPJ0cDIetN1bBHnHsCtNiHR8vzimHtEPj
+         fPCKcUoTVV5qLChVPy5hn4PpGi/KcCGTkcl6xjyYI0h7cCUaVJqJh7o9C/12gTo28ILm
+         +eHlihvdmth1z4gbqoJ+zO3aY5TiLJHTafDEiSF97LPtgAnkWGD/iG0hm5FQXE56HX8w
+         rCKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q81LRK3T/EuQJCNdVN6VMMo84qLhMFEYBVI6xieT8fc=;
-        b=mKt9UiHTstPHqu2F/yh1LNVMvbWMBLbJJyvHNwEN7uYYQG16RzizpVP/Bo2ql7SLyh
-         DRNvZg1MrRkd8I3e67DbB6Damx57FRHP3GszkPxyt3YPklV4eph+BhFnVbriI+NReaPK
-         Hqoncnt0OG0fiDfUa0cQBlukIffMqqVrvVrNlKtBnneXcvThaWcbXBLiRVbbOz52ksFW
-         Auj2UpZgbDD/vD01HWLVZ+bo8UHU0lc7Grw7Eu9yiAQh5Ywq10cvvQwO470ScAQ/BuAt
-         qyGv8qz3mt/oWP/2lVgdpKx/FQZIdh+OGC/TCxRNJQqdnFY/9rJxjtfhbw4Xos1nzDiT
-         pdMg==
-X-Gm-Message-State: ANoB5pmJDJiYtc885irT0LAe9NbVPzhXWhHGUXlJnk9RQy+IWq2umTuw
-        DXTYV4sTgYDnHHk9X7ri8606CA==
-X-Google-Smtp-Source: AA0mqf7mXV3xue4WBidHzjSc01+0VNE7mNNq4JiQjZrsZi/lPuomV7rVS24BsId/4Hv2JoqpPtEsIA==
-X-Received: by 2002:a05:651c:2205:b0:26e:33f:3c3c with SMTP id y5-20020a05651c220500b0026e033f3c3cmr18005476ljq.52.1669709386697;
-        Tue, 29 Nov 2022 00:09:46 -0800 (PST)
+        bh=xeIAyDjEJnBvYeV0qZkCC/xSer38lroB7hlZ6Bpy9D8=;
+        b=cPS6Gh3afwZq+XnY87Ar2ZFPyALZUzA8bQ8g3ytIdX5nz7FbT57EBWtOPnJoVHnROW
+         XqbXnuac8twnrUbQ18wNnANOsMbwTAS0Wot++UEiAXZMmrgu8xqu2HVeBufK1wrbcl/+
+         c/jUw6ZsuaT4b9834DBmlwaEPQMCzSnZepmaOFS6tZf6MeGAdao/DPcvOfQygsjatDMT
+         eKA23BiZK9WyJXGaFVRpDT9gNWmM84LQ30+8l12bNu2zS46quDzivPeYDMIp63FGkGur
+         szeZxpRCqSjHjdKDkTtGLCgZ5/ckwcpESKHWCOsmSq5ratU7++uzSu5V0e4tgZOU4MgF
+         v+VA==
+X-Gm-Message-State: ANoB5pn04dv3aEUpIksrXWWgrQHlddGa0NUfj3YseAMqoeX/QzfPpd0p
+        JOxQaxEV7cNaIV8CYEsw4KOjTA==
+X-Google-Smtp-Source: AA0mqf4ZPxfn3ozzitVTWganzHU9BGjc12nkj8QPpZrZKKpwCWI++8cY5zxKNGNb2k+k/MzbDo8NzQ==
+X-Received: by 2002:ac2:58d7:0:b0:4b4:fbce:606b with SMTP id u23-20020ac258d7000000b004b4fbce606bmr7107136lfo.27.1669709529913;
+        Tue, 29 Nov 2022 00:12:09 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u12-20020a2eb80c000000b002778d482800sm1437488ljo.59.2022.11.29.00.09.45
+        by smtp.gmail.com with ESMTPSA id s5-20020a05651c200500b00279aca77a54sm216811ljo.60.2022.11.29.00.12.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:09:46 -0800 (PST)
-Message-ID: <a7a705b5-64b1-e735-9f1c-5318c2bdf5db@linaro.org>
-Date:   Tue, 29 Nov 2022 09:09:45 +0100
+        Tue, 29 Nov 2022 00:12:09 -0800 (PST)
+Message-ID: <c35917d1-dfbd-f7d9-5c94-a9f0ee3b7ed8@linaro.org>
+Date:   Tue, 29 Nov 2022 09:12:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
@@ -80,56 +80,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/11/2022 13:29, Naresh Solanki wrote:
-> Add common fan properties bindings to a schema.
-> 
-> Bindings for fan controllers can reference the common schema for the
-> fan
-> 
-> child nodes:
-> 
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       $ref: fan-common.yaml#
-> 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> new file mode 100644
-> index 000000000000..0535d37624cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common fan properties
 
-I responded to v6, so let me paste here as well:
-Common Fan Properties
-
-> +
-> +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  min-rpm:
-> +    description:
-> +      Min RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
 > +  pulses-per-revolution:
 > +    description:
 > +      The number of pulse from fan sensor per revolution.
@@ -144,11 +95,11 @@ Common Fan Properties
 > +    description:
 > +      PWM provider.
 
-Maybe:
-type: object
+Ah, so it is not a PWM provider by this FAN controller? A bit confusing
+description. Instead maybe:
+	PWM signal for the fan
 
-> +
-
+and do you expect more than one PWM for one fan?
 
 Best regards,
 Krzysztof
