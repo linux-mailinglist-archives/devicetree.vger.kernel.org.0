@@ -2,163 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C28C63C4E7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 342A363C4F5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 17:17:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235970AbiK2QOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 11:14:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43242 "EHLO
+        id S234834AbiK2QRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 11:17:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234628AbiK2QOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:14:20 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0C992656
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:14:19 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id u15-20020a17090a3fcf00b002191825cf02so9605681pjm.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 08:14:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kNFxlZ5UZHdqkY5D469ZlAF99iMQpaT7Z5Tb3gRNO6s=;
-        b=mklqGGWoIM/Kk03/T+/9GKUrA6BxCbIlOnGYi47ya+PsGaq5PuQ79ArfHzHUmocpKh
-         UWYRyw2YoIeBkjr3Eqm6k/Gdwca1jZhoqdZYMEv0kDpavQqW0uemlTyNhrp3s8Lyp0wf
-         dfoVI3AWKhWpEbKWDtpXW8RUcscnpr6oqcIWCY5X0aF1OS5tSH/X9xee82Tifpp8sMRD
-         co8Ej+77pmSyRY25H4eiRVWk8ImjBJxYvrt7ksEMgk4BwtOVGzzQd6dW7IwDPPvW45Db
-         MMLLaFIp/OL9/QILpT4+Emv8SB0DSzXuP/u0J5ZxNBL52B7jukWPRDqx1Ry5wVQdlurk
-         K0rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kNFxlZ5UZHdqkY5D469ZlAF99iMQpaT7Z5Tb3gRNO6s=;
-        b=VFXcHfS5zU43fPmCSaVGYuSuYkHunTHuHy/sq0eONN+GgFXY4PsBPHpIYgkjLF0X9n
-         uhhT2YleE7lwt8qFpABH7ucynqoFXjHbGgkFSdDugC5nU83Kd0weEqKHGHMVZuExIFqg
-         CtQjKaOn0YWS/Uj/jDnHzBcuGNuKv72Wy+IVLZclXeklE89nmy3aorCoteJJ8ZQfSojL
-         WzOZaD1EwgWwXWQvRaYHN7dTWLP4jS1PrIY7Y1yg/WJBjwszA4nvCMvASmSa02eEfciQ
-         fricR9AdWTIQtaW/Mp4MAJzpvvkiuTopOiBimsKrkPOnG7GApOM9XOefYZmXoJfgP/H1
-         UEkw==
-X-Gm-Message-State: ANoB5pl6gi3XwQAGq2RdxVWkPyYuLUUnk0h95wtoc+qq5v9D3cGlXR3a
-        lrgDULwgYYXCZq6pl2Bx+unKCFMA4d/ad+RXG4JXzQ==
-X-Google-Smtp-Source: AA0mqf5Rhd9HRwHYXDQMJsdsuHv6CWi3cvL30xHSRd2rhgyF1yVicxH7ZuTFM37ksIosNcYkVDDs3i5NQrVQbGRzqH4=
-X-Received: by 2002:a17:90b:1d45:b0:218:6db5:fd98 with SMTP id
- ok5-20020a17090b1d4500b002186db5fd98mr61969036pjb.164.1669738459171; Tue, 29
- Nov 2022 08:14:19 -0800 (PST)
+        with ESMTP id S231151AbiK2QRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 11:17:47 -0500
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290B5DEBF;
+        Tue, 29 Nov 2022 08:17:46 -0800 (PST)
+Received: from pps.filterd (m0134423.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2ATFwaBG010049;
+        Tue, 29 Nov 2022 16:17:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=pps0720;
+ bh=QunDWt+oYjs98+7hDElF6ttEhQzCkAA1UQEGHi8II90=;
+ b=aeQd6iBA0FxhwUBhh+V7Y82j2WbVXJ213DZc/ZDXSHtqNlPpeLqWzGJjVK7X84yEuB3T
+ SNmtKpmZEOXiw4TnZLNccgkrzhLaVTeBA0K/06SZhl6BsXDa1jjfwhiWd9yPehqk+W00
+ B4hNx6GlijW9Jh3RYWSku4Wbr1lQORHrdLZsMcs1VosET7OKyLEwpetn5lkGRsv8UInV
+ AJB9IJCpy68udjXMSyYL4+VoCdH+uQcxFd/E7OZbgnMYBbuO8sPvycplrjZBRuusfy/s
+ wrYZqD9D1+uc0S9B5xBN8b9R9nN2mtkn6vKFZHax4ULib9+35jN9nFhePVfawjAim2w8 Yg== 
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3m5n6qr6mj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Nov 2022 16:17:14 +0000
+Received: from p1wg14925.americas.hpqcorp.net (unknown [10.119.18.114])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 515CC81A50D;
+        Tue, 29 Nov 2022 16:16:29 +0000 (UTC)
+Received: from p1wg14928.americas.hpqcorp.net (10.119.18.116) by
+ p1wg14925.americas.hpqcorp.net (10.119.18.114) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 29 Nov 2022 04:16:17 -1200
+Received: from p1wg14924.americas.hpqcorp.net (10.119.18.113) by
+ p1wg14928.americas.hpqcorp.net (10.119.18.116) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 29 Nov 2022 04:16:08 -1200
+Received: from P1WG14918.americas.hpqcorp.net (16.230.19.121) by
+ p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15
+ via Frontend Transport; Tue, 29 Nov 2022 04:16:08 -1200
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (192.58.206.38)
+ by edge.it.hpe.com (16.230.19.121) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 29 Nov 2022 16:16:00 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EkZbzswqUHH9iAWPAvZE8crswpsrPtTD04C99mf6hCRFAC9EyV6lnbo+630AguLr84S2awXzvGaq+Zxfov7FM8obReZJHGMqRg7mxsKcbJ048RHRWkEMkmZoSk8h0la5h8Y9fZe5zoVOlvodHqUB/54eh4OJIIfur41vI42kp9ZXlUUMc6j8A2G+2dhv9J+05FgkgzXQvyg2C2qcXa+0Nb4dJhCsOiomiQ1+CQoPxVzipdCoWN7XX5TLhlVCEJwVthTL+z0M3Lu11mKEeuhA569fhogDTDwZbbkKSY0HJRzKwHPxBLx62JOkx4XO06LzElnp95OF2xJgdZvAPFk19A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QunDWt+oYjs98+7hDElF6ttEhQzCkAA1UQEGHi8II90=;
+ b=kzNlcQ8H4EPRoKPGM07jvsRuFfj+/3wchGE7RsZGuFbf5+3VoOlOVWJUPh87wvnp1HqYz5vNo/BkRpJ4sOOa5ratzWeHx363FB65tEZi2Gt4JDJbvGKQKQDdX5thx4iNpzQi3sX8XUx7hD+InVbk3EhhD1eIMkpvlKlXYuQFsuKsqJ3gGJVPL5qxa5rD2DGoF6uaa0nyA0Rai3Gte837P/QGTLQtvT7nJ7HcroKxaC05p2siNUDriok4ERh+11o16TTOnTxUw6UC7/BYO4D4SmtFlhKJSrSUIHOstsXGdvemPCrVxknSI390iAKT9BnpSY2oVzTD5FvQYT6xW8ZO5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
+ SJ0PR84MB1577.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:a03:381::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5857.23; Tue, 29 Nov 2022 16:15:59 +0000
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::d24f:1a2:7006:17f9]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::d24f:1a2:7006:17f9%8]) with mapi id 15.20.5857.020; Tue, 29 Nov 2022
+ 16:15:57 +0000
+From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/6] ABI: sysfs-class-hwmon: add a description for
+ fanY_fault
+Thread-Topic: [PATCH v2 2/6] ABI: sysfs-class-hwmon: add a description for
+ fanY_fault
+Thread-Index: AQHZA32+teHxcxeSMEuXtU0ZSrv+C65VP/GAgABwNYA=
+Date:   Tue, 29 Nov 2022 16:15:57 +0000
+Message-ID: <0A5DF9D5-B8C2-44A4-924A-B8957EC8A2A7@hpe.com>
+References: <20221128230219.39537-1-nick.hawkins@hpe.com>
+ <20221128230219.39537-3-nick.hawkins@hpe.com>
+ <46cecf77-e989-40d9-3e08-fd970ad12a79@roeck-us.net>
+In-Reply-To: <46cecf77-e989-40d9-3e08-fd970ad12a79@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/16.67.22111300
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|SJ0PR84MB1577:EE_
+x-ms-office365-filtering-correlation-id: c38487e7-2d52-4124-7690-08dad224ff97
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: dufFuX8hNKHNZU1nWlPcWHrQ7nqssVB4hmx1+PF35S0990rHwnQAD2mNHg25gLdWQ+u8Z99xgCoeu9piQFe47mVKm50CHGnn6ucyXgBYLM5jwkBDr4QCdJsT7L+EUF6zZsDNFc0GXIo5PD4Tvxt2PTntkRhp8yuKcvyNJA1293+JuLRTOWdHOB40LEcyhquhXHVYRJqOVWgImS33afzfPlaW16Ww/pcsXRr9pH6AlCyufP5fy6V0c5k1MhlfKbbB+tse0dJTLg4lsE81MmqL71nhh/Rehcqoe/PLkZAXVX/GFD0ysZklKhGXdg2XYv9kIyR6rlfsTYfSalIA3LT1fO10Z2QbsMXrNTyX+A8kWh+u5+o4oTIdNyiQWN0z4+CvfoMnulemshW1XqkfKWMYQp+5l0TKCu0GJar5L4QHzl9Wk92mF/nhL9UBS7VvRXft4OtVsGJmrvzb7lRVOhxPXVbPzQ8Ld4LLLWQWZbGJY+Y7hg6kPyfO9jKrP18NpulSU4IQyi5NZUTE8duEXzo7pBKSF9LON/NRwh+zFf0DwZdJBPQvKM0RmXsm0PjB+63AXN0YvImOmTFE+NNYnMfP8GjDauM4kb77auoRRooECD9Vt5OC55u1z6KwFYgZVx2BgOII1mKZJZzkpyfYsDQk+fdZ53OvbcRgOtgijO/Ir6qeGOtL0JBgsP4ayca2KzUktJpsvNQx1Q0UftG9/NAeLCgQ+X2U2Ju0yG9/CMrNw0Q=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(366004)(396003)(376002)(346002)(39860400002)(136003)(451199015)(6916009)(83380400001)(86362001)(71200400001)(6486002)(6506007)(478600001)(36756003)(6512007)(76116006)(2616005)(316002)(8936002)(41300700001)(54906003)(5660300002)(4744005)(7416002)(82960400001)(91956017)(33656002)(186003)(38070700005)(38100700002)(2906002)(66476007)(64756008)(66946007)(8676002)(66446008)(66556008)(4326008)(122000001)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eHdGVFpIbktvcEpoNUdjb2tYbFRiZ2F3bHVWK3hnTzNaUjJYYnkyd25PZjdS?=
+ =?utf-8?B?ZCtyaEVmOVVKZ1ZyeXNqR1g2MUJkWUp0b1IrYUFlMjhZZGg1dG1sTzV4UkRQ?=
+ =?utf-8?B?cWFicmt0ZDgxcjRsUmYvZVZuWlZmUEhVMkVxNHhKZ2FpdDh3czRET2JpRXpF?=
+ =?utf-8?B?SEdvSGRJajZjbHRrL2lZMVliRkdrWmZpbmk4bm5WRGwyck9uNUUxNzQ3aCtC?=
+ =?utf-8?B?OXhKaTNrSkg4RlFGanlDcjNnR282YTJvelBVWnRDU0UwbG5jNVlvajYzamd4?=
+ =?utf-8?B?aExlWEE3L1grSWpJS1J6YWFMeW1hOWtWLy9jWnlxUnJXTEluQ2F4bVV2Q1d2?=
+ =?utf-8?B?Kzl5cHBKUTBHNlVWa3l4MEo3TTJNVUcwVURnQ05JQmhpMlJta3FFeG9NdVRS?=
+ =?utf-8?B?akZCMFJYTTVhWTVJQ3RQNzR4Q3EvcVcwb3l6ZlVLYXlha3E2YUovMC9NVGRk?=
+ =?utf-8?B?MS85T2U1eURiK1FHaGl6SEpHc1Q5VHVRdzlRTndPdThkOVFnUERUbUJ0akgz?=
+ =?utf-8?B?YWpYZGxKVWNucHZzaDQ4R1RldFpnSmlOTzU5dEVudnV6eE84bytyRWJpVW4v?=
+ =?utf-8?B?dHBrK0tMZzRwY2NHVzZ3a3dmSFV1a1d6OG96aG00T1AxUUNHZ3VkSXZEeUxi?=
+ =?utf-8?B?YXVIRm1nMWdSZnhZZ1hPK21XOTFkeFQzQW5MeTVqRGY5U0tNK1o4blBTWW1v?=
+ =?utf-8?B?YjRETU92QWhja2tTNE9CSnZaOHYwNVdzdndJcllMRnNpcmxqanpwOUx2aU12?=
+ =?utf-8?B?OHRxN2YzT0toNmY2WjRVcXMyTUNkV0ZQSEQxdExkQWFsNGowL1B0czhVQ2Nq?=
+ =?utf-8?B?WU9obnd5Y1hTZ1pId3o5TS94V3loV0MwMXlQN1IySHFoWExsRU9FUDJqZ3dU?=
+ =?utf-8?B?TUtCMlFaSXRGZm8yZkZ1RFpSVW9nR3pEUnZlekR0QnZLemp4UDhDKzBNM05K?=
+ =?utf-8?B?SVIrTGllc0syZ0dqQTJaUDhtNFlFUFBpSUZzVTNJVWVJTFNZVk9iZ3ZpS0Vw?=
+ =?utf-8?B?TUE2WUFmVzdVeFl2RktibkpUK0gvMHd4K1JkdERTaVdhNEl3NDlJWXRwS0Uz?=
+ =?utf-8?B?SFlCb3IxSTdRTE05TUpwK3M1Y2kwSXlrcmVCUUsxVlhJWHY1R1M1U1Uycmsr?=
+ =?utf-8?B?THNoZlp1YS9VNzNhQjhPMDNOOUtzZi9keHJmemtUbHMyU3hyZnU1TzlzSmxw?=
+ =?utf-8?B?aDRKVFZvMmRDQ3MrNEFkYWwvTTlJZWJtQkkwVkVpZDlKR3MxUkN1VXcvdkI2?=
+ =?utf-8?B?cm1SRjZ2emdTdlpGcFBTeXVjaW4vKzVyNC9mQzk0S2Y3cWEwd0VhQW1JNlBS?=
+ =?utf-8?B?WXc1elFlOUJ1c2hPamdBTGpNaklzbmFDQkExR3VWRTZuRDNQcjVwZzI5aWR1?=
+ =?utf-8?B?Q2EzUkprT0FMNlorc1JqUTh5VXJyNzN4MXk1NFpmTVAzcjdoZ2R4ZklJSzZN?=
+ =?utf-8?B?V1JyUVJyalhud09OcHVtMU9NVW9wQWtRRHoxV1BEZktUK05PY2ZQMnUxOU1j?=
+ =?utf-8?B?RWNNVWdpNDJhSzFCODk2UjgvNkxqenhrcVQ5QVg3MzZJQ3dTNkR5emIwczFy?=
+ =?utf-8?B?YTBrd2FzMjJQQStNWEc2WGpkemRIMW41WStrWFU1ZWNYL0hCRjJpS2ZGNFlM?=
+ =?utf-8?B?YWgwWDZGSnhtN3BOYmxkWWthUTJ2djdsSlFuVWRFZ3A2QnR1NDFuK0Rac2dt?=
+ =?utf-8?B?enVoVkR3R2NEK0MyNXJYdlpwZGlBbTQwRENvMm1KcEdUOVlPbFdudmNPR091?=
+ =?utf-8?B?ZVNOb1IwNUZyb0lLT0thQVFlTnB2c3JGR3BvNk1WcnVFTFVMcUV0c2dtVzlF?=
+ =?utf-8?B?MFBMNXpUdEZSY3BaWktNU2F6MTYybE5nQlUwcEtvTE5zcWx2elRQWjhqQXR4?=
+ =?utf-8?B?bjltMUd0M1hlMVRnZ0FySEVNeDl6RGpIM3JIU2FrL3BYVXRadzl1M0krZDNi?=
+ =?utf-8?B?T0s1UHUvem1RY0cvLzIwellpQXE4NEVWTEpLZjhqSmsxencrZVdZSHhuY0V1?=
+ =?utf-8?B?cHZ4SERtQW9UYXlqeVo5VS9iUE1xMTZFNW1kZEhyT2ZQc2llOXU4cHlSWFhj?=
+ =?utf-8?B?TVZaclErdTF5Sk9jWVpqcGJzd0ZlKzdIRmUrM3hVQytDWnZhZDM4ajFrTlFB?=
+ =?utf-8?B?V25GNmFpNlRhdzBCeDRHWExLd3hyaTl4QUtRdTNJS0lsSjFrMTdpNkJkWlR1?=
+ =?utf-8?B?OWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B730FAC0F391B4479FF83891AFD67E19@NAMPRD84.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20221128142912.16022-1-marcan@marcan.st> <20221128142912.16022-3-marcan@marcan.st>
- <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com> <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
-In-Reply-To: <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 29 Nov 2022 17:13:42 +0100
-Message-ID: <CAPDyKFqZJEqijsKMhMSZVCOA-RugnEJ7aqxwRRin1JE3i1WxMA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
- binding for Apple SoC cpufreq
-To:     Hector Martin <marcan@marcan.st>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: c38487e7-2d52-4124-7690-08dad224ff97
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2022 16:15:57.4805
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: D59txiGCvxJgTfyAfj7IXGDP+ceM81K2a1nnZeR0L0/PshX6fv5bPIpmHpGvcJXnOX4p2z6/NXJon1F4hrxJew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR84MB1577
+X-OriginatorOrg: hpe.com
+X-Proofpoint-GUID: UZbNpbEaeqk1S-b4RjZ0pn6NOGjuO1hF
+X-Proofpoint-ORIG-GUID: UZbNpbEaeqk1S-b4RjZ0pn6NOGjuO1hF
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-29_10,2022-11-29_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ malwarescore=0 mlxlogscore=746 impostorscore=0 spamscore=0 adultscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211290090
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Nov 2022 at 15:00, Hector Martin <marcan@marcan.st> wrote:
->
-> On 29/11/2022 20.36, Ulf Hansson wrote:
-> > On Mon, 28 Nov 2022 at 15:29, Hector Martin <marcan@marcan.st> wrote:
-> >> +examples:
-> >> +  - |
-> >> +    // This example shows a single CPU per domain and 2 domains,
-> >> +    // with two p-states per domain.
-> >> +    // Shipping hardware has 2-4 CPUs per domain and 2-6 domains.
-> >> +    cpus {
-> >> +      #address-cells = <2>;
-> >> +      #size-cells = <0>;
-> >> +
-> >> +      cpu@0 {
-> >> +        compatible = "apple,icestorm";
-> >> +        device_type = "cpu";
-> >> +        reg = <0x0 0x0>;
-> >> +        operating-points-v2 = <&ecluster_opp>;
-> >
-> > To me, it looks like the operating-points-v2 phandle better belongs in
-> > the performance-domains provider node. I mean, isn't the OPPs really a
-> > description of the performance-domain provider?
-> >
-> > That said, I suggest we try to extend the generic performance-domain
-> > binding [1] with an "operating-points-v2". In that way, we should
-> > instead be able to reference it from this binding.
-> >
-> > In fact, that would be very similar to what already exists for the
-> > generic power-domain binding [2]. I think it would be rather nice to
-> > follow a similar pattern for the performance-domain binding.
->
-> While I agree with the technical rationale and the proposed approach
-> being better in principle...
->
-> We're at v5 of bikeshedding this trivial driver's DT binding, and the
-> comment could've been made at v3. To quote IRC just now:
-
-It could and I certainly apologize for that.
-
-It's simply been a busy period for me, so I haven't been able to look
-closer at the DT bindings, until now.
-
->
-> > this way the machines will be obsolete before things are fully upstreamed
->
-> I think it's long overdue for the kernel community to take a deep look
-> at itself and its development and review process, because it is quite
-> honestly insane how pathologically inefficient it is compared to,
-> basically, every other large and healthy open source project of similar
-> or even greater impact and scope.
->
-> Cc Linus, because this is for your Mac and I assume you care. We're at
-> v5 here for this silly driver. Meanwhile, rmk recently threw the towel
-> on upstreaming macsmc for us. We're trying, and I'll keep trying because
-> I actually get paid (by very generous donors) to do this, but if I
-> weren't I'd have given up a long time ago. And while I won't give up, I
-> can't deny this situation affects my morale and willingness to keep
-> pushing on upstreaming on a regular basis.
->
-> Meanwhile, OpenBSD has been *shipping* full M1 support for a while now
-> in official release images (and since Linux is the source of truth for
-> DT bindings, every time we re-bikeshed it we break their users because
-> they, quite reasonably, aren't interested in waiting for us Linux
-> slowpokes to figure it out first).
->
-> Please, let's introspect about this for a moment. Something is deeply
-> broken if people with 25+ years being an arch maintainer can't get a
-> 700-line mfd driver upstreamed before giving up. I don't know how we
-> expect to ever get a Rust GPU driver merged if it takes 6+ versions to
-> upstream the world's easiest cpufreq hardware.
->
-> - Hector
-
-I didn't intend to bikesheed this, while I do understand your valid
-concerns from the above statements.
-
-Instead, my intent was to help, by reviewing. Simply, because I care
-about this too.
-
-If you think incorporating the changes I proposed is a too big deal at
-this point, let me not stand in the way of applying this. In the end,
-it's the DT maintainers' decision.
-
-Kind regards
-Uffe
+PiBUaGlzIGNoYW5nZSBpcyByZWFsbHkgY29tcGxldGVseSB1bnJlbGF0ZWQgdG8gYSBDUExEIG9y
+IHNwZWNpZmljIFNvQy4NCj4gVGhlIGNvbW1pdCBkZXNjcmlwdGlvbiBpcyBqdXN0IGNvbmZ1c2lu
+Zy4gSXQgc2hvdWxkIHNpbXBseSBzdGF0ZSB0aGF0DQo+IGl0IGRvY3VtZW50cyB0aGUgZXhpc3Rp
+bmcgZmFuWF9mYXVsdCBhdHRyaWJ1dGUuDQoNClVuZGVyc3Rvb2QuIEp1c3QgdG8gY29uZmlybSBz
+aG91bGQgSSBjaGFuZ2UgZmFuWV9mYXVsdCB0byBmYW5YX2ZhdWx0DQppbiBkb2N1bWVudGF0aW9u
+IGFzIHdlbGwgYXMgdGhlIHBhdGNoIGRlc2NyaXB0aW9uPyBGb3IgaW5zdGFuY2U6DQovc3lzL2Ns
+YXNzL2h3bW9uL2h3bW9uWC9mYW5YX2ZhdWx0DQoNCkl0IHNlZW1zIHRoYXQgdGhlIGRvY3VtZW50
+YXRpb24gYXJvdW5kIGl0IHVzZXMgZmFuWV8gZm9ybWF0Lg0KDQpUaGFua3MsDQoNCi1OaWNrIEhh
+d2tpbnMNCg0K
