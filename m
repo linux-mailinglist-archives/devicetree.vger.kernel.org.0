@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 821EC63BBCB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:37:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2868263BC05
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbiK2Ih1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:37:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S231365AbiK2Ity (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:49:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231415AbiK2Ig4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:36:56 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FA15A6DA
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:35:25 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id ay14-20020a05600c1e0e00b003cf6ab34b61so13719046wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:35:25 -0800 (PST)
+        with ESMTP id S231324AbiK2Itq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:49:46 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E4743840
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:49:11 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id c1so21386793lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:49:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nFrj+28YyuR0eqY1nguFSdC/SUrYraG5B7QZglg6iPA=;
-        b=ujNxPiyJBK+27e2UV5LExF7tASbXCmHBTpWP/RH/a2N/b3EbR9zCXcPRw52zCramKL
-         b/T14DR90xpGsLypzyiwFS893323AO+s3BlDak017FuHP1E51BRm/s8it43KHe/NbzLs
-         xP68JSc3OFe1G6cJbjNX6RS/H7GQY++kVDMsWV2im6N2hRffagou4am1CWRJjm1UXIKF
-         zw73TChC5bnKS0T1X1yY9lpTfZC61L9sbGFGa9moVTvwEz0BvVm2hd8PCnNbbV9rk8P2
-         x0ymg/G3bsDoAuLeRon5Ch9+Ts1z7i682/9cNO5HD8k/cBOM5fUSocVgZUoUT3WQakmZ
-         Kbaw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mGJb0UounTi8KWPK2n4bjkcjwSmfoW8kL6mvWjcFb4c=;
+        b=OyJHgl/U0Ekh2F3VJGU0DzAvt4K/jt1fTBZw+EMuOmEid3o6yHxV6g8Ox9HCScaHXU
+         POBxVFLTzRpbNAYvh5ujrpoH3UqAgckzt7+B7kdjlsh4E6hsX4g7ps+GjDzMnHpX6ItL
+         23m/tCD+cUOVHL1/ig4BkSZ8WB8/9aJljRFKDC7zfTJQjKV82uR/kQPYfyqYnSZ5WUU7
+         w0uW+ihdaCPubIlXoOFGVhpXWDUglTNyf4Kkc3WgT/0+j4uZ0tphQ8CSxK/w7WY+AAGQ
+         EEeJnwljePfrBxdtJoy53qrEOW0I1lRg9Gr0Yuo5wOFYsa7+rOW4hOzzRODJOti7pTLJ
+         leAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nFrj+28YyuR0eqY1nguFSdC/SUrYraG5B7QZglg6iPA=;
-        b=2OB4SWEFe638GlhaanPAs+X9gGCJCMSAIvAS9s97xaebaysWui5bg60GjBCxdkPUyY
-         dB4RNtGAgROEoWj7mTG7UyppG57VNTUAWXCHQr28fh4kK/rtyTBLqctOrc6wqEbbnlXg
-         6PMMmfpoInw+Qt0y3fmxyYnn9SgoMFW2kn80NK9vmS+kTRfBLhZkIIK+iSyDGMw/6ber
-         LGvAMs+TK6ynWNRm41cfB9zlHRKpM1f5YwpZsJuCuwa3SXrvaotpxDyCExq/5tDozOvz
-         DYE5UPET8674fWQ+BP0FNT3PKaamtZsuTNGGzCpHitNSkK1nr0k4AGyWZQrskRTJRNjw
-         tLBw==
-X-Gm-Message-State: ANoB5pnEmdLPH6w/xVVc32JHMLBmAxVOEYQx3hhkUqL+4xYuTOpRCuIE
-        eoOKY1xcsma0pQxt/hKLheMv8A==
-X-Google-Smtp-Source: AA0mqf5jyfHXkfUmC+Gip38Uos2hKiuERdUVeokOAKcyV7egdfjw73V5ejHd9sGDUqNPJniods1eLg==
-X-Received: by 2002:a05:600c:2302:b0:3cf:a3c4:59b3 with SMTP id 2-20020a05600c230200b003cfa3c459b3mr33009149wmo.198.1669710923877;
-        Tue, 29 Nov 2022 00:35:23 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2? ([2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2])
-        by smtp.gmail.com with ESMTPSA id w13-20020adfec4d000000b00241dd5de644sm12981186wrn.97.2022.11.29.00.35.23
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mGJb0UounTi8KWPK2n4bjkcjwSmfoW8kL6mvWjcFb4c=;
+        b=Dc/zLbWkhvG2GF4csdr3xJvDZYrMZ7frwDMU83ZFKe0VcZ/MwCycYPG4/RTOoKLZMY
+         qkKbFNeX941EHfamu65ObFd+G030eX9pBS3Ogo7aWFHo7DPZlW8uDbrrxXp0/2Rh7avN
+         NOOAZCppiLRuWjqBfc6UtYYs3o9TRZIC8hK0xgXBJE6eD40Y9r+Ukjsq9nbJ63/99Ckl
+         Rsz0NbfgoqCKJbyYELtt5xH7XS8STj+u/V+U7COeB5pp1Mrf9uPPKXy78IL71jdD278F
+         GK+NNL6h1O/aMUobJvkQ+USIiEs0YO99Cnodc0ttd3dD0jCZ613wrqgMpV30glBeOct8
+         NKeg==
+X-Gm-Message-State: ANoB5pmMcRudb1FCu3tx1kHq+3PO13MC/zuJVhptXqPM8uylfvLWFY7D
+        8P1670i21GCWd2rJNA56hADmZw==
+X-Google-Smtp-Source: AA0mqf6mX13/IBL/pDIvHjX/0YK6WjThDrOkT/RbE3UdC7rLxGgaO1YlLG5VTFhVULx2UJwc9liXYA==
+X-Received: by 2002:a05:6512:33d2:b0:4b5:28fc:36e1 with SMTP id d18-20020a05651233d200b004b528fc36e1mr310302lfg.179.1669711749947;
+        Tue, 29 Nov 2022 00:49:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c13-20020a056512324d00b004b40f2e25d3sm2131854lfr.122.2022.11.29.00.49.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:35:23 -0800 (PST)
-Message-ID: <f69c9db1-6274-6caa-e3bd-92ae4a7bff19@linaro.org>
-Date:   Tue, 29 Nov 2022 09:35:24 +0100
+        Tue, 29 Nov 2022 00:49:09 -0800 (PST)
+Message-ID: <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
+Date:   Tue, 29 Nov 2022 09:49:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 4/5] arm64: dts: Add DT node for the VIPNano-QI on the
- A311D
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rk3568 xpcs
+ compatible
 Content-Language: en-US
-To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+To:     Chukun Pan <amadeus@jmu.edu.cn>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        David Wu <david.wu@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Amlogic Meson SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson SoC support" 
-        <linux-amlogic@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221128111740.39003-1-tomeu.vizoso@collabora.com>
- <20221128111740.39003-5-tomeu.vizoso@collabora.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221128111740.39003-5-tomeu.vizoso@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221129072714.22880-1-amadeus@jmu.edu.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221129072714.22880-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -88,63 +85,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 12:17, Tomeu Vizoso wrote:
-> This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
-> with it with just a few small changes.
+On 29/11/2022 08:27, Chukun Pan wrote:
+> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
+> This patch adds a compatible string for the required clock.
 > 
-> v2: Add reference to RESET_NNA (Neil)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 > ---
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
->   .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
->   2 files changed, 15 insertions(+)
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 45947c1031c4..aaa629816e41 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -11,6 +11,7 @@
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
->   #include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/power/meson-g12a-power.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -2484,4 +2485,14 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> +	npu: npu@ff100000 {
-> +		compatible = "vivante,gc";
-> +		reg = <0x0 0xff100000 0x0 0x20000>;
-> +		interrupts = <0 147 4>;
-> +		clocks = <&clkc CLKID_NNA_CORE_CLK>,
-> +			<&clkc CLKID_NNA_AXI_CLK>;
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index 42fb72b6909d..36b1e82212e7 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -68,6 +68,7 @@ properties:
+>          - mac_clk_rx
+>          - aclk_mac
+>          - pclk_mac
+> +        - pclk_xpcs
+>          - clk_mac_ref
+>          - clk_mac_refout
+>          - clk_mac_speed
+> @@ -90,6 +91,11 @@ properties:
+>        The phandle of the syscon node for the peripheral general register file.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +  rockchip,xpcs:
+> +    description:
+> +      The phandle of the syscon node for the peripheral general register file.
 
-Nit pick, but this should be aligned.
+You used the same description as above, so no, you cannot have two
+properties which are the same. syscons for GRF are called
+"rockchip,grf", aren't they?
 
-> +		clock-names = "core", "bus";
-> +		resets = <&reset RESET_NNA>;
-> +		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> index 124a80901084..73f3d87dcefd 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
-> @@ -15,6 +15,10 @@ / {
->   	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
->   };
->   
-> +&npu {
-> +	status = "okay";
-> +};
-> +
->   /*
->    * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
->    * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
 
-With that fixed:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Best regards,
+Krzysztof
+
