@@ -2,250 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FBE463C40C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E1663C41F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:49:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235760AbiK2Pqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 10:46:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42366 "EHLO
+        id S236038AbiK2Pti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 10:49:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235138AbiK2Pqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:46:47 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19AE364566
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:46:46 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id c1so22645670lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:46:45 -0800 (PST)
+        with ESMTP id S236043AbiK2PtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:49:21 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8586869C
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:48:36 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id f7so20355919edc.6
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:48:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eao8kVaGm6vtNieE8U5gWdmiaP7djGvEGVzI1sPPoz0=;
-        b=UR1TG1xNPSEMHx/i+CYCrKrY3mHy0JrJUS/XzmhOMJ8yEj/BOytiR4eN/+sXrVa7gv
-         uLHyWK1UByO0oI4LyetUIZfK6fiJCFm9QPAuvBUo+K0b53MCedoNq1319g94jVmfP/QU
-         O1k8fCnEbfg4krzmMyM0lFLRqhfi5pQMXRR8WYdROyBQpDessgKXUsHiHubLZV5AXYSK
-         vKZ/SOp0rBRSt43s2T4G7N7bXQmTtncJBtOpHluIkT0QgVvf9IGnhz3LsT/0Yf9KNNN4
-         LuV0dT/8ZzEkFfvaifKpVYfqXHVMi1gsgfV2chcGIz+cKuzehDrp8+aJC1jj2kqt1Vk6
-         UwbA==
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VIRe95Z6jcNjLS0kWdXMlZ6r3LFNPa2W1G5woacMJko=;
+        b=meU+ykcNyiAq6Ope/bgI1B6cXVFFCv8w5gGeixY5B4f/VQ1ZuJkGoo66jb2d2xfIgh
+         DXDg1OF1N5lOE7QH1BTuURIYVuG6EQkJ2nDZE2+AcvcM++OoJ0I9vi/ddhhFfeVoT+65
+         8VUn4blseN0/qhD746KdFJq36mVXIET3ERHbcVcTNd/W3AwLYSN53x1EahSFZSohu9nY
+         uhbOmyrUUbQe85kxJ8Poz7eLXRcijVLPmZxRRdbQY+ygoqLXnONTPzz65w5aroAqLtD3
+         z33KeTPnVXYf+7pDR2BnSpTQu9Y4w/az6q3NOGvOzJWuVmuOt31Vn0x6zb5M+cECyxFU
+         dcag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eao8kVaGm6vtNieE8U5gWdmiaP7djGvEGVzI1sPPoz0=;
-        b=3IMGyrT3/NpMQ24LQT86AZj/VlO+oTC8B2LIecltlmaRGohdLzwsnU8wG2P9JotKpI
-         EhXLxe3p8l57rk47cSKM9cRtXFPS9hYSWozJx3M0sju/7excoNdZcn5cxu8KvHN3Yr0q
-         EFy7uRDIYoEE5FVux9+0s893na0tJtsUDH3VxGowIDHdZzidFs+hIptwT8ICQ8cCJRcS
-         UcUVo++G+q2/cK97558bFkAZFZI67sGUGgeZy+ptJ/2qVYLbWgoS2gnUf6rYxqREVQ64
-         w6TrUb0M6XW31RTkfIHLwVV84he+z27nwPfrd5smM3pnaKlDKA0uDMPlZpSb2fI7DEpp
-         qDKg==
-X-Gm-Message-State: ANoB5pm2QrK0yznY5rYjfqE8oI+50cZUc4LApg8jE85gTYs5KP/IGj4x
-        gXkxAzfb75IeSHTWPAq4svYiIg==
-X-Google-Smtp-Source: AA0mqf53DsdFYQJfi/Q9URNzSLkqg99wIGExsFNfyhACV9rG0dzaqzzqeOEN9a/k+2SIMQd9r9jvUw==
-X-Received: by 2002:ac2:48a8:0:b0:4b5:eef:b810 with SMTP id u8-20020ac248a8000000b004b50eefb810mr4483599lfg.109.1669736803596;
-        Tue, 29 Nov 2022 07:46:43 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id l18-20020a194952000000b004aa427febe5sm2238721lfj.64.2022.11.29.07.46.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 07:46:43 -0800 (PST)
-Message-ID: <4c6b5d55-f6a0-f042-ef10-e282e153a358@linaro.org>
-Date:   Tue, 29 Nov 2022 16:46:41 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VIRe95Z6jcNjLS0kWdXMlZ6r3LFNPa2W1G5woacMJko=;
+        b=EeybhqDBQHmkj3IF2gAZKKjvgxVh8mjG5N964QLss8hnkkEUNOcqTfo54Ux3poFF5N
+         23pWM26IL3AilJqAsuk2VnLX4rvWQteitXNw16jkld4aEdNOL0sVqYfGAth78/Y8s0Nn
+         y96MtuIxk9Lx2u47D9yAWCVleuN43Sb4j35L5jW3wvaSieNqd/iqEXf0vgFc82IT0k1z
+         uoNMYIz5fZoySXZDJhuLE85D3SAsHUBRpOPoORlWFUCuOpn2Clb4mqM8MWsN58CnRCBO
+         xK65Lp2v6+T6gNNo42Pfozl4UWSZvijwZUuAqnYZ8zqqlKN2MLleKr6HgptG5z0aQlBF
+         OHtw==
+X-Gm-Message-State: ANoB5pn5Ch/N4SH1xTYF94Y0fPoDDnEnI5Vo+CjDOiwo1+NfHuwfSMVd
+        PREiENCR4q4OTVABc6Lh9ulzdQ==
+X-Google-Smtp-Source: AA0mqf5s58TQL7Mgsv2sX2m9+Mz1iCbc1RBtYKkkrGp3bN34Zcsvk1cIPnxBuOBedDqeyZsDPTsW8Q==
+X-Received: by 2002:a05:6402:5413:b0:458:211d:cbe4 with SMTP id ev19-20020a056402541300b00458211dcbe4mr3453537edb.11.1669736914018;
+        Tue, 29 Nov 2022 07:48:34 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-748-2a9a-a2a6-1362.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:748:2a9a:a2a6:1362])
+        by smtp.gmail.com with ESMTPSA id t7-20020a1709063e4700b007be4d8a50d8sm3918194eji.70.2022.11.29.07.48.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 07:48:33 -0800 (PST)
+Date:   Tue, 29 Nov 2022 16:48:32 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
+        conor@kernel.org, devicetree@vger.kernel.org, guoren@kernel.org,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, robh+dt@kernel.org
+Subject: Re: [RFC 0/2] Putting some basic order on isa extension stuff
+Message-ID: <20221129154832.27or3ywsx7npuqzq@kamzik>
+References: <Y4XvnHIPw8ZuBZEk@wendy>
+ <20221129144742.2935581-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
- binding for Apple SoC cpufreq
-Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Torvalds <torvalds@linux-foundation.org>
-References: <20221128142912.16022-1-marcan@marcan.st>
- <20221128142912.16022-3-marcan@marcan.st>
- <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com>
- <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
- <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
- <e8c481ba-02a7-f1c7-6314-ea1ddf136998@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e8c481ba-02a7-f1c7-6314-ea1ddf136998@marcan.st>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221129144742.2935581-1-conor.dooley@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 16:17, Hector Martin wrote:
-> On 29/11/2022 23.34, Krzysztof Kozlowski wrote:
->> On 29/11/2022 15:00, Hector Martin wrote:
->>> On 29/11/2022 20.36, Ulf Hansson wrote:
->>> Please, let's introspect about this for a moment. Something is deeply
->>> broken if people with 25+ years being an arch maintainer can't get a
->>
->> If arch maintainer sends patches which does not build (make
->> dt_binding_check), then what do you exactly expect? Accept them just
->> because it is 25+ years of experience or a maintainer? So we have
->> difference processes - for beginners code should compile. For
->> experienced people, it does not have to build because otherwise they
->> will get discouraged?
+On Tue, Nov 29, 2022 at 02:47:41PM +0000, Conor Dooley wrote:
+> RFC:
+> - I have not even tested this, I just did an allmodconfig
+> - I don't know if I re-ordered something that is sacrosanct
+> - I don't know if I changed all of the instances
+> - I didn't write a proper commit message for "patch" 2/2
 > 
-> I expect the process to not be so confusing and frustrating that a
-> maintainer with 25+ years of experience gives up. That the bindings
-> didn't pass the checker is besides the point. People say the Linux
-> kernel community is hostile to newbies. This issue proves it's not just
-> newbies, the process is failing even experienced folks.
+> With those caveats out of the way - all I did here was try to make
+> things consistent so that it'd be easier to point patch submitters at a
+> "do this order please".
 > 
-> On that specific issue, any other functional open source project would
-> have the binding checks be a CI bot, with a friendly message telling you
-> what to do to fix it, and it would re-run when you push to the PR again,
-> which is a *much* lower friction action than sending a whole new patch
-> series out for review via email (if you don't agree with this, then
-> you're not the average contributor - the Linux kernel is by far the
-> scariest major open source project to contribute to, and I think most
-> people would agree with me on that).
-
-I agree with this entirely. Not only DT checks, but also for driver code
-with sparse/smatch/coccinelle/W=1/clang builds.
-
-> I know Rob has a DT checker bot, but its error output is practically
-> line noise, and the error email doesn't even mention the
-> DT_SCHEMA_FILES= make option (which is the only way to make the check
-> not take *forever* to run). Absolutely nobody is going to look at those
-> emails without already knowing the intricacies of DT bindings and the
-> checker and not find them incredibly frustrating.
-
-Ack
-
+> I never know which of these can be moved without breaking stuff - but
+> they all seem to be internal use stuff since they're not in uapi?
 > 
-> But it's not just the DT checker. That came after an argument where the
-> MFD maintainer complained about the driver while offering no solution
-> nor proposed path forward. I had to have an IRC conversation with him to
-> work it out, after which he accepted one of the options I'd already
-> proposed over email. If you have to change communication mediums to
-> resolve an issue, that means your initial medium failed at its job.
+> @drew, I didn't touch the KVM ones - are they re-sortable too? My base
+> here is rc7 so if you did a reorder at any point there I'd not see it ;)
 
-Ack
+Right, we can't touch enum KVM_RISCV_ISA_EXT_ID as that's UAPI. All new
+extensions must be added at the bottom. We originally also had to keep
+kvm_isa_ext_arr[] in that order, but commit 1b5cbb8733f9 ("RISC-V: KVM:
+Make ISA ext mappings explicit") allows us to list its elements in any
+order, which means we could sort them in canonical order, if we wanted
+to. I think I'd rather have them in alphabetical order, though (they
+nearly are at the moment, except for the bottom two...) The only other
+place we have ISA extensions listed in KVM is in a switch statement,
+which of course doesn't matter, and it's currently in alphabetical order.
 
-> 
-> Not to mention the random drive-by reviews, nitpicks, disagreements
-> between maintainers about how to do things, or just plain cases of
-> maintainers stubbornly being *wrong* and refusing to listen while
-> everyone around them is telling them they're wrong (until someone above
-> them in the maintainer tree tells them they're wrong - then they finally
-> get it. If it takes someone in a position of authority telling you
-> you're wrong for you to accept it, you're doing a poor job at your own
-> position.)
-
-Ack
-
-> 
-> And then there's the coding style. The rest of the world has
-> standardized on formatting tools. Here, every subsystem maintainer has
-> their own pet style you have to learn. "Please put your variables in
-> reverse christmas tree order".
-
-Ack here as well, and by above Acks I meant - I agree, you are right.  I
-don't think we should discuss people's differences, I mean, different
-people can give you different review, sometimes less sometimes more
-thorough. However at least policies/processes and coding style should be
-heavily unified.
-
-> I once got a review comment that
-> complained that I re-aligned an existing #define when I added another
-> one (to keep them visually aligned, as the new one increased the
-> required tab stop). Because "cleanup patches should be separate" (I
-> didn't submit a cleanup patch after that, I just left the defines
-> misaligned). So now I need to maintain a massive mental map of exactly
-> what style conventions and patch breakup conventions every subsystem
-> maintainer wants me to use.
-
-Yep. I just have a doc, instead of mental map. :)
-
-> 
-> I'm so glad `make rustfmt` is a thing now. Maybe 50 years down the line,
-> most of the kernel will have been rewritten in Rust and we'll finally
-> fix just one of these problems /s
-
-+1
-
-> 
-> Some of these things are, to some extent, a natural result of working
-> with other humans. But the kernel community has both a number of humans
-> harder to work with than is reasonable in their position, and an overall
-> process that multiplies the resulting pain by an order of magnitude for
-> everyone involved.
-> 
->> While I understand your point about bikeschedding, but I think your
->> previous bindings got pretty nice and fast reviews, so using examples of
->> non-building case is poor choice.
-> 
-> Yeah, after a while, because I learned how to do DT bindings the hard
-> way after having to submit a bunch and getting everything wrong (and
-> even then I still get the simplest things wrong, see: v4 here). Which is
-> why I'll pick up after rmk's attempt and try again with macsmc at some
-> point (probably after 6.1). But I'm not holding my breath that I won't
-> need another half dozen rounds of bikeshedding.
-> 
-> When it takes 10 times more man-hours to upstream a driver than to
-> reverse engineer and write it with zero documentation, never mind the
-> calendar time it takes, something is very wrong. 
-
-Yes, that's a point. Yet we (community) still have another goal here
-than the pure goal of submitter. The submitter wants its stuff upstream.
-Therefore this upstreaming effort is for submitter a bit wasted (as I
-agree that reverse-engineering should be the biggest task).
-
-However the community (expressed maybe mostly as maintainers) wants
-something which will be maintainable and usable also for others, not
-only for patch submitters.
-
-Indeed maybe 10x difference between writing code and upstreaming is
-something to improve, but please do not forget that the concept is here
-to be able to manage this big codebase.
-
-> I actively dread
-> submitting new drivers to new subsystems or some existing ones now. How
-> much pain will the next one be? Will I be asked to move files around 3
-> times? Spend 4 rounds bikeshedding the DT schema? Think it's finally
-> ready only for someone to show up and ask to change a major part of the
-> design at the last minute?
-> 
-> And this all when we're actually submitting code of decent quality (I
-> think I have enough experience not to submit crap most of the time). Now
-> imagine how much worse this all is for a newbie who submits a
-> well-intentioned but definitely not up to standard patch. There's a huge
-> chance they'll give up before ever getting the submission through.
-
-You say this like any newbie should be able to send a patch and get it
-accepted right away, regardless of actually what is in that patch (not
-up to standard). It's not newbie's right. No one said it's easy and fast
-process... If you want easy and fast, do JavaScript... If you want to
-make it easier and faster in the kernel, then we need more reviewers and
-maintainers. Somehow many, many people want to send patches, but not
-that many want to review them.
-
-> 
-> Again, I'll keep pushing and sending out patches, because this is
-> important. But this is the reality. This is how bad it is. The process
-> is broken, and everyone outside the kernel community can see that and
-> has been saying that for ages. Just because some of us are willing to
-> put up with the pain anyway doesn't mean it's working as intended.
-Best regards,
-Krzysztof
-
+Thanks,
+drew
