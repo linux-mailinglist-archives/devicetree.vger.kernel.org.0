@@ -2,201 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9A263C34B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:06:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDE263C368
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbiK2PGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 10:06:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38736 "EHLO
+        id S234781AbiK2PR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 10:17:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiK2PGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:06:10 -0500
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8943FBA4;
-        Tue, 29 Nov 2022 07:06:08 -0800 (PST)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-142faa7a207so17281760fac.13;
-        Tue, 29 Nov 2022 07:06:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kDwNcelrs2eUV+lrqFjarpCKpHkKCs1VhcZri8buYKI=;
-        b=AoZfmFeYKOl4l2lIHPCkTbcdpAwJpSta0pfkYwaOkFHCISQw8IoGt3aERVL2/nqOkC
-         a6BHyldoXF8TPzDrKg0hHQ+iLMySV9kk5duA9ppJwI3nVnZkecI7mqXVjTzxjc1tPf1s
-         Hlx15iEgHrOjRYo0NFhhTx1q/VYw5qA3kSnG/L/75Bylsq7133s9dlcs8Qr30wwEV7OG
-         fNFek9RS1KKxHLxzZ/tujDKRHxDGuDqt7+cMME8GxWqaraogMMeyD/FP/SgXOdZq/OZw
-         5MI31UGRbttIb/R9Kk+rkdl4d+hqpbnXIkdE9XBkr6wnotATQzBzfuZTkWlopIn4Ubmp
-         l5Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kDwNcelrs2eUV+lrqFjarpCKpHkKCs1VhcZri8buYKI=;
-        b=8KgAi9UJw2PaccUuK3Dotv2811EMQ5V/IvQravvE+tF9mACDZ4MB238HbctXyrrDCk
-         thxg1r9uUk8hewiKQ2uYop1kxi5p0n+/I68z0RObAkFRHm/8jQAw2zBYpi0uZrBUh/MJ
-         d3/ELl7AHrWse/u1xSg2RhD77wlOPkDOXbE+xCVpvhpth5ymFDfUBFopU+uiAQII1Wgy
-         EWr5RefFXOUrcwE4VA3OVa8YcJjOvixkU92TPr8Xw6cqopyuHHtUiKAACWJAWL/ml9Gi
-         nIFztwNHQMshzIT1Eiew0FOxTpLsCzmeraq4w2mVirXZdi+tS/D95sDrd4J/enoyDmH0
-         5RrQ==
-X-Gm-Message-State: ANoB5pm2OwqfbBgH5kVMscQqYo/jEhR3H868CIvr9TmplQjgGM51KEAh
-        vxMZL3hyZwY2mZusv4Tedmw=
-X-Google-Smtp-Source: AA0mqf5oDydb9EGtYPiKSPOiYCPpv8fl65qEocklfg33+p3F9hythil2GZwIwm+FvmCbwsKu6AnaMQ==
-X-Received: by 2002:a05:6870:54d2:b0:131:e200:1492 with SMTP id g18-20020a05687054d200b00131e2001492mr21190025oan.44.1669734367149;
-        Tue, 29 Nov 2022 07:06:07 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h9-20020a4ad009000000b0049be9c3c15dsm5517327oor.33.2022.11.29.07.06.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 07:06:06 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a0b48e60-59ce-0033-b09f-2f92983753b7@roeck-us.net>
-Date:   Tue, 29 Nov 2022 07:06:03 -0800
+        with ESMTP id S234902AbiK2PR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:17:27 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78062F001;
+        Tue, 29 Nov 2022 07:17:24 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 1DC623FB17;
+        Tue, 29 Nov 2022 15:17:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1669735042; bh=keFMyCTX0usvCrLsU93OmOyWf2zkklBeuPqknM65WaM=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To;
+        b=zOjS9HtnS3Yl6oUchqXhplrO/uVVMgRv5tfIzFIAZFyJUCd/yiM9kl/xE0TFkj+Bm
+         LiDQcFrtPIw6URVVvX6eYu45m+Mgu7iwu53VW5dQg/4pIlsSb0t8SHgwcNRV8M4RlQ
+         x8/bHWU3xirXgdPPSb6IhrvmHxrIpe0Z1A8eOkoE/T54/H+uOJLU96m5buNfyOXh4v
+         3CJ3H6fmr1d3Bfd0pot4fc0vJdmuSB28RPrKv8gmSnLPWNrIrVTYOeEJtH+/mhp7k2
+         96S2itepvmm9tYgKw5fg1KGyu+c3K74nEtvrfqFWoFmM+pgzq3nwde1ZBfV29+kS3r
+         WbTnSwEuSTfLQ==
+Message-ID: <e8c481ba-02a7-f1c7-6314-ea1ddf136998@marcan.st>
+Date:   Wed, 30 Nov 2022 00:17:08 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [v4 5/5] hwmon: Add Aspeed ast2600 TACH support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
 Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Cc:     kernel test robot <lkp@intel.com>
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-6-billy_tsai@aspeedtech.com>
- <bf851fa1-af62-5cdc-8cb4-bcf29b73731a@roeck-us.net>
- <D5F454FE-9C4B-4B7E-8817-637D5FCC047A@aspeedtech.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <D5F454FE-9C4B-4B7E-8817-637D5FCC047A@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+References: <20221128142912.16022-1-marcan@marcan.st>
+ <20221128142912.16022-3-marcan@marcan.st>
+ <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com>
+ <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st>
+ <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
+In-Reply-To: <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/28/22 23:08, Billy Tsai wrote:
-> On 2022/11/23, 11:45 PM, "Guenter Roeck" <groeck7@gmail.com on behalf of linux@roeck-us.net> wrote:
+On 29/11/2022 23.34, Krzysztof Kozlowski wrote:
+> On 29/11/2022 15:00, Hector Martin wrote:
+>> On 29/11/2022 20.36, Ulf Hansson wrote:
+>> Please, let's introspect about this for a moment. Something is deeply
+>> broken if people with 25+ years being an arch maintainer can't get a
 > 
->      On 11/22/22 22:16, Billy Tsai wrote:
->      > > +The driver provides the following sensor accesses in sysfs:
->      > > +=============== ======= =====================================================
->      > > +fanX_input	ro	provide current fan rotation value in RPM as reported
->      > > +			by the fan to the device.
->      > > +fanX_div	rw	Fan divisor: Supported value are power of 4 (1, 4, 16
->      > > +                        64, ... 4194304)
-> 
->      > The code doesn't support 1.
-> 
-> The code can support 1.
-> 
-Sorry, leftover from when I misread the code and thought it didn't.
-> 
->      > The existence of a status register makes me wonder what is in there.
->      > Does the controller report any errors ? If so, it might be worthwile
->      > adding attribute(s) for it.
-> 
->      > > +	if (ret)
->      > > +		return ret;
->      > > +
->      > > +	if (!(val & TACH_ASPEED_FULL_MEASUREMENT))
->      > > +		return 0;
->      > > +	rpm = aspeed_tach_val_to_rpm(priv, fan_tach_ch,
->      > > +				     val & TACH_ASPEED_VALUE_MASK);
->      > > +
->      > > +	return rpm;
-> 
-> The status register is the TACH_ASPEED_FULL_MEASUREMENT which is used to indicate that
-> the controller doesn't detect the change in tach pin for a long time.
-> 
->      > > +static void aspeed_create_fan_tach_channel(struct aspeed_tach_data *priv,
->      > > +					   u32 tach_ch)
->      > > +{
->      > > +	priv->tach_present[tach_ch] = true;
->      > > +	priv->tach_channel[tach_ch].limited_inverse = 0;
->      > > +	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
->      > > +			  TACH_ASPEED_INVERS_LIMIT,
->      > > +			  priv->tach_channel[tach_ch].limited_inverse ?
->      > > +				  TACH_ASPEED_INVERS_LIMIT :
->      > > +				  0);
->      > > +
->      > What is the purpose of the above code ? limited_inverse is always 0.
-> 
->      > > +	priv->tach_channel[tach_ch].tach_debounce = DEBOUNCE_3_CLK;
->      > > +	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
->      > > +			  TACH_ASPEED_DEBOUNCE_MASK,
->      > > +			  priv->tach_channel[tach_ch].tach_debounce
->      > > +				  << TACH_ASPEED_DEBOUNCE_BIT);
->      > > +
->      > > +	priv->tach_channel[tach_ch].tach_edge = F2F_EDGES;
->      > > +	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
->      > > +			  TACH_ASPEED_IO_EDGE_MASK,
->      > > +			  priv->tach_channel[tach_ch].tach_edge
->      > > +				  << TACH_ASPEED_IO_EDGE_BIT);
->      > > +
-> 
->      > limited_inverse, tach_debounce, and tach_edge are constants.
->      > There is no need to keep constants as per-channel variables.
-> 
->      > > +	priv->tach_channel[tach_ch].divisor = DEFAULT_TACH_DIV;
->      > > +	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
->      > > +			  TACH_ASPEED_CLK_DIV_T_MASK,
->      > > +			  DIV_TO_REG(priv->tach_channel[tach_ch].divisor)
->      > > +				  << TACH_ASPEED_CLK_DIV_BIT);
->      > > +
->      > > +	priv->tach_channel[tach_ch].threshold = 0;
->      > > +	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
->      > > +			  TACH_ASPEED_THRESHOLD_MASK,
->      > > +			  priv->tach_channel[tach_ch].threshold);
->      > > +
-> 
->      > The above applies to threshold as well.
-> 
-> The above code is used to retain the adjustable feature of the controller.
-> I will remove them until I add the dts property to support them.
-> 
->      > > +	}
->      > > +
->      > > +	hwmon = devm_hwmon_device_register_with_info(dev, "aspeed_tach", priv,
->      > > +						     &aspeed_tach_chip_info, NULL);
->      > > +	ret = PTR_ERR_OR_ZERO(hwmon);
->      > > +	if (ret)
->      > > +		return dev_err_probe(dev, ret,
->      > > +				     "Failed to register hwmon device\n");
->      > > +	return 0;
-> 
->      > Why not return the error ? Either it is an error or it isn't. If it is
->      > not an error, dev_err_probe() is not appropriate. If it is, the error
->      > should be returned. Either case, if this is on purpose, it needs an
->      > explanation.
-> 
-> I have return the return value of the dev_err_probe. Did I miss someting?
-> 
-No, me not having enough coffee when reviewing the code. Sorry for the noise.
+> If arch maintainer sends patches which does not build (make
+> dt_binding_check), then what do you exactly expect? Accept them just
+> because it is 25+ years of experience or a maintainer? So we have
+> difference processes - for beginners code should compile. For
+> experienced people, it does not have to build because otherwise they
+> will get discouraged?
 
-Thanks,
-Guenter
+I expect the process to not be so confusing and frustrating that a
+maintainer with 25+ years of experience gives up. That the bindings
+didn't pass the checker is besides the point. People say the Linux
+kernel community is hostile to newbies. This issue proves it's not just
+newbies, the process is failing even experienced folks.
 
+On that specific issue, any other functional open source project would
+have the binding checks be a CI bot, with a friendly message telling you
+what to do to fix it, and it would re-run when you push to the PR again,
+which is a *much* lower friction action than sending a whole new patch
+series out for review via email (if you don't agree with this, then
+you're not the average contributor - the Linux kernel is by far the
+scariest major open source project to contribute to, and I think most
+people would agree with me on that).
+
+I know Rob has a DT checker bot, but its error output is practically
+line noise, and the error email doesn't even mention the
+DT_SCHEMA_FILES= make option (which is the only way to make the check
+not take *forever* to run). Absolutely nobody is going to look at those
+emails without already knowing the intricacies of DT bindings and the
+checker and not find them incredibly frustrating.
+
+But it's not just the DT checker. That came after an argument where the
+MFD maintainer complained about the driver while offering no solution
+nor proposed path forward. I had to have an IRC conversation with him to
+work it out, after which he accepted one of the options I'd already
+proposed over email. If you have to change communication mediums to
+resolve an issue, that means your initial medium failed at its job.
+
+Not to mention the random drive-by reviews, nitpicks, disagreements
+between maintainers about how to do things, or just plain cases of
+maintainers stubbornly being *wrong* and refusing to listen while
+everyone around them is telling them they're wrong (until someone above
+them in the maintainer tree tells them they're wrong - then they finally
+get it. If it takes someone in a position of authority telling you
+you're wrong for you to accept it, you're doing a poor job at your own
+position.)
+
+And then there's the coding style. The rest of the world has
+standardized on formatting tools. Here, every subsystem maintainer has
+their own pet style you have to learn. "Please put your variables in
+reverse christmas tree order". I once got a review comment that
+complained that I re-aligned an existing #define when I added another
+one (to keep them visually aligned, as the new one increased the
+required tab stop). Because "cleanup patches should be separate" (I
+didn't submit a cleanup patch after that, I just left the defines
+misaligned). So now I need to maintain a massive mental map of exactly
+what style conventions and patch breakup conventions every subsystem
+maintainer wants me to use.
+
+I'm so glad `make rustfmt` is a thing now. Maybe 50 years down the line,
+most of the kernel will have been rewritten in Rust and we'll finally
+fix just one of these problems /s
+
+Some of these things are, to some extent, a natural result of working
+with other humans. But the kernel community has both a number of humans
+harder to work with than is reasonable in their position, and an overall
+process that multiplies the resulting pain by an order of magnitude for
+everyone involved.
+
+> While I understand your point about bikeschedding, but I think your
+> previous bindings got pretty nice and fast reviews, so using examples of
+> non-building case is poor choice.
+
+Yeah, after a while, because I learned how to do DT bindings the hard
+way after having to submit a bunch and getting everything wrong (and
+even then I still get the simplest things wrong, see: v4 here). Which is
+why I'll pick up after rmk's attempt and try again with macsmc at some
+point (probably after 6.1). But I'm not holding my breath that I won't
+need another half dozen rounds of bikeshedding.
+
+When it takes 10 times more man-hours to upstream a driver than to
+reverse engineer and write it with zero documentation, never mind the
+calendar time it takes, something is very wrong. I actively dread
+submitting new drivers to new subsystems or some existing ones now. How
+much pain will the next one be? Will I be asked to move files around 3
+times? Spend 4 rounds bikeshedding the DT schema? Think it's finally
+ready only for someone to show up and ask to change a major part of the
+design at the last minute?
+
+And this all when we're actually submitting code of decent quality (I
+think I have enough experience not to submit crap most of the time). Now
+imagine how much worse this all is for a newbie who submits a
+well-intentioned but definitely not up to standard patch. There's a huge
+chance they'll give up before ever getting the submission through.
+
+Again, I'll keep pushing and sending out patches, because this is
+important. But this is the reality. This is how bad it is. The process
+is broken, and everyone outside the kernel community can see that and
+has been saying that for ages. Just because some of us are willing to
+put up with the pain anyway doesn't mean it's working as intended.
+
+- Hector
