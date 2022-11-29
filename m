@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F334563C1EC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A4CF63C1F4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:10:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235131AbiK2OKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:10:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45176 "EHLO
+        id S235003AbiK2OKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:10:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235250AbiK2OKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:10:10 -0500
-Received: from smtp-out-03.comm2000.it (smtp-out-03.comm2000.it [212.97.32.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5A46456C
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:09:45 -0800 (PST)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-03.comm2000.it (Postfix) with ESMTPSA id AF8D0B48EA5;
-        Tue, 29 Nov 2022 15:09:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1669730983;
-        bh=7YAGlJa9hMh0rdTbhXdU19bvu65xO83SPl8RumouZf4=;
-        h=From:To:Cc:Subject:Date;
-        b=CeJXP/s/83pJK4oA9ebbQF8+UVoWb7B4QPu/+9E/UKp0uiooblEGfxF0/CgoKqXtP
-         XNLosk8tG+GSgLyBJzhl0aT9HIkcV38hBYq1hLF4aDOSBMc0h3sL9FKvMi/dt2xq1R
-         3O0VOC9wIX7j3yu7fTtD/BUIIkBiT6TBB2oV8N+I0izr3WGxqgPEgfhLTzBMEd0VnI
-         FjM1fOIaLo1n/1GOA0tb/B0rtQyfWr/MM4VM90atn9+ZLqybAaEVtPOiCvG5vBWIQS
-         qSINCI6rjA7XdjWx4zqE1C5/QGBIc7C2Tnm8t2xg/a/NjTSyjfRiAeM/FG07QU4gGk
-         WZDepKzmIbWfw==
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        with ESMTP id S235291AbiK2OKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:10:15 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8FF5E9C6;
+        Tue, 29 Nov 2022 06:10:05 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id 62so13075906pgb.13;
+        Tue, 29 Nov 2022 06:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YVP9j+3BhVTLvWLIbS8NQw4iMFG9wd3z53JwQ0Tttrw=;
+        b=RmvYdYu3p4xuFYAItsLk/YIMiEvOYMDpKR0GkFlfhSCRGxMjST/G+rY0nEXgrZuh2i
+         6C91j3KEv26zEj6/wAg9y5NEdKVtXAnKs9gvu0Lc6PMrTvfKHzQCAeW0zpc+AUzYacL6
+         xGRp8/pC5g8sOgIvT11sFgkcrQn4b7HMjU88nnK6cr1ogdHHZP3LcTeKINgTyqsXmeqi
+         NwyaRQz3vF2bvi/ZJyJHbAJDiwYL+ERKZUNHGdQCFcN/7pWtn2VJk2DbcSeF9yqqNwhK
+         3h1Q0an+RFVybhGr0MW21w3u3JrEx3UWytWT0I3NhdiRHxMkrXFQDZ4xRZQfdTH2fmh/
+         Qmdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YVP9j+3BhVTLvWLIbS8NQw4iMFG9wd3z53JwQ0Tttrw=;
+        b=TP9a0XAivOAM4WLnrj/qwtR5lY/1u+9s/N5CS7kndGci+H0s1OXb9938C8ZJdh0vAg
+         imNZ2mTEhdjVjpr7qBSKbTbP3vpv2wdEUAYJAMD/sEPQ5GuHZ0zyh6kbfVpyhH8j6OIr
+         yLZIoE3j+CMLp8L+DJQdfsMBC3DQ1KZiwU6YYy43OqsHDruj3G85opYRZaiQzVU2SoYW
+         W3Iuk5Ob3b4pNmcWevusjqqsHloGdcWE220VKaIAihq/qipTrb4zFLuJ4BsYh6Hn9EBN
+         6M6M6XWyXpnwB+/UA4GWKyyBPtojM/J9HQ9rWHjt61auU8/IyYfUjP01QdUw+6egS5ix
+         mxpg==
+X-Gm-Message-State: ANoB5pkx5YR6BmoqavjBs7xYlnqjp/ws3pUwh3YPO00Ginmk/YHtTBTT
+        4jNThGoUJsNUIgSgDJ16DpbWbIyCbZA=
+X-Google-Smtp-Source: AA0mqf7NiOKYXunJCGeM4irmRCqv9IIOpYiaf+seCAXF3GXRd0Oje0hRtTf0ZWFcm7FQGLRP09ZEnw==
+X-Received: by 2002:a62:2fc1:0:b0:562:fcae:5f10 with SMTP id v184-20020a622fc1000000b00562fcae5f10mr36698094pfv.28.1669731004646;
+        Tue, 29 Nov 2022 06:10:04 -0800 (PST)
+Received: from guoguo-omen.scut.edu.cn ([2401:c080:1400:4da2:5400:3ff:feb4:7578])
+        by smtp.gmail.com with ESMTPSA id a5-20020a170902710500b0017854cee6ebsm10932342pll.72.2022.11.29.06.09.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 06:10:04 -0800 (PST)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     linux-leds@vger.kernel.org
+Cc:     Chuanhong Guo <gch981213@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2] arm64: dts: imx8mm-verdin: enable hpd on hdmi-connector
-Date:   Tue, 29 Nov 2022 15:09:35 +0100
-Message-Id: <20221129140935.34428-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 0/3] leds: add driver for SPI driven WorldSemi WS2812B RGB LEDs
+Date:   Tue, 29 Nov 2022 22:09:52 +0800
+Message-Id: <20221129140955.137361-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+This patch adds support for driving a chain of WS2812B LED chips
+using SPI bus.
 
-Add hot plug detect gpio to the HDMI connector.
+WorldSemi WS2812B is a individually addressable LED chip that
+can be chained together and controlled individually using a
+single wire. The chip recognize a long pulse as a bit of 1 and
+a short pulse as a bit of 0. Host sends a continuous stream
+of 24-bits color values, each LED chip takes the first 3 byte
+it receives as its color value and passes the leftover bytes to
+the next LED on the chain.
 
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: Added missing signed-off-by
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+This driver simulates this protocol using SPI bus by sending
+a long pulse as 3'b110 and a short pulse as 3'b100. The SPI
+frequency needs to be 2.105MHz~2.85MHz for the timing to be
+correct and the controller needs to transfer all the bytes
+continuously.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index bcab830c6e95..8cc8a80ea255 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -56,7 +56,11 @@ key-wakeup {
- 	hdmi_connector: hdmi-connector {
- 		compatible = "hdmi-connector";
- 		ddc-i2c-bus = <&i2c2>;
-+		/* Verdin PWM_3_DSI (SODIMM 19) */
-+		hpd-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
- 		label = "hdmi";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pwm_3_dsi_hpd_gpio>;
- 		type = "a";
- 		status = "disabled";
- 	};
-@@ -598,7 +602,7 @@ hwmon: hwmon@40 {
- 	hdmi_lontium_lt8912: hdmi@48 {
- 		compatible = "lontium,lt8912b";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_gpio_10_dsi>, <&pinctrl_pwm_3_dsi_hpd_gpio>;
-+		pinctrl-0 = <&pinctrl_gpio_10_dsi>;
- 		reg = <0x48>;
- 		/* Verdin GPIO_9_DSI (LT8912 INT, SODIMM 17, unused) */
- 		/* Verdin GPIO_10_DSI (SODIMM 21) */
+Chuanhong Guo (3):
+  dt-bindings: vendor-prefixes: add an entry for WorldSemi
+  dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+  leds: add driver for SPI driven WorldSemi WS2812B RGB LEDs
+
+ .../bindings/leds/worldsemi,ws2812b-spi.yaml  | 131 +++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/leds/rgb/Kconfig                      |  11 +
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-ws2812b-spi.c           | 222 ++++++++++++++++++
+ 5 files changed, 367 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/worldsemi,ws2812b-spi.yaml
+ create mode 100644 drivers/leds/rgb/leds-ws2812b-spi.c
+
 -- 
-2.25.1
+2.38.1
 
