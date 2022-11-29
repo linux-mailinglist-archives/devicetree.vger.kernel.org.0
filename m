@@ -2,266 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC4A63C700
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B8B63C716
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 19:20:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232468AbiK2SEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 13:04:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
+        id S234542AbiK2SUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 13:20:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235210AbiK2SE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:04:26 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A9225A
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 10:04:24 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p04xy-0007bB-Ub; Tue, 29 Nov 2022 19:04:22 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p04xw-0018MV-8f; Tue, 29 Nov 2022 19:04:21 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p04xw-001HXM-BE; Tue, 29 Nov 2022 19:04:20 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: display: Convert fsl,imx-fb.txt to dt-schema
-Date:   Tue, 29 Nov 2022 19:04:14 +0100
-Message-Id: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S232360AbiK2SUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 13:20:31 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522902A41E;
+        Tue, 29 Nov 2022 10:20:29 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id a19so2492045ljk.0;
+        Tue, 29 Nov 2022 10:20:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/YZ7W5csugr2Bn2cmkIdVJsBOw6MIoUlHR9lQ0xQ/SY=;
+        b=OvSUf9YBmoDRrSHmB124lWfahqmaY1njCYYb2eihFX0En5UGFQYn64HZ4sBdTcYbXu
+         sOOaaaUawNNIFXiFXLfq6I9eIxI1InitPZwdgGmPZpWgH571V37LRemZXGRTZTqGu0eA
+         rF0HcQunBKA+G8FI6oYxducRBJW9IjLWEQKcjE0mCbEYUaZTA5LRK/bekpcKXGA88R0W
+         XhfrUsjZimBvT1STMYhEQBmuPwY5DgisuR0GfDWhx9OWGiAXxXlMAxXkjhODkjyWVpWq
+         yLzkDLLadNYCULj1VBREpx85SVz+/i7a4Vu8SYKl1H+FucmqkZyb/N/S4LPE1O7lm/yi
+         SaoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/YZ7W5csugr2Bn2cmkIdVJsBOw6MIoUlHR9lQ0xQ/SY=;
+        b=UxwMPseFv0JFLHrV00v/C3x6C2Np7Ys2vNrcsgEZuIIqm6bQcvhl/cMhx5TuBwbd38
+         HmTtY5FaUy8zxEmTLv9ujTFAUN0/iUSjRG1dfQt0NPSGaYRL7eUJM/9CsV2JWUeO0aAW
+         yY76v1Kvw7ZQdH70CbvErqKxxKqPTeSl35/zmE5Mp77pHAUHrUbfKfH3TvzgHUrEOetS
+         EIOsZxk1JFJSdMD9SxCrHYhXcYCW++fvrzNkEMcfS7R8gYryQWipet+NX0uTIMA+xlCc
+         9IXkMqe8xSM030M4dhAjQp6ZC6ID78IMvnl798+QgdGqZADEwJLXH1k6fA/Z9PH1ijpz
+         Lnog==
+X-Gm-Message-State: ANoB5pm83xLuUvxvesawfnTJ+q1gDE3Z3dzJWAaALF/yDABASPcTbK63
+        /amXfofugo5MeKj1YuLYCFtwPcSRb9Tsj1gdm1Y=
+X-Google-Smtp-Source: AA0mqf7DCIO3YwlRaYKyAdZ9oWnkSwxHGeEMLFcAVt39H1gVH2FayKwGs6BnZJ+V9JZ2ihDpV58R/GtQNbpglv0rhSE=
+X-Received: by 2002:a2e:a364:0:b0:279:6aeb:7f63 with SMTP id
+ i4-20020a2ea364000000b002796aeb7f63mr12207408ljn.50.1669746027474; Tue, 29
+ Nov 2022 10:20:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6324; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=DvIV4HYaKMOHhRZZ9BFQMck2c1xBdZcv3zmxYbeH/x4=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBjhkmVlfJhpGvZR/g7+qMBEOOg9M2j7V0Pr+1Mc0ip qpFd09eJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCY4ZJlQAKCRDB/BR4rcrsCUZaB/ 95e3vBWHk9dJeaXqBOZxzbs7y8ZA3KvfawQ+4cyiJx8mhv5SmDZNqt4OsrG+kW2O2Frld/9apDyY8H CsFTx92U3wtW+ojrlespcMOr6kYC5xffKzYv6LV65A/fjGLF/X/GOQGip+5B6VXKiuyaICT/Pjt0G5 5vsqq/0RzQ4DIQODzD/rtrsuLsNMpFuSeYHNef/n+f7k0DNsyOz/JkRwwSfrChl8NjWyTZBDjhFaEc To7TdTUUQxtPSdJPhoNAYAr2dcqBccDC3F0SsKhrvwxsnF/JlbikJv630LOAtX9eYoN2obKpp+sSeH R9yx9UBCNNHk/6EqIHYVQdug6m0TV5
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221122201232.107065-1-tmaimon77@gmail.com> <20221122201232.107065-3-tmaimon77@gmail.com>
+ <577e273d-ff9b-4d8d-b797-d7275ab8374f@app.fastmail.com> <CAP6Zq1ikqtKOGUZX-VAdyhs+nsvy7ah4gqRrbXVA8Gp9L46hXQ@mail.gmail.com>
+ <7f43febb-0a89-4313-9c85-a7a44c231b45@app.fastmail.com>
+In-Reply-To: <7f43febb-0a89-4313-9c85-a7a44c231b45@app.fastmail.com>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 29 Nov 2022 20:20:16 +0200
+Message-ID: <CAP6Zq1jR1ouDgRQ0=6RR7iCnkrY_X87SeiNAxt_y0+QsVXS=ZA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] soc: nuvoton: add NPCM LPC BPC driver
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     avifishman70@gmail.com, tali.perry1@gmail.com,
+        Joel Stanley <joel@jms.id.au>, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Hector Martin <marcan@marcan.st>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Sven Peter <sven@svenpeter.dev>,
+        Brian Norris <briannorris@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compared to the txt description this adds clocks and clock-names to
-match reality.
+Hi Arnd,
 
-Note that fsl,imx-lcdc was picked as the new name as this is the actual
-hardware's name. There will be a new binding implementing the saner drm
-concept that is supposed to supersede this legacy fb binding
+Thanks for your comments
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
-Changes since v1, sent with Message-Id:
- - mention clock stuff being added (Philipp)
- - dropped some quotes (Rob)
- - fix specification of compatible
-   (I kept claiming though that imx21 isn't compatible to imx1. While
-   that might be true, I don't have an i.MX1 to check the details and
-   currently the imx*.dtsi don't claim that compatibility.)
+On Fri, 25 Nov 2022 at 12:25, Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Wed, Nov 23, 2022, at 19:01, Tomer Maimon wrote:
+> > On Wed, 23 Nov 2022 at 12:58, Arnd Bergmann <arnd@arndb.de> wrote:
+> >>
+> >> On Tue, Nov 22, 2022, at 21:12, Tomer Maimon wrote:
+> >> > Add Nuvoton BMC NPCM LPC BIOS post code (BPC) driver.
+> >> >
+> >> > The NPCM BPC monitoring two configurable I/O address written by the host
+> >> > on the Low Pin Count (LPC) bus.
+> >> >
+> >> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> >> > ---
+> >> >  drivers/soc/Kconfig                |   1 +
+> >> >  drivers/soc/Makefile               |   1 +
+> >> >  drivers/soc/nuvoton/Kconfig        |  24 ++
+> >> >  drivers/soc/nuvoton/Makefile       |   3 +
+> >> >  drivers/soc/nuvoton/npcm-lpc-bpc.c | 396 +++++++++++++++++++++++++++++
+> >>
+> >> In general, I try to keep drivers/soc/ for drivers that are
+> >> used purely inside of the kernel and don't provide their
+> >> own user space ABI, those should normally be part of
+> >> some subsystem grouped by functionality.
+> >>
+> >> It appears that we have similar drivers for aspeed already,
+> >> so there is some precedent, but I would still like to ask
+> >> you and Joel to try to make sure the two are compatible,
+> >> or ideally share the code for the user-facing part of the
+> >> LPC driver.
+> > Nuvoton and Aspeed use the same user-facing code to manage the host snooping.
+> > https://github.com/openbmc/phosphor-host-postd
+>
+> Ok, great!
+>
+> >> The implementation of npcm-lpc-bpc looks fine otherwise, I only
+> >> noticed one minor detail that I would change:
+> >>
+> >> > +     np = pdev->dev.parent->of_node;
+> >> > +     if (!of_device_is_compatible(np, "nuvoton,npcm750-lpc") &&
+> >> > +         !of_device_is_compatible(np, "nuvoton,npcm845-lpc")) {
+> >> > +             dev_err(dev, "unsupported LPC device binding\n");
+> >> > +             return -ENODEV;
+> >> > +     }
+> >>
+> >> This check doesn't seem to make sense here, since those are
+> >> the only two types you support.
+> > About the LPC, I like to double check with our architectures on it
+> > because the BPC should working on eSPI as well.
+> > Maybe I should remove the LPC part.
+>
+> The version you posted only has LPC support, not eSPI, so that
+> wouldn't work. I'm not sure how eSPI is normally represented
+> in device drivers, does that show up the same way as an LPC
+> device, or do you need to register a separate spi_driver?
+The eSPI is a successor to its Low Pin Count (LPC) and it will show up
+in the same way as the LPC.
+NPCM BPC can be connected to the CPU (host) through LPC or eSPI bus
+and the NPCM BPC driver not is handling the LPC or the eSPI bus
+therefore I should remove the LPC naming from the and only use BPC.
+>
+> If it's part of the same platform driver with different
+> OF compatible strings, the normal way to handle this would
+> be to use the .data field in the of_device_id to pass
+> model specific information to other parts of the driver.
+>
+>      Arnd
 
-I tried to implement the suggestion by Rob to formalize the display
-binding. But I learned that this doesn't change how the display property
-is formalized in the fsl,imx-lcdc.yaml (which is just a phandle without
-means to specify that it should point to a node which fulfills a certain
-binding.)
+Best regards,
 
-Best regards
-Uwe
-
- .../bindings/display/imx/fsl,imx-fb.txt       |  57 ----------
- .../bindings/display/imx/fsl,imx-lcdc.yaml    | 102 ++++++++++++++++++
- 2 files changed, 102 insertions(+), 57 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
- create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt b/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
-deleted file mode 100644
-index f4df9e83bcd2..000000000000
---- a/Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--Freescale imx21 Framebuffer
--
--This framebuffer driver supports devices imx1, imx21, imx25, and imx27.
--
--Required properties:
--- compatible : "fsl,<chip>-fb", chip should be imx1 or imx21
--- reg : Should contain 1 register ranges(address and length)
--- interrupts : One interrupt of the fb dev
--
--Required nodes:
--- display: Phandle to a display node as described in
--	Documentation/devicetree/bindings/display/panel/display-timing.txt
--	Additional, the display node has to define properties:
--	- bits-per-pixel: Bits per pixel
--	- fsl,pcr: LCDC PCR value
--	A display node may optionally define
--	- fsl,aus-mode: boolean to enable AUS mode (only for imx21)
--
--Optional properties:
--- lcd-supply: Regulator for LCD supply voltage.
--- fsl,dmacr: DMA Control Register value. This is optional. By default, the
--	register is not modified as recommended by the datasheet.
--- fsl,lpccr: Contrast Control Register value. This property provides the
--	default value for the contrast control register.
--	If that property is omitted, the register is zeroed.
--- fsl,lscr1: LCDC Sharp Configuration Register value.
--
--Example:
--
--	imxfb: fb@10021000 {
--		compatible = "fsl,imx21-fb";
--		interrupts = <61>;
--		reg = <0x10021000 0x1000>;
--		display = <&display0>;
--	};
--
--	...
--
--	display0: display0 {
--		model = "Primeview-PD050VL1";
--		bits-per-pixel = <16>;
--		fsl,pcr = <0xf0c88080>;	/* non-standard but required */
--		display-timings {
--			native-mode = <&timing_disp0>;
--			timing_disp0: 640x480 {
--				hactive = <640>;
--				vactive = <480>;
--				hback-porch = <112>;
--				hfront-porch = <36>;
--				hsync-len = <32>;
--				vback-porch = <33>;
--				vfront-porch = <33>;
--				vsync-len = <2>;
--				clock-frequency = <25000000>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-new file mode 100644
-index 000000000000..35a8fff036ca
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/imx/fsl,imx-lcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX LCD Controller, found on i.MX1, i.MX21, i.MX25 and i.MX27
-+
-+maintainers:
-+  - Sascha Hauer <s.hauer@pengutronix.de>
-+  - Pengutronix Kernel Team <kernel@pengutronix.de>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - fsl,imx1-fb
-+          - fsl,imx21-fb
-+      - items:
-+          - enum:
-+              - fsl,imx25-fb
-+              - fsl,imx27-fb
-+          - const: fsl,imx21-fb
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+      - const: ahb
-+      - const: per
-+
-+  display:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  lcd-supply:
-+    description:
-+      Regulator for LCD supply voltage.
-+
-+  fsl,dmacr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Override value for DMA Control Register
-+
-+  fsl,lpccr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Contrast Control Register value.
-+
-+  fsl,lscr1:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      LCDC Sharp Configuration Register value.
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - display
-+  - interrupts
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    imxfb: fb@10021000 {
-+        compatible = "fsl,imx21-fb";
-+        interrupts = <61>;
-+        reg = <0x10021000 0x1000>;
-+        display = <&display0>;
-+        clocks = <&clks 103>, <&clks 49>, <&clks 66>;
-+        clock-names = "ipg", "ahb", "per";
-+    };
-+
-+    display0: display0 {
-+        model = "Primeview-PD050VL1";
-+        bits-per-pixel = <16>;
-+        fsl,pcr = <0xf0c88080>; /* non-standard but required */
-+
-+        display-timings {
-+            native-mode = <&timing_disp0>;
-+            timing_disp0: timing0 {
-+                hactive = <640>;
-+                vactive = <480>;
-+                hback-porch = <112>;
-+                hfront-porch = <36>;
-+                hsync-len = <32>;
-+                vback-porch = <33>;
-+                vfront-porch = <33>;
-+                vsync-len = <2>;
-+                clock-frequency = <25000000>;
-+            };
-+        };
-+    };
--- 
-2.38.1
-
+Tomer
