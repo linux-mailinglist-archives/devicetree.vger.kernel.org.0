@@ -2,382 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21AF763C623
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B5263C62C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 18:11:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235987AbiK2RIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 12:08:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
+        id S235644AbiK2RLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 12:11:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234997AbiK2RIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:08:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2538F5CD2C;
-        Tue, 29 Nov 2022 09:08:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9EA4DB81887;
-        Tue, 29 Nov 2022 17:08:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4256EC43144;
-        Tue, 29 Nov 2022 17:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669741727;
-        bh=nwP34wMNyLh/dnrxlPgAjE1IzJ0FKjOdv1+2hcVAU6I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BuCBo5Xiu9EosfZ2Dg6KNymqrMDa/jo7ob17Fvu/wbLK56N20rzptZaU9Tjx0JPiC
-         KG6lF3H6/g7e9yanZI77EVNaAWDtYfBxLjZ9Lif+ouqDVAv2DIMRPkxuBNwRQHTPUP
-         hFQWC1ETAPDybzQI9qydARhcPc+A5YKo3z2ILm+YCuZbeWwZpfAcw6hbrU0fWnWNhL
-         PxBu+sSHKfAosDXdyUdqfdIDkkcOBI8Q+EylGueMGRr9Zhnhaz9prdhRL6BybP45qz
-         va7/OTNN7yiCB3tiCKI/x0R9UcA81BEPXXEYux0RwjktuBb6Ov7uzmhsnkwoIgsSPi
-         mMBC9zk77lhtA==
-Received: by mail-vs1-f52.google.com with SMTP id 124so14630823vsv.4;
-        Tue, 29 Nov 2022 09:08:47 -0800 (PST)
-X-Gm-Message-State: ANoB5pnTOQd6lf9ZmQlt/SWa50itMSMOsyzhQMud1Y5Z82YrP//eNCNl
-        ZMZVCeEBdUIdLc2lhev97Pys3KoPMalRC+IboQ==
-X-Google-Smtp-Source: AA0mqf5V7e1vsuBZ4ItGOTOOMeBB8gUy1cQEuElpB75MCBg1Cqh2Ja1KGGsHevNK00s6Li03OAangxBv/1OhP9vCwaY=
-X-Received: by 2002:a67:f74e:0:b0:3aa:3766:7a23 with SMTP id
- w14-20020a67f74e000000b003aa37667a23mr22326407vso.53.1669741726198; Tue, 29
- Nov 2022 09:08:46 -0800 (PST)
+        with ESMTP id S234423AbiK2RLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 12:11:22 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2E15EFA9
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:11:21 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id ml11so10516032ejb.6
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 09:11:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=msAP4TW5rerQcRILPebntv36PL15yDZMgzxuUAAXhBo=;
+        b=EFB2JMJ3F/3YqygGeoSAEyPEakOW5kvArTiOzsA0yzHsk4p6KRfIUh7rxEMQU3BhZH
+         N9rVP1i4aoUUl8Ey8S1k/0q3QfvOuSG8vxzDIc+WrE3nw5YbxYNWOxFP6Kijy2AAFamY
+         OpAZdUXNXUYHJuO97qquTUMoCHByqL5D7UbIDJl/JYq53RctML+qOaInF4A3+ejTIAD5
+         hOEFkISVjaupTcKeEBKxEoxstI4CL+HdfuPYgfdAfExwsw8C33PIMQlCaHB4VwyjRvjK
+         FFTEWLSxc5qNF48lOfyjpL+l99xZvqWuQ8wz7tpxOByjvelA3xrthH9QtCyBSMOP5D2f
+         ajGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=msAP4TW5rerQcRILPebntv36PL15yDZMgzxuUAAXhBo=;
+        b=Ke0d7s8wWXk/9VG9vLvO2e2022motDnmgATpPLmfVe+7rPQ0oCyuGkXL8jwpboRdHI
+         iPxOuYrjAfW29INJVuBkCx5L5xac3SXUJZ+8S1FMo8pGV/ZkdZcV4hE0riu0ur0fjXgY
+         doeF0+L+OR2HOsGxvKE1R6TxlOQnh0bJ49fXmztpYGPdrPgvPbDRGjogBl1FEzNxcP7a
+         VX3imk06AcJdGWzHUBoqjWqimj8W1pjjABjxX00A36IZClMfyi3DsHzVRarJR737vSEX
+         /ASuzVtUHqqKiT0hNJe89UMXV29hmPVHy2Tb5b9Twk0Nkg2cbZAsK5lThXHywGNtTYS2
+         aAaA==
+X-Gm-Message-State: ANoB5pn61GHHqX4ZsuzDK3kA80y3M1ha2+MIaQopGqV73Ng+vscrvRjX
+        LHt4z4Gvmd4bYJ2MsM6F4i5U03AN2XifBJH3DwJ/tcL8eXU=
+X-Google-Smtp-Source: AA0mqf73SKGfO58rsYtsa7lCegwo/y+/CexGd7oZ4HQ0wrmXXGXeCzaLTyB6c1XPiCFExVs/Zdrn6C0KCE56h6ozwCs=
+X-Received: by 2002:a17:907:a044:b0:7bc:27ab:6b2d with SMTP id
+ gz4-20020a170907a04400b007bc27ab6b2dmr20998752ejc.750.1669741879740; Tue, 29
+ Nov 2022 09:11:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20221124001708.25720-1-a39.skl@gmail.com> <20221124001708.25720-2-a39.skl@gmail.com>
-In-Reply-To: <20221124001708.25720-2-a39.skl@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 29 Nov 2022 11:08:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLkhCScw6Rbp8xiMG23UmRNsApyrexvZPabfjZmVBfD_A@mail.gmail.com>
-Message-ID: <CAL_JsqLkhCScw6Rbp8xiMG23UmRNsApyrexvZPabfjZmVBfD_A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display/msm: add support for SM6115
-To:     Adam Skladowski <a39.skl@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        Jason Wang <wangborong@cdjrlc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+References: <20221129140313.886192-1-apatel@ventanamicro.com>
+ <20221129140313.886192-4-apatel@ventanamicro.com> <Y4YY6kBBEBdZoUIp@wendy>
+In-Reply-To: <Y4YY6kBBEBdZoUIp@wendy>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 29 Nov 2022 22:41:09 +0530
+Message-ID: <CAAhSdy3dWGVV=jh5mzK=m63A3UAqwJhxidcAZQU_WC4TRNfCjQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP
+ based on DT
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 6:17 PM Adam Skladowski <a39.skl@gmail.com> wrote:
+On Tue, Nov 29, 2022 at 8:06 PM Conor Dooley <conor.dooley@microchip.com> wrote:
 >
-> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
-> SM6115 platform.
-> Configuration for DSI/PHY is shared with QCM2290 so compatibles are reused.
-> Lack of dsi phy supply in example is intended
-> due to fact on qcm2290, sm6115 and sm6125
-> this phy is supplied via power domain, not regulator.
+> On Tue, Nov 29, 2022 at 07:33:13PM +0530, Anup Patel wrote:
+> > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
+> > when riscv,timer-cant-wake-up DT property is present in the RISC-V
+> > timer DT node.
+> >
+> > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
+> > based on RISC-V platform capabilities rather than having it set for
+> > all RISC-V platforms.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 >
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  .../bindings/display/msm/qcom,sm6115-dpu.yaml |  94 +++++++++
->  .../display/msm/qcom,sm6115-mdss.yaml         | 182 ++++++++++++++++++
->  2 files changed, 276 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> I thought I had left an R-b on this one?
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 >
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-> new file mode 100644
-> index 000000000000..4a39a3031409
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6115-dpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display DPU dt properties for SM6115 target
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +$ref: /schemas/display/msm/dpu-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,sm6115-dpu
-> +
-> +  reg:
-> +    items:
-> +      - description: MDP register set
-> +      - description: VBIF register set
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mdp
-> +      - const: vbif
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display AXI
-> +      - description: Display AHB
-> +      - description: Display core
-> +      - description: Display lut
-> +      - description: Display rotator
-> +      - description: Display vsync
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: iface
-> +      - const: core
-> +      - const: lut
-> +      - const: rot
-> +      - const: vsync
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    display-controller@5e01000 {
-> +        compatible = "qcom,sm6115-dpu";
-> +        reg = <0x05e01000 0x8f000>,
-> +              <0x05eb0000 0x2008>;
-> +        reg-names = "mdp", "vbif";
-> +
-> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_ROT_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +        clock-names = "bus", "iface", "core", "lut", "rot", "vsync";
-> +
-> +        operating-points-v2 = <&mdp_opp_table>;
-> +        power-domains = <&rpmpd SM6115_VDDCX>;
-> +
-> +        interrupt-parent = <&mdss>;
-> +        interrupts = <0>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-> new file mode 100644
-> index 000000000000..a86d7f53fa84
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-> @@ -0,0 +1,182 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sm6115-mdss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SM6115 Display MDSS
-> +
-> +maintainers:
-> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> +
-> +description:
-> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-> +  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
-> +  are mentioned for SM6115 target.
-> +
-> +$ref: /schemas/display/msm/mdss-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,sm6115-mdss
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display AHB clock from gcc
-> +      - description: Display AXI clock
-> +      - description: Display core clock
-> +
-> +  iommus:
-> +    maxItems: 2
-> +
-> +patternProperties:
-> +  "^display-controller@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,sm6115-dpu
-> +
-> +  "^dsi@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,dsi-ctrl-6g-qcm2290
-> +
-> +  "^phy@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: qcom,dsi-phy-14nm-2290
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
-> +    #include <dt-bindings/clock/qcom,rpmcc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    mdss@5e00000 {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        compatible = "qcom,sm6115-mdss";
-> +        reg = <0x05e00000 0x1000>;
-> +        reg-names = "mdss";
-> +        power-domains = <&dispcc MDSS_GDSC>;
-> +        clocks = <&gcc GCC_DISP_AHB_CLK>,
-> +                 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> +
-> +        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +
-> +        iommus = <&apps_smmu 0x420 0x2>,
-> +                 <&apps_smmu 0x421 0x0>;
-> +        ranges;
-> +
-> +        display-controller@5e01000 {
-> +            compatible = "qcom,sm6115-dpu";
-> +            reg = <0x05e01000 0x8f000>,
-> +                  <0x05eb0000 0x2008>;
-> +            reg-names = "mdp", "vbif";
-> +
-> +            clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_ROT_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +            clock-names = "bus", "iface", "core", "lut", "rot", "vsync";
-> +
-> +            operating-points-v2 = <&mdp_opp_table>;
-> +            power-domains = <&rpmpd SM6115_VDDCX>;
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <0>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    dpu_intf1_out: endpoint {
-> +                        remote-endpoint = <&dsi0_in>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +        dsi@5e94000 {
-> +            compatible = "qcom,dsi-ctrl-6g-qcm2290";
-> +            reg = <0x05e94000 0x400>;
-> +            reg-names = "dsi_ctrl";
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <4>;
-> +
-> +            clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-> +                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +                     <&gcc GCC_DISP_HF_AXI_CLK>;
-> +            clock-names = "byte",
-> +                          "byte_intf",
-> +                          "pixel",
-> +                          "core",
-> +                          "iface",
-> +                          "bus";
-> +            assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-> +            assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
-> +
-> +            operating-points-v2 = <&dsi_opp_table>;
-> +            power-domains = <&rpmpd SM6115_VDDCX>;
-> +            phys = <&dsi0_phy>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    dsi0_in: endpoint {
-> +                        remote-endpoint = <&dpu_intf1_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    dsi0_out: endpoint {
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +        dsi0_phy: phy@5e94400 {
-> +            compatible = "qcom,dsi-phy-14nm-2290";
+> Also, I think that we need to backport *something* that disables C3STOP
+> which is why I had suggested keeping the revert in place.
+> Patch 1 of this series only solves the timer issues but does not restore
+> sleep states to their prior behaviour, right?
+> Either this patch or the revert needs to go to stable IMO.
 
-Now that this is in linux-next, there's a warning:
+Since it works for you with the C3STOP set and broadcast timer enabled,
+we can directly go with this patch. I am fine including the revert as well.
 
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.example.dtb:
-phy@5e94400: 'vcca-supply' is a required property
-        From schema:
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+Regards,
+Anup
 
-Perhaps some change in dsi-phy-14nm.yaml.
-
-Rob
+>
+> Thanks,
+> Conor.
+>
+> > ---
+> >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
+> >  1 file changed, 11 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+> > index 969a552da8d2..0c8bdd168a45 100644
+> > --- a/drivers/clocksource/timer-riscv.c
+> > +++ b/drivers/clocksource/timer-riscv.c
+> > @@ -28,6 +28,7 @@
+> >  #include <asm/timex.h>
+> >
+> >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
+> > +static bool riscv_timer_cant_wake_cpu;
+> >
+> >  static int riscv_clock_next_event(unsigned long delta,
+> >               struct clock_event_device *ce)
+> > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
+> >  static unsigned int riscv_clock_event_irq;
+> >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
+> >       .name                   = "riscv_timer_clockevent",
+> > -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
+> > +     .features               = CLOCK_EVT_FEAT_ONESHOT,
+> >       .rating                 = 100,
+> >       .set_next_event         = riscv_clock_next_event,
+> >  };
+> > @@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
+> >
+> >       ce->cpumask = cpumask_of(cpu);
+> >       ce->irq = riscv_clock_event_irq;
+> > +     if (riscv_timer_cant_wake_cpu)
+> > +             ce->features |= CLOCK_EVT_FEAT_C3STOP;
+> >       clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
+> >
+> >       enable_percpu_irq(riscv_clock_event_irq,
+> > @@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
+> >       if (cpuid != smp_processor_id())
+> >               return 0;
+> >
+> > +     child = of_find_compatible_node(NULL, NULL, "riscv,timer");
+> > +     if (child) {
+> > +             riscv_timer_cant_wake_cpu = of_property_read_bool(child,
+> > +                                             "riscv,timer-cant-wake-cpu");
+> > +             of_node_put(child);
+> > +     }
+> > +
+> >       domain = NULL;
+> >       child = of_get_compatible_child(n, "riscv,cpu-intc");
+> >       if (!child) {
+> > --
+> > 2.34.1
+> >
