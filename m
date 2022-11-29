@@ -2,92 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A057C63B924
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 05:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B91F663B963
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 06:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235373AbiK2Eeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Nov 2022 23:34:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56938 "EHLO
+        id S235310AbiK2FTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 00:19:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234898AbiK2EeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Nov 2022 23:34:21 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF17315A18;
-        Mon, 28 Nov 2022 20:34:19 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id p27-20020a056830319b00b0066d7a348e20so8361505ots.8;
-        Mon, 28 Nov 2022 20:34:19 -0800 (PST)
+        with ESMTP id S230298AbiK2FTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 00:19:16 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B3443AC9
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 21:19:15 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id ja4-20020a05600c556400b003cf6e77f89cso363120wmb.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 21:19:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UQJriYYoXhycdFppxIrfyXtPVy4esIPKw5wab9lgd0U=;
-        b=CUkrijMW5IrXJMwL0+zJUVPixrr3LQO9UL9NyPEgfk0Bf5KVaV0Mq6ozs9REarA5MY
-         ZsqU0z2UN0yFFk3ImXGAxDzKb7xB5RpYWBMKO3thLVAeweFWXXSvW28mqntKw+3nIr1T
-         X69mancNZKv6iHAKwRaA0Q3MxUDxQ/4rKQA6Wz65xFtSOYA+GYWUjhd7lF8WcKIzilpn
-         sNO0i4Fja0f/BjBYkbMsVBhmNqINxNIWrYbwhV6/NNedznV4nwSDDarUAURAnqbga+Vj
-         s3E3r1OhqzU9xvf6O2XVV63iv5qOojgggrUl6zsWhdAck5LMeV3IHF1isPys8EmafDSf
-         dnIw==
+        d=ventanamicro.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FpUmcQBjCTcWeBttLoCWVwQC7ryZAPTXKUDNedSR73o=;
+        b=TU1BE4d+8d8hQDYIKSlLlx7RUly2TYm2sJ028YYnkb6ZIcTOB59CIttBGoWjSoTt06
+         Fs1Ek4mCnldzkYyQZtqehRmAvCdpxZ47O8a/Wt+dXP4BgrBDP+uE4OIJMF1+2FfCIkYf
+         2cX1Q49OZBk2H1+jD8M+dbyodSaezg0/RjedMXGV7EY3c57wDJHoFvq4YW/qJhkB5B7z
+         xyZNECEsQruSVhhr+Agn6SMNaf+l2bSZcJDTDteEC296ctOyJYFqNk8Zv9SY/hDRqJCT
+         NiZ4xFyzX4mQeqsZjmhipSDiurRx1p9XHM/4VVzuss1X1lcFgnh4XPmLhstNg+txakQk
+         yzvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UQJriYYoXhycdFppxIrfyXtPVy4esIPKw5wab9lgd0U=;
-        b=SPlNWlVsJX814vZgnt6fsN82d66L8mtQ83yOKlL1lf3i2b/zaIlAYFneESI1f/Z14G
-         DuN3OHOR3UQSOmHYV+fmsd/CRPyWByIL2wnUmGNcujGesAr2eXIGGDLXSpaXAnC5ahVb
-         J7TtXmP6incmc3Lg4y4u4Kr9f8HjqSxe+pUZ3RYCt0XlvAvu0o6Zd9o6HCKalUK83lg1
-         +7c0NMEUgKLDaMBXMvM9yqxtkNceFnzp7XHJ8Z3rc5TpVXRduHPwcGtIEWPeBHi6mAki
-         wFVEUS55LCuNiXaq8sEGvKa9s23Y0AFlJoDcgvdDrpx9aHiANmLHjuKcSrWQNDH5HNYO
-         ZvpA==
-X-Gm-Message-State: ANoB5pmayOKfTO5ecySbJ9cmgHeXUJtl+l2cNxyjOa9196QpNpraSpPE
-        e44KPBAeFn78izPjI4Exh1NFJYg90QkeZ1sPdMA=
-X-Google-Smtp-Source: AA0mqf6/XYxlYHxhs9kQru0NF89/KXPCrtasB+MfuvgCaTgm1pPa8NmW29U0wOCl8i+uKDmQOI9kGcAFCxRY6MdVsZQ=
-X-Received: by 2002:a05:6830:1e65:b0:661:b632:4259 with SMTP id
- m5-20020a0568301e6500b00661b6324259mr17837342otr.304.1669696459200; Mon, 28
- Nov 2022 20:34:19 -0800 (PST)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FpUmcQBjCTcWeBttLoCWVwQC7ryZAPTXKUDNedSR73o=;
+        b=WUXeW9bAB+I++T7nv/iJe0A3l8Y/2uIk6eHM0rekmmvLyrSrkfhY+rAlpINmFAekoT
+         dP0lQ2CCqoYrg4iCgkd/fzU60vFY78YEoJvMNQR62wkr0uliJ/t2cLvVFMr73Qu19HDR
+         rvhq5QLMJTLJBg80qIeG3SY5GGgLRp27se3MpmZyYzb70J555nXjYZYxcIX88hbILI8U
+         C7woYANg8kTxlaUqQ0MiRyfYjOQPIQ4YS1FrgaCSGnFCaGTqO5JwiE0LKiUYlHhQW4kJ
+         m05PYkYtAmXtVahO6g+rPfc6V53grmLX7IosqD0NeECrZDZ4NoRNR1lFEBXbmlAutGXs
+         mVBg==
+X-Gm-Message-State: ANoB5pkYKJ5IFY0ex9MATqIr3CLyVRKVwNwtgtfpEaWKGb72lfKbcOb5
+        UlYOL5JcyXc/kSc35j7sVMEv6w==
+X-Google-Smtp-Source: AA0mqf4Ty4v0djT/usoo7920TxGtt5C2ytOH086uEUEAyBmdTpf/mnfQxF8Pe63RRJSSjspBPpcgcA==
+X-Received: by 2002:a05:600c:4f90:b0:3c1:aeb9:29b6 with SMTP id n16-20020a05600c4f9000b003c1aeb929b6mr26171384wmq.97.1669699153764;
+        Mon, 28 Nov 2022 21:19:13 -0800 (PST)
+Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
+        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003b4ff30e566sm967816wms.3.2022.11.28.21.19.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Nov 2022 21:19:13 -0800 (PST)
+Date:   Tue, 29 Nov 2022 06:19:11 +0100
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Conor Dooley <conor@kernel.org>, heiko@sntech.de,
+        linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, guoren@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sunil V L <sunilvl@ventanamicro.com>
+Subject: Re: [PATCH 2/2] dt-bindings: riscv: fix single letter canonical order
+Message-ID: <20221129051911.5xetsgfukxiljuhf@kamzik>
+References: <Y4UJQYgCpnZJji9o@spud>
+ <mhng-8141aa74-17c6-4692-a658-b5e4faad0c14@palmer-ri-x1c9a>
 MIME-Version: 1.0
-References: <20221128213238.3959-1-arinc.unal@arinc9.com>
-In-Reply-To: <20221128213238.3959-1-arinc.unal@arinc9.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 29 Nov 2022 05:34:07 +0100
-Message-ID: <CAMhs-H_Oz_W1HWM521qS2fLj15okptQCVE1D88P=p0L31UiF7g@mail.gmail.com>
-Subject: Re: [PATCH] mips: ralink: mt7621: fix phy-mode of external phy on GB-PC2
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Petr Louda <petr.louda@outlook.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <mhng-8141aa74-17c6-4692-a658-b5e4faad0c14@palmer-ri-x1c9a>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 10:33 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arin=
-c9.com> wrote:
->
-> The phy-mode property must be defined on the MAC instead of the PHY. Defi=
-ne
-> phy-mode under gmac1 which the external phy is connected to.
->
-> Tested-by: Petr Louda <petr.louda@outlook.cz>
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> ---
->  arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, Nov 28, 2022 at 03:41:19PM -0800, Palmer Dabbelt wrote:
+> On Mon, 28 Nov 2022 11:17:21 PST (-0800), Conor Dooley wrote:
+> > On Mon, Nov 28, 2022 at 10:12:17AM -0800, Palmer Dabbelt wrote:
+> > > On Mon, 28 Nov 2022 10:08:05 PST (-0800), Conor Dooley wrote:
+> > > > On Mon, Nov 28, 2022 at 09:41:03AM -0800, Palmer Dabbelt wrote:
+> > > > > On Thu, 24 Nov 2022 05:42:20 PST (-0800), heiko@sntech.de wrote:
+> > > > > > Am Donnerstag, 24. November 2022, 14:04:41 CET schrieb Conor Dooley:
+> > > > > > > I used the wikipedia table for ordering extensions when updating the
+> > > > > > > pattern here in foo.
+> > > > > >
+> > > > > > 	    ^ foo? :-)
+> > > > > >
+> > > > > > > Unfortunately that table did not match canonical order, as defined by
+> > > > > > > the RISC-V ISA Manual, which defines extension ordering in (what is
+> > > > > > > currently) Table 41, "Standard ISA extension names". Fix things up by
+> > > > > > > re-sorting v (vector) and adding p (packed-simd) & j (dynamic
+> > > > > > > languages). The e (reduced integer) and g (general) extensions are still
+> > > > > > > intentionally left out.
+> > > > > > >
+> > > > > > > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
+> > > > > > > Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
+> > > > > > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > >
+> > > > > > So I have compared the new pattern to the isa manual,
+> > > > > > and it looks like the order checks out, so
+> > > > >
+> > > > > Which ISA manual?
+> > > >
+> > > > For me, isa manual is the above github repo.
+> > > 
+> > > Which commit, though?
+> > 
+> > mutt won't let me paste a clown face emoticon.
+> > 
+> > > > > There have been many mutually incompatible ISA string
+> > > > > encoding rules, at least one of them was a change to the extension ordering.
+> > > > > It's not entirely clear what the right answer is here, as we can't really
+> > > > > parse ISA strings without also knowing the version of the ISA manual we're
+> > > > > meant to parse them against.  Maybe we just accept everything?
+> > > >
+> > > > I don't think accepting everything is the right thing to do. A minimal
+> > > > amount of validation is still needed here, but I think we can deprecate
+> > > > the DT property entirely & make it optional if a new-and-improved way of
+> > > > encoding the in DT is used.
+> > > 
+> > > Sorry, by "everything" I meant "everything that's even been allowed by the
+> > > ISA manual".  Just accetping anything would be bad ;)
+> > > 
+> > > > > IMO it's time to just stop using the ISA string.  It's not a stable
+> > > > > interface, trying to treat it as such just leads to headaches.  We should
+> > > > > just come up with some DT-specific way of encoding whatever HW features are
+> > > > > in question.  Sure it'll be a bit of work to write that all down in the DT
+> > > > > bindings, but it's going to be way less work than trying to keep around all
+> > > > > this ISA string parsing code.
+> > > >
+> > > > I'm a glutton for punishment, I'll try and come up with some sort of
+> > > > other way to encode this information in DT that requires less parsing
+> > > > and validation. As I said on IRC, something that more resembles:
+> > > > if (of_property_wahtever("riscv,isa-foo")) { do_enable_foo() }
+> > > 
+> > > That seems way simpler to me, thanks!  We'll still need to support whatever
+> > > was here as a legacy format, but at least we won't need to add a bunch of
+> > > new stuff to it -- that's where the parsing starts to get really
+> > > complicated.
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+While it's easy for Linux to add new DT nodes when new extension support is
+added, it's not so easy to add new ACPI objects. The current plan for ACPI
+is to use the ISA string[1]. With that in mind, I think Linux should
+continue to parse the string for DT as well.
+
+[1] https://docs.google.com/document/d/1LlCefO_0GQ_7Tf3lzfMPETEfMlGo2FfLRJ09IMqJKEk/edit
+
+> > 
+> > Yah, and "deprecated" in dt-schema doesn't actually do anything at the
+> > moment other than let humans know not to use something. Just gonna have
+> > to do some sort of "feature-wise AND" between the existing things we
+> > parse from the isa string & whatever riscv,isa-foo stuff later on.
+> 
+> I suppose this is more of a Rob question, but could we just make the DT
+> bindings match the current ISA manual's rules and then have the kernel's
+> "riscv,isa" string parser accept more orderings to remain compatible?
+> 
+> Sort of a API vs ABI stability question, but for DTB and bindngs.
+> 
+> > > FWIW, there's a similar dicussion going on in GCC land right now.
+> > > 
+> > > > > I know I've said the opposite before, but there's just been way too many
+> > > > > breakages here to assume they're going to stop.
+> > > >
+> > > > :upside_down_face:
+> > > >
+> > > > Either way, I think these two patches are worth taking in the mean time.
+> > > 
+> > > Yep, just as long as it doesn't break any of the strings that were valid
+> > > according to previous versions of the ISA manual I'm fine with it.
+> > 
+> > I don't think so. I had been looking around for a supposed order for
+> > where to actually put H, which had been dropped - and the only place I
+> > recall seeing that was Wikipedia - which now seems like an awful
+> > decision since the order there looks kinda off anything I see in dozen
+> > or so spec PDFs I have downloaded. But that's where I got the K & V
+> > ordering from that I now think is wrong (and doesn't match any PDF I
+> > have). The other changes relax rules and add letters so they should be
+> > okay too.
+> 
+> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> 
+> as it sounds like there aren't even any fixed rules, so I guess none of this
+> even matters?
+
+IMHO, we should try to get the spec changed to say that the only order
+which matters is that single letter extensions come first (in any order)
+and then multi-letter extensions come after (in any order). Parsing
+becomes simple and we can publish the string in proc in any order too,
+maybe preferring alphabetical order for neatness.
 
 Thanks,
-    Sergio Paracuellos
+drew
+
+> 
+> > 
+> > > > > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > > > > >
+> > > > > > > ---
+> > > > > > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+> > > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > > > > > index e80c967a4fa4..b7462ea2dbe4 100644
+> > > > > > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > > > > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > > > > > @@ -80,7 +80,7 @@ properties:
+> > > > > > >        insensitive, letters in the riscv,isa string must be all
+> > > > > > >        lowercase to simplify parsing.
+> > > > > > >      $ref: "/schemas/types.yaml#/definitions/string"
+> > > > > > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+> > > > > > > +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+> > > > > > >
+> > > > > > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+> > > > > > >    timebase-frequency: false
+> > > > > > >
