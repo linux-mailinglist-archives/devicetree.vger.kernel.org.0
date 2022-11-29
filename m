@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A8063C1EB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F334563C1EC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 15:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234912AbiK2OJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 09:09:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44742 "EHLO
+        id S235131AbiK2OKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 09:10:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235032AbiK2OJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:09:01 -0500
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE75E3C6E8
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:09:00 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id h193so13090128pgc.10
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:09:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=U6oamcsiSkQgHF9vnFEa7hzajxmOr8ZutoBeWRcbSm8=;
-        b=fgxrXWWEqoDCxrOaTbc86RscbnN/tnPV0XAz8KNMtTEDslcntfavSYbmiwIPNZspDg
-         RrST+P7mJDAh7D0fAecV1CF3NdbXhv1B0/QBRPzyqMuDSeIqo/6VacaD2BHvt9Q3uUel
-         X49M3+qqPmSuwzFKZJ80ZxvU9krP7XBq/b/3pLJrKjOCKZ9A2Sj5y/6YJLYARZi1QQWt
-         5V0k0sXnFE09n85KrZQQoYcCBPC8L2lQATVTvQ9K12/cijQ27gTMJcKKjy5ECpT2TcQK
-         bVb/k8li8TrPNbZmob07i1P4D0uE9hXom8Orf7PyFkVx3tCZLSTWZtltnt5AM9hJRw8Y
-         gziQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U6oamcsiSkQgHF9vnFEa7hzajxmOr8ZutoBeWRcbSm8=;
-        b=IiFkg6ITlZUlOszwFvwaMfdf5ZHHK/TBNTtd9+6A44skxRi9kaITFi3qRhTt2I6oKy
-         e0NLyLSo4+UIQgQQgbIZioMEhJt+03YL06yBlGFUq+JZ9tOcq/LOY/pkSIOx1JcTOkdm
-         dZ2QKBFG/yMIFes7B57xX10BDyO/NAaoCgomFzenEDjMuSEeSs5+qUoMsJPfOrCpRiwp
-         MlRZmxUXqIf6/lc+lvurrxdcgOdDssWoa6QKHeUUKL0UDcNQmQnzGBV8Yo4j3H39mOj7
-         O8dwenkFpKHV3JhlpPWIu8cUDtEWTUsG3lBLFUjAi0ltjOOq+T/gYnxIjloQoUr+BLHB
-         NP9w==
-X-Gm-Message-State: ANoB5pmrvMtKHkCF48MUrsW0rgXXH1YVElYOfU29vQjqOd/mGtpUsqcD
-        o9K/39ju1ULfxp/FPsBOH56aIIv96plnG+4++XE=
-X-Google-Smtp-Source: AA0mqf6NvcCuoqElV5796w8heaS4ba3V7XK9VTqqCuXHTUO0AZfqq4I4529Sh87jNd34LCdTcYaMHtyosAs7fTA5wKY=
-X-Received: by 2002:a63:cc15:0:b0:476:ccde:6694 with SMTP id
- x21-20020a63cc15000000b00476ccde6694mr31126766pgf.603.1669730940418; Tue, 29
- Nov 2022 06:09:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20221129140529.33782-1-francesco@dolcini.it>
-In-Reply-To: <20221129140529.33782-1-francesco@dolcini.it>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 29 Nov 2022 11:08:48 -0300
-Message-ID: <CAOMZO5CEy4U46g5m6ea+s0HimEM4LGbK9vOA03D_HaELHHyE2g@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: imx8mm-verdin: enable hpd on hdmi-connector
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        with ESMTP id S235250AbiK2OKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 09:10:10 -0500
+Received: from smtp-out-03.comm2000.it (smtp-out-03.comm2000.it [212.97.32.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5A46456C
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 06:09:45 -0800 (PST)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-03.comm2000.it (Postfix) with ESMTPSA id AF8D0B48EA5;
+        Tue, 29 Nov 2022 15:09:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1669730983;
+        bh=7YAGlJa9hMh0rdTbhXdU19bvu65xO83SPl8RumouZf4=;
+        h=From:To:Cc:Subject:Date;
+        b=CeJXP/s/83pJK4oA9ebbQF8+UVoWb7B4QPu/+9E/UKp0uiooblEGfxF0/CgoKqXtP
+         XNLosk8tG+GSgLyBJzhl0aT9HIkcV38hBYq1hLF4aDOSBMc0h3sL9FKvMi/dt2xq1R
+         3O0VOC9wIX7j3yu7fTtD/BUIIkBiT6TBB2oV8N+I0izr3WGxqgPEgfhLTzBMEd0VnI
+         FjM1fOIaLo1n/1GOA0tb/B0rtQyfWr/MM4VM90atn9+ZLqybAaEVtPOiCvG5vBWIQS
+         qSINCI6rjA7XdjWx4zqE1C5/QGBIc7C2Tnm8t2xg/a/NjTSyjfRiAeM/FG07QU4gGk
+         WZDepKzmIbWfw==
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Stefan Eichenberger <stefan.eichenberger@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v2] arm64: dts: imx8mm-verdin: enable hpd on hdmi-connector
+Date:   Tue, 29 Nov 2022 15:09:35 +0100
+Message-Id: <20221129140935.34428-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco,
+From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-On Tue, Nov 29, 2022 at 11:06 AM Francesco Dolcini <francesco@dolcini.it> wrote:
->
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
->
-> Add hot plug detect gpio to the HDMI connector.
->
-> Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Add hot plug detect gpio to the HDMI connector.
 
-You missed your Signed-off-by here.
+Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+v2: Added missing signed-off-by
+---
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+index bcab830c6e95..8cc8a80ea255 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+@@ -56,7 +56,11 @@ key-wakeup {
+ 	hdmi_connector: hdmi-connector {
+ 		compatible = "hdmi-connector";
+ 		ddc-i2c-bus = <&i2c2>;
++		/* Verdin PWM_3_DSI (SODIMM 19) */
++		hpd-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+ 		label = "hdmi";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pwm_3_dsi_hpd_gpio>;
+ 		type = "a";
+ 		status = "disabled";
+ 	};
+@@ -598,7 +602,7 @@ hwmon: hwmon@40 {
+ 	hdmi_lontium_lt8912: hdmi@48 {
+ 		compatible = "lontium,lt8912b";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_gpio_10_dsi>, <&pinctrl_pwm_3_dsi_hpd_gpio>;
++		pinctrl-0 = <&pinctrl_gpio_10_dsi>;
+ 		reg = <0x48>;
+ 		/* Verdin GPIO_9_DSI (LT8912 INT, SODIMM 17, unused) */
+ 		/* Verdin GPIO_10_DSI (SODIMM 21) */
+-- 
+2.25.1
+
