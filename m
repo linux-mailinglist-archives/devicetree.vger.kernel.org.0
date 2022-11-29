@@ -2,66 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 999F363C3CD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:31:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9903863C3DD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 16:37:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235914AbiK2PbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 10:31:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59938 "EHLO
+        id S235926AbiK2PhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 10:37:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235698AbiK2PbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:31:18 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4766E63CF3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:31:14 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id b11so13012844pjp.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 07:31:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3fVszqxgQ016BSb5qNf+hCvyWQbfpRSMkXlPPrp4GVI=;
-        b=bSoOisz9I9mHhMJiRBlqA98mcW26hkx7Xp/+fcTXZMmZBqyh1NAeNuhydDzv6eniZC
-         UnhSBrDa3rOJUZ0VLUoEvXiSqNsAhcw3I5PiP8hpBWT6Pt33fbt+MTOr3911YUILLMsx
-         X7d39KEEaQg0aOqHk6fOE6sy6Y5atjhFiv53VzRKof/3dSjO4BVCCWNCgZLcku1xFegj
-         eNnGq+i7vNumxfZVraDv0AlhybJTPThiFPFGXaHDCFRAv3Q96CyDdeGMCILaRv82dd6z
-         y3jPFZvGNVxeggjlx8KnjL0sl1novb60iZwlh0keCyMvHVdG11rFb6lmUFPdi/NOyK8K
-         sLoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3fVszqxgQ016BSb5qNf+hCvyWQbfpRSMkXlPPrp4GVI=;
-        b=ahej3EXijequ1xHZDoCq/a7PEXEppBDSSYq9z/sv7dVQIlz6sUF09NB/CwC0S1RCB9
-         8z+tqKWFrOrOcUNM0lPoCU+x2hgJmiETTf+2wLbFbrhiWPlKtWpdCQFenhnDgsMhdoLT
-         UaejkYX+3tHREScRhw5+4APUAQU0vzpS8K0C9dmYVcnZT6n61xYNnjSQz37suytZchTw
-         aiipyc3KW8CGQEnNqSBtmYIXHmofKVXoZ8rZnnpfi6fMVzT2eT9fr5UCjeuUNgepzYHD
-         mvBlfiXTnzFCQWkjdXxolXylZKjI2RV58PdK6ygwnwOwUOaEZCtkHnS08rQC9fcbJeIm
-         BhXA==
-X-Gm-Message-State: ANoB5pnH5Pm1WZqH1SkNDKzfoGSYDM2OA0v2xleuzl/URszN8J7BOJxD
-        dCPKZ2IZnxzwNrif0G+sWE5NcrKw7yDRGAKOuvwkaw==
-X-Google-Smtp-Source: AA0mqf5ik5i4ChFnRvy/bmtuc8PRZp06XQinOIdUlzKVikOtmWsKfjSysf196kcbBAdsx08nJT52ptjgdMON40RNQ9k=
-X-Received: by 2002:a17:902:d68b:b0:188:cca8:df29 with SMTP id
- v11-20020a170902d68b00b00188cca8df29mr44499277ply.148.1669735873662; Tue, 29
- Nov 2022 07:31:13 -0800 (PST)
+        with ESMTP id S230151AbiK2PhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 10:37:23 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3611060EBF;
+        Tue, 29 Nov 2022 07:37:20 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 7C3CB82163;
+        Tue, 29 Nov 2022 16:37:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1669736238;
+        bh=Wh3qIb4vW6t1qeCDx8nY/HjD0VFBMqpD4ET83slHvnQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=jzvCwUO5fpnBEWzWjZNOPRAFV59n7OuGELxXic6xK2hYNCObs+vWwK9ztgOIMCCQH
+         oJ3meeCUEjcndnnU5hzOx9X/PJxrjZ8CxuF538fJZpzTw46V/RZBNjmuQNUHYJXmNk
+         SHOSoFdI6hFizuGbBSi/FRbs1gc3PW3sFrSvPkphP5lfIZYok4ZrZu9YY5XvpUtWU8
+         i8jKAKEUM7UUDIqz4lOskH/9+8JR84vNCR1NKtXLwgBUWk5wMxiPJ0TDTVpiuq2Fru
+         peOBYCr7kw+q3qtJC4hkARyKnn6DBNE1szPgAYiJGl2a+gGab3lEy8E2Vm+ofNU72F
+         7lUXIyfHxxrqg==
+Message-ID: <12b41c65-0692-3b6d-2406-991e26966f76@denx.de>
+Date:   Tue, 29 Nov 2022 16:37:17 +0100
 MIME-Version: 1.0
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <20221122111124.6828-3-cniedermaier@dh-electronics.com> <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
-In-Reply-To: <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 29 Nov 2022 16:30:37 +0100
-Message-ID: <CAPDyKFparoXMJ-sRxgqi8zDGn5AoNDLfsAF9YkdoaKpTU3EchQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less confusing
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less
+ confusing
+Content-Language: en-US
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
         linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        kernel@dh-electronics.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
+ <20221122111124.6828-3-cniedermaier@dh-electronics.com>
+ <55c29f92-4c6b-266f-2004-ae633a658963@linaro.org>
+ <CAPDyKFparoXMJ-sRxgqi8zDGn5AoNDLfsAF9YkdoaKpTU3EchQ@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAPDyKFparoXMJ-sRxgqi8zDGn5AoNDLfsAF9YkdoaKpTU3EchQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,58 +64,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Nov 2022 at 13:36, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/11/2022 12:11, Christoph Niedermaier wrote:
-> > The current comment on wakeup-source is a bit confusing, because it isn't
-> > clear at first sight which property is actually deprecated.
-> > Change the comment to one that is less confusing.
->
-> It's still confusing - you mention some non-existing property. I don't
-> think it's worth to touch it. If you insist, drop entire comment...
+On 11/29/22 16:30, Ulf Hansson wrote:
+> On Tue, 29 Nov 2022 at 13:36, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 22/11/2022 12:11, Christoph Niedermaier wrote:
+>>> The current comment on wakeup-source is a bit confusing, because it isn't
+>>> clear at first sight which property is actually deprecated.
+>>> Change the comment to one that is less confusing.
+>>
+>> It's still confusing - you mention some non-existing property. I don't
+>> think it's worth to touch it. If you insist, drop entire comment...
+> 
+> Hmm, it doesn't look that easy to me. The "enable-sdio-wakeup" is
+> indeed a deprecated wakeup property [1], but it seems like it's not
+> really described somewhere. I wouldn't mind removing it (as it seems
+> to add some confusions), but in that case it needs to be entirely
+> removed from the DT docs, right?
+> 
+> Another option, would be to add a proper description of the property
+> and mark it with "deprecated: true".
 
-Hmm, it doesn't look that easy to me. The "enable-sdio-wakeup" is
-indeed a deprecated wakeup property [1], but it seems like it's not
-really described somewhere. I wouldn't mind removing it (as it seems
-to add some confusions), but in that case it needs to be entirely
-removed from the DT docs, right?
+There are no in-tree DTs which use the property, so maybe we should just 
+drop it altogether from the bindings ?
 
-Another option, would be to add a proper description of the property
-and mark it with "deprecated: true".
-
->
-> >
-> > Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> > ---
-> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Marek Vasut <marex@denx.de>
-> > Cc: kernel@dh-electronics.com
-> > Cc: linux-mmc@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > To: linux-kernel@vger.kernel.org
-> > ---
-> >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> > index 802e3ca8be4d..a921442c6c1d 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> > @@ -293,7 +293,7 @@ properties:
-> >      description:
-> >        SDIO only. Preserves card power during a suspend/resume cycle.
-> >
-> > -  # Deprecated: enable-sdio-wakeup
-> > +  # Use wakeup-source instead of the deprecated enable-sdio-wakeup
-> >    wakeup-source:
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> >      description:
-
-Kind regards
-Uffe
-
-[1]
-Documentation/devicetree/bindings/power/wakeup-source.txt
+next-20221128$ git grep enable-sdio-wakeup
+Documentation/devicetree/bindings/mmc/mmc-controller.yaml:  # 
+Deprecated: enable-sdio-wakeup
+Documentation/devicetree/bindings/power/wakeup-source.txt:1. 
+"enable-sdio-wakeup" 
+Documentation/devicetree/bindings/mmc/mmc.txt
+drivers/mmc/core/host.c:            device_property_read_bool(dev, 
+"enable-sdio-wakeup")) /* legacy */
+drivers/mmc/host/sdhci-pltfm.c:     device_property_read_bool(dev, 
+"enable-sdio-wakeup")) /* legacy */
