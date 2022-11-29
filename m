@@ -2,98 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF6AA63BDAA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 11:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4AA763BDE9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 11:24:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiK2KL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 05:11:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34098 "EHLO
+        id S232274AbiK2KW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 05:22:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232478AbiK2KLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 05:11:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83945E3CF;
-        Tue, 29 Nov 2022 02:10:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4480A61620;
-        Tue, 29 Nov 2022 10:10:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 895FAC433D7;
-        Tue, 29 Nov 2022 10:10:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669716616;
-        bh=3eKCHItsWSnQNAWASvCBxxLNZqKr4Q2+OOVfLGrAh6g=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=lFawjEVSME8aySxx+WiLk5T86VKrIXeryQt0Mvs3Z1cPBeYz5lI17wshNMLurUpjT
-         P9oKFLTOdIYBtyh397s8CrCrbSSMsK4IIA18y/33zaBFdg2D8T8KD2dOLWEb3M24qD
-         CxQQGbyGb2rYIpUfWS7ofWv2LGV9Qj42GV2pWo5NK5Jvh3s7au/IKJbTs3Xg6Ot/AI
-         yVd2lR25t2ubCnUsPOb2tgB/cJYLAivgQB5RJedQnkTmvUILL4DJHeLhB6mFuVelBK
-         BngfgbSU7lUrAqZlIydXtcuHQopHrXwCQ7/NTwoZVWXgfjjzR7Piq68LXqhQTmkiRL
-         3P3k7CvD9LEzA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6CF15C395EC;
-        Tue, 29 Nov 2022 10:10:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231531AbiK2KWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 05:22:50 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0287AD2C9;
+        Tue, 29 Nov 2022 02:22:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1669717356; bh=MMa4AO2sLZOUO1ZQc5/iouT+dUCNR9+JoyIz9Fi7pcU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=WqPCkIiJP/IZKyV2Yb9zkuL5qt/lFO/oGo0PD1O8e7lU6IZkXTnEtNKd7lTQ47rT9
+         JkNUUGJG38ouiafaXahd9V78yBIf6aL9wrkE8oIwiZYL81tUc58YqkQpLJZgL6lPqa
+         ydk+CONlDoO4ANx8DW196//YueWLMARvzYYhcP/+ssNzMSySaZWw0xrDSZ34zT71nD
+         Aw5RGr64rW/+wxS9P6ndkHnUVjMMsmNKEgxrUI8+LhIe9euSpoGlp1BSeHyKm3WCo2
+         JhrXGNZbDtNEk1cIpaNVY/clQOi4X5a2HQrDBuxlmxNyBP45f0WsdhIR/n837t1ilM
+         DooVHza9gY7rQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MNKhs-1pOcQ22Kba-00OnzX; Tue, 29
+ Nov 2022 11:22:36 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Subject: [PATCH v2 0/2] nuvoton,wpcm450-fiu binding example fixes
+Date:   Tue, 29 Nov 2022 11:22:23 +0100
+Message-Id: <20221129102225.3598044-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v2 0/7] Marvell nvmem mac addresses support
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166971661643.29836.9423706129492957108.git-patchwork-notify@kernel.org>
-Date:   Tue, 29 Nov 2022 10:10:16 +0000
-References: <20221124111556.264647-1-miquel.raynal@bootlin.com>
-In-Reply-To: <20221124111556.264647-1-miquel.raynal@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-        edumazet@google.com, netdev@vger.kernel.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, devicetree@vger.kernel.org,
-        robert.marko@sartura.hr, luka.perkov@sartura.hr,
-        thomas.petazzoni@bootlin.com, michael@walle.cc, mw@semihalf.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        vadym.kochan@plvision.eu
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:FiDZAdVgDwpknp8WvU7HBvgO8DkgRVuEb0Gpdheq9J8nULoSy0v
+ bibH1XDidAcRaWDy67Wlg3JBdS4UHH55TbrRqJP5J1sNP1BnpkqIDlahjVVntK1FDckhFdi
+ UeUlL1EB3g9rnNBMYredwfkGFVHnaDsYiorBcVUrXKJaDahHoNX2LU8wJtyJXqDdk6Vdrol
+ N9vfFrx/URnuAIdjP5fww==
+UI-OutboundReport: notjunk:1;M01:P0:qsYyjdY6MEI=;0ejfVFts21PTOpAao7mXCEz8Ch4
+ l+4iG+o0n32gYWBxTOPJJNJXGenmBp76V931/iTJ94t6m5AO0fg34oxSsUVEKQI4J4tgJAhRT
+ 0ALq0thQ54bD2aWOfpyJMrRvz1S0wvChh4h4wFnmvcv68e723HBD8AiayTRS8OZXcaTOs8I2Q
+ o+TKbonNEALZ2gElrNTf6ABpHI6ZVI5+NzwlX7aqI4Z7h7nqJFF82qYSlGyZvAMp+UrtLLNjF
+ //+5kGi8qFxQxAb23GtFRty/oDJeCsHWD4berEE8XmauLC03MEflpwn6Rjt2M9zxeOdEM3o+T
+ ICTSbx1i0YmwJGi+lBI2bYdd9e4f6Kmcs6G5rjXsujB4KhPe9g6Nl5KvK5xhsD4QUsI9lsOiy
+ zYixI8JojvOMbnU6ZcfhVgcBiZvauYjMzfyLITRToaB9irVzKFQ2DvbGIeNbvW1wu6pNlr5NO
+ zgSNVv80FqsUEuxrpnt7LUqNy4V8GttB7L4B+INv+99phvMZjLDRbLPdexhvzQzFaHKLy+6m+
+ 2bUXyiytC6QGn63r5pTlZ91bn5OfkFK7IkFr2gUTO6Ss1oCXXhtLhK0RfdQT0JIobQW+u03/h
+ cWs30ovINjgapTqtb9eXZgOpKObNQNbInbjg7+/rNdUZAWHMkr5Mpd8CD5hE3dXN2tQ1yfd5y
+ dha9oi9jZYubO0bxJAhwJR54LNXKyZHTq0Np7rliUTzyTg8PB+WOxNuoNHZ6Y3bQhg74sF837
+ Ajg9rkA3hYAWzvz9m8C9cqRlA1yaQBt/M8+PJExB22e1+hyAA4bh+DmfFXZpt7++ayiw0UiEe
+ o59d6WikYVmBaNzLtpGzHsbJGZ/ayd9tlRP/Ct05oyraLWGzamXiqrNqA9hErTkaaZAgygDc+
+ sMs4enQWZNsdZsOKqBUeeEi0a0rmIlGtlAGzPnhJUNwDQv2e3r+s7cH17BqyrxBo9w1WdvcQ3
+ +thpualLAMtPsyn9y2Ce5e6RkzM=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+My recently merged nuvoton,wpcm450-fiu DT binding caused some
+dt_binding_check issues in linux-next. This series attempts to fix them
+before the breakage spreads any further.
 
-This series was applied to netdev/net-next.git (master)
-by Paolo Abeni <pabeni@redhat.com>:
+Thanks to Rob Herring for running his dt_binding_check bot, and Conor
+Dooley who notified me that the issue has reached linux-next.
 
-On Thu, 24 Nov 2022 12:15:49 +0100 you wrote:
-> Hello,
-> 
-> Now that we are aligned on how to make information available from static
-> storage media to drivers like Ethernet controller drivers or switch
-> drivers by using nvmem cells and going through the whole nvmem
-> infrastructure, here are two driver updates to reflect these changes.
-> 
-> [...]
+v2:
+- Some commit message improvements, as suggested by Krzysztof Kozlowski
 
-Here is the summary with links:
-  - [net-next,v2,1/7] Revert "dt-bindings: marvell,prestera: Add description for device-tree bindings"
-    https://git.kernel.org/netdev/net-next/c/98eb05dc99fd
-  - [net-next,v2,2/7] dt-bindings: net: marvell,dfx-server: Convert to yaml
-    https://git.kernel.org/netdev/net-next/c/63b956f99175
-  - [net-next,v2,3/7] dt-bindings: net: marvell,prestera: Convert to yaml
-    https://git.kernel.org/netdev/net-next/c/a429ab01163c
-  - [net-next,v2,4/7] dt-bindings: net: marvell,prestera: Describe PCI devices of the prestera family
-    https://git.kernel.org/netdev/net-next/c/39d103862015
-  - [net-next,v2,5/7] of: net: export of_get_mac_address_nvmem()
-    https://git.kernel.org/netdev/net-next/c/4c47867bc789
-  - [net-next,v2,6/7] net: marvell: prestera: Avoid unnecessary DT lookups
-    https://git.kernel.org/netdev/net-next/c/a48acad789ff
-  - [net-next,v2,7/7] net: mvpp2: Consider NVMEM cells as possible MAC address source
-    https://git.kernel.org/netdev/net-next/c/7a74c1265ab4
+Jonathan Neusch=C3=A4fer (2):
+  spi: dt-bindings: nuvoton,wpcm450-fiu: Fix error in example (bogus
+    include)
+  spi: dt-bindings: nuvoton,wpcm450-fiu: Fix warning in example (missing
+    reg property)
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+ .../devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+=2D-
+2.35.1
 
