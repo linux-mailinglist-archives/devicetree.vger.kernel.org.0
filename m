@@ -2,110 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7F5863BFC1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87AB563BFD4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 13:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233991AbiK2MIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 07:08:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39512 "EHLO
+        id S232401AbiK2MO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 07:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233993AbiK2MHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:07:39 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0AA2FD1
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 04:07:14 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id s196so12816800pgs.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 04:07:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CLaMkaBp7KGIWxfb8Zd8ve3dRx2iCekJtCJrymRzWKA=;
-        b=p8G9b0N31HwrkryXMsELri1esfPlWmkUvApiYvOqCI6V+RvhBMmAo3rfemrquf7d9x
-         gv6PUWa46Tm5Ymh/rfgG0f9Pp+xgBQte9WTjYOLFk7rLpeHHZLelf2BE/f3fbN3B3j97
-         1z7eNFVOPOogiLxxVsVYKwjsKyR61EviRxjEftCz47B9SvHBRKAoy3IGTJsuPjsJweTm
-         FcLztLnQuMo4GzUVt7cgtfppT2l1OSI4V27NEtpmc7FN5oAfth76W5jAPShueqB6Nx8F
-         9NqhCFXobifdhnyEs4L/BtbxAV7qZEoCVAwmxg/tTqr6JZJdOXvd+sgegWqE9R9DcFh2
-         /UHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CLaMkaBp7KGIWxfb8Zd8ve3dRx2iCekJtCJrymRzWKA=;
-        b=g5VkfE8m8dnowRqxG8GYuLK/WFXRsPefIgQ337WMbzOqO7ddvgGyjFIKX43goYLi5P
-         gfGZd9QtVQcgb/MaXAJFqUjFFc4p8ULFSUj1i6mkccDx9lEa/JmYfFlqWuVF3Q3rdqs0
-         fVlXSroYiHSmeCP5npsr6ReLVJd3roxY4MD+yOPdrFbaCwWuWmYiIIQ42sk7ZJzsMzB+
-         m5WLPp25tXP0Vu3Z2sf+mxVG+s+t5LBvSbBJpLgj/qLkyA75PQKEWGSQN3pLzznIGxCy
-         FruIKKO1tE6uWUuZ2Bhy+33HenbVJGSJfMIby0Q3ZeW2+vuLMzUAUJ0CMnDMqEFTDhG3
-         S+uA==
-X-Gm-Message-State: ANoB5pl1W4KIokYv6Z3eu7pzVw9oTLrY2FbdSaAvEK/63e1RHBCGnYJG
-        8mVoZQl2oW9W4wNqSWJaMPu19enWmyt+xeWszd2TPf/wiDZBSA==
-X-Google-Smtp-Source: AA0mqf4Tf4VM1UWDXcxIfjvce1xmaAtKT915CDXPR9PGaf16YMIEdhpOXoB1vr0ly1KOA06qR727mEV0IgcbPs905yE=
-X-Received: by 2002:a05:6a00:1409:b0:56b:e1d8:e7a1 with SMTP id
- l9-20020a056a00140900b0056be1d8e7a1mr36905889pfu.28.1669723634307; Tue, 29
- Nov 2022 04:07:14 -0800 (PST)
+        with ESMTP id S232344AbiK2MO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 07:14:56 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F6F459868;
+        Tue, 29 Nov 2022 04:14:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1669724095; x=1701260095;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VB01RoMecb1fnZrCwPJYgm/ivTMxFqaFVHgPsPPtEQU=;
+  b=OOmZ36t9vnqCMW+yM6gJFH5SburRiIEHqeQaXLJHUuy4WNPOmhKUshwE
+   3AsKM5FB488Z2/Fnz0urVI2Xq5F0l/KroI+r8akr9vopuh3Zw32M13vVA
+   UnyFeWqSPaZCutnysHlXsq9pCzuHubmZcJdN1FvC2/dfSEUx3MpNAYUnu
+   nw28p17GuX5YKX+uDn7yQhQmTp/QsMScbeTeHtTUNZL3iGNYlTFCNU8pI
+   X2nT8nPHHLu4/UZb3eoSAbJfEI5E/l50e/nIanpbOmL4W8hMjubQtOtS1
+   QASpDbjHICwmajmZCpoTDJXd1iafaxWZVXpMcuaGQhIYbFSeU5IeHtcIM
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,203,1665471600"; 
+   d="scan'208";a="201836035"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Nov 2022 05:14:54 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 29 Nov 2022 05:14:54 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Tue, 29 Nov 2022 05:14:51 -0700
+Date:   Tue, 29 Nov 2022 12:14:32 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add system suspend/resume PM
+ ops
+Message-ID: <Y4X3qKIaSx3lYlsr@wendy>
+References: <1669621742-28524-1-git-send-email-quic_srivasam@quicinc.com>
+ <CAMuHMdUBojHkaAPsjOEadfaikth+L0R_NrKzvqXrmZS9Kc5zHw@mail.gmail.com>
+ <3b00c04c-cb6d-9e9a-ba0c-0ce093b4a3fb@quicinc.com>
+ <CAMuHMdUfRJmy56eO=ET-Togg-EOgxSjnTgAUYWmixD_zVonipA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com> <20221122111124.6828-3-cniedermaier@dh-electronics.com>
-In-Reply-To: <20221122111124.6828-3-cniedermaier@dh-electronics.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 29 Nov 2022 13:06:38 +0100
-Message-ID: <CAPDyKFqc2kc4O55BAVikZFeZpAeRYo3AAfnHyxKPcsUujeGauA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Make comment on wakeup-source less confusing
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        kernel@dh-electronics.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUfRJmy56eO=ET-Togg-EOgxSjnTgAUYWmixD_zVonipA@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Nov 2022 at 12:43, Christoph Niedermaier
-<cniedermaier@dh-electronics.com> wrote:
->
-> The current comment on wakeup-source is a bit confusing, because it isn't
-> clear at first sight which property is actually deprecated.
-> Change the comment to one that is less confusing.
->
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> ---
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: kernel@dh-electronics.com
-> Cc: linux-mmc@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> To: linux-kernel@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 802e3ca8be4d..a921442c6c1d 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -293,7 +293,7 @@ properties:
->      description:
->        SDIO only. Preserves card power during a suspend/resume cycle.
->
-> -  # Deprecated: enable-sdio-wakeup
-> +  # Use wakeup-source instead of the deprecated enable-sdio-wakeup
->    wakeup-source:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
+On Tue, Nov 29, 2022 at 11:53:10AM +0100, Geert Uytterhoeven wrote:
+> Hi Srinivasa,
+> 
+> On Tue, Nov 29, 2022 at 11:36 AM Srinivasa Rao Mandadapu
+> <quic_srivasam@quicinc.com> wrote:
+> > On 11/29/2022 1:23 PM, Geert Uytterhoeven wrote:
+> > > On Mon, Nov 28, 2022 at 8:50 AM Srinivasa Rao Mandadapu
+> > > <quic_srivasam@quicinc.com> wrote:
+> > >> Update lpass sc7180 platform driver with PM ops, such as
+> > >> system supend and resume callbacks.
+> > >> This update is required to disable clocks during supend and
+> > >> avoid XO shutdown issue.
+> > >>
+> > >> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> > >> Tested-by: Rahul Ajmeriya <quic_rajmeriy@quicinc.com>
+> > > Thanks for your patch, which is now commit 2d68148f8f85ca5a ("ASoC:
+> > > qcom: lpass-sc7180: Add system suspend/resume PM ops") in next-20221129.
+> > >
+> > >> --- a/sound/soc/qcom/lpass-sc7180.c
+> > >> +++ b/sound/soc/qcom/lpass-sc7180.c
+> > >> @@ -12,6 +12,7 @@
+> > >>   #include <linux/module.h>
+> > >>   #include <linux/of.h>
+> > >>   #include <linux/platform_device.h>
+> > >> +#include <linux/pm_runtime.h>
+> > >>   #include <dt-bindings/sound/sc7180-lpass.h>
+> > >>   #include <sound/pcm.h>
+> > >>   #include <sound/soc.h>
+> > >> @@ -156,10 +157,34 @@ static int sc7180_lpass_exit(struct platform_device *pdev)
+> > >>          struct lpass_data *drvdata = platform_get_drvdata(pdev);
+> > >>
+> > >>          clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
+> > >> +       return 0;
+> > >> +}
+> > >> +
+> > >> +static int sc7180_lpass_dev_resume(struct device *dev)
+> > >> +{
+> > >> +       int ret = 0;
+> > >> +       struct lpass_data *drvdata = dev_get_drvdata(dev);
+> > >>
+> > >> +       ret = clk_bulk_prepare_enable(drvdata->num_clks, drvdata->clks);
+> > >> +       if (ret) {
+> > >> +               dev_err(dev, "sc7180 clk prepare and enable failed\n");
+> > >> +               return ret;
+> > >> +       }
+> > >> +       return ret;
+> > >> +}
+> > >> +
+> > >> +static int sc7180_lpass_dev_suspend(struct device *dev)
+> > >> +{
+> > >> +       struct lpass_data *drvdata = dev_get_drvdata(dev);
+> > >> +
+> > >> +       clk_bulk_disable_unprepare(drvdata->num_clks, drvdata->clks);
+> > >>          return 0;
+> > >>   }
+> > > noreply@ellerman.id.au reports for e.g. m68k-allmodconfig:
+> > >
+> > >      sound/soc/qcom/lpass-sc7180.c:179:12: error:
+> > > 'sc7180_lpass_dev_suspend' defined but not used
+> > > [-Werror=unused-function]
+> > >      sound/soc/qcom/lpass-sc7180.c:166:12: error:
+> > > 'sc7180_lpass_dev_resume' defined but not used
+> > > [-Werror=unused-function]
+> > >
+> > >> +static const struct dev_pm_ops sc7180_lpass_pm_ops = {
+> > >> +       SET_SYSTEM_SLEEP_PM_OPS(sc7180_lpass_dev_suspend, sc7180_lpass_dev_resume)
+> > >> +};
+> > > Please use DEFINE_SIMPLE_DEV_PM_OPS()...
+> > Actually, we need to use this patch in in previous kernels 5.4 and 5.15.
+> > I think these changes won't apply on previous kernel.
+> > Hence ignoring for now and will take care next time.
+> 
+> In that case you should add __maybe_unused tags to
+> sc7180_lpass_dev_suspend() and sc7180_lpass_dev_resume() first, so it
+> can be backported to 5.4 and 5.15, and do the DEFINE_SIMPLE_DEV_PM_OPS()
+> conversion later.
 
-Rob, Krzysztof - do we have a preferred pattern for how to express
-deprecated bindings - or is the above okay to you?
+FWIW, this is now breaking allmodconfig on RISC-V for this reason:
 
-Kind regards
-Uffe
+make[2]: *** [../scripts/Makefile.build:504: lib] Error 2
+../sound/soc/qcom/lpass-sc7180.c:179:12: error: 'sc7180_lpass_dev_suspend' defined but not used [-Werror=unused-function]
+  179 | static int sc7180_lpass_dev_suspend(struct device *dev)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+../sound/soc/qcom/lpass-sc7180.c:166:12: error: 'sc7180_lpass_dev_resume' defined but not used [-Werror=unused-function]
+  166 | static int sc7180_lpass_dev_resume(struct device *dev)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+
+Thanks,
+Conor.
+
