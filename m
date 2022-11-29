@@ -2,112 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CE7463C114
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 14:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40CE663C142
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 14:40:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233119AbiK2Ncy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 08:32:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40700 "EHLO
+        id S233216AbiK2Nkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 08:40:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231853AbiK2Ncv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 08:32:51 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588BB1FCC0;
-        Tue, 29 Nov 2022 05:32:46 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-142faa7a207so16937473fac.13;
-        Tue, 29 Nov 2022 05:32:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4iiVFWfKqe3AZg8KwhTodtf8S1J/1Ncv2ons44PHnNo=;
-        b=T72LQcqRcOiKw+owxb+yWTHM74ZLOZE+4UUJZTEyiN00vVER224XehClpg2/rA8yac
-         LuCIKWAU/DK5cwzQxBgaNXj2mLiHfPyf/eqvfQCM+5Tsv9aGC8128LSNhQack/jCiIGh
-         k/PY+elBh653ASzxkc372VQhRyX3GJQkMJYR+V8ubqdG6rsd+KKJB2LQICMtseYd5bRk
-         ypaYiqC05iJNOu9BD+ci8B3RdNOGVYGLHyzrakOFZ23txcaePbj3j3of3Lj0X1Wigpz8
-         Y+QdZ5wodPc+GLD4D25/bgljw2xS3+V5kNYzMLalgJJ35hRvU+Whm+u9HDRE7yDNq/C1
-         HaCA==
-X-Gm-Message-State: ANoB5plLmK+oCZmgYD7l3MWyU4QEbGEx9ARXHxoiZAjJ/0LDwqgx8y9i
-        ZneuL9N9bW537zYOOv5cLA==
-X-Google-Smtp-Source: AA0mqf5u4uZTI4F9Mbhj1HJmrc/ab9YlLeuoGYl3W18uowVQkPxjcL9LrXROGjAylWDDlvR3naQvWA==
-X-Received: by 2002:a05:6870:1715:b0:143:d85f:987e with SMTP id h21-20020a056870171500b00143d85f987emr3035354oae.253.1669728765470;
-        Tue, 29 Nov 2022 05:32:45 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m35-20020a05687088a300b0013cd709659dsm7379107oam.52.2022.11.29.05.32.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 05:32:45 -0800 (PST)
-Received: (nullmailer pid 3502174 invoked by uid 1000);
-        Tue, 29 Nov 2022 13:32:43 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229445AbiK2Nkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 08:40:37 -0500
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF2B5ADDD;
+        Tue, 29 Nov 2022 05:40:36 -0800 (PST)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id BF45521BDB;
+        Tue, 29 Nov 2022 13:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1669729234; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FFsalh8bL4seyyKkE319sRhzziNPYV9UGJT999sCXDo=;
+        b=m9WbLzPVNWEkBg6MGv11dvKu7IToHgZmiCDgZkWECgG0NB/Owh8Q9BgC1zcvM/JmMGkbTb
+        jd569w58ZKyKPrcZzZwB1Li9s51hGEFvPUyOwTqmh9HHzvsRLa5CstbFKWmDSAQxPQqLbj
+        TpmF/9TAknfbBDV5rCzVrzgLluCTKv8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1669729234;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FFsalh8bL4seyyKkE319sRhzziNPYV9UGJT999sCXDo=;
+        b=RTQVPYO1oq66qprUyOmWT/IRpN3Axbu+HHCH9tolKTPwz6c4HXabaecB4DLAlb+jqH94oA
+        iAJO1eYntazK8bAQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 8CFBB13AF6;
+        Tue, 29 Nov 2022 13:40:34 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id eWoTItILhmOsNgAAMHmgww
+        (envelope-from <afaerber@suse.de>); Tue, 29 Nov 2022 13:40:34 +0000
+Message-ID: <3276c36e-7dfe-ce2d-14d3-20dab732bd76@suse.de>
+Date:   Tue, 29 Nov 2022 14:40:34 +0100
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20221129103509.9958-5-hayashi.kunihiko@socionext.com>
-References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
- <20221129103509.9958-5-hayashi.kunihiko@socionext.com>
-Message-Id: <166972831755.3491712.465402006721841028.robh@kernel.org>
-Subject: Re: [PATCH 4/8] dt-bindings: soc: socionext: Add UniPhier media I/O block
-Date:   Tue, 29 Nov 2022 07:32:43 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/2] pinctrl: add NXP S32 SoC family support
+Content-Language: en-US
+To:     Chester Lin <clin@suse.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc:     s32@nxp.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+References: <20221128054820.1771-1-clin@suse.com>
+ <20221128054820.1771-3-clin@suse.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+In-Reply-To: <20221128054820.1771-3-clin@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Chester,
 
-On Tue, 29 Nov 2022 19:35:05 +0900, Kunihiko Hayashi wrote:
-> Add devicetree binding schema for the media I/O block implemented on
-> Socionext Uniphier SoCs. This block is implemented on LD4, sLD8, Pro4,
-> and LD11 SoCs.
+Am 28.11.22 um 06:48 schrieb Chester Lin:
+> Add the pinctrl driver for NXP S32 SoC family. This driver is mainly based
+> on NXP's downstream implementation on CodeAurora[1].
 > 
-> Media I/O block implemented on Socionext UniPhier SoCs is an integrated
-> component of the stream type peripherals including SD, USB2.0, eMMC,
-> and MIO-DMAC.
+> [1] https://source.codeaurora.org/external/autobsps32/linux/tree/drivers/pinctrl/freescale?h=bsp34.0-5.10.120-rt
 > 
-> Media I/O block has a common logic to control the component.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Matthew Nunez <matthew.nunez@nxp.com>
+> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> Signed-off-by: Radu Pirea <radu-nicolae.pirea@nxp.com>
+> Signed-off-by: Chester Lin <clin@suse.com>
 > ---
->  .../socionext/socionext,uniphier-mioctrl.yaml | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-mioctrl.yaml
 > 
+> Changes in v2:
+> - Create a s32_pin_range matrix in the driver for replacing the "nxp,pins"
+>    property in DT.
+> - Refine the compatible name to "nxp,s32g2-siul2-pinctrl".
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks.
 
-yamllint warnings/errors:
+> - Fix the copyright requested by NXP.
+> - Remove a few recipients from the Cc list since these email addresses are no
+>    longer available.
+> 
+>   drivers/pinctrl/freescale/Kconfig         |   16 +
+>   drivers/pinctrl/freescale/Makefile        |    2 +
+>   drivers/pinctrl/freescale/pinctrl-s32.h   |   77 ++
+>   drivers/pinctrl/freescale/pinctrl-s32cc.c | 1003 +++++++++++++++++++++
+>   drivers/pinctrl/freescale/pinctrl-s32g.c  |  773 ++++++++++++++++
+>   5 files changed, 1871 insertions(+)
+>   create mode 100644 drivers/pinctrl/freescale/pinctrl-s32.h
+>   create mode 100644 drivers/pinctrl/freescale/pinctrl-s32cc.c
+>   create mode 100644 drivers/pinctrl/freescale/pinctrl-s32g.c
+> 
+> diff --git a/drivers/pinctrl/freescale/Kconfig b/drivers/pinctrl/freescale/Kconfig
+> index 7a32f77792d9..fdd8f5492830 100644
+> --- a/drivers/pinctrl/freescale/Kconfig
+> +++ b/drivers/pinctrl/freescale/Kconfig
+> @@ -217,3 +217,19 @@ config PINCTRL_IMXRT1170
+>   	select PINCTRL_IMX
+>   	help
+>   	  Say Y here to enable the imxrt1170 pinctrl driver
+> +
+> +config PINCTRL_S32CC
+> +	bool "NXP S32 Common Chassis pinctrl driver core"
+> +	depends on ARCH_S32 && OF
+> +	select GENERIC_PINCTRL_GROUPS
+> +	select GENERIC_PINMUX_FUNCTIONS
+> +	select GENERIC_PINCONF
+> +	help
+> +	  Say Y here to enable the NXP S32CC pinctrl driver core
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reset/socionext,uniphier-reset.example.dtb: mioctrl@59810000: 'reset' does not match any of the regexes: '^clock-controller(@[0-9a-f]+)?$', '^reset-controller(@[0-9a-f]+)?$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-mioctrl.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.example.dtb: mioctrl@59810000: 'clock' does not match any of the regexes: '^clock-controller(@[0-9a-f]+)?$', '^reset-controller(@[0-9a-f]+)?$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-mioctrl.yaml
+Does this driver core make any sense without a specific driver?
 
-doc reference errors (make refcheckdocs):
+I.e., could this just be a menu-invisible internal option if S32G is the 
+one the user needs to select anyway?
+The alternative would be to leave it and have S32G depend on it, 
+creating a submenu structure, but that would then still allow to build 
+the driver core without any users.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221129103509.9958-5-hayashi.kunihiko@socionext.com
+> +
+> +config PINCTRL_S32G
+> +	depends on ARCH_S32 && OF
+> +	bool "NXP S32G pinctrl driver"
+> +	select PINCTRL_S32CC
+> +	help
+> +	  Say Y here to enable the pinctrl driver for NXP 32G family SoCs
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+s/32G/S32G/
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> diff --git a/drivers/pinctrl/freescale/Makefile b/drivers/pinctrl/freescale/Makefile
+> index 647dff060477..ceb0f61c6215 100644
+> --- a/drivers/pinctrl/freescale/Makefile
+> +++ b/drivers/pinctrl/freescale/Makefile
+> @@ -33,3 +33,5 @@ obj-$(CONFIG_PINCTRL_IMX25)	+= pinctrl-imx25.o
+>   obj-$(CONFIG_PINCTRL_IMX28)	+= pinctrl-imx28.o
+>   obj-$(CONFIG_PINCTRL_IMXRT1050)	+= pinctrl-imxrt1050.o
+>   obj-$(CONFIG_PINCTRL_IMXRT1170)	+= pinctrl-imxrt1170.o
+> +obj-$(CONFIG_PINCTRL_S32CC)	+= pinctrl-s32cc.o
+> +obj-$(CONFIG_PINCTRL_S32G)	+= pinctrl-s32g.o
+[snip]
 
-pip3 install dtschema --upgrade
+Regards,
+Andreas
 
-Please check and re-submit after running the above command.
-
+-- 
+SUSE Software Solutions Germany GmbH
+Frankenstraße 146, 90461 Nürnberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nürnberg)
