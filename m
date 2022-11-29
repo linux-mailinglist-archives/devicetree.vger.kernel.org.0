@@ -2,208 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E2863BB51
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:14:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF88063BB54
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbiK2IOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:14:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59452 "EHLO
+        id S230146AbiK2IPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:15:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbiK2IOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:14:30 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B4E45EC0
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:14:28 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id n1so11238821ljg.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:14:27 -0800 (PST)
+        with ESMTP id S229903AbiK2IPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:15:04 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C80B45A27
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:15:03 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id q7so19892492wrr.8
+        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:15:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9kE1+leaTmUxF3as6k1k34XuPsEzaU4M81bWmmSyPyc=;
-        b=FnJImm3MAPYrhuNeNysTyfF6J4n/6xtSkbtq5TJrAuLXs4GLeHvASCojQ/YOmUPUMG
-         J3AWu4tUpOkqc/J2qzzWwfwtER4QjyW3GFygGosCpnZRuj2SplXfptJpeXpQ6UGV/ntn
-         wCc1gxgo30d/q/V1a7IkUa2xrTQRa1wDSTJi3feal4LT7ZKY/1+5LwkCLVIfQMPAQFwH
-         kxaKXDAjYKuRAIKyfsaOiuC2Z2X/7UJ9byZSTOgjBaA0GPqH3ct0cXJYQsQc+tV79hF4
-         HL2Lb9fWK71QrXQbpfWrEHFmoO+9XDGPCUD8D0uYgHWHsFogx49gTUDXrsplIWwULtvl
-         zKrA==
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+tGnGmsd8SAIBQy5l4bYfSlkJXwSsNSEiUXV0JrZ7G4=;
+        b=KTldDQLc2tfmlmwHTPtlzERRJy+/jbYo9EsHIxk7O1mjZbOw9VlAAiNseOhv+Le/EY
+         4ZiEDc1QvJwrXaMN6eFvxqerNsnilHxvYyrnTSMXoCXQXWCPxQKf25zugw93LCUDO5aa
+         4y3Nd84D1+RvRWa6FCu8bT7RsBUZ1MNfy19ToCyxmF+kg59jjg4efRoZHY6F+te3aCe1
+         zs+dBujwbjothGnT2zaJGuKkewhnmrNOePYr5sLSz1BX4weqKuRwLldukQ/T1+wuXGGv
+         ADbztyNZqjIHoGHQtVI6FXqyrZZRqhmc6Azgbd+G2sLa3JZh4glG7ZPJpZRRfwAWYI8t
+         AN/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9kE1+leaTmUxF3as6k1k34XuPsEzaU4M81bWmmSyPyc=;
-        b=Hdt25PKdSrAc7UGl1PGbm6orz8luvU8NA2LYeYayiTZeVX8MK7OzEGH4C6v8y5rxDV
-         YGg/A64GW3VOdVDo/zYPpPymPtKslbzK6JShGaI0Pqisix1GO5wXzZhCGhRzyZN/y0cs
-         Gd29+32w+81mFwqXJVN1JAHPHq2qCDDlqGqzrdzilkLp5p6RyupA6/m4EQzrtWPPfCTh
-         LOK9/spJPS5XgIsjiIv2JtP5twA8FQeWUl9qvg75ts+rcrXMuQRwGdkD8b8YdLQTasvI
-         Qib5eD7p65d/fc2fJpyWJE0e2/BoAZQKF3hM+NXVyMNYxV9qYU4qatkADv1SSYzuSYIc
-         2isw==
-X-Gm-Message-State: ANoB5pntsQXxR2UVF5xqwJ1MwdYWQ/gMLc4WN4q0jY+6MZUcUirhTlcM
-        umWP18fKp/NZOaO7/938FCBEHw==
-X-Google-Smtp-Source: AA0mqf6f3fHqp4Zh45KPm43PEvOBHHR93tmy53VTEEdhuG8MikJvFvIO3PRAQ6tGLrDX16BQluZJKQ==
-X-Received: by 2002:a2e:b52e:0:b0:279:8991:60be with SMTP id z14-20020a2eb52e000000b00279899160bemr7275550ljm.419.1669709666341;
-        Tue, 29 Nov 2022 00:14:26 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a6-20020a05651c010600b00279b9149325sm74006ljb.139.2022.11.29.00.14.25
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+tGnGmsd8SAIBQy5l4bYfSlkJXwSsNSEiUXV0JrZ7G4=;
+        b=ItF6QUocMeRQzegcticBpj559oAF/EUJ+zS//kBeMmG/BP4KnEwXBtgC4HTMD3MGKI
+         SvtTjQsPN6gG9ciu91T60aN6UCs/bucWddtFJp7ePvL2/hK9YEppHuGuKrhpBxsG5HMd
+         f2Lpw0yPCi5uoNzJqdcMNUKmh/2gf0jxF7ix2E6IxK/WqmkW3tNvn4azJPjcMQFrXJfW
+         dEpzHpeliui9Fu0s4JFABJzSjmU4SwM4UbviGUvlG0ySW/4X9edBltsV7RGTjWkJWK1D
+         60GSUJVU23bp6HUp9AUxiEBHnJCqCAvNsb/38Lm5fl8QF3u8feY1BPNrJZC+gnp9zqJn
+         P4Gg==
+X-Gm-Message-State: ANoB5pmAv6FNiGgXigsfxMOdZXt22waoW8/ZiUhB+dW1J7ubkDBYXD86
+        tmNE++E/kKTaQ1wDe6opksIrpA==
+X-Google-Smtp-Source: AA0mqf4cGPQC7b3hpyexGmaRKYiejcRHPv4RznEDcAyvSpiAKZOUZqQXpPilrMkBaqhOfPiP9RWS7w==
+X-Received: by 2002:a5d:6503:0:b0:22e:35e8:382d with SMTP id x3-20020a5d6503000000b0022e35e8382dmr33962143wru.475.1669709702171;
+        Tue, 29 Nov 2022 00:15:02 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2? ([2a01:e0a:982:cbb0:2f85:a28c:5df7:9cd2])
+        by smtp.gmail.com with ESMTPSA id n21-20020a05600c3b9500b003b4c979e6bcsm1242431wms.10.2022.11.29.00.15.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:14:25 -0800 (PST)
-Message-ID: <b6943ec7-8fcd-08dc-605d-4a23629bc39c@linaro.org>
-Date:   Tue, 29 Nov 2022 09:14:24 +0100
+        Tue, 29 Nov 2022 00:15:01 -0800 (PST)
+Message-ID: <f6ffd433-1652-fb4f-8657-928e7407ba5f@linaro.org>
+Date:   Tue, 29 Nov 2022 09:15:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v7 2/4] dt-bindings: hwmon: Add binding for max6639
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: pinctrl: qcom,tlmm-common: document
+ i2c pull property
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roland Stigge <stigge@antcom.de>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221121122932.2493174-1-Naresh.Solanki@9elements.com>
- <20221121122932.2493174-3-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221121122932.2493174-3-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20221123152001.694546-1-abel.vesa@linaro.org>
+ <20221123152001.694546-3-abel.vesa@linaro.org>
+ <CACRpkdZtkHCkfUAcezSJvmei=HOezK6oyx+4C5kBrEtU+vAB-g@mail.gmail.com>
+ <fecb2dd6-9be2-78dc-4598-cc338fbdc2a2@linaro.org>
+ <CACRpkdZJaz9BEorQa7dTNkgTkwZjJNB-MWrpKFxHRgdsf3xJww@mail.gmail.com>
+ <8602cacd-f552-e843-5c17-681b099069a3@linaro.org>
+ <CACRpkdbqjNJH_QvWyEPceUUxRQ2tOpErNOWA0rg5GNwq7PfUFQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CACRpkdbqjNJH_QvWyEPceUUxRQ2tOpErNOWA0rg5GNwq7PfUFQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 13:29, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+Hi Linus,
+
+On 26/11/2022 22:53, Linus Walleij wrote:
+> On Fri, Nov 25, 2022 at 1:40 PM <neil.armstrong@linaro.org> wrote:
 > 
-> Add Devicetree binding documentation for Maxim MAX6639 temperature
-> monitor with PWM fan-speed controller.
+>> As I understood, it enables an "I2C resistor" on the pin, removing the need
+>> of an external pull-up resistor on the line.
+>>
+>> I assume the classical pull-up bias is not strong enough to replace an actual
+>> resistor on the PCB.
 > 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../bindings/hwmon/maxim,max6639.yaml         | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> In that case I think this should be an argument to bias-pull-up like:
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> new file mode 100644
-> index 000000000000..da040b11d2ab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim max6639
-> +
-> +maintainers:
-> +  - Roland Stigge <stigge@antcom.de>
-> +
-> +description: |
-> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-> +  fan-speed controller.  It monitors its own temperature and one external
-> +  diode-connected transistor or the temperatures of two external diode-connected
-> +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max6639
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  '#pwm-cells':
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +patternProperties:
-> +  "^fan@[0-1]$":
-> +    type: object
-> +    description: |
-> +      Represents the two fans and their specific configuration.
-> +
-> +    $ref: fan-common.yaml#
+> bias-pull-up = <360000>;
+> 
+> Nominally the pull up is in ohms:
+> 
+>    bias-pull-up:
+>      oneOf:
+>        - type: boolean
+>        - $ref: /schemas/types.yaml#/definitions/uint32
+>      description: pull up the pin. Takes as optional argument on hardware
+>        supporting it the pull strength in Ohm.
+> 
+> Then the driver can choose to shunt in this extra I2C resistance
+> from the resistance passed as argument. So no special property
+> is needed, provided you can get an idea about the resistance
+> provided here.
 
-unevalauatedProperties: false
+I like this alternative, I'll try to figure out if we can find a value
+to match against.
 
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The fan number.
-> +        items:
-> +          minimum: 0
-> +          maximum: 1
+Thanks,
+Neil
 
-This is a bit unusual syntax. Drop "items", I think it should be more
-obvious.
-
-> +
-> +    required:
-> +      - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fan1: fan-controller@10 {
-> +            compatible = "maxim,max6639";
-> +            reg = <0x10>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            #pwm-cells = <3>;
-> +
-> +            fan@0 {
-> +                reg = <0x0>;
-> +                pulses-per-revolution = <2>;
-> +                max-rpm = <4000>;
-> +                target-rpm = <1000>;
-> +                pwms = <&fan1 0 25000 0>;
-> +            };
-> +
-> +            fan@1 {
-> +                reg = <0x1>;
-> +                pulses-per-revolution = <2>;
-> +                max-rpm = <8000>;
-> +                pwms = <&fan1 1 25000 0>;
-> +            };
-> +            };
-
-Fix indentation.
-
-> +    };
-> +...
-
-Best regards,
-Krzysztof
+> 
+> Yours,
+> Linus Walleij
 
