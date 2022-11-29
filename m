@@ -2,123 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2868263BC05
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:50:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B183363BC1C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 09:51:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231365AbiK2Ity (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 03:49:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58268 "EHLO
+        id S230402AbiK2Ivh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 03:51:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbiK2Itq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:49:46 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E4743840
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:49:11 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id c1so21386793lfi.7
-        for <devicetree@vger.kernel.org>; Tue, 29 Nov 2022 00:49:11 -0800 (PST)
+        with ESMTP id S231378AbiK2IvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 03:51:13 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D11874198A;
+        Tue, 29 Nov 2022 00:51:12 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id r26so16714586edc.10;
+        Tue, 29 Nov 2022 00:51:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mGJb0UounTi8KWPK2n4bjkcjwSmfoW8kL6mvWjcFb4c=;
-        b=OyJHgl/U0Ekh2F3VJGU0DzAvt4K/jt1fTBZw+EMuOmEid3o6yHxV6g8Ox9HCScaHXU
-         POBxVFLTzRpbNAYvh5ujrpoH3UqAgckzt7+B7kdjlsh4E6hsX4g7ps+GjDzMnHpX6ItL
-         23m/tCD+cUOVHL1/ig4BkSZ8WB8/9aJljRFKDC7zfTJQjKV82uR/kQPYfyqYnSZ5WUU7
-         w0uW+ihdaCPubIlXoOFGVhpXWDUglTNyf4Kkc3WgT/0+j4uZ0tphQ8CSxK/w7WY+AAGQ
-         EEeJnwljePfrBxdtJoy53qrEOW0I1lRg9Gr0Yuo5wOFYsa7+rOW4hOzzRODJOti7pTLJ
-         leAQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=EAwbcSycvljMKPe5ABsiy+cIxMkpLo2gUjI9R6uNdq4=;
+        b=EFlFtRGjVY6hb45LYjfz4PKYSY8/eYXCDyH2jEWI+6o8+OWi5V8XhsyAL+pxN+iqwF
+         JX1bgxltZTtg+XpbSCDvOeZ9WXsuJHdatr27JZRN9XqqmNcIAjk7Y0MZkVkLAyMQr8LA
+         990qsOV9NVsjmRFs5iQ6x8HH6XoWFHWlztUXrFoLMrs3o8kIsHGcLIaaQan6E/Lputu1
+         nKsNOWZNVdRTWH6cOJ5YJEjOtQQKqsZcp5spPCKfZvGqJQgZ4Bp9JVlhb4JMxvA2Ujnj
+         eg3a1PIJZeRfxkP3OOgqMdAEQAkjUdnOtpkhIJ0aHSvxO8KweJtdH7BCbTxdX6X/iH0d
+         Cjew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mGJb0UounTi8KWPK2n4bjkcjwSmfoW8kL6mvWjcFb4c=;
-        b=Dc/zLbWkhvG2GF4csdr3xJvDZYrMZ7frwDMU83ZFKe0VcZ/MwCycYPG4/RTOoKLZMY
-         qkKbFNeX941EHfamu65ObFd+G030eX9pBS3Ogo7aWFHo7DPZlW8uDbrrxXp0/2Rh7avN
-         NOOAZCppiLRuWjqBfc6UtYYs3o9TRZIC8hK0xgXBJE6eD40Y9r+Ukjsq9nbJ63/99Ckl
-         Rsz0NbfgoqCKJbyYELtt5xH7XS8STj+u/V+U7COeB5pp1Mrf9uPPKXy78IL71jdD278F
-         GK+NNL6h1O/aMUobJvkQ+USIiEs0YO99Cnodc0ttd3dD0jCZ613wrqgMpV30glBeOct8
-         NKeg==
-X-Gm-Message-State: ANoB5pmMcRudb1FCu3tx1kHq+3PO13MC/zuJVhptXqPM8uylfvLWFY7D
-        8P1670i21GCWd2rJNA56hADmZw==
-X-Google-Smtp-Source: AA0mqf6mX13/IBL/pDIvHjX/0YK6WjThDrOkT/RbE3UdC7rLxGgaO1YlLG5VTFhVULx2UJwc9liXYA==
-X-Received: by 2002:a05:6512:33d2:b0:4b5:28fc:36e1 with SMTP id d18-20020a05651233d200b004b528fc36e1mr310302lfg.179.1669711749947;
-        Tue, 29 Nov 2022 00:49:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c13-20020a056512324d00b004b40f2e25d3sm2131854lfr.122.2022.11.29.00.49.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Nov 2022 00:49:09 -0800 (PST)
-Message-ID: <6f601615-deab-a1df-b951-dca8467039f8@linaro.org>
-Date:   Tue, 29 Nov 2022 09:49:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rk3568 xpcs
- compatible
-Content-Language: en-US
-To:     Chukun Pan <amadeus@jmu.edu.cn>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        David Wu <david.wu@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EAwbcSycvljMKPe5ABsiy+cIxMkpLo2gUjI9R6uNdq4=;
+        b=nqO0IF59wvrpy8Haccg3wj3cO8cI7ZaUA8zWvxCtJcEn+9NnpKeEx9UOrHo7P5narD
+         g2e1qektyvHoEmD8G2UqWICpGlvecZGWjtN2ewFtkdy5llFrjoZdOKIP3VC69F5Rd4D3
+         HSL9WD3Kx1etH0RnC9y4v2+2MRMKmkfPMKXSCwFHqieoLLeuTIdOHeHaucQkw5hmXPTi
+         d/weHJbXxV5mR+3ayidl5WP2WoZCQNbPAL9TOLIR1AQwHpcJbf1hg0FyBYPwlsy3B8Sf
+         rZAw8Xb0+sAm2AdOxo2kf6NPnOxShqK233BrG/65w+xRDdt9X4+Eouq/cMecW4DS9nyt
+         DQIg==
+X-Gm-Message-State: ANoB5pnryxx94ijTajxEjaPUfw5Rdaaj/43v2UY33iwVkGN6v5/k5BLo
+        PG82qV+Y3ivTkiL6/5v7Fcw=
+X-Google-Smtp-Source: AA0mqf47u3/yt28Ofv/5FqQdI2MHkbIfMEKktXtQYWe+me4por6kkPGitzwX2sTe4moLj7hZE7ipRA==
+X-Received: by 2002:a05:6402:ea8:b0:462:67bf:c64e with SMTP id h40-20020a0564020ea800b0046267bfc64emr37911025eda.20.1669711871270;
+        Tue, 29 Nov 2022 00:51:11 -0800 (PST)
+Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
+        by smtp.gmail.com with ESMTPSA id kz1-20020a17090777c100b0078de26f66b9sm5873219ejc.114.2022.11.29.00.51.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 00:51:10 -0800 (PST)
+Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
+From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR VIVANTE GPU
+        IP),
+        etnaviv@lists.freedesktop.org (moderated list:DRM DRIVERS FOR VIVANTE
+        GPU IP), Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20221129072714.22880-1-amadeus@jmu.edu.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221129072714.22880-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
+        support),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
+        SoC support), linux-kernel@vger.kernel.org (open list),
+        Lucas Stach <l.stach@pengutronix.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux+etnaviv@armlinux.org.uk>
+Subject: [PATCH v3 0/5] Support for the NPU in Vim3
+Date:   Tue, 29 Nov 2022 09:50:40 +0100
+Message-Id: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 08:27, Chukun Pan wrote:
-> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
-> This patch adds a compatible string for the required clock.
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> index 42fb72b6909d..36b1e82212e7 100644
-> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> @@ -68,6 +68,7 @@ properties:
->          - mac_clk_rx
->          - aclk_mac
->          - pclk_mac
-> +        - pclk_xpcs
->          - clk_mac_ref
->          - clk_mac_refout
->          - clk_mac_speed
-> @@ -90,6 +91,11 @@ properties:
->        The phandle of the syscon node for the peripheral general register file.
->      $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +  rockchip,xpcs:
-> +    description:
-> +      The phandle of the syscon node for the peripheral general register file.
+Hi,
 
-You used the same description as above, so no, you cannot have two
-properties which are the same. syscons for GRF are called
-"rockchip,grf", aren't they?
+This series adds support for the Verisilicon VIPNano-QI NPU in the A311D
+as in the VIM3 board.
 
+The IP is very closely based on previous Vivante GPUs, so the etnaviv
+kernel driver works basically unchanged.
 
-Best regards,
-Krzysztof
+The userspace part of the driver is being reviewed at:
+
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18986
+
+v2: Move reference to RESET_NNA to npu node (Neil)
+v3: Fix indentation mistake (Neil)
+
+Regards,
+
+Tomeu
+
+Tomeu Vizoso (5):
+  dt-bindings: reset: meson-g12a: Add missing NNA reset
+  dt-bindings: power: Add G12A NNA power domain
+  soc: amlogic: meson-pwrc: Add NNA power domain for A311D
+  arm64: dts: Add DT node for the VIPNano-QI on the A311D
+  drm/etnaviv: add HWDB entry for VIPNano-QI.7120.0055
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 11 +++++++
+ .../amlogic/meson-g12b-a311d-khadas-vim3.dts  |  4 +++
+ drivers/gpu/drm/etnaviv/etnaviv_hwdb.c        | 31 +++++++++++++++++++
+ drivers/soc/amlogic/meson-ee-pwrc.c           | 17 ++++++++++
+ include/dt-bindings/power/meson-g12a-power.h  |  1 +
+ .../reset/amlogic,meson-g12a-reset.h          |  4 ++-
+ 6 files changed, 67 insertions(+), 1 deletion(-)
+
+-- 
+2.38.1
 
