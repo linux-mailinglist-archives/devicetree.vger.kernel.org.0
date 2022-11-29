@@ -2,156 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8240963BAC2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9528063BAE8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Nov 2022 08:47:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbiK2H35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 02:29:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60752 "EHLO
+        id S229733AbiK2HrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 02:47:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiK2H34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:29:56 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2150C41995;
-        Mon, 28 Nov 2022 23:29:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669706996; x=1701242996;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=f2pKMbJv7ZgufIhMDCy1EMsEMYkc02alj834eWl8+JI=;
-  b=B3CPLzif/IOp1BsUelHxE4Y+FwRkNO6vrZMtKd23cL6hT25vl+rYDz48
-   tP9oq8J6Gr7vxMDbYkQU1+A8LK3VYq/S0bZCC6K0c+PZXaC08lmrldds3
-   DJsCnUia3vPz98CCYaHnhVRJCBosPLBvNZj8nnLILnSkbgM27itgJt1MF
-   LOTGToGsi7ZKdaJ+tU9e553g6GmpaDCECjXs7rdzMGZjCjVNkrdNkmTml
-   SCxqVK0NZV43RVxk3SRJfIpVgIiq78rQd65GppiKpEk4vLABPhCTKbgf4
-   lt9hAIhXuQL07IZ43HCBglkZrGDjwixjO4l/rw0IxxFhxA+0tyhj45NLl
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="316177698"
-X-IronPort-AV: E=Sophos;i="5.96,202,1665471600"; 
-   d="scan'208";a="316177698"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 23:29:55 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10545"; a="972568062"
-X-IronPort-AV: E=Sophos;i="5.96,202,1665471600"; 
-   d="scan'208";a="972568062"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.34.177])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2022 23:29:53 -0800
-Message-ID: <1a8c5b33-172d-b72b-f3c9-81a6c15b5d2d@intel.com>
-Date:   Tue, 29 Nov 2022 09:29:48 +0200
+        with ESMTP id S229521AbiK2HrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 02:47:09 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612B451319
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:47:08 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id j16so21165459lfe.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Nov 2022 23:47:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=loSpF9AgG01RMo3LBV/v8v6fFtboHwkwvrGYRwDPayw=;
+        b=BCIwFn6W/n3Cf25bMWz/YeiC1vDxWars4v8YMEFnaxBFn1+klIarsq0thr5IvFXBd9
+         y0iEYk/HW1kb38E9fGJQE23xoYKh1JSMPNptDyAci8eDnjw187PoZRcMaTSsGScprKF0
+         3JnzlEVO7XLzbb726ClGkCFzGKUg130Zltw6RkyFgarJr3EFrx3Ku1npNJ8ga77eTfkO
+         69uWTfnN2vC1onzoddkNRL9JzocY4lCxV2vQJqwWxkWEMQCWlm07jXhcvDk8tqH+MEI6
+         NmW+Z+mOT5piPL3GJr0IjEujQDbz1T01BGCV4QvqAHhK5GOztAAeZlu9lhf35ypj5sSe
+         RrOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=loSpF9AgG01RMo3LBV/v8v6fFtboHwkwvrGYRwDPayw=;
+        b=TGH+4KxTqZHIQKiMnts7shg53iaZHu4hSRZIKirHsiTpVKZkSDuEiDKpBDNdjvXMwu
+         /QSxjtiqqZupl4TQ+avi0042GKItP9J/27Jbb/F9tnICYKMgj1fpX5rAOT2jRcmMcYHy
+         B0E9VF0toL2X/com7wLsWc8gCZStdaMv0To4vkebwFbFGj+9W0R0IwnvXV9EErrAtcZ0
+         bzLYkJu7EUlsypN0/M8ZaXEHxc4+2reDOinznyeYa7LVm6uapLm2RGPnixAJ5u1DUMpr
+         QtxeNebZVR3D0mrY2/9pCh8r9W2uQGN+ga+mLkNEOmrD5jUuCZjGrsMEaY3BuSUt2kUA
+         4mZA==
+X-Gm-Message-State: ANoB5pmsvjnvNtP3oVTdKGMa0NV+tqX7z3kPNLDdkfIrwNWORafq1aUK
+        v+n56bD7QqYSIR6aVTpNOOCBwg==
+X-Google-Smtp-Source: AA0mqf6+wcgPAn5cslfEauv8J6Mh6lwM69/leKqgZb2AnXuqe0SSsSZ6WHFsED5uSwSOj/bep+llhw==
+X-Received: by 2002:a05:6512:2212:b0:4b5:acf:8789 with SMTP id h18-20020a056512221200b004b50acf8789mr4757200lfu.549.1669708026761;
+        Mon, 28 Nov 2022 23:47:06 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id r13-20020ac252ad000000b004b49025f96dsm2096814lfm.187.2022.11.28.23.47.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Nov 2022 23:47:06 -0800 (PST)
+Message-ID: <08ebc76a-0220-f984-b546-23dba8677be9@linaro.org>
+Date:   Tue, 29 Nov 2022 08:47:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.0
-Subject: Re: [PATCH 6/8] mmc: sdhci-pxav2: add SDIO card IRQ workaround for
- PXA168 V1 controller
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 7/9] dt-bindings: spi: mtk-snfi: add two timing delay
+ property
 Content-Language: en-US
-To:     Doug Brown <doug@schmorgal.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221128024407.224393-1-doug@schmorgal.com>
- <20221128024407.224393-7-doug@schmorgal.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <20221128024407.224393-7-doug@schmorgal.com>
+To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
+        <Xiangsheng.Hou@mediatek.com>,
+        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "gch981213@gmail.com" <gch981213@gmail.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "richard@nod.at" <richard@nod.at>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
+        <Benliang.Zhao@mediatek.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
+References: <20221128020613.14821-1-xiangsheng.hou@mediatek.com>
+ <20221128020613.14821-8-xiangsheng.hou@mediatek.com>
+ <9985d44e-977e-d7ea-0932-4879a3ccd14d@linaro.org>
+ <f83184ae803dbe0afd37a31a8a83a369a9772880.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f83184ae803dbe0afd37a31a8a83a369a9772880.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/22 04:44, Doug Brown wrote:
-> The PXA168 has a documented silicon bug that causes SDIO card IRQs to be
-> missed. Implement the first half of the suggested workaround, which
-> involves resetting the data port logic and issuing a dummy CMD0 to
-> restart the clock.
+On 29/11/2022 03:50, Xiangsheng Hou (侯祥胜) wrote:
+
+>>> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-
+>>> snfi.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-
+>>> snfi.yaml
+>>> @@ -55,6 +55,22 @@ properties:
+>>>      description: device-tree node of the accompanying ECC engine.
+>>>      $ref: /schemas/types.yaml#/definitions/phandle
+>>>  
+>>> +  rx-sample-delay:
+>>
+>> No, use existing property, don't invent your own stuff - missing unit
+>> suffix. See spi-peripheral-props.yaml.
+> Will change to other private property. The read sample delay with
+> MediaTek SPI NAND controller can be set with values from 0 to 47.
+> However, it`s difficult to say the unit of each vaule, because the unit
+> value will be difference with different chip process or different
+> corner IC.
+
+Why you cannot use same formula as other SPI drivers for sample-delay?
+And divide/multiple by some factor specific to SoC, which is taken from
+driver_data?
+
 > 
-> Signed-off-by: Doug Brown <doug@schmorgal.com>
-> ---
->  drivers/mmc/host/sdhci-pxav2.c | 36 ++++++++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
+>>> +    description: Rx delay to sample data with this value, the
+>>> valid
+>>> +                 values are from 0 to 47. The delay is smaller
+>>> than
+>>> +                 the rx-latch-latency.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Drop $ref.
+> Will do.
 > 
-> diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-> index 4996d72c6d23..0b9b2e4b2153 100644
-> --- a/drivers/mmc/host/sdhci-pxav2.c
-> +++ b/drivers/mmc/host/sdhci-pxav2.c
-> @@ -20,6 +20,8 @@
->  #include <linux/slab.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/mmc/sdio.h>
-> +#include <linux/mmc/mmc.h>
->  
->  #include "sdhci.h"
->  #include "sdhci-pltfm.h"
-> @@ -43,6 +45,7 @@
->  
->  struct sdhci_pxav2_host {
->  	struct clk *clk_core;
-> +	void (*orig_post_req)(struct mmc_host *mmc, struct mmc_request *mrq, int err);
->  };
->  
->  static void pxav2_reset(struct sdhci_host *host, u8 mask)
-> @@ -96,6 +99,37 @@ static inline u16 pxav1_readw(struct sdhci_host *host, int reg)
->  	return readw(host->ioaddr + reg);
->  }
->  
-> +static void pxav1_post_req(struct mmc_host *mmc, struct mmc_request *mrq, int err)
-> +{
-> +	struct sdhci_host *host = mmc_priv(mmc);
-> +	struct sdhci_pxav2_host *pxav2_host;
-> +	struct mmc_command dummy_cmd = {};
-> +	u16 tmp;
-> +
-> +	/* If this is an SDIO command, perform errata workaround for silicon bug. */
-> +	if (!err && mrq->cmd && !mrq->cmd->error &&
-> +	    (mrq->cmd->opcode == SD_IO_RW_DIRECT ||
-> +	    mrq->cmd->opcode == SD_IO_RW_EXTENDED)) {
-> +		/* Reset data port */
-> +		tmp = readw(host->ioaddr + SDHCI_TIMEOUT_CONTROL);
-> +		tmp |= 0x400;
-> +		writew(tmp, host->ioaddr + SDHCI_TIMEOUT_CONTROL);
-> +
-> +		/* Clock is now stopped, so restart it by sending a dummy CMD0. */
-> +		pxav2_host = sdhci_pltfm_priv(sdhci_priv(host));
-> +
-> +		dummy_cmd.opcode = MMC_GO_IDLE_STATE;
-> +		dummy_cmd.arg = 0;
-> +		dummy_cmd.flags = MMC_RSP_SPI_R1 | MMC_RSP_NONE | MMC_CMD_BC;
-> +
-> +		mmc_wait_for_cmd(host->mmc, &dummy_cmd, 0);
+>>
+>>> +    minItems: 0
+>>> +    maxItems: 47
+>>> +    default: 0
+>>> +
+>>> +  rx-latch-latency:
+>>
+>> Same problems. Did you check spi-peripheral-props.yaml or other SPI
+>> controller schemas for such property?
+>>
+>>> +    description: Rx delay to sample data with this value, the
+>>> value
+>>> +                 unit is clock cycle.
+>>
+>> I think the unit should be rather time (e.g. us).
+>>
+> Yes, I checked the spi-peripheral-props.yaml and the delay values are
+> described exactly unit with ns or us. However the unit of MediaTek read
+> latch latency is clock cycle and it`s difference with different clock
+> frequency.
 
-This is not what post_req() is for.  Instead could you use SDHCI
-host op ->request_done()?  Also, do you really need to wait for
-the dummy CMD0 - perhaps just write SDHCI_ARGUMENT,
-SDHCI_TRANSFER_MODE, and SDHCI_COMMAND ?
+This is fine in such case.
 
+> 
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1, 2, 3]
+>>> +    default: 0
+>>> +
 
-> +	}
-> +
-> +	/* Pass onto SDHCI host driver now */
-> +	if (pxav2_host->orig_post_req)
-> +		pxav2_host->orig_post_req(mmc, mrq, err);
-> +}
-> +
->  static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
->  {
->  	u8 ctrl;
-> @@ -252,6 +286,8 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
->  	if (match && of_device_is_compatible(dev->of_node, "mrvl,pxav1-mmc")) {
->  		host->quirks |= SDHCI_QUIRK_NO_BUSY_IRQ | SDHCI_QUIRK_32BIT_DMA_SIZE;
->  		host->ops = &pxav1_sdhci_ops;
-> +		pxav2_host->orig_post_req = host->mmc_host_ops.post_req;
-> +		host->mmc_host_ops.post_req = pxav1_post_req;
->  	} else {
->  		host->ops = &pxav2_sdhci_ops;
->  	}
+Best regards,
+Krzysztof
 
