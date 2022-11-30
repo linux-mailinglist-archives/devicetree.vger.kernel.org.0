@@ -2,150 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF8763D0C8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 09:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 781DF63D0CD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 09:37:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233576AbiK3Ifj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 03:35:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41536 "EHLO
+        id S232674AbiK3IhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 03:37:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235450AbiK3IfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 03:35:09 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E744FF8
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:35:07 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id z24so20065437ljn.4
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:35:07 -0800 (PST)
+        with ESMTP id S235571AbiK3Igj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 03:36:39 -0500
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16474F75;
+        Wed, 30 Nov 2022 00:36:38 -0800 (PST)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-13bd19c3b68so20143589fac.7;
+        Wed, 30 Nov 2022 00:36:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kcyWsekNpjW83jaBV4h3bWe3M3a62T4akctRwJN9qQw=;
-        b=xxygHrVudH/jRn0zVZTJRKc+hk75Z//tJLTCgljOhPvuK4wDPJOhwCxdNjLllI+bKZ
-         ORhapHPhNmP3+zRihBWBONgRqaHLXF5NjioBc83wTFDobjePOPwzfRzdH+Ym99XQtxrJ
-         iHLZMR49Gxtzee5/M0vkXrN7WpfCZqqnHSJ0aleb1a4dmmrhfvIkn7K1AQXFxgrDaN9p
-         Mh6v9aRVqEcjSavFC1xluoh/eg+3ymaf5XEP1zOOYWpvhk/1cWqqqMzeihAedfidWP3X
-         koyUyxpmrFjPI1p7hxX9Rb2sdCwc86M2adQctegd+VwosMptsH+4zyVHGj/dZxmwDzHA
-         vsKQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=C8cqmGzfVCjxCPHfgIL2xOfMEXlcwATS1T5/zK1+jbw=;
+        b=EYP+xYeqqZV43Hrcy1u1vdcjPdZAda0tkb1dbQgNTKv39FaYQuSuP7cms+SSiOHdym
+         pahu7SiBHnXNc7T0l3+mERK5AkatUP9Uay8VaJOnssP3tNb47jPO2QM6sX2zJ6dlpJst
+         vsTdPlAhyOUF3OJdqol0JdXD6ocpqXtw6nYlvKxHHb80q9bUhPBVyQLorp1jk3dg8f3o
+         PkB64P+k/f6APGEjzikXQFoKagVFQ3fB9+eYMlKn3FiPAOP/yze14+R8fPpfFvz+FneS
+         kciPIivW2C3naKDvWrSykNUJD3hultU5i7broL2WHsXxG7M9uOSskzKA51WyMxwuvRJX
+         rC6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kcyWsekNpjW83jaBV4h3bWe3M3a62T4akctRwJN9qQw=;
-        b=Owe4rP0zZKRXaBulSygDe3guAHgJ5k8vBP+KwxwHy3wnb2TOYlKgQ0DKY6ggum2GWm
-         vJjMv66wLyLJnAQdFgUy2N1R5ng2ZftVBWerQex8NJdUOhQPec/UzV4yrq9KPS5B8Ra0
-         377v7YhkSGSpUYy3lLs7O/KE9V9wnYoaLgrJmkcVaIe+zYUQmYZ+/aOONZqYZJ1C8MV4
-         S2yk/4nNPh3i6UnR8Jx2u4xjhaS3Yuf1FKhzsrUJy+x0MPJymz6RK5Zdc7vSIwlRJDwk
-         CvjyKXPzHt/vdG1I4M12kHfz032ibNvefX1E1URGbbigYZXmQXxl9PtVGmHqlomGf0NG
-         oDfA==
-X-Gm-Message-State: ANoB5pl/VtueJgg52PCYcMtcZDHjtcdgmvoQnzjVBTKlxtWfvGFYfH5y
-        tNuU8ewGShc53KXXxM+7eaV/HQ==
-X-Google-Smtp-Source: AA0mqf4U+gFSGMAw9tW/t9ns6UxsiuwlvarT6QZfwU3S1rmz5GnvBtFX9HqRwIDY6T3CdKG32JHOFw==
-X-Received: by 2002:a2e:592:0:b0:279:c85d:43da with SMTP id 140-20020a2e0592000000b00279c85d43damr295192ljf.435.1669797305804;
-        Wed, 30 Nov 2022 00:35:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u13-20020a05651206cd00b0049fbf5facf4sm167617lff.75.2022.11.30.00.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 00:35:05 -0800 (PST)
-Message-ID: <bc356f96-600a-64df-c0fe-00c807fa605c@linaro.org>
-Date:   Wed, 30 Nov 2022 09:35:04 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C8cqmGzfVCjxCPHfgIL2xOfMEXlcwATS1T5/zK1+jbw=;
+        b=nDc7BDez2MikOcMNzVAx4jHy622fdW9GavukFbTOvtCLcX7s2/EaEDssNq/Ugi7C87
+         Ay/rqyETurL2XkBOTGIanJkVrg2FiXhMpWLIQLG7D3oLRDUE/LdxsZreTpW9FCRklgd5
+         Sg4pFmB1nobsdLMe28Z0Xl2tUt0m1sgrRIp88/1v3NsVij9sgspFtuOTPoN0JG26qePr
+         6h7nEr70jWatD6ceelWhq6WnuZU1KwJrTY2u8h9WYEm6ZdvFoII+r5sQImnK483K34vV
+         qEuZgKPw1tdjSfuWWhCjlEcNyP6Y4okMvHeIdBThoGYEstay4fmh6aWLvsrFjbtj4g6U
+         U1bQ==
+X-Gm-Message-State: ANoB5pmE3NjDLTzmdWK6i/LOQ1UynjRN+u33GiSxV8jyNogrbVgMnlrI
+        6EL7vFu8XTxxqba6bFvKRBIR/XYPNBKvXMGezvE=
+X-Google-Smtp-Source: AA0mqf4LrL4qMWi9+zmjHRnmpWUEVNwAPF1yGUgE4xfVwRsDc9zZoq/qbovaZLLi+W+5OG1uVOq/e+ePL2+k50n0hlc=
+X-Received: by 2002:a05:6870:ab86:b0:13c:5763:9411 with SMTP id
+ gs6-20020a056870ab8600b0013c57639411mr32666222oab.288.1669797397394; Wed, 30
+ Nov 2022 00:36:37 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 7/9] dt-bindings: spi: mtk-snfi: add two timing delay
- property
-Content-Language: en-US
-To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
-        <Xiangsheng.Hou@mediatek.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "gch981213@gmail.com" <gch981213@gmail.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "richard@nod.at" <richard@nod.at>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
-        <Benliang.Zhao@mediatek.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
-References: <20221128020613.14821-1-xiangsheng.hou@mediatek.com>
- <20221128020613.14821-8-xiangsheng.hou@mediatek.com>
- <9985d44e-977e-d7ea-0932-4879a3ccd14d@linaro.org>
- <f83184ae803dbe0afd37a31a8a83a369a9772880.camel@mediatek.com>
- <08ebc76a-0220-f984-b546-23dba8677be9@linaro.org>
- <741d7ce16df25450b08c92e508190bc7c91fc8d9.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <741d7ce16df25450b08c92e508190bc7c91fc8d9.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221129140955.137361-1-gch981213@gmail.com> <20221129140955.137361-3-gch981213@gmail.com>
+ <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org>
+In-Reply-To: <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Wed, 30 Nov 2022 16:36:26 +0800
+Message-ID: <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 09:18, Xiangsheng Hou (侯祥胜) wrote:
-> Hi Krzysztof,
-> 
-> On Tue, 2022-11-29 at 08:47 +0100, Krzysztof Kozlowski wrote:
->> On 29/11/2022 03:50, Xiangsheng Hou (侯祥胜) wrote:
->>
->>>>> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-
->>>>> snfi.yaml
->>>>> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-
->>>>> snfi.yaml
->>>>> @@ -55,6 +55,22 @@ properties:
->>>>>      description: device-tree node of the accompanying ECC
->>>>> engine.
->>>>>      $ref: /schemas/types.yaml#/definitions/phandle
->>>>>  
->>>>> +  rx-sample-delay:
->>>>
->>>> No, use existing property, don't invent your own stuff - missing
->>>> unit
->>>> suffix. See spi-peripheral-props.yaml.
->>>
->>> Will change to other private property. The read sample delay with
->>> MediaTek SPI NAND controller can be set with values from 0 to 47.
->>> However, it`s difficult to say the unit of each vaule, because the
->>> unit
->>> value will be difference with different chip process or different
->>> corner IC.
->>
->> Why you cannot use same formula as other SPI drivers for sample-
->> delay?
->> And divide/multiple by some factor specific to SoC, which is taken
->> from
->> driver_data?
-> 
-> Even for specific SoC, the unit of sample delay may be various with
-> different corner IC.
+Hi!
 
-Which is easy to achieve with driver_data as I said.
+On Wed, Nov 30, 2022 at 12:54 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> > +description: |
+> > +  WorldSemi WS2812B is a individually addressable LED chip that can be chained
+> > +  together and controlled individually using a single wire.
+> > +  This driver simulates the protocol used by this LED chip with SPI bus.
+>
+> Drop references to Linux driver, unless important for the binding.
 
-> Besides, whether it`s acceptable by change the property rx-sample-delay 
-> and rx-latch-latency to mediatek,rx-sample-delay and mediatek,rx-latch-
-> latency?
+I think the SPI part is important. (I'll explain it below.) What about:
 
-Not for sample delay, because you should use existing properties. Your
-driver implementation is not usually argument to duplicate properties in
-the bindings.
+This binding describes a chain of WS2812B LEDs connected to the SPI MOSI pin.
 
-Best regards,
-Krzysztof
+instead?
 
+> > +  Typical setups includes connecting the data pin of the LED chain to MOSI as
+> > +  the only device or using CS and MOSI with a tri-state voltage-level shifter
+> > +  for the data pin.
+> > +  The SPI frequency needs to be 2.105MHz~2.85MHz for the timing to be correct
+> > +  and the controller needs to send all the bytes continuously.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: worldsemi,ws2812b-spi
+>
+> Drop "-spi". Compatibles are not supposed to include bus information.
+> The same for file name.
+
+WS2812B isn't a SPI chip. It's controlled with only a single wire and
+can be driven
+using anything that can produce a long and a short pulse meeting its timing
+requirement.
+This driver uses a SPI bus to send the pulses, but it can also be
+controlled with
+I2S and the PIO pins on a Raspberry Pi Pico.
+This spi suffix is to distinguish it from other possible
+implementations if someone
+else submits a support with a different peripheral.
+
+>
+> > +
+> > +  reg:
+> > +    description: The chip-select line on the SPI bus
+>
+> Drop description, it's obvious.
+
+OK.
+
+>
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Maximum SPI clocking speed of the device in Hz.
+>
+> No need for ref and description. It comes from spi-peripheral-props.
+
+OK.
+
+>
+> > +    minimum: 2105000
+> > +    maximum: 2850000
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^multi-led(@[0-9a-f])?$":
+>
+> Why unit address is optional?
+
+It isn't. I copy-pasted it from led-class-multicolor.yaml and
+didn't check the exact regex.
+I'll fix it in the next version.
+
+>
+> > +    type: object
+> > +    $ref: leds-class-multicolor.yaml#
+>
+>     unevaluatedProperties: false
+
+OK.
+
+> > +
+> > +    properties:
+> > +      color-index:
+> > +        description: |
+> > +          A 3-item array specifying color of each components in this LED. It
+> > +          should be one of the LED_COLOR_ID_* prefixed definitions from the
+> > +          header include/dt-bindings/leds/common.h. Defaults to
+> > +          <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>
+> > +          if unspecified.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        minItems: 3
+>
+> Drop minItems.... but see comment below:
+>
+> > +        maxItems: 3
+>
+> Why this is different than other multi-color LEDs? I would expect here
+> children with common.yaml.
+
+WS2812B is a single LED package with 3 diodes and a microcontroller.
+Each LED package has 3 colors. The original chip comes with GRB
+color while there are some clones with RGB arrangement instead.
+The LED chain can be really long so I'd like to simplify the binding
+by using a single property to override the only variable, color, here.
+
+>
+> > +
+> > +      default-intensity:
+> > +        description: |
+> > +          An array of 3 integer specifying the default intensity of each color
+> > +          components in this LED. <255 255 255> if unspecified.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        minItems: 3
+>
+> Drop minItems.... but:
+>
+> > +        maxItems: 3
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 255
+>
+> default: 255
+>
+> What controls the intensity? Don't you have PWM there?
+
+The LED takes 3-byte brightness value of each color. This property is used to
+specify the default multi_intensity field for the multi-color LED. The final
+brightness value is calculated with led_mc_calc_color_components like this:
+
+mcled_cdev->subled_info[i].brightness = brightness *
+mcled_cdev->subled_info[i].intensity / led_cdev->max_brightness;
+
+The LED chip takes exactly 8 bits for the brightness (max_brightness = 255
+which can't be changed.), so according to the formula above the maximum
+intensity should be 255.
+
+>
+> > +
+> > +      reg:
+> > +        description: |
+> > +          Which LED this node represents. The reg of the first LED on the chain
+> > +          is 0.
+>
+> maxItems: 1
+
+OK.
+
+>
+> > +
+> > +    required:
+> > +      - reg
+> > +      - color
+> > +      - function
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ws2812b@0 {
+>
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+OK. I'll use leds instead.
+
+>
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            compatible = "worldsemi,ws2812b-spi";
+> > +            reg = <0>;
+>
+> compatible is first property, reg is second.
+
+Got it.
+
+--
+Regards,
+Chuanhong Guo
