@@ -2,93 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FA563CF02
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 06:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69C6C63CF34
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 07:30:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233790AbiK3F7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 00:59:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57986 "EHLO
+        id S234125AbiK3GaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 01:30:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233824AbiK3F7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 00:59:06 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0AC801DA58;
-        Tue, 29 Nov 2022 21:59:03 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8BxlfAn8YZjM0gCAA--.5106S3;
-        Wed, 30 Nov 2022 13:59:03 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxd1cj8YZj1kwiAA--.1548S3;
-        Wed, 30 Nov 2022 13:59:01 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org
-Cc:     loongarch@lists.linux.dev, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234131AbiK3GaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 01:30:06 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907EC3FB8D;
+        Tue, 29 Nov 2022 22:30:01 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id 9so15927416pfx.11;
+        Tue, 29 Nov 2022 22:30:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7X0wN6DpjI8XmLGa5Qd3cypCN6OHZWy7qqAwTdstsr8=;
+        b=c6N/EiTsBJ0oILqhP/MASxki8AiPnSFzQ76UCpiCxwo8q6BiNUJBIG4Va6iHGdnBFm
+         YHAZVajb5UyT+Kg5M1tD52BTN+AP5V+aiEIMyJEu+dnFL/ogiFItbWfXtOoOarzgNVQA
+         aBcey8TUpTMZz9FEhOCl0iJbT9vVO+zDKITL3DrpnLOsum+0kksfRBdcprYRNRJmBasy
+         hW6yPYstZ+xY88dkg1mUHZ0x8N95szGmZMB6Y4WVz1Xtd0LMs3N0QIqDeD0wOxFH5UNe
+         P9hs9bN604Bf8tijSu64t0zre1ail3od+xpZNkVxJ0KR5OonU3CehrAnHpEdK7bnxadK
+         H3bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7X0wN6DpjI8XmLGa5Qd3cypCN6OHZWy7qqAwTdstsr8=;
+        b=eKZEYFSL1Xkyq5cWB3V58vAljI2fD8bzgedGUVx2/SvIzrSmIuta+FYzoY+6VJNC6O
+         qO9wu2tUgz0WzyIbA80uOidrQfw5D5agHg/k/wmYRHux6iAAAieSVRUa6w93qHt8BiLN
+         qTll8cIcoG3GKMjuC5M0eZid49GyfOv2t4KQ+SF22AMYGSGzQLTjfyVcMnTg8qK+U6Sd
+         EZebG3hA/g1UxqxhF40Z1DUkgDbgk3whdX07YeDaP8dfvB7f+UF6HVypWdbwjJMGqU8w
+         7M15mRB64Tpke/d9lOw9KsSaozwUj4uUlpmsQzj7eu7WsSJrnUuePxoLAnxGNbLMjMnM
+         BwAA==
+X-Gm-Message-State: ANoB5pm7i/Yxp8A14toD3LwOPE304ithN6tyVyAKb4487c30YzvpMZ5W
+        CNiBgmlHlSnBoVM265R+c2Rm9IVCO9M=
+X-Google-Smtp-Source: AA0mqf5+A5G3kVOZzVagiGlVvettoA3+DZ/f+f57uEicoYYeZEgeg0pDXaomEoJc/YLsSfF03u1Gcw==
+X-Received: by 2002:a63:5409:0:b0:476:e3bb:2340 with SMTP id i9-20020a635409000000b00476e3bb2340mr34690736pgb.530.1669789800526;
+        Tue, 29 Nov 2022 22:30:00 -0800 (PST)
+Received: from localhost.localdomain (2001-b400-e2d4-7fe5-300a-7c16-8b65-8a51.emome-ip6.hinet.net. [2001:b400:e2d4:7fe5:300a:7c16:8b65:8a51])
+        by smtp.gmail.com with ESMTPSA id p2-20020a170902780200b00188b63f0782sm432375pll.288.2022.11.29.22.29.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 22:29:59 -0800 (PST)
+From:   Owen Yang <ecs.taipeikernel@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Harvey <hunge@google.com>, Bob Moragues <moragues@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Gavin Lee <gavin.lee@ecs.com.tw>,
+        Matthias Kaehlcke <mka@google.com>,
+        Abner Yen <abner.yen@ecs.com.tw>,
+        Owen Yang <ecs.taipeikernel@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH V4 5/5] LoongArch: Enable LS2X I2C in loongson3_defconfig
-Date:   Wed, 30 Nov 2022 13:56:21 +0800
-Message-Id: <3520dd15ff922456aa070a7189b153aada6cc0f2.1669777792.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1669777792.git.zhoubinbin@loongson.cn>
-References: <cover.1669777792.git.zhoubinbin@loongson.cn>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dxd1cj8YZj1kwiAA--.1548S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvdXoW7Jry5XrWkuF48uF15Ww1fXrb_yoWxKFX_Ja
-        47Kw1kWr48JFZ7W3WIqw4rC3yDCa47X3WSkrnrAw1xX3Waqr13trWDA3W7C3Z0ga4DWrW3
-        ZaykJF9F9F18tjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
-        u7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
-        AFIxvE14AKwVWUGVWUXwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
-        6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26rWY6Fy7McIj6I8E
-        87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxV
-        Aaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxY
-        O2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGV
-        WUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_
-        Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw20EY4v20xvaj4
-        0_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8
-        JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0No7tUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v10 1/2] dt-bindings: arm: qcom: Add zombie
+Date:   Wed, 30 Nov 2022 14:29:52 +0800
+Message-Id: <20221130142829.v10.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is now supported, enable for Loongson-3 systems.
-Other systems are unaffected.
+Add entries in the device tree binding for sc7280-zombie.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+
+Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
 ---
- arch/loongarch/configs/loongson3_defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/loongarch/configs/loongson3_defconfig b/arch/loongarch/configs/loongson3_defconfig
-index cd8e003d885e..017eb0e36738 100644
---- a/arch/loongarch/configs/loongson3_defconfig
-+++ b/arch/loongarch/configs/loongson3_defconfig
-@@ -600,6 +600,7 @@ CONFIG_HW_RANDOM_VIRTIO=m
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_PIIX4=y
- CONFIG_I2C_GPIO=y
-+CONFIG_I2C_LS2X=y
- CONFIG_SPI=y
- CONFIG_GPIO_SYSFS=y
- CONFIG_GPIO_LOONGSON=y
+Changes in v10:
+- Add "Reviewed-by" tags in this patch log.
+- Fixed history log list.
+
+Changes in v9:
+- Fixed version number (v7 and v8 were erroneously posted as v6)
+
+Changes in v8:
+- Correct commit log. Use "entries" instead of "an entry". As requested by Krzysztof, Matthias and Douglas.
+
+Changes in v7:
+- None.
+
+Changes in v6:
+- None.
+
+Changes in v5:
+- None.
+
+Changes in v4:
+- None.
+
+Changes in v3:
+- None.
+
+Changes in v2:
+- Fixed patch order.
+
+ Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..7ec6240311db 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -655,6 +655,16 @@ properties:
+           - const: google,villager-sku512
+           - const: qcom,sc7280
+ 
++      - description: Google Zombie (newest rev)
++        items:
++          - const: google,zombie
++          - const: qcom,sc7280
++
++      - description: Google Zombie with LTE (newest rev)
++        items:
++          - const: google,zombie-sku512
++          - const: qcom,sc7280
++
+       - items:
+           - enum:
+               - lenovo,flex-5g
 -- 
-2.31.1
+2.17.1
 
