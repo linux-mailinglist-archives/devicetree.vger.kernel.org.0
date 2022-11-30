@@ -2,219 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 180F863D976
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BEB63D982
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiK3Pcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:32:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55586 "EHLO
+        id S229783AbiK3PeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:34:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbiK3Pcn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:32:43 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65DC32ADD
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:32:41 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id b9so21286626ljr.5
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:32:41 -0800 (PST)
+        with ESMTP id S229749AbiK3PeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:34:22 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425A61CB25
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:34:21 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id o7-20020a05600c510700b003cffc0b3374so1703367wms.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:34:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9xB5Dvj8Gxrq9C5THb6DQBtJWoZM83lOUgNkmDL+cko=;
-        b=ObPb6ZwzaLevNeoJiAlGYUd57MYGLBNCopjqDZa4H/sX49+LvXKAolQtAyrkjJG/DZ
-         DI7tC2OfZqvvhhS7SKl2OcTNjzLlXM6/Smi9MtZoYRoWfdSR631zwLGJp1WXKrPN7JqI
-         rc5QIpbFT8sNVOa5Ev9ij8ARZDmwYp1Qx2jPgbl6edRiMo5tWlhDgp7hK1an6WkPkztu
-         xLrd8I0CC7UCMs5YJB9/juh28WRAqUv+22DcJoX8sgEGX2oX4cZfFQfaKZBx2YghtmpM
-         NBB0VAg2oMU/OkA6Bc2++0hJyzhnNnfoYJo9xf0a29hRA1Emi8/1kKBUPpRbx0qOsuCx
-         LLZg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s9l5W+++EB6NlTNQ2XeW/aJwLvMG4kwDS8FzLeXyfuw=;
+        b=OODKmXJ6crJMlLhh/+vdhA3F4o5MwqA9QOCEg8PrNXZTQAd6n0YodJdRLPkktAA/LR
+         IkRXQjOlFg2XlI/qqufD6xExRdXNDx5cX8Vz/eStqmwfx7wQSbStkDbFNPinHyFpO7fg
+         sD16RdndosM4pWCCIcK3mU7LpNx6CemfLSGP//QW+7MndIjsaqXJm6mg844kP0UQMyGA
+         BxLF+rFPs+K02ivqGesCLhUBmXJRgHQZYNYxtoPSFGsjASuT9ajNQfT3ytLeWxsHWsal
+         ZK7j7jlqB1OlNq/YRMzC11GBtZWlmVg2V+K9+3AGsmzjLj2fZgWT14iNT8byeiqZjYB3
+         ry2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9xB5Dvj8Gxrq9C5THb6DQBtJWoZM83lOUgNkmDL+cko=;
-        b=fbNZMuy7iEnppYsEnRj0dpGDpcg+6Netml9Kvfr9909InqB0OU1mh3vPz5/zmnlT+x
-         265w4y+qxLhIYkPfXZthY+Bj4e9xXlUhROXon5Dg8TUq95bRezljCpUfo1eIvg68reEa
-         q9heydfk5F7gz0Ctdj2Dyqox1ya2Z+rEtrwW9nTVFfDeXozP5/Xc2lG/hYbBF253MtR9
-         w6M2sgae+gPGMJJfjKkTeFjNar5NCa9DflNBdjg8p3tAtdUTVV0qydeofNLWp7qz9kvW
-         0ltYJL3RMsIIuuuOhYa/CYAYLm7Im0coFSYSUiQ3eD5Iqzu75p5Gz0QJim/mDQbmELef
-         irjw==
-X-Gm-Message-State: ANoB5pnOekFDBLE4KZ6f/1kcRiXAxs80BgwQ49ewPufR1avtWMOBERDK
-        8VY1NyNLa1TXOLKVF/DmpJ9r7Q==
-X-Google-Smtp-Source: AA0mqf47yGGEf1RQzoEJtyJ8v1QUVShXctLRU4JC5iLqP5j7f2/aqMDwyrC/C4qntDQKfaEZVI9csA==
-X-Received: by 2002:a2e:b990:0:b0:277:831:3970 with SMTP id p16-20020a2eb990000000b0027708313970mr18963380ljp.331.1669822359747;
-        Wed, 30 Nov 2022 07:32:39 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id x5-20020ac25dc5000000b004a65780e4cfsm295465lfq.106.2022.11.30.07.32.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 07:32:39 -0800 (PST)
-Message-ID: <2978c071-4e3c-8d4d-3819-3ddbf7bc1385@linaro.org>
-Date:   Wed, 30 Nov 2022 16:32:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 7/8] dt-bindings: soc: socionext: Add UniPhier DWC3 USB
- glue layer
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s9l5W+++EB6NlTNQ2XeW/aJwLvMG4kwDS8FzLeXyfuw=;
+        b=Aduernq6Ju0GtOZ68BnJYLm+E8ddY/0RYWR429iKJe1jxA6FfnNWgD5WdTGxvOq7pS
+         SgH74g8J9T537O3q4kc0U6Yi27Y4127GhvKbiIuDBtT4T/8F6+ZxoMLeSChMXlYBZzXh
+         R/Z4g6c2Dth3NegYfeuV3pHCCwQxMUkVXAPIIVaGc3xSWaDZGTGBZ8/U1bGrEDJpLu2U
+         8wpVa2AunGqOqTP9585Efspos7SpjKdHXYG4yzgTKS+FOcJpGTw9g7H/awNpBGG3bHL2
+         LAAqgCPPebFYny8nZvq0ASbo63rlGD7oVk4mBB/12L6Pt94HDVW6Wxg7jnOpXdGZ0BJ7
+         vuTA==
+X-Gm-Message-State: ANoB5pnSc0qlHWRX4mzXQCTFioue/MFycS6uMgurEqvLd9fe6tqxZSoC
+        mdKlEbfIPOcgnqqFxfclrZwx5Q==
+X-Google-Smtp-Source: AA0mqf5De6caILdEu8rZPYKkWFUtjt/TYmdGaIIF1tA4kqQIvg9paWBjvYYs6P5O6HNMXBV4NN3wkQ==
+X-Received: by 2002:a05:600c:1d9c:b0:3c6:e369:e856 with SMTP id p28-20020a05600c1d9c00b003c6e369e856mr45158316wms.35.1669822459732;
+        Wed, 30 Nov 2022 07:34:19 -0800 (PST)
+Received: from localhost ([2a01:cb19:85e6:1900:2bf7:7388:731d:c4e1])
+        by smtp.gmail.com with ESMTPSA id l9-20020a05600c2cc900b003cf9bf5208esm5138684wmc.19.2022.11.30.07.34.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 07:34:19 -0800 (PST)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Markuss Broks <markuss.broks@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
- <20221129103509.9958-8-hayashi.kunihiko@socionext.com>
- <12a98c77-5464-0f25-9081-13217f396484@linaro.org>
- <c9e1ee72-6201-3a1e-307a-d5869a22e01c@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c9e1ee72-6201-3a1e-307a-d5869a22e01c@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/3] input/touchscreen: imagis: Correct the maximum
+ touch area value
+In-Reply-To: <20221118182103.3405-3-linmengbo0689@protonmail.com>
+References: <20221118182103.3405-1-linmengbo0689@protonmail.com>
+ <20221118182103.3405-3-linmengbo0689@protonmail.com>
+Date:   Wed, 30 Nov 2022 16:34:18 +0100
+Message-ID: <87lenssbgl.fsf@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 10:00, Kunihiko Hayashi wrote:
-> Hi Krzysztof,
-> 
-> On 2022/11/29 23:52, Krzysztof Kozlowski wrote:
->> On 29/11/2022 11:35, Kunihiko Hayashi wrote:
->>> Add DT binding schema for components belonging to the platform-specific
->>> DWC3 USB glue layer implemented in UniPhier SoCs.
->>>
->>> This USB glue layer works as a sideband logic for the host controller,
->>> including core reset, vbus control, PHYs, and some signals to the
->>> controller.
->>>
->>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> ---
->>>   .../socionext,uniphier-dwc3-glue.yaml         | 106 ++++++++++++++++++
->>>   1 file changed, 106 insertions(+)
->>>   create mode 100644
->>> Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
->>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
->>> new file mode 100644
->>> index 000000000000..66f8786dd305
->>> --- /dev/null
->>> +++
->>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-dwc3-glue.yaml
->>> @@ -0,0 +1,106 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id:
->>> http://devicetree.org/schemas/soc/socionext/socionext,uniphier-dwc3-glue.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Socionext UniPhier SoC DWC3 USB3.0 glue layer
->>> +
->>> +maintainers:
->>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> +
->>> +description: |+
->>> +  DWC3 USB3.0 glue layer implemented on Socionext UniPhier SoCs is
->>> +  a sideband logic handling signals to DWC3 host controller inside
->>> +  USB3.0 component.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - socionext,uniphier-pro4-dwc3-glue
->>> +          - socionext,uniphier-pro5-dwc3-glue
->>> +          - socionext,uniphier-pxs2-dwc3-glue
->>> +          - socionext,uniphier-ld20-dwc3-glue
->>> +          - socionext,uniphier-pxs3-dwc3-glue
->>> +          - socionext,uniphier-nx1-dwc3-glue
->>> +      - const: simple-mfd
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#address-cells':
->>> +    const: 1
->>> +
->>> +  '#size-cells':
->>> +    const: 1
->>> +
->>> +  ranges: true
->>> +
->>> +patternProperties:
->>> +  "^reset-controller@[0-9a-f]+$":
->>> +    $ref: /schemas/reset/socionext,uniphier-glue-reset.yaml#
->>> +
->>> +  "^regulator@[0-9a-f]+$":
->>> +    $ref: /schemas/regulator/socionext,uniphier-regulator.yaml#
->>> +
->>> +  "^phy@[0-9a-f]+$":
->>> +    oneOf:
->>> +      - $ref: /schemas/phy/socionext,uniphier-usb3hs-phy.yaml#
->>> +      - $ref: /schemas/phy/socionext,uniphier-usb3ss-phy.yaml#
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    usb-controller@65b00000 {
->>
->> Node name: usb. There is no usage of "usb-controller".
-> 
-> I'm confusing about that.
-> 
-> This is an interface logic and doesn't have USB functions by itself.
-> Surely there is a USB host controller node "usb@..." in the same SoC.
-> Can this node be renamed to "usb"?
-> 
-> I've renamed the dts node name once in commit 4cc752a88ca9
-> ("arm64: dts: uniphier: Rename usb-glue node for USB3 to usb-controller").
+On Fri, Nov 18, 2022 at 18:21, "Lin, Meng-Bo" <linmengbo0689@protonmail.com> wrote:
 
-In (almost?) all other cases it is still called "usb". A bit akward to
-have usb in usb, but usb-controller did not stick...
+> From: Markuss Broks <markuss.broks@gmail.com>
+>
+> As specified in downstream IST3038 driver and proved by testing,
+> the correct maximum reported value of touch area is 16.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> [Change from IST3038B to IST3038]
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
 
-> 
->>> +        compatible = "socionext,uniphier-ld20-dwc3-glue", "simple-mfd";
->>> +        reg = <0x65b00000 0x400>;
->>> +        #address-cells = <1>;
->>> +        #size-cells = <1>;
->>> +        ranges = <0 0x65b00000 0x400>;
->>> +
->>> +        reset-controller@0 {
->>> +            compatible = "socionext,uniphier-ld20-usb3-reset";
->>> +            reg = <0x0 0x4>;
->>
->> So now I see the unit addresses, which means none of your previous
->> patches needed them. This raises next question - why this device is
->> special and does not use syscon but own unit address?
-> 
-> The glue layer has a fixed register address for each child unlike
-> the previous patch.
-> 
-> This layer has also the other registers for USB core outside
-> the child nodes, however, there is no parent device that manages
-> these registers, so this layer node itself should take care of these
-> registers.
-> 
->> Are the children here - regulator, reset controller and phys - related
->> to the USB?
-> 
-> Yes, this "glue layer" is an interface of the USB controller, so these
-> children are only used for the USB controller.
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-
-OK
-
-Best regards,
-Krzysztof
-
+> ---
+>  drivers/input/touchscreen/imagis.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
+> index e2697e6c6d2a..b667914a44f1 100644
+> --- a/drivers/input/touchscreen/imagis.c
+> +++ b/drivers/input/touchscreen/imagis.c
+> @@ -210,7 +210,7 @@ static int imagis_init_input_dev(struct imagis_ts *ts)
+>  
+>  	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
+>  	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
+> -	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+> +	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 16, 0, 0);
+>  
+>  	touchscreen_parse_properties(input_dev, true, &ts->prop);
+>  	if (!ts->prop.max_x || !ts->prop.max_y) {
+> -- 
+> 2.30.2
