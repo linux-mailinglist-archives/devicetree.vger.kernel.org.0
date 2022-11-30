@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31ED263D591
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0E1A63D599
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:29:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbiK3M1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 07:27:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
+        id S232757AbiK3M3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 07:29:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231326AbiK3M1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 07:27:13 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0543F7616B
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:27:12 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p8so26682246lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:27:11 -0800 (PST)
+        with ESMTP id S234055AbiK3M3l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 07:29:41 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0C074CCE
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:29:40 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id u27so15680908lfc.9
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:29:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dI1rcDm2izo91a4xYpDxT/SLBcJ/F5Ad/wzzFCiV+VE=;
-        b=Ji445Whez+WyQciiZuyiJmg9wIw+mMslsDzUx2Q5q+VuLSsSCaMsGA0band7jhsste
-         q29kC52WC6Lp7l2/6ARvcEH8jbvM5DcbRpXbRSBIk9Opw8A2sc+WXtPpiLliXrwcPXvO
-         tgXSLjgPugXRe9QR6oNwiDRVo2q2qjOXOkHLKl0suJTb3JBAIrYXn8KkzUl6tMRZDVGM
-         DLwagTVcZvHr+0WmfdXdIGhID87hi+Q6SeDwEndVXX+P0K9MC2OU/MafUGxViYc36L0O
-         l3164KBJPJSaxIsuocM6PQpz9UztAz5jqocXDSuz6gFg4ige6SQm5faDr8PAp41fqR4l
-         Rq9g==
+        bh=O+AI0MJAZxzSaqzb8F3zaCppW8AIzXUV3tWxM7Mevyw=;
+        b=kQQPClqFnsW+DJBXxmsAnn+jQogCKmDoaRFEh20J5bWCzM3porK8SZK5p885eC5s9j
+         wGa3RhsC44LF6ElaUDIBgKxSt+DtHFwGpDstwVz/KYT/JjMy8JBBNV3vl+C5LthfLOgw
+         rv6L8LVtVQyEeqv7ji8VYhi0gGL4lcYJW0fgzf68i39DBf0GxNmtrTcc1NwiwCjl5+z4
+         4TjiysbEvJ6GQ6K4CplKwahFw3PVIc23lHQ4qAfrNX4XnoWYds3eZRR3mKggooMk3PKn
+         v27prtApWBXpC8D6Tyok4nf53Lty9kgxGZ7ZJwyhHG6p0QqAG9JijSmJ8ghg1MKqYDIu
+         YeHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dI1rcDm2izo91a4xYpDxT/SLBcJ/F5Ad/wzzFCiV+VE=;
-        b=xDcqqgdUdnmE4fTo6/z9nhyyT5+RjrLzeBJ9gIisrbze0hJC8nOrtR7sJmYvxfn2UP
-         KAL8j1ai9dLD9hbOAHccPNFoy2vwNEsgAU5Vq8q+R7/t0prQeJg3sYE9hc8T2620AbCR
-         V8pWRqK0C30XIr7qOk2wbWsOLwDKO9qNlvGNtcApABZVG56XOyd82l/frXUUK2KWsTyg
-         JJnnVmFpnGTTf5sP3VSEb7VUEaUcDfqmf1XNngYBPSfQ2iJiEtDIzHykhrdTe5VXl6Ka
-         159Z4JWUXfomOETUSZU1yebYQ3MW8MhZ6kJqpD5DHGEtmQ3xTaVnOyVf/R3HRZuW/rXk
-         dgHQ==
-X-Gm-Message-State: ANoB5plfAgx6n+aOt2q+YmSjZlQazKmUV+b9xmJFJ3VVIZfwqnw6U8nk
-        hx8BDvftsOF/R8pF4MqgDJk0Hw==
-X-Google-Smtp-Source: AA0mqf60JfOxxNgy8P3VlfJbyaVrLdhiMyX6biwGhIsWg1ouQukE2tDQdlXo4sjBnFx/9AKPnNlHEA==
-X-Received: by 2002:a05:6512:33c5:b0:4b5:237a:fb0d with SMTP id d5-20020a05651233c500b004b5237afb0dmr2459878lfg.658.1669811229479;
-        Wed, 30 Nov 2022 04:27:09 -0800 (PST)
+        bh=O+AI0MJAZxzSaqzb8F3zaCppW8AIzXUV3tWxM7Mevyw=;
+        b=0Jo1/xzBhh8fPZoyhmpt5vlTfZFAkGYkQilZ3NHNbM1JHksznDlIvNdEtusq6JNcxx
+         tcKb1n6zZupuspvigj/QHrJ8dNWSw244PFKPKttzz9IzP5WVVpj00vythg4FRTe21Ci0
+         YF7Is7vS6sTMwUDIAy6euoLWs6dKt4EZz+dIGDv3KuKQ8c/0NbYlncYqMj+0dxh+ixGJ
+         hiOucWJuqdJDME5i9Sw9ElJGOKVbf5lf4+I1Amh+c3FFve5xnTqL4Qb4d7AKh3QpC7Vn
+         2l4/fa9qvSl/QLPtWgVecgXNV33tTPQNjWLlws+5XSakjctGXBvZ9Fz7xXXWWCOO6ySa
+         I6Lg==
+X-Gm-Message-State: ANoB5pn/aId8FXapHfUYOoFzT431JhiGh+Xzoz8e7C1fqQq3f9PaNzyt
+        0P1k3lYp0/Dsm8DA9BQ1qJe0kg==
+X-Google-Smtp-Source: AA0mqf5m6UjtSqDKBQS7eed+m1t0mu/Z7yR8/1BTYHlrCHHsaZWupm2do1AtTsSghfeNJ1Z2WN307w==
+X-Received: by 2002:a19:5215:0:b0:4aa:4da0:f8a5 with SMTP id m21-20020a195215000000b004aa4da0f8a5mr19379487lfb.288.1669811378826;
+        Wed, 30 Nov 2022 04:29:38 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o15-20020ac24e8f000000b00497a61453a9sm234996lfr.243.2022.11.30.04.27.08
+        by smtp.gmail.com with ESMTPSA id g1-20020a056512118100b004aab0ca795csm239023lfr.211.2022.11.30.04.29.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 04:27:08 -0800 (PST)
-Message-ID: <faa53c31-2642-7504-f04d-81bef2793399@linaro.org>
-Date:   Wed, 30 Nov 2022 13:27:07 +0100
+        Wed, 30 Nov 2022 04:29:38 -0800 (PST)
+Message-ID: <171b7fcf-7072-89f9-7cdf-6330fa549e20@linaro.org>
+Date:   Wed, 30 Nov 2022 13:29:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 2/2] dt-bindings: thermal: mediatek: add compatible string
- for MT7986 SoC
+Subject: Re: [PATCH V3] dt-bindings: mmc: Remove comment on wakeup-source
+ property
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.or,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <136157bd1f94c64504f87ee2db6b3ed0a8dcc3de.1667254476.git.daniel@makrotopia.org>
- <1216e96b279d08230cb2aa61d536f44c1e9b800a.1667254476.git.daniel@makrotopia.org>
- <cdc79d9b-7afe-1aaf-3692-171370abaa3c@linaro.org>
- <Y4dIBW4Kped5klgD@makrotopia.org>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y4dIBW4Kped5klgD@makrotopia.org>
+In-Reply-To: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,40 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 13:09, Daniel Golle wrote:
-> On Wed, Nov 02, 2022 at 04:43:35PM -0400, Krzysztof Kozlowski wrote:
->> On 31/10/2022 18:16, Daniel Golle wrote:
->>> Add compatible string 'mediatek,mt7986-thermal' for V3 thermal unit
->>> found in MT7981 and MT7986 SoCs.
->>>
->>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
->>> ---
->>>  Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
->>> index 5c7e7bdd029abf..efc16ab5b22b5d 100644
->>> --- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
->>> +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
->>> @@ -13,6 +13,7 @@ Required properties:
->>>    - "mediatek,mt2701-thermal" : For MT2701 family of SoCs
->>>    - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
->>>    - "mediatek,mt7622-thermal" : For MT7622 SoC
->>> +  - "mediatek,mt7986-thermal" : For MT7981 and MT7986 SoC
->>
->> Then recommended is to have specific compatible followed by fallback (so
->> 7986 followed by 7981)
+On 30/11/2022 13:10, Christoph Niedermaier wrote:
+> The current comment on wakeup-source is a little confusing because
+> the word deprecated can be interpreted at first glance to mean that
+> wakeup-source is deprecated. Also mentioning the obsolete property
+> confuses more than it helps. Therefore, the comment should be removed
+> completely because the enable-sdio-wakeup property is not used in
+> any current DTs. Also remove enable-sdio-wakeup reference in
+> wakeup-source.txt
 > 
-> I'm a bit confused about the order you are suggesting. It may seem
-> counter-intuitive, but MT7986 was released before MT7981, the thermal
-> units found in both SoCs seems to be exactly identical.
-> Or are you suggesting to list MT7981 first to maintain alphabetical
-> order? Because in terms of precedence, MT7986 has been there first, and
-> hence I'd list 7986 first, followed by 7981, ie. the opposite of the
-> order you were suggesting.
-> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 
-I have no clue which came first. Choose whatever is reasonable.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
