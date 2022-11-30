@@ -2,118 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D2663D1BF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:23:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8D163D1C9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:26:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbiK3JX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 04:23:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
+        id S232226AbiK3J0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 04:26:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232741AbiK3JX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:23:57 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5146C1837F;
-        Wed, 30 Nov 2022 01:23:56 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DB6D660036C;
-        Wed, 30 Nov 2022 09:23:53 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669800234;
-        bh=b/rlfin9Tu9Zg934405VE93p9gBOHlJBLcSBvPpyPXY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TU92YAgRkOWnyIP3bvJqgwHT2x7OsuuBfGtxWnADsoddRRL8dVNwSOLIIq9iXGClu
-         ZDyOpAR+4FH4w9JKcC44yCrAf4ixqxqnVDX5y+K75zqEWqfKgMip80ugRc6dDiETe/
-         9zWuM7Na3x2jr/eQrOfmVK2+5Thg9HnFJ3w8hjUdULKHkDeHnNCs4Az1H4oJ0WlWNV
-         UqX5DNxYmvAdcMmXYji0csNn9FYeBB0kM0zF4/9R/meuF9UXgo41Z+kOdQciVMRs4q
-         yRajDFgWP2KaE6U/ctk5oMmNuB6ojJs5YGZigiTQW8HaZtO0YFNUeeqAjuRxQ/FBV2
-         DBUYJpgsDmQEg==
-Message-ID: <a1c556de-a9a4-5f90-1c46-a9e54daf463b@collabora.com>
-Date:   Wed, 30 Nov 2022 10:23:51 +0100
+        with ESMTP id S229895AbiK3JZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:25:59 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9922C2A967;
+        Wed, 30 Nov 2022 01:25:58 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id n205so18140623oib.1;
+        Wed, 30 Nov 2022 01:25:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zbHI1uW0B/bUDnJ0AXXSb3CdFb68rbl4AKwLYqiwj+I=;
+        b=dRrlLbN0dLYqYxMdXq7PcZcM4pdcMPyjUPM2N9Qjrli6oFHMVq7YxmOxGIpd8dSRvH
+         NBF2HhAlED9O8eMR7sNTiEwORU2jjLUjMflfhp5R+zrL8I3/Dt4pTfx2EVgeElo51j+H
+         JPUaZZrF11poDygHcDSfMJWwGFntVzLAxxu2Qoym+YtgtAHUBKbvBuHd+9W1OX3svlwU
+         3jKitxJ8Ib6CzUMJFed9mwvjXPMZ6pj05dpWGgCBYZpuGOLjfm+dFSKNwBzoxafGuBXs
+         iD8OFthAgUF7AW/eBkzmVKY/7tfIXBybf6g+waWeF67esSNNhYTU1w3XgLBX3Som0iS2
+         Md5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zbHI1uW0B/bUDnJ0AXXSb3CdFb68rbl4AKwLYqiwj+I=;
+        b=6EN8JWyWW66NU+yU/rVwRfiaWFdXT+5CibREpjqJcDlfyJBdQ7I5oLebBvd+HNFhwX
+         vFu/Cted8ASUkWG9QQv0v6ywCQEjoQtMe0018fcVq7lipuh/X3InZxy4op3OfhERlWSo
+         GyAkrw143yHVBiVkdo6+eR0ndNQvewwbiXHUqrhZJGZSEKrnnRSlBRIDq+P4gScQ6B9c
+         Qy6so8OYMm0PIgpScYzfsi/QUm6E88TR0liLyf4tedwC6ZfTecvf1t3f99BBN8uyq9n8
+         fzbiNwiKeu2wxYuTl0DSoiSMYz/j1y8BULRJvFmiCxUfEzbUXTn6ENSJKfOQD2R9/als
+         602g==
+X-Gm-Message-State: ANoB5pkwkUH1Zv2uI7oQ0hu/3zL5jazHv964o75yjI6fwz6NWAghE0Rf
+        +Y0qyuWkae6mCML3+3iBSBCifNZ5MfjdTIqL2uJ5C/Yow6OhUw==
+X-Google-Smtp-Source: AA0mqf7CAQ+AKTVLm+ECt9KESEXsJKRM65EWepkH0WhXm5liXbwWk0ortUwnZID/hBWY29xEamAr2C+iGy1fsdT7A1w=
+X-Received: by 2002:a05:6808:2ca:b0:359:ca42:419 with SMTP id
+ a10-20020a05680802ca00b00359ca420419mr30927505oid.98.1669800357956; Wed, 30
+ Nov 2022 01:25:57 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 2/6] dt-bindings: mediatek: modify VDOSYS0 mmsys device
- tree Documentations for MT8188
-Content-Language: en-US
-To:     "nathan.lu" <nathan.lu@mediatek.com>,
+References: <20221129140955.137361-1-gch981213@gmail.com> <20221129140955.137361-3-gch981213@gmail.com>
+ <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org> <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
+ <7b3f97f9-34af-413c-aaad-9108b4f36c51@linaro.org>
+In-Reply-To: <7b3f97f9-34af-413c-aaad-9108b4f36c51@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Wed, 30 Nov 2022 17:25:46 +0800
+Message-ID: <CAJsYDVKXvJZaqCBx7RSsfVZkKTGdbp78GHA4mvmUdQwyEyGkBQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, lancelot.wu@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221129143503.16638-1-nathan.lu@mediatek.com>
- <20221129143503.16638-3-nathan.lu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221129143503.16638-3-nathan.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/11/22 15:34, nathan.lu ha scritto:
-> From: Nathan Lu <nathan.lu@mediatek.com>
-> 
-> modify VDOSYS0 mmsys device tree Documentations for MT8188.
-> 
-> Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
-> ---
->   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index 0711f1834fbd..3e7fb33201c5 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -47,6 +47,10 @@ properties:
->             - const: mediatek,mt2701-mmsys
->             - const: syscon
->   
-> +      - items:
-> +          - const: mediatek,mt8188-vdosys0
+Hi!
 
-The devicetree node will be like:
-	something: something@somewhere {
-		compatible = "mediatek,mt8188-vdosys0", "syscon";
-		....
-	};
+On Wed, Nov 30, 2022 at 5:08 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> And that's exactly what I said - the compatibles should not include bus
+> information. The bus information comes from... the bus!
 
-....and will never get any additional compatible string, as when you'll add
-vdosys1 support, we'll get a similar node like:
+Oh. I thought there will be a conflict if there is a SPI driver and
+, say, an I2C driver with the same compatible string.
 
-	something_else: something_else@somewhere_else {
-		comaptible = "mediatek,mt8188-vdosys1", "syscon";
-		....
-	};
+> [...]
+> >>
+> >> Why unit address is optional?
+> >
+> > It isn't. I copy-pasted it from led-class-multicolor.yaml and
+> > didn't check the exact regex.
+> > I'll fix it in the next version.
+>
+> Make it required and matching your case.
 
-...so this should go upper in the enum that's listing all of the
-mediatek,mtXXXX-mmsys compatibles, specifically after `mediatek,mt8186-mmsys`.
+Got it.
 
-Please fix.
+> [...]
+> >>> +      default-intensity:
+> >>> +        description: |
+> >>> +          An array of 3 integer specifying the default intensity of each color
+> >>> +          components in this LED. <255 255 255> if unspecified.
+> >>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> >>> +        minItems: 3
+> [...]
+> So this is brightness of each color...
 
+I don't think so.
+See the kernel doc for multicolor LED:
+https://docs.kernel.org/leds/leds-class-multicolor.html
+This property sets the sysfs file multi_intensity while the
+actual LED brightness is controlled with another sysfs
+file called 'brightness'.
+Setting multi_intensity alone doesn't change the LED
+brightness at all.
+
+-- 
 Regards,
-Angelo
-
+Chuanhong Guo
