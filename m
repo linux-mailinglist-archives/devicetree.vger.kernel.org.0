@@ -2,157 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F1B763D883
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:51:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD3763D889
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:53:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbiK3Ova convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Nov 2022 09:51:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
+        id S229519AbiK3OxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 09:53:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiK3Ov2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:51:28 -0500
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B286573B83;
-        Wed, 30 Nov 2022 06:51:24 -0800 (PST)
-Received: by mail-qt1-f173.google.com with SMTP id a27so11229401qtw.10;
-        Wed, 30 Nov 2022 06:51:24 -0800 (PST)
+        with ESMTP id S229532AbiK3OxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:53:17 -0500
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051E12E6BD
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:53:16 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id e11-20020a4ab14b000000b0049be568062bso2647468ooo.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:53:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rbewHNiIDPrh2vDJAS18QQyUgoqR1U2XFbW+RCOiyVY=;
-        b=fCXuCOgUwLOoxJH49GdlHGzuXdGP3I5vqtKMQfw5p/zM1r4oBmwI25DVL2rJwh3AEm
-         2MT2kuea8mUOjXqUTBz4OHAlI6cj3GPIYUor399iWhBHSMyTZbHscIOjg0vQjyw9/TKP
-         hZS6NWMNxSV74chr9cNAJ3IYqBs3z1yKSWzsv8dd6Usp8rHqgbOw5BME2sOFlciLJHVF
-         2gsgvGdnvdp8G4gwF1ibs9mvH5gMeBYfaFiGGWOL0rdIzdtFxbkQ2zT7WDbqiw26zikL
-         uR9+g09vhUsfyhh/onuP5TIxIsSWkyoNxLmMMaDoHa8uQYJGSmUxE0rk2FmCGJLb97GO
-         TwtA==
-X-Gm-Message-State: ANoB5pnuGTT7RELZ7BhWRdGXJ8VlkfCavUzwlUiDK58G7HuexBWb2TZ/
-        OQLy0BhEvyuLsDsdJV6nxkMzQOEQzK35CQ==
-X-Google-Smtp-Source: AA0mqf5t9XxSny7wiMYJL+fC3x3d1hmg9pcxoc3fo7HwOxvscAyInELNzC7ZXHCOZNBIyrHqL5faMA==
-X-Received: by 2002:a05:622a:488f:b0:3a6:328e:e7d1 with SMTP id fc15-20020a05622a488f00b003a6328ee7d1mr21723005qtb.272.1669819883617;
-        Wed, 30 Nov 2022 06:51:23 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id y26-20020a37f61a000000b006bc192d277csm1262642qkj.10.2022.11.30.06.51.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 06:51:22 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-3c090251d59so117848417b3.4;
-        Wed, 30 Nov 2022 06:51:22 -0800 (PST)
-X-Received: by 2002:a81:f80f:0:b0:38e:e541:d8ca with SMTP id
- z15-20020a81f80f000000b0038ee541d8camr55824371ywm.283.1669819872327; Wed, 30
- Nov 2022 06:51:12 -0800 (PST)
-MIME-Version: 1.0
-References: <20221130141040.32447-1-arinc.unal@arinc9.com> <20221130141040.32447-3-arinc.unal@arinc9.com>
-In-Reply-To: <20221130141040.32447-3-arinc.unal@arinc9.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 30 Nov 2022 15:51:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVBZiWxORfb2hd0hn_En6yFEwm8uJXr553YfB8gv1sOFw@mail.gmail.com>
-Message-ID: <CAMuHMdVBZiWxORfb2hd0hn_En6yFEwm8uJXr553YfB8gv1sOFw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] arm: dts: remove label = "cpu" from DSA dt-binding
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        soc@kernel.org, "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=REIiF+IHKEdfg19HkfHRcF1uyzuS1Xm7d1N/QWRQLpo=;
+        b=TAVWUXeSJ1wK1zZ1SijMePUTmd+Wnh2xCKZXg4Zg7TLPuPbJMsEmkXqQqXbRN3K0Oz
+         O/sUiZ2NPNGY2ceGSkQZcIbXbRAzf5pqFhoIvw+4TB6jXHn9MMUZ/VWHqwhvyZvaouoy
+         hMCS1pRclBMHLBeBh1TFB4Wj6Gdt/h/RybQdDtLRL+M4GA+THgd+AxZNN0f7P7TBZwGh
+         bi0Ft0cV1IB9k2rD4r1NP1ysaQJhpr+VnMsVWrmzsHPI3P+VYQPleoz6fPX3RvLraeTJ
+         yGMeNqWJMRenE/LOVh50OjUL/0x7yy4kKiD/FLlLLe0tXzCsKm/fFflA4gWybrjFtGcB
+         Fjdw==
+X-Gm-Message-State: ANoB5pkhyK3qVNRVXm/LAacD+0teJz0RcFrJaBDQ9UDp5VVAepLdNeL8
+        0XLmOYnISw45kphMb0gy2Q==
+X-Google-Smtp-Source: AA0mqf4A3UKt5YjqsiMHmLTVVhMRJco14AAte09ey1sJuWNn1ZlD5n7GKJ9dP52ZCNcCttoEfxEJUg==
+X-Received: by 2002:a4a:52c3:0:b0:480:8a5d:5962 with SMTP id d186-20020a4a52c3000000b004808a5d5962mr26343923oob.29.1669819995163;
+        Wed, 30 Nov 2022 06:53:15 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i9-20020a9d6249000000b00668953207b2sm961986otk.80.2022.11.30.06.53.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 06:53:14 -0800 (PST)
+Received: (nullmailer pid 2148056 invoked by uid 1000);
+        Wed, 30 Nov 2022 14:53:13 -0000
+Date:   Wed, 30 Nov 2022 08:53:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        dri-devel@lists.freedesktop.org, Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v2] dt-bindings: display: Convert fsl,imx-fb.txt to
+ dt-schema
+Message-ID: <166981984923.2144677.14979016393841570972.robh@kernel.org>
+References: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC cleger
 
-On Wed, Nov 30, 2022 at 3:33 PM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> This is not used by the DSA dt-binding, so remove it from all devicetrees.
->
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+On Tue, 29 Nov 2022 19:04:14 +0100, Uwe Kleine-K�nig wrote:
+> Compared to the txt description this adds clocks and clock-names to
+> match reality.
+> 
+> Note that fsl,imx-lcdc was picked as the new name as this is the actual
+> hardware's name. There will be a new binding implementing the saner drm
+> concept that is supposed to supersede this legacy fb binding
+> 
+> Signed-off-by: Uwe Kleine-K�nig <u.kleine-koenig@pengutronix.de>
+> ---
+> Changes since v1, sent with Message-Id:
+>  - mention clock stuff being added (Philipp)
+>  - dropped some quotes (Rob)
+>  - fix specification of compatible
+>    (I kept claiming though that imx21 isn't compatible to imx1. While
+>    that might be true, I don't have an i.MX1 to check the details and
+>    currently the imx*.dtsi don't claim that compatibility.)
+> 
+> I tried to implement the suggestion by Rob to formalize the display
+> binding. But I learned that this doesn't change how the display property
+> is formalized in the fsl,imx-lcdc.yaml (which is just a phandle without
+> means to specify that it should point to a node which fulfills a certain
+> binding.)
+> 
+> Best regards
+> Uwe
+> 
+>  .../bindings/display/imx/fsl,imx-fb.txt       |  57 ----------
+>  .../bindings/display/imx/fsl,imx-lcdc.yaml    | 102 ++++++++++++++++++
+>  2 files changed, 102 insertions(+), 57 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.yaml
+> 
 
->  arch/arm/boot/dts/r9a06g032.dtsi                          | 1 -
-
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -401,7 +401,6 @@ switch_port3: port@3 {
->                                 switch_port4: port@4 {
->                                         reg = <4>;
->                                         ethernet = <&gmac2>;
-> -                                       label = "cpu";
->                                         phy-mode = "internal";
->                                         status = "disabled";
->                                         fixed-link {
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied, thanks!
