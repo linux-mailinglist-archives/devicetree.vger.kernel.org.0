@@ -2,61 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C838F63DDA8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:29:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 793FB63DE4A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:35:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbiK3S3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 13:29:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35220 "EHLO
+        id S230443AbiK3Sfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 13:35:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbiK3S3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:29:22 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44DF18BD3E
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:29:21 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id f18so6449672wrj.5
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I/mhURiSnctmudftnFtdoz6/q2M4E0iTIngIl1pzogU=;
-        b=EXkGs8WY3WnjbsfHyJzvRucfFYBCKLg2OoAAZnOb/QPwRH+3S4V5sgJNGwMMKQ3nT9
-         2Xb0YGfoWg8veu7GPIpZ0GgkLWVbqZ3fJ4/YQSHytBk3p1ctC993cy3PKZil2/yVVUTE
-         cId59KXf8H6siK7W2A00aylbLGNYI+MHnOxsu2GjMYrFio9S+YHO87jgpUBSDofME/+W
-         4Jl0H0EnSKxnDzGQs3a5WhNe7L3vjXj9Uw/xvOR6prOCoMB5ePFP+H9FzyEA2Fw86LfT
-         nn33xq8pXc/UotbEvk9rwn673hiz0rGlVWl6rMmgFCuvlo0vH7ggJQulg587nx2obfos
-         lj8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I/mhURiSnctmudftnFtdoz6/q2M4E0iTIngIl1pzogU=;
-        b=afkPG5b1V6qIchB62wKFIhn4Uz5zTo6Tg1fWO+or18aisBKUAeEYHQ/fEecQdzbdb1
-         dJukUXLoIY4r17JYqnuVVQpdO+Ct3Lf1FQ5MFnqZCBvoKpWIWk79JygClYV2+cOR3g74
-         Pxewn7fvTBRVTBZ3S1z4+x0dzEEnWoROzyhCgR9QeaxkXF79bYkGaZaOBiCcgbJKJNvn
-         gA9W9YVwMNRusv97vXxaqYmNJuF886yK9jIJWNBMxRQxL6X0f+URrqpUms5tV7flVh5F
-         DAS2ilBWbq1YDwHZyt1vpovdozvy1zyH2o6hcfEX8OeTRFyu9nDhbao2AuFJKi3suDmT
-         vrTQ==
-X-Gm-Message-State: ANoB5pmiJDKGbSDkdwsBP//iLO7a9q0EeIheDmRl+bph+lANzYncEp8P
-        WWSPUAemAbZbC4OqnUfldkuSQg==
-X-Google-Smtp-Source: AA0mqf5dX/d2F14h/RN8hhwb9Smb/cMdcFa+bUh//IbKL245pVd2GTk7zTR9//+D8GoEll5KQTO2jA==
-X-Received: by 2002:a5d:414b:0:b0:242:b59:c3c6 with SMTP id c11-20020a5d414b000000b002420b59c3c6mr14720594wrq.91.1669832959724;
-        Wed, 30 Nov 2022 10:29:19 -0800 (PST)
-Received: from smtpclient.apple (global-5-141.n-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id 16-20020a05600c22d000b003b497138093sm2691867wmg.47.2022.11.30.10.29.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 30 Nov 2022 10:29:19 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: fix underscore requirement for
- addtional standard extensions
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20221130180422.1642652-2-conor@kernel.org>
-Date:   Wed, 30 Nov 2022 18:29:18 +0000
+        with ESMTP id S230364AbiK3Sf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:35:29 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2742793A48;
+        Wed, 30 Nov 2022 10:35:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 71326CE1AD7;
+        Wed, 30 Nov 2022 18:35:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D66C433D7;
+        Wed, 30 Nov 2022 18:35:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669833324;
+        bh=m9ZbOfSOhqrV9QbDkO0wnkpV571DI07sybMViITSyfA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IIzaMYtxRDjt6r5k1t1vOIEvc1oWyXA2ZqG9SdSqoF9X65WLxO/euqmX2ZRJvxWee
+         IdwL0374yXGXYH7bU8Bn806VTOSG/Lm6w6FMITSa/xJZCM+EGtjDyM3OZHg7j16Ea2
+         RyE+q+P7qmQ0NWp6zWrCiRz3DFfkV5MzZeaV0K+J367lrXFwW/44ZBu2UOM6RR4zx9
+         KeGnVS67fVMe9b9p8GOUpKT2iZk7xhfcQHh907w5lclBeZoW+/4Q7Yk4r1rzM6k96F
+         OIE/msMLmRpgSsjgiH+HjS8Ia85l+ZtRxOhlCv3AnZ6U/Kf+OMKGtH3O1aMU/m1J9I
+         vC+Gm+8ahSIKA==
+Date:   Wed, 30 Nov 2022 18:35:19 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Jessica Clarke <jrtc27@jrtc27.com>
 Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         linux-riscv <linux-riscv@lists.infradead.org>,
         Conor Dooley <conor.dooley@microchip.com>,
@@ -68,65 +45,75 @@ Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
         Andrew Jones <ajones@ventanamicro.com>,
         Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E52B0E0B-F27B-43C8-85DA-4C7AC0C52369@jrtc27.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: fix underscore requirement
+ for addtional standard extensions
+Message-ID: <Y4eiZ1AS+///9svR@spud>
 References: <20221130180422.1642652-1-conor@kernel.org>
  <20221130180422.1642652-2-conor@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3696.120.41.1.1)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ <E52B0E0B-F27B-43C8-85DA-4C7AC0C52369@jrtc27.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <E52B0E0B-F27B-43C8-85DA-4C7AC0C52369@jrtc27.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30 Nov 2022, at 18:04, Conor Dooley <conor@kernel.org> wrote:
->=20
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> The RISC-V ISA Manual allows for the first Additional Standard
-> Extension having no leading underscore. Only if there are multiple
-> Additional Standard Extensions is it needed to have an underscore.
->=20
-> The dt-binding does not validate that a multi-letter extension is
-> canonically ordered, as that'd need an even worse regex than is here,
-> but it should not fail validation for valid ISA strings.
->=20
-> Allow the first Z multi-letter extension to appear immediately prior
-> after the single-letter extensions.
->=20
-> Link: =
-https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-fr=
-om-asciidoc-15112022 # Chapter 29.5
-> Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings =
-for emulators")
-> Acked-by: Guo Ren <guoren@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml =
-b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index 90a7cabf58fe..e80c967a4fa4 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -80,7 +80,7 @@ properties:
->       insensitive, letters in the riscv,isa string must be all
->       lowercase to simplify parsing.
->     $ref: "/schemas/types.yaml#/definitions/string"
-> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
-> +    pattern: =
-^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+On Wed, Nov 30, 2022 at 06:29:18PM +0000, Jessica Clarke wrote:
+> On 30 Nov 2022, at 18:04, Conor Dooley <conor@kernel.org> wrote:
+> > 
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > The RISC-V ISA Manual allows for the first Additional Standard
+> > Extension having no leading underscore. Only if there are multiple
+> > Additional Standard Extensions is it needed to have an underscore.
+> > 
+> > The dt-binding does not validate that a multi-letter extension is
+> > canonically ordered, as that'd need an even worse regex than is here,
+> > but it should not fail validation for valid ISA strings.
+> > 
+> > Allow the first Z multi-letter extension to appear immediately prior
+> > after the single-letter extensions.
+> > 
+> > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
+> > Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
+> > Acked-by: Guo Ren <guoren@kernel.org>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+> > 1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > index 90a7cabf58fe..e80c967a4fa4 100644
+> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > @@ -80,7 +80,7 @@ properties:
+> >       insensitive, letters in the riscv,isa string must be all
+> >       lowercase to simplify parsing.
+> >     $ref: "/schemas/types.yaml#/definitions/string"
+> > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
+> > +    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+> 
+> Isn’t it any multi-letter extension, i.e, this should be [hsxz] again?
+> 
+> It certainly used to be at least; we use rv64gcxcheri...
 
-Isn=E2=80=99t it any multi-letter extension, i.e, this should be [hsxz] =
-again?
+<quote>
+Non-standard extensions must be listed after all standard extensions.
+They must be separated from other multi-letter extensions
+by an underscore
+<\quote>
 
-It certainly used to be at least; we use rv64gcxcheri...
+Nope, you're right. I realised that the other day with the non-binding
+series that was a response to v1. I had that itching feeling that I had
+forgotten to do something when I was writing my changelog but could not
+remember what...
 
-Jess
+Thanks Jess!
 
