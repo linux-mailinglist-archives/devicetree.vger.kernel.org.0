@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 928C663D988
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FD263D996
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:38:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbiK3Pfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:35:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
+        id S229929AbiK3Pic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbiK3PfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:35:21 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69665F5AA
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:35:20 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id r133-20020a1c448b000000b003d076ee89d6so661067wma.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:35:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ollth9LvKVA7JWRjE8biQu+3eEzKzMvsoDBYHMsXKH8=;
-        b=w/kWhLywCOVt1ed+3YA9pU/z8cM8jEc/z1waVW5ddqCgYnadPaKJ3XiGpq2ojRRSZI
-         k3JPbpX3DiHZAX7MpNfAClrB3vrWIzCLhQeU44l7ot0I0uaqE5ZwZhfaYzIJYZRyCzvx
-         7NBbcC0wuLyWcF82sV9tinwj+rvg2nIx8jalQNuh5IBazTMW5yvqdlnYtwTVMXoBc+Ax
-         evPplaYjb1yRdKvNBQFUuFvUB8qZJPB9SYA96FWd5eY6w2AGAlHoaULD0DDUJFvRiJQG
-         p5uPVs8pvIpNmOld3CyHYWFjntGXefCxBq5i8/wxbjHu0nLVMjvfnI4nh53mhIvm+f20
-         L5qQ==
+        with ESMTP id S229863AbiK3PiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:38:23 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA442982A
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:37:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1669822641;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vp7HSLV0g1sArLbbuGt4+ey86XMny/g9fUHlgrVx6TQ=;
+        b=bl5wLOESmnqn1/QBFcjYRBUkLzqPmk0IorN6FfurcNct/6TN8NU73qgeUfCXwY3chDkMjN
+        uLSGTtaLo29JFRf7bJdJojozNQz1upDEU3UuHkOlSYj575s7uJiv3UwMp4CoDg4gN41jti
+        1FuqnGLfdWeBrT6BVjuRWHn3YWicmgw=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-503-yfUCMpB5MmOPglZGL5Hp_Q-1; Wed, 30 Nov 2022 10:37:20 -0500
+X-MC-Unique: yfUCMpB5MmOPglZGL5Hp_Q-1
+Received: by mail-qt1-f200.google.com with SMTP id fw8-20020a05622a4a8800b003a64f82fe73so29119760qtb.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:37:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ollth9LvKVA7JWRjE8biQu+3eEzKzMvsoDBYHMsXKH8=;
-        b=xa8wn2zllEOnYCux0E5h8AybJhD2NMs/Sw5tJm+7HWEQOaV9zb8OejixQl0XK06cW1
-         kNfkfj8cp2koshBgweDmZhE422BMfdlIFFGdoNPDdnfDJjuRhqYBzsZK4WRBEpHaa7vH
-         gQ6XYeyIPu1CUPUyZ11yRs5x3msC2rBNvncz9E6ro00eLL/lHWL+c+vJKFGd2u7bU2ns
-         1Bz+qXB6EP+rd7J9X2D/d8CiQxWmNbp3BUpN8OmnHifkQxEiipcJy1eJPA5IwYJci+9J
-         tHduZYBRNED/gPOYPcKfJ7E3Fox7KymXK52jHxaeEYgGvu+m3N42a7HXnb/LOAhpYIk9
-         NhUg==
-X-Gm-Message-State: ANoB5pkyI+qioZgjiS0I9vemkk3qnAK8cnO61Ger/LSZXySbsZwhBPZE
-        bqzl8rY677qu4JzEjv6Ndwls9A==
-X-Google-Smtp-Source: AA0mqf4eK05an46lUSADsygGYj6YbeCIHWbWkSUKjAIYam5U7HNdVQYycIkts0qBNKwGV9Zw+Vloaw==
-X-Received: by 2002:a05:600c:5010:b0:3cf:b067:416c with SMTP id n16-20020a05600c501000b003cfb067416cmr33797088wmr.134.1669822518964;
-        Wed, 30 Nov 2022 07:35:18 -0800 (PST)
-Received: from localhost ([2a01:cb19:85e6:1900:2bf7:7388:731d:c4e1])
-        by smtp.gmail.com with ESMTPSA id h130-20020a1c2188000000b003b4fdbb6319sm5971128wmh.21.2022.11.30.07.35.18
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vp7HSLV0g1sArLbbuGt4+ey86XMny/g9fUHlgrVx6TQ=;
+        b=lxRCy9QwNlUrUKmWNc88cGLl7QCNihUsinfsYWIgjx1Iz+JbTbs14v9tQAt4YtKVSb
+         BqNLgcwFq+zHiTdL8yprHmqLQmJWXntCnqOH7oK2R1cjdeHCw8biy5rqJXSwkAQgxdtS
+         1CwihLFiG6Byux0CtPZqZC+yjMh6ZJbL4RRgt6IGhXWePY/Hcfs72h04xyMNRnDWp3u0
+         C8jhYVPtcMBYOswHGhRqg7H7ITyqZJHkJPd61cbj//cqF7mL4HRH5Qj2NU9i/RMTMu4N
+         kQ/MitdEKJuXksIlD1JUCPqOuOqWdNB/1bdPWL4krvBlJfYqm4ck0rGEI/rWkvpJY5wB
+         jUqQ==
+X-Gm-Message-State: ANoB5pkqP5gA9RE4MdAAn/pFhHmzrZdh9ulvfpWYhys1YAn7wJ3rgXk2
+        L8V4UGJFItRSoBSBA7crz0C5jRP8bPCEdkPIOuhQlbosZRCLBhJ2YDXCy43084IfMR1BAzz5waa
+        TqhfoUrGlVg9NMJG0j8YeVQ==
+X-Received: by 2002:a05:620a:1649:b0:6fa:6eef:50c6 with SMTP id c9-20020a05620a164900b006fa6eef50c6mr39796706qko.44.1669822639859;
+        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf7fllA2S1bZ1/d/CFDmV04sKoI2eroN99zJFahvNSB+/B6oK5c5xqNvBeCUQo3Sf/DDwpj5Mg==
+X-Received: by 2002:a05:620a:1649:b0:6fa:6eef:50c6 with SMTP id c9-20020a05620a164900b006fa6eef50c6mr39796680qko.44.1669822639572;
+        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
+Received: from x1.. (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id ey24-20020a05622a4c1800b0039a55f78792sm970479qtb.89.2022.11.30.07.37.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 07:35:18 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Markuss Broks <markuss.broks@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 1/3] dt-bindings: input/touchscreen: Add compatible
- for IST3038
-In-Reply-To: <20221118182103.3405-2-linmengbo0689@protonmail.com>
-References: <20221118182103.3405-1-linmengbo0689@protonmail.com>
- <20221118182103.3405-2-linmengbo0689@protonmail.com>
-Date:   Wed, 30 Nov 2022 16:35:17 +0100
-Message-ID: <87h6ygsbey.fsf@baylibre.com>
+        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
+From:   Brian Masney <bmasney@redhat.com>
+To:     andersson@kernel.org
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_shazhuss@quicinc.com, psodagud@quicinc.com,
+        ahalaney@redhat.com, echanude@redhat.com
+Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: enable PCIe support
+Date:   Wed, 30 Nov 2022 10:37:10 -0500
+Message-Id: <20221130153710.1369839-1-bmasney@redhat.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,34 +78,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 18, 2022 at 18:21, "Lin, Meng-Bo" <linmengbo0689@protonmail.com> wrote:
+Add the vreg_l11a, pcie3a, pcie3a_phy, and tlmm nodes that are necessary
+in order to get PCIe working on the QDrive3.
 
-> From: Markuss Broks <markuss.broks@gmail.com>
->
-> Imagis IST3038 is a variant (firmware?) of Imagis IST3038 IC,
-> add the compatible for it to the IST3038C bindings.
->
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> [Change from IST3038B to IST3038]
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+This patch also increases the width of the ranges property for the PCIe
+switch that's found on this platform. Note that this change requires
+the latest trustzone (TZ) firmware that's available from Qualcomm as
+of November 2022. If this is used against a board with the older
+firmware, then the board will go into ramdump mode when PCIe is probed
+on startup.
 
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+The ranges property is overridden in this sa8540p-ride.dts file since
+this is what's used to describe the QDrive3 variant with dual SoCs.
+There's another variant of this board that only has a single SoC where
+this change is not applicable, and hence why this specific change was
+not done in sa8540p.dtsi.
 
-> ---
->  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> index e3a2b871e50c..a58c045d2ba1 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
-> @@ -18,6 +18,7 @@ properties:
->  
->    compatible:
->      enum:
-> +      - imagis,ist3038
->        - imagis,ist3038c
->  
->    reg:
-> -- 
-> 2.30.2
+These changes were derived from various patches that Qualcomm
+delivered to Red Hat in a downstream kernel.
+
+Signed-off-by: Brian Masney <bmasney@redhat.com>
+---
+This patch depends on the following series that hasn't made it's way
+into linux-next yet:
+
+[PATCH v10 0/2] arm64: dts: qcom: add dts for sa8540p-ride board
+https://lore.kernel.org/lkml/20221118025158.16902-1-quic_ppareek@quicinc.com/
+
+I can't find the specific TZ firmware version that we have so that's why
+I included the date instead.
+
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 54 +++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index a5f87a8629d6..e953165f3b73 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -51,6 +51,14 @@ vreg_l7a: ldo7 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l11a: ldo11 {
++			regulator-name = "vreg_l11a";
++			regulator-min-microvolt = <880000>;
++			regulator-max-microvolt = <880000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-allow-set-load;
++		};
++
+ 		vreg_l13a: ldo13 {
+ 			regulator-name = "vreg_l13a";
+ 			regulator-min-microvolt = <3072000>;
+@@ -139,6 +147,27 @@ vreg_l8g: ldo8 {
+ 	};
+ };
+ 
++&pcie3a {
++	ranges = <0x01000000 0x0 0x32200000 0x0 0x32200000 0x0 0x100000>,
++	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
++	         <0x03000000 0x6 0x00000000 0x6 0x00000000 0x2 0x00000000>;
++
++	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie3a_default>;
++
++	status = "okay";
++};
++
++&pcie3a_phy {
++	vdda-phy-supply = <&vreg_l11a>;
++	vdda-pll-supply = <&vreg_l3a>;
++
++	status = "okay";
++};
++
+ &qup2 {
+ 	status = "okay";
+ };
+@@ -158,6 +187,31 @@ &remoteproc_nsp1 {
+ 	status = "okay";
+ };
+ 
++&tlmm {
++	pcie3a_default: pcie3a-default {
++		perst {
++			pins = "gpio151";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++
++		clkreq {
++			pins = "gpio150";
++			function = "pcie3a_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		wake {
++			pins = "gpio56";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++	};
++};
++
+ &ufs_mem_hc {
+ 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+ 
+-- 
+2.38.1
+
