@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9728163DB63
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 18:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4348763DB67
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 18:03:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbiK3RDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 12:03:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
+        id S230512AbiK3RDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 12:03:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230492AbiK3RCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 12:02:37 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D73A900EC
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 08:59:05 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id bx10so16031529wrb.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 08:59:05 -0800 (PST)
+        with ESMTP id S230520AbiK3RCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 12:02:45 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D9991C38
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 08:59:10 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id v1so28085146wrt.11
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 08:59:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xm/vpmwhJgDMht8f1OqkuJQbgIo2XHirTX9u59ErmCw=;
-        b=JczN02E2zUniQkFSyinTgUEgZkWxCQCQSlzEMSi7CUA4UKbNvxpK6XTXLRb+e9Es6L
-         T9kO4KLNbSPTgabKho0R11ejZjEQ3DiHnow9x5n832MbzEpejgflvfFsYd4u9+Le5rZb
-         WA5teiVt2J4tLcHokkfz1geKUkExaZe+BmRIFdEu9b0tWIavvo0SMJdhGGdu7j59DGjG
-         SzflNFalp1RZ09Ln6FDQaI1UOV2IgDGIbaPqpa9RjqhVKohecpAFdE69uHGYpaHDA517
-         lx7ILYaN6RbWkyjiunk1HcLktKKQCJCSp0x5o2Mr3OdzJT+nHw8PVPIizB4zTLo8TCUe
-         JUjg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+WyB3ufPbqxDphL9azoYblwx5btpnokUgFLuY6XL+Nc=;
+        b=Qw8vJln92qZi9+bWm/VwPlkXpqE5kbwSfK1vxtLp7CiiLYJGCnFsYMF9iIqjee5wts
+         oEg9AJ5neOsdRnh7D/6OEy423m7+pl1CF+RSlkgB4v4fmTnvRcsBJRzbXqLvI5hjErHC
+         QIQTTeqg3hjRX4gpFye81jXkqrUXz3hchQ4554l8j8w4ssnjC8jTDGIHGfBysn2V3v3g
+         KjuOmpGKZTW56uLzTb0fic0oZh3IejPINgzLT6fh/p+mVsbixwBM6vJVlfPmjkmxmPh1
+         z4pPgROgv1EUjqHs/+zInYqbozJ3PtwlGAWGnFv9eBoklyIsZm4n/9b2X9c1dQWb2adT
+         jtWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xm/vpmwhJgDMht8f1OqkuJQbgIo2XHirTX9u59ErmCw=;
-        b=6R+lHgwteB/2YwfORuZ7dQqKOoiukIWFrus1onYYetV49F27/I79fGP2n12rkNzhAw
-         nIXqK0wSASLvZiYZhNknsZttciRzjvs6IAtxMPmErZas6yY1CjkJctzjZ/fbG22kiLeu
-         FGP/zHrURUxn+hb8gd9SRj2wWYp6iMLhTahR9CBHPLaot0Whcg7p9K73kUTy84/uc2se
-         xdT6Uyc85azOBdrO8r/KsSMMIHWoLclmPFwlzzIwxVywOMsRJI2z3/M3UIlhQbrnoXOs
-         3m05drkYk7apc7k0pbNVgK1sKs4m6dju8s1JD43nzGEtQWCr2P1SKWjm0VUGye43h+g7
-         p/mw==
-X-Gm-Message-State: ANoB5pkfb/NDyOH1HWvpPZYGi+e7Jqa7C601BHOf3asKDv/a8Jjs8zqE
-        5BLP+R98MQOUbMstOUhwdo1tWIs56IxeCTJP
-X-Google-Smtp-Source: AA0mqf5VYMIGBkoe+9W0ftAz/MRPnbbwFxCHlxVcjBQ7amTWdrP924+2qGdvj3bOQD6mp8ZQZfJs1A==
-X-Received: by 2002:a05:6000:702:b0:241:b881:22af with SMTP id bs2-20020a056000070200b00241b88122afmr28683544wrb.652.1669827534436;
-        Wed, 30 Nov 2022 08:58:54 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+WyB3ufPbqxDphL9azoYblwx5btpnokUgFLuY6XL+Nc=;
+        b=05gor1Dk6BUlDamE9/GyPFkTRQlhzH4rOoZ0CECSaMGIYbKq3ub+Hlu9a38yEBbhLP
+         1mUbDaNn5SYs+bNTqK1H1kAOvkK9wP4FzMpyyXrWiST0GgEXHMRx+n5AQUvEHQK3eoiz
+         qvoahjiTVSIB/V1u2nQ7cOGypPZBPj6D6FO7y2FcAMNcK7v3vgmd6tyWBzbFY9NEVC8D
+         Q4X+ocY1sFDWPt37t1Gasv5TTlSx8iuNees6GdssULBIiRsCwxJ0EfvLLZN4/eevNBOx
+         yEcgGlXgvAI0EXKmv2o9kgqIvNfSFirQSqu1Cp5oLxncOfgIFd5A5/1scRC1yBoeJ3wn
+         0V4w==
+X-Gm-Message-State: ANoB5pkDBN4g8O2ajLfGW8BRhV4irHjNTDQD6A1XkgmDWUVuhz4B1spo
+        ypEsh86tqSbC5LP8b6r1PGlHVqpT6OfdLbxM
+X-Google-Smtp-Source: AA0mqf4NiWlsIW8ZJF44oc20R+Q1yt9vhWAzRpzkMmQDj+R/2wnJ8xj6lHDYa3uJICsH/jDqHe0qIw==
+X-Received: by 2002:a5d:49c5:0:b0:242:2fe2:ffa1 with SMTP id t5-20020a5d49c5000000b002422fe2ffa1mr1851739wrs.96.1669827544793;
+        Wed, 30 Nov 2022 08:59:04 -0800 (PST)
 Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id t67-20020a1c4646000000b003cfa622a18asm6066895wma.3.2022.11.30.08.58.53
+        by smtp.gmail.com with ESMTPSA id t67-20020a1c4646000000b003cfa622a18asm6066895wma.3.2022.11.30.08.59.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 08:58:54 -0800 (PST)
+        Wed, 30 Nov 2022 08:59:04 -0800 (PST)
 From:   Naresh Solanki <naresh.solanki@9elements.com>
 X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
 To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
@@ -57,10 +58,12 @@ To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
 Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
         Patrick Rudolph <patrick.rudolph@9elements.com>,
         Naresh Solanki <Naresh.Solanki@9elements.com>
-Subject: [PATCH v3 1/4] hwmon: (pmbus/core): Add status byte to regulator flag map
-Date:   Wed, 30 Nov 2022 17:58:28 +0100
-Message-Id: <20221130165833.3478555-1-Naresh.Solanki@9elements.com>
+Subject: [PATCH v3 1/4] hwmon: (pmbus/core): Update regulator flag map
+Date:   Wed, 30 Nov 2022 17:58:29 +0100
+Message-Id: <20221130165833.3478555-2-Naresh.Solanki@9elements.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221130165833.3478555-1-Naresh.Solanki@9elements.com>
+References: <20221130165833.3478555-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,28 +76,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PMBus status byte to regulator flag map.
+Add regulator flag map for PMBUS status byte & status input.
 
 Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-
 ---
-Changes:
-- Remove status input
-- Add comment for PMBUS status byte.
----
- drivers/hwmon/pmbus/pmbus_core.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+ drivers/hwmon/pmbus/pmbus_core.c | 30 ++++++++++++++++++++++--------
+ 1 file changed, 22 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-index 95e95783972a..a7b4ae0f1f3b 100644
+index 95e95783972a..f5caceaaef2a 100644
 --- a/drivers/hwmon/pmbus/pmbus_core.c
 +++ b/drivers/hwmon/pmbus/pmbus_core.c
-@@ -2751,7 +2751,16 @@ struct pmbus_regulator_status_category {
- };
+@@ -2752,6 +2752,15 @@ struct pmbus_regulator_status_category {
  
  static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] = {
--	{
-+	{	/* STATUS byte is always present. */
+ 	{
 +		.func = -1,
 +		.reg = PMBUS_STATUS_BYTE,
 +		.bits = (const struct pmbus_regulator_status_assoc[]) {
@@ -111,11 +107,30 @@ index 95e95783972a..a7b4ae0f1f3b 100644
  			{ PB_IOUT_OC_WARNING,    REGULATOR_ERROR_OVER_CURRENT_WARN },
  			{ PB_IOUT_OC_FAULT,      REGULATOR_ERROR_OVER_CURRENT },
  			{ PB_IOUT_OC_LV_FAULT,   REGULATOR_ERROR_OVER_CURRENT },
-+			{ PB_POUT_OP_FAULT,      REGULATOR_ERROR_FAIL },
++			{ PB_POUT_OP_FAULT,      REGULATOR_ERROR_OVER_CURRENT },
  			{ },
  		},
  	}, {
-@@ -2834,14 +2844,6 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
+@@ -2778,6 +2788,18 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
+ 			{ PB_TEMP_OT_FAULT,      REGULATOR_ERROR_OVER_TEMP },
+ 			{ },
+ 		},
++	}, {
++		.func = PMBUS_HAVE_STATUS_INPUT,
++		.reg = PMBUS_STATUS_INPUT,
++		.bits = (const struct pmbus_regulator_status_assoc[]) {
++			{ PB_IIN_OC_FAULT,       REGULATOR_ERROR_OVER_CURRENT },
++			{ PB_IIN_OC_WARNING,     REGULATOR_ERROR_OVER_CURRENT_WARN },
++			{ PB_VOLTAGE_UV_FAULT,   REGULATOR_ERROR_UNDER_VOLTAGE },
++			{ PB_VOLTAGE_UV_WARNING, REGULATOR_ERROR_UNDER_VOLTAGE_WARN },
++			{ PB_VOLTAGE_OV_WARNING, REGULATOR_ERROR_OVER_VOLTAGE_WARN },
++			{ PB_VOLTAGE_OV_FAULT,   REGULATOR_ERROR_OVER_VOLTAGE_WARN },
++			{ },
++		},
+ 	},
+ };
+ 
+@@ -2834,14 +2856,6 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
  		if (status & PB_STATUS_POWER_GOOD_N)
  			*flags |= REGULATOR_ERROR_REGULATION_OUT;
  	}
