@@ -2,102 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69C0663E2C3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77C2F63E2ED
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbiK3VbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 16:31:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59098 "EHLO
+        id S229516AbiK3VuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 16:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiK3VbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:31:00 -0500
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9CA900D6;
-        Wed, 30 Nov 2022 13:30:59 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id p8-20020a056830130800b0066bb73cf3bcso12080180otq.11;
-        Wed, 30 Nov 2022 13:30:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mc6V9+sDoG9Mki15v8P5KKA7NfsAq4SE0l5Qimb/jYw=;
-        b=Hr6Tyebvi7CjgUcUnY3TaOuf8HGIPSMODvO5A9+JZxg/S1iCQGQVbwJ8WmvSomjrCm
-         uEFFpAhL796uM9L1JxGyyaPCuJ0cwuH4aoNLdF4OPJdFEoCjGLMIp9P5KR8RDjk6r47P
-         6lZvcR2F2chuN5cKaUo9QH0gt/wLQ97VqkTX4CUBRAGm9fJwcy7MWHuYYIKVxbkN6T4y
-         bVZ+5LZrHnNmf/4pbfcx5DgNndifq+cAIuxSn/GeZ3i57UfnLYTQYiYeZ1zCl46iZroy
-         /pBO55ifq3P184+OSiQyH75eiOGuI8OyOghGceLq55tPGyKI1aZn15dg6J1py1+c4GKL
-         o4Ng==
-X-Gm-Message-State: ANoB5pnGKRk8w8vXwMWJwn5yUF6GwtCF5c4HNXDWAQu87IM8T3cjxpTo
-        vYNX3h3bNgLsMMvwXzz47g==
-X-Google-Smtp-Source: AA0mqf4vUPSR7ovZbOCRKRqMQN2EeuGVgLzCTx74Sseob1+HjZJNxvL9pC0HARrpgxgB7hYUbhdb3Q==
-X-Received: by 2002:a05:6830:1688:b0:66c:42d7:7d70 with SMTP id k8-20020a056830168800b0066c42d77d70mr21118469otr.98.1669843858446;
-        Wed, 30 Nov 2022 13:30:58 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u9-20020a056870f28900b0011bde9f5745sm1781162oap.23.2022.11.30.13.30.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 13:30:57 -0800 (PST)
-Received: (nullmailer pid 2960995 invoked by uid 1000);
-        Wed, 30 Nov 2022 21:30:57 -0000
-Date:   Wed, 30 Nov 2022 15:30:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neal Liu <neal_liu@aspeedtech.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Chia-Wei Wang --cc=linux-kernel @ vger . kernel . org" 
-        <chiawei_wang@aspeedtech.com>, linux-crypto@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: bus: add documentation for Aspeed
- AHBC
-Message-ID: <20221130213057.GA2960216-robh@kernel.org>
-References: <20221124105552.1006549-1-neal_liu@aspeedtech.com>
- <20221124105552.1006549-5-neal_liu@aspeedtech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221124105552.1006549-5-neal_liu@aspeedtech.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229724AbiK3Vt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:49:59 -0500
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632045B851;
+        Wed, 30 Nov 2022 13:49:58 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id 0F467320094F;
+        Wed, 30 Nov 2022 16:49:52 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Wed, 30 Nov 2022 16:49:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1669844992; x=1669931392; bh=wX9irGcUbl
+        Xc4RqeTgp4fnnU07GYdQWcxMiKg/SvwkU=; b=fYP7D2uDlDvE8/Ds6VeE/7Js1t
+        bQFViWjZyp6L1w5ntvcYnOcilhM10S3q+BNI1JWhdoIwvpWjZlWAOworhoWcVC2+
+        8evG3Ri+9YaIU5U9QPfzxxLZv9wL1auCHYE9/jJWKEEm6JcDVYM9dpVXV47DXJb3
+        sNe+s8hoXA7EwOX+vH6kgRgJAsMP3YNc0+OzJnCHwNNew7Ck3FSHU+BEbmmAXqsp
+        UufeNGRBPTOyxyQcufueB/l3uuigsAy0KC4FyJwg7DzMKElSkXUQ2K6c7qSvbnrn
+        ngWxB5GElmPps4W52sfKfcG/b58vwh54QnZ42F8I9CO6rncEFs2Q2XWj4b8g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1669844992; x=1669931392; bh=wX9irGcUblXc4RqeTgp4fnnU07GY
+        dQWcxMiKg/SvwkU=; b=LAaMgeKHxDISnihMHN5JzfsPU/S073/o2JnSspeGe+5c
+        gvEoMGdMjeDlUm//JERDpnVz3KrA32Pf04rq+wVo2H/NL7GCHRF9Axf672OvY/zg
+        CqxBqSCadZ5oZnRryunTZf+VZYN50zsuKHr7w2+0aBP19Kqpt5zImOq2qCV5DLRB
+        RZiVt43z4EFtj5A7UP7t1sFiI2cXyvoaqofTrRE0UOUzgnS3rNCSplrRlCQUtzCx
+        JmpMPbaTaksHqTNArpFMHArbo1LQoXjnU5ijTrq9Wjd925hE4IpfKndQGbMHCUJy
+        dOznD9JmmTcbsYrAnMcqUnfVj5zL+7ThHqHwp+ejtA==
+X-ME-Sender: <xms:_8-HYxmp-_ZaWfU5EVYBM0XPygw6gQuSYzh3odRSxPjKPwe8lSLG_g>
+    <xme:_8-HY82RFRwOo7I1sXZjOpFP8uVh_qY3FBNPbwEt58oL_FZKl5tKfYLvMD8R8X4Sf
+    86f1wqnLGKfyohi-p0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdefgdduhedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:_8-HY3qaiXy8wIy2OuRAjh--jtlSPfQqTADfp7VrLDcA0Cp9Y2VzdQ>
+    <xmx:_8-HYxnOuyA-4BOEGwKLSRJK06g9oqFSPuKvVKZdBzdd_nYeRmdsHg>
+    <xmx:_8-HY_36cJSstcsQ1L2lDJ9tqJVuaaTT9WDPjSLiRP_HA2mj0gALzQ>
+    <xmx:ANCHY4dUQeAv_Y2f9f1ZgRo7GBQRvD6LpXfyzmE_bPQCFCm1TMCm1w>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5EF4DB60086; Wed, 30 Nov 2022 16:49:51 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <7fcafe92-35d9-4a83-b00d-7816fdb43139@app.fastmail.com>
+In-Reply-To: <mhng-f034544d-5b0a-47c5-8e45-3dbcefc0aaaa@palmer-ri-x1c9a>
+References: <mhng-f034544d-5b0a-47c5-8e45-3dbcefc0aaaa@palmer-ri-x1c9a>
+Date:   Wed, 30 Nov 2022 22:49:31 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Palmer Dabbelt" <palmer@dabbelt.com>,
+        "Conor Dooley" <conor@kernel.org>, "Will Deacon" <will@kernel.org>,
+        "Marc Zyngier" <maz@kernel.org>
+Cc:     ajones@ventanamicro.com,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "Samuel Holland" <samuel@sholland.org>,
+        "Chen-Yu Tsai" <wens@csie.org>,
+        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Jisheng Zhang" <jszhang@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "Andre Przywara" <andre.przywara@arm.com>,
+        "Albert Ou" <aou@eecs.berkeley.edu>,
+        "Anup Patel" <apatel@ventanamicro.com>,
+        "Atish Patra" <atishp@rivosinc.com>, christianshewitt@gmail.com,
+        "Conor.Dooley" <conor.dooley@microchip.com>,
+        guoren <guoren@kernel.org>, heinrich.schuchardt@canonical.com,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>, stano.jakubek@gmail.com
+Subject: Re: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1 platform and
+ drivers
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 24, 2022 at 06:55:52PM +0800, Neal Liu wrote:
-> Add device tree binding documentation for the Aspeed
-> Advanced High-Performance Bus (AHB) Controller.
-> 
-> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-> ---
->  .../bindings/bus/aspeed,ast2600-ahbc.yaml     | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-> new file mode 100644
-> index 000000000000..cf9740f2a0c7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED Advanced High-Performance Bus Controller (AHBC) Device Tree Bindings
+On Wed, Nov 30, 2022, at 21:24, Palmer Dabbelt wrote:
+> On Mon, 28 Nov 2022 22:54:18 PST (-0800), Conor Dooley wrote:
+>>
+>> idk, defconfig to me is not about you or I, it's about A Developer that gets an SBC or a devkit and their experience.
+>> Or alternatively, someone's CI ;)
+>> I'd like to put everything in, but I recall that being shot down, that's all.
+>
+> The whole "who is defconfig for" discussion always ends up kind of 
+> vague, but IIUC it's generally aimed at kernel hackers as opposed to end 
+> users -- so it's not meant to be a disto config, that's why we have 
+> things like the debug options turned on.  I tend to think of it as a "if 
+> a patch submitter is going to test only one config, then what do I want 
+> in it?" and let that determine what goes in defconfig.
+>
+> IMO having defconfig contain the drivers necessary to boot every common 
+> dev board as =y, and having =m for anything else on those boards also 
+> seem reasonable.  That will make the transition from vendor/distro 
+> kernels to upstream a bit smoother, which is always good.  I guess 
+> there's some slight build time and image size issues, but aside from 
+> some very small systems that shouldn't be too bad for kernel developers 
+> -- and if we really end up with another popular system with 6MiB of RAM 
+> we can just stick another tiny defconfig in there for it.
+>
+> I actually don't use modules when doing kernel development because I 
+> find it easier to track things when they're packed into a single binary, 
+> but I don't think it's necessary to steer everyone that way.
+>
+> Adding some of the Arm folks here, in case they have thoughts.  The best 
+> bet is probably to try and do something similar, though my worry is that 
+> the answer is something like "target standard platforms" and we don't 
+> have any.
 
-Drop " Device Tree Bindings"
+I think this is handled very inconsistently across architectures. On
+32-bit arm, we used to have a board specific defconfig for each machine,
+but of course that never scaled to the number of supported machines.
 
-With that,
+The important defconfig files we have these days are the arm64
+one, and on arm32 we have the ones that are mutually incompatible,
+in particular one for armv7 and one for armv5, each enabling as
+many machines as possible, plus usually one per SoC vendor that
+is more specialized.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+If you want to formalize it a bit more than this,  I would recommend
+having more fragments, e.g. one for typical debugging options,
+one for things that are needed to boot both Fedora and Debian
+userland, etc.
+
+      Arnd
