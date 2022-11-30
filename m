@@ -2,105 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3682863CF82
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 08:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0D163CFA7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 08:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233202AbiK3HEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 02:04:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        id S233835AbiK3HVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 02:21:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbiK3HEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 02:04:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4D756EE1;
-        Tue, 29 Nov 2022 23:04:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 08E7661A36;
-        Wed, 30 Nov 2022 07:04:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA02C433D6;
-        Wed, 30 Nov 2022 07:04:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669791845;
-        bh=X2hPhN+EYjcCTx3ChJ6TWYuinHRDF7JJBXdPbw05/5w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CHsf1QVv9nH0bbZCg4lJSQyjpYf9tGr9BYNjQHL6FWKen9L8u99MN6OJyyonVqet7
-         6mu/L1XRnUn7nb6q2xZA3lEkKj1nxOX//lxv1RP4UFlR9sdYUuAw19OODOEeqMZxqp
-         vKaTgnKVmok2zWRHphYGF9HZcS88BrEWYslg89s00Zqd1Y3NVIfjtNc2/t3YBPKpvg
-         /rE5jqqn7tmSL1aG3A001PeKMz5EV/kPHepbLh3ShLz6HB11n43xGYA2IBz6A7bmjO
-         fse/lpKjukDYdTrON4nlKfPf87evDNkio4sik0p2YCU/cLrx9PqAYAbqSrrwSZMkdh
-         nGUCp4ov5SQcg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1p0H8Z-0007n8-Mz; Wed, 30 Nov 2022 08:04:07 +0100
-Date:   Wed, 30 Nov 2022 08:04:07 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: qcom-ep: Fix PERST register description
-Message-ID: <Y4cAZ8ZqnRvR350Z@hovoldconsulting.com>
-References: <20221018093115.7537-1-johan+linaro@kernel.org>
+        with ESMTP id S229648AbiK3HVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 02:21:35 -0500
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038211F9D9;
+        Tue, 29 Nov 2022 23:21:34 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 3E9AF32008C3;
+        Wed, 30 Nov 2022 02:21:31 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 30 Nov 2022 02:21:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1669792890; x=
+        1669879290; bh=q72EpL3uhOPRJqv9dDJjBbzAkGOsjTb1XnOeKej+X6Y=; b=T
+        1oA3hm0bUR7Xv8EVN7JD1+jqOy3CWDrA2nAw/zq8z9ewbU3FQ8BBdMxfxP9FTE8y
+        tuYufw1idtHR12TPdU7wDWUgwHVtiBc1Jvh0c3hG5sAzi5QWafOHf8snUNIHxkQp
+        pQ4nEFhDJVqX0ybKKMvv1o6wxfnvHMjnBzDR/tzfpPQLh6F1qOy+Alme3W13OYnG
+        6rIYtNTmTCKr7k8+jfO5fF8TvKST6t6PxkcRN02IqKPTRZsbcp5p57iZ9PyRTWwt
+        yU/yICNdQPw68xFDEIZXTxEe6ze9lR/RSsAnGxUCoj7kplifqz9R4yJpWd3f4X/D
+        9Irdun8sZQShg21/RCCWg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1669792890; x=
+        1669879290; bh=q72EpL3uhOPRJqv9dDJjBbzAkGOsjTb1XnOeKej+X6Y=; b=R
+        pYOmhN+h3E3LxnGoY1ByqBMUkdZ/f5rHya6YV4HXgIah0Xz+uVR7bGS/m0AR/hao
+        6wRFPXOwo1V5Hf7puqFqe29XGyX0QtVwGrKVAZs+2jIg8zAdBPGGIZ84wmQojVCC
+        lVVvLw6DkItgG4OEVCE2cl28nLNZUATNjbqKHuKy8fb5HmYRrerLfG5N63DywkVP
+        Siu8xcTVvs0aqhvmg9ASVSkAgfjHvaq6tdA+BYdNZLnvJ4UHjq7P3a5Rv8yOP9E1
+        ++L6vEv4rJj15oFj1ZJZZ9fcxK2Rz32m3sO79fXN6lRulgx+JBMng08MU1Nnqt3x
+        Tk6bOHpiu15BfyrwDsAng==
+X-ME-Sender: <xms:egSHY8bHzscxwxJ_XI7SjdETzhUGVpkCgZHGGx7OlAtJmDfvPDTR7w>
+    <xme:egSHY3YPBQFQAmJ2SNwJxWG1Cgg0rDgxX4PDTlh_7o8t8rqPTISOS9LaWasHjabZ5
+    YTisw3i6R2ee581ag>
+X-ME-Received: <xmr:egSHY2_xM4dj0QjoPWlGrg-4-ds6i5qcckSDdqkGcr3isVhQfAXlmVKLidKUR2FDwbVuD76bL9c_QwYzL1i14ciobGZNUy2aDrW9XRdbj0CnR7QRBy7zHvyUmw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtddvgddutdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeejgfffhfdujeeftdeuudeguedttefgieetffffheejuefguedv
+    heejteeftdfftdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:egSHY2ryPlW0Uk6wVPPsUrzYPAZ3nphYU1HFdhLK9ugHv7xtEq6o5w>
+    <xmx:egSHY3o3lHtQ6VBxToj7VZ2tl1tYHonFUJGQ98ZssEKbbHp7Erc_GQ>
+    <xmx:egSHY0TXUTmItSHZUxv2Dg7cUD3c4oKZQbYc5LJS0EuxifZxTFxhUA>
+    <xmx:egSHY1ikeFwuY9xfeCiUw50Ag9_w21YQNXUIEhMyqtIioCf9C0-Hzw>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Nov 2022 02:21:28 -0500 (EST)
+Message-ID: <d4d8998f-288c-3ff6-141d-02814f8e35d0@sholland.org>
+Date:   Wed, 30 Nov 2022 01:21:27 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221018093115.7537-1-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Content-Language: en-US
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-7-jszhang@kernel.org>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 6/9] riscv: dts: bouffalolab: add the bl808 SoC base
+ device tree
+In-Reply-To: <20221127132448.4034-7-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 18, 2022 at 11:31:15AM +0200, Johan Hovold wrote:
-> The 'qcom,perst-regs' property holds a single phandle array with the
-> phandle of the TCSR syscon and offsets of the two PERST registers, but
-> the current schema does not capture this.
+On 11/27/22 07:24, Jisheng Zhang wrote:
+> Add a baisc dtsi for the bouffalolab bl808 SoC.
 > 
-> Update the binding to describe the single phandle array and its three
-> elements.
-> 
-> Fixes: 31c9ef002580 ("dt-bindings: PCI: Add Qualcomm PCIe Endpoint controller")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml          | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  arch/riscv/boot/dts/bouffalolab/bl808.dtsi | 74 ++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index 977c976ea799..7574291646ad 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -42,13 +42,13 @@ properties:
->      maxItems: 8
->  
->    qcom,perst-regs:
-> -    description: Reference to a syscon representing TCSR followed by the two
-> -                 offsets within syscon for Perst enable and Perst separation
-> -                 enable registers
-> +    description: PERST TCSR registers
->      $ref: "/schemas/types.yaml#/definitions/phandle-array"
->      items:
-> -      minItems: 3
-> -      maxItems: 3
-> +      - items:
-> +          - description: phandle of TCSR syscon
-> +          - description: offset of PERST Enable register
-> +          - description: offset of PERST Separation Enable register
->  
->    interrupts:
->      items:
+> diff --git a/arch/riscv/boot/dts/bouffalolab/bl808.dtsi b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+> new file mode 100644
+> index 000000000000..f4b170ccc32e
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> +/*
+> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	compatible = "bouffalolab,bl808";
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	cpus {
+> +		timebase-frequency = <1000000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "thead,c906", "riscv";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			d-cache-block-size = <64>;
+> +			d-cache-sets = <256>;
+> +			d-cache-size = <32768>;
+> +			i-cache-block-size = <64>;
+> +			i-cache-sets = <128>;
+> +			i-cache-size = <32768>;
+> +			mmu-type = "riscv,sv39";
+> +			riscv,isa = "rv64imafdc";
+> +
+> +			cpu0_intc: interrupt-controller {
+> +				compatible = "riscv,cpu-intc";
+> +				interrupt-controller;
+> +				#address-cells = <0>;
+> +				#interrupt-cells = <1>;
+> +			};
+> +		};
+> +	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		/* This value must be overridden by the board */
+> +		clock-frequency = <0>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		ranges;
+> +		interrupt-parent = <&plic>;
+> +		dma-noncoherent;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+> +		uart0: serial@30002000 {
 
-Lorenzo, it seems this one has not yet been picked up so sending a
-reminder.
+It's unfortunate that the SDK/documentation calls this peripheral both
+UART0 and UART3. I don't know if we can/should put the "M0" and "D0" bus
+peripherals in the same DT; it seems like most of the "M0" peripherals
+are not accessible from the C906. But if we did, this would conflict
+with the other UART0.
 
-Johan
+> +			compatible = "bouffalolab,bl808-uart";
+> +			reg = <0x30002000 0x1000>;
+> +			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&xtal>;
+
+There's a clock controller with a mux and a gate between the crystal and
+the UART. I'm not sure what the policy is about adding "fake" suppliers
+before the real supplier has a binding defined.
+
+Unfortunately, Bouffalolab threw everything and the kitchen sink into
+the GLB register space, so that complicates defining the binding for the
+clock/reset controller part.
+
+> +			status = "disabled";
+> +		};
+> +
+> +		plic: interrupt-controller@e0000000 {
+> +			compatible = "thead,c900-plic";
+> +			reg = <0xe0000000 0x4000000>;
+> +			interrupts-extended = <&cpu0_intc 0xffffffff>,
+
+The C906 PLIC has an M-mode context, so 0xffffffff is not correct. This
+should reference the M-mode external interrupt.
+
+> +					      <&cpu0_intc 9>;
+> +			interrupt-controller;
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <2>;
+> +			riscv,ndev = <64>;
+
+The SDK/documentation lists IRQ numbers up to BL808_IRQ_PDS == 82, so
+this value should be at least that.
+
+Regards,
+Samuel
+
+> +		};
+> +	};
+> +};
+
