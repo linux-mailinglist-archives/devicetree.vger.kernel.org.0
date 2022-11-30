@@ -2,138 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2193B63E1B9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF2A263E1D7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:24:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbiK3USZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 15:18:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56630 "EHLO
+        id S229591AbiK3UYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 15:24:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbiK3UR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:17:56 -0500
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845CD934EB
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 12:13:39 -0800 (PST)
-Received: by mail-il1-x132.google.com with SMTP id bp12so8606964ilb.9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 12:13:39 -0800 (PST)
+        with ESMTP id S229616AbiK3UYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:24:20 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA482BD7
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 12:24:10 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id h28so4302090pfq.9
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 12:24:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w5D9QgKvXJDSs69W719kOBsxIgJ1yqINQsNXR6y+ypg=;
-        b=PPaNJJ4BLUfwX1mQEBI+QDJAYRQmqRb4iG7M33xvC3iB/PTrpApOpWJuDXe/Zx+AFY
-         HKm7ba+4GF3xyclbIX7mpmX4wrP+yq6EMSjV35dIhSiQ2sFiWA+STIggI5WTt8Nm41n3
-         VYhlWv+veee5m6oQcf4sLDVY7osh0e4eePoV0=
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IwIJM8t3rDu4EdnqkCy1u4N3uOvpgT7lYcnoQOxoBxE=;
+        b=K93k2mvjpeJmh7SUsLe6tYcwRq+hH6itdOWtDK/qup3vkBSoXOAabgZOUyQOF6nNlZ
+         iF9fzK6JZK8196XZ/rLoxF1OhHJpv0yw9gUW1g1484ZWcMJS7LJRu6+n2DGqfVg/JADG
+         dqYopca9+Nd/tpLzPlDmBA3WmifFAMlwuriRY9rUJ5j7Mc1P2vFHxocNdGJxZqzKnq57
+         v/c/aoT3oHrY8TzoHtDAOy/OUomBsJ/JIUnr52noH6rS+iDuddG8BXSGa7siRmXaVEOz
+         kcUotKwSUv09OMzLP5Vrov9bH2nMrtpfZtQ/PJVAQmVeKVVLODI0SP9G/aEK19XmgRRQ
+         /j5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w5D9QgKvXJDSs69W719kOBsxIgJ1yqINQsNXR6y+ypg=;
-        b=xs5SC9r9neue6imdSCfWo7HTHB8WtPXMsxQr8cbchBeLDT1VFZv3w2Ffmxpo0s7+Lr
-         qo9fXaxnQ3Gv7WOeXTmPr/YhbkN+p879N45egRkXFaZlov4JUbuRHIACgqYSPCnhyU8W
-         g9F4iOZuq7+MHAM6AqGJKrYnntIWiWIEwCo+TF4V4vrDS78aAFcVn92cp8QKFeNddqGs
-         oSEyPzb9sQUg9sZGGRbdfuuqEUWx8T7PGQxNhye1Rnuk9PsiCbNpyR3SmfatZnJaOSBu
-         r887wVPn0dmZoB4F4zG8TMj1WvoIbaOlORoz8tRfl4U4Nn4QOzMD1rY/R6XJKvEO+Pdq
-         wYHA==
-X-Gm-Message-State: ANoB5pl53rdUwO0Sziffx1cKLHndl0+uU6JePyDAs9kGZzSQArUPL92v
-        xYXqfqY49a0L5IhiEa0Z7tSWtA==
-X-Google-Smtp-Source: AA0mqf6b492EKnEpYiEcgyaTQ8cIRPquT7Nfs9N61Dnynobe1sPfOduEfXXY45N6Q4TWv88NBbMNiw==
-X-Received: by 2002:a92:d607:0:b0:2fb:6601:80f2 with SMTP id w7-20020a92d607000000b002fb660180f2mr24147849ilm.208.1669839218517;
-        Wed, 30 Nov 2022 12:13:38 -0800 (PST)
-Received: from markhas1.lan (184-96-172-159.hlrn.qwest.net. [184.96.172.159])
-        by smtp.gmail.com with ESMTPSA id r2-20020a02b102000000b00363e61908bfsm902158jah.10.2022.11.30.12.13.38
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IwIJM8t3rDu4EdnqkCy1u4N3uOvpgT7lYcnoQOxoBxE=;
+        b=wiZCEyxYoT63V80OxBSyPynD+dmuH0lRhbr6IjN4GkWND8HZnYe3jMrseVtI+A6wPg
+         iUuVhFdjl4hJRxl2W8UxmmupGi7jcPYVPswWokJ/pZWMOQdbz2vMj47FMYs6T7jaxN/y
+         0WOIuiMgy/SYfBgssWBBE/yvNyspGPCJpGurGpAr0vzO9Xd+Cj1wTb0JNompf719UZtc
+         GNhnJXgVM16Z/yFt4fLM+LwvXFjOuKhJE8S6MjlrZEyNS1mlvdoQX7UqzkvRypKjPkYa
+         PWlKSjzM8qYJwwm+9VLj5hCjKAQt0Zpz4KOMHR5LEjw4Q7lAM+gPmTBDkXVxD07ARiWA
+         9gbg==
+X-Gm-Message-State: ANoB5pmorUpF6comUdxPdAxpvxJBuUC8KWKU4QF6v6dKNU843lxTBBMk
+        74xHaBUBrY+83+6gNUUFN51XKA==
+X-Google-Smtp-Source: AA0mqf7tSFcxtMxKDfiy+UvOsM0wZq+I6jJp/XfbS2vu+XRn8HfqshC0r1AVmiaoBTapt2hLTUT4+g==
+X-Received: by 2002:a63:5c23:0:b0:46f:b6e1:1966 with SMTP id q35-20020a635c23000000b0046fb6e11966mr46862935pgb.625.1669839849429;
+        Wed, 30 Nov 2022 12:24:09 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id o17-20020a170902d4d100b00186cf82717fsm1917646plg.165.2022.11.30.12.24.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 12:13:38 -0800 (PST)
-From:   Mark Hasemeyer <markhas@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Raul Rangel <rrangel@chromium.org>,
-        Mark Hasemeyer <markhas@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v8 2/3] dt-bindings: mfd: Add compatible string for UART support
-Date:   Wed, 30 Nov 2022 13:12:55 -0700
-Message-Id: <20221130131245.v8.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
-X-Mailer: git-send-email 2.38.1.584.g0f3c55d4c2-goog
-In-Reply-To: <20221130131245.v8.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-References: <20221130131245.v8.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-MIME-Version: 1.0
+        Wed, 30 Nov 2022 12:24:08 -0800 (PST)
+Date:   Wed, 30 Nov 2022 12:24:08 -0800 (PST)
+X-Google-Original-Date: Wed, 30 Nov 2022 12:23:48 PST (-0800)
+Subject:     Re: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1 platform and drivers
+In-Reply-To: <BBF52D3D-B8D3-4895-B316-33555E22C56B@kernel.org>
+CC:     ajones@ventanamicro.com, heiko@sntech.de, samuel@sholland.org,
+        wens@csie.org, jernej.skrabec@gmail.com,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, jszhang@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        andre.przywara@arm.com, aou@eecs.berkeley.edu,
+        apatel@ventanamicro.com, Atish Patra <atishp@rivosinc.com>,
+        christianshewitt@gmail.com,
+        Conor Dooley <conor.dooley@microchip.com>, guoren@kernel.org,
+        heinrich.schuchardt@canonical.com, linus.walleij@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        stano.jakubek@gmail.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>
+Message-ID: <mhng-f034544d-5b0a-47c5-8e45-3dbcefc0aaaa@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a compatible string to support the UART implementation of the cros
-ec interface.
+On Mon, 28 Nov 2022 22:54:18 PST (-0800), Conor Dooley wrote:
+>
+>
+> On 29 November 2022 06:49:25 GMT, Andrew Jones <ajones@ventanamicro.com> wrote:
+>>On Mon, Nov 28, 2022 at 09:17:38PM +0000, Conor Dooley wrote:
+>>> On 28/11/2022 21:11, Heiko Stübner wrote:
+>>> > Am Samstag, 26. November 2022, 17:40:11 CET schrieb Conor Dooley:
+>>> >> On Fri, Nov 25, 2022 at 05:46:56PM -0600, Samuel Holland wrote:
+>>> >>> Now that several D1-based boards are supported, enable the platform in
+>>> >>> our defconfig. Build in the drivers which are necessary to boot, such as
+>>> >>> the pinctrl, MMC, RTC (which provides critical clocks), SPI (for flash),
+>>> >>> and watchdog (which may be left enabled by the bootloader).
+>>> >>
+>>> >> All of that looks good.
+>>> >>
+>>> >>> Other common
+>>> >>> onboard peripherals are enabled as modules.
+>>> >>
+>>> >> This I am not sure about though. I'll leave that to Palmer since I'm
+>>> >> pretty sure it was him that said it, but I thought the plan was only
+>>> >> turning on stuff required to boot to a console & things that are
+>>> >> generally useful rather than enabling modules for everyone's "random"
+>>> >> drivers. Palmer?
+>>> > 
+>>> > Isn't the defconfig meant as a starting point to get working systems
+>>> > with minimal config effort? At least that was always the way to go on arm
+>>> > so far :-) .
+>>> > 
+>>> > So having boot-required drivers built-in with the rest enabled as modules
+>>> > for supported boards will allow people to boot theirs without headaches.
+>>> > 
+>>> > Disabling unneeded drivers if you're starved for storage space in a special
+>>> > project is always easier than hunting down all the drivers to enable for a
+>>> > specific board. 
+>>> 
+>>> I wouldn't mind being able to turn on all the PolarFire SoC stuff and
+>>> yeah, that would be the way that arm64 does it. But I do recall hearing
+>>> that I should not turn stuff on this way, when I initially tried to
+>>> turn stuff on via selects, got a nack and asked if I could do this instead.
+>>> 
+>>> But it may be that I misremember, which is why I appealed to the Higher
+>>> Powers for clarification :)
+>>
+>>FWIW, I don't worry too much about modules in defconfig because I always
+>>immediately apply a 'LSMOD=$PWD/L localmodconfig' to it, where the L
+>>file is an lsmod output which only includes modules I need.
+>
+> idk, defconfig to me is not about you or I, it's about A Developer that gets an SBC or a devkit and their experience.
+> Or alternatively, someone's CI ;)
+> I'd like to put everything in, but I recall that being shot down, that's all.
 
-Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+The whole "who is defconfig for" discussion always ends up kind of 
+vague, but IIUC it's generally aimed at kernel hackers as opposed to end 
+users -- so it's not meant to be a disto config, that's why we have 
+things like the debug options turned on.  I tend to think of it as a "if 
+a patch submitter is going to test only one config, then what do I want 
+in it?" and let that determine what goes in defconfig.
 
-Changes in v8:
-- Update commit message
+IMO having defconfig contain the drivers necessary to boot every common 
+dev board as =y, and having =m for anything else on those boards also 
+seem reasonable.  That will make the transition from vendor/distro 
+kernels to upstream a bit smoother, which is always good.  I guess 
+there's some slight build time and image size issues, but aside from 
+some very small systems that shouldn't be too bad for kernel developers 
+-- and if we really end up with another popular system with 6MiB of RAM 
+we can just stick another tiny defconfig in there for it.
 
-Changes in v7:
-- No change
+I actually don't use modules when doing kernel development because I 
+find it easier to track things when they're packed into a single binary, 
+but I don't think it's necessary to steer everyone that way.
 
-Changes in v6:
-- No change
-
-Changes in v5:
-- No change
-
-Changes in v4:
-- Changes in commit message.
-
-Changes in v3:
-- Rebased changes on google,cros-ec.yaml
-
-Changes in v2:
-- No change
-
----
- .../devicetree/bindings/mfd/google,cros-ec.yaml       | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 04962bb29576e..26787e4574b8d 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -28,6 +28,9 @@ properties:
-       - description:
-           For implementations of the EC is connected through RPMSG.
-         const: google,cros-ec-rpmsg
-+      - description:
-+          For implementations of the EC is connected through UART.
-+        const: google,cros-ec-uart
- 
-   controller-data:
-     description:
-@@ -222,4 +225,12 @@ examples:
-             compatible = "google,cros-ec-rpmsg";
-         };
-     };
-+
-+  # Example for UART
-+  - |
-+    uart0 {
-+        cros-ec {
-+            compatible = "google,cros-ec-uart";
-+        };
-+    };
- ...
--- 
-2.38.1.584.g0f3c55d4c2-goog
-
+Adding some of the Arm folks here, in case they have thoughts.  The best 
+bet is probably to try and do something similar, though my worry is that 
+the answer is something like "target standard platforms" and we don't 
+have any.
