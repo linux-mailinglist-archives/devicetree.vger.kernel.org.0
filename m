@@ -2,187 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0213163DC32
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 18:38:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F0363DC3E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 18:43:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiK3Riu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 12:38:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36420 "EHLO
+        id S229516AbiK3RnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 12:43:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiK3Rip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 12:38:45 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374C137207;
-        Wed, 30 Nov 2022 09:38:44 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id be13so28093833lfb.4;
-        Wed, 30 Nov 2022 09:38:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q0gEAiCJn5AZTB/dbyoiOBb5ffbCZ/uTpNxONaIFz18=;
-        b=J6lajX9tsiXHJgLqUZmFEdmfv8FS7/kTgRDuyv3WpZ9m356pQUikwQFj6dyzjaXg+3
-         eRzomTMaXqyduXqVuOsfGcCXNdASB+ZwCvQ0C8EyVAFfJJ/x4mECaX3/aFdrNdAgp/pP
-         qHbqevifRuwME/A120twFedHKLujnU2x8vS1Y1ppNxC7DWageO+sABHjFPEhpAmx66s1
-         QirPTa7MI/ThrAvOsLhVB077uchnByY/i+E4H9k06NwgIA99Txn43y34NzN+ArqPNyoW
-         C+pCnNbUMioQixEdIYqehipknwx4KKQBdU4jr8ciHeTKy/VIPJbPqQ25ZA1Z2pskbgol
-         +aZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q0gEAiCJn5AZTB/dbyoiOBb5ffbCZ/uTpNxONaIFz18=;
-        b=5aVgL3m4zhrsjdlqn0kxP05MNp0vCLV0OQ5SvecVi++G0HBCOk1T77QM1G8clFFh1j
-         3wh0Yr8kMXxWJcz3VUuLRQw9fdx3gc+Fco2mP7BaXZcx9Z3BjzRfQITHukHc47DJ0FJG
-         3fKc1qvYRU5lLI/lcMcb05+c6M6jaXDML0HKAd8KZiqzFpA5fLHXWs3rFV3S7cPpfNzr
-         zRzuHkrxw1nR4AqmhgqCdkfagtraqCB31BDxgoXDaRJkCeDDMS4bBWbZC0zvRci6yrpU
-         Tl6CDzIGFCjNKvj+mCsUtpjfq4mXZ2NVZ5qk1CATz6w5xaP1Sz7v0AEHjJPC747747Vf
-         thjQ==
-X-Gm-Message-State: ANoB5pk2/PbRuvLassrGkAiy2GWebehLZY9u/teL5IoGoh3zsMgo/nmu
-        kjkbtHiQh8CCWPU3sO2rGAkU2CXImTajbigsBLA=
-X-Google-Smtp-Source: AA0mqf5XNPSQLLaBiO+sG8KHhpSX8MC9f7lmnJ8wppxw1A/GfGBYg6y6BYtlmpiC5sF7yKk+w1aUe71oRPcq0S/Ubtw=
-X-Received: by 2002:a05:6512:2116:b0:4b4:b904:a310 with SMTP id
- q22-20020a056512211600b004b4b904a310mr20296491lfr.576.1669829922436; Wed, 30
- Nov 2022 09:38:42 -0800 (PST)
+        with ESMTP id S229445AbiK3RnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 12:43:12 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A914B75A;
+        Wed, 30 Nov 2022 09:43:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669830191; x=1701366191;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B3wDv3vpOG1kZHQ2h29A6+y3D/5UJp4mktosEpyu5cc=;
+  b=nHjr/IPxrWc8SUZtgsZUP2PLGcaPYcmp9cJPIjqXm2OxfwO+LoPOCRSq
+   SFmDrEbYSMG8JaWXUNEvw1nkal/vv9e216PL7H4C2auQ6eZ8luycY08c8
+   PYiRJewy5XmpZl6nmrJRUjqHN7GPIqB0xbpG9SvE1y6V0bCs4KPQFsjHG
+   69DyL6aA9AkwJyPTkXUC3Ecqtkde4H67r23DAOCFitBRkNLZzBoz9FLKK
+   ouOm++JCw5yATeuLJUsUWY3JxiOp8alJ97eNhKaL9W5BUhWhynoMFz5TH
+   uP6bAD+/HCJI1XhWikagrbw9WGBmrZA5N9ASuyLJh4eU+huG4dfwwWEXW
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="313089050"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; 
+   d="scan'208";a="313089050"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2022 09:43:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="768915535"
+X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; 
+   d="scan'208";a="768915535"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga004.jf.intel.com with ESMTP; 30 Nov 2022 09:43:07 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p0R6v-002NTX-1s;
+        Wed, 30 Nov 2022 19:43:05 +0200
+Date:   Wed, 30 Nov 2022 19:43:05 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v5 3/3] iio: magnetometer: add ti tmag5273 driver
+Message-ID: <Y4eWKdJXOR7hJTF3@smile.fi.intel.com>
+References: <20221130145356.1129901-1-gerald.loacker@wolfvision.net>
+ <20221130145356.1129901-4-gerald.loacker@wolfvision.net>
+ <Y4d3NZkCdALLkwU7@smile.fi.intel.com>
+ <ef3ec278-d9dd-4318-5b8a-d0ed363fbaab@wolfvision.net>
 MIME-Version: 1.0
-References: <20221130150857.67113-1-tmaimon77@gmail.com> <20221130150857.67113-3-tmaimon77@gmail.com>
- <CAHp75Vf-EKa9rdpmO54h0rgMcN4TLk8GcYfrjb-2Cy-GRVgEKA@mail.gmail.com>
-In-Reply-To: <CAHp75Vf-EKa9rdpmO54h0rgMcN4TLk8GcYfrjb-2Cy-GRVgEKA@mail.gmail.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Wed, 30 Nov 2022 19:38:30 +0200
-Message-ID: <CAP6Zq1iqFmOWCZJa+qg=trw0M3jgJRoqX9CJDHqJovoFt9=24Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, adrian.hunter@intel.com,
-        skhan@linuxfoundation.org, davidgow@google.com,
-        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
-        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ef3ec278-d9dd-4318-5b8a-d0ed363fbaab@wolfvision.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Wed, Nov 30, 2022 at 05:32:10PM +0100, Gerald Loacker wrote:
+> Am 30.11.2022 um 16:31 schrieb Andy Shevchenko:
+> > On Wed, Nov 30, 2022 at 03:53:56PM +0100, Gerald Loacker wrote:
 
-Thanks for your comments.
+...
 
-On Wed, 30 Nov 2022 at 17:50, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
-> On Wed, Nov 30, 2022 at 5:09 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >
-> > Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
->
-> ...
->
-> >  obj-$(CONFIG_MMC_S3C)          += s3cmci.o
-> >  obj-$(CONFIG_MMC_SDRICOH_CS)   += sdricoh_cs.o
-> >  obj-$(CONFIG_MMC_TMIO)         += tmio_mmc.o
->
-> > +obj-$(CONFIG_MMC_SDHCI_NPCM)   += sdhci-npcm.o
->
-> Keep it ordered by module name.
->
-> >  obj-$(CONFIG_MMC_TMIO_CORE)    += tmio_mmc_core.o
-> >  obj-$(CONFIG_MMC_SDHI)         += renesas_sdhi_core.o
-> >  obj-$(CONFIG_MMC_SDHI_SYS_DMAC)                += renesas_sdhi_sys_dmac.o
->
-> ...
->
-> > +/*
-> > + * NPCM SDHC MMC host controller driver.
-> > + *
-> > + */
->
-> Too many lines for seems to be oneliner comment.
->
-> ...
->
-> > +#include <linux/of.h>
->
-> I don't see how it's being used.
-> But it seems the mod_devicetable.h is missing.
->
-> ...
->
-> > +static const struct sdhci_pltfm_data npcm_sdhci_pdata = {
-> > +       .quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-> > +       .quirks2 = SDHCI_QUIRK2_STOP_WITH_TC |
-> > +                  SDHCI_QUIRK2_NO_1_8_V,
-> > +};
->
-> Why? Can't you use the sdhci as a library?
-Can you explain what you mean by using sdhci as a library?
-is it not to use the pltfm_data structure and only to set the quirks
-directly through the host?
-> ...
->
-> > +static int npcm_sdhci_probe(struct platform_device *pdev)
-> > +{
-> > +       struct sdhci_pltfm_host *pltfm_host;
-> > +       struct sdhci_host *host;
-> > +       u32 caps;
-> > +       int ret;
-> > +
-> > +       host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
-> > +       if (IS_ERR(host))
-> > +               return PTR_ERR(host);
-> > +
-> > +       pltfm_host = sdhci_priv(host);
->
-> > +       pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
-> > +
->
-> Blank line in a wrong position, should be before devm_clk_get().
->
-> > +       if (!IS_ERR(pltfm_host->clk))
-> > +               clk_prepare_enable(pltfm_host->clk);
->
-> Why not use a specific helper that gets the clock enabled?
-which specific helper? can you give me more specific details?
->
-> > +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> > +       if (caps & SDHCI_CAN_DO_8BIT)
-> > +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-> > +
-> > +       ret = mmc_of_parse(host->mmc);
-> > +       if (ret)
-> > +               goto err_sdhci_add;
-> > +
-> > +       ret = sdhci_add_host(host);
-> > +       if (ret)
-> > +               goto err_sdhci_add;
-> > +
-> > +       return 0;
-> > +
-> > +err_sdhci_add:
-> > +       clk_disable_unprepare(pltfm_host->clk);
-> > +       sdhci_pltfm_free(pdev);
-> > +       return ret;
-> > +}
->
-> ...
->
-> > +
->
-> Redundant blank line.
->
-> > +module_platform_driver(npcm_sdhci_driver);
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+> >> +	switch (data->devid) {
+> >> +	case TMAG5273_MANUFACTURER_ID:
+> >> +		/*
+> >> +		 * The device name matches the orderable part number. 'x' stands
+> >> +		 * for A, B, C or D devices, which have different I2C addresses.
+> >> +		 * Versions 1 or 2 (0 and 3 is reserved) stands for different
+> >> +		 * magnetic strengths.
+> >> +		 */
+> >> +		snprintf(data->name, sizeof(data->name), "tmag5273x%1u", data->version);
+> >> +		if (data->version < 1 || data->version > 2)
+> >> +			dev_warn(data->dev, "Unsupported device %s\n", data->name);
+> >> +		return 0;
+> >> +	default:
+> > 
+> >> +		dev_warn(data->dev, "Unknown device ID 0x%x\n", data->devid);
+> >> +		return 0;
+> > 
+> > And we still continue?! Wouldn't be a problem if that ID drastically changed in
+> > terms of programming model and may actually be broken by a wrong sequence?
+> 
+> It was suggested by Jonathan to just print a warning instead of
+> returning with -ENODEV. Reason was "Often manufacturers spin new
+> versions of chips that are compatible enough that we give them a
+> fallback compatible in device tree.". For me this makes sense.
 
-Best regards,
+Ah, I see. Maybe adding a comment summarizing above?
 
-Tomer
+> >> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
