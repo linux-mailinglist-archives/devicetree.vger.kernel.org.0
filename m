@@ -2,255 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB7363D9EE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:51:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E7763DA12
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:59:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbiK3Pvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:51:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44718 "EHLO
+        id S229998AbiK3P7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:59:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiK3Pvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:51:37 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40A61AF2E
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:51:35 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id z4so21372412ljq.6
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:51:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PG0uNEVGK4q7da5/MLy+snrbykYNb1/tHqcYAuUGVuE=;
-        b=YNd1J19Wgi306BQblAaPgKiipYJCYfpfdz/CeUQkZXVXZRPmnsfMyUS9HiqfBZqkX9
-         W2xdcA4Xj1qpFuxp+n2t4RVMuRUn0EUCcTy3drHjothY/1Zk3YeD6ONjthQnfkoBF95f
-         mBMzqQSRhGWl2rnmw4V47jbq3KbVB/1EF73YnKCD+Os3ZtXVnOmKkLmujB9mCtqcatPZ
-         adja1EwtKGVjCwLIHZWDCAGICaD58aKB5SRN1Y1e5c1jseRZfXRieRnLe11+MIiSBNgU
-         npmdm0g2HeUCZCLRaphw12jBLOzLpOfikY3wLxNgzadTyp3AS4G0jQiMWTTWe2My+pZD
-         Owxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PG0uNEVGK4q7da5/MLy+snrbykYNb1/tHqcYAuUGVuE=;
-        b=nMGRE/kNlrAt2Kv36IiFZRdCNgXN+Zpr6swcUR/yAaONlCPrYD//DfjaXqGG5/fzK3
-         pWFk6aalNC3I1QXrgy9Elfv6fYQZ/j1AEeSA9gpP1NbYaZM8o8XuP46SZJth1gwIBMdt
-         IUj+KicwbHpue3oUW1zF2O7qNX08/URQ9hy6HPTF6PPc4xmfISFSalfRqqF2v4Mrof20
-         XxBXA2twvt81mqvfGV/tYEKGMeXilWSfG17kKBMHgzEzdQoIewcYp0Nx6UGR3nsIWJ7W
-         SJNt7jf+IcqHjxsMyS4Zg/6lTsI82nwsa+9sfFD+Ud189ZvfG6m4zUNfhwmmek88XMvz
-         RF2w==
-X-Gm-Message-State: ANoB5plAIgOmJ+9p6yszPFVJUOPiXqmM4VDnPQf50DhTt9osMjb6nYkW
-        +lVIicZhdOdLfpCexGJJlKQlAA==
-X-Google-Smtp-Source: AA0mqf7WjHG5qZxOo7GtR4qXw/4cWciSGicSqr/rFLFWR/5xIAagdnHXnwB0zrmbHNC8Q/jGHdM8iw==
-X-Received: by 2002:a2e:bc88:0:b0:26f:ae32:a207 with SMTP id h8-20020a2ebc88000000b0026fae32a207mr21540208ljf.321.1669823493993;
-        Wed, 30 Nov 2022 07:51:33 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t3-20020a056512208300b004acbfa4a18bsm296625lfr.173.2022.11.30.07.51.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 07:51:33 -0800 (PST)
-Message-ID: <4a7a9bf7-f831-e1c1-0a31-8afcf92ae84c@linaro.org>
-Date:   Wed, 30 Nov 2022 16:51:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: net: add schema for NXP S32CC dwmac
- glue driver
-Content-Language: en-US
-To:     Chester Lin <clin@suse.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S229732AbiK3P7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:59:06 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA27303D2;
+        Wed, 30 Nov 2022 07:59:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=HFssHLJMcOmruKkunXBVz4Mvi5+OSTccuRyBV5QXx+g=; b=OQ
+        q2644ZjJ5z5DGVT84EDRKZ9M4Xp1yJ2Hw8pTxDEir29xcZ0b6fIa56wxAPRNzNjx432snbUYOhhk/
+        tfN9lBv0QjZBrGnR45AjZS0cuf1IFCADbWupRUdyHiNYFfa8xUrYmoh0H5OpVg0zvZnvbj5oplX40
+        X2+wHKmTsXtK5XM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p0PR9-003yFA-Is; Wed, 30 Nov 2022 16:55:51 +0100
+Date:   Wed, 30 Nov 2022 16:55:51 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        soc@kernel.org, "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jan Petrous <jan.petrous@nxp.com>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        s32@nxp.com, devicetree@vger.kernel.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>
-References: <20221128054920.2113-1-clin@suse.com>
- <20221128054920.2113-3-clin@suse.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221128054920.2113-3-clin@suse.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH 0/5] remove label = "cpu" from DSA dt-binding
+Message-ID: <Y4d9B7VSHvqJn0iS@lunn.ch>
+References: <20221130141040.32447-1-arinc.unal@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221130141040.32447-1-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 06:49, Chester Lin wrote:
-> Add the DT schema for the DWMAC Ethernet controller on NXP S32 Common
-> Chassis.
+On Wed, Nov 30, 2022 at 05:10:35PM +0300, Arınç ÜNAL wrote:
+> Hello folks,
 > 
-> Signed-off-by: Jan Petrous <jan.petrous@nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
-
-Thank you for your patch. There is something to discuss/improve.
-
-> ---
+> With this patch series, we're completely getting rid of 'label = "cpu";'
+> which is not used by the DSA dt-binding at all.
 > 
-> Changes in v2:
->   - Fix schema issues.
->   - Add minItems to clocks & clock-names.
->   - Replace all sgmii/SGMII terms with pcs/PCS.
-> 
->  .../bindings/net/nxp,s32cc-dwmac.yaml         | 135 ++++++++++++++++++
->  1 file changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
-> new file mode 100644
-> index 000000000000..c6839fd3df40
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2021-2022 NXP
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/net/nxp,s32cc-dwmac.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> Information for taking the patches for maintainers:
+> Patch 1: netdev maintainers (based off netdev/net-next.git main)
+> Patch 2-3: SoC maintainers (based off soc/soc.git soc/dt)
+> Patch 4: MIPS maintainers (based off mips/linux.git mips-next)
+> Patch 5: PowerPC maintainers (based off powerpc/linux.git next-test)
 
-Drop quotes from both.
+Hi Arınç
 
-> +
-> +title: NXP S32CC DWMAC Ethernet controller
-> +
-> +maintainers:
-> +  - Jan Petrous <jan.petrous@nxp.com>
-> +  - Chester Lin <clin@suse.com>
-> +
-> +allOf:
-> +  - $ref: "snps,dwmac.yaml#"
+So your plan is that each architecture maintainer merges one patch?
 
-Drop quotes.
+That is fine, but it is good to be explicit, otherwise patches will
+fall through the cracks because nobody picks them up. I generally use
+To: to indicate who i expect to merge a patch, and everybody else in
+the Cc:
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,s32cc-dwmac
-> +
-> +  reg:
-> +    items:
-> +      - description: Main GMAC registers
-> +      - description: S32 MAC control registers
-> +
-> +  dma-coherent: true
-> +
-> +  clocks:
-> +    minItems: 5
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Why only 5 clocks are required? Receive clocks don't have to be there?
-Is such system - only with clocks for transmit - usable?
-
-> +    items:
-> +      - description: Main GMAC clock
-> +      - description: Peripheral registers clock
-> +      - description: Transmit PCS clock
-> +      - description: Transmit RGMII clock
-> +      - description: Transmit RMII clock
-> +      - description: Transmit MII clock
-> +      - description: Receive PCS clock
-> +      - description: Receive RGMII clock
-> +      - description: Receive RMII clock
-> +      - description: Receive MII clock
-> +      - description:
-> +          PTP reference clock. This clock is used for programming the
-> +          Timestamp Addend Register. If not passed then the system
-> +          clock will be used.
-> +
-> +  clock-names:
-> +    minItems: 5
-> +    items:
-> +      - const: stmmaceth
-> +      - const: pclk
-> +      - const: tx_pcs
-> +      - const: tx_rgmii
-> +      - const: tx_rmii
-> +      - const: tx_mii
-> +      - const: rx_pcs
-> +      - const: rx_rgmii
-> +      - const: rx_rmii
-> +      - const: rx_mii
-> +      - const: ptp_ref
-> +
-> +  tx-fifo-depth:
-> +    const: 20480
-> +
-> +  rx-fifo-depth:
-> +    const: 20480
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - tx-fifo-depth
-> +  - rx-fifo-depth
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    #define S32GEN1_SCMI_CLK_GMAC0_AXI
-> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_PCS
-> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_RGMII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_RMII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_MII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_PCS
-> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_RGMII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_RMII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_MII
-> +    #define S32GEN1_SCMI_CLK_GMAC0_TS
-
-Why defines? Your clock controller is not ready? If so, just use raw
-numbers.
-
-> +
-> +    soc {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      gmac0: ethernet@4033c000 {
-> +        compatible = "nxp,s32cc-dwmac";
-> +        reg = <0x4033c000 0x2000>, /* gmac IP */
-> +              <0x4007C004 0x4>;    /* S32 CTRL_STS reg */
-
-Lowercase hex.
-
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +        phy-mode = "rgmii-id";
-> +        tx-fifo-depth = <20480>;
-> +        rx-fifo-depth = <20480>;
-> +        dma-coherent;
-> +        clocks = <&clks S32GEN1_SCMI_CLK_GMAC0_AXI>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_AXI>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_TX_PCS>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_TX_RGMII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_TX_RMII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_TX_MII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_RX_PCS>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_RX_RGMII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_RX_RMII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_RX_MII>,
-> +                 <&clks S32GEN1_SCMI_CLK_GMAC0_TS>;
-
-
-Best regards,
-Krzysztof
-
+    Andrew
