@@ -2,154 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE3563CC87
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 01:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C5F63CC95
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 01:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbiK3Afo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 19:35:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
+        id S229667AbiK3ApV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 19:45:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbiK3Afn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 19:35:43 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0F427925;
-        Tue, 29 Nov 2022 16:35:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 889026198C;
-        Wed, 30 Nov 2022 00:35:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA6F8C433C1;
-        Wed, 30 Nov 2022 00:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669768541;
-        bh=1y4VZS9W80vlMy1UNi9moghtDPF4ssMv9lqkGlxsRbA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=diqPyKUCpxdUaaFaQXU7fsMHHpcJXS0BxI+zk9Umkm0qUqAuVnjasDHasbCynDQLq
-         mqpzLAMJU2LZ6fdlxtCQ7+SHAN5pvLu2b/At7zlyeMDmMeGSYKeVhQiB0ow108Zuyp
-         BGCL/ikf0GrBZnNtlEiS/moWAgkcMf4pI2j8q+g07bYpal1pSAuCSUirAMEi9vlaw3
-         w2knzOu79Pp45a1Kp9GpXBZ1impyThd1q0zb4kwCpc3FlGrQTS5E/8ycQUMdAXFpqa
-         F4GlD+vJrq9xRYKrQEJ9NqDJ35X2aJXz6xGCS8YYX8HdgnUWcP0h6Ki/fkG+P8BC2L
-         NtDfCmPGuaDzQ==
-Received: by mail-vs1-f48.google.com with SMTP id 128so15734286vsz.12;
-        Tue, 29 Nov 2022 16:35:41 -0800 (PST)
-X-Gm-Message-State: ANoB5pnOwUYyam63dXEbDai/4v1HrshMyk1W8AjhyEfO2CDhADOD9o5t
-        Klzjo7zv/etGHG9X1ugCm+KIAius1sNezu303Q==
-X-Google-Smtp-Source: AA0mqf6olQ2hZD+/mxO78tqVS8rUleLaYbZ18kt7CNqh+XmOT9dT633GD3mlJbp6kjXBLdvaMhVIv57ZgZPwBO5JRcE=
-X-Received: by 2002:a05:6102:3003:b0:3aa:2ac7:5956 with SMTP id
- s3-20020a056102300300b003aa2ac75956mr25754133vsa.6.1669768540824; Tue, 29 Nov
- 2022 16:35:40 -0800 (PST)
+        with ESMTP id S229610AbiK3ApT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 19:45:19 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356AE6DFEF;
+        Tue, 29 Nov 2022 16:45:19 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id m204so17198431oib.6;
+        Tue, 29 Nov 2022 16:45:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zkp8DbvjvFYX60bdCB1aPl/nyh8CuvJUTer76i3Ow+g=;
+        b=Y6OOXKc9/CdrgfBQva+5V8gIJV+tmgfM09yl/znLqSdTtSva/hElWProolA2cTrKoj
+         Uf6q/j7u97xkc5ij3ilcPCvOfl1Uoqtzmv+6HCw/cbbjfGBSOXyxnM4kXtGpSHxJ5Fmu
+         iq5k0aDOykLV9HrrSq51uLRuHRUZoxIti4avUtY0oQF9DmVAy8XzewoMqbDhe5cHdyXG
+         o6lqu64vucX8ElX0GnfoZ3a2+v6ptqZJAI+xqMCKLKHZ1jAtJRuKisM8tcXcxTwGBhOZ
+         5f1t7jeaGwhPq5gi3W7N6gc5aMN3QiXxbO+mdkFdr2dof144gwgEE+iTmViVvfVPQHN2
+         iQuw==
+X-Gm-Message-State: ANoB5plrL7mCvaEeGWfpW8akiQ/zue3P5rpeBxlTxl0fM6s3VNpmqcEo
+        sGhZJI5OJfESIHOw60PCYw==
+X-Google-Smtp-Source: AA0mqf494FbbhWWY2FgA9I5hXIffKfBR434zz9Q+fxsy2WaeSOtOylTB8YkzE5uIqIBdKq+OcaLOkw==
+X-Received: by 2002:a54:451a:0:b0:35b:3f80:32e8 with SMTP id l26-20020a54451a000000b0035b3f8032e8mr17963598oil.177.1669769118441;
+        Tue, 29 Nov 2022 16:45:18 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i22-20020a056830011600b006619483182csm152394otp.18.2022.11.29.16.45.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Nov 2022 16:45:18 -0800 (PST)
+Received: (nullmailer pid 604336 invoked by uid 1000);
+        Wed, 30 Nov 2022 00:45:17 -0000
+Date:   Tue, 29 Nov 2022 18:45:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v4 03/20] of: property: make #.*-cells optional for
+ simple props
+Message-ID: <166976911579.604253.5395868954946458991.robh@kernel.org>
+References: <20221123180151.2160033-1-michael@walle.cc>
+ <20221123180151.2160033-4-michael@walle.cc>
 MIME-Version: 1.0
-References: <20221129174906.97749-1-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20221129174906.97749-1-manivannan.sadhasivam@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 29 Nov 2022 18:35:29 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLpN+CORV8ys3yijB=qHqKF1LjrF=Rrb6AkOEuKc608YA@mail.gmail.com>
-Message-ID: <CAL_JsqLpN+CORV8ys3yijB=qHqKF1LjrF=Rrb6AkOEuKc608YA@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: leds: Document commonly used LED triggers
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        pavel@ucw.cz, Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     jacek.anaszewski@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, thunder.leizhen@huawei.com,
-        festevam@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221123180151.2160033-4-michael@walle.cc>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 11:49 AM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> Document the commonly used LED triggers by the SoCs. Not all triggers
-> are documented as some of them are very application specific. Most of the
-> triggers documented here are currently used in devicetrees of many SoCs.
->
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+On Wed, 23 Nov 2022 19:01:34 +0100, Michael Walle wrote:
+> Sometimes, future bindings for phandles will get additional arguments.
+> Thus the target node of the phandle will need a new #.*-cells property.
+> To be backwards compatible, this needs to be optional.
+> 
+> Prepare the DEFINE_SIMPLE_PROPS() to handle the cells name as optional.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Tested-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->
-> Changes in v4:
->
-> * Removed the sorting of triggers
-> * Removed the "items" as they were not needed
-> * Reworded the description
-> * Dropped Zhen Lei's tested-by tag as the patch has changed
-> * Added kbd-capslock trigger
->
-> Changes in v3:
->
-> * Rebased on top of v6.1-rc1
-> * Added WLAN Rx trigger
-> * Added tested tag from Zhen Lei
->
-> Changes in v2:
->
-> * Added more triggers, fixed the regex
-> * Sorted triggers in ascending order
->
->  .../devicetree/bindings/leds/common.yaml      | 40 ++++++++++++++++++-
->  1 file changed, 38 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index 3c14a98430e1..68da651f29a8 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -98,8 +98,44 @@ properties:
->              # LED alters the brightness for the specified duration with one software
->              # timer (requires "led-pattern" property)
->            - pattern
-> -        # LED is triggered by SD/MMC activity
-> -      - pattern: "^mmc[0-9]+$"
-> +            # LED indicates mic mute state
-> +          - audio-micmute
-> +            # LED indicates audio mute state
-> +          - audio-mute
-> +            # LED indicates bluetooth power state
-> +          - bluetooth-power
-> +            # LED indicates activity of all CPUs
-> +          - cpu
-> +            # LED indicates disk read activity
-> +          - disk-read
-> +            # LED indicates disk write activity
-> +          - disk-write
-> +            # LED indicates camera flash state
-> +          - flash
-> +            # LED indicated keyboard capslock
-> +          - kbd-capslock
-> +            # LED indicates MTD memory activity
-> +          - mtd
-> +            # LED indicates NAND memory activity (deprecated),
-> +            # in new implementations use "mtd"
-> +          - nand-disk
-> +            # No trigger assigned to the LED. This is the default mode
-> +            # if trigger is absent
-> +          - none
-> +            # LED indicates camera torch state
-> +          - torch
-> +            # LED indicates USB gadget activity
-> +          - usb-gadget
-> +            # LED indicates USB host activity
-> +          - usb-host
-> +        # LED indicates [N]th MMC storage activity
-> +      - pattern: "^mmc[0-9]{1,2}$"
-> +        # LED indicates activity of [N]th CPU
-> +      - pattern: "^cpu[0-9]{1,2}$"
+> changes since v3:
+>  - new patch
+> 
+>  drivers/of/property.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-This will conflict with Pawel's tree because I already added this.
-Mine covers 'cpu' and my 100 core system with 100 cpu leds. ;)
-
-> +        # LED indicates power status of [N]th Bluetooth HCI device
-> +      - pattern: "^hci[0-9]{1,2}-power$"
-> +        # LED indicates [N]th WLAN Tx/Rx activity
-> +      - pattern: "^phy[0-9]{1,2}(tx|rx)$"
-
-And these are pending from Geert[1].
-
-Rob
-
-[1] https://lore.kernel.org/all/a85c256af01f64389a078c2b37c3b72a27d97536.1668005062.git.geert+renesas@glider.be/
+Reviewed-by: Rob Herring <robh@kernel.org>
