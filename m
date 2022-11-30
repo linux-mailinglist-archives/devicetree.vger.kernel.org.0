@@ -2,126 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7654D63DABB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 17:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E91E63DAD9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 17:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbiK3Qfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 11:35:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55732 "EHLO
+        id S229671AbiK3QkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 11:40:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230162AbiK3Qfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 11:35:33 -0500
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2088.outbound.protection.outlook.com [40.107.95.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4154AF0B;
-        Wed, 30 Nov 2022 08:35:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hRFZ+xjD9e8toJdBNXbE4PKe1eBD7yL9fzTuCd30/GVzVGh5Ad4zImZRpHm4n9mySt3qSjm6F0eV8h5bL1NZ2zlhAD58FYUIXXnnykwXUDXCPDVkWOjcwzY+Uvt553OSJ3y8zTUfuJvqx7hxCW4zWH4jItZ+rPsKX7TejeJfL93k3B6oYR3HVZvd00DaH/9VB5Fa+NzzmO19uMpIdE6BeeuA5slEtFMSoqYW9Oc90Gzu0gB52OR4XoPjjo+w2oVP09zE8wj8yy7Kdn70Gc2iPDI4as8etO2hR8FwtS37Z25T+doCZ/l0KgDHll5G7yonF5QBBE3WysWFTsclITlW+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e0UzWaJtJmPy8cZMVj8qhRjOsoGj78bI0g28hMxk7H8=;
- b=WI6ne55w1BMYQomEIARdk9k2qxJ3qbORB2YPGNiTmP+3NphtTxXMGKb965ainTlWffKMxvQPTJHCkdmnEaiyWk0AvIo0DM+zVrI+AKP/n6AgykeCG61+wwpXvf9C5m736TgqKtHNreYXsK3c92ayRnGQKGmWOZxO/NIjGlm6WOlkbFSEb6vel5XVHO7u+TW3t/6GC6E01HtQ96Cw/ZHNiIZVJdMLoMEYpZLhoKYpCYbZI0rCWUxBqYtaOqJHHMP9bGeeWIf2oBr7MwxaefAwkMXxZkBzCdLdFfoNSdbkczcWmjmxPOiGO2N8T3q/scE+dScifTQ1/XMuH1LSLWX9zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e0UzWaJtJmPy8cZMVj8qhRjOsoGj78bI0g28hMxk7H8=;
- b=BCiVdaj3tXRpgHjUVAOD6PXOHr2xcIs+1v0aTTKbydJss/ErsFY5cVcxd3ktRY2bEavUly7rFFYfu8y/1A0pchRMPre+9kD2e+t1+D9zvY7ztoTm27CCqUekiIsavZCaq4MTf3QkjsMMFRkhJHjEcV53A3/byc1Dtob1wp3mq3U=
-Received: from DM6PR02CA0149.namprd02.prod.outlook.com (2603:10b6:5:332::16)
- by BY5PR12MB4952.namprd12.prod.outlook.com (2603:10b6:a03:1d8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Wed, 30 Nov
- 2022 16:35:30 +0000
-Received: from DS1PEPF0000B07A.namprd05.prod.outlook.com
- (2603:10b6:5:332:cafe::93) by DM6PR02CA0149.outlook.office365.com
- (2603:10b6:5:332::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23 via Frontend
- Transport; Wed, 30 Nov 2022 16:35:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DS1PEPF0000B07A.mail.protection.outlook.com (10.167.17.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5857.17 via Frontend Transport; Wed, 30 Nov 2022 16:35:29 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 30 Nov
- 2022 10:35:28 -0600
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>,
-        <frank.rowand@sony.com>, <geert+renesas@glider.be>, <afd@ti.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] arm64: zynqmp: Rename overlay source files from .dts to .dtso
-Date:   Wed, 30 Nov 2022 17:35:24 +0100
-Message-ID: <a14e9ec0af23eb349372fdcdb534d83652b5a449.1669826117.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S229610AbiK3QkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 11:40:08 -0500
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B235B877;
+        Wed, 30 Nov 2022 08:40:07 -0800 (PST)
+Received: by mail-qt1-f174.google.com with SMTP id c15so11500892qtw.8;
+        Wed, 30 Nov 2022 08:40:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/B0jwa+xciuz/rLM/D5quDyC7IZMyW67SHNi9nPK74M=;
+        b=Cu8/lQXM5BafGjQC2+VpnM7sM9V1EIXtttHTOPJ+xvJh6qtIYhZ0b0+k7VtLhyKYY7
+         FjuNiEsHejuInuOWYDpBEqQ+/H/2qyFjZSwxftmRbSN8Oxr5RJBQSrJ+pct1Efi4HPxA
+         +XGkGMkPaxuSXN82aTnnRHlbe02ysGWSJpaS2Wxafr08f0REhvqog4NXVxHvIfDABSM5
+         cf70ZaLc8wnnLSQr6dKtq6ObUO2109BnmgL4J2Nqsoqy64wW5gIGGzeIPlS2HJmXmBZ+
+         GY8Dh1OjMgukGHHEYOta7S00xhU8ZJmSXKQxKohaq6qXHeCdt9iyQvn1M0LNbCxt9In6
+         4esg==
+X-Gm-Message-State: ANoB5plDAl2poNyZa0a1WRYxdC+gGLxdU2LeT0w8UCNF/h4Zn0WXT0La
+        Nl/6qOv/eP55fdqk6pUdT6NhPMTDeuq3xg==
+X-Google-Smtp-Source: AA0mqf4jY4D82AaAHWHVEQ1PIKo9kqpMofAtaWr2mcB+MX9CeIe5RbnNWd7AJzP5hMOHxpHyNG4WmA==
+X-Received: by 2002:a05:622a:5808:b0:3a5:9170:458e with SMTP id fg8-20020a05622a580800b003a59170458emr58546044qtb.509.1669826405728;
+        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id de4-20020a05620a370400b006fae7e6204bsm1511278qkb.108.2022.11.30.08.40.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id y83so22265767yby.12;
+        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
+X-Received: by 2002:a25:7204:0:b0:6f0:9ff5:1151 with SMTP id
+ n4-20020a257204000000b006f09ff51151mr33350652ybc.543.1669826404935; Wed, 30
+ Nov 2022 08:40:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0000B07A:EE_|BY5PR12MB4952:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d5c6747-f902-4ff7-d7e8-08dad2f0e499
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LC3aHw1FQXEt0IzS8siPSaDR95WkPPxyE0pD6iV5Hf1lG6NfN9JKj4HUylwLQkXrLqV+H/fu9ZGbbzdl22/cEvBr5nxkqINlQcEkbql34G9QIvZZ8N/F32iS+R294uI3fKg/Y+YIwLSNdUWS6dOfG7ywxMDrMD1uNBp8E878owoSrtispSVsYKuh+DzTp4yWSqwpVODEzn4BfrwefsV/K6Yp3aJgv99HMs8ArJZ64AUei9bTN3NCgCZpmuKkdQFrzmA/4LcpHEBKrpEgIakcYJ63VGSlOr7pLMtvAI7zmH4dqD0DXI94g8AnN5nqpYQLFg0ED1jX9cReXp17B8xapSMId+EfJRDUpjXifExPHsryERVjFCdEPFqCvVPPJJ2GvyMGrad91wgMdWHjvRz9Z/uzN8HpUSA9FugWGMRjLpjkKz7yf6W8AGyKjmDvHJ9B7mgMHJUiDTYb7rKWELR83TDp/80yRRbBslqB2YkEuPkk8PXrspNx3fiA+MJ5TNY5l4mpbC2KH3DLQOw4c4z0RjsUVQ01b3wh0agIO3JSATeJXchfC3bXYR2WCFRVO+xuG9l/PVI7n9I1W7Q/6NlOiyW6cBcdPqEhIgmuozxf1dl8hUGHA3Qd3J8CCNao4aFA5p2yVVOea7uX7Bczb2FVpQYMDEAA9TPhzpK5NjRzlUF4kyoFlVHwRbDBI8qmyiVEpmn1xzwSbqzKcA+46HjRNCB/BcHvovlz7ZMUzTkbMxGYm8Z5rFMRy1ohFzwvrMnnoe+3Qep/LphfzrMR7UL7IWmFjKy8WiMpGSRLUFxDNUY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199015)(36840700001)(46966006)(40470700004)(40480700001)(81166007)(356005)(186003)(86362001)(5660300002)(26005)(8936002)(41300700001)(8676002)(478600001)(40460700003)(2616005)(70586007)(336012)(6666004)(4326008)(110136005)(316002)(36860700001)(44832011)(82740400003)(2906002)(426003)(54906003)(16526019)(47076005)(83380400001)(70206006)(36756003)(82310400005)(142923001)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2022 16:35:29.4836
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d5c6747-f902-4ff7-d7e8-08dad2f0e499
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0000B07A.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4952
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221130154111.1655603-1-thierry.reding@gmail.com>
+In-Reply-To: <20221130154111.1655603-1-thierry.reding@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 30 Nov 2022 17:39:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV9qom7TmhmNkpAqYLGfqT0pRkndAMzn-EisZkcw9pVBA@mail.gmail.com>
+Message-ID: <CAMuHMdV9qom7TmhmNkpAqYLGfqT0pRkndAMzn-EisZkcw9pVBA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: tegra-xusb: Remove path references
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on commit e87cacadebaf ("of: overlay: rename overlay source files
-from .dts to .dtso") and also Kbuild changes done by commit 363547d2191c
-("kbuild: Allow DTB overlays to built from .dtso named source files") and
-commit 941214a512d8 ("kbuild: Allow DTB overlays to built into .dtbo.S
-files") DT overlay source files should be renamed to .dtso.
+On Wed, Nov 30, 2022 at 4:52 PM Thierry Reding <thierry.reding@gmail.com> wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>
+> Unresolved path references are now flagged as errors when checking the
+> device tree binding examples, so convert them into label references.
+>
+> Reported-by: Conor Dooley <conor.dooley@microchip.com>
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+This fixes "make dt_binding_check" for me, so
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
- .../{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso}       | 0
- .../{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso}       | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso} (100%)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso} (100%)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
--- 
-2.36.1
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
