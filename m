@@ -2,189 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEDC963D15C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A8F63D167
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:08:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbiK3JEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 04:04:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38884 "EHLO
+        id S230367AbiK3JIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 04:08:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbiK3JEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:04:51 -0500
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2053.outbound.protection.outlook.com [40.107.105.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D85312098;
-        Wed, 30 Nov 2022 01:04:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jasq9PrlOBr3YKqoEL8fxj1NxsrEJCFLoEHuQa8Env25lNLhysr8n8Nxz9qzI8UFfG4WoZHbrd7cJXctJ6EEPp0XwXM93YT/oriQx5vtTn8ygbYxZYp7xzw8BKTpKsfKBBocUd7MZodcxuCkTrFGjc35Jywpo85KfwCdt+Cga9TOmuXK+zorymdt8gXd5HqEsVtfPtfHUKcw/Rwen6KPH+7DBqnwbsK97MI9SJpV6SS3OJvETUXiy8xBQI1bABcabSo/ilpfVrKQZfYKdXR/Aez96u2snlaUamFz+vj8iMJxqGODM+JEbOZ1SkwFVtXNA6CpoGbrleK9N1zycfwFbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fxRyvm5ka5Jp9ZAZw0jVyiMjlDGMjQUuhqtsFS4umgA=;
- b=QXKscTEnwM7F4Wt+IUFiWmonj8DTqYlfJql1muU3BWC4frPc/28SBKlHSS176D+1vlqifmDkrhHxMUscBk4YBFTbwXPOxIrgb+2fAuMxeQ8niwKZJk/jcnZAlOyjmf3++GAO6BbGBmKhcWbWRqe7SFlaPSNVxWAt2qpkyEs2TwWWKxPs+1Pw+Trwa7ZOUC90b61TsgxhhQfp1MOsaDEbPNILta3YyMaC2GzcZjRBs6L4lr1OIJvx8d6m6oZaJwMdMrAZAOk723HKLpjiH9Rp7zT38xpCkWKCgioNTVXBYkvIiOps4RJkY4Xe4auF0D5lBRrav6wPRAuUEGHsXnkL7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fxRyvm5ka5Jp9ZAZw0jVyiMjlDGMjQUuhqtsFS4umgA=;
- b=wssuz8dsd97oIqR+pIvfznirIMozrsn9wdFm55+hjSmN5LqOOwANTuAvq5G3+Iljo7QBJ5MsaZaMKvmmrP5vx1FsEbStXFwX13O1YBbKT0JaWWkef6+p6I3STyuWBBt+9ADG8ajTBOIgqvraP1VcqZPuKzEUre7cMfHWUe1bvLo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com (2603:10a6:803:100::13)
- by GV2PR08MB7953.eurprd08.prod.outlook.com (2603:10a6:150:ab::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.8; Wed, 30 Nov
- 2022 09:04:46 +0000
-Received: from VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::bcc7:bc51:bf44:1454]) by VI1PR08MB4544.eurprd08.prod.outlook.com
- ([fe80::bcc7:bc51:bf44:1454%6]) with mapi id 15.20.5880.008; Wed, 30 Nov 2022
- 09:04:45 +0000
-Message-ID: <b2d8b5a6-15a6-9cca-9f87-fbbe1acfa4f3@wolfvision.net>
-Date:   Wed, 30 Nov 2022 10:04:41 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+        with ESMTP id S230291AbiK3JIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:08:17 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7187631DFD
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 01:08:15 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id x6so5980308lji.10
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 01:08:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bik6TT2i9Vj5K+t2eRzxUcLiyFVx0MQXz0h6XwsVogM=;
+        b=mPmMPUZxuC7l/Tcc+dBgioqnRaRa0D0FoqaQOYbwN8D3+FCZ3IUnDD7bwzz7fYnTvk
+         3yl53k+4nj+2z5v/UckpqtYIuxeMH2K1EUbin2EN55rHMJSG4RcWyYjZ3HjWdJyXAax6
+         eQsG5XFz3aBdRKOLQ9SXoJnmcytpOp+M9yaFDbkSv5J6ommalxFqSVBR9bqos31KC6av
+         XiA+sy4Wgae/zF/dLx7rMo+CionAk+pTQkdAF5HU4g15Stpvuq44dhbDeIe9aAi2CqHE
+         iEpesI6VZcENQfWmXptocflcjfB50mJtMJ3G8iJA9iRGlFOd3W5/KcGNBmdGbf8YcXFL
+         gnag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bik6TT2i9Vj5K+t2eRzxUcLiyFVx0MQXz0h6XwsVogM=;
+        b=Urim2alPnPUVQEMQEXUUrD6muvlFFVMIynpufoU5Kkc/5lIAiArK2K+CKT8CFYpoJ0
+         GViXQLZmwnXAFyxk1QPi+IicHb7ZvNinjbmUeQ1Ki7GWtBnC71hxebxtPOii2W4ogPDa
+         JEiurvlvR8MoCioYPbH1h+wcfj+odxKaFaAxaBFSjwbISQ67gf3lsY2vyvPVyGiLaien
+         EfUo3+iSdXRtEAfTRffGhG7IwWDaD743QYYwZn7tDQhXDq/arBvDEtz2/d65Jv0ZwGNW
+         oBG2M5sWXlhVDKwyvhcnMDm8zlpWFaCYCXE/9L7RPFgKLQzsOLVZATz9a6n63ydJD2Pj
+         QVJw==
+X-Gm-Message-State: ANoB5plOpVv2TqsdRYG0gpuDFKI9b9PkPuL8q2MOocRanv+zSSy3Pw63
+        +FGgjUFHZpVALk5W1q5L+vJiog==
+X-Google-Smtp-Source: AA0mqf6NCA6yu+P9dbo+rNNBrMl51Mjly+oRbmjw0M3xfZDbotMi0I3GxWkQgayN0qBz2BQ5RpkEiw==
+X-Received: by 2002:a05:651c:10a1:b0:279:8211:d8fa with SMTP id k1-20020a05651c10a100b002798211d8famr9472031ljn.448.1669799293648;
+        Wed, 30 Nov 2022 01:08:13 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t15-20020a056512208f00b004b4ec76016esm176696lfr.113.2022.11.30.01.08.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 01:08:12 -0800 (PST)
+Message-ID: <7b3f97f9-34af-413c-aaad-9108b4f36c51@linaro.org>
+Date:   Wed, 30 Nov 2022 10:08:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 3/3] iio: magnetometer: add ti tmag5273 driver
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for
+ worldsemi,ws2812b-spi
+Content-Language: en-US
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakob Hauser <jahau@rocketmail.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20221129064540.3218982-1-gerald.loacker@wolfvision.net>
- <20221129064540.3218982-4-gerald.loacker@wolfvision.net>
- <Y4Y1VqvYS0XsWi1r@smile.fi.intel.com>
-From:   Gerald Loacker <gerald.loacker@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <Y4Y1VqvYS0XsWi1r@smile.fi.intel.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221129140955.137361-1-gch981213@gmail.com>
+ <20221129140955.137361-3-gch981213@gmail.com>
+ <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org>
+ <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1P190CA0037.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:800:1bb::12) To VI1PR08MB4544.eurprd08.prod.outlook.com
- (2603:10a6:803:100::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR08MB4544:EE_|GV2PR08MB7953:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0397f3bb-8761-46b6-06c5-08dad2b1ed2d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hnTaTzwKRmOwo+UMayFU/+mf0ZpXjfWYac6w1J4AwfzwZzsqRWWE4BjyhwKW0QyruvQN9wNIwNkgdopWLlYtvSwMpBitoTGdAO0FCdvwcR8jSjoXGnnu84UpD8A4XItQyIft4aZKgPTY1Yb9Wr6emfWyt7NOvlYeDPb3m84BN+8NX7oRHw8HtpjHXyouSv238xOD1DXSsiGEFBxibL1WngsBdb6YCdQIBUMsWdO1eOD5BghgKGTncRMbbs8DJus1c4TlizYyFtuXwF0KD6Arh8aRDj7c5q8LKsairCOPlHqMpP1ZSN2R/mnpzy9Ta8xYG9YlBQ9056p6/sMoGK71t7+dxCBK/+71V1LZqG9nYIIcqI2ztqp/3hbKPKt9l7OKGWaVjXKtQNb1m+rLy9h3ioWYm17TzZ7lC9WMVTn4kGSHfz3wh9PNt+swBhMO4i/cFLvYFq5CuTezsp+yBuvvWrcQiR1omTp5j7qzNdeVpKr83LQ+Zx6SbsGD5yBc9rnz24YjmzCBpM2QzUOHaM6vb9tH8wZBDIi4/73XqfzW2orAZYq/KS+2TdP1l+DoFu63EynkpVIUWV6pq6r+6Rr1dI8mf0u6yDT+Z9nLcqQ1pgT1gIOP/C4F8wSDyIqtaVLDXJTylpGYOvzGYD4hl7E5fO10g7rlAfMz5sTpQt0ep3ychXV5HpH5mZYBtKvhZMOm8Vp2c/ULiijjX+ZvDrgqnwLyyshqQY8jTVD2bwa6O5gEGlp26nWI7afDjwjpq2iG
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR08MB4544.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(396003)(346002)(39850400004)(366004)(451199015)(6916009)(6506007)(2616005)(316002)(54906003)(186003)(6512007)(478600001)(6486002)(36916002)(36756003)(26005)(52116002)(38100700002)(38350700002)(31696002)(86362001)(6666004)(83380400001)(107886003)(4326008)(66946007)(8676002)(44832011)(5660300002)(66556008)(8936002)(66476007)(31686004)(41300700001)(7416002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VjZXajEvOW5SZitJN0gxVFNoODI5cXR2Vm5KUTh6ZmJTSmZhMlZTNzZoOWoz?=
- =?utf-8?B?QnZJeG1tYktJMmhFSDYxbjlTaWlxb3VXMXRyMHlxdmdYR3RUVjMwSlUyMHB4?=
- =?utf-8?B?R0xoUTBHdHJ2MW56a0tGWk00RVdVdXkzdUZET3N2WjZQMVdtTHNjNUtDRFNr?=
- =?utf-8?B?VmhodkEwVXUrMDNpZ0JkbWNoeDlBb01ucjErVlZiL0FqY1RrTVp4VGNtdncx?=
- =?utf-8?B?Q3V3T2FxRHVyM2JpT0M3b1JvMG9hYWU1LysrSzZndmN2dHR0eVphcElwTy9t?=
- =?utf-8?B?MU94YjhBT0lka25PN0dxb1JDMDg4aHhyOHNuUkpmQURsVVFLblljMWpxM2l5?=
- =?utf-8?B?QUdFSVU0a0xEZzR2VWFCSXFCclZkUG05TVIxWnFBYnBLRVhBWk85Qjczazli?=
- =?utf-8?B?RGozRzcrS1BabTNOZTVVV0lkUFVRTkZneEcyU1pzS0NHS2VqWFI2VTdnYTYy?=
- =?utf-8?B?SkNwMlZ5UHBKVzYyOURkSWJWS1VKWVpmQzArMGZxTkhMWEVqVFgxQWowTWs0?=
- =?utf-8?B?MHBET0JHa3FGTWJvdjA3OE01aktZcXBzYW9wa3kzWFIwQVZSNUlFMitPeFd0?=
- =?utf-8?B?MHJuSnRCdmlodzBIcVgxTDZ3am1hYUdNMVpqU3ZnSDViTi83NTFWWU1lZ2ZT?=
- =?utf-8?B?Z3A3YXlYQ2VBVzF1cFVMZnd5ZXBlZkw4cUI5YjQ4d1V5bnFwdnlJUHVBVmIz?=
- =?utf-8?B?NzBYZHdBQUFvdkszai93N2hXdkU3aC9OYkEwZHhuU0RQT2M5dnh1Qy9PV3pn?=
- =?utf-8?B?SFBXYW5sNXh4Z3pCMEtibElIL0VDVWxiUi9FV2RHdE16ZG5RcXF5OEtzMTVQ?=
- =?utf-8?B?SHFMSjdBNkc3ZDZya1dZdGVsQnB4TU51VlBOemJZVzBPUWNoNWtuRmIrNnhn?=
- =?utf-8?B?SUhYSXptR09DNFIvVmpiT1JIek1oSUVXaGg2M1J4eURQdEVzMWUwQy83L251?=
- =?utf-8?B?bndDT1RVeU95T0xKYXhrR0ZaWjA1VlNzdEtjMC9Kc3RvL1VtekdQMWRFVWdK?=
- =?utf-8?B?Q0hTZlA3cW9uRXFUNU1ZalM5WEVzS04vU3dkWGU4MmJpZmRRbVZqRXlUQjgr?=
- =?utf-8?B?WTVuRGp5eWV4VERUMU54bHlGaDVFYWdDZ09heTBXaUQzajYxU3pheVJ5dzJr?=
- =?utf-8?B?MCt0MXJyL3crNE1JZG54TkZOcjUzZm1uTXpTcnJ2VEFZV0Q5QlZ2Q01KU1ZJ?=
- =?utf-8?B?Q1E2V0pHR0c1NWVTRlpVd0lEbFVDNlF3czRVTnZQMWZjbWhpMzBzN0N0cHBX?=
- =?utf-8?B?WXBoWGx4M0huYmJqa3dzYlMzb094S0FQNWNCQmdNNlhQQ1pWNTV1SEZMSWZ6?=
- =?utf-8?B?OUNqQVRQT3pNZXRHSGVDeldJdjVlSG1jTmx6Tlk0Q2prcElvUW1ES2ZrcTFB?=
- =?utf-8?B?TDRrQU1ZYTNRTHZMdkk3a0JVazErazBRaGMxZVRwMGZJWThSZTVDK3NOM2FC?=
- =?utf-8?B?aUpQd3V1WjVWc0VSZTJoSkF3K21BSDBJS0NKYW4zR05IbGxTa1M4NVJCUENi?=
- =?utf-8?B?QUg0dmdiSUVoVXBPZ2hMd05ldGpPUXpadXBjWHluZVVSQUdrRG1WMHdKcHdw?=
- =?utf-8?B?K2gwRkRPdmhwckhVV2pzUEZJNGRwZ3oyVGR3dXhKLzJsZllQVnJhUzRLVVI1?=
- =?utf-8?B?OFo5M1RiTmg4OXJRN202TTR4aVlhNklJemNCUTlCN1JHamVFNVl4RGZRRDJu?=
- =?utf-8?B?cXJzeHcxellKZUhjZE5rNVgrajJhWjJDNmFZdC9mUEx0SmNwMVFtQXVNNnVr?=
- =?utf-8?B?UnN6em5obUZrSzlBRkx2aC9qYVRQUUkzTi9JVVFOUlJHSFA0dS9YTjRQL3gx?=
- =?utf-8?B?cjB5SjBJT21zV0pTdGFIeVgzRGZPVVJqNVpYL0dpdHp4aDdwb1IrNFV3cFFZ?=
- =?utf-8?B?eHVpR2RXa09uSFJCZytVZ1dxN1pKVVhIVFpDbkxIekhuaGNOOXd6QkRqelNV?=
- =?utf-8?B?NnZBY2tKSGJ6MGx0MnZYeEU2TnBWSWIwMXBWMTliRk1IMzNLUkhQYTBQRk5C?=
- =?utf-8?B?WTJnLzFRWkxDeGltM3FqakwwRWZuZ1pEay8rQ2h6bkpSZ3M4OXAwZC9yNHE3?=
- =?utf-8?B?NkV4YWJMOG1taGhTa29JZGhLTEo5dGNuYnJKT2o2TStzNlBsNFNNQUxLb0N6?=
- =?utf-8?B?eDlmOEVVSFhTSUFCUTFmOGQzN1lUV0ZXZi9OK2lWKzhBRDZ0ejllOFFkOEp1?=
- =?utf-8?B?N3c9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0397f3bb-8761-46b6-06c5-08dad2b1ed2d
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR08MB4544.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2022 09:04:45.8104
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZkT9ta/8lQPH2+C1s9eBARjChuVrb8Sx8ze69TDxJuCeqnsoRHfUi+belYFvddKOTZ4lDdqi51jOdl3W/6kOaglNbgpTXWnVD+9dH3h+VY4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR08MB7953
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/11/2022 09:36, Chuanhong Guo wrote:
+> Hi!
+> 
+> On Wed, Nov 30, 2022 at 12:54 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>> +description: |
+>>> +  WorldSemi WS2812B is a individually addressable LED chip that can be chained
+>>> +  together and controlled individually using a single wire.
+>>> +  This driver simulates the protocol used by this LED chip with SPI bus.
+>>
+>> Drop references to Linux driver, unless important for the binding.
+> 
+> I think the SPI part is important. (I'll explain it below.) What about:
+> 
+> This binding describes a chain of WS2812B LEDs connected to the SPI MOSI pin.
+> 
+> instead?
 
-
-Am 29.11.2022 um 17:37 schrieb Andy Shevchenko:
-> On Tue, Nov 29, 2022 at 07:45:40AM +0100, Gerald Loacker wrote:
->> Add support for TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor.
->> Additionally to temperature and magnetic X, Y and Z-axes the angle and
->> magnitude are reported.
->> The sensor is operating in continuous measurement mode and changes to sleep
->> mode if not used for 5 seconds.
-> 
-> ...
-> 
->> +		snprintf(data->name, sizeof(data->name), "tmag5273x%1u", data->version);
-> 
-> Thinking more about this format, perhaps
-> 
-> 		snprintf(data->name, sizeof(data->name), "tmag5273x-v%1u", data->version);
-> 
-> ?
-
-I'd prefer to keep this as it's related to the orderable part number,
-e.g. TMAG5273A1 / TMAG5273A2.
+OK
 
 > 
-> ...
+>>> +  Typical setups includes connecting the data pin of the LED chain to MOSI as
+>>> +  the only device or using CS and MOSI with a tri-state voltage-level shifter
+>>> +  for the data pin.
+>>> +  The SPI frequency needs to be 2.105MHz~2.85MHz for the timing to be correct
+>>> +  and the controller needs to send all the bytes continuously.
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: worldsemi,ws2812b-spi
+>>
+>> Drop "-spi". Compatibles are not supposed to include bus information.
+>> The same for file name.
 > 
->> +static int tmag5273_runtime_resume(struct device *dev)
->> +{
->> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
->> +	struct tmag5273_data *data = iio_priv(indio_dev);
->> +	int ret;
-> 
->> +	/*
->> +	 * Time to go to stand-by mode from sleep mode is 50us
->> +	 * typically. During this time no I2C access is possible.
->> +	 */
-> 
-> Shouldn't be this comment closer to usleep_range()?
-> 
+> WS2812B isn't a SPI chip. It's controlled with only a single wire and
+> can be driven
+> using anything that can produce a long and a short pulse meeting its timing
+> requirement.
+> This driver uses a SPI bus to send the pulses, but it can also be
+> controlled with
+> I2S and the PIO pins on a Raspberry Pi Pico.
+> This spi suffix is to distinguish it from other possible
+> implementations if someone
+> else submits a support with a different peripheral.
 
-Ok, I'll clarify this and also introduce a wake-up function, as this is
-used two times in a similar way.
+And that's exactly what I said - the compatibles should not include bus
+information. The bus information comes from... the bus!
 
->> +	tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
->> +	usleep_range(80, 200);
->> +	ret = tmag5273_set_operating_mode(data, TMAG5273_OP_MODE_CONT);
->> +	if (ret)
->> +		dev_err(dev, "failed to power on device (%pe)\n", ERR_PTR(ret));
->> +
->> +	return ret;
->> +}
+> 
+>>
+>>> +
+>>> +  reg:
+>>> +    description: The chip-select line on the SPI bus
+>>
+>> Drop description, it's obvious.
+> 
+> OK.
+> 
+>>
+>>> +    maxItems: 1
+>>> +
+>>> +  spi-max-frequency:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Maximum SPI clocking speed of the device in Hz.
+>>
+>> No need for ref and description. It comes from spi-peripheral-props.
+> 
+> OK.
+> 
+>>
+>>> +    minimum: 2105000
+>>> +    maximum: 2850000
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +patternProperties:
+>>> +  "^multi-led(@[0-9a-f])?$":
+>>
+>> Why unit address is optional?
+> 
+> It isn't. I copy-pasted it from led-class-multicolor.yaml and
+> didn't check the exact regex.
+> I'll fix it in the next version.
 
-Regards,
-Gerald
+Make it required and matching your case.
+
+> 
+>>
+>>> +    type: object
+>>> +    $ref: leds-class-multicolor.yaml#
+>>
+>>     unevaluatedProperties: false
+> 
+> OK.
+> 
+>>> +
+>>> +    properties:
+>>> +      color-index:
+>>> +        description: |
+>>> +          A 3-item array specifying color of each components in this LED. It
+>>> +          should be one of the LED_COLOR_ID_* prefixed definitions from the
+>>> +          header include/dt-bindings/leds/common.h. Defaults to
+>>> +          <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>
+>>> +          if unspecified.
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        minItems: 3
+>>
+>> Drop minItems.... but see comment below:
+>>
+>>> +        maxItems: 3
+>>
+>> Why this is different than other multi-color LEDs? I would expect here
+>> children with common.yaml.
+> 
+> WS2812B is a single LED package with 3 diodes and a microcontroller.
+> Each LED package has 3 colors. The original chip comes with GRB
+> color while there are some clones with RGB arrangement instead.
+> The LED chain can be really long so I'd like to simplify the binding
+> by using a single property to override the only variable, color, here.
+
+OK, that makes sense.
+
+> 
+>>
+>>> +
+>>> +      default-intensity:
+>>> +        description: |
+>>> +          An array of 3 integer specifying the default intensity of each color
+>>> +          components in this LED. <255 255 255> if unspecified.
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        minItems: 3
+>>
+>> Drop minItems.... but:
+>>
+>>> +        maxItems: 3
+>>> +        items:
+>>> +          minimum: 0
+>>> +          maximum: 255
+>>
+>> default: 255
+>>
+>> What controls the intensity? Don't you have PWM there?
+> 
+> The LED takes 3-byte brightness value of each color. This property is used to
+> specify the default multi_intensity field for the multi-color LED. The final
+> brightness value is calculated with led_mc_calc_color_components like this:
+> 
+> mcled_cdev->subled_info[i].brightness = brightness *
+> mcled_cdev->subled_info[i].intensity / led_cdev->max_brightness;
+> 
+> The LED chip takes exactly 8 bits for the brightness (max_brightness = 255
+> which can't be changed.), so according to the formula above the maximum
+> intensity should be 255.
+
+So this is brightness of each color... why insisting on calling it
+differently?
+
+Best regards,
+Krzysztof
+
