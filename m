@@ -2,78 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A8B863D4A6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 12:32:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D568463D4AC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 12:33:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234278AbiK3Lcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 06:32:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
+        id S235197AbiK3Ldp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 06:33:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234566AbiK3LcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 06:32:20 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF58A86A36
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:30:44 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id q7so20507094ljp.9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:30:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kwImYC7W7ZZuKVqcGDzmbuBlb7N4Pu6f1S4cC8DOdRk=;
-        b=KZaG9Lue8nCFAyPP7V2g1X6m30n7QLpXq2inp3WhIHGnhbTiQPvwqX2Tu6h5Gj9Lxv
-         kyo90KWwiJYBC3H824AIGlqpI5Ex6LHagP5zPas+exajYibmWxRpte2B23TePmFpRgsC
-         Aqz55FYfKYS21xQQ3IcP0Fenq86y45JUznXXVVbHXNsvHg6RQ38QHL92DCLi1o0UVRT0
-         hsBOp7makj8w72dMPKBx4T5nV8LfGsUY/xaWZkH6aur4wmCL06uEkaR2PtBajLOKVhec
-         GxbKJQMC1YN7XBs2i6fXv3T3ZOVs2QFUOgmriZjsKlcIrvD0kVstEA+EegKr+I18Xg+U
-         oL1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kwImYC7W7ZZuKVqcGDzmbuBlb7N4Pu6f1S4cC8DOdRk=;
-        b=rHP4PiRAyP48cvXl4XEdhKyjAfKL7VGLfceCMnq+ZG1NbjWgb2hGTEfwrMllqfNYlM
-         V65g1oVKLcKa6lNVAn5kIlRi5h+T8GPJKgWLt0B4xchWW3Gw7uSdBGSdq/idzV/aD82f
-         tEGC15kyaf/6OcH1k5oHRWM9aBDjHNvKBJsRtkDRutdek1hjNALElnyF1hKKViYdwTra
-         B/w19gyd8YjG3vxHRSYErg+TMeeu+2lWekEGn5uBGX5QA5vkxsIsoLFVp1Qdqj3b92mr
-         JGaIpK8p2GlHZfgxiFXYrnFqpK8o4P9+Jq1A8WMCeBT19vaTCR9Rf0zSbqLzFw0VCfEq
-         XBXw==
-X-Gm-Message-State: ANoB5ply9Zfas1CVFL6ZADjXwnX3d5dF3LUIa77RewIumLrxgErYAvFG
-        i0USx6wQBaDM6DHFhfv9MIq24hgdGoVoiw==
-X-Google-Smtp-Source: AA0mqf4pqWBeREzjKvW67NtvR30uj8LXyAM6/326FvEy9mtPtKdoyTAUX5VlAmr2ybct6m71fwD05g==
-X-Received: by 2002:a2e:b943:0:b0:277:1d7e:9f6b with SMTP id 3-20020a2eb943000000b002771d7e9f6bmr18030040ljs.421.1669807839966;
-        Wed, 30 Nov 2022 03:30:39 -0800 (PST)
-Received: from [192.168.1.101] (95.49.125.236.neoplus.adsl.tpnet.pl. [95.49.125.236])
-        by smtp.gmail.com with ESMTPSA id a22-20020a056512201600b004a2588520f5sm219999lfb.166.2022.11.30.03.30.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 03:30:37 -0800 (PST)
-Message-ID: <e3268c45-b97f-1eea-c0a2-752cac714397@linaro.org>
-Date:   Wed, 30 Nov 2022 12:30:33 +0100
+        with ESMTP id S232226AbiK3LdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 06:33:12 -0500
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3C32B24F;
+        Wed, 30 Nov 2022 03:32:12 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 964EBF53EF;
+        Wed, 30 Nov 2022 03:31:42 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 4wOaUqSW06EL; Wed, 30 Nov 2022 03:31:41 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1669807901; bh=6x67qmLJQCj3lbasXYSdmsQWomk0eqRrMSoej+wwECc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LPIC92+jA0DV34i/vgAYFARuJsFlzYZqZ3/qMpv3Dj1r1Ecxm3G8TZTeJxwcFREKU
+         8nNfMDvRxh4nvRjL5Ifly+VCs4wtRjqFxMYQxxcb4w5uthAmmyHOAAUHFNP8IWxCLL
+         CEWfa9Fbw7TqQwC/R+wE4qEcjzEme1ONwEwpAhPtYc60zphCTYQLlYO8GfAmpaYZ4l
+         dL9jTkfV/3PgEtfvfYIhZW9yu2ZEo2m/y9EkuOfczOuvnhcQUXafp8SVaV8BBXadSg
+         c3nM3Pxb/JxLBqHobW71tLS202C46yNVHX/1+Fl9wRBCGXVwkAbcMvlOAqOlZTpstD
+         xHXHRyKoiyiRw==
+To:     robh@kernel.org, krzysztof.kozlowski@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com
+Cc:     linux-imx@nxp.com, kernel@puri.sm, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v1] arm64: dts: imx8mq-librem5: use multicolor leds description for RGB led
+Date:   Wed, 30 Nov 2022 12:31:24 +0100
+Message-Id: <20221130113124.1558335-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 3/9] clk: qcom: gdsc: Increase status poll timeout
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221130112852.2977816-1-abel.vesa@linaro.org>
- <20221130112852.2977816-4-abel.vesa@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221130112852.2977816-4-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,39 +51,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As Documentation/leds/well-known-leds.txt says, "Phones usually have
+multi-color status LED." Fix that for the Librem 5 mobile phone board.
 
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+---
+ .../boot/dts/freescale/imx8mq-librem5.dtsi    | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-On 30.11.2022 12:28, Abel Vesa wrote:
-> The SM8550 GCC GDSCs need a higher timeout value when polling for status,
-> so increase it to 1500us, while leaving the delay between disable-enable
-> sequence for votable gdscs to stay the same.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+index ddf0e330dc7c..6895bcc12165 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+@@ -56,27 +56,27 @@ key-vol-up {
+ 	};
+ 
+ 	led-controller {
+-		compatible = "pwm-leds";
++		compatible = "pwm-leds-multicolor";
+ 
+-		led-0 {
++		multi-led {
++			color = <LED_COLOR_ID_RGB>;
+ 			function = LED_FUNCTION_STATUS;
+-			color = <LED_COLOR_ID_BLUE>;
+ 			max-brightness = <248>;
+-			pwms = <&pwm2 0 50000 0>;
+-		};
+ 
+-		led-1 {
+-			function = LED_FUNCTION_STATUS;
+-			color = <LED_COLOR_ID_GREEN>;
+-			max-brightness = <248>;
+-			pwms = <&pwm4 0 50000 0>;
+-		};
++			led-0 {
++				color = <LED_COLOR_ID_BLUE>;
++				pwms = <&pwm2 0 50000 0>;
++			};
+ 
+-		led-2 {
+-			function = LED_FUNCTION_STATUS;
+-			color = <LED_COLOR_ID_RED>;
+-			max-brightness = <248>;
+-			pwms = <&pwm3 0 50000 0>;
++			led-1 {
++				color = <LED_COLOR_ID_GREEN>;
++				pwms = <&pwm4 0 50000 0>;
++			};
++
++			led-2 {
++				color = <LED_COLOR_ID_RED>;
++				pwms = <&pwm3 0 50000 0>;
++			};
+ 		};
+ 	};
+ 
+-- 
+2.30.2
 
-Konrad
->  drivers/clk/qcom/gdsc.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
-> index 0f21a8a767ac..9e4d6ce891aa 100644
-> --- a/drivers/clk/qcom/gdsc.c
-> +++ b/drivers/clk/qcom/gdsc.c
-> @@ -46,6 +46,7 @@
->  #define RETAIN_MEM		BIT(14)
->  #define RETAIN_PERIPH		BIT(13)
->  
-> +#define STATUS_POLL_TIMEOUT_US	1500
->  #define TIMEOUT_US		500
->  
->  #define domain_to_gdsc(domain) container_of(domain, struct gdsc, pd)
-> @@ -107,7 +108,7 @@ static int gdsc_poll_status(struct gdsc *sc, enum gdsc_status status)
->  	do {
->  		if (gdsc_check_status(sc, status))
->  			return 0;
-> -	} while (ktime_us_delta(ktime_get(), start) < TIMEOUT_US);
-> +	} while (ktime_us_delta(ktime_get(), start) < STATUS_POLL_TIMEOUT_US);
->  
->  	if (gdsc_check_status(sc, status))
->  		return 0;
