@@ -2,252 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D7D363E0CA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 20:30:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 466EB63E103
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 20:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbiK3TaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 14:30:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43810 "EHLO
+        id S229760AbiK3TuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 14:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiK3TaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 14:30:18 -0500
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 207808C44C;
-        Wed, 30 Nov 2022 11:30:17 -0800 (PST)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-14263779059so22267697fac.1;
-        Wed, 30 Nov 2022 11:30:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vey2xyZWw852h6h6+sA2dVPI7ZTC37aAaOAnPv7n9Cs=;
-        b=I6pnVW1Zml+1uikWb+2tCdDpqX9aKyudylPaMRNuXlxeXA2paVyAk48AVmTzAov1jh
-         0Cj+SWwle57WeIwteNjD385Px+DXdhQS20uiajWTaLjwkqUu6abjJ7ulpSD8JjSElN/d
-         MpW/JsZnIms0ewTBaE9L6ytSTVWN63Rwaf7471COyNhvAWlGG0P9XLjmAY1Y7RioT/LN
-         K1i1dlSBW2XF1iX57GXGMi1mHzNCBxtU7filqzTe/GlXfZ7ivrR5w0lp8XS9XoJcN740
-         KV5Mnk2yUF9YfXlgosI9cJj1buVfyvtR708OlyLv2fHOfTy4FFgnkPPo1WfOSWyMRbmT
-         ffhg==
-X-Gm-Message-State: ANoB5plaCgW8S/j0kU3DYF7WaRUbvMMhDfn0EBQ8KHt+DFvU7pfGtNlc
-        AQoW1H71x534ZZEw9bD9bw==
-X-Google-Smtp-Source: AA0mqf6euqww3Wd1rIgPAv+lutmMx14inHv1/54xYfDjWH7CJCTALg8wNYpo9bIiKFtWbL0Uj8+vnA==
-X-Received: by 2002:a05:6870:a11d:b0:132:3c19:8cbc with SMTP id m29-20020a056870a11d00b001323c198cbcmr34597528oae.185.1669836616291;
-        Wed, 30 Nov 2022 11:30:16 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s10-20020acadb0a000000b0035b439a4b81sm970779oig.31.2022.11.30.11.30.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 11:30:15 -0800 (PST)
-Received: (nullmailer pid 2655052 invoked by uid 1000);
-        Wed, 30 Nov 2022 19:30:14 -0000
-Date:   Wed, 30 Nov 2022 13:30:14 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, arnd@arndb.de,
-        hasegawa-hitomi@fujitsu.com, marcan@marcan.st,
-        nicolas.ferre@microchip.com, conor.dooley@microchip.com,
-        heiko@sntech.de, sven@svenpeter.dev, briannorris@chromium.org,
-        krzysztof.kozlowski+dt@linaro.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-binding: soc: nuvoton: Add NPCM BPC LPC
- documentation
-Message-ID: <20221130193014.GA2645083-robh@kernel.org>
-References: <20221122201232.107065-1-tmaimon77@gmail.com>
- <20221122201232.107065-2-tmaimon77@gmail.com>
- <cedc0013-f0c0-3180-6995-477b77b919f8@linaro.org>
+        with ESMTP id S229614AbiK3TuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 14:50:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3792754375;
+        Wed, 30 Nov 2022 11:50:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E328AB81CCD;
+        Wed, 30 Nov 2022 19:50:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97FCFC43147;
+        Wed, 30 Nov 2022 19:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669837820;
+        bh=QOqw927fxRzrbF/F3Jnf30+Wco4wM1OzEviRcFlVUEM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=V3zEJ+E37k+PcTuehrx445ZgWfK+r063zKQF13cD/Q9IDc5a1UsKXM1vM0X3PxAW8
+         5A+ubiQPnrThXbkKEw6Kas8R20BH+ZffyYOlLplY9Cz6jJzjpdQr/IKrLZGoe3Hw3V
+         7KO0pKJnrRcemGaKShSL6r0H8va1Bb3nUOMqiZ7sP6zme8H4HOKDWoqmt3Z8K8yauc
+         VFdkNnx4PeUcl6Amnm2yeRQ59w1vNAPMuX7E9taqMesk+ekaBkPRmsYtnUjScumNIg
+         qvr5PiSgJ7PIzDXlula4TqQ+eexBUq8hqnQlv+3C/2UmD/HvlInYbEMbQT3/2MIvTL
+         M762HhtGWxJwg==
+Received: by mail-vs1-f54.google.com with SMTP id c184so18394904vsc.3;
+        Wed, 30 Nov 2022 11:50:20 -0800 (PST)
+X-Gm-Message-State: ANoB5pkkpV7QGdpbTJjNkAHDZOolERjNh3nUniDGGT/NzfSsl9Su2xQE
+        5YrRMMgxHF1MpqF6QDeVlnzcevvZHXZRe5SUWQ==
+X-Google-Smtp-Source: AA0mqf52Y1Vj9n3ybkEc5FmCE5sMcIYABT3Rc5wjqxKa7c1Iw7w12pQuxt5Kk2YnjZv2U8m3ZeRxCLTHwseH2sbP40I=
+X-Received: by 2002:a05:6102:2381:b0:3b0:c6ec:cc6a with SMTP id
+ v1-20020a056102238100b003b0c6eccc6amr5171717vsr.0.1669837819471; Wed, 30 Nov
+ 2022 11:50:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cedc0013-f0c0-3180-6995-477b77b919f8@linaro.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221128142912.16022-1-marcan@marcan.st> <20221128142912.16022-3-marcan@marcan.st>
+ <CAPDyKFobMvef_BWGMR=7avODh2r5XNMGpwO3xYgrN-u=DqRwbg@mail.gmail.com>
+ <41c6882a-bff0-378c-edd3-160b54be7c1d@marcan.st> <a297079e-2dc9-d311-5415-a58332e7a711@linaro.org>
+ <e8c481ba-02a7-f1c7-6314-ea1ddf136998@marcan.st> <20221129232837.GA432535-robh@kernel.org>
+In-Reply-To: <20221129232837.GA432535-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 30 Nov 2022 13:50:08 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJFEBFSeTrCc6QSCAN8C7rsiyoiy8D-9ZFr6Xk35TqhGg@mail.gmail.com>
+Message-ID: <CAL_JsqJFEBFSeTrCc6QSCAN8C7rsiyoiy8D-9ZFr6Xk35TqhGg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Torvalds <torvalds@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 11:03:28AM +0100, Krzysztof Kozlowski wrote:
-> On 22/11/2022 21:12, Tomer Maimon wrote:
-> 
-> 1. Subject: drop second, redundant "documentation" (dt-bindings are
-> documentation).
-> 
-> 2. Use subject prefixes matching the subsystem (git log --oneline -- ...).
-> 
-> > Added device tree binding documentation for Nuvoton BMC NPCM BIOS Post
-> > Code (BPC).
-> > 
-> > The NPCM BPC monitoring two configurable I/O addresses written by the
-> > host on Low Pin Count (LPC) bus.
-> > 
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  .../bindings/soc/nuvoton/npcm-lpc-bpc.yaml    | 112 ++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
-> > new file mode 100644
-> > index 000000000000..2c8e66546891
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/nuvoton/npcm-lpc-bpc.yaml
-> 
-> Filename should match compatibles, at least in the "vendor,device"
-> style, so for example: nuvoton,lpc.yaml
-> 
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/nuvoton/npcm-lpc-bpc.yaml#
-> 
-> LPC is a generic bus, so this should not be in "soc" directory. Where?
-> Depends what is this... Generic bus bindings could be in "bus" directory
-> or dedicated "lpc", if we have more of these.
-> 
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nuvoton Low Pin Count (LPC) Bus Controller
-> > +
-> > +maintainers:
-> > +  - Tomer Maimon <tmaimon77@gmail.com>
-> > +
-> > +description:
-> > +  The Low Pin Count (LPC) is a low bandwidth bus that is used to connect
-> > +  peripherals around the CPU and to replace the Industry Standard Architecture
-> > +  (ISA) bus.
-> 
-> You need to decide whether you describe here bus, bus controller or
-> device on the bus.
-> 
-> > +
-> > +  The Nuvoton NPCM LPC bus is a bridge of host CPU to a several of peripheral
-> > +  devices.
-> 
-> LPC bus is a bridge? It's either incorrect or so generic that every bus
-> is a "bridge"?
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - nuvoton,npcm750-lpc
-> > +          - nuvoton,npcm845-lpc
-> > +      - const: simple-mfd
-> > +      - const: syscon
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
+On Tue, Nov 29, 2022 at 5:28 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Nov 30, 2022 at 12:17:08AM +0900, Hector Martin wrote:
+> > On 29/11/2022 23.34, Krzysztof Kozlowski wrote:
+> > > On 29/11/2022 15:00, Hector Martin wrote:
+> > >> On 29/11/2022 20.36, Ulf Hansson wrote:
+> > >> Please, let's introspect about this for a moment. Something is deeply
+> > >> broken if people with 25+ years being an arch maintainer can't get a
+> > >
+> > > If arch maintainer sends patches which does not build (make
+> > > dt_binding_check), then what do you exactly expect? Accept them just
+> > > because it is 25+ years of experience or a maintainer? So we have
+> > > difference processes - for beginners code should compile. For
+> > > experienced people, it does not have to build because otherwise they
+> > > will get discouraged?
+> >
+> > I expect the process to not be so confusing and frustrating that a
+> > maintainer with 25+ years of experience gives up. That the bindings
+> > didn't pass the checker is besides the point. People say the Linux
+> > kernel community is hostile to newbies. This issue proves it's not just
+> > newbies, the process is failing even experienced folks.
+>
+> IME, a lack of response is a bigger issue and more frustrating.
+>
+> > On that specific issue, any other functional open source project would
+> > have the binding checks be a CI bot, with a friendly message telling you
+> > what to do to fix it, and it would re-run when you push to the PR again,
+> > which is a *much* lower friction action than sending a whole new patch
+> > series out for review via email (if you don't agree with this, then
+> > you're not the average contributor - the Linux kernel is by far the
+> > scariest major open source project to contribute to, and I think most
+> > people would agree with me on that).
+>
+> We could probably add a $ci_provider job description to do that. In
+> fact, I did try that once[1]. The challenge would be what to run if
+> there's multiple maintainers doing something. Otherwise, it's a
+> maintainer creating their own thing which we have too much of already.
 
-ISA type bus is 2 cells.
+Actually, turns out this pretty much already exists with my CI. I just
+had to turn on merge requests on the project. If anyone actually uses
+it, I'll have to tweak it to not do 'make dtbs_check' because that is
+really slow. And this all runs on my machines, so that is another
+issue. It already is just running it for patches on the list (which is
+a different CI job).
 
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> > +
-> > +  ranges: true
-> > +
-> > +patternProperties:
-> > +  "^lpc_bpc@[0-9a-f]+$":
-> 
-> No underscores in node names. Generic node names, so maybe "bpc"
-> 
-> This also does not match your example at all.
-> 
-> 
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    description:
-> > +      Nuvoton BMC NPCM BIOS Post Code (BPC) monitoring two configurable I/O
-> > +      addresses written by the host on the Low Pin Count (LPC) bus, the capure
-> 
-> typo: capture
-> 
-> > +      data stored in 128-word FIFO.
-> > +
-> > +      NPCM BPC supports capture double words, when using capture
-> > +      double word only I/O address 1 is monitored.
-> 
-> This sentence is not grammatically correct. BPC supports capturing
-> double words when using double word capturing? Aren't these two sentences?
-> 
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        items:
-> 
-> No items here.
-> 
-> > +          - enum:
-> > +              - nuvoton,npcm750-lpc-bpc
-> > +              - nuvoton,npcm845-lpc-bpc
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      interrupts:
-> > +        maxItems: 1
-> > +
-> > +      nuvoton,monitor-ports:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +        description: 
-> > +          Contain monitor I/O addresses, at least one monitor I/O address 
-> 
-> Contains
-> 
-> But you need to explain what are these... I/O addresses on the bus?
+Just create a MR here:
 
-What does 'reg' contain then?
-
-> 
-> > +          required.
-> > +
-> > +      nuvoton,bpc-en-dwcapture:
-> > +        description: If present, Enable capture double words support.
-> 
-> Is it the same as reg-io-width?
-> 
-> > +        type: boolean
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - interrupts
-> > +      - nuvoton,monitor-ports
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +  - ranges
-> > +
-> > +additionalProperties:
-> > +  type: object
-> 
-> No, only bus schemas could have it. Here additionalProperties: false.
-> 
-> It seems there are already few LPC controllers and all are put in
-> different places:
-> Documentation/devicetree/bindings/mfd/aspeed-lpc.yaml
-> Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
-
-Always the 3rd instance that gets to restructure things...
-
-> Maybe Rob why this was made not really as two bindings - for bus
-> controller and devices?
-
-This schema should certainly be split between LPC and BPC. As LPC is 
-logically ISA bus, there is an ISA bus schema in dtschema already which 
-should be referenced.
+https://gitlab.com/robherring/linux-dt/-/merge_requests
 
 Rob
