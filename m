@@ -2,136 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D3263CF56
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 07:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3682863CF82
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 08:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbiK3GtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 01:49:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
+        id S233202AbiK3HEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 02:04:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232297AbiK3GtG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 01:49:06 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF0E45EDB;
-        Tue, 29 Nov 2022 22:49:04 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 6962432008C3;
-        Wed, 30 Nov 2022 01:49:01 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 30 Nov 2022 01:49:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1669790940; x=
-        1669877340; bh=Oo4m/M2CLmFBs936diTgoNkM47vJxV+hsa4z7Pi/W/c=; b=i
-        UybVenTBMuICmg1qOTvvLhVZhFOCVQ2TUs07wvfeMI6oGBlIby4tTDTP2WehHFUq
-        JuXJW3HKOX+xthigiaMlemR8XB4s+kw+U/8M354F7214xlZ/EwOYO7T/wp3rF5cV
-        ostq0XKldLMxoF1pFJQRkR9rX/rGajiU5DtVdOqKgjRn4wLpUfeRS3jwnPzHJHql
-        zok6S8GtW2rDEJAqn1q1Rji2/HVSbN/wzZ+IYgMiu6W/Sc1OPGnHV3Mfin+Rq9jA
-        1cY6AwylGgipbF0XhfAxjum82IqFDAqqJBAazpPcR6s7pAlHZDkSPVO1/mxzBEAf
-        PzH6M/GkQP7BRt9aBdlqA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1669790940; x=
-        1669877340; bh=Oo4m/M2CLmFBs936diTgoNkM47vJxV+hsa4z7Pi/W/c=; b=W
-        140O6eix5o9QGCjvzrQHyoM5YtS44aVc+YsF5ecHuZqgadvwyHJiiZd00p/NEMuw
-        dMCEqKjGV5z9ra54AsBqsHTjfQ8jW1mkTJKj06WXMQsHQLlRhsUqQd0g+y/zd2fx
-        7k5+jYaBmoYndpEVzWq6CrlDoAmKfxuewht9l/FelucM3wHt+6Fmedg+7rF71CIw
-        mU0+W4m/x8+9yuMRG7chKUdk8/4D5tW3kf2RJYNnYDnCrfCg3qvbdGov5mBw3ar1
-        xrzNVCPZ6TJujTYcUuCsLYYPSXJCTQ7oHWLLgcB+N0qA3GHAH1CliOzQKxVzTfL8
-        QyDpIFS8bDSKlhCM8WbKw==
-X-ME-Sender: <xms:2_yGYz0Y49q2bNvS5nkXckNWHbFLgDzTGWWRKbd-gvlkNS8gBa0hcA>
-    <xme:2_yGYyE8qsDxm79tnHHpiJgqVlpAKjCU-fLs9ui8qF9fofJCXsA-lt0zeZUy_tGIg
-    rAvDMjXkQuLA153jw>
-X-ME-Received: <xmr:2_yGYz6YTf4tziAk4X2ZgRzInmxjOwq94ysEjs3vWVqAhS4hw6lDk3gLUyGNqCb859MAgTfrMEfvoZchab9PSFB8Lcd0R0sT7QwqMJ6gsSVDG8yXK0mOjtII3A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtddvgdellecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudfhffefhfffuddutedvffekteevieeugeefleelffeitddutdff
-    udehgfdtfefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:2_yGY43y3F_JIzreruW5KaMjdYX6lCBtFKEAw0-f067mmFQXJj5nhw>
-    <xmx:2_yGY2G4PW9MSLevbKpqlAOlAlCP15_qWMzLUU23c7FN2OPIqUE3Pg>
-    <xmx:2_yGY59DQWmk2HPhM8j52r53VsjSu3g7Q7EGlXzBbfFZNbB-qMZTww>
-    <xmx:3PyGYyH_b_OEbiRJP5xFF7ri_CaEbLmi19Chl0sOjTQDPTgy5yaciQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 30 Nov 2022 01:48:58 -0500 (EST)
-Message-ID: <d0344e62-b9ff-8465-9556-5562e195f4a3@sholland.org>
-Date:   Wed, 30 Nov 2022 00:48:58 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 3/9] riscv: add the Bouffalolab SoC family Kconfig
- option
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
+        with ESMTP id S230033AbiK3HEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 02:04:07 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B4D756EE1;
+        Tue, 29 Nov 2022 23:04:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 08E7661A36;
+        Wed, 30 Nov 2022 07:04:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA02C433D6;
+        Wed, 30 Nov 2022 07:04:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669791845;
+        bh=X2hPhN+EYjcCTx3ChJ6TWYuinHRDF7JJBXdPbw05/5w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CHsf1QVv9nH0bbZCg4lJSQyjpYf9tGr9BYNjQHL6FWKen9L8u99MN6OJyyonVqet7
+         6mu/L1XRnUn7nb6q2xZA3lEkKj1nxOX//lxv1RP4UFlR9sdYUuAw19OODOEeqMZxqp
+         vKaTgnKVmok2zWRHphYGF9HZcS88BrEWYslg89s00Zqd1Y3NVIfjtNc2/t3YBPKpvg
+         /rE5jqqn7tmSL1aG3A001PeKMz5EV/kPHepbLh3ShLz6HB11n43xGYA2IBz6A7bmjO
+         fse/lpKjukDYdTrON4nlKfPf87evDNkio4sik0p2YCU/cLrx9PqAYAbqSrrwSZMkdh
+         nGUCp4ov5SQcg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1p0H8Z-0007n8-Mz; Wed, 30 Nov 2022 08:04:07 +0100
+Date:   Wed, 30 Nov 2022 08:04:07 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-4-jszhang@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-In-Reply-To: <20221127132448.4034-4-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: PCI: qcom-ep: Fix PERST register description
+Message-ID: <Y4cAZ8ZqnRvR350Z@hovoldconsulting.com>
+References: <20221018093115.7537-1-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221018093115.7537-1-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/27/22 07:24, Jisheng Zhang wrote:
-> The Bouffalolab bl808 SoC contains three riscv CPUs, namely M0, D0 and
-> LP. The D0 is 64bit RISC-V GC compatible, so can run linux.
+On Tue, Oct 18, 2022 at 11:31:15AM +0200, Johan Hovold wrote:
+> The 'qcom,perst-regs' property holds a single phandle array with the
+> phandle of the TCSR syscon and offsets of the two PERST registers, but
+> the current schema does not capture this.
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Update the binding to describe the single phandle array and its three
+> elements.
+> 
+> Fixes: 31c9ef002580 ("dt-bindings: PCI: Add Qualcomm PCIe Endpoint controller")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  arch/riscv/Kconfig.socs | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml          | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
 > 
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 69774bb362d6..90256f44ed4a 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -1,5 +1,11 @@
->  menu "SoC selection"
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> index 977c976ea799..7574291646ad 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -42,13 +42,13 @@ properties:
+>      maxItems: 8
 >  
-> +config SOC_BOUFFALOLAB
+>    qcom,perst-regs:
+> -    description: Reference to a syscon representing TCSR followed by the two
+> -                 offsets within syscon for Perst enable and Perst separation
+> -                 enable registers
+> +    description: PERST TCSR registers
+>      $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>      items:
+> -      minItems: 3
+> -      maxItems: 3
+> +      - items:
+> +          - description: phandle of TCSR syscon
+> +          - description: offset of PERST Enable register
+> +          - description: offset of PERST Separation Enable register
+>  
+>    interrupts:
+>      items:
 
-The options in this file are getting renamed soon, so this should be
-named ARCH_BOUFFALOLAB. See
+Lorenzo, it seems this one has not yet been picked up so sending a
+reminder.
 
-https://lore.kernel.org/linux-riscv/20221121221414.109965-1-conor@kernel.org/
-
-Regards,
-Samuel
-
-> +	bool "Bouffalolab SoCs"
-> +	select SIFIVE_PLIC
-> +	help
-> +	  This enables support for Bouffalolab SoC platforms.
-> +
->  config SOC_MICROCHIP_POLARFIRE
->  	bool "Microchip PolarFire SoCs"
->  	select MCHP_CLK_MPFS
-
+Johan
