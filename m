@@ -2,166 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9A3363DD5C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE76363DD6B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:27:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiK3S0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 13:26:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57952 "EHLO
+        id S230001AbiK3S1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 13:27:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbiK3S0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:26:42 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3565213E16;
-        Wed, 30 Nov 2022 10:26:40 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id t62so19646203oib.12;
-        Wed, 30 Nov 2022 10:26:40 -0800 (PST)
+        with ESMTP id S229919AbiK3S1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:27:05 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3169327933
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:27:03 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id o1so13061708pfp.12
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:27:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RGjOYqsJ4mpJB2xZwE/rziR8NLFmClSXUULTYa2k8yU=;
-        b=oQLpUJp5d/SDEQkPeAmaK3imrtzhoV7AJV8DnSFQ15Ps/WGI8Wnq3bxng6w1oXf52B
-         Ze1JTPcyxDqFZwAXPMakP0AN8lf678/PLNK3VCqQCni951cB1NjleZw2ET55E76vu93Z
-         q2Wa71GQ2mGHUybOkQyFC3r/j+RoK5qE1xNKydQiUUJiFeu9od+mT+6UQJohzJrc/mXb
-         BcwjeaKACY5COJmH05uZa4kwltfedmMO+wttfFM54/82AeB30w2DTCsr0W4szaKKXtGE
-         WgP6KjhRAme2ereRGa9bLv0388fkuEnXu83fAR33b5gamiiyQZByunfEi6Mi3DYDGV0w
-         NXaA==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TQ108K9WPiqq9XP0xFpBdMMmDxhty1N9YdIT9yuGVos=;
+        b=b1hf0HFip+EmXU9IfJ/4UnR5ikqyFVA6HSuSuZnDWYPHHdrsakH7m/6EQe926C0YhW
+         c2j+e0oC5cW1UmAerfHsrD5TMKdUGBBrbgPgBTKHGc6LprBgxJuZvXe6P3/PaqG3jnqY
+         /M3jLjIuHBsDRwS9DvH84nguc0KWVfykwkCs5x+rMxiR6E/Ox9L/V79X8Mf85O8umKD5
+         fvDxR9XxW3LNy97j7waEVZuj1hIQxPK/R4xS6q67m1w0etdlIvz1PfB4altY9VJ67hg4
+         lDXyh64swFvZSDMWS7b8WJWaO4t+mOxxxWXc/5pf39wP+eW3SSNLNX8Pikobp7XwXBxq
+         IhLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RGjOYqsJ4mpJB2xZwE/rziR8NLFmClSXUULTYa2k8yU=;
-        b=4hrn7RF8v2MzUAzG/kV8XvEE0ffYfgpGDCwsbjCX62APwr3VjrQpG8CtCkcLCNSql6
-         rmgyzMIWuea27YxdRoRm2Ttd723T5nEFkrqBwKO6A14fVVM76VQYXjZJ5j8q16OvxgVI
-         HYnlsA0juv6yT0sQ4nGz+t31QO0/IcBRvCh1ZJ0X+o6itkh/6YyqCtgRlVAE6fgXEplv
-         4hZqq61YlbuY3JYz2pHqWJNNy0CaX3Uit/B+NQf138orUihDOZmZQIPtWmq7AbqQYG2f
-         AKrxjeDm/LxxY+QppYj5gj/ekZyFBYhOnlEyHneJgIaaR99jHyU9XH2eUE8bD8NjeFod
-         HXow==
-X-Gm-Message-State: ANoB5pnnoFDJpJwvB6GoqtZcUrNAbNAj7Bj0arO0gsNAMO7OvVAN5IM0
-        ZXNaJ4EXP9dbbFR31xqHatM=
-X-Google-Smtp-Source: AA0mqf77snlArXHG8vx98XRaqgtiE/ggXGaDKOCcwT+WvqNStpwv2sxoJQE9dFHM5u3r3Hdkt6Nqng==
-X-Received: by 2002:a05:6808:46:b0:35a:ff1:bf0d with SMTP id v6-20020a056808004600b0035a0ff1bf0dmr22742161oic.115.1669832800241;
-        Wed, 30 Nov 2022 10:26:40 -0800 (PST)
-Received: from localhost.localdomain ([2804:14c:485:4b69:e48f:7d21:8a92:6dc])
-        by smtp.gmail.com with ESMTPSA id m24-20020a0568301e7800b006690f65a830sm1209972otr.14.2022.11.30.10.26.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 10:26:39 -0800 (PST)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     jic23@kernel.org
-Cc:     lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH 2/2] iio: dac: ad5686: Add support for AD5337
-Date:   Wed, 30 Nov 2022 15:26:32 -0300
-Message-Id: <20221130182632.3856675-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221130182632.3856675-1-festevam@gmail.com>
-References: <20221130182632.3856675-1-festevam@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TQ108K9WPiqq9XP0xFpBdMMmDxhty1N9YdIT9yuGVos=;
+        b=X523U3FSzGJyYe/9BBh0wsZgXbX3FiHX4bIo/fvEEMIzJiVqzLBmapaYT9Z8rgtFrn
+         v6R0QHyYYm28GU+fxIWgEzq0EookRHzb0vTIo2CUZMrJxMNv7tzYG+HUKeMBe5WBgD8n
+         LpTgt0OU9172k9wUNEDSmOO+H/Mw+YsWwZY1Vckta+brU24XwPqpCJmCNFyyqweppMQ7
+         +XVk4ULUPgqzW5RJg2y4EdcRrVIKwnOCHySYfU17HmGm7QuaJ7emIH8Hq1G3t5+s/155
+         GvcIbINXNfG7VwGD4CeeD/j9KBP1470zIJJORb51FMpwzZCHtKfrrHLfeSi3BzTUViAo
+         cZwg==
+X-Gm-Message-State: ANoB5plOoCz1sflaMSH45ifaSSU2ZCbpi5PFIJR7Pq7/eZ21fnvSg3oh
+        gl8dKEGf/x+i+ZgEkOTbhRQEOA==
+X-Google-Smtp-Source: AA0mqf7jPW/Zl2KN/xxxM4MwggdyVC7Ha6AyE+Se43Nc/kimzjctxg7ieg3514i5txY1sKZj6wh0Iw==
+X-Received: by 2002:a63:e509:0:b0:474:4380:cca6 with SMTP id r9-20020a63e509000000b004744380cca6mr36928463pgh.229.1669832822605;
+        Wed, 30 Nov 2022 10:27:02 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id 6-20020a170902c20600b00186ff402508sm1771532pll.281.2022.11.30.10.26.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 10:27:02 -0800 (PST)
+Message-ID: <9ea32599-122f-e7c1-bf7c-6b528304fd46@9elements.com>
+Date:   Wed, 30 Nov 2022 23:56:58 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v3 3/4] hwmon: (pmbus/core): Implement irq support
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+References: <20221130165955.3479143-1-Naresh.Solanki@9elements.com>
+ <20221130165955.3479143-3-Naresh.Solanki@9elements.com>
+ <20221130182428.GB2658232@roeck-us.net>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <20221130182428.GB2658232@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AD5337 belongs to the same family as the AD5338.
+Hi,
 
-The difference is that the AD5337 has 8-bit precision instead of 10-bit.
+On 30-11-2022 11:54 pm, Guenter Roeck wrote:
+> On Wed, Nov 30, 2022 at 05:59:53PM +0100, Naresh Solanki wrote:
+>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+>>
+>> Implement PMBUS irq handler to notify regulator events.
+>>
+> 
+> There should be separate patches for adding irq support, adding
+> hwmon notifications, and adding regulator notifications. The order
+> should be:
+> 
+> - Add interrupt support
+> - Add hwmon notifications
+> - Add events to regulator flag map
+> - Add regulator notifications
+Yes. Will do that as part of next revision. Thanks.
 
-Add support for the AD5337 chip in the driver.
-
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- drivers/iio/dac/Kconfig      | 8 ++++----
- drivers/iio/dac/ad5686.c     | 7 +++++++
- drivers/iio/dac/ad5686.h     | 1 +
- drivers/iio/dac/ad5696-i2c.c | 2 ++
- 4 files changed, 14 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index 80521bd28d0f..e83eb75d87d1 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -162,10 +162,10 @@ config AD5696_I2C
- 	depends on I2C
- 	select AD5686
- 	help
--	  Say yes here to build support for Analog Devices AD5311R, AD5338R,
--	  AD5671R, AD5673R, AD5675R, AD5677R, AD5691R, AD5692R, AD5693, AD5693R,
--	  AD5694, AD5694R, AD5695R, AD5696, and AD5696R Digital to Analog
--	  converters.
-+	  Say yes here to build support for Analog Devices AD5311R, AD5337,
-+	  AD5338R, AD5671R, AD5673R, AD5675R, AD5677R, AD5691R, AD5692R, AD5693,
-+	  AD5693R, AD5694, AD5694R, AD5695R, AD5696, and AD5696R Digital to
-+	  Analog converters.
- 
- 	  To compile this driver as a module, choose M here: the module will be
- 	  called ad5696.
-diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-index 15361d8bbf94..57cc0f0eedc6 100644
---- a/drivers/iio/dac/ad5686.c
-+++ b/drivers/iio/dac/ad5686.c
-@@ -258,6 +258,7 @@ static const struct iio_chan_spec name[] = {			\
- 
- DECLARE_AD5693_CHANNELS(ad5310r_channels, 10, 2);
- DECLARE_AD5693_CHANNELS(ad5311r_channels, 10, 6);
-+DECLARE_AD5338_CHANNELS(ad5337r_channels, 8, 8);
- DECLARE_AD5338_CHANNELS(ad5338r_channels, 10, 6);
- DECLARE_AD5676_CHANNELS(ad5672_channels, 12, 4);
- DECLARE_AD5679_CHANNELS(ad5674r_channels, 12, 4);
-@@ -283,6 +284,12 @@ static const struct ad5686_chip_info ad5686_chip_info_tbl[] = {
- 		.num_channels = 1,
- 		.regmap_type = AD5693_REGMAP,
- 	},
-+	[ID_AD5337R] = {
-+		.channels = ad5337r_channels,
-+		.int_vref_mv = 2500,
-+		.num_channels = 2,
-+		.regmap_type = AD5686_REGMAP,
-+	},
- 	[ID_AD5338R] = {
- 		.channels = ad5338r_channels,
- 		.int_vref_mv = 2500,
-diff --git a/drivers/iio/dac/ad5686.h b/drivers/iio/dac/ad5686.h
-index b7ade3a6b9b6..760f852911df 100644
---- a/drivers/iio/dac/ad5686.h
-+++ b/drivers/iio/dac/ad5686.h
-@@ -54,6 +54,7 @@
- enum ad5686_supported_device_ids {
- 	ID_AD5310R,
- 	ID_AD5311R,
-+	ID_AD5337R,
- 	ID_AD5338R,
- 	ID_AD5671R,
- 	ID_AD5672R,
-diff --git a/drivers/iio/dac/ad5696-i2c.c b/drivers/iio/dac/ad5696-i2c.c
-index 160e80cf9135..8a95f0278018 100644
---- a/drivers/iio/dac/ad5696-i2c.c
-+++ b/drivers/iio/dac/ad5696-i2c.c
-@@ -72,6 +72,7 @@ static void ad5686_i2c_remove(struct i2c_client *i2c)
- 
- static const struct i2c_device_id ad5686_i2c_id[] = {
- 	{"ad5311r", ID_AD5311R},
-+	{"ad5337r", ID_AD5337R},
- 	{"ad5338r", ID_AD5338R},
- 	{"ad5671r", ID_AD5671R},
- 	{"ad5673r", ID_AD5673R},
-@@ -92,6 +93,7 @@ MODULE_DEVICE_TABLE(i2c, ad5686_i2c_id);
- 
- static const struct of_device_id ad5686_of_match[] = {
- 	{ .compatible = "adi,ad5311r" },
-+	{ .compatible = "adi,ad5337r" },
- 	{ .compatible = "adi,ad5338r" },
- 	{ .compatible = "adi,ad5671r" },
- 	{ .compatible = "adi,ad5675r" },
--- 
-2.25.1
-
+Naresh
+> 
+> Guenter
+> 
+>> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+>> ---
+>>   drivers/hwmon/pmbus/pmbus.h      |   2 +-
+>>   drivers/hwmon/pmbus/pmbus_core.c | 151 ++++++++++++++++++++++++++++---
+>>   2 files changed, 137 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
+>> index 10fb17879f8e..6b2e6cf93b19 100644
+>> --- a/drivers/hwmon/pmbus/pmbus.h
+>> +++ b/drivers/hwmon/pmbus/pmbus.h
+>> @@ -26,7 +26,7 @@ enum pmbus_regs {
+>>   
+>>   	PMBUS_CAPABILITY		= 0x19,
+>>   	PMBUS_QUERY			= 0x1A,
+>> -
+>> +	PMBUS_SMBALERT_MASK		= 0x1B,
+>>   	PMBUS_VOUT_MODE			= 0x20,
+>>   	PMBUS_VOUT_COMMAND		= 0x21,
+>>   	PMBUS_VOUT_TRIM			= 0x22,
+>> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+>> index 9a9e380acc23..613e2e484a0f 100644
+>> --- a/drivers/hwmon/pmbus/pmbus_core.c
+>> +++ b/drivers/hwmon/pmbus/pmbus_core.c
+>> @@ -81,6 +81,7 @@ struct pmbus_label {
+>>   struct pmbus_data {
+>>   	struct device *dev;
+>>   	struct device *hwmon_dev;
+>> +	struct regulator_dev **rdevs;
+>>   
+>>   	u32 flags;		/* from platform data */
+>>   
+>> @@ -2804,7 +2805,8 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
+>>   	},
+>>   };
+>>   
+>> -static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
+>> +static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *error,
+>> +				    unsigned int *event)
+>>   {
+>>   	int i, status;
+>>   	const struct pmbus_regulator_status_category *cat;
+>> @@ -2815,7 +2817,8 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
+>>   	u8 page = rdev_get_id(rdev);
+>>   	int func = data->info->func[page];
+>>   
+>> -	*flags = 0;
+>> +	*error = 0;
+>> +	*event = 0;
+>>   
+>>   	mutex_lock(&data->update_lock);
+>>   
+>> @@ -2831,8 +2834,10 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
+>>   		}
+>>   
+>>   		for (bit = cat->bits; bit->pflag; bit++) {
+>> -			if (status & bit->pflag)
+>> -				*flags |= bit->rflag;
+>> +			if (status & bit->pflag) {
+>> +				*error |= bit->rflag;
+>> +				*event |= bit->eflag;
+>> +			}
+>>   		}
+>>   	}
+>>   
+>> @@ -2851,11 +2856,15 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
+>>   		return status;
+>>   
+>>   	if (pmbus_regulator_is_enabled(rdev)) {
+>> -		if (status & PB_STATUS_OFF)
+>> -			*flags |= REGULATOR_ERROR_FAIL;
+>> +		if (status & PB_STATUS_OFF) {
+>> +			*error |= REGULATOR_ERROR_FAIL;
+>> +			*event |= REGULATOR_EVENT_FAIL;
+>> +		}
+>>   
+>> -		if (status & PB_STATUS_POWER_GOOD_N)
+>> -			*flags |= REGULATOR_ERROR_REGULATION_OUT;
+>> +		if (status & PB_STATUS_POWER_GOOD_N) {
+>> +			*error |= REGULATOR_ERROR_REGULATION_OUT;
+>> +			*event |= REGULATOR_EVENT_REGULATION_OUT;
+>> +		}
+>>   	}
+>>   
+>>   	/*
+>> @@ -2863,13 +2872,22 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
+>>   	 * PMBUS_STATUS_TEMPERATURE, map PB_STATUS_TEMPERATURE to a warning as
+>>   	 * a (conservative) best-effort interpretation.
+>>   	 */
+>> -	if (!(*flags & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
+>> -	    (status & PB_STATUS_TEMPERATURE))
+>> -		*flags |= REGULATOR_ERROR_OVER_TEMP_WARN;
+>> +	if (!(*error & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
+>> +	    (status & PB_STATUS_TEMPERATURE)) {
+>> +		*error |= REGULATOR_ERROR_OVER_TEMP_WARN;
+>> +		*event |= REGULATOR_EVENT_OVER_TEMP_WARN;
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>>   
+>> +static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
+>> +{
+>> +	unsigned int event;
+>> +
+>> +	return pmbus_regulator_get_flags(rdev, flags, &event);
+>> +}
+>> +
+>>   static int pmbus_regulator_get_status(struct regulator_dev *rdev)
+>>   {
+>>   	struct device *dev = rdev_get_dev(rdev);
+>> @@ -3060,14 +3078,61 @@ const struct regulator_ops pmbus_regulator_ops = {
+>>   };
+>>   EXPORT_SYMBOL_NS_GPL(pmbus_regulator_ops, PMBUS);
+>>   
+>> +static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
+>> +{
+>> +	return pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
+>> +}
+>> +
+>> +static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
+>> +{
+>> +	struct pmbus_data *data = pdata;
+>> +	struct i2c_client *client = to_i2c_client(data->dev);
+>> +	int i, ret = IRQ_NONE, status, event;
+>> +	u8 page;
+>> +
+>> +	for (i = 0; i < data->info->num_regulators; i++) {
+>> +
+>> +		if (!data->rdevs[i])
+>> +			continue;
+>> +
+>> +		ret = pmbus_regulator_get_flags(data->rdevs[i], &status, &event);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		if (event) {
+>> +			regulator_notifier_call_chain(data->rdevs[i], event, NULL);
+>> +			ret = IRQ_HANDLED;
+>> +		}
+>> +
+>> +		page = rdev_get_id(data->rdevs[i]);
+>> +		mutex_lock(&data->update_lock);
+>> +		status = pmbus_read_status_word(client, page);
+>> +		if (status < 0) {
+>> +			mutex_unlock(&data->update_lock);
+>> +			return status;
+>> +		}
+>> +
+>> +		if (status & ~(PB_STATUS_OFF | PB_STATUS_BUSY | PB_STATUS_POWER_GOOD_N))
+>> +			pmbus_clear_fault_page(client, page);
+>> +
+>> +		mutex_unlock(&data->update_lock);
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>>   static int pmbus_regulator_register(struct pmbus_data *data)
+>>   {
+>>   	struct device *dev = data->dev;
+>>   	const struct pmbus_driver_info *info = data->info;
+>>   	const struct pmbus_platform_data *pdata = dev_get_platdata(dev);
+>> -	struct regulator_dev *rdev;
+>>   	int i;
+>>   
+>> +	data->rdevs = devm_kzalloc(dev, sizeof(struct regulator_dev *) * info->num_regulators,
+>> +				  GFP_KERNEL);
+>> +	if (!data->rdevs)
+>> +		return -ENOMEM;
+>> +
+>>   	for (i = 0; i < info->num_regulators; i++) {
+>>   		struct regulator_config config = { };
+>>   
+>> @@ -3077,21 +3142,71 @@ static int pmbus_regulator_register(struct pmbus_data *data)
+>>   		if (pdata && pdata->reg_init_data)
+>>   			config.init_data = &pdata->reg_init_data[i];
+>>   
+>> -		rdev = devm_regulator_register(dev, &info->reg_desc[i],
+>> +		data->rdevs[i] = devm_regulator_register(dev, &info->reg_desc[i],
+>>   					       &config);
+>> -		if (IS_ERR(rdev))
+>> -			return dev_err_probe(dev, PTR_ERR(rdev),
+>> +		if (IS_ERR(data->rdevs[i]))
+>> +			return dev_err_probe(dev, PTR_ERR(data->rdevs[i]),
+>>   					     "Failed to register %s regulator\n",
+>>   					     info->reg_desc[i].name);
+>>   	}
+>>   
+>>   	return 0;
+>>   }
+>> +
+>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	const struct pmbus_regulator_status_category *cat;
+>> +	const struct pmbus_regulator_status_assoc *bit;
+>> +	int i, j, err, ret;
+>> +	u8 mask;
+>> +	int func;
+>> +
+>> +	for (i = 0; i < data->info->pages; i++) {
+>> +		func = data->info->func[i];
+>> +
+>> +		for (j = 0; j < ARRAY_SIZE(pmbus_regulator_flag_map); j++) {
+>> +			cat = &pmbus_regulator_flag_map[i];
+>> +			if (!(func & cat->func))
+>> +				continue;
+>> +			mask = 0;
+>> +			for (bit = cat->bits; bit->pflag; bit++)
+>> +				mask |= bit->pflag;
+>> +
+>> +			err = pmbus_write_smbalert_mask(client, i, cat->reg, ~mask);
+>> +			if (err)
+>> +				dev_err(dev, "Failed to set smbalert for reg 0x%02x\n",	cat->reg);
+>> +		}
+>> +
+>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_CML, 0xff);
+>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_OTHER, 0xff);
+>> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_MFR_SPECIFIC, 0xff);
+>> +		if (data->info->func[i] & PMBUS_HAVE_FAN12)
+>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_12, 0xff);
+>> +		if (data->info->func[i] & PMBUS_HAVE_FAN34)
+>> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_34, 0xff);
+>> +
+>> +	}
+>> +
+>> +	/* Register notifiers - can fail if IRQ is not given */
+>> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
+>> +			      0, "pmbus-irq", data);
+>> +	if (ret) {
+>> +		dev_warn(dev, "IRQ disabled %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>>   #else
+>>   static int pmbus_regulator_register(struct pmbus_data *data)
+>>   {
+>>   	return 0;
+>>   }
+>> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
+>> +{
+>> +	return 0;
+>> +}
+>>   #endif
+>>   
+>>   static struct dentry *pmbus_debugfs_dir;	/* pmbus debugfs directory */
+>> @@ -3456,6 +3571,12 @@ int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info)
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> +	if (client->irq > 0) {
+>> +		ret = pmbus_irq_setup(client, data);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>>   	ret = pmbus_init_debugfs(client, data);
+>>   	if (ret)
+>>   		dev_warn(dev, "Failed to register debugfs\n");
+>> -- 
+>> 2.37.3
+>>
