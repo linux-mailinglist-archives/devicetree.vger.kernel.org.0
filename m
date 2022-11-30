@@ -2,227 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B55F663CDDD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 04:34:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D977D63CDE5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 04:40:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiK3Deo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 22:34:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52678 "EHLO
+        id S232868AbiK3DkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 22:40:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiK3Den (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 22:34:43 -0500
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2044.outbound.protection.outlook.com [40.107.92.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D01565E75;
-        Tue, 29 Nov 2022 19:34:42 -0800 (PST)
+        with ESMTP id S232827AbiK3DkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 22:40:23 -0500
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2089.outbound.protection.outlook.com [40.107.105.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC99D21E31;
+        Tue, 29 Nov 2022 19:40:21 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cXfCzLS9fiKpTjD3b5cBSafE9Yiz7D+/9ZbcW3yqellZPus+xQeQjPlG9W+Wfqae0/v6OVInk+WtrPMyke5lu1gOXcURTWGvvC3J8kDVebsf1Th9TS/d1+OMD23wjLVrius0dprVkD27JBFb3VAiCViybkQjWfz4+j75qxN/8enUkLdDUbRij+FMEaQRbTdvaJ863iO9YpP/R/PXhC5lPdHbN7/Hjk4n6Yw4nZ3vl/3Tkyaqr3XJmnqGoBjS1dYKclXJBZhE/WYDXXJzpb4ShMv8/3Ech0hmc72aYYJP/ApR16Q6tXEwXcUCoQZm59RFce/m7Zp1ePl8HR/oJ3l8DQ==
+ b=Fc+D28LzQg1bv3HEAB7n8ICemPapnZ+fvnSb+4F98PVhwmWxJ0Gyba/E4cFd0ja3faG1SS70UL5+j42/QPHVEirweM8RhATUqOioi9UdVJ415+Kmv2n67FvuxF/GvAqbY0b/K4G7mZtiOtftGqWNaSs+wRscOlkSYE62lIYxs9J1cE3qcI/9iVmt4jP0QIaMjtvPKWZHHG4SXyIuHSRyqkYw5OHPrOv+EpefBpBCE/HO+XaIwnbSza7yzzL9MwaR7Kmk7iKZguV+iDat9E4etX8piyC+uqZ3f7/v8czo4Z65/nVcD+rtkGqDSIT2UO9s0ieOZDmCRxMex0a0aH7JIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GyRgP0HoF2QXuGR5aYpnpMmSFjwqsM7Gqc9MgphN6QU=;
- b=RN5TW8f57NEfTR/9QIGwmPdM537+Nkbyxujv7/DmCHKsmpaMgxixN4h5ACKIfaD/oEXQTZ7oG5F1KVGYbjEmKv5QaQ5RBeYaS/5M+Vrz3beDx+jUhf8AS2Ji8vZAtTP71kCGz5m3Xkei9lW+Mwj6K1LuORmQW+gqA9dYDL35sScLIFMFrshBp68+LGFzNLn1/045WeWcug6y9DEZHQnHxSoJzPPA+6nR9S4pbPiV0CkmIhgV/Kf34CID6j98rpT19PPY9wSNaFBzZHSqIhTPH3fDCLlvTQo/yLJdMpVaWjv/MX2VxfY79CykwLGE1I3pp3SKMmOLEZhV5NKoXP+sSQ==
+ bh=C2vrM4deEfzzoocL24EZldFPUo9CgelADX8KrSwQtZ4=;
+ b=RQKEr32VLT21gyR+1/u/m/8w0lMpA4F6nn2pL7GXZrKWRv2YK1NO9D25RkteDaEf9glsi9kj8Nndw0Y7YuRGz+vwMCx9cxL9nfccxtevXEjB95/5aXmAYGzDPD3Q3fi2HBByg8A85wItaISdx8+9Eq9UhDHmDVbqA+oiUe+TRqX232e3Q43dkSWlsXn5URniFlccO1gQ8c0McYx5HnLD0SbLcBZSuFhHdWDu6gl6GL6/gHDJKMQzh7J0qOtYasg0wJC3/qD85zQH530SPF0rrVFNn38LVyigbneXM6oxmm8L20EojMdJ6XQpXhTXV1/+3I6ftEm0kXkT5zX2CRMiSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GyRgP0HoF2QXuGR5aYpnpMmSFjwqsM7Gqc9MgphN6QU=;
- b=j+jwi2Ky384ZqalNzq1a4SfK4iovXWREiMGAwlX4BwGWYO1geMdSKk9vWkpluo9msKUVOAAEHT7iRavUNiGMBAjNQcCApHl6X9ncN6YcnYJno0DLXvfbVWPY10hm+vNaLvndsEBrMKq6NjyKy4KOuE8S6DGEVmwkFkzIVtWZYOCnMgD6x72RPcb46AJhi1PvFtZprxOqQH0NljgikyaJ+HTjho2egH2eBqukXTnFVUnNeKsMLyxQlsLTtPLI3XnpdtMIDkMsHhoQF3MHdOvQj2hkMrXovNHk17f8VmJY6cS/LzbuoynVCZSgnhKTz/SxFctQYE6t810J9u22I+MPSA==
+ bh=C2vrM4deEfzzoocL24EZldFPUo9CgelADX8KrSwQtZ4=;
+ b=L7q6StR0M5ZBbL/twHzR7pmQ+9Qnle+F2DBV/veq+r5LOJd1hWZq+AEKc8u7LI67ft8E6bVP08K7aPZWx2pzsTmAzBxqtp0oy0rNsOTCxfb3Z68/yQkQQt/1hYnsI1AFcBPIvZ6fVmuzNfvNeCSf6a/KQNHrzx45kyBewp9EleQ=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from IA1PR12MB6604.namprd12.prod.outlook.com (2603:10b6:208:3a0::7)
- by SJ0PR12MB5453.namprd12.prod.outlook.com (2603:10b6:a03:37f::9) with
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6407.eurprd04.prod.outlook.com (2603:10a6:20b:d9::10)
+ by PR3PR04MB7417.eurprd04.prod.outlook.com (2603:10a6:102:8e::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Wed, 30 Nov
- 2022 03:34:39 +0000
-Received: from IA1PR12MB6604.namprd12.prod.outlook.com
- ([fe80::2349:ec6b:2442:8c52]) by IA1PR12MB6604.namprd12.prod.outlook.com
- ([fe80::2349:ec6b:2442:8c52%3]) with mapi id 15.20.5857.023; Wed, 30 Nov 2022
- 03:34:33 +0000
-Message-ID: <5145d9d3-d3ae-e95a-6583-803f31d6d9b7@nvidia.com>
-Date:   Tue, 29 Nov 2022 19:34:29 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH 5/7] hte: Re-phrase tegra API document
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.18; Wed, 30 Nov
+ 2022 03:40:19 +0000
+Received: from AM6PR04MB6407.eurprd04.prod.outlook.com
+ ([fe80::3222:ed58:9b36:beee]) by AM6PR04MB6407.eurprd04.prod.outlook.com
+ ([fe80::3222:ed58:9b36:beee%4]) with mapi id 15.20.5857.023; Wed, 30 Nov 2022
+ 03:40:18 +0000
+Message-ID: <5d1485d4-08d4-1e26-f597-b5fa6cc65ce6@nxp.com>
+Date:   Wed, 30 Nov 2022 09:10:08 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [EXT] Re: [PATCH v5 2/2] misc: nxp-sr1xx: UWB driver support for
+ sr1xx series chip
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org, will@kernel.org, axboe@kernel.dk,
+        robh+dt@kernel.org, mb@lightnvm.io, ckeepax@opensource.cirrus.com,
+        arnd@arndb.d, mst@redhat.com, javier@javigon.com,
+        mikelley@microsoft.com, jasowang@redhat.com,
+        sunilmut@microsoft.com, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        ashish.deshpande@nxp.com, rvmanjumce@gmail.com
+References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
+ <20220914142944.576482-3-manjunatha.venkatesh@nxp.com>
+ <YyHq9OOKBLP2GEcc@kroah.com>
 Content-Language: en-US
-To:     Bagas Sanjaya <bagasdotme@gmail.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        robh+dt@kernel.org, timestamp@lists.linux.dev
-References: <20221103174523.29592-1-dipenp@nvidia.com>
- <20221103174523.29592-6-dipenp@nvidia.com> <Y2XZj4j/NQH2igvJ@debian.me>
-X-Nvconfidentiality: public
-From:   Dipen Patel <dipenp@nvidia.com>
-In-Reply-To: <Y2XZj4j/NQH2igvJ@debian.me>
-Content-Type: text/plain; charset=UTF-8
+From:   Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+In-Reply-To: <YyHq9OOKBLP2GEcc@kroah.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0170.namprd03.prod.outlook.com
- (2603:10b6:a03:338::25) To IA1PR12MB6604.namprd12.prod.outlook.com
- (2603:10b6:208:3a0::7)
+X-ClientProxiedBy: SG2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096::24) To
+ AM6PR04MB6407.eurprd04.prod.outlook.com (2603:10a6:20b:d9::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR12MB6604:EE_|SJ0PR12MB5453:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d3cc439-73ad-4aec-a6c9-08dad283cc4e
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6407:EE_|PR3PR04MB7417:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3808c0d-91fa-47bb-b306-08dad28499e5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: U550BkoAEdML41U2wiN0uP3ar/BrNpBLlcRKc+a+tCnRQRFN5nB4DdmjIiUfSuA55OfI1bIxk+Hsru7el7Oy9atPFhcTblwB/sE41bcaG8htaZb900QnyO+4N8Fln5ByeyShU/IZEi1qhqrN1r29pM/PQZ6aSw+uMCHK1KSMt+gB4X5BxVtujGkWvCYF7FB6XShIYed9VgOjR2XoVTsxvN9Iy9mq37C0L50LmVhSbg/iUeCHOZBg7aZP6vJbVxl7gHD5QTAtmA/urSgTvuVOY/3/p5bWM4bmbElYga05nHeuOnJ5vqRSQgRlx+SJq5hXW1P1k3PBHfQjMJC8VLS1D+Nvv9JI32VCm0s3q9PfPJ4Li6ThSxXBuilE6Id8u97WUJ87Vw+bjV0rtIRRzftwsqZBi78WD6conn3EyKrK1fccjfmYIZXteQiKRlXaHOOKtXXDP7KfnL9fBZK3O5/LTqgKVIzm1UAYqw/GGh9zrGJq4dqfITPySgvuxsDJXP3i+Th5SLzld74UQMVPymuu+MAs3jRqqfIBbpXSnryp/glxmnKF6x0Z/iT8lt+UjhfMr2XsWwrDLgaabxm+I9JW9gTL5+rpm8Pc+35XdLVsK1XC3Qs6pOZc5mwFKE8nuwUZy0y3RQSS9DQ+ZYLAF/Qb17cABXvh8D7l/AN5tVXj/Q15d01dCdV4kHWnT9ns62lLhnUnNCo/dgwCjiTv/l7uMtNTB9CfinFM/091HHMF24E=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB6604.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(451199015)(66556008)(6486002)(53546011)(36756003)(26005)(6506007)(6666004)(6512007)(38100700002)(8676002)(41300700001)(66946007)(478600001)(66476007)(86362001)(31696002)(4326008)(316002)(6916009)(7416002)(5660300002)(8936002)(186003)(2616005)(31686004)(83380400001)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: cedyKJVmI01XwpakU8sp/vVLW3uwE9DwDL+JqTxoCt4oynMlB1phzWlnWcWSuPJjtKp5Yu1kgFMUX0xMnpnVtAY6S0lbKjXvmMsvl9LirpoxtWDXvBlaFspyyMrVEUS9LZ2qQ5POj5eaNyZLhUAlHRF2ut8l2BHTrf86/KW89uBA3S95k0kM63TUFrZ8WzXzMuCeBdRWe07afZ50f8sMv4fCbAO9pPgqcgCWzzB/EfF1D/4iDa0jrvXDdik6q4H/nhYQ/8D3LOXac1LDACWghZEQ/qMm3YaQfNDjWmrX5om3ECXDmyYZ7W14kuBQaA1WTo7Y3FCahmNyCB4XvmsjSg7F4h80tOCgehitd/weDIL8dX5ed+cNtMlxualOykL7Fpwax3P0GHKW+rYD+x3Bg9jOiND9VCV3VIzLVQo5roRWkk+SiwM2M9B/0wj3L3dE1Tfg5IqqYDbvizhVcMbzufEEzgn1+jsHtH/Ika4V1OyODmbVNBip2IDKreHMJe9BKddhMXUhe7d6XJjKpxPY8XRBugErVODjc8kapt8LK9IbIymiQs39GD2RnoaLayF1Ubw8e51fD8FEPncE/wxL1hbsLvud2TCEj0wJHjH2eJXZi2aCPZfr5Jew2YfjV6CX6W6NBnTrpttVTdeANyz1DgMyTlYthQCl0orROXERQb/j9SvGYrUr47+5+VFnBNmd9HZ00gpZyHKrliQDxjihQzw9aixUjVZOeDbox5YFXHl0SsaoViO3M9fwFDazOAH0dbH9KEprj07BVtikyFZSVfCzbaQZtsaeBOutaJdGqTbgPc1/cWVOh7cTIcvHx0jW
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6407.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(366004)(39860400002)(136003)(346002)(451199015)(8936002)(5660300002)(36756003)(186003)(8676002)(66556008)(41300700001)(4326008)(66476007)(6506007)(6916009)(316002)(55236004)(38100700002)(83380400001)(2616005)(6666004)(6486002)(26005)(6512007)(86362001)(478600001)(7416002)(66946007)(53546011)(31696002)(52116002)(38350700002)(2906002)(31686004)(44832011)(32563001)(43740500002)(45980500001)(473944003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXlyQStoS2tPNGdXanFPVXJpY09JTk91cHFYQVcyOUpZS3NNcTkwK25sUFFZ?=
- =?utf-8?B?RjJRZ3RsSm81L09zVW8vZnNudUQvY3J0L0xEUTJJUkRkdEE3VVNnUkFHQmla?=
- =?utf-8?B?Y1k1TWc2UnlLWjlRVFRzWXRTSFhvRFpETlFlamlFNUpoZDBvSGpaT2loMU9u?=
- =?utf-8?B?NUhZblZWUytKaFQxemIxaW9sc2NmREhrbHdVMWNYT3BKeTgvYWlHY2crcy9G?=
- =?utf-8?B?MDZjYkNzWW9MNGh3ZjVDclZQQkFmdUZEL1RiVDlaWnpkczY3M044NTNOTHFm?=
- =?utf-8?B?dkdNNG1mZTM0WHgyU0RYTGg1M2kyR1QyVDlZdjRhanlBZlNCajNndXZvZVNF?=
- =?utf-8?B?T3Y2VjZEdERIRmh5QnB2MllnL1BrdjhIZHMyV3BENUFOSTlsckREQmNzS09P?=
- =?utf-8?B?RXRNaDR0ZWgvdzFwTVM5TDQ2dXBpWVkrNlBvd21RWE45MU9MNFhqRlFyQzN1?=
- =?utf-8?B?dnhjcW5sZytNemZyY1ZEYnhtUnRYQmxGU1Y2aVlzNWZ5aXJUQjhVSzhOWWk5?=
- =?utf-8?B?Q2pkSjQrZlh0TUtKcUtSdFc3QXh4NkdZbHRsbVRJazVkS3BtY2lnY3NYcGx4?=
- =?utf-8?B?RFgwMGZQMUpJMFEvamZYQzQvaVNxVVBHZjlibmtqYk5TKys0ZGZEZm1NZ0Yx?=
- =?utf-8?B?cThVeFJRM0FEWHJUeTMwVVBtNzl4eTYwY0NyOVdBMXFaRGFzYThveGlrcmtV?=
- =?utf-8?B?UDhvdjFKcHN0NFZ4TStBSjJPVWo1QmVaSGc4L2JRRjNYL2svUDVnTVI0cnRt?=
- =?utf-8?B?c1Zab2NNOVkrWHVhaUwzNmt6NTBUSE5IM09mRURHd2tqQngyUDA2NWRWSTJk?=
- =?utf-8?B?QlIxQklGWlc2Zkw0NEZiWjBtSlpWT3RxYlo3WWFRdUtQL2VTQ2NxbGlHVXNr?=
- =?utf-8?B?R0gwSnhRL2YzSmIvbEkwbklrTHZLbUJjV2FKcGNMbFNNVHdmaVVwcEVIV3pu?=
- =?utf-8?B?SlVWTUZwb1JKbzVDTGRDMWhLdk5McUMycHNoQ1Q4aWVScG9nbSs4WDluaitx?=
- =?utf-8?B?TTk0M1NMVFN3N1o2Mk8vRUZaZVA2bmxEV1JYNVlCcnBXSU1jZ0kxaWhNeXc5?=
- =?utf-8?B?ZVZGWUZNMWlJZ1phOU1BSTBlWm9xekR6UEVqNXhkMXRvazhIb2ROUjM5eFNW?=
- =?utf-8?B?Z1hqdkc2S1Rlcy9nTVhNY2tyM0lBZkdidTJGOVV2SnpXbHlvTkpqVlNLbi90?=
- =?utf-8?B?ZWM2cGRsczBZZldURDhvd1lWYlJ1bU9YdFBYUHBpNGFjRnk2NDdvMzh3dHZk?=
- =?utf-8?B?SElhTy9XOWF3V3VZSzErYkphR2NxQmZkTU01NSt2QVFpWVFMRFdLcUt3MXVI?=
- =?utf-8?B?dk4yWXBJTjRueXlTN1lrOEJXU1g0cFBzRk5uSHFUa2Z2U3J3cHc5Qm03TzJv?=
- =?utf-8?B?VU1VQS9FRGtpbGlVdVF1Q3FVSXZKYU54a0xYdVp6N2h0UUIrTEtJeU9wb0hl?=
- =?utf-8?B?Q3gvcUtvMGxBTFZzdXNPYWkyZFovZGlaQjU0eHkvY044RVI2M09GL0JGeG0x?=
- =?utf-8?B?aVlWQzNKTWNJbGcwL3Fjd3FERmRFSm1iaXBqR0VJUmpjNTN0UXJOclFoU0d3?=
- =?utf-8?B?TkgvMDdCa3BoMnRsRzRQSVl2R3p0MGhsSWkzdU1RclltZDJCOEtXVTUzdkVW?=
- =?utf-8?B?VWhtaGtUb0J5eDlNaklsZjM3WThVYnh1V2UxaU5OYWw0UjFjZjJkN3Z5VnFU?=
- =?utf-8?B?OTJoMkhrY0xRdzk1RS9mbDVlKzVGc3BRSnEvZHBhYUJQU0ZENkd6TVVnQkh1?=
- =?utf-8?B?T3FzRzhvZUYvbEhhTXBOY3JOK0hyQ1ladm9Rc0ZFakRCSC9KaFQrTm5aWGg4?=
- =?utf-8?B?UFpHdmE5L3dmcENoclpwVEFRUmplZE1OZmk2R280VjBIK1ROazVxNG11d1lq?=
- =?utf-8?B?YkltWmlQbklQNUpiZWZIVSttVWpoek1ENDYxYklrb21JLzJMSThyUktkUUpo?=
- =?utf-8?B?L1ZHMUVVU1BXaEJBU1JDeDhyYUVjV0FQSmszd0dhd1M0ZGVoSFlFZkFVSE5u?=
- =?utf-8?B?S3BESzRneG9ISitGd05sK3BPeHZQRjhyQ3cra2hiY3pWN1BHRm5hekZnVVUw?=
- =?utf-8?B?dlMyVFJ1U0JGMTYvbktMM2VpeHhYVkNiNnVuSGI1UXJzK2gyU25qS0VaOXIx?=
- =?utf-8?Q?KHvjo9hmNr8/HpC+gYoMuIslY?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d3cc439-73ad-4aec-a6c9-08dad283cc4e
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6604.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmtaNXJadnMrRTduSTc3WmEwQW8vYmZQMFRVNEE0eDJ1Nm5sV1Q5dDJsL1Ru?=
+ =?utf-8?B?SnBNTmlrVHFtcy9oVG8vVC9kMmdhdXYrbHNtWXFKTHdkeDdXY3d5MmppWmlM?=
+ =?utf-8?B?bmh0Q3NpTnFTT2gzc0ZrTjVxWXhESy9UZE9VTXJEUmIrK3lULzNsa1dHVWpj?=
+ =?utf-8?B?N29idUVnTFViNDIrRlFVSS9sTGhZZStwUXM4ZjRVN2x0L2ZRdFhsY1lpU215?=
+ =?utf-8?B?MVNXclYrckErSTNndVU0MWZuTlBwM2NYUHVsdEZBeTF5NWc1Q1N0TXVMKyt3?=
+ =?utf-8?B?MEREdFBIS2srOVFRKzcvdzNIWkpkbkFleUUzZFdHZVdPdmZjdG8veGFYNFRn?=
+ =?utf-8?B?eVhlSW5KYTRrYmJtTnRDM2ZudkMvT1pvd2tqYnlpdFhVeVhESkw3ZlhHcGp1?=
+ =?utf-8?B?UmN4MUlrZitJYWZGWGdNUU1SVTlieWx0aHhTMjcyNXhDcUN3Y3lMNGNkT1JX?=
+ =?utf-8?B?SHcxSW5tZlZjdXVCYklxdzBYS3g3S0FlM0lwNHhJOUxUM2g3ZHBQb3BTdC9j?=
+ =?utf-8?B?TmdqQTRBeWhWU2xQQmFxNTJKN05haCt6UXg2TVFqcFE4ZWphaVRmb1Erc3RY?=
+ =?utf-8?B?TEo1NGptMm5oK2c3QWRib2ZlamRORkM2UDB6ckNWcWwySkFDcWRZNlVJUXpO?=
+ =?utf-8?B?akh0ZzUyR2JrWldoUFFFcmN1aXpIMkhHY3pTTnoyd0xVcmJnT1hlVDNqMTE2?=
+ =?utf-8?B?YmtwV3AwM0NScmovR1o4NEI0US9yeE8xNXdLcW9jbWFyS1BwODhsd3prWEJR?=
+ =?utf-8?B?Vi93b0tybVVEdjFTV2o4NDduUU5nbmZDMEdmdFFGZCsvem1GK1Y1VmhuNTJW?=
+ =?utf-8?B?T3dqRVJYYU1icmlDd2FsSDZWNHZKUEtvaEsydzBDRlk5aTN3T0tFSEp0N1hq?=
+ =?utf-8?B?MnEzR1EwOTN1eU9KL2FZUzVpUjhHOXhJUS9NOC8rVGJDbmppSUZOeHFvS1ZB?=
+ =?utf-8?B?VFJCa2ZMdUprUysrTWs0K294V1N6YkVTT3pkcWxQNkN3aDdXUE9LdHcvM01O?=
+ =?utf-8?B?THZheG9waTdhUmFTQmg5cXBkSGVhMDVuSFBGMU8rRjZ0enZaeUlselhZRkov?=
+ =?utf-8?B?NFAycm16MzNZOHFUbEVpNmZUbHZ1YkxXZ0Y4WG4yZmNvQVdqVTFOME10cXlS?=
+ =?utf-8?B?US9pdHY5dVBOQ1lZTG5xNkdDcHZocURGU0hPcTROWERpaGNLK0FpWXQvYWd2?=
+ =?utf-8?B?WjJrcFpyWnkzbzdtY3R5dnVNb0RuZW9kTHRyYkhMVVF1V1FzREtOOGhZTTht?=
+ =?utf-8?B?dis5c2dLRFU2clZHZTFVUUZJVjNiaU9sNlR1TWVWTUtrYkU5eHMzWTh3MDNM?=
+ =?utf-8?B?TXZFZjBNS094cXNkNk85UGM1WHhmVkJtTDU5NzVMRzFPT3EySkZDU24xV2pq?=
+ =?utf-8?B?SURybVAvQ05YN0tEcVJ1TVFvb0Z3SVp4NTFrbUVBUE1RelE5UysxWTJCQXhl?=
+ =?utf-8?B?eWljKzVDWmN6WEdwYjhUTVlMVDZRY01EcDdJeUI5TWtHbmRJWkY5clhJVDFx?=
+ =?utf-8?B?SWRBYWJLMkhXUVUvUFc0dy9MQjNOTnJxdk5nSzZTZTk0UVJQbFBrSS96Vk9v?=
+ =?utf-8?B?UVRiRHVjNGtYaUtQcHFjZjNXMmJaQlVuYnhqVlJyUElHTHBmbDhzaVBBajF3?=
+ =?utf-8?B?SmVVMWs2a2ZGa0VRUkM0Qzlyd2ZzbHphNFRJazAvSk15KzBXVjAwYTFiSFVw?=
+ =?utf-8?B?ckQ0YTZ5ek1qcGI3REY3UEpIY0R5NVg1S1Qyc1FUQUVRQ1pMU0M0SVdaWjZE?=
+ =?utf-8?B?Y1dKRjNoNkVRSU5zeHJlT0xxaEhYTWZJeGovcGJoT2pWRGZ5YjRYR0FuMWdI?=
+ =?utf-8?B?S0ozOWowSmNjSDZnZjdDZThuNFY4b25ZcWJURTduajhzQ3lQVDA5VkRwNW9Z?=
+ =?utf-8?B?d0ZaazdPR1Q4TVRVdmRwNVZPZ3hIT3VlRG5tbG1LSlhXc243K00xdThWNWJq?=
+ =?utf-8?B?VUhNaHM2R1FWZmRxa1JucENOR2FKM012RnRZUDFIdmZxUkNRQUZiamQvNU1W?=
+ =?utf-8?B?ZTkySXZmZTJiYWEzS1NLdE9aS2NjRXBuT2JPbnlqQkp0emF0WGwxNG54Uitl?=
+ =?utf-8?B?dzFPNDcraXFyYmNMemdDb0lYVkJMd3V0U3hGbjhTbkpLOU8wc3AxM3lZNHNW?=
+ =?utf-8?B?R2l2TC9EZS9UY0pSSE1jUlhZNzVna1NCRlRaUTFTVTlkZGIvYmpwRGtYZGpC?=
+ =?utf-8?B?UkE9PQ==?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3808c0d-91fa-47bb-b306-08dad28499e5
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6407.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2022 03:34:33.8788
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2022 03:40:18.8954
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: slFyX1b2XMbJGdhoobxi+1leX5hMHEOFCFKEi3e+aKVTFCU/xuOmTXSlpYJD5oACszAVFwZFmBQHZcqUAndR5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5453
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: RnjQ/E/yy+vtx6ZVOm7/Ik5tkqqtX2I10saObKd6xYLujI0EuQzC4LIlzzl1M3lp74Pvv1jNqLiIO8AMNACXFs2cRxMJKnacZkHt34hG6gs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7417
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/4/22 8:33 PM, Bagas Sanjaya wrote:
-> On Thu, Nov 03, 2022 at 10:45:21AM -0700, Dipen Patel wrote:
->>  Description
->>  -----------
->> -The Nvidia tegra194 HTE provider driver implements two GTE
->> -(Generic Timestamping Engine) instances: 1) GPIO GTE and 2) LIC
->> -(Legacy Interrupt Controller) IRQ GTE. Both GTE instances get the
->> -timestamp from the system counter TSC which has 31.25MHz clock rate, and the
->> -driver converts clock tick rate to nanoseconds before storing it as timestamp
->> -value.
->> +The Nvidia tegra HTE provider also known as GTE (Generic Timestamping Engine)
->> +driver implements two GTE instances: 1) GPIO GTE and 2) LIC
->> +(Legacy Interrupt Controller) IRQ GTE. Both GTE instances get the timestamp
->> +from the system counter TSC which has 31.25MHz clock rate, and the driver
->> +converts clock tick rate to nanoseconds before storing it as timestamp value.
->>  
->>  GPIO GTE
->>  --------
->>  
->>  This GTE instance timestamps GPIO in real time. For that to happen GPIO
->> -needs to be configured as input. The always on (AON) GPIO controller instance
->> -supports timestamping GPIOs in real time and it has 39 GPIO lines. The GPIO GTE
->> -and AON GPIO controller are tightly coupled as it requires very specific bits
->> -to be set in GPIO config register before GPIO GTE can be used, for that GPIOLIB
->> -adds two optional APIs as below. The GPIO GTE code supports both kernel
->> -and userspace consumers. The kernel space consumers can directly talk to HTE
->> -subsystem while userspace consumers timestamp requests go through GPIOLIB CDEV
->> -framework to HTE subsystem.
->> +needs to be configured as input. Only the always on (AON) GPIO controller
->> +instance supports timestamping GPIOs in real time as it is tightly coupled with
->> +the GPIO GTE. To support this, GPIOLIB adds two optional APIs as mentioned
->> +below. The GPIO GTE code supports both kernel and userspace consumers. The
->> +kernel space consumers can directly talk to HTE subsystem while userspace
->> +consumers timestamp requests go through GPIOLIB CDEV framework to HTE
->> +subsystem. The hte devicetree binding described at
->> +``Documentation/devicetree/bindings/timestamp`` provides an example of how a
->> +consumer can request an GPIO line.
->>  
->>  See gpiod_enable_hw_timestamp_ns() and gpiod_disable_hw_timestamp_ns().
->>  
-> 
-> I think the wording can be better:
-I do  not understand, can you please elaborate?
-> 
-> ---- >8 ----
-> 
-> diff --git a/Documentation/driver-api/hte/tegra194-hte.rst b/Documentation/driver-api/hte/tegra194-hte.rst
-> index 85e654772782c1..13c45bfc03a75e 100644
-> --- a/Documentation/driver-api/hte/tegra194-hte.rst
-> +++ b/Documentation/driver-api/hte/tegra194-hte.rst
-> @@ -5,11 +5,11 @@ HTE Kernel provider driver
->  
->  Description
->  -----------
-> -The Nvidia tegra HTE provider also known as GTE (Generic Timestamping Engine)
-> -driver implements two GTE instances: 1) GPIO GTE and 2) LIC
-> -(Legacy Interrupt Controller) IRQ GTE. Both GTE instances get the timestamp
-> -from the system counter TSC which has 31.25MHz clock rate, and the driver
-> -converts clock tick rate to nanoseconds before storing it as timestamp value.
-> +The Nvidia tegra HTE provider, also known as GTE (Generic Timestamping Engine)
-> +driver implements two GTE instances: GPIO GTE and LIC (Legacy Interrupt
-> +Controller) IRQ GTE. Both GTE instances get the timestamp from system counter
-> +TSC which has 31.25MHz clock rate, and the driver converts clock tick rate to
-> +nanoseconds before storing it as timestamp value.
->  
->  GPIO GTE
->  --------
-> @@ -19,17 +19,17 @@ needs to be configured as input. Only the always on (AON) GPIO controller
->  instance supports timestamping GPIOs in real time as it is tightly coupled with
->  the GPIO GTE. To support this, GPIOLIB adds two optional APIs as mentioned
->  below. The GPIO GTE code supports both kernel and userspace consumers. The
-> -kernel space consumers can directly talk to HTE subsystem while userspace
-> -consumers timestamp requests go through GPIOLIB CDEV framework to HTE
-> -subsystem. The hte devicetree binding described at
-> -``Documentation/devicetree/bindings/timestamp`` provides an example of how a
-> -consumer can request an GPIO line.
-> +kernel space consumers can directly talk to HTE subsystem while requests from
-> +userspace consumers go through GPIOLIB CDEV framework to HTE subsystem. The hte
-> +devicetree binding described at ``Documentation/devicetree/bindings/timestamp``
-> +provides an example of how a consumer can request an GPIO line.
->  
-> -See gpiod_enable_hw_timestamp_ns() and gpiod_disable_hw_timestamp_ns().
-> +To toggle hardware timestamp, use gpiod_enable_hw_timestamp_ns() and
-> +gpiod_disable_hw_timestamp_ns().
->  
->  For userspace consumers, GPIO_V2_LINE_FLAG_EVENT_CLOCK_HTE flag must be
-> -specified during IOCTL calls. Refer to ``tools/gpio/gpio-event-mon.c``, which
-> -returns the timestamp in nanoseconds.
-> +specified during IOCTL calls. Refer to ``tools/gpio/gpio-event-mon.c`` for
-> +example.
->  
->  LIC (Legacy Interrupt Controller) IRQ GTE
->  -----------------------------------------
-> 
-> Thanks.
-> 
 
+On 9/14/2022 8:23 PM, Greg KH wrote:
+> Caution: EXT Email
+>
+> On Wed, Sep 14, 2022 at 07:59:44PM +0530, Manjunatha Venkatesh wrote:
+>> --- a/drivers/misc/Kconfig
+>> +++ b/drivers/misc/Kconfig
+>> @@ -471,6 +471,17 @@ config HISI_HIKEY_USB
+>>          switching between the dual-role USB-C port and the USB-A host ports
+>>          using only one USB controller.
+>>
+>> +config NXP_UWB
+>> +    tristate "NXP UCI(Uwb Command Interface) protocol driver support"
+>> +    depends on SPI
+>> +    help
+>> +      This option enables the UWB driver for NXP sr1xx device.
+>> +      Such device supports UCI packet structure, FiRa compliant.
+>> +
+>> +      Say Y here to compile support for nxp-sr1xx into the kernel or
+>> +      say M to compile it as a module. The module will be called
+>> +      nxp-sr1xx.ko
+> No tabs?
+Will fix this in the next patch submission.
+>> +
+>>   config OPEN_DICE
+>>        tristate "Open Profile for DICE driver"
+>>        depends on OF_RESERVED_MEM
+>> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+>> index 2be8542616dd..ee8ca32c66f6 100644
+>> --- a/drivers/misc/Makefile
+>> +++ b/drivers/misc/Makefile
+>> @@ -60,4 +60,5 @@ obj-$(CONFIG_XILINX_SDFEC)  += xilinx_sdfec.o
+>>   obj-$(CONFIG_HISI_HIKEY_USB) += hisi_hikey_usb.o
+>>   obj-$(CONFIG_HI6421V600_IRQ) += hi6421v600-irq.o
+>>   obj-$(CONFIG_OPEN_DICE)              += open-dice.o
+>>   obj-$(CONFIG_VCPU_STALL_DETECTOR)    += vcpu_stall_detector.o
+>> +obj-$(CONFIG_NXP_UWB)                += nxp-sr1xx.o
+>> diff --git a/drivers/misc/nxp-sr1xx.c b/drivers/misc/nxp-sr1xx.c
+>> new file mode 100644
+>> index 000000000000..6ca9a2b54b86
+>> --- /dev/null
+>> +++ b/drivers/misc/nxp-sr1xx.c
+>> @@ -0,0 +1,794 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause)
+> Please no.  If you really want to dual-license your Linux kernel code,
+> that's fine, but I will insist that you get a signed-off-by from your
+> corporate lawyer so that I know that they agree with this and are
+> willing to handle all of the complex issues that this entails as it will
+> require work on their side over time.
+>
+> If that's not worth bothering your lawyers over, please just stick with
+> GPL as the only license.
+Dual-license is signed-off by NXP corporate lawyer. Though, we would 
+like to understand what complex issues which require work over the time?
+>
+>> +/*
+>> + * Copyright 2018-2022 NXP.
+>> + *
+>> + * SPI driver for UWB SR1xx
+>> + * Author: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+>> + */
+>> +
+>> +#include <linux/miscdevice.h>
+>> +#include <linux/module.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/of_gpio.h>
+>> +#include <linux/spi/spi.h>
+>> +#include <linux/uaccess.h>
+>> +
+>> +#define SR1XX_MAGIC 0xEA
+>> +#define SR1XX_SET_PWR _IOW(SR1XX_MAGIC, 0x01, long)
+>> +#define SR1XX_SET_FWD _IOW(SR1XX_MAGIC, 0x02, long)
+> You can't stick ioctl command definitions in a .c file that userspace
+> never sees.  How are your userspace tools supposed to know what the
+> ioctl is and how it is defined?
+We will move ioctl command definitions into user space header file as 
+part of our next patch submission.
+> How was this ever tested and where is your userspace code that interacts
+> with this code?
+We will share the corresponding user space code soon,meanwhile can you 
+please suggest how to share this user space code?
+> thanks,
+>
+> greg k-h
