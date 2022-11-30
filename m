@@ -2,93 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F3063D862
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C485663D875
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbiK3OlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 09:41:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
+        id S229608AbiK3Oqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 09:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiK3OlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:41:21 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851CB51C23;
-        Wed, 30 Nov 2022 06:41:16 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id BCCF58111E;
-        Wed, 30 Nov 2022 15:41:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1669819274;
-        bh=Z5IKzSwGxXlJOYbUYMPGB0yC0DBElvsVC9HCLUtH3vQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=WmLMrsnzpilqnB8v7T8krcMcPU4H+K/Uh2KhY1v9J4hUmcS4gJNw/sF/ep7RJ2eLH
-         SvU8spR3Pbeqwhu/Xxwsgdk7d2tQXcT6JN42zjQR9druRFzPklErS33MgqLBeOHq+W
-         U4qzT18reXMiOdfCl7pEbJZ2mymi2L/JqXREnInlRVkStnjVaQ/Fh6EdM9flEBol81
-         UZ/2lU2Ri+6isO3n6dcWeIeP2kQId6eI0UcHgKLWipjG0w5/3c8ImEtzs0sxBkuLuZ
-         2kE9Rr5mkrsjZzWX8qXIImeo9U0sqAX2+TqTce2lihHDxvNUvMDDzxtracSjczpwv/
-         AomveH3o882tw==
-Message-ID: <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
-Date:   Wed, 30 Nov 2022 15:41:13 +0100
+        with ESMTP id S229580AbiK3Oqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:46:32 -0500
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4937F2FC08;
+        Wed, 30 Nov 2022 06:46:29 -0800 (PST)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-13bd19c3b68so21210167fac.7;
+        Wed, 30 Nov 2022 06:46:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wz2Zju85pk6RM8ay+t4ZZMp7vPi+1UtgJxv5v1iOFoQ=;
+        b=hKswxqL0mQZMN7I40fIMLw92nRBqkmnIO8lk/f7t3UHfjWA0CSR56InG13myRTq6gI
+         XcbUImbCKlN0QAu1qUMvvjRFsTQw2A+zqR2+ySOUEgdz9D1QkCT6yS0ljMAPoWkRcPDo
+         5lb2ZXKZrqw0VrryvVVjuzA8zYs/BjSyHuRm/1Y3tQQXgD98O6jLqVZAmYQQAJzmLkOo
+         mw3gm5otainEAHoQ6Q2RMRRlkGqabvRgcoa7F8jUbW1w5o4WdhsJyUplnmYE2VbUrjHC
+         qdhoONhNdrKE4Wg8s2n/PUnYkiMZo9wcAtBzMXDX/GAzm3FDrG8VoAvArkFTao9DYGGE
+         M3BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wz2Zju85pk6RM8ay+t4ZZMp7vPi+1UtgJxv5v1iOFoQ=;
+        b=H6V034Kdz60zZgSl2F6N0MCcVRW1TpwefbrTvkJJWscNTZFAASqXZfRT2ihi4fZ6Zf
+         LiU7bBDCN90UKi8Mds0WW1fjFAhyKMbleRb7MlPmF2Q8EjtpysJIqedl2jzMHElcD55p
+         xCEzDsWNyd2yJ7eVFHUbM0L2eXL8uwnPCup+ErBu3MQii+snxBXOiJ69HVBv9M26wKtj
+         LsYeYBKQLtq3ARmfCBVl5hh5G0QrCv3+sNWj3EJvxre64WKFzeybRRlh7bhOH3/J0KHe
+         ECbJC1iIxTVMTfYRcnjvhcDEPkmfDd0/P/vNRRmGFLEliUalFwyAN/Wk7rADMv299yKF
+         GrNA==
+X-Gm-Message-State: ANoB5pn5gaxtTfukdMiLoYtV7MtGDGuM2NLY6l3tstEs6KUKPIQhEPVN
+        WvdpifAic3JlFucEE5sGEvs=
+X-Google-Smtp-Source: AA0mqf4ixzUkoSU6MRES0SwcX528RMcs4hO6mghmHVHKToufdig484nOzJOgbmgVYuQYYFa2c3yTLQ==
+X-Received: by 2002:a05:6870:2408:b0:132:1a61:8ed9 with SMTP id n8-20020a056870240800b001321a618ed9mr24354219oap.105.1669819588532;
+        Wed, 30 Nov 2022 06:46:28 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h17-20020a056870171100b00136c20b1c59sm1216568oae.43.2022.11.30.06.46.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 06:46:28 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 30 Nov 2022 06:46:26 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Subject: Re: [PATCH v8 1/4] dt-bindings: hwmon: fan: Add Common Fan Properties
+Message-ID: <20221130144626.GA2647609@roeck-us.net>
+References: <20221129161134.2672474-1-Naresh.Solanki@9elements.com>
+ <20221129161134.2672474-2-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, stable@vger.kernel.org,
-        Sasha Levin <sashal@kernel.org>
-References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221129161134.2672474-2-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/30/22 14:52, Francesco Dolcini wrote:
-> Hello Marek,
-
-Hi,
-
-> it looks like commit 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller
-> size-cells"), that was backported to stable 6.0.10, introduce a boot
-> regression on colibri-imx7, at least.
+On Tue, Nov 29, 2022 at 05:11:31PM +0100, Naresh Solanki wrote:
+> Add common fan properties bindings to a schema.
 > 
-> What I get is
+> Bindings for fan controllers can reference the common schema for the
+> fan
 > 
-> [    0.000000] Booting Linux on physical CPU 0x0
-> [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
-> 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
-> ...
-> [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
-> @33002000)
-> [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
-> ...
-> [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
-> [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
-> ...
+> child nodes:
 > 
-> Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
-> maybe you have a better idea.
+>   patternProperties:
+>     "^fan@[0-2]":
+>       type: object
+>       $ref: fan-common.yaml#
+> 
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../devicetree/bindings/hwmon/fan-common.yaml | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> new file mode 100644
+> index 000000000000..330fb1552821
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common Fan Properties
+> +
+> +maintainers:
+> +  - Naresh Solanki <naresh.solanki@9elements.com>
+> +
+> +properties:
+> +  max-rpm:
+> +    description:
+> +      Max RPM supported by fan.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  min-rpm:
+> +    description:
+> +      Min RPM supported by fan.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  pulses-per-revolution:
+> +    description:
+> +      The number of pulse from fan sensor per revolution.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  target-rpm:
+> +    description:
+> +      Target RPM the fan should be configured during driver probe.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  pwms:
+> +    maxItems: 1
+> +    description:
+> +      PWM signal for the fan
+> +
+> +  label:
+> +    description:
+> +      Optional fan label
+> +
+> +  fan-supply:
+> +    description:
+> +      Power supply for fan.
+> +
 
-Can you share the relevant snippet of your nand controller DT node ? 
-Probably up to first partition is enough. I suspect you need to fill in 
-the correct address-cells/size-cells there, which might be currently 
-missing in your DT and worked by chance.
+I still don't see fan mode (DC or PWM). I understand that you don't care,
+but from my perspective it must be addressed in generic fan properties,
+especially to ensure agreement on how 'pwms' is handled on a system where
+the fan mode is configurable, and how to select the fan speed on systems
+supporting DC fans.
+
+Guenter
