@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26FD263D996
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:38:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E17963D99E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:41:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbiK3Pic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:38:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60014 "EHLO
+        id S229944AbiK3PlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:41:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbiK3PiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:38:23 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA442982A
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:37:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1669822641;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=vp7HSLV0g1sArLbbuGt4+ey86XMny/g9fUHlgrVx6TQ=;
-        b=bl5wLOESmnqn1/QBFcjYRBUkLzqPmk0IorN6FfurcNct/6TN8NU73qgeUfCXwY3chDkMjN
-        uLSGTtaLo29JFRf7bJdJojozNQz1upDEU3UuHkOlSYj575s7uJiv3UwMp4CoDg4gN41jti
-        1FuqnGLfdWeBrT6BVjuRWHn3YWicmgw=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-503-yfUCMpB5MmOPglZGL5Hp_Q-1; Wed, 30 Nov 2022 10:37:20 -0500
-X-MC-Unique: yfUCMpB5MmOPglZGL5Hp_Q-1
-Received: by mail-qt1-f200.google.com with SMTP id fw8-20020a05622a4a8800b003a64f82fe73so29119760qtb.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:37:20 -0800 (PST)
+        with ESMTP id S229911AbiK3PlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:41:17 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8AA22D1D1;
+        Wed, 30 Nov 2022 07:41:16 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id e27so42297733ejc.12;
+        Wed, 30 Nov 2022 07:41:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OHBzYMaEKF+v3N2CeacpZF2sgjWxjbRAHNva5BRSw/U=;
+        b=RmLe51+NcWUyHLi2ZyZlsd6zEreCrayxGFVaBZU+PjOf7wWbqYW5gJJYeMHsNNwrLc
+         ZC7nOow1/SaMDstl85HOTwZdwKzpjI/7eZVn/HPe4FjOHWmVnPoLtuKt2pxbmdK4bBPe
+         e1KOJSl7YXIFdz4vGTSigywwBOMqoMvTITtUifHSuWaNwvD07hcpRUnk/V77k8prsv8p
+         xPDfXT/0rpcXh83ESJL9qDAAG/PVyZQizXo+5STKaOeWnIeGw4HpIWKYdUrNz1VyR7sb
+         9EESH90/NMdecir1PiBkZh1MUOF/UtmqcohtFM7wVJ756kpD69OJ0ts78ujZbZZ1LzsF
+         NyVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vp7HSLV0g1sArLbbuGt4+ey86XMny/g9fUHlgrVx6TQ=;
-        b=lxRCy9QwNlUrUKmWNc88cGLl7QCNihUsinfsYWIgjx1Iz+JbTbs14v9tQAt4YtKVSb
-         BqNLgcwFq+zHiTdL8yprHmqLQmJWXntCnqOH7oK2R1cjdeHCw8biy5rqJXSwkAQgxdtS
-         1CwihLFiG6Byux0CtPZqZC+yjMh6ZJbL4RRgt6IGhXWePY/Hcfs72h04xyMNRnDWp3u0
-         C8jhYVPtcMBYOswHGhRqg7H7ITyqZJHkJPd61cbj//cqF7mL4HRH5Qj2NU9i/RMTMu4N
-         kQ/MitdEKJuXksIlD1JUCPqOuOqWdNB/1bdPWL4krvBlJfYqm4ck0rGEI/rWkvpJY5wB
-         jUqQ==
-X-Gm-Message-State: ANoB5pkqP5gA9RE4MdAAn/pFhHmzrZdh9ulvfpWYhys1YAn7wJ3rgXk2
-        L8V4UGJFItRSoBSBA7crz0C5jRP8bPCEdkPIOuhQlbosZRCLBhJ2YDXCy43084IfMR1BAzz5waa
-        TqhfoUrGlVg9NMJG0j8YeVQ==
-X-Received: by 2002:a05:620a:1649:b0:6fa:6eef:50c6 with SMTP id c9-20020a05620a164900b006fa6eef50c6mr39796706qko.44.1669822639859;
-        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf7fllA2S1bZ1/d/CFDmV04sKoI2eroN99zJFahvNSB+/B6oK5c5xqNvBeCUQo3Sf/DDwpj5Mg==
-X-Received: by 2002:a05:620a:1649:b0:6fa:6eef:50c6 with SMTP id c9-20020a05620a164900b006fa6eef50c6mr39796680qko.44.1669822639572;
-        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
-Received: from x1.. (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id ey24-20020a05622a4c1800b0039a55f78792sm970479qtb.89.2022.11.30.07.37.18
+        bh=OHBzYMaEKF+v3N2CeacpZF2sgjWxjbRAHNva5BRSw/U=;
+        b=7DCHbIMOH/DeCgZ8Lr68ei+JYt5N39NACrEkMaWl5fU3gVVRQPgz8ljVRQYDpItxQI
+         JrShTkNFSe6TYgftPohhHb3OWlqh+WobWhl/4DhXrLXFVF/UMh5ssjeTtg/K8bKKAnA8
+         odr9fQOI1rDiEhgAL9AsHP0kRbpQbnApcmkLi63PXSlZvSvc1SuIOxAXqcfX/q/zrt3e
+         7sErLG/sCWMaRdRhE65oQL5mwlXt+DdQ9svQypvz74lsOVPhJPSNhal0fhbceZ7Mlz09
+         odrqQNxW0VQmspy7yoR9yLmi+ALueGFlxnAenqTMzpYCLG/uwjHbANZVEscE9seUNN4r
+         qcbg==
+X-Gm-Message-State: ANoB5pk/zR8J0fVDtKmG6jRo6JQ3p7qhy+AG0bgyOeK3+Ns+cZ1OvFx/
+        oXqB11UoF/TOxcDgwu9V89E=
+X-Google-Smtp-Source: AA0mqf6hM+tNavsLKnj1BRRSLlxhF4++yHBT0NnrI82n35opyj04Ucd7KfQVf2RjILnM/T+q8hGDJg==
+X-Received: by 2002:a17:906:5293:b0:7b9:631c:451a with SMTP id c19-20020a170906529300b007b9631c451amr33437172ejm.283.1669822875042;
+        Wed, 30 Nov 2022 07:41:15 -0800 (PST)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id q26-20020a170906389a00b007bdc2de90e6sm776661ejd.42.2022.11.30.07.41.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 07:37:19 -0800 (PST)
-From:   Brian Masney <bmasney@redhat.com>
-To:     andersson@kernel.org
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_shazhuss@quicinc.com, psodagud@quicinc.com,
-        ahalaney@redhat.com, echanude@redhat.com
-Subject: [PATCH] arm64: dts: qcom: sa8540p-ride: enable PCIe support
-Date:   Wed, 30 Nov 2022 10:37:10 -0500
-Message-Id: <20221130153710.1369839-1-bmasney@redhat.com>
+        Wed, 30 Nov 2022 07:41:14 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH] dt-bindings: usb: tegra-xusb: Remove path references
+Date:   Wed, 30 Nov 2022 16:41:11 +0100
+Message-Id: <20221130154111.1655603-1-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-type: text/plain
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,118 +70,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the vreg_l11a, pcie3a, pcie3a_phy, and tlmm nodes that are necessary
-in order to get PCIe working on the QDrive3.
+From: Thierry Reding <treding@nvidia.com>
 
-This patch also increases the width of the ranges property for the PCIe
-switch that's found on this platform. Note that this change requires
-the latest trustzone (TZ) firmware that's available from Qualcomm as
-of November 2022. If this is used against a board with the older
-firmware, then the board will go into ramdump mode when PCIe is probed
-on startup.
+Unresolved path references are now flagged as errors when checking the
+device tree binding examples, so convert them into label references.
 
-The ranges property is overridden in this sa8540p-ride.dts file since
-this is what's used to describe the QDrive3 variant with dual SoCs.
-There's another variant of this board that only has a single SoC where
-this change is not applicable, and hence why this specific change was
-not done in sa8540p.dtsi.
-
-These changes were derived from various patches that Qualcomm
-delivered to Red Hat in a downstream kernel.
-
-Signed-off-by: Brian Masney <bmasney@redhat.com>
+Reported-by: Conor Dooley <conor.dooley@microchip.com>
+Suggested-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
-This patch depends on the following series that hasn't made it's way
-into linux-next yet:
+ .../devicetree/bindings/usb/nvidia,tegra124-xusb.yaml     | 4 +---
+ .../devicetree/bindings/usb/nvidia,tegra186-xusb.yaml     | 4 +---
+ .../devicetree/bindings/usb/nvidia,tegra194-xusb.yaml     | 8 ++------
+ .../devicetree/bindings/usb/nvidia,tegra210-xusb.yaml     | 8 ++------
+ 4 files changed, 6 insertions(+), 18 deletions(-)
 
-[PATCH v10 0/2] arm64: dts: qcom: add dts for sa8540p-ride board
-https://lore.kernel.org/lkml/20221118025158.16902-1-quic_ppareek@quicinc.com/
-
-I can't find the specific TZ firmware version that we have so that's why
-I included the date instead.
-
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 54 +++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index a5f87a8629d6..e953165f3b73 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -51,6 +51,14 @@ vreg_l7a: ldo7 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml
+index 4a6616bf9bab..d6ca8c93073d 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.yaml
+@@ -186,9 +186,7 @@ examples:
  
-+		vreg_l11a: ldo11 {
-+			regulator-name = "vreg_l11a";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
- 		vreg_l13a: ldo13 {
- 			regulator-name = "vreg_l13a";
- 			regulator-min-microvolt = <3072000>;
-@@ -139,6 +147,27 @@ vreg_l8g: ldo8 {
- 	};
- };
+         nvidia,xusb-padctl = <&padctl>;
  
-+&pcie3a {
-+	ranges = <0x01000000 0x0 0x32200000 0x0 0x32200000 0x0 0x100000>,
-+	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
-+	         <0x03000000 0x6 0x00000000 0x6 0x00000000 0x2 0x00000000>;
-+
-+	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie3a_default>;
-+
-+	status = "okay";
-+};
-+
-+&pcie3a_phy {
-+	vdda-phy-supply = <&vreg_l11a>;
-+	vdda-pll-supply = <&vreg_l3a>;
-+
-+	status = "okay";
-+};
-+
- &qup2 {
- 	status = "okay";
- };
-@@ -158,6 +187,31 @@ &remoteproc_nsp1 {
- 	status = "okay";
- };
+-        phys = <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-1}>, /* mini-PCIe USB */
+-               <&{/padctl@0,7009f000/pads/usb2/lanes/usb2-2}>, /* USB A */
+-               <&{/padctl@0,7009f000/pads/pcie/lanes/pcie-0}>; /* USB A */
++        phys = <&phy_usb2_1>, <&phy_usb2_2>, <&phy_pcie_0>;
+         phy-names = "usb2-1", "usb2-2", "usb3-0";
  
-+&tlmm {
-+	pcie3a_default: pcie3a-default {
-+		perst {
-+			pins = "gpio151";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		clkreq {
-+			pins = "gpio150";
-+			function = "pcie3a_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		wake {
-+			pins = "gpio56";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+         avddio-pex-supply = <&vdd_1v05_run>;
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml
+index 6f62944fc597..a04c6ce1e0f6 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.yaml
+@@ -166,8 +166,6 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
  
+-        phys = <&{/padctl@3520000/pads/usb2/lanes/usb2-0}>,
+-               <&{/padctl@3520000/pads/usb2/lanes/usb2-1}>,
+-               <&{/padctl@3520000/pads/usb3/lanes/usb3-0}>;
++        phys = <&phy_usb2_0>, <&phy_usb2_1>, <&phy_usb3_0>;
+         phy-names = "usb2-0", "usb2-1", "usb3-0";
+     };
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra194-xusb.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra194-xusb.yaml
+index 65ae9ae9b0b7..b356793f73a1 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra194-xusb.yaml
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra194-xusb.yaml
+@@ -169,11 +169,7 @@ examples:
+ 
+         nvidia,xusb-padctl = <&xusb_padctl>;
+ 
+-        phys = <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-0}>,
+-               <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-1}>,
+-               <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-3}>,
+-               <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-0}>,
+-               <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-2}>,
+-               <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-3}>;
++        phys = <&phy_usb2_0>, <&phy_usb2_1>, <&phy_usb2_3>, <&phy_usb3_0>,
++               <&phy_usb3_2>, <&phy_usb3_3>;
+         phy-names = "usb2-0", "usb2-1", "usb2-3", "usb3-0", "usb3-2", "usb3-3";
+     };
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.yaml
+index da1e1ec0e7c8..90296613b3a5 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.yaml
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.yaml
+@@ -173,12 +173,8 @@ examples:
+ 
+         nvidia,xusb-padctl = <&padctl>;
+ 
+-        phys = <&{/padctl@7009f000/pads/usb2/lanes/usb2-0}>,
+-               <&{/padctl@7009f000/pads/usb2/lanes/usb2-1}>,
+-               <&{/padctl@7009f000/pads/usb2/lanes/usb2-2}>,
+-               <&{/padctl@7009f000/pads/usb2/lanes/usb2-3}>,
+-               <&{/padctl@7009f000/pads/pcie/lanes/pcie-6}>,
+-               <&{/padctl@7009f000/pads/pcie/lanes/pcie-5}>;
++        phys = <&phy_usb2_0>, <&phy_usb2_1>, <&phy_usb2_2>, <&phy_usb2_3>,
++               <&phy_pcie_6>, <&phy_pcie_5>;
+         phy-names = "usb2-0", "usb2-1", "usb2-2", "usb2-3", "usb3-0",
+                     "usb3-1";
+         dvddio-pex-supply = <&vdd_pex_1v05>;
 -- 
 2.38.1
 
