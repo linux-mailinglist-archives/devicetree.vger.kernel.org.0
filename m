@@ -2,192 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B38DD63D91F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:19:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D6563D8E6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiK3PTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:19:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
+        id S229541AbiK3PK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:10:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbiK3PTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:19:39 -0500
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9EE3D7CA90;
-        Wed, 30 Nov 2022 07:19:36 -0800 (PST)
-Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 053B41C812A6;
-        Wed, 30 Nov 2022 23:09:02 +0800 (CST)
-Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 30
- Nov 2022 23:09:01 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 30 Nov
- 2022 23:09:01 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
- Transport; Wed, 30 Nov 2022 23:09:01 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 6A69763A6B; Wed, 30 Nov 2022 17:09:00 +0200 (IST)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <ulf.hansson@linaro.org>, <avifishman70@gmail.com>,
-        <tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
-        <yuenn@google.com>, <benjaminfair@google.com>,
-        <adrian.hunter@intel.com>, <skhan@linuxfoundation.org>,
-        <davidgow@google.com>, <pbrobinson@gmail.com>, <gsomlo@gmail.com>,
-        <briannorris@chromium.org>, <arnd@arndb.de>,
-        <krakoczy@antmicro.com>, <andy.shevchenko@gmail.com>
-CC:     <openbmc@lists.ozlabs.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-Date:   Wed, 30 Nov 2022 17:08:57 +0200
-Message-ID: <20221130150857.67113-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20221130150857.67113-1-tmaimon77@gmail.com>
-References: <20221130150857.67113-1-tmaimon77@gmail.com>
+        with ESMTP id S229483AbiK3PK1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:10:27 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E48CD31FB3
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:10:25 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id p8so27414983lfu.11
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J3Su5v2vdmDewKthBrtRFm+e13oXU523NmM0FV1oQU8=;
+        b=UGdY4Ll7FF8qoI0YeGrA0rIaaXlaaFuBei4wsmZtPINCSzvnUJT+90MuRpjxmRuSGT
+         J8EXutfubxLaShHq7c6BnttwGrHh0GFfnrxBd+XCqOBzIbwGYygrRgMcaqjYTvm3oqob
+         Zvh7Kezr1vz2P6+B8KuRr3LWEJyWyNDg93grQSncIaOzm6swZKOXDMO/W9kMIQbzJrZz
+         lTYqPBBvl66dq1HJqzZESIl4DrkAOONcD0ZqhAKof6+e8OwT35HaoLZ2+nYFpWOGlDY9
+         sT7ecbB2956MLqPOrQbHValv6E7l1G1BtJurm6zZhqCmCjHx90DIU5oCuFuAMVcY7Ra2
+         PDmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J3Su5v2vdmDewKthBrtRFm+e13oXU523NmM0FV1oQU8=;
+        b=cKqir8t7Jm0t/DGPDIRG/j9R51sLm+kZEUDHEbAVMVXR3aJh6R/2V0T/sWt4HYaYNk
+         9xGJJZdmkIS8ZYxYRdyb1UYyz/DPwLyt17xagQy8kleYVo0iWFZJUwJfQGZ+zkJlsuT4
+         0lrsTT9+08nGn8+LES43Gkyd5UY4qaOw1rbxiB4ndqOKasW2efC3Sk/jw7WPZJ7x04Fk
+         GHcI7SsqeUZJbScTVXtooeC5oyOkYTeGBUnSB9wy28EI6gE8iWZDVoEHCZ89W0o2Ef5B
+         M1dTLC0QZ608e/AyKF/2f9Vydw2fXM9P99Kpb4jL44NGaWm9oFx6o+9xTzbarxMtD1Ey
+         aTSg==
+X-Gm-Message-State: ANoB5pnbIpttGzdOoEBLGlYY57k8srxchhxN3W7RfIQEYWjqIC1w2lPH
+        aodj36ZFLAUhZhwkcvXqtTeLzQ==
+X-Google-Smtp-Source: AA0mqf6H4COlxILbroNSMWuDH3SQhpzqcaGSWYKTuKDUwWXh9jsj1UxAf2lYa04YY2JuGCwkbkTyUA==
+X-Received: by 2002:a05:6512:131b:b0:4b5:1ae4:f234 with SMTP id x27-20020a056512131b00b004b51ae4f234mr5110099lfu.391.1669821024300;
+        Wed, 30 Nov 2022 07:10:24 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id n9-20020ac242c9000000b00494942bec60sm294211lfl.17.2022.11.30.07.10.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 07:10:23 -0800 (PST)
+Message-ID: <b3c4fa2a-4904-f16e-52e4-a534f4555455@linaro.org>
+Date:   Wed, 30 Nov 2022 16:10:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 10/12] arm64: dts: qcom: sm6115: Add i2c/spi nodes
+Content-Language: en-US
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20221129204616.47006-1-a39.skl@gmail.com>
+ <20221129204616.47006-11-a39.skl@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221129204616.47006-11-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
+On 29/11/2022 21:46, Adam Skladowski wrote:
+> Add I2C/SPI nodes for SM6115.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 287 +++++++++++++++++++++++++++
+>  1 file changed, 287 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index e9de7aa1efdd..d14a4595be8a 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/clock/qcom,gcc-sm6115.h>
+>  #include <dt-bindings/clock/qcom,sm6115-dispcc.h>
+>  #include <dt-bindings/clock/qcom,rpmcc.h>
+> +#include <dt-bindings/dma/qcom-gpi.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+> @@ -357,6 +358,90 @@ tlmm: pinctrl@500000 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  
+> +			qup_i2c0_default: qup-i2c0-default {
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/mmc/host/Kconfig      |  8 ++++
- drivers/mmc/host/Makefile     |  1 +
- drivers/mmc/host/sdhci-npcm.c | 81 +++++++++++++++++++++++++++++++++++
- 3 files changed, 90 insertions(+)
- create mode 100644 drivers/mmc/host/sdhci-npcm.c
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index fb1062a6394c..4b2d9ce4308c 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -709,6 +709,14 @@ config MMC_TMIO
- 	  This provides support for the SD/MMC cell found in TC6393XB,
- 	  T7L66XB and also HTC ASIC3
- 
-+config MMC_SDHCI_NPCM
-+	tristate "Secure Digital Host Controller Interface support for NPCM"
-+	depends on ARCH_NPCM || COMPILE_TEST
-+	depends on MMC_SDHCI_PLTFM
-+	help
-+	  This provides support for the SD/eMMC controller found in
-+	  NPCM BMC family SoCs.
-+
- config MMC_SDHI
- 	tristate "Renesas SDHI SD/SDIO controller support"
- 	depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index 4e4ceb32c4b4..801086613d7f 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_MMC_SPI)		+= of_mmc_spi.o
- obj-$(CONFIG_MMC_S3C)   	+= s3cmci.o
- obj-$(CONFIG_MMC_SDRICOH_CS)	+= sdricoh_cs.o
- obj-$(CONFIG_MMC_TMIO)		+= tmio_mmc.o
-+obj-$(CONFIG_MMC_SDHCI_NPCM)	+= sdhci-npcm.o
- obj-$(CONFIG_MMC_TMIO_CORE)	+= tmio_mmc_core.o
- obj-$(CONFIG_MMC_SDHI)		+= renesas_sdhi_core.o
- obj-$(CONFIG_MMC_SDHI_SYS_DMAC)		+= renesas_sdhi_sys_dmac.o
-diff --git a/drivers/mmc/host/sdhci-npcm.c b/drivers/mmc/host/sdhci-npcm.c
-new file mode 100644
-index 000000000000..298c5f3e7c2b
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-npcm.c
-@@ -0,0 +1,81 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * NPCM SDHC MMC host controller driver.
-+ *
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/mmc/host.h>
-+#include <linux/mmc/mmc.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+
-+#include "sdhci-pltfm.h"
-+
-+static const struct sdhci_pltfm_data npcm_sdhci_pdata = {
-+	.quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-+	.quirks2 = SDHCI_QUIRK2_STOP_WITH_TC |
-+		   SDHCI_QUIRK2_NO_1_8_V,
-+};
-+
-+static int npcm_sdhci_probe(struct platform_device *pdev)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct sdhci_host *host;
-+	u32 caps;
-+	int ret;
-+
-+	host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	pltfm_host = sdhci_priv(host);
-+	pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
-+
-+	if (!IS_ERR(pltfm_host->clk))
-+		clk_prepare_enable(pltfm_host->clk);
-+
-+	caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-+	if (caps & SDHCI_CAN_DO_8BIT)
-+		host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	ret = sdhci_add_host(host);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	return 0;
-+
-+err_sdhci_add:
-+	clk_disable_unprepare(pltfm_host->clk);
-+	sdhci_pltfm_free(pdev);
-+	return ret;
-+}
-+
-+static const struct of_device_id npcm_sdhci_of_match[] = {
-+	{ .compatible = "nuvoton,npcm750-sdhci" },
-+	{ .compatible = "nuvoton,npcm845-sdhci" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, npcm_sdhci_of_match);
-+
-+static struct platform_driver npcm_sdhci_driver = {
-+	.driver = {
-+		.name	= "npcm-sdhci",
-+		.of_match_table = npcm_sdhci_of_match,
-+		.pm	= &sdhci_pltfm_pmops,
-+	},
-+	.probe		= npcm_sdhci_probe,
-+	.remove		= sdhci_pltfm_unregister,
-+};
-+
-+module_platform_driver(npcm_sdhci_driver);
-+
-+MODULE_DESCRIPTION("NPCM Secure Digital Host Controller Interface driver");
-+MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.33.0
+Missing -state suffix. Same in other places.
+
+> +				pins = "gpio0", "gpio1";
+> +				function = "qup0";
+> +				drive-strength = <2>;
+> +				bias-pull-up;
+> +			};
+
+Best regards,
+Krzysztof
 
