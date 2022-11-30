@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F296F63CC98
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 01:45:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D187F63CC9C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 01:47:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231603AbiK3Apo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Nov 2022 19:45:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49190 "EHLO
+        id S231938AbiK3Arg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Nov 2022 19:47:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbiK3Apo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 19:45:44 -0500
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DCCB6DFEF;
-        Tue, 29 Nov 2022 16:45:43 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id a13-20020a9d6e8d000000b00668d65fc44fso10263524otr.9;
-        Tue, 29 Nov 2022 16:45:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hlRj9L4gPlL7jJ8/7Pb5E6XtZMfbxof/0/XlLRIjlek=;
-        b=4a2nOP/uGMFZgWJ7X4E6+AshspSZbsRFgmqKNWn0fyrcuVJ4FWHYCG8f63+YQroseM
-         EQSbI8Pkja+Ina0yu4XGLOoi+t8olBNbzgnAs417SD3J+m3oZuEKQYd0xWrGEJYy8ODL
-         TDHIM+d0aL2p1ZiusqhEVkUm8SrDTj25sWVQ1rGqqrYfa/4PnVysSZmPjihOuKq0kr+6
-         esi2r3ru3Zn7t7LkwSfM3Bdb7olXhPtOl3Iu0pSgR6qoRdXlpfNKfzXlLaXJpaE2mCy5
-         orxg4g9tag/mrvah27/UarBbwC6zFeWBpv4CKBFpgmgNB+O5wlSYsrJoVoXw16oCcXN8
-         0pDg==
-X-Gm-Message-State: ANoB5pnE0Xlt78U8lPVgu+frvKiAkUGe7Kbtib/rBh4H9REPS7UQ9u27
-        hxTZ8kZz60rhxFb1teT4oA==
-X-Google-Smtp-Source: AA0mqf52PnpB/uwrsJxq7yLUSVKTk6h9aJ8vMEKCQuSI1A/k9qjW6WtFfYOZzdFYnf0coJ+mbGzEzQ==
-X-Received: by 2002:a9d:51cd:0:b0:665:d7e7:ca59 with SMTP id d13-20020a9d51cd000000b00665d7e7ca59mr20042198oth.348.1669769142725;
-        Tue, 29 Nov 2022 16:45:42 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b38-20020a056870472600b00143ae7d4ccesm149216oaq.45.2022.11.29.16.45.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Nov 2022 16:45:42 -0800 (PST)
-Received: (nullmailer pid 605002 invoked by uid 1000);
-        Wed, 30 Nov 2022 00:45:41 -0000
-Date:   Tue, 29 Nov 2022 18:45:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 04/20] of: property: add #nvmem-cell-cells property
-Message-ID: <166976914091.604941.18302574495918409424.robh@kernel.org>
-References: <20221123180151.2160033-1-michael@walle.cc>
- <20221123180151.2160033-5-michael@walle.cc>
+        with ESMTP id S229595AbiK3Arg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Nov 2022 19:47:36 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3A1E0CCA;
+        Tue, 29 Nov 2022 16:47:33 -0800 (PST)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 30 Nov 2022 09:47:32 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 9D8162058B4F;
+        Wed, 30 Nov 2022 09:47:32 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 30 Nov 2022 09:47:32 +0900
+Received: from [10.212.156.209] (unknown [10.212.156.209])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id D118AA8559;
+        Wed, 30 Nov 2022 09:47:31 +0900 (JST)
+Message-ID: <6c423f87-1187-b2d6-8b70-c8cd709f3ea0@socionext.com>
+Date:   Wed, 30 Nov 2022 09:47:31 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221123180151.2160033-5-michael@walle.cc>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 2/2] spi: Add Socionext F_OSPI SPI flash controller
+ driver
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221124003351.7792-1-hayashi.kunihiko@socionext.com>
+ <20221124003351.7792-3-hayashi.kunihiko@socionext.com>
+ <CAMuHMdVH+amC83uMBpsCebaHd2EWp1EO59JNcgRTncbNGNNRsQ@mail.gmail.com>
+Content-Language: en-US
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <CAMuHMdVH+amC83uMBpsCebaHd2EWp1EO59JNcgRTncbNGNNRsQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Geert,
 
-On Wed, 23 Nov 2022 19:01:35 +0100, Michael Walle wrote:
-> Bindings describe the new '#nvmem-cell-cells' property. Now that the
-> arguments count property is optional, we just add this property to the
-> nvmem-cells.
+On 2022/11/30 1:49, Geert Uytterhoeven wrote:
+> Hi Hayashi-san,
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Tested-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
-> changes since v3:
->  - new patch
+> On Thu, Nov 24, 2022 at 1:36 AM Kunihiko Hayashi
+> <hayashi.kunihiko@socionext.com> wrote:
+>> Introduce Socionext F_OSPI controller driver. This controller is used to
+>> communicate with slave devices such as SPI Flash memories. It supports
+>> 4 slave devices and up to 8-bit wide bus, but supports master mode only.
+>>
+>> This driver uses spi-mem framework for SPI flash memory access, and
+>> can only operate indirect access mode and single data rate mode.
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > 
->  drivers/of/property.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> Thanks for your patch, which is now commit 1b74dd64c8612619
+> ("spi: Add Socionext F_OSPI SPI flash controller driver") in
+> spi/for-next.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for your work.
+
+>> --- a/drivers/spi/Kconfig
+>> +++ b/drivers/spi/Kconfig
+>> @@ -906,6 +906,15 @@ config SPI_SLAVE_MT27XX
+>>            say Y or M here.If you are not sure, say N.
+>>            SPI slave drivers for Mediatek MT27XX series ARM SoCs.
+>>
+>> +config SPI_SN_F_OSPI
+>> +       tristate "Socionext F_OSPI SPI flash controller"
+>> +       depends on OF && HAS_IOMEM
+>> +       depends on SPI_MEM
+> 
+> On which systems is this hardware block found?
+> Perhaps this should depend on ARCH_UNIPHIER || COMPILE_TEST?
+
+This IP doesn't depend on ARCH_UNIPHIER, so I expect that it can be widely
+applied not only to ARCH_UNIPHIER.
+
+If COMPILE_TEST is required, the dependency is like SPI_CADENCE_XSPI:
+         depends on (OF || COMPILE_TEST) && HAS_IOMEM
+
+Thank you,
+
+---
+Best Regards
+Kunihiko Hayashi
