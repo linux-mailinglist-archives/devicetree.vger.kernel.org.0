@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3960363E295
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:20:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B3463E298
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiK3VU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 16:20:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50864 "EHLO
+        id S229507AbiK3VVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 16:21:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiK3VU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:20:27 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FFA8B1B4
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 13:20:26 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id m19so24540334edj.8
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 13:20:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O/Z8JYSlIL5b/NaGmnUjVRx48qydsMASmxAsCA/K9VY=;
-        b=JUEoYyGbYelG/R2BnPlxHeOgXELSGTlwMsJBPpwA13wQ1aBwg4OoDo5gbA/GNmqSZa
-         bRcwHS+g5pqINlDo/prC0YD4RAuh6Tu4nU30bB83LRLstoc0/Hlnez//3Zrs/sMVYs1I
-         MNkKE3p/oT3+gR+V9Bgg+BY4OJ2g1c1lMCT/g=
+        with ESMTP id S229468AbiK3VVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:21:10 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929C38B190;
+        Wed, 30 Nov 2022 13:21:09 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id g51-20020a9d12b6000000b0066dbea0d203so12068523otg.6;
+        Wed, 30 Nov 2022 13:21:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O/Z8JYSlIL5b/NaGmnUjVRx48qydsMASmxAsCA/K9VY=;
-        b=Hzfv7/It3GPDGCnXROWjLavhteZc6bK30WqedKfoBnEzJyF9iVmxudjNOI9H6RCTPM
-         IdlWpPdmX0EUEfZDzFv6pg0WpEFHtNzJo24Y5TCkgpcFruQv/1aLumk2kR2kMnLGjtd/
-         6i2IUr2JsnKEECdvRMsERm8eUUB4SOvRNWt06dChdKipRPGdwHEgr2eYpozR2XSDv2sE
-         l1hi7OCG5du2Ef18vaw7rbB2Z1OMMwJmeYOemlxSLbR3dH7Mws2nT7ZOY8l6u9uB98im
-         Ko8hL6Rn1oZsGt7sCaHky8SMqToHa6RDfkqxbTy4hY6/+G8NPhSQY5U1eTlA+DeiJcS3
-         dy5Q==
-X-Gm-Message-State: ANoB5pmdxWWS/GxDCH1aFcFPOwQb9004di9tOYUFI2ImHF58DDcvlO4s
-        gEqD0gmqL/NFpBi1eSNGUh/xb43H3RRnVUW6
-X-Google-Smtp-Source: AA0mqf72GE5K/THKP5dQx1SEDNcZTOohnW+9NZOfpE9Kt2d1QDTy6NXFT+4SieNxrWFmY7o/1XRVrg==
-X-Received: by 2002:aa7:cd91:0:b0:469:2f36:fd with SMTP id x17-20020aa7cd91000000b004692f3600fdmr43925246edv.385.1669843225067;
-        Wed, 30 Nov 2022 13:20:25 -0800 (PST)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id i15-20020a170906264f00b007aa239cf4d9sm1046169ejc.89.2022.11.30.13.20.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 13:20:23 -0800 (PST)
-Received: by mail-wr1-f46.google.com with SMTP id q7so28269759wrr.8
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 13:20:22 -0800 (PST)
-X-Received: by 2002:adf:fb4c:0:b0:236:5270:735e with SMTP id
- c12-20020adffb4c000000b002365270735emr27787482wrs.659.1669843222443; Wed, 30
- Nov 2022 13:20:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20221130142829.v10.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
-In-Reply-To: <20221130142829.v10.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 30 Nov 2022 13:20:09 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VQ-NTEOtg7_BZRT8zMrmt0B1FEMxixCynmnCH+aciFqg@mail.gmail.com>
-Message-ID: <CAD=FV=VQ-NTEOtg7_BZRT8zMrmt0B1FEMxixCynmnCH+aciFqg@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: arm: qcom: Add zombie
-To:     Owen Yang <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>, Harvey <hunge@google.com>,
-        Bob Moragues <moragues@google.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Gavin Lee <gavin.lee@ecs.com.tw>,
-        Matthias Kaehlcke <mka@google.com>,
-        Abner Yen <abner.yen@ecs.com.tw>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Gi08F4NWfWUD6xCY5Oe/H+pMh+Tsy5vhl0xYTUkWfy4=;
+        b=1L0ta/566RNKSs8nSanYDs57H9zlyOyfHJ8btaggL6P915cI0vi9Ui+Qma9ia/Q2/9
+         tINOFIImCBWI+EV9mQxqkac3ncQp+SRwE5e0T8sTkSy/H65QpIb0liBGbCyqv7/aDr0D
+         N1Hy5saKmPdRXqsA06BLdRUWbXXTwWSPj/Le71vLYTDc/oIeYCHfol8q7jxWoXv2Q7y5
+         j+r1SBYmSn2sL8wC7ONI87CnSNwJcGP4JCp637eEaQ5ui3pYlOsMngvpux4DTRKxtEKl
+         1OShkOWY2uUS0/blG9njvy1k7/LR4nZ0ujj6l0P1CL7+AajKEcQszPkFR7CXKpVzkUWg
+         PliQ==
+X-Gm-Message-State: ANoB5pl+Ye/sysnzMYD3HvY2qBLdS/lfQ8vQmW8HZ2aD+Tyk4amYWTs8
+        1JPdYmbVU2JAQJqiTkkCDQ==
+X-Google-Smtp-Source: AA0mqf7EzQaJL4U41dyICm11dMO218s52uDWXRqd7idPvN3kRcJFt2MnosdYJY3z480sFpT4JrD3+A==
+X-Received: by 2002:a9d:748e:0:b0:66e:39ed:9a26 with SMTP id t14-20020a9d748e000000b0066e39ed9a26mr12801490otk.130.1669843267451;
+        Wed, 30 Nov 2022 13:21:07 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i9-20020a9d6249000000b00668953207b2sm1336435otk.80.2022.11.30.13.21.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 13:21:07 -0800 (PST)
+Received: (nullmailer pid 2947797 invoked by uid 1000);
+        Wed, 30 Nov 2022 21:21:05 -0000
+Date:   Wed, 30 Nov 2022 15:21:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rahul Tanwar <rtanwar@maxlinear.com>
+Cc:     devicetree@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Ingo Molnar <mingo@redhat.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        linux-lgm-soc@maxlinear.com, x86@kernel.org,
+        Borislav Petkov <bp@alien8.de>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v5 1/4] dt-bindings: x86: apic: Convert Intel's APIC
+ bindings to YAML schema
+Message-ID: <166984326482.2947738.18134914819874377432.robh@kernel.org>
+References: <20221124084143.21841-1-rtanwar@maxlinear.com>
+ <20221124084143.21841-2-rtanwar@maxlinear.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221124084143.21841-2-rtanwar@maxlinear.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Tue, Nov 29, 2022 at 10:30 PM Owen Yang <ecs.taipeikernel@gmail.com> wrote:
->
-> Add entries in the device tree binding for sc7280-zombie.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->
-> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+On Thu, 24 Nov 2022 16:41:40 +0800, Rahul Tanwar wrote:
+> Intel's APIC family of interrupt controllers support local APIC
+> (lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
+> & ioapic from text to YAML schema. Separate lapic & ioapic schemas.
+> Addditionally, add description which was missing in text file and
+> add few more required standard properties which were also missing
+> in text file.
+> 
+> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
+> ---
+>  .../intel,ce4100-ioapic.txt                   | 26 --------
+>  .../intel,ce4100-ioapic.yaml                  | 60 +++++++++++++++++++
+>  .../intel,ce4100-lapic.yaml                   | 57 ++++++++++++++++++
+>  3 files changed, 117 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml
+> 
 
-When you send v11, please remove the blank line between the
-Reviewed-by tags and the Signed-off-by tag. All tags should be
-together.
-
--Doug
+Reviewed-by: Rob Herring <robh@kernel.org>
