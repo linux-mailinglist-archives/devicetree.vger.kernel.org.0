@@ -2,145 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3333763DC99
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F8663DC9F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:05:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbiK3SE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 13:04:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58284 "EHLO
+        id S229935AbiK3SFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 13:05:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiK3SEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:04:25 -0500
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223727061F;
-        Wed, 30 Nov 2022 10:04:25 -0800 (PST)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1433ef3b61fso21924751fac.10;
-        Wed, 30 Nov 2022 10:04:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O92/4gRbBZHRaTcuTNcEC3gTvM1Cg9IfNLbdStTU/4w=;
-        b=e9hS8/RO9ikfCpdQPdkRRNVlvsWqYh46dyxv7f1W4VswjATZImE0gFFT+PVoHXq350
-         OVbT8reE7TVaOfFGVAn/OIxSWglyrZMVhqCj356jqTOCftNoPhhONj4gEnST6oo0zvkW
-         T2EzVLRKRlkQ/iGrGwi3udBZPmf0mJKABo08b3gkjOzzpSm4oMFCUcLdORftrvboSj9O
-         h3vHhUstjXwSdzprosxI8sNsWBT9QBBPXb4psaWfYoVd1K0Xa6rIIzTJGZZHQVFKeAhW
-         Xqg0PXe3UyU+pT7hjaBFolSFnhvGYnUm0FklUJevzvVgV7rgkkdpXS02ECUwCHtRmbCr
-         UN+w==
-X-Gm-Message-State: ANoB5pmo3gf5HyAyWCjfn7iP/Np9Wa4Dfxzx9v9x/aMdmFdkQxgBec/n
-        KolsqJXPz7X0ldavozZX6A==
-X-Google-Smtp-Source: AA0mqf6eVp8liyqBEwwxUaePBihI5WtgVxnCAjlpm1rxRun20hfKca4NFhBlYl+T7dO+q/0y0pLPBg==
-X-Received: by 2002:a05:6870:e99f:b0:142:d085:c1cc with SMTP id r31-20020a056870e99f00b00142d085c1ccmr27521723oao.29.1669831463700;
-        Wed, 30 Nov 2022 10:04:23 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n7-20020a056870a44700b00130d060ce80sm1509542oal.31.2022.11.30.10.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 10:04:23 -0800 (PST)
-Received: (nullmailer pid 2535078 invoked by uid 1000);
-        Wed, 30 Nov 2022 18:04:22 -0000
-Date:   Wed, 30 Nov 2022 12:04:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229936AbiK3SFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:05:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426D77B603;
+        Wed, 30 Nov 2022 10:05:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CC6D861D2A;
+        Wed, 30 Nov 2022 18:05:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6374BC43470;
+        Wed, 30 Nov 2022 18:04:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669831500;
+        bh=mWQo9lS4Vl4LT/B9HmEw0oNidwOCObmrj3MYw/+BtYk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=qZ1PKbcwPYE35dJpTRwTON1T2xwF5sTyiE8PutUJ6tl5ba6NQJH0o+MMtAuGXSyYt
+         6pwRo1ewox06sgcrs+eRFdx29f73DxGZCk37+ryArE+eI3xqWxtkD6wodyz9m1baFU
+         omYOPjiLPnHsYciz14kBmTs0KSfzRRrBdvE5+ST9zdKD1r2YVcMuzWcUAh0bpd2Fb/
+         N4wdM5x+XHXKN2hIxiSsdGdtmFZT75M3XXPe1hPqFZN/WvvAsfWlAkkpXllmvbZVRL
+         ZP7Sh4PG4BtcvMr/y6co8+kOQWaZR63tMHbwFj4CbHNXfz4qlnk71QxCSFPGYIvl2w
+         YO0t/ybUM8pAg==
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/7] dt-bindings: serial: add bindings doc for
- Bouffalolab uart driver
-Message-ID: <20221130180422.GA2527975-robh@kernel.org>
-References: <20221120082114.3030-1-jszhang@kernel.org>
- <20221120082114.3030-2-jszhang@kernel.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
+Subject: [PATCH v2 2/2] dt-bindings: riscv: fix single letter canonical order
+Date:   Wed, 30 Nov 2022 18:04:23 +0000
+Message-Id: <20221130180422.1642652-3-conor@kernel.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221130180422.1642652-1-conor@kernel.org>
+References: <20221130180422.1642652-1-conor@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221120082114.3030-2-jszhang@kernel.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 20, 2022 at 04:21:08PM +0800, Jisheng Zhang wrote:
-> Add bindings doc for Bouffalolab UART Driver
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  .../bindings/serial/bouffalolab,uart.yaml     | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml b/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
-> new file mode 100644
-> index 000000000000..6cef956d33d2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/serial/bouffalolab,uart.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Bouffalolab UART Controller
-> +
-> +maintainers:
-> +  - Jisheng Zhang <jszhang@kernel.org>
-> +
-> +allOf:
-> +  - $ref: serial.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: bouffalolab,uart
+From: Conor Dooley <conor.dooley@microchip.com>
 
-'bouffalolab' needs to be documented in vendor-prefixes.yaml.
+I used the wikipedia table for ordering extensions when updating the
+pattern here in commit 299824e68bd0 ("dt-bindings: riscv: add new
+riscv,isa strings for emulators").
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    aliases {
+Unfortunately that table did not match canonical order, as defined by
+the RISC-V ISA Manual, which defines extension ordering in (what is
+currently) Table 41, "Standard ISA extension names". Fix things up by
+re-sorting v (vector) and adding p (packed-simd) & j (dynamic
+languages). The e (reduced integer) and g (general) extensions are still
+intentionally left out.
 
-Drop, not relevant to the binding.
+Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
+Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
+Acked-by: Guo Ren <guoren@kernel.org>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> +        serial0 = &uart0;
-> +    };
-> +
-> +    uart0: serial@30002000 {
-> +        compatible = "bouffalolab,uart";
-> +        reg = <0x30002000 0x1000>;
-> +        interrupts = <53 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&xtal>;
-> +    };
-> +...
-> -- 
-> 2.37.2
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index e80c967a4fa4..b7462ea2dbe4 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -80,7 +80,7 @@ properties:
+       insensitive, letters in the riscv,isa string must be all
+       lowercase to simplify parsing.
+     $ref: "/schemas/types.yaml#/definitions/string"
+-    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
++    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+ 
+   # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+   timebase-frequency: false
+-- 
+2.38.1
+
