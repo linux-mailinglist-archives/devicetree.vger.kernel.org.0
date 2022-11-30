@@ -2,159 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5810863DCB8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8183C63DCBF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:12:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbiK3SJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 13:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
+        id S229668AbiK3SML convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Nov 2022 13:12:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbiK3SJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:09:12 -0500
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD21554C2;
-        Wed, 30 Nov 2022 10:09:12 -0800 (PST)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-142faa7a207so21917592fac.13;
-        Wed, 30 Nov 2022 10:09:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TpD+JGqOMGs2MeIZyqATUrufBsNvtAFqMyggyDXflm4=;
-        b=axAmxBBVR4g6OXgHAw6gRM6ZHLAa43II+Pld8l3xyvNm4GWSFBN/ignqTtfTXTyxpY
-         7Wxu6+pmsthblkD7l0ZbFRwoj0Qo5ADa7UyaaqmH4/nOlA+3aQ7Z96Vl7/TtKzCIrjpZ
-         W3UOt+nfM8/oRR3DJm9khijEHIvwPHCCD+Hr/JEsv1DsTvDwOFNgv9dromjIn5+k29SG
-         GoPn0FQp0VdfSsY6Nww8RTR7rEPc0YbpkBaOCOjuHpuH4mIsgTCvwsljJYaYbLQn6bFn
-         Em7Bs/kAW1JX0vKif+NYt8n+DxoBBlgxq/p1XMrMl5Tn7ZRM4fax0R8+2r+Klc5Efnhv
-         CYMQ==
+        with ESMTP id S229477AbiK3SMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:12:10 -0500
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83CFD84DD8;
+        Wed, 30 Nov 2022 10:12:09 -0800 (PST)
+Received: by mail-qv1-f49.google.com with SMTP id u10so6936800qvp.4;
+        Wed, 30 Nov 2022 10:12:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TpD+JGqOMGs2MeIZyqATUrufBsNvtAFqMyggyDXflm4=;
-        b=V3u0J25y859dP2q1E+UUY7/4geOAGluTDJsPlcYDAvHjseuKDqZZiHqpdpcdaz7mQ+
-         f6/ogVsCwR5mSkrsH6bqy+jK3ngyeOO/zNjmNTfoFD0JB1ZwFX/R83mXLlUjHnZCKZs4
-         BDGVKLvh8Fmv472YKK/3/kmN7Y5PbBGJUDNFaT1j3DnzA5ckpZRJkjDmBOp0JZfgN7bc
-         q71DKAjE+rlGl14kuGgiy6jHqME9V66Ae7DU4uAVs441R6xq390Z8zV+62JEaA4ugaOw
-         i/huJdNAdjZTJRz9mal0Gcs4ZR2IZ1LncEw5Q4lYKg+woDy+YrCWj2/myXWZzUytCzer
-         K27g==
-X-Gm-Message-State: ANoB5pluMpyWGMmGGvthWaqReT9/shWUimKvhwiA3RR2Ac9EduENZJt9
-        5bn5PmjQa8gy9UqtCNqT1ug=
-X-Google-Smtp-Source: AA0mqf4+eipE4lzlpjOg3nwCm9azv/aSfRikgtXomKhXLUW/PdGkwUwudO+y15quQvVnXw1EY7wVLA==
-X-Received: by 2002:a05:6871:9b:b0:115:1923:57be with SMTP id u27-20020a056871009b00b00115192357bemr38680745oaa.88.1669831751463;
-        Wed, 30 Nov 2022 10:09:11 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c14-20020a4ad8ce000000b0049bfbf7c5a8sm952218oov.38.2022.11.30.10.09.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 10:09:11 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 30 Nov 2022 10:09:10 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: Re: [PATCH v3 1/4] hwmon: (pmbus/core): Update regulator flag map
-Message-ID: <20221130180910.GB2656856@roeck-us.net>
-References: <20221130165833.3478555-1-Naresh.Solanki@9elements.com>
- <20221130165833.3478555-2-Naresh.Solanki@9elements.com>
+        bh=A3Y+CLKsmq/zvpZ9sIIrYnKxsjyLVOCHxaKyu/MIB2Y=;
+        b=f1YOfcdonv8tB3vlRGBdrZJhKfv+AE0IZwE+HDJJI2uWmDCjDmOl5IfNoI7/7A5ulp
+         pS0LnRPIzwtj3rXdviqiN35+kOOJXMIlJsTOH86hY0SqEqQklQ9gyji8YrnUh/jSaaPp
+         DNOSM2jqRgTd9hYLYENLhUXol41OCPQk8Ox552QEe4gvZqULzdWEROll5/MKYW6t89Ft
+         DGLXPpBiPhSi8BcYUc2ubgfiNfkEPgU1BNGi4Jgspihl998j3cBiSpIjSjP/Hd8GCPcp
+         06ukalabh3nMCtoYzx2nnoYSLOJyrJoE+aUSkJbNOe0ew92muk3+Fft+BErqcryM0Zfl
+         tY2w==
+X-Gm-Message-State: ANoB5pl6IoLLzftIFU7ipI6XJpKTp4BALhtfqzjkAZA8Zs7WpLOeMmXT
+        sN/RuzjMrT6YXTJhQeJoEUGIhLu5zw0ssA==
+X-Google-Smtp-Source: AA0mqf5JbxYzXrQmTqfhbWbuWoVvfemRiSmRQnnYA7TaDzjJYTcUgq6Jl6SJpTz11WtjP0PzzdRscA==
+X-Received: by 2002:a05:6214:448c:b0:4c6:b1c5:9111 with SMTP id on12-20020a056214448c00b004c6b1c59111mr42036207qvb.18.1669831928454;
+        Wed, 30 Nov 2022 10:12:08 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id s18-20020a05620a29d200b006f9ddaaf01esm1710055qkp.102.2022.11.30.10.12.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 10:12:07 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id v206so5898662ybv.7;
+        Wed, 30 Nov 2022 10:12:06 -0800 (PST)
+X-Received: by 2002:a25:7a02:0:b0:6f7:952d:b145 with SMTP id
+ v2-20020a257a02000000b006f7952db145mr12544760ybc.604.1669831926518; Wed, 30
+ Nov 2022 10:12:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221130165833.3478555-2-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+References: <20221129102225.3598044-1-j.neuschaefer@gmx.net> <20221129102225.3598044-3-j.neuschaefer@gmx.net>
+In-Reply-To: <20221129102225.3598044-3-j.neuschaefer@gmx.net>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 30 Nov 2022 19:11:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU+d3tW1kVN6011m9JDuW53aGedKOUVt33yCOmhs9Oong@mail.gmail.com>
+Message-ID: <CAMuHMdU+d3tW1kVN6011m9JDuW53aGedKOUVt33yCOmhs9Oong@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] spi: dt-bindings: nuvoton,wpcm450-fiu: Fix warning
+ in example (missing reg property)
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 05:58:29PM +0100, Naresh Solanki wrote:
-> Add regulator flag map for PMBUS status byte & status input.
-> 
-
-Now you lost me. Two 1/4 patches with overlapping and different
-content ???
-
-Guenter
-
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+On Tue, Nov 29, 2022 at 11:27 AM Jonathan Neuschäfer
+<j.neuschaefer@gmx.net> wrote:
+> Add missing "reg = <0>;" property to the flash@0 node in the example.
+>
+> Fixes: dd71cd4dd6c9b ("spi: Add Nuvoton WPCM450 Flash Interface Unit (FIU) bindings")
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/hwmon/pmbus/pmbus_core.c | 30 ++++++++++++++++++++++--------
->  1 file changed, 22 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-> index 95e95783972a..f5caceaaef2a 100644
-> --- a/drivers/hwmon/pmbus/pmbus_core.c
-> +++ b/drivers/hwmon/pmbus/pmbus_core.c
-> @@ -2752,6 +2752,15 @@ struct pmbus_regulator_status_category {
->  
->  static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] = {
->  	{
-> +		.func = -1,
-> +		.reg = PMBUS_STATUS_BYTE,
-> +		.bits = (const struct pmbus_regulator_status_assoc[]) {
-> +			{ PB_STATUS_IOUT_OC,   REGULATOR_ERROR_OVER_CURRENT },
-> +			{ PB_STATUS_VOUT_OV,   REGULATOR_ERROR_REGULATION_OUT },
-> +			{ PB_STATUS_VIN_UV,    REGULATOR_ERROR_UNDER_VOLTAGE },
-> +			{ },
-> +		},
-> +	}, {
->  		.func = PMBUS_HAVE_STATUS_VOUT,
->  		.reg = PMBUS_STATUS_VOUT,
->  		.bits = (const struct pmbus_regulator_status_assoc[]) {
-> @@ -2768,6 +2777,7 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
->  			{ PB_IOUT_OC_WARNING,    REGULATOR_ERROR_OVER_CURRENT_WARN },
->  			{ PB_IOUT_OC_FAULT,      REGULATOR_ERROR_OVER_CURRENT },
->  			{ PB_IOUT_OC_LV_FAULT,   REGULATOR_ERROR_OVER_CURRENT },
-> +			{ PB_POUT_OP_FAULT,      REGULATOR_ERROR_OVER_CURRENT },
->  			{ },
->  		},
->  	}, {
-> @@ -2778,6 +2788,18 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
->  			{ PB_TEMP_OT_FAULT,      REGULATOR_ERROR_OVER_TEMP },
->  			{ },
->  		},
-> +	}, {
-> +		.func = PMBUS_HAVE_STATUS_INPUT,
-> +		.reg = PMBUS_STATUS_INPUT,
-> +		.bits = (const struct pmbus_regulator_status_assoc[]) {
-> +			{ PB_IIN_OC_FAULT,       REGULATOR_ERROR_OVER_CURRENT },
-> +			{ PB_IIN_OC_WARNING,     REGULATOR_ERROR_OVER_CURRENT_WARN },
-> +			{ PB_VOLTAGE_UV_FAULT,   REGULATOR_ERROR_UNDER_VOLTAGE },
-> +			{ PB_VOLTAGE_UV_WARNING, REGULATOR_ERROR_UNDER_VOLTAGE_WARN },
-> +			{ PB_VOLTAGE_OV_WARNING, REGULATOR_ERROR_OVER_VOLTAGE_WARN },
-> +			{ PB_VOLTAGE_OV_FAULT,   REGULATOR_ERROR_OVER_VOLTAGE_WARN },
-> +			{ },
-> +		},
->  	},
->  };
->  
-> @@ -2834,14 +2856,6 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->  		if (status & PB_STATUS_POWER_GOOD_N)
->  			*flags |= REGULATOR_ERROR_REGULATION_OUT;
->  	}
-> -	/*
-> -	 * Unlike most other status bits, PB_STATUS_{IOUT_OC,VOUT_OV} are
-> -	 * defined strictly as fault indicators (not warnings).
-> -	 */
-> -	if (status & PB_STATUS_IOUT_OC)
-> -		*flags |= REGULATOR_ERROR_OVER_CURRENT;
-> -	if (status & PB_STATUS_VOUT_OV)
-> -		*flags |= REGULATOR_ERROR_REGULATION_OUT;
->  
->  	/*
->  	 * If we haven't discovered any thermal faults or warnings via
-> 
-> base-commit: 9494c53e1389b120ba461899207ac8a3aab2632c
-> -- 
-> 2.37.3
-> 
+>
+> v2:
+> - depersonalize commit message
+> - Add Krzysztof's R-b
+
+Thanks, this fixes "make dt_binding_check" for me, so
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
