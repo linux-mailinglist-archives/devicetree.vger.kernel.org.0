@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAAF63D395
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 11:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2EA63D39B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 11:39:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236084AbiK3Kjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 05:39:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39174 "EHLO
+        id S235364AbiK3Kjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 05:39:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232674AbiK3Kja (ORCPT
+        with ESMTP id S236042AbiK3Kja (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 05:39:30 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9730547303
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 02:39:26 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id r133-20020a1c448b000000b003d076ee89d6so21775wma.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 02:39:26 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FA0C47321
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 02:39:27 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id q7so25488524wrr.8
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 02:39:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:from:to:cc:subject:date:message-id:reply-to;
-        bh=nCuwCuLO3/O7+9Nm+Ck23Y5cGWFMododv9DDC+E+S10=;
-        b=zOv78npEAAJfT6kzD5JNYDGDbX+MwtTMOXB6+igVjNjboSAKFx0Ie/dVuYzwr6cJkG
-         MqYKNS2uJDDJdDzKOoQxmQFAmlNRiZ86/cumKi21Qr5g1yEMIWw69QHiiuoSjcarA12w
-         UY0uo0wWhMpfzN+uIwEj3tBiYaPO3pjeymQ8sB8b0zQB7nEIhmFJexqA4zOF6kDf14G3
-         YLRJEJYCRkkQX8/M9GoBei3srnq5iuWJ5Is1QkbZzetciRjVBcKeECqjaeX6Ih2nj4Ha
-         dPUtnHrolNm9s3giT22HlYVAupouupZ7O2CXkEkpkMgziI6JRJlu3zk/1ox3IiTbsGS/
-         8JAg==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yhZDD8xcpBnTbaSUo6s6vdqxM8BkGMuykHbcqOykd/I=;
+        b=N+hKwobZLw583rgJbQooZK/PUsqCwa98+M62Pu3RuPW/I8QRqcx0ND8ZYej0IQiiAp
+         69+ejO2EYvCPwRz+kg312KIVWBqZ9fyxnBdYJjD66n2qgBNnNgVo4/Uw4v69gm5iFnwr
+         PkkiU8/ftu8YTjo7WIXFsuwoUnU5gb2I4SYsbTOBnrqlIkJJgKDjIw6D9lYPaxxj7LSS
+         zH217mONbVLzXf7NBlKjSwr0UGVVUqiRrfkGZzBy9OtjXtofLI8jtyMDhdALBGJoR5Mq
+         0kj6u+hQwd9Igp/imPoeoAK4nYUrRRBesVoC+bL5pIvoyt9mIr37egt/Q0SbWE9Br/Xa
+         B62A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
-         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nCuwCuLO3/O7+9Nm+Ck23Y5cGWFMododv9DDC+E+S10=;
-        b=joxjvpP2XAcDvqZLAjA0Uwd5JZOnuNW+OGAQjqywI5CntMRoY1dMUtIngRSl+VurrX
-         11bNLO0uWOeeSbefsk3HaljU/aYryrA2ebJpSajhJtxVO90CFNEGb8dPucbgAbLI6UTD
-         3ic5TTzxkq+mBumKLkIMsihlASadfJxzpQiwQnG97+l6Z8zkIYs9yN3rn3MvUS6C+xzX
-         nZ5GmS9pxlEaEB/4460gPt65ZMlEmu0ogJJPvGOzIEg6aVcVuV73QDQRT8NruDe3bVeZ
-         XjvwZsRBeKlibYp8xHEw+YGddpo2gmPCbSfeIROKjbRSQw+iqGbYtIB4DImjYM9etxo3
-         1Icg==
-X-Gm-Message-State: ANoB5pn7cIQcdwWPG6dGZk4Q6YU89C6i6LVcW40XV70phHFmt31zAfMM
-        VqC0XQFbJOOZnuGrbY+SMUH28g==
-X-Google-Smtp-Source: AA0mqf5daXB/AxeOh3K7wuMJNqzhEVlAib12/62q5Xb1GHlkJtdaUONFN15K+TEn0R1PZC/tWx7gvw==
-X-Received: by 2002:a05:600c:2213:b0:3cf:a6eb:3290 with SMTP id z19-20020a05600c221300b003cfa6eb3290mr37641996wml.116.1669804765098;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yhZDD8xcpBnTbaSUo6s6vdqxM8BkGMuykHbcqOykd/I=;
+        b=h9e83EOL48VZneGj0EH5wbk+RDqjJOheoEGhpWfi7yK2tE7Ib+ne3VeHPgrL/yp1qq
+         wInfBj3EWuWKg+2cs/ydcjOPLX/EMTdlkejl7Ryhbs+sBVf64D66RB3ymIoWe3pAdXSy
+         eDWAJvh8LW2JFRQoxJ7QtS51Ah5eDGV7TS+gd6loCjg0DTo4LQcAwd4wa2SnBwFy1y6z
+         L82arUQTi/wik8QdCdHUHT8mgzN6dnurJB7MeVdcbKy9YxAMYvhMJo9ebZXGX8aS/h0d
+         WOeOrqiZLgXlysD6XDlVFONACJjyxmewaOZ91Oim4XMR+Xb/NlU2R9dec2qq6zDawxDE
+         15Wg==
+X-Gm-Message-State: ANoB5pn3EQITj8u5D1CmMCQ1IQDN4PFlUb++eSwe2KOI0fyjqpybWmpG
+        7QG1rNB4bZGm775/JnPG7hzCNQ==
+X-Google-Smtp-Source: AA0mqf5h9a44Qk+VSI2o38nmpW3OEiE+U0GtxIoqKrj/ZgtcMEb2SqP66ATO89ZasQqMqAsnXCiRwg==
+X-Received: by 2002:a5d:4143:0:b0:242:1551:9759 with SMTP id c3-20020a5d4143000000b0024215519759mr9603989wrq.476.1669804765957;
         Wed, 30 Nov 2022 02:39:25 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id k9-20020adfe8c9000000b00241f632c90fsm1261174wrn.117.2022.11.30.02.39.24
+        by smtp.gmail.com with ESMTPSA id k9-20020adfe8c9000000b00241f632c90fsm1261174wrn.117.2022.11.30.02.39.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 02:39:24 -0800 (PST)
-Subject: [PATCH v2 0/3] arm64: dts: qcom: Add ADSP, CDSP & MDSS support to SM8550 and MTP board
+        Wed, 30 Nov 2022 02:39:25 -0800 (PST)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 30 Nov 2022 11:39:23 +0100
+Subject: [PATCH v2 1/3] arm64: dts: qcom: sm8550: Add interconnect path to SCM node
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-b4-tracking: H4sIANoyh2MC/5WNQQqDMBBFr1Ky7pRMbFC76j1KFzEZNKCJzEShiHdv6A26+ry/eO9QQhxJ1ONyKK
- Y9SsypgrlelJ9cGgliqKyMNgYRLZS8Rg+ydNZq2FYpTG6BUASYllxo5ezBms6GVmNHTa+qanBCMLBL
- fqqytM1zPacoJfPnl96xzuvPyo6goWl7Io8Yujs+55gc51vmUb3P8/wCIi5rst4AAAA=
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 30 Nov 2022 11:39:22 +0100
-Message-Id: <20221115-topic-sm8550-upstream-dts-remoteproc-v2-0-98f7a6b35b34@linaro.org>
+Message-Id: <20221115-topic-sm8550-upstream-dts-remoteproc-v2-1-98f7a6b35b34@linaro.org>
+References: <20221115-topic-sm8550-upstream-dts-remoteproc-v2-0-98f7a6b35b34@linaro.org>
+In-Reply-To: <20221115-topic-sm8550-upstream-dts-remoteproc-v2-0-98f7a6b35b34@linaro.org>
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -78,60 +78,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the aDSP, cDSP and MPSS Subsystems found in
-the SM8550 SoC.
+From: Abel Vesa <abel.vesa@linaro.org>
 
-The aDSP, cDSP and MPSS needs:
-- smp2p support nodes to get event back from the subsystems
-- remoteproc nodes with glink-edge subnodes providing all needed
-resources to start and run the subsystems
+Add the interconnect path to SCM dts node.
 
-In addition, the MPSS Subsystem needs a rmtfs_mem dedicated
-memory zone.
-
-Finally the firmwares file paths are added in the MTP board DT.
-
-This patchset depends on:
-- bindings changes at [1]
-- base SM8550 DT at [2]
-
-To: Andy Gross <agross@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@somainline.org>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Abel Vesa <abel.vesa@linaro.org>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-[1] https://lore.kernel.org/all/20221114-narmstrong-sm8550-upstream-remoteproc-v2-0-12bc22255474@linaro.org
-[2] https://lore.kernel.org/all/20221130101744.2849294-1-abel.vesa@linaro.org
-
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Changes in v2:
-- Dropped dependency on MPSS DSM patchset
-- Added DSM memory to MPSS memory-region
-- Added DTB firmware name to firmware-name property
-- Added reviews and fixes according to Konrad reviews
-- Link to v1: https://lore.kernel.org/r/20221115-topic-sm8550-upstream-dts-remoteproc-v1-0-379eec11d841@linaro.org
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-Abel Vesa (1):
-      arm64: dts: qcom: sm8550: Add interconnect path to SCM node
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index d7eeed0f62d6..98026d56cf01 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -268,6 +268,7 @@ CLUSTER_SLEEP_1: cluster-sleep-1 {
+ 	firmware {
+ 		scm: scm {
+ 			compatible = "qcom,scm-sm8550", "qcom,scm";
++			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
+ 		};
+ 	};
+ 
 
-Neil Armstrong (2):
-      arm64: dts: qcom: sm8550: add adsp, cdsp & mdss nodes
-      arm64: dts: qcom: sm8550-mtp: enable adsp, cdsp & mdss
-
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts |  18 ++
- arch/arm64/boot/dts/qcom/sm8550.dtsi    | 338 ++++++++++++++++++++++++++++++++
- 2 files changed, 356 insertions(+)
----
-base-commit: 2bc2ef9dfc2e9fe7d45b85e4825f338cdef42723
-change-id: 20221115-topic-sm8550-upstream-dts-remoteproc-5285d7018e39
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+b4 0.10.1
