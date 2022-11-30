@@ -2,109 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3814363E254
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D22DD63E28E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:15:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiK3UwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 15:52:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
+        id S229679AbiK3VPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 16:15:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbiK3UwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:52:09 -0500
-Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0573181396;
-        Wed, 30 Nov 2022 12:52:05 -0800 (PST)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 0FC08BA2DD0;
-        Wed, 30 Nov 2022 21:51:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1669841524;
-        bh=nxWoIyAMvb8egvK3q38abf0ft7Y/V4LZTzXrMooLikc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=nzhY3zjsYBg9cmCrCkvZmiGIcx+ehlDe0uSqPScV02zeYP97gaYMV0Amw7+GVwzZ1
-         jgMQDtW87E0XUOg160e5myBBTim7NDV9Ag/E2s4fHOm4qAlQwPTDLr5qHGq6Mo0Wx+
-         RK1FkniXtMOZYwOwHSL6CXJus97MhuPW7N0ygF+hriE8GHsokbKPMfTDAmFvM69uUf
-         UDzp8MDNzzEGylkokZG0qxZn6Y7bUqjqxjfpJvi27Qk83EWnQ+paIbUmmwg8c/P/J9
-         tUim0nbJJG12BuDBu3sIMZYmB2EeteX4kp2H1YqbNTXXtIOKf3RkakU2o9n3JEYiQq
-         n7zMJiUBtrDvA==
-Date:   Wed, 30 Nov 2022 21:51:50 +0100
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, stable@vger.kernel.org,
-        Sasha Levin <sashal@kernel.org>
-Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
-Message-ID: <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
-References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
- <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
+        with ESMTP id S229448AbiK3VPk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:15:40 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEB6862F3;
+        Wed, 30 Nov 2022 13:15:39 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id l127so20180356oia.8;
+        Wed, 30 Nov 2022 13:15:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g1WUj9zWyrC1e+L03kFAp89FihCih368o6/AwASOyaI=;
+        b=RDKOeqRLUAVYO3dfz3TjOsRsDx6rj0q4dYWwvfjXSJAKskBjKX9N7RnS1nqlxHziC8
+         TERlUxxGWUvd4RWGj12+XYYAShh9abGr8nAfBI0P4HkK4eOlnzntp7WX6Hy9AV9HMgEh
+         dpZkixxTC63wI8sv5BjCAUR32PVhT8Gg7D25ngwH4/aBMjUpLuyAizLB3lYcOCz7dMMY
+         GeJJdVnsYspZ6gW2F4S+qwkFZH9hNgojKuAHNlU8MP6faqOCgnOruX5g/TMAFknO8DPP
+         UbvEpDmYJrqmhzjllkbDsUYmwes3Hw8PMm1N+wTLMbxQNx/VXIy+kQUFVYyoWaMeQQeX
+         dRfw==
+X-Gm-Message-State: ANoB5pkyKbUudRqa4fbM4vN9eZxl0eIT33Gw101gzmOexI181512XikT
+        qTpIFVEiE1d+JxtKArQjCA==
+X-Google-Smtp-Source: AA0mqf7zSC9P3R1awSY68MbRIxwFiUbYKx3tCXC89GAfio9L+8bZVQDPRbJusHthEFH2YarrfOv9Rg==
+X-Received: by 2002:a05:6808:120f:b0:359:d3d6:45d2 with SMTP id a15-20020a056808120f00b00359d3d645d2mr31033386oil.132.1669842938657;
+        Wed, 30 Nov 2022 13:15:38 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w22-20020a9d77d6000000b0066c495a651dsm1350898otl.38.2022.11.30.13.15.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 13:15:37 -0800 (PST)
+Received: (nullmailer pid 2940448 invoked by uid 1000);
+        Wed, 30 Nov 2022 21:15:37 -0000
+Date:   Wed, 30 Nov 2022 15:15:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
+        jirislaby@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexander Dahl <ada@thorsis.com>, kernel@dh-electronics.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 1/4] dt_bindings: rs485: Add binding for GPIO that
+ controls Rx enable during Tx
+Message-ID: <20221130211537.GA2926121-robh@kernel.org>
+References: <20221123123004.7216-1-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221123123004.7216-1-cniedermaier@dh-electronics.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
-> On 11/30/22 14:52, Francesco Dolcini wrote:
-> > [    0.000000] Booting Linux on physical CPU 0x0
-> > [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
-> > 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
-> > ...
-> > [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
-> > @33002000)
-> > [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
-> > ...
-> > [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
-> > [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
-> > ...
-> > 
-> > Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
-> > maybe you have a better idea.
+On Wed, Nov 23, 2022 at 01:30:01PM +0100, Christoph Niedermaier wrote:
+> This patch adds a binding for a generic definition of an output GPIO that
+> indicates the state of rs485-rx-during-tx. The idea is that the hardware
+> already controls the option receiving during sending before it gets to the
+> signal receiving hardware. The standard RS485 is a half-duplex bus that in
+> most cases is driven by an UART controller. The advantage of using this
+> GPIO is that it is independent of the capabilities of the UART core and
+> the UART driver. On the hardware side the interface to the bus is
+> controlled by a transceiver, that has a pin called RE (RX enable) or
+> similar, which connects the bus to the RX signal of the UART controller.
+> The GPIO can switch between two states to control the RE pin via an
+> electrical circuit:
+> - Active:
+>   The RE pin is always active. The UART RX see everything on the bus and
+>   therefore also what happens with the TX signal on the bus.
+> - Inactive:
+>   The RE pin is always active, but during sending on the bus the pin RE is
+>   inactive. So basically the receiving during sending is suppressed.
 > 
-> Can you share the relevant snippet of your nand controller DT node ?
+> A possible circuit diagram could look like this:
+>                                   ┌──────────────────┐
+>                                   │       RS485      │
+>                 TX ───────────────┤D                 │
+>                                   │    Transceiver   │
+>                RTS ────┬──────────┤DE                │
+>                        │          │                  │
+>                        │ ┌─────┐  │                  │
+>                        └─┤&    │  │                  │
+>                          │     ├──┤!RE               │
+> !rx_during_tx_gpio ──────┤     │  │                  │
+>                          └─────┘  │                  │
+>                                   │                  │
+>                 RX ───────────────┤R                 │
+>                                   │                  │
+>                                   └──────────────────┘
+> 
+> Here the RTS pin of the UART core is used to control TX via the transceiver
+> pin DE (Drive Enable). RE and rx_during_tx_gpio are active low.
+> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> ---
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Alexander Dahl <ada@thorsis.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> To: linux-serial@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Rework of the commit message
+>     - Rework GPIO property comment
+> ---
+>  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+> index 90a1bab40f05..6d780911e342 100644
+> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+> @@ -51,6 +51,10 @@ properties:
+>      description: GPIO pin to enable RS485 bus termination.
+>      maxItems: 1
+>  
+> +  rs485-rx-during-tx-gpios:
+> +    description: Output GPIO pin that indicates the state of rs485-rx-during-tx.
 
-We just have 
+An output sets the state. An input samples or indicates the state.
 
-from imx7-colibri.dtsi,
+This should include something about the active state: The active state 
+enables RX during TX.
 
-  &gpmi {
-  	fsl,use-minimum-ecc;
-  	nand-ecc-mode = "hw";
-  	nand-on-flash-bbt;
-  	pinctrl-names = "default";
-  	pinctrl-0 = <&pinctrl_gpmi_nand>;
-  };
-
-OF partition are created by U-Boot from
-  mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
-env variables calling fdt_fixup_mtdparts from colibri_imx7.c
-
-Everything is available in the upstream Linux/U-Boot git, no downstream
-repo of any sort.
-
-> Probably up to first partition is enough. I suspect you need to fill in the
-> correct address-cells/size-cells there, which might be currently missing in
-> your DT and worked by chance.
-
-This is generated by U-Boot, I would need to dump what he did generate
-from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
-unless what I wrote here is already enough to understand what's going
-on.
-
-Francesco
-
+> +    maxItems: 1
+> +
+>  additionalProperties: true
+>  
+>  ...
+> -- 
+> 2.11.0
+> 
+> 
