@@ -2,61 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D97A63E24D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3814363E254
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiK3UsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 15:48:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
+        id S229677AbiK3UwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 15:52:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229625AbiK3UsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:48:14 -0500
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2221127901;
-        Wed, 30 Nov 2022 12:48:14 -0800 (PST)
-Received: by mail-ot1-f49.google.com with SMTP id s9-20020a05683004c900b0066e7414466bso164951otd.12;
-        Wed, 30 Nov 2022 12:48:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+10mQQnKL+RpcNRHyz4kOrwroAQV9Weo7s9+KyGrg3k=;
-        b=7odvETaaIZ7AqIMzmGuafhu1mctt3Ok2bjptRkXMzBbXaGqnzbTrFTgA7ZvDb3vhFQ
-         0MNMaPAGCXSNaLuVQ9Iq3xBQrVR6pnDEWGNfkv/zwi2uEgh4/AIUvUdLAf7+U1R8lRB3
-         GwgSMqdv7FU/52SqOizv/IXI2Bw8KlhpnDhiL1sdD7PFoClkk7SGzX1NeOeI8nlLhMvM
-         7xduO+BEA3+49ufzA9TvBW94ZuOstPCz867+H3PTOWlMlXTuC2Dgr43GdUIQjJpe8/qB
-         FWwEHw43r40SG6A4x5iOdjmvwAWMsMNp88+uzst99JpHkqrqEGP4PBYntnIEc8Bk/tUr
-         +mPA==
-X-Gm-Message-State: ANoB5plRaolTgxfe2rvgHtzCri+I6+Xjr93BxlZTrE50fWd6yGeRd0fk
-        Uejjg0zkBLXf0Mfsen2nUDXM9FJYPA==
-X-Google-Smtp-Source: AA0mqf79JfTWhTiipndMzsy0NFp6T1qtjxfyE04byDZPhAlC0Jp6nd53snsnlNnQhCY0V5QrUy0EYg==
-X-Received: by 2002:a9d:4812:0:b0:66d:1e19:684b with SMTP id c18-20020a9d4812000000b0066d1e19684bmr32141795otf.44.1669841293372;
-        Wed, 30 Nov 2022 12:48:13 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u9-20020a056870f28900b0011bde9f5745sm1734558oap.23.2022.11.30.12.48.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 12:48:12 -0800 (PST)
-Received: (nullmailer pid 2900413 invoked by uid 1000);
-        Wed, 30 Nov 2022 20:48:12 -0000
-Date:   Wed, 30 Nov 2022 14:48:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH] dt-bindings: usb: tegra-xusb: Remove path references
-Message-ID: <20221130204812.GA2899835-robh@kernel.org>
-References: <20221130154111.1655603-1-thierry.reding@gmail.com>
+        with ESMTP id S229499AbiK3UwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:52:09 -0500
+Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0573181396;
+        Wed, 30 Nov 2022 12:52:05 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 0FC08BA2DD0;
+        Wed, 30 Nov 2022 21:51:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1669841524;
+        bh=nxWoIyAMvb8egvK3q38abf0ft7Y/V4LZTzXrMooLikc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=nzhY3zjsYBg9cmCrCkvZmiGIcx+ehlDe0uSqPScV02zeYP97gaYMV0Amw7+GVwzZ1
+         jgMQDtW87E0XUOg160e5myBBTim7NDV9Ag/E2s4fHOm4qAlQwPTDLr5qHGq6Mo0Wx+
+         RK1FkniXtMOZYwOwHSL6CXJus97MhuPW7N0ygF+hriE8GHsokbKPMfTDAmFvM69uUf
+         UDzp8MDNzzEGylkokZG0qxZn6Y7bUqjqxjfpJvi27Qk83EWnQ+paIbUmmwg8c/P/J9
+         tUim0nbJJG12BuDBu3sIMZYmB2EeteX4kp2H1YqbNTXXtIOKf3RkakU2o9n3JEYiQq
+         n7zMJiUBtrDvA==
+Date:   Wed, 30 Nov 2022 21:51:50 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, stable@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>
+Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
+Message-ID: <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
+References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
+ <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221130154111.1655603-1-thierry.reding@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,20 +59,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 04:41:11PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
+> On 11/30/22 14:52, Francesco Dolcini wrote:
+> > [    0.000000] Booting Linux on physical CPU 0x0
+> > [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
+> > 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
+> > ...
+> > [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
+> > @33002000)
+> > [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
+> > ...
+> > [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+> > [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
+> > ...
+> > 
+> > Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
+> > maybe you have a better idea.
 > 
-> Unresolved path references are now flagged as errors when checking the
-> device tree binding examples, so convert them into label references.
-> 
-> Reported-by: Conor Dooley <conor.dooley@microchip.com>
-> Suggested-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../devicetree/bindings/usb/nvidia,tegra124-xusb.yaml     | 4 +---
->  .../devicetree/bindings/usb/nvidia,tegra186-xusb.yaml     | 4 +---
->  .../devicetree/bindings/usb/nvidia,tegra194-xusb.yaml     | 8 ++------
->  .../devicetree/bindings/usb/nvidia,tegra210-xusb.yaml     | 8 ++------
->  4 files changed, 6 insertions(+), 18 deletions(-)
+> Can you share the relevant snippet of your nand controller DT node ?
 
-Acked-by: Rob Herring <robh@kernel.org>
+We just have 
+
+from imx7-colibri.dtsi,
+
+  &gpmi {
+  	fsl,use-minimum-ecc;
+  	nand-ecc-mode = "hw";
+  	nand-on-flash-bbt;
+  	pinctrl-names = "default";
+  	pinctrl-0 = <&pinctrl_gpmi_nand>;
+  };
+
+OF partition are created by U-Boot from
+  mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
+env variables calling fdt_fixup_mtdparts from colibri_imx7.c
+
+Everything is available in the upstream Linux/U-Boot git, no downstream
+repo of any sort.
+
+> Probably up to first partition is enough. I suspect you need to fill in the
+> correct address-cells/size-cells there, which might be currently missing in
+> your DT and worked by chance.
+
+This is generated by U-Boot, I would need to dump what he did generate
+from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
+unless what I wrote here is already enough to understand what's going
+on.
+
+Francesco
+
