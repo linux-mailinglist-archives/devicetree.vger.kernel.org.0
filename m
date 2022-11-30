@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E91E63DAD9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 17:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9020663DAE7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 17:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbiK3QkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 11:40:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
+        id S230019AbiK3QmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 11:42:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbiK3QkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 11:40:08 -0500
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B235B877;
-        Wed, 30 Nov 2022 08:40:07 -0800 (PST)
-Received: by mail-qt1-f174.google.com with SMTP id c15so11500892qtw.8;
-        Wed, 30 Nov 2022 08:40:06 -0800 (PST)
+        with ESMTP id S230215AbiK3Qlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 11:41:55 -0500
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48DFF880F8;
+        Wed, 30 Nov 2022 08:41:54 -0800 (PST)
+Received: by mail-qk1-f177.google.com with SMTP id d8so12671523qki.13;
+        Wed, 30 Nov 2022 08:41:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/B0jwa+xciuz/rLM/D5quDyC7IZMyW67SHNi9nPK74M=;
-        b=Cu8/lQXM5BafGjQC2+VpnM7sM9V1EIXtttHTOPJ+xvJh6qtIYhZ0b0+k7VtLhyKYY7
-         FjuNiEsHejuInuOWYDpBEqQ+/H/2qyFjZSwxftmRbSN8Oxr5RJBQSrJ+pct1Efi4HPxA
-         +XGkGMkPaxuSXN82aTnnRHlbe02ysGWSJpaS2Wxafr08f0REhvqog4NXVxHvIfDABSM5
-         cf70ZaLc8wnnLSQr6dKtq6ObUO2109BnmgL4J2Nqsoqy64wW5gIGGzeIPlS2HJmXmBZ+
-         GY8Dh1OjMgukGHHEYOta7S00xhU8ZJmSXKQxKohaq6qXHeCdt9iyQvn1M0LNbCxt9In6
-         4esg==
-X-Gm-Message-State: ANoB5plDAl2poNyZa0a1WRYxdC+gGLxdU2LeT0w8UCNF/h4Zn0WXT0La
-        Nl/6qOv/eP55fdqk6pUdT6NhPMTDeuq3xg==
-X-Google-Smtp-Source: AA0mqf4jY4D82AaAHWHVEQ1PIKo9kqpMofAtaWr2mcB+MX9CeIe5RbnNWd7AJzP5hMOHxpHyNG4WmA==
-X-Received: by 2002:a05:622a:5808:b0:3a5:9170:458e with SMTP id fg8-20020a05622a580800b003a59170458emr58546044qtb.509.1669826405728;
-        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id de4-20020a05620a370400b006fae7e6204bsm1511278qkb.108.2022.11.30.08.40.05
+        bh=lpxFM3mDElOJp68yFjINxCWO/tvZWQI70qNzsqToQOg=;
+        b=gRPDsLGKEzNyaiuobPyUOKq96O2NkP17ghRUxl9cN2aKyoX7ACcaIgANtJ922WLVaD
+         gR5qJez7c2yP1urV5kqWJJZ8XsZWVWThd730b3b7wmkXeB1Pnx+8N2zMqWo4znQ174wD
+         zy6tYw30uhEyj07nZdZhHVnKee+hYOCEgD1O8hSk8BKbrx/1A0jWzdwjdPgIq3m4IL4a
+         zXyaEfXbn1pdX4ztWwvbHTKQZpAwRfm4lBkj9ERNdRjXm6epFf5WSFK4SpznR1PuVD1p
+         qD6RDBG+ZHodOm1pJbJU8YBqCZisJvL2zNbFDapkLzlMyG2qVrvYt7Aq+2YAaqkUU7qB
+         Js2g==
+X-Gm-Message-State: ANoB5pkkdiHJQoX68aZ5fPRm/D/qCPAGt2ZCpE4e6HNqjL8Ls3NIumbq
+        4HC2YoYGeoZftuydGPTbnNGoL7H/rTJwyA==
+X-Google-Smtp-Source: AA0mqf43lMMb+KZfOFFWCbAWNQxV45SzGLFEl/b3Su8PbTVpfrl6zrRx53KHPLJrp4D4yJ9xqP9E3g==
+X-Received: by 2002:ae9:e110:0:b0:6e0:2272:22ff with SMTP id g16-20020ae9e110000000b006e0227222ffmr37609223qkm.448.1669826513219;
+        Wed, 30 Nov 2022 08:41:53 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id h13-20020a05620a244d00b006fba44843a5sm1548757qkn.52.2022.11.30.08.41.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
-Received: by mail-yb1-f169.google.com with SMTP id y83so22265767yby.12;
-        Wed, 30 Nov 2022 08:40:05 -0800 (PST)
+        Wed, 30 Nov 2022 08:41:52 -0800 (PST)
+Received: by mail-yb1-f173.google.com with SMTP id 189so21629647ybe.8;
+        Wed, 30 Nov 2022 08:41:52 -0800 (PST)
 X-Received: by 2002:a25:7204:0:b0:6f0:9ff5:1151 with SMTP id
- n4-20020a257204000000b006f09ff51151mr33350652ybc.543.1669826404935; Wed, 30
- Nov 2022 08:40:04 -0800 (PST)
+ n4-20020a257204000000b006f09ff51151mr33358504ybc.543.1669826512202; Wed, 30
+ Nov 2022 08:41:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20221130154111.1655603-1-thierry.reding@gmail.com>
-In-Reply-To: <20221130154111.1655603-1-thierry.reding@gmail.com>
+References: <a14e9ec0af23eb349372fdcdb534d83652b5a449.1669826117.git.michal.simek@amd.com>
+In-Reply-To: <a14e9ec0af23eb349372fdcdb534d83652b5a449.1669826117.git.michal.simek@amd.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 30 Nov 2022 17:39:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV9qom7TmhmNkpAqYLGfqT0pRkndAMzn-EisZkcw9pVBA@mail.gmail.com>
-Message-ID: <CAMuHMdV9qom7TmhmNkpAqYLGfqT0pRkndAMzn-EisZkcw9pVBA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: tegra-xusb: Remove path references
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 30 Nov 2022 17:41:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVcJc-5aqy1u6=DYrb4fPiLSJw26Gw2m6gegOqnTwCQQA@mail.gmail.com>
+Message-ID: <CAMuHMdVcJc-5aqy1u6=DYrb4fPiLSJw26Gw2m6gegOqnTwCQQA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: zynqmp: Rename overlay source files from .dts to .dtso
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com, frank.rowand@sony.com,
+        geert+renesas@glider.be, afd@ti.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 4:52 PM Thierry Reding <thierry.reding@gmail.com> wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Wed, Nov 30, 2022 at 5:35 PM Michal Simek <michal.simek@amd.com> wrote:
+> Based on commit e87cacadebaf ("of: overlay: rename overlay source files
+> from .dts to .dtso") and also Kbuild changes done by commit 363547d2191c
+> ("kbuild: Allow DTB overlays to built from .dtso named source files") and
+> commit 941214a512d8 ("kbuild: Allow DTB overlays to built into .dtbo.S
+> files") DT overlay source files should be renamed to .dtso.
 >
-> Unresolved path references are now flagged as errors when checking the
-> device tree binding examples, so convert them into label references.
->
-> Reported-by: Conor Dooley <conor.dooley@microchip.com>
-> Suggested-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-This fixes "make dt_binding_check" for me, so
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Someone forgot to CC you on
+https://lore.kernel.org/all/20221024173434.32518-7-afd@ti.com
 
 Gr{oetje,eeting}s,
 
