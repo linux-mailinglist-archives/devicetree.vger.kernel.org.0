@@ -2,74 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB0B63D967
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2CCA63D968
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:27:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiK3PZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:25:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50422 "EHLO
+        id S229680AbiK3P1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:27:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiK3PZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:25:45 -0500
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DC57CAA9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:25:44 -0800 (PST)
-Received: by mail-yb1-xb43.google.com with SMTP id v206so5259201ybv.7
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:25:43 -0800 (PST)
+        with ESMTP id S229617AbiK3P1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:27:16 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6287CAA9
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:27:15 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id b3so27515086lfv.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:27:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4XIz8br2T5PkDoxLZW7GepZRxJBNmHjLHbZmuegL+wI=;
-        b=ksxm5v7uvAzE12SFq88bIyPV3GfHSCYdvTrp6e5CYIoaQcs4u1jjPK0PmuSmYCagur
-         PRNMzPCrZFzQBqjo2jMgeiTjtvNvNgIrx9HE2BsX8VabGY5r8FldAslzNsgvhDmbvHhz
-         eqCQNsF7KBWhZluq+kC6h+hr/yikX0ZuMYWYAKHeGbtdYcIsrilw2PyiSAzor8YJ048I
-         UhXtncNohjq8GdssEbOa0kJ7lN3uxVtkD6l4A5+xG0beCl530LpEaU7uTXH2+w5GCus2
-         kE5NvX4QmuGR1xkicBOY8WuiCaKE7F1agYnmgljZTroI//wCJcxJ8PKsFioV3khkST+7
-         m7Og==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j/hCMazCxQ4yJMJ0+IeReR/A2RoSVYIA+Cs+VrsQQ0Y=;
+        b=hxfOWWvWQVR4K7F8FVinn3S2TqmaONAv7a2VlLGBBWhUDu0pyp6WIc7tiMbrdUPlnI
+         WWQjKTMwWxFaQK15L1DK3wgXsCWipFdC5ssd6GGrR1BDAO2x60oHbDgn02DAyLNZNp6y
+         pDRoYyWVzgRh4kvYh1sTIwL0bGa9fCwxkfHFHuoCN0c4Jt0lovHN+c+Jqjpf8QZktr+K
+         cTfprk4Bp8q1vMLoECDJ8dfzI2NdSRj/1DeTxpWz8kUefgjeHDGcxW4K4vobrdBTYR18
+         gYJ5gqO2+IJTU1rWsqRLtahGFJUinNP82rYJdR3prJmEqJIbqmtsvbqzWDp0krqf4rwx
+         JjQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4XIz8br2T5PkDoxLZW7GepZRxJBNmHjLHbZmuegL+wI=;
-        b=XlR1703jzQvxLJ9ydCqAgY2AmyGuyAx497MTaBJjDGd1XuvbKVWJV9KxD8iPZDPoKa
-         dHuoLyzcRPL0o7b63OsvMfh+BRxmSN3KQLcQk6fhnCVWwPvoZbJHNIZ/MFsRJDeyGLud
-         H53/zs0mYpuYSUCWgMaxe3O1+rHmgEiMeFpvy6Ew9CGnpEhMEqV0TBLFu3XTIbXobw2C
-         VoNXlJ0dd0zwQ9CIearumd37xb4O4Pjal83iaGTDU7lUha9qdxmipJ0TXO6oy+T5f1R8
-         MrVF+oiIk0LQ2wFP0nR3vuj0V38pe6RuU/YFWfmw3A8Yw8WkFDB7Ji8nM31T5toAjtH0
-         ohmw==
-X-Gm-Message-State: ANoB5pnqaQnG+kAG4y6GhCRKaKqESjDu1xdqeG2S7XIgSi3JbXHnN3xE
-        01SemYIN5kHarQ/ZTp1w6w40kMhQUWLlJ2G516s=
-X-Google-Smtp-Source: AA0mqf5koPKUUDublPE/IrjhueCgn9BqrxS83vU5nrpJhMxOPBKUleeewWsubuTSI1GQ1WdZrpnZpCFkquj34pafndM=
-X-Received: by 2002:a25:d743:0:b0:6f4:9ab9:58f3 with SMTP id
- o64-20020a25d743000000b006f49ab958f3mr20689382ybg.241.1669821943108; Wed, 30
- Nov 2022 07:25:43 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j/hCMazCxQ4yJMJ0+IeReR/A2RoSVYIA+Cs+VrsQQ0Y=;
+        b=iqI0VuiJzZhdRs0cVyuuSaENPYqUUq6ga1d6SJmD53zi2jfVNyfL0fo4EOaaXxv253
+         yQhNR5D/dEJbDd1Lcpk4VJihv1+vAyLDvUGnTRgBHz7kAiWju8l4/XqfQ/XHovGFNpTn
+         KANxn8G2H+94PJN74yWaAQRnEG1joWHFudUcQsLN6kimgEJaeTuredFBKnsG4EgrOs+l
+         GiwF9GU80OmbvTA20gOAHCiQA2ZAX8GHHSWnlhoz3u2oejOmLgEdbvUwTKVOMUZRjhpW
+         oTVo5ONR7ONQXVHbmWgxiKyu5xlduXSLi6ubp0acmd2W8+gEXyj9gTubyjuKChlHiA3t
+         3z3g==
+X-Gm-Message-State: ANoB5pnh/exzXPHTZ8xSHbQ7d6dYVYdLxolcYwDr7cBXbZu4KEAeZvzG
+        oZggFgcEcldOy1ConMowCtJJ+A==
+X-Google-Smtp-Source: AA0mqf705U8Ol7Gn+Z93s+DHy/DY+aJVeamPPsVE9PudAhDADfEEmsKkjUPc7JuCFPXM2QaDyFp2mg==
+X-Received: by 2002:a05:6512:13a7:b0:4ad:5f5c:2b26 with SMTP id p39-20020a05651213a700b004ad5f5c2b26mr19857325lfa.626.1669822033602;
+        Wed, 30 Nov 2022 07:27:13 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v3-20020a05651203a300b004a4754c5db5sm288974lfp.244.2022.11.30.07.27.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 07:27:13 -0800 (PST)
+Message-ID: <24add13e-5339-cc79-525a-098c2d61e8c1@linaro.org>
+Date:   Wed, 30 Nov 2022 16:27:12 +0100
 MIME-Version: 1.0
-Received: by 2002:a05:7000:6c07:b0:3de:4ea2:eeae with HTTP; Wed, 30 Nov 2022
- 07:25:42 -0800 (PST)
-From:   Jim Ovia <oviajim999@gmail.com>
-Date:   Wed, 30 Nov 2022 16:25:42 +0100
-Message-ID: <CANCpxrGwrk6CPQhpcBou_=Q-wuqAYsU0pFd7DnMihRA5E0MryQ@mail.gmail.com>
-Subject: Beneficiary
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,DEAR_BENEFICIARY,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: **
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 2/8] dt-bindings: soc: socionext: Add UniPhier SoC-glue
+ logic
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
+ <20221129103509.9958-3-hayashi.kunihiko@socionext.com>
+ <4e90944a-1200-4619-f977-590fe2919017@linaro.org>
+ <efa90f10-db67-bb9f-03fd-e99695a5bdf5@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <efa90f10-db67-bb9f-03fd-e99695a5bdf5@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Beneficiary.
+On 30/11/2022 09:59, Kunihiko Hayashi wrote:
+> Hi Krzysztof,
+> 
+> On 2022/11/29 23:43, Krzysztof Kozlowski wrote:
+>> On 29/11/2022 11:35, Kunihiko Hayashi wrote:
+>>> Add devicetree binding schema for the SoC-glue logic implemented on
+>>> Socionext Uniphier SoCs.
+>>>
+>>> This SoC-glue logic is a set of miscellaneous function registers
+>>> handling signals for specific devices outside system components,
+>>> and also has multiple functions such as I/O pinmux, usb-phy, debug,
+>>> clock-mux for a specific SoC, and so on.
+>>>
+>>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>> ---
+>>>   .../socionext,uniphier-soc-glue.yaml          | 94 +++++++++++++++++++
+>>>   1 file changed, 94 insertions(+)
+>>>   create mode 100644
+>>> Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+>>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+>>> new file mode 100644
+>>> index 000000000000..3f571e3e1339
+>>> --- /dev/null
+>>> +++
+>>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+>>> @@ -0,0 +1,94 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:
+>>> http://devicetree.org/schemas/soc/socionext/socionext,uniphier-soc-glue.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Socionext UniPhier SoC-glue logic
+>>> +
+>>> +maintainers:
+>>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>> +
+>>> +description: |+
+>>> +  SoC-glue logic implemented on Socionext UniPhier SoCs is a collection
+>>> of
+>>> +  miscellaneous function registers handling signals outside system
+>>> components.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - socionext,uniphier-ld4-soc-glue
+>>> +          - socionext,uniphier-pro4-soc-glue
+>>> +          - socionext,uniphier-pro5-soc-glue
+>>> +          - socionext,uniphier-pxs2-soc-glue
+>>> +          - socionext,uniphier-ld6b-soc-glue
+>>> +          - socionext,uniphier-sld8-soc-glue
+>>> +          - socionext,uniphier-ld11-soc-glue
+>>> +          - socionext,uniphier-ld20-soc-glue
+>>> +          - socionext,uniphier-pxs3-soc-glue
+>>> +          - socionext,uniphier-nx1-soc-glue
+>>> +          - socionext,uniphier-soc-glue
+>>
+>> This one looks generic - why having it next to specific ones?
+> 
+> SoC-glue has the same register set, but different implementations
+> for each SoC.
 
-Your grant was among the list for 2022 enrollment, please declare your
-interest and reconfirm your information and indicate on how you want
-to receive your UN approved grant.
+Sure, but you did not model it as a compatible fallback, but like one of
+variants. It is not tied to specific SoC, thus too generic.
 
-Regards
+> I thought of defining the same register set as a common specs,
+> but each compatibles are sufficient. I'll remove it.
+> 
+>> Same question for your previous patch - socionext,uniphier-sysctrl.
+>>
+>> And similarly to previous patch, do you expect child nodes everywhere?
+> 
+> In case of this SoC-glue logic, all SoCs has pinctrl, however,
+> only SoCs with USB2 host has usb-controller (phy-hub).
+> And only legacy SoCs implement clock-controller (clk-mux) here.
+> 
+> Should child nodes that exist only in a specific "compatible" be defined
+> conditionally?
 
-Mr Stanley Ezema
+No, rather define them in top level but disallow for specific compatibles:
+
+allOf:
+ - if:
+  ....
+   then:
+     patternProperties:
+       ...: false
+
+Assuming that this does not over-complicate schema.
+
+
+Best regards,
+Krzysztof
+
