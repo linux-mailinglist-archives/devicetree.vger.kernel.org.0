@@ -2,139 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C5463D3D0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 11:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 404D363D3D3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 11:55:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiK3Kyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 05:54:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51100 "EHLO
+        id S230342AbiK3KzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 05:55:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbiK3Kyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 05:54:36 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6666B15FD7
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 02:54:35 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1p0KjM-00053C-Ib; Wed, 30 Nov 2022 11:54:20 +0100
-Received: from pengutronix.de (unknown [IPv6:2a0a:edc0:0:701:38ad:958d:3def:4382])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 19C4A12DD57;
-        Wed, 30 Nov 2022 10:54:18 +0000 (UTC)
-Date:   Wed, 30 Nov 2022 11:54:17 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     haibo.chen@nxp.com
-Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] can: flexcan: add auto stop mode for IMX93 to
- support wakeup
-Message-ID: <20221130105417.yhljwl5dtuu5f2du@pengutronix.de>
-References: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
+        with ESMTP id S232159AbiK3KzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 05:55:08 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C44D18B32;
+        Wed, 30 Nov 2022 02:55:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669805707; x=1701341707;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IQCNlMQYsfuqqjPfnZdd0e9JtFAPXzKRS8AZMTuMtNs=;
+  b=E9no2U4fDClP2IIupphBodWe1/S5m091axjrdcjCGEMwD0x8dPaHbSlP
+   yjahWjqjrDNC5V1z7eNh5c0kaJQ/jgpWeFfljkvOx6jz6rjw9TacwLsHu
+   q3gLRn+vfG8Ep9ftzAdNMPLV0I5gvfKrTrtXvlSXKAn3KbasqM4KOW7lb
+   ecAkK7ZAe6acOGz0u32D+rF9gFTZ5FgfHm2nTUs1JNijrKZrp5vCrmI4/
+   nBfkyus22+RaIbPCI3kBaClsGcJKQs/bQKzqZpfqOeQXFToE25PTkAoiT
+   m5bBGSZKURD7YQn4cGXURU8PPm496W0522/dMQaT2U5wn9H/yaC/WysHw
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="342286081"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; 
+   d="scan'208";a="342286081"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2022 02:55:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10546"; a="786421323"
+X-IronPort-AV: E=Sophos;i="5.96,206,1665471600"; 
+   d="scan'208";a="786421323"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP; 30 Nov 2022 02:55:04 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p0Kk2-002Dpc-0W;
+        Wed, 30 Nov 2022 12:55:02 +0200
+Date:   Wed, 30 Nov 2022 12:55:01 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v4 3/3] iio: magnetometer: add ti tmag5273 driver
+Message-ID: <Y4c2hWw6kywpChb3@smile.fi.intel.com>
+References: <20221129064540.3218982-1-gerald.loacker@wolfvision.net>
+ <20221129064540.3218982-4-gerald.loacker@wolfvision.net>
+ <Y4Y1VqvYS0XsWi1r@smile.fi.intel.com>
+ <b2d8b5a6-15a6-9cca-9f87-fbbe1acfa4f3@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="o4vjzx26m77hgxnw"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1669116752-4260-1-git-send-email-haibo.chen@nxp.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <b2d8b5a6-15a6-9cca-9f87-fbbe1acfa4f3@wolfvision.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 30, 2022 at 10:04:41AM +0100, Gerald Loacker wrote:
+> Am 29.11.2022 um 17:37 schrieb Andy Shevchenko:
+> > On Tue, Nov 29, 2022 at 07:45:40AM +0100, Gerald Loacker wrote:
 
---o4vjzx26m77hgxnw
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On 22.11.2022 19:32:30, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
->=20
-> IMX93 do not contain a GPR to config the stop mode, it will set
-> the flexcan into stop mode automatically once the ARM core go
-> into low power mode (WFI instruct) and gate off the flexcan
-> related clock automatically. But to let these logic work as
-> expect, before ARM core go into low power mode, need to make
-> sure the flexcan related clock keep on.
->=20
-> To support stop mode and wakeup feature on imx93, this patch
-> add a new fsl_imx93_devtype_data to separate from imx8mp.
->=20
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  drivers/net/can/flexcan/flexcan-core.c | 37 +++++++++++++++++++++++---
->  drivers/net/can/flexcan/flexcan.h      |  2 ++
->  2 files changed, 36 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index 9bdadd716f4e..0aeff34e5ae1 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> >> +		snprintf(data->name, sizeof(data->name), "tmag5273x%1u", data->version);
+> > 
+> > Thinking more about this format, perhaps
+> > 
+> > 		snprintf(data->name, sizeof(data->name), "tmag5273x-v%1u", data->version);
+> > 
+> > ?
+> 
+> I'd prefer to keep this as it's related to the orderable part number,
+> e.g. TMAG5273A1 / TMAG5273A2.
 
-[...]
+I see, can you add a comment above to clarify the chosen format?
 
-> @@ -2299,8 +2322,16 @@ static int __maybe_unused flexcan_noirq_suspend(st=
-ruct device *device)
->  	if (netif_running(dev)) {
->  		int err;
-> =20
-> -		if (device_may_wakeup(device))
-> +		if (device_may_wakeup(device)) {
->  			flexcan_enable_wakeup_irq(priv, true);
-> +			/* For auto stop mode, need to keep the clock on before
-> +			 * system go into low power mode. After system go into
-> +			 * low power mode, hardware will config the flexcan into
-> +			 * stop mode, and gate off the clock automatically.
-> +			 */
-> +			if (priv->devtype_data.quirks & FLEXCAN_QUIRK_AUTO_STOP_MODE)
-> +				return 0;
-> +		}
+-- 
+With Best Regards,
+Andy Shevchenko
 
-With this change the flexcan_noirq_resume() is not symmetrical any more:
-pm_runtime_force_suspend() is not called for mx93, but
-pm_runtime_force_resume() is called.
 
-> =20
->  		err =3D pm_runtime_force_suspend(device);
->  		if (err)
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---o4vjzx26m77hgxnw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmOHNlYACgkQrX5LkNig
-010lPAf8DDn0wxSMuLblKuSMMpCeNW0GUhqzelJUsvh3LaZbSMw4bagjKVNCI9ly
-fh/ZvC/C+A8PCJvT8hflMmlL4cFehDuLYkMsZYbVXWp6AsvTq1jgExwvBMbve7xX
-l1DUxrHRFYnfZP/hGEofSjRoSF6KvTFNrQs6Kwzw0c1CbYJvHRJXh9zUmDnNcsV1
-BWQqfqTdm5UrBPRs2WrfyCfTiz0mKGdgbXVRWn61W3zx6y3KYthBhpybpVYZXJqW
-hhCaUWY7kNf2MrfpXOf998pyWB8fdNox3gNTYtcmmz4NlJp8Eivvhvh8rRtbP6tz
-Qb529tdb7bMnFJ+O052M621nKnJDJw==
-=9OQB
------END PGP SIGNATURE-----
-
---o4vjzx26m77hgxnw--
