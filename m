@@ -2,86 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB9F63E2F2
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA9263E30B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 23:04:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbiK3VvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 16:51:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44742 "EHLO
+        id S229714AbiK3WEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 17:04:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiK3VvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:51:12 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099A65AE36;
-        Wed, 30 Nov 2022 13:51:12 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id m204so59183oib.6;
-        Wed, 30 Nov 2022 13:51:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ed0ydWV+6MGo0R7QavnrcUotFip+FDP5jOASQ/l4gg4=;
-        b=wWTxSqzxGt4zue1i+dwEUcjJVFjggML7zPNrTA+ytu8XpGWWPLSQDYCm/gNH08A3xc
-         jHD3PIFtcxtxi9Q6zKOSUnsdbFkUQ0xdR+N1Cq25gDfKVkVvZm2w26wZ4ODV7ketry38
-         5RaBbICtx3vDIJgl1Etw6YK5DeiIMZp9hU/arO5C9YVensHVXbrGPi9w+xDThN7f9utW
-         4LzFpXbVpnYClWHpNkzmLaoKhUUS293NqZgkmkRlBShPQUfiH6XE1adisE2HhUU1bV3y
-         U+VccLMOA8hQ082qQT8K4+c1N5iv6YSVwxHHs86Il9PzxNBQ4I/1/Qynfje9gLtzOu3t
-         rjCQ==
-X-Gm-Message-State: ANoB5pkL73Ik8RFwg5yo7lWiYxevIrUPSBg8qKC47aTMI+l514XQesmI
-        iDJKoSk2jEQXvoz4LFwfjw==
-X-Google-Smtp-Source: AA0mqf7J8e2oXFovz2VgTSEz3/EdPmTWw6BjtL7XC784CxAbJ1Z+zs/qpUiq5LLxHKDpZyxShWaJRA==
-X-Received: by 2002:a05:6808:14d1:b0:35b:92a4:fcae with SMTP id f17-20020a05680814d100b0035b92a4fcaemr13100578oiw.102.1669845071240;
-        Wed, 30 Nov 2022 13:51:11 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 185-20020aca05c2000000b0035b7002af8csm1057826oif.56.2022.11.30.13.51.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 13:51:10 -0800 (PST)
-Received: (nullmailer pid 2988879 invoked by uid 1000);
-        Wed, 30 Nov 2022 21:51:09 -0000
-Date:   Wed, 30 Nov 2022 15:51:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, dianders@chromium.org, david@ixit.cz,
-        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
-        konrad.dybcio@somainline.org, agross@kernel.org,
-        andersson@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 03/18] dt-bindings: msm: dsi-controller-main: Rename
- qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl
-Message-ID: <20221130215109.GA2986716-robh@kernel.org>
-References: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
- <20221125123638.823261-4-bryan.odonoghue@linaro.org>
- <dc5df66c-2e2b-14f1-ce88-705d831f37d9@linaro.org>
+        with ESMTP id S229589AbiK3WEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 17:04:50 -0500
+Received: from sp13.canonet.ne.jp (sp13.canonet.ne.jp [210.134.168.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 970907BF89;
+        Wed, 30 Nov 2022 14:04:49 -0800 (PST)
+Received: from csp13.canonet.ne.jp (unknown [172.21.160.133])
+        by sp13.canonet.ne.jp (Postfix) with ESMTP id 86E891E06A4;
+        Thu,  1 Dec 2022 07:04:41 +0900 (JST)
+Received: from echeck13.canonet.ne.jp ([172.21.160.123])
+        by csp3 with ESMTP
+        id 0VC5pCfBAxJr50VC5plUwn; Thu, 01 Dec 2022 07:04:41 +0900
+X-CNT-CMCheck-Reason: "undefined", "v=2.4 cv=S49nfKgP c=1 sm=1 tr=0
+ ts=6387d379 cx=g_jp:t_eml p=ZMph9Jy3UboA:10 p=et4T4aBE6iSmLst72HwA:9
+ p=pOQp6VyLxH7D_L77S6qH:22 a=c8wCX2VJ6RehaN9m5YqYzw==:117
+ a=yr9NA9NbXb0B05yJHQEWeQ==:17 a=PlGk70OYzacA:10 a=kj9zAlcOel0A:10
+ a=sHyYjHe8cH0A:10 a=x7bEGLp0ZPQA:10 a=CjuIK1q_8ugA:10 a=0iaRBTTaEecA:10
+ a=xo5jKAKm-U-Zyk2_beg_:22"
+X-CNT-CMCheck-Score: 100.00
+Received: from echeck13.canonet.ne.jp (localhost [127.0.0.1])
+        by esets.canonet.ne.jp (Postfix) with ESMTP id 3B61E1C026D;
+        Thu,  1 Dec 2022 07:04:41 +0900 (JST)
+X-Virus-Scanner: This message was checked by ESET Mail Security
+        for Linux/BSD. For more information on ESET Mail Security,
+        please, visit our website: http://www.eset.com/.
+Received: from smtp13.canonet.ne.jp (unknown [172.21.160.103])
+        by echeck13.canonet.ne.jp (Postfix) with ESMTP id 12A6E1C0262;
+        Thu,  1 Dec 2022 07:04:41 +0900 (JST)
+Received: from kanesaki-kawara.co.jp (webmail.canonet.ne.jp [210.134.169.250])
+        by smtp13.canonet.ne.jp (Postfix) with ESMTPA id 41D0815F962;
+        Thu,  1 Dec 2022 07:04:40 +0900 (JST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc5df66c-2e2b-14f1-ce88-705d831f37d9@linaro.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Message-ID: <20221130220440.00000941.0556@kanesaki-kawara.co.jp>
+Date:   Thu, 01 Dec 2022 07:04:40 +0900
+From:   "Richard Lee" <junko@kanesaki-kawara.co.jp>
+To:     <INBOX@kanesaki-kawara.co.jp>
+Reply-To: <richardeeoo@gmail.com>
+Subject: INQUIRY
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+ORGANIZATION: Richard Lee
+X-MAILER: Active! mail
+X-EsetResult: clean, %VIRUSNAME%
+X-ESET-AS: R=SPAM;S=100;OP=CALC;TIME=1669845881;VERSION=7941;MC=4067780606;TRN=15;CRV=0;IPC=210.134.169.250;SP=4;SIPS=1;PI=5;F=0
+X-I-ESET-AS: RN=442,624:0;RNP=richardeeoo@gmail.com
+X-ESET-Antispam: SPAM
+X-Spam-Status: Yes, score=7.5 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,
+        UNRESOLVED_TEMPLATE,XPRIO_SHORT_SUBJ autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5229]
+        *  1.3 RCVD_IN_VALIDITY_RPBL RBL: Relay in Validity RPBL,
+        *      https://senderscore.org/blocklistlookup/
+        *      [210.134.168.90 listed in bl.score.senderscore.com]
+        *  1.3 UNRESOLVED_TEMPLATE Headers contain an unresolved template
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
+        *  2.0 XPRIO_SHORT_SUBJ Has X Priority header + short subject
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 26, 2022 at 08:54:11PM +0200, Dmitry Baryshkov wrote:
-> On 25/11/2022 14:36, Bryan O'Donoghue wrote:
-> > We will add in a number of compat strings to dsi-controller-main.yaml in
-> > the format "qcom,socname-dsi-ctrl" convert the currently unused
-> > qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl.
-> > 
-> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> I'd say, as you are going to introduce new bindings using two compat
-> strings, just leave this binding as is, marking it as deprecated.
 
-But if it was unused, then it's okay to just change it.
+Greetings,
 
-Rob
+I trust you are well. I sent you an email yesterday,
+I just want to confirm if you received it.
+Please let me know as soon as possible,
+
+Thank you.
+
+
