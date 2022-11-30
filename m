@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0E1A63D599
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37C5463D5B2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232757AbiK3M3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 07:29:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44158 "EHLO
+        id S234005AbiK3Mg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 07:36:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234055AbiK3M3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 07:29:41 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0C074CCE
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:29:40 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id u27so15680908lfc.9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:29:40 -0800 (PST)
+        with ESMTP id S231805AbiK3Mg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 07:36:26 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D407B617
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:36:21 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id k2-20020a17090a4c8200b002187cce2f92so1819335pjh.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 04:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O+AI0MJAZxzSaqzb8F3zaCppW8AIzXUV3tWxM7Mevyw=;
-        b=kQQPClqFnsW+DJBXxmsAnn+jQogCKmDoaRFEh20J5bWCzM3porK8SZK5p885eC5s9j
-         wGa3RhsC44LF6ElaUDIBgKxSt+DtHFwGpDstwVz/KYT/JjMy8JBBNV3vl+C5LthfLOgw
-         rv6L8LVtVQyEeqv7ji8VYhi0gGL4lcYJW0fgzf68i39DBf0GxNmtrTcc1NwiwCjl5+z4
-         4TjiysbEvJ6GQ6K4CplKwahFw3PVIc23lHQ4qAfrNX4XnoWYds3eZRR3mKggooMk3PKn
-         v27prtApWBXpC8D6Tyok4nf53Lty9kgxGZ7ZJwyhHG6p0QqAG9JijSmJ8ghg1MKqYDIu
-         YeHg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bhnxxzbyBgwXVydGu+B/mgXlMp0Dw1k8g2zoQkfcNo8=;
+        b=UGvBUrFjhu1KjtfNjzoVBn01HzbaTvtlgXOW9oOqaXkePKbAcwu+MkDoRe50kZ4Lrk
+         Jjbxunl94UjNrbpRpL7Vv4hcVezpmU0GVsWDrKxhESgzoNupU3Q5rJUh3qzsJUyWH9GS
+         bfSpdaLUDPUtn7uE0btukBLIaJ4jqXG7fITLwjdxtUJnPKnirXwGPA2b7ob5KFzCOs0w
+         t9931Z0EsgOza0JO+P20+RoNsFw8pGR3YszKGTSxYcQPKIiKbVvvvI+MPfG2jx/6KTKL
+         rJ79Lv+2XOamQ4uFaCuvvHCkWB8tcgDL+5AjknLzwbV85b0Djcwa/2AnJhB4Mw+0lW5B
+         mqDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O+AI0MJAZxzSaqzb8F3zaCppW8AIzXUV3tWxM7Mevyw=;
-        b=0Jo1/xzBhh8fPZoyhmpt5vlTfZFAkGYkQilZ3NHNbM1JHksznDlIvNdEtusq6JNcxx
-         tcKb1n6zZupuspvigj/QHrJ8dNWSw244PFKPKttzz9IzP5WVVpj00vythg4FRTe21Ci0
-         YF7Is7vS6sTMwUDIAy6euoLWs6dKt4EZz+dIGDv3KuKQ8c/0NbYlncYqMj+0dxh+ixGJ
-         hiOucWJuqdJDME5i9Sw9ElJGOKVbf5lf4+I1Amh+c3FFve5xnTqL4Qb4d7AKh3QpC7Vn
-         2l4/fa9qvSl/QLPtWgVecgXNV33tTPQNjWLlws+5XSakjctGXBvZ9Fz7xXXWWCOO6ySa
-         I6Lg==
-X-Gm-Message-State: ANoB5pn/aId8FXapHfUYOoFzT431JhiGh+Xzoz8e7C1fqQq3f9PaNzyt
-        0P1k3lYp0/Dsm8DA9BQ1qJe0kg==
-X-Google-Smtp-Source: AA0mqf5m6UjtSqDKBQS7eed+m1t0mu/Z7yR8/1BTYHlrCHHsaZWupm2do1AtTsSghfeNJ1Z2WN307w==
-X-Received: by 2002:a19:5215:0:b0:4aa:4da0:f8a5 with SMTP id m21-20020a195215000000b004aa4da0f8a5mr19379487lfb.288.1669811378826;
-        Wed, 30 Nov 2022 04:29:38 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056512118100b004aab0ca795csm239023lfr.211.2022.11.30.04.29.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 04:29:38 -0800 (PST)
-Message-ID: <171b7fcf-7072-89f9-7cdf-6330fa549e20@linaro.org>
-Date:   Wed, 30 Nov 2022 13:29:37 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bhnxxzbyBgwXVydGu+B/mgXlMp0Dw1k8g2zoQkfcNo8=;
+        b=4tq6zqwl6tYC2aaCZVL68BtuMilEOh10JH6Eyopkas+ouAMdxo/xcIq+/I+SX22hA7
+         tk+5DQWceei5BLhLxAbB1b7gZbdCDyYuB2OC0p8hGPzmDxDbfGMnDHEjPNMRgfT4oP/z
+         QdMNzMqIy2IhiuccN3Nm50dr0IsY1wxx0V7bxFFAR+HTVw54Zbrx/Y9R0ebrcFjQc40A
+         /EqwbMrfqYXCoulb/XIiFrfuxNcj3opfKehDiQlHjM4Z277HlZgjlUHG1urALN9caE2y
+         hl0eq6dN8VpOKwH7LBzqDvSw1txeOzLpTAav3MIW+ugTG0Qt0E0uZjMf8GqWPmzuKHZ4
+         bKOw==
+X-Gm-Message-State: ANoB5pm89nvseNnB2/j9YUEMK/WjDKPw8vxZkWunxmkIUvZOGKr/nsKz
+        WrbAu4X3LyQnUTEyx56PzHtMwkdHmYpgXAk813eLdA==
+X-Google-Smtp-Source: AA0mqf72LaJuo+xldVLoMSH5G22UPFDHa+Am3dOjn7c81G8pnPOX5X+pJ9fUEf8ltsSZSFWEDl7tgIcAn+JXKHzqzFI=
+X-Received: by 2002:a17:902:ee55:b0:189:69cf:9ea0 with SMTP id
+ 21-20020a170902ee5500b0018969cf9ea0mr24961183plo.37.1669811780504; Wed, 30
+ Nov 2022 04:36:20 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH V3] dt-bindings: mmc: Remove comment on wakeup-source
- property
-Content-Language: en-US
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
+In-Reply-To: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 30 Nov 2022 13:35:44 +0100
+Message-ID: <CAPDyKFpTT1=d=2LnynBywyRTfC7uM8GVGHkPYA0xgFhROhoPyg@mail.gmail.com>
+Subject: Re: [PATCH V3] dt-bindings: mmc: Remove comment on wakeup-source property
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
         linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221130121033.7270-1-cniedermaier@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,7 +67,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 13:10, Christoph Niedermaier wrote:
+On Wed, 30 Nov 2022 at 13:12, Christoph Niedermaier
+<cniedermaier@dh-electronics.com> wrote:
+>
 > The current comment on wakeup-source is a little confusing because
 > the word deprecated can be interpreted at first glance to mean that
 > wakeup-source is deprecated. Also mentioning the obsolete property
@@ -86,12 +77,69 @@ On 30/11/2022 13:10, Christoph Niedermaier wrote:
 > completely because the enable-sdio-wakeup property is not used in
 > any current DTs. Also remove enable-sdio-wakeup reference in
 > wakeup-source.txt
-> 
+>
 > Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 
+Applied for next, thanks!
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Kind regards
+Uffe
 
-Best regards,
-Krzysztof
-
+> ---
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: kernel@dh-electronics.com
+> Cc: linux-mmc@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> To: linux-kernel@vger.kernel.org
+> ---
+> V2: - Instead of changing the comment, remove it
+> V3: - Remove also reference in power/wakeup-source.txt
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml |  1 -
+>  Documentation/devicetree/bindings/power/wakeup-source.txt | 13 ++++++-------
+>  2 files changed, 6 insertions(+), 8 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 802e3ca8be4d..e82c00368088 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -293,7 +293,6 @@ properties:
+>      description:
+>        SDIO only. Preserves card power during a suspend/resume cycle.
+>
+> -  # Deprecated: enable-sdio-wakeup
+>    wakeup-source:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+> diff --git a/Documentation/devicetree/bindings/power/wakeup-source.txt b/Documentation/devicetree/bindings/power/wakeup-source.txt
+> index cfd74659fbed..697333a56d5e 100644
+> --- a/Documentation/devicetree/bindings/power/wakeup-source.txt
+> +++ b/Documentation/devicetree/bindings/power/wakeup-source.txt
+> @@ -17,15 +17,14 @@ interrupt.
+>  List of legacy properties and respective binding document
+>  ---------------------------------------------------------
+>
+> -1. "enable-sdio-wakeup"                Documentation/devicetree/bindings/mmc/mmc.txt
+> -2. "gpio-key,wakeup"           Documentation/devicetree/bindings/input/gpio-keys{,-polled}.txt
+> -3. "has-tpo"                   Documentation/devicetree/bindings/rtc/rtc-opal.txt
+> -4. "linux,wakeup"              Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
+> +1. "gpio-key,wakeup"           Documentation/devicetree/bindings/input/gpio-keys{,-polled}.txt
+> +2. "has-tpo"                   Documentation/devicetree/bindings/rtc/rtc-opal.txt
+> +3. "linux,wakeup"              Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
+>                                 Documentation/devicetree/bindings/mfd/tc3589x.txt
+>                                 Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
+> -5. "linux,keypad-wakeup"       Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+> -6. "linux,input-wakeup"                Documentation/devicetree/bindings/input/samsung-keypad.txt
+> -7. "nvidia,wakeup-source"      Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
+> +4. "linux,keypad-wakeup"       Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+> +5. "linux,input-wakeup"                Documentation/devicetree/bindings/input/samsung-keypad.txt
+> +6. "nvidia,wakeup-source"      Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
+>
+>  Examples
+>  --------
+> --
+> 2.11.0
+>
