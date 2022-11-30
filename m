@@ -2,125 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E1A63D965
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAB0B63D967
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:25:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbiK3PZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:25:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
+        id S229862AbiK3PZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:25:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbiK3PZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:25:01 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B49A7E431
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:24:58 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d6so27482418lfs.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:24:58 -0800 (PST)
+        with ESMTP id S229680AbiK3PZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:25:45 -0500
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DC57CAA9
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:25:44 -0800 (PST)
+Received: by mail-yb1-xb43.google.com with SMTP id v206so5259201ybv.7
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:25:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+0BCcjLSSdMLqYLWjpCC6aMjjhEkfHkguLFqsvsQY2M=;
-        b=wJEYzJPvPNQ+WbLH5BwUtMd05wUMgMjQWoAv4Jerr2yHAPrNp4ZusglHKI/ze3DxYt
-         uRdq00ofY59stTD86gAEsOM0DRIOMhFYFyuMfhXYR2pIVJfb7cGMaIrBz4nVp/u1yUlU
-         8ohuAcGWqkYc7fMy4yjb3l/uo38F6JEPfDtn5b8Ypmvn4KnkVM6kQ+89ELgZ62yxiqLr
-         6EogoyS8H7IRZga3ZYSFnBQYgO8RkyqPrjjazvgEhPpxZWL7qozn1TSn+hPf4lt3PwZU
-         TjWa4mIB6vYdfBa1ZQRTfPj6wpuC1hQ36q4VuJs9vchihf8CUgEpww2Ect3ngxtgVHHL
-         VTkw==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4XIz8br2T5PkDoxLZW7GepZRxJBNmHjLHbZmuegL+wI=;
+        b=ksxm5v7uvAzE12SFq88bIyPV3GfHSCYdvTrp6e5CYIoaQcs4u1jjPK0PmuSmYCagur
+         PRNMzPCrZFzQBqjo2jMgeiTjtvNvNgIrx9HE2BsX8VabGY5r8FldAslzNsgvhDmbvHhz
+         eqCQNsF7KBWhZluq+kC6h+hr/yikX0ZuMYWYAKHeGbtdYcIsrilw2PyiSAzor8YJ048I
+         UhXtncNohjq8GdssEbOa0kJ7lN3uxVtkD6l4A5+xG0beCl530LpEaU7uTXH2+w5GCus2
+         kE5NvX4QmuGR1xkicBOY8WuiCaKE7F1agYnmgljZTroI//wCJcxJ8PKsFioV3khkST+7
+         m7Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+0BCcjLSSdMLqYLWjpCC6aMjjhEkfHkguLFqsvsQY2M=;
-        b=2nfFgaK8VThrd3EShWuUi8u68SsbdfOlE4WNqDeLdySPx2e4FgwG4vqVV6DIHKs64m
-         x4D189rUwJ5QQjjxF6UOjEqYCi77SQmPxCQUo30RiVfHIZJo0ep1bb9WlOchCdot4qo+
-         9gzAmW6J6RxfMacEQWlNH2xQ8wNLkGgay2Jf/CyNqlHtWWlE9tbburE6rb5SIh7jdqoG
-         gF7gMDURTP5V0Z9k7P31I9IBhXNLnHStwaOGaK3B6zQJn2g/LRNDoLYWY8DcEJzQseFd
-         iVUzzj6J89yVUS10Di8GDIHr9MtIYHexwWT8E60F4STz0YAXZyrVg3gjaQG4kd9pXqmM
-         IP/g==
-X-Gm-Message-State: ANoB5pniKcTPt9IYhajVKr4ntYo1z8ZlGzzGlv5iSgAqC/LcD6BWlziq
-        V1xsL+j1qxOOTdapzWAjPcH+IQ==
-X-Google-Smtp-Source: AA0mqf4bPQ8Fltgiqp+JUq+K+K68Yb7F2StiWajMAq5Uz7JQnjaz8QbZr0Bb2QSbmHgNT0hgnKgMLw==
-X-Received: by 2002:a05:6512:3e2a:b0:4ab:534b:1b2c with SMTP id i42-20020a0565123e2a00b004ab534b1b2cmr15709904lfv.426.1669821897312;
-        Wed, 30 Nov 2022 07:24:57 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05651236cd00b00492e5d31201sm297593lfs.7.2022.11.30.07.24.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 07:24:56 -0800 (PST)
-Message-ID: <cb76a56f-6492-5209-be30-e31aa075ce8e@linaro.org>
-Date:   Wed, 30 Nov 2022 16:24:54 +0100
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4XIz8br2T5PkDoxLZW7GepZRxJBNmHjLHbZmuegL+wI=;
+        b=XlR1703jzQvxLJ9ydCqAgY2AmyGuyAx497MTaBJjDGd1XuvbKVWJV9KxD8iPZDPoKa
+         dHuoLyzcRPL0o7b63OsvMfh+BRxmSN3KQLcQk6fhnCVWwPvoZbJHNIZ/MFsRJDeyGLud
+         H53/zs0mYpuYSUCWgMaxe3O1+rHmgEiMeFpvy6Ew9CGnpEhMEqV0TBLFu3XTIbXobw2C
+         VoNXlJ0dd0zwQ9CIearumd37xb4O4Pjal83iaGTDU7lUha9qdxmipJ0TXO6oy+T5f1R8
+         MrVF+oiIk0LQ2wFP0nR3vuj0V38pe6RuU/YFWfmw3A8Yw8WkFDB7Ji8nM31T5toAjtH0
+         ohmw==
+X-Gm-Message-State: ANoB5pnqaQnG+kAG4y6GhCRKaKqESjDu1xdqeG2S7XIgSi3JbXHnN3xE
+        01SemYIN5kHarQ/ZTp1w6w40kMhQUWLlJ2G516s=
+X-Google-Smtp-Source: AA0mqf5koPKUUDublPE/IrjhueCgn9BqrxS83vU5nrpJhMxOPBKUleeewWsubuTSI1GQ1WdZrpnZpCFkquj34pafndM=
+X-Received: by 2002:a25:d743:0:b0:6f4:9ab9:58f3 with SMTP id
+ o64-20020a25d743000000b006f49ab958f3mr20689382ybg.241.1669821943108; Wed, 30
+ Nov 2022 07:25:43 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/8] dt-bindings: soc: socionext: Add UniPhier system
- controller
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
- <20221129103509.9958-2-hayashi.kunihiko@socionext.com>
- <ce1b5859-4ca6-6d2d-19bc-e33e48165093@linaro.org>
- <adee56c4-6932-9272-3319-e003ab8413b5@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <adee56c4-6932-9272-3319-e003ab8413b5@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Received: by 2002:a05:7000:6c07:b0:3de:4ea2:eeae with HTTP; Wed, 30 Nov 2022
+ 07:25:42 -0800 (PST)
+From:   Jim Ovia <oviajim999@gmail.com>
+Date:   Wed, 30 Nov 2022 16:25:42 +0100
+Message-ID: <CANCpxrGwrk6CPQhpcBou_=Q-wuqAYsU0pFd7DnMihRA5E0MryQ@mail.gmail.com>
+Subject: Beneficiary
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,DEAR_BENEFICIARY,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 09:59, Kunihiko Hayashi wrote:
->>> +maintainers:
->>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> +
->>> +description: |+
->>> +  System controller implemented on Socionext UniPhier SoCs has multiple
->>> +  functions such as clock control, reset control, internal watchdog
->>> timer,
->>> +  thermal management, and so on.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - socionext,uniphier-ld4-sysctrl
->>> +          - socionext,uniphier-pro4-sysctrl
->>> +          - socionext,uniphier-pro5-sysctrl
->>> +          - socionext,uniphier-pxs2-sysctrl
->>> +          - socionext,uniphier-ld6b-sysctrl
->>> +          - socionext,uniphier-sld8-sysctrl
->>> +          - socionext,uniphier-ld11-sysctrl
->>> +          - socionext,uniphier-ld20-sysctrl
->>> +          - socionext,uniphier-pxs3-sysctrl
->>> +          - socionext,uniphier-nx1-sysctrl
->>
->> All of them can have children or only some?
-> 
-> In case of this system controller,
-> all SoCs has clock-controller, reset-controller and watchdog.
-> 
-> However, some SoCs don't have thermal-sensor and
-> their register addresses are reserved.
+Dear Beneficiary.
 
-OK
+Your grant was among the list for 2022 enrollment, please declare your
+interest and reconfirm your information and indicate on how you want
+to receive your UN approved grant.
 
-> 
->>> +          - socionext,uniphier-sysctrl
+Regards
 
-What about this one? What SoC is this? Looks too generic.
-
-
-Best regards,
-Krzysztof
-
+Mr Stanley Ezema
