@@ -2,196 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B5863E240
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A396763E246
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 21:42:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiK3UlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 15:41:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54048 "EHLO
+        id S229718AbiK3Umk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 15:42:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbiK3UlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:41:20 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB5E686A9;
-        Wed, 30 Nov 2022 12:41:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1669840879; x=1701376879;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UWOmdKVYguDg1LsTwZ8A9yuFL4p5c/ehz9UBytFtKoM=;
-  b=MXclAX+R/5I2twvUalPtDhI77t82OZvtLbOWlnT7Yv89r/IcItDmFNfG
-   t/yw9MAj5Xwp9a4vr9uuCSgP8RIlCiXoWqQoUmX2kveF5jjOOMkGBgrSS
-   ziUxRFXLdTSKN/FDd5vY3GjZWUUzBAhMILZsB5YE/S0/IEtwJriPmtv5g
-   ML9haMojLGrXYxi60lCwPpe+JI078As624qD21dG3xI8XFi7ChsRi5Esw
-   RgnOsR9GcawT8mtvXvfntgwPMSWxpX1FgQWuiU+4RQqEFO/5jMljht0ah
-   W4/SGtNA/JHmLDh5aYUNt2iVcFqusyzNG9y8vlhU7TpCloYINWjWLTHB3
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="315533203"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; 
-   d="scan'208";a="315533203"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2022 12:41:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10547"; a="889438889"
-X-IronPort-AV: E=Sophos;i="5.96,207,1665471600"; 
-   d="scan'208";a="889438889"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga006.fm.intel.com with ESMTP; 30 Nov 2022 12:41:14 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1p0TtI-002TDf-25;
-        Wed, 30 Nov 2022 22:41:12 +0200
-Date:   Wed, 30 Nov 2022 22:41:12 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V4 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y4e/6KewuHjAluSZ@smile.fi.intel.com>
-References: <cover.1669777792.git.zhoubinbin@loongson.cn>
- <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
+        with ESMTP id S229674AbiK3Umi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 15:42:38 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0912CF45;
+        Wed, 30 Nov 2022 12:42:36 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1322d768ba7so22489100fac.5;
+        Wed, 30 Nov 2022 12:42:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aW4jE10bX9vLP2Ujep7LXrzT0zS8x0AH266cZuINKdo=;
+        b=Qibh5i+NoD7fYyNFDdxEZ8iEuarsckLYyS+PIqqfIj2P9DlLaDDHH/cCdxu5h7A9vw
+         JRu5DU9SlYzZdAk7CazTW/EpnKk8UKmO2lDnetOOuYOcTy/BqF9eZ0Iid5NLdjKhQTtw
+         PdWtGt6xjNd/mSI0Ilo+LY2WV5nv5Giiqb5VgsSB5JMZy+fGhNZxnWtn60EIiigQkITj
+         6c4XSPTZ7gygpf6NjfaKFlGULsUppwIh11SgNLjHDPQqUh6w9oTBi79KrGAVVnS/fhpb
+         BjWgkmB52vbyKXipZr1D2fHS/3LRPr2eOUylcmi2cE+J8augO48/7HY72oYN5bgJe+Mk
+         qXSw==
+X-Gm-Message-State: ANoB5pmhD7PnFAeMVww/Le3TyCVUFX1XVfb+/9+wP118wtKYBt+fCZha
+        3Skv+tgzFBSTGjaqseEZsQ==
+X-Google-Smtp-Source: AA0mqf6yrnJ1ZKt+9YRFNFFmGrY2esG6zANb9VB249O1ygtEP6Vh36HNPW6Wav4gwm3M7X7kGfYBBw==
+X-Received: by 2002:a05:6870:b527:b0:143:7736:806b with SMTP id v39-20020a056870b52700b001437736806bmr15596857oap.222.1669840955914;
+        Wed, 30 Nov 2022 12:42:35 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m22-20020a056870059600b0013c8ae74a14sm1684710oap.42.2022.11.30.12.42.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 12:42:35 -0800 (PST)
+Received: (nullmailer pid 2891149 invoked by uid 1000);
+        Wed, 30 Nov 2022 20:42:34 -0000
+Date:   Wed, 30 Nov 2022 14:42:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     michael@walle.cc, vigneshr@ti.com, krzysztof.kozlowski@linaro.org,
+        a.zummo@towertech.it, linus.walleij@linaro.org, lee@kernel.org,
+        brgl@bgdev.pl, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: ti,tps6594: add TPS6594 PMIC
+ support
+Message-ID: <20221130204234.GA2875170-robh@kernel.org>
+References: <20221123053512.1195309-1-mranostay@ti.com>
+ <20221123053512.1195309-2-mranostay@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221123053512.1195309-2-mranostay@ti.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 01:56:20PM +0800, Binbin Zhou wrote:
-> This I2C module is integrated into the Loongson-2K SoCs and Loongson
-> LS7A bridge chip.
-
-Looks like some of my comments were not addressed. Are you sure
-you have read the previous reviews carefully?
-
-...
-
-> +static int ls2x_i2c_xfer(struct i2c_adapter *adap,
-> +			struct i2c_msg *msgs, int num)
-> +{
-> +	int ret, retry;
-> +	struct ls2x_i2c_priv *priv = i2c_get_adapdata(adap);
+On Tue, Nov 22, 2022 at 09:35:09PM -0800, Matt Ranostay wrote:
+> Add documentation for the TPS6594 PMIC including its RTC and GPIO
+> functionalities.
+> 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> ---
+>  .../devicetree/bindings/mfd/ti,tps6594.yaml   | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> new file mode 100644
+> index 000000000000..0de0db87dbf7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,tps6594.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	for (retry = 0; retry < adap->retries; retry++) {
-> +		ret = ls2x_i2c_doxfer(adap, msgs, num);
-> +		if (ret != -EAGAIN)
-> +			return ret;
+> +title: TPS6594 Power Management Integrated Circuit (PMIC)
 > +
-> +		dev_dbg(priv->dev, "Retrying transmission (%d)\n", retry);
+> +description: |
+> +  TPS6594 Power Management Integrated Circuit (PMIC)
+> +  https://www.ti.com/lit/ds/symlink/tps6594-q1.pdf
 
-> +		udelay(100);
-
-Why atomic? This long (esp. atomic) delay must be explained.
-
-> +	}
-> +
-> +	return -EREMOTEIO;
-> +}
-
-...
-
-> +static void ls2x_i2c_reginit(struct ls2x_i2c_priv *priv)
-> +{
-> +	u8 data;
-> +
-> +	/* Enable operations about frequency divider register */
-> +	data = readb(priv->base + I2C_LS2X_CTR);
-> +	writeb(data & ~0x80, priv->base + I2C_LS2X_CTR);
-
-Magic number.
-
-> +	ls2x_i2c_adjust_bus_speed(priv);
-> +
-> +	/* Set to normal I2C operating mode and enable interrupts */
-> +	data = readb(priv->base + I2C_LS2X_CTR);
-> +	writeb(data | 0xe0, priv->base + I2C_LS2X_CTR);
-
-Ditto.
-
-> +}
-
-...
-
-> +	r = devm_request_irq(dev, irq, ls2x_i2c_irq_handler,
-> +				IRQF_SHARED, "ls2x-i2c", priv);
-
-Indentation.
-
-> +	if (r < 0)
-> +		return dev_err_probe(dev, r, "Unable to request irq %d\n", irq);
-
-...
-
-> +	adap->dev.of_node = pdev->dev.of_node;
-
-Why is this needed?
-
-> +	device_set_node(&adap->dev, dev_fwnode(dev));
-
-...
-
-> +	/* i2c device drivers may be active on return from add_adapter() */
-> +	r = i2c_add_adapter(adap);
-
-Why not use devm_ variant of this?
-
-> +	if (r)
-> +		return dev_err_probe(dev, r, "Failure adding adapter\n");
-
-...
-
-> +static int ls2x_i2c_suspend(struct device *dev)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct ls2x_i2c_priv *priv = platform_get_drvdata(pdev);
-
-Can't you use dev_get_drvdata() directly? Why?
+Normally a PMIC has some regulators...
 
 > +
-> +	priv->suspended = 1;
+> +maintainers:
+> +  - Keerthy <j-keerthy@ti.com>
 > +
-> +	return 0;
-> +}
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tps6594
 > +
-> +static int ls2x_i2c_resume(struct device *dev)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct ls2x_i2c_priv *priv = platform_get_drvdata(pdev);
-
-Ditto.
-
-> +	priv->suspended = 0;
-> +	ls2x_i2c_reginit(priv);
+> +  reg:
+> +    const: 0x48
 > +
-> +	return 0;
-> +}
+> +  ti,system-power-controller:
+> +    type: boolean
+> +    description: PMIC is controlling the system power.
+> +
+> +  rtc:
+> +    type: object
+> +    $ref: /schemas/rtc/rtc.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: ti,tps6594-rtc
+> +
+> +  gpio:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: ti,tps6594-gpio
 
-...
+GPIO, but not using the GPIO binding?
 
-> +static const struct dev_pm_ops ls2x_i2c_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(ls2x_i2c_suspend, ls2x_i2c_resume)
-> +};
+As Krzysztof pointed out, none of this needs child nodes. You have them 
+just for convenience of instantiating Linux drivers.
 
-Use corresponding DEFINE_ macro.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic: pmic@48 {
+> +            compatible = "ti,tps6594";
+> +            reg = <0x48>;
+> +
+> +            rtc {
+> +                compatible = "ti,tps6594-rtc";
+> +            };
+> +
+> +            gpio {
+> +                compatible = "ti,tps6594-gpio";
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.38.GIT
+> 
+> 
