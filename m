@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE76363DD6B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C838F63DDA8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 19:29:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbiK3S1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 13:27:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
+        id S229943AbiK3S3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 13:29:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbiK3S1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:27:05 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3169327933
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:27:03 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id o1so13061708pfp.12
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:27:03 -0800 (PST)
+        with ESMTP id S229908AbiK3S3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 13:29:22 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44DF18BD3E
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:29:21 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id f18so6449672wrj.5
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 10:29:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TQ108K9WPiqq9XP0xFpBdMMmDxhty1N9YdIT9yuGVos=;
-        b=b1hf0HFip+EmXU9IfJ/4UnR5ikqyFVA6HSuSuZnDWYPHHdrsakH7m/6EQe926C0YhW
-         c2j+e0oC5cW1UmAerfHsrD5TMKdUGBBrbgPgBTKHGc6LprBgxJuZvXe6P3/PaqG3jnqY
-         /M3jLjIuHBsDRwS9DvH84nguc0KWVfykwkCs5x+rMxiR6E/Ox9L/V79X8Mf85O8umKD5
-         fvDxR9XxW3LNy97j7waEVZuj1hIQxPK/R4xS6q67m1w0etdlIvz1PfB4altY9VJ67hg4
-         lDXyh64swFvZSDMWS7b8WJWaO4t+mOxxxWXc/5pf39wP+eW3SSNLNX8Pikobp7XwXBxq
-         IhLQ==
+        d=jrtc27.com; s=gmail.jrtc27.user;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I/mhURiSnctmudftnFtdoz6/q2M4E0iTIngIl1pzogU=;
+        b=EXkGs8WY3WnjbsfHyJzvRucfFYBCKLg2OoAAZnOb/QPwRH+3S4V5sgJNGwMMKQ3nT9
+         2Xb0YGfoWg8veu7GPIpZ0GgkLWVbqZ3fJ4/YQSHytBk3p1ctC993cy3PKZil2/yVVUTE
+         cId59KXf8H6siK7W2A00aylbLGNYI+MHnOxsu2GjMYrFio9S+YHO87jgpUBSDofME/+W
+         4Jl0H0EnSKxnDzGQs3a5WhNe7L3vjXj9Uw/xvOR6prOCoMB5ePFP+H9FzyEA2Fw86LfT
+         nn33xq8pXc/UotbEvk9rwn673hiz0rGlVWl6rMmgFCuvlo0vH7ggJQulg587nx2obfos
+         lj8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TQ108K9WPiqq9XP0xFpBdMMmDxhty1N9YdIT9yuGVos=;
-        b=X523U3FSzGJyYe/9BBh0wsZgXbX3FiHX4bIo/fvEEMIzJiVqzLBmapaYT9Z8rgtFrn
-         v6R0QHyYYm28GU+fxIWgEzq0EookRHzb0vTIo2CUZMrJxMNv7tzYG+HUKeMBe5WBgD8n
-         LpTgt0OU9172k9wUNEDSmOO+H/Mw+YsWwZY1Vckta+brU24XwPqpCJmCNFyyqweppMQ7
-         +XVk4ULUPgqzW5RJg2y4EdcRrVIKwnOCHySYfU17HmGm7QuaJ7emIH8Hq1G3t5+s/155
-         GvcIbINXNfG7VwGD4CeeD/j9KBP1470zIJJORb51FMpwzZCHtKfrrHLfeSi3BzTUViAo
-         cZwg==
-X-Gm-Message-State: ANoB5plOoCz1sflaMSH45ifaSSU2ZCbpi5PFIJR7Pq7/eZ21fnvSg3oh
-        gl8dKEGf/x+i+ZgEkOTbhRQEOA==
-X-Google-Smtp-Source: AA0mqf7jPW/Zl2KN/xxxM4MwggdyVC7Ha6AyE+Se43Nc/kimzjctxg7ieg3514i5txY1sKZj6wh0Iw==
-X-Received: by 2002:a63:e509:0:b0:474:4380:cca6 with SMTP id r9-20020a63e509000000b004744380cca6mr36928463pgh.229.1669832822605;
-        Wed, 30 Nov 2022 10:27:02 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id 6-20020a170902c20600b00186ff402508sm1771532pll.281.2022.11.30.10.26.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 10:27:02 -0800 (PST)
-Message-ID: <9ea32599-122f-e7c1-bf7c-6b528304fd46@9elements.com>
-Date:   Wed, 30 Nov 2022 23:56:58 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 3/4] hwmon: (pmbus/core): Implement irq support
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221130165955.3479143-1-Naresh.Solanki@9elements.com>
- <20221130165955.3479143-3-Naresh.Solanki@9elements.com>
- <20221130182428.GB2658232@roeck-us.net>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <20221130182428.GB2658232@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I/mhURiSnctmudftnFtdoz6/q2M4E0iTIngIl1pzogU=;
+        b=afkPG5b1V6qIchB62wKFIhn4Uz5zTo6Tg1fWO+or18aisBKUAeEYHQ/fEecQdzbdb1
+         dJukUXLoIY4r17JYqnuVVQpdO+Ct3Lf1FQ5MFnqZCBvoKpWIWk79JygClYV2+cOR3g74
+         Pxewn7fvTBRVTBZ3S1z4+x0dzEEnWoROzyhCgR9QeaxkXF79bYkGaZaOBiCcgbJKJNvn
+         gA9W9YVwMNRusv97vXxaqYmNJuF886yK9jIJWNBMxRQxL6X0f+URrqpUms5tV7flVh5F
+         DAS2ilBWbq1YDwHZyt1vpovdozvy1zyH2o6hcfEX8OeTRFyu9nDhbao2AuFJKi3suDmT
+         vrTQ==
+X-Gm-Message-State: ANoB5pmiJDKGbSDkdwsBP//iLO7a9q0EeIheDmRl+bph+lANzYncEp8P
+        WWSPUAemAbZbC4OqnUfldkuSQg==
+X-Google-Smtp-Source: AA0mqf5dX/d2F14h/RN8hhwb9Smb/cMdcFa+bUh//IbKL245pVd2GTk7zTR9//+D8GoEll5KQTO2jA==
+X-Received: by 2002:a5d:414b:0:b0:242:b59:c3c6 with SMTP id c11-20020a5d414b000000b002420b59c3c6mr14720594wrq.91.1669832959724;
+        Wed, 30 Nov 2022 10:29:19 -0800 (PST)
+Received: from smtpclient.apple (global-5-141.n-2.net.cam.ac.uk. [131.111.5.141])
+        by smtp.gmail.com with ESMTPSA id 16-20020a05600c22d000b003b497138093sm2691867wmg.47.2022.11.30.10.29.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 30 Nov 2022 10:29:19 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: fix underscore requirement for
+ addtional standard extensions
+From:   Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <20221130180422.1642652-2-conor@kernel.org>
+Date:   Wed, 30 Nov 2022 18:29:18 +0000
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E52B0E0B-F27B-43C8-85DA-4C7AC0C52369@jrtc27.com>
+References: <20221130180422.1642652-1-conor@kernel.org>
+ <20221130180422.1642652-2-conor@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3696.120.41.1.1)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,291 +84,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 30 Nov 2022, at 18:04, Conor Dooley <conor@kernel.org> wrote:
+>=20
+> From: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> The RISC-V ISA Manual allows for the first Additional Standard
+> Extension having no leading underscore. Only if there are multiple
+> Additional Standard Extensions is it needed to have an underscore.
+>=20
+> The dt-binding does not validate that a multi-letter extension is
+> canonically ordered, as that'd need an even worse regex than is here,
+> but it should not fail validation for valid ISA strings.
+>=20
+> Allow the first Z multi-letter extension to appear immediately prior
+> after the single-letter extensions.
+>=20
+> Link: =
+https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-fr=
+om-asciidoc-15112022 # Chapter 29.5
+> Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings =
+for emulators")
+> Acked-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml =
+b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 90a7cabf58fe..e80c967a4fa4 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -80,7 +80,7 @@ properties:
+>       insensitive, letters in the riscv,isa string must be all
+>       lowercase to simplify parsing.
+>     $ref: "/schemas/types.yaml#/definitions/string"
+> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
+> +    pattern: =
+^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:z(?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
 
-On 30-11-2022 11:54 pm, Guenter Roeck wrote:
-> On Wed, Nov 30, 2022 at 05:59:53PM +0100, Naresh Solanki wrote:
->> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>
->> Implement PMBUS irq handler to notify regulator events.
->>
-> 
-> There should be separate patches for adding irq support, adding
-> hwmon notifications, and adding regulator notifications. The order
-> should be:
-> 
-> - Add interrupt support
-> - Add hwmon notifications
-> - Add events to regulator flag map
-> - Add regulator notifications
-Yes. Will do that as part of next revision. Thanks.
+Isn=E2=80=99t it any multi-letter extension, i.e, this should be [hsxz] =
+again?
 
-Naresh
-> 
-> Guenter
-> 
->> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->> ---
->>   drivers/hwmon/pmbus/pmbus.h      |   2 +-
->>   drivers/hwmon/pmbus/pmbus_core.c | 151 ++++++++++++++++++++++++++++---
->>   2 files changed, 137 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
->> index 10fb17879f8e..6b2e6cf93b19 100644
->> --- a/drivers/hwmon/pmbus/pmbus.h
->> +++ b/drivers/hwmon/pmbus/pmbus.h
->> @@ -26,7 +26,7 @@ enum pmbus_regs {
->>   
->>   	PMBUS_CAPABILITY		= 0x19,
->>   	PMBUS_QUERY			= 0x1A,
->> -
->> +	PMBUS_SMBALERT_MASK		= 0x1B,
->>   	PMBUS_VOUT_MODE			= 0x20,
->>   	PMBUS_VOUT_COMMAND		= 0x21,
->>   	PMBUS_VOUT_TRIM			= 0x22,
->> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
->> index 9a9e380acc23..613e2e484a0f 100644
->> --- a/drivers/hwmon/pmbus/pmbus_core.c
->> +++ b/drivers/hwmon/pmbus/pmbus_core.c
->> @@ -81,6 +81,7 @@ struct pmbus_label {
->>   struct pmbus_data {
->>   	struct device *dev;
->>   	struct device *hwmon_dev;
->> +	struct regulator_dev **rdevs;
->>   
->>   	u32 flags;		/* from platform data */
->>   
->> @@ -2804,7 +2805,8 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
->>   	},
->>   };
->>   
->> -static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
->> +static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *error,
->> +				    unsigned int *event)
->>   {
->>   	int i, status;
->>   	const struct pmbus_regulator_status_category *cat;
->> @@ -2815,7 +2817,8 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   	u8 page = rdev_get_id(rdev);
->>   	int func = data->info->func[page];
->>   
->> -	*flags = 0;
->> +	*error = 0;
->> +	*event = 0;
->>   
->>   	mutex_lock(&data->update_lock);
->>   
->> @@ -2831,8 +2834,10 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   		}
->>   
->>   		for (bit = cat->bits; bit->pflag; bit++) {
->> -			if (status & bit->pflag)
->> -				*flags |= bit->rflag;
->> +			if (status & bit->pflag) {
->> +				*error |= bit->rflag;
->> +				*event |= bit->eflag;
->> +			}
->>   		}
->>   	}
->>   
->> @@ -2851,11 +2856,15 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   		return status;
->>   
->>   	if (pmbus_regulator_is_enabled(rdev)) {
->> -		if (status & PB_STATUS_OFF)
->> -			*flags |= REGULATOR_ERROR_FAIL;
->> +		if (status & PB_STATUS_OFF) {
->> +			*error |= REGULATOR_ERROR_FAIL;
->> +			*event |= REGULATOR_EVENT_FAIL;
->> +		}
->>   
->> -		if (status & PB_STATUS_POWER_GOOD_N)
->> -			*flags |= REGULATOR_ERROR_REGULATION_OUT;
->> +		if (status & PB_STATUS_POWER_GOOD_N) {
->> +			*error |= REGULATOR_ERROR_REGULATION_OUT;
->> +			*event |= REGULATOR_EVENT_REGULATION_OUT;
->> +		}
->>   	}
->>   
->>   	/*
->> @@ -2863,13 +2872,22 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   	 * PMBUS_STATUS_TEMPERATURE, map PB_STATUS_TEMPERATURE to a warning as
->>   	 * a (conservative) best-effort interpretation.
->>   	 */
->> -	if (!(*flags & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
->> -	    (status & PB_STATUS_TEMPERATURE))
->> -		*flags |= REGULATOR_ERROR_OVER_TEMP_WARN;
->> +	if (!(*error & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
->> +	    (status & PB_STATUS_TEMPERATURE)) {
->> +		*error |= REGULATOR_ERROR_OVER_TEMP_WARN;
->> +		*event |= REGULATOR_EVENT_OVER_TEMP_WARN;
->> +	}
->>   
->>   	return 0;
->>   }
->>   
->> +static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
->> +{
->> +	unsigned int event;
->> +
->> +	return pmbus_regulator_get_flags(rdev, flags, &event);
->> +}
->> +
->>   static int pmbus_regulator_get_status(struct regulator_dev *rdev)
->>   {
->>   	struct device *dev = rdev_get_dev(rdev);
->> @@ -3060,14 +3078,61 @@ const struct regulator_ops pmbus_regulator_ops = {
->>   };
->>   EXPORT_SYMBOL_NS_GPL(pmbus_regulator_ops, PMBUS);
->>   
->> +static int pmbus_write_smbalert_mask(struct i2c_client *client, u8 page, u8 reg, u8 val)
->> +{
->> +	return pmbus_write_word_data(client, page, PMBUS_SMBALERT_MASK, reg | (val << 8));
->> +}
->> +
->> +static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
->> +{
->> +	struct pmbus_data *data = pdata;
->> +	struct i2c_client *client = to_i2c_client(data->dev);
->> +	int i, ret = IRQ_NONE, status, event;
->> +	u8 page;
->> +
->> +	for (i = 0; i < data->info->num_regulators; i++) {
->> +
->> +		if (!data->rdevs[i])
->> +			continue;
->> +
->> +		ret = pmbus_regulator_get_flags(data->rdevs[i], &status, &event);
->> +		if (ret)
->> +			return ret;
->> +
->> +		if (event) {
->> +			regulator_notifier_call_chain(data->rdevs[i], event, NULL);
->> +			ret = IRQ_HANDLED;
->> +		}
->> +
->> +		page = rdev_get_id(data->rdevs[i]);
->> +		mutex_lock(&data->update_lock);
->> +		status = pmbus_read_status_word(client, page);
->> +		if (status < 0) {
->> +			mutex_unlock(&data->update_lock);
->> +			return status;
->> +		}
->> +
->> +		if (status & ~(PB_STATUS_OFF | PB_STATUS_BUSY | PB_STATUS_POWER_GOOD_N))
->> +			pmbus_clear_fault_page(client, page);
->> +
->> +		mutex_unlock(&data->update_lock);
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->>   static int pmbus_regulator_register(struct pmbus_data *data)
->>   {
->>   	struct device *dev = data->dev;
->>   	const struct pmbus_driver_info *info = data->info;
->>   	const struct pmbus_platform_data *pdata = dev_get_platdata(dev);
->> -	struct regulator_dev *rdev;
->>   	int i;
->>   
->> +	data->rdevs = devm_kzalloc(dev, sizeof(struct regulator_dev *) * info->num_regulators,
->> +				  GFP_KERNEL);
->> +	if (!data->rdevs)
->> +		return -ENOMEM;
->> +
->>   	for (i = 0; i < info->num_regulators; i++) {
->>   		struct regulator_config config = { };
->>   
->> @@ -3077,21 +3142,71 @@ static int pmbus_regulator_register(struct pmbus_data *data)
->>   		if (pdata && pdata->reg_init_data)
->>   			config.init_data = &pdata->reg_init_data[i];
->>   
->> -		rdev = devm_regulator_register(dev, &info->reg_desc[i],
->> +		data->rdevs[i] = devm_regulator_register(dev, &info->reg_desc[i],
->>   					       &config);
->> -		if (IS_ERR(rdev))
->> -			return dev_err_probe(dev, PTR_ERR(rdev),
->> +		if (IS_ERR(data->rdevs[i]))
->> +			return dev_err_probe(dev, PTR_ERR(data->rdevs[i]),
->>   					     "Failed to register %s regulator\n",
->>   					     info->reg_desc[i].name);
->>   	}
->>   
->>   	return 0;
->>   }
->> +
->> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->> +{
->> +	struct device *dev = &client->dev;
->> +	const struct pmbus_regulator_status_category *cat;
->> +	const struct pmbus_regulator_status_assoc *bit;
->> +	int i, j, err, ret;
->> +	u8 mask;
->> +	int func;
->> +
->> +	for (i = 0; i < data->info->pages; i++) {
->> +		func = data->info->func[i];
->> +
->> +		for (j = 0; j < ARRAY_SIZE(pmbus_regulator_flag_map); j++) {
->> +			cat = &pmbus_regulator_flag_map[i];
->> +			if (!(func & cat->func))
->> +				continue;
->> +			mask = 0;
->> +			for (bit = cat->bits; bit->pflag; bit++)
->> +				mask |= bit->pflag;
->> +
->> +			err = pmbus_write_smbalert_mask(client, i, cat->reg, ~mask);
->> +			if (err)
->> +				dev_err(dev, "Failed to set smbalert for reg 0x%02x\n",	cat->reg);
->> +		}
->> +
->> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_CML, 0xff);
->> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_OTHER, 0xff);
->> +		pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_MFR_SPECIFIC, 0xff);
->> +		if (data->info->func[i] & PMBUS_HAVE_FAN12)
->> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_12, 0xff);
->> +		if (data->info->func[i] & PMBUS_HAVE_FAN34)
->> +			pmbus_write_smbalert_mask(client, i, PMBUS_STATUS_FAN_34, 0xff);
->> +
->> +	}
->> +
->> +	/* Register notifiers - can fail if IRQ is not given */
->> +	ret = devm_request_threaded_irq(dev, client->irq, NULL, pmbus_fault_handler,
->> +			      0, "pmbus-irq", data);
->> +	if (ret) {
->> +		dev_warn(dev, "IRQ disabled %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->>   #else
->>   static int pmbus_regulator_register(struct pmbus_data *data)
->>   {
->>   	return 0;
->>   }
->> +static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->> +{
->> +	return 0;
->> +}
->>   #endif
->>   
->>   static struct dentry *pmbus_debugfs_dir;	/* pmbus debugfs directory */
->> @@ -3456,6 +3571,12 @@ int pmbus_do_probe(struct i2c_client *client, struct pmbus_driver_info *info)
->>   	if (ret)
->>   		return ret;
->>   
->> +	if (client->irq > 0) {
->> +		ret = pmbus_irq_setup(client, data);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->>   	ret = pmbus_init_debugfs(client, data);
->>   	if (ret)
->>   		dev_warn(dev, "Failed to register debugfs\n");
->> -- 
->> 2.37.3
->>
+It certainly used to be at least; we use rv64gcxcheri...
+
+Jess
+
