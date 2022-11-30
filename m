@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B3463E298
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EE6D63E29D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:21:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbiK3VVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 16:21:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51164 "EHLO
+        id S229568AbiK3VVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 16:21:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiK3VVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:21:10 -0500
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929C38B190;
-        Wed, 30 Nov 2022 13:21:09 -0800 (PST)
-Received: by mail-ot1-f53.google.com with SMTP id g51-20020a9d12b6000000b0066dbea0d203so12068523otg.6;
-        Wed, 30 Nov 2022 13:21:09 -0800 (PST)
+        with ESMTP id S229704AbiK3VVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:21:48 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A5A8C452;
+        Wed, 30 Nov 2022 13:21:46 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id s141so2443043oie.10;
+        Wed, 30 Nov 2022 13:21:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gi08F4NWfWUD6xCY5Oe/H+pMh+Tsy5vhl0xYTUkWfy4=;
-        b=1L0ta/566RNKSs8nSanYDs57H9zlyOyfHJ8btaggL6P915cI0vi9Ui+Qma9ia/Q2/9
-         tINOFIImCBWI+EV9mQxqkac3ncQp+SRwE5e0T8sTkSy/H65QpIb0liBGbCyqv7/aDr0D
-         N1Hy5saKmPdRXqsA06BLdRUWbXXTwWSPj/Le71vLYTDc/oIeYCHfol8q7jxWoXv2Q7y5
-         j+r1SBYmSn2sL8wC7ONI87CnSNwJcGP4JCp637eEaQ5ui3pYlOsMngvpux4DTRKxtEKl
-         1OShkOWY2uUS0/blG9njvy1k7/LR4nZ0ujj6l0P1CL7+AajKEcQszPkFR7CXKpVzkUWg
-         PliQ==
-X-Gm-Message-State: ANoB5pl+Ye/sysnzMYD3HvY2qBLdS/lfQ8vQmW8HZ2aD+Tyk4amYWTs8
-        1JPdYmbVU2JAQJqiTkkCDQ==
-X-Google-Smtp-Source: AA0mqf7EzQaJL4U41dyICm11dMO218s52uDWXRqd7idPvN3kRcJFt2MnosdYJY3z480sFpT4JrD3+A==
-X-Received: by 2002:a9d:748e:0:b0:66e:39ed:9a26 with SMTP id t14-20020a9d748e000000b0066e39ed9a26mr12801490otk.130.1669843267451;
-        Wed, 30 Nov 2022 13:21:07 -0800 (PST)
+        bh=D6oucUpw2izyyoNZHfAlvHQCZA+vRw/APBGaY6rSHO4=;
+        b=vRYjsbEvswKTce5pM8fOsghh1su4NVBmYoa6pBAfEX0NuVf5z28DxC6U4/hKgK+PTP
+         ezt7vV9Xrgka7308nAfuiWVni8crfQqWFi4znFuPax1vuRBg8It2Uk2WkWov2qLwxKze
+         p/ir6yLRk5daF3SbMENJ1LxXa2lejQ6cgLbDG8cXtZ22A72Zy5Eup94904HZk9s87KIy
+         WtWzZFkS/ipU1TCiQYCez8QepxPvTpoqhDzW+Vpvyr9v9FviMFVYbXrEtYObCWe0zjPc
+         193OrJ/2eBk2uh8OiHSjD3GrXasFD9elXjlz+XwhobGrivlwc8JfhLr9R8p1ftC2DYI/
+         o8LQ==
+X-Gm-Message-State: ANoB5plXOiBuWRNbmKcEzhsH9BJNT9qho2xFxgoloO45yypcMvmBk5SA
+        FYTOXKnRX1BfimVjNSEWPw==
+X-Google-Smtp-Source: AA0mqf6BIW6n9xsEakRHiyi02adKnCXXX6hTdoNR7GbdbCF0SqOB0EDvZzI2IbYpVhxJFs+tr2S3tw==
+X-Received: by 2002:a05:6808:2394:b0:35b:a08d:5d67 with SMTP id bp20-20020a056808239400b0035ba08d5d67mr11242808oib.291.1669843306204;
+        Wed, 30 Nov 2022 13:21:46 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i9-20020a9d6249000000b00668953207b2sm1336435otk.80.2022.11.30.13.21.06
+        by smtp.gmail.com with ESMTPSA id p184-20020acabfc1000000b00354efb5be11sm1078550oif.15.2022.11.30.13.21.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 13:21:07 -0800 (PST)
-Received: (nullmailer pid 2947797 invoked by uid 1000);
-        Wed, 30 Nov 2022 21:21:05 -0000
-Date:   Wed, 30 Nov 2022 15:21:05 -0600
+        Wed, 30 Nov 2022 13:21:45 -0800 (PST)
+Received: (nullmailer pid 2948741 invoked by uid 1000);
+        Wed, 30 Nov 2022 21:21:44 -0000
+Date:   Wed, 30 Nov 2022 15:21:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Rahul Tanwar <rtanwar@maxlinear.com>
 Cc:     devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        x86@kernel.org, Borislav Petkov <bp@alien8.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
         Ingo Molnar <mingo@redhat.com>,
         Dave Hansen <dave.hansen@linux.intel.com>,
-        linux-lgm-soc@maxlinear.com, x86@kernel.org,
-        Borislav Petkov <bp@alien8.de>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v5 1/4] dt-bindings: x86: apic: Convert Intel's APIC
- bindings to YAML schema
-Message-ID: <166984326482.2947738.18134914819874377432.robh@kernel.org>
+        "H. Peter Anvin" <hpa@zytor.com>, linux-lgm-soc@maxlinear.com,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 2/4] dt-bindings: x86: apic: Introduce new optional
+ bool property for lapic
+Message-ID: <166984330418.2948681.17674473045828402706.robh@kernel.org>
 References: <20221124084143.21841-1-rtanwar@maxlinear.com>
- <20221124084143.21841-2-rtanwar@maxlinear.com>
+ <20221124084143.21841-3-rtanwar@maxlinear.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221124084143.21841-2-rtanwar@maxlinear.com>
+In-Reply-To: <20221124084143.21841-3-rtanwar@maxlinear.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,24 +72,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 24 Nov 2022 16:41:40 +0800, Rahul Tanwar wrote:
-> Intel's APIC family of interrupt controllers support local APIC
-> (lapic) & I/O APIC (ioapic). Convert existing bindings for lapic
-> & ioapic from text to YAML schema. Separate lapic & ioapic schemas.
-> Addditionally, add description which was missing in text file and
-> add few more required standard properties which were also missing
-> in text file.
+On Thu, 24 Nov 2022 16:41:41 +0800, Rahul Tanwar wrote:
+> Intel defines a few possible interrupt delivery modes. With respect
+> to boot/init time, mainly two interrupt delivery modes are possible.
+> PIC Mode - Legacy external 8259 compliant PIC interrupt controller.
+> Virtual Wire Mode - use lapic as virtual wire interrupt delivery mode.
+> 
+> For ACPI or MPS spec compliant systems, it is figured out by some read
+> only bit field/s available in their respective defined data structures.
+> But for OF based systems, it is by default set to PIC mode. Presently,
+> it is hardcoded to legacy PIC mode for OF based x86 systems with no
+> option to choose the configuration between PIC mode & virtual wire mode.
+> 
+> For this purpose, introduce a new boolean property for interrupt
+> controller node of lapic which can allow it to be configured to virtual
+> wire mode as well.
+> 
+> Property name: 'intel,virtual-wire-mode'
+> Type: Boolean
+> 
+> If not present/not defined, interrupt delivery mode defaults to legacy PIC
+> mode. If present/defined, interrupt delivery mode is set to virtual wire
+> mode.
 > 
 > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > Signed-off-by: Rahul Tanwar <rtanwar@maxlinear.com>
 > ---
->  .../intel,ce4100-ioapic.txt                   | 26 --------
->  .../intel,ce4100-ioapic.yaml                  | 60 +++++++++++++++++++
->  .../intel,ce4100-lapic.yaml                   | 57 ++++++++++++++++++
->  3 files changed, 117 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-ioapic.yaml
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/intel,ce4100-lapic.yaml
+>  .../interrupt-controller/intel,ce4100-lapic.yaml   | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
