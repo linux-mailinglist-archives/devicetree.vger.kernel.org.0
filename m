@@ -2,156 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C485663D875
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1B763D883
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiK3Oqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 09:46:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
+        id S229702AbiK3Ova convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Nov 2022 09:51:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiK3Oqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:46:32 -0500
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4937F2FC08;
-        Wed, 30 Nov 2022 06:46:29 -0800 (PST)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-13bd19c3b68so21210167fac.7;
-        Wed, 30 Nov 2022 06:46:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wz2Zju85pk6RM8ay+t4ZZMp7vPi+1UtgJxv5v1iOFoQ=;
-        b=hKswxqL0mQZMN7I40fIMLw92nRBqkmnIO8lk/f7t3UHfjWA0CSR56InG13myRTq6gI
-         XcbUImbCKlN0QAu1qUMvvjRFsTQw2A+zqR2+ySOUEgdz9D1QkCT6yS0ljMAPoWkRcPDo
-         5lb2ZXKZrqw0VrryvVVjuzA8zYs/BjSyHuRm/1Y3tQQXgD98O6jLqVZAmYQQAJzmLkOo
-         mw3gm5otainEAHoQ6Q2RMRRlkGqabvRgcoa7F8jUbW1w5o4WdhsJyUplnmYE2VbUrjHC
-         qdhoONhNdrKE4Wg8s2n/PUnYkiMZo9wcAtBzMXDX/GAzm3FDrG8VoAvArkFTao9DYGGE
-         M3BQ==
+        with ESMTP id S229674AbiK3Ov2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:51:28 -0500
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B286573B83;
+        Wed, 30 Nov 2022 06:51:24 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id a27so11229401qtw.10;
+        Wed, 30 Nov 2022 06:51:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wz2Zju85pk6RM8ay+t4ZZMp7vPi+1UtgJxv5v1iOFoQ=;
-        b=H6V034Kdz60zZgSl2F6N0MCcVRW1TpwefbrTvkJJWscNTZFAASqXZfRT2ihi4fZ6Zf
-         LiU7bBDCN90UKi8Mds0WW1fjFAhyKMbleRb7MlPmF2Q8EjtpysJIqedl2jzMHElcD55p
-         xCEzDsWNyd2yJ7eVFHUbM0L2eXL8uwnPCup+ErBu3MQii+snxBXOiJ69HVBv9M26wKtj
-         LsYeYBKQLtq3ARmfCBVl5hh5G0QrCv3+sNWj3EJvxre64WKFzeybRRlh7bhOH3/J0KHe
-         ECbJC1iIxTVMTfYRcnjvhcDEPkmfDd0/P/vNRRmGFLEliUalFwyAN/Wk7rADMv299yKF
-         GrNA==
-X-Gm-Message-State: ANoB5pn5gaxtTfukdMiLoYtV7MtGDGuM2NLY6l3tstEs6KUKPIQhEPVN
-        WvdpifAic3JlFucEE5sGEvs=
-X-Google-Smtp-Source: AA0mqf4ixzUkoSU6MRES0SwcX528RMcs4hO6mghmHVHKToufdig484nOzJOgbmgVYuQYYFa2c3yTLQ==
-X-Received: by 2002:a05:6870:2408:b0:132:1a61:8ed9 with SMTP id n8-20020a056870240800b001321a618ed9mr24354219oap.105.1669819588532;
-        Wed, 30 Nov 2022 06:46:28 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h17-20020a056870171100b00136c20b1c59sm1216568oae.43.2022.11.30.06.46.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 06:46:28 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 30 Nov 2022 06:46:26 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        bh=rbewHNiIDPrh2vDJAS18QQyUgoqR1U2XFbW+RCOiyVY=;
+        b=fCXuCOgUwLOoxJH49GdlHGzuXdGP3I5vqtKMQfw5p/zM1r4oBmwI25DVL2rJwh3AEm
+         2MT2kuea8mUOjXqUTBz4OHAlI6cj3GPIYUor399iWhBHSMyTZbHscIOjg0vQjyw9/TKP
+         hZS6NWMNxSV74chr9cNAJ3IYqBs3z1yKSWzsv8dd6Usp8rHqgbOw5BME2sOFlciLJHVF
+         2gsgvGdnvdp8G4gwF1ibs9mvH5gMeBYfaFiGGWOL0rdIzdtFxbkQ2zT7WDbqiw26zikL
+         uR9+g09vhUsfyhh/onuP5TIxIsSWkyoNxLmMMaDoHa8uQYJGSmUxE0rk2FmCGJLb97GO
+         TwtA==
+X-Gm-Message-State: ANoB5pnuGTT7RELZ7BhWRdGXJ8VlkfCavUzwlUiDK58G7HuexBWb2TZ/
+        OQLy0BhEvyuLsDsdJV6nxkMzQOEQzK35CQ==
+X-Google-Smtp-Source: AA0mqf5t9XxSny7wiMYJL+fC3x3d1hmg9pcxoc3fo7HwOxvscAyInELNzC7ZXHCOZNBIyrHqL5faMA==
+X-Received: by 2002:a05:622a:488f:b0:3a6:328e:e7d1 with SMTP id fc15-20020a05622a488f00b003a6328ee7d1mr21723005qtb.272.1669819883617;
+        Wed, 30 Nov 2022 06:51:23 -0800 (PST)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id y26-20020a37f61a000000b006bc192d277csm1262642qkj.10.2022.11.30.06.51.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Nov 2022 06:51:22 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-3c090251d59so117848417b3.4;
+        Wed, 30 Nov 2022 06:51:22 -0800 (PST)
+X-Received: by 2002:a81:f80f:0:b0:38e:e541:d8ca with SMTP id
+ z15-20020a81f80f000000b0038ee541d8camr55824371ywm.283.1669819872327; Wed, 30
+ Nov 2022 06:51:12 -0800 (PST)
+MIME-Version: 1.0
+References: <20221130141040.32447-1-arinc.unal@arinc9.com> <20221130141040.32447-3-arinc.unal@arinc9.com>
+In-Reply-To: <20221130141040.32447-3-arinc.unal@arinc9.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 30 Nov 2022 15:51:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVBZiWxORfb2hd0hn_En6yFEwm8uJXr553YfB8gv1sOFw@mail.gmail.com>
+Message-ID: <CAMuHMdVBZiWxORfb2hd0hn_En6yFEwm8uJXr553YfB8gv1sOFw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm: dts: remove label = "cpu" from DSA dt-binding
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        soc@kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: Re: [PATCH v8 1/4] dt-bindings: hwmon: fan: Add Common Fan Properties
-Message-ID: <20221130144626.GA2647609@roeck-us.net>
-References: <20221129161134.2672474-1-Naresh.Solanki@9elements.com>
- <20221129161134.2672474-2-Naresh.Solanki@9elements.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221129161134.2672474-2-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29, 2022 at 05:11:31PM +0100, Naresh Solanki wrote:
-> Add common fan properties bindings to a schema.
-> 
-> Bindings for fan controllers can reference the common schema for the
-> fan
-> 
-> child nodes:
-> 
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       $ref: fan-common.yaml#
-> 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> new file mode 100644
-> index 000000000000..330fb1552821
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common Fan Properties
-> +
-> +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  min-rpm:
-> +    description:
-> +      Min RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pulses-per-revolution:
-> +    description:
-> +      The number of pulse from fan sensor per revolution.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  target-rpm:
-> +    description:
-> +      Target RPM the fan should be configured during driver probe.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pwms:
-> +    maxItems: 1
-> +    description:
-> +      PWM signal for the fan
-> +
-> +  label:
-> +    description:
-> +      Optional fan label
-> +
-> +  fan-supply:
-> +    description:
-> +      Power supply for fan.
-> +
+CC cleger
 
-I still don't see fan mode (DC or PWM). I understand that you don't care,
-but from my perspective it must be addressed in generic fan properties,
-especially to ensure agreement on how 'pwms' is handled on a system where
-the fan mode is configurable, and how to select the fan speed on systems
-supporting DC fans.
+On Wed, Nov 30, 2022 at 3:33 PM Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
+> This is not used by the DSA dt-binding, so remove it from all devicetrees.
+>
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Guenter
+>  arch/arm/boot/dts/r9a06g032.dtsi                          | 1 -
+
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -401,7 +401,6 @@ switch_port3: port@3 {
+>                                 switch_port4: port@4 {
+>                                         reg = <4>;
+>                                         ethernet = <&gmac2>;
+> -                                       label = "cpu";
+>                                         phy-mode = "internal";
+>                                         status = "disabled";
+>                                         fixed-link {
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
