@@ -2,149 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77C2F63E2ED
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB9F63E2F2
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 22:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbiK3VuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 16:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S229600AbiK3VvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 16:51:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiK3Vt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:49:59 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632045B851;
-        Wed, 30 Nov 2022 13:49:58 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.west.internal (Postfix) with ESMTP id 0F467320094F;
-        Wed, 30 Nov 2022 16:49:52 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 30 Nov 2022 16:49:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1669844992; x=1669931392; bh=wX9irGcUbl
-        Xc4RqeTgp4fnnU07GYdQWcxMiKg/SvwkU=; b=fYP7D2uDlDvE8/Ds6VeE/7Js1t
-        bQFViWjZyp6L1w5ntvcYnOcilhM10S3q+BNI1JWhdoIwvpWjZlWAOworhoWcVC2+
-        8evG3Ri+9YaIU5U9QPfzxxLZv9wL1auCHYE9/jJWKEEm6JcDVYM9dpVXV47DXJb3
-        sNe+s8hoXA7EwOX+vH6kgRgJAsMP3YNc0+OzJnCHwNNew7Ck3FSHU+BEbmmAXqsp
-        UufeNGRBPTOyxyQcufueB/l3uuigsAy0KC4FyJwg7DzMKElSkXUQ2K6c7qSvbnrn
-        ngWxB5GElmPps4W52sfKfcG/b58vwh54QnZ42F8I9CO6rncEFs2Q2XWj4b8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1669844992; x=1669931392; bh=wX9irGcUblXc4RqeTgp4fnnU07GY
-        dQWcxMiKg/SvwkU=; b=LAaMgeKHxDISnihMHN5JzfsPU/S073/o2JnSspeGe+5c
-        gvEoMGdMjeDlUm//JERDpnVz3KrA32Pf04rq+wVo2H/NL7GCHRF9Axf672OvY/zg
-        CqxBqSCadZ5oZnRryunTZf+VZYN50zsuKHr7w2+0aBP19Kqpt5zImOq2qCV5DLRB
-        RZiVt43z4EFtj5A7UP7t1sFiI2cXyvoaqofTrRE0UOUzgnS3rNCSplrRlCQUtzCx
-        JmpMPbaTaksHqTNArpFMHArbo1LQoXjnU5ijTrq9Wjd925hE4IpfKndQGbMHCUJy
-        dOznD9JmmTcbsYrAnMcqUnfVj5zL+7ThHqHwp+ejtA==
-X-ME-Sender: <xms:_8-HYxmp-_ZaWfU5EVYBM0XPygw6gQuSYzh3odRSxPjKPwe8lSLG_g>
-    <xme:_8-HY82RFRwOo7I1sXZjOpFP8uVh_qY3FBNPbwEt58oL_FZKl5tKfYLvMD8R8X4Sf
-    86f1wqnLGKfyohi-p0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdefgdduhedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:_8-HY3qaiXy8wIy2OuRAjh--jtlSPfQqTADfp7VrLDcA0Cp9Y2VzdQ>
-    <xmx:_8-HYxnOuyA-4BOEGwKLSRJK06g9oqFSPuKvVKZdBzdd_nYeRmdsHg>
-    <xmx:_8-HY_36cJSstcsQ1L2lDJ9tqJVuaaTT9WDPjSLiRP_HA2mj0gALzQ>
-    <xmx:ANCHY4dUQeAv_Y2f9f1ZgRo7GBQRvD6LpXfyzmE_bPQCFCm1TMCm1w>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 5EF4DB60086; Wed, 30 Nov 2022 16:49:51 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <7fcafe92-35d9-4a83-b00d-7816fdb43139@app.fastmail.com>
-In-Reply-To: <mhng-f034544d-5b0a-47c5-8e45-3dbcefc0aaaa@palmer-ri-x1c9a>
-References: <mhng-f034544d-5b0a-47c5-8e45-3dbcefc0aaaa@palmer-ri-x1c9a>
-Date:   Wed, 30 Nov 2022 22:49:31 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Palmer Dabbelt" <palmer@dabbelt.com>,
-        "Conor Dooley" <conor@kernel.org>, "Will Deacon" <will@kernel.org>,
-        "Marc Zyngier" <maz@kernel.org>
-Cc:     ajones@ventanamicro.com,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "Samuel Holland" <samuel@sholland.org>,
-        "Chen-Yu Tsai" <wens@csie.org>,
-        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Jisheng Zhang" <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Andre Przywara" <andre.przywara@arm.com>,
-        "Albert Ou" <aou@eecs.berkeley.edu>,
-        "Anup Patel" <apatel@ventanamicro.com>,
-        "Atish Patra" <atishp@rivosinc.com>, christianshewitt@gmail.com,
-        "Conor.Dooley" <conor.dooley@microchip.com>,
-        guoren <guoren@kernel.org>, heinrich.schuchardt@canonical.com,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>, stano.jakubek@gmail.com
-Subject: Re: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1 platform and
- drivers
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229513AbiK3VvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 16:51:12 -0500
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099A65AE36;
+        Wed, 30 Nov 2022 13:51:12 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id m204so59183oib.6;
+        Wed, 30 Nov 2022 13:51:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ed0ydWV+6MGo0R7QavnrcUotFip+FDP5jOASQ/l4gg4=;
+        b=wWTxSqzxGt4zue1i+dwEUcjJVFjggML7zPNrTA+ytu8XpGWWPLSQDYCm/gNH08A3xc
+         jHD3PIFtcxtxi9Q6zKOSUnsdbFkUQ0xdR+N1Cq25gDfKVkVvZm2w26wZ4ODV7ketry38
+         5RaBbICtx3vDIJgl1Etw6YK5DeiIMZp9hU/arO5C9YVensHVXbrGPi9w+xDThN7f9utW
+         4LzFpXbVpnYClWHpNkzmLaoKhUUS293NqZgkmkRlBShPQUfiH6XE1adisE2HhUU1bV3y
+         U+VccLMOA8hQ082qQT8K4+c1N5iv6YSVwxHHs86Il9PzxNBQ4I/1/Qynfje9gLtzOu3t
+         rjCQ==
+X-Gm-Message-State: ANoB5pkL73Ik8RFwg5yo7lWiYxevIrUPSBg8qKC47aTMI+l514XQesmI
+        iDJKoSk2jEQXvoz4LFwfjw==
+X-Google-Smtp-Source: AA0mqf7J8e2oXFovz2VgTSEz3/EdPmTWw6BjtL7XC784CxAbJ1Z+zs/qpUiq5LLxHKDpZyxShWaJRA==
+X-Received: by 2002:a05:6808:14d1:b0:35b:92a4:fcae with SMTP id f17-20020a05680814d100b0035b92a4fcaemr13100578oiw.102.1669845071240;
+        Wed, 30 Nov 2022 13:51:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 185-20020aca05c2000000b0035b7002af8csm1057826oif.56.2022.11.30.13.51.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 13:51:10 -0800 (PST)
+Received: (nullmailer pid 2988879 invoked by uid 1000);
+        Wed, 30 Nov 2022 21:51:09 -0000
+Date:   Wed, 30 Nov 2022 15:51:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, dianders@chromium.org, david@ixit.cz,
+        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
+        konrad.dybcio@somainline.org, agross@kernel.org,
+        andersson@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 03/18] dt-bindings: msm: dsi-controller-main: Rename
+ qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl
+Message-ID: <20221130215109.GA2986716-robh@kernel.org>
+References: <20221125123638.823261-1-bryan.odonoghue@linaro.org>
+ <20221125123638.823261-4-bryan.odonoghue@linaro.org>
+ <dc5df66c-2e2b-14f1-ce88-705d831f37d9@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc5df66c-2e2b-14f1-ce88-705d831f37d9@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022, at 21:24, Palmer Dabbelt wrote:
-> On Mon, 28 Nov 2022 22:54:18 PST (-0800), Conor Dooley wrote:
->>
->> idk, defconfig to me is not about you or I, it's about A Developer that gets an SBC or a devkit and their experience.
->> Or alternatively, someone's CI ;)
->> I'd like to put everything in, but I recall that being shot down, that's all.
->
-> The whole "who is defconfig for" discussion always ends up kind of 
-> vague, but IIUC it's generally aimed at kernel hackers as opposed to end 
-> users -- so it's not meant to be a disto config, that's why we have 
-> things like the debug options turned on.  I tend to think of it as a "if 
-> a patch submitter is going to test only one config, then what do I want 
-> in it?" and let that determine what goes in defconfig.
->
-> IMO having defconfig contain the drivers necessary to boot every common 
-> dev board as =y, and having =m for anything else on those boards also 
-> seem reasonable.  That will make the transition from vendor/distro 
-> kernels to upstream a bit smoother, which is always good.  I guess 
-> there's some slight build time and image size issues, but aside from 
-> some very small systems that shouldn't be too bad for kernel developers 
-> -- and if we really end up with another popular system with 6MiB of RAM 
-> we can just stick another tiny defconfig in there for it.
->
-> I actually don't use modules when doing kernel development because I 
-> find it easier to track things when they're packed into a single binary, 
-> but I don't think it's necessary to steer everyone that way.
->
-> Adding some of the Arm folks here, in case they have thoughts.  The best 
-> bet is probably to try and do something similar, though my worry is that 
-> the answer is something like "target standard platforms" and we don't 
-> have any.
+On Sat, Nov 26, 2022 at 08:54:11PM +0200, Dmitry Baryshkov wrote:
+> On 25/11/2022 14:36, Bryan O'Donoghue wrote:
+> > We will add in a number of compat strings to dsi-controller-main.yaml in
+> > the format "qcom,socname-dsi-ctrl" convert the currently unused
+> > qcom,dsi-ctrl-6g-qcm2290 to qcom,qcm2290-dsi-ctrl.
+> > 
+> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> 
+> I'd say, as you are going to introduce new bindings using two compat
+> strings, just leave this binding as is, marking it as deprecated.
 
-I think this is handled very inconsistently across architectures. On
-32-bit arm, we used to have a board specific defconfig for each machine,
-but of course that never scaled to the number of supported machines.
+But if it was unused, then it's okay to just change it.
 
-The important defconfig files we have these days are the arm64
-one, and on arm32 we have the ones that are mutually incompatible,
-in particular one for armv7 and one for armv5, each enabling as
-many machines as possible, plus usually one per SoC vendor that
-is more specialized.
-
-If you want to formalize it a bit more than this,  I would recommend
-having more fragments, e.g. one for typical debugging options,
-one for things that are needed to boot both Fedora and Debian
-userland, etc.
-
-      Arnd
+Rob
