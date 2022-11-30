@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B900C63D18C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:18:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D2663D1BF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 10:23:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231468AbiK3JSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 04:18:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48240 "EHLO
+        id S232884AbiK3JX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 04:23:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232484AbiK3JR5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:17:57 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9302226485;
-        Wed, 30 Nov 2022 01:17:54 -0800 (PST)
+        with ESMTP id S232741AbiK3JX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 04:23:57 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5146C1837F;
+        Wed, 30 Nov 2022 01:23:56 -0800 (PST)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2E1B06602B50;
-        Wed, 30 Nov 2022 09:17:52 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DB6D660036C;
+        Wed, 30 Nov 2022 09:23:53 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669799873;
-        bh=9cp5AdKDGyLjgw1/1j2L92HmOOapOEzOCWRCmTYUeao=;
+        s=mail; t=1669800234;
+        bh=b/rlfin9Tu9Zg934405VE93p9gBOHlJBLcSBvPpyPXY=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Wb4OD8mPgXuOSjZGTjDWvvJt0WeA3s4wShYH1Ma/sciq6IxEM/T1HLAHqTOGIs+ip
-         CbI8hHTuX+weeFLcL4KTl0tXbhq9/WmNxaXisJyyxuCwN94D4jnGlRp+8f/z4Wz2hy
-         yC0ZrwZWOW/nE8sfk0zXfyoptzYbHoKc8u5pwsxhXtmP1qYFz4O52Y7epHaj3GFKfp
-         DP5XjBhpdnR0taGYwj1RqTt3HW1T38HwOFxs3ZGLvDUKlk963KHAA8Zz0sBhY4roeh
-         QOqB6ucBtxvca1olL7JBK4BEjwKZwLgQc2Jgn/EwxIdSn2wMZap5EZSHLn4D6RYcfk
-         0hmY2ym/R5YHQ==
-Message-ID: <6c4dc109-0245-7145-c87a-11494c694165@collabora.com>
-Date:   Wed, 30 Nov 2022 10:17:49 +0100
+        b=TU92YAgRkOWnyIP3bvJqgwHT2x7OsuuBfGtxWnADsoddRRL8dVNwSOLIIq9iXGClu
+         ZDyOpAR+4FH4w9JKcC44yCrAf4ixqxqnVDX5y+K75zqEWqfKgMip80ugRc6dDiETe/
+         9zWuM7Na3x2jr/eQrOfmVK2+5Thg9HnFJ3w8hjUdULKHkDeHnNCs4Az1H4oJ0WlWNV
+         UqX5DNxYmvAdcMmXYji0csNn9FYeBB0kM0zF4/9R/meuF9UXgo41Z+kOdQciVMRs4q
+         yRajDFgWP2KaE6U/ctk5oMmNuB6ojJs5YGZigiTQW8HaZtO0YFNUeeqAjuRxQ/FBV2
+         DBUYJpgsDmQEg==
+Message-ID: <a1c556de-a9a4-5f90-1c46-a9e54daf463b@collabora.com>
+Date:   Wed, 30 Nov 2022 10:23:51 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v3 4/6] soc: mediatek: add mtk-mmsys support for mt8188
- vdosys0
+Subject: Re: [PATCH v3 2/6] dt-bindings: mediatek: modify VDOSYS0 mmsys device
+ tree Documentations for MT8188
+Content-Language: en-US
 To:     "nathan.lu" <nathan.lu@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -56,14 +57,12 @@ Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
         linux-mediatek@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, lancelot.wu@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        amy zhang <Amy.Zhang@mediatek.com>
+        Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20221129143503.16638-1-nathan.lu@mediatek.com>
- <20221129143503.16638-5-nathan.lu@mediatek.com>
-Content-Language: en-US
+ <20221129143503.16638-3-nathan.lu@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221129143503.16638-5-nathan.lu@mediatek.com>
+In-Reply-To: <20221129143503.16638-3-nathan.lu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,14 +74,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/11/22 15:35, nathan.lu ha scritto:
+Il 29/11/22 15:34, nathan.lu ha scritto:
 > From: Nathan Lu <nathan.lu@mediatek.com>
 > 
-> 1. add mt8188 mmsys
-> 2. add mt8188 vdosys0 routing table settings
+> modify VDOSYS0 mmsys device tree Documentations for MT8188.
 > 
-> Signed-off-by: amy zhang <Amy.Zhang@mediatek.com>
 > Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
+> ---
+>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 0711f1834fbd..3e7fb33201c5 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -47,6 +47,10 @@ properties:
+>             - const: mediatek,mt2701-mmsys
+>             - const: syscon
+>   
+> +      - items:
+> +          - const: mediatek,mt8188-vdosys0
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The devicetree node will be like:
+	something: something@somewhere {
+		compatible = "mediatek,mt8188-vdosys0", "syscon";
+		....
+	};
+
+....and will never get any additional compatible string, as when you'll add
+vdosys1 support, we'll get a similar node like:
+
+	something_else: something_else@somewhere_else {
+		comaptible = "mediatek,mt8188-vdosys1", "syscon";
+		....
+	};
+
+...so this should go upper in the enum that's listing all of the
+mediatek,mtXXXX-mmsys compatibles, specifically after `mediatek,mt8186-mmsys`.
+
+Please fix.
+
+Regards,
+Angelo
 
