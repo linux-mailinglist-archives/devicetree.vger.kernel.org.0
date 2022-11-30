@@ -2,147 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 783C263D51E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFAB63D544
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 13:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbiK3MAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 07:00:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
+        id S229644AbiK3MJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 07:09:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235149AbiK3L75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 06:59:57 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3466F83B
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:59:54 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id q7so20586191ljp.9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:59:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2ON5FjK+dwOvFBeCLYK/IKSJQsVy9DHwVDaXKHa528g=;
-        b=PYyOAVgjg/t20ES1VyJBna5xfttRfQZyFma2PetyzaUUMFovuqyOqC37rxYmVZS3T5
-         XzUUsfM55bd83svQTtQhOL35wFLBjt8xG/ABvgyj8kPaw+RvBpcyr+Cwm4kftK8VT4dm
-         l/YYoFOWSuPkeaHkii4vJLLiH/SMkXNkH7h6f8ME05L+8O5q0IZtlHWhFp5xnmZpvayp
-         AP+g+g8KDKLKLv5Ol4TsDX8r3DLRJ9VIfCpvLlufCQBBSQzoP2EGXsxWRTfv+oGnLXyZ
-         nW95Xk6BdkduGqvqrTa4iPR6XbAPxJ1IzyTC+8Lda2MuxVRa3VWzy3R+CfuqHDyxlq/s
-         G9Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2ON5FjK+dwOvFBeCLYK/IKSJQsVy9DHwVDaXKHa528g=;
-        b=C+0jRqZJP4VPXDYa9T/74wuqv/KoEPgghMOo0B0msf0joTqqVdispaBkTscQf4Ek6r
-         Tt5dofGCHPqCwPK/Xph62kS8z1ukkBvt9SvRTvSMDWB9Cfq+T5M3pGaZtdu4aZNSmETl
-         VZh99BwrPRKnMpiGIBlLCwayLWAaTSqGjL8oeR8UuXP/jA81TI/N6bV5IuP1/9w+eG+E
-         DH4TWyWJovhF8qfeutbNIELm81wtS4rgX/1yckQPEmEj19ZcmEYDHl/VCsu5ZGOP3c3W
-         Dhr+EGedGGFeZTl6FhMTR5FpN3qsnXOlEcbzAvwpVGoHV/nWs28l7I5Zcxzj2DFwudoa
-         ZQXA==
-X-Gm-Message-State: ANoB5pmur2H3ckKNJR9clZQHlUoJVmHYYdvdmbR6Osv/EdTX79VqPQQO
-        sRv24t1p/kxFRXlYhe3pLSTvFQ==
-X-Google-Smtp-Source: AA0mqf7XGjB6Ub5eyCrIcgsZktv4Dekz8D+amikQ5Wy4MCraS2xhaXmVl57rBX08PU0lRnRGqazSSg==
-X-Received: by 2002:a2e:aaa1:0:b0:277:7678:60dd with SMTP id bj33-20020a2eaaa1000000b00277767860ddmr18323523ljb.147.1669809592747;
-        Wed, 30 Nov 2022 03:59:52 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b4-20020a2eb904000000b00279cbcfd7dbsm62226ljb.30.2022.11.30.03.59.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 03:59:52 -0800 (PST)
-Message-ID: <c13b67ec-c030-302a-6315-fad18323923a@linaro.org>
-Date:   Wed, 30 Nov 2022 12:59:51 +0100
+        with ESMTP id S232159AbiK3MJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 07:09:52 -0500
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A86659A;
+        Wed, 30 Nov 2022 04:09:51 -0800 (PST)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1p0LuK-0005r4-P3; Wed, 30 Nov 2022 13:09:44 +0100
+Date:   Wed, 30 Nov 2022 12:09:41 +0000
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.or,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 2/2] dt-bindings: thermal: mediatek: add compatible
+ string for MT7986 SoC
+Message-ID: <Y4dIBW4Kped5klgD@makrotopia.org>
+References: <136157bd1f94c64504f87ee2db6b3ed0a8dcc3de.1667254476.git.daniel@makrotopia.org>
+ <1216e96b279d08230cb2aa61d536f44c1e9b800a.1667254476.git.daniel@makrotopia.org>
+ <cdc79d9b-7afe-1aaf-3692-171370abaa3c@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for
- worldsemi,ws2812b-spi
-Content-Language: en-US
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221129140955.137361-1-gch981213@gmail.com>
- <20221129140955.137361-3-gch981213@gmail.com>
- <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org>
- <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
- <7b3f97f9-34af-413c-aaad-9108b4f36c51@linaro.org>
- <CAJsYDVKXvJZaqCBx7RSsfVZkKTGdbp78GHA4mvmUdQwyEyGkBQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJsYDVKXvJZaqCBx7RSsfVZkKTGdbp78GHA4mvmUdQwyEyGkBQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cdc79d9b-7afe-1aaf-3692-171370abaa3c@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 10:25, Chuanhong Guo wrote:
-> Hi!
+On Wed, Nov 02, 2022 at 04:43:35PM -0400, Krzysztof Kozlowski wrote:
+> On 31/10/2022 18:16, Daniel Golle wrote:
+> > Add compatible string 'mediatek,mt7986-thermal' for V3 thermal unit
+> > found in MT7981 and MT7986 SoCs.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> >  Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+> > index 5c7e7bdd029abf..efc16ab5b22b5d 100644
+> > --- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+> > +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+> > @@ -13,6 +13,7 @@ Required properties:
+> >    - "mediatek,mt2701-thermal" : For MT2701 family of SoCs
+> >    - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
+> >    - "mediatek,mt7622-thermal" : For MT7622 SoC
+> > +  - "mediatek,mt7986-thermal" : For MT7981 and MT7986 SoC
 > 
-> On Wed, Nov 30, 2022 at 5:08 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> And that's exactly what I said - the compatibles should not include bus
->> information. The bus information comes from... the bus!
-> 
-> Oh. I thought there will be a conflict if there is a SPI driver and
-> , say, an I2C driver with the same compatible string.
+> Then recommended is to have specific compatible followed by fallback (so
+> 7986 followed by 7981)
 
-We already have such. For example: adi,adxl312
-
-> 
->> [...]
->>>>
->>>> Why unit address is optional?
->>>
->>> It isn't. I copy-pasted it from led-class-multicolor.yaml and
->>> didn't check the exact regex.
->>> I'll fix it in the next version.
->>
->> Make it required and matching your case.
-> 
-> Got it.
-> 
->> [...]
->>>>> +      default-intensity:
->>>>> +        description: |
->>>>> +          An array of 3 integer specifying the default intensity of each color
->>>>> +          components in this LED. <255 255 255> if unspecified.
->>>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>> +        minItems: 3
->> [...]
->> So this is brightness of each color...
-> 
-> I don't think so.
-> See the kernel doc for multicolor LED:
-> https://docs.kernel.org/leds/leds-class-multicolor.html
-> This property sets the sysfs file multi_intensity while the
-> actual LED brightness is controlled with another sysfs
-> file called 'brightness'.
-> Setting multi_intensity alone doesn't change the LED
-> brightness at all.
-
-If you had brightness, that would be correct. But you do not have
-brightness, right? Therefore the final brightness is always:
-
-subled[i].brightness = 255 * subled[i].intensity / max_brightness (also
-255);
-
-Or your bindings are incomplete...
-
-Best regards,
-Krzysztof
+I'm a bit confused about the order you are suggesting. It may seem
+counter-intuitive, but MT7986 was released before MT7981, the thermal
+units found in both SoCs seems to be exactly identical.
+Or are you suggesting to list MT7981 first to maintain alphabetical
+order? Because in terms of precedence, MT7986 has been there first, and
+hence I'd list 7986 first, followed by 7981, ie. the opposite of the
+order you were suggesting.
 
