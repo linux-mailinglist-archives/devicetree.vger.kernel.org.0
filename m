@@ -2,216 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A0D163CFA7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 08:21:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 602C763CFAA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 08:23:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233835AbiK3HVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 02:21:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43516 "EHLO
+        id S232267AbiK3HXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 02:23:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiK3HVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 02:21:35 -0500
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038211F9D9;
-        Tue, 29 Nov 2022 23:21:34 -0800 (PST)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 3E9AF32008C3;
-        Wed, 30 Nov 2022 02:21:31 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 30 Nov 2022 02:21:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1669792890; x=
-        1669879290; bh=q72EpL3uhOPRJqv9dDJjBbzAkGOsjTb1XnOeKej+X6Y=; b=T
-        1oA3hm0bUR7Xv8EVN7JD1+jqOy3CWDrA2nAw/zq8z9ewbU3FQ8BBdMxfxP9FTE8y
-        tuYufw1idtHR12TPdU7wDWUgwHVtiBc1Jvh0c3hG5sAzi5QWafOHf8snUNIHxkQp
-        pQ4nEFhDJVqX0ybKKMvv1o6wxfnvHMjnBzDR/tzfpPQLh6F1qOy+Alme3W13OYnG
-        6rIYtNTmTCKr7k8+jfO5fF8TvKST6t6PxkcRN02IqKPTRZsbcp5p57iZ9PyRTWwt
-        yU/yICNdQPw68xFDEIZXTxEe6ze9lR/RSsAnGxUCoj7kplifqz9R4yJpWd3f4X/D
-        9Irdun8sZQShg21/RCCWg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1669792890; x=
-        1669879290; bh=q72EpL3uhOPRJqv9dDJjBbzAkGOsjTb1XnOeKej+X6Y=; b=R
-        pYOmhN+h3E3LxnGoY1ByqBMUkdZ/f5rHya6YV4HXgIah0Xz+uVR7bGS/m0AR/hao
-        6wRFPXOwo1V5Hf7puqFqe29XGyX0QtVwGrKVAZs+2jIg8zAdBPGGIZ84wmQojVCC
-        lVVvLw6DkItgG4OEVCE2cl28nLNZUATNjbqKHuKy8fb5HmYRrerLfG5N63DywkVP
-        Siu8xcTVvs0aqhvmg9ASVSkAgfjHvaq6tdA+BYdNZLnvJ4UHjq7P3a5Rv8yOP9E1
-        ++L6vEv4rJj15oFj1ZJZZ9fcxK2Rz32m3sO79fXN6lRulgx+JBMng08MU1Nnqt3x
-        Tk6bOHpiu15BfyrwDsAng==
-X-ME-Sender: <xms:egSHY8bHzscxwxJ_XI7SjdETzhUGVpkCgZHGGx7OlAtJmDfvPDTR7w>
-    <xme:egSHY3YPBQFQAmJ2SNwJxWG1Cgg0rDgxX4PDTlh_7o8t8rqPTISOS9LaWasHjabZ5
-    YTisw3i6R2ee581ag>
-X-ME-Received: <xmr:egSHY2_xM4dj0QjoPWlGrg-4-ds6i5qcckSDdqkGcr3isVhQfAXlmVKLidKUR2FDwbVuD76bL9c_QwYzL1i14ciobGZNUy2aDrW9XRdbj0CnR7QRBy7zHvyUmw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtddvgddutdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeejgfffhfdujeeftdeuudeguedttefgieetffffheejuefguedv
-    heejteeftdfftdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:egSHY2ryPlW0Uk6wVPPsUrzYPAZ3nphYU1HFdhLK9ugHv7xtEq6o5w>
-    <xmx:egSHY3o3lHtQ6VBxToj7VZ2tl1tYHonFUJGQ98ZssEKbbHp7Erc_GQ>
-    <xmx:egSHY0TXUTmItSHZUxv2Dg7cUD3c4oKZQbYc5LJS0EuxifZxTFxhUA>
-    <xmx:egSHY1ikeFwuY9xfeCiUw50Ag9_w21YQNXUIEhMyqtIioCf9C0-Hzw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 30 Nov 2022 02:21:28 -0500 (EST)
-Message-ID: <d4d8998f-288c-3ff6-141d-02814f8e35d0@sholland.org>
-Date:   Wed, 30 Nov 2022 01:21:27 -0600
+        with ESMTP id S229648AbiK3HXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 02:23:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FAE5A6FD;
+        Tue, 29 Nov 2022 23:23:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A7B3361A43;
+        Wed, 30 Nov 2022 07:23:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57062C433C1;
+        Wed, 30 Nov 2022 07:23:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1669793011;
+        bh=BouBNRCk7VMkSrWdY9OTkq4jJTsEHyMSvB+y3ScjJAs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ollyNHVLYcXcHoT4FP7JEYoPce0c8okKCP/xekRlPzvUftpZWCX85rCloGqoZn5ND
+         ++Ig5LfkrBQiQpz6mrzGUTbjTeNSCjp4dTceNC9FKsbmSs5jWsluJcK2Asl6jgTFqm
+         HUnsEOYmBNHeWWwl2J9CUwRewoJUltU+Ksv4jNMM=
+Date:   Wed, 30 Nov 2022 08:23:28 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+        Will Deacon <will@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+        robh+dt@kernel.org, mb@lightnvm.io, ckeepax@opensource.cirrus.com,
+        arnd@arndb.d, mst@redhat.com, javier@javigon.com,
+        mikelley@microsoft.com, jasowang@redhat.com,
+        sunilmut@microsoft.com, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        ashish.deshpande@nxp.com, rvmanjumce@gmail.com
+Subject: Re: [EXT] Re: [PATCH v5 2/2] misc: nxp-sr1xx: UWB driver support for
+ sr1xx series chip
+Message-ID: <Y4cE8MvAS8bpcQmW@kroah.com>
+References: <20220914142944.576482-1-manjunatha.venkatesh@nxp.com>
+ <20220914142944.576482-3-manjunatha.venkatesh@nxp.com>
+ <0b2da6f2-62f8-41a3-bf07-b6895a2dedee@www.fastmail.com>
+ <cd397721-f549-5c65-2c65-35b09c3ea7f9@nxp.com>
+ <Y0A+Y3uNzpzGx0Ey@kroah.com>
+ <dfe167cf-5d4e-6fc7-c954-25f719b1e843@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-7-jszhang@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v2 6/9] riscv: dts: bouffalolab: add the bl808 SoC base
- device tree
-In-Reply-To: <20221127132448.4034-7-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dfe167cf-5d4e-6fc7-c954-25f719b1e843@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/27/22 07:24, Jisheng Zhang wrote:
-> Add a baisc dtsi for the bouffalolab bl808 SoC.
+On Wed, Nov 30, 2022 at 09:39:59AM +0530, Manjunatha Venkatesh wrote:
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  arch/riscv/boot/dts/bouffalolab/bl808.dtsi | 74 ++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> 
-> diff --git a/arch/riscv/boot/dts/bouffalolab/bl808.dtsi b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> new file mode 100644
-> index 000000000000..f4b170ccc32e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> @@ -0,0 +1,74 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "bouffalolab,bl808";
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	cpus {
-> +		timebase-frequency = <1000000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible = "thead,c906", "riscv";
-> +			device_type = "cpu";
-> +			reg = <0>;
-> +			d-cache-block-size = <64>;
-> +			d-cache-sets = <256>;
-> +			d-cache-size = <32768>;
-> +			i-cache-block-size = <64>;
-> +			i-cache-sets = <128>;
-> +			i-cache-size = <32768>;
-> +			mmu-type = "riscv,sv39";
-> +			riscv,isa = "rv64imafdc";
-> +
-> +			cpu0_intc: interrupt-controller {
-> +				compatible = "riscv,cpu-intc";
-> +				interrupt-controller;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		/* This value must be overridden by the board */
-> +		clock-frequency = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		ranges;
-> +		interrupt-parent = <&plic>;
-> +		dma-noncoherent;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		uart0: serial@30002000 {
+> On 10/7/2022 8:27 PM, Greg Kroah-Hartman wrote:
+> > Caution: EXT Email
+> > 
+> > On Fri, Oct 07, 2022 at 07:34:25PM +0530, Manjunatha Venkatesh wrote:
+> > > On 9/14/2022 8:39 PM, Arnd Bergmann wrote:
+> > > > Caution: EXT Email
+> > > > 
+> > > > On Wed, Sep 14, 2022, at 4:29 PM, Manjunatha Venkatesh wrote:
+> > > > 
+> > > > > NXP has SR1XX family of UWB Subsystems (UWBS) devices. SR1XX SOCs
+> > > > > are FiRa Compliant. SR1XX SOCs are flash less devices and they need
+> > > > > Firmware Download on every device boot. More details on the SR1XX Family
+> > > > > can be found athttps://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.nxp.com%2Fproducts%2F%3AUWB-TRIMENSION&amp;data=05%7C01%7Cmanjunatha.venkatesh%40nxp.com%7C8478b7c0aa694618aae608daa87430fa%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638007514231447184%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=y3t8eT%2BIX1OP%2B1wu%2B8hWp2HI%2FhnZj32L%2BDCcIA7m9hs%3D&amp;reserved=0
+> > > > > 
+> > > > > The sr1xx driver work the SR1XX Family of UWBS, and uses UWB Controller
+> > > > > Interface (UCI).  The corresponding details are available in the FiRa
+> > > > > Consortium Website (https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.firaconsortium.org%2F&amp;data=05%7C01%7Cmanjunatha.venkatesh%40nxp.com%7C8478b7c0aa694618aae608daa87430fa%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638007514231447184%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=xhFUUcJ7a3oU6pefXHTunBCI73%2Fy2PnnwsTn1KZbeFk%3D&amp;reserved=0).
+> > > > I know nothing about UWB, so I have no idea if the user interface
+> > > > you propose here makes sense. My guess is that there is a good chance
+> > > > that there are other implementations of UWB that would not work
+> > > > with this specific driver interface, so you probably need a
+> > > > slightly higher-level abstraction.
+> > > > 
+> > > > We had an older subsystem that was called UWB and that got removed
+> > > > a while ago:
+> > > > 
+> > > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2Fcommit%2Fdrivers%2Fstaging%2Fuwb%3Fid%3Dcaa6772db4c1deb5d9add48e95d6eab50699ee5e&amp;data=05%7C01%7Cmanjunatha.venkatesh%40nxp.com%7C8478b7c0aa694618aae608daa87430fa%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638007514231447184%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=gcF%2B%2FzD%2F0TWJ5AEJvXCGv5n%2FrPg2qXJigedOq4IeVPI%3D&amp;reserved=0
+> > > > 
+> > > > Is that the same UWB or something completely different?
+> > > Basically, it is SPI device driver which supports UCI(Ultra-wide band
+> > > Command Interface) packet structure. It is not same as in mentioned link.
+> > Why isn't this just a normal SPI driver and you do the "UCI" commands
+> > from userspace through the device node there?
+> > 
+> > I know I asked this before, but I can't remember the answer, sorry, so
+> > please include that in the changelog information when you resubmit.
+> > 
+> > thanks,
+> > 
+> > greg k-h
+> The IO Handshake needed with SR1XX Family of SOCs cannot use the RAW SPI
+> Module's APIs and hence custom APIs are added for communication with the
+> UWBS,
 
-It's unfortunate that the SDK/documentation calls this peripheral both
-UART0 and UART3. I don't know if we can/should put the "M0" and "D0" bus
-peripherals in the same DT; it seems like most of the "M0" peripherals
-are not accessible from the C906. But if we did, this would conflict
-with the other UART0.
+I do not understand, what "IO handshake"?  What is missing from the
+userspace spi api that is needed here?
 
-> +			compatible = "bouffalolab,bl808-uart";
-> +			reg = <0x30002000 0x1000>;
-> +			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&xtal>;
+> With this will get required throughput for UWBS use cases to avoid multiple
+> round trip between user  and kernel mode.
 
-There's a clock controller with a mux and a gate between the crystal and
-the UART. I'm not sure what the policy is about adding "fake" suppliers
-before the real supplier has a binding defined.
+Based on the speed of the SPI bus, this should not be an issue at all.
+If it is, please provide us real performance numbers showing the
+problem, as there are ways of speeding that up.
 
-Unfortunately, Bouffalolab threw everything and the kitchen sink into
-the GLB register space, so that complicates defining the binding for the
-clock/reset controller part.
+thanks,
 
-> +			status = "disabled";
-> +		};
-> +
-> +		plic: interrupt-controller@e0000000 {
-> +			compatible = "thead,c900-plic";
-> +			reg = <0xe0000000 0x4000000>;
-> +			interrupts-extended = <&cpu0_intc 0xffffffff>,
-
-The C906 PLIC has an M-mode context, so 0xffffffff is not correct. This
-should reference the M-mode external interrupt.
-
-> +					      <&cpu0_intc 9>;
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			#interrupt-cells = <2>;
-> +			riscv,ndev = <64>;
-
-The SDK/documentation lists IRQ numbers up to BL808_IRQ_PDS == 82, so
-this value should be at least that.
-
-Regards,
-Samuel
-
-> +		};
-> +	};
-> +};
-
+greg k-h
