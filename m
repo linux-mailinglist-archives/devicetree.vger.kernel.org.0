@@ -2,114 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B2C63D3F6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 12:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A20A63D407
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 12:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbiK3LHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 06:07:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59198 "EHLO
+        id S231868AbiK3LKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 06:10:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbiK3LHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 06:07:39 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5D9BDB
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:07:34 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id j4so26409129lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 03:07:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vbRunTbMP4tz0r9sw9HIT0LUH03qyOKbAKjkg7v1cT8=;
-        b=MLosrlgsByRac1dlTwWOnfeRRemoVklCtoSeOOcLwXvcg23SUzydv3J3NGpzIUK9Qe
-         aavmkMLU8y7BCbC9vXIm+MFmP3TAc2WwVudJ//0p5UiVFkGwCof1hFd8SBFFI8abEBiq
-         hPfWo7uDkyXQ61aNSYjLUbHk06KfsjIYWWSGomWMtFH/1DyG0lPqfaGr+QmZmnbNpmKZ
-         cwa6qRDR/p+NANzfy+Ua3k/io/vNJ6umBV8GsDcDvfLzN3XXqc+vwxjEja8kZDILRtw+
-         KnbUTeq+FiV4lyYLji9oSnDRtphxZ8KKJMv7fayDEDseBmtP1X2Omfyr8trASgbdkSNz
-         jJfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vbRunTbMP4tz0r9sw9HIT0LUH03qyOKbAKjkg7v1cT8=;
-        b=e8si/QxBCuc3IDnNIQiwQIGVenOVCesraE1uHUEE3S4Dz8p0Fe/AhC3rxKf2cNSnjv
-         /8uBkDLlfq+4qusvnxoFrdPj2Xl/41FTIQ0IvFuhGglI7R5uJTSklFb4DboBM++DxdsF
-         FHw9+NvB2fPiAWcYt+RQIqOA/v7dBR6BJn1XS8L1xMwKXsweicHdcElKqK+xFv5I7Fhb
-         uoieLk1X6/jl/Q9IkqA0lVrRBzWZcE8jaoLqly3SNqJI2fWh45znQYQJWnEcNlAzcomi
-         q5+sBR9t75T9zckPZqoxydsgr99j+EmFTlKw5ctTRBu4Gul/mXT/yS8wrWZyOrsIZKF1
-         rqQQ==
-X-Gm-Message-State: ANoB5pnToGJ/4191SlW0ELN1p8iKfSUZvUZIfIkDqd7ezBuZrBJRFYnA
-        GWiPEWBKNNgnyvLRvtT6IyjEqQ==
-X-Google-Smtp-Source: AA0mqf7EbE0WvcfiBzwsneMSJd4JZFH92F15w8hlSMZkGyD5l7c2YIJYmmeqlOnCi84qMx0fxOd5mQ==
-X-Received: by 2002:a05:6512:2523:b0:4a6:fac4:596c with SMTP id be35-20020a056512252300b004a6fac4596cmr14219018lfb.220.1669806453251;
-        Wed, 30 Nov 2022 03:07:33 -0800 (PST)
-Received: from [192.168.1.101] (95.49.125.236.neoplus.adsl.tpnet.pl. [95.49.125.236])
-        by smtp.gmail.com with ESMTPSA id l22-20020a194956000000b0049476667228sm219911lfj.65.2022.11.30.03.07.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 03:07:32 -0800 (PST)
-Message-ID: <3c8c3cc8-60b9-13e2-a80f-dc397d84adf0@linaro.org>
-Date:   Wed, 30 Nov 2022 12:07:30 +0100
+        with ESMTP id S234266AbiK3LKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 06:10:25 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 092F074AAC;
+        Wed, 30 Nov 2022 03:10:20 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 27F4A6602B30;
+        Wed, 30 Nov 2022 11:10:18 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669806618;
+        bh=7oMfqslqjC4FH70ZlLLwmJ6wNhE3DEsyVazeisOoOzY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iA46UbVmQiGhwuAjFApfJ0W5FpNTR2AkxX+XIKvJzDSmnIvsIZpEeijmxcyX4FM79
+         3yOd71F23Yj+MK24QU535Eaau3j1PtDirFk44cHaBDPwG0Z3FqylNLfzxWXGMggOPH
+         TCUGtMN1WJ7bRAmltM6DBu5ejg9ngyO/9cYngUFmFvEcEu7tgypho0BBsm6uM0hbj8
+         C3haxogMkdTvsA+mY/VHa9GE5QgLGIG8bWq+r026Dw+k7O6QBV5RTegPW6Ks25CQTV
+         08kEnRSQ7i50OhRFOerPxoT5MAmXoFN219edNQGp5dYECgfIbqhWy4m3raH3h29Ze0
+         vuG6J/zwdZALQ==
+Message-ID: <2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com>
+Date:   Wed, 30 Nov 2022 12:10:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] interconnect: qcom: Add SM6115 interconnect provider
- driver
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, djakov@kernel.org,
-        a39.skl@gmail.com, andersson@kernel.org
-References: <20221130103841.2266464-1-bhupesh.sharma@linaro.org>
- <20221130103841.2266464-2-bhupesh.sharma@linaro.org>
+Subject: Re: [PATCH resend] arm64: dts: mediatek: mt8192: Mark scp_adsp clock
+ as broken
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221130103841.2266464-2-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+References: <20221130031741.3176853-1-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221130031741.3176853-1-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 30.11.2022 11:38, Bhupesh Sharma wrote:
-> Add driver for the Qualcomm interconnect buses found in SM6115 based
-> platforms. The topology consists of several NoCs that are controlled by
-> a remote processor that collects the aggregated bandwidth for each
-> master-slave pairs.
+Il 30/11/22 04:17, Chen-Yu Tsai ha scritto:
+> The scp_adsp clock controller is under the SCP_ADSP power domain. This
+> power domain is currently not supported nor defined.
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Mark the clock controller as broken for now, to avoid the system from
+> trying to access it, and causing the CPU or bus to stall.
+> 
+> Fixes: 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192 clock controllers")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+
+....or we can add the ADSP power domain to actually fix this properly, which looks
+like being a generally good idea :-)
+
+Allen, can you please take care of that?
+
+Thank you,
+Angelo
+
 > ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 6b20376191a7..ef91941848ae 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -575,6 +575,8 @@ scp_adsp: clock-controller@10720000 {
+>   			compatible = "mediatek,mt8192-scp_adsp";
+>   			reg = <0 0x10720000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			/* power domain dependency not upstreamed */
+> +			status = "broken";
+>   		};
+>   
+>   		uart0: serial@11002000 {
+> 
 
-[...]
-
-> +MODULE_DEVICE_TABLE(of, sm6115_qnoc_of_match);
-> +
-> +static struct platform_driver sm6115_qnoc_driver = {
-> +	.probe = qnoc_probe,
-> +	.remove = qnoc_remove,
-> +	.driver = {
-> +		.name = "qnoc-sm6115",
-> +		.of_match_table = sm6115_qnoc_of_match,
-No .sync_state?
-
-> +	},
-> +};
-> +module_platform_driver(sm6115_qnoc_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm SM6115 NoC driver");
-> +MODULE_LICENSE("GPL v2");
-"GPL", checkpatch should have pointed that out.
-
-Otherwise lgtm
-
-Konrad
