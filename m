@@ -2,80 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DB063D0AD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 09:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B5E63D0C0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 09:35:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235501AbiK3Ibm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 03:31:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37254 "EHLO
+        id S235488AbiK3IfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 03:35:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235510AbiK3Ib0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 03:31:26 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0426E8BD1B
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:27:22 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d6so25782912lfs.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:27:22 -0800 (PST)
+        with ESMTP id S234786AbiK3IfA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 03:35:00 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF01286DD
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:33:11 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id z24so20060415ljn.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 00:33:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+lx3sySWedVDOe+3DR0W4CZhtHEM1KzEHeNBxVD2bIw=;
-        b=zE9hpJtq+E0R0Qgz+pPl9E25bGmJQOEEcnTKv5ajZcCutfU5GAZC6ma04alI4nSMc0
-         9IGp+zBymLKyaFMx2YTutQM65cC5mZba6qdDvOFmmAzLqrIsKovP/tTegxHY4GiiDICH
-         Mq+el2jIQ//pHoVtEfRxjerpKW7g7fI1Q0OflIWhGpMni4EXQyEt+Ec3l/uLM+6JNnCG
-         hD9I3zwTe1yHkY8oBsBveYdY6jncjihhrjCE81+HsMujHqK2ChrIqWEDxuLphR3WxD/b
-         SlZE33i3Q518guZm2Mz5DUueprg5rIwmwVvvyfCUubiYhvLRiPxqRnLbt5ufnEE4T7fA
-         GWMA==
+        bh=3xyoqBbnWI1VD4qfERQYhc2TYfB9goHU//f2T1eH4sA=;
+        b=NE4OZEyIBve2A4/6L97Ksr74YB99GYQP8ru+raeK0Efi/HOro1oQuMn43AcPfLSRqq
+         xpzfn9Ul25PRJjsQtnHhnrS/Q1e2UFtzhJJhSAnOvyA5aWlwum1zbF9LeA1NT1LLqzXg
+         M8TqgKj83qP4NKxA2ySdQDQABTQR9HyRcEB1dBdx3aJPB9Qw/MapLnQ+euq7nIIclleR
+         ZHw2shYKo9vfvMAxFa4WlXNhSPbROPUm7QmlM6AIVYNTaWKNCxuYqWKbbqPAOT6710HJ
+         XngZEjEqcfkzwYdUUtgkqnP7DkvMvukg3abPMlmC86m/y0dc6ZMQDjxUsDdQCdXKO8Mh
+         UWqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+lx3sySWedVDOe+3DR0W4CZhtHEM1KzEHeNBxVD2bIw=;
-        b=oz32OvWjPHsVztew2m6wsNlKhK45bNgY3JOTDS2FtVn82LpbTi+mEecIDTWtC75m9B
-         O00axwNb3R9q/ujq3vE4KygFDqrYicLuxcUP1p/+PnSsynvKsHtXfeQR9fSpPNelT5GK
-         eyitRUURRjnZsAiai2jcdYBuElsuZoyZFf5hvfxpnH0oN7YEVtqYveECrphhxUquZ+Nz
-         s04q06Fb/O4ODRWklLf0FKMB4Qw34DOhtLkf8rJhoZaXlRGC8EjFaBeyWCDaKNH0pQCP
-         m2WWqSz4918wLK+N8qkP6hzNEOrxsxMxQ3+0kIYroqA03Ce32JV7sL0dyKK3Z4RQiZ3B
-         q2fA==
-X-Gm-Message-State: ANoB5pl4SUNfgHSi4NeT1KAdy2wDTEsfFgWmVjgYGi22cRY/2DyvND63
-        dFirhHrqKWaD/zLVzAfJJ7RVvg==
-X-Google-Smtp-Source: AA0mqf6zuoFrOxLVpa30q4aaP76XjuelQRS6AmxczJ7tcbu2jkeS8eUbn1/TiuPhLEuFIihQEvTAyQ==
-X-Received: by 2002:a19:3853:0:b0:4a2:3955:109a with SMTP id d19-20020a193853000000b004a23955109amr23342473lfj.73.1669796838884;
-        Wed, 30 Nov 2022 00:27:18 -0800 (PST)
+        bh=3xyoqBbnWI1VD4qfERQYhc2TYfB9goHU//f2T1eH4sA=;
+        b=Frtajhjtg2hhhnZ+yhdyzpV1APHyY+EVCrgyF1gwZ5OUXIAkoQzUxMudecB44AWidl
+         izdH5a7avEcxL0aquglPZTCwFFCCAcJlKcz0Es42E6tjESdQeiZFk20iYIc4whZNB/QM
+         hkasFsohZIi9mN8sU5+hhB2Vj8N3Jgz6u9muSXOX5sZwP5qct/p5N+YyOQ9wOm4DqcjZ
+         X0QhK5ehe6d4kCZWYUk90AWjzmziqOm4b9SLKept/Y80Ga4PhMeaHePUb9QVw6Mjyd/m
+         1GjlGyA9nZpTVppzq1xTMEVCqkOi9hgXdobHCBDPhU5yUgK14e5Xf0+DytdV/xr6qmUu
+         v57w==
+X-Gm-Message-State: ANoB5pnlK128Qhzd49AGLb7CZy/WyYp8fvck3Iw9z7HEBXFqA7c4EDJ+
+        2UrKCCE4MeylnSh0SV9Upfi2Xw==
+X-Google-Smtp-Source: AA0mqf6E1YVyQ7wWFtFozRvgmCREjNx3M/WigYathuheXoU28TQTHO2oG62fRfkoLQZHx4tnNrIxQw==
+X-Received: by 2002:a05:651c:1586:b0:277:38f:ffad with SMTP id h6-20020a05651c158600b00277038fffadmr12718875ljq.439.1669797189767;
+        Wed, 30 Nov 2022 00:33:09 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c19-20020ac24153000000b00499aefcf68esm160746lfi.292.2022.11.30.00.27.17
+        by smtp.gmail.com with ESMTPSA id d10-20020a056512368a00b0049e9122bd0esm166301lfs.114.2022.11.30.00.33.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 00:27:18 -0800 (PST)
-Message-ID: <7661de74-f68c-6617-6a4e-3b0eb76a2a2e@linaro.org>
-Date:   Wed, 30 Nov 2022 09:27:15 +0100
+        Wed, 30 Nov 2022 00:33:09 -0800 (PST)
+Message-ID: <08bd485b-51f6-8249-63a7-a6864a431276@linaro.org>
+Date:   Wed, 30 Nov 2022 09:33:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v1 1/2] dt-binding: soc: nuvoton: Add NPCM BPC LPC
- documentation
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        arnd@arndb.de, hasegawa-hitomi@fujitsu.com, marcan@marcan.st,
-        nicolas.ferre@microchip.com, conor.dooley@microchip.com,
-        heiko@sntech.de, sven@svenpeter.dev, briannorris@chromium.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221122201232.107065-1-tmaimon77@gmail.com>
- <20221122201232.107065-2-tmaimon77@gmail.com>
- <cedc0013-f0c0-3180-6995-477b77b919f8@linaro.org>
- <CAP6Zq1iGwqOVOnhmF0ijYw=KoTRJj5CUpFv6WDouZmjVxXhQ-g@mail.gmail.com>
- <5c7a06bf-94e3-5c65-f202-105f74a41d29@linaro.org>
- <CAP6Zq1jdy-qDGFsk4sKcp3tx7d-nBMxOK72CRt3LLO8CrWJyKQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for
+ worldsemi,ws2812b-spi
 Content-Language: en-US
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Chuanhong Guo <gch981213@gmail.com>, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221129140955.137361-1-gch981213@gmail.com>
+ <20221129140955.137361-3-gch981213@gmail.com>
+ <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org>
+ <20221130001459.3wyxnwpjaxvla6oj@mercury.elektranox.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1jdy-qDGFsk4sKcp3tx7d-nBMxOK72CRt3LLO8CrWJyKQ@mail.gmail.com>
+In-Reply-To: <20221130001459.3wyxnwpjaxvla6oj@mercury.elektranox.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -86,52 +89,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/2022 17:44, Tomer Maimon wrote:
-> hi Krzysztof,
-> 
-> Thanks for your comments.
-> 
-> On Thu, 24 Nov 2022 at 18:18, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 30/11/2022 01:14, Sebastian Reichel wrote:
+>>> +      default-intensity:
+>>> +        description: |
+>>> +          An array of 3 integer specifying the default intensity of each color
+>>> +          components in this LED. <255 255 255> if unspecified.
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +        minItems: 3
 >>
->> On 24/11/2022 16:38, Tomer Maimon wrote:
->>> Hi Krzysztof,
->>>
->>> Thanks a lot for your comments.
->>>
->>> On Wed, 23 Nov 2022 at 12:03, Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 22/11/2022 21:12, Tomer Maimon wrote:
->>>>
->>>> 1. Subject: drop second, redundant "documentation" (dt-bindings are
->>>> documentation).
->>> O.K.
->>>>
->>>> 2. Use subject prefixes matching the subsystem (git log --oneline -- ...).
->>> this is what I did dt-binding: soc: nuvoton... do you mean dt-binding: nuvoton.
+>> Drop minItems.... but:
 >>
->> You didn't run the command, did you?
-> I did run this command "git log --oneline
-> Documentation/devicetree/bindings/soc" and I got this log list
-> e47206d71e67 dt-binding: soc: nuvoton: Add NPCM BPC LPC documentation
-> 121494030c53 dt-bindings: soc: add i.MX93 mediamix blk ctrl
-> 4fed4d20c59b dt-bindings: soc: add i.MX93 SRC
-> c7ebd54158d3 dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
-> 2345fc8dc2ec dt-bindings: soc: imx: add interconnect property for
-> i.MX8MM vpu blk ctrl
-> c1d9381ce430 dt-bindings: soc: imx: drop minItems for i.MX8MM vpu blk ctrl
-> f3894f969cf5 dt-bindings: soc: mediatek: Add display mutex support for MT6795
-> b2d7616e13c4 dt-bindings: soc: qcom: apr: add missing properties
-> 301628d80501 ASoC: dt-bindings: qcom,q6adm: convert to dtschema
-> 7b0ad4629d1f ASoC: dt-bindings: qcom,q6asm: convert to dtschema
-> b2496de1dfdd dt-bindings: soc: qcom: apr: correct service children
+>>> +        maxItems: 3
+>>> +        items:
+>>> +          minimum: 0
+>>> +          maximum: 255
+>>
+>> default: 255
 > 
-> most of the subjects are similar to what I did, if it is not correct
-> please let me know exactly what to write (beside the word
-> documentation that I will remove)
+> I would argue, that the default should be 0 (off) instead of 255
+> (full power).
 
-None of them have "dt-binding", so fix that part.
+Yes.
+
+> 
+>> What controls the intensity? Don't you have PWM there?
+> 
+> WS2812 is a RGB led, which contains a small Microcontroller. The µC
+> takes 24 byte intensity data from a serial input and then passes on
+> any following bits to the next LED. SPI clk and chip-select are
+> ignored (chip-select support can be trivially added though).
+> 
+> You can find them everywhere nowadays, since they are quite cheap
+> (a few cents per LED) and need only one MOSI pin to control hundreds
+> of LEDs.
+
+OK. This should be anyway existing property, so default-brightness.
 
 Best regards,
 Krzysztof
