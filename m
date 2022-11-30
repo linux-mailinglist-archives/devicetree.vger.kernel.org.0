@@ -2,64 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 355BD63D70F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 14:47:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F6263D766
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:01:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbiK3Nri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 08:47:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49660 "EHLO
+        id S229559AbiK3OBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 09:01:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbiK3Nrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 08:47:37 -0500
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43AEF1C;
-        Wed, 30 Nov 2022 05:47:36 -0800 (PST)
-Received: by mail-ot1-f44.google.com with SMTP id w26-20020a056830061a00b0066c320f5b49so11213922oti.5;
-        Wed, 30 Nov 2022 05:47:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=pwsp0BCLF4G1JEdG9NKeOCGZGdSktiRv5CDdT5GJHns=;
-        b=fz+VpeeTY3xMaD9ucvIdEKcZlmoTMWDzsH5k6+nUXPpXKt+B/Tq83cL3SCcP6MF8lR
-         YdbRBra23IqNUHmSm+OeMv9hMZK50Aw+isqZnszeIFWZJLMBQ45A507MYM1VbJJclk13
-         9ph+fWnxn+H0kSgPuBTpZpBLdCvQOqDYVl4wmDi75f0MHxjm4B3YdSZUy+NoUXLtAehc
-         POtbeNGjivq9jRPpYEln66G0Bluow3ufxsfogvJEI/d1poHE39BtAXX8ML1fIQlYUyZq
-         8B0jQ4aslE6eMrRioWUp2JbG2bDnNc+HjkKdrimb0gNgz2YF3NGGiFkUF/7TjgGmrWOJ
-         NLjg==
-X-Gm-Message-State: ANoB5plNKwW4K/uQhhH6bGHAelcor2WF5FAjdDP053T/MV6VbXgjv+M0
-        khqPqHakqEUEdQQvuMdXt37/f/5dJQ==
-X-Google-Smtp-Source: AA0mqf4Iea2320DugkNny8LrmH5N7sAE+JXLN+W1/nvbJiY+HXtFU/iorCneJYuX2wvnDbjwB21NAA==
-X-Received: by 2002:a05:6830:1048:b0:661:b7d1:e4dc with SMTP id b8-20020a056830104800b00661b7d1e4dcmr24091673otp.80.1669816055951;
-        Wed, 30 Nov 2022 05:47:35 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b19-20020a056870391300b00142fa439ee5sm1164346oap.39.2022.11.30.05.47.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 05:47:35 -0800 (PST)
-Received: (nullmailer pid 1848608 invoked by uid 1000);
-        Wed, 30 Nov 2022 13:47:34 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S229448AbiK3OBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:01:37 -0500
+X-Greylist: delayed 563 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Nov 2022 06:01:35 PST
+Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A25528E17;
+        Wed, 30 Nov 2022 06:01:35 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id A26D5BA4158;
+        Wed, 30 Nov 2022 14:52:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1669816330;
+        bh=pcIv7hJRQNuZYsBE+Cp2em/Jodkzbz5zoqpa315x034=;
+        h=Date:From:To:Cc:Subject;
+        b=cXhNocGTWt2Nr8ouAL8y7TnBnl3z3pr3rU+5N/qzSlTnToLORs78kRNeWI54XuXoA
+         nOw/7/5toNmmQheiBdCPix8t5LpHtY8uA21gP1TQ1xEo54gd4+lcrAxnQ8nGCyjxYn
+         8RdHpcjV7EG2zAmvV2c7Ex/mnuTse1cciYaJpIUa7ik2zdNpNJ7/FTen97Obk6bw8a
+         5ZCx2ao33Iq3hQO/ffx5OH0GwRLaH2l5Ba6nvajCPyc3GK5NUbjel0aylpskCc3ecB
+         kma0dK4VPkFb9JiCopzDrlUXByeqB7VkN/i12gtz5S6SoFbBMssEBp2+ntAnx67/6Q
+         8bdQxmyrZUNVQ==
+Date:   Wed, 30 Nov 2022 14:52:05 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, stable@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>
+Subject: Boot failure regression on 6.0.10 stable kernel on iMX7
+Message-ID: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc:     linux-crypto@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>
-In-Reply-To: <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
-Message-Id: <166981596611.1846501.537832446745968339.robh@kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto driver
-Date:   Wed, 30 Nov 2022 07:47:34 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,47 +55,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Marek,
+it looks like commit 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller
+size-cells"), that was backported to stable 6.0.10, introduce a boot
+regression on colibri-imx7, at least.
 
-On Wed, 30 Nov 2022 13:52:13 +0800, Jia Jie Ho wrote:
-> Add documentation to describe Starfive crypto
-> driver bindings.
-> 
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> ---
->  .../bindings/crypto/starfive-crypto.yaml      | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/starfive-crypto.yaml
-> 
+What I get is
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
+4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
+...
+[    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
+@33002000)
+[    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
+...
+[    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+[    5.946504] Please append a correct "root=" boot option; here are the available partitions:
+...
 
-yamllint warnings/errors:
+Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
+maybe you have a better idea.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/crypto/starfive-crypto.example.dts:21:18: fatal error: dt-bindings/clock/starfive-jh7110.h: No such file or directory
-   21 |         #include <dt-bindings/clock/starfive-jh7110.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/crypto/starfive-crypto.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+Francesco
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221130055214.2416888-6-jiajie.ho@starfivetech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
