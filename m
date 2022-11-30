@@ -2,180 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2CCA63D968
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2921E63D96B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 16:29:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiK3P1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 10:27:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
+        id S229624AbiK3P3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 10:29:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbiK3P1Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:27:16 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6287CAA9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:27:15 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b3so27515086lfv.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:27:15 -0800 (PST)
+        with ESMTP id S229456AbiK3P3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 10:29:07 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70EF14F182
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:29:05 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id c65-20020a1c3544000000b003cfffd00fc0so1691199wma.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 07:29:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j/hCMazCxQ4yJMJ0+IeReR/A2RoSVYIA+Cs+VrsQQ0Y=;
-        b=hxfOWWvWQVR4K7F8FVinn3S2TqmaONAv7a2VlLGBBWhUDu0pyp6WIc7tiMbrdUPlnI
-         WWQjKTMwWxFaQK15L1DK3wgXsCWipFdC5ssd6GGrR1BDAO2x60oHbDgn02DAyLNZNp6y
-         pDRoYyWVzgRh4kvYh1sTIwL0bGa9fCwxkfHFHuoCN0c4Jt0lovHN+c+Jqjpf8QZktr+K
-         cTfprk4Bp8q1vMLoECDJ8dfzI2NdSRj/1DeTxpWz8kUefgjeHDGcxW4K4vobrdBTYR18
-         gYJ5gqO2+IJTU1rWsqRLtahGFJUinNP82rYJdR3prJmEqJIbqmtsvbqzWDp0krqf4rwx
-         JjQQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eQCpZrxqU0ZqG/1E2Wjcht6dOxw6xUsArEFbqi/+8ts=;
+        b=0Dp90JwB/2ZIk2gWx0KqZMnNZC0AKQJWM5ZOueXBESuy8E3RzZLvr95qNZdP3WBMmp
+         Dmy0CXN0YTD2jRyay0+Y/AQZQQppBhuIfFOF6BarptLwkA3i/OVnie9x6A11L3QmbgqC
+         V7GjZsSjRdrjSZtwmApAUuNZOYoj4qs2D5/FOuG3PMBYC+8mzkoVDTBqb9n03GtHLjsp
+         d5YpDl+QUOBdcsLBsUs/3FXWkKDJXyuOXwuAbdNuoupH7CW86z+SbtAf7ylFn7mQrevB
+         4xlVD2izJVlJ/zwqD5I3DyaEpmtosMJgPjLpZqo0GA80Ea3szFrTHAH4wfTcelToOT3G
+         9SNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j/hCMazCxQ4yJMJ0+IeReR/A2RoSVYIA+Cs+VrsQQ0Y=;
-        b=iqI0VuiJzZhdRs0cVyuuSaENPYqUUq6ga1d6SJmD53zi2jfVNyfL0fo4EOaaXxv253
-         yQhNR5D/dEJbDd1Lcpk4VJihv1+vAyLDvUGnTRgBHz7kAiWju8l4/XqfQ/XHovGFNpTn
-         KANxn8G2H+94PJN74yWaAQRnEG1joWHFudUcQsLN6kimgEJaeTuredFBKnsG4EgrOs+l
-         GiwF9GU80OmbvTA20gOAHCiQA2ZAX8GHHSWnlhoz3u2oejOmLgEdbvUwTKVOMUZRjhpW
-         oTVo5ONR7ONQXVHbmWgxiKyu5xlduXSLi6ubp0acmd2W8+gEXyj9gTubyjuKChlHiA3t
-         3z3g==
-X-Gm-Message-State: ANoB5pnh/exzXPHTZ8xSHbQ7d6dYVYdLxolcYwDr7cBXbZu4KEAeZvzG
-        oZggFgcEcldOy1ConMowCtJJ+A==
-X-Google-Smtp-Source: AA0mqf705U8Ol7Gn+Z93s+DHy/DY+aJVeamPPsVE9PudAhDADfEEmsKkjUPc7JuCFPXM2QaDyFp2mg==
-X-Received: by 2002:a05:6512:13a7:b0:4ad:5f5c:2b26 with SMTP id p39-20020a05651213a700b004ad5f5c2b26mr19857325lfa.626.1669822033602;
-        Wed, 30 Nov 2022 07:27:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v3-20020a05651203a300b004a4754c5db5sm288974lfp.244.2022.11.30.07.27.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 07:27:13 -0800 (PST)
-Message-ID: <24add13e-5339-cc79-525a-098c2d61e8c1@linaro.org>
-Date:   Wed, 30 Nov 2022 16:27:12 +0100
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eQCpZrxqU0ZqG/1E2Wjcht6dOxw6xUsArEFbqi/+8ts=;
+        b=nJbNoPmNCWt0N1Mhqkkd2STKyNxMSqvz2C2u7ko+JTqF0T9RzO78jgLcrD9a4W+I1G
+         gwO2MEEioQ0OFsnT8kvqSik9bDeaFCtoF7LSb2/hy12fl95r6pKB5ZMFbJffZ5IcxDxX
+         LLXycRn+fL68ziNCdMa3I72Qnt3TS6H/2ASmtuapqzYff70rpU5S7LLlEHoc3XYJAPAB
+         1BjDxhBBaheqRPXDoIY8ioTqlaAviU+fINsiGSHbl0AdQPgy6J7U41ze4Bt3yj69LeVv
+         9Eypg/Wk01jflyF/FqXjQfGnLN0ztwyAl8RzCRrK36rZ71rtVPxOP4suDzdZb0mq4rhm
+         PK9Q==
+X-Gm-Message-State: ANoB5pkceAmyF70RvZguWY5nuzFgxgzl7D/rHNWHPL9EkyoENdrkRrgA
+        LeytaCXpmOwL6dmeTqUacR+6nQ==
+X-Google-Smtp-Source: AA0mqf5q9pp4E8hM3VW/7izBhrDQJ55xiEwMWxY/lg0MlGr4j3c7kOQPB4CRcd4gyZiaLZkawD7y6Q==
+X-Received: by 2002:a05:600c:2193:b0:3cf:a323:bfe6 with SMTP id e19-20020a05600c219300b003cfa323bfe6mr38289027wme.86.1669822143903;
+        Wed, 30 Nov 2022 07:29:03 -0800 (PST)
+Received: from localhost ([2a01:cb19:85e6:1900:2bf7:7388:731d:c4e1])
+        by smtp.gmail.com with ESMTPSA id fn9-20020a05600c688900b003cf75213bb9sm5821176wmb.8.2022.11.30.07.29.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 07:29:03 -0800 (PST)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Fabio Estevam <festevam@gmail.com>, dmitry.torokhov@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: input: gpio-beeper: Convert to yaml schema
+In-Reply-To: <20221120012135.2085631-1-festevam@gmail.com>
+References: <20221120012135.2085631-1-festevam@gmail.com>
+Date:   Wed, 30 Nov 2022 16:29:02 +0100
+Message-ID: <87o7sosbpd.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 2/8] dt-bindings: soc: socionext: Add UniPhier SoC-glue
- logic
-Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
- <20221129103509.9958-3-hayashi.kunihiko@socionext.com>
- <4e90944a-1200-4619-f977-590fe2919017@linaro.org>
- <efa90f10-db67-bb9f-03fd-e99695a5bdf5@socionext.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <efa90f10-db67-bb9f-03fd-e99695a5bdf5@socionext.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 09:59, Kunihiko Hayashi wrote:
-> Hi Krzysztof,
-> 
-> On 2022/11/29 23:43, Krzysztof Kozlowski wrote:
->> On 29/11/2022 11:35, Kunihiko Hayashi wrote:
->>> Add devicetree binding schema for the SoC-glue logic implemented on
->>> Socionext Uniphier SoCs.
->>>
->>> This SoC-glue logic is a set of miscellaneous function registers
->>> handling signals for specific devices outside system components,
->>> and also has multiple functions such as I/O pinmux, usb-phy, debug,
->>> clock-mux for a specific SoC, and so on.
->>>
->>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> ---
->>>   .../socionext,uniphier-soc-glue.yaml          | 94 +++++++++++++++++++
->>>   1 file changed, 94 insertions(+)
->>>   create mode 100644
->>> Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
->>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
->>> new file mode 100644
->>> index 000000000000..3f571e3e1339
->>> --- /dev/null
->>> +++
->>> b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
->>> @@ -0,0 +1,94 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id:
->>> http://devicetree.org/schemas/soc/socionext/socionext,uniphier-soc-glue.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Socionext UniPhier SoC-glue logic
->>> +
->>> +maintainers:
->>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> +
->>> +description: |+
->>> +  SoC-glue logic implemented on Socionext UniPhier SoCs is a collection
->>> of
->>> +  miscellaneous function registers handling signals outside system
->>> components.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - socionext,uniphier-ld4-soc-glue
->>> +          - socionext,uniphier-pro4-soc-glue
->>> +          - socionext,uniphier-pro5-soc-glue
->>> +          - socionext,uniphier-pxs2-soc-glue
->>> +          - socionext,uniphier-ld6b-soc-glue
->>> +          - socionext,uniphier-sld8-soc-glue
->>> +          - socionext,uniphier-ld11-soc-glue
->>> +          - socionext,uniphier-ld20-soc-glue
->>> +          - socionext,uniphier-pxs3-soc-glue
->>> +          - socionext,uniphier-nx1-soc-glue
->>> +          - socionext,uniphier-soc-glue
->>
->> This one looks generic - why having it next to specific ones?
-> 
-> SoC-glue has the same register set, but different implementations
-> for each SoC.
+On Sat, Nov 19, 2022 at 22:21, Fabio Estevam <festevam@gmail.com> wrote:
 
-Sure, but you did not model it as a compatible fallback, but like one of
-variants. It is not tied to specific SoC, thus too generic.
+> From: Fabio Estevam <festevam@denx.de>
+>
+> Convert the bindings from plain text to yaml schema.
+>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-> I thought of defining the same register set as a common specs,
-> but each compatibles are sufficient. I'll remove it.
-> 
->> Same question for your previous patch - socionext,uniphier-sysctrl.
->>
->> And similarly to previous patch, do you expect child nodes everywhere?
-> 
-> In case of this SoC-glue logic, all SoCs has pinctrl, however,
-> only SoCs with USB2 host has usb-controller (phy-hub).
-> And only legacy SoCs implement clock-controller (clk-mux) here.
-> 
-> Should child nodes that exist only in a specific "compatible" be defined
-> conditionally?
+Small nit below, but I don't think it matters, so:
 
-No, rather define them in top level but disallow for specific compatibles:
+Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-allOf:
- - if:
-  ....
-   then:
-     patternProperties:
-       ...: false
+> ---
+>  .../devicetree/bindings/input/gpio-beeper.txt | 13 --------
+>  .../bindings/input/gpio-beeper.yaml           | 33 +++++++++++++++++++
+>  2 files changed, 33 insertions(+), 13 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/gpio-beeper.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.txt b/Documentation/devicetree/bindings/input/gpio-beeper.txt
+> deleted file mode 100644
+> index a5086e37fce6..000000000000
+> --- a/Documentation/devicetree/bindings/input/gpio-beeper.txt
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -* GPIO beeper device tree bindings
+> -
+> -Register a beeper connected to GPIO pin.
+> -
+> -Required properties:
+> -- compatible:	Should be "gpio-beeper".
+> -- gpios:	From common gpio binding; gpio connection to beeper enable pin.
+> -
+> -Example:
+> -	beeper: beeper {
+> -		compatible = "gpio-beeper";
+> -		gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/input/gpio-beeper.yaml b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
+> new file mode 100644
+> index 000000000000..5fd57a8940df
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/gpio-beeper.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/gpio-beeper.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO controlled beeper
+> +
+> +maintainers:
+> +  - Fabio Estevam <festevam@denx.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-beeper
+> +
+> +  gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO that drives the beeper.
 
-Assuming that this does not over-complicate schema.
+We can join these lines:
 
+description: GPIO that drives the beeper.
 
-Best regards,
-Krzysztof
-
+> +
+> +required:
+> +  - compatible
+> +  - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    beeper {
+> +        compatible = "gpio-beeper";
+> +        gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
+> +    };
+> -- 
+> 2.25.1
