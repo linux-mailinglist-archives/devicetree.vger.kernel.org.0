@@ -2,100 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0122363D79D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6243C63D813
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:30:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbiK3OGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 09:06:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36474 "EHLO
+        id S229851AbiK3OaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 09:30:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbiK3OGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:06:22 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D27B73419
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:20 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id bg10so348538wmb.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cZK+iipkHl/pJApvhUcvpWuoeG0v04wAY4UNOC37vzE=;
-        b=04RThbWA/+v6wP1k/7fkx43V5YD+NUt+nFK9/NA7SGUJC4567NIQnKu8MXSDWU5/Ap
-         bkfMUUT9XJ8apuyUDFRs4Dy1EgMI28NRXczg/bQ5YDLKFJ39FeN9xXOOFLIXuhNj/Gqx
-         xF0tsfz4W8B0E4GQxytUH5h52ZIAjaNdK5mAJx7Zb8JpmQLHZSe57X1BXpOKkl2cHBP6
-         P9Mq1JOgDb3+rJMY/dPizZveUcFf/K4euhPK0+JdT/dQ+Otdl2tdYH4skFdyY8uPeT7Q
-         lvWOhrZflPIRZ9Fk4N9XnZs/uZM/RM24oMtkD6Lt8r75KpC76L/5zv8jUBiAHH/gKAV/
-         SDLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cZK+iipkHl/pJApvhUcvpWuoeG0v04wAY4UNOC37vzE=;
-        b=atXFz32cWrz7PiwFMaOrwX6Cv2OkKXh0D+gZX0U5sNdzAhFP+/D9WlBbHBpki5nA1g
-         S8sebhL1fCbmD4b3rBUirKO8dk9di8J6zN17RdXVRl2UnJJRWS8XwmMeyHVkVNfFAOk1
-         P5XPg/+pdYDzGlBHLmhB650QJGWy5qHy7RZ0W7Zm06Y7jVlD02wPH4lnaaKvs8CtQzG/
-         FLHqBS2jaSaKU9jE4kYDbRCOctMldXofjV+sasd5bySsTYiySuUJ0M9j039X1ijROWbk
-         qtdDXusHz54puZPMgqKifb40JHNQhbJflTMV+hJPdvNE3KmQjNUQ7tkVVj5WibLtPkSi
-         nGdg==
-X-Gm-Message-State: ANoB5pkmNxQhfdmpQt/mPp3w/3Y/aWLuQ2wROwlGebIUwEOFNM0SA786
-        35S8MbDLdju4FVLIXllvpExjKT9ReaJwo1Lv
-X-Google-Smtp-Source: AA0mqf7H+IP49fZG476zanx03QWDNwT6bptGYlMh93TqEzY53h9PL2Z9YTNfNwMRrEqM/ptA55LvPA==
-X-Received: by 2002:a7b:cbcb:0:b0:3cf:a83b:cf25 with SMTP id n11-20020a7bcbcb000000b003cfa83bcf25mr33535477wmi.170.1669817179005;
-        Wed, 30 Nov 2022 06:06:19 -0800 (PST)
-Received: from mpfj-unity.. ([94.12.112.226])
-        by smtp.gmail.com with ESMTPSA id v128-20020a1cac86000000b003cfa80443a0sm2062542wme.35.2022.11.30.06.06.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 06:06:18 -0800 (PST)
-From:   Mark Jackson <mpfj@newflow.co.uk>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Mark Jackson <mpfj@newflow.co.uk>,
+        with ESMTP id S229559AbiK3OaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:30:15 -0500
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0EC52888;
+        Wed, 30 Nov 2022 06:30:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669817506; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=MBcgFbrxBMjCUsYG5JPRrKKOle/H+6CLvHLsKhUx7pGZLSo7InNJY1XoZh2orec8LiN/fuMmkzcItQOuWc/Oggq4K+ooy2GsQTgCZopz0ITgJ7F4AJjYcXkOgFtZGIDyF/Tn6FBiWEp7A4+dyD+Hdg3v0fIBLNLvbvcpb9fPBq8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1669817506; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=QF5pLbXUIUVP28HpDZnKqlToc38teR4R32c+jesH+QM=; 
+        b=TUNQ8cHrgqns0eHBc3DfXD+rwLkdzqPFztq0Ens1q4Zt1GNyinG8t3QVugkQj7nYzeGT5iZRg3ZGY9NBCMcqf6mfCOBhZ5qZhBxo3uw9/X9o3OXvbuXEXBncGS8d0munLxduoEP5BKia9DYBqh3wBR+nZ9st98uToRtnBgFSTSY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669817506;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=QF5pLbXUIUVP28HpDZnKqlToc38teR4R32c+jesH+QM=;
+        b=HfKAf4+Fel3coxytPwxCdcvr10bO6It6KMz9XQGSx8zBhVPLMBNwvphkDbv4PRBH
+        46P1LoZCIUxZawUHkV429aO6CGMJEcZ9QLB02hIwx4g/Dp5bRfd5jX7+E5Rxcd0iWFW
+        XVs2bsC3ntk6QlmzoL111TFrzu1K8SiYvYhUQudo=
+Received: from arinc9-PC.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1669817503309623.081549759161; Wed, 30 Nov 2022 06:11:43 -0800 (PST)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        soc@kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 RESEND 5/5] ARM: dts: am335x-nano: Enable USB host
-Date:   Wed, 30 Nov 2022 14:05:47 +0000
-Message-Id: <20221130140547.295859-6-mpfj@newflow.co.uk>
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Oleksij Rempel <linux@rempel-privat.de>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH 0/5] remove label = "cpu" from DSA dt-binding
+Date:   Wed, 30 Nov 2022 17:10:35 +0300
+Message-Id: <20221130141040.32447-1-arinc.unal@arinc9.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221130140547.295859-1-mpfj@newflow.co.uk>
-References: <20221130140547.295859-1-mpfj@newflow.co.uk>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing entry to enable the USB host.
+Hello folks,
 
-Signed-off-by: Mark Jackson <mpfj@newflow.co.uk>
----
- arch/arm/boot/dts/am335x-nano.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+With this patch series, we're completely getting rid of 'label = "cpu";'
+which is not used by the DSA dt-binding at all.
 
-diff --git a/arch/arm/boot/dts/am335x-nano.dts b/arch/arm/boot/dts/am335x-nano.dts
-index 58062cec39c0..c447aebd8d86 100644
---- a/arch/arm/boot/dts/am335x-nano.dts
-+++ b/arch/arm/boot/dts/am335x-nano.dts
-@@ -423,6 +423,10 @@ &mmc1 {
- 	wp-gpios = <&gpio3 18 GPIO_ACTIVE_HIGH>;
- };
- 
-+&usb0 {
-+	dr_mode = "host";
-+};
-+
- #include "tps65217.dtsi"
- 
- &tps {
--- 
-2.34.1
+Information for taking the patches for maintainers:
+Patch 1: netdev maintainers (based off netdev/net-next.git main)
+Patch 2-3: SoC maintainers (based off soc/soc.git soc/dt)
+Patch 4: MIPS maintainers (based off mips/linux.git mips-next)
+Patch 5: PowerPC maintainers (based off powerpc/linux.git next-test)
+
+I've been meaning to submit this for a few months. Find the relevant
+conversation here:
+https://lore.kernel.org/netdev/20220913155408.GA3802998-robh@kernel.org/
+
+Here's how I did it, for the interested (or suggestions):
+
+Find the platforms which have got 'label = "cpu";' defined.
+grep -rnw . -e 'label = "cpu";'
+
+Remove the line where 'label = "cpu";' is included.
+sed -i /'label = "cpu";'/,+d arch/arm/boot/dts/*
+sed -i /'label = "cpu";'/,+d arch/arm64/boot/dts/freescale/*
+sed -i /'label = "cpu";'/,+d arch/arm64/boot/dts/marvell/*
+sed -i /'label = "cpu";'/,+d arch/arm64/boot/dts/mediatek/*
+sed -i /'label = "cpu";'/,+d arch/arm64/boot/dts/rockchip/*
+sed -i /'label = "cpu";'/,+d arch/mips/boot/dts/qca/*
+sed -i /'label = "cpu";'/,+d arch/mips/boot/dts/ralink/*
+sed -i /'label = "cpu";'/,+d arch/powerpc/boot/dts/turris1x.dts
+sed -i /'label = "cpu";'/,+d Documentation/devicetree/bindings/net/qca,ar71xx.yaml
+
+Restore the symlink files which typechange after running sed.
+
+Arınç ÜNAL (5):
+  dt-bindings: net: qca,ar71xx: remove label = "cpu" from examples
+  arm: dts: remove label = "cpu" from DSA dt-binding
+  arm64: dts: remove label = "cpu" from DSA dt-binding
+  mips: dts: remove label = "cpu" from DSA dt-binding
+  powerpc: dts: remove label = "cpu" from DSA dt-binding
+
 
