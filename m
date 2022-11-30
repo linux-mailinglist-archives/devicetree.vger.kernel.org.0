@@ -2,131 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A8E63D691
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 14:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C226163D6A5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 14:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbiK3NWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 08:22:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
+        id S234500AbiK3N1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 08:27:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235838AbiK3NVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 08:21:45 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 198297CAA9
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 05:21:39 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id g12so26938719lfh.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 05:21:39 -0800 (PST)
+        with ESMTP id S229472AbiK3N1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 08:27:17 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDBA750D41
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 05:27:15 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id z4so20874289ljq.6
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 05:27:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EX67p13z8d9r6utOQ3HspL4ZQU3w0yz+MFaOvH14Afg=;
-        b=HbKbsmDaHQCbziDgajKR80oOYPdVMbLximh6GWVUvz9kqlJroCPovLR5nuOjq9/uep
-         asR8yhq+pOBgRnaYu8Wr4kGSbOInPEYT/bbLLi1cB1nVZdlYzrlolleMsVY4so9dqY+d
-         /02g1se7UbNg75PTLaDlhbPCKMtYwsnhXotrZxfehQ1WUakUR+LFiQcYNzKtrXxPh4kA
-         +ojt+Nx4Vr6KMaNw1zjihVUH8pe5FDP+fbDVWjj7BAv/dcfHMQG0XSWjMXVv5Vfxtu/f
-         MG0PntjAYJvFBVFZk8LneLNgpLQUzYxCdIgD4KuigtuYdSSrIPRUqOy0eWNVXVGqt+/7
-         +b6A==
+        bh=L9Lt8MusbIeLzXLuEmIXUX298UXRhIvm9jk18drcsFo=;
+        b=l57aOrkN2uN2PqRsh1eKKWNXOZ/F9drJSVv/pZ1A2t13xU5kAuOGJCLaiPPcORDqff
+         estgByqVkVRqALowSAMqFHEUmRlWBDQRonomz7olwzvJAvUT7F3WVh5KDxS39nOcHEWs
+         HFGujvPus5okKsrXiWD+kCRST4b2UB/4MX4bW+fZNXzL2KEIudB/LfONblgbRiYsNLZ3
+         mE9zyfZULBU67zgp1vl6q+NAx2fPaYn16dZyCGeB3VrHXdhc/AOlAXiP1Nb6tcEwCyCc
+         5xtmNQrHMPQwd52qzHE/9h+O7QA5cfvKDahmuvYNCEtMczxdxPDyi88hcYdmXoKjMy9n
+         p4Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EX67p13z8d9r6utOQ3HspL4ZQU3w0yz+MFaOvH14Afg=;
-        b=o43Mxay4HaLFJLsFMtM4M78Lz+VNzFyoDgH9j6LP/fPF8ULTlPNz0JLljflRpzW6nZ
-         8AywJCYqa6shPtqCkSFfGvvz2udCWIzQ1axweWnlhuGq1uauppemXvg3DknZK6Q5Tk0d
-         UP0jvfIsu02gmVmRoCVCr48vGq84bWCh+T+TQEbFK+9XatO38BuW//5+GYKqbl39Gx/j
-         s6jawLC/Ph2dAdnQ5bvwWk0W3cFjH5kaJupEVi8Q8LXdQkfbjGqVnk2lKhVUo9bccPLk
-         5+PH2Uq55zMSRm8ieCervvuDVnCqSGEHOPL4bOzjP+v7aRazD7wUk+IyHDcej9VAgZhy
-         zq+Q==
-X-Gm-Message-State: ANoB5pn6jy/sPo3O5q16lye/Tcuxi5fIMR50CT1/MtqlgqwJH4uow6R/
-        TTAa8QjcfkpsO/y14+qGknznuA==
-X-Google-Smtp-Source: AA0mqf52Qf97WPzBKIa/waiBz5xTnEwwOQKDvYKrFoZ8Q2Q4fftU8TGRyTNB6VsgW04a9KygsWryTg==
-X-Received: by 2002:a05:6512:32cf:b0:4af:e82f:6013 with SMTP id f15-20020a05651232cf00b004afe82f6013mr17826256lfg.36.1669814497889;
-        Wed, 30 Nov 2022 05:21:37 -0800 (PST)
+        bh=L9Lt8MusbIeLzXLuEmIXUX298UXRhIvm9jk18drcsFo=;
+        b=f65MN0n+vd6Aj/it9ZOiMvhSNzwF21cDF/9gEpw6J/tmVWfae7piE+RNMYootmDzto
+         mUEZraUtV3dGqtrDtE2RsTYyjZF89J8lAJOXYtFWvmoapRFf5n05Q6pWUfE5+A2wcTUB
+         NbycK5tLoV9XGpLLKx2fnNib4yyyN2wlou8l/tJeAa7I8/6mzJOd3/0TqH/sHBg/K/7E
+         Xukg1IYLKLDRNh5tfel2EXmLu4SfN35t7rYh7js9vkdHmv4kI2BdiTz7op6ByWJGQcqZ
+         dLTsNJA3Izgvk7G1iOUYuSM3S9eVo/BaxiRiGS6sxRxaKSuInUD89zAcJzNFjvJVnEEM
+         37/Q==
+X-Gm-Message-State: ANoB5pm9I8Z8BGjpN+pwbOykuEzsgauv4dMwc4gKdiav8C3KQzNqSUBk
+        v8aGDhgvrTmX/YuPdUZqLtS6zA==
+X-Google-Smtp-Source: AA0mqf6F3wfnpDtDP8Gs5j5HfzOMh180Qqp7mnxZe5Lb5rW7gaX/Ij2qnb0gmJ4akI/C/4ibmTUsLg==
+X-Received: by 2002:a05:651c:1ce:b0:278:a696:2781 with SMTP id d14-20020a05651c01ce00b00278a6962781mr19189869ljn.401.1669814834196;
+        Wed, 30 Nov 2022 05:27:14 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b8-20020a05651c032800b002770e6c620bsm125999ljp.106.2022.11.30.05.21.37
+        by smtp.gmail.com with ESMTPSA id 19-20020ac25f53000000b00497a3e11608sm253815lfz.303.2022.11.30.05.27.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 05:21:37 -0800 (PST)
-Message-ID: <6de013d9-f2ab-a2d8-1022-2474c037c737@linaro.org>
-Date:   Wed, 30 Nov 2022 14:21:36 +0100
+        Wed, 30 Nov 2022 05:27:13 -0800 (PST)
+Message-ID: <327abc1a-b602-7aa0-b6c8-d60e96975c48@linaro.org>
+Date:   Wed, 30 Nov 2022 14:27:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH 6/6] riscv: dts: starfive: Add crypto and DMA node for
- VisionFive 2
+Subject: Re: [PATCH v2] dt-bindings: display: Convert fsl,imx-fb.txt to
+ dt-schema
 Content-Language: en-US
-To:     Jia Jie Ho <jiajie.ho@starfivetech.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-7-jiajie.ho@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221130055214.2416888-7-jiajie.ho@starfivetech.com>
+In-Reply-To: <20221129180414.2729091-1-u.kleine-koenig@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 06:52, Jia Jie Ho wrote:
-> Adding StarFive crypto IP and DMA controller node
-> to VisionFive 2 SoC.
-> 
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-v2.dts         |  8 +++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 36 +++++++++++++++++++
->  2 files changed, 44 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> index 450e920236a5..da2aa4d597f3 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> @@ -115,3 +115,11 @@ &tdm_ext {
->  &mclk_ext {
->  	clock-frequency = <49152000>;
->  };
+On 29/11/2022 19:04, Uwe Kleine-König wrote:
+> Compared to the txt description this adds clocks and clock-names to
+> match reality.
+
+(...)
+
 > +
-> +&sec_dma {
-> +	status = "okay";
-> +};
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +  - Pengutronix Kernel Team <kernel@pengutronix.de>
 > +
-> +&crypto {
-> +	status = "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 4ac159d79d66..745a5650882c 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -455,5 +455,41 @@ uart5: serial@12020000 {
->  			reg-shift = <2>;
->  			status = "disabled";
->  		};
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx1-fb
+> +          - fsl,imx21-fb
+> +      - items:
+> +          - enum:
+> +              - fsl,imx25-fb
+> +              - fsl,imx27-fb
+> +          - const: fsl,imx21-fb
 > +
-> +		sec_dma: sec_dma@16008000 {
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +      - const: per
+> +
+> +  display:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+You could mention here in "description" expected properties of display,
+just like original binding. Anyway, looks good:
 
-No underscores in node names.
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
