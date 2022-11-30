@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BDE63D795
-	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 705F063D792
+	for <lists+devicetree@lfdr.de>; Wed, 30 Nov 2022 15:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiK3OGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229617AbiK3OGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 30 Nov 2022 09:06:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbiK3OGS (ORCPT
+        with ESMTP id S229798AbiK3OGS (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 09:06:18 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A90B77220
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:16 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id p13-20020a05600c468d00b003cf8859ed1bso1476610wmo.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:16 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3637B4D8
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:17 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id h4-20020a1c2104000000b003d0760654d3so68677wmh.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 06:06:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=newflow-co-uk.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eBK4M6em14NDAYl08ahmQwtvd1CwNFvnLrorbySUXHw=;
-        b=Oh3OfFnWdBAvdmF7mYVNDPK+5Ub6/d/oZSk0EAQHF3XbUnw2DsEVrhisiP6VzHpbn+
-         ZEKlVZlMDHGahIkmz/kgfoeWCSRbMTL1IbLE/1vp8KEtmqzIMnVFMLJZhkR3VqkAaV0W
-         iCRyoi8vZD/1IdTKwpiZdIDlMxUSA76QwIDIsDdW9Yu68+pKYEYTEfgU2DOSxCbRc+yL
-         9YYfbThJhDYM8el9DmvfgZh41sVNEIvsDW4ml61tljSfHK/0SNdA1/dh6/7iD0CdLsIr
-         VZy2O9ZVjtcQZZ3r/r9Laluvm9CdZG7UETd0v7LGYO4RStbcttrNdouuJ018OxKjT9Bg
-         88Ug==
+        bh=A9lRrQgwNdzcRvhC7oNoTPa3Q44tE4Nwzh6uHCLmick=;
+        b=nm+YD4lwlJczqUoucPAREX3wJ1l5vxvd15NAhW1krXPZ45EaIkJZujRWYYdH0/MI8q
+         772V7WkYr98nBWiw4n+93RnMt1P9wX4rdLcDiL9s/GypC1551L3RhS6I3v4fj/a1O6Nc
+         WzCbReKSuk9bwVQhyc7bQ8KD2VvI5S2sjLI7+wbZNMdplEcQrXHyCEH1J1Zj1sSNqmoD
+         LmOSSfjut2yj5pCJDMS6i8MILacyrMx3LJdfNUljrzby7osr01Lt+UJAvno8ypI7lixV
+         AkUKYWxXPyjQ/0p4/j5WGYjU1ZhhaK4gatUON+anEc2Y3DUf95zpJcWMNfGc4z4gyxGo
+         2WOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eBK4M6em14NDAYl08ahmQwtvd1CwNFvnLrorbySUXHw=;
-        b=sjUfqsGnniWUT0ehlBtVi3WxCC9ux2IiTHSTC93kCukxFbRZHniVV0McMgDe7BsvWL
-         c8WOT7uoYvxSgFl5BcMpvmBqY6zcWcftCAeeEDoX2d+jchXDC71gOOG66aJH/FOtcmOn
-         OAbEXcO321CYkAtAYQL6FKDP8eK9aS9PXLxuhNNvsLxN4PKhC23WHLpQEHbs5ECl8bCU
-         4ot9350GMkK2Uqa1LuJO4Axr2u+vWwPzLDOoTIHHSBxzZbawc/MggB4Ajp4z9TicMIij
-         Hs1ggOdH06C24dmjsZgalVPLNMj387KOLBjgu7AimF+OC1buQaifzhgKLUpeDV3Y4IAK
-         RGjQ==
-X-Gm-Message-State: ANoB5plCOZ0dIeNXaEeXYPRqCqf15yvXyyjbPpPi9CAZwifg3V12ob45
-        ErbxZT7us6WDcVSn3Y9G5ODljg==
-X-Google-Smtp-Source: AA0mqf7SpsdXJ3SmPlIzmGJAvhcfMZ1cBYNUejxnKxqCWEOlrLhIcnXylQkuL+fr7tGNkvjIm6N60A==
-X-Received: by 2002:a05:600c:3d0c:b0:3cf:f66c:9246 with SMTP id bh12-20020a05600c3d0c00b003cff66c9246mr32407715wmb.27.1669817174956;
-        Wed, 30 Nov 2022 06:06:14 -0800 (PST)
+        bh=A9lRrQgwNdzcRvhC7oNoTPa3Q44tE4Nwzh6uHCLmick=;
+        b=ol8VDPw29qthAYw+4nV3djnM86Iv/LB4bA+Xv704ADEy6q+/XOfCuWRHg0dzDwoilZ
+         MM1Cu42f8qaXxn1V6vtiFn9QdAy+Vy/ImP7iWFySd+C/QxjVIDMsHmu7LCVIGPzlR0DN
+         EWUt3Y6IoYddZG2ul97MwxCmEk0jMp0OIontzmZ91i7amoN/B8T7yj8SDhMNlF8Fu/M2
+         7jeJgSYp7R5ruhqljd3glJY9VeGNgHSRj0MN5cdvZ+bQdxdknaxDSHC3yqQFbkKOZu/b
+         WKXKoBUzeCPDVIwElh9TwuMvuGQ+xVBdVqXz8jdkery6hFYsxPMvrYgwa+N3WIjKtlfk
+         +j7Q==
+X-Gm-Message-State: ANoB5pn0SlZvsmwYeZIU74K75JxwKZKo+oSI4AxU7SsA/Kg292bkHTgx
+        h/SYZ9ciJ8F8lbK00i5wHvqXTg==
+X-Google-Smtp-Source: AA0mqf5uJOnXVO1u+u0fMY/XejbRIQJKjFofWlTxgUiUKAWg9oEPlLuWsRD0qwBG/QDwDXm1CHgCwg==
+X-Received: by 2002:a1c:6a0a:0:b0:3cf:d64e:1cea with SMTP id f10-20020a1c6a0a000000b003cfd64e1ceamr31184977wmc.183.1669817175869;
+        Wed, 30 Nov 2022 06:06:15 -0800 (PST)
 Received: from mpfj-unity.. ([94.12.112.226])
-        by smtp.gmail.com with ESMTPSA id v128-20020a1cac86000000b003cfa80443a0sm2062542wme.35.2022.11.30.06.06.14
+        by smtp.gmail.com with ESMTPSA id v128-20020a1cac86000000b003cfa80443a0sm2062542wme.35.2022.11.30.06.06.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Nov 2022 06:06:14 -0800 (PST)
+        Wed, 30 Nov 2022 06:06:15 -0800 (PST)
 From:   Mark Jackson <mpfj@newflow.co.uk>
 To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
         Tony Lindgren <tony@atomide.com>,
@@ -57,9 +57,9 @@ To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 RESEND 1/5] ARM: dts: am335x-nano: Fix GPIO settings for RTS/CTS pins on UART3 & 4
-Date:   Wed, 30 Nov 2022 14:05:43 +0000
-Message-Id: <20221130140547.295859-2-mpfj@newflow.co.uk>
+Subject: [PATCH v2 RESEND 2/5] ARM: dts: am335x-nano: Enable RS485 mode for UART3 & 4
+Date:   Wed, 30 Nov 2022 14:05:44 +0000
+Message-Id: <20221130140547.295859-3-mpfj@newflow.co.uk>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221130140547.295859-1-mpfj@newflow.co.uk>
 References: <20221130140547.295859-1-mpfj@newflow.co.uk>
@@ -74,40 +74,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NanoBone platform uses GPIO pins for RTS/CTS control.
-The DTS still uses the hardware RTS/CTS pins so this needs fixing.
+UART3 & 4 are both RS485 ports.
+So we need to configure and enable this by default.
 
 Signed-off-by: Mark Jackson <mpfj@newflow.co.uk>
 ---
- arch/arm/boot/dts/am335x-nano.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/am335x-nano.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-nano.dts b/arch/arm/boot/dts/am335x-nano.dts
-index b6f2567bd65a..05cbfe24f778 100644
+index 05cbfe24f778..cecc2afaeff4 100644
 --- a/arch/arm/boot/dts/am335x-nano.dts
 +++ b/arch/arm/boot/dts/am335x-nano.dts
-@@ -120,8 +120,8 @@ AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_OUTPUT, MUX_MODE1)		/* spi0_d0.uart2_txd
+@@ -187,12 +187,22 @@ &uart2 {
+ &uart3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart3_pins>;
++	rts-gpio = <&gpio2 17 GPIO_ACTIVE_HIGH>;
++	rs485-rts-active-high;
++	rs485-rx-during-tx;
++	rs485-rts-delay = <1 1>;
++	linux,rs485-enabled-at-boot-time;
+ 	status = "okay";
+ };
  
- 	uart3_pins: uart3_pins {
- 		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_INPUT_PULLUP, MUX_MODE6)	/* lcd_data10.uart3_ctsn */
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE6)		/* lcd_data11.uart3_rtsn */
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA10, PIN_INPUT_PULLUP, MUX_MODE7)	/* lcd_data10.gpio2[16] */
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA11, PIN_OUTPUT, MUX_MODE7)		/* lcd_data11.gpio2[17] */
- 			AM33XX_PADCONF(AM335X_PIN_SPI0_CS1, PIN_INPUT, MUX_MODE1)		/* spi0_cs1.uart3_rxd */
- 			AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_OUTPUT, MUX_MODE1)		/* ecap0_in_pwm0_out.uart3_txd */
- 		>;
-@@ -129,8 +129,8 @@ AM33XX_PADCONF(AM335X_PIN_ECAP0_IN_PWM0_OUT, PIN_OUTPUT, MUX_MODE1)		/* ecap0_in
+ &uart4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart4_pins>;
++	rts-gpio = <&gpio0 9 GPIO_ACTIVE_HIGH>;
++	rs485-rts-active-high;
++	rs485-rx-during-tx;
++	rs485-rts-delay = <1 1>;
++	linux,rs485-enabled-at-boot-time;
+ 	status = "okay";
+ };
  
- 	uart4_pins: uart4_pins {
- 		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT_PULLUP, MUX_MODE6)	/* lcd_data12.uart4_ctsn */
--			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE6)		/* lcd_data13.uart4_rtsn */
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA12, PIN_INPUT_PULLUP, MUX_MODE7)	/* lcd_data12.gpio0[8] */
-+			AM33XX_PADCONF(AM335X_PIN_LCD_DATA13, PIN_OUTPUT, MUX_MODE7)		/* lcd_data13.gpio0[9] */
- 			AM33XX_PADCONF(AM335X_PIN_UART0_CTSN, PIN_INPUT, MUX_MODE1)		/* uart0_ctsn.uart4_rxd */
- 			AM33XX_PADCONF(AM335X_PIN_UART0_RTSN, PIN_OUTPUT, MUX_MODE1)		/* uart0_rtsn.uart4_txd */
- 		>;
 -- 
 2.34.1
 
