@@ -2,279 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8A263EF76
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E76163EF7A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:30:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbiLAL3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:29:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46038 "EHLO
+        id S230285AbiLAL37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:29:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbiLAL3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:29:15 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0A352148;
-        Thu,  1 Dec 2022 03:29:14 -0800 (PST)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1669894152;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=EDYHcKJNIl+bFBsPJ9EKGMSmWfe/8gI4HDrW58IPop0=;
-        b=o8IsKqMxg5Xkgxlv83mVHjmHCrw88/1n8GQWsRih1pewbVOeJyEY9TFGg1nPjoeJtVOHWR
-        9+qhCIParsQuUdzuD/Qf/QbU6MIqTThKNCDKkTORdbPxLSJ9GLyXMuUs2opHR7xOaCh9um
-        LHOVcyHL4K0RvjNgf79BcMKr+DRgcQ39V8Lv2y5EnJF6uqpXtqeWhSxiD9CamqQ3l51Y0D
-        wrX8pqk7knVKZyvnI7LaRKrhIpM17v5HyWHAeR1j42SnpLKr3JQlWGHpxB7vUkPELTCYAr
-        ArcU1+H8N1nYX0wXOhIwkVoysCFpcSlqezu4gdK4j2P0TAuF/0vFd8qIO2a8cQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1669894152;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=EDYHcKJNIl+bFBsPJ9EKGMSmWfe/8gI4HDrW58IPop0=;
-        b=NVjcGjbsY+ymyeBytgfnNhP/VQjQSsGfl0G38KK1qXT3nvEO7RAfQ3LDnNPDOF/2LiyC1S
-        MUuww9PZ0hNXi1Bw==
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v11 1/3] clocksource: loongson2_hpet: add hpet driver
- support
-In-Reply-To: <20221129030925.14074-1-zhuyinbo@loongson.cn>
-References: <20221129030925.14074-1-zhuyinbo@loongson.cn>
-Date:   Thu, 01 Dec 2022 12:29:12 +0100
-Message-ID: <87k03bs6pj.ffs@tglx>
+        with ESMTP id S230265AbiLAL35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:29:57 -0500
+Received: from gateway33.websitewelcome.com (gateway33.websitewelcome.com [192.185.145.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CBB56D57
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:29:56 -0800 (PST)
+Received: from atl1wswcm02.websitewelcome.com (unknown [50.6.129.163])
+        by atl4wswob04.websitewelcome.com (Postfix) with ESMTP id 8D4A38733C
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:29:55 +0000 (UTC)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id 0hlIpljYY4ZGb0hlKpPVpz; Thu, 01 Dec 2022 11:29:55 +0000
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=TCNr02UaRvZ8qQ2TFTX6Ynk9lUh1O4TOo+08fJJNC2k=; b=hwsuGXY080THqr1c9HDjoVevnH
+        AGIl7kcDBCpnI9P7+Io3E2QG5TM/ArD2mNLA7y3MxW3nDWUOXKkfr8DrvrJhWljO75m1FQ/jk60hJ
+        NjQkUanU7sQ+2mBcO2IXiS9hjcjokThkYt/tjyb73VILbCJxVZFKxyLPalHrGVNo0X8rsSs/FfqnI
+        2d/mO4STFp/1tVNPeY/pRLhnx4Hp5lECjwyk4qjX2fp3jArj1gTCt7DKUe0yS21QQCkXaVUAvEyvP
+        t0iP9eeC/9RJLLCOsZtGxmOQgsadmH6+bKJguEH/E1SVTlRlP4p1yw7/cpfr2NcByhMwrhHblsZgV
+        MZGtLXMg==;
+Received: from [223.187.121.253] (port=40120 helo=[192.168.221.42])
+        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <saravanan@linumiz.com>)
+        id 1p0hlG-000MTk-Km;
+        Thu, 01 Dec 2022 11:29:51 +0000
+Message-ID: <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
+Date:   Thu, 1 Dec 2022 12:29:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
+ power-management IC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux@roeck-us.net, linux-kernel@vger.kernel.org,
+        marten.lindahl@axis.com, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20221201044643.1150870-1-saravanan@linumiz.com>
+ <20221201044643.1150870-3-saravanan@linumiz.com>
+ <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
+Content-Language: en-US
+From:   Saravanan Sekar <saravanan@linumiz.com>
+In-Reply-To: <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 223.187.121.253
+X-Source-L: No
+X-Exim-ID: 1p0hlG-000MTk-Km
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.221.42]) [223.187.121.253]:40120
+X-Source-Auth: saravanan@linumiz.com
+X-Email-Count: 7
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfAT9eNcVxj4DCFleNk+425vb1RxDj/Ft5b5B321NmjQMnR3CbqwNpyB8YML25H4GanfmycJQASJ3yWnc2H+Q3FORHn41EXwX0OZR70i4+dEo+CT8N1Tc
+ u6WN9/OVtxgOAHHoPFz9TcgmMKztKy58WdKDm6CxunIA/RsYdqeJEb8R+qCITaI98UwoTgalCN4rW/JQW3M5Y+UnvxvOdh7WZAU=
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 29 2022 at 11:09, Yinbo Zhu wrote:
-> HPET (High Precision Event Timer) defines a new set of timers, which
+On 01/12/22 11:26, Krzysztof Kozlowski wrote:
+> On 01/12/2022 05:46, Saravanan Sekar wrote:
+>> Document mpq7932 power-management IC
+>>
+>> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
+>> ---
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+Hi Krzysztof,
 
-It's not really new. The HPET specification is 20 years old :)
+Thanks for your time to review and feedback.
 
-> +++ b/drivers/clocksource/loongson2_hpet.c
-> @@ -0,0 +1,334 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
-> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +#include <linux/init.h>
-> +#include <linux/percpu.h>
-> +#include <linux/delay.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_address.h>
-> +#include <linux/clk.h>
-> +#include <asm/time.h>
-> +
-> +/* HPET regs */
-> +#define HPET_CFG                0x010
-> +#define HPET_STATUS             0x020
-> +#define HPET_COUNTER            0x0f0
-> +#define HPET_T0_IRS             0x001
-> +#define HPET_T0_CFG             0x100
-> +#define HPET_T0_CMP             0x108
-> +#define HPET_CFG_ENABLE         0x001
-> +#define HPET_TN_LEVEL           0x0002
-> +#define HPET_TN_ENABLE          0x0004
-> +#define HPET_TN_PERIODIC        0x0008
-> +#define HPET_TN_SETVAL          0x0040
-> +#define HPET_TN_32BIT           0x0100
+Here are the summary of comments on V1, I have fixed all according to my 
+understanding.
 
-So this is another copy of the defines which are already available in
-x86 and mips. Seriously?
 
-> +static DEFINE_SPINLOCK(hpet_lock);
+1. Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-This wants to be a raw spinlock if at all. But first you have to explain
-the purpose of this lock.
+git log --oneline -- Documentation/devicetree/bindings/hwmon/pmbus/
+1ccca53618c4 dt-bindings: hwmon/pmbus: Add mps,mpq7932 power-management IC
+373c0a77934c dt-bindings: hwmon/pmbus: Add ti,lm25066 power-management IC
+7f464532b05d dt-bindings: Add missing 'additionalProperties: false'
+8a36e38d8b0f dt-bindings: hwmon/pmbus: Add ti,ucd90320 power sequencer
 
-> +DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device);
+I have used the same format of 373c0a77934c.
 
-Why needs this to be global and why is it needed at all?
+2. Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-This code does support exactly _ONE_ clock event device.
+I did run dt_binding_check on V1 but failed to notice warnings. Fixed 
+warning on V2 and didn't observed any warnings.
 
-> +static int hpet_read(int offset)
-> +{
-> +	return readl(hpet_mmio_base + offset);
-> +}
-> +
-> +static void hpet_write(int offset, int data)
-> +{
-> +	writel(data, hpet_mmio_base + offset);
-> +}
-> +
-> +static void hpet_start_counter(void)
-> +{
-> +	unsigned int cfg = hpet_read(HPET_CFG);
-> +
-> +	cfg |= HPET_CFG_ENABLE;
-> +	hpet_write(HPET_CFG, cfg);
-> +}
-> +
-> +static void hpet_stop_counter(void)
-> +{
-> +	unsigned int cfg = hpet_read(HPET_CFG);
-> +
-> +	cfg &= ~HPET_CFG_ENABLE;
-> +	hpet_write(HPET_CFG, cfg);
-> +}
-> +
-> +static void hpet_reset_counter(void)
-> +{
-> +	hpet_write(HPET_COUNTER, 0);
-> +	hpet_write(HPET_COUNTER + 4, 0);
-> +}
-> +
-> +static void hpet_restart_counter(void)
-> +{
-> +	hpet_stop_counter();
-> +	hpet_reset_counter();
-> +	hpet_start_counter();
-> +}
+3. Why requiring nodename? Device schemas usually don't do that.
+dropped "pattern: "pmic@[0-9a-f]{1,2}""
 
-This is also a copy of the x86 HPET code....
+4. regulators node is a regulator with one more regulator? Drop.
+dropped "$ref: regulator.yaml# "
 
-> +static void hpet_enable_legacy_int(void)
-> +{
-> +	/* Do nothing on Loongson2 */
-> +}
-> +
-> +static int hpet_set_state_periodic(struct clock_event_device *evt)
-> +{
-> +	int cfg;
-> +
-> +	spin_lock(&hpet_lock);
+5. Messed indentation. Use same for entire example, e.g. 4-spaces.
+Fixed it.
 
-What's the purpose of this lock ?
 
-> +	pr_info("set clock event to periodic mode!\n");
-> +
-> +	/* stop counter */
-> +	hpet_stop_counter();
-> +	hpet_reset_counter();
-> +	hpet_write(HPET_T0_CMP, 0);
-> +
-> +	/* enables the timer0 to generate a periodic interrupt */
-> +	cfg = hpet_read(HPET_T0_CFG);
-> +	cfg &= ~HPET_TN_LEVEL;
-> +	cfg |= HPET_TN_ENABLE | HPET_TN_PERIODIC | HPET_TN_SETVAL |
-> +		HPET_TN_32BIT | hpet_irq_flags;
-> +	hpet_write(HPET_T0_CFG, cfg);
-> +
-> +	/* set the comparator */
-> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
-> +	udelay(1);
-> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
-> +
-> +	/* start counter */
-> +	hpet_start_counter();
+Please help if anything which I missed
 
-Pretty much the same code as hpet_clkevt_set_state_periodic()
 
-> +	spin_unlock(&hpet_lock);
-> +	return 0;
-> +}
-> +
-> +static int hpet_set_state_shutdown(struct clock_event_device *evt)
-> +{
-> +	int cfg;
-> +
-> +	spin_lock(&hpet_lock);
-> +
-> +	cfg = hpet_read(HPET_T0_CFG);
-> +	cfg &= ~HPET_TN_ENABLE;
-> +	hpet_write(HPET_T0_CFG, cfg);
-> +
-> +	spin_unlock(&hpet_lock);
+> Thank you.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Another slightly different copy of the x86 code
-
-> +	return 0;
-> +}
-> +
-> +static int hpet_set_state_oneshot(struct clock_event_device *evt)
-> +{
-> +	int cfg;
-> +
-> +	spin_lock(&hpet_lock);
-> +
-> +	pr_info("set clock event to one shot mode!\n");
-> +	cfg = hpet_read(HPET_T0_CFG);
-> +	/*
-> +	 * set timer0 type
-> +	 * 1 : periodic interrupt
-> +	 * 0 : non-periodic(oneshot) interrupt
-> +	 */
-> +	cfg &= ~HPET_TN_PERIODIC;
-> +	cfg |= HPET_TN_ENABLE | HPET_TN_32BIT |
-> +		hpet_irq_flags;
-> +	hpet_write(HPET_T0_CFG, cfg);
-
-Yet another copy.
-
-> +	/* start counter */
-> +	hpet_start_counter();
-
-Why doe you need an explicit start here?
-
-> +	spin_unlock(&hpet_lock);
-> +	return 0;
-> +}
-> +
-> +static int hpet_tick_resume(struct clock_event_device *evt)
-> +{
-> +	spin_lock(&hpet_lock);
-> +	hpet_enable_legacy_int();
-> +	spin_unlock(&hpet_lock);
-
-More copy and paste just to slap a spinlock on to it which has zero
-value AFAICT.
-
-> +	return 0;
-> +}
-> +
-> +static int hpet_next_event(unsigned long delta,
-> +		struct clock_event_device *evt)
-> +{
-> +	u32 cnt;
-> +	s32 res;
-> +
-> +	cnt = hpet_read(HPET_COUNTER);
-> +	cnt += (u32) delta;
-> +	hpet_write(HPET_T0_CMP, cnt);
-> +
-> +	res = (s32)(cnt - hpet_read(HPET_COUNTER));
-> +
-> +	return res < HPET_MIN_CYCLES ? -ETIME : 0;
-
-Another copy of the x86 code except for omitting the big comment which
-explains the logic.
-
-Seriously, this is not how it works. Instead of copy & paste, we create
-shared infrastructure and just keep the real architecture specific
-pieces separate.
-
-Thanks,
-
-        tglx
