@@ -2,100 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF1263EE4B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E0663EE8A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:58:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbiLAKpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:45:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
+        id S230300AbiLAK6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:58:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231145AbiLAKne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:43:34 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485B33137C
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:43:31 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id n1so1413672ljg.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:43:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1kyrvMls8wTQMlQrJqyGrjffl641Id/9a8Nkb4/gCx4=;
-        b=VB6ARDsUl9VDYdCN2+lOHBpQREZqTxeDFRGhmdVSMuUrYfsXQIto7O3WmA0gaY2O2f
-         VuJKiviMybBR6jRObOdA+JBaGb7zyI62bejJiEeHMNjPmP5vhpgZxLQFrSSiaYXs6Y+g
-         rT3rs+lg8U7/oP6GK5q8QYMYM74Z1SLVVGcwElaerQ+0qpLx3crZryC+QPmNSRrmYcZl
-         K9TeuOcGRkkMD+Sw1AJrQT69wUGhum6nY3BIBm9aYaK7paFXTOBlQV2roe/AFpWcv41x
-         3el058IRSwutRldsN83xt7MRmJRwCcLbCW5B6tRw9wMtQMA91NbvTBafz5VwV6S+Ki+K
-         CLsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1kyrvMls8wTQMlQrJqyGrjffl641Id/9a8Nkb4/gCx4=;
-        b=4ZjBFlJvcp5wMsg3IN8smmmr/QonlN0tnX5a6XAjODWMNaUrLEmzdZu8FNkrQ0qAvK
-         cLVtafB8i2vFvdvMRQ/wsjkVQZPDGPQ21fD5HBmXTtEpi5NALsyHci8e0T6a4daVA6xR
-         GEmthXv0VUCNt8uDILOA8L85IHFqy0jeSKT228d2GAwSbDlXmWJyeL85L94fmrFBuQEp
-         gGpHV5LzttNtI83KQ16IIIsbHTqEIms73a8N97VdQ62ggQblVq8gXaF86REcEn6CH9t6
-         8nHwePE7WZHnCb66TdyQGDAR78hn2DszxrLhT5cMcMj1rGyBp5bRU7FCXa7VPKPNFv0r
-         C57g==
-X-Gm-Message-State: ANoB5pnd+elLTsx+noJ3ek8cOxZjMPv4UBlQlCfymjcyLAbaMbZddadk
-        IKmYp9a9Fru/z3N0uWzsNiqEZg==
-X-Google-Smtp-Source: AA0mqf7dZn8tcHCSTqwKdg59rVP2szYiKJd/88+xPBwamyUC0rkQTrwxWM43ihM6G6ZIvZydte88ig==
-X-Received: by 2002:a05:651c:239e:b0:279:c7b9:c365 with SMTP id bk30-20020a05651c239e00b00279c7b9c365mr2133580ljb.134.1669891409697;
-        Thu, 01 Dec 2022 02:43:29 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi41-20020a0565120ea900b00492ce573726sm607522lfb.47.2022.12.01.02.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:43:28 -0800 (PST)
-Message-ID: <cae9f009-d75b-9088-8f22-ea54552e9f34@linaro.org>
-Date:   Thu, 1 Dec 2022 11:43:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: interconnect: Add Qualcomm SM8550
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S230208AbiLAK6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:58:10 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D99737BF89;
+        Thu,  1 Dec 2022 02:58:07 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1p0hGS-0007Uq-00; Thu, 01 Dec 2022 11:58:00 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id CEB65C1D96; Thu,  1 Dec 2022 11:50:49 +0100 (CET)
+Date:   Thu, 1 Dec 2022 11:50:49 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20221130132059.3145243-1-abel.vesa@linaro.org>
- <20221130132059.3145243-2-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221130132059.3145243-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Petr Louda <petr.louda@outlook.cz>
+Subject: Re: [PATCH] mips: ralink: mt7621: fix phy-mode of external phy on
+ GB-PC2
+Message-ID: <20221201105049.GA6569@alpha.franken.de>
+References: <20221128213238.3959-1-arinc.unal@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221128213238.3959-1-arinc.unal@arinc9.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 14:20, Abel Vesa wrote:
-> The Qualcomm SM8550 SoC has several bus fabrics that could be
-> controlled and tuned dynamically according to the bandwidth demand.
+On Tue, Nov 29, 2022 at 12:32:38AM +0300, Arınç ÜNAL wrote:
+> The phy-mode property must be defined on the MAC instead of the PHY. Define
+> phy-mode under gmac1 which the external phy is connected to.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Tested-by: Petr Louda <petr.louda@outlook.cz>
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
-> 
-> Changes since v3:
->  * Dropped qcom,sm8550-rpmh.h and qcom,rpmh.h from examples
->  * Added the header for interconnect IDs to the top-level description
->  * Fixed examples indentation
+>  arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
+applied to mips-next.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thomas.
 
-Best regards,
-Krzysztof
-
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
