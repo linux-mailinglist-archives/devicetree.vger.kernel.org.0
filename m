@@ -2,115 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AE563EA5B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 08:33:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D69863EB0A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiLAHdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 02:33:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
+        id S229779AbiLAI1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 03:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229910AbiLAHdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 02:33:43 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A3132047;
-        Wed, 30 Nov 2022 23:33:39 -0800 (PST)
-X-UUID: f60f3869cfd94774a36a8475ca396d66-20221201
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GEB/PItp3ApqYqJMuq7w9mwjWCEXCCq4x+XaxUYFjtY=;
-        b=WGLBy8dU39blEpJFwRgIQVMqlq4N5GUMWE1ApWNtuEa8bXgFJQoA7bL1IRonaCvyP82UYVWL6uzzL1YReIcNm6egKUOvDfQdF+shpxJLwppxqpvMzE4AELDazkxkX2DAqvN9pnMY7mJHi7v9yY01fdUnU5SyBfllwVgcz4bJDG8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.14,REQID:9389cffb-4fcc-4b91-9c5f-ebd33effa78c,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:90
-X-CID-INFO: VERSION:1.1.14,REQID:9389cffb-4fcc-4b91-9c5f-ebd33effa78c,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:90
-X-CID-META: VersionHash:dcaaed0,CLOUDID:68a23e6c-41fe-47b6-8eb4-ec192dedaf7d,B
-        ulkID:221201153334SA4JXALR,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: f60f3869cfd94774a36a8475ca396d66-20221201
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1360004168; Thu, 01 Dec 2022 15:33:32 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 1 Dec 2022 15:33:30 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 1 Dec 2022 15:33:30 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229782AbiLAI05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:26:57 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3FD6E554;
+        Thu,  1 Dec 2022 00:26:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 2E422CE18B7;
+        Thu,  1 Dec 2022 08:26:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF528C433D6;
+        Thu,  1 Dec 2022 08:26:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1669883210;
+        bh=QUQeSgrutik/8pe2d8be3o1H58jPmKkhXZFIw6Ik2kc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Md+MZxrRPwCp1G5I8QzwH7U/PWE7L7jEqIo7f09qti2RUpHabMgbt3ocqcgWdSC9r
+         PDbFiKn1MwdtHXuT9vXi9GuqnPwlzcsgwP4rZQH/qG3BArvSR8VCHY56QkmV+X4GRn
+         Ra/jmj3ssv2QCewohK+aH6cDJE4AyBO5eonWeO74=
+Date:   Thu, 1 Dec 2022 09:03:01 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Daehwan Jung <dh10.jung@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Colin Ian King <colin.i.king@gmail.com>,
+        Artur Bujdoso <artur.bujdoso@gmail.com>,
+        Juergen Gross <jgross@suse.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
+        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH] arm64: dts: mt8192: Add adsp power domain controller
-Date:   Thu, 1 Dec 2022 15:33:28 +0800
-Message-ID: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
+        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
+        eomji.oh@samsung.com
+Subject: Re: [RFC PATCH v1 0/2] add xhci-exynos to support Samsung Exynos SOCs
+Message-ID: <Y4hftXoUdAQ3SK4s@kroah.com>
+References: <CGME20221201021940epcas2p2073f25dad069314022471eaa16d26592@epcas2p2.samsung.com>
+ <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add adsp power domain controller node for mt8192 SoC.
+On Thu, Dec 01, 2022 at 11:13:29AM +0900, Daehwan Jung wrote:
+> This patchset is to support xHCI Controller on Samsung Exynos SOCs.
+> 
+> Daehwan Jung (2):
+>   dt-bindings: usb: samsung,exynos-xhci: support Samsung Exynos xHCI
+>     Controller
+>   usb: host: add xhci-exynos to support Exynos SOCs
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
-Ref: https://lore.kernel.org/all/2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com/
-    [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
----
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
- include/dt-bindings/power/mt8192-power.h | 1 +
- 2 files changed, 9 insertions(+)
+Why is this a "RFC" and not a real submission?  What needs to be done to
+it to get it into mergable shape?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 424fc89cc6f7..e71afba871fc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -514,6 +514,14 @@
- 						};
- 					};
- 				};
-+
-+				power-domain@MT8192_POWER_DOMAIN_ADSP {
-+					reg = <MT8192_POWER_DOMAIN_ADSP>;
-+					clocks = <&topckgen CLK_TOP_ADSP_SEL>;
-+					clock-names = "adsp";
-+					mediatek,infracfg = <&infracfg>;
-+					#power-domain-cells = <0>;
-+				};
- 			};
- 		};
- 
-diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
-index 4eaa53d7270a..63e81cd0d06d 100644
---- a/include/dt-bindings/power/mt8192-power.h
-+++ b/include/dt-bindings/power/mt8192-power.h
-@@ -28,5 +28,6 @@
- #define MT8192_POWER_DOMAIN_CAM_RAWA	18
- #define MT8192_POWER_DOMAIN_CAM_RAWB	19
- #define MT8192_POWER_DOMAIN_CAM_RAWC	20
-+#define MT8192_POWER_DOMAIN_ADSP	21
- 
- #endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
--- 
-2.18.0
+And thank you for posting this, I've wanted to see this merged for a
+very long time given the millions of devices already using it.
 
+thanks,
+
+greg k-h
