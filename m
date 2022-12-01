@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AE9A63F850
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC07D63F85F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:34:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230434AbiLATbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 14:31:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
+        id S230331AbiLATe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 14:34:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230494AbiLATap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:30:45 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED51CAB6F
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:30:36 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id vp12so6603712ejc.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 11:30:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JHC6ytZAHLrNLiHuUN2hc1jXap++ZHEcJiLjtBPhfto=;
-        b=AUxf8Xm6UpCWhAeGDcR+3W5Z4SnIFEAv3fiL9oHqUJoa5WoxIlahHfcmR9mvTQCvZ0
-         MlvtW/BT2XFgh4zIhtnqE+P3QGK1LZrWRLAWuey+2v/ozgM9UmK15XA09InVz968DA1F
-         kT7FMPmrydaUJcVh/AKcj5HbAMRaK9NyoDKXhAS792EyNFsK2D2UA39aKXmifavWBdnm
-         6aOlCGYV7P/sdQGEXYj8JBDtAk0aJSnSBW2DeD8ycmiGmITghzLW7rFRl5ur9GtNrLku
-         rbCusZH9cwlRfbGeKpTG+rw7aAWE8/e27NPrO9MuW4vLQIu2veBTwc6E45+umqQE4IhO
-         Cc4A==
+        with ESMTP id S230417AbiLATeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:34:10 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A0117883;
+        Thu,  1 Dec 2022 11:32:50 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id v82so3119750oib.4;
+        Thu, 01 Dec 2022 11:32:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JHC6ytZAHLrNLiHuUN2hc1jXap++ZHEcJiLjtBPhfto=;
-        b=iKZzb+oPNs8UwPpnuQL5+bFNpP1YoaO13BGvLX7MQbgatf8zdljHE5ktiC3orEb8mk
-         em4OXQrFpkhbPdTh+KqwMg8JI/HSDbK6VEd6AQ72yvriKlLW+uytF+3cWNcmoatr/5Tg
-         zX0V5wYW+yDrzfv0a+nfo0478+t/cE2DZ1H/ZFfENz6dO0I1PYNkXM0wrfSVSOl9j11J
-         7HtfThVm+OfTKcQOCe4Cf2mYE58JG5mNxvPFcIJISZZjmbv09L1eABsAciC2x4WQMnrn
-         KZvFLRObpXLvcsszdU2DUlUpjd4zDDfWpPASa5H2ekPpPdvjozqJZ0VcdAgoOHWPtbqT
-         Qhdw==
-X-Gm-Message-State: ANoB5pkBrKNRRxWFPE1OeGXb2kUtuVCi7yUEYx/IyjaI+Tf9GuAcThKq
-        mDPDnRtMQtZM8j0DIDRXcD+b93dNPENsbJjO
-X-Google-Smtp-Source: AA0mqf4FN2LlAcctT2gQ+2sI+0CRqoL0SJP2GLj//yvst5I/C/b7mWqa3qMoHOBWeC5EOA3kCTVgdQ==
-X-Received: by 2002:a17:906:cc8f:b0:78b:8ce7:fe3c with SMTP id oq15-20020a170906cc8f00b0078b8ce7fe3cmr57197229ejb.557.1669923034733;
-        Thu, 01 Dec 2022 11:30:34 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id g15-20020aa7c84f000000b004619f024864sm2054110edt.81.2022.12.01.11.30.34
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SmJRKIwqBp8gbnNMB6ag+fH04itLVPSAiCRSKnEYWIE=;
+        b=hAUSF4xG4hh6r8GdTzmDPwWiPqbF5hdtiIPW46K3ElnGIdqbz8dJDGUlJezyWA5uKh
+         Y9HKwgCyJAY6lfK/VtfZDEtuDE3AwxW60ihhsW85S9TvC9y8W6UDFNBqGN9hLBHoQPyA
+         os95G6yr3tOpMeXtSAsl/Z4ce/EdOu1gOGYKnNHvTvaUhgTZOlGdVz7t6EucaGqNnB8k
+         ACLABYtd8Eq//NMDFLyWvxRZbHR83yJR7fI7k7xZaA44uZJQ/Womo2NWHvR08+mF+kDa
+         XvaeAYRI6duO7pno0yqUTWGdvbNSatfRV2KokF8O7OBi4nWIWBhNczuNDUn8JTKrFVlr
+         WZeQ==
+X-Gm-Message-State: ANoB5pnxOzrR/gHbYj5ymOB+iyGchUwFnqW5EjJWMMvhmOPIu7vaO4GO
+        gPlorxo0SzXPykhdaYfSIg==
+X-Google-Smtp-Source: AA0mqf76S50/fCO8mJTuqErpyB2kZCnIKu73wy3rgo6CPDCs+HL87HJ2zzP7LGwz5k3YUTQnYyjZfw==
+X-Received: by 2002:a05:6808:8c9:b0:351:1a63:a74c with SMTP id k9-20020a05680808c900b003511a63a74cmr23789693oij.288.1669923169283;
+        Thu, 01 Dec 2022 11:32:49 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z95-20020a9d24e8000000b0066101e9dccdsm2524124ota.45.2022.12.01.11.32.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 11:30:34 -0800 (PST)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>
-Subject: [PATCH v5 5/5] hwmon: (pmbus/core): Notify regulator events
-Date:   Thu,  1 Dec 2022 20:30:24 +0100
-Message-Id: <20221201193025.1584365-5-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221201193025.1584365-1-Naresh.Solanki@9elements.com>
-References: <20221201193025.1584365-1-Naresh.Solanki@9elements.com>
+        Thu, 01 Dec 2022 11:32:48 -0800 (PST)
+Received: (nullmailer pid 1203239 invoked by uid 1000);
+        Thu, 01 Dec 2022 19:32:47 -0000
+Date:   Thu, 1 Dec 2022 13:32:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
+Message-ID: <20221201193247.GA1190273-robh@kernel.org>
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
+ <20221201090242.2381-4-yanhong.wang@starfivetech.com>
+ <36565cc1-3c48-0fa8-f98b-414a7ac8f5bf@linaro.org>
+ <Y4jl6awCMFgZsQGC@spud>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y4jl6awCMFgZsQGC@spud>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Notify regulator events in PMBus irq handler.
+On Thu, Dec 01, 2022 at 05:35:37PM +0000, Conor Dooley wrote:
+> On Thu, Dec 01, 2022 at 05:21:04PM +0100, Krzysztof Kozlowski wrote:
+> > On 01/12/2022 10:02, Yanhong Wang wrote:
+> > > Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
+> > 
+> > Subject: drop second, redundant "bindings".
+> > 
+> > > 
+> > > Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> > > ---
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > 
+> > Drop oneOf. You do not have more cases here.
+> > 
+> > > +      - items:
+> > > +          - enum:
+> > > +               - starfive,dwmac
+> > 
+> > Wrong indentation.... kind of expected since you did not test the bindings.
+> > 
+> > > +          - const: snps,dwmac-5.20
+> 
+> Disclaimer: no familiarity with the version info with DW stuff
+> 
+> Is it a bit foolish to call this binding "starfive,dwmac"? Could there
+> not be another StarFive SoC in the future that uses another DW mac IP
+> version & this would be better off as "starfive,jh7110-dwmac" or similar?
 
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- drivers/hwmon/pmbus/pmbus_core.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Yes. Really, *only* "starfive,jh7110-dwmac" is enough IMO. 
 
-diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-index caefcb99aadf..5241a3c9bd21 100644
---- a/drivers/hwmon/pmbus/pmbus_core.c
-+++ b/drivers/hwmon/pmbus/pmbus_core.c
-@@ -3158,6 +3158,11 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
- 		if (ret)
- 			return ret;
- 
-+		if (event) {
-+			regulator_notifier_call_chain(data->rdevs[i], event, NULL);
-+			ret = IRQ_HANDLED;
-+		}
-+
- 		page = rdev_get_id(data->rdevs[i]);
- 		mutex_lock(&data->update_lock);
- 		status = pmbus_read_status_word(client, page);
--- 
-2.37.3
+The question is what would the OS do with only understanding 
+"snps,dwmac-5.20"? The answer is typically nothing because it isn't 
+enough information to act on. So that compatible is not needed. Maybe 
+the driver can do some things based on version, but that can be implied 
+from the compatible (if not read from a register). And often, the exact 
+version is not known, so do you want to hardcode a guess in DT? For 
+these reasons, we've moved away from using these generic IP compatibles 
+(with or without versions).
 
+Rob
