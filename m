@@ -2,105 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFAF63EDB0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:27:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A0363EDC6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:31:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbiLAK1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:27:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33678 "EHLO
+        id S230152AbiLAKbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:31:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbiLAK0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:26:30 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1FF9B7BF
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:26:28 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p8so1754867lfu.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:26:28 -0800 (PST)
+        with ESMTP id S229895AbiLAKa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:30:59 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EAA117E0D;
+        Thu,  1 Dec 2022 02:30:57 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id vp12so3096875ejc.8;
+        Thu, 01 Dec 2022 02:30:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fNNXd8RhvGAVfJwcSOjgVLTgCJ6FFMxxxXCnulCllW8=;
-        b=yCl85oAUo62EuenpGLijwM8k3SFHmatquoQ6zoy0tu0RYxpf6cGw/QNHny+IZwlN4Z
-         LoNiU0dFpnd74XPVPdVsnh0a9T6BZDFf7uxG5J9UP7umoJQDgLgo+qIuZv6vevGl1PuF
-         O4HUVvw6JaDxxDIRRmoifcAlCkmfiVkbnuVFV9imcr5TW6a/hLl40YleC634Qyuj8cTX
-         U/zebsmnUem4BJcBtqkcwhIT1K8tc9G62fD6rmjXyRTSrQo8NqaQOaca+BwUU8gBXMjb
-         Hcw+FCluix/T45thvsjqhC2gIIk5FmGmud+bRq9xgtogUAhgbraK+mgXS9wvdP1OQjWq
-         qh4A==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=b6S0scQh8yy8m15dX2Y4lOBnYQdGXad7fSn2qrpTdRk=;
+        b=HFcyySkPqaTM7WBiMKlZeWgslSqeqpLPwySBhEvlh80264v7CzkSuBaMbhEX/C0Lv8
+         759cQ5lN9Q4+zZd2pxh/WhTBAYMgx6J9bimo23yhBDYKWmCONcTeIZ3WkuPbp4mY68Rs
+         jbyAqWPRz7DNe60YBJ6iIB+8no69TZvtEewnV525c2K70Y6iptETbQty4DLTChFHwo27
+         H//Mgfh9Q8x2ZAmjS+wHf9NCHIQ2mn8kKGY1Sk3dYRAhn13VTEepvZ1v+uNrXVpLLQnC
+         lYdfDjmtVVIoXL1K/Q9PpGeLwgDSjwS/rFhZW2iEzu2Rhg7uvq1TNSGK7v9pYDRMRs1I
+         FjYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fNNXd8RhvGAVfJwcSOjgVLTgCJ6FFMxxxXCnulCllW8=;
-        b=lpvuQ9/3+1QjkL5pd78hl287urao1h00mTpuRhq4se9tbP9vAr76qHwU2IoEXndVdO
-         YwwuHjwlkkwZJ9lqkypRf68AEEp3I25V2wnZvP6AUg2YL8TtR3Tj7ZJLK+URX2OwVwmj
-         Fd02foRwDotiqOIgLw+rQW+94smXiH+pySRladWWYiTx/HhI6EJxgOA8lchpCJ4bbVfh
-         ykm3AKzX1Bik9aUm6WYjpVG7MpZrEArlnSQreBnVOi0E6hAjPWfLC99pKW87+YUg6nA8
-         /bI8r9j6XUsgC6ofpo0AekKEHisLxrJB7hmnjHz5G3ON/gPFfjcpQGuwOcmjadTnm2K3
-         xW1w==
-X-Gm-Message-State: ANoB5pnDjP0JU0tNuFxCDRVLHBaKlUTJnhuU1ne13EjE62WzdrKmTGeP
-        I0bvbbk29p51NDxH4HW+8OLz5EbckcRGhSLQ
-X-Google-Smtp-Source: AA0mqf4CJCIyV+cfwj/kAMm4a4SMm4rBn3dM19tFz8JfQ4X5Zmfof8gfIrFYzOO5zMCFWnX0wnw9wA==
-X-Received: by 2002:a05:6512:e9d:b0:4b1:8698:9f3e with SMTP id bi29-20020a0565120e9d00b004b186989f3emr20903264lfb.421.1669890387041;
-        Thu, 01 Dec 2022 02:26:27 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id br33-20020a056512402100b004b1756a0ae9sm603072lfb.55.2022.12.01.02.26.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:26:25 -0800 (PST)
-Message-ID: <f28da7ab-920d-a534-9f5d-e8407d0487a9@linaro.org>
-Date:   Thu, 1 Dec 2022 11:26:24 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b6S0scQh8yy8m15dX2Y4lOBnYQdGXad7fSn2qrpTdRk=;
+        b=he4nxTZnmwh+OU8CNQe99kK7b5NKxgDalcjpuIv0NeljVXePL7EVy6qyJmCrZh7e2+
+         KsDuMgeiEhHhFvdNddjr7XoaHhn3QAVkXcdYASn94K0dMru2TFbHsu/Rm1oIRF+9Rce3
+         gDIK2kb/2j5zNMtLiDKwTJ67vte80kAgCDyD9mFbY1AphSWcCQlRb5685O3vNXB+jBEB
+         GxTVJ67MxQwUjIfcULHX9BfynY888RwqPwttHbEaKIpASx3uyj3apiIf701AScQAkJnM
+         yA8jGrEdQROvE2FVASM4g37H0ahQBsNt0hgM1YvjNpdARi8b6gzrc9vHTjz7IpvNzo9D
+         hmLA==
+X-Gm-Message-State: ANoB5pnnARueu2ad4uiI+FAlh5PesfAGivYuluHOa1yCTc1Z90rn5UOs
+        xQBhBhP832dkj1xwo0tFhhM=
+X-Google-Smtp-Source: AA0mqf6Ku5iWPl8X7VDR/8A9LQk+tuRf8R4xRAp9qx7nZWslQnUcAyrE5bu2txEmOsaNWiv265OUag==
+X-Received: by 2002:a17:907:11cb:b0:7a6:598f:1fb1 with SMTP id va11-20020a17090711cb00b007a6598f1fb1mr56078222ejb.606.1669890653698;
+        Thu, 01 Dec 2022 02:30:53 -0800 (PST)
+Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
+        by smtp.gmail.com with ESMTPSA id g1-20020a17090604c100b007c07b23a79bsm1592400eja.213.2022.12.01.02.30.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 02:30:53 -0800 (PST)
+Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
+From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR VIVANTE GPU
+        IP),
+        etnaviv@lists.freedesktop.org (moderated list:DRM DRIVERS FOR VIVANTE
+        GPU IP), Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
+        support),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
+        SoC support), linux-kernel@vger.kernel.org (open list),
+        Lucas Stach <l.stach@pengutronix.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux+etnaviv@armlinux.org.uk>
+Subject: [PATCH v5 0/7] Support for the NPU in Vim3
+Date:   Thu,  1 Dec 2022 11:30:16 +0100
+Message-Id: <20221201103026.53234-1-tomeu.vizoso@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 3/4] hwmon: (pmbus/mpq7932) Add a support for mpq7932
- Power Management IC
-Content-Language: en-US
-To:     Saravanan Sekar <saravanan@linumiz.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marten.lindahl@axis.com
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-4-saravanan@linumiz.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201044643.1150870-4-saravanan@linumiz.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 05:46, Saravanan Sekar wrote:
-> The MPQ7932 is a power management IC designed to operate from 5V buses to
-> power a variety of Advanced driver-assistance system SOCs. Six integrated
-> buck converters with hardware monitoring capability powers a variety of
-> target rails configurable over PMBus interface.
-> 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-> ---
->  drivers/hwmon/pmbus/Kconfig   |  10 +++
->  drivers/hwmon/pmbus/Makefile  |   1 +
->  drivers/hwmon/pmbus/mpq7932.c | 144 ++++++++++++++++++++++++++++++++++
->  3 files changed, 155 insertions(+)
->  create mode 100644 drivers/hwmon/pmbus/mpq7932.c
+Hi,
 
-This is a friendly reminder during the review process.
+This series adds support for the Verisilicon VIPNano-QI NPU in the A311D
+as in the VIM3 board.
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+The IP is very closely based on previous Vivante GPUs, so the etnaviv
+kernel driver works basically unchanged.
 
-Thank you.
+The userspace part of the driver is being reviewed at:
 
-Best regards,
-Krzysztof
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/18986
+
+v2: Move reference to RESET_NNA to npu node (Neil)
+v3: Fix indentation mistake (Neil)
+v4: Add warning when etnaviv probes on a NPU (Lucas)
+v5: Reorder HWDB commit to be the last (Lucas)
+
+Regards,
+
+Tomeu
+
+Tomeu Vizoso (7):
+  dt-bindings: reset: meson-g12a: Add missing NNA reset
+  dt-bindings: power: Add G12A NNA power domain
+  soc: amlogic: meson-pwrc: Add NNA power domain for A311D
+  arm64: dts: Add DT node for the VIPNano-QI on the A311D
+  drm/etnaviv: Add nn_core_count to chip feature struct
+  drm/etnaviv: Warn when probing on NPUs
+  drm/etnaviv: add HWDB entry for VIPNano-QI.7120.0055
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 11 ++++++
+ .../amlogic/meson-g12b-a311d-khadas-vim3.dts  |  4 +++
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  4 +++
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.h         |  3 ++
+ drivers/gpu/drm/etnaviv/etnaviv_hwdb.c        | 35 +++++++++++++++++++
+ drivers/soc/amlogic/meson-ee-pwrc.c           | 17 +++++++++
+ include/dt-bindings/power/meson-g12a-power.h  |  1 +
+ .../reset/amlogic,meson-g12a-reset.h          |  4 ++-
+ 8 files changed, 78 insertions(+), 1 deletion(-)
+
+-- 
+2.38.1
 
