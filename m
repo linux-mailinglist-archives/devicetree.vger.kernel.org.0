@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E03ED63FC37
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4058363FC41
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231926AbiLAXpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 18:45:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50466 "EHLO
+        id S231499AbiLAXqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 18:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbiLAXpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:45:07 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BEBBE4F8;
-        Thu,  1 Dec 2022 15:45:05 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 298D985291;
-        Fri,  2 Dec 2022 00:45:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1669938303;
-        bh=lvh7bk0X0xJ0k9t1hMcrOK74zP9ebDwEIsFtFQSr3UY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=GT2sE7J+6qvb84xLBa7huCUrgAM0aCNnh75bDqOEFGmc1jXSm7iHydrf1lyTGlFbn
-         CISZL8J1vU8T1t3WJhGZTqNtTssjyAyNvYDzBQCggFmhSw7VjN0QuaU8kZ3FqgBnFi
-         D1pCBTCywASNtBkeB+ub07CPpL/944xJLVn9ycK4MuHQEPIjaw6Cf7W8CXJklOZrs2
-         yRPIPL983S87TI82sMQcb4bjm7rtGmqSBNLVANBdI9mRP+4zG6jRBz0CvGB2O0uOZ9
-         4S+zavS9dq9ZWX+THOaoL0FPKH0PSLohkXld2J/Ac1cZX+Gpx76qMqiSyXD29y1J9c
-         PL4n96QeDJF4w==
-Message-ID: <66e960c0-3743-ed7d-f8b1-747ecdc61f9f@denx.de>
-Date:   Fri, 2 Dec 2022 00:44:24 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
-Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>
-Cc:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S229744AbiLAXqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:46:32 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5957BEC47;
+        Thu,  1 Dec 2022 15:46:31 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so1978731otl.10;
+        Thu, 01 Dec 2022 15:46:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kku18D3Y88MWUX/tUqbmMS28F2KQx7nmZY37oV7FZwE=;
+        b=W1IegVZt38qqnwHKTR0xhxFoWcKQpO1C+tjfEOdmXbVWQHpbGDJk3K+5Dp6F5XHsyO
+         JI6GNIPpiCd8/F5yf12YcULwt6VoVBaa3htjGvE5ZeqrqF2p1X8H/ivAmlixMPwVy/jX
+         WZbBIsKxukDePs9RFBR8G+KTG40285peDSfk3SOyYj/QwGsWGS/fB+id+HUqHaJspzWk
+         mELGF7WiLTgne0scKSjPZ+R0BtOeanKLAABR0tiZSCZCv7TKntmdm0JslgxuJbcDvQv/
+         X7tc6iK5TDljZlFhb5fCArgkZ4OBIOnhHOO3qlZabMN6nbTmJv25iHhFmWGmCtGObr7K
+         vWeg==
+X-Gm-Message-State: ANoB5pkcown+20I8exZ6psaZ1Cr1X4pg6pzJ50UAvz+RhJXVAvMSPjrs
+        2arjxQ82MA76VENUSuDyzA==
+X-Google-Smtp-Source: AA0mqf5ZGQasomoBdeMHUbWi+cUm7mHzdtQUSRq09o1u9VxkbZV92Lxt3/8ZuyZgJD7FgCKGDpaDTA==
+X-Received: by 2002:a05:6830:1e63:b0:661:9030:6480 with SMTP id m3-20020a0568301e6300b0066190306480mr24758975otr.147.1669938390899;
+        Thu, 01 Dec 2022 15:46:30 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y2-20020a4ae702000000b0049427725e62sm2292185oou.19.2022.12.01.15.46.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 15:46:30 -0800 (PST)
+Received: (nullmailer pid 1704103 invoked by uid 1000);
+        Thu, 01 Dec 2022 23:46:28 -0000
+Date:   Thu, 1 Dec 2022 17:46:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Ray Jui <rjui@broadcom.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-mediatek@lists.infradead.org,
+        Russell King <linux@armlinux.org.uk>,
+        linux-sunxi@lists.linux.dev,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>, soc@kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        kernel@dh-electronics.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <Y3y/S5COG7VPbsqL@duo.ucw.cz> <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
- <20221130191905.GA2631320-robh@kernel.org> <Y4eufPCzKbfp9k3z@duo.ucw.cz>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <Y4eufPCzKbfp9k3z@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Frank Wunderlich <frank-w@public-files.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        ", Andrew Lunn" <andrew@lunn.ch>, linux-arm-msm@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
+        Stefan Agner <stefan@agner.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: net: qca,ar71xx: remove label = "cpu"
+ from examples
+Message-ID: <166993831623.1702506.4546645219900752750.robh@kernel.org>
+References: <20221130141040.32447-1-arinc.unal@arinc9.com>
+ <20221130141040.32447-2-arinc.unal@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221130141040.32447-2-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/30/22 20:26, Pavel Machek wrote:
-> On Wed 2022-11-30 13:19:05, Rob Herring wrote:
->> On Fri, Nov 25, 2022 at 10:26:30PM +0100, Marek Vasut wrote:
->>> On 11/22/22 13:23, Pavel Machek wrote:
->>>> Hi!
->>>
->>> Hi,
->>>
->>>>> Mark the label property as deprecated as it is mentioned
->>>>> in the description.
->>>>
->>>> Lets do it the other way around. Functions (etc) don't really provide
->>>> good enough description of LED, and label is still needed.
->>>
->>> Can you please provide a clear explanation which property or approach is the
->>> correct one for new DTs ?
->>>
->>> So far, the documentation states that "label" is deprecated, and users
->>> should replace it with "function" and "color".
->>
->> 'function' is what activity/operation the LED is associated with. It is
->> a fixed set of strings which s/w may use. It is a replacement for
->> 'linux,default-trigger'.
->>
->> 'label' is what is printed next to the LED for a human to read. 'label'
->> can be anything and the OS shouldn't care what it is.
-> 
-> Unfortunately, no.
-> 
-> We use label as a path in /sys/class/leds. And it looks like integer
-> "function" is not really adequate for describing what LED does. There
-> are too many LEDs and not enough integers, and it is common to have
-> same function ("activity") on multiple devices ("wifi", "mmc", "eth").
 
-The Documentation/devicetree/bindings/leds/common.yaml schema indicates 
-that function is a string, not an integer:
+On Wed, 30 Nov 2022 17:10:36 +0300, Arınç ÜNAL wrote:
+> This is not used by the DSA dt-binding, so remove it from the examples.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  Documentation/devicetree/bindings/net/qca,ar71xx.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
 
-"
-  32   function:
-  33     description:
-  34       LED function. Use one of the LED_FUNCTION_* prefixed definitions
-  35       from the header include/dt-bindings/leds/common.h. If there is no
-  36       matching LED_FUNCTION available, add a new one.
-  37     $ref: /schemas/types.yaml#/definitions/string
-"
+Acked-by: Rob Herring <robh@kernel.org>
