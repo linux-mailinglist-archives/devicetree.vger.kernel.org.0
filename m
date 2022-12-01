@@ -2,93 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D2ED63F2B3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4258E63F2CD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:26:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbiLAOXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 09:23:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
+        id S229630AbiLAO0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 09:26:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231902AbiLAOW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:22:57 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF83C6E62
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:22:55 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id r8so2039975ljn.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:22:55 -0800 (PST)
+        with ESMTP id S229481AbiLAO03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:26:29 -0500
+X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 01 Dec 2022 06:26:28 PST
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6C81706B
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:26:27 -0800 (PST)
+X-KPN-MessageId: e0c39b2a-7183-11ed-be70-005056aba152
+Received: from smtp.kpnmail.nl (unknown [10.31.155.40])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id e0c39b2a-7183-11ed-be70-005056aba152;
+        Thu, 01 Dec 2022 15:24:34 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9iFsZv3cbflfd0iXr72+f/UJOaMLz+n6AvbilmWkaus=;
-        b=oE0R9fLlWkCZdU453zYYSxl7EKUMe6JQBTfFM9my8L4XCzyVSDBzQnOpHCDLQ1+qgD
-         lynpKkp9rPS9ay7uN/HKG0M8cF32Z46bLAivqIYIo8+tdJO8/Qte10BgNf8g3U2eSmQe
-         I3WOlRgs8+/wJrVffqRrrLL0J5uZjEXYvt0kBdFo3GLlaqnymnGG+UfUJ2T+NlcTQxU4
-         sBjlgikOz9pBI94pX8gGplLo9i5aExkD1BMj60WmRiexuG+o+9GeFdf4Ak7iWaIht+WE
-         eoaGooK6xUrLKfcxxAmn//RbMSt5hwv9mOE+PArOoHamq6XV0W1ck16fmU37x6XfRb7D
-         RgAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9iFsZv3cbflfd0iXr72+f/UJOaMLz+n6AvbilmWkaus=;
-        b=hhz2plOz49UH/cIOPTJFytFsooOBQBP2/feWBHje6pVR2qRwdMngGvYLbYRyt2ldba
-         IPTuv4cFFcdHrFBo50cvhWJgYUQknoddAo7yupzscJXpLu6+paCu0vk8OuIic51mXfkK
-         LJof0RXPTmS/AJ9jb/o7Po5qviF2p2vGmNgLddbVYrkOYCiRtJiYogsupv8BygP+QGwN
-         Evv2BSzlzv9zuKTMW8ISffxqKFMK8zyciqe/zasgdkmyIlSjTtLJae1aNR/niGpqTIwi
-         ipzV1uYf0XZf8vgpceaYbEdpDephzUM3gOtxfRZcMh5WZQ7s2ByfV7LEc9gE82OGshme
-         l+mA==
-X-Gm-Message-State: ANoB5pnMZ/cZVHU2UdhUjnpGMCO9q3tUEFHNB+PxtHGiLqmQuyRYC1cQ
-        nCFahjsjFWw43TfInktV21OYZg==
-X-Google-Smtp-Source: AA0mqf7xD/Jkb+lgOKtkI8jWh7RztAlQeTezKB2+l3CoXG9Hfjruc0/pjkMibi3HSXx0SNOrEZhGag==
-X-Received: by 2002:a05:651c:54b:b0:276:d9a6:dc00 with SMTP id q11-20020a05651c054b00b00276d9a6dc00mr22490570ljp.379.1669904573898;
-        Thu, 01 Dec 2022 06:22:53 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c17-20020ac25f71000000b0049311968ca4sm658343lfc.261.2022.12.01.06.22.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 06:22:52 -0800 (PST)
-Message-ID: <26384fb5-4fb1-d629-8153-5577d75c5492@linaro.org>
-Date:   Thu, 1 Dec 2022 15:22:51 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add SoC IDs for SM6115 /
- SM4250 and variants
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        a39.skl@gmail.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
- <20221201141619.2462705-4-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201141619.2462705-4-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=x0Smebnf5TxeVaY4P4m+XdlW9/dcq0V22p+rTifwwpw=;
+        b=I0N9XZo8BorG3+28MFugns+vBm3M22ZxS+DbR6q4zPkBdvTQqaq4W+Wyxthl8WFcLTRyfz4umc607
+         hfTH6is+uFBiuJZRtTjHJrbemSlq6+gYBDYK4oXNjZR2Pm9S1fagp73u76j94DtAWZ24XH1qv5Ac1q
+         h1Y0KS+cimpY6wdTzHiqaGexM2d5KfExZA0GCFqwTttwopFc0/CeK2KupjhMYlNfIcd3x78eVTGEAp
+         Otqm6UgqkiCJozlkNDxJMBPa/G0ZhVI/l9yRSvzNKC9JqrnpEdp8rPmSdp+BjlaQQXBEpWTC2rqUHJ
+         Vvi46lxNDUVY0v/G8ELF7lINDMbc9YA==
+X-KPN-MID: 33|RnuDBWKoOaDHr5WOt8Abx6wgvvKHloXXr/SyvV/YdX1xlF5I7zXryvYbX0wY/zH
+ F/Q86XAbgi0dPpZVMSonWmSswAM6R5dkT7Ze6TorLOAY=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|RiFza7j0OV5VYQ8PaJpConECk/cNuWv9/x3CVtZKOYihro0cSycjhcjCiGm7gXn
+ hHi8j/Lc5ltPh3Dj19B8hgA==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id f96e0c46-7183-11ed-9ebc-005056ab7584;
+        Thu, 01 Dec 2022 15:25:16 +0100 (CET)
+Date:   Thu, 01 Dec 2022 15:25:15 +0100
+Message-Id: <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Akihiko Odaki <akihiko.odaki@daynix.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        alyssa@rosenzweig.io, sven@svenpeter.dev, marcan@marcan.st,
+        akihiko.odaki@daynix.com
+In-Reply-To: <20221201103651.27807-1-akihiko.odaki@daynix.com> (message from
+        Akihiko Odaki on Thu, 1 Dec 2022 19:36:51 +0900)
+Subject: Re: [PATCH] arch: arm64: dts: apple: Remove stdout-path
+References: <20221201103651.27807-1-akihiko.odaki@daynix.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 15:16, Bhupesh Sharma wrote:
-> Add SoC IDs for Qualcomm SM6115 / SM4250 and variants.
+> From: Akihiko Odaki <akihiko.odaki@daynix.com>
+> Date: Thu,  1 Dec 2022 19:36:51 +0900
 > 
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> u-boot overrides stdout-path so that it points to /chosen/framebuffer
+> with some condition.
+> > arm: apple: Point stdout-path to framebuffer when keyboard present
+> >
+> > Unless you have a spare Apple Silicon machine, getting access to
+> > the serial port on Apple Silicon machines requires special
+> > hardware. Given that most machines come with a built-in screen
+> > the framebuffer is likely to be the most convenient output device
+> > for most users. While U-Boot will output to both serial and
+> > framebuffer, OSes might not. Therefore set stdout-path to point
+> > at /chosen/framebuffer when a keyboard is connected to the machine.
+> https://github.com/AsahiLinux/u-boot/commit/a609353e82fd757b7635d18ed6a0828fff657d59
+> 
+> Perhaps it made sense to specify serial0 as stdout-path when the
+> framebuffer and keyboard support was inmature, but today it is
+> preferrable to use /chosen/framebuffer instead of serial0 for the
+> console in the most cases as the u-boot change states.
+> 
+> Remove stdout-path to allow the kernel to choose the appropriate
+> console. For Linux, it will be VT, which will be eventually backed by
+> the framebuffer, if it is enabled. Otherwise, it will fall back to the
+> serial.
 
+U-Boot still relies on serial being the default.  It will not touch
+stdout-out when running under the m1n1 hypervisor for example.  The
+m1n1 hypervisor emulates the serial port hardware and developers rely
+on this quite heavily.  Also, U-boot will only switch to the
+framebuffer if a keyboard is connected.  This is currently disabled in
+the builds for Asahi Linux because the type-A USB ports are not
+supported yet in U-Boot.  But the plan is to fix that eventually.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+So as far as I am concerted NAK.
 
-Best regards,
-Krzysztof
-
+> Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
+> ---
+>  arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 2 --
+>  arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 2 --
+>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      | 2 --
+>  arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      | 2 --
+>  4 files changed, 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+> index 5547f5e7ac5a..14b6bf234f82 100644
+> --- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+> @@ -30,8 +30,6 @@ chosen {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> -		stdout-path = "serial0";
+> -
+>  		framebuffer0: framebuffer@0 {
+>  			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+>  			reg = <0 0 0 0>; /* To be filled by loader */
+> diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
+> index 7c207b1df949..22e96b436bf2 100644
+> --- a/arch/arm64/boot/dts/apple/t600x-j375.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
+> @@ -28,8 +28,6 @@ chosen {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> -		stdout-path = "serial0";
+> -
+>  		framebuffer0: framebuffer@0 {
+>  			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+>  			reg = <0 0 0 0>; /* To be filled by loader */
+> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> index 3c5da0e5a41d..d2483f618d44 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> @@ -27,8 +27,6 @@ chosen {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> -		stdout-path = "serial0";
+> -
+>  		framebuffer0: framebuffer@0 {
+>  			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+>  			reg = <0 0 0 0>; /* To be filled by loader */
+> diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> index b6b815d93c3e..af4153dcb55d 100644
+> --- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+> @@ -22,8 +22,6 @@ chosen {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> -		stdout-path = "serial0";
+> -
+>  		framebuffer0: framebuffer@0 {
+>  			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+>  			reg = <0 0 0 0>; /* To be filled by loader */
+> -- 
+> 2.38.1
+> 
+> 
+> 
