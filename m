@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A208963F27B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC7BB63F27E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231723AbiLAOQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 09:16:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59432 "EHLO
+        id S231793AbiLAOQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 09:16:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231772AbiLAOQj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:16:39 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441DFC6E6E
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:16:38 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id x13-20020a17090a46cd00b00218f611b6e9so2191433pjg.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:16:38 -0800 (PST)
+        with ESMTP id S231773AbiLAOQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:16:43 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CA5C6E6B
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:16:42 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id w23so1735116ply.12
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:16:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9z15GcvNuRMNo2BN/9lRT8Q5BhNXbMviW/S6PD92K0M=;
-        b=SHoQhPFJ3XyXWJgXVxmO7wu2YTqgDSWfvNfeW370fWnYzaYu1QaSwAUmr4x0ksAx8P
-         mT2lHH5Tg4fagALN9RqqSXxobR39W/JnRxTjSHEBl4Jk4OmSSnn9Uc4YW2LDrgP+MWGd
-         1f0JS5qm4AftYIUU454/ACbxDpvh/CkogI3alCVBv6v6QP6MrJebsUoHpTX8vR5ALDR4
-         KCO4zhenqo/DGRl6XAJ3HzaxnqD7cuB+iNCtFAeH2y8Rxos6B7CVfUaN7tm+gsxAIPA/
-         ABeA0I76PersCtwiK4M7nrUYh2t5keuW6Ya5EFGZ/aRjMDP7tc2quRhsiH/deIe+fPNk
-         96qw==
+        bh=AquwkY9JKICEs0Q8aP22cNjRsLjkfNh8gmTpulqNCNw=;
+        b=XjfXQcWvNPpyKr1lXoYMU+u/WgLL/UfQ15UJa0ZlZJT3dd+EpKgxLpxBbYnf37VpeU
+         JBHIfk6cz0K85O8FFVbbBqWFv5dn02wrmeTffi5rHFCXS8XnoMsQ5l5TgR2oD6a9VZZ5
+         TdFQrBValxpnuAcPQBxgeTqWAc3yctxgj9hPSxsncMro+1Qo5otwb2N1l1rFPDLYgyaw
+         IgDprIXif3PTQIfYKEJe4X1wpPvbdr2txjTpeMYRF25BTB3jftrxKWJThr0eOt99fz/K
+         S9ilNHEhgCGJrJymYXXIEbdIAilCIpOdIoqclgL81TAskkrOmh0a8Cj4DBfbO2ytiohw
+         WLzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9z15GcvNuRMNo2BN/9lRT8Q5BhNXbMviW/S6PD92K0M=;
-        b=XW/bIrt7Up2CCsaHeMzXSKH9AUDyaxhFIn4vVFrinl1v5NxRnNJ+tQ+gSHwXY54INk
-         JqM0dusL96yC9nDxlPINDNZOq6FPs1poDa/a1cHFtj+bGwaR27ZeCNjZSlFmSaJHCe2e
-         0GXDIadARmFNzFow07ks4c34eK00FwTTC2CMToCc9x5zLmTDkgzyP/WMyC8O2sqXnWz1
-         rSYA5P5vhVbCRMY9hreqEDGfGXGBe2vL83wUhTJouixqg70o5aP/fPWvNQ8fVYZCKcmR
-         YxeuZnV17mWmxsQrs/3o7rjVVVrL22VesdfgBqfuqo1k0F9wu0ixyrl67IlddZH5c2cG
-         mkYQ==
-X-Gm-Message-State: ANoB5pk4ZlgVSEqKOj/iicjCuQQpp9MVnxWBPgQ8KGBtzUUSIPXYhP/z
-        AbaGIV/Ej2LkN76Gw8L0mUotOA==
-X-Google-Smtp-Source: AA0mqf61oU5Em0iyGfYt0eGOn2HIev6wP3V7ev+tWGJit0sNvnU76MYg4nbdtInKpxdUKaVql6Zr3A==
-X-Received: by 2002:a17:902:8bc4:b0:187:2790:9bc2 with SMTP id r4-20020a1709028bc400b0018727909bc2mr50317178plo.61.1669904197688;
-        Thu, 01 Dec 2022 06:16:37 -0800 (PST)
+        bh=AquwkY9JKICEs0Q8aP22cNjRsLjkfNh8gmTpulqNCNw=;
+        b=DZfDf64LCPaa9tXGzHpoaO0R8BkDyPRa90RkJzRda4isuTYJ1PTWGYP4WpReVsz5wg
+         OmrggxP0wjWOkVvZvc16tzHviGDYi7Fricr3uo8dNK3lSccFOHQxdzMOBsm0GBtoKXWQ
+         ECwWhjFiCToBjCb06qwe7olxLZYWN2/tDmQb0WRnAWhKKPUqg1U6omFaYTrKzI2zVN1q
+         P7N8NeWBLLaKHqPLohG95imxzRp112jgxzvHFHdQvc7V3RFy6zLxqvx5DcMf5Z9exS91
+         Kyl4qY0qyHKRtq5M6ErdwY/+Wiz3v7rcrAUiUQf8P35FQJx151q+94SrNduxyj0ZCQxS
+         t46w==
+X-Gm-Message-State: ANoB5plnJAoV8X/w7OsvZsMhJZTabAmOIHYqJJi8ZWTIItj1pQOOdVSR
+        R8utnW3feryAydIrtRVvKBAQBw==
+X-Google-Smtp-Source: AA0mqf7fYciTgDh3ZmXNH39sjxynrqUcRug2zTWD+BxdudoykZbGtxChnDXxn8AfxTUIgy9SUAESbw==
+X-Received: by 2002:a17:903:22cc:b0:17e:539:c405 with SMTP id y12-20020a17090322cc00b0017e0539c405mr47142174plg.53.1669904202136;
+        Thu, 01 Dec 2022 06:16:42 -0800 (PST)
 Received: from localhost.localdomain ([2401:4900:1c61:2814:c945:522d:e948:beb1])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170902ff0200b0018975488514sm3663041plj.126.2022.12.01.06.16.33
+        by smtp.gmail.com with ESMTPSA id f2-20020a170902ff0200b0018975488514sm3663041plj.126.2022.12.01.06.16.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 06:16:37 -0800 (PST)
+        Thu, 01 Dec 2022 06:16:41 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, bhupesh.sharma@linaro.org,
@@ -57,9 +57,9 @@ Cc:     agross@kernel.org, bhupesh.sharma@linaro.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
         a39.skl@gmail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 2/4] soc: qcom: socinfo: Add SM8150 and SA8155 SoC IDs to the soc_id table
-Date:   Thu,  1 Dec 2022 19:46:17 +0530
-Message-Id: <20221201141619.2462705-3-bhupesh.sharma@linaro.org>
+Subject: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add SoC IDs for SM6115 / SM4250 and variants
+Date:   Thu,  1 Dec 2022 19:46:18 +0530
+Message-Id: <20221201141619.2462705-4-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
 References: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
@@ -67,43 +67,51 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC ID table entries for the SM8150 and SA8155 SoCs.
+Add SoC IDs for Qualcomm SM6115 / SM4250 and variants.
 
 Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- drivers/soc/qcom/socinfo.c | 2 ++
- 1 file changed, 2 insertions(+)
+ include/dt-bindings/arm/qcom,ids.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index 545934aead43..92b27db60840 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -305,6 +305,7 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(SDA658) },
- 	{ qcom_board_id(SDA630) },
- 	{ qcom_board_id(SDM450) },
-+	{ qcom_board_id(SM8150) },
- 	{ qcom_board_id(SDA845) },
- 	{ qcom_board_id(IPQ8072) },
- 	{ qcom_board_id(IPQ8076) },
-@@ -315,6 +316,7 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(SDA632) },
- 	{ qcom_board_id(SDA450) },
- 	{ qcom_board_id(SM8250) },
-+	{ qcom_board_id(SA8155) },
- 	{ qcom_board_id(IPQ8070) },
- 	{ qcom_board_id(IPQ8071) },
- 	{ qcom_board_id(IPQ8072A) },
+diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+index 5e0524991e99..8f5324dd3ff2 100644
+--- a/include/dt-bindings/arm/qcom,ids.h
++++ b/include/dt-bindings/arm/qcom,ids.h
+@@ -125,11 +125,13 @@
+ #define QCOM_ID_IPQ8071A		396
+ #define QCOM_ID_IPQ6018			402
+ #define QCOM_ID_IPQ6028			403
++#define QCOM_ID_SM4250			417
+ #define QCOM_ID_IPQ6000			421
+ #define QCOM_ID_IPQ6010			422
+ #define QCOM_ID_SC7180			425
+ #define QCOM_ID_SM6350			434
+ #define QCOM_ID_SM8350			439
++#define QCOM_ID_SM6115			444
+ #define QCOM_ID_SC8280XP		449
+ #define QCOM_ID_IPQ6005			453
+ #define QCOM_ID_QRB5165			455
+@@ -137,6 +139,8 @@
+ #define QCOM_ID_SM7225			459
+ #define QCOM_ID_SA8295P			460
+ #define QCOM_ID_SA8540P			461
++#define QCOM_ID_QCM4290			469
++#define QCOM_ID_QCS4290			470
+ #define QCOM_ID_SM8450_2		480
+ #define QCOM_ID_SM8450_3		482
+ #define QCOM_ID_SC7280			487
 -- 
 2.38.1
 
