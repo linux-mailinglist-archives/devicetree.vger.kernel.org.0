@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 337CC63EE99
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3272F63EEAD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:03:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbiLALAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:00:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40276 "EHLO
+        id S229698AbiLALDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:03:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230478AbiLAK7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:59:36 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4027EA13C6
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:58:53 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id z4so1446670ljq.6
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:58:53 -0800 (PST)
+        with ESMTP id S229987AbiLALCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:02:50 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A481AB021
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:02:05 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id z4so1456374ljq.6
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 03:02:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9CMzCUFTPRKosFugMwQr2rqsvUFi3ESa8CvF8qyIZfg=;
-        b=PnMhWd05zRtzaHExY2rIhP1gphf9RFJAl65SVxk7kbPa+KKK+YkkHzsGWPr8mMkYOo
-         B1MGjQ+pj1q4Kx/7s7aoVouh+wVLTCAWHkfmxk4R7uNkPYQnDoH5TDXb8pdeOupaamsT
-         OWtdq5m+qk8OSCfNdWBAwQyywOQEq9Q6ybtq3C86o71/VY+mamB2c8Rb3Xm//Uw72Mfa
-         kVejeEcmMBlV/ltrtl2ju+CEFUQQXCWi52ly3LkUQtjegnVl/Cz98bUZZjp1iAahSM4/
-         SzkueT61emF5X2sLvwL6BYpjqjmo1nQTjtPPkdbH6B/2hm3irS5gb3xavHr7QnLBKyEA
-         CU2A==
+        bh=RWN6d6ee3y7/gjA+RJaHwoAowMMQDgGlpGi4abXfpxU=;
+        b=QHFcARpSCZeUlqpgZgIeJB5KzhvZ8mnlgrz6maNkmtHJup7gSx3/GtBWGeriFWj/5t
+         5XHsCymS45E+Zl/W2hNAFoZ2YLEcgZVXQTIKKJdRprABj+ODZuac7fWd+tVQNcIzy/le
+         f9Jm1F3ApVr2Z8OH24Z/2/r/opM7g4rlOvFY0lwkwzxn5oIyT1vnJVbLK8fVN4K5Z4Wr
+         qPF5T3orMBvs6M0B/VDSFzz6rI4aahXbN08pn6GB0ZRm3P5Z8iEH42svHTjTlrvxth74
+         BJaOuUl/OGRDD8U9DHQ4Wi1sLsxYCMEAwOigFUng1ELR76awP/ehWOjEuWwpiP+XthAd
+         mhYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9CMzCUFTPRKosFugMwQr2rqsvUFi3ESa8CvF8qyIZfg=;
-        b=b44HQmu4xTCiZTg3CtHPBkeCfN8HZDfHILwiO5N/LVsSn7MP7iU4eKtJhl5bBSHUzu
-         bkPhuQGsDpgHQftMFu9gzjJurwp6ZFoZLKQlT4Bk9nQLiMdKyY/aYv0Kn9wdmcYfip2O
-         Ujr5tU8C745ThvpVi23HuTAggm6IrVnhSg9h5fzrXKMwGnvoZW75C+OWGAJEhKpIXeVn
-         deso9bmtK/TGrimlamwCU1YRBnzqx4SAEgScsbiEIoCKPRrzhY9vuOgeQr4ueuYKL7Sv
-         v+honfEyJ3Vx8q/PaILcJHLCQJgwg4XhDM5nkBpcYSqpEARQ9enHYeRQwq5Q62/y+ZnE
-         jngA==
-X-Gm-Message-State: ANoB5pnbtPSWawXT6bcdVgHZdv6mi402qwxlgbKrt1Iaspq1N9ORX6Le
-        JroKRm+YvOu7p9Dyo7oWE1iztA==
-X-Google-Smtp-Source: AA0mqf5ufFeOB1OMBaOMcApvYDpojjK4SFRwAd0IAmjOU7uHV8tnjvNQBKUnCedswt5pgds69ito8w==
-X-Received: by 2002:a2e:be06:0:b0:26f:c489:883e with SMTP id z6-20020a2ebe06000000b0026fc489883emr20653090ljq.281.1669892331406;
-        Thu, 01 Dec 2022 02:58:51 -0800 (PST)
+        bh=RWN6d6ee3y7/gjA+RJaHwoAowMMQDgGlpGi4abXfpxU=;
+        b=d1Skpk8VJrkLAEzWmyl5RvvV0A7OQFnIv1wEQs9HvP1FyPRSwAtfBgP6b4J+/XezvS
+         QIf+a6JZcpnsxYAaIbQ3gU4f5bRz44KurViNvvP6WV0YqsHIR3PpE4PSLMPKNWGx6Cup
+         cqrzODm7JcUa7uzPVxUMGBkDa18vs+yFL81hJ3jRB+m+FJ1fRUjgRIfozdLBsKYkztWv
+         xxXOE2EnpfFxsIQMy2UJucYO8669fwRWmXbS6ak2Fu2HGNElkqiKbI94mFNmTr2P5lgW
+         KhUeblDrqGX5EKYDZFIAWxq073vWbtYtiZYwZbxt7ijmjXnSfHAiTpdPYtKMccSrwMyw
+         7AGQ==
+X-Gm-Message-State: ANoB5pm4jNtaT0pdUB/0VfCkjfiGkkuSS544NiVowa+EgP/CBOnjmPDx
+        bSYQEZ1SNtnTKLjKzLUfp/14RQ==
+X-Google-Smtp-Source: AA0mqf5O6CJ+qn9YMzGPkZe6b8n6HzYvx5cIKBxDov12bCrrfFFonZ0myxPBBsvAVAmhoKC3veX63w==
+X-Received: by 2002:a2e:9b17:0:b0:279:cd10:a511 with SMTP id u23-20020a2e9b17000000b00279cd10a511mr1599538lji.502.1669892523528;
+        Thu, 01 Dec 2022 03:02:03 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id br33-20020a056512402100b004b1756a0ae9sm611811lfb.55.2022.12.01.02.58.49
+        by smtp.gmail.com with ESMTPSA id g3-20020ac25383000000b00492dba3c85asm606438lfh.220.2022.12.01.03.02.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:58:50 -0800 (PST)
-Message-ID: <8d7367b2-126a-d8ba-b616-be1ef9c67122@linaro.org>
-Date:   Thu, 1 Dec 2022 11:58:49 +0100
+        Thu, 01 Dec 2022 03:02:02 -0800 (PST)
+Message-ID: <fb13f339-79c5-96a1-ba4d-bf09da0b6ebd@linaro.org>
+Date:   Thu, 1 Dec 2022 12:02:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: remoteproc: qcom: adsp: document
- sm8550 adsp, cdsp & mpss compatible
+Subject: Re: [PATCH v2 1/9] dt-bindings: serial: add documentation for
+ Bouffalolab UART Driver
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
+To:     Jisheng Zhang <jszhang@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-remoteproc@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v2-0-12bc22255474@linaro.org>
- <20221114-narmstrong-sm8550-upstream-remoteproc-v2-2-12bc22255474@linaro.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-2-jszhang@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v2-2-12bc22255474@linaro.org>
+In-Reply-To: <20221127132448.4034-2-jszhang@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,77 +85,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 11:29, Neil Armstrong wrote:
-> This documents the compatible for the component used to boot the
-> aDSP, cDSP and MPSS on the SM8550 SoC.
+On 27/11/2022 14:24, Jisheng Zhang wrote:
+> Add bindings doc for Bouffalolab UART Driver
 > 
-> The SM8550 boot process on SM8550 now requires a secondary "Devicetree"
-> firmware to be passed along the main Firmware, and the cDSP a new power
-> domain named "NSP".
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../bindings/serial/bouffalolab,uart.yaml     | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
 > 
-> A third memory domain for the DSM memory zone is also needed for the MPSS
-> PAS bindings.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> diff --git a/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml b/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
+> new file mode 100644
+> index 000000000000..a8293444ca31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/bouffalolab,uart.yaml
 
-Thank you for your patch. There is something to discuss/improve.
+Name the file matching compatible, so bouffalolab,bl808-uart.yaml
+
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/bouffalolab,uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bouffalolab UART Controller
+> +
+> +maintainers:
+> +  - Jisheng Zhang <jszhang@kernel.org>
+> +
+> +allOf:
+> +  - $ref: serial.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: bouffalolab,bl808-uart
+
+Rob's comments from v1 are applicable. Either fix or respond to them.
 
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8550-adsp-pas
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: LCX power domain
-> +            - description: LMX power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: lcx
-> +            - const: lmx
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8550-cdsp-pas
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: CX power domain
-> +            - description: MXC power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
-> +            - const: mxc
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8550-cdsp-pas
-
-This entire if does not look valid - compatible is covered in the
-previous one. You should see `dtbs_check` warnings on your DTS.
-
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: CX power domain
-> +            - description: MXC power domain
-> +            - description: NSP power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
-> +            - const: mxc
-> +            - const: nsp
-> +
-> +unevaluatedProperties: false
+> +  reg:
+> +    maxItems: 1
 > +
 
 Best regards,
