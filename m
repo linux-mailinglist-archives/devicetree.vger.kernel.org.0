@@ -2,355 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1EDD63EB3F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D69EC63EB8A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:48:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbiLAIgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 03:36:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
+        id S229998AbiLAIsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 03:48:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiLAIgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:36:46 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21C2748DD
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 00:36:44 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id q7so1481559wrr.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 00:36:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oe1Bt00SWfWmsnndQyeMXHNrSaSoX25OpopVJE/Lc9A=;
-        b=OUSIo1Z9bjA/LEqX2ib7YZAjnxawUT0Ps+MJgPB83SwRoQlrUz7B6KRXYiMKlIzXu2
-         ayaWvgZj6bB4ftam8Q8r13tFDJgqeWbipn8rRN60tQ6W7xLBS0s1yL1TR13CRGJ8J7Bo
-         p9W95XtBJs4yydI5UFjy6bgqlxhiPzyowbFlIW8IWGdhdryd7OAhqrKMAaYlkxDiWNT8
-         YKO09Dn/wdHHI9UMLLCPOFz8jpQP5DtOBWBUl9QjPETBWogHdSrBqWVJ3b5Y9QK85F/7
-         heM2uEH07z0cIC9AG7u847zmr/7keZSJAcWZhszEr4x1L2oRn4rd0AbAdchaYtl1CBZF
-         58KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Oe1Bt00SWfWmsnndQyeMXHNrSaSoX25OpopVJE/Lc9A=;
-        b=ZuodSGDqofqgR75JpO79O4loMZEofsRbqKW8b1bheMZ7l2FecW/mjpMAuJf8CNjlcP
-         W4DzUxNxWRMyUdCWPE4qCOMZgrhxll65HRig2fsIMVzy6AsFmjyDObmjrSuReJCjQtBt
-         ua1t6LYDDUSQxfmijpiqEJm3LyudEAjQES2CPxs7OePTY3S+wbVkT8eieALtAEHtbppq
-         gfmORongBeoQzj03n39PDoq6XYpcVrIYqXoK2t+Zocp8U7z5tENyTBZSblL/ddW1xoo9
-         WePX0GDN92tI13+j5rcAsEFX28XuBgaIt3lcdrfdxEklAQbwsuY+RBKShgmnHIzW3tAJ
-         JIxw==
-X-Gm-Message-State: ANoB5pkEhfE95lTOXOW842SvUERL74BnsJI2EgP8ejgYSuR0plWKOrwz
-        Lm9UqumNIx/nxOdCBhszt5H3rw==
-X-Google-Smtp-Source: AA0mqf5mmeh5ZFnMWkb3HXAwM+p4TLFW/xcDaquaExg0QjuHkTof1pA4eToIeh/1AVNSGzM+/WMw3A==
-X-Received: by 2002:a05:6000:83:b0:242:4a6:5baa with SMTP id m3-20020a056000008300b0024204a65baamr18636338wrx.102.1669883803159;
-        Thu, 01 Dec 2022 00:36:43 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bec0:73a:70e1:228f? ([2a01:e0a:982:cbb0:bec0:73a:70e1:228f])
-        by smtp.gmail.com with ESMTPSA id a13-20020adfed0d000000b0024219b1cb1bsm3751749wro.60.2022.12.01.00.36.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 00:36:42 -0800 (PST)
-Message-ID: <60c8352f-81c6-72b2-6340-1d866c259937@linaro.org>
-Date:   Thu, 1 Dec 2022 09:36:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V5 1/4] clk: meson: S4: add support for Amlogic S4 SoC PLL
- clock driver and bindings
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229763AbiLAIrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:47:45 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FC9F29CB4
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 00:47:12 -0800 (PST)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221201084709epoutp032a2841384b80523fb416ca422bb8dfd1~snwqDREUU2016120161epoutp03O
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:47:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221201084709epoutp032a2841384b80523fb416ca422bb8dfd1~snwqDREUU2016120161epoutp03O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669884429;
+        bh=xU5xTfeB/RV84pry0AX4eMewy1HuPhTACkMF9vC0oNc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bRrsUN77iPDpLemOjryfUGpNSGeaYNFAJq432IS1U252OYl4OAWOV2i0Vzsu+wzqH
+         7iZ6rLf1pL5ubsEsP5Js6bOsSo1VSrcPFl7/7ZecwAliIYLYzHDAssjw1AI+xTwQEk
+         qlZEnMlS5QZWODbgpJwWrEsuwblD5MeWgub7bMjQ=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20221201084708epcas2p127b040b4837295229e8d17ee4f6a9b51~snwpbx2w40396503965epcas2p1w;
+        Thu,  1 Dec 2022 08:47:08 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.70]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4NN8p41BcSz4x9QF; Thu,  1 Dec
+        2022 08:47:08 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D8.DE.10048.C0A68836; Thu,  1 Dec 2022 17:47:08 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221201084707epcas2p2cb6cfb1a0579bc30dfa4f1eca222f298~snwojs8d51017910179epcas2p2o;
+        Thu,  1 Dec 2022 08:47:07 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221201084707epsmtrp11bbf5770071e4378a00dff36c2b21be9~snwoimDSm2387523875epsmtrp1a;
+        Thu,  1 Dec 2022 08:47:07 +0000 (GMT)
+X-AuditID: b6c32a45-7a3fe70000002740-06-63886a0c44cc
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FB.9F.14392.B0A68836; Thu,  1 Dec 2022 17:47:07 +0900 (KST)
+Received: from ubuntu (unknown [10.229.95.128]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221201084707epsmtip10596135e10ba7ef4f3881ba0ace6f6bd~snwoUwZS-3064030640epsmtip1B;
+        Thu,  1 Dec 2022 08:47:07 +0000 (GMT)
+Date:   Thu, 1 Dec 2022 17:41:30 +0900
+From:   Jung Daehwan <dh10.jung@samsung.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com
-References: <20221123021346.18136-1-yu.tu@amlogic.com>
- <20221123021346.18136-2-yu.tu@amlogic.com>
- <f03f331a-5666-298e-a1a2-bdb9bab11a48@linaro.org>
- <92b570ea-3ddc-8e91-5a7a-ed601bb7c02c@amlogic.com>
- <eb56ed39-cfaa-3368-a2c0-0a4e89440e40@linaro.org>
- <5b7176b4-d7a2-c67f-31c6-e842e0870836@linaro.org>
- <1jfse72wqk.fsf@starbuckisacylon.baylibre.com>
- <a6cf1b3f-259d-44b7-8a9a-2a0cd29c714b@amlogic.com>
- <1jedtnp7db.fsf@starbuckisacylon.baylibre.com>
- <29f06ea8-3795-46a4-fcd2-3f0d4c313ae7@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <29f06ea8-3795-46a4-fcd2-3f0d4c313ae7@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Colin Ian King <colin.i.king@gmail.com>,
+        Artur Bujdoso <artur.bujdoso@gmail.com>,
+        Juergen Gross <jgross@suse.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
+        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
+        eomji.oh@samsung.com
+Subject: Re: [RFC PATCH v1 0/2] add xhci-exynos to support Samsung Exynos
+ SOCs
+Message-ID: <20221201084130.GA195673@ubuntu>
+MIME-Version: 1.0
+In-Reply-To: <Y4hftXoUdAQ3SK4s@kroah.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBJsWRmVeSWpSXmKPExsWy7bCmqS5PVkeywY+NrBYP5m1js/g76Ri7
+        xc0JaxgtJrV/YbWYf+Qcq8Wp5QuZLJoXr2ezmHPTyOLuwx8sFn0vHjJbTPmznMli0+NrrBaX
+        d81hs5hxfh+TxaJlrcwWzZumsFq07j3CbtF19wbQpIOiFr+2vGJ0EPH4/WsSo8fOWXfZPRbv
+        ecnksWlVJ5vHnWt72Dz2z13D7rF5Sb1H35ZVjB7rt1xl8fi8SS6AKyrbJiM1MSW1SCE1Lzk/
+        JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoOyWFssScUqBQQGJxsZK+nU1R
+        fmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFCdsbpLzoF7zkrTvwXb2D8
+        w97FyMkhIWAicfbrdqYuRi4OIYEdjBJ/7n9kAkkICXxilLj8Sx0i8Y1RYuWJXkaYjq0LX7NA
+        JPYySjTOWMkO4TxhlDjWc54ZpIpFQEVixuGzYB1sAloS936cAIuLCBhL9J+dBdbALNDNLnHg
+        yTUWkISwQIDEm8NtYEfxCuhI7D6/gRHCFpQ4OfMJWA2ngKbExdVPWbsYOThEgRa8OlgPMkdC
+        4D+HxOPOPawQ57lItM9+yQZhC0u8Or4F6lEpiZf9bVB2tsT1b90sEHaFxIq9MLaxxKxn7Ywg
+        85kFMiXOHJIDMSUElCWO3AKrYBbgk+g4/JcdIswr0dEmBNGoLDH98gSoAyQlDr4+xwxR4iHR
+        fsYZEp47GSW+X1CYwCg/C8lbsxBWzQKbryOxYPcnNoiwtMTyfxwQpqbE+l36CxhZVzGKpRYU
+        56anFhsVGMKjOTk/dxMjOMlrue5gnPz2g94hRiYOxkOMEhzMSiK8HZ/bkoV4UxIrq1KL8uOL
+        SnNSiw8xmgLjaCKzlGhyPjDP5JXEG5pYGpiYmRmaG5kamCuJ83bN0EoWEkhPLEnNTk0tSC2C
+        6WPi4JRqYMp7m3iiuk7iyouDh7sOtx/NZmM4eFTVWEkzeRtj+HkxC6MPmVPvCIpYeM/RqHM7
+        eGHlhz+r1Z/cLpCWWFqyyUUvXWbuy9aZn67y9ansfTBxes4/j81Ft++xRH5lehSZ2ys5USox
+        bV9QYarGssMv27b7X1pca7C98KHO+imCB3w3lD48++nIpBUbFFOmzX/7lPdu8Hqp9O+2mjeu
+        1HGXFLZYi0Qu/8nyiz+ubOFz5QuhJp+be4yfF85tqW6PCO/ysf/X7qJus2Xe12u8nG3C+mdv
+        6k+tdHNxsup8tWyyjBQz34+q1uZtvDIOSzcJPrnpFb+IZ01bVrDzZlcN+fvb+FcGi+X4XC5I
+        mW7x4dECASWW4oxEQy3mouJEAF7wz+Z7BAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMIsWRmVeSWpSXmKPExsWy7bCSnC53VkeywY7LahYP5m1js/g76Ri7
+        xc0JaxgtJrV/YbWYf+Qcq8Wp5QuZLJoXr2ezmHPTyOLuwx8sFn0vHjJbTPmznMli0+NrrBaX
+        d81hs5hxfh+TxaJlrcwWzZumsFq07j3CbtF19wbQpIOiFr+2vGJ0EPH4/WsSo8fOWXfZPRbv
+        ecnksWlVJ5vHnWt72Dz2z13D7rF5Sb1H35ZVjB7rt1xl8fi8SS6AK4rLJiU1J7MstUjfLoEr
+        48KVn6wFa9grts7Zxd7AeIm1i5GTQ0LARGLrwtcsXYxcHEICuxkl+t/2MUMkJCWWzr3BDmEL
+        S9xvOcIKUfSIUeLZ9EawIhYBFYkZh88ygthsAloS936cAIuLCBhL9J+dxQ7SwCwwkV2id8ci
+        ti5GDg5hAT+J+TNYQGp4BXQkdp/fANYrJLCTUWJJozpEXFDi5MwnYDXMQDNv/HvJBNLKLCAt
+        sfwfB0iYU0BT4uLqp6wgYVGgE14drJ/AKDgLSfMsJM2zEJoXMDKvYpRMLSjOTc8tNiwwzEst
+        1ytOzC0uzUvXS87P3cQIjlctzR2M21d90DvEyMTBeIhRgoNZSYS343NbshBvSmJlVWpRfnxR
+        aU5q8SFGaQ4WJXHeC10n44UE0hNLUrNTUwtSi2CyTBycUg1MUfOtDsYVsazT4b1jyJ/EcTb8
+        cM8ML7tvJbsK5IXfJ/RNf/eUy1zltP9Op8fRIbYHr9g2du3Ynblr4cRY872eB12Sb/af5Bew
+        L1i2YOeT5hfq8cKzveKnse6+eGKzhnBoQ//LTW/2R5uUVnMtv6y522Z1b1TIxaD5zIou64/s
+        XjH77nf1KQuOu7Gs331e2+nWUT7uyTxq7wxTXu4PO1l8P9BZvjX36ZFdZ3NuHa5drTH3sOfu
+        q3zTDC1uNEo+6pm3yq9Db18a+zau1gbGPXN+lSd8LzJXWbQ02Xyn3lO2tu+Mzmf3Nu1ieXfd
+        QK+m8Z67w//ba3dPTOjSNlwQ8SX66xq3ypL49z2/XducvOyZlViKMxINtZiLihMBCPAyH0YD
+        AAA=
+X-CMS-MailID: 20221201084707epcas2p2cb6cfb1a0579bc30dfa4f1eca222f298
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+        boundary="----vASH.pIaeqe1VhI1kM1L2G1Xl7-k5WZCtOgud_GtoWwibbjx=_102990_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221201021940epcas2p2073f25dad069314022471eaa16d26592
+References: <CGME20221201021940epcas2p2073f25dad069314022471eaa16d26592@epcas2p2.samsung.com>
+        <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
+        <Y4hftXoUdAQ3SK4s@kroah.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 14:30, Yu Tu wrote:
-> Hi Jerome ,
+------vASH.pIaeqe1VhI1kM1L2G1Xl7-k5WZCtOgud_GtoWwibbjx=_102990_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+
+On Thu, Dec 01, 2022 at 09:03:01AM +0100, Greg Kroah-Hartman wrote:
+> On Thu, Dec 01, 2022 at 11:13:29AM +0900, Daehwan Jung wrote:
+> > This patchset is to support xHCI Controller on Samsung Exynos SOCs.
+> > 
+> > Daehwan Jung (2):
+> >   dt-bindings: usb: samsung,exynos-xhci: support Samsung Exynos xHCI
+> >     Controller
+> >   usb: host: add xhci-exynos to support Exynos SOCs
 > 
-> On 2022/11/28 20:33, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->>
->> On Mon 28 Nov 2022 at 15:39, Yu Tu <yu.tu@amlogic.com> wrote:
->>
->>> Hi Jerome,
->>>     Thank you for your reply.
->>>
->>> On 2022/11/25 17:23, Jerome Brunet wrote:
->>>> [ EXTERNAL EMAIL ]
->>>> On Wed 23 Nov 2022 at 14:53, Krzysztof Kozlowski
->>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>>> On 23/11/2022 14:23, Neil Armstrong wrote:
->>>>>> Hi,
->>>>>>
->>>>>> On 23/11/2022 12:16, Yu Tu wrote:
->>>>>>> Hi Krzysztof,
->>>>>>>        Thank you for your reply.
->>>>>>>
->>>>>>> On 2022/11/23 18:08, Krzysztof Kozlowski wrote:
->>>>>>>> [ EXTERNAL EMAIL ]
->>>>>>>>
->>>>>>>> On 23/11/2022 03:13, Yu Tu wrote:
->>>>>>>>> Add the S4 PLL clock controller found and bindings in the s4 SoC family.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>>>>>> ---
->>>>>>>>>     .../bindings/clock/amlogic,s4-pll-clkc.yaml   |  51 +
->>>>>>>>
->>>>>>>> This is v5 and still bindings are here? Bindings are always separate
->>>>>>>> patches. Use subject prefixes matching the subsystem (git log --oneline
->>>>>>>> -- ...).
->>>>>>>>
->>>>>>>> And this was split, wasn't it? What happened here?!?
->>>>>>>
->>>>>>> Put bindings and clock driver patch together from Jerome. Maybe you can read this chat history.
->>>>>>> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
->>>>>>
->>>>>> Jerome was asking you to send 2 patchsets, one with :
->>>>>> - bindings in separate patches
->>>>>> - drivers in separate patches
->>>>>> and a second with DT changes.
->>>> Indeed, this is what was asked. It is aligned with Krzysztof's request.
->>>
->>> According to your discussion, I still should send patches in the previous
->>> way in series. But I'm going to change it like you suggested.
->>> I don't know, am I getting it right?
->>
->> 3 people tried to explain this already and we all told you the same thing.
->>
->> * 1 patchset per maintainer: clk and dt
->> * bindings must be dedicated patches - never mixed with driver code.
->>
->> I strongly suggest that you take some time to (re)read:
->> * https://docs.kernel.org/process/submitting-patches.html
->> * https://docs.kernel.org/devicetree/bindings/submitting-patches.html
->>
->> If still unclear, please take some time to look at the kernel mailing
->> list archive and see how others have done the same things.
->>
->> Thx.
+> Why is this a "RFC" and not a real submission?  What needs to be done to
+> it to get it into mergable shape?
 > 
-> I'll change it as you suggest.But I still don't understand what you suggested in V3.
+> And thank you for posting this, I've wanted to see this merged for a
+> very long time given the millions of devices already using it.
 > 
-> I remember discussing it with you at V3.
-> https://lore.kernel.or/all/1jy1v6z14n.fsf@starbuckisacylon.baylibre.com/
+> thanks,
 > 
-> ">>>> Also it would be nice to split this in two series.
->  >>>> Bindings and drivers in one, arm64 dt in the other. These changes goes
->  >>>> in through different trees.
->  >>> At present, Bindings, DTS and drivers are three series. Do you mean to put
->  >>> Bindings and drivers together? If so, checkpatch.pl will report a warning.
->  >> Yes because patches are not in yet so there is a good reason to ignore
->  >> the warning. Warning will never show up on the actual tree if the
->  >> patches are correctly ordered.
->  >
->  > I think Binding, DTS and drivers use three series and you said two series
->  > is not a big problem. Three series are recommended for checkpatch.pl, I
->  > think it should be easy for that to separate and merge。
+> greg k-h
 > 
-> No - There is only 2 series. 1 for the bindings and clock drivers and
-> one for the DT once things are in"
 
-Please send the following emails:
+Hi greg,
 
-* First patchset
+That's because It's my first time to submit the patchset with dt bindigs.
+I've been trying not to miss anything needed but I want to check whether
+it's acceptable or not. I will resend it if there's no problem.
 
-[PATCH V6 0/3] clk: meson: Add S4 SoC PLL and Peripheral clock controller
-	[PATCH v6 1/3] dt-bindings: clock: document Amlogic S4 SoC PLL & peripheral clock controller
-	[PATCH v6 2/3] clk: meson: add support for Amlogic S4 SoC PLL
-	[PATCH v6 3/3] clk: meson: add support for Amlogic S4 SoC peripheral clock controller
+Best Regards,
+Jung Daehwan
 
-1) will contain only .yaml and dt-bindings include
-2) will only have drivers/clk/meson changes
-3) will only have drivers/clk/meson changes
+------vASH.pIaeqe1VhI1kM1L2G1Xl7-k5WZCtOgud_GtoWwibbjx=_102990_
+Content-Type: text/plain; charset="utf-8"
 
-* Second patchset:
 
-[PATCH v1 0/2] arm64: dts: meson: Add S4 SoC PLL and Peripheral clock nodes
-	[PATCH v1 1/2] arm64: dts: meson: add S4 Soc PLL clock controller node
-	[PATCH v1 2/2] arm64: dts: meson: add S4 Soc Peripheral clock controller node
-
-1) is the patch 3 of v5 patchset
-2) is the patch 4 of v5 patchset
-
-And in the second cover letter, explain those patches comes from the previous V5 patchset
-and add a link to the V6 "drivers + bindings" patchset as a dependency.
-
-Neil
-> 
->>
->>>
->>>>
->>>>>>
->>>>>> Then when the bindings + clocks patches are merged, a pull request of the bindings
->>>>>> can be done to me so I can merge it with DT.
->>>>>>
->>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>>>     MAINTAINERS                                   |   1 +
->>>>>>>>>     drivers/clk/meson/Kconfig                     |  13 +
->>>>>>>>>     drivers/clk/meson/Makefile                    |   1 +
->>>>>>>>>     drivers/clk/meson/s4-pll.c                    | 875 ++++++++++++++++++
->>>>>>>>>     drivers/clk/meson/s4-pll.h                    |  88 ++
->>>>>>>>>     .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |  30 +
->>>>>>>>>     7 files changed, 1059 insertions(+)
->>>>>>>>>     create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>>>     create mode 100644 drivers/clk/meson/s4-pll.c
->>>>>>>>>     create mode 100644 drivers/clk/meson/s4-pll.h
->>>>>>>>>     create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>>>
->>>>>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>>> new file mode 100644
->>>>>>>>> index 000000000000..fd517e8ef14f
->>>>>>>>> --- /dev/null
->>>>>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
->>>>>>>>> @@ -0,0 +1,51 @@
->>>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>>>>> +%YAML 1.2
->>>>>>>>> +---
->>>>>>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-pll-clkc.yaml#
->>>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>>>> +
->>>>>>>>> +title: Amlogic Meson S serials PLL Clock Controller
->>>>>>>>> +
->>>>>>>>> +maintainers:
->>>>>>>>> +  - Neil Armstrong <narmstrong@baylibre.com>
->>>>>>>>> +  - Jerome Brunet <jbrunet@baylibre.com>
->>>>>>>>> +  - Yu Tu <yu.hu@amlogic.com>
->>>>>>>>> +
->>>>>>>> One blank line.
->>>>>>>
->>>>>>>     I will delete this, on next version patch.
->>>>>>>
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +properties:
->>>>>>>>> +  compatible:
->>>>>>>>> +    const: amlogic,s4-pll-clkc
->>>>>>>>> +
->>>>>>>>> +  reg:
->>>>>>>>> +    maxItems: 1
->>>>>>>>> +
->>>>>>>>> +  clocks:
->>>>>>>>> +    maxItems: 1
->>>>>>>>> +
->>>>>>>>> +  clock-names:
->>>>>>>>> +    items:
->>>>>>>>> +      - const: xtal
->>>>>>>>> +
->>>>>>>>> +  "#clock-cells":
->>>>>>>>> +    const: 1
->>>>>>>>> +
->>>>>>>>> +required:
->>>>>>>>> +  - compatible
->>>>>>>>> +  - reg
->>>>>>>>> +  - clocks
->>>>>>>>> +  - clock-names
->>>>>>>>> +  - "#clock-cells"
->>>>>>>>> +
->>>>>>>>> +additionalProperties: false
->>>>>>>>> +
->>>>>>>>> +examples:
->>>>>>>>> +  - |
->>>>>>>>> +    clkc_pll: clock-controller@fe008000 {
->>>>>>>>> +      compatible = "amlogic,s4-pll-clkc";
->>>>>>>>> +      reg = <0xfe008000 0x1e8>;
->>>>>>>>> +      clocks = <&xtal>;
->>>>>>>>> +      clock-names = "xtal";
->>>>>>>>> +      #clock-cells = <1>;
->>>>>>>>> +    };
->>>>>>>>
->>>>>>>>
->>>>>>>>> +#endif /* __MESON_S4_PLL_H__ */
->>>>>>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-pll-clkc.h b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>>> new file mode 100644
->>>>>>>>> index 000000000000..345f87023886
->>>>>>>>> --- /dev/null
->>>>>>>>> +++ b/include/dt-bindings/clock/amlogic,s4-pll-clkc.h
->>>>>>>>
->>>>>>>> This belongs to bindings patch, not driver.
->>>>>>>>
->>>>>>>>> @@ -0,0 +1,30 @@
->>>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->>>>>>>>> +/*
->>>>>>>>> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->>>>>>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
->>>>>>>>> + */
->>>>>>>>> +
->>>>>>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PLL_CLKC_H
->>>>>>>>> +
->>>>>>>>> +/*
->>>>>>>>> + * CLKID index values
->>>>>>>>> + */
->>>>>>>>> +
->>>>>>>>> +#define CLKID_FIXED_PLL            1
->>>>>>>>> +#define CLKID_FCLK_DIV2            3
->>>>>>>>
->>>>>>>> Indexes start from 0 and are incremented by 1. Not by 2.
->>>>>>>>
->>>>>>>> NAK.
->>>>>>>
->>>>>>> I remember Jerome discussing this with you.You can look at this submission history.
->>>>>>> https://lore.kernel.org/all/c088e01c-0714-82be-8347-6140daf56640@linaro.org/
->>>>>>
->>>>>> Historically we did that by only exposing part of the numbers, controlling which
->>>>>> clocks were part of the bindings.
->>>>>>
->>>>>> But it seems this doesn't make sens anymore, maybe it would be time to put all the
->>>>>> clock ids in the bindings for this new SoC and break with the previous strategy.
->>>> Krzysztof and I agreed there is nothing wrong with the current
->>>> approach, I believe.
->>>> It does not prevent someone from using an un-exposed clock, sure, or
->>>> exposing it in the future if necessary.
->>>> However, I think it clearly shows that an un-exposed element is not
->>>> expected to be used by an external consumers. It should be enough to
->>>> trigger a discussion if this expectation is wrong.
->>>>
->>>>>
->>>>> So the outcome of the previous discussion was somewhere later in that
->>>>> thread:
->>>>>
->>>>>> It is just a choice to not expose some IDs.
->>>>>> It is not tied to the implementation at all.
->>>>>> I think we actually follow the rules and the idea behind it.
->>>>>
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>> .
->>
->> .
-
+------vASH.pIaeqe1VhI1kM1L2G1Xl7-k5WZCtOgud_GtoWwibbjx=_102990_--
