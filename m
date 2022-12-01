@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7BB63F27E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3558863F284
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231793AbiLAOQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 09:16:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
+        id S231799AbiLAORE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 09:17:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231773AbiLAOQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:16:43 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CA5C6E6B
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:16:42 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id w23so1735116ply.12
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:16:42 -0800 (PST)
+        with ESMTP id S231804AbiLAOQt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:16:49 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEF7C7705
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:16:47 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id h28so1966628pfq.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:16:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AquwkY9JKICEs0Q8aP22cNjRsLjkfNh8gmTpulqNCNw=;
-        b=XjfXQcWvNPpyKr1lXoYMU+u/WgLL/UfQ15UJa0ZlZJT3dd+EpKgxLpxBbYnf37VpeU
-         JBHIfk6cz0K85O8FFVbbBqWFv5dn02wrmeTffi5rHFCXS8XnoMsQ5l5TgR2oD6a9VZZ5
-         TdFQrBValxpnuAcPQBxgeTqWAc3yctxgj9hPSxsncMro+1Qo5otwb2N1l1rFPDLYgyaw
-         IgDprIXif3PTQIfYKEJe4X1wpPvbdr2txjTpeMYRF25BTB3jftrxKWJThr0eOt99fz/K
-         S9ilNHEhgCGJrJymYXXIEbdIAilCIpOdIoqclgL81TAskkrOmh0a8Cj4DBfbO2ytiohw
-         WLzg==
+        bh=IbPGPAIi0isMdoE0z4k6H2LnC1A8GtyTgAXJMtQTO78=;
+        b=ufvToVa5IkWraBoaTPmAvV5DvUhTgt+q1SFomWqG1EBBU+6OQx8Oah5hzXQ8vVQYws
+         2cvdCyCp5/0b6hSnwPcf7uRlpZSCColhnCyzUsW00cixF3B9ZFLzD+BSt6g+1aqzpune
+         1rYx3IDTX6Dhi6hyka3CGQDuLgXd/ua7MF2Po9yLjJrsb7UuGCHpb3c50ey1n7JxOyLn
+         tTml3jRuHgtaeUY9m1rOBxkrMPh0ubjTOpZUbxsO2VHZSz2bq0IcNHiJF2yvVI3SBbrZ
+         4HxH0u9Qu6bYC1oM8Pti55/NWWCd8hw6Nj7Zthh61CLsJbpM7GpTWm0MOlR5pIP/vq6L
+         6ndQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AquwkY9JKICEs0Q8aP22cNjRsLjkfNh8gmTpulqNCNw=;
-        b=DZfDf64LCPaa9tXGzHpoaO0R8BkDyPRa90RkJzRda4isuTYJ1PTWGYP4WpReVsz5wg
-         OmrggxP0wjWOkVvZvc16tzHviGDYi7Fricr3uo8dNK3lSccFOHQxdzMOBsm0GBtoKXWQ
-         ECwWhjFiCToBjCb06qwe7olxLZYWN2/tDmQb0WRnAWhKKPUqg1U6omFaYTrKzI2zVN1q
-         P7N8NeWBLLaKHqPLohG95imxzRp112jgxzvHFHdQvc7V3RFy6zLxqvx5DcMf5Z9exS91
-         Kyl4qY0qyHKRtq5M6ErdwY/+Wiz3v7rcrAUiUQf8P35FQJx151q+94SrNduxyj0ZCQxS
-         t46w==
-X-Gm-Message-State: ANoB5plnJAoV8X/w7OsvZsMhJZTabAmOIHYqJJi8ZWTIItj1pQOOdVSR
-        R8utnW3feryAydIrtRVvKBAQBw==
-X-Google-Smtp-Source: AA0mqf7fYciTgDh3ZmXNH39sjxynrqUcRug2zTWD+BxdudoykZbGtxChnDXxn8AfxTUIgy9SUAESbw==
-X-Received: by 2002:a17:903:22cc:b0:17e:539:c405 with SMTP id y12-20020a17090322cc00b0017e0539c405mr47142174plg.53.1669904202136;
-        Thu, 01 Dec 2022 06:16:42 -0800 (PST)
+        bh=IbPGPAIi0isMdoE0z4k6H2LnC1A8GtyTgAXJMtQTO78=;
+        b=GdneANwnbjzGox06Su0UufxSqHAtR2rCAnMA6ud+SRKcwvn71VG8kCV2gVxWKJPfr9
+         RgOhvcM7+JOdjq/D2Wnt3ncPDCGlHzAfi5cO5dM/PNp77f+yKiUYSOA3ocdG4SLqSWmR
+         DTTJSYpGvydteZU8E2ckqr/eti+3icXymH60Sd6A3OVSOfJK+fByha9rgK19ioS8vew5
+         urSWuuSFhJW1ieqQwp84fmA6WzS7+bLuJLOcbwUX60bK5BL7b5+ZdCy2v9R5CYSfBYs2
+         yWytk4ILCC5UmM8ZyQ5cNWNPBMnmU/wnCS+cCgm3fWykMYyorib2DhFlBtWEEFXzPACP
+         SwkA==
+X-Gm-Message-State: ANoB5plFnRlpJYXD4KBA04fXhzNEQBRjXqRWEjKV9co68MwT58WaLGMa
+        Lgzrqq/o+FP9TCIqj4JK87cx9A==
+X-Google-Smtp-Source: AA0mqf6wK4FApSY882RUW0IFdDzpJRGpItthpoBtBuoxFxInI3eavxHBziwgVrfV01Jd62+ZQRnwyg==
+X-Received: by 2002:a63:d516:0:b0:477:857d:d264 with SMTP id c22-20020a63d516000000b00477857dd264mr40708942pgg.224.1669904206567;
+        Thu, 01 Dec 2022 06:16:46 -0800 (PST)
 Received: from localhost.localdomain ([2401:4900:1c61:2814:c945:522d:e948:beb1])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170902ff0200b0018975488514sm3663041plj.126.2022.12.01.06.16.38
+        by smtp.gmail.com with ESMTPSA id f2-20020a170902ff0200b0018975488514sm3663041plj.126.2022.12.01.06.16.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 06:16:41 -0800 (PST)
+        Thu, 01 Dec 2022 06:16:46 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     agross@kernel.org, bhupesh.sharma@linaro.org,
@@ -57,9 +57,9 @@ Cc:     agross@kernel.org, bhupesh.sharma@linaro.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
         a39.skl@gmail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 3/4] dt-bindings: arm: qcom,ids: Add SoC IDs for SM6115 / SM4250 and variants
-Date:   Thu,  1 Dec 2022 19:46:18 +0530
-Message-Id: <20221201141619.2462705-4-bhupesh.sharma@linaro.org>
+Subject: [PATCH 4/4] soc: qcom: socinfo: Add SM6115 / SM4250 SoC IDs to the soc_id table
+Date:   Thu,  1 Dec 2022 19:46:19 +0530
+Message-Id: <20221201141619.2462705-5-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
 References: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
@@ -74,44 +74,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC IDs for Qualcomm SM6115 / SM4250 and variants.
+Add SoC ID table entries for the SM6115 / SM4250 and variants.
 
 Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- include/dt-bindings/arm/qcom,ids.h | 4 ++++
+ drivers/soc/qcom/socinfo.c | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
-index 5e0524991e99..8f5324dd3ff2 100644
---- a/include/dt-bindings/arm/qcom,ids.h
-+++ b/include/dt-bindings/arm/qcom,ids.h
-@@ -125,11 +125,13 @@
- #define QCOM_ID_IPQ8071A		396
- #define QCOM_ID_IPQ6018			402
- #define QCOM_ID_IPQ6028			403
-+#define QCOM_ID_SM4250			417
- #define QCOM_ID_IPQ6000			421
- #define QCOM_ID_IPQ6010			422
- #define QCOM_ID_SC7180			425
- #define QCOM_ID_SM6350			434
- #define QCOM_ID_SM8350			439
-+#define QCOM_ID_SM6115			444
- #define QCOM_ID_SC8280XP		449
- #define QCOM_ID_IPQ6005			453
- #define QCOM_ID_QRB5165			455
-@@ -137,6 +139,8 @@
- #define QCOM_ID_SM7225			459
- #define QCOM_ID_SA8295P			460
- #define QCOM_ID_SA8540P			461
-+#define QCOM_ID_QCM4290			469
-+#define QCOM_ID_QCS4290			470
- #define QCOM_ID_SM8450_2		480
- #define QCOM_ID_SM8450_3		482
- #define QCOM_ID_SC7280			487
+diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
+index 92b27db60840..8f9e3d0e0526 100644
+--- a/drivers/soc/qcom/socinfo.c
++++ b/drivers/soc/qcom/socinfo.c
+@@ -328,11 +328,13 @@ static const struct soc_id soc_id[] = {
+ 	{ qcom_board_id(IPQ8071A) },
+ 	{ qcom_board_id(IPQ6018) },
+ 	{ qcom_board_id(IPQ6028) },
++	{ qcom_board_id(SM4250) },
+ 	{ qcom_board_id(IPQ6000) },
+ 	{ qcom_board_id(IPQ6010) },
+ 	{ qcom_board_id(SC7180) },
+ 	{ qcom_board_id(SM6350) },
+ 	{ qcom_board_id(SM8350) },
++	{ qcom_board_id(SM6115) },
+ 	{ qcom_board_id(SC8280XP) },
+ 	{ qcom_board_id(IPQ6005) },
+ 	{ qcom_board_id(QRB5165) },
+@@ -340,6 +342,8 @@ static const struct soc_id soc_id[] = {
+ 	{ qcom_board_id(SM7225) },
+ 	{ qcom_board_id(SA8295P) },
+ 	{ qcom_board_id(SA8540P) },
++	{ qcom_board_id(QCM4290) },
++	{ qcom_board_id(QCS4290) },
+ 	{ qcom_board_id_named(SM8450_2, "SM8450") },
+ 	{ qcom_board_id_named(SM8450_3, "SM8450") },
+ 	{ qcom_board_id(SC7280) },
 -- 
 2.38.1
 
