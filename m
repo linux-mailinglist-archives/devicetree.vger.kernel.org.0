@@ -2,92 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D04DA63F5E8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 18:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC6B63F5F4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 18:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbiLARGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 12:06:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S229512AbiLARKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 12:10:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbiLARGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 12:06:50 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4DFA605C
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 09:06:48 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id s8so3431343lfc.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 09:06:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PvnwqFoda3R81XSsH5X8ckaYHfYXYc7+YOPbr2SI3JY=;
-        b=NDrN6eqmcPfDqgehQ9tqv8zIUNhNWoMbw1ReFyE9DuwfC7axElTCeqHYkSC1Ndgx1A
-         kKTQS03ICML74BW1vIdWvS1TTM2Vnqgoct2QLYjagWccRuthslzA8Qr+B5D3YKs5WTr6
-         Mnla5jqEkvVvjx1vKwZ0tJs/YX0xIjFw6OPlF6yK5dXBylEvQ6rV7NkiZZeP+WW6s/Oc
-         UUKDQso00astuSNXSVMh/RdyKV/WPHjsE1W6mrAK5yupJ75dClqdY0evhXSQkqq4Jont
-         fpPSGvAmGZW9fy0leyiFLxyhUhcQNpw4fh3RPpFTVbEEgftTwBbUzbesTTnOWuVybwfs
-         VHvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PvnwqFoda3R81XSsH5X8ckaYHfYXYc7+YOPbr2SI3JY=;
-        b=b9X1G+yIKs6NZL8hQMeenC9g7/nct57NcYcWingo0MbMOitMKHGT+6Hl4so9XApLNj
-         oOQ+CBZq5bJmun9XOv5VdKCNNglJXmc2J23/H5Gw30iV21gctVC4/e43MN3TxiROU6LP
-         QnVocHpFOTf/rUsSSWIPtzXYmXbiUh0Lb3ssWPpyXD7XLJ/tSnl5xMDTAUiZhcVttK3L
-         zidd5lbliVOpb6nAPSrW30vbeUCwrHF+Edq2/J8epHRe+LBDgPk0eERmCUjJD30NnILH
-         bk61sLxmboQEe1a9Y7XqhjuQpAjNQRzfxORiJmPAZA8I1Z0A3eyxbO6m/dg0QR1oPM1E
-         Fhmw==
-X-Gm-Message-State: ANoB5pml/eeyWFfTw7vIm67VooTAd2fl2P3EAbk2c9ibhrzVjlbDS+Bx
-        PTYtywD2JJuppzYKcSzVqYieBw==
-X-Google-Smtp-Source: AA0mqf5b+G9hYnKMFf5FxV5ES5WTINWCBfL1ffRNqTPhAmhe1ML2MbwtBW9ttJYnftFUHuC81JDLCA==
-X-Received: by 2002:a19:674a:0:b0:4b1:3931:af with SMTP id e10-20020a19674a000000b004b1393100afmr18949930lfj.394.1669914407257;
-        Thu, 01 Dec 2022 09:06:47 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q9-20020ac25fc9000000b004b40f5e7336sm703659lfg.199.2022.12.01.09.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 09:06:46 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        Tony Lindgren <tony@atomide.com>, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 1/2] ARM: dts: omap: align LED node names with dtschema
-Date:   Thu,  1 Dec 2022 18:06:41 +0100
-Message-Id: <166991439955.130674.13081986511238050689.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221127203034.54092-1-krzysztof.kozlowski@linaro.org>
-References: <20221127203034.54092-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229447AbiLARKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 12:10:40 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F553A8968
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 09:10:35 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1p0n4s-0005Ao-0g; Thu, 01 Dec 2022 18:10:26 +0100
+Message-ID: <23e61494-5567-5701-3a90-3b8105b4c944@pengutronix.de>
+Date:   Thu, 1 Dec 2022 18:10:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v4 3/3] arm64: dts: Add device tree for the Debix Model A
+ Board
+To:     Daniel Scally <dan.scally@ideasonboard.com>,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
+        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, laurent.pinchart@ideasonboard.com
+References: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
+ <20221017151050.2321919-4-dan.scally@ideasonboard.com>
+Content-Language: en-US
+In-Reply-To: <20221017151050.2321919-4-dan.scally@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Nov 2022 21:30:33 +0100, Krzysztof Kozlowski wrote:
-> The node names should be generic and DT schema expects certain pattern:
-> 
->   omap3-beagle-ab4.dtb: leds: 'heartbeat', 'mmc', 'pmu_stat' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-> 
-> 
+Hello Daniel,
 
-Applied, thanks!
+On 17.10.22 17:10, Daniel Scally wrote:
+> Add a device tree file describing the Debix Model A board from
+> Polyhex Technology Co.
 
-[1/2] ARM: dts: omap: align LED node names with dtschema
-      https://git.kernel.org/krzk/linux-dt/c/95a45c667635d50de9beb3c5f5b3046dfa395bff
-[2/2] ARM: dts: omap: echo: use preferred enable-gpios for LP5523 LED
-      https://git.kernel.org/krzk/linux-dt/c/e920bcac0ec64b3010438d38724cefce361f7c3a
+Thanks for your patch. Some minor comments below.
 
-Best regards,
+> Changes in v3 (Laurent):
+> 
+>     - Added IOB copyright notice
+>     - Removed the eth node for the connector that's on the separate I/O
+>     board
+
+I'd have left the FEC node in and described the PHY, but left the FEC disabled.
+Only the magnetics are on the expansion board, while the PHY is on the
+base board.
+
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2019 NXP
+> + * Copyright 2022 Ideas on Board Oy
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/usb/pd.h>
+> +
+> +#include "imx8mp.dtsi"
+> +
+> +/ {
+> +	model = "Polyhex Debix Model A i.MX8MPlus board";
+> +	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
+
+I see that Model A and Model B share the same SoC and PCB. Could you
+add polyhex,imx8mp-debix as a second compatible? That way, bootloader
+may match against that compatible when they support both.
+You'll need to adjust the binding accordingly.
+
+> +
+> +	chosen {
+> +		stdout-path = &uart2;
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_led>;
+> +
+> +		status-led {
+> +			function = LED_FUNCTION_POWER;
+> +			color = <LED_COLOR_ID_RED>;
+> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +	};
+> +
+> +	reg_usdhc2_vmmc: regulator-usdhc2 {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+> +		regulator-name = "VSD_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +};
+> +
+> +&A53_0 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_1 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_2 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&A53_3 {
+> +	cpu-supply = <&buck2>;
+> +};
+> +
+> +&eqos {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_eqos>;
+> +	phy-connection-type = "rgmii-id";
+> +	phy-handle = <&ethphy0>;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@0 {
+
+Could you append a /* RTL8211E */ comment here? This can be very useful for others
+who need to bring up the same chip in the future.
+
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <0>;
+
+Is the PHY really at address 0 or does it just answer at this address
+because it's the broadcast address?
+
+
+> +&iomuxc {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_hog>;
+> +
+> +	pinctrl_hog: hoggrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x400001c3
+> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA			0x400001c3
+> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD				0x40000019
+> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC				0x40000019
+
+Why do you hog these?
+
+> +	pinctrl_usb1_vbus: usb1grp {
+
+This is unused.
+
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
+> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
+
+Just to make sure this doesn't fry SD-Cards by mistake: VSELECT is indeed
+connected to a 1.8V/3.3V switch powering vqmmc?
+
+> +/* SD Card */
+> +&usdhc2 {
+> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
+> +	assigned-clock-rates = <400000000>;
+
+I wonder why this is necessary. Do you see a difference
+in /sys/kernel/debug/mmcX/ios between having this and leaving
+it out?
+
+> +	status = "okay";
+> +};
+> +
+> +/* eMMc */
+
+eMMC
+
+> +&usdhc3 {
+> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
+> +	assigned-clock-rates = <400000000>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status = "okay";
+> +};
+
+
+Cheers,
+Ahmad
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
