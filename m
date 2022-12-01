@@ -2,153 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F3A63F59B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A42AF63F5B9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:52:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbiLAQrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 11:47:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36254 "EHLO
+        id S229728AbiLAQwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:52:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiLAQrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:47:02 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49D2B0A1F
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:46:52 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id e27so5533547ejc.12
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 08:46:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PDeFvM29aCaeKNJy5VGjhZPlERQE8W9s9k6CwG0MHBs=;
-        b=BZdSgOa2GHtGfp7rWqxebtR2M/c38UUFg3Y1HDAJWbI9ObIaQWapIAV2NlZ3PFCiTT
-         354RV4TK9Avu9NNH8JdVTuF2shYHL+YoHL8B8l78iykls7bhHmAOlSLq8mAUZgEs1w+P
-         2gU1eibYINJL3nJUavnwuVnoCNoGueJnJXXY8BsOlGQoCtC74Mc3zoPLHBePZbQeZ15K
-         x6LZKG6d14YLODEzrVhky3qNBzEYL8EK6B2yaYB+DVI5/B5ggatHhsNWksV+3vAatE1T
-         593mCG6JfFIV++x25EbXdrfL9UgdqzyV7w3IU3lphfIqe/kz8/es+pcVvJo4v4qMcrld
-         GLew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PDeFvM29aCaeKNJy5VGjhZPlERQE8W9s9k6CwG0MHBs=;
-        b=y5cczUMPTvVVj5ICsfhMCH72+O2u8Zb73KAHXr7oIDA+rgDrhhaxeuBZ0G6bCwLDb6
-         l1mn+HMc9qSZv7ANWTuz74Ae6OTZ2qmruJGCEZ7cXRk9ODhCGxJ/lE9pv1KpYC8DAhnJ
-         4fg2A/mski6gnZ0Q2W/2QUvRuLg9RbpJWbvYi+KDsHGn3vzP87cK/v9Lsa1lcvKZqIyV
-         ECGwRMha8uDVcmlx6htnxV9kjciAfGIG40lvLCHJbumctHtUommy75mvY9ibu6AggF4A
-         Zb2S1GInJ0OMczSuqOwG87AxP08ZayHTu4XpbBhtLkeglW3KHoJD1ApgvxwjJFT7Rtff
-         6Iyw==
-X-Gm-Message-State: ANoB5pkrjgPpW08hHC+JVJxPDyA4c3qPaOqq5ugGuLxOlPEtHfSMtavi
-        knpkVpXXhUxQu3cFHyP3LopDDQ==
-X-Google-Smtp-Source: AA0mqf4WqR3lCBlHchBGGkZ7Pm56ZW0olVznU0W/Y73MFhMqiGaDjOXT45c5vIRzHzAzEXRwmoRFsA==
-X-Received: by 2002:a17:906:a143:b0:7bd:fe2a:d0e1 with SMTP id bu3-20020a170906a14300b007bdfe2ad0e1mr22017802ejb.374.1669913211232;
-        Thu, 01 Dec 2022 08:46:51 -0800 (PST)
-Received: from melexis.com ([31.144.161.76])
-        by smtp.gmail.com with ESMTPSA id h4-20020aa7c604000000b0045bd14e241csm1911431edq.76.2022.12.01.08.46.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 08:46:50 -0800 (PST)
-Date:   Thu, 1 Dec 2022 18:46:45 +0200
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Subject: Re: [PATCH v3 4/8] media: v4l: ctrls-api: Allow array update in
- __v4l2_ctrl_modify_range
-Message-ID: <Y4jadWbRlrrTU+Pz@melexis.com>
-References: <cover.1669381013.git.vkh@melexis.com>
- <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
- <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
- <Y4jL9Mu7T/TO4g66@melexis.com>
+        with ESMTP id S229705AbiLAQwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:52:43 -0500
+Received: from gateway32.websitewelcome.com (gateway32.websitewelcome.com [192.185.145.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A8812AC6
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:52:41 -0800 (PST)
+Received: from atl1wswcm04.websitewelcome.com (unknown [50.6.129.165])
+        by atl3wswob03.websitewelcome.com (Postfix) with ESMTP id 9CDEA5B95
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 16:52:40 +0000 (UTC)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id 0mndpq8hDgEOM0mnfpqw18; Thu, 01 Dec 2022 16:52:40 +0000
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=oQj/HJTvdxrVt+zk2ySQjAT2Bd8kLr9eRU+0wbh0SyY=; b=KfZAL9PccHg35tGQV5H19QvMOp
+        0mHs2MiMY6EmiEBcaAgtIV79bHtAAitMPipkUwaf77mIG3gaJyWDkrbQIeOof7orF9rEegDuNGYP7
+        eBaA86RKRTssD0Vjv56GuKiVub8j+0M1JR+ON0BQ1eJ/pyKIM6AGeTnaxgOnOkw4Z00MheCZyBcJF
+        jLSo62221IPO0aSh2eWh+aiWPPaWGEdYpY8x/UoPFpCORKovh8BY0QshN2xbc52ZdLFQfT1F1DYnH
+        c0/TomvO3So5AzQ3LWfWxFvLl3lWTWVO1D9QNfIdzWFm4rPBMcZ1BfqDeWMJvoWtouHHWYZCDgngZ
+        tnusNc0Q==;
+Received: from [106.197.183.239] (port=44685 helo=[192.168.221.42])
+        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <saravanan@linumiz.com>)
+        id 1p0mnc-003un4-Oq;
+        Thu, 01 Dec 2022 16:52:36 +0000
+Message-ID: <ddcda7c9-6aa8-2660-d6fb-8dc117f330c4@linumiz.com>
+Date:   Thu, 1 Dec 2022 17:52:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y4jL9Mu7T/TO4g66@melexis.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
+ power-management IC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marten.lindahl@axis.com,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20221201044643.1150870-1-saravanan@linumiz.com>
+ <20221201044643.1150870-3-saravanan@linumiz.com>
+ <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
+ <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
+ <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
+ <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
+ <785e942a-0691-f87e-b6e9-058749a79ec1@linaro.org>
+ <8228db8d-2a32-1d23-74f3-05b9fe529a82@linumiz.com>
+ <bdab2e58-ea12-0ccf-a25a-ed89e50a5332@linaro.org>
+Content-Language: en-US
+From:   Saravanan Sekar <saravanan@linumiz.com>
+In-Reply-To: <bdab2e58-ea12-0ccf-a25a-ed89e50a5332@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 106.197.183.239
+X-Source-L: No
+X-Exim-ID: 1p0mnc-003un4-Oq
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.221.42]) [106.197.183.239]:44685
+X-Source-Auth: saravanan@linumiz.com
+X-Email-Count: 15
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfJ/AQdALUs0Qz4eVbdQjsAAtWuvje9InjuH4s5sJ6vMWCkCtwjs60aXPPczeqhh5OuPap4L5I1OWoXO17tHPnfFaILmQxkxQGj+gi/3dpMbyQ3tOBLKi
+ s16JvkGXqmQ4I6p7cStFIwsSveZjyLy52zEoETlpkqzqUL1UzlMyyCrvQYnkxFYzixY1r93uDm8qwWrJ8/EbcnaAVgm7sP+7J+s=
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 05:44:52PM +0200, Volodymyr Kharuk wrote:
-> Hi Hans,
+On 01/12/22 17:43, Krzysztof Kozlowski wrote:
+> On 01/12/2022 17:38, Saravanan Sekar wrote:
+>>>>> Plus additional comment for the driver (and related to bindings) was
+>>>>> that this is not hwmon but a regulator driver. Why putting regulator
+>>>>> driver in hwmon?
+>>>>>
+>>>>
+>>>> Turns out this is primarily a hardware monitoring driver, like the drivers
+>>>> for all other PMBus chips. Regulator support is actually optional; the driver
+>>>> works perfectly well with CONFIG_REGULATOR=n (except that it needs some
+>>>> #ifdefs to address that situation).
+>>>
+>>> OK, this would explain location  of the driver. However the bindings are
+>>> saying:
+>>> "Monolithic Power System MPQ7932 PMIC"
+>>> and PMIC is not mainly a hwmon device, even if it has such capabilities.
+>>> It might be missing description and proper title... or might be misplaced.
+>>>
+>>
+>> Indeed it is PMIC chip. I think this is not the first and not sure title
+>> has to be changed for hwmon subsystem.
+>>
+>> bindings/hwmon/pmbus/ti,lm25066.yaml
+>> title: National Semiconductor/Texas Instruments LM250x6/LM506x
+>> power-management ICs
 > 
-> On Fri, Nov 25, 2022 at 03:35:34PM +0100, Hans Verkuil wrote:
-> > On 25/11/2022 14:34, Volodymyr Kharuk wrote:
-> > > For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
-> > > __v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
-> > > from union. It will allow to work with any type.
-> > > 
-> > > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > > ---
-> > >  drivers/media/v4l2-core/v4l2-ctrls-api.c | 15 +++------------
-> > >  1 file changed, 3 insertions(+), 12 deletions(-)
-> > > 
-> > > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > > index d0a3aa3806fb..09735644a2f1 100644
-> > > --- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > > +++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > > @@ -942,8 +942,6 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
-> > >  	case V4L2_CTRL_TYPE_U8:
-> > >  	case V4L2_CTRL_TYPE_U16:
-> > >  	case V4L2_CTRL_TYPE_U32:
-> > > -		if (ctrl->is_array)
-> > > -			return -EINVAL;
-> > >  		ret = check_range(ctrl->type, min, max, step, def);
-> > >  		if (ret)
-> > >  			return ret;
-> > > @@ -960,17 +958,10 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
-> > >  		ctrl->default_value = def;
-> > >  	}
-> > >  	cur_to_new(ctrl);
-> > > -	if (validate_new(ctrl, ctrl->p_new)) {
-> > > -		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
-> > > -			*ctrl->p_new.p_s64 = def;
-> > > -		else
-> > > -			*ctrl->p_new.p_s32 = def;
-> > > -	}
-> > > +	if (validate_new(ctrl, ctrl->p_new))
-> > > +		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
-> > 
-> > Hmm, this sets *all* elements of the array to the default_value, not
-> > just the elements whose value is out of range.
-> > 
-> > Is that what you want? Should this perhaps depend on the type of
-> > control? I.e. in some cases it might make sense to do this, in other
-> > cases it makes more sense to only adjust the elements that are out
-> > of range.
-> > 
-> > How does that work for this TINT control?
-> Actually for types like INTEGER/U8/U16/U32/BOOLEAN/BUTTON/BITMASK, the function
-> validate_new will return zero always as well as they fix the range on the fly.
-> So that is ok for mlx7502x sensors.
-> 
-> For types like compound/string/menu indeed, it will sets all elements of array
-> to default array. To fix it I propose to fix it by using the functions
-> std_validate_elem to check per element and then set the default manually.
-> But then it means, that __v4l2_ctrl_modify_range will work only for standart
-> v4l2 types, and not if driver use their own implementation. 
-> 
-> Is it fine for you? What do you think?
+> Then I propose to put it in regulator directory.
+>
 
-I've another idea. If validate_new is fixing on the fly
-and we can't modify range for copmound/string types, so we can forbidden
-array for MENU types. Then validate_new will do the job for the rest types.
-As for now there are no needs in arrays for MENU types.
+Just for clarification, should bindings put in regulator directory?
 
-What do you think?
+Thanks,
+Saravanan
 
--- 
---
-BR,
-Volodymyr Kharuk
