@@ -2,57 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB5E663E8A9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 04:56:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7736963E8E5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 05:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbiLAD4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 22:56:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
+        id S229658AbiLAEhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 23:37:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLAD4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 22:56:38 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7477B5435B;
-        Wed, 30 Nov 2022 19:56:35 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7A30524E13A;
-        Thu,  1 Dec 2022 11:56:28 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
- 2022 11:56:28 +0800
-Received: from [192.168.125.96] (113.72.147.18) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
- 2022 11:56:28 +0800
-Message-ID: <e0cf51d3-ba58-36a7-5c70-1d070e5fb12a@starfivetech.com>
-Date:   Thu, 1 Dec 2022 11:56:27 +0800
+        with ESMTP id S229588AbiLAEhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 23:37:13 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3A87742B
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 20:37:10 -0800 (PST)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221201043708epoutp03274c9f402451ca093f9e0b8900d6d6f0~skWXruvqm0978809788epoutp03E
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:37:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221201043708epoutp03274c9f402451ca093f9e0b8900d6d6f0~skWXruvqm0978809788epoutp03E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1669869428;
+        bh=z/uj3aw1pAluhqEep2srfIlcP+du9f+FkKAdDbyUsiY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=KAtXC1NuHE5vcNPAEUlfx9BJPpR2qpVPvcoP8D3/NV/ayGPRchZVP3giTgyaHSyuI
+         A+XK/ZtUpRsAgsAFMgLhWdHFyUqfUYpBdicLTYFcT2uEUC7npcR1DtR4s2poMLbrz6
+         1+HoGeV/8w2JJn40kUNlxkSoHqY4olWpvpkCDLE0=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20221201043708epcas5p4ec9c2d060a41756dee37e1d4251756aa~skWXAlGLD1260512605epcas5p4W;
+        Thu,  1 Dec 2022 04:37:08 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4NN3FZ2q17z4x9Pt; Thu,  1 Dec
+        2022 04:37:06 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EE.64.56352.27F28836; Thu,  1 Dec 2022 13:37:06 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221201041110epcas5p1b0f4efd9b6c225ab5203d840099f649f~sj-sFqa6D0484304843epcas5p1M;
+        Thu,  1 Dec 2022 04:11:10 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221201041110epsmtrp203f02a4b4228ebe1be25ea2b6f0baa04~sj-sD_scY1904419044epsmtrp2i;
+        Thu,  1 Dec 2022 04:11:10 +0000 (GMT)
+X-AuditID: b6c32a4b-383ff7000001dc20-55-63882f725909
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        07.F7.18644.D5928836; Thu,  1 Dec 2022 13:11:09 +0900 (KST)
+Received: from FDSFTE314 (unknown [107.122.81.85]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221201041104epsmtip1fbe8af72afac5e3640d702a0af30fb0f~sj-m4_qG_2592925929epsmtip1W;
+        Thu,  1 Dec 2022 04:11:04 +0000 (GMT)
+From:   "Vivek Yadav" <vivek.2311@samsung.com>
+To:     "'Marc Kleine-Budde'" <mkl@pengutronix.de>
+Cc:     <rcsekar@samsung.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <wg@grandegger.com>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <pankaj.dubey@samsung.com>,
+        <ravi.patel@samsung.com>, <alim.akhtar@samsung.com>,
+        <linux-fsd@tesla.com>, <robh+dt@kernel.org>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <aswani.reddy@samsung.com>, <sriranjani.p@samsung.com>
+In-Reply-To: <20221124145405.d67cb6xmoiqfdsq3@pengutronix.de>
+Subject: RE: RE: [PATCH v3 1/2] can: m_can: Move mram init to mcan device
+ setup
+Date:   Thu, 1 Dec 2022 09:40:50 +0530
+Message-ID: <01f901d9053a$f138bdd0$d3aa3970$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 3/4] soc: starfive: Add StarFive JH71XX pmu driver
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118133216.17037-1-walker.chen@starfivetech.com>
- <20221118133216.17037-4-walker.chen@starfivetech.com> <Y3giSQ0YccyY2tVk@spud>
- <95b05ac3-31a9-50dc-8eeb-eb3a9f883a6b@starfivetech.com>
- <Y4CkVnmdEhCsyckH@wendy>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <Y4CkVnmdEhCsyckH@wendy>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.18]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKzKt4C0V6WIa1X2lvfORr5q2BWDgH5Y+bNAeiPnOMDLJn5dwD4TowRAqfPl+usTqoaEA==
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOJsWRmVeSWpSXmKPExsWy7bCmum6RfkeywZ1ZfBYP5m1jszi0eSu7
+        xZzzLSwW84+cY7V4euwRu0Xfi4fMFhe29bFabHp8jdVi1fepzBYPX4VbXN41h81ixvl9TBbr
+        F01hsTi2QMzi2+k3jBaLtn5ht3j4YQ+7xawLO1gtWvceYbe4/WYdq8XSeztZHUQ9tqy8yeSx
+        YFOpx8dLtxk9Nq3qZPO4c20Pm8fmJfUe/X8NPN7vu8rm0bdlFaPHv6a57B6fN8kFcEdl22Sk
+        JqakFimk5iXnp2TmpdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYAfamkUJaYUwoU
+        CkgsLlbSt7Mpyi8tSVXIyC8usVVKLUjJKTAp0CtOzC0uzUvXy0stsTI0MDAyBSpMyM6YemQ/
+        Y0GveMWTQxdYGhg/C3UxcnJICJhIXPu3mBHEFhLYzShxt9Oni5ELyP7EKPFg3kFGCOczo8SJ
+        3W1sMB2X3z5mgujYxSjxb00NRNFzRolb15ewgCTYBHQkmif/BRsrIqAn8XvCIrAGZoH1LBLf
+        DomA2JwCthK3vk5mBbGFBQIl3t1pAKtnEVCR2PC4F6yeV8BSovnuF0YIW1Di5MwnLBBztCWW
+        LXzNDHGQgsTPp8tYIXaFSXz8dIwZokZc4ujPHqia+ZwSH5+lQNguElP//2SHsIUlXh3fAmVL
+        SXx+txfqyWSJHf86WSHsDIkFE/cwQtj2EgeuzAG6gQNovqbE+l36EGFZiamn1kG9yCfR+/sJ
+        E0ScV2LHPBhbReLF5wmsIK0gq3rPCU9gVJqF5LFZSB6bheSBWQjLFjCyrGKUTC0ozk1PLTYt
+        MM5LLYfHdnJ+7iZGcA7Q8t7B+OjBB71DjEwcjIcYJTiYlUR4Oz63JQvxpiRWVqUW5ccXleak
+        Fh9iNAWG9kRmKdHkfGAWyiuJNzSxNDAxMzMzsTQ2M1QS5108QytZSCA9sSQ1OzW1ILUIpo+J
+        g1OqgclL6OHyxcktq85Fm/D27RWVtlyv+a6zNvJA7VnntSERGwTOrPjySWhFN9cPvavfliZ3
+        HXF+NkW8cmHgMqnPUVUvG4V4KgLebONWr71/ueNvTLL0tZC2pHMhvhoPlS2NI2bPXFa7+sHC
+        2mXyDjHtxlfV/n049fmZBUu6W/5aoeUK2rsLihRD1RVfiSozzrpRffTgJcsa5uiz+2PnTGR1
+        YzkT/zhuzc3mjJ4sr4UzfwhFW12ezlPoe7im74DzjeTp11L+SPBfCjTODzyisCb/GWPssZ9v
+        4ieLCGVMOjo5vOtXFutqLRGT7gzfv77zedR//72xQKp51bN/EgzanqJtVeuapS+bJ9yaxCHZ
+        0xjwQ4mlOCPRUIu5qDgRAA7kQnWKBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0yMcRzHfe95nnue4rrHXe6+splOm/XrUYZ9WcwWesyP8Edis5w8q1td
+        bs8VyaZIpigscp2jH7h1Z8nukkpCTpZfhYmkOHf9ICUqSTLrbrb+e23vX58/PhQmceI+lCop
+        meOTlIkKoSde9UAxN3in//HYkCLdcvTxUpUQNVhvksjQfBRHRbbnBOpq/ESivF47hlqq8ghk
+        cbQSyDx6DkP2L9vQq1qDEOma6wWoovQsjhqLZejnk68Ald4cJpF9sI5E+pZqAmXdsZGo/et1
+        Al3trCFWzWIrTW0CttiSwn5/2Q5YizlbyL5vrROy1ivp7KmJEPZb/Wshm1dpBuzfIxdJdsgy
+        d/P0HZ5he7hE1T6OX7hyl2f84wtnSE2TLLW8zSnMABWSHOBBQXoxfNXvEOQAT0pCVwM4VF9I
+        uAUfePbpZ9zNUmj620O6TV0AtltLwaQgpINgZv6Ei71pBo6fLnU1YfQjHH5o6yTciWcCOGwb
+        xSZdHvQK+G4k3zUhpSOhqaPMNYHTfvCGI1cwySJ6GczsGAZungmbCp0uD0YHwlx7FvjPxpI+
+        zH3ePDjWZSTcV0TB7z8aMbdHDh+OncROA6l+SpV+SpV+SpV+SqQY4GYwm9No1XFqbahmURK3
+        n9Eq1dqUpDgmdq/aAlyPEBBQDerMg0wDEFCgAUAKU3iLjg8di5WI9igPpHH83hg+JZHTNoA5
+        FK6Qi1pymmIkdJwymUvgOA3H/1cFlIdPhiDig2ydDhP1Pw0ekP6xHVYFOUZu9Wzt9fti1Uem
+        GZc405t9l6+yj+czY6rIASJxY3stL8q13V/v0Zjlb5g/HpYqXjtWtxV/E9C6o7ZAI55pDP5t
+        CIvO/MUclG7yggOFGb3mfN5eZa6XOgp9vU/NkK3JZPpOpDq7NwTG7I5K2RS0whBYEyJfQIhr
+        jKE6VeX2KLm4u79kOlOeXgTDz+Nvl1nv7ja2eplkVInxthfbNxr24mr2aEHZIF3ZoVtarjoE
+        izb2FNh8dt6LuPZMnKwpH2HDSW305QcvfD9NY9riqARTckT06y1+6t9yZedB9a2JoXNUcVoQ
+        r1vtPy9NrMC18crQAIzXKv8BMvCK1XcDAAA=
+X-CMS-MailID: 20221201041110epcas5p1b0f4efd9b6c225ab5203d840099f649f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221122105022epcas5p3f5db1c5790b605bac8d319fe06ad915b
+References: <20221122105455.39294-1-vivek.2311@samsung.com>
+        <CGME20221122105022epcas5p3f5db1c5790b605bac8d319fe06ad915b@epcas5p3.samsung.com>
+        <20221122105455.39294-2-vivek.2311@samsung.com>
+        <20221123224146.iic52cuhhnwqk2te@pengutronix.de>
+        <01a101d8ffe4$1797f290$46c7d7b0$@samsung.com>
+        <20221124145405.d67cb6xmoiqfdsq3@pengutronix.de>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        PDS_BAD_THREAD_QP_64,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,294 +134,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/25 19:17, Conor Dooley wrote:
-> On Fri, Nov 25, 2022 at 06:04:59PM +0800, Walker Chen wrote:
->> On 2022/11/19 8:24, Conor Dooley wrote:
->> > On Fri, Nov 18, 2022 at 09:32:15PM +0800, Walker Chen wrote:
-> 
->> >> +void starfive_pmu_hw_event_turn_off(u32 mask)
->> >> +{
->> >> +	pmu_writel(mask, HW_EVENT_TURN_OFF_MASK);
->> >> +}
->> >> +EXPORT_SYMBOL(starfive_pmu_hw_event_turn_off);
->> > 
->> > Where are the users for these exports? Also, should they be exported as
->> > GPL?
->> > 
->> > Either way, what is the point of the extra layer of abstraction here
->> > around the writel()?
->> 
->> The two export functions are only prepared for GPU module. But accordint to
->>  the latest information, it seems that there is no open source plan for GPU. 
->> So the two functions will be drop in next version of patch.
-> 
-> That's a shame!
-
-Need to comply with certain commercial terms.
-
-> 
->> >> +static int starfive_pmu_get_state(struct starfive_power_dev *pmd, bool *is_on)
->> >> +{
->> >> +	struct starfive_pmu *pmu = pmd->power;
->> >> +
->> >> +	if (!pmd->mask) {
->> >> +		*is_on = false;
->> >> +		return -EINVAL;
->> >> +	}
->> >> +
->> >> +	*is_on = __raw_readl(pmu->base + CURR_POWER_MODE) & pmd->mask;
->> > 
->> > Is there a specific reason that you are using the __raw variants here
->> > (and elsewhere) in the driver?
->> 
->> Will use unified function '__raw_readl' and '__raw_writel'
-> 
-> No no, I want to know *why* you are using the __raw accessors here. My
-> understanding was that __raw variants are unbarriered & unordered with
-> respect to other io accesses.
-> 
-> I do notice that the bcm driver you mentioned uses the __raw variants,
-> but only __raw variants - whereas you use readl() which is ordered and
-> barriered & __raw_readl().
-> 
-> Is there a reason why you would not use readl() or readl_relaxed()?
-
-Your question led me to deeply understand the usage of these io accessors.
-__raw_readl / __raw_writel denotes native byte order, no memory barrier.
-readl / writel do guarantee the byte order with barrier, ensure that previous writes are done.
-Seem that non-raw accessors are more safe.
-
-> 
->> >> +
->> >> +	return 0;
->> >> +}
->> >> +
->> >> +static int starfive_pmu_set_state(struct starfive_power_dev *pmd, bool on)
->> >> +{
->> >> +	struct starfive_pmu *pmu = pmd->power;
->> >> +	unsigned long flags;
->> >> +	uint32_t val;
->> >> +	uint32_t mode;
->> >> +	uint32_t encourage_lo;
->> >> +	uint32_t encourage_hi;
->> >> +	bool is_on;
->> >> +	int ret;
->> >> +
->> >> +	if (!pmd->mask)
->> >> +		return -EINVAL;
->> >> +
->> >> +	if (is_on == on) {
->> >> +		dev_info(pmu->pdev, "pm domain [%s] is already %sable status.\n",
->> >> +				pmd->genpd.name, on ? "en" : "dis");
->> > 
->> > Am I missing something here: you've just declared is_on, so it must be
->> > false & therefore this check is all a little pointless? The check just
->> > becomes if (false == on) which I don't think is what you're going for
->> > here? Or did I miss something obvious?
->> 
->> Sorry, indeed I missed several lines of code. It should be witten like this:
->> 	ret = jh71xx_pmu_get_state(pmd, &is_on);
->>         if (ret) {
->>                 dev_dbg(pmu->pdev, "unable to get current state for %s\n",
->>                         pmd->genpd.name);
->>                 return ret;
->>         }
-> 
-> Heh, this looks more sane :)
-> 
->> 
->>         if (is_on == on) {
->>                 dev_dbg(pmu->pdev, "pm domain [%s] is already %sable status.\n",
->>                         pmd->genpd.name, on ? "en" : "dis");
->>                 return 0;
->>         }
->> 
->> > 
->> >> +		return 0;
->> >> +	}
->> >> +
->> >> +	spin_lock_irqsave(&pmu->lock, flags);
->> >> +
->> >> +	if (on) {
->> >> +		mode = SW_TURN_ON_POWER_MODE;
->> >> +		encourage_lo = SW_MODE_ENCOURAGE_EN_LO;
->> >> +		encourage_hi = SW_MODE_ENCOURAGE_EN_HI;
->> >> +	} else {
->> >> +		mode = SW_TURN_OFF_POWER_MODE;
->> >> +		encourage_lo = SW_MODE_ENCOURAGE_DIS_LO;
->> >> +		encourage_hi = SW_MODE_ENCOURAGE_DIS_HI;
->> >> +	}
->> >> +
->> >> +	__raw_writel(pmd->mask, pmu->base + mode);
->> >> +
->> >> +	/* write SW_ENCOURAGE to make the configuration take effect */
->> >> +	__raw_writel(SW_MODE_ENCOURAGE_ON, pmu->base + SW_ENCOURAGE);
->> > 
->> > Is register "sticky"? IOW, could you set it in probe and leave this mode
->> > always on? Or does it need to be set every time you want to use this
->> > feature?
->> 
->> These power domain registers need to be set by other module according to the
->> specific situation. 
->> For example some power domains should be turned off via System PM mechanism
->> when system goes to sleep, 
->> and then they are turned on when system resume.
-> 
-> I was just wondering if SW_MODE_ENCOURAGE_ON would retain it's value
-> during operation or if it had to be written every time. It's fine if
-> that's not the case.
-
-Writing SW_MODE_ENCOURAGE_ON (0xFF) to SW_ENCOURAGE register, the purpose is to reset the 
-state machine which is going to parse instruction sequence. It has to be written every time. 
-
-> 
->> >> +	__raw_writel(encourage_lo, pmu->base + SW_ENCOURAGE);
->> >> +	__raw_writel(encourage_hi, pmu->base + SW_ENCOURAGE);
->> >> +
->> >> +	spin_unlock_irqrestore(&pmu->lock, flags);
->> >> +
->> >> +	if (on) {
->> >> +		ret = readl_poll_timeout_atomic(pmu->base + CURR_POWER_MODE, val,
->> >> +						val & pmd->mask, DELAY_US,
->> >> +						TIMEOUT_US);
->> >> +		if (ret) {
->> >> +			dev_err(pmu->pdev, "%s: failed to power on\n", pmd->genpd.name);
->> >> +			return -ETIMEDOUT;
->> >> +		}
->> >> +	} else {
->> >> +		ret = readl_poll_timeout_atomic(pmu->base + CURR_POWER_MODE, val,
->> >> +						!(val & pmd->mask), DELAY_US,
->> >> +						TIMEOUT_US);
->> > 
->> > Could you not just decide the 3rd arg outside of the readl_poll..() and
->> > save on duplicating the wait logic here?
->> 
->> Seems that the readl_poll..() can only be called in two cases 
->> because the CURR_POWER_MODE register is read to val and then operation with mask every time.
->> 
-> 
-> I'm sorry, I completely forgot that read*_poll..() actually not actually
-> a function. Please ignore this comment!
-> 
->> >> +static int starfive_pmu_probe(struct platform_device *pdev)
->> >> +{
->> >> +	struct device *dev = &pdev->dev;
->> >> +	struct device_node *np = dev->of_node;
->> >> +	const struct starfive_pmu_data *entry, *table;
->> >> +	struct starfive_pmu *pmu;
->> >> +	unsigned int i;
->> >> +	uint8_t max_bit = 0;
->> >> +	int ret;
->> >> +
->> >> +	pmu = devm_kzalloc(dev, sizeof(*pmu), GFP_KERNEL);
->> >> +	if (!pmu)
->> >> +		return -ENOMEM;
->> >> +
->> >> +	pmu_base = pmu->base = devm_platform_ioremap_resource(pdev, 0);
->> >> +	if (IS_ERR(pmu->base))
->> >> +		return PTR_ERR(pmu->base);
->> >> +
->> >> +	/* initialize pmu interrupt  */
->> >> +	pmu->irq = platform_get_irq(pdev, 0);
->> >> +	if (pmu->irq < 0)
->> >> +		return pmu->irq;
->> >> +
->> >> +	ret = devm_request_irq(dev, pmu->irq, starfive_pmu_interrupt,
->> >> +			       0, pdev->name, pmu);
->> >> +	if (ret)
->> >> +		dev_err(dev, "request irq failed.\n");
->> >> +
->> >> +	table = of_device_get_match_data(dev);
->> >> +	if (!table)
->> >> +		return -EINVAL;
->> >> +
->> >> +	pmu->pdev = dev;
->> >> +	pmu->genpd_data.num_domains = 0;
->> >> +	i = 0;
->> >> +	for (entry = table; entry->name; entry++) {
->> >> +		max_bit = max(max_bit, entry->bit);
->> >> +		i++;
->> >> +	}
->> > 
->> > This looks like something that could be replaced by the functions in
->> > linux/list.h, no? Same below.
->> 
->> Nowadays other platforms on linux mainline mostly write in this way or write like this: 
->> 	for (i = 0; i < num; i++) {
->> 		...
->> 		pm_genpd_init(&pmd[i]->genpd, NULL, !is_on);
->> 	}
-> 
-> That's not what this specific bit of code is doing though, right? You're
-> walking jh7110_power_domains to find the highest bit. I was looking at what
-> some other drivers do, and took a look at drivers/soc/qcom/rpmhpd.c
-> where they know the size of this struct at compile time & so can do
-> store the number of power domains in the match data. If you did that,
-> you could use a loop like the one other platforms use.
-> 
->> >> +	if (!pmu->genpd)
->> >> +		return -ENOMEM;
->> >> +
->> >> +	pmu->genpd_data.domains = pmu->genpd;
->> >> +
->> >> +	i = 0;
->> >> +	for (entry = table; entry->name; entry++) {
-> 
-> And it's the same here. By now, you should know how many power domains
-> you have, no?
-> 
-> Anyways, as I said before I don't know much about this power domain
-> stuff, it's just that these two loops seem odd.
-
-About the usage of loop, I took a look at other platforms like drivers/soc/qcom/rpmhpd.c,
-maybe that way is simpler and easier to understand. I will try to change to that looping in next version.
-
-> 
->> >> +		struct starfive_power_dev *pmd = &pmu->dev[i];
->> >> +		bool is_on;
->> >> +
->> >> +		pmd->power = pmu;
->> >> +		pmd->mask = BIT(entry->bit);
->> >> +		pmd->genpd.name = entry->name;
->> >> +		pmd->genpd.flags = entry->flags;
->> >> +
->> >> +		ret = starfive_pmu_get_state(pmd, &is_on);
->> >> +		if (ret)
->> >> +			dev_warn(dev, "unable to get current state for %s\n",
->> >> +				 pmd->genpd.name);
-> 
->> >> +static const struct starfive_pmu_data jh7110_power_domains[] = {
->> > 
->> > Is this driver jh7110 only or actually jh71XX? Have you just started out
->> > by implementing one SoC both intend to support both?
->> 
->> JH7110 is our first SoC, probably the next generation of SoC jh7120 still
->> use this controller driver.
->> Maybe now the naming for JH71XX is not very suitable.
-> 
-> Right. My question was more about if this supported the JH7100 too, but
-> I saw from your answer to Emil that it won't. I don't have a preference
-> as to whether you call it jh71xx or jh7110, I'll leave that up to
-> yourselves and Emil. This particular struct should still be called
-> `jh7110_power_domains` though since it is particular to this SoC, no
-> matter what you end up calling the file etc.
-
-Emil has gave me a good suggestion.
-
-> 
->> > I don't know /jack/ about power domain stuff, so I can barely review
->> > this at all sadly.
-> 
->> Thank you for taking the time to review the code, you helped me a lot.
->> Thank you so much.
-> 
-> No worries, looking forward to getting my board :)
-> 
-Have you purchased a VisionFive 2 board online?  Do you need the shopping link ? 
-https://forum.rvspace.org/t/how-to-purchase-visionfive-2/665
-
-Best Regards,
-Walker Chen
 
 
+> -----Original Message-----
+> From: Marc Kleine-Budde <mkl=40pengutronix.de>
+> Sent: 24 November 2022 20:24
+> To: Vivek Yadav <vivek.2311=40samsung.com>
+> Cc: rcsekar=40samsung.com; krzysztof.kozlowski+dt=40linaro.org;
+> wg=40grandegger.com; davem=40davemloft.net; edumazet=40google.com;
+> kuba=40kernel.org; pabeni=40redhat.com; pankaj.dubey=40samsung.com;
+> ravi.patel=40samsung.com; alim.akhtar=40samsung.com; linux-fsd=40tesla.co=
+m;
+> robh+dt=40kernel.org; linux-can=40vger.kernel.org; netdev=40vger.kernel.o=
+rg;
+> linux-kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; l=
+inux-
+> samsung-soc=40vger.kernel.org; devicetree=40vger.kernel.org;
+> aswani.reddy=40samsung.com; sriranjani.p=40samsung.com
+> Subject: Re: RE: =5BPATCH v3 1/2=5D can: m_can: Move mram init to mcan de=
+vice
+> setup
+>=20
+> On 24.11.2022 14:36:48, Vivek Yadav wrote:
+> > > Why not call the RAM init directly from m_can_chip_config()?
+> > >
+> > m_can_chip_config function is called from m_can open.
+> >
+> > Configuring RAM init every time we open the CAN instance is not
+> > needed, I think only once during the probe is enough.
+>=20
+> That probably depends on you power management. If I add a regulator to
+> power the external tcan4x5x chip and power it up during open(), I need to
+> initialize the RAM.
+>=20
+Thanks for the clarification,
+There is one doubt for which I need clarity if I add ram init in m_can_chip=
+_config.
+
+In the current implementation, m_can_ram_init is added in the probe and m_c=
+an_class_resume function.
+If I add the ram init function in chip_config which is getting called from =
+m_can_start, then m_can_init_ram will be called two times, once in resume a=
+nd next from m_can_start also.
+
+Can we add ram init inside the m_can_open function itself?
+Because it is independent of m_can resume functionality.
+
+> > If message RAM init failed then fifo Transmit and receive will fail
+> > and there will be no communication. So there is no point to =22open and
+> > Configure CAN chip=22.
+>=20
+> For mmio devices the RAM init will probably not fail. There are return va=
+lues
+> and error checking for the SPI attached devices. Where the SPI
+> communication will fail. However if this is problem, I assume the chip wi=
+ll not
+> be detected in the first place.
+>=20
+> > From my understanding it's better to keep RAM init inside the probe
+> > and if there is a failure happened goes to CAN probe failure.
+>=20
+> Marc
+>=20
+> --
+> Pengutronix e.K.                 =7C Marc Kleine-Budde           =7C
+> Embedded Linux                   =7C
+> https://protect2.fireeye.com/v1/url?k=3D2053d9ab-7fc8e0b4-205252e4-
+> 000babdfecba-a8c309c53e3358f5&q=3D1&e=3Dc0cfd0e2-a422-4821-a49d-
+> 113cfa4da9cb&u=3Dhttps%3A%2F%2Fwww.pengutronix.de%2F  =7C
+> Vertretung West/Dortmund         =7C Phone: +49-231-2826-924     =7C
+> Amtsgericht Hildesheim, HRA 2686 =7C Fax:   +49-5121-206917-5555 =7C
 
