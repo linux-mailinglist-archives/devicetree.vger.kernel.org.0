@@ -2,211 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5166A63ED24
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40D9763ED2C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:05:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbiLAKDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:03:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S229831AbiLAKFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:05:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbiLAKDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:03:19 -0500
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891BC1C931;
-        Thu,  1 Dec 2022 02:03:18 -0800 (PST)
-Received: by mail-qk1-f174.google.com with SMTP id j26so771634qki.10;
-        Thu, 01 Dec 2022 02:03:18 -0800 (PST)
+        with ESMTP id S229605AbiLAKFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:05:52 -0500
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D37712FC1E
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:05:51 -0800 (PST)
+Received: by mail-vk1-xa2e.google.com with SMTP id v81so597288vkv.5
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:05:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XrM8HiqXnZzTUWvDOAD7xr6db8l4mNmr+646ESgVc/Q=;
+        b=cJbZWSetyvmZNNWfKs/XjqCxg926Jsjxx8jgSzxrFnHfI9lA7CTAQmRtPIFXhfNX8k
+         tPeidGD0TdPRJA0MAxXbWI1LLJ6kadkbOW8vukkZjIKO9kmuJglBgh1/d3QABwZtbP66
+         JzLAAQPysycvtiJyWjdqKtej8VBeKHxyXOWHY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=h7orI/+fp6P+9YeMZGsDnPDJ3YP/9fqlxMdclgUX5LM=;
-        b=vcSZENOxUa4EY7f8um8RDR68OCZwLXYm2ogXy9mg/2JSCe9smUZZHpY55XUo4tCEhc
-         ZJLE61Z8hc3c09aW7rY2NoSN+tYH2HoWS20XR5SW6Y8/cE1yKcpGkeWeOMTQdr7WwOBE
-         l/67FXKgjgE64/FSaOVr7WJVsj6atQc+Q0EmNPglfIhQzwwYetdkPgzIx7iemjC2+Dei
-         VJC0t+4mROROx/dnJpDI4K9uffwMH2Rx9FUKI7Di4fr7QoT36J1xESos2sLiAyX+thsD
-         GQMEu56gRmxh4ZHKTkujW+z/XAgzGADkzUEFpVxrdV2UzJ9wt5/14d3Qj+/n4ZPbwSrR
-         ED/A==
-X-Gm-Message-State: ANoB5plWtuc9qgCincPO1u1ds+dE3kohtb7Ll5MQmtv72Q/z0Qwuicgb
-        QK0OXoqckCHcu0Qa0BLIFTvuqUJEgDJfFA==
-X-Google-Smtp-Source: AA0mqf5DEZNSUfrmASADZq4Wp8R0zRDo0i26JifgvihuB1DhAm6Mg5A6flCCf3qyBBcyOxeE8An7NQ==
-X-Received: by 2002:a05:620a:31aa:b0:6fa:1745:46ee with SMTP id bi42-20020a05620a31aa00b006fa174546eemr40868963qkb.163.1669888997083;
-        Thu, 01 Dec 2022 02:03:17 -0800 (PST)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id o21-20020a05620a2a1500b006eeb3165554sm3218118qkp.19.2022.12.01.02.03.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:03:16 -0800 (PST)
-Received: by mail-yb1-f170.google.com with SMTP id v206so1364142ybv.7;
-        Thu, 01 Dec 2022 02:03:16 -0800 (PST)
-X-Received: by 2002:a25:d655:0:b0:6fc:1c96:c9fe with SMTP id
- n82-20020a25d655000000b006fc1c96c9femr1249230ybg.36.1669888996192; Thu, 01
- Dec 2022 02:03:16 -0800 (PST)
+        bh=XrM8HiqXnZzTUWvDOAD7xr6db8l4mNmr+646ESgVc/Q=;
+        b=vIi4sIIq0i8XpYRl4UNgVZQWdsKV6OBFlvZhVsO7hKcPIn/HlhhfzsIQG9YxbuLySa
+         m77nWu7PxlERklZxNhgIMMvFXt++g+0WxF8CxecZEyWTIz3R9Kkf+MZt7XZwuznLN81Z
+         PCb6Ds+7nxVbLB0JXHZ2+DQKI2JQV/oN6cd99nmOf4d+EWwJ4RoJ2dygJ6LV7MgO/k7j
+         jWNL7hjcRJJixaZaYPIS9vXNbXO2Ut6FxWsYSd4LDIwSpI0td3j7UyEC2ijAftlXtkA3
+         kZcGsQMix5aAn0cEq3FTzA25bOh1IOy/mIjP+gFkgkEfSQcX9uyB5PIK8LAlALEgLwQn
+         XsTQ==
+X-Gm-Message-State: ANoB5pnlJkTtpr+vI2r/JOQ48gh6bntR0UEA6t19JajGgec2cnnhyS46
+        7NhkUbLQidC5N/SOk0rDwoNYCaok33xxkMRWwqnvnA==
+X-Google-Smtp-Source: AA0mqf6wG7AHF7XHQDT3r9jZs+UyadRR5/kyoPUrjBZc8SEmqo1csGnX4esmgX79FQS+PCnjOUsVyvbK5w5//Z/TLs8=
+X-Received: by 2002:a1f:9f0f:0:b0:3b6:90df:eb0 with SMTP id
+ i15-20020a1f9f0f000000b003b690df0eb0mr37365702vke.30.1669889150895; Thu, 01
+ Dec 2022 02:05:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20221123065946.40415-1-tomi.valkeinen+renesas@ideasonboard.com> <20221123065946.40415-6-tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <20221123065946.40415-6-tomi.valkeinen+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Dec 2022 11:03:04 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVy+cfDLsCWA0z-xF+Rr0g4hLSROry-m+=eZSBEsuLa_w@mail.gmail.com>
-Message-ID: <CAMuHMdVy+cfDLsCWA0z-xF+Rr0g4hLSROry-m+=eZSBEsuLa_w@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] arm64: dts: renesas: white-hawk-cpu: Add DP output support
-To:     Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+References: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
+ <ba14a46f-477f-70af-761d-696fe8a4f41c@collabora.com> <CAGXv+5Gg6ozYQcp_NPrAiH1kF-ZkfjVZhQZVhLnbSmjQBwsFwQ@mail.gmail.com>
+ <8ae2a510-abf6-6e1b-9893-293db7d930e7@collabora.com>
+In-Reply-To: <8ae2a510-abf6-6e1b-9893-293db7d930e7@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 1 Dec 2022 18:05:39 +0800
+Message-ID: <CAGXv+5H+msQ1ct5CUzYnT_BmYPnS72HbivvyO39uOfMfXbo5qg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8192: Add adsp power domain controller
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
-
-On Wed, Nov 23, 2022 at 8:00 AM Tomi Valkeinen
-<tomi.valkeinen+renesas@ideasonboard.com> wrote:
-> Add DT nodes needed for the mini DP connector. The DP is driven by
-> sn65dsi86, which in turn gets the pixel data from the SoC via DSI.
+On Thu, Dec 1, 2022 at 5:39 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
 >
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-Thanks for your patch!
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.3, with the mini-dp-con node
-moved up.
-
-> --- a/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-> @@ -97,6 +97,15 @@ memory@600000000 {
->                 reg = <0x6 0x00000000 0x1 0x00000000>;
->         };
+> Il 01/12/22 10:10, Chen-Yu Tsai ha scritto:
+> > On Thu, Dec 1, 2022 at 5:07 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> Il 01/12/22 08:33, Allen-KH Cheng ha scritto:
+> >>> Add adsp power domain controller node for mt8192 SoC.
+> >>>
+> >>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> >>> ---
+> >>> Ref: https://lore.kernel.org/all/2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com/
+> >>>       [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
+> >>> ---
+> >>> ---
+> >>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
+> >>>    include/dt-bindings/power/mt8192-power.h | 1 +
+> >>>    2 files changed, 9 insertions(+)
+> >>>
+> >>
+> >> Allen, thanks for this one, but it's incomplete...
+> >>
+> >> First of all, you must add the power domain on the driver itself, specifically,
+> >> in drivers/soc/mediatek/mt8192-pm-domains.h - otherwise this change will have no
+> >> effect!
+> >
+> > Actually it's worse. The driver doesn't know about the new power domain,
+> > and so it will fail to probe. We might need to make the power domain driver
+> > fail gracefully and skip unknown power domains.
+> >
 >
-> +       reg_1p2v: regulator-1p2v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-1.2V";
-> +               regulator-min-microvolt = <1200000>;
-> +               regulator-max-microvolt = <1200000>;
-> +               regulator-boot-on;
-> +               regulator-always-on;
-> +       };
-> +
->         reg_1p8v: regulator-1p8v {
->                 compatible = "regulator-fixed";
->                 regulator-name = "fixed-1.8V";
-> @@ -114,6 +123,24 @@ reg_3p3v: regulator-3p3v {
->                 regulator-boot-on;
->                 regulator-always-on;
->         };
-> +
-> +       mini-dp-con {
-> +               compatible = "dp-connector";
-> +               label = "CN5";
-> +               type = "mini";
-> +
-> +               port {
-> +                       mini_dp_con_in: endpoint {
-> +                               remote-endpoint = <&sn65dsi86_out>;
-> +                       };
-> +               };
-> +       };
-
-Moving up while applying to preserve sort order...
-
-> +
-> +       sn65dsi86_refclk: clk-x6 {
-> +               compatible = "fixed-clock";
-> +               #clock-cells = <0>;
-> +               clock-frequency = <38400000>;
-> +       };
->  };
+> Right. It's worse. I don't know, though, if gracefully skipping unknown power
+> domains in the driver would be a good decision... as sometimes error messages
+> go unnoticed.
 >
->  &avb0 {
+> When the platform "explodes" instead, you're forced to read that log carefully
+> and get it working again... Anyway, I'm only thinking out loud, nothing less and
+> nothing more than that :-)
 
-> @@ -172,6 +216,51 @@ eeprom@50 {
->         };
->  };
+Me too. :)
+
+> By the way, we can probably expand on that topic a bit later, as it's outside of
+> the scope of this specific change.
 >
-> +&i2c1 {
-> +       pinctrl-0 = <&i2c1_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +       clock-frequency = <400000>;
-> +
-> +       bridge@2c {
+> Back to topic, if we get one series containing both changes (devicetree, bindings
+> and driver) with the right Fixes tags and/or Cc stable, we shouldn't have such
+> issue on backports so we can probably ignore that potential issue, I think? :-)
 
-Ideally, this needs pinctrl for the intc_ex irq0 pin.
-Unfortunately[1] is still in limbo as the naming of the alternate pins
-is inconsistent.
+Everything goes through the soc tree, so they should appear in Linus's tree
+and get picked by stable at more or less the same time. I think we would
+want the driver change to appear before the dts change, for bisectability's
+sake (because of header dependencies and driver errors).
 
-> +               compatible = "ti,sn65dsi86";
-> +               reg = <0x2c>;
-> +
-> +               clocks = <&sn65dsi86_refclk>;
-> +               clock-names = "refclk";
-> +
-> +               interrupt-parent = <&intc_ex>;
-> +               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +               enable-gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
-> +
-> +               vccio-supply = <&reg_1p8v>;
-> +               vpll-supply = <&reg_1p8v>;
-> +               vcca-supply = <&reg_1p2v>;
-> +               vcc-supply = <&reg_1p2v>;
-> +
-> +               ports {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       port@0 {
-> +                               reg = <0>;
-> +                               sn65dsi86_in: endpoint {
-> +                                       remote-endpoint = <&dsi0_out>;
-> +                               };
-> +                       };
-> +
-> +                       port@1 {
-> +                               reg = <1>;
-> +                               sn65dsi86_out: endpoint {
-> +                                       remote-endpoint = <&mini_dp_con_in>;
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +};
-> +
->  &mmc0 {
->         pinctrl-0 = <&mmc_pins>;
->         pinctrl-1 = <&mmc_pins>;
+So we probably want:
+1. driver + binding header changes
+2. dtsi changes
 
-[1] "[PATCH/RFC] pinctrl: renesas: r8a779g0: Add INTC-EX pins, groups,
-and function"
-    https://lore.kernel.org/all/28fe05d41bea5a03ea6c8434f5a4fb6c80b48867.1664368425.git.geert+renesas@glider.be
+And have these merged through fixes so that the history between them is linear.
 
-Gr{oetje,eeting}s,
 
-                                                Geert
+ChenYu
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                                            -- Linus Torvalds
+> Cheers,
+> Angelo
+>
+> > ChenYu
+> >
+> >> ...Then, as Chen-Yu said, you should also add the power domain to the scp_adsp
+> >> clock node as that's solving the lockup issue...
+> >>
+> >> .......and last, but not least: we need a Fixes tag to backport this fix, here
+> >> and on the commit that adds the missing power domain in the driver.
+> >>
+> >> Thanks,
+> >> Angelo
+> >>
+> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> >>> index 424fc89cc6f7..e71afba871fc 100644
+> >>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> >>> @@ -514,6 +514,14 @@
+> >>>                                                };
+> >>>                                        };
+> >>>                                };
+> >>> +
+> >>> +                             power-domain@MT8192_POWER_DOMAIN_ADSP {
+> >>> +                                     reg = <MT8192_POWER_DOMAIN_ADSP>;
+> >>> +                                     clocks = <&topckgen CLK_TOP_ADSP_SEL>;
+> >>> +                                     clock-names = "adsp";
+> >>> +                                     mediatek,infracfg = <&infracfg>;
+> >>> +                                     #power-domain-cells = <0>;
+> >>> +                             };
+> >>>                        };
+> >>>                };
+> >>>
+> >>> diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
+> >>> index 4eaa53d7270a..63e81cd0d06d 100644
+> >>> --- a/include/dt-bindings/power/mt8192-power.h
+> >>> +++ b/include/dt-bindings/power/mt8192-power.h
+> >>> @@ -28,5 +28,6 @@
+> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWA        18
+> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWB        19
+> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWC        20
+> >>> +#define MT8192_POWER_DOMAIN_ADSP     21
+> >>>
+> >>>    #endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
+> >>>
+> >>
+>
+>
