@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9FD63FC4A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:50:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC59163FC58
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:56:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230347AbiLAXt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 18:49:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55722 "EHLO
+        id S231171AbiLAX4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 18:56:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbiLAXt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:49:57 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6FB1C510C;
-        Thu,  1 Dec 2022 15:49:56 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id h132so3772850oif.2;
-        Thu, 01 Dec 2022 15:49:56 -0800 (PST)
+        with ESMTP id S229706AbiLAX4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:56:40 -0500
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6810CC4CD9;
+        Thu,  1 Dec 2022 15:56:39 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id c129so3834751oia.0;
+        Thu, 01 Dec 2022 15:56:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W+HjyG60puvlrURBNHopMfOrvdeMFci5vVt0oykR5tc=;
-        b=qylbzBA5hVi82YVQPOffKXd01o8ogJRY7s3g8iFccBFObfaKQHA5/8ZM70hDV4AmrI
-         COyqUWhz6pzprFxXzS9PAm+cqZWl7dJTRZPQiJmTpG5dK6WPP1VCldSF2eMjSh7X2T33
-         u6HCxrv5CCq5EYgufBopozZb1PLPXBtZPPgUkKtVrAGoeB+AJntOjYcu/m2uUAPXXAzT
-         f8MmT/dbgBSxGdn06sBJJlMnnpGOYsPiHPTS1gvQ46Kr8l5wlME9o9/5YgtVshEBHz51
-         gK1P7m0ZiI/8+88j3cHn/sVuxa42CHixkbIO+Lcz8NUX70N2RDtpJLJVumIW+P3W3Dsz
-         tjag==
-X-Gm-Message-State: ANoB5pll6dJg84CGNeAVYrmjpgutJU7OwECoMRBx2k/wYm0SuU8jfdH/
-        JW/xdZu1gSzg1WQzUpEoRQ==
-X-Google-Smtp-Source: AA0mqf5bJr0Z/sHBoXak624BdBzYGGLAuHfYECUlI0mZIj1EYsWA3ZeDo7bemwuHtU+yAdY/jKae8A==
-X-Received: by 2002:aca:44c4:0:b0:35a:6147:c6a5 with SMTP id r187-20020aca44c4000000b0035a6147c6a5mr24461259oia.149.1669938595865;
-        Thu, 01 Dec 2022 15:49:55 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wIyI39P8SJzCnimdCkeu7VLmpsMh+bZzeALK8ZP35Cg=;
+        b=KLcz0Fl/HFaW3k6OvAuNsJFgL/Do9UktJoIOBbWDL0sapM1PgvNZZsM9PCkKcpq9Jc
+         cXuQEKkt+AdUPc3Glte9R8TeSGTQkWy3Ye1GJs1OJZnOR1Qag7Vs3kEhAbIAGpgDM10o
+         4byAxhSZOrra2gBSQjrwM46cCqHQN2B9V/Znn9i0geuGqAeudvrBeZ46j2XwRR8lAmKB
+         2GLbabDNZsG5gNUoujesgK9FPKNeTmSaIUBf2deXBFihkPY1EOcvLrJOwFfXPre+PFHr
+         SNlzSM/GPC84U7pESFtvJ04xdvkqcyayl9Gk3q9IUotYdFIokxO7nDwv2ZN3Q36bq4qT
+         7pGA==
+X-Gm-Message-State: ANoB5pmo9xjBdVlOq4+LTYepBwb+avKdgoEdmZohHnvUoK4KDXudg+Kd
+        NvgLl5Dfqsi2y/9CTXqFHQ==
+X-Google-Smtp-Source: AA0mqf5dQRZR0sppca3oLs9aYIq4JAf9PNKY3DHEYyF9brvdZb5zz5G4UmAJ/O/ieb5VtNdR8cRfGQ==
+X-Received: by 2002:a05:6808:1782:b0:34f:6e46:5b04 with SMTP id bg2-20020a056808178200b0034f6e465b04mr24115882oib.43.1669938998587;
+        Thu, 01 Dec 2022 15:56:38 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g14-20020a544f8e000000b0035437f4deefsm2392807oiy.26.2022.12.01.15.49.54
+        by smtp.gmail.com with ESMTPSA id x186-20020a4a41c3000000b00494ed04f500sm2310947ooa.27.2022.12.01.15.56.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 15:49:55 -0800 (PST)
-Received: (nullmailer pid 1708582 invoked by uid 1000);
-        Thu, 01 Dec 2022 23:49:54 -0000
-Date:   Thu, 1 Dec 2022 17:49:54 -0600
+        Thu, 01 Dec 2022 15:56:38 -0800 (PST)
+Received: (nullmailer pid 1718136 invoked by uid 1000);
+        Thu, 01 Dec 2022 23:56:37 -0000
+Date:   Thu, 1 Dec 2022 17:56:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, adrian.hunter@intel.com,
-        skhan@linuxfoundation.org, davidgow@google.com,
-        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
-        arnd@arndb.de, krakoczy@antmicro.com, andy.shevchenko@gmail.com,
-        openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: npcm,sdhci: Document NPCM SDHCI
- controller
-Message-ID: <20221201234954.GA1704219-robh@kernel.org>
-References: <20221130150857.67113-1-tmaimon77@gmail.com>
- <20221130150857.67113-2-tmaimon77@gmail.com>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     kernel@dh-electronics.com, Alexander Dahl <ada@thorsis.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        marex@denx.de, linux-serial@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH V3 1/4] dt-bindings: serial: rs485: Add GPIO controlling
+ RX enable during TX
+Message-ID: <166993899697.1718097.6798394044002195647.robh@kernel.org>
+References: <20221201110237.7917-1-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221130150857.67113-2-tmaimon77@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221201110237.7917-1-cniedermaier@dh-electronics.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,88 +67,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 05:08:56PM +0200, Tomer Maimon wrote:
-> Add binding for Nuvoton NPCM SDHCI controller.
+
+On Thu, 01 Dec 2022 12:02:34 +0100, Christoph Niedermaier wrote:
+> Add a binding for a generic definition of an output GPIO that sets the
+> state of rs485-rx-during-tx. The idea is that the hardware already controls
+> the option receiving during sending before it gets to the signal receiving
+> hardware. The standard RS485 is a half-duplex bus that in most cases is
+> driven by an UART controller. The advantage of using this GPIO is that it
+> is independent of the capabilities of the UART core and the UART driver.
+> On the hardware side the interface to the bus is controlled by a transceiver,
+> that has a pin called RE (RX Enable) or similar, which connects the bus to
+> the RX signal of the UART controller. The GPIO can switch between two states
+> to control the RE pin via an electrical circuit:
+> - Active:
+>   The RE pin is always active. The UART RX see everything on the bus and
+>   therefore also what happens with the TX signal on the bus.
+> - Inactive:
+>   The RE pin is always active, but during sending on the bus the pin RE is
+>   inactive. So basically the receiving during sending is suppressed.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> A possible circuit diagram could look like this:
+>                                   ┌──────────────────┐
+>                                   │       RS485      │
+>                 TX ───────────────┤D                 │
+>                                   │    Transceiver   │
+>                RTS ────┬──────────┤DE                │
+>                        │          │                  │
+>                        │ ┌─────┐  │                  │
+>                        └─┤&    │  │                  │
+>                          │     ├──┤!RE               │
+> !rx_during_tx_gpio ──────┤     │  │                  │
+>                          └─────┘  │                  │
+>                                   │                  │
+>                 RX ───────────────┤R                 │
+>                                   │                  │
+>                                   └──────────────────┘
+> 
+> Here the RTS pin of the UART core is used to control TX via the transceiver
+> pin DE (Drive Enable). RE and rx_during_tx_gpio are active low.
+> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 > ---
->  .../devicetree/bindings/mmc/npcm,sdhci.yaml   | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Alexander Dahl <ada@thorsis.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> To: linux-serial@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> V2: - Rework of the commit message
+>     - Rework GPIO property comment
+> V3: - Rework the binding description
+>     - Rework message title
+>     - Rework of the commit message
+> ---
+>  Documentation/devicetree/bindings/serial/rs485.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml b/Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml
-> new file mode 100644
-> index 000000000000..38409272807a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/npcm,sdhci.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/npcm,sdhci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NPCM SDHCI Controller
-> +
-> +maintainers:
-> +  - Tomer Maimon <tmaimon77@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-sdhci
-> +      - nuvoton,npcm845-sdhci
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^sdhci@[0-9a-f]+$":
-> +    type: object
 
-sdhci is a child node of the nuvoton,npcm750-sdhci node?
-
-> +    $ref: mmc-controller.yaml
-
-I think you want:
-
-allOf:
-  - $ref: mmc-controller.yaml#
-
-And then you will have some errors in the example to fix.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sdhci0: sdhci@f0840000 {
-
-Drop unused labels.
-
-Node name should be 'mmc'
-
-> +      compatible = "nuvoton,npcm750-sdhci";
-
-Indent by 4 spaces.
-
-> +      reg = <0xf0840000 0x200>;
-> +      interrupts = <0 27 4>;
-> +      clocks = <&clk 4>;
-> +    };
-> -- 
-> 2.33.0
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
