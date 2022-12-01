@@ -2,146 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB0463F0B3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:40:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3A063F0B9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:41:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbiLAMkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 07:40:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52524 "EHLO
+        id S229706AbiLAMlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 07:41:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbiLAMk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:40:28 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD61BA0A9
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:40:21 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id y4so1541254plb.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 04:40:21 -0800 (PST)
+        with ESMTP id S229572AbiLAMlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:41:51 -0500
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F805801F;
+        Thu,  1 Dec 2022 04:41:50 -0800 (PST)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1432a5f6468so1947258fac.12;
+        Thu, 01 Dec 2022 04:41:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6S7naxVeL+Tq1XdOeQt8X5QpTYGWrVZhiHOlENIaVW4=;
-        b=ODFqGsjSBR77IhnwGSMqT5Cedqv+o+83HTdoL9r+54VqgGotTXmXpohITgE49F7wSd
-         Tkur0/NYoqgk92i4gk54CRC/pqYBBmM2Zbo6r10FLJYhD2qqf8jup2GHELUwP4gwflmR
-         zHYM7ShhCJW76jq1Qu2vQBginDdz04Pbwt71TzSOIEVOWuPV44OgVizwpklWWnB7e+Y5
-         D4+z2VkQ+x3EEWAciK1knsKdG5FhwxYEmrPWeSjvn7rHX4xtesNCG3kcL9kYwyxbC5ya
-         FHhXlzp0mt54IMjKmv9qfrLyPhAifG9KdRWdez3fjVDG0RQP0zP5aj9Gdf9VUb814ry7
-         1cfA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vVtwBXUP6j6Bf0vdPQcEIuUGWHMzl8hlrxeZxCGBo7o=;
+        b=KhG045o73gAmFqWPVI6b0QexsA2P0qKZqQzejNrLgPsrYZ7qF9JfRssadiaZa8N4j/
+         tIliNbuFS/awGxcUqmszKcLkHMWDCYMU5EnHC5g87WdWxZvV1GBWs1Du9hiipCmNmRsS
+         Znag6Gnz2iWCjRydCFJ8k8yJTdC+27BWPBJ179QhSIliBtfk/3TKIHdnPLyzZ06ib4j0
+         QGGrh7pM/5uqmLlKtipMCh4DxaDLJZ3jIYsiy+95N8o/CYKBVm8/TRPxI5J6HdLUvRdD
+         6koqAseyM+W5OvSaIEabjjJOvq8Uf1tQmhNVHAxtaC6G4pw5RfLTX7xefPMezRB3rx2U
+         WNLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6S7naxVeL+Tq1XdOeQt8X5QpTYGWrVZhiHOlENIaVW4=;
-        b=D/T/yhsskZU9atYPfluMSgPqPwhkjYkjXF9JU+My5ESgoJqLPK69rN2wtGIrcikab2
-         Z8YVQMW4BJuH2BSTULgkA9UG2E5Z+/YLtoj9E/pwk11MqNt3PBzNcGZPVSAsoEr096AI
-         edmIMFK6JO2l2HMh2xqjctCVVXGqheTvFcG0Anciq/QPYfOPpVOor/vgyvOHkVb3gUmB
-         d+Eho1i1wb2dak/1Y5pLnoxJfmogkjVuxgMziHO+C/B34pTfJiYw6O7CIEBUsFtLfPvU
-         nhBdZ3WAVMsXDbn0TH9XBdBCGPHir8WaM0HZfJTb98ObM08gTKoV7DKYdcLvlRBeVNE7
-         AMlA==
-X-Gm-Message-State: ANoB5pkd3de2NA1vKuoYi4PAlNBCYRZeR30PT00MxJCwO0Tvt6g2EHrQ
-        0KaHIzg3VNe6O1rUw10FKGb8kg==
-X-Google-Smtp-Source: AA0mqf6acwWia0+L1cEYLvnWvOdyNLyE2K918tcmbn+t7myfCn9EV5mMEmTTmBYN843Wow+kKCJ09g==
-X-Received: by 2002:a17:902:ec01:b0:186:878e:3b0d with SMTP id l1-20020a170902ec0100b00186878e3b0dmr47042474pld.149.1669898420501;
-        Thu, 01 Dec 2022 04:40:20 -0800 (PST)
-Received: from anup-ubuntu-vm.localdomain ([171.76.81.69])
-        by smtp.gmail.com with ESMTPSA id b65-20020a62cf44000000b0056f0753390csm3246981pfg.96.2022.12.01.04.40.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 04:40:20 -0800 (PST)
-From:   Anup Patel <apatel@ventanamicro.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Anup Patel <apatel@ventanamicro.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: [PATCH v5 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
-Date:   Thu,  1 Dec 2022 18:09:54 +0530
-Message-Id: <20221201123954.1111603-4-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221201123954.1111603-1-apatel@ventanamicro.com>
-References: <20221201123954.1111603-1-apatel@ventanamicro.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vVtwBXUP6j6Bf0vdPQcEIuUGWHMzl8hlrxeZxCGBo7o=;
+        b=nX+d2vyaBELdVq8rre0wQAqAzAa6CqvH0vPRPwFZ4QJLM0VNrweU+cXGsPddkj8NcV
+         5P+6gzCwof7V5nST0JfbxCNmVLOzkgeobr7aD4/07B4j+PWRyEJrZ3H1pPwJvuEHrwKm
+         QVHSh0suly6CcYuoUgB/oNzTgjwWwsBi4Wy9lA2eD4LiBr2E7qk0f9FAiOD9/bOUKqb6
+         7l9RPZmLNOZ0X3mqbPgV/3QSqHDs+Vs9aPx8G+e1ZgTSorZg+hQhj0V4meMtUjkMp+Tz
+         aqggVi4BsMh3Fut02RVHWvK0OZM0TXIpJIHFabrQdPnJ1QCN55y3yQWNP/8GGiERqpfQ
+         oYzg==
+X-Gm-Message-State: ANoB5pk9T64uZugWf7Z7wEcnOtM633QlTDWuWhsOi3fBG03peQ5Es5hw
+        Xb6YNXb2hRXkUeadCzxQNghsgZ2OhQR7E1U70xo=
+X-Google-Smtp-Source: AA0mqf6lkTeE/LUL4X4zuNE/2/zR6AH8fXXx8wCNgAMioaIAtv49JXiRu83pwCnVTMXot34+PdI4JiacLxJtmuBETUo=
+X-Received: by 2002:a05:6870:ab86:b0:13c:5763:9411 with SMTP id
+ gs6-20020a056870ab8600b0013c57639411mr36055275oab.288.1669898510141; Thu, 01
+ Dec 2022 04:41:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+References: <20221129140955.137361-1-gch981213@gmail.com> <20221129140955.137361-3-gch981213@gmail.com>
+ <98b72494-3188-76d5-2e24-9dc127a8b31a@linaro.org> <CAJsYDVJknDWKMW1tH0M=85tJOPG-HngxhhMzvJpk5qn_Q9mzAg@mail.gmail.com>
+ <7b3f97f9-34af-413c-aaad-9108b4f36c51@linaro.org> <CAJsYDVKXvJZaqCBx7RSsfVZkKTGdbp78GHA4mvmUdQwyEyGkBQ@mail.gmail.com>
+ <c13b67ec-c030-302a-6315-fad18323923a@linaro.org>
+In-Reply-To: <c13b67ec-c030-302a-6315-fad18323923a@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Thu, 1 Dec 2022 20:41:39 +0800
+Message-ID: <CAJsYDVJyeuHsXFdi-OrMX-1maQbC_wLYko6dz=unmuG6B3DL=g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
-when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
-timer DT node.
+Hi!
 
-This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
-based on RISC-V platform capabilities rather than having it set for
-all RISC-V platforms.
+On Wed, Nov 30, 2022 at 7:59 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> >> [...]
+> >> So this is brightness of each color...
+> >
+> > I don't think so.
+> > See the kernel doc for multicolor LED:
+> > https://docs.kernel.org/leds/leds-class-multicolor.html
+> > This property sets the sysfs file multi_intensity while the
+> > actual LED brightness is controlled with another sysfs
+> > file called 'brightness'.
+> > Setting multi_intensity alone doesn't change the LED
+> > brightness at all.
+>
+> If you had brightness, that would be correct. But you do not have
+> brightness, right?
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
----
- drivers/clocksource/timer-riscv.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+The brightness can be set using sysfs, but I didn't implement a
+default brightness in my driver.
+My original intent for this property is to set a default color for legacy
+led softwares which can only control the brightness and doesn't
+support setting the color value yet.
 
-diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-index 969a552da8d2..1b4b36df5484 100644
---- a/drivers/clocksource/timer-riscv.c
-+++ b/drivers/clocksource/timer-riscv.c
-@@ -28,6 +28,7 @@
- #include <asm/timex.h>
- 
- static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-+static bool riscv_timer_cannot_wake_cpu;
- 
- static int riscv_clock_next_event(unsigned long delta,
- 		struct clock_event_device *ce)
-@@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
- static unsigned int riscv_clock_event_irq;
- static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
- 	.name			= "riscv_timer_clockevent",
--	.features		= CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
-+	.features		= CLOCK_EVT_FEAT_ONESHOT,
- 	.rating			= 100,
- 	.set_next_event		= riscv_clock_next_event,
- };
-@@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
- 
- 	ce->cpumask = cpumask_of(cpu);
- 	ce->irq = riscv_clock_event_irq;
-+	if (riscv_timer_cannot_wake_cpu)
-+		ce->features |= CLOCK_EVT_FEAT_C3STOP;
- 	clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
- 
- 	enable_percpu_irq(riscv_clock_event_irq,
-@@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
- 	if (cpuid != smp_processor_id())
- 		return 0;
- 
-+	child = of_find_compatible_node(NULL, NULL, "riscv,timer");
-+	if (child) {
-+		riscv_timer_cannot_wake_cpu = of_property_read_bool(child,
-+					"riscv,timer-cannot-wake-cpu");
-+		of_node_put(child);
-+	}
-+
- 	domain = NULL;
- 	child = of_get_compatible_child(n, "riscv,cpu-intc");
- 	if (!child) {
+> Therefore the final brightness is always:
+>
+> subled[i].brightness = 255 * subled[i].intensity / max_brightness (also
+> 255);
+>
+> Or your bindings are incomplete...
+
+I do agree that adding a default-brightness will make this more
+useful. I'll add this feature in the next version.
+
 -- 
-2.34.1
-
+Regards,
+Chuanhong Guo
