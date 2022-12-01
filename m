@@ -2,111 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A8A63F058
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:21:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1AA63F08B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbiLAMV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 07:21:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60882 "EHLO
+        id S231408AbiLAMcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 07:32:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbiLAMVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:21:25 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FACDAB029;
-        Thu,  1 Dec 2022 04:21:23 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B1ANOfC006098;
-        Thu, 1 Dec 2022 12:21:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=o35YdJaFszQepz90vSPHt6PmoQ0SOBopmc9imxmtMi4=;
- b=QGD6d4tSFCEEPU7eOuvRDB85ZYZTtpthi1LrnlP9fhsaqDcMSgCarEGrs+FH1mUDP25c
- WKXWp6mnjfEgy0toM1SS2GON2lKQ+zFGLZHmf6cvG5Qec2fXKbvPhR1g8mEYP8BQHlSq
- 4CllCTsiQWrZeQ9chG8dB2LAO3ABX8NFhwGgr8b8FlauZsN25z4udiJJmKLqcECZfIA3
- JMNsooZrpHcwyl6dkp2FZnNBSatq/e/7/UBoHc7NOOmWD3VMl0ODv3WGvGPiFeFJrWu+
- lyT4ERMLamNLVgn5xjwltu4KJbW1eySagiukxL09I9IGOmEqvrD4LP/E+ia43adxNiES Qw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m6k3qs9nb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Dec 2022 12:21:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B1CL8rB021799
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Dec 2022 12:21:08 GMT
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Thu, 1 Dec 2022 04:21:02 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH] remoteproc: elf_loader: Update resource table name check
-Date:   Thu, 1 Dec 2022 17:50:48 +0530
-Message-ID: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        with ESMTP id S231394AbiLAMcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:32:17 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E580DBA0A5
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:32:14 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id q7so2454514wrr.8
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 04:32:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=oxqmNG8QVZimK11GUSa3uC8aKzXNCTd3Uy233UpMikw=;
+        b=brwGJiSQB2PgNAjfjeVDu2Lw4MXR3s7nddenvTEzsUvZVZpSThxWO2TuzR83KNl5fK
+         whfr1WCo/41xOH9uRtOu3NhP+0vGJRGnHwE2Uv0J1RCcKN6TGIu+NjJLgTaHypV56Khj
+         0nRxGt1XUJ4gZ5GabHNRrhqdzdEZW4Nhht0C0necxV2EM588kqp5SDnqTLHokxCfu1Uu
+         cWIaH6d5iPBdWQviZ7in2WlrvUPYEgpoQi1NQNeGhESO79KEqc9AhlCB6RKu40EzchSQ
+         4kOLf0xfYhxQtja1gXaPHrrP87i1EK5Y6aX43uwLnst81HsBGT5vTYBkf1Ryo/bT3Y8k
+         ISCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oxqmNG8QVZimK11GUSa3uC8aKzXNCTd3Uy233UpMikw=;
+        b=e1qZqsHVpoLf7YvcQ4UxU65E0qybClcz3sdav/h+jF1ffl5hE++jVHm1T0nR5zL+cj
+         Y7yFk20NDjcDcv5vMh7/1tpurtZQX3nScaGSFgUYsUsFHFKsdthCZ5HHIidngBSLNvAL
+         qN+dKVoIt6jfb5OpXojlm9l0IAhRSFMO+obD3IYhionj5Ww6GLT4dhjy0KeUr5RG1qVR
+         q7T2noBUAfBtC2W5Pl7pCPTfhOhG3runGW1ve8+TKFIZ8/Uzn4Tbn24raJl22cgb9vWC
+         6vWWmfLzWOvVCwsiU+VlxNSJe4I1yZsK83p9wE2co+A0+GJVJ/pCg6C6jlM7xdkH4HTU
+         zDXQ==
+X-Gm-Message-State: ANoB5pmrVjTokQkTFCbk80Hnw48VbPg10UBxiCXCmS5npwizBQlYwMhc
+        4oTNwqaEJo8dskQJwlRC+Id53A==
+X-Google-Smtp-Source: AA0mqf4Nr9iAQ6o9/0h2mpgVlskb2Nt6UNuURrnkxoah0H1FYMkvfzCFRPuJEr+vCGMNJGkDcVSSQw==
+X-Received: by 2002:adf:ea0a:0:b0:241:fcd5:6b94 with SMTP id q10-20020adfea0a000000b00241fcd56b94mr22579342wrm.592.1669897933467;
+        Thu, 01 Dec 2022 04:32:13 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bec0:73a:70e1:228f? ([2a01:e0a:982:cbb0:bec0:73a:70e1:228f])
+        by smtp.gmail.com with ESMTPSA id l5-20020a5d5605000000b002367ad808a9sm4316424wrv.30.2022.12.01.04.32.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 04:32:13 -0800 (PST)
+Message-ID: <16642605-2842-2210-440e-44f37cf06783@linaro.org>
+Date:   Thu, 1 Dec 2022 13:32:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 92nkJW-q8lJX3ix6rnVlv9-0RirJcWu6
-X-Proofpoint-ORIG-GUID: 92nkJW-q8lJX3ix6rnVlv9-0RirJcWu6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-01_04,2022-12-01_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 bulkscore=0 suspectscore=0 lowpriorityscore=0 mlxscore=0
- adultscore=0 spamscore=0 priorityscore=1501 clxscore=1011 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212010088
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: reset: meson-g12a: Add missing NNA
+ reset
+Content-Language: en-US
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Amlogic Meson SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221201103026.53234-1-tomeu.vizoso@collabora.com>
+ <20221201103026.53234-2-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221201103026.53234-2-tomeu.vizoso@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update resource table name check with sub string search instead of
-complete string search.
-In general Qualcomm binary contains, section header name
-(e.g. .resource_table), amended with extra string to differentiate
-with other sections.
-So far Android adsp binaries are being authenticated using TZ,
-hence this mismatch hasn't created any problem.
-In recent developments, ADSP binary is being used in Chrome based
-platforms, which doesn't have TZ path, hence resource table is
-required for memory sandboxing.
+On 01/12/2022 11:30, Tomeu Vizoso wrote:
+> Doesn't appear in the TRM I have, but it is used by the downstream
+> galcore driver.
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> index 6d487c5eba2c..45f6b8a951d0 100644
+> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> @@ -69,7 +69,9 @@
+>   #define RESET_PARSER_FETCH		72
+>   #define RESET_CTL			73
+>   #define RESET_PARSER_TOP		74
+> -/*					75-77	*/
+> +/*					75	*/
+> +#define RESET_NNA			76
+> +/*					77	*/
+>   #define RESET_DVALIN			78
+>   #define RESET_HDMITX			79
+>   /*					80-95	*/
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Missing from https://lore.kernel.org/all/98517f65e600cddf585e53d1ca98cbb7b0b43aee.camel@pengutronix.de/ :
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-diff --git a/drivers/remoteproc/remoteproc_elf_loader.c b/drivers/remoteproc/remoteproc_elf_loader.c
-index 5a412d7..0feb120 100644
---- a/drivers/remoteproc/remoteproc_elf_loader.c
-+++ b/drivers/remoteproc/remoteproc_elf_loader.c
-@@ -272,7 +272,7 @@ find_table(struct device *dev, const struct firmware *fw)
- 		u64 offset = elf_shdr_get_sh_offset(class, shdr);
- 		u32 name = elf_shdr_get_sh_name(class, shdr);
- 
--		if (strcmp(name_table + name, ".resource_table"))
-+		if (!strstr(name_table + name, ".resource_table"))
- 			continue;
- 
- 		table = (struct resource_table *)(elf_data + offset);
--- 
-2.7.4
+No need to send to send a v6 for that, I'll add it while applying after next rc1.
+
+Neil
 
