@@ -2,88 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C575663EB0D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8032463EAF4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiLAI1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 03:27:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
+        id S229626AbiLAIWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 03:22:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiLAI1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:27:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D23697E7;
-        Thu,  1 Dec 2022 00:26:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C7E961EC7;
-        Thu,  1 Dec 2022 08:26:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF10C433C1;
-        Thu,  1 Dec 2022 08:26:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1669883213;
-        bh=9b2/8eE9yzlYofYNhF+OGMGr1M4s1PGOfebwoAlphxU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=yqk59b/SkAVAtAcqGgpSCFRdSfpJMkFYN+ZHNKX3FGmCSFe1KGxvOwnUlJYYENx+N
-         16G8Tc28Xv5BntgYYsWaDD0UvxWF3yVG8OSOMW3hh1Sc64DyEHWGm8u41YCM3Aora+
-         kf/CxTpj7H74WEKYIPKU7RTSPe+5FJ5va3wcLU8k=
-Date:   Thu, 1 Dec 2022 09:06:55 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Daehwan Jung <dh10.jung@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229676AbiLAIW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:22:29 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF2CE40908
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 00:22:25 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id y16so1460671wrm.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 00:22:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+mR6HUSlaN8hS5l8zD0LYEJ2uQHlTjpXSoGmhbGyVtU=;
+        b=Ydc32BuKfcHbEu/s3Wdj0pwQgzomhNrDEZwenH9/myXzg2sDKOik9fkRVLQ3Gf1dnn
+         mBfqLQa6KYIoR2ukVBonSyinhS25n3SggfHU+QWR145IFTXL8L93b41I3M53Zdg4lrwV
+         e0A72zUXV+qdtHix4qAnz1MJH00yrWAqcte67TEdlkFEyMCNsb/AmFNFJnXHC0g6HAcN
+         MbT+cf4Co3eWmrgi7gqXuchXFF2HGrWXbnA/mvEznOpseIKdEdnCOXXhzNsWeDqYFEHR
+         ko+/fdN/gSnQndafH+ckBvQYBx/OhAgcwHqg91saR0tCRUMkdV8KXoCgUZOVo3B+rK61
+         Oymg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+mR6HUSlaN8hS5l8zD0LYEJ2uQHlTjpXSoGmhbGyVtU=;
+        b=lnEDbEVKfHp158JlPz+gn7eMcZ8Tm8KfruiwfpK6iS2o5MHSLcxsEEs/9yZkrX/jML
+         GyMqFCY36Xomqtnz01+tsSjXFC4LvbN9cc7alNPYZ9rH76dHnJPxqGSl1IVgRh442n0f
+         mxg2kW7A7AypvY4nUUTOGKpdl74nZZ3vNsbJbspQjM3nRgdaBhlSvwZ3a9BBzyjold85
+         8t++rAeOrW2e24bGyRgiDTdhDTWaEIX+loIncsMHokGnbErChqyAf8K2oc7oiFaNwPbD
+         nWpoMjF1MbbxBHXH5g+y5GY9GUMZrxD73AuZ0sRK+dfelMgHuVEzsdPxs8y8Q3eLzZRj
+         3OKA==
+X-Gm-Message-State: ANoB5pm4cNFMYLfhW1GjfMQ7OAklxPTO2uGHq/hrQTP6AmO0FeFCHHRj
+        Vf2hQxgdMg3/ezo/5RoCfM8v7A==
+X-Google-Smtp-Source: AA0mqf7HvhClS0aU6onW65JDOt3qKaBnpN5003N6Ve6c6W9mj0StV4JjUryLKPoKEFz7+r6APCmviQ==
+X-Received: by 2002:a5d:42d0:0:b0:241:d8e2:868d with SMTP id t16-20020a5d42d0000000b00241d8e2868dmr32627813wrr.671.1669882944447;
+        Thu, 01 Dec 2022 00:22:24 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:bec0:73a:70e1:228f? ([2a01:e0a:982:cbb0:bec0:73a:70e1:228f])
+        by smtp.gmail.com with ESMTPSA id m35-20020a05600c3b2300b003b50428cf66sm5089970wms.33.2022.12.01.00.22.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 00:22:24 -0800 (PST)
+Message-ID: <16c2c7e6-20bb-7593-3197-8925b40d6d77@linaro.org>
+Date:   Thu, 1 Dec 2022 09:22:22 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: reset: meson-g12a: Add missing NNA
+ reset
+Content-Language: en-US
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Colin Ian King <colin.i.king@gmail.com>,
-        Artur Bujdoso <artur.bujdoso@gmail.com>,
-        Juergen Gross <jgross@suse.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        "moderated list:ARM/Amlogic Meson SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos
- SOCs
-Message-ID: <Y4hgnxGMEuizJumr@kroah.com>
-References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
- <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221129085047.49813-1-tomeu.vizoso@collabora.com>
+ <20221129085047.49813-2-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221129085047.49813-2-tomeu.vizoso@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 11:13:31AM +0900, Daehwan Jung wrote:
-> This driver works with xhci platform driver. It needs to override
-> functions of xhci_plat_hc_driver. Wakelocks are used for sleep/wakeup
-> scenario of system.
+Hi Philipp,
 
-So this means that no other platform xhci driver can be supported in the
-same system at the same time.
+On 29/11/2022 09:50, Tomeu Vizoso wrote:
+> Doesn't appear in the TRM I have, but it is used by the downstream
+> galcore driver.
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> index 6d487c5eba2c..45f6b8a951d0 100644
+> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
 
-Which kind of makes sense as that's not anything a normal system would
-have, BUT it feels very odd.  This whole idea of "override the platform
-driver" feels fragile, why not make these just real platform drivers and
-have the xhci platform code be a library that the other ones can use?
-That way you have more control overall, right?
+<snip>
 
-thanks,
+Will you mind if I take this patch so I can apply the whole
+patchset at once and handle the bindings deps between my drivers and DT trees ?
 
-greg k-h
+Neil
