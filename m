@@ -2,174 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 103D863EDEF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F067A63EDF6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:37:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbiLAKet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:34:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
+        id S230184AbiLAKhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:37:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230303AbiLAKeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:34:25 -0500
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090A892A2A
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:34:12 -0800 (PST)
-Received: by mail-vs1-xe32.google.com with SMTP id k17so1105531vsr.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:34:11 -0800 (PST)
+        with ESMTP id S230357AbiLAKhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:37:06 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CC91EEED
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:37:05 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id c15so1443266pfb.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:37:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rAH21UNUqbLO3zijQeQTjTfJALMFYCO0nKI/Gngxo3k=;
-        b=IwOFeehWF+oYg12+9ZkiwGVadxZFj01NXaOuCnRgTZZLpM+Fn5sqOhpu1UxUlQzM6i
-         xc1P4SeeF/9DaTcEWv4zIFhgg5o4km4geZx+Kts4fY4wOM0jADweJiizzcHbZl3S2X6R
-         twBoFlgb6kiWQg4lDniO80Jub/yfTWo1qyCOQ=
+        d=daynix-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+WRkgKEIfnbIC3sboGx7at523Tajis/IinNKBu0g+f0=;
+        b=4aJjSaljnbWvmCdxfv2Tw8eNcPRlLQgtjkc95h7EWk4LbVtnRfG9yZ9085y/tbN/U+
+         uLYVvkAC3maD/srRId4iYVVZxanKsYrHI7De9MyJxn3JUkxTuRBnhuVBjtmYip+79p9F
+         Ea7P9w6ygdO6c1U5+imSJM2ONyKGZLfOeVeg0eiIpx65LYcNTarhKGvpr5hYydm2U4hi
+         dTjhtEh9F6txeCwAldKilSPo2brXCeRJufeELa0/WjcGjYMWwez6mejy8eIyOrhxWG7o
+         lRIfo84Taw3mifwHYsuzrM/Jg+gQrA2Y+jcUgGH6H/LHx2O6BLCbT8BR/Az3+R+9nUqa
+         QKaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rAH21UNUqbLO3zijQeQTjTfJALMFYCO0nKI/Gngxo3k=;
-        b=1Yk+U3jmDGCilaQk2sCxVrJBhK5RaQgqNYtC5/6W0oVCH7BNLG90bj0Ln5YKPkCLu4
-         AbY/GDr6DyoxTRur3HrWxzOPJ+CpGki+EQ0H511m+XqxyfI8XZYuDXeqPEiU0shjGY8b
-         hC8drQ6K81icEv2gjIACbphNNo9FVgOyYtpnHz/rfL8GK4SpcTiB6zDCR/zRUWp/r7E7
-         /Lmj5VXM30LhE6ymSTWE64CsallyTrQQumxeNmhiqLjZqecFB2USPsI4uOOaGyFMy420
-         WrhN/++xvp2Z4V7O61SHkLgann9NUrxv8LKA//4RFCc9YOq2HnkT/C7LtJHbBj7XVz+I
-         w6NQ==
-X-Gm-Message-State: ANoB5pkQB3z4i5Pigd/dFdM87U+hVBb9q8jfxNPQNnL4wiLV9uLpYrRN
-        9vWloD6sz4opoclfBUTBZn9Ev1B2UGlBAsNbJUQZ4CoQbpQ=
-X-Google-Smtp-Source: AA0mqf5Qao8vLv1WxRsnp96mIE7XC+68JCjxa9YlTVwuYfJ+F04VjR31/MXn43r9GYB1R+7pgmupfpOHqY8MQlfAy4g=
-X-Received: by 2002:a05:6102:e0c:b0:3b0:6da7:39ba with SMTP id
- o12-20020a0561020e0c00b003b06da739bamr24540024vst.26.1669890851122; Thu, 01
- Dec 2022 02:34:11 -0800 (PST)
-MIME-Version: 1.0
-References: <20221201084229.3464449-1-wenst@chromium.org> <20221201084229.3464449-2-wenst@chromium.org>
- <5250d7d3-ff46-e08d-926c-4efd92390d88@collabora.com>
-In-Reply-To: <5250d7d3-ff46-e08d-926c-4efd92390d88@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 1 Dec 2022 18:33:59 +0800
-Message-ID: <CAGXv+5E63+dE-=KbD_LW+BV+fBWnfaD+oH0+e9T_aS-XEffN5w@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt8183: Fix systimer 13 MHz
- clock description
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=+WRkgKEIfnbIC3sboGx7at523Tajis/IinNKBu0g+f0=;
+        b=unIKK87CxoJ0jsGaLz4WnvHOtNZ5GDOSFU9Va3R4WT2R70sW5n4JPYrpV/7LoDzfbL
+         iZHHTgNstdSgpBonCjj1iROewsTObr75dJnh5m59OADU4cbWOLBcDJqzo21XK+gZ77rQ
+         Q3gg/BRwJ38gWZ8n1auW5R4mCrILDIqbnn7uzJDc5Yynm85t4TFLj+SeK05IWHibcvkh
+         1RmT9IQ/403pBButG5mif8im5LJ8mkzCMDNFhdAFC2w0qvSUVfd/PXaghswdggxyjmSe
+         eDhA3kPIkUihwArJJHPshMtMIlEESthbKrOMosCx2ji1c1s89SLevswucYA/fHvLHmBM
+         oxPg==
+X-Gm-Message-State: ANoB5pmXgMRhUTfAhT8ouKq/ralvsRnAefetDMpb1q7kK+1SJ6HvgH4v
+        ndlo7eyy7zKwm90N4vpnMnSsGQ65Stk8c55e
+X-Google-Smtp-Source: AA0mqf43IR8AhUgxd1fohVg0/7ky938ImQTjBbMoTgnM3ajiZwSIxVkoEgYa1CSaTh7TSSmpgJi1iA==
+X-Received: by 2002:a05:6a00:216e:b0:56e:7b62:bba with SMTP id r14-20020a056a00216e00b0056e7b620bbamr46739385pff.55.1669891024654;
+        Thu, 01 Dec 2022 02:37:04 -0800 (PST)
+Received: from fedora.flets-east.jp ([2400:4050:c360:8200:8ae8:3c4:c0da:7419])
+        by smtp.gmail.com with ESMTPSA id jx24-20020a17090b46d800b00213202d77d9sm2709877pjb.43.2022.12.01.02.37.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 02:37:04 -0800 (PST)
+From:   Akihiko Odaki <akihiko.odaki@daynix.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Akihiko Odaki <akihiko.odaki@daynix.com>
+Subject: [PATCH] arch: arm64: dts: apple: Remove stdout-path
+Date:   Thu,  1 Dec 2022 19:36:51 +0900
+Message-Id: <20221201103651.27807-1-akihiko.odaki@daynix.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 1, 2022 at 5:31 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+u-boot overrides stdout-path so that it points to /chosen/framebuffer
+with some condition.
+> arm: apple: Point stdout-path to framebuffer when keyboard present
 >
-> Il 01/12/22 09:42, Chen-Yu Tsai ha scritto:
-> > The systimer block derives its 13 MHz clock by dividing the main 26 MHz
-> > oscillator clock by 2 internally, not through the TOPCKGEN clock
-> > controller.
-> >
-> > On the MT8183 this divider is set either by power-on-reset or by the
-> > bootloader. The bootloader may then make the divider unconfigurable to,
-> > but can be read out by, the operating system.
-> >
-> > Making the systimer block take the 26 MHz clock directly requires
-> > changing the implementations. As an ABI compatible fix, change the
-> > input clock of the systimer block a fixed factor divide-by-2 clock
-> > that takes the 26 MHz oscillator as its input.
-> >
-> > Fixes: 5bc8e2875ffb ("arm64: dts: mt8183: add systimer0 device node")
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->
-> I generally not just like - but *love* - this change, I had that in my mind
-> for a couple of months now and forgot about it because reasons.
->
-> There's just one thing that, since we're doing this now, we can clarify (and
-> that's important to avoid questions like "why isn't this board-specific"):
-> the 26MHz clock "clk26m" oscillator that we're using for the system timers
-> is a SoC-provided clock, and its name is "SYSCLK" as in "System bus clock".
+> Unless you have a spare Apple Silicon machine, getting access to
+> the serial port on Apple Silicon machines requires special
+> hardware. Given that most machines come with a built-in screen
+> the framebuffer is likely to be the most convenient output device
+> for most users. While U-Boot will output to both serial and
+> framebuffer, OSes might not. Therefore set stdout-path to point
+> at /chosen/framebuffer when a keyboard is connected to the machine.
+https://github.com/AsahiLinux/u-boot/commit/a609353e82fd757b7635d18ed6a0828fff657d59
 
-Looking at the schematics it is terribly more complicated. :(
+Perhaps it made sense to specify serial0 as stdout-path when the
+framebuffer and keyboard support was inmature, but today it is
+preferrable to use /chosen/framebuffer instead of serial0 for the
+console in the most cases as the u-boot change states.
 
-The crystal feeds the DCXO in the PMIC, which also acts as a buffer.
-The PMIC then feeds the SoC and any other chips, such as a modem.
+Remove stdout-path to allow the kernel to choose the appropriate
+console. For Linux, it will be VT, which will be eventually backed by
+the framebuffer, if it is enabled. Otherwise, it will fall back to the
+serial.
 
-On other platforms we describe the oscillator at the dtsi level as well.
-The reason why it isn't board-specific is that the requirements and
-properties of the crystal are specified in the platform's datasheet,
-i.e. it is a design requirement that every board use the same crystal.
+Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
+---
+ arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 2 --
+ arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 2 --
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      | 2 --
+ arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      | 2 --
+ 4 files changed, 8 deletions(-)
 
-I don't see the datasheet spelling out SYSCLK though. The TOPCKGEN part
-mostly just refers to it as CLK26M, or some variant of it, which likely
-denotes some fan-out branch. The system timer part also just says "26M"
-or "26 MHz clock source".
+diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+index 5547f5e7ac5a..14b6bf234f82 100644
+--- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
++++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
+@@ -30,8 +30,6 @@ chosen {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		stdout-path = "serial0";
+-
+ 		framebuffer0: framebuffer@0 {
+ 			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+ 			reg = <0 0 0 0>; /* To be filled by loader */
+diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
+index 7c207b1df949..22e96b436bf2 100644
+--- a/arch/arm64/boot/dts/apple/t600x-j375.dtsi
++++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
+@@ -28,8 +28,6 @@ chosen {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		stdout-path = "serial0";
+-
+ 		framebuffer0: framebuffer@0 {
+ 			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+ 			reg = <0 0 0 0>; /* To be filled by loader */
+diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+index 3c5da0e5a41d..d2483f618d44 100644
+--- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
++++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+@@ -27,8 +27,6 @@ chosen {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		stdout-path = "serial0";
+-
+ 		framebuffer0: framebuffer@0 {
+ 			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+ 			reg = <0 0 0 0>; /* To be filled by loader */
+diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+index b6b815d93c3e..af4153dcb55d 100644
+--- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
++++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
+@@ -22,8 +22,6 @@ chosen {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		stdout-path = "serial0";
+-
+ 		framebuffer0: framebuffer@0 {
+ 			compatible = "apple,simple-framebuffer", "simple-framebuffer";
+ 			reg = <0 0 0 0>; /* To be filled by loader */
+-- 
+2.38.1
 
-Also, we can't change the clock name, as "clk26m" is hard-coded into
-the clk drivers.
-
-> I know that your target is to describe how we get from 26M to 13M, but at
-> this point it may be worth it to use the right names to help preventing
-> confusion about that clock not being an external crystal on the board but
-> something internal to the SoC.
-
-But as I described above, it is an actual crystal on the board. We are
-simply omitting parts of the signal path. Notably the PMIC needs to be
-excluded due to circular dependency reasons. And also we most definitely
-don't want the system to be touching it.
-
-ChenYu
-
-> So, I propose:
-> 1. Change `clk26m: oscillator` to `clk26m: sysclk` or `clk26m: sysclk-26m`;
-> 2. Add the divider as `clk13m: sysclk-div2`.
->
-> What do you think?
->
-> Cheers,
-> Angelo
->
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 12 ++++++++++--
-> >   1 file changed, 10 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 19ff1babc359..0cbbaebe1213 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -585,6 +585,15 @@ psci {
-> >               method = "smc";
-> >       };
-> >
-> > +     clk13m: fixed-factor-clock-13m {
-> > +             compatible = "fixed-factor-clock";
-> > +             #clock-cells = <0>;
-> > +             clocks = <&clk26m>;
-> > +             clock-div = <2>;
-> > +             clock-mult = <1>;
-> > +             clock-output-names = "clk13m";
-> > +     };
-> > +
-> >       clk26m: oscillator {
-> >               compatible = "fixed-clock";
-> >               #clock-cells = <0>;
-> > @@ -968,8 +977,7 @@ systimer: timer@10017000 {
-> >                                    "mediatek,mt6765-timer";
-> >                       reg = <0 0x10017000 0 0x1000>;
-> >                       interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
-> > -                     clocks = <&topckgen CLK_TOP_CLK13M>;
-> > -                     clock-names = "clk13m";
-> > +                     clocks = <&clk13m>;
-> >               };
-> >
-> >               iommu: iommu@10205000 {
->
->
