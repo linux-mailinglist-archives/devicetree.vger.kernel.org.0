@@ -2,129 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0297C63EF47
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA03E63EF69
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:25:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbiLALSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:18:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
+        id S229617AbiLALZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:25:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiLALRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:17:46 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E9A87CB7;
-        Thu,  1 Dec 2022 03:15:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1669893315; x=1701429315;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rM+K1icdCaFKZCqOFV+QNCG9qeXYbf+NhJP0kyV2GKQ=;
-  b=vxWBNehwxImCCblXDxK/ZXQ3R4taU74wFJ6dAoK94ptBidqPBsjclLQL
-   5S9UhORHOqF+pGYESXvb4KIGc+EB9GmxIPjbE4bIqT4WEcI7ABdPommhY
-   Ax7Cwt7rVLOtiiMiimNUlHjO+5r5WPOdquojDlG3dQ9AJ6bAD2z38k/7D
-   PXOMWLwyuKrQLKikR8mLEPPjS9rscfq0ykmefq6mLXNDA5pEnqrWamB/s
-   uzzXdH/X7VHopEBmR4vp9MBKlCrZBgRFnaD1CrvJyuStsH60K4SrJSiCn
-   ED3favSXDGh9s5rTryIlT2aM0gk6Fi4QbgSkkZJJxJoX8PikH5v98z7rV
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,209,1665471600"; 
-   d="scan'208";a="191275759"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Dec 2022 04:15:14 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Thu, 1 Dec 2022 04:15:13 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Thu, 1 Dec 2022 04:15:10 -0700
-Date:   Thu, 1 Dec 2022 11:14:52 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Jisheng Zhang <jszhang@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v2 5/9] dt-bindings: riscv: Add bouffalolab bl808 board
- compatibles
-Message-ID: <Y4iMrKjLAHpkCygo@wendy>
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-6-jszhang@kernel.org>
- <60991459-945f-35db-f26a-fb27824728ad@linaro.org>
+        with ESMTP id S229486AbiLALZk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:25:40 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B63199;
+        Thu,  1 Dec 2022 03:25:38 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 30FD8853ED;
+        Thu,  1 Dec 2022 12:25:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1669893936;
+        bh=yRZSp89XEvXg+1Ku43frQh5KXHoYXxfK4JG3galWAQY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XQAO1J0hYwP0I0aG+Bqf3PFiYVEki8GplQ/U54Oxju5W28Zk569vq2DqaknOmTGMS
+         T8cC9UdzjMub/xvsCIuaWyQRNgCUyQHxQazKG70IIiGFgb3BzrWOG7hlDlooCxGpIH
+         4OpljxXSu3vBY3gDhrbT666+GMSwZnKiSSd0ND8Rma7tzWSaDThLc+oJ6/HPpTvRxJ
+         xVR7hw18wSXI9wv33hFWlSshjvSCm+hUCGH4Hj6oXGWyfSr1HL9m94yG2+agh8zFKi
+         BrK+IiSiKgcu2Zpx4RpxztyWD7l36qCGsa0PAyz2NkifskTLRc37uGpMAmzw/YECuh
+         qONnRQiIET6xg==
+Message-ID: <b5080dd6-40b3-a8f2-0c4e-4c1e52e67fe8@denx.de>
+Date:   Thu, 1 Dec 2022 12:25:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <60991459-945f-35db-f26a-fb27824728ad@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, stable@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
+ <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
+ <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
+ <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
+ <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Krzysztof,
-
-On Thu, Dec 01, 2022 at 12:05:04PM +0100, Krzysztof Kozlowski wrote:
-> On 27/11/2022 14:24, Jisheng Zhang wrote:
-> > Several SoMs and boards are available that feature the Bouffalolab
-> > bl808 SoC. Document the compatible strings.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  .../bindings/riscv/bouffalolab.yaml           | 34 +++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/riscv/bouffalolab.yaml b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > new file mode 100644
-> > index 000000000000..91ca9dbdc798
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > @@ -0,0 +1,34 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/riscv/bouffalolab.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Bouffalo Lab Technology SoC-based boards
-> > +
-> > +maintainers:
-> > +  - Jisheng Zhang <jszhang@kernel.org>
-> > +
-> > +description:
-> > +  Bouffalo Lab Technology SoC-based boards
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: '/'
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Sipeed M1s SoM:
-> > +        items:
-> > +          - const: sipeed,m1s
-> > +          - const: bouffalolab,bl808
+On 12/1/22 12:03, Francesco Dolcini wrote:
+> + MTD maintainers/list
 > 
-> I don't think that SoM is usable alone. It always needs a carrier, so
-> drop this entry.
+> On Wed, Nov 30, 2022 at 11:59:04PM +0100, Marek Vasut wrote:
+>> On 11/30/22 21:51, Francesco Dolcini wrote:
+>>> On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
+>>>> On 11/30/22 14:52, Francesco Dolcini wrote:
+>>>>> [    0.000000] Booting Linux on physical CPU 0x0
+>>>>> [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
+>>>>> 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
+>>>>> ...
+>>>>> [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
+>>>>> @33002000)
+>>>>> [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
+>>>>> ...
+>>>>> [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+>>>>> [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
+>>>>> ...
+>>>>>
+>>>>> Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
+>>>>> maybe you have a better idea.
+>>>>
+>>>> Can you share the relevant snippet of your nand controller DT node ?
+>>>
+>>> We just have
+>>>
+>>> from imx7-colibri.dtsi,
+>>>
+>>>     &gpmi {
+>>>     	fsl,use-minimum-ecc;
+>>>     	nand-ecc-mode = "hw";
+>>>     	nand-on-flash-bbt;
+>>>     	pinctrl-names = "default";
+>>>     	pinctrl-0 = <&pinctrl_gpmi_nand>;
+>>>     };
+>>>
+>>> OF partition are created by U-Boot from
+>>>     mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
+>>> env variables calling fdt_fixup_mtdparts from colibri_imx7.c
+>>>
+>>> Everything is available in the upstream Linux/U-Boot git, no downstream
+>>> repo of any sort.
+>>>
+>>>> Probably up to first partition is enough. I suspect you need to fill in the
+>>>> correct address-cells/size-cells there, which might be currently missing in
+>>>> your DT and worked by chance.
+>>>
+>>> This is generated by U-Boot, I would need to dump what he did generate
+>>> from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
+>>> unless what I wrote here is already enough to understand what's going
+>>> on.
+>>
+>> Oh drat ... I see. It's the u-boot fdt_node_set_part_info() which checks the
+>> current NAND controller #size-cells and uses that when generating MTD
+>> partitions 'reg' properties. Since #size-cells is now zero, the reg
+>> properties would be malformed.
+> 
+> I think the issue is slightly different, the u-boot code checks it and
+> if not set it defaults to #size-cells = <1>. Said that u-boot
+> never set #size-cells anywhere.
 
-For my own information, if a SoM is not capable of functioning without a
-carrier there is no merit in it having a compatible?
-Does this also apply if there are multiple possible carriers from
-different vendors?
+Which it really should, can you send a patch there too ?
 
-Thanks,
-Conor.
+> What is failing is ofpart_core.c:parse_fixed_partitions() in Linux with
+> #size-cells = <0>.
+> 
+> 
+>> Now, what I am unsure is whether the right fix is to update mx7 colibri DT
+>> and include &gpmi { #size-cells=<1>; }; , or , revert this patch. The former
+>> fixes the problem for colibri and retains the correct #size-cells=<0>
+>> behavior for any other board which does not specify MTD partitions in the
+>> GPMI NAND node. The later also covers boards which we don't know about which
+>> might also use generated MTD partitions in DT using fdt_fixup_mtdparts() in
+>> U-Boot, but I am not convinced that is correct.
+>>
+>> So, would you be OK with fixing up the colibri mx7 DT with #size-cells=<1> ?
+> 
+> I am also not sure what is the right fix, however I am convinced that
+> the fix needs to be in Linux, we cannot really break the boot flow.
 
+I agree
+
+> In a very pragmatic way I could just add the property to colibri-imx7
+> dtsi, but we are really breaking potential other users of it, anybody
+> using U-Boot to generate the partitions in the end ... (and the list is
+> not empty and not just the colibri*).
+
+I agree here too
+
+> Would it make any sense to do something like that (untested!) ?
+> 
+> diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
+> index 192190c42fc8..fffd60acd926 100644
+> --- a/drivers/mtd/parsers/ofpart_core.c
+> +++ b/drivers/mtd/parsers/ofpart_core.c
+> @@ -122,6 +122,8 @@ static int parse_fixed_partitions(struct mtd_info *master,
+> 
+>                  a_cells = of_n_addr_cells(pp);
+>                  s_cells = of_n_size_cells(pp);
+> +               if (s_cells == 0)
+> +                       s_cells = 1; // for backward compatibility
+>                  if (len / 4 != a_cells + s_cells) {
+>                          pr_debug("%s: ofpart partition %pOF (%pOF) error parsing reg property.\n",
+>                                   master->name, pp,
+
+You might want to print a warning too, so users would fix their DTs, 
+since once there is MTD partition > 4 GiB, this would break. Otherwise I 
+like this option.
+
+Thanks for looking into this !
