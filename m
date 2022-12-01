@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B141463F6DE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 18:53:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B00A63F713
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:04:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230270AbiLARxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 12:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44528 "EHLO
+        id S229883AbiLASEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 13:04:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbiLARwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 12:52:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21481BD40C;
-        Thu,  1 Dec 2022 09:49:09 -0800 (PST)
+        with ESMTP id S229939AbiLASEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:04:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E933B5DB1;
+        Thu,  1 Dec 2022 10:04:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8EDAC620AC;
-        Thu,  1 Dec 2022 17:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEDBCC433D7;
-        Thu,  1 Dec 2022 17:49:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ACF50620A3;
+        Thu,  1 Dec 2022 18:04:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CB5C433D6;
+        Thu,  1 Dec 2022 18:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669916948;
-        bh=ND2zlHSHHuuGHYwNjXAHSmKTCOCnsFtqcA19MkdHXMs=;
+        s=k20201202; t=1669917849;
+        bh=WZatvnz+QOr1Ir2g+HfL56qhA6VFEJRpPV2/ZJbog/I=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gFAr72gDCcBN0kR5qluhgiS/OMPUblkPgQxZEy+MqOw9j4h5rvEfbVFM3z9NLRXuJ
-         QSaSXsG18NWlvQ9qwV44TzkR8kpg/2+kBZGxD4reqF2Gi6B4pz++aIlxKAM3TE+1pP
-         +EaKLpo+wkd9KbJEEbLndFBX3thTgZsIPpBGUGydVVzgTwWFwPF2tc2zydekx/9C7t
-         cBFvS4fBKM7FAtw8Hel6dTTmYIxNZGJRvj8njWEyFhsyhSSCHr6ZTD0lBV5bRfZ4Ug
-         qIMRde8fDdkegHmgbWPZS/rRvqLm7eG4mPHZuxck4AVdPn3GBO5dqJpXEVcIwRGGxG
-         Fm0xWHegDzXLA==
-Date:   Thu, 1 Dec 2022 17:49:02 +0000
+        b=t1GcIvhsLwG8OflIApxBP0BGhBjbKkxusBOBYU+eUci5BagGExkIaqsOJqYVlqbjW
+         hMZmt/iuKfySH6DWl4Fxv1HmAW3OPZD0xp0wSUvRX91a5HMxzO/cca+oHFA+bt4BS/
+         jtZRslsgJHsLIDVChwFIthKxhyVdIam8a/qYl9kt9ysUTYlVG+PuXb0k8pk+dbjYHn
+         vsZ/5sXusz+2b6ERv8t76MbqIn/88cQPHYOOzAKk101TvcvYU44QDy++9mT+4pVpk+
+         GF7Kmo1fBfNtsMh5BJ9haY8U6FOaQtGip58H9iMjVHBfZvgEXop0w+xG44IyLXOgVW
+         JYq07JRXWF59g==
+Date:   Thu, 1 Dec 2022 18:04:04 +0000
 From:   Conor Dooley <conor@kernel.org>
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 7/7] riscv: dts: starfive: visionfive-v2: Add phy
- delay_chain configuration
-Message-ID: <Y4jpDvXo/uj9ygLR@spud>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-8-yanhong.wang@starfivetech.com>
+To:     JiaJie Ho <jiajie.ho@starfivetech.com>
+Cc:     "Conor.Dooley@microchip.com" <Conor.Dooley@microchip.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "kernel@esmil.dk" <kernel@esmil.dk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 6/6] riscv: dts: starfive: Add crypto and DMA node for
+ VisionFive 2
+Message-ID: <Y4jslJfTVtQ9cIGm@spud>
+References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
+ <20221130055214.2416888-7-jiajie.ho@starfivetech.com>
+ <1673ef8b-179e-3b03-b3f8-8d347c70d8c3@microchip.com>
+ <4ddddceba3dc437daca27374dd2f6fd7@EXMBX068.cuchost.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221201090242.2381-8-yanhong.wang@starfivetech.com>
+In-Reply-To: <4ddddceba3dc437daca27374dd2f6fd7@EXMBX068.cuchost.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -65,82 +65,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 05:02:42PM +0800, Yanhong Wang wrote:
-> Add phy delay_chain configuration to support motorcomm phy driver for
-> StarFive VisionFive 2 board.
-> 
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-v2.dts         | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> index c8946cf3a268..2868ef4c74ef 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> @@ -15,6 +15,8 @@
->  
->  	aliases {
->  		serial0 = &uart0;
-> +		ethernet0=&gmac0;
-> +		ethernet1=&gmac1;
+On Thu, Dec 01, 2022 at 06:17:26AM +0000, JiaJie Ho wrote:
+> > -----Original Message-----
+> > From: Conor.Dooley@microchip.com <Conor.Dooley@microchip.com>
 
-Please match the whitespace usage of the existing entry.
+> > Hey Jia Jie Ho,
+> > 
+> > On 30/11/2022 05:52, Jia Jie Ho wrote:
+> > > [You don't often get email from jiajie.ho@starfivetech.com. Learn why
+> > > this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > >
+> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know
+> > > the content is safe
+> > >
+> > > Adding StarFive crypto IP and DMA controller node to VisionFive 2 SoC.
+> > >
+> > > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+> > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> > 
+> > Out of curiosity, what was Huan Feng's contribution to this patch?
+> > Did they co-develop it, or is there some other reason?
+> > 
+> Hi Conor, 
+> Yes, Huan Feng co-developed this driver.
 
->  	};
->  
->  	chosen {
-> @@ -114,3 +116,47 @@
->  	pinctrl-0 = <&uart0_pins>;
->  	status = "okay";
->  };
-> +
-> +&gmac0 {
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	phy-handle = <&phy0>;
-> +	status = "okay";
-> +	mdio0 {
+In that case, the SoB block should look like:
 
-A line of whitespace before the child nodes too please :)
+Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
+Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
 
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +		phy0: ethernet-phy@0 {
-> +			reg = <0>;
-> +			rxc_dly_en = <1>;
-> +			tx_delay_sel_fe = <5>;
-> +			tx_delay_sel = <0xa>;
-> +			tx_inverted_10 = <0x1>;
-> +			tx_inverted_100 = <0x1>;
-> +			tx_inverted_1000 = <0x1>;
-> +		};
-> +	};
-> +};
-> +
-> +&gmac1 {
-> +	status = "okay";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	phy-handle = <&phy1>;
-> +	status = "okay";
-> +	mdio1 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +		phy1: ethernet-phy@1 {
-> +			reg = <1>;
-> +			tx_delay_sel_fe = <5>;
-> +			tx_delay_sel = <0>;
-> +			rxc_dly_en = <0>;
-> +			tx_inverted_10 = <0x1>;
-> +			tx_inverted_100 = <0x1>;
-> +			tx_inverted_1000 = <0x0>;
-> +		};
-> +	};
-> +};
-> -- 
-> 2.17.1
-> 
+Similarly for any other patches they may have co-developed :)
+
+> > >
+> > > diff --git
+> > > a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> > > b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> > > index 450e920236a5..da2aa4d597f3 100644
+> > > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> > > @@ -115,3 +115,11 @@ &tdm_ext {
+> > >   &mclk_ext {
+> > >          clock-frequency = <49152000>;
+> > >   };
+> > > +
+> > > +&sec_dma {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&crypto {
+> > > +       status = "okay";
+> > > +};
+> > 
+> > In what scenario would you not want to have these enabled?
+
+> These drivers are always enabled.
+> Is everything ok with the dts node entries?
+
+If the hardware is always present, why not drop the "disabled" in
+jh7110.dtsi & these two entries marking them as "okay" in the .dts?
+
+> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > index 4ac159d79d66..745a5650882c 100644
+> > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > @@ -455,5 +455,41 @@ uart5: serial@12020000 {
+> > >                          reg-shift = <2>;
+> > >                          status = "disabled";
+> > >                  };
+> > > +
+> > > +               sec_dma: sec_dma@16008000 {
+
+> > > +                       status = "disabled";
+
+> > > +               };
+> > > +
+> > > +               crypto: crypto@16000000 {
+
+> > > +                       status = "disabled";
+
+> > > +               };
+> > >          };
+> > >   };
+
+Thanks,
+Conor.
+
