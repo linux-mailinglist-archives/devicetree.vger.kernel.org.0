@@ -2,218 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D897663F39C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC9963F411
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:35:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbiLAPTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:19:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57422 "EHLO
+        id S231829AbiLAPfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 10:35:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbiLAPTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:19:19 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94DE8A95BE
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 07:19:18 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id q1so1915535pgl.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 07:19:18 -0800 (PST)
+        with ESMTP id S231941AbiLAPeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:34:46 -0500
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA2BC6E69;
+        Thu,  1 Dec 2022 07:34:11 -0800 (PST)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-1442977d77dso1419386fac.6;
+        Thu, 01 Dec 2022 07:34:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=daynix-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=27HzQHSlzJgpei03bCvENCEenbHQtU+Bejvcytj2wUo=;
-        b=3WIn8dsWD7dzxoSclbUqU9wcwrwwx/RffH6Ifi2smLpuit9wkr2o9r/SXrR8E6em4M
-         W0e1OiBJu2eMhiQHatu95GZ7Xdgl6lKF1u+wlkRpoLe2WW0ESsVDZyiMGbCNyQ+JOchi
-         YMUFxltcxpuIJS6I1Addz3ozl9PsU+7n3d4hWCdsyuN/NaiRhuR/PBUhvxPvUxIIwHUL
-         MQz9teXqvVHXxxYXa0eZhi5cZJ+Evzom6IE1OMZKFD1uRJ1RD/424N6sECJ+otwSn8dg
-         irp6o+Issb9HYinPV3vNmjJA0X/EXb8yj2OEVClJYuIqrFijPEwrxGy8ftxkSCsvzQjH
-         pULg==
+        bh=mJ2JTHDAMAbJS/ADBzNEQn0w/E4tOp8FnOKHhN2ooXA=;
+        b=EI9spUqtgaHMkmnx+ii+oviWWd7HOSDI7rNeVmdg2z4gZbP9dJP52B1gyL90PsKbD2
+         rMPiU5FKw4klv/2pN0LOHju2+piSvHytvWyGlOTun3X3Iq6DzkquM2xHDRtXuBwTpSO1
+         PY8P7g7Ch1ImWwttR4DstyjA4DnDZOmlNfmjT35GqsdVhu/KdnDWu/yGJaGoV/FcnOtq
+         2y5R+HRQ15GvJ7E7X35fM7e1TSK2TXzIYAUMjJR/l3aYVJiIuEGzp8rMJ8G3Ek3loDQJ
+         rAkkTl9jFPoRcspnCdiPVcu4JVmo1ZrANRA6Lb0WDVIoJuy7QWZRQ8nbdpxxUDx0Q6hh
+         jlDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=27HzQHSlzJgpei03bCvENCEenbHQtU+Bejvcytj2wUo=;
-        b=qP/fzgem4D0aznOqaTESrC8ZTbLIa72VFVPkfkWMp8+QznYTGDno9hVUCxapYtvo4x
-         O+SbT44IttmciKhx2OqSIOTrMRgKiJjzrLJvTPJvFuuKKtKtYpMvtCUFfhPpViIG19EX
-         4oUbwDuI7YCmolU1CwawoCQEecf2QByf1a6AdEf670naVybeQ22dBDG7JnTkDYbj06bP
-         bEjn5pvD4OdbGMa8h8+J9Fjlsoff1rDtZ/g8cRvE7EdAEJMgafWOC1mZ/GxpdOJo1Dq5
-         oQ9cLLKkyd+RoTMTlcFJSlYiR6k/ppwgnclOWtYxybYe2D9N3m4iCMuieKNIhbB2n7he
-         dYgA==
-X-Gm-Message-State: ANoB5pkw6NQV9cf2aw9sv8dWP+mIFwGXQp/kDpSDwYhY1G6W/5evgCNf
-        PivfPha08eLet3KUI0KZ92M4ag==
-X-Google-Smtp-Source: AA0mqf6MbCi+TQ9zOR6YgAzhnIZO7jJwYsIy0g+Q6vjJIj7MLCkVDT6Dk8mXj8RHGpNMZuRLerI51Q==
-X-Received: by 2002:a63:e547:0:b0:473:e2bb:7fc7 with SMTP id z7-20020a63e547000000b00473e2bb7fc7mr40502778pgj.40.1669907958049;
-        Thu, 01 Dec 2022 07:19:18 -0800 (PST)
-Received: from ?IPV6:2400:4050:c360:8200:7b99:f7c3:d084:f1e2? ([2400:4050:c360:8200:7b99:f7c3:d084:f1e2])
-        by smtp.gmail.com with ESMTPSA id q14-20020a170902a3ce00b0018968d1c6f3sm3752133plb.59.2022.12.01.07.19.15
+        bh=mJ2JTHDAMAbJS/ADBzNEQn0w/E4tOp8FnOKHhN2ooXA=;
+        b=t3fgGw4I4bE2OFH+h4K/Cb+bjELkaxPoCm4J+zZNkW8Kmsp+GGdh6iFSO3gPgK7iRU
+         eUYitoR1U5n7Z/LK7dtbqC29NRv1F8D/aY5LoPOPCMDMCiDdvKFsbYM9y8JMV8vMgCct
+         BP26iVgw8swTNAIpeWttwdlxppw4X7z76pUz4cswAMjhYJCjHv82Yc+DI2ynCIW0N0kT
+         EDlr939VNRwpPkFzEt4YjoNYHvce9i9DQM/kX2JpW0GQ11oc/LQakWTciA+zmri5ROxh
+         tzHG0mFOJPQ+Zc6QkoZcvEc4broS2PchvMsLj+5EMkmCLZ5/SoKLlM9BOr0W0jMHIK1U
+         GJ9w==
+X-Gm-Message-State: ANoB5pn4GhqEbRmpXPJvMS0qrC15Jk6Wx9sZXk76HcyRkQ8Qm0Sv2bBV
+        v6wPhM7dRlZ5FHIo4apICEI=
+X-Google-Smtp-Source: AA0mqf6+DRNjIpXvT/ZKK2NF9d2O3gRdlWBYaRGmf5VZGlvw7ZLbmDqQDUe5v1uSFuSV4Jj4KZPdvg==
+X-Received: by 2002:a05:6870:f78d:b0:13d:3bb4:479b with SMTP id fs13-20020a056870f78d00b0013d3bb4479bmr38222977oab.68.1669908850713;
+        Thu, 01 Dec 2022 07:34:10 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m12-20020a056870560c00b001417f672787sm2766678oao.36.2022.12.01.07.34.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 07:19:17 -0800 (PST)
-Message-ID: <c3b0cee9-032c-0447-37df-3ce5ce280e41@daynix.com>
-Date:   Fri, 2 Dec 2022 00:19:14 +0900
+        Thu, 01 Dec 2022 07:34:10 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <00de62b2-51dc-2a72-6659-3425d5e1b72c@roeck-us.net>
+Date:   Thu, 1 Dec 2022 07:34:08 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] arch: arm64: dts: apple: Remove stdout-path
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
 Content-Language: en-US
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alyssa@rosenzweig.io, sven@svenpeter.dev, marcan@marcan.st
-References: <20221201103651.27807-1-akihiko.odaki@daynix.com>
- <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
-From:   Akihiko Odaki <akihiko.odaki@daynix.com>
-In-Reply-To: <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
+To:     Saravanan Sekar <saravanan@linumiz.com>, jdelvare@suse.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        marten.lindahl@axis.com
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221201044643.1150870-1-saravanan@linumiz.com>
+ <20221201044643.1150870-4-saravanan@linumiz.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 3/4] hwmon: (pmbus/mpq7932) Add a support for mpq7932
+ Power Management IC
+In-Reply-To: <20221201044643.1150870-4-saravanan@linumiz.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/01 23:25, Mark Kettenis wrote:
->> From: Akihiko Odaki <akihiko.odaki@daynix.com>
->> Date: Thu,  1 Dec 2022 19:36:51 +0900
->>
->> u-boot overrides stdout-path so that it points to /chosen/framebuffer
->> with some condition.
->>> arm: apple: Point stdout-path to framebuffer when keyboard present
->>>
->>> Unless you have a spare Apple Silicon machine, getting access to
->>> the serial port on Apple Silicon machines requires special
->>> hardware. Given that most machines come with a built-in screen
->>> the framebuffer is likely to be the most convenient output device
->>> for most users. While U-Boot will output to both serial and
->>> framebuffer, OSes might not. Therefore set stdout-path to point
->>> at /chosen/framebuffer when a keyboard is connected to the machine.
->> https://github.com/AsahiLinux/u-boot/commit/a609353e82fd757b7635d18ed6a0828fff657d59
->>
->> Perhaps it made sense to specify serial0 as stdout-path when the
->> framebuffer and keyboard support was inmature, but today it is
->> preferrable to use /chosen/framebuffer instead of serial0 for the
->> console in the most cases as the u-boot change states.
->>
->> Remove stdout-path to allow the kernel to choose the appropriate
->> console. For Linux, it will be VT, which will be eventually backed by
->> the framebuffer, if it is enabled. Otherwise, it will fall back to the
->> serial.
+On 11/30/22 20:46, Saravanan Sekar wrote:
+> The MPQ7932 is a power management IC designed to operate from 5V buses to
+> power a variety of Advanced driver-assistance system SOCs. Six integrated
+> buck converters with hardware monitoring capability powers a variety of
+> target rails configurable over PMBus interface.
 > 
-> U-Boot still relies on serial being the default.  It will not touch
-> stdout-out when running under the m1n1 hypervisor for example.  The
-> m1n1 hypervisor emulates the serial port hardware and developers rely
-> on this quite heavily.  Also, U-boot will only switch to the
-> framebuffer if a keyboard is connected.  This is currently disabled in
-> the builds for Asahi Linux because the type-A USB ports are not
-> supported yet in U-Boot.  But the plan is to fix that eventually.
+> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
+> ---
+>   drivers/hwmon/pmbus/Kconfig   |  10 +++
+>   drivers/hwmon/pmbus/Makefile  |   1 +
+>   drivers/hwmon/pmbus/mpq7932.c | 144 ++++++++++++++++++++++++++++++++++
+>   3 files changed, 155 insertions(+)
+>   create mode 100644 drivers/hwmon/pmbus/mpq7932.c
 > 
-> So as far as I am concerted NAK.
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 89668af67206..4a1538949a73 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -317,6 +317,16 @@ config SENSORS_MP5023
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called mp5023.
+>   
+> +config SENSORS_MPQ7932
+> +	tristate "MPS MPQ7932"
 
-Hi, Thanks for reviewing.
+As written, a dependency on REGULATOR is missing. However, we want the driver
+enabled even if CONFIG_REGULATOR is not enabled. I would suggest to follow the
+approach used by other drivers: add a second configuration option
+SENSORS_MPQ7932_REGULATOR which depends on SENSORS_MPQ7932 and REGULATOR
+and enables regulator functionality, and use that in the driver to
+make regulator support optional.
 
-As far as I know, U-Boot relies on serial being the default only to let 
-the booted kernel use serial when running under the m1n1 hypervisor. It 
-is true that this change regresses the situation in this particular 
-case, but I think it is an exceptional case. m1n1 hypervisor is for 
-development use so we can think of two scenarios:
-1. debugging the booted kernel
-2. debugging U-Boot
+> +	help
+> +	  If you say yes here you get six integrated buck converter regulator
+> +	  with hardware monitoring functionality support for power management
+> +	  IC MPS MPQ7932.
 
-For scenario 1, it is unlikely to involve U-Boot because while U-Boot is 
-useful to load the kernel from the disk, the kernel will be usually 
-transferred from another computer during development. In such 
-configuration, m1n1 will directly boots the kernel. For scenario 2, this 
-change should not matter as U-Boot will output to both of serial and 
-framebuffer according to the U-Boot change I mentioned in the previous 
-email.
+That description is more appropriate for the second configuration option.
+Primarily one gets hardware monitoring support for the chip.
 
-So I think we should think more about the case when the kernel is booted 
-from m1n1. When using its hypervisor feature, it is more likely that you 
-want console on serial and and that is the opposite of this change. 
-However, it is still possible to get the console on framebuffer with 
-keyboard. In contrary, if you boot the kernel without the hypervisor 
-feature and this change, you will completely lose the console.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mpq7932.
+> +
+>   config SENSORS_PIM4328
+>   	tristate "Flex PIM4328 and compatibles"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 0002dbe22d52..28a534629cc3 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -34,6 +34,7 @@ obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
+>   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>   obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+> +obj-$(CONFIG_SENSORS_MPQ7932_REGULATOR) += mpq7932.o
+>   obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
+>   obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+>   obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
+> diff --git a/drivers/hwmon/pmbus/mpq7932.c b/drivers/hwmon/pmbus/mpq7932.c
+> new file mode 100644
+> index 000000000000..3747d7862afd
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mpq7932.c
+> @@ -0,0 +1,144 @@
+> +/*
+> + * SPDX-License-Identifier: GPL-2.0+
 
-For the USB Type-A port problem, it does not matter if U-Boot supports 
-them because U-Boot will output to both of serial and framebuffer as I 
-mentioned earlier. I think it rather illustrates the situation when this 
-change is useful: for such a configuration, if the booted system can use 
-framebuffer and keyboard, it should, even if U-Boot cannot.
+The SPDX license must be in the first line and be a C++ style comment.
+Please run checkpatch --strict and fix what it reports (including the
+various continuation line misalignments and unnecessary empty lines).
 
-I came up with this patch when I stumbled upon your U-Boot change so I 
-appreciate if you tell whether there is something I miss or misunderstand.
+> + *
+> + * mpq7932.c  - regulator driver for mps mpq7932
+> + * Copyright 2022 Monolithic Power Systems, Inc
 
-Regards,
-Akihiko Odaki
+This is a hwmon driver with optional regulator functionality.
 
-> 
->> Signed-off-by: Akihiko Odaki <akihiko.odaki@daynix.com>
->> ---
->>   arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi | 2 --
->>   arch/arm64/boot/dts/apple/t600x-j375.dtsi      | 2 --
->>   arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      | 2 --
->>   arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      | 2 --
->>   4 files changed, 8 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
->> index 5547f5e7ac5a..14b6bf234f82 100644
->> --- a/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi
->> @@ -30,8 +30,6 @@ chosen {
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> -		stdout-path = "serial0";
->> -
->>   		framebuffer0: framebuffer@0 {
->>   			compatible = "apple,simple-framebuffer", "simple-framebuffer";
->>   			reg = <0 0 0 0>; /* To be filled by loader */
->> diff --git a/arch/arm64/boot/dts/apple/t600x-j375.dtsi b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
->> index 7c207b1df949..22e96b436bf2 100644
->> --- a/arch/arm64/boot/dts/apple/t600x-j375.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t600x-j375.dtsi
->> @@ -28,8 +28,6 @@ chosen {
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> -		stdout-path = "serial0";
->> -
->>   		framebuffer0: framebuffer@0 {
->>   			compatible = "apple,simple-framebuffer", "simple-framebuffer";
->>   			reg = <0 0 0 0>; /* To be filled by loader */
->> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
->> index 3c5da0e5a41d..d2483f618d44 100644
->> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
->> @@ -27,8 +27,6 @@ chosen {
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> -		stdout-path = "serial0";
->> -
->>   		framebuffer0: framebuffer@0 {
->>   			compatible = "apple,simple-framebuffer", "simple-framebuffer";
->>   			reg = <0 0 0 0>; /* To be filled by loader */
->> diff --git a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
->> index b6b815d93c3e..af4153dcb55d 100644
->> --- a/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t8112-jxxx.dtsi
->> @@ -22,8 +22,6 @@ chosen {
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> -		stdout-path = "serial0";
->> -
->>   		framebuffer0: framebuffer@0 {
->>   			compatible = "apple,simple-framebuffer", "simple-framebuffer";
->>   			reg = <0 0 0 0>; /* To be filled by loader */
->> -- 
->> 2.38.1
->>
->>
->>
-> 
+> + *
+> + * Author: Saravanan Sekar <saravanan@linumiz.com>
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +#define MPQ7932_BUCK_UV_MIN		206250
+> +#define MPQ7932_UV_STEP			6250
+> +#define MPQ7932_N_VOLTAGES		0xFF
+> +#define MPQ7932_NUM_PAGES		6
+> +
+> +#define MPQ7932_TON_DELAY		0x60
+> +#define MPQ7932_VOUT_STARTUP_SLEW	0xA3
+> +#define MPQ7932_VOUT_SHUTDOWN_SLEW	0xA5
+> +#define MPQ7932_VOUT_SLEW_MASK		GENMASK(1, 0)
+> +#define MPQ7932_TON_DELAY_MASK		GENMASK(4, 0)
+
+Please include the appropriate include file defining GENMASK.
+
+> +
+> +struct mpq7932_data {
+> +	struct pmbus_driver_info info;
+> +	struct pmbus_platform_data pdata;
+> +};
+> +
+> +static struct regulator_desc mpq7932_regulators_desc[] = {
+> +	PMBUS_REGULATOR_STEP("buck", 0, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +	PMBUS_REGULATOR_STEP("buck", 1, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +	PMBUS_REGULATOR_STEP("buck", 2, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +	PMBUS_REGULATOR_STEP("buck", 3, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +	PMBUS_REGULATOR_STEP("buck", 4, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +	PMBUS_REGULATOR_STEP("buck", 5, MPQ7932_N_VOLTAGES,
+> +				MPQ7932_UV_STEP, MPQ7932_BUCK_UV_MIN),
+> +};
+> +
+> +static int mpq7932_write_word_data(struct i2c_client *client, int page, int reg,
+> +			       u16 word)
+> +{
+> +
+> +	switch (reg) {
+> +	case PMBUS_VOUT_COMMAND:
+
+This needs a comment explaining why it is needed.
+
+> +		return pmbus_write_byte_data(client, page, reg, (u8)word);
+
+word should be clamped to [0, 255], not cut off.
+
+> +
+> +	default:
+> +		return -ENODATA;
+> +	}
+> +}
+> +
+> +static int mpq7932_read_word_data(struct i2c_client *client, int page,
+> +				  int phase, int reg)
+> +{
+> +
+> +	switch (reg) {
+> +	case PMBUS_MFR_VOUT_MIN:
+> +		return 0;
+> +
+> +	case PMBUS_MFR_VOUT_MAX:
+> +		return MPQ7932_N_VOLTAGES;
+
+The above need comments. Also, MPQ7932_N_VOLTAGES is inappropriate. This is not the
+number of voltages, it is the maximum voltage. Even if the values happen to be the
+same, the content is different.
+
+Also, with PMBUS_MFR_VOUT_MIN=0 and PMBUS_MFR_VOUT_MAX=0xff, the number of voltages
+would actually be 256, not 255.
+
+> +
+> +	case PMBUS_READ_VOUT:
+> +		return pmbus_read_byte_data(client, page, PMBUS_VOUT_COMMAND);
+> +
+Needs same comment as above.
+
+> +	default:
+> +		return -ENODATA;
+> +	}
+> +}
+> +
+> +static int mpq7932_probe(struct i2c_client *client)
+> +{
+> +	struct mpq7932_data *data;
+> +	struct pmbus_driver_info *info;
+> +	struct device *dev = &client->dev;
+> +	int i;
+> +
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_READ_WORD_DATA))
+
+Unnecessary check. This code doesn't use it, and pmbus_do_probe()
+does its own check.
+
+> +		return -ENODEV;
+> +
+> +	data = devm_kzalloc(&client->dev, sizeof(struct mpq7932_data),
+
+Use dev.
+
+> +			    GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	info = &data->info;
+> +	info->pages = MPQ7932_NUM_PAGES;
+> +	info->num_regulators = ARRAY_SIZE(mpq7932_regulators_desc);
+> +	info->reg_desc = mpq7932_regulators_desc;
+> +	info->format[PSC_VOLTAGE_OUT] = direct;
+> +	info->m[PSC_VOLTAGE_OUT] = 160;
+> +	info->b[PSC_VOLTAGE_OUT] = -33;
+> +	for (i = 0; i < info->pages; i++) {
+> +		info->func[i] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+> +				| PMBUS_HAVE_STATUS_TEMP;
+
+I think I already asked: Is this really all telemetry supported by the chip ?
+I keep asking because that would be highly unusual.
+
+> +	}
+> +
+> +	info->read_word_data = mpq7932_read_word_data;
+> +	info->write_word_data = mpq7932_write_word_data;
+> +
+> +	data->pdata.flags = PMBUS_NO_CAPABILITY;
+> +	dev->platform_data = &data->pdata;
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+> +
+> +static const struct of_device_id mpq7932_of_match[] = {
+> +	{ .compatible = "mps,mpq7932"},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mpq7932_of_match);
+> +
+> +static const struct i2c_device_id mpq7932_id[] = {
+> +	{ "mpq7932", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, mpq7932_id);
+> +
+> +static struct i2c_driver mpq7932_regulator_driver = {
+> +	.driver = {
+> +		.name = "mpq7932",
+> +		.of_match_table = mpq7932_of_match,
+> +	},
+> +	.probe_new = mpq7932_probe,
+> +	.id_table = mpq7932_id,
+> +};
+> +module_i2c_driver(mpq7932_regulator_driver);
+> +
+> +MODULE_AUTHOR("Saravanan Sekar <saravanan@linumiz.com>");
+> +MODULE_DESCRIPTION("MPQ7932 PMIC regulator driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
+
