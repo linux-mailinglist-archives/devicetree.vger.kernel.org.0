@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D4A63ED8A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:21:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 499DF63ED91
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:22:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbiLAKVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:21:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56866 "EHLO
+        id S230153AbiLAKWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:22:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiLAKVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:21:18 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0031998959
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:21:07 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id g12so1782485lfh.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:21:07 -0800 (PST)
+        with ESMTP id S229616AbiLAKWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:22:31 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662364840F
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:22:30 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id l8so1315392ljh.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:22:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yJWC4EnSIdOHOak+Y01i6W7TmDZjyxRR2uPhy+FOZLk=;
-        b=czOauT1/LL1bLcLrnxMZ7LyUIUmobSmtcydtd7PTiowxd5khBSoAy8Q5Jh0363tYBX
-         mK6jk8DukOA5/cDl1CBuODKtFLZZ4KfXpQGGA5QLqsxFd8hb8DU8/pWLYe5lT8KxvPHX
-         2+605fUYdZQDOI8zSJuqoHxbtfkc1czcwu19yr+IB2DL/MOcMz5r+65zOnMIyKXdmHjH
-         RR9S+Bb+UGytEvll9EFZUpNH1RYOlvOsEomq0QEkxeStmNzb8RCAKaFyyayaLEcisv8A
-         kD0BdlRMNBTNf3S8XK1Jsl6LMH5QKLS/hEAotw654okuI+vL/RhU4XWmIcVm5hAEREqj
-         s+Gw==
+        bh=c2LyWUsrGr+KOW/s9GALL+g5mR7trWF5Joo3KOJ8Ejg=;
+        b=hlTG/EbRq6cXGljyfQO0IfWwSOjYdBmZcWFqpYM81+yxsTPVL+vTOMLn5cYFWbJhwT
+         /lyJQpmi1IS3x7GWBYlsxXiM4NDtcMB2j7JX4WqxZ3lCyNN+BNfohTgBDJhWl9yiSS2u
+         2MdvPLcSAu+u/UXhSqniu8WwVwCe1snHo0JoFm47IyDbjJbniuLlKtCyB3Mvnp6oA+p/
+         AAx1Jt/unu6GbkKdQZ40+ef6E3DZQKNkTHTZT4kwFkqzaRupuitRM0QRUQtA997Nfvq5
+         /OpZeR02auQr8mrVjfei+iVWbWHLzhc7zi9FQ37SF1VZRLcEFOs+mGUFA7NqzHddIhxd
+         TlyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yJWC4EnSIdOHOak+Y01i6W7TmDZjyxRR2uPhy+FOZLk=;
-        b=BlVTSFw3DJWY8dUqj+GKgjKHiRpr0p2+aI6a/D1xZqtLZqu7uJjL4vNrwE1ME7AxrU
-         qtwT4oBZM7HhNRul6CJyewvP7ZJIwqmlIP1rS4mc59q/VfRhVP2WRAa9brtGelEw6mLa
-         7GYHZD0AgaI1djOuRVB3f6kO7pNMpab+wVb9CeKfKlOvQlm/fth2mSpTDXHqbP9fiCdr
-         /GiG3juA0ukoSptMFK4wijfIf4sQfqAROVtuPai1zh+N9Lu33Vrrm+B710pYdPiGjwcW
-         gZoLegLG+FOwuagVWkDZNJ/fX8wLUEa/AXgQmQsRdaYEeEK3KfSf2uOOC3k578eCCkZs
-         tT6A==
-X-Gm-Message-State: ANoB5pmoC38VlcUjJqtLPSCOvsA9aUFgRbvBi0MZg70ZeCbW7NBaeBqO
-        2/lrVZvf1ozsdbcJaUkOjmsTuw==
-X-Google-Smtp-Source: AA0mqf6CUSYZrSFSc59I2YqsCSJOMbf+X1AkF2Fb2hvkfIrHoAJHah4FhaNgx3RzM/yZ3iPB9Yg2fA==
-X-Received: by 2002:ac2:4316:0:b0:4b5:d8e:c12 with SMTP id l22-20020ac24316000000b004b50d8e0c12mr7626503lfh.665.1669890066328;
-        Thu, 01 Dec 2022 02:21:06 -0800 (PST)
+        bh=c2LyWUsrGr+KOW/s9GALL+g5mR7trWF5Joo3KOJ8Ejg=;
+        b=Pq1JkJrloQyL2Kt5ajPp0CEtWjExBKIo0r8M5b5foyeB9c8iKYOY0KO41JMxPxdW4s
+         wEUWAw5KxhOgCtZjRxg2eM+zPHgkGkBmIcEM2GZcYjcxWm1d0i+gPaF+8rf5F8F4iEk9
+         GIrFmPTFaDzC7tGrGmyXgud7G5q23VnwhwaW3RxmW28+VKevGLQMDMi9W6HB8grOBvJk
+         IXCqN8z4dIsNYKcjZjjXuMPravFtNic/UcxW/KcRDopG4Hp0zHpNajc+9riaWA70B5vV
+         +Qe0SZiIXmr5pw9z9u7hIBGG22FVFNTg+TGYE9gB9BjkGcWpEnZzKcRMVu2naDiOjrl7
+         aLBw==
+X-Gm-Message-State: ANoB5plqWxPdTix+s6odnw7AnEleoiLNEJ2ugiTjSOblvzqjiH1kW3pO
+        aOtE1Fqlr7lTPbTFD7D328rFzw==
+X-Google-Smtp-Source: AA0mqf7qNngpU6jQSjBPS8ynWLgZ9UQtDWu99NJDaw/LOnYWcE4iGJHPtsDc/ZZjlfMlbIq3g0Q8Lw==
+X-Received: by 2002:a05:651c:1a07:b0:277:11ae:d44e with SMTP id by7-20020a05651c1a0700b0027711aed44emr18417888ljb.458.1669890148788;
+        Thu, 01 Dec 2022 02:22:28 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b4-20020a2eb904000000b00279cbcfd7dbsm290384ljb.30.2022.12.01.02.21.04
+        by smtp.gmail.com with ESMTPSA id v13-20020ac258ed000000b004b48c977d8dsm600398lfo.125.2022.12.01.02.22.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:21:05 -0800 (PST)
-Message-ID: <4e94c635-4cbb-449e-24af-f6fee47fb45e@linaro.org>
-Date:   Thu, 1 Dec 2022 11:21:04 +0100
+        Thu, 01 Dec 2022 02:22:27 -0800 (PST)
+Message-ID: <8c1dc14f-e0b1-b5ce-aeef-68c20da5dc63@linaro.org>
+Date:   Thu, 1 Dec 2022 11:22:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 09/14] dt-bindings: clock: Add StarFive JH7110 system
- clock and reset generator
+Subject: Re: [PATCH] arm64: dts: mt8192: Add adsp power domain controller
 Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        linux-kernel@vger.kernel.org
-References: <20221118010627.70576-1-hal.feng@starfivetech.com>
- <20221118010627.70576-10-hal.feng@starfivetech.com>
- <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
- <72b3d10e-5a8e-ed42-6808-f53773913422@starfivetech.com>
- <768c2add-4c1f-0b36-5709-dbcdd560f504@starfivetech.com>
- <1fb1474b-ec13-e83a-973e-bd9e9a86cb44@linaro.org>
- <98d1bac7-8af5-f481-59b2-d58ca4c228ee@starfivetech.com>
- <9183bac6-121e-0027-a88b-d77d5c9a077e@linaro.org>
- <e954511b-e74a-2c3a-95ec-d33c938b146f@starfivetech.com>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        angelogioacchino.delregno@collabora.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e954511b-e74a-2c3a-95ec-d33c938b146f@starfivetech.com>
+In-Reply-To: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,71 +80,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 19:05, Hal Feng wrote:
-> On Wed, 30 Nov 2022 16:19:06 +0100, Krzysztof Kozlowski wrote:
->> On 30/11/2022 16:12, Hal Feng wrote:
->>> On Wed, 30 Nov 2022 12:48:30 +0100, Krzysztof Kozlowski wrote:
->>>> On 30/11/2022 10:47, Hal Feng wrote:
->>>>> On Fri, 25 Nov 2022 14:41:12 +0800, Hal Feng wrote:
->>>>>> On Mon, 21 Nov 2022 09:47:08 +0100, Krzysztof Kozlowski wrote:
->>>>>>> On 18/11/2022 02:06, Hal Feng wrote:
->>>>>>>> From: Emil Renner Berthing <kernel@esmil.dk>
->>>>>>>>
->>>>>>>> Add bindings for the system clock and reset generator (SYSCRG) on the
->>>>>>>> JH7110 RISC-V SoC by StarFive Ltd.
->>>>>>>>
->>>>>>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->>>>>>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
->>>>>>>
->>>>>>> Binding headers are coming with the file bringing bindings for the
->>>>>>> device, so you need to squash patches.
->>>>>>
->>>>>> As we discussed in patch 7, could I merge patch 7, 8, 9, 10 and add the
->>>>>> following files in one commit?
->>>>>>
->>>>>> include/dt-bindings/clock/starfive,jh7110-crg.h
->>>>>> include/dt-bindings/reset/starfive,jh7110-crg.h
->>>>>> Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
->>>>>> Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
->>>>>
->>>>> Hi, Krzysztof,
->>>>>
->>>>> Could you please give me some suggestions?
->>>>
->>>> You can keep aon and sys split. First add one of them with their own
->>>> headers. Then add second with their own defines.
->>>
->>> You mean split patch 7 and patch 8 into sys part and aon part
->>> respectively? There are totally five regions (sys/aon/stg/isp/vout)
->>> for clocks and resets in JH7110. If we do that, there will be 5
->>> headers for JH7110 in either clock or reset directory finally. Is
->>> that OK if there are too many headers for just one SoC?
->>
->>
->> Sorry, I lost the track of what patches you have. The comment was -
->> bindings include both the doc and headers. You want to split some, some
->> merge, sorry, no clue. I did not propose splitting headers...
+On 01/12/2022 08:33, Allen-KH Cheng wrote:
+> Add adsp power domain controller node for mt8192 SoC.
 > 
-> It's ok. The problem was that the header
-> 
-> include/dt-bindings/clock/starfive,jh7110-crg.h
-> 
-> was used in both
-> 
-> Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
-> 
-> and
-> 
-> Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml.
-> 
-> The same for include/dt-bindings/reset/starfive,jh7110-crg.h.
-> So should I add these four files in one patch?
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> ---
+> Ref: https://lore.kernel.org/all/2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com/
+>     [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
+> ---
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
+>  include/dt-bindings/power/mt8192-power.h | 1 +
 
-No. I think I wrote proposed flow of patches:
-1. syscrg bindings with header
-2. aoncrg bindings with changes to header
-
-Why do you need to merge anything?
+Bindings are separate patches.
 
 Best regards,
 Krzysztof
