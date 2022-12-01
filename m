@@ -2,82 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5044E63F882
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C7D63F89F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:55:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230422AbiLATmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 14:42:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S230506AbiLATy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 14:54:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbiLATmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:42:39 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1235AD2CD;
-        Thu,  1 Dec 2022 11:42:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=qHbGOUcw32092wDitkDdj/NcFV0kIbthIjQW9oIXmWU=; b=lebdUAMMbR6wv/+txOdgsXeA7U
-        4TR4n6bN4En6BtjDtifGT/jC4Jvz8O/7se6Fv58sfVBmNfYQLzdVlJTvj/tAtIdY+MiIOFdxZLNK+
-        OdCqIrxJgG0DHIieV12z+1GboXk0JEpAlwBuqjZYtTtiuRGlpBE065kNMCnr/lfBK5Rk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1p0pS3-0045jA-0Z; Thu, 01 Dec 2022 20:42:31 +0100
-Date:   Thu, 1 Dec 2022 20:42:30 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Yanhong Wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230176AbiLATyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:54:54 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC5ABA60D
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:54:53 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id s8so4143191lfc.8
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 11:54:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OGig0j87TfPUBjEzV2O5bgbpVQ79iR8UjUhrIXzIKPE=;
+        b=MA73zwlsy0FYvPwpcf4ysOfjDfkrADv8s2v3gyglmKUYAXMhhR2n46V6vr+elDNupc
+         EBd9cnPMxjA/mcXwJlNmc4nE760c3551+hS+/iVFbojEKhICUYejhlNYefkeFYO3l0xc
+         ZQejn0DtDLZYuvZETgdhYO7SzzBgL2c3//unuOBxqIRCHqq3CFRYUlFYLaDHHjeXnU/a
+         cBwQlUZKl/ZFO6H8in4pnPv/AEWsj2hTOpFFq8mvIid9DpmohI4OWvjguvF1cjOIn6f8
+         wRcGvTDNO/1WHqj902PHUCsmbr6u5fjQ34URQrt05ThnG6lP5bFGVFhyL+JM95JFD6Yx
+         gRgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OGig0j87TfPUBjEzV2O5bgbpVQ79iR8UjUhrIXzIKPE=;
+        b=y81uOm1mHTI3Vjsy8rM4PN2pkgy0fKelwYyaTCscgbVFxM5HqWMnm+y9djyupQ5duu
+         wNYtA2+7aCo6+EH4tojKoxmjJeRyvESOo/s3Nv9o6mhpWBFGaDuQhZUrMHMmIYcDn7hC
+         fpytcZYzkQ3XtlvnHqrcIlUs9/OVteqGvJrjSb25k1hu1yyozGo/rS+8DbujkD759/Ra
+         Gdg8wulYoSlRYDOQNt9JQicHKs0CDovV1ZhbhgIez3N4+9oHt0aA4KjNiPzjAUfWF/0U
+         cMKKlM+nTMfQDZD/9sot9Qzy5upPguvwzQi/lw0VCSLkvOWtFP5olCi1dXqI4eeydKD0
+         E3Cw==
+X-Gm-Message-State: ANoB5plrYS49xx9EcG0LXDbbJGJkZvez4dLFK4zqRRhw+NTw6NkWQgtN
+        9mXdHlRf9ygkX1AWeke1WYk6MA==
+X-Google-Smtp-Source: AA0mqf5ku+EWJ6b5KPQcvTvxQ1Dz0O0+WykmdO2w66c7UgoB4xHtoQxQBKEk3ZN1g+TpW/1iBeNQsw==
+X-Received: by 2002:ac2:5e2c:0:b0:4a2:243a:ef6e with SMTP id o12-20020ac25e2c000000b004a2243aef6emr18652028lfg.454.1669924491618;
+        Thu, 01 Dec 2022 11:54:51 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id z6-20020ac25de6000000b004b1a5086485sm757030lfq.2.2022.12.01.11.54.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 11:54:51 -0800 (PST)
+Message-ID: <19e78a06-2f3d-92af-1988-b22dc3ffc84e@linaro.org>
+Date:   Thu, 1 Dec 2022 21:54:50 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 01/12] dt-bindings: display: msm: Rename mdss node name
+ in example
+Content-Language: en-GB
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 7/7] riscv: dts: starfive: visionfive-v2: Add phy
- delay_chain configuration
-Message-ID: <Y4kDppmVnL3BV44Z@lunn.ch>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-8-yanhong.wang@starfivetech.com>
- <Y4jpDvXo/uj9ygLR@spud>
- <Y4kAyAhBseNmmDo8@spud>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y4kAyAhBseNmmDo8@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20221130200950.144618-1-a39.skl@gmail.com>
+ <20221130200950.144618-2-a39.skl@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221130200950.144618-2-a39.skl@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 07:30:16PM +0000, Conor Dooley wrote:
-> On Thu, Dec 01, 2022 at 05:49:08PM +0000, Conor Dooley wrote:
-> > On Thu, Dec 01, 2022 at 05:02:42PM +0800, Yanhong Wang wrote:
-> > > riscv: dts: starfive: visionfive-v2: Add phy delay_chain configuration
-> > > 
-> > > Add phy delay_chain configuration to support motorcomm phy driver for
-> > > StarFive VisionFive 2 board.
+On 30/11/2022 22:09, Adam Skladowski wrote:
+> Follow other YAMLs and replace mdss name into display-subystem.
 > 
-> nit: please re-word this commit next time around to actually say what
-> you're doing here. I didn't notice it initially, but this patch is doing
-> a lot more than adding `delay_chain` configuration. To my dwmac unaware
-> brain, there's nothing hits for that term outside of the changelog :(
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 
-Hi Conor
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-I suspect once we see the documentation of the binding, it will get
-rejected and implemented differently. So i would not worry too much
-about this at the moment.
+We will pick this into msm-fixes during the next cycle.
 
-      Andrew
+> ---
+>   .../devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml      | 2 +-
+>   .../devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml       | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> index d6f043a4b08d..4795e13c7b59 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+> @@ -72,7 +72,7 @@ examples:
+>       #include <dt-bindings/interconnect/qcom,qcm2290.h>
+>       #include <dt-bindings/power/qcom-rpmpd.h>
+>   
+> -    mdss@5e00000 {
+> +    display-subsystem@5e00000 {
+>           #address-cells = <1>;
+>           #size-cells = <1>;
+>           compatible = "qcom,qcm2290-mdss";
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> index a86d7f53fa84..886858ef6700 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+> @@ -62,7 +62,7 @@ examples:
+>       #include <dt-bindings/interrupt-controller/arm-gic.h>
+>       #include <dt-bindings/power/qcom-rpmpd.h>
+>   
+> -    mdss@5e00000 {
+> +    display-subsystem@5e00000 {
+>           #address-cells = <1>;
+>           #size-cells = <1>;
+>           compatible = "qcom,sm6115-mdss";
+
+-- 
+With best wishes
+Dmitry
+
