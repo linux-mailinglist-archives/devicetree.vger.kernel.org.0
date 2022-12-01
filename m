@@ -2,162 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3A463FAC2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 23:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB26E63FAF0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 23:50:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231172AbiLAWnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 17:43:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58162 "EHLO
+        id S231749AbiLAWum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 17:50:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbiLAWms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 17:42:48 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105FD2CE35;
-        Thu,  1 Dec 2022 14:42:43 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id c129so3680012oia.0;
-        Thu, 01 Dec 2022 14:42:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QSoJgBw7gvJKRqtJPwGF8TC9wXnUbl77+8hQ4HnaDNg=;
-        b=2Ca8LwsXVD3/x3TAnmkzUnlAegttIwE4WUSXGVhS2tbuPZEtOC+BCPxlCneNTTBHaS
-         2SQycET5Dlerp97Gpz1bKF6RfZ8GVjSOZF/UItRnQx4bD5Cd6HcDMkQOhKHESwWZbg3D
-         jYfMGjVxmXrNNA0WYhnjGDkLKAytjsRAb6wZGbxU3gBqxzop0kJGZhJ2ar4BltANJHmm
-         rlwXfNFF7Vr6z3nytioK1aN3G8tY4THA2vxZKYXjPStanitJyT7fqxFCzxVlXhVBs/5/
-         rLxcNTUPmuDPM9ABBlwLPoFy0hKhKWG9zQmY7GeunGepnoH8GLR7r3JqXz9MaGWla0I8
-         NX2Q==
-X-Gm-Message-State: ANoB5pl0fJZlPL1ZEc9iqzfRSiD0srqOp+fddieeET4VkX3/NnW/azb0
-        p/zFfBHSLdrDRb0yeyeOzA==
-X-Google-Smtp-Source: AA0mqf7svA0cxObJDPcHKDecL0TjB4LXILyHf3dlg0pDOqySswFXalFd1Qb1ROCnAafNRLIhvA0gbg==
-X-Received: by 2002:a05:6808:7c1:b0:35a:eee1:6716 with SMTP id f1-20020a05680807c100b0035aeee16716mr24058254oij.173.1669934562232;
-        Thu, 01 Dec 2022 14:42:42 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f97-20020a9d03ea000000b0066c41be56e7sm2617464otf.55.2022.12.01.14.42.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 14:42:41 -0800 (PST)
-Received: (nullmailer pid 1578165 invoked by uid 1000);
-        Thu, 01 Dec 2022 22:42:40 -0000
-Date:   Thu, 1 Dec 2022 16:42:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
+        with ESMTP id S231730AbiLAWuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 17:50:19 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5BE7C86B3;
+        Thu,  1 Dec 2022 14:49:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 55DB462084;
+        Thu,  1 Dec 2022 22:49:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36561C433C1;
+        Thu,  1 Dec 2022 22:49:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669934964;
+        bh=M7nV2gz26gK5iSyAIFMnEJ0Gt4gZXURIaCRJJrGWVxQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FHvhp1LgyAA/mE+nZNzb72kPSlTEZL+G4LRNhH/OPMaY8bsZbUuBUGsvPeQ8yX57M
+         yf6raFFlzijL/8k0JET2nFa2etTzeyNBZtyIqZhjf6olJI+sINsOf7FcX/mqHIYAtW
+         wUwi+/a3sesg5XEpxzPnSNPjbNds/Vz01O1ltVYZf7QABYoUnEl7RY+ylglA2xF6WN
+         Z9MFJJS+ShXsqpA8fZWWV5KVwUZKBBoYvEbfa/mDP9A7+zrIUA4UbeaoixLh/V6WcJ
+         NZmR/fJGN5t+pwLPJtyYHexFhEP7qmEznDlaXN+x0fggCTsttpIkgj6vgzPaCJFWyz
+         YgPUOCLl+Hvig==
+Date:   Thu, 1 Dec 2022 23:49:21 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>
-Subject: Re: [PATCH v3 net-next 05/10] dt-bindings: net: dsa: qca8k: utilize
- shared dsa.yaml
-Message-ID: <20221201224240.GA1565974-robh@kernel.org>
-References: <20221127224734.885526-1-colin.foster@in-advantage.com>
- <20221127224734.885526-6-colin.foster@in-advantage.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] soc: qcom: add support for the I2C Master Hub
+Message-ID: <Y4kvcXTdwImZpaU1@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="YX5ttnhQhXaDF07q"
 Content-Disposition: inline
-In-Reply-To: <20221127224734.885526-6-colin.foster@in-advantage.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 27, 2022 at 02:47:29PM -0800, Colin Foster wrote:
-> The dsa.yaml binding contains duplicated bindings for address and size
-> cells, as well as the reference to dsa-port.yaml. Instead of duplicating
-> this information, remove the reference to dsa-port.yaml and include the
-> full reference to dsa.yaml.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
-> ---
-> 
-> v2 -> v3
->   * Remove #address-cells and #size-cells from v2. The examples were
->     incorrect and fixed elsewhere.
->   * Remove erroneous unevaluatedProperties: true under Ethernet Port.
->   * Add back ref: dsa-port.yaml#.
-> 
-> v1 -> v2
->   * Add #address-cells and #size-cells to the switch layer. They aren't
->     part of dsa.yaml.
->   * Add unevaluatedProperties: true to the ethernet-port layer so it can
->     correctly read properties from dsa.yaml.
-> 
-> ---
->  Documentation/devicetree/bindings/net/dsa/qca8k.yaml | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> index 6fc9bc985726..93a9ddebcac8 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> @@ -66,20 +66,15 @@ properties:
->                   With the legacy mapping the reg corresponding to the internal
->                   mdio is the switch reg with an offset of -1.
->  
-> +$ref: "dsa.yaml#"
-> +
->  patternProperties:
->    "^(ethernet-)?ports$":
->      type: object
-> -    properties:
-> -      '#address-cells':
-> -        const: 1
-> -      '#size-cells':
-> -        const: 0
-> -
->      patternProperties:
->        "^(ethernet-)?port@[0-6]$":
->          type: object
->          description: Ethernet switch ports
-> -
->          $ref: dsa-port.yaml#
 
-So here you need 'unevaluatedProperties: false'.
+--YX5ttnhQhXaDF07q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-unevaluatedProperties only applies to the properties defined in a single 
-node level, and child nodes properties from 2 schemas can't 'see' each 
-other. IOW, what dsa.yaml has in child nodes has no effect on this node. 
+On Tue, Nov 29, 2022 at 03:47:00PM +0100, Neil Armstrong wrote:
+> The I2C Master Hub is a stripped down version of the GENI Serial Engine
+> QUP Wrapper Controller but only supporting I2C serial engines without
+> DMA support.
+>=20
+> The I2C Master Hub only supports a variant of the I2C serial engine with:
+> - a separate "core" clock
+> - no DMA support
+> - non discoverable fixed FIFO size
+>=20
+> Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
+> and the iommus property neither.
+>=20
+> This patchset adds the bindings changes to the QUPv3 wrapper and I2C seri=
+al
+> element bindings to reflect the different resources requirements.
+>=20
+> In order to reuse the QUPv3 wrapper and I2C serial element driver support,
+> the I2C Master Hub requirements are expressed in new desc structs passed
+> as device match data.
 
->  
->          properties:
-> @@ -116,7 +111,7 @@ required:
->    - compatible
->    - reg
->  
-> -additionalProperties: true
-> +unevaluatedProperties: false
+Is everyone fine if I take all this via the I2C tree?
 
-So this has no effect on anything within "^(ethernet-)?port@[0-6]$" and 
-below.
 
-Rob
+--YX5ttnhQhXaDF07q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmOJL3EACgkQFA3kzBSg
+KbbJOg/9GeM6NURU8nhZCAy2JAcAIK8NTfDvJOQzYFEwPYiYhrH6On5gkziryCCL
+2/3SO5jAQdN+veFD1oRDLpKN9FdMXtEjw6Sp4WMu6/l8smL/oHrlc1QANfi0c9OR
+f2tuU4socvwBZStWWwlCih92Llqz/kz2jb8hYbwQdqJ4MiVJUA0nFWqTR7owGS/d
+IQQlyFF4zGK8r53RVekM1ayyul0h3/IX/rP30rL369sIKcS2H111MjyTkOEiKgcF
+Gr5qmP7StWauhE6ft9bx5u8ePasd90qfX/OiIof63X7cJADmRHHjwjF0Ceo+DLRT
+7c9UAU7i8eivMVTKbjJT6EsG8R53yNPxbR6fX39G72OgbIUf1jo24XGWau95yFp5
+nWHb6nk9wt5ECNZ8GWeZxMV/V9NPZV/J0G47rSTtXVtCgEcrywdVm1mEZQb5+0KO
+VD2Vp5FQ4SodgWqJQWiIeIxSkY5R+4OXVA6NeTBZw+3koNFyl1hEU759weXIX4MC
+UGUm4mpQgJSk2jbRhBCN6ucmSJzcZgzFnqWRp3fphhHEJwOu/A5m9yH7NMc+y4bo
+Po3pFZRYYdHhA3ahGdtlsokfIgukR+fii4qn/45bFK1EJ2vzP5YfiOJK97S1TdmN
+qrMmMIe1ee/EAxNs4V59guFwfh7pAFAPj9YkUotHHBvwgVuygac=
+=QWHn
+-----END PGP SIGNATURE-----
+
+--YX5ttnhQhXaDF07q--
