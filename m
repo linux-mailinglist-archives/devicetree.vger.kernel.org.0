@@ -2,92 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E139F63EE0F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:39:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2C6963EE10
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:40:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbiLAKjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:39:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
+        id S229589AbiLAKkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:40:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiLAKjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:39:45 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC95A06FB
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:39:43 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id r12so1863046lfp.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:39:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gZtWLKQ/qk0jq11OfvrJd/TpG/sjKwt+6J2GUNOMbdI=;
-        b=G1U21MiUkCU8cR7q/BeJOgmhIHOz+8N72LK77kmxqFZY9KFVy9K+DY0EVlGmGtsCgQ
-         yRIm5kZF6aDPbh8XBJ81fj69HnN1ArkcJDavbK5Owk0qn7e4he1UjsdZ5VSrM4vAv/uD
-         k2kmSeXrG4XHnMubz09RFNEYGNWa5RH7kc9NAMX+xICrdsDgHnWNHPVb12dDol2tBbEk
-         /0J4ORtetQjgNpmj7jW/ZgOqI2vvA1ttocf9q/CJtOgHJ0TJbAGMhuush6kWC1yJAxiE
-         Uhvk/+f20dNHJZh0qi3GL940QyfCGeL/Kxtq2tFNM7D1JRAkQPY899Ftfi5+U4UwKYsO
-         L46A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gZtWLKQ/qk0jq11OfvrJd/TpG/sjKwt+6J2GUNOMbdI=;
-        b=Mr/KeiXrzTEqL/+qxKq60UCsQxk585MG830AGYtra7sWz7KdVB4WuACrbNy2rIF8ID
-         oHXqKo0JOK5e7IqLxeHZ+VAy0s4fu2oWorwN43whEFieVZstjg6nkInklj07IY5EuDCj
-         0B2mUW/A49nMbbi0GLi6BxOlPO8pUMM0s0Ewgufiq/YjaSsuv6FPgpRgvCQVLRxgSQO4
-         3N+gRvrPsdFokKQf6OpHKM9j9g3xa/x8ldSO2esA+usuhLR3ctevmWwqgQnz5wJd0+Kj
-         LFvnh8rv496WFNAAvywwXLtours4Ts6vOYYGnGMSIgGoXmU+L1j/ZXwBHHgTmX2CfHYd
-         DUsQ==
-X-Gm-Message-State: ANoB5pkZemEiS6kDE+eZGOhLE0io33Crr7M1sAMZzb1Swy3rj6WUCvUI
-        IjasefbYiQFiTCoOb5NsG4606g==
-X-Google-Smtp-Source: AA0mqf6oLzlbefyT3caSN0ADbCA/bMXIOsULzuBkHa86jFMHUqoEHmEQq5j1/3e90kERNivSlXddHw==
-X-Received: by 2002:a19:6d0b:0:b0:4a2:489d:490f with SMTP id i11-20020a196d0b000000b004a2489d490fmr23152674lfc.196.1669891181807;
-        Thu, 01 Dec 2022 02:39:41 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s1-20020ac25fe1000000b004a05837103csm596508lfg.196.2022.12.01.02.39.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:39:41 -0800 (PST)
-Message-ID: <0b2f414d-57a0-a427-3421-1ba8331459d9@linaro.org>
-Date:   Thu, 1 Dec 2022 11:39:38 +0100
+        with ESMTP id S230207AbiLAKkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:40:07 -0500
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68E09493D;
+        Thu,  1 Dec 2022 02:40:06 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4NNCJN4W7qz4xFy;
+        Thu,  1 Dec 2022 21:40:04 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1669891204;
+        bh=KTDVN/7lIjIrER/XXkOz9H8eWtf2nxvkUgRAGM5il/U=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=mtH77xWqReqw3bUURmWOaOMUgI1fnhJeqxa/jFrTE2AiPxZgRHJOdcrEogd7m6t+K
+         hSD5E6U7i+ckFXkoXJyBCf9GV9mhqfTh6a2EhgZiI/SRGv0KENZChmJYXHVWQJ6yRk
+         6YrETuvLSFH3GLBrIHlAqPWESejuap3arDVMjfILKy+BGr1aGCqxlVdA7HLC4kSTkB
+         h2Fc1q1HQQmg4WuwySsEcmNguqQitD5GKa/mEHq6/vneU8YBjQFOfp9St3mhaor2x1
+         6DM3kpUr8F1g1c/fjGREENP6GL+7W1pjUv9OMijMtZXQ/VLwrb7rHigKdo6xpjkop7
+         l5PmypY+0tAfg==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH 5/5] powerpc: dts: remove label = "cpu" from DSA dt-binding
+In-Reply-To: <20221130141040.32447-6-arinc.unal@arinc9.com>
+References: <20221130141040.32447-1-arinc.unal@arinc9.com>
+ <20221130141040.32447-6-arinc.unal@arinc9.com>
+Date:   Thu, 01 Dec 2022 21:40:03 +1100
+Message-ID: <87a647s8zg.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: ad5686: Add an entry for
- AD5337
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, jic23@kernel.org
-Cc:     lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221130182632.3856675-1-festevam@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221130182632.3856675-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 19:26, Fabio Estevam wrote:
-> AD5337 belongs to the same family as the AD5338.
-> 
-> The difference is that the AD5337 has 8-bit resolution instead of 10-bit.
-> 
-> Add a compatible entry for AD5337.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com> writes:
+> This is not used by the DSA dt-binding, so remove it from all devicetrees.
+>
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> ---
+>  arch/powerpc/boot/dts/turris1x.dts | 2 --
+>  1 file changed, 2 deletions(-)
+
+Adding Pali to Cc.
+
+These were only recently updated in commit:
+
+  8bf056f57f1d ("powerpc: dts: turris1x.dts: Fix labels in DSA cpu port nod=
+es")
+
+Which said:
+
+  DSA cpu port node has to be marked with "cpu" label.
+
+But if the binding doesn't use them then I'm confused why they needed to
+be updated.
+
+cheers
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> diff --git a/arch/powerpc/boot/dts/turris1x.dts b/arch/powerpc/boot/dts/t=
+urris1x.dts
+> index 045af668e928..3841c8d96d00 100644
+> --- a/arch/powerpc/boot/dts/turris1x.dts
+> +++ b/arch/powerpc/boot/dts/turris1x.dts
+> @@ -147,7 +147,6 @@ ports {
+>=20=20
+>  					port@0 {
+>  						reg =3D <0>;
+> -						label =3D "cpu";
+>  						ethernet =3D <&enet1>;
+>  						phy-mode =3D "rgmii-id";
+>=20=20
+> @@ -184,7 +183,6 @@ port@5 {
+>=20=20
+>  					port@6 {
+>  						reg =3D <6>;
+> -						label =3D "cpu";
+>  						ethernet =3D <&enet0>;
+>  						phy-mode =3D "rgmii-id";
+>=20=20
+> --=20
+> 2.34.1
