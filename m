@@ -2,25 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9B363E930
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 06:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C357C63E935
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 06:09:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbiLAFHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 00:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34680 "EHLO
+        id S229622AbiLAFJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 00:09:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiLAFHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 00:07:06 -0500
-X-Greylist: delayed 1203 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Nov 2022 21:07:05 PST
-Received: from gateway32.websitewelcome.com (gateway32.websitewelcome.com [192.185.145.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8C1303C3
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 21:07:04 -0800 (PST)
+        with ESMTP id S229515AbiLAFJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 00:09:38 -0500
+Received: from gateway33.websitewelcome.com (gateway33.websitewelcome.com [192.185.145.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE1697917
+        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 21:09:37 -0800 (PST)
 Received: from atl1wswcm02.websitewelcome.com (unknown [50.6.129.163])
-        by atl3wswob03.websitewelcome.com (Postfix) with ESMTP id BF061F5A1
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:47:00 +0000 (UTC)
+        by atl4wswob04.websitewelcome.com (Postfix) with ESMTP id 6E04A17332
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:47:02 +0000 (UTC)
 Received: from md-in-79.webhostbox.net ([43.225.55.182])
         by cmsmtp with ESMTP
-        id 0bTOpeA8w4ZGb0bTPpIb3k; Thu, 01 Dec 2022 04:47:00 +0000
+        id 0bTPpeAA64ZGb0bTRpIb4j; Thu, 01 Dec 2022 04:47:02 +0000
 X-Authority-Reason: nr=8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
         ; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,27 +27,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
         Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
         :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
         List-Post:List-Owner:List-Archive;
-        bh=a8sHx3T2VDeL3fegfd6hkMq1v2763qASnm4AuQfNaJU=; b=hxyKPInE+kMPMHDFRtfWsg3b61
-        RNtOx/S/5AURsyESZohEwJiiYnAsSZmHr62CmFIYmDHh5vR5FWZ6Ggd2LHkag7P2aMxaQipOpFZA7
-        gqory90ncb6IqKfxfnewYqW+DTGkFleOBNVVyRSHwO3s1gHMYHqXaSan9/1bSFCyzj+H4Mes9HTVS
-        2nCqvlCm6NPCH0IrZcnc7d6RiaBTZ9DNyiSXPHx7abIByk1RDsEqtytW63o4mkUggVwIe3HbZKPGI
-        ydh7LJLt1a5BCxsxpsh/7UkiTiGMlOImIlnoCkmYyJfX8Y+e45AZ/vhIeHq3kvb2XosIGd3ApOWCq
-        Md3SltCg==;
+        bh=7lBuiEwdQJRdSXgGk7zBmlsJAsmAdgyU5GERb3tmT4g=; b=NIONRG06ekXPN/zDMgFJ7JuKgb
+        tzVj5HFQWRcCP9a/p9R8SUF28RQ9UCXRiNzmkh6dQfDpjdct+Dp6TmqTOj/Iy7uHB/RezxuILF300
+        JRb/TIoEgIySHUPoQVBv+qCCtk3oKWgGykzEnmp9qBw6AfvAIgnR4otp6kZBn9S8SturDuygxXH7z
+        qU6XG/8iQ5+Fwsj2KFyoMumKAf2Hgiq6/ioal4QYcJ/tQKEbpli9xNhCqZFVjLmMFr0ynfKBs4sDS
+        Yh2vQFSqqso2l7yWJ+2cx95Qwv1IS8KDMEvOvVs2mxIgjXgZJMOylcUU0kCn6twp3nrMhvuwp/kaw
+        WKITwiZA==;
 Received: from [223.187.112.123] (port=34121 helo=discovery..)
         by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.95)
         (envelope-from <saravanan@linumiz.com>)
-        id 1p0bTM-003t5m-Qr;
-        Thu, 01 Dec 2022 04:46:56 +0000
+        id 1p0bTO-003t5m-H7;
+        Thu, 01 Dec 2022 04:46:58 +0000
 From:   Saravanan Sekar <saravanan@linumiz.com>
 To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, marten.lindahl@axis.com
 Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Saravanan Sekar <saravanan@linumiz.com>
-Subject: [PATCH v2 1/4] hwmon: pm_bus: core: Add min_uV in pmbus regulator helper macro
-Date:   Thu,  1 Dec 2022 05:46:40 +0100
-Message-Id: <20221201044643.1150870-2-saravanan@linumiz.com>
+Subject: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932 power-management IC
+Date:   Thu,  1 Dec 2022 05:46:41 +0100
+Message-Id: <20221201044643.1150870-3-saravanan@linumiz.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221201044643.1150870-1-saravanan@linumiz.com>
 References: <20221201044643.1150870-1-saravanan@linumiz.com>
@@ -62,87 +61,104 @@ X-AntiAbuse: Sender Address Domain - linumiz.com
 X-BWhitelist: no
 X-Source-IP: 223.187.112.123
 X-Source-L: No
-X-Exim-ID: 1p0bTM-003t5m-Qr
+X-Exim-ID: 1p0bTO-003t5m-H7
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
 X-Source-Sender: (discovery..) [223.187.112.123]:34121
 X-Source-Auth: saravanan@linumiz.com
-X-Email-Count: 15
+X-Email-Count: 23
 X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
 X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfCSL6pPXQ0c7kTXHZjOOs4jyi/CK5F6LkZq7EY+Z9nwLIlhHhaCqF9yrclFrjT88FbGFB2o+Zn60YOKsXKE53VJDC+og2d9voYO1nFW/8SCJlKv6hMFH
- 4TBgOjPFxKLI3qHaMkbW2OJgDebEqkEA6W6Lu7JmzGFcCzBH+H3grGx6o7vcFc+BL8lsIwLLyQ/spA0pJasqShoX8QRsU1pTtOA=
+X-CMAE-Envelope: MS4xfHp3kFwRmxkXBcctvelCbVKhwkANVPFgjcFbYVRZ6kyMWicTpFNuETq3uIN2OmbH6c0UgNSxWWgvaCiV9Z83byvhI1H3nQ1EDE4IQ6VoQFXrgqCDCfjK
+ KI/9CpeLh/hyBurDHvPBmrR+NjbwBswNT061rkL0SQ+n4BeADy4hpLJrhujzGGqSWrgCyoGmPjsBkQQr2NKZQQBJn7h2wbxJ0Ao=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some regulator operates in a range of voltage which should not allow
-below the lower threshold.
+Document mpq7932 power-management IC
 
 Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
 ---
- drivers/hwmon/pmbus/ltc2978.c | 16 ++++++++--------
- drivers/hwmon/pmbus/pmbus.h   |  5 +++--
- 2 files changed, 11 insertions(+), 10 deletions(-)
+ .../bindings/hwmon/pmbus/mps,mpq7932.yaml     | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
 
-diff --git a/drivers/hwmon/pmbus/ltc2978.c b/drivers/hwmon/pmbus/ltc2978.c
-index 6d2592731ba3..406a36885ef3 100644
---- a/drivers/hwmon/pmbus/ltc2978.c
-+++ b/drivers/hwmon/pmbus/ltc2978.c
-@@ -569,14 +569,14 @@ MODULE_DEVICE_TABLE(i2c, ltc2978_id);
- #define LTC2978_N_VOLTAGES	((LTC2978_MAX_UV / LTC2978_UV_STEP) + 1)
- 
- static const struct regulator_desc ltc2978_reg_desc[] = {
--	PMBUS_REGULATOR_STEP("vout", 0, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 1, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 2, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 3, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 4, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 5, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 6, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
--	PMBUS_REGULATOR_STEP("vout", 7, LTC2978_N_VOLTAGES, LTC2978_UV_STEP),
-+	PMBUS_REGULATOR_STEP("vout", 0, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 1, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 2, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 3, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 4, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 5, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 6, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
-+	PMBUS_REGULATOR_STEP("vout", 7, LTC2978_N_VOLTAGES, LTC2978_UV_STEP, 0),
- };
- 
- static const struct regulator_desc ltc2978_reg_desc_default[] = {
-diff --git a/drivers/hwmon/pmbus/pmbus.h b/drivers/hwmon/pmbus/pmbus.h
-index 7daaf0caf4d3..b8c7810c812a 100644
---- a/drivers/hwmon/pmbus/pmbus.h
-+++ b/drivers/hwmon/pmbus/pmbus.h
-@@ -464,7 +464,7 @@ struct pmbus_driver_info {
- extern const struct regulator_ops pmbus_regulator_ops;
- 
- /* Macros for filling in array of struct regulator_desc */
--#define PMBUS_REGULATOR_STEP(_name, _id, _voltages, _step)  \
-+#define PMBUS_REGULATOR_STEP(_name, _id, _voltages, _step, _min_uV)  \
- 	[_id] = {						\
- 		.name = (_name # _id),				\
- 		.supply_name = "vin",				\
-@@ -476,9 +476,10 @@ extern const struct regulator_ops pmbus_regulator_ops;
- 		.owner = THIS_MODULE,				\
- 		.n_voltages = _voltages,			\
- 		.uV_step = _step,				\
-+		.min_uV = _min_uV,				\
- 	}
- 
--#define PMBUS_REGULATOR(_name, _id)	PMBUS_REGULATOR_STEP(_name, _id, 0, 0)
-+#define PMBUS_REGULATOR(_name, _id)   PMBUS_REGULATOR_STEP(_name, _id, 0, 0, 0)
- 
- /* Function declarations */
- 
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
+new file mode 100644
+index 000000000000..5f20c59eb7ff
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/pmbus/mps,mpq7932.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Monolithic Power System MPQ7932 PMIC
++
++maintainers:
++  - Saravanan Sekar <saravanan@linumiz.com>
++
++properties:
++  compatible:
++    enum:
++      - mps,mpq7932
++
++  reg:
++    maxItems: 1
++
++  regulators:
++    type: object
++
++    description: |
++      list of regulators provided by this controller, must be named
++      after their hardware counterparts BUCK[1-6]
++
++      "^buck[1-6]$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@3 {
++            compatible = "mps,mpq7932";
++            reg = <0x3>;
++
++            regulators {
++                buck1 {
++                    regulator-name = "buck1";
++                    regulator-min-microvolt = <400000>;
++                    regulator-max-microvolt = <3587500>;
++                    regulator-min-microamp  = <460000>;
++                    regulator-max-microamp  = <7600000>;
++                    regulator-boot-on;
++                };
++            };
++        };
++    };
++...
 -- 
 2.34.1
 
