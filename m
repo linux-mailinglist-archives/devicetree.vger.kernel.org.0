@@ -2,154 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1296963EC89
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0499063EC85
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbiLAJbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 04:31:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36256 "EHLO
+        id S230146AbiLAJbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 04:31:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiLAJbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:31:00 -0500
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3015AE34;
-        Thu,  1 Dec 2022 01:30:34 -0800 (PST)
-Received: by mail-qt1-f173.google.com with SMTP id fz10so611376qtb.3;
-        Thu, 01 Dec 2022 01:30:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FRkzbc31tdDK9zVTeT0OUXHL/8tO8QE6rgpKYPNbR3Y=;
-        b=6ECF71QlVP+f4MS0pCmH256jT46xtOL37ySpAV52037F8X8t3Qz1rrMRqSFNBp4I8e
-         L6sVoEBPx8qXE6LYZAGWvmQCXD+xPZOphicL6r17dKqiq+/RWRLy1Qf56DikA24XTvhw
-         VbmnQpMHtoGpPiW5BITDFuYboOHHloD91/YaJVgWJSWhy45IiDkl6EuhcX5EoUltMG3D
-         S1x0CBkAHCCtdIoDCxI0M6w9trJ3wxElnPtQQFJ2wBVWIikE5xzXupjGrdfcJbAjCAZq
-         yMkWj2znqRkWZcAWvm4MlzcH6BD44t3bemQbU3RlBqA/VellUaMWwbUB9fk9XnKmlwIP
-         HL7Q==
-X-Gm-Message-State: ANoB5pnGsKl0D1rg4uA2ht5bh7t/Pw8AENXYp4sjda8VP3rDBG5DvN6m
-        ODryRo5s0S03vu5T+VQb8iu1lZXu3RC+Hg==
-X-Google-Smtp-Source: AA0mqf6nq0zggLdmdEIfDLQ5cgPs4r7QU81u3qhmKCgYKr3HC+/fAF17JacONEgRPGUCd8BGfpXCOQ==
-X-Received: by 2002:a05:622a:4d0f:b0:3a5:25d4:2f2c with SMTP id fd15-20020a05622a4d0f00b003a525d42f2cmr44107059qtb.112.1669887033444;
-        Thu, 01 Dec 2022 01:30:33 -0800 (PST)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id y8-20020ac81288000000b0039c37a7914csm2236328qti.23.2022.12.01.01.30.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 01:30:32 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-3c090251d59so11261867b3.4;
-        Thu, 01 Dec 2022 01:30:32 -0800 (PST)
-X-Received: by 2002:a05:690c:b81:b0:37e:6806:a5f9 with SMTP id
- ck1-20020a05690c0b8100b0037e6806a5f9mr45762738ywb.47.1669887031924; Thu, 01
- Dec 2022 01:30:31 -0800 (PST)
+        with ESMTP id S229799AbiLAJaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:30:46 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D9295801;
+        Thu,  1 Dec 2022 01:30:23 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0F50224E12B;
+        Thu,  1 Dec 2022 17:30:22 +0800 (CST)
+Received: from EXMBX065.cuchost.com (172.16.6.65) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:30:22 +0800
+Received: from [192.168.125.61] (113.72.147.18) by EXMBX065.cuchost.com
+ (172.16.6.65) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:30:21 +0800
+Message-ID: <8de7fd5a-e37c-0365-31ee-4a748c7297a4@starfivetech.com>
+Date:   Thu, 1 Dec 2022 17:31:02 +0800
 MIME-Version: 1.0
-References: <20221122185802.1853648-1-biju.das.jz@bp.renesas.com>
- <Y30j7Q6Jc/y8mGTu@pendragon.ideasonboard.com> <OS0PR01MB59224A76B83B9A2318A8D4E9860D9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <Y30pHOylptuMxFgX@pendragon.ideasonboard.com> <CAMuHMdUjibk0FO0+Su5NbV-pgBhiYqVsjX6XM5Sg2nXyybA3YQ@mail.gmail.com>
- <OS0PR01MB59227AF03E84568B443C053286149@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB59227AF03E84568B443C053286149@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Dec 2022 10:30:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXL1pN6mhpYctsS+Kc8HUe=HCTn3yTxgmujOMNyxGBm8w@mail.gmail.com>
-Message-ID: <CAMuHMdXL1pN6mhpYctsS+Kc8HUe=HCTn3yTxgmujOMNyxGBm8w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Enable ADV7535 on
- carrier board
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add StarFive JH7110 pinctrl
+ definitions
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        <linux-kernel@vger.kernel.org>
+References: <20221118011108.70715-1-hal.feng@starfivetech.com>
+ <20221118011108.70715-2-hal.feng@starfivetech.com>
+ <eb3974a3-f715-f5b0-cac7-551af26bd17b@linaro.org>
+ <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
+ <0ceba170-f844-e733-a49e-e67746f9f836@starfivetech.com>
+ <093ea507-4c42-1af9-4896-64c1a918432e@linaro.org>
+ <30c21787-0c48-ff50-1d63-8e69bdcdbe30@starfivetech.com>
+ <339be655-aee7-e1a4-51be-28ea20de6792@linaro.org>
+ <3db802d6-114f-097a-6c69-e7b40e4d2764@starfivetech.com>
+ <f52e31a5-a12a-b95e-b99c-1af8f8b41c3b@linaro.org>
+Content-Language: en-US
+From:   Jianlong Huang <jianlong.huang@starfivetech.com>
+In-Reply-To: <f52e31a5-a12a-b95e-b99c-1af8f8b41c3b@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.18]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX065.cuchost.com
+ (172.16.6.65)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Tue, 29 Nov 2022 15:58:12 +0100, Krzysztof Kozlowski wrote:
+> On 29/11/2022 15:46, Jianlong Huang wrote:
+>> On Tue, 29 Nov 2022 08:49:49 +0100, Krzysztof Kozlowski wrote:
+>>> On 29/11/2022 02:47, Jianlong Huang wrote:
+>>>> On Mon, 28 Nov 2022 09:32:45 +0100, Krzysztof Kozlowski wrote:
+>>>>> On 28/11/2022 01:48, Jianlong Huang wrote:
+>>>>>
+>>>>>>>>> +/* aon_iomux doen */
+>>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_4			2
+>>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_5			3
+>>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_6			4
+>>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_7			5
+>>>>>>>>> +
+>>>>>>>>
+>>>>>>>> It looks like you add register constants to the bindings. Why? The
+>>>>>>>> bindings are not the place to represent hardware programming model. Not
+>>>>>>>> mentioning that there is no benefit in this.
+>>>>>>>
+>>>>>>> Also: this entire file should be dropped, but if it stays, you have to
+>>>>>>> name it matching bindings or compatible (vendor,device.h).
+>>>>>>
+>>>>>> Thanks your comments.
+>>>>>> These macros are used to configure pinctrl in dts, so the file should stay,
+>>>>>
+>>>>> Why they should stay? What's the reason? If it is not a constant used by
+>>>>> driver, then register values should not be placed in the bindings, so
+>>>>> drop it.
+>>>>>
+>>>>
+>>>> Thanks.
+>>>>
+>>>> These macros in binding header(example, DOUT, DOEN etc) will be used in DTS,
+>>>> and driver will parse the DT for pinctrl configuration.
+>>>>
+>>>> Example in dts:
+>>>> uart0_pins: uart0-0 {
+>>>> 	tx-pins {
+>>>> 		pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
+>>>
+>>> This is usage in DTS and is not an argument to store register
+>>> addresses/offsets as bindings. What is the usage (of define, not value)
+>>> in the driver?
+>>>
+>> 
+>> The existing implementation reuse the macros for DTS and driver.
+> 
+> Where in the driver? Grep gives zero results.
+> 
+>> Do you mean we need to separate the macros, one for DTS and one for driver usage?
+> 
+> No, if driver uses them it is fine. The problem is I cannot find it
+> anywhere.
+> 
+>> Or you have any better suggestion?
+>> 
+>> These macros are the value of register, not register addresses/offsets,
+>> except for with prefix of GPI.
+> 
+> Still, values are not usually part of bindings.
+> 
+>> 
+>> Drivers rarely reference macros directly, mostly parsing dts and writing them to registers.
+> 
+> So drivers do not use macros? Then there is no reason to store them in
+> bindings? What do you "bind" if there is no usage (and we do not talk
+> about DTS...)?
+> 
 
-On Thu, Dec 1, 2022 at 10:20 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Enable ADV7535 on
-> > carrier board
-> > On Tue, Nov 22, 2022 at 8:55 PM Laurent Pinchart
-> > <laurent.pinchart@ideasonboard.com> wrote:
-> > > On Tue, Nov 22, 2022 at 07:41:13PM +0000, Biju Das wrote:
-> > > > > Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc: Enable
-> > > > > ADV7535 on carrier board On Tue, Nov 22, 2022 at 06:58:02PM +0000,
-> > > > > Biju Das wrote:
-> > > > > > Enable ADV7535 (MIPI DSI Receiver with HDMI Transmitter) on
-> > > > > > RZ/G2L SMARC EVK.
-> > > > > >
-> > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > > > > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+These macros are more friendly for configuring dts, so i stay the file.
+And change the file path to 'arch/riscv/boot/dts/starfive/',
+change the file name to 'jh7110-pinfunc.h'.
 
-> > > > > > +
-> > > > > > +         ports {
-> > > > > > +                 #address-cells = <1>;
-> > > > > > +                 #size-cells = <0>;
-> > > > > > +
-> > > > >
-> > > > > How about port@0 ? That's the DSI input, I expect it should be
-> > > > > connected to the DSI encoder output.
-> > > >
-> > > > Yes, I will enable DSI node and link with port@0.  Since both RZ/G2L
-> > > > and RZ/V2L uses same Carrier board, I need to send binding patch for
-> > RZ/V2L.
-> > > >
-> > > > dts Patches for enabling DSI for RZ/G2L ready. But V2L there is
-> > dependency on bindings.
-> >
-> > That's just a matter of days, right?
->
-> Yes, I have already posted the patch [1]
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221122195413.1882486-1-biju.das.jz@bp.renesas.com/
->
-> >
-> > > > If you prefer both ports together, then I can defer this later.
-> > >
-> > > It could be easier to review (not to mention testing). I'll let Geert
-> > > decide.
-> >
-> > Is there any advantage in applying this patch now, i.e. does it enable
-> > any working functionality?
->
-> Currently all display/graphics functionality tested with [3]
->
-> The advantage is,
->
-> 1) I would like to backport graphics and display functionality to cip kernel [2]
->    as most of our customers are using this kernel.
->
-> 2) we can test ADV driver using i2c read/write command
->
-> 3) We can test ADV interrupts
->
-> 4) This will reduce integration effort as we can test full display and graphics
->   functionality with [3]
->
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/cip/linux-cip.git/log/?h=linux-5.10.y-cip
-> [3] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=698606
->
-> Please share your views.
+Best regards,
+Jianlong Huang
 
-And all of that is working without port@0?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
