@@ -2,133 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE5FE63F751
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A9D63F76C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:25:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiLASP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 13:15:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37820 "EHLO
+        id S230020AbiLASZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 13:25:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbiLASPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:15:04 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5F224949
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 10:14:45 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id 62so2324301pgb.13
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 10:14:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=daynix-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+qiP+aVyEbFOin+Fo/Yz6dh5ehlyeto99kkZi+uNlNg=;
-        b=bLwHx176LOszJh7EjFmxlHoRSrusawe1m/8ONFIvi20Ao1VaNovHngA/dkeAr9PdM6
-         HXyqLmIOclACQAJz9XvahXKcNR64jiGkSV2gp2VVafJ/t/8EGFbJrIYhGEV1aMX5xqTt
-         j1+/A/Mk4bf9xbt+jBLBQywuGUSoPYAuKjqywUfWHdD/IzmCctJIGHC8g8PIOO8gna0z
-         LZ1558q3nJqSv++SBilMpXNgyiGoLv103hh+ZzCzwnxRfKvhjbtqZtXqMpc2D5h9/eVt
-         MSjyIjF5HqSDRPNLRETVpOLf/BOuCy2GfaRce6VtPi400GwVMFdkBA1JjPHuntxdehAV
-         hrPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+qiP+aVyEbFOin+Fo/Yz6dh5ehlyeto99kkZi+uNlNg=;
-        b=vfx4TY2pHMVDmVAqvMGItSOQxh6fz+DKIggXlOKlN8RQYSD19XtmKQvMA05ZaO5V6h
-         Daty1/fsadmWoDlXTsIU/gZPar8/Ze0JpDmqa7QCmetQ7cKoK/twfTuuHK1EtblWwRn0
-         HXDF6YExDYFJXuU9V0yEWgEhtOJQAmJoQcH0plieXzvfbaLNDPK4y8jKmj9Wthk3g4/f
-         If+eVHrMuB1B1oDmZZs1dH1AXZse1cHZ98gJE0OFm/Kc2z/XYl9yTtEQp29CAED78Vic
-         +F8rte0yg12igD2mX8eTs++UNL4POnWJTCASqua8Mso+pgqhrOe8Y6Lre+y6dJKpNtZt
-         8TeQ==
-X-Gm-Message-State: ANoB5plSwy99hUcBd8kYYkiwrPgweu7EaiYC9/DAAECr0oitUaqnIvkF
-        EnGLzG94fT8JLEHQAxy+yjXGng==
-X-Google-Smtp-Source: AA0mqf4B6/UAlIPQX5wvlJ3k48CdDnGeviR46Lrs1HEVHn73FAxfx55icdrfZVrW9OOfLpFuIcVuaw==
-X-Received: by 2002:a62:1417:0:b0:575:c993:acbe with SMTP id 23-20020a621417000000b00575c993acbemr11000843pfu.2.1669918485410;
-        Thu, 01 Dec 2022 10:14:45 -0800 (PST)
-Received: from ?IPV6:2400:4050:c360:8200:8ae8:3c4:c0da:7419? ([2400:4050:c360:8200:8ae8:3c4:c0da:7419])
-        by smtp.gmail.com with ESMTPSA id b1-20020a63d801000000b0046ff7db0984sm2842628pgh.72.2022.12.01.10.14.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 10:14:45 -0800 (PST)
-Message-ID: <18c884cb-dd73-09eb-65da-604cf45cb1b4@daynix.com>
-Date:   Fri, 2 Dec 2022 03:14:41 +0900
+        with ESMTP id S229667AbiLASZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:25:29 -0500
+Received: from smtp4-g21.free.fr (smtp4-g21.free.fr [IPv6:2a01:e0c:1:1599::13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B596CAB014;
+        Thu,  1 Dec 2022 10:25:28 -0800 (PST)
+Received: from SOPL295.local (unknown [IPv6:2a02:8440:3340:1594:24ae:608:767e:668e])
+        (Authenticated sender: robert.jarzmik@free.fr)
+        by smtp4-g21.free.fr (Postfix) with ESMTPSA id 2C82519F5A5;
+        Thu,  1 Dec 2022 19:25:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+        s=smtp-20201208; t=1669919126;
+        bh=dxvABszEI6f7fdBGZdc2GTOEK6aNP1EbO7qdl8El1gc=;
+        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+        b=OA/u/VmM1VnCvfyxgiyXf/+WpVsYAHQyLPYdIxm00XnXyaN4rVTm1j028WiWIsd/C
+         wooRkG8K8l1LHVIeVqMeQnecetvYynmJs/E9tRnc3kmu9mTarCiM3GFFRf2hihghHu
+         zr4HaQX/q4wLYEAN6fb8+08H20vrgDcczbcWTpUdwEopScbW0mItcjuq9v+29M6zSF
+         KEsrGq3qB+fDCDSRr3W1ZD/mjIfoiGcSsxq9wugUGE5uUNmRUAUDmRexFZ1YERey2B
+         pKIYpHQQPeT8dec1XkP2BM3Y+Xw5oV549f9rDrA/zmRoo5krclET9WhCQ8uWrAmzF0
+         JGKpKcViioQqw==
+References: <20221201100953.701963-1-j.neuschaefer@gmx.net>
+User-agent: mu4e 1.8.11; emacs 28.1
+From:   Robert Jarzmik <robert.jarzmik@free.fr>
+To:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     devicetree@vger.kernel.org, Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: pxa2xx: Remove bogus interrupt-parent; line
+Date:   Thu, 01 Dec 2022 19:24:34 +0100
+In-reply-to: <20221201100953.701963-1-j.neuschaefer@gmx.net>
+Message-ID: <m21qpjf0c3.fsf@free.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH] arch: arm64: dts: apple: Remove stdout-path
-Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alyssa@rosenzweig.io, sven@svenpeter.dev
-References: <20221201103651.27807-1-akihiko.odaki@daynix.com>
- <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
- <c3b0cee9-032c-0447-37df-3ce5ce280e41@daynix.com>
- <ae89b38f-fd67-e0e5-1439-f376da985be8@marcan.st>
- <8b3c4fe0-4a81-ba47-2f01-3686cfdbd519@daynix.com>
- <647b6572-e5d1-d243-283e-616cef15a1f5@marcan.st>
-From:   Akihiko Odaki <akihiko.odaki@daynix.com>
-In-Reply-To: <647b6572-e5d1-d243-283e-616cef15a1f5@marcan.st>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/02 2:46, Hector Martin wrote:
-> On 02/12/2022 01.38, Akihiko Odaki wrote:
->>   >> In contrary, if you boot the kernel without the hypervisor
->>   >> feature and this change, you will completely lose the console.
->>   >
->>   > How so? The console goes to both places with stdout-path set to serial0.
->>   > What it *does* change is where input is accepted prior to getty startup
->>   > (which is why u-boot specifically conditions this on keyboard presence,
->>   > modulo the USB issue - because if you *don't* have a keyboard then tty
->>   > keyboard input is useless). But if you're booting kernels without u-boot
->>   > along the way, you're probably doing it from the hypervisor or linux.py
->>   > anyway, especially if you plan to do something like "init=/bin/sh",
->>   > because without u-boot (+ optionally some EFI loader) there is no way of
->>   > editing command line arguments at boot time stand-alone.
->>
->> Well, that is not exactly the behavior I saw. In my case, if stdout-path
->> is pointed to serial, there is no output on the framebuffer, and it just
->> printed "_".
->>
->> It looks like the kernel only outputs to either of serial and
->> framebuffer, not both.
-> 
-> That is not what I've seen in all of my hypervisor runs since the dawn
-> of time. You get log output on both.
-> 
->> What I experienced is that when I directly booted the kernel from m1n1
->> without hypervisor, it showed no output to the display even though the
->> same kernel worked with U-Boot. While I could tell it used wrong console
->> by running the hypervisor, I wondered why it behaves differently without
->> U-Boot, and found the aforementioned U-Boot change, coming up with this
->> patch.
-> 
-> Then it sounds like something else is different about our setups,
-> because I've booted the kernel from linux.py hundreds of times and I get
-> output on both. Looking through the console code, the VT console gets
-> added and enabled really early, and the subsequent serial console
-> registration later does not disable it.
-> 
-> Look for "console: colour dummy device 80x25". It should be immediately
-> followed by "printk: console [tty0] enabled", and this should all come
-> well before the ttySAC0 serial stuff shows up.
-> 
-> - Hector
 
-I think I understand the situation now. By "console", I was meaning the 
-input and output of init, but I failed to clarify that and you thought 
-it referring to kernel message output. I saw no messages earlier than 
-init because my kernel command line has loglevel=3.
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> writes:
 
-Regards,
-Akihiko Odaki
+> Specifying interrupt-parent without a value (in other words, as=20
+> a bool)
+> doesn't really mean anything. Remove one such property in the=20
+> PXA2xx DT,
+> at /pxabus/interrupt-controller@40d00000.
+>
+> This patch was tested to cause no detrimental effect on PXA255.
+>
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+Acked-by: Robert Jarzmik <robert.jarzmik@free.fr>
+
+--
+Robert
