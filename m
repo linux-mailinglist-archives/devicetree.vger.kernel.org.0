@@ -2,165 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED9163EEC0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBC6F63EEF4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231240AbiLALE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:04:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45010 "EHLO
+        id S231250AbiLALHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:07:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbiLALEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:04:07 -0500
-Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 427E7AB011;
-        Thu,  1 Dec 2022 03:03:54 -0800 (PST)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 4EABBBA3615;
-        Thu,  1 Dec 2022 12:03:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1669892632;
-        bh=urq0lkT0BDJz23tDwsOh2qtGaagFlE0HTqa+o77ZBMo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=VAUtdl8a0aH3z0uBZ/o9iHeLH07Qx1stv+B1xNBlQlPhLsDUAfDoztRTb7wZBlCtf
-         R0kxuwgcTMF05yBec7ft+2LbooJgSpuLU3HJHw31YJnuQR5AboL+7dlnMvHT5gIvOq
-         L9kfg3Fw9Glnt1ICea6YdU6wjw+cDcN+k1c9pfrgfe4e66nzc3/wNQtb2j1iqcHMAZ
-         F45NKCZhuxg6vzJJhCmvmAsUJBdqztppSx7FxAkT8gEd1Osg/oqGorlvvJXkFtk2js
-         VaeuFzEOHHWReiNo8mHz7TEXoykEeebN12MVu8Rqz+9Lolkyam53lpOaVf2qrqRoD0
-         zv9F/wve2wThw==
-Date:   Thu, 1 Dec 2022 12:03:29 +0100
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, stable@vger.kernel.org,
-        Sasha Levin <sashal@kernel.org>, linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
-Message-ID: <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
-References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
- <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
- <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
- <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
+        with ESMTP id S231223AbiLALGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:06:09 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8580B7B4F3;
+        Thu,  1 Dec 2022 03:05:22 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2B1B546d014735;
+        Thu, 1 Dec 2022 05:05:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1669892704;
+        bh=wmqZ+1idJArV7sXFsExAh+xE3I7JcCUlmVlny23UPDU=;
+        h=From:To:CC:Subject:Date;
+        b=eAxsaDK0y1aAooxH/+zYJ5tI+e+d/K3I+4weBOoYTLgQy404ib3aLLp7fOzJU6SIh
+         Jqcy0Icij5a1uYXfhiCbc16p3SIE08qCTtmoE1yHgeTMps5FuuzME7j8zq09KksC8A
+         67a4D4KEt8xdgswF8BOKnYjYKWCuMrHvuJgEel+Y=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2B1B54Fm095953
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Dec 2022 05:05:04 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 1
+ Dec 2022 05:05:03 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 1 Dec 2022 05:05:03 -0600
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2B1B533p009865;
+        Thu, 1 Dec 2022 05:05:03 -0600
+Received: from localhost (a0501179-pc.dhcp.ti.com [10.24.69.114])
+        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 2B1B510j032498;
+        Thu, 1 Dec 2022 05:05:02 -0600
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Suman Anna <s-anna@ti.com>, Roger Quadros <rogerq@kernel.org>,
+        "Andrew F . Davis" <afd@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <srk@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Subject: [PATCH v10 0/6] Introduce PRU remoteproc consumer API
+Date:   Thu, 1 Dec 2022 16:34:54 +0530
+Message-ID: <20221201110500.4017889-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ MTD maintainers/list
+The Programmable Real-Time Unit and Industrial Communication Subsystem
+(PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
 
-On Wed, Nov 30, 2022 at 11:59:04PM +0100, Marek Vasut wrote:
-> On 11/30/22 21:51, Francesco Dolcini wrote:
-> > On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
-> > > On 11/30/22 14:52, Francesco Dolcini wrote:
-> > > > [    0.000000] Booting Linux on physical CPU 0x0
-> > > > [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
-> > > > 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
-> > > > ...
-> > > > [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
-> > > > @33002000)
-> > > > [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
-> > > > ...
-> > > > [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
-> > > > [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
-> > > > ...
-> > > > 
-> > > > Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
-> > > > maybe you have a better idea.
-> > > 
-> > > Can you share the relevant snippet of your nand controller DT node ?
-> > 
-> > We just have
-> > 
-> > from imx7-colibri.dtsi,
-> > 
-> >    &gpmi {
-> >    	fsl,use-minimum-ecc;
-> >    	nand-ecc-mode = "hw";
-> >    	nand-on-flash-bbt;
-> >    	pinctrl-names = "default";
-> >    	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> >    };
-> > 
-> > OF partition are created by U-Boot from
-> >    mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
-> > env variables calling fdt_fixup_mtdparts from colibri_imx7.c
-> > 
-> > Everything is available in the upstream Linux/U-Boot git, no downstream
-> > repo of any sort.
-> > 
-> > > Probably up to first partition is enough. I suspect you need to fill in the
-> > > correct address-cells/size-cells there, which might be currently missing in
-> > > your DT and worked by chance.
-> > 
-> > This is generated by U-Boot, I would need to dump what he did generate
-> > from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
-> > unless what I wrote here is already enough to understand what's going
-> > on.
-> 
-> Oh drat ... I see. It's the u-boot fdt_node_set_part_info() which checks the
-> current NAND controller #size-cells and uses that when generating MTD
-> partitions 'reg' properties. Since #size-cells is now zero, the reg
-> properties would be malformed.
+There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+already merged and can be found under:
 
-I think the issue is slightly different, the u-boot code checks it and
-if not set it defaults to #size-cells = <1>. Said that u-boot
-never set #size-cells anywhere.
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+3) drivers/remoteproc/pru_rproc.c
+   Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
 
-What is failing is ofpart_core.c:parse_fixed_partitions() in Linux with
-#size-cells = <0>.
+The programmable nature of the PRUs provide flexibility to implement custom
+peripheral interfaces, fast real-time responses, or specialized data handling.
+Example of a PRU consumer drivers will be:
+  - Software UART over PRUSS
+  - PRU-ICSS Ethernet EMAC
 
+In order to make usage of common PRU resources and allow the consumer drivers to
+configure the PRU hardware for specific usage the PRU API is introduced.
 
-> Now, what I am unsure is whether the right fix is to update mx7 colibri DT
-> and include &gpmi { #size-cells=<1>; }; , or , revert this patch. The former
-> fixes the problem for colibri and retains the correct #size-cells=<0>
-> behavior for any other board which does not specify MTD partitions in the
-> GPMI NAND node. The later also covers boards which we don't know about which
-> might also use generated MTD partitions in DT using fdt_fixup_mtdparts() in
-> U-Boot, but I am not convinced that is correct.
-> 
-> So, would you be OK with fixing up the colibri mx7 DT with #size-cells=<1> ?
+This is the v10 of the patch series [1]. This version of the patchset 
+addresses the comments made on v9 [9] of the series. 
 
-I am also not sure what is the right fix, however I am convinced that
-the fix needs to be in Linux, we cannot really break the boot flow.
+Two more patch series have been posted ([2] and [3]) that depends on this
+series, one has been posted to the soc/ti/ tree and another  
+to the networking tree. All the 3 series including this one, has been 
+sent as RFC [4] to get comments and to explain the dependencies.
 
-In a very pragmatic way I could just add the property to colibri-imx7
-dtsi, but we are really breaking potential other users of it, anybody
-using U-Boot to generate the partitions in the end ... (and the list is
-not empty and not just the colibri*).
+Changes from v9 to v10 :
 
-Would it make any sense to do something like that (untested!) ?
+*) There was compilation issue in v9 of the series because of dependencies 
+between 2nd and 3rd patch of the series. Fixed the dependencies in this series.
+*) Added enum documentation following the kernel-doc style [11] as asked by 
+Roger for 3/6 patch of the series.
 
-diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
-index 192190c42fc8..fffd60acd926 100644
---- a/drivers/mtd/parsers/ofpart_core.c
-+++ b/drivers/mtd/parsers/ofpart_core.c
-@@ -122,6 +122,8 @@ static int parse_fixed_partitions(struct mtd_info *master,
+Changes from v8 [8] to v9 :
 
-                a_cells = of_n_addr_cells(pp);
-                s_cells = of_n_size_cells(pp);
-+               if (s_cells == 0)
-+                       s_cells = 1; // for backward compatibility
-                if (len / 4 != a_cells + s_cells) {
-                        pr_debug("%s: ofpart partition %pOF (%pOF) error parsing reg property.\n",
-                                 master->name, pp,
+*) Fixed the warnings generated by running checkpatch.pl script.
+*) Added Review/Ack tags.
+*) Listed just the SoBs tags for all the patches as suggested by Mathieu.
+*) Removed a comment for an already documented field in patch 5/6 of this series.
 
-Francesco
+Changes from v7 [7] to v8 :
+
+*) Removed get_device(&rproc->dev) from API __pru_rproc_get() in patch 2/5 of 
+this series as asked by Roger. 
+*) Replaced all the SoBs (other than mine) to Co-developed-by tags for all 
+the patches in this series as asked by Mathieu.
+*) Added a new patch (3/6) in this series for Introduction of pruss_pru_id enum.
+Previously this enum was part of patch 2/6. As asked by Roger removed this enum 
+(and the APIs that are using the enum) from patch 2/6 and added it in new patch.
+*) Removed a comment for an already documented field in patch 2/6 of this series.
+*) Changed 'pru' to 'PRU' in comment of API pru_rproc_set_firmware() as asked by 
+Roger.
+
+Changes from v6 [6] to v7 :
+
+*) Removed example section from ti,pru-consumer.yaml as the full example 
+included compatible property as well which is not introduced in this series 
+thus creating dt check binding error. Removing the example section fixes the
+dt binding check error. The example section will be included in 
+"ti,icssg-prueth.yaml" in the next version of series [3]
+*) Updated the commit message for patch 1/5 of this series to address Krzysztof's 
+comment.
+
+Changes from v5 [5] to v6  :
+
+*) Added rproc_get_by_phandle() in pru_rproc_get() 
+*) Provided background of Ctable in the commit messege.
+*) Removed patch "" [10] (6th Patch of the v5 of this series)
+   as it has dependency on series [2], thus creating a cyclic dependency.
+
+The patch [10] will be sent along with the next version of series [2].
+
+[1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220603121520.13730-1-p-mohan@ti.com/
+[2] https://lore.kernel.org/all/20220418123004.9332-1-p-mohan@ti.com/
+[3] https://lore.kernel.org/all/20220531095108.21757-1-p-mohan@ti.com/
+[4] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
+[5] https://lore.kernel.org/all/20220607045650.4999-1-p-mohan@ti.com/
+[6] https://lore.kernel.org/all/20221012114429.2341215-1-danishanwar@ti.com/
+[7] https://lore.kernel.org/all/20221031073801.130541-1-danishanwar@ti.com/
+[8] https://lore.kernel.org/all/20221116121634.2901265-1-danishanwar@ti.com/
+[9] https://lore.kernel.org/all/20221118111924.3277838-1-danishanwar@ti.com/
+[10] https://lore.kernel.org/all/20220607045650.4999-7-p-mohan@ti.com/
+[11] https://www.kernel.org/doc/html/v6.0/doc-guide/kernel-doc.html#structure-union-and-enumeration-documentation
+
+Thanks and Regards,
+Md Danish Anwar
+
+MD Danish Anwar (1):
+  remoteproc: pru: Add enum for PRU Core Indentifiers.
+
+Roger Quadros (1):
+  remoteproc: pru: Add pru_rproc_set_ctable() function
+
+Suman Anna (2):
+  dt-bindings: remoteproc: Add PRU consumer bindings
+  remoteproc: pru: Make sysfs entries read-only for PRU client driven
+    boots
+
+Tero Kristo (2):
+  remoteproc: pru: Add APIs to get and put the PRU cores
+  remoteproc: pru: Configure firmware based on client setup
+
+ .../bindings/remoteproc/ti,pru-consumer.yaml  |  60 +++++
+ drivers/remoteproc/pru_rproc.c                | 235 +++++++++++++++++-
+ include/linux/pruss.h                         |  83 +++++++
+ 3 files changed, 373 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+ create mode 100644 include/linux/pruss.h
+
+-- 
+2.25.1
 
