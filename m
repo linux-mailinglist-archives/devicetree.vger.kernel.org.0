@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BAE163F7DC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8A663F7DF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:04:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbiLATEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 14:04:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58380 "EHLO
+        id S231288AbiLATEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 14:04:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbiLATEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:04:30 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6FFDC5E17
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:04:27 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id bx10so4397939wrb.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 11:04:27 -0800 (PST)
+        with ESMTP id S231206AbiLATEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:04:33 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21023C5E24
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:04:32 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id w15so4316841wrl.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 11:04:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=9elements.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uPhmSuxm5X88P2ytZiq5oi3P9IuH3y0y7Ct9vba+7Q8=;
-        b=c1bqYj2TPG5umwPMMfzf4h1SH4bLnNy141cOI4bYRDZjQSILJ6J5ZbePiZHOeG4p3d
-         L0O/FB7m5qmMcfIWbjumi6N9zxxpJynM9JCc0CXU/RqtYOSqXuKpq1M1A7ELN9bQjkIL
-         2FywXDNvAx60Ty8sbDpxygq1GskzWN710PXcJPGceFoEoQvWjcTjo2VpQ/QCvbkOGkZ6
-         RVfq2Qe2lnU3JRqzS4BzYUmv00ej+ViEFKgHPdBzasOk5JPmZH55tAo+dpoztrv6IMSs
-         sHrp7DQKbGZBuIl5CN9Rgz5HVCGyrwr6MDzAvvMI4RaVU0Dw51RkULXH4OU8ZelFOtn5
-         7Dsw==
+        bh=7p4ZRoKY8KyAbeLZ3D9FFno3zQClogoAoc0aT3MOswk=;
+        b=SH2MVV3BnFZoWATkbczoZvZG/HGAyVAamyZP7S7zZvbT4k/39Bs9cHY023b3UX8VRe
+         Bxsnh5DGvAll1GvjWvMRULbj9BOin2dbmJfdUFoXz5+wjtqKAVdInn2faoOlqzBtY/Eh
+         Hw1E9X0lEjAiyZIkqB4zsUuT4tUcx2vv/7DhzJrdyH73lJdFJa/WGSbbrkvb2ZsZjo1I
+         ADFh2K4rkfPwEkbZ4aruEo4y8q4kgpeWv06BrgWQih3SH3hETYeiH8RnnuFe6qxtOlE5
+         mQZSSJ/JgPw71vj+9t2hVwmLoOH/GWhMs9tPQ3+DQeYBk5j4sQCXiW2/Y7FXPa12tD75
+         UOIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uPhmSuxm5X88P2ytZiq5oi3P9IuH3y0y7Ct9vba+7Q8=;
-        b=ot4nOINvyJjIAfHIgYTY/ZcJfvzjJt8DCIz/+olzmRZKE+w2vXTbjfL2RBhniqdQET
-         8GbGmGO4eQ7yxWIE9+P7dcqFHb44iysG/MmymqJwZSBDqcOceh7ag8cVJPi4+vG6UvF/
-         tGgBxDgSzMe5Xj2ONseas9yBwqoWy2OdypsE6kvyN8GGzWJM2QMypUpn5ce9XywF6S7B
-         nQJbCsss+OPZ6BxSxwpANCX79bjcvAjPabJNuJwRdP+0BRzf0F1mpAxJM4QI7St4QH+d
-         Y7TW/f6nI0r5yJXJsurP4+jG2mO+W1QbWsSiG1sMZFYDit7kUd+X3iohVY8iNksNDw1U
-         fuhQ==
-X-Gm-Message-State: ANoB5pkRNnDfU6wbKcHT/SO1ofg22KRj/eqKF0TwSblmtbAKBRptDt/c
-        aw2eTu7Le+DazibUTemey9kTLAr7g/uiMuZS
-X-Google-Smtp-Source: AA0mqf6M/lP7jgUDaAjIVF60WBrACA1nSK1WxDmwn5xR48C9VTAJiYNpMj9M0Wf3BDWk9EKOgTBUyA==
-X-Received: by 2002:adf:e7cd:0:b0:236:960f:161d with SMTP id e13-20020adfe7cd000000b00236960f161dmr35407082wrn.376.1669921466090;
-        Thu, 01 Dec 2022 11:04:26 -0800 (PST)
+        bh=7p4ZRoKY8KyAbeLZ3D9FFno3zQClogoAoc0aT3MOswk=;
+        b=7qV6nSbKcY0PSeuIXk9nZDfElbCI8qhuHnHsaniKNeaOHPzFasBLs83+7I41YBuDe2
+         Cy6Oc4wvl7i0CGlPJogK6cdulgRrDE3QPPYXKhM+o+TuvKDyosoXfoktGjDhvpN9zMpf
+         8Bmfyja/+FtKEaeWXU+qe2/1IdNXNOby9yG1VjcZNQfcJoSrTqOQR4Vq/TTpyDG2Npm8
+         n5CGbLJLHKagFTx/2rQSMK7CSme5adCX8LId9JbCcp1ci4+Sq2sGWG/Ah5Hl9/WRckoS
+         wDq1OQgrhKI5GVUCUWaBVKpkjrVF2xHTLqK+kSoJAnrHfGOkjCCdH7/87Tu0prJuuirU
+         6i4A==
+X-Gm-Message-State: ANoB5pk0l3LnZCXZ7RWe5rlSa0elZjGXy4q+2oSnE9s+bnfObZRIj5Ye
+        KFSuAoqJOEs6OmOmm5iT2lC3Uv4DSKhbsIxs
+X-Google-Smtp-Source: AA0mqf4xHLqPxdLdu/xsizAphXKq/j4vIgsGGw8kI+lToc0HFLr8OK8KceGdOynFB2/FIQsRcT1eCQ==
+X-Received: by 2002:adf:f605:0:b0:241:ea0f:f0eb with SMTP id t5-20020adff605000000b00241ea0ff0ebmr29182298wrp.358.1669921470559;
+        Thu, 01 Dec 2022 11:04:30 -0800 (PST)
 Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id h20-20020a05600c351400b003c6cd82596esm11848474wmq.43.2022.12.01.11.04.25
+        by smtp.gmail.com with ESMTPSA id h20-20020a05600c351400b003c6cd82596esm11848474wmq.43.2022.12.01.11.04.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 11:04:25 -0800 (PST)
+        Thu, 01 Dec 2022 11:04:30 -0800 (PST)
 From:   Naresh Solanki <naresh.solanki@9elements.com>
 X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
 To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
@@ -58,9 +58,9 @@ To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
 Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
         Patrick Rudolph <patrick.rudolph@9elements.com>,
         Naresh Solanki <Naresh.Solanki@9elements.com>
-Subject: [PATCH v4 4/5] hwmon: (pmbus/core): Add regulator event support
-Date:   Thu,  1 Dec 2022 20:03:53 +0100
-Message-Id: <20221201190354.1512790-4-Naresh.Solanki@9elements.com>
+Subject: [PATCH v4 5/5] hwmon: (pmbus/core): Notify regulator events
+Date:   Thu,  1 Dec 2022 20:03:54 +0100
+Message-Id: <20221201190354.1512790-5-Naresh.Solanki@9elements.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20221201190354.1512790-1-Naresh.Solanki@9elements.com>
 References: <20221201190354.1512790-1-Naresh.Solanki@9elements.com>
@@ -76,194 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Notify regulator events in PMBus irq handler.
 
-Add regulator events corresponding to regulator error in regulator flag
-map.
-Also capture the same in pmbus_regulator_get_flags.
-
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
 Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 ---
- drivers/hwmon/pmbus/pmbus_core.c | 85 ++++++++++++++++++++------------
- 1 file changed, 54 insertions(+), 31 deletions(-)
+ drivers/hwmon/pmbus/pmbus_core.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
-index 78c401412c4d..daf700210c68 100644
+index daf700210c68..dbdf8c8187db 100644
 --- a/drivers/hwmon/pmbus/pmbus_core.c
 +++ b/drivers/hwmon/pmbus/pmbus_core.c
-@@ -2739,9 +2739,9 @@ static int pmbus_regulator_disable(struct regulator_dev *rdev)
- 	return _pmbus_regulator_on_off(rdev, 0);
- }
- 
--/* A PMBus status flag and the corresponding REGULATOR_ERROR_* flag */
-+/* A PMBus status flag and the corresponding REGULATOR_ERROR_* and REGULATOR_EVENTS_* flag */
- struct pmbus_regulator_status_assoc {
--	int pflag, rflag;
-+	int pflag, rflag, eflag;
- };
- 
- /* PMBus->regulator bit mappings for a PMBus status register */
-@@ -2756,27 +2756,36 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
- 		.func = PMBUS_HAVE_STATUS_VOUT,
- 		.reg = PMBUS_STATUS_VOUT,
- 		.bits = (const struct pmbus_regulator_status_assoc[]) {
--			{ PB_VOLTAGE_UV_WARNING, REGULATOR_ERROR_UNDER_VOLTAGE_WARN },
--			{ PB_VOLTAGE_UV_FAULT,   REGULATOR_ERROR_UNDER_VOLTAGE },
--			{ PB_VOLTAGE_OV_WARNING, REGULATOR_ERROR_OVER_VOLTAGE_WARN },
--			{ PB_VOLTAGE_OV_FAULT,   REGULATOR_ERROR_REGULATION_OUT },
-+			{ PB_VOLTAGE_UV_WARNING, REGULATOR_ERROR_UNDER_VOLTAGE_WARN,
-+			REGULATOR_EVENT_UNDER_VOLTAGE_WARN },
-+			{ PB_VOLTAGE_UV_FAULT,   REGULATOR_ERROR_UNDER_VOLTAGE,
-+			REGULATOR_EVENT_UNDER_VOLTAGE },
-+			{ PB_VOLTAGE_OV_WARNING, REGULATOR_ERROR_OVER_VOLTAGE_WARN,
-+			REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-+			{ PB_VOLTAGE_OV_FAULT,   REGULATOR_ERROR_REGULATION_OUT,
-+			REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 			{ },
- 		},
- 	}, {
- 		.func = PMBUS_HAVE_STATUS_IOUT,
- 		.reg = PMBUS_STATUS_IOUT,
- 		.bits = (const struct pmbus_regulator_status_assoc[]) {
--			{ PB_IOUT_OC_WARNING,    REGULATOR_ERROR_OVER_CURRENT_WARN },
--			{ PB_IOUT_OC_FAULT,      REGULATOR_ERROR_OVER_CURRENT },
--			{ PB_IOUT_OC_LV_FAULT,   REGULATOR_ERROR_OVER_CURRENT },
-+			{ PB_IOUT_OC_WARNING,   REGULATOR_ERROR_OVER_CURRENT_WARN,
-+			REGULATOR_EVENT_OVER_CURRENT_WARN },
-+			{ PB_IOUT_OC_FAULT,     REGULATOR_ERROR_OVER_CURRENT,
-+			REGULATOR_EVENT_OVER_CURRENT },
-+			{ PB_IOUT_OC_LV_FAULT,  REGULATOR_ERROR_OVER_CURRENT,
-+			REGULATOR_EVENT_OVER_CURRENT },
- 			{ },
- 		},
- 	}, {
- 		.func = PMBUS_HAVE_STATUS_TEMP,
- 		.reg = PMBUS_STATUS_TEMPERATURE,
- 		.bits = (const struct pmbus_regulator_status_assoc[]) {
--			{ PB_TEMP_OT_WARNING,    REGULATOR_ERROR_OVER_TEMP_WARN },
--			{ PB_TEMP_OT_FAULT,      REGULATOR_ERROR_OVER_TEMP },
-+			{ PB_TEMP_OT_WARNING,    REGULATOR_ERROR_OVER_TEMP_WARN,
-+			REGULATOR_EVENT_OVER_TEMP_WARN },
-+			{ PB_TEMP_OT_FAULT,      REGULATOR_ERROR_OVER_TEMP,
-+			REGULATOR_EVENT_OVER_TEMP },
- 			{ },
- 		},
- 	},
-@@ -2810,7 +2819,7 @@ static void pmbus_notify(struct pmbus_data *data, int page, int reg, int flags)
- }
- 
- static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *error,
--				    bool notify)
-+				    unsigned int *event, bool notify)
- {
- 	int i, status;
- 	const struct pmbus_regulator_status_category *cat;
-@@ -2821,7 +2830,8 @@ static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *e
- 	u8 page = rdev_get_id(rdev);
- 	int func = data->info->func[page];
- 
--	*flags = 0;
-+	*error = 0;
-+	*event = 0;
- 
- 	mutex_lock(&data->update_lock);
- 
-@@ -2836,10 +2846,11 @@ static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *e
- 			return status;
- 		}
- 
--		for (bit = cat->bits; bit->pflag; bit++) {
--			if (status & bit->pflag)
--				*flags |= bit->rflag;
--		}
-+		for (bit = cat->bits; bit->pflag; bit++)
-+			if (status & bit->pflag) {
-+				*error |= bit->rflag;
-+				*event |= bit->eflag;
-+			}
- 
- 		if (notify && status)
- 			pmbus_notify(data, page, cat->reg, status);
-@@ -2860,36 +2871,48 @@ static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *e
- 		return status;
- 
- 	if (pmbus_regulator_is_enabled(rdev)) {
--		if (status & PB_STATUS_OFF)
--			*flags |= REGULATOR_ERROR_FAIL;
-+		if (status & PB_STATUS_OFF) {
-+			*error |= REGULATOR_ERROR_FAIL;
-+			*event |= REGULATOR_EVENT_FAIL;
-+		}
- 
--		if (status & PB_STATUS_POWER_GOOD_N)
--			*flags |= REGULATOR_ERROR_REGULATION_OUT;
-+		if (status & PB_STATUS_POWER_GOOD_N) {
-+			*error |= REGULATOR_ERROR_REGULATION_OUT;
-+			*event |= REGULATOR_EVENT_REGULATION_OUT;
-+		}
- 	}
- 	/*
- 	 * Unlike most other status bits, PB_STATUS_{IOUT_OC,VOUT_OV} are
- 	 * defined strictly as fault indicators (not warnings).
- 	 */
--	if (status & PB_STATUS_IOUT_OC)
--		*flags |= REGULATOR_ERROR_OVER_CURRENT;
--	if (status & PB_STATUS_VOUT_OV)
--		*flags |= REGULATOR_ERROR_REGULATION_OUT;
-+	if (status & PB_STATUS_IOUT_OC) {
-+		*error |= REGULATOR_ERROR_OVER_CURRENT;
-+		*event |= REGULATOR_EVENT_OVER_CURRENT;
-+	}
-+	if (status & PB_STATUS_VOUT_OV) {
-+		*error |= REGULATOR_ERROR_REGULATION_OUT;
-+		*event |= REGULATOR_EVENT_FAIL;
-+	}
- 
- 	/*
- 	 * If we haven't discovered any thermal faults or warnings via
- 	 * PMBUS_STATUS_TEMPERATURE, map PB_STATUS_TEMPERATURE to a warning as
- 	 * a (conservative) best-effort interpretation.
- 	 */
--	if (!(*flags & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
--	    (status & PB_STATUS_TEMPERATURE))
--		*flags |= REGULATOR_ERROR_OVER_TEMP_WARN;
-+	if (!(*error & (REGULATOR_ERROR_OVER_TEMP | REGULATOR_ERROR_OVER_TEMP_WARN)) &&
-+	    (status & PB_STATUS_TEMPERATURE)) {
-+		*error |= REGULATOR_ERROR_OVER_TEMP_WARN;
-+		*event |= REGULATOR_EVENT_OVER_TEMP_WARN;
-+	}
- 
- 	return 0;
- }
- 
- static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
- {
--	return pmbus_regulator_get_flags(rdev, flags, false);
-+	int event;
-+
-+	return pmbus_regulator_get_flags(rdev, flags, &event, false);
- }
- 
- static int pmbus_regulator_get_status(struct regulator_dev *rdev)
-@@ -3124,7 +3147,7 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
- {
- 	struct pmbus_data *data = pdata;
- 	struct i2c_client *client = to_i2c_client(data->dev);
--	int i, ret = IRQ_NONE, status;
-+	int i, ret = IRQ_NONE, status, event;
- 	u8 page;
- 
- 	for (i = 0; i < data->info->num_regulators; i++) {
-@@ -3132,7 +3155,7 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
- 		if (!data->rdevs[i])
- 			continue;
- 
--		ret = pmbus_regulator_get_flags(data->rdevs[i], &status, true);
-+		ret = pmbus_regulator_get_flags(data->rdevs[i], &status, &event, true);
+@@ -3159,6 +3159,11 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
  		if (ret)
  			return ret;
  
++		if (event) {
++			regulator_notifier_call_chain(data->rdevs[i], event, NULL);
++			ret = IRQ_HANDLED;
++		}
++
+ 		page = rdev_get_id(data->rdevs[i]);
+ 		mutex_lock(&data->update_lock);
+ 		status = pmbus_read_status_word(client, page);
 -- 
 2.37.3
 
