@@ -2,165 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBCC63F560
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:38:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2570E63F586
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232262AbiLAQie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 11:38:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
+        id S229473AbiLAQng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:43:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232261AbiLAQib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:38:31 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826B45B5B5
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:38:29 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id w129so2374040pfb.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 08:38:29 -0800 (PST)
+        with ESMTP id S229515AbiLAQnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:43:35 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73555AD333
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:43:33 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id f21so2466225lfm.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 08:43:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=daynix-com.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ktaBf+m+7zsCEDxnoaX5mo2FVAO2+XdFUnqxLpyGNw=;
-        b=mA7VeMKgH/C+/BL1ppc+N9wU4CejHE+DMIURYuGvfocw1ZcCKphtlPDzo+27wwskjG
-         O1BaMMyilZbgbS7mX0ixrsn+OHqZtW8oEO8kADSp5D2YLJBvjkJ3oTLMDc7SaS70rdft
-         i495mS3a0TYQH3D7DC1n/dTlrIXhwB+AvvhBqmbpD46KjxX6ULRIEyygJ1IhrCZ5XzkE
-         MMMqimGq5z5RC1Pv+baZ1v8Cv0RrhxI2IgXaXp6pRMqB6aFSlBnMpmie8vFEdFKTigqk
-         7LwwzG7bIu9mfvNKYpqJ9WJPQWsP47LlxpQ0DUPETXOGQUGvAl7AKcW3coLmIBRtBdKf
-         5bHg==
+        bh=L8hpSR/3nlqBj/Be+rcyGGbkrbq4xUfYfMKRCLbhddc=;
+        b=lCu5HlOhQ7/BGDbpuRrV2qz9X4a1j8VJ7Ddkd6cyi0SCqY0tT3RyUR6fCYkvpfXxLI
+         Sm0knrJkkt4pfkrUQdLNY5ikwXFBtrwim/h1rrqhnKWNJ8oAs+oMrx8/F6J6CD5Mds+f
+         9NAykPKuUh2xx0R3prZ4pL5903E/0iZtEaIRwYTIU87NuKgId1LNVfok6GKcJg3Kb6jB
+         gcaGyxrJdXV+BfLF802Jy68tGJ4wh/OB9Os3Ia32rVrbgTLzpr9hrafgRO4x/gtowLwC
+         VdsWFgDVYt8BDsQkFC2oQWVVJodCo+QV1Dr6S997LApfMfrw+ajXMWy2Rzm6znuyVbOn
+         Q6zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ktaBf+m+7zsCEDxnoaX5mo2FVAO2+XdFUnqxLpyGNw=;
-        b=oCcO6AQpuV7ZTpWar1Eb7nzUMqXiLQimPMN2EQYeFqiuUo5iyD5C+SqOisVlH7n6nO
-         2OrA+fbd7vudVizb41Davw2aNicPhw5eDQkCMrVffO9QmbqPPh0eZ534nP0FOamc2SD/
-         HyiUtzByQd0xJjtAkBEFJTVVenOC02tRxapB/2SHiOh6Nd+uNX6f6wcTyEGOGofB0Ejq
-         wDVgC/xZHHplbngaPjSqkcMsExmrUuuFqWRvNK91/vfOseyvP2CLYdvqnTKtZ+/rgmXx
-         IzsKx3C1w6dtC9UIFdgyWr7MMlkJFx4bMkloJBhH/6IMd8tyozVKCJvCdxDuVwIUyLPK
-         3Cyg==
-X-Gm-Message-State: ANoB5pketr5ciS4dI3fih6KKkAy49fWTF1gGs4EGEUMyJg5HLNI2ovt5
-        A0BcTSJuYf22iY43RIwvwkmFOA==
-X-Google-Smtp-Source: AA0mqf71fmql0yVOroUO352Tyegi4ufTC7eSD+civWVFv4uppvX9jsZvHlH4/5tw9e0rlYBITxqOuQ==
-X-Received: by 2002:a05:6a00:1d0c:b0:573:7b50:acb8 with SMTP id a12-20020a056a001d0c00b005737b50acb8mr51202930pfx.59.1669912709020;
-        Thu, 01 Dec 2022 08:38:29 -0800 (PST)
-Received: from ?IPV6:2400:4050:c360:8200:7b99:f7c3:d084:f1e2? ([2400:4050:c360:8200:7b99:f7c3:d084:f1e2])
-        by smtp.gmail.com with ESMTPSA id x28-20020aa78f1c000000b0056c349f5c70sm3448592pfr.79.2022.12.01.08.38.26
+        bh=L8hpSR/3nlqBj/Be+rcyGGbkrbq4xUfYfMKRCLbhddc=;
+        b=G50OPu1VHjqoTIe26ejASlf1ilepH3F4X+dXe9yjHDA4ssOMuolvhIR2UYwl7nsQuU
+         6ng67mmWjWol6YxG/xP3xdYV70zeeysqFh4xaFA7g5w/U5VkTQeO58C6+qTnZkRwxtat
+         FI/QclCd8JbItodXQgiL6SQcYce4vDtQJdbqlv9sU62Pjj2n4TTUqxki2LUsKGz5bK0L
+         FXdlUdE1gMKIKrL6Y1xhN1h7l3DFig4SyXTgUJiPziMvYVUHhND1Qsnlvvon/ph9EMu5
+         XuSM7M46kRe/b1+uVPjC24U/8Rxz1Vpka1dNsOJh873SjmhVs9K+Qifni8I7J/KFJpqc
+         eUqw==
+X-Gm-Message-State: ANoB5pnVvQ1pzxiARfIqz8qC8kD9Do/E81vBg1k9cXh38VcYbXntGmFi
+        47407b435s/Zd8mlWRjkHetelg==
+X-Google-Smtp-Source: AA0mqf6oJcaRDO1AvdOI0rYdDIXBvPwvqzgXbrEtLsnIb+oxjgL46hXpu0tYvA0hGrS9xy+ixNEmSw==
+X-Received: by 2002:a05:6512:208a:b0:4b4:b2c6:5d28 with SMTP id t10-20020a056512208a00b004b4b2c65d28mr20872835lfr.47.1669913011802;
+        Thu, 01 Dec 2022 08:43:31 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id z15-20020a056512370f00b004b4b69af17dsm286886lfr.214.2022.12.01.08.43.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 08:38:28 -0800 (PST)
-Message-ID: <8b3c4fe0-4a81-ba47-2f01-3686cfdbd519@daynix.com>
-Date:   Fri, 2 Dec 2022 01:38:25 +0900
+        Thu, 01 Dec 2022 08:43:30 -0800 (PST)
+Message-ID: <bdab2e58-ea12-0ccf-a25a-ed89e50a5332@linaro.org>
+Date:   Thu, 1 Dec 2022 17:43:29 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH] arch: arm64: dts: apple: Remove stdout-path
+Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
+ power-management IC
 Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alyssa@rosenzweig.io, sven@svenpeter.dev
-References: <20221201103651.27807-1-akihiko.odaki@daynix.com>
- <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
- <c3b0cee9-032c-0447-37df-3ce5ce280e41@daynix.com>
- <ae89b38f-fd67-e0e5-1439-f376da985be8@marcan.st>
-From:   Akihiko Odaki <akihiko.odaki@daynix.com>
-In-Reply-To: <ae89b38f-fd67-e0e5-1439-f376da985be8@marcan.st>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Saravanan Sekar <saravanan@linumiz.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marten.lindahl@axis.com,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20221201044643.1150870-1-saravanan@linumiz.com>
+ <20221201044643.1150870-3-saravanan@linumiz.com>
+ <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
+ <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
+ <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
+ <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
+ <785e942a-0691-f87e-b6e9-058749a79ec1@linaro.org>
+ <8228db8d-2a32-1d23-74f3-05b9fe529a82@linumiz.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8228db8d-2a32-1d23-74f3-05b9fe529a82@linumiz.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 01/12/2022 17:38, Saravanan Sekar wrote:
+>>>> Plus additional comment for the driver (and related to bindings) was
+>>>> that this is not hwmon but a regulator driver. Why putting regulator
+>>>> driver in hwmon?
+>>>>
+>>>
+>>> Turns out this is primarily a hardware monitoring driver, like the drivers
+>>> for all other PMBus chips. Regulator support is actually optional; the driver
+>>> works perfectly well with CONFIG_REGULATOR=n (except that it needs some
+>>> #ifdefs to address that situation).
+>>
+>> OK, this would explain location  of the driver. However the bindings are
+>> saying:
+>> "Monolithic Power System MPQ7932 PMIC"
+>> and PMIC is not mainly a hwmon device, even if it has such capabilities.
+>> It might be missing description and proper title... or might be misplaced.
+>>
+> 
+> Indeed it is PMIC chip. I think this is not the first and not sure title 
+> has to be changed for hwmon subsystem.
+> 
+> bindings/hwmon/pmbus/ti,lm25066.yaml
+> title: National Semiconductor/Texas Instruments LM250x6/LM506x 
+> power-management ICs
 
-Thank you for reviewing and detailed explanation.
+Then I propose to put it in regulator directory.
 
-I'm withdrawing this patch. As you pointed out it makes earlycon 
-difficult, which is serious in development workflow. As a normal user 
-will use U-Boot, which changes stdout-path if appropriate, this kind of 
-change should be designed to make development easier, and this change 
-does the opposite.
+Best regards,
+Krzysztof
 
-On 2022/12/02 0:46, Hector Martin wrote:
- > On 02/12/2022 00.19, Akihiko Odaki wrote:
- >> So I think we should think more about the case when the kernel is booted
- >> from m1n1. When using its hypervisor feature, it is more likely that you
- >> want console on serial and and that is the opposite of this change.
- >> However, it is still possible to get the console on framebuffer with
- >> keyboard.
- >
- > Except if the framebuffer is broken, or everything is broken and it
- > hangs on early boot, which happens all the time when I'm debugging using
- > the hypervisor. Or maybe I'm just SSHing in remotely and not physically
- > in front of the machine, which is also often the case. Or maybe I'm just
- > booting headless because I didn't feel like swapping around the HDMI 
-cable.
-
-The user can change the kernel parameter in such a case. If you have 
-already ran the kernel with this change, you should have learned that 
-the console is tied to the framebuffer and keyboard and you need to 
-supply the kernel parameter. It is easy to change the kernel parameter 
-if you use m1n1 directly.
-
- >
- >> In contrary, if you boot the kernel without the hypervisor
- >> feature and this change, you will completely lose the console.
- >
- > How so? The console goes to both places with stdout-path set to serial0.
- > What it *does* change is where input is accepted prior to getty startup
- > (which is why u-boot specifically conditions this on keyboard presence,
- > modulo the USB issue - because if you *don't* have a keyboard then tty
- > keyboard input is useless). But if you're booting kernels without u-boot
- > along the way, you're probably doing it from the hypervisor or linux.py
- > anyway, especially if you plan to do something like "init=/bin/sh",
- > because without u-boot (+ optionally some EFI loader) there is no way of
- > editing command line arguments at boot time stand-alone.
-
-Well, that is not exactly the behavior I saw. In my case, if stdout-path 
-is pointed to serial, there is no output on the framebuffer, and it just 
-printed "_".
-
-It looks like the kernel only outputs to either of serial and 
-framebuffer, not both.
-
- >
- > However, while having stdout-path gives you both serial + tty output and
- > serial input, *not* having stdout-path kills serial entirely. It also
- > kills earlycon, and makes it so that you have to specify a bunch of
- > obscure arguments to get earlycon to work, instead of just a plain
- > "earlycon" argument which is much easier.
-
-This is a valid argument. I always struggle when I try earlycon first 
-for a computer. stdout-path should be maintained if it is freeing 
-developers from such trouble.
-
- >
- > So for this to be considered at all, you would first need to propose a
- > m1n1 patch to re-add stdout-path in boots under the hypervisor and
- > (optionally?) on linux.py boots, so you don't regress tools that our
- > developers use every day.
- >
- > But I still fail to see the benefit of this change. What scenario are
- > you envisioning that this would improve (something people actually do,
- > not a hypothetical)?
- >
-
-What I experienced is that when I directly booted the kernel from m1n1 
-without hypervisor, it showed no output to the display even though the 
-same kernel worked with U-Boot. While I could tell it used wrong console 
-by running the hypervisor, I wondered why it behaves differently without 
-U-Boot, and found the aforementioned U-Boot change, coming up with this 
-patch.
-
-Regards,
-Akihiko Odaki
-
- > - Hector
