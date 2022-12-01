@@ -2,120 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB26E63FAF0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 23:50:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B5C63FAFD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 23:54:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231749AbiLAWum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 17:50:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
+        id S231186AbiLAWyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 17:54:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbiLAWuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 17:50:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5BE7C86B3;
-        Thu,  1 Dec 2022 14:49:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 55DB462084;
-        Thu,  1 Dec 2022 22:49:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36561C433C1;
-        Thu,  1 Dec 2022 22:49:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669934964;
-        bh=M7nV2gz26gK5iSyAIFMnEJ0Gt4gZXURIaCRJJrGWVxQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FHvhp1LgyAA/mE+nZNzb72kPSlTEZL+G4LRNhH/OPMaY8bsZbUuBUGsvPeQ8yX57M
-         yf6raFFlzijL/8k0JET2nFa2etTzeyNBZtyIqZhjf6olJI+sINsOf7FcX/mqHIYAtW
-         wUwi+/a3sesg5XEpxzPnSNPjbNds/Vz01O1ltVYZf7QABYoUnEl7RY+ylglA2xF6WN
-         Z9MFJJS+ShXsqpA8fZWWV5KVwUZKBBoYvEbfa/mDP9A7+zrIUA4UbeaoixLh/V6WcJ
-         NZmR/fJGN5t+pwLPJtyYHexFhEP7qmEznDlaXN+x0fggCTsttpIkgj6vgzPaCJFWyz
-         YgPUOCLl+Hvig==
-Date:   Thu, 1 Dec 2022 23:49:21 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/6] soc: qcom: add support for the I2C Master Hub
-Message-ID: <Y4kvcXTdwImZpaU1@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
+        with ESMTP id S230401AbiLAWyh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 17:54:37 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AE3BE4E6;
+        Thu,  1 Dec 2022 14:54:35 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id l15so2957646qtv.4;
+        Thu, 01 Dec 2022 14:54:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8R0I2HiyAHJp+a7H8FDZLVY4oWPvtVh9vuwq1aO411c=;
+        b=ngpb0iGSKcm6bS2RRRmqb6t9UUdIYG8fHe/JBS7odLAPnuz5QFCcmeFf2dak43WffM
+         sSIulMqzs2uPDOihIcXkn5TiwUPcnQ98eAW7/sJ9lq+F5pEyIUY7EqnwDMlJVLa6Jqi3
+         jZ0pMcz3l6IDHTPo4lYARqeDezhvX1zQCYcDxGYCqX/nEHFPPk8LVNkMT1Bys2l6QeWC
+         B0sgu0+6+Ae13QRjFzpYbKFlctZlnZm80Md2sS84my9OD8y88amErWz4UJ+8zgFggDGK
+         /2X1zGDd2yofGnOhjji/DRF5THoQHpGJescL/5TRwoZXZDTz+gGxm4rWFMJOJqksYVit
+         9cOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8R0I2HiyAHJp+a7H8FDZLVY4oWPvtVh9vuwq1aO411c=;
+        b=sU9GqkH/zpMqcrosA5WiMRFdPT9gpZcUPfg1FL8HunXWWQMznEnO6u/m64mo/KgKNC
+         IXcJZ7DQix5fQs6DiPVpL2dI/JyWUU4Vdo6Bu5BDWCT7HizTiK9YYhhLYN/G9tQe9+ee
+         bMVkVvPevHLD5dPHqSc/VbaGp7LbSs7EBjbcMSENosaRI7ggoSIYEroibRYnwLsMi7Kr
+         mOa2haPvvUkrp0/vYBg7hYizz99ODSr/cH5g00esc3MFwN4YLAqQrfLA6G58eZImVG2W
+         U58n0icIhLJN3+1k5FWM3ECFMWvUmjabWGNm60Pj1iuqPOkoJLc9fD2wFWWh2PTvpDEv
+         h5GQ==
+X-Gm-Message-State: ANoB5pm4qcEf5RzsH1Vx2qJi2S4M+P6CZEShxA+TLvwCNhdmXXz1D72B
+        yoLgbCuw6Lab3jyTA9tyXAs=
+X-Google-Smtp-Source: AA0mqf7hM/x14S5/qCLPz918zYKBXjGm+5ik5312aCqDfGrg8Tsjutzbpkt/No1s9PqD4MYCIGjM4Q==
+X-Received: by 2002:ac8:4908:0:b0:3a5:faa7:35e7 with SMTP id e8-20020ac84908000000b003a5faa735e7mr63854046qtq.66.1669935275135;
+        Thu, 01 Dec 2022 14:54:35 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:19b7:90d3:e1bc:23de? ([2600:1700:2442:6db0:19b7:90d3:e1bc:23de])
+        by smtp.gmail.com with ESMTPSA id v12-20020ac8748c000000b00398df095cf5sm3246366qtq.34.2022.12.01.14.54.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 14:54:34 -0800 (PST)
+Message-ID: <fc106a76-c661-b133-9ce0-2470ef03fefa@gmail.com>
+Date:   Thu, 1 Dec 2022 16:54:33 -0600
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YX5ttnhQhXaDF07q"
-Content-Disposition: inline
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] of: overlay: fix memory leak in add_changeset_node()
+Content-Language: en-US
+To:     Zeng Heng <zengheng4@huawei.com>, pantelis.antoniou@konsulko.com,
+        grant.likely@linaro.org, robh+dt@kernel.org
+Cc:     liwei391@huawei.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221118105308.370474-1-zengheng4@huawei.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20221118105308.370474-1-zengheng4@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/18/22 04:53, Zeng Heng wrote:
+> In of_changeset_action(), we have called of_node_get() to increase
+> refcount of a node.
+> 
+> Therefore, when tchild (duplicated by __of_node_dup()) is done,
+> of_node_put() needs to call and release the device_node.
+> 
+> Otherwise, there are some memory leak reported about the node:
+> 
+> unreferenced object 0xffff88810cd1e800 (size 256):
+>   backtrace:
+>     kmalloc_trace
+>     __of_node_dup
+>     add_changeset_node (inlined)
+>     build_changeset_next_level
+> 
+> unreferenced object 0xffff888113721240 (size 16):
+>   backtrace:
+>     __kmalloc_node_track_caller
+>     kstrdup
+>     __of_node_dup
+>     add_changeset_node (inlined)
+>     build_changeset_next_level
+> 
+> unreferenced object 0xffff88810a38d400 (size 128):
+>   backtrace:
+>     kmalloc_trace
+>     __of_prop_dup
+>     add_changeset_property
+>     build_changeset_next_level
+> 
+> Fixes: 7518b5890d8a ("of/overlay: Introduce DT overlay support")
+> Signed-off-by: Zeng Heng <zengheng4@huawei.com>
+> ---
+>  drivers/of/overlay.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index bd8ff4df723d..a5189a0ec0a3 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -436,8 +436,10 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
+>  		of_node_set_flag(tchild, OF_OVERLAY);
+>  
+>  		ret = of_changeset_attach_node(&ovcs->cset, tchild);
+> -		if (ret)
+> +		if (ret) {
+> +			of_node_put(tchild);
+>  			return ret;
+> +		}
+>  
+>  		target_child.np = tchild;
+>  		target_child.in_livetree = false;
 
---YX5ttnhQhXaDF07q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Pending updated Fixes: tag (mentioned in a previous reply).
 
-On Tue, Nov 29, 2022 at 03:47:00PM +0100, Neil Armstrong wrote:
-> The I2C Master Hub is a stripped down version of the GENI Serial Engine
-> QUP Wrapper Controller but only supporting I2C serial engines without
-> DMA support.
->=20
-> The I2C Master Hub only supports a variant of the I2C serial engine with:
-> - a separate "core" clock
-> - no DMA support
-> - non discoverable fixed FIFO size
->=20
-> Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
-> and the iommus property neither.
->=20
-> This patchset adds the bindings changes to the QUPv3 wrapper and I2C seri=
-al
-> element bindings to reflect the different resources requirements.
->=20
-> In order to reuse the QUPv3 wrapper and I2C serial element driver support,
-> the I2C Master Hub requirements are expressed in new desc structs passed
-> as device match data.
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
+Tested-by: Frank Rowand <frowand.list@gmail.com>
 
-Is everyone fine if I take all this via the I2C tree?
+The testing was my normal testing, but did not replicate the triggered warning
+to verify that this patch eliminated the warning.  I am depending upon Zeng having
+verified the elimination of the warning.
 
+-Frank
 
---YX5ttnhQhXaDF07q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmOJL3EACgkQFA3kzBSg
-KbbJOg/9GeM6NURU8nhZCAy2JAcAIK8NTfDvJOQzYFEwPYiYhrH6On5gkziryCCL
-2/3SO5jAQdN+veFD1oRDLpKN9FdMXtEjw6Sp4WMu6/l8smL/oHrlc1QANfi0c9OR
-f2tuU4socvwBZStWWwlCih92Llqz/kz2jb8hYbwQdqJ4MiVJUA0nFWqTR7owGS/d
-IQQlyFF4zGK8r53RVekM1ayyul0h3/IX/rP30rL369sIKcS2H111MjyTkOEiKgcF
-Gr5qmP7StWauhE6ft9bx5u8ePasd90qfX/OiIof63X7cJADmRHHjwjF0Ceo+DLRT
-7c9UAU7i8eivMVTKbjJT6EsG8R53yNPxbR6fX39G72OgbIUf1jo24XGWau95yFp5
-nWHb6nk9wt5ECNZ8GWeZxMV/V9NPZV/J0G47rSTtXVtCgEcrywdVm1mEZQb5+0KO
-VD2Vp5FQ4SodgWqJQWiIeIxSkY5R+4OXVA6NeTBZw+3koNFyl1hEU759weXIX4MC
-UGUm4mpQgJSk2jbRhBCN6ucmSJzcZgzFnqWRp3fphhHEJwOu/A5m9yH7NMc+y4bo
-Po3pFZRYYdHhA3ahGdtlsokfIgukR+fii4qn/45bFK1EJ2vzP5YfiOJK97S1TdmN
-qrMmMIe1ee/EAxNs4V59guFwfh7pAFAPj9YkUotHHBvwgVuygac=
-=QWHn
------END PGP SIGNATURE-----
-
---YX5ttnhQhXaDF07q--
