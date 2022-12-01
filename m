@@ -2,132 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CA163F7A4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:43:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44B6963F7D4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230256AbiLASn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 13:43:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41164 "EHLO
+        id S230070AbiLATEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 14:04:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbiLASnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:43:25 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293C9934C2;
-        Thu,  1 Dec 2022 10:43:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BC797620B3;
-        Thu,  1 Dec 2022 18:43:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 208F8C433D6;
-        Thu,  1 Dec 2022 18:43:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1669920204;
-        bh=p4GYPrcLemfL1H4zQdK4YSafqKxYl8uzcCcsuNR5Mug=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a2BoPen065qBe8Og5canw6L1zfhJNTp7AhJG9KCJ6kiqz0PbaFOGVhFTqYEHLQC/3
-         txrNOo/kDMMWMmzGqvPwfOzgrz6vwm2Q1DicWoYbq+xwADN5A7BOVkCSHc8BU+fkbm
-         ahiTJmpUWGq4d9z7eAd6F7xiHvrsPEH9AaFENflI=
-Date:   Thu, 1 Dec 2022 19:43:20 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Matthew Wilcox <willy@infradead.org>
-Cc:     Jason Gunthorpe <jgg@ziepe.ca>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-kernel@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Stefan Richter <stefanr@s5r6.in-berlin.de>,
-        Wolfram Sang <wsa@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Sean Young <sean@mess.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Sanyog Kale <sanyog.r.kale@intel.com>,
-        Andreas Noever <andreas.noever@gmail.com>,
-        Michael Jamet <michael.jamet@intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Yehezkel Bernat <YehezkelShB@gmail.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Ming Lei <ming.lei@redhat.com>,
-        Jilin Yuan <yuanjilin@cdjrlc.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ira Weiny <ira.weiny@intel.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Won Chung <wonchung@google.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        linux-block@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-i3c@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
-        platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH 3/5] driver core: make struct device_type.uevent() take a
- const *
-Message-ID: <Y4j1yPD4Ypze7jx5@kroah.com>
-References: <Y34hgIW8p1RlQTBB@smile.fi.intel.com>
- <97be39ed-3cea-d55a-caa6-c2652baef399@gmail.com>
- <Y34zyzdbRUdyOSkA@casper.infradead.org>
- <Y34+V2bCDdqujBDk@kroah.com>
- <Y35JfNJDppRp5bLX@ziepe.ca>
- <Y35R+/eQJYI7VaDS@kroah.com>
- <Y35YlI93UBuTfgYy@ziepe.ca>
- <Y35dMIaNYSE0Cykd@casper.infradead.org>
- <Y35enjI+dhhqiG3B@ziepe.ca>
- <Y35ftyYlE8FX8xQO@casper.infradead.org>
+        with ESMTP id S229723AbiLATET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:04:19 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90017B7DCA
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 11:04:14 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id i81-20020a1c3b54000000b003d070274a61so4277922wma.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 11:04:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0qJrq6T31sJxCZwbEqlMuOvpG+K/8IjspbhkPV4Km1Q=;
+        b=BieDI7j0p2k4UdvUw+VseK1zFN/ztcclH0dB7sS8W8Y/OxGaD60WT2GdYKQxhMAeIb
+         9wTFwgyyGGXiObTgAO8mQbDW/RqBv032O2a0OdeSgUprDsLQGl+Amt8OAB+OAXV0WZwL
+         GViNwHvMUEiuSzwnqP4JY7wAFw3Qbkn3I8/K0tCqdLdV9mEqD7w09jvud1SRCmk+xHlS
+         Om854Z9Wej7HDLmz9QPUk9fkLa9nsHzHAp9NRXu+K9izFTIzoJLiEku2nFeMfQ9vx+9P
+         9Vn9r4zcWc8q4O5R00GiDkjNl49P0pEO1f8ErU5eeyUqckBm5KWYRJw/qZIQgojrKLXR
+         Qhwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0qJrq6T31sJxCZwbEqlMuOvpG+K/8IjspbhkPV4Km1Q=;
+        b=zbQWM3oZBGYXLAENxhL/y5GZBxhj2C+JDpdOqjgOTRJdWL8lZ7bcn4Fti99oTsm3T6
+         /eZuiI+IYcI/V351R3mSXYsEx2u/KPseYF7kjX4vIsq7Pw/8BYowImjtvHBV6vm8kxbY
+         eCqrC7CNRpZzZUrtx61REXnSDGG66RD8kg1tVedM3DxydlCrLG99wOvNHxPg3zmBNzn9
+         qcDyizLWdb7QAIqvo/OG3b5hFAqRSKO28sasEZh/l7PE+LMhc0naICJ06GVRlDbym0E7
+         JLHwXhGrBo9H+yRs88kj3Fr6ShF1vmEZkJq4objf/Mpz0URPDh+HucklivPHSJwuzU6V
+         jE3Q==
+X-Gm-Message-State: ANoB5pk1pKBB778UcIsN2Egl7jREK9SXn5T0uKt7v9OLxR13FpFmG7MO
+        jCy8LdKfYXosnM1tpwBlA07AKaL0qUUJ/IES
+X-Google-Smtp-Source: AA0mqf4fIEZTSOeRw64Yxt3yShlZP2ND8snsB+jMWw6ZZXDJYGyu3r+mKmhyCxA+ooxov0eeyZ4D8w==
+X-Received: by 2002:a1c:f617:0:b0:3cf:e0ef:1f69 with SMTP id w23-20020a1cf617000000b003cfe0ef1f69mr36382054wmc.163.1669921452846;
+        Thu, 01 Dec 2022 11:04:12 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h20-20020a05600c351400b003c6cd82596esm11848474wmq.43.2022.12.01.11.04.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 11:04:12 -0800 (PST)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH v4 1/5] hwmon: (pmbus/core): Add rdev in pmbus_data struct
+Date:   Thu,  1 Dec 2022 20:03:50 +0100
+Message-Id: <20221201190354.1512790-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y35ftyYlE8FX8xQO@casper.infradead.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 23, 2022 at 06:00:23PM +0000, Matthew Wilcox wrote:
-> On Wed, Nov 23, 2022 at 01:55:42PM -0400, Jason Gunthorpe wrote:
-> > On Wed, Nov 23, 2022 at 05:49:36PM +0000, Matthew Wilcox wrote:
-> > > On Wed, Nov 23, 2022 at 01:29:56PM -0400, Jason Gunthorpe wrote:
-> > > > #define generic_container_of(in_type, in, out_type, out_member) \
-> > > > 	_Generic(in,                                        \
-> > > >                   const in_type *: ((const out_type *)container_of(in, out_type, out_member)),   \
-> > > >                   in_type *: ((out_type *)container_of(in, out_type, out_member)) \
-> > > > 		  )
-> > > 
-> > > There's a neat trick I found in seqlock.h:
-> > > 
-> > > #define generic_container_of(in_t, in, out_t, m)			\
-> > > 	_Generic(*(in),							\
-> > > 		const in_t: ((const out_t *)container_of(in, out_t, m)), \
-> > > 		in_t: ((out_t *)container_of(in, out_type, m))	\
-> > > 	)
-> > >
-> > > and now it fits in 80 columns ;-)
-> > 
-> > Aside from less letters, is their another benifit to using *(in) ?
-> 
-> I don't think so.  It just looks nicer to me than putting the star in
-> each case.  If I'd thought of it, I would have done it to page_folio(),
-> but I won't change it now.
+Add regulator device in pmbus_data & initialize the same during PMBus
+regulator register.
 
-Ah, but your trick will not work, that blows up and will not build.  The
-original one from Jason here does work.  _Generic is tricky...
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+ drivers/hwmon/pmbus/pmbus_core.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-thanks,
+diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+index 95e95783972a..7a23794c0b93 100644
+--- a/drivers/hwmon/pmbus/pmbus_core.c
++++ b/drivers/hwmon/pmbus/pmbus_core.c
+@@ -81,6 +81,7 @@ struct pmbus_label {
+ struct pmbus_data {
+ 	struct device *dev;
+ 	struct device *hwmon_dev;
++	struct regulator_dev **rdevs;
+ 
+ 	u32 flags;		/* from platform data */
+ 
+@@ -3053,6 +3054,11 @@ static int pmbus_regulator_register(struct pmbus_data *data)
+ 	struct regulator_dev *rdev;
+ 	int i;
+ 
++	data->rdevs = devm_kzalloc(dev, sizeof(struct regulator_dev *) * info->num_regulators,
++				  GFP_KERNEL);
++	if (!data->rdevs)
++		return -ENOMEM;
++
+ 	for (i = 0; i < info->num_regulators; i++) {
+ 		struct regulator_config config = { };
+ 
+@@ -3062,7 +3068,7 @@ static int pmbus_regulator_register(struct pmbus_data *data)
+ 		if (pdata && pdata->reg_init_data)
+ 			config.init_data = &pdata->reg_init_data[i];
+ 
+-		rdev = devm_regulator_register(dev, &info->reg_desc[i],
++		data->rdevs[i] = devm_regulator_register(dev, &info->reg_desc[i],
+ 					       &config);
+ 		if (IS_ERR(rdev))
+ 			return dev_err_probe(dev, PTR_ERR(rdev),
 
-greg k-h
+base-commit: 9494c53e1389b120ba461899207ac8a3aab2632c
+-- 
+2.37.3
+
