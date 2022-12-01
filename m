@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A7263F46D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B93763F474
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:46:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbiLAPpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:45:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
+        id S231899AbiLAPqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 10:46:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231451AbiLAPpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:45:02 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B704E06
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 07:45:00 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id x2so2958522edd.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 07:45:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zZoijEDeQq5KmpIxx2DGH25QRi6qVCVswuEzepCkZP4=;
-        b=nEAKuSFkA3Lsgup6fw8AYXTcTfIlb+Mu4cmr+/pSqYZf1frlWWJsRlzlxmqKjAfLrb
-         M+8fVmF2E5Dnj6qpfEdicTjlM8aJFjtJc4WhMnbrv4JH66SHjnYH03Y2sVPrE7CnYFeB
-         PNn2q55KndoePV3UkBWtcmt03+cz7ajNmNmoeXmEl0kcvr8Ee01Vi62Th/SXMNBc4doT
-         9aqKN/SVqe8Lf3fDPi+nRes0bOa2qbccxoITVA9cBBBOBKt9knrrM6vbJqDMtqY1vQZb
-         E4CflMUSX7Ye8yBoq+twGaDle/uoPpkYN6nit98M9a7/O0p0o70iaRKtI2zUkKotm6b6
-         iV+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zZoijEDeQq5KmpIxx2DGH25QRi6qVCVswuEzepCkZP4=;
-        b=VEalXfMsIiqrNNRUQs7at+crDdOZMeWJOaahh7TJ9E2N88QeZJmQelB2lcMyZyQS3s
-         ELuMTnJdqWX/d3ZxQN8h5Ou0VDGLlkdkwZV4YaazWGTrssVBrunmCTNFe7irmX5c/W0Y
-         FUBR2+g1qD3pnDiPhWpd0UFHKHB6Jzd1fXWMJllIDJzteV05fNVJ+gng7EpsXD2wCmbf
-         uI1gFxseFUurmY9lgCIfoIAbkVQ58BOcMC3URjiJ2bwMu6hyb60MgjXNEx6KC1beplwL
-         88ivXncw8c0xKdVMavvXFnO7tpfxn5PU61ldpuUXuDlIBN9o1wrBmkBqNlUGqstrycc5
-         FDLA==
-X-Gm-Message-State: ANoB5plBHkjUWT5kaVY7NSwHfv28Xz6Wd4rsQLxYyIHECtUomFJUfVUD
-        XHi/udeqHDbrw8APJjMfGER+BA==
-X-Google-Smtp-Source: AA0mqf5uu8S8mr1+GohUMcb9htQ90+gbnI8vchUOkuuqnlb7M0DBoa6o0byXyY+ULlwkfEVD3T9Y7g==
-X-Received: by 2002:a50:fc11:0:b0:45a:1bfa:98bf with SMTP id i17-20020a50fc11000000b0045a1bfa98bfmr60665879edr.413.1669909499031;
-        Thu, 01 Dec 2022 07:44:59 -0800 (PST)
-Received: from melexis.com ([31.144.161.76])
-        by smtp.gmail.com with ESMTPSA id d7-20020a170906304700b0079800b8173asm1910412ejd.158.2022.12.01.07.44.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 07:44:58 -0800 (PST)
-Date:   Thu, 1 Dec 2022 17:44:52 +0200
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Subject: Re: [PATCH v3 4/8] media: v4l: ctrls-api: Allow array update in
- __v4l2_ctrl_modify_range
-Message-ID: <Y4jL9Mu7T/TO4g66@melexis.com>
-References: <cover.1669381013.git.vkh@melexis.com>
- <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
- <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
+        with ESMTP id S231237AbiLAPqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:46:23 -0500
+Received: from smtp-out-03.comm2000.it (smtp-out-03.comm2000.it [212.97.32.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C1AE06;
+        Thu,  1 Dec 2022 07:46:21 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-03.comm2000.it (Postfix) with ESMTPSA id 10EDAB4ADB8;
+        Thu,  1 Dec 2022 16:46:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1669909578;
+        bh=MpoeK/SVoG4QpF0S5JGnpX9gBKGENx9957gTXLHgZpM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=pLs+K9RJaACcee8bsgicL0FTI1HERRpymVb828paH+hJDTf2GOxGGBVLqa3515BxJ
+         Hov/Zjv/4xC/tUcmXiy/X+qkTerfOjHHG8yn4e9hJPQs6RffRcGlE0BPx4MxxP38XE
+         IOp2l8MnOB74JsdWSZ3NcleHfXSASMzFNYQEMSKjGX0+v7Mb3HW0nXYVIGBDgCwRi6
+         axSeO71hcPTsiY4V8mdmbP2wl4Qgx77s1vPtIp8bwBECdweO4Wj/s5UHWt37OkQR8H
+         53uEBjwpFyB1HbrddlzM0bDWKQ6TUlE/LhgutLsWkzk0MjSq8d79SMyWgDaO0v9rOZ
+         uJyzCD8opB46w==
+Date:   Thu, 1 Dec 2022 16:45:53 +0100
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, stable@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>, u-boot@lists.denx.de
+Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
+Message-ID: <Y4jMMeyktJLHb9ji@francesco-nb.int.toradex.com>
+References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
+ <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
+ <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
+ <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
+ <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
+ <b5080dd6-40b3-a8f2-0c4e-4c1e52e67fe8@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <b5080dd6-40b3-a8f2-0c4e-4c1e52e67fe8@denx.de>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,82 +66,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
++ u-boot list
 
-On Fri, Nov 25, 2022 at 03:35:34PM +0100, Hans Verkuil wrote:
-> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
-> > For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
-> > __v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
-> > from union. It will allow to work with any type.
+On Thu, Dec 01, 2022 at 12:25:34PM +0100, Marek Vasut wrote:
+> On 12/1/22 12:03, Francesco Dolcini wrote:
+> > On Wed, Nov 30, 2022 at 11:59:04PM +0100, Marek Vasut wrote:
+> > > On 11/30/22 21:51, Francesco Dolcini wrote:
+> > > > On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
+> > > > > On 11/30/22 14:52, Francesco Dolcini wrote:
+> > > > > > [    0.000000] Booting Linux on physical CPU 0x0
+> > > > > > [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
+> > > > > > 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
+> > > > > > ...
+> > > > > > [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
+> > > > > > @33002000)
+> > > > > > [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
+> > > > > > ...
+> > > > > > [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+> > > > > > [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
+> > > > > > ...
+> > > > > > 
+> > > > > > Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
+> > > > > > maybe you have a better idea.
+> > > > > 
+> > > > ...
+> > > > OF partition are created by U-Boot from
+> > > >     mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
+> > > > env variables calling fdt_fixup_mtdparts from colibri_imx7.c
+> > > > 
+> > > > This is generated by U-Boot, I would need to dump what he did generate
+> > > > from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
+> > > > unless what I wrote here is already enough to understand what's going
+> > > > on.
+> > > 
+> > > Oh drat ... I see. It's the u-boot fdt_node_set_part_info() which checks the
+> > > current NAND controller #size-cells and uses that when generating MTD
+> > > partitions 'reg' properties. Since #size-cells is now zero, the reg
+> > > properties would be malformed.
 > > 
-> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
-> > ---
-> >  drivers/media/v4l2-core/v4l2-ctrls-api.c | 15 +++------------
-> >  1 file changed, 3 insertions(+), 12 deletions(-)
+> > I think the issue is slightly different, the u-boot code checks it and
+> > if not set it defaults to #size-cells = <1>. Said that u-boot
+> > never set #size-cells anywhere.
+> 
+> Which it really should, can you send a patch there too ?
+
+I guess that it is slightly more complicated.
+
+U-Boot directly updates the nand-controller root node with the
+partitions, unless there is already a partitions child node present. In
+the first case (legacy OF partition definition) setting the #size-cells
+does not seems that correct, while in the second case I agree it should
+really do it. I'll see what I can come-up with.
+
+> > diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
+> > index 192190c42fc8..fffd60acd926 100644
+> > --- a/drivers/mtd/parsers/ofpart_core.c
+> > +++ b/drivers/mtd/parsers/ofpart_core.c
+> > @@ -122,6 +122,8 @@ static int parse_fixed_partitions(struct mtd_info *master,
 > > 
-> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > index d0a3aa3806fb..09735644a2f1 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
-> > @@ -942,8 +942,6 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
-> >  	case V4L2_CTRL_TYPE_U8:
-> >  	case V4L2_CTRL_TYPE_U16:
-> >  	case V4L2_CTRL_TYPE_U32:
-> > -		if (ctrl->is_array)
-> > -			return -EINVAL;
-> >  		ret = check_range(ctrl->type, min, max, step, def);
-> >  		if (ret)
-> >  			return ret;
-> > @@ -960,17 +958,10 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
-> >  		ctrl->default_value = def;
-> >  	}
-> >  	cur_to_new(ctrl);
-> > -	if (validate_new(ctrl, ctrl->p_new)) {
-> > -		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
-> > -			*ctrl->p_new.p_s64 = def;
-> > -		else
-> > -			*ctrl->p_new.p_s32 = def;
-> > -	}
-> > +	if (validate_new(ctrl, ctrl->p_new))
-> > +		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
+> >                  a_cells = of_n_addr_cells(pp);
+> >                  s_cells = of_n_size_cells(pp);
+> > +               if (s_cells == 0)
+> > +                       s_cells = 1; // for backward compatibility
+> >                  if (len / 4 != a_cells + s_cells) {
+> >                          pr_debug("%s: ofpart partition %pOF (%pOF) error parsing reg property.\n",
+> >                                   master->name, pp,
 > 
-> Hmm, this sets *all* elements of the array to the default_value, not
-> just the elements whose value is out of range.
-> 
-> Is that what you want? Should this perhaps depend on the type of
-> control? I.e. in some cases it might make sense to do this, in other
-> cases it makes more sense to only adjust the elements that are out
-> of range.
-> 
-> How does that work for this TINT control?
-Actually for types like INTEGER/U8/U16/U32/BOOLEAN/BUTTON/BITMASK, the function
-validate_new will return zero always as well as they fix the range on the fly.
-So that is ok for mlx7502x sensors.
+> You might want to print a warning too, so users would fix their DTs, since
+> once there is MTD partition > 4 GiB, this would break. Otherwise I like this
+> option.
 
-For types like compound/string/menu indeed, it will sets all elements of array
-to default array. To fix it I propose to fix it by using the functions
-std_validate_elem to check per element and then set the default manually.
-But then it means, that __v4l2_ctrl_modify_range will work only for standart
-v4l2 types, and not if driver use their own implementation. 
+I tested it and it's working as expected, I'll send a proper patch soon.
 
-Is it fine for you? What do you think?
-> 
-> Regards,
-> 
-> 	Hans
-> 
-> >  
-> > -	if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
-> > -		value_changed = *ctrl->p_new.p_s64 != *ctrl->p_cur.p_s64;
-> > -	else
-> > -		value_changed = *ctrl->p_new.p_s32 != *ctrl->p_cur.p_s32;
-> > +	value_changed = !ctrl->type_ops->equal(ctrl, ctrl->p_cur, ctrl->p_new);
-> >  	if (value_changed)
-> >  		ret = set_ctrl(NULL, ctrl, V4L2_EVENT_CTRL_CH_RANGE);
-> >  	else if (range_changed)
-> 
+Francesco
 
--- 
---
-BR,
-Volodymyr Kharuk
