@@ -2,49 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC6B63F5F4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 18:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB5C63F613
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 18:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbiLARKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 12:10:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32902 "EHLO
+        id S230030AbiLARUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 12:20:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiLARKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 12:10:40 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F553A8968
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 09:10:35 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1p0n4s-0005Ao-0g; Thu, 01 Dec 2022 18:10:26 +0100
-Message-ID: <23e61494-5567-5701-3a90-3b8105b4c944@pengutronix.de>
-Date:   Thu, 1 Dec 2022 18:10:20 +0100
+        with ESMTP id S229538AbiLARUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 12:20:37 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D549CAE4D0
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 09:19:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1669915183;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Qx4tJBDDVJQuTwv5HZkZkSep7aBO8Jt6heDUOx7SfSo=;
+        b=fjqd4yA8/oGuse15lyFzzExEz9XChfN6042zThuBPjkHptUr1eLkSwhiN9KYcTioOxDjok
+        G96mI7apXO4lu/5ifNrqUoKdg2HLIhH5pHAzd6bIWW34NC8bE2TOVO1WlFJyTZz7jFgroE
+        Der3idZTQjwmoXUu3cet5ofMziq9+C8=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-111-4wEoaZgiNWaJDnGmc2eaLw-1; Thu, 01 Dec 2022 12:19:42 -0500
+X-MC-Unique: 4wEoaZgiNWaJDnGmc2eaLw-1
+Received: by mail-qv1-f72.google.com with SMTP id ln3-20020a0562145a8300b004b8c29a7d50so6164909qvb.15
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 09:19:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Qx4tJBDDVJQuTwv5HZkZkSep7aBO8Jt6heDUOx7SfSo=;
+        b=KsrfYXyK9Jr6JzO+N6p9qOoCAla3ASoU6neV+Q6FXyw8iYbbU9XCySrvc5vMk27cUa
+         ODT3vrp81/17b2RqdRc3Te6oLFmSofyMpvIVy0t7ZkcLnXFPPCXK+SUZ9Uot2isDxb1P
+         PCL3uzenVBTdx2/Ron9xThIaHSsqHeHDA9sidq1mqIg1Mdkqj8p3i/F+L+uHwed+O8S3
+         X/MiUABiLeGygKx9QcZ9ShlxHK4aWIg9A7nFWjDTPj3sE+xORIQHnK3LoTIH1vACzlah
+         OvyW1eCsG8hriLX3Wcwlx67nk01ofz3ao0JKlNuHP7vA7NhXFCpQ/pnjfffeoid+bwe7
+         9rTA==
+X-Gm-Message-State: ANoB5pmP0KW8oN+okGD3BBIJjvc5MAEia61Y+GF4oYMPZrBNOauKtdEv
+        Z24TtT/+DCNsmL94tsPV2NE6WhJrRvslQjwJY0XrhQILPwMAtuKMZnwbcSf5mRzF1nEaRVmvbye
+        Mo8iDTMBr4CFXF1Ioeo7QBA==
+X-Received: by 2002:ac8:6886:0:b0:3a5:f507:8ed4 with SMTP id m6-20020ac86886000000b003a5f5078ed4mr61853833qtq.450.1669915180758;
+        Thu, 01 Dec 2022 09:19:40 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5r3BvCutg+1QztBc5YxpRubTlOisO3GEigwdeg3f+lRep01JpM3E+7OYsn0wkXJm2DCRcFWQ==
+X-Received: by 2002:ac8:6886:0:b0:3a5:f507:8ed4 with SMTP id m6-20020ac86886000000b003a5f5078ed4mr61853805qtq.450.1669915180485;
+        Thu, 01 Dec 2022 09:19:40 -0800 (PST)
+Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id g8-20020a05620a40c800b006f3e6933bacsm545421qko.113.2022.12.01.09.19.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 09:19:40 -0800 (PST)
+From:   Brian Masney <bmasney@redhat.com>
+To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_shazhuss@quicinc.com,
+        psodagud@quicinc.com, ahalaney@redhat.com, echanude@redhat.com
+Subject: [PATCH v2] arm64: dts: qcom: sa8540p-ride: enable PCIe support
+Date:   Thu,  1 Dec 2022 12:19:31 -0500
+Message-Id: <20221201171931.1919961-1-bmasney@redhat.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v4 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-To:     Daniel Scally <dan.scally@ideasonboard.com>,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, laurent.pinchart@ideasonboard.com
-References: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
- <20221017151050.2321919-4-dan.scally@ideasonboard.com>
-Content-Language: en-US
-In-Reply-To: <20221017151050.2321919-4-dan.scally@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,189 +77,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Daniel,
+Add the vreg_l11a, pcie3a, pcie3a_phy, and tlmm nodes that are necessary
+in order to get PCIe working on the QDrive3.
 
-On 17.10.22 17:10, Daniel Scally wrote:
-> Add a device tree file describing the Debix Model A board from
-> Polyhex Technology Co.
+This patch also increases the width of the ranges property for the PCIe
+switch that's found on this platform. Note that this change requires
+the latest trustzone (TZ) firmware that's available from Qualcomm as
+of November 2022. If this is used against a board with the older
+firmware, then the board will go into ramdump mode when PCIe is probed
+on startup.
 
-Thanks for your patch. Some minor comments below.
+The ranges property is overridden in this sa8540p-ride.dts file since
+this is what's used to describe the QDrive3 variant with dual SoCs.
+There's another variant of this board that only has a single SoC where
+this change is not applicable, and hence why this specific change was
+not done in sa8540p.dtsi.
 
-> Changes in v3 (Laurent):
-> 
->     - Added IOB copyright notice
->     - Removed the eth node for the connector that's on the separate I/O
->     board
+These changes were derived from various patches that Qualcomm
+delivered to Red Hat in a downstream kernel.
 
-I'd have left the FEC node in and described the PHY, but left the FEC disabled.
-Only the magnetics are on the expansion board, while the PHY is on the
-base board.
+Signed-off-by: Brian Masney <bmasney@redhat.com>
+---
+Changes since v1:
+- Add -state and -pins suffixes to tlmm (Krzysztof)
 
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2019 NXP
-> + * Copyright 2022 Ideas on Board Oy
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/usb/pd.h>
-> +
-> +#include "imx8mp.dtsi"
-> +
-> +/ {
-> +	model = "Polyhex Debix Model A i.MX8MPlus board";
-> +	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
+This patch depends on the following series that hasn't made it's way
+into linux-next yet:
 
-I see that Model A and Model B share the same SoC and PCB. Could you
-add polyhex,imx8mp-debix as a second compatible? That way, bootloader
-may match against that compatible when they support both.
-You'll need to adjust the binding accordingly.
+[PATCH v10 0/2] arm64: dts: qcom: add dts for sa8540p-ride board
+https://lore.kernel.org/lkml/20221118025158.16902-1-quic_ppareek@quicinc.com/
 
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_led>;
-> +
-> +		status-led {
-> +			function = LED_FUNCTION_POWER;
-> +			color = <LED_COLOR_ID_RED>;
-> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_1 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_2 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&A53_3 {
-> +	cpu-supply = <&buck2>;
-> +};
-> +
-> +&eqos {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_eqos>;
-> +	phy-connection-type = "rgmii-id";
-> +	phy-handle = <&ethphy0>;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		compatible = "snps,dwmac-mdio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@0 {
+I can't find the specific TZ firmware version that we have so that's why
+I included the date instead.
 
-Could you append a /* RTL8211E */ comment here? This can be very useful for others
-who need to bring up the same chip in the future.
+ arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 54 +++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-
-Is the PHY really at address 0 or does it just answer at this address
-because it's the broadcast address?
-
-
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x400001c3
-> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA			0x400001c3
-> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD				0x40000019
-> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC				0x40000019
-
-Why do you hog these?
-
-> +	pinctrl_usb1_vbus: usb1grp {
-
-This is unused.
-
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
-> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
-> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
-> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
-
-Just to make sure this doesn't fry SD-Cards by mistake: VSELECT is indeed
-connected to a 1.8V/3.3V switch powering vqmmc?
-
-> +/* SD Card */
-> +&usdhc2 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-> +	assigned-clock-rates = <400000000>;
-
-I wonder why this is necessary. Do you see a difference
-in /sys/kernel/debug/mmcX/ios between having this and leaving
-it out?
-
-> +	status = "okay";
-> +};
-> +
-> +/* eMMc */
-
-eMMC
-
-> +&usdhc3 {
-> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
-> +	assigned-clock-rates = <400000000>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-
-
-Cheers,
-Ahmad
-
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index a5f87a8629d6..e953165f3b73 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -51,6 +51,14 @@ vreg_l7a: ldo7 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l11a: ldo11 {
++			regulator-name = "vreg_l11a";
++			regulator-min-microvolt = <880000>;
++			regulator-max-microvolt = <880000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-allow-set-load;
++		};
++
+ 		vreg_l13a: ldo13 {
+ 			regulator-name = "vreg_l13a";
+ 			regulator-min-microvolt = <3072000>;
+@@ -139,6 +147,27 @@ vreg_l8g: ldo8 {
+ 	};
+ };
+ 
++&pcie3a {
++	ranges = <0x01000000 0x0 0x32200000 0x0 0x32200000 0x0 0x100000>,
++	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
++	         <0x03000000 0x6 0x00000000 0x6 0x00000000 0x2 0x00000000>;
++
++	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
++	wake-gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie3a_default>;
++
++	status = "okay";
++};
++
++&pcie3a_phy {
++	vdda-phy-supply = <&vreg_l11a>;
++	vdda-pll-supply = <&vreg_l3a>;
++
++	status = "okay";
++};
++
+ &qup2 {
+ 	status = "okay";
+ };
+@@ -158,6 +187,31 @@ &remoteproc_nsp1 {
+ 	status = "okay";
+ };
+ 
++&tlmm {
++	pcie3a_default: pcie3a-default-state {
++		perst-pins {
++			pins = "gpio151";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-down;
++		};
++
++		clkreq-pins {
++			pins = "gpio150";
++			function = "pcie3a_clkreq";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		wake-pins {
++			pins = "gpio56";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++	};
++};
++
+ &ufs_mem_hc {
+ 	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+ 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.38.1
 
