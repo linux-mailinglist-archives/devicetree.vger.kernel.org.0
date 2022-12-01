@@ -2,195 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D85C763FBD6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC42663FBE6
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:23:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbiLAXTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 18:19:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50514 "EHLO
+        id S231493AbiLAXXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 18:23:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbiLAXTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:19:39 -0500
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DCCFC4616;
-        Thu,  1 Dec 2022 15:19:38 -0800 (PST)
-Received: by mail-oi1-f175.google.com with SMTP id c129so3761371oia.0;
-        Thu, 01 Dec 2022 15:19:38 -0800 (PST)
+        with ESMTP id S231641AbiLAXXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:23:03 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1784B99E;
+        Thu,  1 Dec 2022 15:23:01 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13bd2aea61bso4006642fac.0;
+        Thu, 01 Dec 2022 15:23:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4GnbnfIwAM1UBElWd+eLU8pdL/dphftoMctGcclLKzw=;
-        b=ql6/LVu35Dd0H75HRLOnHN9A3ArImHTH5LbAUl31TZDEfLTQ4CwxV+LEb7e335p7/x
-         qSFmyut0mSpw3MhZltNW0gX0Oletc6VH5VzcqYXThn8caiEwZM1vIy9z2aUK3Srte3I9
-         I4xlqccTHz8Ate9nqR3V7MYwaewG2uDULUkI+ugjqdo3/d/oVym6CboFSJri7sZRzGjB
-         LcUZIrp0UcLAELh7a2eJEkxVALbXN5gOpavDf0kRMNERpS4XV4Mya8ybhbv6ExpwoEhT
-         qDjMMnrnL9LnbgEKaju62NW8kZN8oFIRvX1BrnCWvt1xxyS3WCQ9pESWn1qphbEnhocQ
-         iWcg==
-X-Gm-Message-State: ANoB5pkF1RmCjEqD9rpKJIVMMgs/Lxzek8Za0ZEICr9pRYpWXus4sKCQ
-        Jn0uYBldTxkPjDQTHcUBcw==
-X-Google-Smtp-Source: AA0mqf6LUacexCNxfUGxQ17BkFB08L9QiNMNHe0Eg9i7cd8dUW4mlTa6hPo0iYXWKDpyFut5cKRJHA==
-X-Received: by 2002:a05:6808:2188:b0:35b:d987:bcf5 with SMTP id be8-20020a056808218800b0035bd987bcf5mr4203652oib.101.1669936777539;
-        Thu, 01 Dec 2022 15:19:37 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWHREg3K9q2Uq2ob8YkTAtl0cbLjNrJW4Aev5O+DjTk=;
+        b=ZRk8Y+ljFgcdZUFC9Z491YanklEXBiUWLo28SJuoHdeL0A6HnMVADfQ/KIOwhVWQR9
+         U9zMI6/EIlcbuCrQP2Eo2FoOlekewFSMMkD8clEOPzWgsfiPUh0BQG8Klchj80cTIy93
+         /rr9xGPiqKL119ZQvegzxpXYBadZ/0tDSdf9CYka+6Rd7mjhWjbCRWGpA14X9vM8tXOh
+         oaGsGkzZjGQtnXu5UfPXcunDq57sdmN/lEZyJ+9KvbjO4jgeET0dXawnyh7hdwKJHyLr
+         nG86gnINqS4RfzeurPSWPGGRoXhso6+TS1bgVcDUQFE2pCdovG9bFXcQny6zgVVmRuTK
+         /HZg==
+X-Gm-Message-State: ANoB5plg1H3fLeKsLlXwI5FMwrvLN2eHk7QcfCoeAEuYnl0294bx1zEe
+        lJnwaIOV6CLD2UOa8VC9pg==
+X-Google-Smtp-Source: AA0mqf7DmRJSFtG8dcbg49pfVMbnv1yJ+mEa1tNolTW9KSHVjM4y2+6Ho9iGfbmZXERvKMU+zCeNLQ==
+X-Received: by 2002:a05:6870:d7a5:b0:142:80e3:1dbd with SMTP id bd37-20020a056870d7a500b0014280e31dbdmr39257160oab.253.1669936981101;
+        Thu, 01 Dec 2022 15:23:01 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 124-20020a4a0d82000000b0049fcedf1899sm2296342oob.3.2022.12.01.15.19.36
+        by smtp.gmail.com with ESMTPSA id ay19-20020a056808301300b00354b0850fb6sm2381703oib.33.2022.12.01.15.23.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 15:19:36 -0800 (PST)
-Received: (nullmailer pid 1667342 invoked by uid 1000);
-        Thu, 01 Dec 2022 23:19:36 -0000
-Date:   Thu, 1 Dec 2022 17:19:36 -0600
+        Thu, 01 Dec 2022 15:23:00 -0800 (PST)
+Received: (nullmailer pid 1671892 invoked by uid 1000);
+        Thu, 01 Dec 2022 23:22:59 -0000
+Date:   Thu, 1 Dec 2022 17:22:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Chukun Pan <amadeus@jmu.edu.cn>,
+        "David S . Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        David Wu <david.wu@rock-chips.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH v2 01/21] dt-bindings: display: tegra: add Tegra20 VIP
-Message-ID: <20221201231936.GB1660613-robh@kernel.org>
-References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
- <20221128152336.133953-2-luca.ceresoli@bootlin.com>
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rk3568 xpcs
+ compatible
+Message-ID: <20221201232259.GA1668339-robh@kernel.org>
+References: <20221129072714.22880-1-amadeus@jmu.edu.cn>
+ <4692527.5fSG56mABF@diego>
+ <8eb78282-08c2-24bf-4049-5c610dd781fc@linaro.org>
+ <3689593.Mh6RI2rZIc@diego>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221128152336.133953-2-luca.ceresoli@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3689593.Mh6RI2rZIc@diego>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 04:23:16PM +0100, Luca Ceresoli wrote:
-> VIP is the parallel video capture component within the video input
-> subsystem of Tegra20 (and other Tegra chips, apparently).
+On Tue, Nov 29, 2022 at 11:22:28AM +0100, Heiko Stübner wrote:
+> Am Dienstag, 29. November 2022, 10:59:34 CET schrieb Krzysztof Kozlowski:
+> > On 29/11/2022 10:56, Heiko Stübner wrote:
+> > > Am Dienstag, 29. November 2022, 09:49:08 CET schrieb Krzysztof Kozlowski:
+> > >> On 29/11/2022 08:27, Chukun Pan wrote:
+> > >>> The gmac of RK3568 supports RGMII/SGMII/QSGMII interface.
+> > >>> This patch adds a compatible string for the required clock.
+> > >>>
+> > >>> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 6 ++++++
+> > >>>  1 file changed, 6 insertions(+)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> > >>> index 42fb72b6909d..36b1e82212e7 100644
+> > >>> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> > >>> @@ -68,6 +68,7 @@ properties:
+> > >>>          - mac_clk_rx
+> > >>>          - aclk_mac
+> > >>>          - pclk_mac
+> > >>> +        - pclk_xpcs
+> > >>>          - clk_mac_ref
+> > >>>          - clk_mac_refout
+> > >>>          - clk_mac_speed
+> > >>> @@ -90,6 +91,11 @@ properties:
+> > >>>        The phandle of the syscon node for the peripheral general register file.
+> > >>>      $ref: /schemas/types.yaml#/definitions/phandle
+> > >>>  
+> > >>> +  rockchip,xpcs:
+> > >>> +    description:
+> > >>> +      The phandle of the syscon node for the peripheral general register file.
+> > >>
+> > >> You used the same description as above, so no, you cannot have two
+> > >> properties which are the same. syscons for GRF are called
+> > >> "rockchip,grf", aren't they?
+> > > 
+> > > Not necessarily :-) .
+> > 
+> > OK, then description should have something like "...GRF for foo bar".
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Actually looking deeper in the TRM, having these registers "just" written
+> to from the dwmac-glue-layer feels quite a bit like a hack.
 > 
-> ---
+> The "pcs" thingy referenced in patch2 actually looks more like a real device
+> with its own section in the TRM and own iomem area. This pcs device then
+> itself has some more settings stored in said pipe-grf.
 > 
-> Changed in v2 (suggested by Krzysztof Kozlowski):
-> - remove redundant "bindings" from subject line
-> - remove $nodename
-> - add channel@0 description
-> - add reg: const: 0
-> ---
->  .../display/tegra/nvidia,tegra20-vip.yaml     | 63 +++++++++++++++++++
->  MAINTAINERS                                   |  7 +++
->  2 files changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> new file mode 100644
-> index 000000000000..44be2e16c9b4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-vip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra VIP (parallel video capture) controller
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra20-vip
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  channel@0:
+> So this looks more like it wants to be an actual phy-driver.
 
-Kind of odd there is only 1 channel with a unit-address. Are more 
-channels coming? Please make the binding as complete as possible even if 
-no driver support yet.
+There's a PCS binding now. Seems like it should be used if there is 
+also a PHY already. PCS may be part of the PHY or separate block AIUI.
 
-
-> +    description: parallel video capture interface for the VI
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        const: 0
-> +
-> +      ports:
-> +        $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +        properties:
-> +          port@0:
-> +            $ref: /schemas/graph.yaml#/properties/port
-> +            description:
-> +              Port receiving the video stream from the sensor
-> +
-> +          port@1:
-> +            $ref: /schemas/graph.yaml#/properties/port
-> +            description:
-> +              Port sending the video stream to the VI
-> +
-> +        required:
-> +          - port@0
-> +          - port@1
-> +
-> +    additionalProperties: false
-
-A bit easier to read the indented cases if this is above 'properties'.
-
-> +
-> +    required:
-> +      - reg
-> +      - ports
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - channel@0
-> +
-> +# see nvidia,tegra20-vi.yaml for an example
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 69565ac0c224..92c762f85f17 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20315,6 +20315,13 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
->  F:	drivers/staging/media/tegra-video/
->  
-> +TEGRA VIDEO DRIVER FOR TEGRA20 VIP (PARALLEL VIDEO CAPTURE)
-> +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
-> +L:	linux-media@vger.kernel.org
-> +L:	linux-tegra@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
-> +
->  TEGRA XUSB PADCTL DRIVER
->  M:	JC Kuo <jckuo@nvidia.com>
->  S:	Supported
-> -- 
-> 2.34.1
-> 
-> 
+Rob
