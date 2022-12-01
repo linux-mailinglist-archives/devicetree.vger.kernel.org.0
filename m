@@ -2,120 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC07D63F85F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A9E63F876
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 20:40:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbiLATe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 14:34:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
+        id S230128AbiLATka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 14:40:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230417AbiLATeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:34:10 -0500
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A0117883;
-        Thu,  1 Dec 2022 11:32:50 -0800 (PST)
-Received: by mail-oi1-f175.google.com with SMTP id v82so3119750oib.4;
-        Thu, 01 Dec 2022 11:32:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SmJRKIwqBp8gbnNMB6ag+fH04itLVPSAiCRSKnEYWIE=;
-        b=hAUSF4xG4hh6r8GdTzmDPwWiPqbF5hdtiIPW46K3ElnGIdqbz8dJDGUlJezyWA5uKh
-         Y9HKwgCyJAY6lfK/VtfZDEtuDE3AwxW60ihhsW85S9TvC9y8W6UDFNBqGN9hLBHoQPyA
-         os95G6yr3tOpMeXtSAsl/Z4ce/EdOu1gOGYKnNHvTvaUhgTZOlGdVz7t6EucaGqNnB8k
-         ACLABYtd8Eq//NMDFLyWvxRZbHR83yJR7fI7k7xZaA44uZJQ/Womo2NWHvR08+mF+kDa
-         XvaeAYRI6duO7pno0yqUTWGdvbNSatfRV2KokF8O7OBi4nWIWBhNczuNDUn8JTKrFVlr
-         WZeQ==
-X-Gm-Message-State: ANoB5pnxOzrR/gHbYj5ymOB+iyGchUwFnqW5EjJWMMvhmOPIu7vaO4GO
-        gPlorxo0SzXPykhdaYfSIg==
-X-Google-Smtp-Source: AA0mqf76S50/fCO8mJTuqErpyB2kZCnIKu73wy3rgo6CPDCs+HL87HJ2zzP7LGwz5k3YUTQnYyjZfw==
-X-Received: by 2002:a05:6808:8c9:b0:351:1a63:a74c with SMTP id k9-20020a05680808c900b003511a63a74cmr23789693oij.288.1669923169283;
-        Thu, 01 Dec 2022 11:32:49 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z95-20020a9d24e8000000b0066101e9dccdsm2524124ota.45.2022.12.01.11.32.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 11:32:48 -0800 (PST)
-Received: (nullmailer pid 1203239 invoked by uid 1000);
-        Thu, 01 Dec 2022 19:32:47 -0000
-Date:   Thu, 1 Dec 2022 13:32:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
-Message-ID: <20221201193247.GA1190273-robh@kernel.org>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-4-yanhong.wang@starfivetech.com>
- <36565cc1-3c48-0fa8-f98b-414a7ac8f5bf@linaro.org>
- <Y4jl6awCMFgZsQGC@spud>
+        with ESMTP id S229727AbiLATk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 14:40:29 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB8A49790F;
+        Thu,  1 Dec 2022 11:40:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=8ohI0dOzt+JffUBvEqUqyBPSGVnWVbhSEHTKkIfOYI4=; b=Q6qnuuPcY3Z+rEmj6GcAyBWSdY
+        qskQtUoTBkfExug3nBVa5Hhz1yjm3eMUDAqKqqHW7bcGwVQoGAoCzfsdcoceFdgLNCHrzy1ZwDAPQ
+        RJwsZzOga9P+Guy7gWvRUTR5ytFFMGk1OGGwIDrQrHsvZ7XBnutFu9hXEI0TxKKAbYcw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p0pQ0-0045i8-NG; Thu, 01 Dec 2022 20:40:24 +0100
+Date:   Thu, 1 Dec 2022 20:40:24 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Tim Harvey <tharvey@gateworks.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 0/3] add dt configuration for dp83867 led modes
+Message-ID: <Y4kDKI0NCFRt/jBv@lunn.ch>
+References: <20221118001548.635752-1-tharvey@gateworks.com>
+ <Y3bRX1N0Rp7EDJkS@lunn.ch>
+ <CAJ+vNU3P-t3Q1XZrNG=czvFBU7UsCOA_Ap47k9Ein_3VQy_tGw@mail.gmail.com>
+ <Y3eEiyUn6DDeUZmg@lunn.ch>
+ <CAJ+vNU2pAQh6KKiX5x7hFuVpN68NZjhnzwFLRAzS9YZ8bWm1KA@mail.gmail.com>
+ <Y3q5t+1M5A0+FQ0M@lunn.ch>
+ <CAJ+vNU0yjsJjQLWbtZmswQOyQ6At-Qib8WCcVcSgtDmcFQ3hGQ@mail.gmail.com>
+ <6388f310.050a0220.532be.7cd5@mx.google.com>
+ <CAJ+vNU2AbaDAMhQ0-mDh6ROC7rdkbmXoiSijRTN2ryEgT=QHiQ@mail.gmail.com>
+ <6388f4ab.5d0a0220.a137.068e@mx.google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y4jl6awCMFgZsQGC@spud>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <6388f4ab.5d0a0220.a137.068e@mx.google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 05:35:37PM +0000, Conor Dooley wrote:
-> On Thu, Dec 01, 2022 at 05:21:04PM +0100, Krzysztof Kozlowski wrote:
-> > On 01/12/2022 10:02, Yanhong Wang wrote:
-> > > Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
-> > 
-> > Subject: drop second, redundant "bindings".
-> > 
-> > > 
-> > > Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> > > ---
-> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > 
-> > Drop oneOf. You do not have more cases here.
-> > 
-> > > +      - items:
-> > > +          - enum:
-> > > +               - starfive,dwmac
-> > 
-> > Wrong indentation.... kind of expected since you did not test the bindings.
-> > 
-> > > +          - const: snps,dwmac-5.20
-> 
-> Disclaimer: no familiarity with the version info with DW stuff
-> 
-> Is it a bit foolish to call this binding "starfive,dwmac"? Could there
-> not be another StarFive SoC in the future that uses another DW mac IP
-> version & this would be better off as "starfive,jh7110-dwmac" or similar?
+> But I never got a review from LED team and that result in having the
+> patch stalled and never merged... But ok I will recover the work and
+> recheck/retest everything from the start hoping to get more traction
+> now...
 
-Yes. Really, *only* "starfive,jh7110-dwmac" is enough IMO. 
+There are a few emails suggesting the LED team has disappeared, and
+there are a lot of patches waiting to be merged. I think they were
+asking GregKH if he could do something about this.
 
-The question is what would the OS do with only understanding 
-"snps,dwmac-5.20"? The answer is typically nothing because it isn't 
-enough information to act on. So that compatible is not needed. Maybe 
-the driver can do some things based on version, but that can be implied 
-from the compatible (if not read from a register). And often, the exact 
-version is not known, so do you want to hardcode a guess in DT? For 
-these reasons, we've moved away from using these generic IP compatibles 
-(with or without versions).
+https://lore.kernel.org/netdev/Y3zQ5ZtAU4NL3hG4@smile.fi.intel.com/
 
-Rob
+I don't know if anything has changed since then.
+
+Until this is solved, i don't think you will get much from the LED
+people. Best you can get is more netdev reviews.
+
+	Andrew
