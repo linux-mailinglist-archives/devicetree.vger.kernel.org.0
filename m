@@ -2,114 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3558863F284
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:17:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B15A63F296
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 15:20:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231799AbiLAORE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 09:17:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59706 "EHLO
+        id S231253AbiLAOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 09:20:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiLAOQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:16:49 -0500
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEF7C7705
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:16:47 -0800 (PST)
-Received: by mail-pf1-x432.google.com with SMTP id h28so1966628pfq.9
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:16:47 -0800 (PST)
+        with ESMTP id S231739AbiLAOU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 09:20:26 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD40597937
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 06:20:20 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id l8so2012429ljh.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 06:20:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IbPGPAIi0isMdoE0z4k6H2LnC1A8GtyTgAXJMtQTO78=;
-        b=ufvToVa5IkWraBoaTPmAvV5DvUhTgt+q1SFomWqG1EBBU+6OQx8Oah5hzXQ8vVQYws
-         2cvdCyCp5/0b6hSnwPcf7uRlpZSCColhnCyzUsW00cixF3B9ZFLzD+BSt6g+1aqzpune
-         1rYx3IDTX6Dhi6hyka3CGQDuLgXd/ua7MF2Po9yLjJrsb7UuGCHpb3c50ey1n7JxOyLn
-         tTml3jRuHgtaeUY9m1rOBxkrMPh0ubjTOpZUbxsO2VHZSz2bq0IcNHiJF2yvVI3SBbrZ
-         4HxH0u9Qu6bYC1oM8Pti55/NWWCd8hw6Nj7Zthh61CLsJbpM7GpTWm0MOlR5pIP/vq6L
-         6ndQ==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T6nSuHE3Pr/44zedu7eUKGL+66HovS1bsuN5zk6+UNg=;
+        b=sE4Aqubu/Yue3DMRz9z7mJoZMtU8Sjuk8KH8a3UwLnb6Iiqi60SYzB/rZibodoaEJ4
+         GnXmNvj3eEeB2g5ex89jlJtSlT21VWDCeLLhwJGH74P0LfyvtWSEiie3xpVGmFGpvfae
+         rS2AZ8EgXcr5zoqL6uoGEXyBHmFXI3s1XM95XYd3+CuWBJmfiN/s21v1licFax/YkwDJ
+         EES6vaZTYOqT5uhzKthCmto5Kd8HmWlqUd8yK8pPowZUirIaL97B0mp32W75cTqEnzjm
+         3oHLUbuBsk0+e/DlDNoSSpDN+kdL40vzIQx/jHsqvfUkcMuMCZimxBvCqPF7a6uKW9wk
+         Kl7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IbPGPAIi0isMdoE0z4k6H2LnC1A8GtyTgAXJMtQTO78=;
-        b=GdneANwnbjzGox06Su0UufxSqHAtR2rCAnMA6ud+SRKcwvn71VG8kCV2gVxWKJPfr9
-         RgOhvcM7+JOdjq/D2Wnt3ncPDCGlHzAfi5cO5dM/PNp77f+yKiUYSOA3ocdG4SLqSWmR
-         DTTJSYpGvydteZU8E2ckqr/eti+3icXymH60Sd6A3OVSOfJK+fByha9rgK19ioS8vew5
-         urSWuuSFhJW1ieqQwp84fmA6WzS7+bLuJLOcbwUX60bK5BL7b5+ZdCy2v9R5CYSfBYs2
-         yWytk4ILCC5UmM8ZyQ5cNWNPBMnmU/wnCS+cCgm3fWykMYyorib2DhFlBtWEEFXzPACP
-         SwkA==
-X-Gm-Message-State: ANoB5plFnRlpJYXD4KBA04fXhzNEQBRjXqRWEjKV9co68MwT58WaLGMa
-        Lgzrqq/o+FP9TCIqj4JK87cx9A==
-X-Google-Smtp-Source: AA0mqf6wK4FApSY882RUW0IFdDzpJRGpItthpoBtBuoxFxInI3eavxHBziwgVrfV01Jd62+ZQRnwyg==
-X-Received: by 2002:a63:d516:0:b0:477:857d:d264 with SMTP id c22-20020a63d516000000b00477857dd264mr40708942pgg.224.1669904206567;
-        Thu, 01 Dec 2022 06:16:46 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:1c61:2814:c945:522d:e948:beb1])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170902ff0200b0018975488514sm3663041plj.126.2022.12.01.06.16.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 06:16:46 -0800 (PST)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, bhupesh.sharma@linaro.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T6nSuHE3Pr/44zedu7eUKGL+66HovS1bsuN5zk6+UNg=;
+        b=L+aSiAtbEvoR4FB57nBat8pbjtX76w2IKM7+bRXZU16qAXGwtnb5b5XkKcbkrm7rDp
+         621L8dypjZhfM+C020e9/Ht+fiF3hyPZoIFydppeQhdsaieKNRVsyX6WZ9PsoX9mguvj
+         xU2QdGW/rHQ/OI0z6rmqL0iDa0XkGX/CZFSy88oU35Gva3vUhaBgvsolVjSgJ/h+HB/E
+         5DQB+/xaEufBCcL+6w5mk5G5M7nE02Qw3/5RsVfbW0CISWkuzSmTWCtkHgTrHZ4QcyeC
+         EahC4vDko+LNJshV5ua5rygpuAiBmukYdUiPlOGxFvEz1ycfmJfRUumg1sLE7pSkwCOG
+         lg3A==
+X-Gm-Message-State: ANoB5pl+xRwlToMLxD7kaH1DpRCLAQSIl/zw2saJlYzc2NDlm/BgVTOL
+        ipCs0Anclxazb8aAgQZ1EK2zCA==
+X-Google-Smtp-Source: AA0mqf7If5LbRmEcs/C6uyWO55A1UHXJQ+iDtv5psBgvbNuUJ38KnMDCkzKCTSkbYeB6kedias/CPw==
+X-Received: by 2002:a2e:8946:0:b0:279:d37e:3f6d with SMTP id b6-20020a2e8946000000b00279d37e3f6dmr1039171ljk.163.1669904419136;
+        Thu, 01 Dec 2022 06:20:19 -0800 (PST)
+Received: from [192.168.1.101] (95.49.124.14.neoplus.adsl.tpnet.pl. [95.49.124.14])
+        by smtp.gmail.com with ESMTPSA id x17-20020a056512079100b004b3b7557893sm657241lfr.259.2022.12.01.06.20.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 06:20:17 -0800 (PST)
+Message-ID: <a1af5928-4f3f-39f8-94b7-31fbf84143f2@linaro.org>
+Date:   Thu, 1 Dec 2022 15:20:15 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom,ids: Add SoC IDs for SM8150
+ and SA8155
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, andersson@kernel.org,
         a39.skl@gmail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH 4/4] soc: qcom: socinfo: Add SM6115 / SM4250 SoC IDs to the soc_id table
-Date:   Thu,  1 Dec 2022 19:46:19 +0530
-Message-Id: <20221201141619.2462705-5-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
 References: <20221201141619.2462705-1-bhupesh.sharma@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <20221201141619.2462705-2-bhupesh.sharma@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221201141619.2462705-2-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC ID table entries for the SM6115 / SM4250 and variants.
 
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- drivers/soc/qcom/socinfo.c | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index 92b27db60840..8f9e3d0e0526 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -328,11 +328,13 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(IPQ8071A) },
- 	{ qcom_board_id(IPQ6018) },
- 	{ qcom_board_id(IPQ6028) },
-+	{ qcom_board_id(SM4250) },
- 	{ qcom_board_id(IPQ6000) },
- 	{ qcom_board_id(IPQ6010) },
- 	{ qcom_board_id(SC7180) },
- 	{ qcom_board_id(SM6350) },
- 	{ qcom_board_id(SM8350) },
-+	{ qcom_board_id(SM6115) },
- 	{ qcom_board_id(SC8280XP) },
- 	{ qcom_board_id(IPQ6005) },
- 	{ qcom_board_id(QRB5165) },
-@@ -340,6 +342,8 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(SM7225) },
- 	{ qcom_board_id(SA8295P) },
- 	{ qcom_board_id(SA8540P) },
-+	{ qcom_board_id(QCM4290) },
-+	{ qcom_board_id(QCS4290) },
- 	{ qcom_board_id_named(SM8450_2, "SM8450") },
- 	{ qcom_board_id_named(SM8450_3, "SM8450") },
- 	{ qcom_board_id(SC7280) },
--- 
-2.38.1
+On 1.12.2022 15:16, Bhupesh Sharma wrote:
+> Add SoC IDs for Qualcomm SM8150 and SA8155 SoCs.
+> 
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
+Konrad
+>  include/dt-bindings/arm/qcom,ids.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+> index 8b1a0f43bd93..5e0524991e99 100644
+> --- a/include/dt-bindings/arm/qcom,ids.h
+> +++ b/include/dt-bindings/arm/qcom,ids.h
+> @@ -102,6 +102,7 @@
+>  #define QCOM_ID_SDA658			326
+>  #define QCOM_ID_SDA630			327
+>  #define QCOM_ID_SDM450			338
+> +#define QCOM_ID_SM8150			339
+>  #define QCOM_ID_SDA845			341
+>  #define QCOM_ID_IPQ8072			342
+>  #define QCOM_ID_IPQ8076			343
+> @@ -112,6 +113,7 @@
+>  #define QCOM_ID_SDA632			350
+>  #define QCOM_ID_SDA450			351
+>  #define QCOM_ID_SM8250			356
+> +#define QCOM_ID_SA8155			362
+>  #define QCOM_ID_IPQ8070			375
+>  #define QCOM_ID_IPQ8071			376
+>  #define QCOM_ID_IPQ8072A		389
