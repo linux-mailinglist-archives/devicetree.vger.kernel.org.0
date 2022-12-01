@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 162AA63EB58
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:42:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5EB63EB57
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 09:42:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbiLAImr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229790AbiLAImr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 1 Dec 2022 03:42:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42986 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbiLAImo (ORCPT
+        with ESMTP id S229772AbiLAImo (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 03:42:44 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD0DE0B4
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 00:42:39 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id b11so1237888pjp.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 00:42:39 -0800 (PST)
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A8D132
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 00:42:42 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id h193so1058769pgc.10
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 00:42:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/WOeFuUzcolWHnZuc7pdP9VxPOXM1oDwP4XAacQirfk=;
-        b=Db38O9+lHRZcLVg6Gbmwkz4xrvTz6HETUHmq8LkST7DxaWmHW8hiFgaJcnDpokbDcd
-         HkWqdpu6rZKau4iS4Tj0gu2ffXPotKHe3uk3GmiiO7OK+GCSwDXx1EqCZ5ZovhHk8GSU
-         HIsmrI4RclhucCrtNGW8OWPxuNtI3F4nE08vY=
+        bh=pEDSSsGGM8AAJ08Auy3dp0LttRqfjGQgPHRv4DynzpI=;
+        b=JHG3IJ5JSznG6iCGYmm3FiA0E7POVkCHlHG7XLvYJlBlS8s4Ba6MxkQ6SeLKll4P9l
+         ccNoLbhVbNntAuDvg+izoM0R3lAP89T5vwxqu97HmlQ/7dTSiDe7Um1JCRJCC8bohxjn
+         cnEn91GHN9Ac1Iio8VqHyRJc+wFgln0Zwh40M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/WOeFuUzcolWHnZuc7pdP9VxPOXM1oDwP4XAacQirfk=;
-        b=jLN/NbZm236VbJsSjZk+QtE2G9kdua2edwK8VoNqnkn1SdTWHKPAlLkooRgKrhb5ks
-         bzyQ6S3Cpen4Wz8INn/YpW2yrnheia57cR5bCL6GTsFb2/pnYr7TcYdlw6UgS74VjegO
-         o7FM/G2kXAfvbLsqQYSe0SF6uKn68sYeUJCGBuq9/KvhdiWrfKD2DrQC8hzcnBq1lQbJ
-         yPu20L6z/uOA5mUIiZ+DDh4dcvSnB1R0JyQaRz3jfpFtB3flVM9n/8gQXAGOwEm4xh5M
-         BUSKpoQFq/rF4VjC/MgppCkSze7hh85lPwO23xW0U1EJ44NejVOxgLmMNj76vIeUJUeC
-         DAdQ==
-X-Gm-Message-State: ANoB5plGg4eq/QmILtaw3WNCcg8flKJr0ugVRrbiel1qg6JUKpYxy3Sy
-        SO5574k4Q4mhBiVXr5qK0zAsxQ==
-X-Google-Smtp-Source: AA0mqf41cigCeKSKmoN4bvphHgVPZ/wH2bU7xeJPntvphumOR1EcxVdeLfSSCX1ZL+sef2jSk8zT0g==
-X-Received: by 2002:a17:903:4051:b0:170:f343:ba14 with SMTP id n17-20020a170903405100b00170f343ba14mr46469201pla.70.1669884159302;
-        Thu, 01 Dec 2022 00:42:39 -0800 (PST)
+        bh=pEDSSsGGM8AAJ08Auy3dp0LttRqfjGQgPHRv4DynzpI=;
+        b=xsthpYNUS/LvIu7AXlBW1Euoz3wUWyZqRJZ2XWuGAfvtwo7JxFT/upFK2Eqwz5aL8C
+         vcwzScBU3iCTgOX/V3/5zpVtrWZl/tMDf7Jrp4znfFy2PqwInNjzuEkObDE2WRNsrJig
+         vAS+Ms4j+rmpXyVLrI5QaKwZqR3Z2hsjZgHxomdl3kvoyEzUE4Ga+otn63upzZz1aPH0
+         D5dzBQRGM//WTPZFywAaX7DyvpVMRPGko0zDgSrp0Kbf/RA0pecYzOtTuD5AydWQH1Bi
+         Npn915nuwm884VFDAu3IrJ0ATkYYhh0PXbHwrNkgl0Cnu8qmE5uJbe0r2ZCVuTBu7BSL
+         ZgPA==
+X-Gm-Message-State: ANoB5pkDJ8Bcr/97MB3Oc3Rld5akJkXI5LbqURikXDJUUiEbL5kugTjq
+        UU2qzqSFV4vyVa8SDVmdCUwNkg==
+X-Google-Smtp-Source: AA0mqf7FyYTwcmw9tGrsj+b4l/tHPqvoUEIpnviYSG3/NSB7K4eKIhAfRVx7XgZPfbPoxY9gp0nx0g==
+X-Received: by 2002:a63:da10:0:b0:477:ccac:6eb5 with SMTP id c16-20020a63da10000000b00477ccac6eb5mr30861853pgh.41.1669884161760;
+        Thu, 01 Dec 2022 00:42:41 -0800 (PST)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:2416:fa4e:4eeb:fcde])
-        by smtp.gmail.com with ESMTPSA id j5-20020a170902690500b001708c4ebbaesm2932293plk.309.2022.12.01.00.42.36
+        by smtp.gmail.com with ESMTPSA id j5-20020a170902690500b001708c4ebbaesm2932293plk.309.2022.12.01.00.42.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 00:42:38 -0800 (PST)
+        Thu, 01 Dec 2022 00:42:41 -0800 (PST)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Chen-Yu Tsai <wenst@chromium.org>,
@@ -57,9 +57,9 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         <angelogioacchino.delregno@collabora.com>,
         =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
         <nfraprado@collabora.com>
-Subject: [PATCH 2/4] arm64: dts: mediatek: mt8192: Fix systimer 13 MHz clock description
-Date:   Thu,  1 Dec 2022 16:42:27 +0800
-Message-Id: <20221201084229.3464449-3-wenst@chromium.org>
+Subject: [PATCH 3/4] arm64: dts: mediatek: mt8195: Fix systimer 13 MHz clock description
+Date:   Thu,  1 Dec 2022 16:42:28 +0800
+Message-Id: <20221201084229.3464449-4-wenst@chromium.org>
 X-Mailer: git-send-email 2.38.1.584.g0f3c55d4c2-goog
 In-Reply-To: <20221201084229.3464449-1-wenst@chromium.org>
 References: <20221201084229.3464449-1-wenst@chromium.org>
@@ -79,25 +79,27 @@ The systimer block derives its 13 MHz clock by dividing the main 26 MHz
 oscillator clock by 2 internally, not through the TOPCKGEN clock
 controller.
 
-On the MT8192 this divider is fixed to /2 and is not configurable.
+On the MT8195 this divider is set either by power-on-reset or by the
+bootloader. The bootloader may then make the divider unconfigurable to,
+but can be read out by, the operating system.
 
 Making the systimer block take the 26 MHz clock directly requires
 changing the implementations. As an ABI compatible fix, change the
 input clock of the systimer block a fixed factor divide-by-2 clock
 that takes the 26 MHz oscillator as its input.
 
-Fixes: 48489980e27e ("arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile")
+Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index fc39ccc0d4bf..ab4d4f605493 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -29,6 +29,15 @@ aliases {
- 		rdma4 = &rdma4;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 5d31536f4c48..60e15833956e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -248,6 +248,15 @@ sound: mt8195-sound {
+ 		status = "disabled";
  	};
  
 +	clk13m: fixed-factor-clock-13m {
@@ -109,19 +111,18 @@ index fc39ccc0d4bf..ab4d4f605493 100644
 +		clock-output-names = "clk13m";
 +	};
 +
- 	clk26m: oscillator0 {
+ 	clk26m: oscillator-26m {
  		compatible = "fixed-clock";
  		#clock-cells = <0>;
-@@ -534,8 +543,7 @@ systimer: timer@10017000 {
+@@ -705,7 +714,7 @@ systimer: timer@10017000 {
  				     "mediatek,mt6765-timer";
  			reg = <0 0x10017000 0 0x1000>;
- 			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&topckgen CLK_TOP_CSW_F26M_D2>;
--			clock-names = "clk13m";
+ 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
+-			clocks = <&topckgen CLK_TOP_CLK26M_D2>;
 +			clocks = <&clk13m>;
  		};
  
- 		pwrap: pwrap@10026000 {
+ 		pwrap: pwrap@10024000 {
 -- 
 2.38.1.584.g0f3c55d4c2-goog
 
