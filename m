@@ -2,229 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B7763ED7B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:19:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D4A63ED8A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:21:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230408AbiLAKT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:19:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
+        id S230314AbiLAKVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:21:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230321AbiLAKTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:19:04 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDBE983BA
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:19:03 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id b3so1775711lfv.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:19:03 -0800 (PST)
+        with ESMTP id S230241AbiLAKVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:21:18 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0031998959
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:21:07 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id g12so1782485lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:21:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:disposition-notification-to
-         :from:references:cc:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PuxOJHGDccJjZFhK+Cj93qZjBJ3bjpMlB1Gplol81Gg=;
-        b=YXOlmvvd/tYT37+FhjtNXMi/mmXPmR95cfKWQRopG0ACX0voka4wCVc0OPkepSCbTW
-         vFIfKbOC6jZEz96oNoQFHVlcX1S8GRGpT7loa965cMNPtmamduN8UdEs717P0s76WkHL
-         0cGKaaoPCoKjr/C3AQcekADZuXKqXcGHV3ZjDTiF4+1DNkzFFeKfAU2uWcjsjm05kftv
-         hFKNhUW4NNTlJR/XJmpinhSD3fS4tcdF+HgvBiNxDnc7i8jQSeDzl92ZyFuJ7WA/vhYd
-         QW/V4dH4SflKzKOhYDP7ZjZhpyXSYUTBuI9vuJ71kctEEUS/1OfiZwfESqgN6/YPZTdS
-         3GpQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yJWC4EnSIdOHOak+Y01i6W7TmDZjyxRR2uPhy+FOZLk=;
+        b=czOauT1/LL1bLcLrnxMZ7LyUIUmobSmtcydtd7PTiowxd5khBSoAy8Q5Jh0363tYBX
+         mK6jk8DukOA5/cDl1CBuODKtFLZZ4KfXpQGGA5QLqsxFd8hb8DU8/pWLYe5lT8KxvPHX
+         2+605fUYdZQDOI8zSJuqoHxbtfkc1czcwu19yr+IB2DL/MOcMz5r+65zOnMIyKXdmHjH
+         RR9S+Bb+UGytEvll9EFZUpNH1RYOlvOsEomq0QEkxeStmNzb8RCAKaFyyayaLEcisv8A
+         kD0BdlRMNBTNf3S8XK1Jsl6LMH5QKLS/hEAotw654okuI+vL/RhU4XWmIcVm5hAEREqj
+         s+Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:disposition-notification-to
-         :from:references:cc:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PuxOJHGDccJjZFhK+Cj93qZjBJ3bjpMlB1Gplol81Gg=;
-        b=xqJydnB7d2CdsMW5E3EnHVekMNGL7ml4G+LQIz8V0wbaFRiybWjasHOPqDb6FQ3qc2
-         u6sPn76MchyThIYO5xtixCXQwKK2yB1Nkl+vY14fZK8d68TxDa+lVi9F+Rbj7i2FWDPz
-         7R0B4C1voC2qtzz163LPR8ukmnRTjsEXKgR7Da7vjsRxevhJuYp9Xk2BMl5noIU4agv1
-         cXVYKa/oMvwiy+HnV5TUFiVq+dulLNlqMHbrBFThKNGpLFlQSZfccDeFk+R7OJxGqpqW
-         LHK7ehg1xq021tcO6TGSAa5u4e7so/qOWE1DZHNqMFaUfXiZA4ugCN3RAYJ6mRS5HtAH
-         35HA==
-X-Gm-Message-State: ANoB5pnNKk1oCTb/RFi4Hwdsyk9VeptvCHwP7rrAxB7UKH3eOd8CMfVm
-        K9mNLQuczGfnIaby0YLxK810hw==
-X-Google-Smtp-Source: AA0mqf5kw+8XS6ZLadwpWrejVH29wqbJkJyk83BuiQZoq56zId52NTX3XXb6QFrpvw5kDEIXHt5Ipg==
-X-Received: by 2002:a05:6512:3762:b0:4ac:5faa:654d with SMTP id z2-20020a056512376200b004ac5faa654dmr20387148lft.684.1669889941691;
-        Thu, 01 Dec 2022 02:19:01 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yJWC4EnSIdOHOak+Y01i6W7TmDZjyxRR2uPhy+FOZLk=;
+        b=BlVTSFw3DJWY8dUqj+GKgjKHiRpr0p2+aI6a/D1xZqtLZqu7uJjL4vNrwE1ME7AxrU
+         qtwT4oBZM7HhNRul6CJyewvP7ZJIwqmlIP1rS4mc59q/VfRhVP2WRAa9brtGelEw6mLa
+         7GYHZD0AgaI1djOuRVB3f6kO7pNMpab+wVb9CeKfKlOvQlm/fth2mSpTDXHqbP9fiCdr
+         /GiG3juA0ukoSptMFK4wijfIf4sQfqAROVtuPai1zh+N9Lu33Vrrm+B710pYdPiGjwcW
+         gZoLegLG+FOwuagVWkDZNJ/fX8wLUEa/AXgQmQsRdaYEeEK3KfSf2uOOC3k578eCCkZs
+         tT6A==
+X-Gm-Message-State: ANoB5pmoC38VlcUjJqtLPSCOvsA9aUFgRbvBi0MZg70ZeCbW7NBaeBqO
+        2/lrVZvf1ozsdbcJaUkOjmsTuw==
+X-Google-Smtp-Source: AA0mqf6CUSYZrSFSc59I2YqsCSJOMbf+X1AkF2Fb2hvkfIrHoAJHah4FhaNgx3RzM/yZ3iPB9Yg2fA==
+X-Received: by 2002:ac2:4316:0:b0:4b5:d8e:c12 with SMTP id l22-20020ac24316000000b004b50d8e0c12mr7626503lfh.665.1669890066328;
+        Thu, 01 Dec 2022 02:21:06 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m6-20020ac24286000000b004b501497b6fsm594625lfh.148.2022.12.01.02.18.58
+        by smtp.gmail.com with ESMTPSA id b4-20020a2eb904000000b00279cbcfd7dbsm290384ljb.30.2022.12.01.02.21.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 02:18:59 -0800 (PST)
-Message-ID: <9778695f-f8a9-e361-e28f-f99525c96689@linaro.org>
-Date:   Thu, 1 Dec 2022 11:18:57 +0100
+        Thu, 01 Dec 2022 02:21:05 -0800 (PST)
+Message-ID: <4e94c635-4cbb-449e-24af-f6fee47fb45e@linaro.org>
+Date:   Thu, 1 Dec 2022 11:21:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: net: add schema for NXP S32CC dwmac
- glue driver
+Subject: Re: [PATCH v2 09/14] dt-bindings: clock: Add StarFive JH7110 system
+ clock and reset generator
 Content-Language: en-US
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Chester Lin <clin@suse.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jan Petrous <jan.petrous@nxp.com>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        s32@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>
-References: <20221128054920.2113-1-clin@suse.com>
- <20221128054920.2113-3-clin@suse.com>
- <4a7a9bf7-f831-e1c1-0a31-8afcf92ae84c@linaro.org>
- <560c38a5-318a-7a72-dc5f-8b79afb664ca@suse.de>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-kernel@vger.kernel.org
+References: <20221118010627.70576-1-hal.feng@starfivetech.com>
+ <20221118010627.70576-10-hal.feng@starfivetech.com>
+ <1d62f95f-0edc-afd4-abb4-37fadc0b6a47@linaro.org>
+ <72b3d10e-5a8e-ed42-6808-f53773913422@starfivetech.com>
+ <768c2add-4c1f-0b36-5709-dbcdd560f504@starfivetech.com>
+ <1fb1474b-ec13-e83a-973e-bd9e9a86cb44@linaro.org>
+ <98d1bac7-8af5-f481-59b2-d58ca4c228ee@starfivetech.com>
+ <9183bac6-121e-0027-a88b-d77d5c9a077e@linaro.org>
+ <e954511b-e74a-2c3a-95ec-d33c938b146f@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <560c38a5-318a-7a72-dc5f-8b79afb664ca@suse.de>
+In-Reply-To: <e954511b-e74a-2c3a-95ec-d33c938b146f@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 18:33, Andreas Färber wrote:
-> Hi Krysztof,
+On 30/11/2022 19:05, Hal Feng wrote:
+> On Wed, 30 Nov 2022 16:19:06 +0100, Krzysztof Kozlowski wrote:
+>> On 30/11/2022 16:12, Hal Feng wrote:
+>>> On Wed, 30 Nov 2022 12:48:30 +0100, Krzysztof Kozlowski wrote:
+>>>> On 30/11/2022 10:47, Hal Feng wrote:
+>>>>> On Fri, 25 Nov 2022 14:41:12 +0800, Hal Feng wrote:
+>>>>>> On Mon, 21 Nov 2022 09:47:08 +0100, Krzysztof Kozlowski wrote:
+>>>>>>> On 18/11/2022 02:06, Hal Feng wrote:
+>>>>>>>> From: Emil Renner Berthing <kernel@esmil.dk>
+>>>>>>>>
+>>>>>>>> Add bindings for the system clock and reset generator (SYSCRG) on the
+>>>>>>>> JH7110 RISC-V SoC by StarFive Ltd.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>>>>>>>> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>>>>>>>
+>>>>>>> Binding headers are coming with the file bringing bindings for the
+>>>>>>> device, so you need to squash patches.
+>>>>>>
+>>>>>> As we discussed in patch 7, could I merge patch 7, 8, 9, 10 and add the
+>>>>>> following files in one commit?
+>>>>>>
+>>>>>> include/dt-bindings/clock/starfive,jh7110-crg.h
+>>>>>> include/dt-bindings/reset/starfive,jh7110-crg.h
+>>>>>> Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>>>>>> Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml
+>>>>>
+>>>>> Hi, Krzysztof,
+>>>>>
+>>>>> Could you please give me some suggestions?
+>>>>
+>>>> You can keep aon and sys split. First add one of them with their own
+>>>> headers. Then add second with their own defines.
+>>>
+>>> You mean split patch 7 and patch 8 into sys part and aon part
+>>> respectively? There are totally five regions (sys/aon/stg/isp/vout)
+>>> for clocks and resets in JH7110. If we do that, there will be 5
+>>> headers for JH7110 in either clock or reset directory finally. Is
+>>> that OK if there are too many headers for just one SoC?
+>>
+>>
+>> Sorry, I lost the track of what patches you have. The comment was -
+>> bindings include both the doc and headers. You want to split some, some
+>> merge, sorry, no clue. I did not propose splitting headers...
 > 
-> Am 30.11.22 um 16:51 schrieb Krzysztof Kozlowski:
->> On 28/11/2022 06:49, Chester Lin wrote:
->>> Add the DT schema for the DWMAC Ethernet controller on NXP S32 Common
->>> Chassis.
->>>
->>> Signed-off-by: Jan Petrous <jan.petrous@nxp.com>
->>> Signed-off-by: Chester Lin <clin@suse.com>
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> ---
->>>
->>> Changes in v2:
->>>    - Fix schema issues.
->>>    - Add minItems to clocks & clock-names.
->>>    - Replace all sgmii/SGMII terms with pcs/PCS.
->>>
->>>   .../bindings/net/nxp,s32cc-dwmac.yaml         | 135 ++++++++++++++++++
->>>   1 file changed, 135 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
->>> new file mode 100644
->>> index 000000000000..c6839fd3df40
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
-> [...]
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - nxp,s32cc-dwmac
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: Main GMAC registers
->>> +      - description: S32 MAC control registers
->>> +
->>> +  dma-coherent: true
->>> +
->>> +  clocks:
->>> +    minItems: 5
->>
->> Why only 5 clocks are required? Receive clocks don't have to be there?
->> Is such system - only with clocks for transmit - usable?
-
-Any comments here? If not, drop minItems.
-
->>
->>> +    items:
->>> +      - description: Main GMAC clock
->>> +      - description: Peripheral registers clock
->>> +      - description: Transmit PCS clock
->>> +      - description: Transmit RGMII clock
->>> +      - description: Transmit RMII clock
->>> +      - description: Transmit MII clock
->>> +      - description: Receive PCS clock
->>> +      - description: Receive RGMII clock
->>> +      - description: Receive RMII clock
->>> +      - description: Receive MII clock
->>> +      - description:
->>> +          PTP reference clock. This clock is used for programming the
->>> +          Timestamp Addend Register. If not passed then the system
->>> +          clock will be used.
->>> +
->>> +  clock-names:
->>> +    minItems: 5
->>> +    items:
->>> +      - const: stmmaceth
->>> +      - const: pclk
->>> +      - const: tx_pcs
->>> +      - const: tx_rgmii
->>> +      - const: tx_rmii
->>> +      - const: tx_mii
->>> +      - const: rx_pcs
->>> +      - const: rx_rgmii
->>> +      - const: rx_rmii
->>> +      - const: rx_mii
->>> +      - const: ptp_ref
->>> +
->>> +  tx-fifo-depth:
->>> +    const: 20480
->>> +
->>> +  rx-fifo-depth:
->>> +    const: 20480
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - tx-fifo-depth
->>> +  - rx-fifo-depth
->>> +  - clocks
->>> +  - clock-names
->>> +
->>> +unevaluatedProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_AXI
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_PCS
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_RGMII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_RMII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_TX_MII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_PCS
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_RGMII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_RMII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_RX_MII
->>> +    #define S32GEN1_SCMI_CLK_GMAC0_TS
->>
->> Why defines? Your clock controller is not ready? If so, just use raw
->> numbers.
+> It's ok. The problem was that the header
 > 
-> Please compare v1: There is no Linux-driven clock controller here but 
-> rather a fluid SCMI firmware interface. Work towards getting clocks into 
-> a kernel-hosted .dtsi was halted in favor of (downstream) TF-A, which 
-> also explains the ugly examples here and for pinctrl.
-
-This does not explain to me why you added defines in the example. Are
-you saying these can change any moment?
-
+> include/dt-bindings/clock/starfive,jh7110-crg.h
 > 
-> Logically there are only 5 input clocks; however due to SCMI not 
-> supporting re-parenting today, some clocks got duplicated at SCMI level. 
-> Andrew appeared to approve of that approach. I still dislike it but 
-> don't have a better proposal that would work today. So the two values 
-> above indeed seem wrong and should be 11 rather than 5.
+> was used in both
+> 
+> Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+> 
+> and
+> 
+> Documentation/devicetree/bindings/clock/starfive,jh7110-aoncrg.yaml.
+> 
+> The same for include/dt-bindings/reset/starfive,jh7110-crg.h.
+> So should I add these four files in one patch?
 
-You should rather fix firmware then create some incorrect bindings as a
-workaround...
+No. I think I wrote proposed flow of patches:
+1. syscrg bindings with header
+2. aoncrg bindings with changes to header
+
+Why do you need to merge anything?
 
 Best regards,
 Krzysztof
