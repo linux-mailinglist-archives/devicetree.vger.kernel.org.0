@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2AEB63EF98
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD3963EFB3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbiLALig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:38:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54362 "EHLO
+        id S230153AbiLALmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:42:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiLALie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:38:34 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7B429368
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:38:32 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id x6so1545839lji.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 03:38:32 -0800 (PST)
+        with ESMTP id S230509AbiLALlz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:41:55 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CF19839A
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:41:52 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id r12so2097172lfp.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 03:41:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kUvP+fbh+LbeoMcKSslf8ydYhHl1l7ffmnzPtMfNWuA=;
-        b=k4Dgpb/F7Unab4wrYFJA4Mb9EFuFoR0MUsSAcPi1em3TWiua69YsdPUnTpx/NnnqCC
-         xzMTJLNux1isYDHJE7SaOErPXJnzA4H9jMhO1Ng/EK664fBBqnh9QYOwik6Nqa2n3LQl
-         E3or9rR6zABHxl6HQQ6kJNBcUKpjuuNaEKlYyzqUHwuYKlTt42ck3GE0KYPgcR0nh5Z5
-         1RTbvtfr7ariRZlKZuumbBQl9OucsKanujX/giV/5ZtsMHFd5jxBxAaFIK6fr/6dz+JF
-         c7eFF4RIF6sxpClJF2MMxAWQ+k+nrczHhjIE8x7HwD2FRNMGQC961c950af7jVRtJjNb
-         fuQw==
+        bh=0UiAnxiG5gru9IeukT0uPFqmufGik114HWN4x39w6FA=;
+        b=zopg1txRN5QgqaXfvugj89RD4LqFxqoqVjHWRsqgKB0npSUazcU7D9c2uZ9eF+aBjn
+         YF6qfci1wHSt4AFzDdaT6TP9OhQ3Mdaza3DpmSV5hpIUekk3KR80oodi3SN9yWI5tGS6
+         BuQ4A1vklebhvhifCHCdZnMSoSeCWvFM/Ob8qdlXPxy4zsG7kk5g+VQP3o6YbOTvD/iZ
+         2WoTXkrwVdgV3weLjEU6HWVghtCCvmbFUyO94sTViyHwjHW1koa5iH6wuV0IKiROfrwq
+         tf+I6a/cjSMNzM9dEX7KO+nfOz8/O/3aZxCS+RhXktnqnxBEzb01V5YJ95RsD8VHUo5a
+         Jrug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kUvP+fbh+LbeoMcKSslf8ydYhHl1l7ffmnzPtMfNWuA=;
-        b=Y3SFlwb/1H2hSW3gwXmcTH7peg8hH/Mo10S8sUFmMHwLs9QWI1ZXP829NkmHSS8aSY
-         D1ouUIkkBo4cE+ruOLZ7v0tYfLAMTofPQpqLVdbyxsw1aR1ROW+zRAikkbKdcL9rqm1E
-         GYoLG83D9Cf74yFme1XbduGvpTwPpxhYAXHNOFk5w9SXy+Tk+vUvKJv6/lovqO5utyfK
-         bqtpaKyqo4clG+Xb7g3X5nmdzkg+muFOx2xQWZDDYRjkN7HxG5o9hMEF8SXc6V4bfWv7
-         FDhsb1ja6DBTUmjkLGC/05ycbd1PBq+MuWvMI25/epkSZbZ45jtDeozlrnHbLOFLIvKl
-         4nPw==
-X-Gm-Message-State: ANoB5pmq0/xqdlsfILKPktlTnxMHGOIIcGF4+UaOlbNVE/iXBXMaU4F0
-        h0qiHC4U1Yju58hx45aSuTnlLQ==
-X-Google-Smtp-Source: AA0mqf5pE5MPhUJ2CBEp6Gwji5cxkigvq5nFV5Vi6RkNBr4c2bCV+qB4f+m3vMpPNjU40MnrQO3H0Q==
-X-Received: by 2002:a2e:984d:0:b0:279:8e68:203d with SMTP id e13-20020a2e984d000000b002798e68203dmr9495820ljj.96.1669894710995;
-        Thu, 01 Dec 2022 03:38:30 -0800 (PST)
+        bh=0UiAnxiG5gru9IeukT0uPFqmufGik114HWN4x39w6FA=;
+        b=cra/D6aKVdXoUaB8aKnGclZ4Yv9auuGFY5/VE/3kKIG+VisYmLFn5N9ogr02p8DiF1
+         ap8R6H6meEWKkBBNONmgd2GTkzMlm/a6JSg0n2CnafOlCt0vVlskAtVVsaVGS6yf8MVP
+         U0wZG4FL7JMl377Jjc33m6fU8jQIMBONc0omxdUzgBB1xF3lWPS/oQPtjU4yGWFA6oMA
+         phVGCoK88GM+Nv8S+2qsnNL6pwwcvDBjE2oBwmF4e/UBU4143K5O2p18G56kR/NO0kNk
+         Ft4jKBDF/FiRAHMyG3qtkeTwDlihHJ/fOWsW32WPDaH7D1v79Mm4b5dqc+Yx8iOZ6RHk
+         xJSA==
+X-Gm-Message-State: ANoB5pnrCntO6A5RiQTGk2R5pDNz1SYaddXB1Gq93GEc7H3dYJCqlyCB
+        srbZU6vw5xf1eOtE3sxAPp09cg==
+X-Google-Smtp-Source: AA0mqf5NJwSDFJVZ4ee0obiZShaUI/uPkLiEO75TR/uSDPOAHIZkEPvJJ1JC3LaLkJUeMh2M4XFoqQ==
+X-Received: by 2002:a05:6512:a83:b0:4aa:f944:f7ec with SMTP id m3-20020a0565120a8300b004aaf944f7ecmr17809472lfu.467.1669894910308;
+        Thu, 01 Dec 2022 03:41:50 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a15-20020a19f80f000000b004949f7cbb6esm616990lff.79.2022.12.01.03.38.28
+        by smtp.gmail.com with ESMTPSA id w10-20020a05651234ca00b0048a8c907fe9sm612837lfr.167.2022.12.01.03.41.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 03:38:29 -0800 (PST)
-Message-ID: <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
-Date:   Thu, 1 Dec 2022 12:38:27 +0100
+        Thu, 01 Dec 2022 03:41:47 -0800 (PST)
+Message-ID: <a1d8197e-33fa-e853-ab73-81b167ec45ec@linaro.org>
+Date:   Thu, 1 Dec 2022 12:41:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
- power-management IC
+Subject: Re: [PATCH v2 5/9] dt-bindings: riscv: Add bouffalolab bl808 board
+ compatibles
 Content-Language: en-US
-To:     Saravanan Sekar <saravanan@linumiz.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        marten.lindahl@axis.com, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-3-saravanan@linumiz.com>
- <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
- <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-6-jszhang@kernel.org>
+ <60991459-945f-35db-f26a-fb27824728ad@linaro.org> <Y4iMrKjLAHpkCygo@wendy>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
+In-Reply-To: <Y4iMrKjLAHpkCygo@wendy>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,57 +86,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 12:29, Saravanan Sekar wrote:
-> On 01/12/22 11:26, Krzysztof Kozlowski wrote:
->> On 01/12/2022 05:46, Saravanan Sekar wrote:
->>> Document mpq7932 power-management IC
+On 01/12/2022 12:14, Conor Dooley wrote:
+> Hey Krzysztof,
+> 
+> On Thu, Dec 01, 2022 at 12:05:04PM +0100, Krzysztof Kozlowski wrote:
+>> On 27/11/2022 14:24, Jisheng Zhang wrote:
+>>> Several SoMs and boards are available that feature the Bouffalolab
+>>> bl808 SoC. Document the compatible strings.
 >>>
->>> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
+>>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 >>> ---
+>>>  .../bindings/riscv/bouffalolab.yaml           | 34 +++++++++++++++++++
+>>>  1 file changed, 34 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/riscv/bouffalolab.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/riscv/bouffalolab.yaml b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
+>>> new file mode 100644
+>>> index 000000000000..91ca9dbdc798
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
+>>> @@ -0,0 +1,34 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/riscv/bouffalolab.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Bouffalo Lab Technology SoC-based boards
+>>> +
+>>> +maintainers:
+>>> +  - Jisheng Zhang <jszhang@kernel.org>
+>>> +
+>>> +description:
+>>> +  Bouffalo Lab Technology SoC-based boards
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    const: '/'
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - description: Sipeed M1s SoM:
+>>> +        items:
+>>> +          - const: sipeed,m1s
+>>> +          - const: bouffalolab,bl808
 >>
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all
->> requested changes or keep discussing them.
->>
-> Hi Krzysztof,
+>> I don't think that SoM is usable alone. It always needs a carrier, so
+>> drop this entry.
 > 
-> Thanks for your time to review and feedback.
-> 
-> Here are the summary of comments on V1, I have fixed all according to my 
-> understanding.
-> 
-> 
-> 1. Use subject prefixes matching the subsystem (git log --oneline -- ...).
-> 
-> git log --oneline -- Documentation/devicetree/bindings/hwmon/pmbus/
-> 1ccca53618c4 dt-bindings: hwmon/pmbus: Add mps,mpq7932 power-management IC
-> 373c0a77934c dt-bindings: hwmon/pmbus: Add ti,lm25066 power-management IC
-> 7f464532b05d dt-bindings: Add missing 'additionalProperties: false'
-> 8a36e38d8b0f dt-bindings: hwmon/pmbus: Add ti,ucd90320 power sequencer
-> 
-> I have used the same format of 373c0a77934c.
-> 
-> 2. Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> 
-> I did run dt_binding_check on V1 but failed to notice warnings. Fixed 
-> warning on V2 and didn't observed any warnings.
-> 
-> 3. Why requiring nodename? Device schemas usually don't do that.
-> dropped "pattern: "pmic@[0-9a-f]{1,2}""
-> 
-> 4. regulators node is a regulator with one more regulator? Drop.
-> dropped "$ref: regulator.yaml# "
+> For my own information, if a SoM is not capable of functioning without a
+> carrier there is no merit in it having a compatible?
+> Does this also apply if there are multiple possible carriers from
+> different vendors?
 
-The comment was - drop entire regulators node.
-
-Plus additional comment for the driver (and related to bindings) was
-that this is not hwmon but a regulator driver. Why putting regulator
-driver in hwmon?
+Compatible makes sense anyway. There will be different boards using this
+SoM (not only carriers, but final products) and they all will have
+common piece - the SoM. It's the same for other SoM designs (e.g. for iMX).
 
 Best regards,
 Krzysztof
