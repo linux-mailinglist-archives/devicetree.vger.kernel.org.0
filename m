@@ -2,83 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8085863F77C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:31:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2997863F78D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:35:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229603AbiLASbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 13:31:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57954 "EHLO
+        id S230362AbiLASfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 13:35:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiLASbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:31:47 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E58A430E;
-        Thu,  1 Dec 2022 10:31:46 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id w15so4157334wrl.9;
-        Thu, 01 Dec 2022 10:31:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=hObqbw9hHcLQ8nyKJ+uZcCd4sfmbwCwcvHP4La3EFGU=;
-        b=eSTYTGx7/LQserb2caN1EUOHlw9gvDC/AXZJE/iui7upbn7AlY6+YkOcpThjquf+jF
-         SIX5RzfWiDWgxo1Kk3UCv3myuJjehbADlGddNrclKnD8BauQW4aA6YJ0+V8mDamDbgmE
-         tqabs0Vy4q/bnhcmO4ucdmQIPeorl/H8/Paq5ruWL4HPFkKpo48VNSDYV6NqQ6TFpPJw
-         FyTfCGYSR7AibFJJK2VClFUSXJFE9jDPrDQhtrMGqtA4eF1mOC4jGL72lf2FrrxvmkRz
-         +Sj/V4MSgtdccOjz6fF6t/LWVJK2exD800NBATYigQbSxORYwZsUwyFHIN1HpwBxJb8P
-         9Uzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hObqbw9hHcLQ8nyKJ+uZcCd4sfmbwCwcvHP4La3EFGU=;
-        b=bqWqOmvgz8Q38ewPG4NmzbPWa3vWpuh80l9nz8y8m5GsI7d457GiFnNzOUEqMRq+fU
-         IDTkhDjsQmvyxOuranA183OdmohBYtOUROtQ4rrtuJutzOwlukKyvGk6CV00+DDdVfZ8
-         l+t50sHQ51XaEOc9OXEvNdjjk+PyjJEQ+/taDWusiEIwzGqdtX4qeDROkT5O4y3fa8lm
-         GiSrheDBaAVlsUTjdeSv0Lfc2HLtKGVr/VzKwiYydxhVCMJLmZNFj92Y5HGSpB8v2nXf
-         UxkRlCM/S/FDGY2DGRPAHpvgcW4dxv/g+jFjR9gbj03hiZ8h8BdTueLXZL7D4a8DPbOE
-         1zAA==
-X-Gm-Message-State: ANoB5pkKxkwbH15rvSwpNaTdxN8NvNQzr0xnq9mFy+9k2bbCxPaChZB/
-        4XCkUN0wExT4Bj0CoyHgpbouwQ2SR+s=
-X-Google-Smtp-Source: AA0mqf4TfiUTBr+8oy0zyryOajQGCmMfgzN29Zq2q3OBJinn+jx7GDmEc0ToaPWD6fXcLfqrL2DsKw==
-X-Received: by 2002:a05:6000:886:b0:241:b933:34a1 with SMTP id ca6-20020a056000088600b00241b93334a1mr32160178wrb.550.1669919504471;
-        Thu, 01 Dec 2022 10:31:44 -0800 (PST)
-Received: from Ansuel-xps. (93-42-71-18.ip85.fastwebnet.it. [93.42.71.18])
-        by smtp.gmail.com with ESMTPSA id bg28-20020a05600c3c9c00b003cfa3a12660sm9914617wmb.1.2022.12.01.10.31.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 10:31:44 -0800 (PST)
-Message-ID: <6388f310.050a0220.532be.7cd5@mx.google.com>
-X-Google-Original-Message-ID: <Y4jzEDL2iTgTaxNT@Ansuel-xps.>
-Date:   Thu, 1 Dec 2022 19:31:44 +0100
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 0/3] add dt configuration for dp83867 led modes
-References: <20221118001548.635752-1-tharvey@gateworks.com>
- <Y3bRX1N0Rp7EDJkS@lunn.ch>
- <CAJ+vNU3P-t3Q1XZrNG=czvFBU7UsCOA_Ap47k9Ein_3VQy_tGw@mail.gmail.com>
- <Y3eEiyUn6DDeUZmg@lunn.ch>
- <CAJ+vNU2pAQh6KKiX5x7hFuVpN68NZjhnzwFLRAzS9YZ8bWm1KA@mail.gmail.com>
- <Y3q5t+1M5A0+FQ0M@lunn.ch>
- <CAJ+vNU0yjsJjQLWbtZmswQOyQ6At-Qib8WCcVcSgtDmcFQ3hGQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJ+vNU0yjsJjQLWbtZmswQOyQ6At-Qib8WCcVcSgtDmcFQ3hGQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        with ESMTP id S230238AbiLASfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:35:30 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A635B90E3;
+        Thu,  1 Dec 2022 10:35:29 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id AD3955C011D;
+        Thu,  1 Dec 2022 13:35:28 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute5.internal (MEProxy); Thu, 01 Dec 2022 13:35:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1669919728; x=1670006128; bh=pk
+        8Iux6YCMVT1etqJvZ4tJrrAsulMlBycPs6sKsttUQ=; b=OUj2zLcKJCTLZrp1mC
+        /5W5Noq5Vge2GPO5f/7z3TpMnBRcTR/KY1urq8Ja7omLR+OOobQe3F0F864TVmJf
+        aFF35KEHAJ2A1OvBu6vyHZcJnp0KB6tjrNpUAPRXqG2Zg/zK30nQdAme6UeHcR4i
+        mGZbvcYgyzCGCjKShEXgA5Eh6XrNbCfcRKhlLcY61y3BXj1CTWk6S1oblJwL6EeV
+        DzdoQFBvUoWOgQYzWbXTQEd9x6Jc4CgyCOgbOjeKY4kX76qsFkRU/gOHhy7jcRy8
+        3a/2bmg17rCWfg+wYS6HeWL5qpd3CRsd8oBHNQVCp8vWHFUSmf88Rv+/8gUOs3DQ
+        Kp/Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1669919728; x=1670006128; bh=pk8Iux6YCMVT1etqJvZ4tJrrAsul
+        MlBycPs6sKsttUQ=; b=fN4KW7tr/2ZMlCyZY+s5+aJKrBrwC3DAZxsEEhxoEcH+
+        B5gNMXL7V8h/Ads1qajiSfT6hRCvdNApKM+uwsXht/PAWHwTbPE+x4pekyKws1RL
+        4cR5N5+nxH7HT95+kjEsHAZj542wv0KpSphchtFcNWBZnCgUJCJXtw0BG7Le/sYA
+        CRJ6UN65RQP8OYvEXgJ8oni4/KK9pLXPe/LorBNHJOnb5p2Z7nfYDNkZjj85MZoa
+        8LmfpRdQGxa9ptzRin+alxju2i8ZjRZkYDKOOtfWgpQDXfPdz+9df5b4zna2OujE
+        MXlMN7UbjYVU8D0m8FF8NxuM7IpabqwVlZ+KSYOg9A==
+X-ME-Sender: <xms:8POIYzQQkj7Oq9NVxaP4uWI9oumU_Jovfh2YTEP8Uq7ZXdxjC1SI1g>
+    <xme:8POIY0y6pS7jve2HmTaXZXC901d6p4a6Uornn5z_BY5QKHtClFOxGljNv6INwPSzr
+    aVCgs9QPw-PIoUNIdk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdehgdduudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepleevgfegffehvedtieevhfekheeftedtjeetudevieehveevieelgffh
+    ieevieeunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:8POIY43yYF8Q6lH-VhnGcQTi452WO8X9LzvVJwhmqJtDN5Nnp62YUg>
+    <xmx:8POIYzBgEduUjpxPDvWhu6ZBAbvL61nb7FBtqYYxiDn7NHs79MWj4Q>
+    <xmx:8POIY8jYVGtUJ8_hn2YKxdjeUa5RNeL0A_H8owM62cgTjCVw1YTrBA>
+    <xmx:8POIY3XqM4pEIKo_ymhC8JNgbepCzKZoc78a1hwzmYNUUKQKY9Uy6A>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5A76EA6007C; Thu,  1 Dec 2022 13:35:28 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <60e1a46f-b180-496c-bc45-348969bbac32@app.fastmail.com>
+In-Reply-To: <20221201165344.32505-1-marcan@marcan.st>
+References: <20221201165344.32505-1-marcan@marcan.st>
+Date:   Thu, 01 Dec 2022 19:35:08 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>
+Cc:     "Mark Kettenis" <kettenis@openbsd.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: apple: Add CPU topology & cpufreq nodes for t600x
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,78 +87,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 10:26:09AM -0800, Tim Harvey wrote:
-> On Sun, Nov 20, 2022 at 3:35 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > On Fri, Nov 18, 2022 at 11:57:00AM -0800, Tim Harvey wrote:
-> > > On Fri, Nov 18, 2022 at 5:11 AM Andrew Lunn <andrew@lunn.ch> wrote:
-> > > >
-> > > > > Andrew,
-> > > > >
-> > > > > I completely agree with you but I haven't seen how that can be done
-> > > > > yet. What support exists for a PHY driver to expose their LED
-> > > > > configuration to be used that way? Can you point me to an example?
-> > > >
-> > > > Nobody has actually worked on this long enough to get code merged. e.g.
-> > > > https://lore.kernel.org/netdev/20201004095852.GB1104@bug/T/
-> > > > https://lists.archive.carbon60.com/linux/kernel/3396223
-> > > >
-> > > > This is probably the last attempt, which was not too far away from getting merged:
-> > > > https://patches.linaro.org/project/linux-leds/cover/20220503151633.18760-1-ansuelsmth@gmail.com/
-> > > >
-> > > > I seem to NACK a patch like yours every couple of months. If all that
-> > > > wasted time was actually spent on a common framework, this would of
-> > > > been solved years ago.
-> > > >
-> > > > How important is it to you to control these LEDs? Enough to finish
-> > > > this code and get it merged?
-> > > >
-> > >
-> > > Andrew,
-> > >
-> > > Thanks for the links - the most recent attempt does look promising.
-> > > For whatever reason I don't have that series in my mail history so
-> > > it's not clear how I can respond to it.
-> >
-> > apt-get install b4
-> >
-> > > Ansuel, are you planning on posting a v7 of 'Adds support for PHY LEDs
-> > > with offload triggers' [1]?
-> > >
-> > > I'm not all that familiar with netdev led triggers. Is there a way to
-> > > configure the default offload blink mode via dt with your series? I
-> > > didn't quite follow how the offload function/blink-mode gets set.
-> >
-> > The idea is that the PHY LEDs are just LEDs in the Linux LED
-> > framework. So read Documentation/devicetree/bindings/leds/common.yaml.
-> > The PHY should make use of these standard DT properties, including
-> > linux,default-trigger.
-> >
-> >         Andrew
-> 
-> Ansuel,
-> 
-> Are you planning on posting a v7 of 'Adds support for PHY LEDs with
-> offload triggers' [1]?
-> 
-> Best Regards,
-> 
-> Tim
-> [1] https://patches.linaro.org/project/linux-leds/list/?series=174704
+On Thu, Dec 1, 2022, at 17:53, Hector Martin wrote:
+> Add the missing CPU topology/capacity information and the cpufreq nodes,
+> so we can have CPU frequency scaling and the scheduler has the
+> information it needs to make the correct decisions.
+>
+> As with t8103, boost states are commented out pending PSCI/etc support
+> for deep sleep states.
+>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 
-I can consider that only if there is a real interest for it and would
-love some help by the netdev team to actually have a review from the
-leds team...
-
-I tried multiple time to propose it but I never got a review... only a
-review from an external guy that wanted to follow his idea in every way
-possible with the only intention of applying his code (sorry to be rude
-about that but i'm more than happy to recover the work and search for a
-common solution)
-
-So yes this is still in my TODO list but it would help if others can
-tell me that they want to actually review it. That would put that
-project on priority and I would recover and push a v7.
-
--- 
-	Ansuel
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
