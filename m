@@ -2,90 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D00ED63FA27
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 22:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED2063FA33
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 23:01:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbiLAV6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 16:58:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47934 "EHLO
+        id S229763AbiLAWAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 17:00:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbiLAV6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 16:58:22 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60AE39383C;
-        Thu,  1 Dec 2022 13:58:21 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id g51-20020a9d12b6000000b0066dbea0d203so1847655otg.6;
-        Thu, 01 Dec 2022 13:58:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jMmEEW9nhsYjLdoVEX/XJSzRD/PGxz+ahARY6QfwUlw=;
-        b=wNqtbN+Afjz89taY0u9clZGFN5ifkDfQXQLBGZD+eVRElF+FE9DJKIHODIdNNYJMTA
-         ECZAzPC3gwS1qmbKnMd91ax/to237jZisKD1lEEGrSfOxXqwfYpS9N//tlapWNA0abkf
-         +NXy0ULnooinAGmcJ7XF4XI/3EiEs5UXlNtJ2Zok06A3bLjbNunNcHjvXKEedCYvqatD
-         L5uZ0f08ZuQ/gE9r296bEElwKO7AEFgcSyqPwP2kI6nnhBAIhCpJEMVQDwEqM59X2uOj
-         zQYPoq9MrOdfVVXB5iM+3CbN5Ul5XQbsSit9GDPjXdCWSJTRHF9dVGbQ/gjnkIIoUsSY
-         0h6w==
-X-Gm-Message-State: ANoB5plT/ERroKWsuCl2WC4UNw1//2hMaP2oZ94Aa2GO2AAeqjPbs+p7
-        1w4Z5py6G9NVXRf0AklEiw==
-X-Google-Smtp-Source: AA0mqf6AYmSS9hCCipjLKVxHNWwf4lMfqM82+JjJbYgzcji3aY0tw19h/MvlDxIM1yeUomemkeRqjA==
-X-Received: by 2002:a05:6830:374a:b0:66e:76f1:23e1 with SMTP id bm10-20020a056830374a00b0066e76f123e1mr2134223otb.35.1669931900561;
-        Thu, 01 Dec 2022 13:58:20 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a7-20020a9d4707000000b0066e7e4b2f76sm362989otf.17.2022.12.01.13.58.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 13:58:20 -0800 (PST)
-Received: (nullmailer pid 1518708 invoked by uid 1000);
-        Thu, 01 Dec 2022 21:58:19 -0000
-Date:   Thu, 1 Dec 2022 15:58:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Cc:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: display: panel: mipi-dbi-spi: Add
- missing power-supply
-Message-ID: <20221201215819.GA1510935-robh@kernel.org>
-References: <20221127191433.1363395-2-otto.pflueger@abscue.de>
- <20221127191433.1363395-4-otto.pflueger@abscue.de>
+        with ESMTP id S230142AbiLAWAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 17:00:17 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2689C3FF8;
+        Thu,  1 Dec 2022 14:00:12 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D73118535C;
+        Thu,  1 Dec 2022 23:00:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1669932011;
+        bh=bD4Nn5GdcgMGOYWpDoS7ONIxTUJoRZ+i6VoD8TTLfBM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JjDXUCiKbvZSD4wZiUBnu18Xa2hQfv3fx2K7/xsuQhPoFo0EhBVVv4elJx7uTe5u0
+         Y4o91fywVXY+fRQdRzeJkMyg6HN7j/s6F7pyVnMGSPNMZcHv6s92onXs9PsUzav9pf
+         9HUB7cm6/UIBXcMAI/z6JxMMxVGi9DhUOPh8BlINWSlFXAXyPQEHsOdzceN3/Bqwee
+         XlqRUUaR6RufJS56bg1WdeiIyPTa7XlKsRUpHlVymFHz5FL1XLWYdrJPqC/reXp/ME
+         Ff0V6sfPtzmInLtIlLJhvzXxJbM8gyEL9b60KNdvE2S9tpegOjaBYyMV2k0YCaFbQZ
+         CwMksuolhDOlg==
+Message-ID: <f1081f5f-df87-76c8-bea3-e50f4f43fc69@denx.de>
+Date:   Thu, 1 Dec 2022 23:00:09 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221127191433.1363395-4-otto.pflueger@abscue.de>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, stable@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>, u-boot@lists.denx.de
+References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
+ <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
+ <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
+ <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
+ <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
+ <b5080dd6-40b3-a8f2-0c4e-4c1e52e67fe8@denx.de>
+ <Y4jMMeyktJLHb9ji@francesco-nb.int.toradex.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <Y4jMMeyktJLHb9ji@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 27, 2022 at 08:14:32PM +0100, Otto Pflüger wrote:
-> The power-supply property is only mentioned in the description and not
-> listed in the properties section of the binding. Add it there.
-
-That's because it is described in panel-common.yaml already.
-
-But I guess it is somewhat useful to define it corresponds to Vdd.
-
+On 12/1/22 16:45, Francesco Dolcini wrote:
+> + u-boot list
 > 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> ---
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml  | 3 +++
->  1 file changed, 3 insertions(+)
+> On Thu, Dec 01, 2022 at 12:25:34PM +0100, Marek Vasut wrote:
+>> On 12/1/22 12:03, Francesco Dolcini wrote:
+>>> On Wed, Nov 30, 2022 at 11:59:04PM +0100, Marek Vasut wrote:
+>>>> On 11/30/22 21:51, Francesco Dolcini wrote:
+>>>>> On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
+>>>>>> On 11/30/22 14:52, Francesco Dolcini wrote:
+>>>>>>> [    0.000000] Booting Linux on physical CPU 0x0
+>>>>>>> [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
+>>>>>>> 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
+>>>>>>> ...
+>>>>>>> [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
+>>>>>>> @33002000)
+>>>>>>> [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
+>>>>>>> ...
+>>>>>>> [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+>>>>>>> [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
+>>>>>>> ...
+>>>>>>>
+>>>>>>> Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
+>>>>>>> maybe you have a better idea.
+>>>>>>
+>>>>> ...
+>>>>> OF partition are created by U-Boot from
+>>>>>      mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
+>>>>> env variables calling fdt_fixup_mtdparts from colibri_imx7.c
+>>>>>
+>>>>> This is generated by U-Boot, I would need to dump what he did generate
+>>>>> from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
+>>>>> unless what I wrote here is already enough to understand what's going
+>>>>> on.
+>>>>
+>>>> Oh drat ... I see. It's the u-boot fdt_node_set_part_info() which checks the
+>>>> current NAND controller #size-cells and uses that when generating MTD
+>>>> partitions 'reg' properties. Since #size-cells is now zero, the reg
+>>>> properties would be malformed.
+>>>
+>>> I think the issue is slightly different, the u-boot code checks it and
+>>> if not set it defaults to #size-cells = <1>. Said that u-boot
+>>> never set #size-cells anywhere.
+>>
+>> Which it really should, can you send a patch there too ?
+> 
+> I guess that it is slightly more complicated.
+> 
+> U-Boot directly updates the nand-controller root node with the
+> partitions, unless there is already a partitions child node present. In
+> the first case (legacy OF partition definition) setting the #size-cells
+> does not seems that correct, while in the second case I agree it should
+> really do it. I'll see what I can come-up with.
+> 
+>>> diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
+>>> index 192190c42fc8..fffd60acd926 100644
+>>> --- a/drivers/mtd/parsers/ofpart_core.c
+>>> +++ b/drivers/mtd/parsers/ofpart_core.c
+>>> @@ -122,6 +122,8 @@ static int parse_fixed_partitions(struct mtd_info *master,
+>>>
+>>>                   a_cells = of_n_addr_cells(pp);
+>>>                   s_cells = of_n_size_cells(pp);
+>>> +               if (s_cells == 0)
+>>> +                       s_cells = 1; // for backward compatibility
+>>>                   if (len / 4 != a_cells + s_cells) {
+>>>                           pr_debug("%s: ofpart partition %pOF (%pOF) error parsing reg property.\n",
+>>>                                    master->name, pp,
+>>
+>> You might want to print a warning too, so users would fix their DTs, since
+>> once there is MTD partition > 4 GiB, this would break. Otherwise I like this
+>> option.
+> 
+> I tested it and it's working as expected, I'll send a proper patch soon.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Much appreciated, thanks !
