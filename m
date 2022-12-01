@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF32F63F938
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 21:37:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542B763F935
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 21:37:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbiLAUhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 15:37:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
+        id S230209AbiLAUhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 15:37:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiLAUhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 15:37:07 -0500
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DBEC054F
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 12:37:03 -0800 (PST)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-13bd19c3b68so3503907fac.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 12:37:03 -0800 (PST)
+        with ESMTP id S230109AbiLAUhG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 15:37:06 -0500
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDC4C0555
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 12:37:04 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1442977d77dso2384853fac.6
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 12:37:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kG+ctqd9teSCMiayuOxjPWFcl8agpohKd1uUpE0d4x0=;
-        b=XFod0UnAcwD+9HZiFEkNVVUGDR7r1ylQFGkeOIptemvQBWaAm8mLU2oBy1tpxZxktJ
-         NVFcw/h0kOr3HTw2wnyAaQlnuUoTNPQR9khmwGnmXNWy466LNGp9kbBckww6i48vwLfb
-         nVZePvLt/0C2iqy1VDRpf4HUsRCh1OVFZfEnoZy0PBIw+x+RYNGeQCILCDwkoEiZPnvQ
-         9Gcq1B2V1O2Y3vK/3q+RfQQ5o0YYNjFdteTNFEF3TkK083ol/wmmCv/pbB3BdbXikwqh
-         zby9Iy6GWBTDJOHBegLng3GTVXrLSkaVWNz3uHlxD6WPfOOB53QRTc0se7oJZgl6W9YZ
-         Ojng==
+        bh=KDNVIS6v1yG6sAvFOYg/2+Zxz4ZXp/Ow5NLTwsyPqTQ=;
+        b=CvmuuY+wkEu+uT9ff0B1aNBJgUaRDd7us1n2vCBeR82xZfRBOaHewq3903/N34zrA9
+         FkJN+nPJH1eEZEGJ9GsNYO514rTQQ1kBeB9lHSPUIZBUP/xiitn9po9PJs/lc67QI8+j
+         3ezbkOBRj6OvXCWdLhKNvxR/IuIraY3IV9sygT5Kr3IlYO5dVO4IzdsisWkqLHNPIudY
+         sUCrblfeGWV+Xdj2QdSdYPvZDOZlFVWlKO49jND/gFtmNr2gBm8LB3DIIjr4bS6GoJ3o
+         MiatGl/Bc63gM3Nd96H/t21WkAjhUnumaDwuhPvb0g6hiTnCTib+2NhYkAYRTh0I64Gq
+         jMcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kG+ctqd9teSCMiayuOxjPWFcl8agpohKd1uUpE0d4x0=;
-        b=iIYw3Z73WAg2PhiBS6bNTi8yDt3Q+0GRyU0HxWmS+6QpbW7mXISt6qDTHRop9rXYzn
-         atI4Ry26pQWQTaE71Qp6BdO5efzvrpEBUW77O9oRQOybAC85MzVrYIPhnRd+JBrAu72Q
-         SlzMx0U7EDtGvlji+FEPAbyDRwcSXNBqUAwR1noZZWhEL+1cokUR2ppjAFHiJwCAg5a/
-         yPMT4XdUBMm5h+SppKUACphsqQ6Y2B+xWJgxgCK/FrkSiDKLAqEBlroaPZK+Rj1auGWS
-         Ud0M9KWYza3l5fz4g4vbK2qAjGE3UtwWox5EcOInjuiYR2P0DNmELJ7QuwnDZ9ISLksv
-         hzCg==
-X-Gm-Message-State: ANoB5pmzx3Xt1sphPEQDB0fByRlVsxVUm+pyXDdihmcPfjKZl2gFjPqf
-        D2bN8giPzF9a84yuKYcJKYg=
-X-Google-Smtp-Source: AA0mqf4+24um7ZcR5CWbp77KpWBR42nA3acpMhuAqJ7rgMXGTdcB+7tCniwHGtESiGH09AMg14QD2Q==
-X-Received: by 2002:a05:6870:e88:b0:142:9422:84e4 with SMTP id mm8-20020a0568700e8800b00142942284e4mr29981790oab.57.1669927022468;
-        Thu, 01 Dec 2022 12:37:02 -0800 (PST)
+        bh=KDNVIS6v1yG6sAvFOYg/2+Zxz4ZXp/Ow5NLTwsyPqTQ=;
+        b=5C6Lf1cc3R6Guh+fMsPjljGc/rvKL3s3KsKdUYx0M1944gA3VA/QzoPXkFBWyt9WAE
+         YTSY02QRb1dtSwNhwPX8okNNxrEeXpRc1OBK8h8g9ex5o2DJy0zy64nvXComIeqmnhZh
+         UhitVpadWXTgl7jvHDCnC/hPCJdedB7rUDLKy3Vkubk4WhdnN0DH1V2pHwP4UqVSnNJc
+         ZdrypstnTDYhDCUb2o/IY5NPvCyX6Yt28U2948HQIfblLrP02/Z+Z1T2lUcTtWk6dkGo
+         Z10f/bvozlejRHe1QC70qwx1xGwaoaizqszFGN9hQBdCXxIdHrVajGG2AdgmKK+eEF7t
+         8zLQ==
+X-Gm-Message-State: ANoB5pkEHlYX2JZX+MbDIy6AXfzzK05LKSbMSgpNPATsL+/XEol3aTMT
+        Fkv9tDqRqBWMnP7AS8QiO/E=
+X-Google-Smtp-Source: AA0mqf6tqXSIMh4TUCBXKPIj9DYC2ccLMsIsrsKIgoHSvwThYP7VK6hWkaFN+IlGAUxfMVTxBHDrLQ==
+X-Received: by 2002:a05:6870:479b:b0:142:7f3b:d60a with SMTP id c27-20020a056870479b00b001427f3bd60amr37573173oaq.111.1669927023423;
+        Thu, 01 Dec 2022 12:37:03 -0800 (PST)
 Received: from localhost.localdomain ([76.244.6.13])
-        by smtp.gmail.com with ESMTPSA id r81-20020a4a3754000000b0049fd73ccf72sm2142142oor.42.2022.12.01.12.37.01
+        by smtp.gmail.com with ESMTPSA id r81-20020a4a3754000000b0049fd73ccf72sm2142142oor.42.2022.12.01.12.37.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 01 Dec 2022 12:37:02 -0800 (PST)
 From:   Chris Morgan <macroalpha82@gmail.com>
@@ -54,9 +54,9 @@ To:     linux-rockchip@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, maccraft123mc@gmail.com,
         heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
         robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 2/4] arm64: dts: rockchip: don't set cpll rate for Odroid Go
-Date:   Thu,  1 Dec 2022 14:36:53 -0600
-Message-Id: <20221201203655.1245-3-macroalpha82@gmail.com>
+Subject: [PATCH 3/4] arm64: dts: rockchip: update px30 thermal zones for GPU
+Date:   Thu,  1 Dec 2022 14:36:54 -0600
+Message-Id: <20221201203655.1245-4-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221201203655.1245-1-macroalpha82@gmail.com>
 References: <20221201203655.1245-1-macroalpha82@gmail.com>
@@ -74,37 +74,74 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The Odroid Go Advance devicetree tries to set the rate for the cpll
-clock to 17MHz, which is not a supported rate. This fails, and triggers
-the error of "clk: couldn't set cpll clk rate to 17000000 (-22),
-current rate: 17000000" in the dmesg log. Remove the incorrect rate.
+Without the trips, the following errors are received in the dmesg
+log and the rockchip-thermal driver fails to load the gpu sensor:
+
+"thermal_sys: Failed to find 'trips' node"
+"rockchip-thermal ff280000.tsadc: failed to register sensor 1: -22"
+
+Trip values are assumed, unfortunately, as the same values as the
+CPU. The datasheet and TRM didn't appear to have any information
+regarding thermals for the GPU.
+
+Stress tested successfully on my Odroid Go Advance.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/rockchip/px30.dtsi | 33 +++++++++++++++++++++-----
+ 1 file changed, 27 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-index 60063f4bb366..802be64626d6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go.dtsi
-@@ -192,14 +192,12 @@ &cru {
- 	assigned-clocks = <&cru PLL_NPLL>,
- 		<&cru ACLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
- 		<&cru HCLK_BUS_PRE>, <&cru HCLK_PERI_PRE>,
--		<&cru PCLK_BUS_PRE>, <&cru SCLK_GPU>,
--		<&cru PLL_CPLL>;
-+		<&cru PCLK_BUS_PRE>, <&cru SCLK_GPU>;
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index bfa3580429d1..4f6959eb564d 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -210,12 +210,6 @@ map0 {
+ 					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 					contribution = <4096>;
+ 				};
+-
+-				map1 {
+-					trip = <&target>;
+-					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+-					contribution = <4096>;
+-				};
+ 			};
+ 		};
  
- 	assigned-clock-rates = <1188000000>,
- 		<200000000>, <200000000>,
- 		<150000000>, <150000000>,
--		<100000000>, <200000000>,
--		<17000000>;
-+		<100000000>, <200000000>;
- };
+@@ -223,6 +217,33 @@ gpu_thermal: gpu-thermal {
+ 			polling-delay-passive = <100>; /* milliseconds */
+ 			polling-delay = <1000>; /* milliseconds */
+ 			thermal-sensors = <&tsadc 1>;
++
++			trips {
++				gpu_threshold: gpu-threshold {
++					temperature = <70000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu_target: gpu-target {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu_crit: gpu-crit {
++					temperature = <115000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&gpu_target>;
++					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
+ 		};
+ 	};
  
- &display_subsystem {
 -- 
 2.25.1
 
