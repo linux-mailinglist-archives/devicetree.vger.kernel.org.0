@@ -2,182 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D9763ED2C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:05:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6FF563ED49
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 11:11:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbiLAKFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 05:05:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
+        id S229794AbiLAKLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 05:11:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbiLAKFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:05:52 -0500
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D37712FC1E
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 02:05:51 -0800 (PST)
-Received: by mail-vk1-xa2e.google.com with SMTP id v81so597288vkv.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 02:05:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XrM8HiqXnZzTUWvDOAD7xr6db8l4mNmr+646ESgVc/Q=;
-        b=cJbZWSetyvmZNNWfKs/XjqCxg926Jsjxx8jgSzxrFnHfI9lA7CTAQmRtPIFXhfNX8k
-         tPeidGD0TdPRJA0MAxXbWI1LLJ6kadkbOW8vukkZjIKO9kmuJglBgh1/d3QABwZtbP66
-         JzLAAQPysycvtiJyWjdqKtej8VBeKHxyXOWHY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XrM8HiqXnZzTUWvDOAD7xr6db8l4mNmr+646ESgVc/Q=;
-        b=vIi4sIIq0i8XpYRl4UNgVZQWdsKV6OBFlvZhVsO7hKcPIn/HlhhfzsIQG9YxbuLySa
-         m77nWu7PxlERklZxNhgIMMvFXt++g+0WxF8CxecZEyWTIz3R9Kkf+MZt7XZwuznLN81Z
-         PCb6Ds+7nxVbLB0JXHZ2+DQKI2JQV/oN6cd99nmOf4d+EWwJ4RoJ2dygJ6LV7MgO/k7j
-         jWNL7hjcRJJixaZaYPIS9vXNbXO2Ut6FxWsYSd4LDIwSpI0td3j7UyEC2ijAftlXtkA3
-         kZcGsQMix5aAn0cEq3FTzA25bOh1IOy/mIjP+gFkgkEfSQcX9uyB5PIK8LAlALEgLwQn
-         XsTQ==
-X-Gm-Message-State: ANoB5pnlJkTtpr+vI2r/JOQ48gh6bntR0UEA6t19JajGgec2cnnhyS46
-        7NhkUbLQidC5N/SOk0rDwoNYCaok33xxkMRWwqnvnA==
-X-Google-Smtp-Source: AA0mqf6wG7AHF7XHQDT3r9jZs+UyadRR5/kyoPUrjBZc8SEmqo1csGnX4esmgX79FQS+PCnjOUsVyvbK5w5//Z/TLs8=
-X-Received: by 2002:a1f:9f0f:0:b0:3b6:90df:eb0 with SMTP id
- i15-20020a1f9f0f000000b003b690df0eb0mr37365702vke.30.1669889150895; Thu, 01
- Dec 2022 02:05:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
- <ba14a46f-477f-70af-761d-696fe8a4f41c@collabora.com> <CAGXv+5Gg6ozYQcp_NPrAiH1kF-ZkfjVZhQZVhLnbSmjQBwsFwQ@mail.gmail.com>
- <8ae2a510-abf6-6e1b-9893-293db7d930e7@collabora.com>
-In-Reply-To: <8ae2a510-abf6-6e1b-9893-293db7d930e7@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 1 Dec 2022 18:05:39 +0800
-Message-ID: <CAGXv+5H+msQ1ct5CUzYnT_BmYPnS72HbivvyO39uOfMfXbo5qg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8192: Add adsp power domain controller
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        with ESMTP id S230239AbiLAKK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 05:10:26 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7424A2E6A1;
+        Thu,  1 Dec 2022 02:10:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1669889401; bh=tGPjIDXyTd+H8djbh6OUy4p3OsA16M1haSIo6FaTyMU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=Alb/ZJ8WhW9ykDMXO+bdlz0NqVt3oOx6rmyy+7xpWTtfcIVbiln3HJIiad9cIaK+X
+         oDZ5dYJvLfjepgmKILZiRln3RdLlwadure1cb7SmsIK/EwN34SGSb1akVG8kK9cg+a
+         K/TFBy+RUY+HBxpZcHFUdbSLTfty6ec58BA+n+59/FJPNUgvQNwaC0FTxLfiJZN+nT
+         DGaEnvKLhWOAmaql/LnbfiMzdCmHAIL9gZJBveCBtyD+3S9bAJaiV8PZZ/ZfW6+gIJ
+         v5uJ7eV54a3vUMOhwrIiGEQxv0WNUfUUIOiUfsX9qybcmvpxbdEYPIvvHKTXIoRr4o
+         go1n39n31N88A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6qC-1oZHF70HUa-00lWnA; Thu, 01
+ Dec 2022 11:10:01 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: pxa2xx: Remove bogus interrupt-parent; line
+Date:   Thu,  1 Dec 2022 11:09:53 +0100
+Message-Id: <20221201100953.701963-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ao0HOwbnXk8aNFcaa9LImKCqz3uIIpnoue7zex6Oftxop8Wry/W
+ cT7uDj/8FszYRMDICTl34T+Ae8cIU7cNDcgUbNrcJt/7kuYfatjp0c+f5NT13KjfOUDRhN9
+ L19a/RCbo37M97vzrf/AtloayNzQWx19rNj426f2UR0PTH6JxTV5O8FhTaFtzJj6gELUJF7
+ 3VSABUwsjyFF1eZ3Lkrhg==
+UI-OutboundReport: notjunk:1;M01:P0:BxrIIchcItc=;NodVPmYQiTj++PIm9TRvHKsM7xU
+ bFUtBHbinhPgND1laM+i1cNo2fhp4Rm/WOo000FW/XCt+1FROe/K+VykiowmtxyAHfWoVZaA1
+ OP3exAqxBWco3el1R8PRQ4eavS/H4YSlOITtubE/Q1K5RClM+93HKDVEn4stl8AFGL+DVWu/C
+ 2g8gYk9LTb7yOhmdFRPLjFDdIZf03hF0wQkcNAIzVV3LlfC7zl3GwUbVLg7TOWi+upZ6KwdZ5
+ 8V2jFJaSLyEjIMvibLcuwdOlzevoluLXKO5fobs9RLMVUIEZfVNq3QZgXWKhaV35ohVklQflq
+ ja6zeo1nxbVaNYO82eiTM7ZNLK+sHWO30sLq6zzHG0L9KXiGGwbmWv2wVAjpkV5jMhNJA8d+A
+ V9ED28KSVyH21uCFveBYUNKOZosxS6j+tFB6EXxOv3AMHDil9u+B/vKN74IX5TlvEYWloqR6a
+ r4QDmzGMY2omGFVMmUNFtTYEKSP2MFze8IoszCA2LEXLB/Az+SbCysh4J5uzx+rNQSWUsP1HJ
+ ZeHvDWbyMlyABODeMfS6WIPsJ41pvKqIAUMLxYZD8CPyInyFMBNwNO+cwuJut0HpY458XYBFR
+ TvWyE5aa5QA9Hm0CtlpWpAbFmhwWdy/zBvPESpePwMOpr/cz9+aLb7DJL7sM4Q+DD5tJfLdVi
+ enQtYlsMjN3uxgTPRgX9JK5pFkwltkiuqu3c6izQjXLPtf0+KwWIyDS4pQ2mnv3gpsS4Ve119
+ Ec/epCG4CsIOnhT06BesrIMZlukjJAac2uUw1V5Fbns+XMgxE+D+F8S7sVdC5BKeHUYGSJhJ3
+ sDR2bvDA+IPmWhftjbYseghGlBlSHPqKEZgTPDXkbJI9TEsU/aYhiFBnJpjJli647qs/OaGfl
+ crZQw57XUA/FJyhvH/GntWQtAF46iPdRyyupo88zulaA7CjBbMEYMAIkwiPI9HAiTBIukImVG
+ Z+D1Vw==
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 1, 2022 at 5:39 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 01/12/22 10:10, Chen-Yu Tsai ha scritto:
-> > On Thu, Dec 1, 2022 at 5:07 PM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Il 01/12/22 08:33, Allen-KH Cheng ha scritto:
-> >>> Add adsp power domain controller node for mt8192 SoC.
-> >>>
-> >>> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> >>> ---
-> >>> Ref: https://lore.kernel.org/all/2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com/
-> >>>       [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
-> >>> ---
-> >>> ---
-> >>>    arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
-> >>>    include/dt-bindings/power/mt8192-power.h | 1 +
-> >>>    2 files changed, 9 insertions(+)
-> >>>
-> >>
-> >> Allen, thanks for this one, but it's incomplete...
-> >>
-> >> First of all, you must add the power domain on the driver itself, specifically,
-> >> in drivers/soc/mediatek/mt8192-pm-domains.h - otherwise this change will have no
-> >> effect!
-> >
-> > Actually it's worse. The driver doesn't know about the new power domain,
-> > and so it will fail to probe. We might need to make the power domain driver
-> > fail gracefully and skip unknown power domains.
-> >
->
-> Right. It's worse. I don't know, though, if gracefully skipping unknown power
-> domains in the driver would be a good decision... as sometimes error messages
-> go unnoticed.
->
-> When the platform "explodes" instead, you're forced to read that log carefully
-> and get it working again... Anyway, I'm only thinking out loud, nothing less and
-> nothing more than that :-)
+Specifying interrupt-parent without a value (in other words, as a bool)
+doesn't really mean anything. Remove one such property in the PXA2xx DT,
+at /pxabus/interrupt-controller@40d00000.
 
-Me too. :)
+This patch was tested to cause no detrimental effect on PXA255.
 
-> By the way, we can probably expand on that topic a bit later, as it's outside of
-> the scope of this specific change.
->
-> Back to topic, if we get one series containing both changes (devicetree, bindings
-> and driver) with the right Fixes tags and/or Cc stable, we shouldn't have such
-> issue on backports so we can probably ignore that potential issue, I think? :-)
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+ arch/arm/boot/dts/pxa2xx.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Everything goes through the soc tree, so they should appear in Linus's tree
-and get picked by stable at more or less the same time. I think we would
-want the driver change to appear before the dts change, for bisectability's
-sake (because of header dependencies and driver errors).
+diff --git a/arch/arm/boot/dts/pxa2xx.dtsi b/arch/arm/boot/dts/pxa2xx.dtsi
+index 1332183f87456..d2c97e1a4478e 100644
+=2D-- a/arch/arm/boot/dts/pxa2xx.dtsi
++++ b/arch/arm/boot/dts/pxa2xx.dtsi
+@@ -58,7 +58,6 @@ pxairq: interrupt-controller@40d00000 {
+ 			#interrupt-cells =3D <1>;
+ 			compatible =3D "marvell,pxa-intc";
+ 			interrupt-controller;
+-			interrupt-parent;
+ 			marvell,intc-nr-irqs =3D <32>;
+ 			reg =3D <0x40d00000 0xd0>;
+ 		};
+=2D-
+2.35.1
 
-So we probably want:
-1. driver + binding header changes
-2. dtsi changes
-
-And have these merged through fixes so that the history between them is linear.
-
-
-ChenYu
-
-> Cheers,
-> Angelo
->
-> > ChenYu
-> >
-> >> ...Then, as Chen-Yu said, you should also add the power domain to the scp_adsp
-> >> clock node as that's solving the lockup issue...
-> >>
-> >> .......and last, but not least: we need a Fixes tag to backport this fix, here
-> >> and on the commit that adds the missing power domain in the driver.
-> >>
-> >> Thanks,
-> >> Angelo
-> >>
-> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> >>> index 424fc89cc6f7..e71afba871fc 100644
-> >>> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> >>> @@ -514,6 +514,14 @@
-> >>>                                                };
-> >>>                                        };
-> >>>                                };
-> >>> +
-> >>> +                             power-domain@MT8192_POWER_DOMAIN_ADSP {
-> >>> +                                     reg = <MT8192_POWER_DOMAIN_ADSP>;
-> >>> +                                     clocks = <&topckgen CLK_TOP_ADSP_SEL>;
-> >>> +                                     clock-names = "adsp";
-> >>> +                                     mediatek,infracfg = <&infracfg>;
-> >>> +                                     #power-domain-cells = <0>;
-> >>> +                             };
-> >>>                        };
-> >>>                };
-> >>>
-> >>> diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
-> >>> index 4eaa53d7270a..63e81cd0d06d 100644
-> >>> --- a/include/dt-bindings/power/mt8192-power.h
-> >>> +++ b/include/dt-bindings/power/mt8192-power.h
-> >>> @@ -28,5 +28,6 @@
-> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWA        18
-> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWB        19
-> >>>    #define MT8192_POWER_DOMAIN_CAM_RAWC        20
-> >>> +#define MT8192_POWER_DOMAIN_ADSP     21
-> >>>
-> >>>    #endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
-> >>>
-> >>
->
->
