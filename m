@@ -2,147 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0499063EC85
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53EB263EC8E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:32:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbiLAJbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 04:31:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
+        id S230116AbiLAJcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 04:32:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbiLAJaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:30:46 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49D9295801;
-        Thu,  1 Dec 2022 01:30:23 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 0F50224E12B;
-        Thu,  1 Dec 2022 17:30:22 +0800 (CST)
-Received: from EXMBX065.cuchost.com (172.16.6.65) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
- 2022 17:30:22 +0800
-Received: from [192.168.125.61] (113.72.147.18) by EXMBX065.cuchost.com
- (172.16.6.65) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
- 2022 17:30:21 +0800
-Message-ID: <8de7fd5a-e37c-0365-31ee-4a748c7297a4@starfivetech.com>
-Date:   Thu, 1 Dec 2022 17:31:02 +0800
+        with ESMTP id S230226AbiLAJbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:31:50 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9747F880F6;
+        Thu,  1 Dec 2022 01:31:47 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 42E176602AC1;
+        Thu,  1 Dec 2022 09:31:43 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1669887103;
+        bh=D7I5+RS4sfjfylRTQ21IejiMBeD86qi+gjwBXVqgI/I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=S6VK4D3YY9dod7+SUYRC0d/qqTnYK91XRDgclgfBFlzvW811p7iGakDubCo6O6HnQ
+         TegGow5zu5+dKubdcC3PGhSA+oHtUB7+oSmVP1UvOwoEBmlqOXIdB62wmV+X64Bkf0
+         uM6T5HNL7FKgrnGRHHXXv1PsEd8Yio+sRTFPcGcfwcSU6lrzVPCeArbQvGduA0il1H
+         ezgzJDBxDU0qdd3Cc8Mqfo2zuVhtqlUdLieniD2sfNwrtGXXkkibdANMDTOREQtsE3
+         tiSnEQTbmL4yT0gPtCkxMN74VG8x3stzg7oYNEZnbNmydF4FKdCpcNNiU5l0tYKxRf
+         qBE4438sIpDBg==
+Message-ID: <5250d7d3-ff46-e08d-926c-4efd92390d88@collabora.com>
+Date:   Thu, 1 Dec 2022 10:31:41 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: Add StarFive JH7110 pinctrl
- definitions
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20221118011108.70715-1-hal.feng@starfivetech.com>
- <20221118011108.70715-2-hal.feng@starfivetech.com>
- <eb3974a3-f715-f5b0-cac7-551af26bd17b@linaro.org>
- <08db0f3b-5222-9460-26ba-0e6380d16583@linaro.org>
- <0ceba170-f844-e733-a49e-e67746f9f836@starfivetech.com>
- <093ea507-4c42-1af9-4896-64c1a918432e@linaro.org>
- <30c21787-0c48-ff50-1d63-8e69bdcdbe30@starfivetech.com>
- <339be655-aee7-e1a4-51be-28ea20de6792@linaro.org>
- <3db802d6-114f-097a-6c69-e7b40e4d2764@starfivetech.com>
- <f52e31a5-a12a-b95e-b99c-1af8f8b41c3b@linaro.org>
+Subject: Re: [PATCH 1/4] arm64: dts: mediatek: mt8183: Fix systimer 13 MHz
+ clock description
 Content-Language: en-US
-From:   Jianlong Huang <jianlong.huang@starfivetech.com>
-In-Reply-To: <f52e31a5-a12a-b95e-b99c-1af8f8b41c3b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>
+References: <20221201084229.3464449-1-wenst@chromium.org>
+ <20221201084229.3464449-2-wenst@chromium.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221201084229.3464449-2-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.147.18]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX065.cuchost.com
- (172.16.6.65)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Nov 2022 15:58:12 +0100, Krzysztof Kozlowski wrote:
-> On 29/11/2022 15:46, Jianlong Huang wrote:
->> On Tue, 29 Nov 2022 08:49:49 +0100, Krzysztof Kozlowski wrote:
->>> On 29/11/2022 02:47, Jianlong Huang wrote:
->>>> On Mon, 28 Nov 2022 09:32:45 +0100, Krzysztof Kozlowski wrote:
->>>>> On 28/11/2022 01:48, Jianlong Huang wrote:
->>>>>
->>>>>>>>> +/* aon_iomux doen */
->>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_4			2
->>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_5			3
->>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_6			4
->>>>>>>>> +#define GPOEN_AON_PTC0_OE_N_7			5
->>>>>>>>> +
->>>>>>>>
->>>>>>>> It looks like you add register constants to the bindings. Why? The
->>>>>>>> bindings are not the place to represent hardware programming model. Not
->>>>>>>> mentioning that there is no benefit in this.
->>>>>>>
->>>>>>> Also: this entire file should be dropped, but if it stays, you have to
->>>>>>> name it matching bindings or compatible (vendor,device.h).
->>>>>>
->>>>>> Thanks your comments.
->>>>>> These macros are used to configure pinctrl in dts, so the file should stay,
->>>>>
->>>>> Why they should stay? What's the reason? If it is not a constant used by
->>>>> driver, then register values should not be placed in the bindings, so
->>>>> drop it.
->>>>>
->>>>
->>>> Thanks.
->>>>
->>>> These macros in binding header(example, DOUT, DOEN etc) will be used in DTS,
->>>> and driver will parse the DT for pinctrl configuration.
->>>>
->>>> Example in dts:
->>>> uart0_pins: uart0-0 {
->>>> 	tx-pins {
->>>> 		pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX, GPOEN_ENABLE, GPI_NONE)>;
->>>
->>> This is usage in DTS and is not an argument to store register
->>> addresses/offsets as bindings. What is the usage (of define, not value)
->>> in the driver?
->>>
->> 
->> The existing implementation reuse the macros for DTS and driver.
+Il 01/12/22 09:42, Chen-Yu Tsai ha scritto:
+> The systimer block derives its 13 MHz clock by dividing the main 26 MHz
+> oscillator clock by 2 internally, not through the TOPCKGEN clock
+> controller.
 > 
-> Where in the driver? Grep gives zero results.
+> On the MT8183 this divider is set either by power-on-reset or by the
+> bootloader. The bootloader may then make the divider unconfigurable to,
+> but can be read out by, the operating system.
 > 
->> Do you mean we need to separate the macros, one for DTS and one for driver usage?
+> Making the systimer block take the 26 MHz clock directly requires
+> changing the implementations. As an ABI compatible fix, change the
+> input clock of the systimer block a fixed factor divide-by-2 clock
+> that takes the 26 MHz oscillator as its input.
 > 
-> No, if driver uses them it is fine. The problem is I cannot find it
-> anywhere.
-> 
->> Or you have any better suggestion?
->> 
->> These macros are the value of register, not register addresses/offsets,
->> except for with prefix of GPI.
-> 
-> Still, values are not usually part of bindings.
-> 
->> 
->> Drivers rarely reference macros directly, mostly parsing dts and writing them to registers.
-> 
-> So drivers do not use macros? Then there is no reason to store them in
-> bindings? What do you "bind" if there is no usage (and we do not talk
-> about DTS...)?
-> 
+> Fixes: 5bc8e2875ffb ("arm64: dts: mt8183: add systimer0 device node")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
-These macros are more friendly for configuring dts, so i stay the file.
-And change the file path to 'arch/riscv/boot/dts/starfive/',
-change the file name to 'jh7110-pinfunc.h'.
+I generally not just like - but *love* - this change, I had that in my mind
+for a couple of months now and forgot about it because reasons.
 
-Best regards,
-Jianlong Huang
+There's just one thing that, since we're doing this now, we can clarify (and
+that's important to avoid questions like "why isn't this board-specific"):
+the 26MHz clock "clk26m" oscillator that we're using for the system timers
+is a SoC-provided clock, and its name is "SYSCLK" as in "System bus clock".
+
+I know that your target is to describe how we get from 26M to 13M, but at
+this point it may be worth it to use the right names to help preventing
+confusion about that clock not being an external crystal on the board but
+something internal to the SoC.
+
+So, I propose:
+1. Change `clk26m: oscillator` to `clk26m: sysclk` or `clk26m: sysclk-26m`;
+2. Add the divider as `clk13m: sysclk-div2`.
+
+What do you think?
+
+Cheers,
+Angelo
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 12 ++++++++++--
+>   1 file changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 19ff1babc359..0cbbaebe1213 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -585,6 +585,15 @@ psci {
+>   		method = "smc";
+>   	};
+>   
+> +	clk13m: fixed-factor-clock-13m {
+> +		compatible = "fixed-factor-clock";
+> +		#clock-cells = <0>;
+> +		clocks = <&clk26m>;
+> +		clock-div = <2>;
+> +		clock-mult = <1>;
+> +		clock-output-names = "clk13m";
+> +	};
+> +
+>   	clk26m: oscillator {
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+> @@ -968,8 +977,7 @@ systimer: timer@10017000 {
+>   				     "mediatek,mt6765-timer";
+>   			reg = <0 0x10017000 0 0x1000>;
+>   			interrupts = <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&topckgen CLK_TOP_CLK13M>;
+> -			clock-names = "clk13m";
+> +			clocks = <&clk13m>;
+>   		};
+>   
+>   		iommu: iommu@10205000 {
+
 
