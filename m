@@ -2,146 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4233063F507
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:17:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5887B63F512
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:18:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232186AbiLAQRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 11:17:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
+        id S231727AbiLAQSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:18:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232149AbiLAQRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:17:00 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCA0243869
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:16:56 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id f21so2353508lfm.9
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 08:16:56 -0800 (PST)
+        with ESMTP id S232260AbiLAQSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:18:05 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442E329804;
+        Thu,  1 Dec 2022 08:17:58 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id q17-20020a17090aa01100b002194cba32e9so5716562pjp.1;
+        Thu, 01 Dec 2022 08:17:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6oTFc2dATfS9osXis9xvRsQEPe/ZtfQF84AfMRcTyJw=;
-        b=W3E9HyIOcWSK38+gsC9ayGi8852SOgd2kmcoRgfY97I0IkRjY3jknE9upUK3uw7w6H
-         fmzIsnwblDSBCn+BZjHI3VMOawteustNcZGIYZnLGPtixGg3gKVEzju/NUqvHPWCTkMh
-         qLcgzn+v2a3iIV12gq0799sUWYk/WqMk1J/xkkS0DNrA/3GBhvoSAtJuewSM6/jeJxjT
-         ZApBARwj0ADjZazjwQ/uhyYFFL+31pZ3qdY7TIL6Hk8nEbtHlGppqa8/YUnPVaVLNYZP
-         zaZlyHTq56Ouu5a04ULGtD6qyFFQAnRqMHcO588Jc6GAZqMCK9rposhsYh6h1inT4Etp
-         YOqA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BfYDYtDdWSpf1BGYU9m6venf9VFVD+ygFyov+HV7Yms=;
+        b=cw36wKEXB3mUS1v978XCAC5BErch3wt26EUPwdmLPXj1m8t29fZNTgvr7oPFxoiyD0
+         OFW3LbV2bpmtoHr2GslOsX7QLs7OxWkp10Y+HVkrM1YBvCEYeB6CpdgQmQtchqtpCZIy
+         dP7mF4meMDd+XzCOeWZHLdQvp7OjZJY+jk+on65lACTP3pO5uLycazQpPumN9z1Xg3jZ
+         mOFaqPbrPEMllLZrnVXRoadlRk4FYUMiKibVTFOZRqtjoMgygN928U0Z160q+70xd2Rt
+         1o7L6i6qIX0TIEI7K4r8wc+W31ZGHc+c/vkb1eQCbDCcLJSrDSVswi+p1zmthMqgMxYw
+         UjUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6oTFc2dATfS9osXis9xvRsQEPe/ZtfQF84AfMRcTyJw=;
-        b=Hb8N4kWRdAwHKfmoeJ/XqWFATXvARW2rrXOmwA3U6pWNscCpzLAbEFmAOET96+KD3O
-         EuCuBTJVfrVVcZDIfr1wo6l06yyKTafdFKze8QuxkO4QjzdxyhGncs6hA4ZnglLjnPgO
-         h7P2Krm2R0lnxoaClI8WDnoGyfHueJf5/8CtfgXevc8cJyPwxj/H88DS0uivvH8qAFm2
-         Ld68Ahha+NNzvdI80Dvl38VWabOBF64sOOoEIPBF7veEdiTT7wDdg/Ae+c1bp9XRg/ge
-         cwLTOPNGYLydt67dWxo7DDhYbeH2P6NzVH9dWKWmOOUw6KDkeZvo2rk4JUcX5gcWDuSk
-         JF0A==
-X-Gm-Message-State: ANoB5pk+dg332x60XBIQahlmfM/Tp7VzHynKD/A3diow1Z66fgQO4zMr
-        1Ce6NML/ra+E581hrhe96T3CLvlCp+0bUfKm
-X-Google-Smtp-Source: AA0mqf5pH+x5zT3NaSsywf8/ZupOJED+U46KUk7f7c1W0olYbCt1BCmCjsra+fdMT0XTniKChdl8uA==
-X-Received: by 2002:a05:6512:33ce:b0:4b5:ff:4050 with SMTP id d14-20020a05651233ce00b004b500ff4050mr11242043lfg.476.1669911415121;
-        Thu, 01 Dec 2022 08:16:55 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s24-20020a056512203800b0049480c8e7bcsm691799lfs.176.2022.12.01.08.16.53
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BfYDYtDdWSpf1BGYU9m6venf9VFVD+ygFyov+HV7Yms=;
+        b=cjDnqAzPst6BZg10hDufj+y7eqp7Lhy+noMiZebU/Mwdq0K+qux/p11Hy3xFMKd7Ks
+         or2vc0XDqkREyabDW97bNfiAxqS0dK1FizUVaR3rYGgrDkbjBold7KQfNF5A3YspSFAy
+         JUEynac9bQ4ac6Bt0j9WLKdY4LCn1bPtc2MN9VQsBoAYjsvtKSHbXjP0h8KJvEdEO71p
+         QJhr5Q+ILcIFiHGq4QP6Ijxd760tJcm5ba0LT+SGtq2afUWlGqS/Y25BHD/C3Kf94ZjN
+         UsPwqXBIU+N8zQy+Xiyt0XtyVI16P7+KBbnK33poX4Ia92mgf/KcAxZ8qO13WmEQND8e
+         VMCg==
+X-Gm-Message-State: ANoB5pnPuo4t48CBfs/vfO5vXkcpHNIg0CMHQbeEAL7I4poraHqh48Pf
+        jdz3adAHjL7bP6C01rES7T49y8QgiKM=
+X-Google-Smtp-Source: AA0mqf4/5D6L8Y5ZjG68qTNyUWBPsQBG1ZoClZZ/oqliodHgdPhFZcqo7Rs86REz+mv/oSRaMlsm0g==
+X-Received: by 2002:a17:902:d4c8:b0:186:9d71:228c with SMTP id o8-20020a170902d4c800b001869d71228cmr50156573plg.109.1669911477675;
+        Thu, 01 Dec 2022 08:17:57 -0800 (PST)
+Received: from localhost ([2406:7400:61:64d5:7d23:c512:7205:1e52])
+        by smtp.gmail.com with ESMTPSA id j10-20020a17090276ca00b001894881842dsm3837104plt.151.2022.12.01.08.17.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 08:16:54 -0800 (PST)
-Message-ID: <17ae860f-3fc2-1fec-df30-f23568656b9e@linaro.org>
-Date:   Thu, 1 Dec 2022 17:16:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
- power-management IC
-Content-Language: en-US
-To:     Saravanan Sekar <saravanan@linumiz.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marten.lindahl@axis.com
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-3-saravanan@linumiz.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201044643.1150870-3-saravanan@linumiz.com>
+        Thu, 01 Dec 2022 08:17:56 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Date:   Thu, 01 Dec 2022 21:47:49 +0530
+Message-Id: <COQM7MGKFRUI.25DOQ1AAQLLY7@skynet-linux>
+Cc:     <linux-arm-msm@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <bjorn.andersson@linaro.org>, <devicetree@vger.kernel.org>,
+        <phone-devel@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Mathieu Poirier" <mathieu.poirier@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 4/9] dt-bindings: remoteproc: qcom: wcnss: Convert to
+ YAML
+From:   "Sireesh Kodali" <sireeshkodali1@gmail.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>
+X-Mailer: aerc 0.13.0
+References: <20220511161602.117772-1-sireeshkodali1@gmail.com>
+ <20220511161602.117772-5-sireeshkodali1@gmail.com>
+ <e8a86b3e-7a2f-3434-52d8-6a827b720f92@linaro.org>
+In-Reply-To: <e8a86b3e-7a2f-3434-52d8-6a827b720f92@linaro.org>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 05:46, Saravanan Sekar wrote:
-> Document mpq7932 power-management IC
-> 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-> ---
->  .../bindings/hwmon/pmbus/mps,mpq7932.yaml     | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
-> new file mode 100644
-> index 000000000000..5f20c59eb7ff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/mps,mpq7932.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/pmbus/mps,mpq7932.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Monolithic Power System MPQ7932 PMIC
-> +
-> +maintainers:
-> +  - Saravanan Sekar <saravanan@linumiz.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mps,mpq7932
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
+On Thu Dec 1, 2022 at 6:52 PM IST, Krzysztof Kozlowski wrote:
+> On 11/05/2022 18:15, Sireesh Kodali wrote:
+> > Convert the dt-bindings from txt to YAML. This is in preparation for
+> > including the relevant bindings for the MSM8953 platform's wcnss pil.
+> >=20
+> > Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> > ---
+> >  .../bindings/remoteproc/qcom,wcnss-pil.txt    | 177 --------------
+> >  .../bindings/remoteproc/qcom,wcnss-pil.yaml   | 228 ++++++++++++++++++
+> >  2 files changed, 228 insertions(+), 177 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,w=
+cnss-pil.txt
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,w=
+cnss-pil.yaml
+> >=20
+>
+> Half year passed, so I wonder if these series are abandoned or shall we
+> expect v2?
+>
 
-The comment was - drop regulators node if you have just one regulator...
-but it turns out you have more regulators? Then you need to follow
-regulator bindings. Open few and take a look.
+This series was split into sub-series to make upstreaming easier. Links
+to the sub-series:
+WCNSS: https://lkml.org/lkml/2022/9/30/1502
+ADSP: https://lkml.org/lkml/2022/10/13/5
 
-> +
-> +    description: |
-> +      list of regulators provided by this controller, must be named
-> +      after their hardware counterparts BUCK[1-6]
-> +
-
-This misses patternProperties.
-
-> +      "^buck[1-6]$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +
-> +additionalProperties: false
-
-
-Best regards,
-Krzysztof
+Regards,
+Sireesh
+> Best regards,
+> Krzysztof
 
