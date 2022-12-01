@@ -2,206 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC7663F523
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:21:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C41B63F52A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231600AbiLAQVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 11:21:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
+        id S231261AbiLAQXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:23:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbiLAQVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:21:10 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33914A80B6
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:21:09 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id f21so2372444lfm.9
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 08:21:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iegIkb4fipqnzTjEHK3Rzo5fetpTzelf4+OZ20EGaxQ=;
-        b=VbvXhlxH6TipiO2qGi6mtKXCZ0FlWYWE3s3cOvx/seesTXZpq1sMLXDxBph+NPebj3
-         kAOJB4fyBKMl/6/rkR4wjztOUc9WMVU7DkTPlbI/5XE+y8XpZzqP0rR03EgQpTMtEZfm
-         UUv9z6659u9OUywCheoHC6K9pQwLRo8Nl4sGnGmW88JrNTvIKC//5ieGG6NQGyplmQSD
-         fy5kGfrSnT+Nm1JuQPgTsLUF7NLUPVRzU7RxF45iuz8drQZazBFvXle5mGMUSqUNZhye
-         V59Br0xY2ZJ2Ws2c3lvArQPzH3aRtBb1ZMKDBWk7WOogGVz1S4FCGaYPpdDXTZw1lemm
-         Nr3Q==
+        with ESMTP id S229658AbiLAQXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:23:36 -0500
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD8F15713;
+        Thu,  1 Dec 2022 08:23:35 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id cg5so1342920qtb.12;
+        Thu, 01 Dec 2022 08:23:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iegIkb4fipqnzTjEHK3Rzo5fetpTzelf4+OZ20EGaxQ=;
-        b=hTJ3SELwEsHvIDiZWt/KgEv1NithO1uTuSabaaLZoRmR3nMz1fY3jm3hhlzk1omn9V
-         kQDxYfPvHARPas8xCC/yHf6Awjjc9qypWzFdEzYOGMOQyHz4AWxBqiu1OEc2CuYhDw9v
-         uOjlLT97jxPgTfOuMdq4DBWLGfAX4eOUChybKzVkP8iet+6RUpRjvHVSuZrjEKBNV7hN
-         pqWt81WlFLk3J7gs4IoFy3trs1LhWKf3JFTE+prAMlaA/JBXSi/EsEjf4uImGm5IXDfl
-         9MO65DptL1GIsMIrIg1W8Z+0HJX6iS3llpzkq+M7tLUYUddu83NWF9reWoJcJyM9ZCBG
-         Zlsw==
-X-Gm-Message-State: ANoB5pnqbft/9IT4OaS7Bkx08WSo2+cspxGY4WoFv334wsmpPHYp51dI
-        9zSDT+2/lzqyClwwVkmjZ57V/Q==
-X-Google-Smtp-Source: AA0mqf6hzJAldb7QB0+TmhU70sfyI9ugpbVn1aL8hGBP0zumhEwBHDgD4o5f2wa/of7dOVE7+YARug==
-X-Received: by 2002:a05:6512:34d0:b0:4a8:ebec:7140 with SMTP id w16-20020a05651234d000b004a8ebec7140mr22563341lfr.150.1669911667556;
-        Thu, 01 Dec 2022 08:21:07 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c24-20020a056512075800b004a01105eea2sm690936lfs.150.2022.12.01.08.21.04
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NmTEUnhGG9xmVuyhLp+T5UJoMV6vOQdMIsCsbd0HNis=;
+        b=g7CBPnry2hrWGQCYHez2q/fC67fVDKD+PeUN51vf/OMiyzGpCcaQM497d87HOJRcDF
+         H4/Is74O69VBME/YtkqZTC4FMxsm0BptRaGqTdvuR73MwjjhXJlhkA5APyNzbUwVUTfy
+         F8QdY0f1yg9K3NxE2bl848JsW1+3Ox7GPoz2XdD8yFFKD+gnYTmv11Pydbe9rkRHM6oQ
+         yT8Ivn9Zy9wuOCw877mhNMjGDy7N5enbDupqsV8XJkiC+/5W6JBiMvS5aeQfVQyI9bnA
+         DJ1JgAKg5mG62U/7Aq+t6G31al3Hw+KKqk98bCwbYKdIiUkbwqVV/wAIOGJ+teS7wyND
+         bk8g==
+X-Gm-Message-State: ANoB5plBki8BAGshGOMCZ2WQaTsxHtS9bfIHsYZP0ld+AATEawoqc5gF
+        0pVeqZVVU++ZVhLuJVpvMsmlGPjuTnXoGg==
+X-Google-Smtp-Source: AA0mqf6ziAeqpEMbmJwZwGcyspYAcM8yney7KTa1OBBB7Qc/omL89MRwEX9IWJi9zQtoMgxWBGYMhw==
+X-Received: by 2002:ac8:6742:0:b0:3a6:8922:b71c with SMTP id n2-20020ac86742000000b003a68922b71cmr10423490qtp.559.1669911814796;
+        Thu, 01 Dec 2022 08:23:34 -0800 (PST)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id f4-20020ac80684000000b0039cc64bcb53sm2725992qth.27.2022.12.01.08.23.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 08:21:05 -0800 (PST)
-Message-ID: <36565cc1-3c48-0fa8-f98b-414a7ac8f5bf@linaro.org>
-Date:   Thu, 1 Dec 2022 17:21:04 +0100
+        Thu, 01 Dec 2022 08:23:34 -0800 (PST)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-3bfd998fa53so22409707b3.5;
+        Thu, 01 Dec 2022 08:23:34 -0800 (PST)
+X-Received: by 2002:a81:a148:0:b0:3b4:8af5:48e with SMTP id
+ y69-20020a81a148000000b003b48af5048emr35487304ywg.383.1669911813908; Thu, 01
+ Dec 2022 08:23:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
-Content-Language: en-US
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20221124191643.3193423-1-biju.das.jz@bp.renesas.com> <20221124191643.3193423-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20221124191643.3193423-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Dec 2022 17:23:22 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVQUN0Tsn7KEsZDWkMcgG+i-SokSa39Tq06AOMzxQNpcg@mail.gmail.com>
+Message-ID: <CAMuHMdVQUN0Tsn7KEsZDWkMcgG+i-SokSa39Tq06AOMzxQNpcg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: pwm: Add RZ/V2M PWM binding
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-4-yanhong.wang@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201090242.2381-4-yanhong.wang@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 10:02, Yanhong Wang wrote:
-> Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
-
-Subject: drop second, redundant "bindings".
-
-> 
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+On Thu, Nov 24, 2022 at 8:17 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add device tree bindings for the RZ/V2{M, MA} PWM Timer (PWM).
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->  .../bindings/net/starfive,dwmac-plat.yaml     | 106 ++++++++++++++++++
->  MAINTAINERS                                   |   5 +
->  3 files changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index d8779d3de3d6..13c5928d7170 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -33,6 +33,7 @@ select:
->            - snps,dwmac-5.20
->            - snps,dwxgmac
->            - snps,dwxgmac-2.10
-> +          - starfive,dwmac
->  
->            # Deprecated
->            - st,spear600-gmac
-> diff --git a/Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml b/Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
-> new file mode 100644
-> index 000000000000..561cf2a713ab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
+> v1->v2:
+>  * Added Rb tag from Krzysztof and the keep the Rb tag as the below changes
+>    are trivial
+>  * Updated the description for APB clock
+>  * Added resets required property
+>  * Updated the example with resets property
 
-Filename should base on compatible.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 StarFive Technology Co., Ltd.
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/net/dwmac-starfive.yaml#"
+Gr{oetje,eeting}s,
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+                        Geert
 
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Drop quotes from both lines.
-
-> +
-> +title: StarFive DWMAC glue layer
-> +
-> +maintainers:
-> +  - Yanhong Wang <yanhong.wang@starfivetech.com>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - starfive,dwmac
-> +  required:
-> +    - compatible
-> +
-> +allOf:
-> +  - $ref: "snps,dwmac.yaml#"
-
-Drop quotes.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-Drop oneOf. You do not have more cases here.
-
-> +      - items:
-> +          - enum:
-> +               - starfive,dwmac
-
-Wrong indentation.... kind of expected since you did not test the bindings.
-
-> +          - const: snps,dwmac-5.20
-> +
-> +  clocks:
-> +    items:
-> +      - description: GMAC main clock
-> +      - description: GMAC AHB clock
-> +      - description: PTP clock
-> +      - description: TX clock
-> +      - description: GTXC clock
-> +      - description: GTX clock
-> +
-> +  clock-names:
-> +    contains:
-> +      enum:
-> +        - stmmaceth
-> +        - pclk
-> +        - ptp_ref
-> +        - tx
-> +        - gtxc
-> +        - gtx
-
-Names should be specific and with fixed order, just like clocks are.
-
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
