@@ -2,156 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7464B63EFBB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:42:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4703B63EFCF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:45:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230462AbiLALmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:42:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
+        id S230223AbiLALpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:45:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbiLALmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:42:47 -0500
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D12F02F
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:42:43 -0800 (PST)
-Date:   Thu, 01 Dec 2022 11:42:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1669894957; x=1670154157;
-        bh=1DpeR0fOlb5PAMGmnpXX+od9r16gR+9q1pKLo2N9KRI=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=yDI7s0HlJ4McXxo+2ufuGpE4pXDth5CZgcjcV3rSuMzzH6q3wJU2Tk8xl6O17cNkC
-         HGXaHumIUcAtIEKBNwYce9+vZ6SE7uaW92ikgpJXsWAVzP2llfPOvr8KTm04XlizD+
-         qqmrGlCY6Vr+H0QkM3W/9jf6/hOxA26eKCS8YCl+DJk0go0urf5JB+gwEDYNDa+OO5
-         1T8hQYX7JoMQ/eCuypvX3exrqCVOMjP+g6FcbGegvHOS8NPTUhCiVXC8ifRf/Od0W+
-         SNowSPaq79Rn4U19KPuffPal7gPFjk3PQGZv2gIZTRDFaB0Mv+3fBjN1Wz7ItilgIJ
-         mhsl3c7GMLCkg==
-To:     Rob Herring <robh@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/7] dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Pull pinctrl node changes from MT6795 document
-Message-ID: <OlpG9EaFtnZPPSHGKPeAj0wrG-hceDitxke8L1MrF58nBbOf4Q8bsw1FC8O12qj_3GFxNpM4p_LeKwbCzchvZGaD0a_S56_uKhg7YWszZ9A=@protonmail.com>
-In-Reply-To: <20221130152041.GA2183918-robh@kernel.org>
-References: <20221118113028.145348-1-y.oudjana@protonmail.com> <20221118113028.145348-2-y.oudjana@protonmail.com> <20221130152041.GA2183918-robh@kernel.org>
-Feedback-ID: 6882736:user:proton
+        with ESMTP id S231153AbiLALpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:45:09 -0500
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 759DAA057A
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:45:07 -0800 (PST)
+Received: by mail-vs1-xe31.google.com with SMTP id d185so1331641vsd.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 03:45:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qE/q8OTGX/vukPXHLJF5f0ZobL7IbidYs5xkC1/4Glo=;
+        b=EzvNjsK/64biWBOqAzlM7ZmFo/qswGF8E2psYeSj0xdD6287yOJeqmtxtWiDCeeRne
+         HLae+HG1stNZu59moUdMxeVYOQDp9sfWFNA6V3VypSXCAVupelhw74Ch1etHO5XDWI0m
+         ybBlh0c2Z/irb2/MSL4MDBPlinBeHrffEoJ60=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qE/q8OTGX/vukPXHLJF5f0ZobL7IbidYs5xkC1/4Glo=;
+        b=J1Ot+9tcOwWvRyLD8TQ0opw9nQzlLTTDjmWQZMZt5NvpqVitfD2ci55hQnncAQaLL0
+         TPeqsenN6tiL5gW6k6SqGl22AXB/ymGUrrH2uF0/b8dE1m5jdEOrf5qJs7Z0zE3cgSEc
+         ji3crtQ51e9jsNqVOrr91RCs5MT+gPVocbknkRuFt+qA/trOUFujiQMBqgz8Hs4Zy6zv
+         R2iw7R3Z5x/98zsXsXgOc4gz+fqjKAvav7QpoWXfNR+XsAJo90bNKMkGLDkzaSPUiJnk
+         VWnF+I2Qs/B1z8/d8erlPyf15nvfV8ZS0pdvggoxrjPzatWizF1wg78Dfm16GVTk/wRr
+         a+vQ==
+X-Gm-Message-State: ANoB5pkcMOMksDwmzVo6G6nrGbr9WzZ26ZuTfWvb1rkcEgdYxiH31qDj
+        06AOHyK8EOXKl6SH7oBUahOPOm7AwkjYs8gsY7o8wg==
+X-Google-Smtp-Source: AA0mqf4u5I2OZaSiq21veOJJ1DavEQccozE6Z/lEVW/v7HrTmm4H19hg9RZ5yAmVKH9lnRtk1UUPSAMKL03w0XsTCgg=
+X-Received: by 2002:a67:c98e:0:b0:3ad:3d65:22b with SMTP id
+ y14-20020a67c98e000000b003ad3d65022bmr28646035vsk.65.1669895106580; Thu, 01
+ Dec 2022 03:45:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20221107072243.15748-1-nancy.lin@mediatek.com> <20221107072243.15748-6-nancy.lin@mediatek.com>
+In-Reply-To: <20221107072243.15748-6-nancy.lin@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 1 Dec 2022 19:44:55 +0800
+Message-ID: <CAGXv+5Hj-H6Q3N+j2tEntd9M=9p0o7TxWYn_4aawhqFUbX7+PQ@mail.gmail.com>
+Subject: Re: [PATCH v28 05/11] soc: mediatek: refine code to use
+ mtk_mmsys_update_bits API
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        nfraprado@collabora.com, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        David Airlie <airlied@linux.ie>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        singo.chang@mediatek.com, llvm@lists.linux.dev,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday, November 30th, 2022 at 6:20 PM, Rob Herring <robh@kernel.org>=
- wrote:
+On Mon, Nov 7, 2022 at 3:23 PM Nancy.Lin <nancy.lin@mediatek.com> wrote:
+>
+> Simplify code for update  mmsys reg.
+>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabor=
+a.com>
+> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+>  drivers/soc/mediatek/mtk-mmsys.c | 45 ++++++++++++--------------------
+>  1 file changed, 16 insertions(+), 29 deletions(-)
+>
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-=
+mmsys.c
+> index 9a327eb5d9d7..73c8bd27e6ae 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
 
-> On Fri, Nov 18, 2022 at 02:30:22PM +0300, Yassine Oudjana wrote:
->=20
-> > From: Yassine Oudjana y.oudjana@protonmail.com
-> >=20
-> > mediatek,pinctrl-mt6795.yaml has different node name patterns which mat=
-ch
-> > bindings of other MediaTek pin controllers, ref for pinmux-node.yaml wh=
-ich
-> > has a description of the pinmux property, as well as some additional
-> > descriptions for some pin configuration properties. Pull those changes
-> > into mediatek,mt6779-pinctrl.yaml and adjust the example DTS to match i=
-n
-> > preparation to combine the MT6795 document into it.
-> >=20
-> > Signed-off-by: Yassine Oudjana y.oudjana@protonmail.com
-> > ---
-> > .../pinctrl/mediatek,mt6779-pinctrl.yaml | 38 ++++++++++++++-----
-> > 1 file changed, 28 insertions(+), 10 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-=
-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pi=
-nctrl.yaml
-> > index a2141eb0854e..d6231d11e949 100644
-> > --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl=
-.yaml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl=
-.yaml
-> > @@ -111,19 +111,21 @@ allOf:
-> > - "#interrupt-cells"
-> >=20
-> > patternProperties:
-> > - '-[0-9]*$':
-> > + '-pins$':
-> > type: object
-> > additionalProperties: false
-> >=20
-> > patternProperties:
-> > - '-pins*$':
-> > + '^pins':
-> > type: object
-> > description: |
-> > A pinctrl node should contain at least one subnodes representing the
-> > pinctrl groups available on the machine. Each subnode will list the
-> > pins it needs, and how they should be configured, with regard to muxer
-> > configuration, pullups, drive strength, input enable/disable and input =
-schmitt.
-> > - $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> > + allOf:
-> > + - $ref: pinmux-node.yaml
-> > + - $ref: pincfg-node.yaml
-> >=20
-> > properties:
-> > pinmux:
-> > @@ -134,9 +136,25 @@ patternProperties:
-> >=20
-> > bias-disable: true
-> >=20
-> > - bias-pull-up: true
-> > -
-> > - bias-pull-down: true
-> > + bias-pull-up:
-> > + oneOf:
-> > + - type: boolean
-> > + - enum: [100, 101, 102, 103]
-> > + description: Pull up PUPD/R0/R1 type define value.
-> > + description: |
-> > + For normal pull up type, it is not necessary to specify R1R0
-> > + values; When pull up type is PUPD/R0/R1, adding R1R0 defines
-> > + will set different resistance values.
-> > +
-> > + bias-pull-down:
-> > + oneOf:
-> > + - type: boolean
-> > + - enum: [100, 101, 102, 103]
->=20
->=20
-> 'bias-pull-down' is defined to be in Ohms. This doesn't look like it's
-> Ohms.
+[...]
 
-That's right, these numbers appear to correspond to MTK_PUPD_SET_R1R0_*
-values defined in include/dt-bindings/pinctrl/mt65xx.h, and work similar
-to mediatek,pull-down-adv as defined in mediatek,mt8183-pinctrl.yaml.
+> @@ -124,27 +129,14 @@ void mtk_mmsys_ddp_disconnect(struct device *dev,
+>  {
+>         struct mtk_mmsys *mmsys =3D dev_get_drvdata(dev);
+>         const struct mtk_mmsys_routes *routes =3D mmsys->data->routes;
+> -       u32 reg;
+>         int i;
+>
+>         for (i =3D 0; i < mmsys->data->num_routes; i++)
+> -               if (cur =3D=3D routes[i].from_comp && next =3D=3D routes[=
+i].to_comp) {
+> -                       reg =3D readl_relaxed(mmsys->regs + routes[i].add=
+r);
+> -                       reg &=3D ~routes[i].mask;
+> -                       writel_relaxed(reg, mmsys->regs + routes[i].addr)=
+;
+> -               }
+> +               if (cur =3D=3D routes[i].from_comp && next =3D=3D routes[=
+i].to_comp)
+> +                       mtk_mmsys_update_bits(mmsys, routes[i].addr, rout=
+es[i].mask, 0);
+>  }
+>  EXPORT_SYMBOL_GPL(mtk_mmsys_ddp_disconnect);
+>
+> -static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, u=
+32 mask, u32 val)
+> -{
+> -       u32 tmp;
+> -
+> -       tmp =3D readl_relaxed(mmsys->regs + offset);
+> -       tmp =3D (tmp & ~mask) | val;
+> -       writel_relaxed(tmp, mmsys->regs + offset);
+> -}
+> -
+>  void mtk_mmsys_ddp_dpi_fmt_config(struct device *dev, u32 val)
+>  {
+>         if (val)
 
-Now I think the easiest thing to do in order to sort this out would be
-be to stop supporting bias-pull-[up/down] properties and replace them
-with mediatek,pull-[up/down]-adv, but I guess that would break old DT.
-Changing the supported values to represent ohms and modifying drivers
-to accommodate for that would be quite tedious since every pin group
-on every SoC has different supported pull resistances, and it would
-still break compatibility with old DT anyway.
+This hunk now doesn't apply due to
 
-Does anyone have a better idea on this? Or perhaps we could leave fixing
-this for another time since issues with these bindings seem to never end
-and this patch series just keeps growing.
+    soc: mediatek: Add all settings to mtk_mmsys_ddp_dpi_fmt_config func
 
+touching mtk_mmsys_ddp_dpi_fmt_config() as well. It's trivial to resolve
+though.
+
+ChenYu
