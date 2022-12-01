@@ -2,93 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E6463F455
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A7263F46D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:45:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbiLAPmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:42:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51156 "EHLO
+        id S231789AbiLAPpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 10:45:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231528AbiLAPlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:41:42 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0591F9;
-        Thu,  1 Dec 2022 07:40:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=yHPLxsl9MbDFA39XedT/fNFDaxz54nP8D2zOAb8sz/Y=; b=HOkEQshoMedf4HqS3Ukvmb7K+s
-        gwW38/teWeetRQOOIhMYIOOiEtsrCxnUVbRM/Ut3foVLKH3itDFBBjT+VrD1hOYz5nA/3ZmKwT2Og
-        2BDROwc4BllYWFOQIo2R0/sqq72S6h8/P9lUZ+xMiTjv0oXtR/pSjYvej4dvISZ6Bcjw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1p0lfh-0044fZ-7W; Thu, 01 Dec 2022 16:40:21 +0100
-Date:   Thu, 1 Dec 2022 16:40:21 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231451AbiLAPpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:45:02 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B704E06
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 07:45:00 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id x2so2958522edd.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 07:45:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=melexis.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zZoijEDeQq5KmpIxx2DGH25QRi6qVCVswuEzepCkZP4=;
+        b=nEAKuSFkA3Lsgup6fw8AYXTcTfIlb+Mu4cmr+/pSqYZf1frlWWJsRlzlxmqKjAfLrb
+         M+8fVmF2E5Dnj6qpfEdicTjlM8aJFjtJc4WhMnbrv4JH66SHjnYH03Y2sVPrE7CnYFeB
+         PNn2q55KndoePV3UkBWtcmt03+cz7ajNmNmoeXmEl0kcvr8Ee01Vi62Th/SXMNBc4doT
+         9aqKN/SVqe8Lf3fDPi+nRes0bOa2qbccxoITVA9cBBBOBKt9knrrM6vbJqDMtqY1vQZb
+         E4CflMUSX7Ye8yBoq+twGaDle/uoPpkYN6nit98M9a7/O0p0o70iaRKtI2zUkKotm6b6
+         iV+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zZoijEDeQq5KmpIxx2DGH25QRi6qVCVswuEzepCkZP4=;
+        b=VEalXfMsIiqrNNRUQs7at+crDdOZMeWJOaahh7TJ9E2N88QeZJmQelB2lcMyZyQS3s
+         ELuMTnJdqWX/d3ZxQN8h5Ou0VDGLlkdkwZV4YaazWGTrssVBrunmCTNFe7irmX5c/W0Y
+         FUBR2+g1qD3pnDiPhWpd0UFHKHB6Jzd1fXWMJllIDJzteV05fNVJ+gng7EpsXD2wCmbf
+         uI1gFxseFUurmY9lgCIfoIAbkVQ58BOcMC3URjiJ2bwMu6hyb60MgjXNEx6KC1beplwL
+         88ivXncw8c0xKdVMavvXFnO7tpfxn5PU61ldpuUXuDlIBN9o1wrBmkBqNlUGqstrycc5
+         FDLA==
+X-Gm-Message-State: ANoB5plBHkjUWT5kaVY7NSwHfv28Xz6Wd4rsQLxYyIHECtUomFJUfVUD
+        XHi/udeqHDbrw8APJjMfGER+BA==
+X-Google-Smtp-Source: AA0mqf5uu8S8mr1+GohUMcb9htQ90+gbnI8vchUOkuuqnlb7M0DBoa6o0byXyY+ULlwkfEVD3T9Y7g==
+X-Received: by 2002:a50:fc11:0:b0:45a:1bfa:98bf with SMTP id i17-20020a50fc11000000b0045a1bfa98bfmr60665879edr.413.1669909499031;
+        Thu, 01 Dec 2022 07:44:59 -0800 (PST)
+Received: from melexis.com ([31.144.161.76])
+        by smtp.gmail.com with ESMTPSA id d7-20020a170906304700b0079800b8173asm1910412ejd.158.2022.12.01.07.44.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 07:44:58 -0800 (PST)
+Date:   Thu, 1 Dec 2022 17:44:52 +0200
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 4/7] net: phy: motorcomm: Add YT8531 phy support
-Message-ID: <Y4jK5VBVuAnl55Xz@lunn.ch>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-5-yanhong.wang@starfivetech.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Subject: Re: [PATCH v3 4/8] media: v4l: ctrls-api: Allow array update in
+ __v4l2_ctrl_modify_range
+Message-ID: <Y4jL9Mu7T/TO4g66@melexis.com>
+References: <cover.1669381013.git.vkh@melexis.com>
+ <1758f7525f6c8c602f36eef5e07a97ddfb1b548f.1669381013.git.vkh@melexis.com>
+ <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221201090242.2381-5-yanhong.wang@starfivetech.com>
+In-Reply-To: <023c0d14-c3f1-4b59-4718-d2cf2bb4699f@xs4all.nl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static const struct ytphy_reg_field ytphy_rxtxd_grp[] = {
-> +	{ "rx_delay_sel", GENMASK(13, 10), 0x0 },
-> +	{ "tx_delay_sel_fe", GENMASK(7, 4), 0xf },
-> +	{ "tx_delay_sel", GENMASK(3, 0), 0x1 }
-> +};
-> +
-> +static const struct ytphy_reg_field ytphy_txinver_grp[] = {
-> +	{ "tx_inverted_1000", BIT(14), 0x0 },
-> +	{ "tx_inverted_100", BIT(14), 0x0 },
-> +	{ "tx_inverted_10", BIT(14), 0x0 }
-> +};
-> +
-> +static const struct ytphy_reg_field ytphy_rxden_grp[] = {
-> +	{ "rxc_dly_en", BIT(8), 0x1 }
-> +};
-> +
-> +static int ytphy_config_init(struct phy_device *phydev)
-> +{
-> +	struct device_node *of_node;
-> +	u32 val;
-> +	u32 mask;
-> +	u32 cfg;
-> +	int ret;
-> +	int i = 0;
-> +
-> +	of_node = phydev->mdio.dev.of_node;
-> +	if (of_node) {
-> +		ret = of_property_read_u32(of_node, ytphy_rxden_grp[0].name, &cfg);
+Hi Hans,
 
-You need to document the device tree binding.
+On Fri, Nov 25, 2022 at 03:35:34PM +0100, Hans Verkuil wrote:
+> On 25/11/2022 14:34, Volodymyr Kharuk wrote:
+> > For V4L2_CID_TOF_TINT, which is dynamic array, it is required to use
+> > __v4l2_ctrl_modify_range.  So the idea is to use type_ops instead of u64
+> > from union. It will allow to work with any type.
+> > 
+> > Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> > ---
+> >  drivers/media/v4l2-core/v4l2-ctrls-api.c | 15 +++------------
+> >  1 file changed, 3 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-api.c b/drivers/media/v4l2-core/v4l2-ctrls-api.c
+> > index d0a3aa3806fb..09735644a2f1 100644
+> > --- a/drivers/media/v4l2-core/v4l2-ctrls-api.c
+> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-api.c
+> > @@ -942,8 +942,6 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
+> >  	case V4L2_CTRL_TYPE_U8:
+> >  	case V4L2_CTRL_TYPE_U16:
+> >  	case V4L2_CTRL_TYPE_U32:
+> > -		if (ctrl->is_array)
+> > -			return -EINVAL;
+> >  		ret = check_range(ctrl->type, min, max, step, def);
+> >  		if (ret)
+> >  			return ret;
+> > @@ -960,17 +958,10 @@ int __v4l2_ctrl_modify_range(struct v4l2_ctrl *ctrl,
+> >  		ctrl->default_value = def;
+> >  	}
+> >  	cur_to_new(ctrl);
+> > -	if (validate_new(ctrl, ctrl->p_new)) {
+> > -		if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
+> > -			*ctrl->p_new.p_s64 = def;
+> > -		else
+> > -			*ctrl->p_new.p_s32 = def;
+> > -	}
+> > +	if (validate_new(ctrl, ctrl->p_new))
+> > +		ctrl->type_ops->init(ctrl, 0, ctrl->p_new);
+> 
+> Hmm, this sets *all* elements of the array to the default_value, not
+> just the elements whose value is out of range.
+> 
+> Is that what you want? Should this perhaps depend on the type of
+> control? I.e. in some cases it might make sense to do this, in other
+> cases it makes more sense to only adjust the elements that are out
+> of range.
+> 
+> How does that work for this TINT control?
+Actually for types like INTEGER/U8/U16/U32/BOOLEAN/BUTTON/BITMASK, the function
+validate_new will return zero always as well as they fix the range on the fly.
+So that is ok for mlx7502x sensors.
 
-Frank Sae always gets the locking wrong in this driver. Have you
-tested your patch with lockdep enabled?
+For types like compound/string/menu indeed, it will sets all elements of array
+to default array. To fix it I propose to fix it by using the functions
+std_validate_elem to check per element and then set the default manually.
+But then it means, that __v4l2_ctrl_modify_range will work only for standart
+v4l2 types, and not if driver use their own implementation. 
 
-    Andrew
+Is it fine for you? What do you think?
+> 
+> Regards,
+> 
+> 	Hans
+> 
+> >  
+> > -	if (ctrl->type == V4L2_CTRL_TYPE_INTEGER64)
+> > -		value_changed = *ctrl->p_new.p_s64 != *ctrl->p_cur.p_s64;
+> > -	else
+> > -		value_changed = *ctrl->p_new.p_s32 != *ctrl->p_cur.p_s32;
+> > +	value_changed = !ctrl->type_ops->equal(ctrl, ctrl->p_cur, ctrl->p_new);
+> >  	if (value_changed)
+> >  		ret = set_ctrl(NULL, ctrl, V4L2_EVENT_CTRL_CH_RANGE);
+> >  	else if (range_changed)
+> 
+
+-- 
+--
+BR,
+Volodymyr Kharuk
