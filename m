@@ -2,147 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 539E263F43C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:39:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E6463F455
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:42:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232120AbiLAPjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:39:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        id S230132AbiLAPmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 10:42:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232084AbiLAPij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:38:39 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 330E29D81E;
-        Thu,  1 Dec 2022 07:37:58 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so1171595otl.10;
-        Thu, 01 Dec 2022 07:37:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=gEPlKgqOAwT4dYPi/LP8L4p5vA3UQVno3LcyW5TU5do=;
-        b=oTiDqVYVe8XB8vfEgM1fH7KI5SMCARIwHb5TNr4ECuffe/KlIbF3ICbwbjmg+ZgxEu
-         ILAjcFWTQqVJW8NDwxUCvP0hLl8kXsqlzf3e7sf0zSuOWsqGYRTScXBXgoHQSQd3qUdg
-         QT042AxSVUE/r0mkNmoqs/sPfZ8oB/vPAwxWMpafEDd8fPtuXTAqtCDXIiKIg79QDG/z
-         4OJo+rF7gk7Lh7vXbcY/+ky/Q2cJxP0l3s/5KRCfeeR4caQxgCIAZmvNlEeL3zIE8jze
-         i3fDoqyiurMaMxab35SksofxZnqnMY1jcaL2dfVLeD5qNTrnAg1RZXCjDY4By8WdraQ6
-         yvlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gEPlKgqOAwT4dYPi/LP8L4p5vA3UQVno3LcyW5TU5do=;
-        b=T/z7BlsnHDiv4zvyezo0SpQLctgBN9C3qn4nB1VMdVguO+MbZP/S31ykdGtt8UQS8F
-         XvywyTS2BYL/Z/YH6vK/zwgTjsCYCFG1O2rb1G+Y62GUeWHo7twZBjbbnr1WiiGdClmt
-         B9SZJ3oMnlORRW/pTETcHpIG+JzTAHiOs2ObPq2uKDHT1ITAa66lw3enRDduDl8gdS+q
-         TrTyjfuELEfn03fFzjnVE/pt3jRZ0JjBI/VxCb1ZWzaz+hnYXV5H7V+RYZ44I9Ra1GiM
-         bAl8VYGmQVvRFVuiApmGUo9swfEEThMOxaxt5knSyGPx01M6aqvdWBJrsHM28ALn2vKh
-         eJTA==
-X-Gm-Message-State: ANoB5pmCkidWzjnHZW0pZUsbwPHPVVv/dbXi3Ijfv13UOTqxsDl/FjWI
-        0MERKvyhXvEHaK/3b6dInFY=
-X-Google-Smtp-Source: AA0mqf4RoyxUmaMmV/OQumiM/v0A/BK5z6bCEClp390ndUSxS3og9fFl/A1ZLIE5QkFevyFizE4SJA==
-X-Received: by 2002:a05:6830:1215:b0:66d:78b8:7b1a with SMTP id r21-20020a056830121500b0066d78b87b1amr24948947otp.206.1669909077169;
-        Thu, 01 Dec 2022 07:37:57 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e5-20020a544f05000000b0035a5ed5d935sm1918539oiy.16.2022.12.01.07.37.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 07:37:56 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
-Date:   Thu, 1 Dec 2022 07:37:55 -0800
+        with ESMTP id S231528AbiLAPlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:41:42 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0591F9;
+        Thu,  1 Dec 2022 07:40:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=yHPLxsl9MbDFA39XedT/fNFDaxz54nP8D2zOAb8sz/Y=; b=HOkEQshoMedf4HqS3Ukvmb7K+s
+        gwW38/teWeetRQOOIhMYIOOiEtsrCxnUVbRM/Ut3foVLKH3itDFBBjT+VrD1hOYz5nA/3ZmKwT2Og
+        2BDROwc4BllYWFOQIo2R0/sqq72S6h8/P9lUZ+xMiTjv0oXtR/pSjYvej4dvISZ6Bcjw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1p0lfh-0044fZ-7W; Thu, 01 Dec 2022 16:40:21 +0100
+Date:   Thu, 1 Dec 2022 16:40:21 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v1 4/7] net: phy: motorcomm: Add YT8531 phy support
+Message-ID: <Y4jK5VBVuAnl55Xz@lunn.ch>
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
+ <20221201090242.2381-5-yanhong.wang@starfivetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
- power-management IC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Saravanan Sekar <saravanan@linumiz.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marten.lindahl@axis.com,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-3-saravanan@linumiz.com>
- <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
- <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
- <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221201090242.2381-5-yanhong.wang@starfivetech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/1/22 03:38, Krzysztof Kozlowski wrote:
-> On 01/12/2022 12:29, Saravanan Sekar wrote:
->> On 01/12/22 11:26, Krzysztof Kozlowski wrote:
->>> On 01/12/2022 05:46, Saravanan Sekar wrote:
->>>> Document mpq7932 power-management IC
->>>>
->>>> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
->>>> ---
->>>
->>> This is a friendly reminder during the review process.
->>>
->>> It seems my previous comments were not fully addressed. Maybe my
->>> feedback got lost between the quotes, maybe you just forgot to apply it.
->>> Please go back to the previous discussion and either implement all
->>> requested changes or keep discussing them.
->>>
->> Hi Krzysztof,
->>
->> Thanks for your time to review and feedback.
->>
->> Here are the summary of comments on V1, I have fixed all according to my
->> understanding.
->>
->>
->> 1. Use subject prefixes matching the subsystem (git log --oneline -- ...).
->>
->> git log --oneline -- Documentation/devicetree/bindings/hwmon/pmbus/
->> 1ccca53618c4 dt-bindings: hwmon/pmbus: Add mps,mpq7932 power-management IC
->> 373c0a77934c dt-bindings: hwmon/pmbus: Add ti,lm25066 power-management IC
->> 7f464532b05d dt-bindings: Add missing 'additionalProperties: false'
->> 8a36e38d8b0f dt-bindings: hwmon/pmbus: Add ti,ucd90320 power sequencer
->>
->> I have used the same format of 373c0a77934c.
->>
->> 2. Does not look like you tested the bindings. Please run `make
->> dt_binding_check` (see
->> Documentation/devicetree/bindings/writing-schema.rst for instructions).
->>
->> I did run dt_binding_check on V1 but failed to notice warnings. Fixed
->> warning on V2 and didn't observed any warnings.
->>
->> 3. Why requiring nodename? Device schemas usually don't do that.
->> dropped "pattern: "pmic@[0-9a-f]{1,2}""
->>
->> 4. regulators node is a regulator with one more regulator? Drop.
->> dropped "$ref: regulator.yaml# "
-> 
-> The comment was - drop entire regulators node.
-> 
-> Plus additional comment for the driver (and related to bindings) was
-> that this is not hwmon but a regulator driver. Why putting regulator
-> driver in hwmon?
-> 
+> +static const struct ytphy_reg_field ytphy_rxtxd_grp[] = {
+> +	{ "rx_delay_sel", GENMASK(13, 10), 0x0 },
+> +	{ "tx_delay_sel_fe", GENMASK(7, 4), 0xf },
+> +	{ "tx_delay_sel", GENMASK(3, 0), 0x1 }
+> +};
+> +
+> +static const struct ytphy_reg_field ytphy_txinver_grp[] = {
+> +	{ "tx_inverted_1000", BIT(14), 0x0 },
+> +	{ "tx_inverted_100", BIT(14), 0x0 },
+> +	{ "tx_inverted_10", BIT(14), 0x0 }
+> +};
+> +
+> +static const struct ytphy_reg_field ytphy_rxden_grp[] = {
+> +	{ "rxc_dly_en", BIT(8), 0x1 }
+> +};
+> +
+> +static int ytphy_config_init(struct phy_device *phydev)
+> +{
+> +	struct device_node *of_node;
+> +	u32 val;
+> +	u32 mask;
+> +	u32 cfg;
+> +	int ret;
+> +	int i = 0;
+> +
+> +	of_node = phydev->mdio.dev.of_node;
+> +	if (of_node) {
+> +		ret = of_property_read_u32(of_node, ytphy_rxden_grp[0].name, &cfg);
 
-Turns out this is primarily a hardware monitoring driver, like the drivers
-for all other PMBus chips. Regulator support is actually optional; the driver
-works perfectly well with CONFIG_REGULATOR=n (except that it needs some
-#ifdefs to address that situation).
+You need to document the device tree binding.
 
-Guenter
+Frank Sae always gets the locking wrong in this driver. Have you
+tested your patch with lockdep enabled?
 
+    Andrew
