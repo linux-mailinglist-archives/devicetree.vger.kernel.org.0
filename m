@@ -2,183 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 928DA63F498
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BD563F4B4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbiLAP6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:58:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44012 "EHLO
+        id S231414AbiLAQD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:03:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231517AbiLAP6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:58:05 -0500
-Received: from gateway31.websitewelcome.com (gateway31.websitewelcome.com [192.185.144.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13D3AE52
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 07:58:02 -0800 (PST)
-Received: from atl1wswcm06.websitewelcome.com (unknown [50.6.129.167])
-        by atl3wswob02.websitewelcome.com (Postfix) with ESMTP id 9BE213A17C
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 15:58:01 +0000 (UTC)
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-        by cmsmtp with ESMTP
-        id 0lwkpqyrMPz0t0lwmplTos; Thu, 01 Dec 2022 15:58:01 +0000
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=fZOYRKy3GgWYe5iiinL32p52xoI3jWCROvrohykcCbQ=; b=Gels9cR66w/BH/KcuPVtNF4MLZ
-        og38RhuxCcza2SNI5x1rjielpejc0cy40eIcz6XYY55k9EaMLfNctmPJ685RR7bqZ2AXvB/Sd8Mix
-        b/OT+m0kBkRCt7ynpDlVf1QB3Xkszk+QmCCxCeyL70gv7fvZLov4CTGlwC9yLxWbzDgE2IoySVup5
-        p6WrT6q+ZchQ7SD3duusYsfJsAWqi+z+gCitLmdkCL3MU+u9gy5zn4JhZ3iFclGu3HUXnd2n4TQNA
-        6/iE8PD3ALbDHz0x+tSmUd8A70CFPqxmzzgFSTpmBOBnu/skv2PacsL4drB21WHvCoRmAztDmYX8v
-        pCKKbbcw==;
-Received: from [106.197.183.239] (port=28074 helo=[192.168.221.42])
-        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <saravanan@linumiz.com>)
-        id 1p0lwj-003Nap-OW;
-        Thu, 01 Dec 2022 15:57:57 +0000
-Message-ID: <e84b629a-f7a7-e2a1-810c-87e1ce4538de@linumiz.com>
-Date:   Thu, 1 Dec 2022 16:57:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
- power-management IC
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marten.lindahl@axis.com,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-3-saravanan@linumiz.com>
- <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
- <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
- <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
- <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
-From:   Saravanan Sekar <saravanan@linumiz.com>
-In-Reply-To: <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 106.197.183.239
-X-Source-L: No
-X-Exim-ID: 1p0lwj-003Nap-OW
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.221.42]) [106.197.183.239]:28074
-X-Source-Auth: saravanan@linumiz.com
-X-Email-Count: 6
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfJqyDJlQfd9T6evz1V+sJhaspPuwCN7XUTaY9s84uu252Ke0TKNbA0bCDSfPODaTgeDIG5b9ycWxX/pu9vm0a4YsDaaU7bCvqXh3qO8AmvfhY5prPejB
- pnbXK9zlTajWfDs7hJ/Gm42ivqdltgXFNy+s6UdBkKRT2yslv/8uk76DQ75n6Eb8RWpTwkt5u78wtEaSIotDPblfqbvGASRLBEE=
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230132AbiLAQDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:03:54 -0500
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32255B393D;
+        Thu,  1 Dec 2022 08:03:53 -0800 (PST)
+Received: from srv01.abscue.de (localhost [127.0.0.1])
+        by spamfilter.srv.local (Postfix) with ESMTP id 4D22D1C0049;
+        Thu,  1 Dec 2022 17:03:51 +0100 (CET)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
+        by srv01.abscue.de (Postfix) with ESMTPSA id 367D91C0048;
+        Thu,  1 Dec 2022 17:03:51 +0100 (CET)
+From:   =?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+To:     =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Subject: [PATCH v2 0/3] drm/tiny: panel-mipi-dbi: Support separate I/O voltage supply
+Date:   Thu,  1 Dec 2022 17:02:42 +0100
+Message-Id: <20221201160245.2093816-1-otto.pflueger@abscue.de>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/22 16:37, Guenter Roeck wrote:
-> On 12/1/22 03:38, Krzysztof Kozlowski wrote:
->> On 01/12/2022 12:29, Saravanan Sekar wrote:
->>> On 01/12/22 11:26, Krzysztof Kozlowski wrote:
->>>> On 01/12/2022 05:46, Saravanan Sekar wrote:
->>>>> Document mpq7932 power-management IC
->>>>>
->>>>> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
->>>>> ---
->>>>
->>>> This is a friendly reminder during the review process.
->>>>
->>>> It seems my previous comments were not fully addressed. Maybe my
->>>> feedback got lost between the quotes, maybe you just forgot to apply 
->>>> it.
->>>> Please go back to the previous discussion and either implement all
->>>> requested changes or keep discussing them.
->>>>
->>> Hi Krzysztof,
->>>
->>> Thanks for your time to review and feedback.
->>>
->>> Here are the summary of comments on V1, I have fixed all according to my
->>> understanding.
->>>
->>>
->>> 1. Use subject prefixes matching the subsystem (git log --oneline -- 
->>> ...).
->>>
->>> git log --oneline -- Documentation/devicetree/bindings/hwmon/pmbus/
->>> 1ccca53618c4 dt-bindings: hwmon/pmbus: Add mps,mpq7932 
->>> power-management IC
->>> 373c0a77934c dt-bindings: hwmon/pmbus: Add ti,lm25066 
->>> power-management IC
->>> 7f464532b05d dt-bindings: Add missing 'additionalProperties: false'
->>> 8a36e38d8b0f dt-bindings: hwmon/pmbus: Add ti,ucd90320 power sequencer
->>>
->>> I have used the same format of 373c0a77934c.
->>>
->>> 2. Does not look like you tested the bindings. Please run `make
->>> dt_binding_check` (see
->>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
->>>
->>> I did run dt_binding_check on V1 but failed to notice warnings. Fixed
->>> warning on V2 and didn't observed any warnings.
->>>
->>> 3. Why requiring nodename? Device schemas usually don't do that.
->>> dropped "pattern: "pmic@[0-9a-f]{1,2}""
->>>
->>> 4. regulators node is a regulator with one more regulator? Drop.
->>> dropped "$ref: regulator.yaml# "
->>
->> The comment was - drop entire regulators node.
->>
+As stated in Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yml,
+the MIPI DBI specification defines two power supplies, one for powering
+the panel and one for the I/O voltage. The panel-mipi-dbi driver
+currently only supports specifying a single "power-supply" in the
+device tree.
 
+Add support for a second power supply defined in a new "io-supply"
+device tree property to make the driver properly configure the voltage
+regulators on platforms where separate supplies are used.
 
-PMBUS_REGULATOR_STEP helper macro has
-                 .regulators_node = of_match_ptr("regulators"),  \
+Changes in v2:
+ - Don't list power-supply in the properties section of
+   panel-mipi-dbi-spi.yaml because it is already in panel-common.yaml
 
-regulator subsystem parse (regulator_of_get_init_node) based on 
-regulators_node. I think it is common all the regulator/pmic dts has 
-regulators node.
+Otto Pflüger (3):
+  drm/mipi-dbi: Support separate I/O regulator
+  drm/tiny: panel-mipi-dbi: Read I/O supply from DT
+  dt-bindings: display: panel: mipi-dbi-spi: Add io-supply
 
->> Plus additional comment for the driver (and related to bindings) was
->> that this is not hwmon but a regulator driver. Why putting regulator
->> driver in hwmon?
->>
->
-> Turns out this is primarily a hardware monitoring driver, like the drivers
-> for all other PMBus chips. Regulator support is actually optional; the 
-> driver
-> works perfectly well with CONFIG_REGULATOR=n (except that it needs some
-> #ifdefs to address that situation).
-> 
+ .../bindings/display/panel/panel-mipi-dbi-spi.yaml |  8 +++++++-
+ drivers/gpu/drm/drm_mipi_dbi.c                     | 14 ++++++++++++++
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c              |  5 +++++
+ include/drm/drm_mipi_dbi.h                         |  7 ++++++-
+ 4 files changed, 32 insertions(+), 2 deletions(-)
 
-Here is my view, communication to MPQ7932 PMIC chip is based on pmbus 
-specification.
-
-Now the conflict is that we have pmbus directory under hwmon subsystem, 
-if pmbus spec implementation would have been separate like i2c-smbus 
-then we can implement chip driver in regulator subsystem which access pmbus.
-
-pmbus_core does supports regulator framework PMBUS_REGUALTOR and I 
-believe it is valid MPQ7932 driver implantation under pmbus directory.
-
-Kindly suggest to remove pmbus dependency on hwmon and proceed further.
-
-Thanks,
-Saravanan
-
+-- 
+2.30.2
