@@ -2,102 +2,508 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D564063F475
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1AB63F492
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 16:56:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232052AbiLAPq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 10:46:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
+        id S229658AbiLAP4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 10:56:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231912AbiLAPqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:46:49 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132DC2185;
-        Thu,  1 Dec 2022 07:46:48 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 91EF941A42;
-        Thu,  1 Dec 2022 15:46:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1669909604; bh=sweJNKsjr4ljoYIjuQ98l2QsA987tki/vb90mAoNacE=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=vqwoRo3rh1Gn9uAlzocc7qmZjr3RgtGrOSjTt3SrXhOaEJpHr9imroBJp7n/egHjW
-         kKg0vs6Clj52HIV9QnzBYzvz4PkD/6h1KU64FyQCrwbzmgzqJeJ4HfjCjA1YE7RyYh
-         WVpf2cl7tiFnPU2RWpttyvFoBIYzLyqcTcR5v0UnZrYoove1b6eS7xfJAYMH90acOR
-         +Q3dzpOgE5u4STNQUmGJRwVLNlov0cuaefHWZKD0JCK+UMfJdBhU/9Cja3DToH4A2B
-         fR4ua1/7wQjrIYHsvnwsASSGuAaePovgNCFZdu23dBU9JoGJR5+5JOe5wN/gyb3Tay
-         hurVUC5Ydudig==
-Message-ID: <ae89b38f-fd67-e0e5-1439-f376da985be8@marcan.st>
-Date:   Fri, 2 Dec 2022 00:46:38 +0900
+        with ESMTP id S230366AbiLAP4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 10:56:37 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04BFA896F;
+        Thu,  1 Dec 2022 07:56:35 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id g51-20020a9d12b6000000b0066dbea0d203so1214031otg.6;
+        Thu, 01 Dec 2022 07:56:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YCGjYzF2+06EInqIcZCZP7MFyaDySpfz2bo8H03l0ds=;
+        b=NFGBbL+fJfqNs3PAby8Bo7Yc6LypSLHwPDYSjDrvABwSuveD4GNg+/qwqJmNVL2VGz
+         w7OZ+qS4Ux06CB7aKhw7NJ+4mTTnTdi9phNJFeseFEVBHNfQs1RSqkdbNnm/FeaOMWL+
+         quJkdsqxfSE0ArBkI5EHMk4VR2RdiXmb74tDfnkC/yKwsbVF4SnBrsHVckILfKqReGJk
+         3TO1CaGZHk+ulQvkMHtbAD90Lg6j8OxiEoSdSkb1vku1riKucKzDY3DHF75Dq7YmiVvK
+         NVUxWgGZiuNBvjaUCSoJpMoNP3zdDaqBdg7Ouhbm5CmlJwZEa4YUcbgfJJA2xDENjs2k
+         GUfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YCGjYzF2+06EInqIcZCZP7MFyaDySpfz2bo8H03l0ds=;
+        b=I1NWMlpSzhuJAfFQhxFNJ8MHmNyNXlkMK40gH7XzBIzBkyzhkMs8VjWbmrvrFIOuFC
+         9B0KLU9F9SL3L0XErzRqL5cWByWCXWLP7/f/WTuuyYGz1+HKE/o42Xbz7JRxV9bceeSx
+         HO+bXhpr6ujuf0rOcscYthPLZ4UmY7JqZfgYMEM0Egu79X5gAQBoROpv6Wc55wRR91KW
+         17BqO806I8DA9roEFAQTrsN5qJ0DZvWUGkXODzBkJxFsHTJUfmdbIz+CXJcOA31hI3Z7
+         GbrtG03NYUByp4NE2/YP/KBXwaGgj/RGCV/wUzJqG2JgvTPZU99D1jH8qDyaRpoJYJ15
+         lqTQ==
+X-Gm-Message-State: ANoB5pmx2ov5FojqQCQPXl3oo1KuICdcItSyu3UjkT41DabFN2gMNrWd
+        ZExNRvfnpPYwEEvKbYHOS0w=
+X-Google-Smtp-Source: AA0mqf6tdHKUT0Rez3bvp+l3vt+phCcuDbgASXWtiSr3yZf+5B1lVB06h3EMKkWWCUm8erCWv1G6vA==
+X-Received: by 2002:a9d:2d1:0:b0:66d:c20f:2f9 with SMTP id 75-20020a9d02d1000000b0066dc20f02f9mr22993600otl.115.1669910195199;
+        Thu, 01 Dec 2022 07:56:35 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f199-20020a4a58d0000000b004a084b7062asm800413oob.40.2022.12.01.07.56.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 07:56:34 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0fa0cce5-47b3-90f7-7936-61409aae5c7f@roeck-us.net>
+Date:   Thu, 1 Dec 2022 07:56:32 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
 Content-Language: en-US
-To:     Akihiko Odaki <akihiko.odaki@daynix.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, asahi@lists.linux.dev,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        alyssa@rosenzweig.io, sven@svenpeter.dev
-References: <20221201103651.27807-1-akihiko.odaki@daynix.com>
- <877czb42wk.fsf@bloch.sibelius.xs4all.nl>
- <c3b0cee9-032c-0447-37df-3ce5ce280e41@daynix.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH] arch: arm64: dts: apple: Remove stdout-path
-In-Reply-To: <c3b0cee9-032c-0447-37df-3ce5ce280e41@daynix.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Michal Simek <michal.simek@amd.com>,
+        "Neeli, Srinivas" <srinivas.neeli@amd.com>
+Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+References: <20220927110257.41963-1-srinivas.neeli@amd.com>
+ <20220927110257.41963-3-srinivas.neeli@amd.com>
+ <20221002162528.GA2900147@roeck-us.net>
+ <BY5PR12MB403335B81FB6DF09D65A08B593239@BY5PR12MB4033.namprd12.prod.outlook.com>
+ <BY5PR12MB403330D43906BD6D617DB0DC93389@BY5PR12MB4033.namprd12.prod.outlook.com>
+ <20221103172432.GB177861@roeck-us.net>
+ <DM6PR12MB4044C5194CC4C70A36E2F4F9933D9@DM6PR12MB4044.namprd12.prod.outlook.com>
+ <8bd8f53b-948e-637a-d692-78a7ac15c6df@amd.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 2/3] watchdog: xilinx_wwdt: Add Versal window watchdog
+ support
+In-Reply-To: <8bd8f53b-948e-637a-d692-78a7ac15c6df@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 00.19, Akihiko Odaki wrote:
-> So I think we should think more about the case when the kernel is booted 
-> from m1n1. When using its hypervisor feature, it is more likely that you 
-> want console on serial and and that is the opposite of this change. 
-> However, it is still possible to get the console on framebuffer with 
-> keyboard.
+On 12/1/22 03:08, Michal Simek wrote:
+> Hi Guenter,
+> 
+> On 11/6/22 16:16, Neeli, Srinivas wrote:
+>> Hi Guenter,
+>>
+>>> -----Original Message-----
+>>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
+>>> Sent: Thursday, November 3, 2022 10:55 PM
+>>> To: Neeli, Srinivas <srinivas.neeli@amd.com>
+>>> Cc: wim@linux-watchdog.org; Datta, Shubhrajyoti
+>>> <shubhrajyoti.datta@amd.com>; Simek, Michal <michal.simek@amd.com>;
+>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; linux-
+>>> kernel@vger.kernel.org; linux-watchdog@vger.kernel.org; linux-arm-
+>>> kernel@lists.infradead.org; devicetree@vger.kernel.org; git (AMD-Xilinx)
+>>> <git@amd.com>
+>>> Subject: Re: [PATCH 2/3] watchdog: xilinx_wwdt: Add Versal window
+>>> watchdog support
+>>>
+>>> On Thu, Nov 03, 2022 at 04:51:14PM +0000, Neeli, Srinivas wrote:
+>>>> HI Guenter,
+>>>>
+>>>>> -----Original Message-----
+>>>>> From: Neeli, Srinivas <srinivas.neeli@amd.com>
+>>>>> Sent: Tuesday, October 11, 2022 11:57 AM
+>>>>> To: Guenter Roeck <linux@roeck-us.net>
+>>>>> Cc: wim@linux-watchdog.org; Datta, Shubhrajyoti
+>>>>> <shubhrajyoti.datta@amd.com>; Simek, Michal
+>>> <michal.simek@amd.com>;
+>>>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; linux-
+>>>>> kernel@vger.kernel.org; linux-watchdog@vger.kernel.org; linux-arm-
+>>>>> kernel@lists.infradead.org; devicetree@vger.kernel.org; git
+>>>>> (AMD-Xilinx) <git@amd.com>
+>>>>> Subject: RE: [PATCH 2/3] watchdog: xilinx_wwdt: Add Versal window
+>>>>> watchdog support
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter
+>>> Roeck
+>>>>>> Sent: Sunday, October 2, 2022 9:55 PM
+>>>>>> To: Neeli, Srinivas <srinivas.neeli@amd.com>
+>>>>>> Cc: wim@linux-watchdog.org; Datta, Shubhrajyoti
+>>>>>> <shubhrajyoti.datta@amd.com>; Simek, Michal
+>>>>> <michal.simek@amd.com>;
+>>>>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; linux-
+>>>>>> kernel@vger.kernel.org; linux-watchdog@vger.kernel.org; linux-arm-
+>>>>>> kernel@lists.infradead.org; devicetree@vger.kernel.org; git
+>>>>>> (AMD-Xilinx) <git@amd.com>
+>>>>>> Subject: Re: [PATCH 2/3] watchdog: xilinx_wwdt: Add Versal window
+>>>>>> watchdog support
+>>>>>>
+>>>>>> On Tue, Sep 27, 2022 at 04:32:56PM +0530, Srinivas Neeli wrote:
+>>>>>>> Versal watchdog driver uses window watchdog mode. Window
+>>>>>>> watchdog
+>>>>>>> timer(WWDT) contains closed(first) and open(second) window with
+>>>>>>> 32 bit width. Write to the watchdog timer within predefined
+>>>>>>> window periods of time. This means a period that is not too soon
+>>>>>>> and a period that is not too late. The WWDT has to be restarted
+>>>>>>> within the open window time. If software tries to restart WWDT
+>>>>>>> outside of the open window time period, it generates a reset.
+>>>>>>>
+>>>>>>> Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+>>>>>>> ---
+>>>>>>>   drivers/watchdog/Kconfig       |  17 ++
+>>>>>>>   drivers/watchdog/Makefile      |   1 +
+>>>>>>>   drivers/watchdog/xilinx_wwdt.c | 286
+>>>>>>> +++++++++++++++++++++++++++++++++
+>>>>>>>   3 files changed, 304 insertions(+)  create mode 100644
+>>>>>>> drivers/watchdog/xilinx_wwdt.c
+>>>>>>>
+>>>>>>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+>>>>>>> index
+>>>>>>> 688922fc4edb..9822e471b9f0 100644
+>>>>>>> --- a/drivers/watchdog/Kconfig
+>>>>>>> +++ b/drivers/watchdog/Kconfig
+>>>>>>> @@ -304,6 +304,23 @@ config XILINX_WATCHDOG
+>>>>>>>         To compile this driver as a module, choose M here: the
+>>>>>>>         module will be called of_xilinx_wdt.
+>>>>>>>
+>>>>>>> +config XILINX_WINDOW_WATCHDOG
+>>>>>>> +    tristate "Xilinx window watchdog timer"
+>>>>>>> +    depends on HAS_IOMEM
+>>>>>>> +    select WATCHDOG_CORE
+>>>>>>> +    help
+>>>>>>> +      Window watchdog driver for the versal_wwdt ip core.
+>>>>>>> +      Window watchdog timer(WWDT) contains closed(first) and
+>>>>>>> +      open(second) window with 32 bit width. Write to the
+>>> watchdog
+>>>>>>> +      timer within predefined window periods of time. This
+>>> means
+>>>>>>> +      a period that is not too soon and a period that is not too
+>>>>>>> +      late. The WWDT has to be restarted within the open
+>>> window time.
+>>>>>>> +      If software tries to restart WWDT outside of the open
+>>> window
+>>>>>>> +      time period, it generates a reset.
+>>>>>>> +
+>>>>>>> +      To compile this driver as a module, choose M here: the
+>>>>>>> +      module will be called xilinx_wwdt.
+>>>>>>> +
+>>>>>>>   config ZIIRAVE_WATCHDOG
+>>>>>>>       tristate "Zodiac RAVE Watchdog Timer"
+>>>>>>>       depends on I2C
+>>>>>>> diff --git a/drivers/watchdog/Makefile
+>>>>>>> b/drivers/watchdog/Makefile index cdeb119e6e61..4ff96c517407
+>>>>>>> 100644
+>>>>>>> --- a/drivers/watchdog/Makefile
+>>>>>>> +++ b/drivers/watchdog/Makefile
+>>>>>>> @@ -155,6 +155,7 @@ obj-$(CONFIG_M54xx_WATCHDOG) +=
+>>>>>> m54xx_wdt.o
+>>>>>>>
+>>>>>>>   # MicroBlaze Architecture
+>>>>>>>   obj-$(CONFIG_XILINX_WATCHDOG) += of_xilinx_wdt.o
+>>>>>>> +obj-$(CONFIG_XILINX_WINDOW_WATCHDOG) += xilinx_wwdt.o
+>>>>>>>
+>>>>>>>   # MIPS Architecture
+>>>>>>>   obj-$(CONFIG_ATH79_WDT) += ath79_wdt.o diff --git
+>>>>>>> a/drivers/watchdog/xilinx_wwdt.c
+>>>>>>> b/drivers/watchdog/xilinx_wwdt.c new file mode 100644 index
+>>>>>>> 000000000000..2594a01c2764
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/drivers/watchdog/xilinx_wwdt.c
+>>>>>>> @@ -0,0 +1,286 @@
+>>>>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>>>>> +/*
+>>>>>>> + * Window watchdog device driver for Xilinx Versal WWDT
+>>>>>>> + *
+>>>>>>> + * Copyright (C) 2022, Advanced Micro Devices, Inc.
+>>>>>>> + */
+>>>>>>> +
+>>>>>>> +#include <linux/clk.h>
+>>>>>>> +#include <linux/interrupt.h>
+>>>>>>> +#include <linux/io.h>
+>>>>>>> +#include <linux/ioport.h>
+>>>>>>> +#include <linux/module.h>
+>>>>>>> +#include <linux/of_device.h>
+>>>>>>> +#include <linux/of_address.h>
+>>>>>>> +#include <linux/watchdog.h>
+>>>>>>> +
+>>>>>>> +#define XWWDT_DEFAULT_TIMEOUT    40
+>>>>>>> +#define XWWDT_MIN_TIMEOUT    1
+>>>>>>> +#define XWWDT_MAX_TIMEOUT    42
+>>>>>>> +
+>>>>>>> +/* Register offsets for the WWDT device */
+>>>>>>> +#define XWWDT_MWR_OFFSET    0x00
+>>>>>>> +#define XWWDT_ESR_OFFSET    0x04
+>>>>>>> +#define XWWDT_FCR_OFFSET    0x08
+>>>>>>> +#define XWWDT_FWR_OFFSET    0x0c
+>>>>>>> +#define XWWDT_SWR_OFFSET    0x10
+>>>>>>> +
+>>>>>>> +/* Master Write Control Register Masks */
+>>>>>>> +#define XWWDT_MWR_MASK        BIT(0)
+>>>>>>> +
+>>>>>>> +/* Enable and Status Register Masks */
+>>>>>>> +#define XWWDT_ESR_WINT_MASK    BIT(16)
+>>>>>>> +#define XWWDT_ESR_WSW_MASK    BIT(8)
+>>>>>>> +#define XWWDT_ESR_WEN_MASK    BIT(0)
+>>>>>>> +
+>>>>>>> +#define XWWDT_PERCENT        50
+>>>>>>> +
+>>>>>>> +static int xwwdt_timeout;
+>>>>>>> +static int xclosed_window_percent;
+>>>>>>> +
+>>>>>>> +module_param(xwwdt_timeout, int, 0644);
+>>>>>>> +MODULE_PARM_DESC(xwwdt_timeout,
+>>>>>>> +         "Watchdog time in seconds. (default="
+>>>>>>> +         __MODULE_STRING(XWWDT_DEFAULT_TIMEOUT)
+>>> ")");
+>>>>>>
+>>>>>> There is no reason to make this writeable. There are means to set
+>>>>>> the timeout in runtime. Those should be used.
+>>>>>
+>>>>> Accepted and will update in V2.
+>>>>>>
+>>>>>>> +module_param(xclosed_window_percent, int, 0644);
+>>>>>>> +MODULE_PARM_DESC(xclosed_window_percent,
+>>>>>>> +         "Watchdog closed window percentage. (default="
+>>>>>>> +         __MODULE_STRING(XWWDT_PERCENT) ")");
+>>>>>>
+>>>>>> The above is problematic. This should really not be set during
+>>>>>> runtime, and the behavior is pretty much undefined if it is
+>>>>>> changed while the watchdog is running. It should really be set
+>>>>>> using devicetree and not be changed in the running system.
+>>>>>
+>>>>> Accepted and will update in V2.
+>>>>>>
+>>>>>>> +
+>>>>>>> +/**
+>>>>>>> + * struct xwwdt_device - Watchdog device structure
+>>>>>>> + * @base: base io address of WDT device
+>>>>>>> + * @spinlock: spinlock for IO register access
+>>>>>>> + * @xilinx_wwdt_wdd: watchdog device structure
+>>>>>>> + * @clk: struct clk * of a clock source
+>>>>>>> + * @freq: source clock frequency of WWDT  */ struct xwwdt_device {
+>>>>>>> +    void __iomem *base;
+>>>>>>> +    spinlock_t spinlock; /* spinlock for register handling */
+>>>>>>> +    struct watchdog_device xilinx_wwdt_wdd;
+>>>>>>> +    struct clk *clk;
+>>>>>>> +    unsigned long    freq;
+>>>>>>> +};
+>>>>>>> +
+>>>>>>> +static bool is_wwdt_in_closed_window(struct watchdog_device
+>>> *wdd) {
+>>>>>>> +    struct xwwdt_device *xdev = watchdog_get_drvdata(wdd);
+>>>>>>> +    u32 csr, ret;
+>>>>>>> +
+>>>>>>> +    csr = ioread32(xdev->base + XWWDT_ESR_OFFSET);
+>>>>>>> +
+>>>>>>> +    ret = (csr & XWWDT_ESR_WEN_MASK) ? !(csr &
+>>>>>> XWWDT_ESR_WSW_MASK) ? 0 :
+>>>>>>> +1 : 1;
+>>>>>>
+>>>>>> This is confusing.
+>>>>>>
+>>>>>>     return !(csr & XWWDT_ESR_WEN_MASK) || ((csr &
+>>>>> XWWDT_ESR_WSW_MASK);
+>>>>>>
+>>>>>> should do the same and would be easier to understand, though I am
+>>>>>> not sure if it is correct (making the point that the expression is
+>>> confusing).
+>>>>>>
+>>>>> Accepted and will update in V2.
+>>>>>
+>>>>>>> +
+>>>>>>> +    return ret;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>> +static int xilinx_wwdt_start(struct watchdog_device *wdd) {
+>>>>>>> +    struct xwwdt_device *xdev = watchdog_get_drvdata(wdd);
+>>>>>>> +    struct watchdog_device *xilinx_wwdt_wdd = &xdev-
+>>>>>>> xilinx_wwdt_wdd;
+>>>>>>> +    u64 time_out, closed_timeout, open_timeout;
+>>>>>>> +    u32 control_status_reg;
+>>>>>>> +
+>>>>>>> +    /* Calculate timeout count */
+>>>>>>> +    time_out = xdev->freq * wdd->timeout;
+>>>>>>> +
+>>>>>>> +    if (xclosed_window_percent) {
+>>>>>>> +        closed_timeout = (time_out *
+>>> xclosed_window_percent) /
+>>>>>> 100;
+>>>>>>> +        open_timeout = time_out - closed_timeout;
+>>>>>>> +        wdd->min_hw_heartbeat_ms =
+>>> xclosed_window_percent *
+>>>>>> 10 * wdd->timeout;
+>>>>>>> +    } else {
+>>>>>>> +        /* Calculate 50% of timeout */
+>>>>>>
+>>>>>> Isn't that a bit random ?
+>>>>>
+>>>>> Versal Window watchdog IP supports below features.
+>>>>>   1)Start
+>>>>>   2)Stop
+>>>>>   3)Configure Timeout
+>>>>>   4)Refresh
+>>>>>
+>>>>> Planning to take closed window percentage from device tree parameter.
+>>>>> If the user hasn't passed the closed window percentage from the
+>>>>> device tree, by default, taking XWWDT_PERCENT value which is 50.
+>>>>>
+>>
+>> Does above explanation looks fine to you ?
+>>
+>>>>>>
+>>>>>>> +        time_out *= XWWDT_PERCENT;
+>>>>>>> +        time_out /= 100;
+>>>>>>> +        wdd->min_hw_heartbeat_ms = XWWDT_PERCENT *
+>>> 10 *
+>>>>>> wdd->timeout;
+>>>>>>
+>>>>>> min_hw_heartbeat_ms is supposed to be fixed after probe. Behavior
+>>>>>> of changing it when starting the watchdog is undefined. This will
+>>>>>> likely fail under some conditions.
+>>>>>
+>>>>> As I said in above comments versal watchdog IP supports
+>>>>> reconfiguration of timeout, so every restart we are updating
+>>>>> min_hw_heartbeat_ms based on timeout.
+>>>>>
+>>
+>> After stop we are reconfiguring the min_hw_heartbeat_ms, do you think still it will fail ?.
+>>
+>>>>>>
+>>>>>>> +    }
+>>>>>>> +
+>>>>>>> +    spin_lock(&xdev->spinlock);
+>>>>>>> +
+>>>>>>> +    iowrite32(XWWDT_MWR_MASK, xdev->base +
+>>>>>> XWWDT_MWR_OFFSET);
+>>>>>>> +    iowrite32(~(u32)XWWDT_ESR_WEN_MASK, xdev->base +
+>>>>>> XWWDT_ESR_OFFSET);
+>>>>>>> +
+>>>>>>> +    if (xclosed_window_percent) {
+>>>>>>> +        iowrite32((u32)closed_timeout, xdev->base +
+>>>>>> XWWDT_FWR_OFFSET);
+>>>>>>> +        iowrite32((u32)open_timeout, xdev->base +
+>>>>>> XWWDT_SWR_OFFSET);
+>>>>>>> +    } else {
+>>>>>>> +        /* Configure closed and open windows with 50% of
+>>> timeout
+>>>>>> */
+>>>>>>> +        iowrite32((u32)time_out, xdev->base +
+>>>>>> XWWDT_FWR_OFFSET);
+>>>>>>> +        iowrite32((u32)time_out, xdev->base +
+>>>>>> XWWDT_SWR_OFFSET);
+>>>>>>> +    }
+>>>>>>
+>>>>>> This if/else should not be necessary by using appropriate
+>>>>>> calculations
+>>>>> above.
+>>>>>> Anyway, this is moot - as said above, changing min_hw_heartbeat_ms
+>>>>>> after probe is unexpected, and the code will have to be changed to
+>>>>>> use a fixed value for the window size. With that, all calculations
+>>>>>> can and should be done in the probe function.
+>>>>>>
+>>>>>>> +
+>>>>>>> +    /* Enable the window watchdog timer */
+>>>>>>> +    control_status_reg = ioread32(xdev->base +
+>>> XWWDT_ESR_OFFSET);
+>>>>>>> +    control_status_reg |= XWWDT_ESR_WEN_MASK;
+>>>>>>> +    iowrite32(control_status_reg, xdev->base +
+>>> XWWDT_ESR_OFFSET);
+>>>>>>
+>>>>>> Why is this enabled unconditionally ? I would assume that a user
+>>>>>> specifying a 0-percentage window size doesn't want it enabled.
+>>>>>
+>>>>> Plan to add a check for closed window percentage. If user tries to
+>>>>> configure 100% of closed window, driver configures XWWDT_PERCENT
+>>> value.
+>>>>> Configuring 100% of closed window not suggestible.
+>>>>>
+>>
+>> Do you have any feedback on above explanation ?.
+>>
+>>>>>>
+>>>>>>> +
+>>>>>>> +    spin_unlock(&xdev->spinlock);
+>>>>>>> +
+>>>>>>> +    dev_dbg(xilinx_wwdt_wdd->parent, "Watchdog Started!\n");
+>>>>>>> +
+>>>>>>> +    return 0;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>> +static int xilinx_wwdt_keepalive(struct watchdog_device *wdd) {
+>>>>>>> +    struct xwwdt_device *xdev = watchdog_get_drvdata(wdd);
+>>>>>>> +    u32 control_status_reg;
+>>>>>>> +
+>>>>>>> +    spin_lock(&xdev->spinlock);
+>>>>>>> +
+>>>>>>> +    /* Enable write access control bit for the window watchdog
+>>> */
+>>>>>>> +    iowrite32(XWWDT_MWR_MASK, xdev->base +
+>>>>>> XWWDT_MWR_OFFSET);
+>>>>>>> +
+>>>>>>> +    /* Trigger restart kick to watchdog */
+>>>>>>> +    control_status_reg = ioread32(xdev->base +
+>>> XWWDT_ESR_OFFSET);
+>>>>>>> +    control_status_reg |= XWWDT_ESR_WSW_MASK;
+>>>>>>> +    iowrite32(control_status_reg, xdev->base +
+>>> XWWDT_ESR_OFFSET);
+>>>>>>> +
+>>>>>>> +    spin_unlock(&xdev->spinlock);
+>>>>>>> +
+>>>>>>> +    return 0;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>> +static int xilinx_wwdt_set_timeout(struct watchdog_device *wdd,
+>>>>>>> +                   unsigned int new_time)
+>>>>>>> +{
+>>>>>>> +    struct xwwdt_device *xdev = watchdog_get_drvdata(wdd);
+>>>>>>> +    struct watchdog_device *xilinx_wwdt_wdd = &xdev-
+>>>>>>> xilinx_wwdt_wdd;
+>>>>>>> +
+>>>>>>> +    if (watchdog_active(xilinx_wwdt_wdd))
+>>>>>>> +        return -EPERM;
+>>>>>>
+>>>>>> Why ? This will be the most common case and means to change the
+>>>>> timeout.
+>>>>>
+>>>>> Versal Watchdog supports reconfiguration of timeout. If we try to
+>>>>> reconfigure timeout without stopping the watchdog, driver returns
+>>>>> error immediately. Reconfiguration of timeout, Stop and Refresh not
+>>>>> allowed in closed window.
+>>>>> User can trigger set timeout any point of time, So avoiding
+>>>>> reconfiguring the timeout feature using driver API if the watchdog is
+>>> active.
+>>>>>
+>>
+>> Please share your comments on this.
+>>
+> 
+> I see that there are still some pending questions on this thread.
+> Could you please take a look at it?
+> If you think that would be better to send v2 and better describe the problematic parts as the part of commit message that should be also fine.
+> 
 
-Except if the framebuffer is broken, or everything is broken and it
-hangs on early boot, which happens all the time when I'm debugging using
-the hypervisor. Or maybe I'm just SSHing in remotely and not physically
-in front of the machine, which is also often the case. Or maybe I'm just
-booting headless because I didn't feel like swapping around the HDMI cable.
+I can only decode the comment on the bottom. I think that problem needs
+a better solution. Returning -EPERM is definitely wrong here. How would
+you expect userspace to react on it ? Expecting userspace to stop the
+watchdog before updating the timeout is not acceptable; that is not
+defined in the ABI, and we can not expect watchdog daemons to know about
+it.
 
-> In contrary, if you boot the kernel without the hypervisor 
-> feature and this change, you will completely lose the console.
+You could, for example:
+- stop the watchdog, update the timeout, and restart it. That is
+   less than perfect, but other drivers with similar limitations
+   do it as well.
+- Mark the timeout update as pending, and update it in the permitted
+   window (if that is possible; the above comment is vague on that).
 
-How so? The console goes to both places with stdout-path set to serial0.
-What it *does* change is where input is accepted prior to getty startup
-(which is why u-boot specifically conditions this on keyboard presence,
-modulo the USB issue - because if you *don't* have a keyboard then tty
-keyboard input is useless). But if you're booting kernels without u-boot
-along the way, you're probably doing it from the hypervisor or linux.py
-anyway, especially if you plan to do something like "init=/bin/sh",
-because without u-boot (+ optionally some EFI loader) there is no way of
-editing command line arguments at boot time stand-alone.
+Guenter
 
-However, while having stdout-path gives you both serial + tty output and
-serial input, *not* having stdout-path kills serial entirely. It also
-kills earlycon, and makes it so that you have to specify a bunch of
-obscure arguments to get earlycon to work, instead of just a plain
-"earlycon" argument which is much easier.
-
-So for this to be considered at all, you would first need to propose a
-m1n1 patch to re-add stdout-path in boots under the hypervisor and
-(optionally?) on linux.py boots, so you don't regress tools that our
-developers use every day.
-
-But I still fail to see the benefit of this change. What scenario are
-you envisioning that this would improve (something people actually do,
-not a hypothetical)?
-
-- Hector
