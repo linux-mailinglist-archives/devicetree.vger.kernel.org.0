@@ -2,103 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C8B963E858
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 04:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 276C063E887
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 04:46:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbiLADcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Nov 2022 22:32:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48400 "EHLO
+        id S229838AbiLADqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Nov 2022 22:46:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiLADcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 22:32:07 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC05B5BD69;
-        Wed, 30 Nov 2022 19:32:06 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B12ioum019070;
-        Thu, 1 Dec 2022 03:31:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BfBVfHL55y4El2LYn+90PYn4HEvJdNfd0rEfXcfans8=;
- b=d2Bx1PlwMWwhIAG7DwvtHLc+p62MU1u4nuXX640KzeoPIyJMZ0woHtPpOvpbXdSJe0Gb
- D/+iJRbIottkcTyumxQzMMz/9JQhOeZzMvoFf5irAjau1JM3wWTAoOnw6KBWfFHUJ1Tw
- lkdE6ND7gGj+NcN0i0cut1H6Gy3zg7UAV7lt6+1P3Y3f9eMa8/wrLnBpbKrXw1V/JOee
- P2XT1zrCHpopTYrGMIbaiP3ApAqoWiTdvYWGW2LxvmPdPjAefFYj6bZ1il3+OTPpnvf9
- k1QNNnt8IMNOgUOJrKq68GK/EvirkF67QOup/gplEpNyQ/0lPsQ1CcaBw5tZWv6osD/D jw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m6k3yg67t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Dec 2022 03:31:34 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B13VXGY004783
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Dec 2022 03:31:33 GMT
-Received: from [10.216.5.116] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Wed, 30 Nov
- 2022 19:31:26 -0800
-Message-ID: <24f8252f-b843-4a48-0a98-addf1f56cab5@quicinc.com>
-Date:   Thu, 1 Dec 2022 09:01:23 +0530
+        with ESMTP id S229833AbiLADqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Nov 2022 22:46:01 -0500
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2E29F498;
+        Wed, 30 Nov 2022 19:45:59 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id l127so768035oia.8;
+        Wed, 30 Nov 2022 19:45:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ykrUdgnpt//KI390EfyviTWw7fKUM7t8IqT8KivZw44=;
+        b=d7d1fhXmxRIyCrTBjsXpsvifIfXqCp7u2LbIp5mq4y0mD6jxfHBH8EUWEAIUGHcB2q
+         Uo6KGjocTogxt554sT2wSquUdL8v6GjmsDyRYA37cMTrHZK/TKR5gKf5zNiSjr5a7QQd
+         dH69Hcu68RR4D/+yBP9No7LA0RiW2sbbdBJ7B3eKZQSyo1TcfTbNB7ETcNRacMtgCWU+
+         vr+JKNhqiPzznMDJrJimPMZ4tGXV2R5XgV6kqnCwvYr6FZJgJkbzj84LMhct6MMSUHUc
+         Ib40gD9WmP41GnTfXldnPHkcQS5quT6yy6N1+Cu/mY9VSlpMvfRCFD+zbCFTAA0oJbMg
+         3Uzw==
+X-Gm-Message-State: ANoB5pnNZYNbzyB0OIOFeaejzfTkLD/hoZftyxUHnx5B5lKghAL/85kE
+        sRnYuXMwa4CgrF8sZ4KPtA==
+X-Google-Smtp-Source: AA0mqf5WCmFLREdSlYC9qzJRKrm7hw0V931v+JMD58V5b6VI64AQhK6aDD8+l29/3c1aTaLsQwxYJg==
+X-Received: by 2002:aca:2201:0:b0:354:fe21:a47c with SMTP id b1-20020aca2201000000b00354fe21a47cmr32279869oic.10.1669866358423;
+        Wed, 30 Nov 2022 19:45:58 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 17-20020a9d0611000000b006605883eae6sm1630945otn.63.2022.11.30.19.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Nov 2022 19:45:58 -0800 (PST)
+Received: (nullmailer pid 3605657 invoked by uid 1000);
+        Thu, 01 Dec 2022 03:45:57 -0000
+Date:   Wed, 30 Nov 2022 21:45:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        LABBE Corentin <clabbe.montjoie@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: net: sun8i-emac: Fix snps,dwmac.yaml
+ inheritance
+Message-ID: <20221201034557.GA2998157-robh@kernel.org>
+References: <20221125202008.64595-1-samuel@sholland.org>
+ <20221125202008.64595-3-samuel@sholland.org>
+ <5b05317d-28cc-bfc8-f415-e6acf453dc7c@linaro.org>
+ <20221126142735.47dcca6d@slackpad.lan>
+ <99c3e666-ec26-07a0-be40-0177dd449d84@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] ASoC: qcom: lpass-sc7180: Add maybe_unused tag for system
- PM ops
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <robh+dt@kernel.org>, <quic_plai@quicinc.com>,
-        <bgoswami@quicinc.com>, <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <quic_rohkumar@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
-References: <1669726428-3140-1-git-send-email-quic_srivasam@quicinc.com>
- <Y4eN4utrDnEnKu/8@google.com> <Y4eP2yFKsmxzyX/4@sirena.org.uk>
- <Y4eU7ra4w3Fm+wLM@google.com> <Y4erFaRfGXbSJLMm@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <Y4erFaRfGXbSJLMm@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PgCB5VPgXqdJlAIFZEeTFpcNsyD3VJyQ
-X-Proofpoint-ORIG-GUID: PgCB5VPgXqdJlAIFZEeTFpcNsyD3VJyQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-01_02,2022-11-30_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- clxscore=1015 priorityscore=1501 malwarescore=0 spamscore=0 mlxscore=0
- lowpriorityscore=0 impostorscore=0 mlxlogscore=703 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212010020
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <99c3e666-ec26-07a0-be40-0177dd449d84@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Nov 26, 2022 at 03:48:33PM +0100, Krzysztof Kozlowski wrote:
+> On 26/11/2022 15:28, Andre Przywara wrote:
+> > On Sat, 26 Nov 2022 14:26:25 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > 
+> > Hi,
+> > 
+> >> On 25/11/2022 21:20, Samuel Holland wrote:
+> >>> The sun8i-emac binding extends snps,dwmac.yaml, and should accept all
+> >>> properties defined there, including "mdio", "resets", and "reset-names".
+> >>> However, validation currently fails for these properties because the  
+> >>
+> >> validation does not fail:
+> >> make dt_binding_check -> no problems
+> >>
+> >> Maybe you meant that DTS do not pass dtbs_check?
+> > 
+> > Yes, that's what he meant: If a board actually doesn't have Ethernet
+> > configured, dt-validate complains. I saw this before, but didn't find
+> > any solution.
+> > An example is: $ dt-validate ... sun50i-a64-pinephone-1.2.dtb
+> > arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dtb:
+> >   ethernet@1c30000: Unevaluated properties are not allowed ('resets', 'reset-names', 'mdio' were unexpected)
+> >   From schema: Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> > 
+> > Why exactly is beyond me, but this patch removes this message.
+> 
+> I don't think this should be fixed like this. That's the problem of
+> dtschema (not ignoring fully disabled nodes) and such patch only moves
+> from one correct syntax to another correct syntax, which fixes dtschema
+> problem, but changes nothing here.
 
-On 12/1/2022 12:42 AM, Mark Brown wrote:
-> On Wed, Nov 30, 2022 at 05:37:50PM +0000, Matthias Kaehlcke wrote:
->
->> The tag of the applied patch is incorrect too, which is actually what I noticed:
->>
->> Fixes: a3a96e93cc88 ("ASoC: qcom: lpass-sc7280: Add system suspend/resume PM ops")
->>
->> This patch is for sc7180, so it should be:
->>
->> Fixes: 2d68148f8f85 ("ASoC: qcom: lpass-sc7180: Add system suspend/resume PM ops")
-Actually with the fix already posted v2.
-> Oh, well.  It's just a fixes tag for something that has only been in
-> -next, it doesn't really matter that much.
-Okay. Sorry for Inconvenience.
+Humm, it looks to me like the 'phy-mode' required in snps,dwmac.yaml 
+causes the problem, but I can't get a minimized example to fail. 
+Something in 'required' shouldn't matter. Definitely seems like an issue 
+in the jsonschema package. I'll keep looking at it.
+
+Rob
