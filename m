@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B00A63F713
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FE5463F72F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 19:11:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbiLASEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 13:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58900 "EHLO
+        id S230109AbiLASLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 13:11:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbiLASEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:04:11 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E933B5DB1;
-        Thu,  1 Dec 2022 10:04:10 -0800 (PST)
+        with ESMTP id S229669AbiLASLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 13:11:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B716EB71ED;
+        Thu,  1 Dec 2022 10:11:06 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ACF50620A3;
-        Thu,  1 Dec 2022 18:04:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CB5C433D6;
-        Thu,  1 Dec 2022 18:04:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6F8E8B81FD1;
+        Thu,  1 Dec 2022 18:11:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 124E4C433C1;
+        Thu,  1 Dec 2022 18:11:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669917849;
-        bh=WZatvnz+QOr1Ir2g+HfL56qhA6VFEJRpPV2/ZJbog/I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t1GcIvhsLwG8OflIApxBP0BGhBjbKkxusBOBYU+eUci5BagGExkIaqsOJqYVlqbjW
-         hMZmt/iuKfySH6DWl4Fxv1HmAW3OPZD0xp0wSUvRX91a5HMxzO/cca+oHFA+bt4BS/
-         jtZRslsgJHsLIDVChwFIthKxhyVdIam8a/qYl9kt9ysUTYlVG+PuXb0k8pk+dbjYHn
-         vsZ/5sXusz+2b6ERv8t76MbqIn/88cQPHYOOzAKk101TvcvYU44QDy++9mT+4pVpk+
-         GF7Kmo1fBfNtsMh5BJ9haY8U6FOaQtGip58H9iMjVHBfZvgEXop0w+xG44IyLXOgVW
-         JYq07JRXWF59g==
-Date:   Thu, 1 Dec 2022 18:04:04 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     JiaJie Ho <jiajie.ho@starfivetech.com>
-Cc:     "Conor.Dooley@microchip.com" <Conor.Dooley@microchip.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "kernel@esmil.dk" <kernel@esmil.dk>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 6/6] riscv: dts: starfive: Add crypto and DMA node for
- VisionFive 2
-Message-ID: <Y4jslJfTVtQ9cIGm@spud>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-7-jiajie.ho@starfivetech.com>
- <1673ef8b-179e-3b03-b3f8-8d347c70d8c3@microchip.com>
- <4ddddceba3dc437daca27374dd2f6fd7@EXMBX068.cuchost.com>
+        s=k20201202; t=1669918264;
+        bh=abbxDko8xxIgN43TGD7PjO4ktuR8obKuUDRggHGcGh0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NI/gXF8N4bqL1rTkyPrfaWjTUpOEpjbrOjVnuEaPhoxgbEubRQpcGpo04jTvM5/g/
+         nYelXUZzhXZOxzxn6B3J83OmdNeC2L5pk5uaiENG585sFVUIKWKPwO09SDgzWBuIF0
+         r+hHQy9tLY2C3OYdp1eBljCI4oJBDDaUp/lXVOg3Du61yaGPDVwMg+4Noc1NBaYhx8
+         WcB9LdbpH3HOgHbe5vBWw8YFl3enrHm1QWrBgI0FhmrmfwpYQP7pBgGFwwUKLMIKm/
+         L0vopg3IjCpPQw8tcsXPJE9p8iQga7Eumwek9LmzeoK1EjJDIJKPhDKfmHIrgT8Dk8
+         cD4YByX/98U0w==
+Received: by mail-ua1-f45.google.com with SMTP id n9so866397uao.13;
+        Thu, 01 Dec 2022 10:11:04 -0800 (PST)
+X-Gm-Message-State: ANoB5pnBgr0vBOV0CO0ez6+vq/L2k8CWyzAUtMqvW3lW2SvzlnJL2Uxx
+        OxNIBsnFSUswqtJgECKYqIVnE0Euk2Da5M7Gqw==
+X-Google-Smtp-Source: AA0mqf4QIyT6VahcqDmI12MLMCc/vE3ASpYv1pzurU6CjB/p3SM54fi3Oi2LQpbXvk2AUCuGF9WAWcBZ/6x3KPapb4M=
+X-Received: by 2002:a05:6130:83:b0:418:b849:8187 with SMTP id
+ x3-20020a056130008300b00418b8498187mr41149171uaf.43.1669918262913; Thu, 01
+ Dec 2022 10:11:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4ddddceba3dc437daca27374dd2f6fd7@EXMBX068.cuchost.com>
+References: <20221125202008.64595-1-samuel@sholland.org> <20221125202008.64595-3-samuel@sholland.org>
+ <5b05317d-28cc-bfc8-f415-e6acf453dc7c@linaro.org> <20221126142735.47dcca6d@slackpad.lan>
+ <99c3e666-ec26-07a0-be40-0177dd449d84@linaro.org> <20221201034557.GA2998157-robh@kernel.org>
+In-Reply-To: <20221201034557.GA2998157-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 1 Dec 2022 12:10:49 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+H0tLUJ+vWSkDHqjYdsAK2Rd3UCDEXv9uJ2v-ZR=XCAw@mail.gmail.com>
+Message-ID: <CAL_Jsq+H0tLUJ+vWSkDHqjYdsAK2Rd3UCDEXv9uJ2v-ZR=XCAw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: net: sun8i-emac: Fix snps,dwmac.yaml inheritance
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        LABBE Corentin <clabbe.montjoie@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -65,90 +73,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 06:17:26AM +0000, JiaJie Ho wrote:
-> > -----Original Message-----
-> > From: Conor.Dooley@microchip.com <Conor.Dooley@microchip.com>
-
-> > Hey Jia Jie Ho,
-> > 
-> > On 30/11/2022 05:52, Jia Jie Ho wrote:
-> > > [You don't often get email from jiajie.ho@starfivetech.com. Learn why
-> > > this is important at https://aka.ms/LearnAboutSenderIdentification ]
+On Wed, Nov 30, 2022 at 9:45 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, Nov 26, 2022 at 03:48:33PM +0100, Krzysztof Kozlowski wrote:
+> > On 26/11/2022 15:28, Andre Przywara wrote:
+> > > On Sat, 26 Nov 2022 14:26:25 +0100
+> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > > >
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know
-> > > the content is safe
+> > > Hi,
 > > >
-> > > Adding StarFive crypto IP and DMA controller node to VisionFive 2 SoC.
+> > >> On 25/11/2022 21:20, Samuel Holland wrote:
+> > >>> The sun8i-emac binding extends snps,dwmac.yaml, and should accept all
+> > >>> properties defined there, including "mdio", "resets", and "reset-names".
+> > >>> However, validation currently fails for these properties because the
+> > >>
+> > >> validation does not fail:
+> > >> make dt_binding_check -> no problems
+> > >>
+> > >> Maybe you meant that DTS do not pass dtbs_check?
 > > >
-> > > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-> > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> > 
-> > Out of curiosity, what was Huan Feng's contribution to this patch?
-> > Did they co-develop it, or is there some other reason?
-> > 
-> Hi Conor, 
-> Yes, Huan Feng co-developed this driver.
-
-In that case, the SoB block should look like:
-
-Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
-Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-
-Similarly for any other patches they may have co-developed :)
-
+> > > Yes, that's what he meant: If a board actually doesn't have Ethernet
+> > > configured, dt-validate complains. I saw this before, but didn't find
+> > > any solution.
+> > > An example is: $ dt-validate ... sun50i-a64-pinephone-1.2.dtb
+> > > arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dtb:
+> > >   ethernet@1c30000: Unevaluated properties are not allowed ('resets', 'reset-names', 'mdio' were unexpected)
+> > >   From schema: Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
 > > >
-> > > diff --git
-> > > a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> > > b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> > > index 450e920236a5..da2aa4d597f3 100644
-> > > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> > > @@ -115,3 +115,11 @@ &tdm_ext {
-> > >   &mclk_ext {
-> > >          clock-frequency = <49152000>;
-> > >   };
-> > > +
-> > > +&sec_dma {
-> > > +       status = "okay";
-> > > +};
-> > > +
-> > > +&crypto {
-> > > +       status = "okay";
-> > > +};
-> > 
-> > In what scenario would you not want to have these enabled?
+> > > Why exactly is beyond me, but this patch removes this message.
+> >
+> > I don't think this should be fixed like this. That's the problem of
+> > dtschema (not ignoring fully disabled nodes) and such patch only moves
+> > from one correct syntax to another correct syntax, which fixes dtschema
+> > problem, but changes nothing here.
+>
+> Humm, it looks to me like the 'phy-mode' required in snps,dwmac.yaml
+> causes the problem, but I can't get a minimized example to fail.
+> Something in 'required' shouldn't matter. Definitely seems like an issue
+> in the jsonschema package. I'll keep looking at it.
 
-> These drivers are always enabled.
-> Is everything ok with the dts node entries?
+TLDR: A fix in dtschema for this will be in place soon.
 
-If the hardware is always present, why not drop the "disabled" in
-jh7110.dtsi & these two entries marking them as "okay" in the .dts?
+I've simplified this down to:
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
 
-> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > > index 4ac159d79d66..745a5650882c 100644
-> > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > > @@ -455,5 +455,41 @@ uart5: serial@12020000 {
-> > >                          reg-shift = <2>;
-> > >                          status = "disabled";
-> > >                  };
-> > > +
-> > > +               sec_dma: sec_dma@16008000 {
+    "unevaluatedProperties": false,
+    "allOf":[
+        {
+            "properties": {
+                "foo": true,
+                "bar": true
+            },
+            "required": [ "foo" ]
+        }
+    ]
+}
 
-> > > +                       status = "disabled";
+An instance { "bar": 1 } will fail due to the 'required' failing. When
+you have a subschema (what's under 'allOf'), then it all has to pass
+to be 'evaluated'. This seems inconsistent to me, but the json-schema
+folks say it is operating as intended.
 
-> > > +               };
-> > > +
-> > > +               crypto: crypto@16000000 {
+I've got 2 possible fixes. One is to just ignore unevaluatedProperties
+errors on disabled nodes like is already done for 'required'. This
+means disabled nodes can have any unknown property or child node added
+which isn't great. The other way overrides 'required' validation to
+always pass on disabled nodes. This would be better, but there are
+some exceptions we need to still fail. 'oneOf' with N entries of
+'required' to say 1 of N properties must be present for example.
+Excluding each one of these cases will be fragile, so probably going
+with the first fix.
 
-> > > +                       status = "disabled";
-
-> > > +               };
-> > >          };
-> > >   };
-
-Thanks,
-Conor.
-
+Rob
