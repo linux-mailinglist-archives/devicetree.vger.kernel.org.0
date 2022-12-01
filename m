@@ -2,72 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8728263E957
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 06:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702D663E95E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 06:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbiLAF12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 00:27:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46220 "EHLO
+        id S229501AbiLAFiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 00:38:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiLAF1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 00:27:24 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914D6A1A28
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 21:27:23 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id o12so832636pjo.4
-        for <devicetree@vger.kernel.org>; Wed, 30 Nov 2022 21:27:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=schmorgal.com; s=google;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3n7aER4GNnKOPIgQJItOsO6ISBncgE1PlED3mZiocME=;
-        b=UhjF8CJkPLD0B1ZdAUGgDxQGaIzeRNKP+Jm0LpM+ZAw+PSiON8aXtMtbod/ArTex9X
-         3SdZuGEQBvpj4WUTQjQ0/8TOTR85A/0CH0WrStdjViUzF8ZzOKvDxPmipUrWPK8QNiI+
-         ZjeGje7KT1tHQanfPpD2kTRGNog6kD9VwNlpQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3n7aER4GNnKOPIgQJItOsO6ISBncgE1PlED3mZiocME=;
-        b=27AjZyA5+CgK1mMzX86gfjg2qYgJ25mAddd238L3Es8Ny1CvrT6yMVWPmwZbyGljuB
-         sGAxYYl7aGHLty/lsx8ycT1lTlH85rw4rcuowIuSrhZbD+b7GVUdM6lQ4wvisD65wnt0
-         QzRMKrsKjgDVbewyyRyRqy/jWYyqNJl/Rh27jLX3sNd/IQnSKcFqdZfG4QXy4qW6K4dA
-         /xWRZjNDECuW0abLbwUH77Eqdoo8JA1sv1qMwLDqSwNg70L7voeB9REbmyu8aEB9vUe+
-         +B/dEhndUE9CyYNIX2kTXMTiujyvJodFYdWOPQhDczt7zExd+Vo8wqk6+xHWDI06GjaB
-         eMXg==
-X-Gm-Message-State: ANoB5pksbzZRREFIIjvUy3q6+vJiTeb6PvbnrwUTmAMSHFPsEJoHm2Dx
-        4jGzY1cNWnqOeBcJnvKvXp1xsQ==
-X-Google-Smtp-Source: AA0mqf5JKlGRtlQkByNGJ3HDuEu8aNXMgTDZcuUIt3cvTINS9x1HpW35GvQx/iuzVpGmyDwU4gVufA==
-X-Received: by 2002:a17:902:8ec3:b0:186:e68a:9aa8 with SMTP id x3-20020a1709028ec300b00186e68a9aa8mr59899069plo.104.1669872442865;
-        Wed, 30 Nov 2022 21:27:22 -0800 (PST)
-Received: from [192.168.1.33] ([192.183.212.197])
-        by smtp.googlemail.com with ESMTPSA id q1-20020a6557c1000000b004388ba7e5a9sm1778489pgr.49.2022.11.30.21.27.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Nov 2022 21:27:22 -0800 (PST)
-Message-ID: <523748eb-9d80-c06c-7e35-1084943fe2cf@schmorgal.com>
-Date:   Wed, 30 Nov 2022 21:27:20 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Content-Language: en-US
-To:     Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229475AbiLAFiV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 00:38:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7ECF578D1;
+        Wed, 30 Nov 2022 21:38:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7049CB81DEC;
+        Thu,  1 Dec 2022 05:38:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F24F5C433D6;
+        Thu,  1 Dec 2022 05:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669873098;
+        bh=2h7CoLZeC0jMFm3rbqtN3ZLizkHMihcs4KBM1Gmnfgs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o8BAhJnFnlzeFz3P5NpxP3U/qkGQl/h6rQ/5N3Yuocrv8hToVczjVMGxLcLHgraMm
+         rH37/zq2EUAB5syIuWN9O9f07XEdFrpyAtsqTVl6Bu3q+xMfswQojZznlEvJQxJOZQ
+         TeF0HBh3rYoJOE1ZkMoeCvp1PdDpoeKt82kdTy8IQdkd5PrlFYkObSj3W7+1G+Qrmz
+         WZ4hv8S36ciehyJobCp5DYOTVE2jPnpGTIB6fIytG65rIT2lA1VARcJEz0APVknVPF
+         fh51AeXhYjZB1RM+250nbjw8CR8CS2544yyRszAfIhr+BRQEbOGHcq3ubY7lJrYuRv
+         14fxyWs+P8B2Q==
+Date:   Thu, 1 Dec 2022 13:38:13 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Mark Hasemeyer <markhas@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221128024407.224393-1-doug@schmorgal.com>
- <20221128024407.224393-7-doug@schmorgal.com>
- <1a8c5b33-172d-b72b-f3c9-81a6c15b5d2d@intel.com>
-From:   Doug Brown <doug@schmorgal.com>
-Subject: Re: [PATCH 6/8] mmc: sdhci-pxav2: add SDIO card IRQ workaround for
- PXA168 V1 controller
-In-Reply-To: <1a8c5b33-172d-b72b-f3c9-81a6c15b5d2d@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 2/3] dt-bindings: mfd: Add compatible string for UART
+ support
+Message-ID: <Y4g9xXP+LXG6zcqy@google.com>
+References: <20221130131245.v8.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+ <20221130131245.v8.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221130131245.v8.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,30 +61,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
+On Wed, Nov 30, 2022 at 01:12:55PM -0700, Mark Hasemeyer wrote:
+> Add a compatible string to support the UART implementation of the cros
+> ec interface.
 
-On 11/28/2022 11:29 PM, Adrian Hunter wrote:
-> On 28/11/22 04:44, Doug Brown wrote:
->> +
->> +		/* Clock is now stopped, so restart it by sending a dummy CMD0. */
->> +		pxav2_host = sdhci_pltfm_priv(sdhci_priv(host));
->> +
->> +		dummy_cmd.opcode = MMC_GO_IDLE_STATE;
->> +		dummy_cmd.arg = 0;
->> +		dummy_cmd.flags = MMC_RSP_SPI_R1 | MMC_RSP_NONE | MMC_CMD_BC;
->> +
->> +		mmc_wait_for_cmd(host->mmc, &dummy_cmd, 0);
-> 
-> This is not what post_req() is for.  Instead could you use SDHCI
-> host op ->request_done()?  Also, do you really need to wait for
-> the dummy CMD0 - perhaps just write SDHCI_ARGUMENT,
-> SDHCI_TRANSFER_MODE, and SDHCI_COMMAND ?
+$ git am ...
+...
+Applying: dt-bindings: mfd: Add compatible string for UART support
+error: patch failed: Documentation/devicetree/bindings/mfd/google,cros-ec.yaml:28
+error: Documentation/devicetree/bindings/mfd/google,cros-ec.yaml: patch does not apply
+Patch failed at 0002 dt-bindings: mfd: Add compatible string for UART support
 
-Thanks for the feedback! That makes perfect sense. I do need to know
-when the dummy CMD0 finishes so I can restore the pinctrl to default in
-the next patch, but I think I can handle that with the irq() host op,
-which I need to do anyway so that sdhci_cmd_irq() doesn't get confused
-when the CMD0 finishes. I'll give that a shot in the next version of the
-series and will also address your other feedback.
-
-Doug
+Please use either for-next branch or linux-next as base.  There are DT binding
+changes in the queue for 6.2.
+- 7a2f36828c7b ("dt-bindings: cros-ec: Reorganize and enforce property
+		 availability")
+- e068bc0b01cf ("dt-bindings: cros-ec: Add ChromeOS fingerprint binding")
