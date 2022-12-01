@@ -2,130 +2,535 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A42AF63F5B9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:52:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F94E63F5BE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 17:54:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiLAQwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 11:52:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
+        id S229822AbiLAQyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 11:54:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbiLAQwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:52:43 -0500
-Received: from gateway32.websitewelcome.com (gateway32.websitewelcome.com [192.185.145.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A8812AC6
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 08:52:41 -0800 (PST)
-Received: from atl1wswcm04.websitewelcome.com (unknown [50.6.129.165])
-        by atl3wswob03.websitewelcome.com (Postfix) with ESMTP id 9CDEA5B95
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 16:52:40 +0000 (UTC)
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-        by cmsmtp with ESMTP
-        id 0mndpq8hDgEOM0mnfpqw18; Thu, 01 Dec 2022 16:52:40 +0000
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-        ; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=oQj/HJTvdxrVt+zk2ySQjAT2Bd8kLr9eRU+0wbh0SyY=; b=KfZAL9PccHg35tGQV5H19QvMOp
-        0mHs2MiMY6EmiEBcaAgtIV79bHtAAitMPipkUwaf77mIG3gaJyWDkrbQIeOof7orF9rEegDuNGYP7
-        eBaA86RKRTssD0Vjv56GuKiVub8j+0M1JR+ON0BQ1eJ/pyKIM6AGeTnaxgOnOkw4Z00MheCZyBcJF
-        jLSo62221IPO0aSh2eWh+aiWPPaWGEdYpY8x/UoPFpCORKovh8BY0QshN2xbc52ZdLFQfT1F1DYnH
-        c0/TomvO3So5AzQ3LWfWxFvLl3lWTWVO1D9QNfIdzWFm4rPBMcZ1BfqDeWMJvoWtouHHWYZCDgngZ
-        tnusNc0Q==;
-Received: from [106.197.183.239] (port=44685 helo=[192.168.221.42])
-        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <saravanan@linumiz.com>)
-        id 1p0mnc-003un4-Oq;
-        Thu, 01 Dec 2022 16:52:36 +0000
-Message-ID: <ddcda7c9-6aa8-2660-d6fb-8dc117f330c4@linumiz.com>
-Date:   Thu, 1 Dec 2022 17:52:32 +0100
+        with ESMTP id S229696AbiLAQys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 11:54:48 -0500
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF99DA13DB;
+        Thu,  1 Dec 2022 08:54:45 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sendonly@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id A9D2241F98;
+        Thu,  1 Dec 2022 16:54:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1669913683; bh=nogEBZiP4Pq9k70q1r1Sq2fpcE7vD0XmA4xsz0zgPB8=;
+        h=From:To:Cc:Subject:Date;
+        b=m+HqsX80i/hTevzBoiCOp1gnSN6JMGTjAy33KWRmPgUkZtUE4CVEfiL3fZoCXgFwN
+         8ovO7Qrf9XfefvDsvhKf39k+GF9xbl+eKQkbXQd0QMRL8bQpgoI7wfc+Qd022HKOCi
+         53YAsr3uDXHHGZsd4H0ExEUvyDJcGxGGrZmoA+FfWP5LSZtrvBai/2E9qZgqOA+QdH
+         uCt0hIwGZN3IchgomdMasygBVCaG9SW++4Cw+gtbkRwGrJhU/3ppgVkI7NIm5ywBo7
+         hA1VI0nLaLEu1r6I2hk7ux7OIrY13q9ng+YjqG5G1Tnm2G9xvlhYilvxyorZsXHVly
+         mgjLDH/fS4KYg==
+From:   Hector Martin <marcan@marcan.st>
+To:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc:     Mark Kettenis <kettenis@openbsd.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>
+Subject: [PATCH] arm64: dts: apple: Add CPU topology & cpufreq nodes for t600x
+Date:   Fri,  2 Dec 2022 01:53:45 +0900
+Message-Id: <20221201165344.32505-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/4] dt-bindings: hwmon/pmbus: Add mps,mpq7932
- power-management IC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marten.lindahl@axis.com,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-3-saravanan@linumiz.com>
- <bc86121f-3cc2-1e55-4c6a-02cb1644a8bd@linaro.org>
- <e7b20055-4f44-aa91-e18d-9fb0f835fbf1@linumiz.com>
- <29de4d2b-3e32-809e-6ccd-5e7a4fe548fc@linaro.org>
- <e0d97b79-2133-8869-eaea-eb286fdb3a11@roeck-us.net>
- <785e942a-0691-f87e-b6e9-058749a79ec1@linaro.org>
- <8228db8d-2a32-1d23-74f3-05b9fe529a82@linumiz.com>
- <bdab2e58-ea12-0ccf-a25a-ed89e50a5332@linaro.org>
-Content-Language: en-US
-From:   Saravanan Sekar <saravanan@linumiz.com>
-In-Reply-To: <bdab2e58-ea12-0ccf-a25a-ed89e50a5332@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 106.197.183.239
-X-Source-L: No
-X-Exim-ID: 1p0mnc-003un4-Oq
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.221.42]) [106.197.183.239]:44685
-X-Source-Auth: saravanan@linumiz.com
-X-Email-Count: 15
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfJ/AQdALUs0Qz4eVbdQjsAAtWuvje9InjuH4s5sJ6vMWCkCtwjs60aXPPczeqhh5OuPap4L5I1OWoXO17tHPnfFaILmQxkxQGj+gi/3dpMbyQ3tOBLKi
- s16JvkGXqmQ4I6p7cStFIwsSveZjyLy52zEoETlpkqzqUL1UzlMyyCrvQYnkxFYzixY1r93uDm8qwWrJ8/EbcnaAVgm7sP+7J+s=
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/22 17:43, Krzysztof Kozlowski wrote:
-> On 01/12/2022 17:38, Saravanan Sekar wrote:
->>>>> Plus additional comment for the driver (and related to bindings) was
->>>>> that this is not hwmon but a regulator driver. Why putting regulator
->>>>> driver in hwmon?
->>>>>
->>>>
->>>> Turns out this is primarily a hardware monitoring driver, like the drivers
->>>> for all other PMBus chips. Regulator support is actually optional; the driver
->>>> works perfectly well with CONFIG_REGULATOR=n (except that it needs some
->>>> #ifdefs to address that situation).
->>>
->>> OK, this would explain location  of the driver. However the bindings are
->>> saying:
->>> "Monolithic Power System MPQ7932 PMIC"
->>> and PMIC is not mainly a hwmon device, even if it has such capabilities.
->>> It might be missing description and proper title... or might be misplaced.
->>>
->>
->> Indeed it is PMIC chip. I think this is not the first and not sure title
->> has to be changed for hwmon subsystem.
->>
->> bindings/hwmon/pmbus/ti,lm25066.yaml
->> title: National Semiconductor/Texas Instruments LM250x6/LM506x
->> power-management ICs
-> 
-> Then I propose to put it in regulator directory.
->
+Add the missing CPU topology/capacity information and the cpufreq nodes,
+so we can have CPU frequency scaling and the scheduler has the
+information it needs to make the correct decisions.
 
-Just for clarification, should bindings put in regulator directory?
+As with t8103, boost states are commented out pending PSCI/etc support
+for deep sleep states.
 
-Thanks,
-Saravanan
+Signed-off-by: Hector Martin <marcan@marcan.st>
+---
+ arch/arm64/boot/dts/apple/t6002.dtsi        |  72 +++++++-
+ arch/arm64/boot/dts/apple/t600x-common.dtsi | 186 ++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t600x-dieX.dtsi   |  18 ++
+ 3 files changed, 275 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/apple/t6002.dtsi b/arch/arm64/boot/dts/apple/t6002.dtsi
+index 731d61fbb05f..15da2c7eb1fe 100644
+--- a/arch/arm64/boot/dts/apple/t6002.dtsi
++++ b/arch/arm64/boot/dts/apple/t6002.dtsi
+@@ -23,6 +23,47 @@ / {
+ 	#size-cells = <2>;
+ 
+ 	cpus {
++		cpu-map {
++			cluster3 {
++				core0 {
++					cpu = <&cpu_e10>;
++				};
++				core1 {
++					cpu = <&cpu_e11>;
++				};
++			};
++
++			cluster4 {
++				core0 {
++					cpu = <&cpu_p20>;
++				};
++				core1 {
++					cpu = <&cpu_p21>;
++				};
++				core2 {
++					cpu = <&cpu_p22>;
++				};
++				core3 {
++					cpu = <&cpu_p23>;
++				};
++			};
++
++			cluster5 {
++				core0 {
++					cpu = <&cpu_p30>;
++				};
++				core1 {
++					cpu = <&cpu_p31>;
++				};
++				core2 {
++					cpu = <&cpu_p32>;
++				};
++				core3 {
++					cpu = <&cpu_p33>;
++				};
++			};
++		};
++
+ 		cpu_e10: cpu@800 {
+ 			compatible = "apple,icestorm";
+ 			device_type = "cpu";
+@@ -32,6 +73,9 @@ cpu_e10: cpu@800 {
+ 			next-level-cache = <&l2_cache_3>;
+ 			i-cache-size = <0x20000>;
+ 			d-cache-size = <0x10000>;
++			operating-points-v2 = <&icestorm_opp>;
++			capacity-dmips-mhz = <714>;
++			performance-domains = <&cpufreq_e_die1>;
+ 		};
+ 
+ 		cpu_e11: cpu@801 {
+@@ -43,6 +87,9 @@ cpu_e11: cpu@801 {
+ 			next-level-cache = <&l2_cache_3>;
+ 			i-cache-size = <0x20000>;
+ 			d-cache-size = <0x10000>;
++			operating-points-v2 = <&icestorm_opp>;
++			capacity-dmips-mhz = <714>;
++			performance-domains = <&cpufreq_e_die1>;
+ 		};
+ 
+ 		cpu_p20: cpu@10900 {
+@@ -54,6 +101,9 @@ cpu_p20: cpu@10900 {
+ 			next-level-cache = <&l2_cache_4>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0_die1>;
+ 		};
+ 
+ 		cpu_p21: cpu@10901 {
+@@ -65,6 +115,9 @@ cpu_p21: cpu@10901 {
+ 			next-level-cache = <&l2_cache_4>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0_die1>;
+ 		};
+ 
+ 		cpu_p22: cpu@10902 {
+@@ -76,6 +129,9 @@ cpu_p22: cpu@10902 {
+ 			next-level-cache = <&l2_cache_4>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0_die1>;
+ 		};
+ 
+ 		cpu_p23: cpu@10903 {
+@@ -87,6 +143,9 @@ cpu_p23: cpu@10903 {
+ 			next-level-cache = <&l2_cache_4>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0_die1>;
+ 		};
+ 
+ 		cpu_p30: cpu@10a00 {
+@@ -98,6 +157,9 @@ cpu_p30: cpu@10a00 {
+ 			next-level-cache = <&l2_cache_5>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1_die1>;
+ 		};
+ 
+ 		cpu_p31: cpu@10a01 {
+@@ -109,6 +171,9 @@ cpu_p31: cpu@10a01 {
+ 			next-level-cache = <&l2_cache_5>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1_die1>;
+ 		};
+ 
+ 		cpu_p32: cpu@10a02 {
+@@ -120,6 +185,9 @@ cpu_p32: cpu@10a02 {
+ 			next-level-cache = <&l2_cache_5>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1_die1>;
+ 		};
+ 
+ 		cpu_p33: cpu@10a03 {
+@@ -131,6 +199,9 @@ cpu_p33: cpu@10a03 {
+ 			next-level-cache = <&l2_cache_5>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1_die1>;
+ 		};
+ 
+ 		l2_cache_3: l2-cache-3 {
+@@ -206,7 +277,6 @@ &die1 {
+ #undef DIE
+ #undef DIE_NO
+ 
+-
+ &aic {
+ 	affinities {
+ 		e-core-pmu-affinity {
+diff --git a/arch/arm64/boot/dts/apple/t600x-common.dtsi b/arch/arm64/boot/dts/apple/t600x-common.dtsi
+index e2568d914719..fa8ead699363 100644
+--- a/arch/arm64/boot/dts/apple/t600x-common.dtsi
++++ b/arch/arm64/boot/dts/apple/t600x-common.dtsi
+@@ -15,6 +15,47 @@ cpus {
+ 		#address-cells = <2>;
+ 		#size-cells = <0>;
+ 
++		cpu-map {
++			cluster0 {
++				core0 {
++					cpu = <&cpu_e00>;
++				};
++				core1 {
++					cpu = <&cpu_e01>;
++				};
++			};
++
++			cluster1 {
++				core0 {
++					cpu = <&cpu_p00>;
++				};
++				core1 {
++					cpu = <&cpu_p01>;
++				};
++				core2 {
++					cpu = <&cpu_p02>;
++				};
++				core3 {
++					cpu = <&cpu_p03>;
++				};
++			};
++
++			cluster2 {
++				core0 {
++					cpu = <&cpu_p10>;
++				};
++				core1 {
++					cpu = <&cpu_p11>;
++				};
++				core2 {
++					cpu = <&cpu_p12>;
++				};
++				core3 {
++					cpu = <&cpu_p13>;
++				};
++			};
++		};
++
+ 		cpu_e00: cpu@0 {
+ 			compatible = "apple,icestorm";
+ 			device_type = "cpu";
+@@ -24,6 +65,9 @@ cpu_e00: cpu@0 {
+ 			next-level-cache = <&l2_cache_0>;
+ 			i-cache-size = <0x20000>;
+ 			d-cache-size = <0x10000>;
++			operating-points-v2 = <&icestorm_opp>;
++			capacity-dmips-mhz = <714>;
++			performance-domains = <&cpufreq_e>;
+ 		};
+ 
+ 		cpu_e01: cpu@1 {
+@@ -35,6 +79,9 @@ cpu_e01: cpu@1 {
+ 			next-level-cache = <&l2_cache_0>;
+ 			i-cache-size = <0x20000>;
+ 			d-cache-size = <0x10000>;
++			operating-points-v2 = <&icestorm_opp>;
++			capacity-dmips-mhz = <714>;
++			performance-domains = <&cpufreq_e>;
+ 		};
+ 
+ 		cpu_p00: cpu@10100 {
+@@ -46,6 +93,9 @@ cpu_p00: cpu@10100 {
+ 			next-level-cache = <&l2_cache_1>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0>;
+ 		};
+ 
+ 		cpu_p01: cpu@10101 {
+@@ -57,6 +107,9 @@ cpu_p01: cpu@10101 {
+ 			next-level-cache = <&l2_cache_1>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0>;
+ 		};
+ 
+ 		cpu_p02: cpu@10102 {
+@@ -68,6 +121,9 @@ cpu_p02: cpu@10102 {
+ 			next-level-cache = <&l2_cache_1>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0>;
+ 		};
+ 
+ 		cpu_p03: cpu@10103 {
+@@ -79,6 +135,9 @@ cpu_p03: cpu@10103 {
+ 			next-level-cache = <&l2_cache_1>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p0>;
+ 		};
+ 
+ 		cpu_p10: cpu@10200 {
+@@ -90,6 +149,9 @@ cpu_p10: cpu@10200 {
+ 			next-level-cache = <&l2_cache_2>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1>;
+ 		};
+ 
+ 		cpu_p11: cpu@10201 {
+@@ -101,6 +163,9 @@ cpu_p11: cpu@10201 {
+ 			next-level-cache = <&l2_cache_2>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1>;
+ 		};
+ 
+ 		cpu_p12: cpu@10202 {
+@@ -112,6 +177,9 @@ cpu_p12: cpu@10202 {
+ 			next-level-cache = <&l2_cache_2>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1>;
+ 		};
+ 
+ 		cpu_p13: cpu@10203 {
+@@ -123,6 +191,9 @@ cpu_p13: cpu@10203 {
+ 			next-level-cache = <&l2_cache_2>;
+ 			i-cache-size = <0x30000>;
+ 			d-cache-size = <0x20000>;
++			operating-points-v2 = <&firestorm_opp>;
++			capacity-dmips-mhz = <1024>;
++			performance-domains = <&cpufreq_p1>;
+ 		};
+ 
+ 		l2_cache_0: l2-cache-0 {
+@@ -147,6 +218,121 @@ l2_cache_2: l2-cache-2 {
+ 		};
+ 	};
+ 
++	icestorm_opp: opp-table-0 {
++		compatible = "operating-points-v2";
++
++		opp01 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-level = <1>;
++			clock-latency-ns = <7500>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <972000000>;
++			opp-level = <2>;
++			clock-latency-ns = <23000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <1332000000>;
++			opp-level = <3>;
++			clock-latency-ns = <29000>;
++		};
++		opp04 {
++			opp-hz = /bits/ 64 <1704000000>;
++			opp-level = <4>;
++			clock-latency-ns = <40000>;
++		};
++		opp05 {
++			opp-hz = /bits/ 64 <2064000000>;
++			opp-level = <5>;
++			clock-latency-ns = <50000>;
++		};
++	};
++
++	firestorm_opp: opp-table-1 {
++		compatible = "operating-points-v2";
++
++		opp01 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-level = <1>;
++			clock-latency-ns = <8000>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <828000000>;
++			opp-level = <2>;
++			clock-latency-ns = <18000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <1056000000>;
++			opp-level = <3>;
++			clock-latency-ns = <19000>;
++		};
++		opp04 {
++			opp-hz = /bits/ 64 <1296000000>;
++			opp-level = <4>;
++			clock-latency-ns = <23000>;
++		};
++		opp05 {
++			opp-hz = /bits/ 64 <1524000000>;
++			opp-level = <5>;
++			clock-latency-ns = <24000>;
++		};
++		opp06 {
++			opp-hz = /bits/ 64 <1752000000>;
++			opp-level = <6>;
++			clock-latency-ns = <28000>;
++		};
++		opp07 {
++			opp-hz = /bits/ 64 <1980000000>;
++			opp-level = <7>;
++			clock-latency-ns = <31000>;
++		};
++		opp08 {
++			opp-hz = /bits/ 64 <2208000000>;
++			opp-level = <8>;
++			clock-latency-ns = <45000>;
++		};
++		opp09 {
++			opp-hz = /bits/ 64 <2448000000>;
++			opp-level = <9>;
++			clock-latency-ns = <49000>;
++		};
++		opp10 {
++			opp-hz = /bits/ 64 <2676000000>;
++			opp-level = <10>;
++			clock-latency-ns = <53000>;
++		};
++		opp11 {
++			opp-hz = /bits/ 64 <2904000000>;
++			opp-level = <11>;
++			clock-latency-ns = <56000>;
++		};
++		opp12 {
++			opp-hz = /bits/ 64 <3036000000>;
++			opp-level = <12>;
++			clock-latency-ns = <56000>;
++		};
++		/* Not available until CPU deep sleep is implemented
++		opp13 {
++			opp-hz = /bits/ 64 <3132000000>;
++			opp-level = <13>;
++			clock-latency-ns = <56000>;
++			turbo-mode;
++		};
++		opp14 {
++			opp-hz = /bits/ 64 <3168000000>;
++			opp-level = <14>;
++			clock-latency-ns = <56000>;
++			turbo-mode;
++		};
++		opp15 {
++			opp-hz = /bits/ 64 <3228000000>;
++			opp-level = <15>;
++			clock-latency-ns = <56000>;
++			turbo-mode;
++		};
++		*/
++	};
++
+ 	pmu-e {
+ 		compatible = "apple,icestorm-pmu";
+ 		interrupt-parent = <&aic>;
+diff --git a/arch/arm64/boot/dts/apple/t600x-dieX.dtsi b/arch/arm64/boot/dts/apple/t600x-dieX.dtsi
+index 0a437b68e86c..a32ff0c9d7b0 100644
+--- a/arch/arm64/boot/dts/apple/t600x-dieX.dtsi
++++ b/arch/arm64/boot/dts/apple/t600x-dieX.dtsi
+@@ -6,6 +6,24 @@
+  * Copyright The Asahi Linux Contributors
+  */
+ 
++	DIE_NODE(cpufreq_e): cpufreq@210e20000 {
++		compatible = "apple,t6000-cluster-cpufreq", "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
++		reg = <0x2 0x10e20000 0 0x1000>;
++		#performance-domain-cells = <0>;
++	};
++
++	DIE_NODE(cpufreq_p0): cpufreq@211e20000 {
++		compatible = "apple,t6000-cluster-cpufreq", "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
++		reg = <0x2 0x11e20000 0 0x1000>;
++		#performance-domain-cells = <0>;
++	};
++
++	DIE_NODE(cpufreq_p1): cpufreq@212e20000 {
++		compatible = "apple,t6000-cluster-cpufreq", "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
++		reg = <0x2 0x12e20000 0 0x1000>;
++		#performance-domain-cells = <0>;
++	};
++
+ 	DIE_NODE(pmgr): power-management@28e080000 {
+ 		compatible = "apple,t6000-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+ 		#address-cells = <1>;
+-- 
+2.35.1
 
