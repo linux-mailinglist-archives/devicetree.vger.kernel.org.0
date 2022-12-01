@@ -2,143 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B2AB63EEE3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3EE63EEB1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:03:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbiLALGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:06:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44250 "EHLO
+        id S229939AbiLALDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:03:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231279AbiLALFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:05:41 -0500
-Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ECEAD13D20;
-        Thu,  1 Dec 2022 03:05:03 -0800 (PST)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx3.securetransport.de (Postfix) with ESMTPSA id 92D755DDF5;
-        Thu,  1 Dec 2022 12:04:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1669892649;
-        bh=oHceRgk+gFfdajQXBs3vdONlXzIv43vyzNrgumEI73k=;
-        h=From:To:CC:Subject:Date:From;
-        b=df9YQpSl5ROg2pVfpnO69J8V3eJTYYv3vjSJLCXcoqKse/XwNuByOE1cTj6xVtrTl
-         qOnmiZyV0yUj4GR4MLehlCc0JhzsOss4Ko1qH7hQTUrBu5OIxs0uw+1CzI5G5qSsU+
-         JGRNDb7ws/zww0Z5KfqhZAlaO8mSfbf3SgE+KGvjQsmwPrtKKM3Qmz4zwriDD1Kdoq
-         277Q2XzunorUxq78Rks5dNbQnTWM5FdHzjFQ2rv0/RXQQFmXitnde3eA+SfMfObQ7m
-         Plym2f/rp41/7/Olz+TOXYIPJcwNWsH1Gyf2MEPge1d/m6l5XyW7myc43MER7uadDY
-         Zge06SQ8322eQ==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20; Thu, 1 Dec 2022 12:03:55 +0100
-Received: from localhost.localdomain (172.16.51.2) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20 via Frontend Transport; Thu, 1 Dec 2022 12:03:55 +0100
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-serial@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <marex@denx.de>,
-        <jirislaby@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alexander Dahl" <ada@thorsis.com>, <kernel@dh-electronics.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH V3 1/4] dt-bindings: serial: rs485: Add GPIO controlling RX enable during TX
-Date:   Thu, 1 Dec 2022 12:02:34 +0100
-Message-ID: <20221201110237.7917-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
+        with ESMTP id S230054AbiLALDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:03:08 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C7C2CE3E
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 03:03:06 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id c1so1919126lfi.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 03:03:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xZPsJdX0DeKIWrtluUWX3HVvTrGo25QoDXGFCZw1PXk=;
+        b=Iymxm2gwfFfqDxv99/Cvwgt5Tt86cvRAlbIcRFWVwq86La55pm/Wo85Vda8Abburiq
+         +n3izNS6OKkWrKNxSR7d4nYTKkRisuxhy72xbJdZlPGyodm9rRlv79WAHcEZEQh5ODCF
+         3bI2VKbSof5THgzSiG1M/osblrxsXxBEwbET9bJM1ToEZYibo54O/MKYhxPMwN2HTEMF
+         xzxmqF6zfBPGlwF2GgpYW38omTN4zE/muv5xZer5SOacWpy09fPs11gsgRsHlzgKI4b6
+         2CqKCMUboHskQm8xxv8fyveBOPHoYbQbYxdiFH/eY+rnKKTJ82CRWYT5YdyErzWM+iBc
+         E1bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xZPsJdX0DeKIWrtluUWX3HVvTrGo25QoDXGFCZw1PXk=;
+        b=6js0K/9vTms/pkn2tGkuPz01K+6JveaGLb2DBo922TN2Y9tcOnM22mRuwcwY1DS33J
+         ESSbmWwLa0NYxPfmU9L/WXDiasq1NHNzFT75wnTUNtQf/3sNZ9U7Lc4hAIbjfNrKG9Sw
+         Sv9bCNLxPhVPzI8kv9i2FHiAH3uysVVfNcZqBmourMGSW4cuvCLJNkoZ98suop6THAEd
+         AgYV9szgpqSggFtuWOsexBihqvg+0SioGMn1M5bUB9lhQJgXVkcdRUNMRxpxEb5iokKo
+         eY8mUaSQGlGHrmOBeIhbA1+gmjj3ZKaOmr1vvid/x6gmh54R8SPOaPR3+GHrsNhm7zix
+         pbTw==
+X-Gm-Message-State: ANoB5pm21E2eABzpaaqObdFQWWs1lMkP3tZGJh184a+S4/JYY1mrAeR6
+        g2cgxCcKgwNXFadbFdF2gDIKLQ==
+X-Google-Smtp-Source: AA0mqf4rvnW0TD1qNBxou5BIbgpN6sDqmoCi83kGXJ7IydthJadNC0OxxCFRj4tbainX/imKqFlpAQ==
+X-Received: by 2002:a05:6512:3a8a:b0:4b5:4888:4362 with SMTP id q10-20020a0565123a8a00b004b548884362mr244955lfu.176.1669892585363;
+        Thu, 01 Dec 2022 03:03:05 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j22-20020a056512399600b004b49025f96dsm610425lfu.187.2022.12.01.03.03.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Dec 2022 03:03:03 -0800 (PST)
+Message-ID: <be603b02-9357-431f-0f5a-069659bd6ce5@linaro.org>
+Date:   Thu, 1 Dec 2022 12:03:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 4/9] dt-bindings: vendor-prefixes: add bouffalolab
+Content-Language: en-US
+To:     Jisheng Zhang <jszhang@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20221127132448.4034-1-jszhang@kernel.org>
+ <20221127132448.4034-5-jszhang@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221127132448.4034-5-jszhang@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for a generic definition of an output GPIO that sets the
-state of rs485-rx-during-tx. The idea is that the hardware already controls
-the option receiving during sending before it gets to the signal receiving
-hardware. The standard RS485 is a half-duplex bus that in most cases is
-driven by an UART controller. The advantage of using this GPIO is that it
-is independent of the capabilities of the UART core and the UART driver.
-On the hardware side the interface to the bus is controlled by a transceiver,
-that has a pin called RE (RX Enable) or similar, which connects the bus to
-the RX signal of the UART controller. The GPIO can switch between two states
-to control the RE pin via an electrical circuit:
-- Active:
-  The RE pin is always active. The UART RX see everything on the bus and
-  therefore also what happens with the TX signal on the bus.
-- Inactive:
-  The RE pin is always active, but during sending on the bus the pin RE is
-  inactive. So basically the receiving during sending is suppressed.
+On 27/11/2022 14:24, Jisheng Zhang wrote:
+> In the following commits, we will support bl808 SoC which is from
+> Bouffalo Lab Technology (Nanjing) Co., Ltd.
+> 
+> Add bouffalolab vendor prefix binding.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-A possible circuit diagram could look like this:
-                                  ┌──────────────────┐
-                                  │       RS485      │
-                TX ───────────────┤D                 │
-                                  │    Transceiver   │
-               RTS ────┬──────────┤DE                │
-                       │          │                  │
-                       │ ┌─────┐  │                  │
-                       └─┤&    │  │                  │
-                         │     ├──┤!RE               │
-!rx_during_tx_gpio ──────┤     │  │                  │
-                         └─────┘  │                  │
-                                  │                  │
-                RX ───────────────┤R                 │
-                                  │                  │
-                                  └──────────────────┘
+Wrong order of commits. You cannot start using something before adding
+its description. This should be the first patch in the set.
 
-Here the RTS pin of the UART core is used to control TX via the transceiver
-pin DE (Drive Enable). RE and rx_during_tx_gpio are active low.
-
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
----
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Alexander Dahl <ada@thorsis.com>
-Cc: Marek Vasut <marex@denx.de>
-Cc: kernel@dh-electronics.com
-Cc: devicetree@vger.kernel.org
-To: linux-serial@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
-V2: - Rework of the commit message
-    - Rework GPIO property comment
-V3: - Rework the binding description
-    - Rework message title
-    - Rework of the commit message
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 90a1bab40f05..a973ab7d7e46 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -51,6 +51,12 @@ properties:
-     description: GPIO pin to enable RS485 bus termination.
-     maxItems: 1
- 
-+  rs485-rx-during-tx-gpios:
-+    description: Output GPIO pin that sets the state of rs485-rx-during-tx. This
-+      signal can be used to control the RX part of an RS485 transceiver. Thereby
-+      the active state enables RX during TX.
-+    maxItems: 1
-+
- additionalProperties: true
- 
- ...
--- 
-2.11.0
+Best regards,
+Krzysztof
 
