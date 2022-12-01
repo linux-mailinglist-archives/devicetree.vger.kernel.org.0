@@ -2,104 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8321D63F045
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A8A63F058
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:21:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbiLAMQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 07:16:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
+        id S231347AbiLAMV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 07:21:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbiLAMQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:16:20 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6328FA6041
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:16:15 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id x6so1652665lji.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 04:16:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+qaQnzUFR6jEc6/BTtzhr5L0OwEmeK71QdZTFbxUz8E=;
-        b=sOWXzQoCSZLsJZmc13U6bfD5H/L6IPlnYQdftDEmYjI50/EIuxERFnlkJufQUJdi60
-         v87bCX3G11oWdxLgVfQZyl20NwbaRIQ+S1h47FECuTvi1pK0BjjfyPE52HH5KDQqjGv7
-         riknohuZ4jnAI065GNANBYIWSJ6lXEOKfomopCrUKnJBekNmMmhtfnVx4dRJiQUaqO/C
-         6Sg7zMO38p8ZiUXgXd3QGk/e8dqdKaT7Q6Hn6XwhYngqN2M9SzprkeWR/MtV22iPz5lu
-         iCRUL36LM964arkGNYIPFeYnuJUsc4bNLxZNrX6wimvEwe/VlEndjgYcy4py2KNabAim
-         AzRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+qaQnzUFR6jEc6/BTtzhr5L0OwEmeK71QdZTFbxUz8E=;
-        b=8Fdt+TSA+jXRF3W65YVQl8ZHS9V3/+CQ/zgW1gu7GJ54msWWdaIENYHJEiK0t07mtG
-         VR7h97TlCZdgiJs7yrYYGpojV/Hhz5paVyAkBlA5b12P9CeyHWRZy1mPusZZCWzsCWt8
-         TrNuvTkvV/W8/itTMAoV4+jWxTZB33lFJKsZmpyrUWVkVJwnKrMesI8d6A/diz6F+ViA
-         9OAaWpkn2CDB0s0SzE1BUHl5/PUVwbO22ilkfHs+YP13qGY27qTopiKJNb5t0NSl6/ns
-         riutT7qj65nZ8wMWiF5Km4U3a0YcXCSRUf8ScuE6QbrTU/U7SBsYfu4RtA7lC1Mf8Ak2
-         C5ZQ==
-X-Gm-Message-State: ANoB5pn2VB/dvjRRE2TSYwEHAorwGkCnKIjkT6WZmttKAx1NCh3wwrO5
-        s/Shv0ezhuWd0VMTNrEVQnJGTQ==
-X-Google-Smtp-Source: AA0mqf7+IQJ/XtOhZfRpM+10zUvVxsU5YE5EoyCx5d1tIv03ZdI2hGAYOBCVQTJ9Bqkgw5n/0a36mA==
-X-Received: by 2002:a05:651c:82:b0:277:2f15:4179 with SMTP id 2-20020a05651c008200b002772f154179mr15340293ljq.408.1669896973304;
-        Thu, 01 Dec 2022 04:16:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s3-20020a05651c200300b0026df5232c7fsm363309ljo.42.2022.12.01.04.16.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 04:16:11 -0800 (PST)
-Message-ID: <2cac7d40-1807-63b2-9be7-9e88e721b68c@linaro.org>
-Date:   Thu, 1 Dec 2022 13:16:10 +0100
+        with ESMTP id S230525AbiLAMVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:21:25 -0500
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FACDAB029;
+        Thu,  1 Dec 2022 04:21:23 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B1ANOfC006098;
+        Thu, 1 Dec 2022 12:21:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=o35YdJaFszQepz90vSPHt6PmoQ0SOBopmc9imxmtMi4=;
+ b=QGD6d4tSFCEEPU7eOuvRDB85ZYZTtpthi1LrnlP9fhsaqDcMSgCarEGrs+FH1mUDP25c
+ WKXWp6mnjfEgy0toM1SS2GON2lKQ+zFGLZHmf6cvG5Qec2fXKbvPhR1g8mEYP8BQHlSq
+ 4CllCTsiQWrZeQ9chG8dB2LAO3ABX8NFhwGgr8b8FlauZsN25z4udiJJmKLqcECZfIA3
+ JMNsooZrpHcwyl6dkp2FZnNBSatq/e/7/UBoHc7NOOmWD3VMl0ODv3WGvGPiFeFJrWu+
+ lyT4ERMLamNLVgn5xjwltu4KJbW1eySagiukxL09I9IGOmEqvrD4LP/E+ia43adxNiES Qw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m6k3qs9nb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Dec 2022 12:21:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B1CL8rB021799
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 1 Dec 2022 12:21:08 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Thu, 1 Dec 2022 04:21:02 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <mathieu.poirier@linaro.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH] remoteproc: elf_loader: Update resource table name check
+Date:   Thu, 1 Dec 2022 17:50:48 +0530
+Message-ID: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add GCE header file for
- mt8188
-Content-Language: en-US
-To:     "Elvis.Wang" <Elvis.Wang@mediatek.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20221201071316.24583-1-Elvis.Wang@mediatek.com>
- <20221201071316.24583-2-Elvis.Wang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201071316.24583-2-Elvis.Wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 92nkJW-q8lJX3ix6rnVlv9-0RirJcWu6
+X-Proofpoint-ORIG-GUID: 92nkJW-q8lJX3ix6rnVlv9-0RirJcWu6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-01_04,2022-12-01_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=999 bulkscore=0 suspectscore=0 lowpriorityscore=0 mlxscore=0
+ adultscore=0 spamscore=0 priorityscore=1501 clxscore=1011 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212010088
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 08:13, Elvis.Wang wrote:
-> From: Elvis Wang <Elvis.Wang@mediatek.com>
-> 
-> Add Global Command Engine(GCE) header file to define the GCE thread priority,
-> GCE subsys id, event and constant for mt8188.
-> 
-> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno<angelogioacchino.delregno@collabora.com>
-> ---
+Update resource table name check with sub string search instead of
+complete string search.
+In general Qualcomm binary contains, section header name
+(e.g. .resource_table), amended with extra string to differentiate
+with other sections.
+So far Android adsp binaries are being authenticated using TZ,
+hence this mismatch hasn't created any problem.
+In recent developments, ADSP binary is being used in Chrome based
+platforms, which doesn't have TZ path, hence resource table is
+required for memory sandboxing.
 
-You got my ack here already.
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+---
+ drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/drivers/remoteproc/remoteproc_elf_loader.c b/drivers/remoteproc/remoteproc_elf_loader.c
+index 5a412d7..0feb120 100644
+--- a/drivers/remoteproc/remoteproc_elf_loader.c
++++ b/drivers/remoteproc/remoteproc_elf_loader.c
+@@ -272,7 +272,7 @@ find_table(struct device *dev, const struct firmware *fw)
+ 		u64 offset = elf_shdr_get_sh_offset(class, shdr);
+ 		u32 name = elf_shdr_get_sh_name(class, shdr);
+ 
+-		if (strcmp(name_table + name, ".resource_table"))
++		if (!strstr(name_table + name, ".resource_table"))
+ 			continue;
+ 
+ 		table = (struct resource_table *)(elf_data + offset);
+-- 
+2.7.4
 
