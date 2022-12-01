@@ -2,261 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A674F63F09E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E2563F0AC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 13:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbiLAMcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 07:32:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
+        id S230261AbiLAMkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 07:40:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231465AbiLAMcn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:32:43 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5D4E2BD891;
-        Thu,  1 Dec 2022 04:32:30 -0800 (PST)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8DxdPDdnohjGJMCAA--.6216S3;
-        Thu, 01 Dec 2022 20:32:29 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxPuDVnohjJGUjAA--.22543S3;
-        Thu, 01 Dec 2022 20:32:27 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229992AbiLAMkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 07:40:05 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18125AE23
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 04:40:04 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id t17so1733616pjo.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 04:40:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JDVN8n7be7B0/wylK2s/J0YT9jUx3OP/wVMDKZiwDvg=;
+        b=dJrdRvSe8KMdfE5gN+fINZLIJXX/VXm0TAc++CWk5mFtZX6amsjp5PpwKxRNtXT7rB
+         VYu+GTHHC5EcDNDjjMwbLyM9O1hlU3a++AHtRNU2svAi7VqmmGsw3vViHN0DctcdxCzV
+         XNiVfjRd7zxsjLmPosFHYlXVJ9mPKp9A/d5qfspyVspp4Ikgf9GG4Wn8qXmvZhODH+BE
+         3AoRs+4HQtsUtU/plaTWJoyCWM45ezYcQO3fVc6oZErZWoVLuh6C5w3Mt9b2jssK3cJv
+         UC1DL2q16nL0oGNzgdL/3dx89rtxPUrlaGBiCfCZclPa+krPpkaUMqt3kqn8/mBvkzEZ
+         7QCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JDVN8n7be7B0/wylK2s/J0YT9jUx3OP/wVMDKZiwDvg=;
+        b=U2CTzTHHAorssy1PpqeKlE8mG1ZrHXhKN9vUkBJ2oICIkzg1BqaoSNXF2ld/Sgu61o
+         unNUY4DFPVHmflLOpKzcaF8N5dD85KCavQd+fdeWd8xN/2qnYoKaQXqdzStoP9QL3dNY
+         iay4Z/K+JVnE2fv24zdBdKoY26javfN663vFy/AuZMUB2ne08YrxqolC+Nny5sDKtNAe
+         YWvzt6jlL30N0C0AcZTug4WfvTYgwt/Gro7dS3lxEz5ka8jY3MyqeBd3GTyudyJPC/+a
+         v3FqhjSTqbIW5vlNlATdRW1fokXwOd46b/M470dIfvpP8zMOHxS3cUSQYOwR0PJITI+D
+         InEQ==
+X-Gm-Message-State: ANoB5pmRY3gNjPTaRle3V6r40ny7Ti4EPtVWDITpzYNz58PGDxWDmYZo
+        C919s0D8d1W7Z4jjyGOtU5aLkA==
+X-Google-Smtp-Source: AA0mqf6cunRUAvtUCmUwa0kqMjczfEX9x8NDswgm0g3BXwbyrX5wsXjCNPF+VR8EYBKcTxOYNh5B5w==
+X-Received: by 2002:a17:90b:1e0f:b0:213:c5ae:55ec with SMTP id pg15-20020a17090b1e0f00b00213c5ae55ecmr68341370pjb.182.1669898404308;
+        Thu, 01 Dec 2022 04:40:04 -0800 (PST)
+Received: from anup-ubuntu-vm.localdomain ([171.76.81.69])
+        by smtp.gmail.com with ESMTPSA id b65-20020a62cf44000000b0056f0753390csm3246981pfg.96.2022.12.01.04.39.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 04:40:03 -0800 (PST)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v10 2/2] dt-bindings: gpio: add loongson gpio
-Date:   Thu,  1 Dec 2022 20:32:20 +0800
-Message-Id: <20221201123220.7893-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221201123220.7893-1-zhuyinbo@loongson.cn>
-References: <20221201123220.7893-1-zhuyinbo@loongson.cn>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v5 0/3] Improve CLOCK_EVT_FEAT_C3STOP feature setting
+Date:   Thu,  1 Dec 2022 18:09:51 +0530
+Message-Id: <20221201123954.1111603-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxPuDVnohjJGUjAA--.22543S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3XrWUWr1xtw17tr18XrWkJFb_yoW7GF4UpF
-        1DZFZxX3y2gr13AFs8Ka17Xr4fAr1kAw1ruwn8C34xtrWUKw13XFWfWFykG3Z3WrWUXF13
-        JwsxurWrJa43Aw7anT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bf8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq
-        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
-        xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Y
-        z7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64
-        vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E
-        14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4
-        CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r4j6ryU
-        MIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-        4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsG
-        vfC2KfnxnUUI43ZEXa7IU86yIUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson platform gpio binding with DT schema format using
-json-schema.
+This series improves the RISC-V timer driver to set CLOCK_EVT_FEAT_C3STOP
+feature based on RISC-V platform capabilities.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v10:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v9:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v8:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v7:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v6:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v5:
-		1. NO change, but other patch in this series of patches set has
-		   change.
-Change in v4:
-		1. Remove the string "series".
-		2. Add the reviewed-by information.
-Change in v3:
-		1. Separate some changes of MAINTAINERS file and enter the first patch.
-Change in v2:
-		1. Drop "loongson,gpio_base" and "gpio-ranges" will cover it.
-		1. Drop "loongson,conf_offset", "loongson,out_offset", "loongson,in_offset",
-		   "loongson,support_irq" and kernel driver will initial them that depend
-		   compatible in kernel.
-		3. Fixup maintainer for this driver.
+These patches can also be found in riscv_timer_dt_imp_v5 branch at:
+https://github.com/avpatel/linux.git
 
- .../bindings/gpio/loongson,ls-gpio.yaml       | 126 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
+Changes since v4:
+ - Update commit text of PATCH1 based on Samuel's comments
+ - Renamed DT property "riscv,timer-can-wake-cpu" to
+   "riscv,timer-cannot-wake-cpu" in PATCH2 and PATCH3
+ - Updated description of DT property "riscv,timer-cannot-wake-cpu"
+   in PATCH2
 
-diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-new file mode 100644
-index 000000000000..fb86e8ce6349
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-@@ -0,0 +1,126 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/loongson,ls-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson GPIO controller.
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-gpio
-+      - loongson,ls7a-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  ngpios:
-+    minimum: 1
-+    maximum: 64
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 64
-+
-+required:
-+  - compatible
-+  - reg
-+  - ngpios
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - gpio-ranges
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    gpio0: gpio@1fe00500 {
-+      compatible = "loongson,ls2k-gpio";
-+      reg = <0x1fe00500 0x38>;
-+      ngpios = <64>;
-+      #gpio-cells = <2>;
-+      gpio-controller;
-+      gpio-ranges = <&pctrl 0 0 15>,
-+                    <&pctrl 16 16 15>,
-+                    <&pctrl 32 32 10>,
-+                    <&pctrl 44 44 20>;
-+      interrupt-parent = <&liointc1>;
-+      interrupts = <28 IRQ_TYPE_LEVEL_LOW>,
-+                   <29 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <30 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <26 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <>,
-+                   <>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>,
-+                   <27 IRQ_TYPE_LEVEL_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2203d90bb2cb..2f3b1584db11 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12169,6 +12169,7 @@ LOONGSON GPIO DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
- F:	drivers/gpio/gpio-loongson-64bit.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+Changes since v3:
+ - Rebased on Linux-6.1-rc7
+ - Replaced PATCH1 with a patch to initialize broadcast timer
+
+Changes since v2:
+ - Include Conor's revert patch as the first patch and rebased other patches
+ - Update PATCH2 to document bindings for separate RISC-V timer DT node
+ - Update PATCH3 based on RISC-V timer DT node bindings
+
+Changes since v1:
+ - Rebased on Linux-5.19-rc8
+ - Renamed "riscv,always-on" DT property to "riscv,timer-can-wake-cpu"
+
+Anup Patel (2):
+  dt-bindings: timer: Add bindings for the RISC-V timer device
+  clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP based on DT
+
+Conor Dooley (1):
+  RISC-V: time: initialize hrtimer based broadcast clock event device
+
+ .../bindings/timer/riscv,timer.yaml           | 52 +++++++++++++++++++
+ arch/riscv/kernel/time.c                      |  3 ++
+ drivers/clocksource/timer-riscv.c             | 12 ++++-
+ 3 files changed, 66 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/riscv,timer.yaml
+
 -- 
-2.20.1
+2.34.1
 
