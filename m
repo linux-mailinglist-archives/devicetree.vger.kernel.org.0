@@ -2,120 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A68A63FC35
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:45:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C18063FC2F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbiLAXpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 18:45:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50454 "EHLO
+        id S231596AbiLAXoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 18:44:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiLAXpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:45:06 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C96F7BE6AE;
-        Thu,  1 Dec 2022 15:45:04 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 589FC84225;
-        Fri,  2 Dec 2022 00:45:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1669938302;
-        bh=tVAl2PUlhRY2y4+Skseue/tW4aAWv4TLrxfM05T5iMw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SXrfF3zm+8KNwwJqNthoMBvIJSRyAakH1WIH34/TPREIWZnazEI1c7qqH8QgI3fC3
-         C0Bde4vtUUOCxo0cZRIq9yFBrLXqp69olbZE1DwffNLa5hB1U66N2f4lxfFbHj/Aut
-         WZjUKD+8/Lq9JmoQC1h+mqxeVI2+BGDzey7EHvwSusOOKYDl3sAaoaUotaUC/39BoU
-         NjER95d29KOx5ICkGBfHwb4XWCk3k/d3OxTWNuLR80vawknQ4OGlM0GdASCy6XcYgY
-         dESBVnpiKSe/19hcfnpdS+iW6aSEBHHoDW16qHlDyhxvELI+revZU40zDILVN58YgQ
-         Q5pCevsko/LKw==
-Message-ID: <4043d693-7739-4709-8551-9f476031db70@denx.de>
-Date:   Fri, 2 Dec 2022 00:41:46 +0100
+        with ESMTP id S230484AbiLAXoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:44:03 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29166BE4F8;
+        Thu,  1 Dec 2022 15:44:02 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-1441d7d40c6so3962508fac.8;
+        Thu, 01 Dec 2022 15:44:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zBjMeuRLVfB0Q1K91g+RhzJYDgpvITGQ3Wa0hVWnVFA=;
+        b=QR+eBVOa+h/Ko5Z+PKePSgK9D9Moh/PqSqvHfSsKToivzZ65TT8BA9M0HaUstzxN9P
+         43AvRjQvAoCa+CkTc4KSoXQrGDbgXw8J9zYKps7dDCOtSVh/mBi38TOcwX5myjX3xEiE
+         iuFJSgmmoK+k5o6IUFGhGhiSlsFNZqEvHh8p+pPZppDiaYdBbgbrpGF6YgRo/diRBZVo
+         pvRI+yi328/vWai5o07AmOSxw4uo4G/J6DrzwznFpXhYpiv92yD5WjcJ+xklK6zuZMUi
+         enKNs3hVDugFM+zWKjsKA4KWKhLgQulEYcQhffpxJ6EB2zPQKPgOZc2PuSVI5NQ/5B+K
+         7VAw==
+X-Gm-Message-State: ANoB5pnijfcQgnys4Rams0W1KAfg0wMWlk5IL03JIvjp0OQ9v6XMSBNx
+        Nvo8DZVfGQ68YeQXiRnQsTn2pSMGXQ==
+X-Google-Smtp-Source: AA0mqf4pknopJGrWOequ2EqipgdRgXWSNsM2LgM3UzqF3aEUNXODvGWLmMXX/V+42xajku68ybLwaA==
+X-Received: by 2002:a05:6870:3c0f:b0:143:53aa:5813 with SMTP id gk15-20020a0568703c0f00b0014353aa5813mr21218698oab.161.1669938241401;
+        Thu, 01 Dec 2022 15:44:01 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r81-20020aca5d54000000b0035b99bbe30bsm2344462oib.54.2022.12.01.15.44.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 15:44:00 -0800 (PST)
+Received: (nullmailer pid 1700884 invoked by uid 1000);
+        Thu, 01 Dec 2022 23:44:00 -0000
+Date:   Thu, 1 Dec 2022 17:44:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [PATCH 5/5] powerpc: dts: remove label = "cpu" from DSA
+ dt-binding
+Message-ID: <20221201234400.GA1692656-robh@kernel.org>
+References: <20221130141040.32447-1-arinc.unal@arinc9.com>
+ <20221130141040.32447-6-arinc.unal@arinc9.com>
+ <87a647s8zg.fsf@mpe.ellerman.id.au>
+ <20221201173902.zrtpeq4mkk3i3vpk@pali>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        kernel@dh-electronics.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <Y3y/S5COG7VPbsqL@duo.ucw.cz> <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
- <20221130191905.GA2631320-robh@kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20221130191905.GA2631320-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221201173902.zrtpeq4mkk3i3vpk@pali>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/30/22 20:19, Rob Herring wrote:
-> On Fri, Nov 25, 2022 at 10:26:30PM +0100, Marek Vasut wrote:
->> On 11/22/22 13:23, Pavel Machek wrote:
->>> Hi!
->>
->> Hi,
->>
->>>> Mark the label property as deprecated as it is mentioned
->>>> in the description.
->>>
->>> Lets do it the other way around. Functions (etc) don't really provide
->>> good enough description of LED, and label is still needed.
->>
->> Can you please provide a clear explanation which property or approach is the
->> correct one for new DTs ?
->>
->> So far, the documentation states that "label" is deprecated, and users
->> should replace it with "function" and "color".
+On Thu, Dec 01, 2022 at 06:39:02PM +0100, Pali Rohár wrote:
+> On Thursday 01 December 2022 21:40:03 Michael Ellerman wrote:
+> > Arınç ÜNAL <arinc.unal@arinc9.com> writes:
+> > > This is not used by the DSA dt-binding, so remove it from all devicetrees.
+> > >
+> > > Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> > > ---
+> > >  arch/powerpc/boot/dts/turris1x.dts | 2 --
+> > >  1 file changed, 2 deletions(-)
+> > 
+> > Adding Pali to Cc.
+> > 
+> > These were only recently updated in commit:
+> > 
+> >   8bf056f57f1d ("powerpc: dts: turris1x.dts: Fix labels in DSA cpu port nodes")
+> > 
+> > Which said:
+> > 
+> >   DSA cpu port node has to be marked with "cpu" label.
+> > 
+> > But if the binding doesn't use them then I'm confused why they needed to
+> > be updated.
+> > 
+> > cheers
 > 
-> 'function' is what activity/operation the LED is associated with. It is
-> a fixed set of strings which s/w may use. It is a replacement for
-> 'linux,default-trigger'.
+> I was told by Marek (CCed) that DSA port connected to CPU should have
+> label "cpu" and not "cpu<number>". Modern way for specifying CPU port is
+> by defining reference to network device, which there is already (&enet1
+> and &enet0). So that change just "fixed" incorrect naming cpu0 and cpu1.
+> 
+> So probably linux kernel does not need label = "cpu" in DTS anymore. But
+> this is not the reason to remove this property. Linux kernel does not
+> use lot of other nodes and properties too... Device tree should describe
+> hardware and not its usage in Linux. "label" property is valid in device
+> tree and it exactly describes what or where is this node connected. And
+> it may be used for other systems.
+> 
+> So I do not see a point in removing "label" properties from turris1x.dts
+> file, nor from any other dts file.
 
-Isn't this 'function' more of a standardized replacement for 'label' ?
+Well, it seems like a bit of an abuse of 'label' to me. 'label' should 
+be aligned with a sticker or other identifier identifying something to a 
+human. Software should never care what the value of 'label' is.
 
-$ git grep LED_FUNCTION_ include/
-...
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_PLAYER5 "player-5"
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_ACTIVITY "activity"
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_ALARM "alarm"
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_BACKLIGHT "backlight"
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_BLUETOOTH "bluetooth"
-include/dt-bindings/leds/common.h:#define LED_FUNCTION_BOOT "boot"
-...
-
-Seems to me that ^ is closer to a "standardized" form of 'label' .
-
-The LED subsystem does not infer any behavior of those LEDs based on 
-their 'function' property as far as I can tell, at least not in the way 
-'linux,default-trigger' behaves.
-
-> 'label' is what is printed next to the LED for a human to read. 'label'
-> can be anything and the OS shouldn't care what it is.
-
-This part I understand. What is not clear to me is, why is 'label' being 
-un-deprecated.
-
-We newly have 'function', 'function-enumerator' and 'color' DT 
-properties for LEDs, which seem to be standardized forms of describing 
-what the LED is used for, which LED it is (if there are multiple), and 
-color of that LED. This was previously described in the 'label' 
-property, usually in free form of e.g. "beaglebone:green:usr2" .
-
-> They serve 2 different purposes.
-
-[...]
+Rob
