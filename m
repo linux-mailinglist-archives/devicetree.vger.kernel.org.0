@@ -2,136 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA6063EBD8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B29A63EBD0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:02:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbiLAJCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 04:02:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34044 "EHLO
+        id S229943AbiLAJCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 04:02:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbiLAJCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:02:10 -0500
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8294531DC4;
-        Thu,  1 Dec 2022 01:02:09 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id EBE405C0162;
-        Thu,  1 Dec 2022 04:02:08 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 01 Dec 2022 04:02:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1669885328; x=1669971728; bh=Tr903Ha6Gn
-        GkBubWESk087w5xs8HydaDZLktcx+BB4A=; b=dXYCXi+KFlOmGUtP2XGiezXVYe
-        GOkuSUaMiwFCI0nevqHRkHxEezGdjE+fK5q2oKUTPfPW+qyJbQmuSGrWSHi6iGo3
-        rJU0gv0uMcGvnm6rrT1kdfZmpRQ8qhtfYjBVuzyoxrfTcQ/YfY+QdSQlqeSWECpH
-        UKQ+vRurXL3D+j+wLzQuoxfMDUPVBsNsueNdIcu2XJADPrABcBN7GiOXP3Nctq65
-        17Z3nX2lnzyn+R2CKkd2YnwDbGxYY1sXHqxZ4qHbbA0uuXKUnyTBYH+nUYkb/pxI
-        1NUD6zT7lNXxezrjkkIRynHerlpIvyVZlxNeKFzgA+CbNGKr0zlGsrW4RJow==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1669885328; x=1669971728; bh=Tr903Ha6GnGkBubWESk087w5xs8H
-        ydaDZLktcx+BB4A=; b=ukTsSL5N5FrwOrv4HQKUWAP0huyiaZ9mQ1NuOEws4Svf
-        rpk+X1F2qfHkbTNPjd/NgvjmWtPnYdCuT70ASZDVyGqijIqCCOGNQPSG4dz5TLNa
-        ZkJVLYYIkArZ+joGaMdEMVGMFAgOnI7j2HD8s9ta/CPk4Tp29rBwsC8JKAYi11jB
-        o9nESw5ycTDycCXWg8+7gMxHJsZy3x5c+BYiuVsxgae5TUWmhNcjmv/l+qJ2R2by
-        I957Mr2QaGt4vF+GeCotP4KoPPbHy4LxjOpy6zqHbsL5LdXzyfkHo3xWoJ8PHCRg
-        nJGDXBdrSeatIkJVU5KAKUHL+bFGAGO2XIRyLhXVXg==
-X-ME-Sender: <xms:kG2IYztcelmjp9L5Pb4_-G79Vqefl7YwnYU_-0grOxE1ownT_QWWvA>
-    <xme:kG2IY0djUIAkotCXc6xfSURipkuZX9mxYFGVeIKFztccU-Q-zYD8q9Xngp4qrBlHY
-    ARALMadoPTb91hWnjQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdeggdduvdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:kG2IY2xnQOrJOogoEffKIwTFrtRjtFecVoJOAKz5OfCBUK5-pP2UyQ>
-    <xmx:kG2IYyN9yt6Kkh-hvHOhHvTVuzUDWMpc6Nm3NvNfzMoY2VqPbXYWXQ>
-    <xmx:kG2IYz9-LLvWTWrao7SByxU1SrCiWjmuFiIElVNWvwBWOth8qfKcLA>
-    <xmx:kG2IYwg3xpIUF4F5sM2PuvLBWnWCgyezH9MhyPTZ4uSoeC2CnkcZxA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1B769B60086; Thu,  1 Dec 2022 04:02:08 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <c524cba6-4438-461a-ab05-9325fe09f832@app.fastmail.com>
-In-Reply-To: <Y4hgnxGMEuizJumr@kroah.com>
-References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
- <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
- <Y4hgnxGMEuizJumr@kroah.com>
-Date:   Thu, 01 Dec 2022 10:01:44 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Daehwan Jung" <dh10.jung@samsung.com>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Alim Akhtar" <alim.akhtar@samsung.com>,
-        "Mathias Nyman" <mathias.nyman@intel.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Colin Ian King" <colin.i.king@gmail.com>,
-        "Artur Bujdoso" <artur.bujdoso@gmail.com>,
-        "Juergen Gross" <jgross@suse.com>,
-        "Tomer Maimon" <tmaimon77@gmail.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "open list" <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos SOCs
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229779AbiLAJCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:02:08 -0500
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF1E47336;
+        Thu,  1 Dec 2022 01:02:05 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 6D70224E255;
+        Thu,  1 Dec 2022 17:01:58 +0800 (CST)
+Received: from EXMBX064.cuchost.com (172.16.6.64) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:01:58 +0800
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX064.cuchost.com
+ (172.16.6.64) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:01:57 +0800
+Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
+ EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
+ 15.00.1497.044; Thu, 1 Dec 2022 17:01:58 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto
+ driver
+Thread-Topic: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive
+ crypto driver
+Thread-Index: AQHZBH/2P5dLP9b8iUC7OZp9LCFzsa5W7gcAgAHFddA=
+Date:   Thu, 1 Dec 2022 09:01:58 +0000
+Message-ID: <aa388c8c99b74436ad556aeb47a5c60a@EXMBX068.cuchost.com>
+References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
+ <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
+ <8a8f502e-e0ed-d638-0b56-74edcbca2134@linaro.org>
+In-Reply-To: <8a8f502e-e0ed-d638-0b56-74edcbca2134@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.188.176.82]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 1, 2022, at 09:06, Greg Kroah-Hartman wrote:
-> On Thu, Dec 01, 2022 at 11:13:31AM +0900, Daehwan Jung wrote:
->> This driver works with xhci platform driver. It needs to override
->> functions of xhci_plat_hc_driver. Wakelocks are used for sleep/wakeup
->> scenario of system.
->
-> So this means that no other platform xhci driver can be supported in the
-> same system at the same time.
->
-> Which kind of makes sense as that's not anything a normal system would
-> have, BUT it feels very odd.  This whole idea of "override the platform
-> driver" feels fragile, why not make these just real platform drivers and
-> have the xhci platform code be a library that the other ones can use?
-> That way you have more control overall, right?
-
-Agreed, having another layer here (hcd -> xhci -> xhcd_platform ->
-xhcd_exynos) would fit perfectly well into how other SoC specific
-drivers are abstracted. This could potentially also help reduce
-the amount of code duplication between other soc specific variants
-(mtk, tegra, mvebu, ...) that are all platform drivers but don't
-share code with xhci-plat.c.
-
-Alternatively, it seems that all of the xhci-exynos support could
-just be part of the generic xhci-platform driver: as far as I can
-tell, none of the added code is exynos specific at all, instead it
-is a generic xhci that is using the wakeup_source framework.
-
-It should be possible to check at runtime whether an xhci-platform
-instance uses the wakeup source or not, and then have the same
-driver work across more platforms.
-
-      Arnd
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBXZWRuZXNkYXks
+IE5vdmVtYmVyIDMwLCAyMDIyIDk6MjEgUE0NCj4gVG86IEppYUppZSBIbyA8amlhamllLmhvQHN0
+YXJmaXZldGVjaC5jb20+OyBIZXJiZXJ0IFh1DQo+IDxoZXJiZXJ0QGdvbmRvci5hcGFuYS5vcmcu
+YXU+OyBEYXZpZCBTIC4gTWlsbGVyIDxkYXZlbUBkYXZlbWxvZnQubmV0PjsNCj4gUm9iIEhlcnJp
+bmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyenlzenRv
+Zi5rb3psb3dza2krZHRAbGluYXJvLm9yZz4NCj4gQ2M6IGxpbnV4LWNyeXB0b0B2Z2VyLmtlcm5l
+bC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC0NCj4ga2VybmVsQHZnZXIu
+a2VybmVsLm9yZzsgbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIDUvNl0gZHQtYmluZGluZ3M6IGNyeXB0bzogQWRkIGJpbmRpbmdzIGZvciBTdGFy
+Zml2ZSBjcnlwdG8NCj4gZHJpdmVyDQo+IA0KPiBPbiAzMC8xMS8yMDIyIDA2OjUyLCBKaWEgSmll
+IEhvIHdyb3RlOg0KPiA+IEFkZCBkb2N1bWVudGF0aW9uIHRvIGRlc2NyaWJlIFN0YXJmaXZlIGNy
+eXB0byBkcml2ZXIgYmluZGluZ3MuDQo+IA0KPiBQbGVhc2Ugd3JhcCBjb21taXQgbWVzc2FnZSBh
+Y2NvcmRpbmcgdG8gTGludXggY29kaW5nIHN0eWxlIC8gc3VibWlzc2lvbg0KPiBwcm9jZXNzOg0K
+PiBodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92NS4xOC0NCj4gcmM0L3NvdXJjZS9E
+b2N1bWVudGF0aW9uL3Byb2Nlc3Mvc3VibWl0dGluZy1wYXRjaGVzLnJzdCNMNTg2DQo+IA0KPiAN
+Cj4gU3ViamVjdDogZHJvcCBzZWNvbmQsIHJlZHVuZGFudCAiYmluZGluZ3MiLg0KPiANCj4gDQoN
+CkknbGwgZml4IHRoZSBjb21taXQgdGl0bGUgYW5kIG1lc3NhZ2UgaW4gdGhlIG5leHQgdmVyc2lv
+bi4NCg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogSmlhIEppZSBIbyA8amlhamllLmhvQHN0YXJm
+aXZldGVjaC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSHVhbiBGZW5nIDxodWFuLmZlbmdAc3Rh
+cmZpdmV0ZWNoLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL2NyeXB0by9zdGFyZml2
+ZS1jcnlwdG8ueWFtbCAgICAgIHwgMTA5ICsrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUg
+Y2hhbmdlZCwgMTA5IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4g
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NyeXB0by9zdGFyZml2ZS1jcnlwdG8u
+eWFtbA0KPiA+DQo+ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2NyeXB0by9zdGFyZml2ZS1jcnlwdG8ueWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NyeXB0by9zdGFyZml2ZS1jcnlwdG8ueWFtbA0KPiA+IG5l
+dyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi42Yjg1MmY3NzRjMzIN
+Cj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL2NyeXB0by9zdGFyZml2ZS1jcnlwdG8ueWFtbA0KPiANCj4gRmlsZW5hbWUgYmFzZWQg
+b24gY29tcGF0aWJsZSwgc28gc3RhcmZpdmUsamg3MTEwLWNyeXB0by55YW1sDQo+IA0KDQpXaWxs
+IHVwZGF0ZSBmaWxlbmFtZS4NCg0KPiA+IEBAIC0wLDAgKzEsMTA5IEBADQo+ID4gKyMgU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKSAlWUFNTCAx
+LjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvY3J5
+cHRvL3N0YXJmaXZlLWNyeXB0by55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJl
+ZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3RpdGxlOiBTdGFyRml2
+ZSBDcnlwdG8gQ29udHJvbGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncw0KPiANCj4gRHJvcCAiRGV2
+aWNlIFRyZWUgQmluZGluZ3MiDQo+IA0KDQpXaWxsIHVwZGF0ZSB0aXRsZS4NCg0KPiA+ICsNCj4g
+PiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBKaWEgSmllIEhvIDxqaWFqaWUuaG9Ac3RhcmZpdmV0
+ZWNoLmNvbT4NCj4gPiArICAtIFdpbGxpYW0gUWl1IDx3aWxsaWFtLnFpdUBzdGFyZml2ZXRlY2gu
+Y29tPg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsg
+ICAgY29uc3Q6IHN0YXJmaXZlLGpoNzExMC1jcnlwdG8NCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+
+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgcmVnLW5hbWVzOg0KPiA+ICsgICAgaXRl
+bXM6DQo+ID4gKyAgICAgIC0gY29uc3Q6IHNlY3JlZw0KPiANCj4gV2h5IGRvIHlvdSBuZWVkIHJl
+Zy1uYW1lcyBmb3Igb25lIGVudHJ5Pw0KPiANCg0KV2lsbCByZW1vdmUgbmVlZCBvZiByZWctbmFt
+ZXMgYW5kIHVwZGF0ZSBwcm9iZSBmdW5jdGlvbiBhY2NvcmRpbmdseS4NCg0KPiA+ICsNCj4gPiAr
+ICBjbG9ja3M6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogSGFy
+ZHdhcmUgcmVmZXJlbmNlIGNsb2NrDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IEFIQiByZWZl
+cmVuY2UgY2xvY2sNCj4gPiArDQo+ID4gKyAgY2xvY2stbmFtZXM6DQo+ID4gKyAgICBpdGVtczoN
+Cj4gPiArICAgICAgLSBjb25zdDogc2VjX2hjbGsNCj4gPiArICAgICAgLSBjb25zdDogc2VjX2Fo
+Yg0KPiANCj4gc2VjIHNlZW1zIHJlZHVuZGFudCwgc28ganVzdCAiYWhiIi4gVGhlIGZpcnN0IGNs
+b2NrIHRoZW4gImhjbGsiIG9yICJyZWYiPw0KPiANCg0KV2lsbCBmaXggaW4gbmV4dCB2ZXJzaW9u
+Lg0KDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdHM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAg
+ICAgLSBkZXNjcmlwdGlvbjogSW50ZXJydXB0IHBpbiBmb3IgYWxnbyBjb21wbGV0aW9uDQo+ID4g
+KyAgICAgIC0gZGVzY3JpcHRpb246IEludGVycnVwdCBwaW4gZm9yIERNQSB0cmFuc2ZlciBjb21w
+bGV0aW9uDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdC1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0K
+PiA+ICsgICAgICAtIGNvbnN0OiBzZWNpcnENCj4gPiArICAgICAgLSBjb25zdDogZG1haXJxDQo+
+IA0KPiBEcm9wICJpcnEiIGZyb20gYm90aC4NCj4gDQoNCldpbGwgZml4Lg0KDQo+ID4gKw0KPiA+
+ICsgIHJlc2V0czoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBT
+VEcgZG9tYWluIHJlc2V0IGxpbmUNCj4gPiArDQo+ID4gKyAgcmVzZXQtbmFtZXM6DQo+ID4gKyAg
+ICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogc2VjX2hyZQ0KPiANCj4gRHJvcCAic2VjIi4g
+V2h5IGRvIHlvdSBuZWVkIHRoZSBuYW1lcyBmb3Igb25lIGVudHJ5Pw0KPiANCg0KV2lsbCByZW1v
+dmUgbmFtZXMuDQoNCj4gPiArDQo+ID4gKyAgZW5hYmxlLXNpZGUtY2hhbm5lbC1taXRpZ2F0aW9u
+Og0KPiA+ICsgICAgZGVzY3JpcHRpb246IEVuYWJsZSBzaWRlLWNoYW5uZWwtbWl0aWdhdGlvbiBm
+ZWF0dXJlIGZvciBBRVMgbW9kdWxlLg0KPiA+ICsgICAgICAgIEVuYWJsaW5nIHRoaXMgZmVhdHVy
+ZSB3aWxsIGFmZmVjdCB0aGUgc3BlZWQgcGVyZm9ybWFuY2Ugb2YNCj4gPiArICAgICAgICBjcnlw
+dG8gZW5naW5lLg0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0KPiANCj4gV2h5IGV4YWN0bHkgdGhp
+cyBpcyBhIGhhcmR3YXJlIChEVCkgcHJvcGVydHksIG5vdCBydW50aW1lPw0KPiANCg0KVGhpcyBp
+cyBhIGhhcmR3YXJlIHNldHRpbmcgcHJvdmlkZWQgaW4gU3RhckZpdmUgY3J5cHRvIGVuZ2luZSBv
+bmx5Lg0KVGhlIGNyeXB0byBBUEkgZG9lc24ndCBjb250cm9sIHRoaXMgc2V0dGluZyBkdXJpbmcg
+cnVudGltZSBhbmQgbGVhdmluZyB0aGlzIGFsd2F5cyBvbiB3aWxsIGltcGFjdCBzcGVlZCBwZXJm
+b3JtYW5jZS4NClNvLCBJIGFkZGVkIHRoaXMgcHJvcGVydHkgdG8gYWxsb3cgdXNlciB0byBjb250
+cm9sIHRoaXMgaW4gZHRiLg0KDQo+ID4gKw0KPiA+ICsgIGVuYWJsZS1kbWE6DQo+ID4gKyAgICBk
+ZXNjcmlwdGlvbjogRW5hYmxlIGRhdGEgdHJhbnNmZXIgdXNpbmcgZGVkaWNhdGVkIERNQSBjb250
+cm9sbGVyLg0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0KPiANCj4gVXN1YWxseSB0aGUgcHJlc2Vu
+Y2Ugb2YgZG1hcyBpbmRpY2F0ZXMgd2hldGhlciB0byB1c2Ugb3Igbm90IHRvIHVzZSBETUEuDQo+
+IERvIHlvdSBleHBlY3QgYSBjYXNlIHdoZXJlIERNQSBjaGFubmVscyBhcmUgcHJvdmlkZWQgYnkg
+eW91IGRvbid0IHdhbnQNCj4gRE1BPyBFeHBsYWluIHN1Y2ggY2FzZSBhbmQgZGVzY3JpYmUgd2h5
+IGl0IGlzIGEgaGFyZHdhcmUvc3lzdGVtIGludGVncmF0aW9uDQo+IHByb3BlcnR5Lg0KPiANCg0K
+SSdsbCByZW1vdmUgdGhpcyBwcm9wZXJ0eSBhcyBETUEgaXMgYWx3YXlzIGVuYWJsZWQuDQoNCj4g
+PiArDQo+ID4gKyAgZG1hczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0
+aW9uOiBUWCBETUEgY2hhbm5lbA0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBSWCBETUEgY2hh
+bm5lbA0KPiA+ICsNCj4gPiArICBkbWEtbmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAg
+ICAgLSBjb25zdDogc2VjX20NCj4gDQo+IHR4DQo+IA0KDQpXaWxsIGZpeC4NCg0KPiA+ICsgICAg
+ICAtIGNvbnN0OiBzZWNfcA0KPiANCj4gcngNCj4gDQoNCldpbGwgZml4Lg0KDQo+ID4gKw0KPiA+
+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0KPiA+ICsgIC0g
+cmVnLW5hbWVzDQo+ID4gKyAgLSBjbG9ja3MNCj4gPiArICAtIGNsb2NrLW5hbWVzDQo+ID4gKyAg
+LSByZXNldHMNCj4gPiArICAtIHJlc2V0LW5hbWVzDQo+ID4gKw0KPiA+ICthZGRpdGlvbmFsUHJv
+cGVydGllczogZmFsc2UNCj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0KPiA+ICsg
+ICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLWpoNzExMC5oPg0KPiA+ICsg
+ICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLWpoNzExMC5oPg0KPiA+ICsN
+Cj4gPiArICAgIHNvYyB7DQo+ID4gKyAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0K
+PiA+ICsgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwyPjsNCj4gDQo+IFVzZSA0IHNwYWNlcyBm
+b3IgZXhhbXBsZSBpbmRlbnRhdGlvbi4NCg0KSSdsbCBmaXggdGhlIGluZGVudGF0aW9uLg0KDQpU
+aGFuayB5b3UgZm9yIHRha2luZyB0aW1lIHRvIHJldmlldyBhbmQgcHJvdmlkZSBoZWxwZnVsIGNv
+bW1lbnRzIGZvciB0aGlzIHBhdGNoLg0KDQpCZXN0IHJlZ2FyZHMsDQpKaWEgSmllDQo=
