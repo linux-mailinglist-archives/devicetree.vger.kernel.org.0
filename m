@@ -2,168 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E04C263FBBF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72DB563FBC3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 00:14:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiLAXNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 18:13:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40660 "EHLO
+        id S231201AbiLAXO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 18:14:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbiLAXNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:13:06 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE1BA65A2;
-        Thu,  1 Dec 2022 15:13:03 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id r21so3640212oie.13;
-        Thu, 01 Dec 2022 15:13:03 -0800 (PST)
+        with ESMTP id S231284AbiLAXOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 18:14:23 -0500
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F16C14D1B;
+        Thu,  1 Dec 2022 15:14:21 -0800 (PST)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-12c8312131fso3911717fac.4;
+        Thu, 01 Dec 2022 15:14:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OKxrfU4YmpY1Kl1yHeMXQyKUWxu44u51bjZxjiYhfek=;
-        b=vHMPKiY8XxZDQSD6tWPqxTc/FbmPBAD59Fl5N5oG3Q/130vxZYb8W1RQEu4FnbZ+6d
-         WpqQa9JORPOjh4oCa2i2w5S0DswbNpqEayOTjStxEO2lQMgxLexYMRBNx7HS4SNMAqZc
-         WO1yCYfAQnRnLH+/iTtFpQ/Ykd45OTRsYBb66SbQrZvAmQpCliYFTkyAuWLmdVChjcuj
-         WJB00kmHRR5N5wCZZatra7SdSIwv2nZXqYPEWVC6XhKR8TWRpdHj4/kToVpkGqDlRZzN
-         3WAaPkvxxCrHjpD60lmTQ5VWA5+tPTG9a3er7BFDUw+uNjHxUjqFb+23cKonQE7P3nwA
-         ENqw==
-X-Gm-Message-State: ANoB5pkhOiDEdhyFU4Lr4Rq/VqAEw5uB0zpH0V0DmFH5JlP5hfLvy9jC
-        X7KLthYmWsVKZ52SusC8/g==
-X-Google-Smtp-Source: AA0mqf6Hw+Gk/anvjA2tVJyGiBiFgpkYa/VeAI295MqD5oc4uGzJJSmIKRZpn+m9seyj7pP7+kUz+A==
-X-Received: by 2002:a54:4783:0:b0:354:7e1:d3ac with SMTP id o3-20020a544783000000b0035407e1d3acmr26707554oic.237.1669936382827;
-        Thu, 01 Dec 2022 15:13:02 -0800 (PST)
+        bh=FIr/2j9LR1jIfb9YzWHXNooHqxKrRbLzbkzM0aNI0hY=;
+        b=tTqpjdeW1hciag/xwL7I3CyncUsHoxpk+h/sN/lKEcoucGv//ZAzrY052tBRWd4FEx
+         mVFiyohqZ1uaq4zh0kOvh8UwnagRv9XVrNzke0L3hjW05+ayVj4a8xQKZt+fDYF1SBYd
+         b5TodLC8HEo0C9L7BwXwm1F8IeLtb5RGtt59YQ3Pz1B3WFxdqmyT934dSECj5GptgqIj
+         wyOdPgTedtUCkEy4NRVvASgeniTAY6M3n4S61Y+qrII71UHV6894PPGe5uU/zt8gnXwr
+         YBjTmluPgZuLE9UrRLDuExNlfCkt8dQl/kxr4gCx79mtQVoZelBzVwPdPngAd6wKiO44
+         ysgw==
+X-Gm-Message-State: ANoB5pnnNOhaEbGIl/vF+qesKjyEoZBo7OMrPOC6xaGm11PI9HBFRTtQ
+        2/GIUOHCPEtphrLvtiQWD6yP+zkJUg==
+X-Google-Smtp-Source: AA0mqf6/AEyeJtfEHqUXesdIbRoCbHyrdgWlY2GE2eJ13EW0nBRgJuMGOIfp7YWvfzPUFn9MKaX3AA==
+X-Received: by 2002:a05:6870:b39b:b0:142:aa9b:2668 with SMTP id w27-20020a056870b39b00b00142aa9b2668mr30841958oap.166.1669936460377;
+        Thu, 01 Dec 2022 15:14:20 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p64-20020acad843000000b0035a9003b8edsm2345943oig.40.2022.12.01.15.13.01
+        by smtp.gmail.com with ESMTPSA id q13-20020a056808200d00b0035b4b6d1bbfsm2410122oiw.28.2022.12.01.15.14.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 15:13:02 -0800 (PST)
-Received: (nullmailer pid 1658241 invoked by uid 1000);
-        Thu, 01 Dec 2022 23:13:01 -0000
-Date:   Thu, 1 Dec 2022 17:13:01 -0600
+        Thu, 01 Dec 2022 15:14:19 -0800 (PST)
+Received: (nullmailer pid 1660505 invoked by uid 1000);
+        Thu, 01 Dec 2022 23:14:19 -0000
+Date:   Thu, 1 Dec 2022 17:14:19 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sandor Yu <Sandor.yu@nxp.com>
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
-Subject: Re: [PATCH v5 07/10] dt-bindings: phy: Add Cadence HDP-TX DP PHY
-Message-ID: <20221201231301.GA1653935-robh@kernel.org>
-References: <cover.1669620155.git.Sandor.yu@nxp.com>
- <beb1dae2a08595a6b9a6b6028ac994faa207d4bd.1669620155.git.Sandor.yu@nxp.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        yunfei.dong@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v5 2/3] media: dt-bindings: media: mediatek: Remove
+ "dma-ranges" property for decoder
+Message-ID: <166993645851.1660446.2817424583068885626.robh@kernel.org>
+References: <20221128143832.25584-1-allen-kh.cheng@mediatek.com>
+ <20221128143832.25584-3-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <beb1dae2a08595a6b9a6b6028ac994faa207d4bd.1669620155.git.Sandor.yu@nxp.com>
+In-Reply-To: <20221128143832.25584-3-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 03:36:15PM +0800, Sandor Yu wrote:
-> Add bindings for Cadence HDP-TX DisplayPort PHY.
+
+On Mon, 28 Nov 2022 22:38:31 +0800, Allen-KH Cheng wrote:
+> Since commit f1ad5338a4d5 ("of: Fix "dma-ranges" handling for bus
+> controllers") was merge, we don't need a dma-ranges property for IOMMU
+> in mediatek video codec.
 > 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> We remove the dma-ranges property and fix the example in
+> mediatek,vcodec-subdev-decoder.yaml
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > ---
->  .../bindings/phy/cdns,hdptx-dp-phy.yaml       | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/cdns,hdptx-dp-phy.yaml
+>  .../bindings/media/mediatek,vcodec-subdev-decoder.yaml     | 7 -------
+>  1 file changed, 7 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/cdns,hdptx-dp-phy.yaml b/Documentation/devicetree/bindings/phy/cdns,hdptx-dp-phy.yaml
-> new file mode 100644
-> index 000000000000..f4f741150c12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/cdns,hdptx-dp-phy.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/cdns,hdptx-dp-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence HDP-TX(HDMI/DisplayPort) PHY for DisplayPort protocol
-> +
-> +maintainers:
-> +  - Sandor Yu <sandor.yu@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cdns,hdptx-dp-phy
 
-Again, name based on SoC and SoC vendor.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: PHY reference clock.
-> +      - description: APB clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref
-> +      - const: apb
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  cdns,num-lanes:
-
-There is a standard way to define the number of lanes. That goes in 
-output endpoint for the DP node. Not that convenient to the phy, but the 
-information is already there, don't duplicate it.
-
-> +    description:
-> +      Number of lanes.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3, 4]
-> +    default: 4
-> +
-> +  cdns,max-bit-rate:
-
-Same with this.
-
-> +    description:
-> +      Maximum DisplayPort link bit rate to use, in Mbps
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [2160, 2430, 2700, 3240, 4320, 5400]
-> +    default: 5400
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mq-clock.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +    dp_phy: phy@32c00000 {
-> +        compatible = "cdns,hdptx-dp-phy";
-> +        reg = <0x32c00000 0x100000>;
-> +        #phy-cells = <0>;
-> +        clocks = <&hdmi_phy_27m>, <&clk IMX8MQ_CLK_DISP_APB_ROOT>;
-> +        clock-names = "ref", "apb";
-> +        cdns,num-lanes = <4>;
-> +        cdns,max-bit-rate = <5400>;
-> +    };
-> -- 
-> 2.34.1
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
