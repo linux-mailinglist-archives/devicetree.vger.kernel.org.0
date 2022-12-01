@@ -2,123 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2F763EBFC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:07:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C870E63EC05
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:10:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230024AbiLAJHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 04:07:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41344 "EHLO
+        id S230044AbiLAJKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 04:10:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230004AbiLAJHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:07:35 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E763EB99;
-        Thu,  1 Dec 2022 01:07:32 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 053B06602B84;
-        Thu,  1 Dec 2022 09:07:30 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669885651;
-        bh=8jHjmSVTbJv8cbYTXsHL50wkv2nBgikOZ1z0ILT8YM0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Z4JeI8M/qnmFg2yXh5HVGszAWAtnij7NwUGovyCw1VDdq8aJFaU/BOAgypQoa4QuG
-         zmxc1FKTKI4uJH7RQ9TibRk1ssye11o17QFXQKwdqFoopg2wdbvyKx3QXqndaIef/L
-         hGna4xjprrkUiRqy/czXncySOVxq52/npCTKiiz7vjiwJ7gc9eM2XMvbaAQFym49oK
-         vbvFi81vJUlY1M/l/xZMl7luMFM2v/D+6iQ9nyZ62+qXGGlyc7w5vJTkhqXXZEoGS5
-         QusJN0MzKb6ib1LAhZyQ5w3jUrv19hdmnydvz6gpaX/87pFI01+JBuufV9PNP7ZkTH
-         nd/iPGPb0L4Tw==
-Message-ID: <ba14a46f-477f-70af-761d-696fe8a4f41c@collabora.com>
-Date:   Thu, 1 Dec 2022 10:07:28 +0100
+        with ESMTP id S230048AbiLAJKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:10:39 -0500
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA4863D45
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 01:10:38 -0800 (PST)
+Received: by mail-ua1-x92a.google.com with SMTP id v4so368962ual.11
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 01:10:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gsC1t8WmwUiEtaZQgKXFZjqGvYAcvsCPNwFBSFBFTtg=;
+        b=8V1T51rmYJrC4JIMroQP6QRSyfai8iSDgn/4akzEsbqPgfl1oskw3YeuvhYvxch/hQ
+         HjLGFwk68Wp8QYgA+8q4e7ed0njfEKM5BPgjHRh73J1yBZKkj/5nQ19seQTHVmOZYswn
+         VwZTtzhw0MqtauUEFgeReiBSHNs95WbnzDfXgNhx/6H79nsu/LSBIBHyaRva4eIBl2ui
+         F3vA1NaEl/iCl6zn4aOST71eW1UwSUfG6CjNf0yWGaZfIBc4EN33R4sJUxKVCEZg3rap
+         vpDL7FMwhtcXdPmCsplTWInFWefCWu8yYtJQyp29UDsjetBilPBfpR+kd42e11frFmap
+         VLtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gsC1t8WmwUiEtaZQgKXFZjqGvYAcvsCPNwFBSFBFTtg=;
+        b=soDDgbamhamHHovWnEFHw7g1SZnd5RU3ousn0FwiUYRd0qPJ8Fk8bAl+mvK1QVs7zC
+         CkGvKvafVQxXxsL6KLbruC/L9JZCw3hgAoapavLkTB7DTNdSjec3Il6RPrv/Ap9u0shM
+         cExe/mT5PNLa5Z8D7gyvw6GVnYO3QOc6LYl3VyCP1ZFnpf9j9Ri6YxYeXr6X7/RZIygg
+         6KEV5y9DZ/j97WGsggWCWGj/eRSnzyRFKQ0KgbXOQzcqWAPHRgYoUpiyTNYXHp++otr7
+         zZYorX6WXVkCYoeJkRcpDGRKHW+JC0R5Pj9dAE+tKZIoWUZwkmX808lZKhJ2cXJ6bfc/
+         g7Eg==
+X-Gm-Message-State: ANoB5pnAIHMGy90/uzTrTJXk8yAaTyz94ZSMn8wuQuDUXwts0dfTHQEo
+        GG1N03xvb9stBvKyW+zfD09N/OYHbA1+uQLM4uhKgA==
+X-Google-Smtp-Source: AA0mqf6/eVAVisc1hbm0Yj8ZOwejQK740HqEyRqpyjbKLJ3Ao2/PvME3dZz7DhXm844HFeBMJnXmTTjlKBquRY2pKyU=
+X-Received: by 2002:a9f:3588:0:b0:418:7beb:6f42 with SMTP id
+ t8-20020a9f3588000000b004187beb6f42mr31042141uad.92.1669885837721; Thu, 01
+ Dec 2022 01:10:37 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] arm64: dts: mt8192: Add adsp power domain controller
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-References: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221201073328.1559-1-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221123053512.1195309-1-mranostay@ti.com> <20221123053512.1195309-5-mranostay@ti.com>
+In-Reply-To: <20221123053512.1195309-5-mranostay@ti.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 1 Dec 2022 10:10:26 +0100
+Message-ID: <CAMRc=MdsV--24aPcE2ng-G=8z6yH14LQf9StcC_m5_58rHo88w@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] gpio: gpio-tps6594: add GPIO support for TPS6594 PMIC
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     michael@walle.cc, vigneshr@ti.com, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, a.zummo@towertech.it,
+        linus.walleij@linaro.org, lee@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/12/22 08:33, Allen-KH Cheng ha scritto:
-> Add adsp power domain controller node for mt8192 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+On Wed, Nov 23, 2022 at 6:35 AM Matt Ranostay <mranostay@ti.com> wrote:
+>
+> Add support for TPS6594 PMICs GPIO interface that has 11 that can be
+> configured as input or outputs.
+>
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
 > ---
-> Ref: https://lore.kernel.org/all/2ec80bd8-dfef-d2e6-eb41-6e6088043e33@collabora.com/
->      [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
-> ---
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 8 ++++++++
->   include/dt-bindings/power/mt8192-power.h | 1 +
->   2 files changed, 9 insertions(+)
-> 
 
-Allen, thanks for this one, but it's incomplete...
+I think you forgot to collect Linus' and my review tags.
 
-First of all, you must add the power domain on the driver itself, specifically,
-in drivers/soc/mediatek/mt8192-pm-domains.h - otherwise this change will have no
-effect!
-
-...Then, as Chen-Yu said, you should also add the power domain to the scp_adsp
-clock node as that's solving the lockup issue...
-
-.......and last, but not least: we need a Fixes tag to backport this fix, here
-and on the commit that adds the missing power domain in the driver.
-
-Thanks,
-Angelo
-
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 424fc89cc6f7..e71afba871fc 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -514,6 +514,14 @@
->   						};
->   					};
->   				};
-> +
-> +				power-domain@MT8192_POWER_DOMAIN_ADSP {
-> +					reg = <MT8192_POWER_DOMAIN_ADSP>;
-> +					clocks = <&topckgen CLK_TOP_ADSP_SEL>;
-> +					clock-names = "adsp";
-> +					mediatek,infracfg = <&infracfg>;
-> +					#power-domain-cells = <0>;
-> +				};
->   			};
->   		};
->   
-> diff --git a/include/dt-bindings/power/mt8192-power.h b/include/dt-bindings/power/mt8192-power.h
-> index 4eaa53d7270a..63e81cd0d06d 100644
-> --- a/include/dt-bindings/power/mt8192-power.h
-> +++ b/include/dt-bindings/power/mt8192-power.h
-> @@ -28,5 +28,6 @@
->   #define MT8192_POWER_DOMAIN_CAM_RAWA	18
->   #define MT8192_POWER_DOMAIN_CAM_RAWB	19
->   #define MT8192_POWER_DOMAIN_CAM_RAWC	20
-> +#define MT8192_POWER_DOMAIN_ADSP	21
->   
->   #endif /* _DT_BINDINGS_POWER_MT8192_POWER_H */
-> 
-
+Bart
