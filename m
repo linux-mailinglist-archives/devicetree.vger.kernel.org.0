@@ -2,180 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA03E63EF69
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8A263EF76
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 12:29:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229617AbiLALZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 06:25:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
+        id S230078AbiLAL3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 06:29:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbiLALZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:25:40 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B63199;
-        Thu,  1 Dec 2022 03:25:38 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 30FD8853ED;
-        Thu,  1 Dec 2022 12:25:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1669893936;
-        bh=yRZSp89XEvXg+1Ku43frQh5KXHoYXxfK4JG3galWAQY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XQAO1J0hYwP0I0aG+Bqf3PFiYVEki8GplQ/U54Oxju5W28Zk569vq2DqaknOmTGMS
-         T8cC9UdzjMub/xvsCIuaWyQRNgCUyQHxQazKG70IIiGFgb3BzrWOG7hlDlooCxGpIH
-         4OpljxXSu3vBY3gDhrbT666+GMSwZnKiSSd0ND8Rma7tzWSaDThLc+oJ6/HPpTvRxJ
-         xVR7hw18wSXI9wv33hFWlSshjvSCm+hUCGH4Hj6oXGWyfSr1HL9m94yG2+agh8zFKi
-         BrK+IiSiKgcu2Zpx4RpxztyWD7l36qCGsa0PAyz2NkifskTLRc37uGpMAmzw/YECuh
-         qONnRQiIET6xg==
-Message-ID: <b5080dd6-40b3-a8f2-0c4e-4c1e52e67fe8@denx.de>
-Date:   Thu, 1 Dec 2022 12:25:34 +0100
+        with ESMTP id S229780AbiLAL3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 06:29:15 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0A352148;
+        Thu,  1 Dec 2022 03:29:14 -0800 (PST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1669894152;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=EDYHcKJNIl+bFBsPJ9EKGMSmWfe/8gI4HDrW58IPop0=;
+        b=o8IsKqMxg5Xkgxlv83mVHjmHCrw88/1n8GQWsRih1pewbVOeJyEY9TFGg1nPjoeJtVOHWR
+        9+qhCIParsQuUdzuD/Qf/QbU6MIqTThKNCDKkTORdbPxLSJ9GLyXMuUs2opHR7xOaCh9um
+        LHOVcyHL4K0RvjNgf79BcMKr+DRgcQ39V8Lv2y5EnJF6uqpXtqeWhSxiD9CamqQ3l51Y0D
+        wrX8pqk7knVKZyvnI7LaRKrhIpM17v5HyWHAeR1j42SnpLKr3JQlWGHpxB7vUkPELTCYAr
+        ArcU1+H8N1nYX0wXOhIwkVoysCFpcSlqezu4gdK4j2P0TAuF/0vFd8qIO2a8cQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1669894152;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=EDYHcKJNIl+bFBsPJ9EKGMSmWfe/8gI4HDrW58IPop0=;
+        b=NVjcGjbsY+ymyeBytgfnNhP/VQjQSsGfl0G38KK1qXT3nvEO7RAfQ3LDnNPDOF/2LiyC1S
+        MUuww9PZ0hNXi1Bw==
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v11 1/3] clocksource: loongson2_hpet: add hpet driver
+ support
+In-Reply-To: <20221129030925.14074-1-zhuyinbo@loongson.cn>
+References: <20221129030925.14074-1-zhuyinbo@loongson.cn>
+Date:   Thu, 01 Dec 2022 12:29:12 +0100
+Message-ID: <87k03bs6pj.ffs@tglx>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: Boot failure regression on 6.0.10 stable kernel on iMX7
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, stable@vger.kernel.org,
-        Sasha Levin <sashal@kernel.org>, linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com>
- <12f7fbb7-8252-4520-89c2-c5138931a696@denx.de>
- <Y4fCZmjDMtMMyu+E@francesco-nb.int.toradex.com>
- <fef2598e-e5fc-c4fc-0530-2d3c380ed39a@denx.de>
- <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <Y4iKAUav9ktuxncE@francesco-nb.int.toradex.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/1/22 12:03, Francesco Dolcini wrote:
-> + MTD maintainers/list
-> 
-> On Wed, Nov 30, 2022 at 11:59:04PM +0100, Marek Vasut wrote:
->> On 11/30/22 21:51, Francesco Dolcini wrote:
->>> On Wed, Nov 30, 2022 at 03:41:13PM +0100, Marek Vasut wrote:
->>>> On 11/30/22 14:52, Francesco Dolcini wrote:
->>>>> [    0.000000] Booting Linux on physical CPU 0x0
->>>>> [    0.000000] Linux version 6.0.10 (francesco@francesco-nb) (arm-linux-gnueabihf-gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.
->>>>> 4.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #36 SMP Wed Nov 30 14:07:15 CET 2022
->>>>> ...
->>>>> [    4.407499] gpmi-nand: error parsing ofpart partition /soc/nand-controller@33002000/partition@0 (/soc/nand-controller
->>>>> @33002000)
->>>>> [    4.438401] gpmi-nand 33002000.nand-controller: driver registered.
->>>>> ...
->>>>> [    5.933906] VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
->>>>> [    5.946504] Please append a correct "root=" boot option; here are the available partitions:
->>>>> ...
->>>>>
->>>>> Any idea? I'm not familiar with the gpmi-nand driver and I would just revert it, but
->>>>> maybe you have a better idea.
->>>>
->>>> Can you share the relevant snippet of your nand controller DT node ?
->>>
->>> We just have
->>>
->>> from imx7-colibri.dtsi,
->>>
->>>     &gpmi {
->>>     	fsl,use-minimum-ecc;
->>>     	nand-ecc-mode = "hw";
->>>     	nand-on-flash-bbt;
->>>     	pinctrl-names = "default";
->>>     	pinctrl-0 = <&pinctrl_gpmi_nand>;
->>>     };
->>>
->>> OF partition are created by U-Boot from
->>>     mtdparts=mtdparts=gpmi-nand:512k(mx7-bcb),1536k(u-boot1)ro,1536k(u-boot2)ro,512k(u-boot-env),-(ubi)
->>> env variables calling fdt_fixup_mtdparts from colibri_imx7.c
->>>
->>> Everything is available in the upstream Linux/U-Boot git, no downstream
->>> repo of any sort.
->>>
->>>> Probably up to first partition is enough. I suspect you need to fill in the
->>>> correct address-cells/size-cells there, which might be currently missing in
->>>> your DT and worked by chance.
->>>
->>> This is generated by U-Boot, I would need to dump what he did generate
->>> from the standard fdt_fixup_mtdparts(). I will try to do it tomorrow
->>> unless what I wrote here is already enough to understand what's going
->>> on.
->>
->> Oh drat ... I see. It's the u-boot fdt_node_set_part_info() which checks the
->> current NAND controller #size-cells and uses that when generating MTD
->> partitions 'reg' properties. Since #size-cells is now zero, the reg
->> properties would be malformed.
-> 
-> I think the issue is slightly different, the u-boot code checks it and
-> if not set it defaults to #size-cells = <1>. Said that u-boot
-> never set #size-cells anywhere.
+On Tue, Nov 29 2022 at 11:09, Yinbo Zhu wrote:
+> HPET (High Precision Event Timer) defines a new set of timers, which
 
-Which it really should, can you send a patch there too ?
+It's not really new. The HPET specification is 20 years old :)
 
-> What is failing is ofpart_core.c:parse_fixed_partitions() in Linux with
-> #size-cells = <0>.
-> 
-> 
->> Now, what I am unsure is whether the right fix is to update mx7 colibri DT
->> and include &gpmi { #size-cells=<1>; }; , or , revert this patch. The former
->> fixes the problem for colibri and retains the correct #size-cells=<0>
->> behavior for any other board which does not specify MTD partitions in the
->> GPMI NAND node. The later also covers boards which we don't know about which
->> might also use generated MTD partitions in DT using fdt_fixup_mtdparts() in
->> U-Boot, but I am not convinced that is correct.
->>
->> So, would you be OK with fixing up the colibri mx7 DT with #size-cells=<1> ?
-> 
-> I am also not sure what is the right fix, however I am convinced that
-> the fix needs to be in Linux, we cannot really break the boot flow.
+> +++ b/drivers/clocksource/loongson2_hpet.c
+> @@ -0,0 +1,334 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/init.h>
+> +#include <linux/percpu.h>
+> +#include <linux/delay.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_address.h>
+> +#include <linux/clk.h>
+> +#include <asm/time.h>
+> +
+> +/* HPET regs */
+> +#define HPET_CFG                0x010
+> +#define HPET_STATUS             0x020
+> +#define HPET_COUNTER            0x0f0
+> +#define HPET_T0_IRS             0x001
+> +#define HPET_T0_CFG             0x100
+> +#define HPET_T0_CMP             0x108
+> +#define HPET_CFG_ENABLE         0x001
+> +#define HPET_TN_LEVEL           0x0002
+> +#define HPET_TN_ENABLE          0x0004
+> +#define HPET_TN_PERIODIC        0x0008
+> +#define HPET_TN_SETVAL          0x0040
+> +#define HPET_TN_32BIT           0x0100
 
-I agree
+So this is another copy of the defines which are already available in
+x86 and mips. Seriously?
 
-> In a very pragmatic way I could just add the property to colibri-imx7
-> dtsi, but we are really breaking potential other users of it, anybody
-> using U-Boot to generate the partitions in the end ... (and the list is
-> not empty and not just the colibri*).
+> +static DEFINE_SPINLOCK(hpet_lock);
 
-I agree here too
+This wants to be a raw spinlock if at all. But first you have to explain
+the purpose of this lock.
 
-> Would it make any sense to do something like that (untested!) ?
-> 
-> diff --git a/drivers/mtd/parsers/ofpart_core.c b/drivers/mtd/parsers/ofpart_core.c
-> index 192190c42fc8..fffd60acd926 100644
-> --- a/drivers/mtd/parsers/ofpart_core.c
-> +++ b/drivers/mtd/parsers/ofpart_core.c
-> @@ -122,6 +122,8 @@ static int parse_fixed_partitions(struct mtd_info *master,
-> 
->                  a_cells = of_n_addr_cells(pp);
->                  s_cells = of_n_size_cells(pp);
-> +               if (s_cells == 0)
-> +                       s_cells = 1; // for backward compatibility
->                  if (len / 4 != a_cells + s_cells) {
->                          pr_debug("%s: ofpart partition %pOF (%pOF) error parsing reg property.\n",
->                                   master->name, pp,
+> +DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device);
 
-You might want to print a warning too, so users would fix their DTs, 
-since once there is MTD partition > 4 GiB, this would break. Otherwise I 
-like this option.
+Why needs this to be global and why is it needed at all?
 
-Thanks for looking into this !
+This code does support exactly _ONE_ clock event device.
+
+> +static int hpet_read(int offset)
+> +{
+> +	return readl(hpet_mmio_base + offset);
+> +}
+> +
+> +static void hpet_write(int offset, int data)
+> +{
+> +	writel(data, hpet_mmio_base + offset);
+> +}
+> +
+> +static void hpet_start_counter(void)
+> +{
+> +	unsigned int cfg = hpet_read(HPET_CFG);
+> +
+> +	cfg |= HPET_CFG_ENABLE;
+> +	hpet_write(HPET_CFG, cfg);
+> +}
+> +
+> +static void hpet_stop_counter(void)
+> +{
+> +	unsigned int cfg = hpet_read(HPET_CFG);
+> +
+> +	cfg &= ~HPET_CFG_ENABLE;
+> +	hpet_write(HPET_CFG, cfg);
+> +}
+> +
+> +static void hpet_reset_counter(void)
+> +{
+> +	hpet_write(HPET_COUNTER, 0);
+> +	hpet_write(HPET_COUNTER + 4, 0);
+> +}
+> +
+> +static void hpet_restart_counter(void)
+> +{
+> +	hpet_stop_counter();
+> +	hpet_reset_counter();
+> +	hpet_start_counter();
+> +}
+
+This is also a copy of the x86 HPET code....
+
+> +static void hpet_enable_legacy_int(void)
+> +{
+> +	/* Do nothing on Loongson2 */
+> +}
+> +
+> +static int hpet_set_state_periodic(struct clock_event_device *evt)
+> +{
+> +	int cfg;
+> +
+> +	spin_lock(&hpet_lock);
+
+What's the purpose of this lock ?
+
+> +	pr_info("set clock event to periodic mode!\n");
+> +
+> +	/* stop counter */
+> +	hpet_stop_counter();
+> +	hpet_reset_counter();
+> +	hpet_write(HPET_T0_CMP, 0);
+> +
+> +	/* enables the timer0 to generate a periodic interrupt */
+> +	cfg = hpet_read(HPET_T0_CFG);
+> +	cfg &= ~HPET_TN_LEVEL;
+> +	cfg |= HPET_TN_ENABLE | HPET_TN_PERIODIC | HPET_TN_SETVAL |
+> +		HPET_TN_32BIT | hpet_irq_flags;
+> +	hpet_write(HPET_T0_CFG, cfg);
+> +
+> +	/* set the comparator */
+> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
+> +	udelay(1);
+> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
+> +
+> +	/* start counter */
+> +	hpet_start_counter();
+
+Pretty much the same code as hpet_clkevt_set_state_periodic()
+
+> +	spin_unlock(&hpet_lock);
+> +	return 0;
+> +}
+> +
+> +static int hpet_set_state_shutdown(struct clock_event_device *evt)
+> +{
+> +	int cfg;
+> +
+> +	spin_lock(&hpet_lock);
+> +
+> +	cfg = hpet_read(HPET_T0_CFG);
+> +	cfg &= ~HPET_TN_ENABLE;
+> +	hpet_write(HPET_T0_CFG, cfg);
+> +
+> +	spin_unlock(&hpet_lock);
+
+Another slightly different copy of the x86 code
+
+> +	return 0;
+> +}
+> +
+> +static int hpet_set_state_oneshot(struct clock_event_device *evt)
+> +{
+> +	int cfg;
+> +
+> +	spin_lock(&hpet_lock);
+> +
+> +	pr_info("set clock event to one shot mode!\n");
+> +	cfg = hpet_read(HPET_T0_CFG);
+> +	/*
+> +	 * set timer0 type
+> +	 * 1 : periodic interrupt
+> +	 * 0 : non-periodic(oneshot) interrupt
+> +	 */
+> +	cfg &= ~HPET_TN_PERIODIC;
+> +	cfg |= HPET_TN_ENABLE | HPET_TN_32BIT |
+> +		hpet_irq_flags;
+> +	hpet_write(HPET_T0_CFG, cfg);
+
+Yet another copy.
+
+> +	/* start counter */
+> +	hpet_start_counter();
+
+Why doe you need an explicit start here?
+
+> +	spin_unlock(&hpet_lock);
+> +	return 0;
+> +}
+> +
+> +static int hpet_tick_resume(struct clock_event_device *evt)
+> +{
+> +	spin_lock(&hpet_lock);
+> +	hpet_enable_legacy_int();
+> +	spin_unlock(&hpet_lock);
+
+More copy and paste just to slap a spinlock on to it which has zero
+value AFAICT.
+
+> +	return 0;
+> +}
+> +
+> +static int hpet_next_event(unsigned long delta,
+> +		struct clock_event_device *evt)
+> +{
+> +	u32 cnt;
+> +	s32 res;
+> +
+> +	cnt = hpet_read(HPET_COUNTER);
+> +	cnt += (u32) delta;
+> +	hpet_write(HPET_T0_CMP, cnt);
+> +
+> +	res = (s32)(cnt - hpet_read(HPET_COUNTER));
+> +
+> +	return res < HPET_MIN_CYCLES ? -ETIME : 0;
+
+Another copy of the x86 code except for omitting the big comment which
+explains the logic.
+
+Seriously, this is not how it works. Instead of copy & paste, we create
+shared infrastructure and just keep the real architecture specific
+pieces separate.
+
+Thanks,
+
+        tglx
