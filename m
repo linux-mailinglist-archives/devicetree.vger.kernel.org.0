@@ -2,284 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A9363ECAE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:42:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5278863ECB6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Dec 2022 10:43:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiLAJmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 04:42:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
+        id S229475AbiLAJny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 04:43:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiLAJmO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:42:14 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7FD54471;
-        Thu,  1 Dec 2022 01:42:13 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DA94D66025DF;
-        Thu,  1 Dec 2022 09:42:10 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1669887731;
-        bh=VdGBaS0XWeFJmcCrunXO7sc+tv9eoriihu4qmG553GA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NSZBzHBUHkeY2OuO+h2pNjHg/Ubz8w5zyptGtmmW3HASRCOA42oynDVSQVo17MNCD
-         q2iF4uFpLXRhPRW8FTQLVr5VkrdMzGnXuXswiZFFsnqcF+1SX2Ctiu9AsphaJJ7eDy
-         QSR52YDp3Hvy55/9AAI/lIviHHxrFoX9xSGYbsyUbIvvJgIElR9E4A/xAhPem2w1Hn
-         LGqEwhkb+AMaJmfEHXbwfvUTJe0rIC6At1+MSgkM5DrB0fYCKZKjxjMdshAAhVYJ7Q
-         zLq1djNofBb3WKjH7DaUaBivb50xgjZg7lydi3X2SLo5jSYC9R0NMubNuiDlHyM6n6
-         5foWAcXBfpV5A==
-Message-ID: <6c8343c4-a8ed-1a4c-a518-1c49a9d6b056@collabora.com>
-Date:   Thu, 1 Dec 2022 10:42:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 03/12] ASoC: mediatek: mt8188: support audsys clock
-Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "broonie@kernel.org" <broonie@kernel.org>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+        with ESMTP id S229512AbiLAJnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 04:43:49 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82593EBF;
+        Thu,  1 Dec 2022 01:43:47 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 65BF924E161;
+        Thu,  1 Dec 2022 17:43:42 +0800 (CST)
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:43:42 +0800
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX066.cuchost.com
+ (172.16.6.66) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 1 Dec
+ 2022 17:43:42 +0800
+Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
+ EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
+ 15.00.1497.044; Thu, 1 Dec 2022 17:43:42 +0800
+From:   JiaJie Ho <jiajie.ho@starfivetech.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221021082719.18325-1-trevor.wu@mediatek.com>
- <20221021082719.18325-4-trevor.wu@mediatek.com>
- <de66f0e3-7694-7315-c896-9211259a1a17@collabora.com>
- <776557c0fda5a538549ee0d4f4b7f482b0d69934.camel@mediatek.com>
- <473d67ed-198f-82c6-9f32-5827c1f8c852@collabora.com>
- <500f80b1ac84101af482bdfcb46671d523d51068.camel@mediatek.com>
- <360a5f27-8abc-938c-04c7-13ea65b5a89f@collabora.com>
- <7dfdb4866ccf7356c2a8beb0359e5b62df4f245f.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <7dfdb4866ccf7356c2a8beb0359e5b62df4f245f.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: RE: [PATCH 1/6] crypto: starfive - Add StarFive crypto engine support
+Thread-Topic: [PATCH 1/6] crypto: starfive - Add StarFive crypto engine
+ support
+Thread-Index: AQHZBH/rqnMRzesHF0+7VtyEEKwoza5W7JSAgAGlN8D//62vgIAAiNrQ
+Date:   Thu, 1 Dec 2022 09:43:42 +0000
+Message-ID: <291d6d792df648afa9033e7fe8c7a0f4@EXMBX068.cuchost.com>
+References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
+ <20221130055214.2416888-2-jiajie.ho@starfivetech.com>
+ <aafb1c32-bc00-2db2-edbd-aa4771f33ac7@linaro.org>
+ <60ad0da0116044d3a1fe575e9904e22c@EXMBX068.cuchost.com>
+ <6028b265-bc8a-3a06-b17c-56aa772a4782@linaro.org>
+In-Reply-To: <6028b265-bc8a-3a06-b17c-56aa772a4782@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [202.188.176.82]
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/12/22 09:43, Trevor Wu (吳文良) ha scritto:
-> On Wed, 2022-10-26 at 10:18 +0200, AngeloGioacchino Del Regno wrote:
->> Il 26/10/22 06:10, Trevor Wu (吳文良) ha scritto:
->>> On Tue, 2022-10-25 at 12:18 +0200, AngeloGioacchino Del Regno
->>> wrote:
->>>> Il 21/10/22 11:58, Trevor Wu (吳文良) ha scritto:
->>>>> On Fri, 2022-10-21 at 10:41 +0200, AngeloGioacchino Del Regno
->>>>> wrote:
->>>>>> Il 21/10/22 10:27, Trevor Wu ha scritto:
->>>>>>> Add mt8188 audio cg clock control. Audio clock gates are
->>>>>>> registered
->>>>>>> to CCF
->>>>>>> for reference count and clock parent management.
->>>>>>>
->>>>>>> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
->>>>>>> ---
->>>>>>>      sound/soc/mediatek/mt8188/mt8188-audsys-clk.c | 206
->>>>>>> ++++++++++++++++++
->>>>>>>      sound/soc/mediatek/mt8188/mt8188-audsys-clk.h |  15 ++
->>>>>>>      .../soc/mediatek/mt8188/mt8188-audsys-clkid.h |  83
->>>>>>> +++++++
->>>>>>>      3 files changed, 304 insertions(+)
->>>>>>>      create mode 100644 sound/soc/mediatek/mt8188/mt8188-
->>>>>>> audsys-
->>>>>>> clk.c
->>>>>>>      create mode 100644 sound/soc/mediatek/mt8188/mt8188-
->>>>>>> audsys-
->>>>>>> clk.h
->>>>>>>      create mode 100644 sound/soc/mediatek/mt8188/mt8188-
->>>>>>> audsys-
->>>>>>> clkid.h
->>>>>>>
->>>>>>> diff --git a/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>>>>>> b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..1f294231d4c2
->>>>>>> --- /dev/null
->>>>>>> +++ b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>>>>>> @@ -0,0 +1,206 @@
->>>>>>> +// SPDX-License-Identifier: GPL-2.0
->>>>>>> +/*
->>>>>>> + * mt8188-audsys-clk.c  --  MediaTek 8188 audsys clock
->>>>>>> control
->>>>>>> + *
->>>>>>> + * Copyright (c) 2022 MediaTek Inc.
->>>>>>> + * Author: Chun-Chia Chiu <chun-chia.chiu@mediatek.com>
->>>>>>> + */
->>>>>>> +
->>>>>>> +#include <linux/clk.h>
->>>>>>> +#include <linux/clk-provider.h>
->>>>>>> +#include <linux/clkdev.h>
->>>>>>> +#include "mt8188-afe-common.h"
->>>>>>> +#include "mt8188-audsys-clk.h"
->>>>>>> +#include "mt8188-audsys-clkid.h"
->>>>>>> +#include "mt8188-reg.h"
->>>>>>> +
->>>>>>> +struct afe_gate {
->>>>>>> +	int id;
->>>>>>> +	const char *name;
->>>>>>> +	const char *parent_name;
->>>>>>> +	int reg;
->>>>>>> +	u8 bit;
->>>>>>> +	const struct clk_ops *ops;
->>>>>>> +	unsigned long flags;
->>>>>>> +	u8 cg_flags;
->>>>>>> +};
->>>>>>> +
->>>>>>> +#define GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit,
->>>>>>> _flags,
->>>>>>> _cgflags) {\
->>>>>>> +		.id = _id,					
->>>>>>> \
->>>>>>> +		.name = _name,					
->>>>>>> \
->>>>>>> +		.parent_name = _parent,				
->>>>>>> \
->>>>>>> +		.reg = _reg,					
->>>>>>> \
->>>>>>> +		.bit = _bit,					
->>>>>>> \
->>>>>>> +		.flags = _flags,				
->>>>>>> \
->>>>>>> +		.cg_flags = _cgflags,				
->>>>>>> \
->>>>>>> +	}
->>>>>>> +
->>>>>>> +#define GATE_AFE(_id, _name, _parent, _reg, _bit)		
->>>>>>> \
->>>>>>> +	GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit,		
->>>>>>> \
->>>>>>> +		       CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->>>>>>> CLK_GATE_SET_TO_DISABLE)
->>>>>>
->>>>>> Can you please explain what's the reason for
->>>>>> CLK_IGNORE_UNUSED
->>>>>> here?
->>>>>> Maybe we can solve some issue that you're facing in a cleaner
->>>>>> way.
->>>>>>
->>>>>> Regards,
->>>>>> Angelo
->>>>>
->>>>> Hi Angelo,
->>>>>
->>>>> Because clk_disable_unused() calls clk_core_is_enabled(),
->>>>> register
->>>>> access happens in is_enabled() ops.
->>>>> At the moment, the power for register access is not enabled, so
->>>>> the
->>>>> register read results in CPU hang.
->>>>>
->>>>> That's why I added CLK_IGNORE_UNUSED here, but it can't resolve
->>>>> all
->>>>> issues. Actually, we met same problem when "cat
->>>>> /sys/kernel/debug/clk/clk_summary" is used. We are still
->>>>> suffering
->>>>> the
->>>>> problem.
->>>>>
->>>>> I'm not sure if I can implement clk ops by myself, and exclude
->>>>> the
->>>>> registration of is_enabled() ops.
->>>>>
->>>>
->>>> Is the power for register access enabled with a power domain?
->>>>
->>>> Check drivers/clk/clk.c, grep for core->rpm_enabled.
->>>>
->>>> If you enable runtime PM before registering the clocks, and you
->>>> register them
->>>> with the right struct device, the clock API will enable power for
->>>> you
->>>> before
->>>> trying to read the clock enable status.
->>>>
->>>> Regards,
->>>> Angelo
->>>>
->>>
->>> Hi Angelo,
->>>
->>> I tried the way in MT8195, but it caused circular lock problem.
->>>
->>> Because mtcmos depends on some clocks, clk_bulk_prepare_enable is
->>> also
->>> used in scpsys_power_on()[1].
->>> If the clock also depends on the power domain, this results in the
->>> circular lock problem.
->>> That's why I don't bind the power domain with these clocks.
->>>
->>
->> This is not supposed to happen... can you please give me a (MT8195)
->> patch to
->> reproduce the issue that you're seeing?
->>
->> I would like to investigate that to check if I can come up with a
->> good solution.
->>
->> Thanks,
->> Angelo
-> 
-> 
-> Hi Angelo,
-> 
-> Sorry for replying late.
-> The original implementation about clock depending on power domain was a
-> cusotomized request, and it's not based on upstream code base. So I
-> can't apply the implementation directly. I tried to implement the
-> suggested solution in upstream code, but I can't reproduce the problem
-> successfully.
-> 
-> At the same time, we reviewed the difference between MT8195 and MT8188.
-> It's found that ADSP_INFRA should be kept ON to resolve the register
-> r/w access limitation in MT8188, so we can match the hardware design in
-> MT8195.
-> 
-> After discussing internally, we decided in favour of ADSP_INFRA
-> soloution. Althought the lock problem can't be seen, the new lock
-> relationship(prepare_lock -> genpd lock) is actually created.
-> 
-> In conclusion, ADSP_INFRA will be kept always on and I will remove
-> CLK_IGNORE_UNUSED flag in V3.
-> 
-
-As far as the power consumption increase is ignorable (so, power consumption
-is very little more), that's a good decision and I support that.
-
-Regards,
-Angelo
-
-> Thanks,
-> Trevor
-> 
->>
->>> [1]
->>>
-> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v6.1-rc2/source/drivers/soc/mediatek/mtk-pm-domains.c__;!!CTRNKA9wMg0ARbw!yVFCD-B4VZOxDXTGgDtpB0mJbVoY9tHODeICxthAC33lXMq6LRVTGS-4V-Dj129_cA$
->>>   
->>>
->>> Thanks,
->>> Trevor
->>>
->>>
->>
->>
->>
-
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
+RGVjZW1iZXIgMSwgMjAyMiA1OjI5IFBNDQo+IFRvOiBKaWFKaWUgSG8gPGppYWppZS5ob0BzdGFy
+Zml2ZXRlY2guY29tPjsgSGVyYmVydCBYdQ0KPiA8aGVyYmVydEBnb25kb3IuYXBhbmEub3JnLmF1
+PjsgRGF2aWQgUyAuIE1pbGxlciA8ZGF2ZW1AZGF2ZW1sb2Z0Lm5ldD47DQo+IFJvYiBIZXJyaW5n
+IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yu
+a296bG93c2tpK2R0QGxpbmFyby5vcmc+DQo+IENjOiBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwu
+b3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtl
+cm5lbC5vcmc7IGxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU3ViamVjdDogUmU6
+IFtQQVRDSCAxLzZdIGNyeXB0bzogc3RhcmZpdmUgLSBBZGQgU3RhckZpdmUgY3J5cHRvIGVuZ2lu
+ZQ0KPiBzdXBwb3J0DQo+IA0KPiBPbiAwMS8xMi8yMDIyIDA3OjUyLCBKaWFKaWUgSG8gd3JvdGU6
+DQo+IA0KPiA+Pj4gKw0KPiA+Pj4gK3N0YXRpYyBpbmxpbmUgdTMyIHN0YXJmaXZlX3NlY19yZWFk
+KHN0cnVjdCBzdGFyZml2ZV9zZWNfZGV2ICpzZGV2LA0KPiA+Pj4gK3UzMiBvZmZzZXQpIHsNCj4g
+Pj4+ICsJcmV0dXJuIF9fcmF3X3JlYWRsKHNkZXYtPmlvX2Jhc2UgKyBvZmZzZXQpOw0KPiA+Pg0K
+PiA+PiBJIGRvbid0IHRoaW5rIHRoZXNlIHJlYWQvd3JpdGUgd3JhcHBlcnMgaGVscCBhbnlob3cu
+Li4NCj4gPj4NCj4gPg0KPiA+IFRoZXNlIHdyYXBwZXJzIGFyZSB1c2VkIGJ5IHRoZSBjcnlwdG8g
+cHJpbWl0aXZlcyBpbiB0aGlzIHBhdGNoIHNlcmllcy4NCj4gPiBJJ2xsIG1vdmUgdGhlc2UgdG8g
+c3Vic2VxdWVudCBwYXRjaGVzIHdoZW4gdGhleSBhcmUgZmlyc3QgdXNlZC4NCj4gPg0KPiA+IFRo
+YW5rIHlvdSBmb3Igc3BlbmRpbmcgdGltZSByZXZpZXdpbmcgYW5kIHByb3ZpZGluZyBoZWxwZnVs
+IGNvbW1lbnRzDQo+ID4gZm9yIHRoaXMgZHJpdmVyLg0KPiA+DQo+IA0KPiBKdXN0IGRyb3AgdGhl
+IHdyYXBwZXJzLiBJIHNhaWQgdGhleSBkbyBub3QgaGVscCBhbmQgeW91ciBhbnN3ZXIgImFyZSB1
+c2VkIg0KPiBkb2VzIG5vdCBleHBsYWluIGFueXRoaW5nLiBJZiB5b3UgaW5zaXN0IG9uIGtlZXBp
+bmcgdGhlbSwgcGxlYXNlIGV4cGxhaW4gd2hhdA0KPiBhcmUgdGhlIGJlbmVmaXRzIGV4Y2VwdCBt
+b3JlIGNvZGUgYW5kIG1vcmUgaW5kaXJlY3Rpb25zL2xheWVycyBtYWtpbmcgaXQNCj4gbW9yZSBk
+aWZmaWN1bHQgdG8gcmVhZD8NCj4gDQoNCkknbGwgZHJvcCB0aGVzZSBpbiB0aGUgbmV4dCB2ZXJz
+aW9uLg0KVGhhbmtzIGFnYWluIGZvciB0aGUgc3VnZ2VzdGlvbi4NCg0KUmVnYXJkcywNCkppYSBK
+aWUNCg==
