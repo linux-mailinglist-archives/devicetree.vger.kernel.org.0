@@ -2,119 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC22640CD6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 19:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F62640CDD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 19:13:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbiLBSJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 13:09:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38976 "EHLO
+        id S234042AbiLBSNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 13:13:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233888AbiLBSJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 13:09:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A03E61D1
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 10:09:45 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p1ATh-0004rb-T6; Fri, 02 Dec 2022 19:09:37 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p1ATc-001rI5-EU; Fri, 02 Dec 2022 19:09:33 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1p1ATc-0026R0-EL; Fri, 02 Dec 2022 19:09:32 +0100
-Date:   Fri, 2 Dec 2022 19:09:32 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, john@phrozen.org,
-        sean.wang@mediatek.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt7622: Add missing
- pwm-cells to pwm node
-Message-ID: <20221202180932.5k3vymrwds5ssivq@pengutronix.de>
-References: <20221128112028.58021-1-angelogioacchino.delregno@collabora.com>
- <20221128112028.58021-2-angelogioacchino.delregno@collabora.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dbscrtoucbjx3ah7"
-Content-Disposition: inline
-In-Reply-To: <20221128112028.58021-2-angelogioacchino.delregno@collabora.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S233905AbiLBSNm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 13:13:42 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EFA9E8035
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 10:13:41 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id b13-20020a17090a5a0d00b0021906102d05so5840373pjd.5
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 10:13:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=td4xci5diB4fq00DG+7VzeBznbBu3BTL2nUPPpTbtak=;
+        b=znwv0rWJ35Zi5rd78lBnOWAQjqe71CNHUDvpy9+X6MQkTVdLvFe1vt80DYaX0q60gZ
+         tLDjuYOEIZLjchfjdb/gv0Wi3N8fnWmHVp9Lu/u2jyc4xTeTD1ypkp2d+F0FlU4UltgZ
+         4HwpCwGKxIELgDtemo5W5GifjlJwAK5wTa3BrRJ2hWdU3YCtDB40axA52e9WNfZHio9T
+         ZIW5PXoL1Phr0KeqvXZBONGDEBAi6V2NhLi1JgwoLgWTfloruPYHNHqRGiLUmwVKDUIh
+         yxKQzKVD+5KY4WCL/LkdM8K3vPOvro2Edv/AZWQRzYMXsBj0lM4gr220L2f1mQ6cTps4
+         OXJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=td4xci5diB4fq00DG+7VzeBznbBu3BTL2nUPPpTbtak=;
+        b=h8CuA+/jNLD+6UHTyNx8Gckbh4D8s6IJEQBrfYap+QsdF8HF/TwDqtvHoiWIr+o2Ht
+         Fg4rc3H4EBhifYzDfrDa6aWEOe6NjqcImtfoALhYGUqMs8D4Kf8spCOUzty2+iGbu0lK
+         rVSmVSWd84K/YZ9UkQ8LbcvgcWfy2QcWj61N46wn0STh81O6GU1J545gfHvPObBnk3mU
+         +3ABQnjVSXHd6KB0tzR16lPpKQCYpAaR6SJMe2MAMsHhPeukpWf9JSDWgmE5XEjG90PZ
+         k4fBLYvQufmphgnLio6+nmIdzGqX6vITVHr4D8gA9cgpIHqqnbOLApWuR53shSYqLPYL
+         omeA==
+X-Gm-Message-State: ANoB5pnvJt17q165kce2rRnNRQhihpyEdkJP9u6BQhenkWaNFGxGYkFn
+        jLmJAWqHsHnVBmoMfot+UDfocw==
+X-Google-Smtp-Source: AA0mqf43J8lPrptpkCkbq/DYOD09yooJAY9HJ+V6haZEp7urNBCX5HoHqSVnhtgTwlX3obMkTG3ztQ==
+X-Received: by 2002:a17:902:e3ca:b0:189:a11e:9994 with SMTP id r10-20020a170902e3ca00b00189a11e9994mr17778649ple.54.1670004820918;
+        Fri, 02 Dec 2022 10:13:40 -0800 (PST)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id w80-20020a627b53000000b0056d73ef41fdsm5396669pfc.75.2022.12.02.10.13.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Dec 2022 10:13:40 -0800 (PST)
+Date:   Fri, 02 Dec 2022 10:13:40 -0800 (PST)
+X-Google-Original-Date: Fri, 02 Dec 2022 10:13:30 PST (-0800)
+Subject:     Re: [PATCH v2 8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
+In-Reply-To: <Y4o+5ayW0vHcmvo6@spud>
+CC:     hal.feng@starfivetech.com, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, ben.dooks@sifive.com, tglx@linutronix.de,
+        Marc Zyngier <maz@kernel.org>, sboyd@kernel.org,
+        mturquette@baylibre.com, p.zabel@pengutronix.de,
+        linus.walleij@linaro.org, emil.renner.berthing@canonical.com,
+        linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor@kernel.org>
+Message-ID: <mhng-2ff22bb7-a48a-4434-b498-1f928e75cd01@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 02 Dec 2022 10:07:33 PST (-0800), Conor Dooley wrote:
+> On Fri, Dec 02, 2022 at 10:00:35AM -0800, Palmer Dabbelt wrote:
+>> On Thu, 17 Nov 2022 17:17:14 PST (-0800), hal.feng@starfivetech.com wrote:
+>> > Add CONFIG_SERIAL_8250_DW=y, which is a necessary option for
+>> > StarFive JH7110 and JH7100 SoCs to boot with serial ports.
+>> > 
+>> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+>> > ---
+>> >  arch/riscv/configs/defconfig | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> > 
+>> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+>> > index 05fd5fcf24f9..a23d022974ad 100644
+>> > --- a/arch/riscv/configs/defconfig
+>> > +++ b/arch/riscv/configs/defconfig
+>> > @@ -122,6 +122,7 @@ CONFIG_MICROSEMI_PHY=y
+>> >  CONFIG_INPUT_MOUSEDEV=y
+>> >  CONFIG_SERIAL_8250=y
+>> >  CONFIG_SERIAL_8250_CONSOLE=y
+>> > +CONFIG_SERIAL_8250_DW=y
+>> >  CONFIG_SERIAL_OF_PLATFORM=y
+>> >  CONFIG_VIRTIO_CONSOLE=y
+>> >  CONFIG_HW_RANDOM=y
+>> 
+>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>
+> Hey Palmer, could you take this as v6.2 material instead of Acking it
+> please? It applies to the jh7100 stuff that's already in-tree.
 
---dbscrtoucbjx3ah7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 28, 2022 at 12:20:27PM +0100, AngeloGioacchino Del Regno wrote:
-> Specify #pwm-cells on pwm@11006000 to make it actually usable.
->=20
-> Fixes: ae457b7679c4 ("arm64: dts: mt7622: add SoC and peripheral related =
-device nodes")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt7622.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt7622.dtsi
-> index 146e18b5b1f4..f321c6d0fd7c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> @@ -435,6 +435,7 @@ uart3: serial@11005000 {
->  	pwm: pwm@11006000 {
->  		compatible =3D "mediatek,mt7622-pwm";
->  		reg =3D <0 0x11006000 0 0x1000>;
-> +		#pwm-cells =3D <2>;
-
-3 should be possible, too. The driver does only support one
-polarity, so it's not really needed, but would be nice for consistency?
-
-Thierry, what's your take here?
-
-Other than that: Who would pick this up, I assume it to go via an ARM
-tree together with the 2nd patch in this series?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---dbscrtoucbjx3ah7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmOKP1kACgkQwfwUeK3K
-7AkdtQf9F9zcjUhzj6zMAal2E7Hya0b+VW7ihKDYEKL2u3cIZb0g7U42fx2UlRf0
-wuHtFvUTIm1GOTBc/abeiuXLGzxXBm/J59aMlpaEIpJgbuvQTQ0yd9aGEP2EI116
-2Ed9QFpv0TNTdm1vhIdPC56P4ZSE3Z574Vv5diLTJVHMHc+Y0pjxU4XniOM9ToKy
-3P8UVB9OatIYfjN4PwYDMBDBojK680Y1X7OaWXCYRe0pBSL23UmQ5ZVXrcmRZiib
-6nDkZJiTZRIZxnYMp8dwBei1PWgWvMuAT4vBiKGCzTGXEeqT6btQ5QyXWjwDkZ5c
-KDN4UAdH/Q1+DOb+mzTaLGoigs/Mgw==
-=CI4Q
------END PGP SIGNATURE-----
-
---dbscrtoucbjx3ah7--
+Ya, no problem.  Just this patch, or the whole series?
