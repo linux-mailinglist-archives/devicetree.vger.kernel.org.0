@@ -2,134 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A700640B0C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:48:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6701640B1F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233375AbiLBQse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:48:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44216 "EHLO
+        id S234075AbiLBQuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:50:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233860AbiLBQsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:48:33 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E081D3E080
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:48:32 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id 124so5453035pfy.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:48:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VpCL2d3ounGZBt3k6mgRGj9QyacZoaCLu4k4bWG1Yac=;
-        b=uQvm2c1tO51a/rQoZNRtiADI9dHao31nXC9Zx0NiYXLga7u/NWO73HTQLXgtIho58D
-         lSAZRSMDXPuOw/nfovLgcuktW9WoDQ0gzcW6SOJj6coNTP26hTvrTRVPHfDC7HgksY5g
-         Sz4E4AWTi+U+gRYLDqA4ZuVWi9I+OQxdhWtcM8GQW8Sk1iihMP7VW6twhgLAq9RzKB/R
-         bihOTTnuLqENotY5mOUnhAaiv1hh0Go9leX8SCmTavqMcaMsTSH31fvXkbCOwP+xk05z
-         cveak6F7RDRdk/hRZxiqmcx74h9WGPd45Jw9wnVzLuJK4/oBRc2kxESoye0uWuQn1iuJ
-         3RYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VpCL2d3ounGZBt3k6mgRGj9QyacZoaCLu4k4bWG1Yac=;
-        b=B/zN1oAudz20pPW+F7STo/8gglI7X9Fk5Qhix9Y2hjD7Ebne8bxxhPI85uswSIVEkU
-         Y/k7vVFludMwOwcpnR0MF/7geTc1H6kvR7pnODMuHUv9n28TGy7f3+Fa+pUgFSRv8ah3
-         RJyGyfUMxAPVxhehHV2PY45v70ygGryVO5+O8AhA08kW8DMc1xlD32olDKHIwgK7OOMb
-         jyxpF6WWaSfaIEVYBILfCCI2we9t/MQ5qZ0dj5r1+YUZuh1FlNP3HVhJULbftRrS2l/f
-         3aLrsR/2iM7FQauIDrcWUawx68ZvKiAImCo5YNuoS4rzo/7Eh8hEsGpW/H4cyVbz0XZN
-         H8PA==
-X-Gm-Message-State: ANoB5plU/i83maDNUX5WnOzhm3NUAbuW6wxJAdel5+98onDSQvk3/1+D
-        MXiQ3xA2xpkEkOpyRHO8I61Hdf3ms0MkxLrRqyRP8A==
-X-Google-Smtp-Source: AA0mqf7bcoXCz2VyG+4c+4abOMfZTrobZGtLxUSOA42mZfx9Lcj5Dwi46rPi9w1XHDcNCsXU6W0HzUK3LDwBx4YwCOw=
-X-Received: by 2002:a62:b501:0:b0:563:771d:417f with SMTP id
- y1-20020a62b501000000b00563771d417fmr54371490pfe.45.1669999712341; Fri, 02
- Dec 2022 08:48:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20221201003109.448693-1-tharvey@gateworks.com>
- <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com> <Y4n41iL6cG9FsndI@lunn.ch>
-In-Reply-To: <Y4n41iL6cG9FsndI@lunn.ch>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 2 Dec 2022 08:48:21 -0800
-Message-ID: <CAJ+vNU0kAoVFFmoFfiOhtErxqAkB3MmP3Q2dNCZP4xm_AaWhcA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        with ESMTP id S234078AbiLBQuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:50:05 -0500
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001E1CF7B5
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:50:01 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2d07:19c5:4d8b:89d9])
+        by albert.telenet-ops.be with bizsmtp
+        id rUpV2800J0ys3B706UpVBw; Fri, 02 Dec 2022 17:49:59 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p19E8-002K5t-LE; Fri, 02 Dec 2022 17:49:28 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p19E8-006WZw-7R; Fri, 02 Dec 2022 17:49:28 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/11] Fix pca954x i2c-mux node names
+Date:   Fri,  2 Dec 2022 17:49:15 +0100
+Message-Id: <cover.1669999298.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 2, 2022 at 5:08 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Thu, Dec 01, 2022 at 10:02:08PM -0300, Fabio Estevam wrote:
-> > Hi Tim,
-> >
-> > [Adding Andrew]
->
-> It is not wrong, but it should also mostly not be needed. The switch
-> driver can link internal PHYs to ports.
+	Hi all,
 
-Andrew,
+According to the I2C bus multiplexer/switch DT bindings, i2c-mux nodes
+should be named "i2c-mux" (or something similar).
+This patch series renames nodes for pca954x i2c-muxes that are flagged
+by
 
-I should have mentioned in the commit log that this does not change
-behavior on Linux but is required for boot firmware. Specifically
-U-Boot requires the internal PHY ports to be defined for its DSA
-architecture and they share dt's as much as possible.
+    make dtbs_checK DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
 
->
-> > >                                 port@5 {
-> > >                                         reg = <5>;
-> > >                                         label = "cpu";
-> > >                                         ethernet = <&fec>;
-> > > +                                       phy-mode = "rgmii-id";
-> > > +
-> > > +                                       fixed-link {
-> > > +                                               speed = <1000>;
-> > > +                                               full-duplex;
-> > > +                                       };
-> > >                                 };
->
-> This part is needed to make a warning go away. Does the SoC network interface
-> have phy-mode = "rgmii"; ?
+Please apply where appropriate.
+Thanks!
 
-No, it looks like this:
+Geert Uytterhoeven (11):
+  ARM: dts: ti: Fix pca954x i2c-mux node names
+  ARM: dts: aspeed: Fix pca954x i2c-mux node names
+  ARM: dts: imx: Fix pca9547 i2c-mux node name
+  ARM: dts: nuvoton: Fix pca954x i2c-mux node names
+  ARM: dts: socfpga: Fix pca9548 i2c-mux node name
+  ARM: dts: vf610: Fix pca9548 i2c-mux node names
+  arm64: dts: freescale: Fix pca954x i2c-mux node names
+  arm64: dts: marvell: Fix pca954x i2c-mux node names
+  arm64: dts: renesas: ulcb-kf: Fix pca9548 i2c-mux node names
+  MIPS: mscc: jaguar2: Fix pca9545 i2c-mux node names
+  powerpc: dts: fsl: Fix pca954x i2c-mux node names
 
-&fec {
-        pinctrl-names = "default";
-        pinctrl-0 = <&pinctrl_enet>;
-        phy-mode = "rgmii-id";
-        status = "okay";
+ arch/arm/boot/dts/am3874-iceboard.dts         |  4 +-
+ .../boot/dts/aspeed-bmc-bytedance-g220a.dts   | 18 ++++----
+ .../dts/aspeed-bmc-facebook-cloudripper.dts   | 10 ++--
+ arch/arm/boot/dts/aspeed-bmc-facebook-cmm.dts | 46 +++++++++----------
+ .../boot/dts/aspeed-bmc-facebook-elbert.dts   |  4 +-
+ .../arm/boot/dts/aspeed-bmc-facebook-fuji.dts | 30 ++++++------
+ .../boot/dts/aspeed-bmc-facebook-minipack.dts | 32 ++++++-------
+ .../dts/aspeed-bmc-facebook-tiogapass.dts     |  8 ++--
+ .../boot/dts/aspeed-bmc-facebook-wedge100.dts |  2 +-
+ .../boot/dts/aspeed-bmc-facebook-wedge400.dts |  6 +--
+ .../arm/boot/dts/aspeed-bmc-facebook-yamp.dts |  2 +-
+ arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts  | 18 ++++----
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts  |  8 ++--
+ .../boot/dts/aspeed-bmc-inspur-fp5280g2.dts   |  4 +-
+ .../boot/dts/aspeed-bmc-inspur-nf5280m6.dts   | 12 ++---
+ .../dts/aspeed-bmc-inventec-transformers.dts  |  6 +--
+ arch/arm/boot/dts/aspeed-bmc-lenovo-hr630.dts |  4 +-
+ .../boot/dts/aspeed-bmc-lenovo-hr855xg2.dts   |  4 +-
+ arch/arm/boot/dts/aspeed-bmc-opp-zaius.dts    |  4 +-
+ arch/arm/boot/dts/aspeed-bmc-quanta-q71l.dts  |  6 +--
+ arch/arm/boot/dts/aspeed-bmc-quanta-s6q.dts   | 10 ++--
+ arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts  | 14 +++---
+ arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts  | 10 ++--
+ arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts  | 14 +++---
+ arch/arm/boot/dts/imx53-ppd.dts               |  2 +-
+ arch/arm/boot/dts/nuvoton-npcm730-gbs.dts     | 16 +++----
+ arch/arm/boot/dts/nuvoton-npcm730-gsj.dts     |  2 +-
+ arch/arm/boot/dts/nuvoton-npcm730-kudo.dts    |  8 ++--
+ .../dts/nuvoton-npcm750-runbmc-olympus.dts    |  4 +-
+ .../boot/dts/socfpga_cyclone5_vining_fpga.dts |  2 +-
+ arch/arm/boot/dts/vf610-zii-dev-rev-b.dts     |  2 +-
+ arch/arm/boot/dts/vf610-zii-dev-rev-c.dts     |  2 +-
+ .../boot/dts/freescale/fsl-ls1012a-qds.dts    |  2 +-
+ .../boot/dts/freescale/fsl-ls1043a-qds.dts    |  2 +-
+ .../boot/dts/freescale/fsl-ls1046a-qds.dts    |  2 +-
+ .../boot/dts/freescale/fsl-ls1088a-qds.dts    |  2 +-
+ .../boot/dts/freescale/fsl-ls1088a-rdb.dts    |  2 +-
+ .../boot/dts/freescale/fsl-ls1088a-ten64.dts  |  2 +-
+ .../boot/dts/freescale/fsl-ls208xa-qds.dtsi   |  2 +-
+ .../boot/dts/freescale/fsl-ls208xa-rdb.dtsi   |  2 +-
+ .../boot/dts/freescale/fsl-lx2160a-cex7.dtsi  |  2 +-
+ .../boot/dts/freescale/imx8mm-nitrogen-r2.dts |  2 +-
+ .../boot/dts/freescale/imx8mq-nitrogen.dts    |  4 +-
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  2 +-
+ .../boot/dts/marvell/armada-8040-mcbin.dtsi   |  2 +-
+ .../dts/marvell/armada-8040-puzzle-m801.dts   |  2 +-
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      |  4 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    |  4 +-
+ arch/powerpc/boot/dts/fsl/t1024qds.dts        |  2 +-
+ arch/powerpc/boot/dts/fsl/t1024rdb.dts        |  2 +-
+ arch/powerpc/boot/dts/fsl/t104xqds.dtsi       |  2 +-
+ arch/powerpc/boot/dts/fsl/t104xrdb.dtsi       |  2 +-
+ arch/powerpc/boot/dts/fsl/t208xqds.dtsi       |  2 +-
+ arch/powerpc/boot/dts/fsl/t208xrdb.dtsi       |  2 +-
+ 54 files changed, 182 insertions(+), 182 deletions(-)
 
-        fixed-link {
-                speed = <1000>;
-                full-duplex;
-        };
+-- 
+2.25.1
 
-        mdio {
-                #address-cells = <1>;
-                #size-cells = <0>;
+Gr{oetje,eeting}s,
 
-                switch@0 {
-                        compatible = "marvell,mv88e6085";
-                        reg = <0>;
-...
+						Geert
 
-Is something here wrong?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Best Regards,
-
-Tim
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
