@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B3B640A3B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E2A640A3E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233690AbiLBQH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:07:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
+        id S233412AbiLBQIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:08:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233635AbiLBQH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:56 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBB32127C
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:54 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id o13so12631609ejm.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:54 -0800 (PST)
+        with ESMTP id S233676AbiLBQH7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:59 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7201C28E0F
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:58 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id n21so12585402ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=melexis.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CvsEer0eAhZpCimLetQdww1a1gupEhutnU7stA4HzFo=;
-        b=OKtWTp8C6nIg3GXI5R5gq+ANBZtmdXWni8JRe/qfw779uWYJ3q0g91ahXTyrG2f8bL
-         iTMyrbV151bvklYGHuTkgb+h8wm8HPcqQBruQgofe0luex/0bl1l88MYBXVOWpnm0xis
-         sWeiOB/kgclgFYLS1B7H97cnK64MzTEFvWMMl10NQOrmEcJvn9ffZZ9W9ytY89Gq4jKX
-         AwJ7jKDNUdnrYYDRoPonKNlmgLqNn1ImQ+qDnBqKmIut8q08tIZMS1wRf8JFYL2wX5E7
-         ycRpna0SCgX+v//TtXiXeGZIl0N9aLoMa0s0cVtgh8A5Gxn1cu44dtMPHpUwtzTBrMQm
-         5zUA==
+        bh=4MIUkKA2KYBfUGIn+7D33Xcyk/nc4bcCxskkGZCe1Ew=;
+        b=mW6ereONlW40+RE74hjWo72srMOd1GojolYmJDXHyrJB2D19pSedyRVMs5D2knk/+o
+         J7n02CPrC8TV8crQi+ZsuYvosUb95fOuDtbN+xZqSbnN5qV5JZCCGmxbgyGuesbbhfRF
+         6o3g7o2mZbyC05+LHlp+4K6aYg3U9cB8dIFS0ikt/SdobdPHyjI/bBNsZlbcthn+MYRZ
+         3EWdJUts7whd/UG1qzZTZsSch4s080pbfJO8kj1iMoEvMm0bn3Q1PvezGvgdJ6Va0uJy
+         VGKjv9dQS06Ta6QMasi5FVxqQpAG17lhuIfHTaxDaNMy9oH6DdWJ7SnOM72jn+kSiNSp
+         4vCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CvsEer0eAhZpCimLetQdww1a1gupEhutnU7stA4HzFo=;
-        b=gmk93bmlDs7pSxvFYDZ1TfBf9XD+ur7sARey7pHgZ/ODQ6vwqiE6nniqrFfwMH7bR9
-         CnzkYpIGVZE1UIlG7lrAu5klUfQiKXxxOdLcbHUgFCCA7Uu04iDt0RRa7GHx/jWPJLjb
-         cVI9jWF6kbgbE+3QbOrcsqUcBd2q8s+3axLOsDfGH2mPFOnmN+ofDbKcQiErI7DCE6ry
-         GproyfudJWP9J8CZ1q3erJZFwVdnIrvPv6p9bPJiNlYyo0dTvUDhaqKHDp3uLeSC606R
-         cldopnaskNo3cvRmHU1GK6mwehIoDlOYu4tZcwGCq7z+08nn+QuLUvUNXCXNNxoPJgYK
-         swkA==
-X-Gm-Message-State: ANoB5pnzH5GtLwMYkSxoTr+uNDWXMZZYOr+HENpx5fWKlcS8SCGdRuzU
-        TO+pXEgPx+P790tRxtFzUWNqPw==
-X-Google-Smtp-Source: AA0mqf4f7s7pwnjqaWkhQH/om/gsMHv3xW3C8DPWsxd1MIzQ838A1+QffNpSSaRz0jMYUpkeH0ZHQw==
-X-Received: by 2002:a17:906:3505:b0:7c0:390:d35b with SMTP id r5-20020a170906350500b007c00390d35bmr20330512eja.570.1669997274417;
-        Fri, 02 Dec 2022 08:07:54 -0800 (PST)
+        bh=4MIUkKA2KYBfUGIn+7D33Xcyk/nc4bcCxskkGZCe1Ew=;
+        b=i2lT3LgID7yEmftKfynmILm7POy7g6YZkMumDGH31GPgQwEQeIefTGaa3x2lEvE13i
+         zizh4Gygo5VZV2iKIsPZl/tEedVFjdI5MwMQddMuX85W0/lyB/zfn0rMceeHtvwH1tEo
+         z9VTx2/79YvA+RG+dYUEs/UFzlkj4oD/0Efn0rK8cM5+hgOZAru+C3GRLywzGSEEMMTU
+         S2GS7XEU9h/TSXWZm5C5vbdGGuOTL647egKIBAhDuJ4Gd0B4iXgbUa6uxx+zqc91fjkI
+         GGzZMNI3pmHKPotb2ZFnz6+7HkXo6wALeW00G1oOg4APHbtKFfEpGiPHXG4HHLb4xjw7
+         HnRQ==
+X-Gm-Message-State: ANoB5pnfwgvyTTUUDQnhmKK3zh7d9YNe+CoDVLWimjPpSQFNy2xdrW8C
+        +wI4NutwQsgW4iT0uJOIXF156Q==
+X-Google-Smtp-Source: AA0mqf6ZMRAO70UbtwrdqCFtlqy6KFee3MDEFDlIg+gB3iwV1z+KbyyNzC3DaS39w8Y/+Z/++/TUhg==
+X-Received: by 2002:a17:907:8b9b:b0:7b7:90c1:8263 with SMTP id tb27-20020a1709078b9b00b007b790c18263mr10353736ejc.604.1669997276996;
+        Fri, 02 Dec 2022 08:07:56 -0800 (PST)
 Received: from melexis ([91.192.183.26])
-        by smtp.gmail.com with ESMTPSA id j9-20020a17090623e900b007bc30c06aa1sm3125006ejg.186.2022.12.02.08.07.53
+        by smtp.gmail.com with ESMTPSA id s26-20020a170906285a00b007af0f0d2249sm3176698ejc.52.2022.12.02.08.07.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 08:07:53 -0800 (PST)
+        Fri, 02 Dec 2022 08:07:56 -0800 (PST)
 From:   Volodymyr Kharuk <vkh@melexis.com>
 To:     <linux-media@vger.kernel.org>
 Cc:     Andrii Kyselov <ays@melexis.com>,
@@ -61,9 +61,9 @@ Cc:     Andrii Kyselov <ays@melexis.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
         Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
         Volodymyr Kharuk <vkh@melexis.com>
-Subject: [PATCH v4 5/8] media: v4l: ctrls: Add user control base for mlx7502x
-Date:   Fri,  2 Dec 2022 18:07:35 +0200
-Message-Id: <c3e548ec7b64e79634195ed7b5ee5592682d471f.1669978791.git.vkh@melexis.com>
+Subject: [PATCH v4 6/8] media: uapi: Add mlx7502x header file
+Date:   Fri,  2 Dec 2022 18:07:36 +0200
+Message-Id: <50d0e30ae32162d56f0a93ab52e7f9338de497cb.1669978791.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <cover.1669978791.git.vkh@melexis.com>
 References: <cover.1669978791.git.vkh@melexis.com>
@@ -71,37 +71,120 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a control base for mlx7502x and reserve 16 controls.
+Define user controls for mlx7502x driver, add its documentation and
+update MAINTAINERS
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- include/uapi/linux/v4l2-controls.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../userspace-api/media/drivers/index.rst     |  1 +
+ .../userspace-api/media/drivers/mlx7502x.rst  | 28 +++++++++++++++++++
+ MAINTAINERS                                   |  2 ++
+ include/uapi/linux/mlx7502x.h                 | 28 +++++++++++++++++++
+ 4 files changed, 59 insertions(+)
+ create mode 100644 Documentation/userspace-api/media/drivers/mlx7502x.rst
+ create mode 100644 include/uapi/linux/mlx7502x.h
 
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index 3a6b6231b6f7..02bb1dcf02f5 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -238,6 +238,12 @@ enum v4l2_colorfx {
-  */
- #define V4L2_CID_USER_ASPEED_BASE		(V4L2_CID_USER_BASE + 0x11a0)
- 
-+/*
-+ * The base for Melexis ToF 7502x driver controls.
-+ * We reserve 16 controls for this driver.
-+ */
-+#define V4L2_CID_USER_MLX7502X_BASE		(V4L2_CID_USER_BASE + 0x11b0)
+diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
+index 46a494e00b72..0eb707516b23 100644
+--- a/Documentation/userspace-api/media/drivers/index.rst
++++ b/Documentation/userspace-api/media/drivers/index.rst
+@@ -38,5 +38,6 @@ For more details see the file COPYING in the source distribution of Linux.
+ 	imx-uapi
+ 	max2175
+ 	meye-uapi
++	mlx7502x
+ 	omap3isp-uapi
+ 	uvcvideo
+diff --git a/Documentation/userspace-api/media/drivers/mlx7502x.rst b/Documentation/userspace-api/media/drivers/mlx7502x.rst
+new file mode 100644
+index 000000000000..d68506c09f84
+--- /dev/null
++++ b/Documentation/userspace-api/media/drivers/mlx7502x.rst
+@@ -0,0 +1,28 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
- /* MPEG-class control IDs */
- /* The MPEG controls are applicable to all codec controls
-  * and the 'MPEG' part of the define is historical */
++Melexis mlx7502x ToF camera sensor driver
++=========================================
++
++The mlx7502x driver implements the following driver-specific controls:
++
++``V4L2_CID_MLX7502X_OUTPUT_MODE (menu)``
++----------------------------------------
++	The sensor has two taps, which gather reflected light: A and B.
++	The control sets the way data should be put in a buffer. The most
++	common output mode is A-B which provides the best sunlight robustness.
++
++.. flat-table::
++	:header-rows:  0
++	:stub-columns: 0
++	:widths:       1 4
++
++	* - ``V4L2_MLX7502X_OUTPUT_MODE_A_MINUS_B``
++	  - tap A minus tap B
++	* - ``V4L2_MLX7502X_OUTPUT_MODE_A_PLUS_B``
++	  - tap A plus tap B
++	* - ``V4L2_MLX7502X_OUTPUT_MODE_A``
++	  - only tap A
++	* - ``V4L2_MLX7502X_OUTPUT_MODE_B``
++	  - only tap B
++	* - ``V4L2_MLX7502X_OUTPUT_MODE_A_AND_B``
++	  - tap A and tap B (this config will change PAD format)
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6f9072f3b1da..32e49523e9c0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13116,7 +13116,9 @@ M:	Volodymyr Kharuk <vkh@melexis.com>
+ L:	linux-media@vger.kernel.org
+ S:	Supported
+ W:	http://www.melexis.com
++F:	Documentation/userspace-api/media/drivers/mlx7502x.rst
+ F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
++F:	include/uapi/linux/mlx7502x.h
+ 
+ MELFAS MIP4 TOUCHSCREEN DRIVER
+ M:	Sangwon Jee <jeesw@melfas.com>
+diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
+new file mode 100644
+index 000000000000..80e9317ff0fc
+--- /dev/null
++++ b/include/uapi/linux/mlx7502x.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
++/*
++ * Melexis 7502x ToF cameras driver.
++ *
++ * Copyright (C) 2021 Melexis N.V.
++ *
++ */
++
++#ifndef __UAPI_MLX7502X_H_
++#define __UAPI_MLX7502X_H_
++
++#include <linux/v4l2-controls.h>
++
++/*
++ * this is related to the taps in ToF cameras,
++ * usually A minus B is the best option
++ */
++enum v4l2_mlx7502x_output_mode {
++	V4L2_MLX7502X_OUTPUT_MODE_A_MINUS_B = 0,
++	V4L2_MLX7502X_OUTPUT_MODE_A_PLUS_B,
++	V4L2_MLX7502X_OUTPUT_MODE_A,
++	V4L2_MLX7502X_OUTPUT_MODE_B,
++	V4L2_MLX7502X_OUTPUT_MODE_A_AND_B, /* output frame size doubles */
++};
++
++#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 0)
++
++#endif /* __UAPI_MLX7502X_H_ */
 -- 
 BR,
 Volodymyr Kharuk
