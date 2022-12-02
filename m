@@ -2,197 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF37B640E4F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:19:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D407640E59
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234369AbiLBTTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 14:19:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44302 "EHLO
+        id S234732AbiLBTVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 14:21:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234415AbiLBTTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:19:11 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A704387C
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 11:19:08 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id n21so13699786ejb.9
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 11:19:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J943yYpuo0jFR9PCG/F9JS9VvWtOyHZ6S8cQEy5PX9s=;
-        b=zIMn7QfCJdbk4wTH0N8lemUAvDDcSZo/Z+gBiKFz8ilbUjpEIe4S3P4uvqDDd+H+AM
-         5gg1OTe8VLzeMxXf7HC69s4F9H4ZSyW3R7jEzr7aF4yQKHXHdU/lehSD3gNzfp8rU39A
-         Vqlg2vFP9WXVXctmx3ERTPpjFSf6OMwn9RV+Byk6C16lfFBg4FaDKOD2udXMBBbmBXJI
-         arkM87qCeV3zTeBHIWUXH3wxhO/NL6FUao54jNTnlB1v7krtXvEviNPYKYZsHJCMN2Vg
-         Nbbz0g91IPi1Nm65INfGgyfvaED0KbuKOFkLLGhK7D6/JP/XyNkf4FJH/R/pV+p/7vGx
-         1Nxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J943yYpuo0jFR9PCG/F9JS9VvWtOyHZ6S8cQEy5PX9s=;
-        b=EjliwoRXcSl18fvMPxhxPwwLGiIAQe0dDtaKbm8cZzqLUBXMdTK4JdljpShFhwBTxv
-         F3li0QoC0mGuae/yxQsFc8MKnjQN6XWJBFOAmZXG+UlWA+piZzpOZ/Dh1O67RdcBzXCv
-         kE7nXUC1pAhl0UK1dU6qv+T9bpHe5GEz8g3wyw2BFYqTRYFbLp1LXsxC+Cp7hvP4fXPP
-         qeZnr73Ssxm8jc1/Hhjv1xnoRFXyYSdIy6+MqrwPlaUvQ+IQhueVJUq8dPyNKn3FFqII
-         ngHu6y69sBbCN1GI36ouhZxx9ssfnzyqyPXT6uLNFzgXqOTnIqpWASZsY0kuOk41L3Iy
-         DZXg==
-X-Gm-Message-State: ANoB5pnrU/NPLHxT1P5nEfC6zlbiIOqGJSrnY61as18xsXk+Ar61i5Ka
-        0h6+Cbit6E8XSrXGX1FWxCr6rA==
-X-Google-Smtp-Source: AA0mqf7ogr9/tON+JEkHrEd1+Lltn3rha/i65c/OtJZfitNnrjQd44HPiL5kZj9Rj48yTucY21oj+w==
-X-Received: by 2002:a17:906:94c8:b0:7c0:a321:8df2 with SMTP id d8-20020a17090694c800b007c0a3218df2mr10838829ejy.308.1670008746540;
-        Fri, 02 Dec 2022 11:19:06 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id d13-20020a17090694cd00b007c0b28b85c5sm2145585ejy.138.2022.12.02.11.19.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 11:19:05 -0800 (PST)
-Date:   Fri, 2 Dec 2022 21:19:04 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S234378AbiLBTVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:21:24 -0500
+Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADF6EF8B3;
+        Fri,  2 Dec 2022 11:21:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+        bh=0NUu4ctHIlOxLau4TIcj+Sj7pIi/v+JOenF17DqHjZQ=; b=iSRBv/TWo0zdYt2Uko8NDseLAg
+        jPbzfbBU9FPjf4MmG+1kiEz4Eu4gFoxlMNgt6e80tdC0woxsEJLWb72ZLr0Iicss49YjgqrvGzt65
+        6GbXFVfCQQOPeZSRJT1bI7AENvEJbka+icCHmED7OvyAYBOOHCHbRo70f11BbRNBd7kVf/bw6rIGc
+        sX0Xdb3M6T2Cnw3nEvdVs0kU89A2D43/LTj81k4zrxr8Enn1PgETTx4O+fS91odU1aN3V7cWEBtb5
+        jvq9gNbHS+FWD1VG+mgWQ6AJfq3brAO6oBhmvjEiLoIwsOOgTiC2wqmx/BzRv+dQSEbghWKZ+Tx6P
+        gLedwFjg==;
+Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
+        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1p1Bak-0098Qj-Hm; Fri, 02 Dec 2022 20:20:58 +0100
+Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
+        (envelope-from <aurelien@aurel32.net>)
+        id 1p1Baj-00Ex9e-3A;
+        Fri, 02 Dec 2022 20:20:57 +0100
+Date:   Fri, 2 Dec 2022 20:20:57 +0100
+From:   Aurelien Jarno <aurelien@aurel32.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 2/9] dt-bindings: clock: Add SM8550 TCSR CC clocks
-Message-ID: <Y4pPqAbKLI5L/u0G@linaro.org>
-References: <20221130112852.2977816-1-abel.vesa@linaro.org>
- <20221130112852.2977816-3-abel.vesa@linaro.org>
- <20221201221220.7kdbndug3m3om62p@builder.lan>
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lin Jinhan <troy.lin@rock-chips.com>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
+Message-ID: <Y4pQGRMzILrkRP/2@aurel32.net>
+Mail-Followup-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lin Jinhan <troy.lin@rock-chips.com>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221128184718.1963353-1-aurelien@aurel32.net>
+ <20221128184718.1963353-2-aurelien@aurel32.net>
+ <89b16ec5-f9a5-f836-f51a-8325448e4775@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221201221220.7kdbndug3m3om62p@builder.lan>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <89b16ec5-f9a5-f836-f51a-8325448e4775@linaro.org>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-12-01 16:12:20, Bjorn Andersson wrote:
-> On Wed, Nov 30, 2022 at 01:28:45PM +0200, Abel Vesa wrote:
-> > Add bindings documentation for clock TCSR driver on SM8550.
+Hi,
+
+Thanks for your feedback.
+
+On 2022-11-29 10:24, Krzysztof Kozlowski wrote:
+> On 28/11/2022 19:47, Aurelien Jarno wrote:
+> > Add the RNG bindings for the RK3568 SoC from Rockchip
+> 
+> Use subject prefixes matching the subsystem (git log --oneline -- ...),
+> so it is rng, not RNG. Also, you are not adding all-Rockhip RNG but a
+> specific device.
+> 
+> Subject: drop second, redundant "bindings".
+> 
 > > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
 > > ---
-> >  .../bindings/clock/qcom,sm8550-tcsrcc.yaml    | 45 +++++++++++++++++++
-> >  .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    | 18 ++++++++
-> >  2 files changed, 63 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
-> >  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> >  .../bindings/rng/rockchip,rk3568-rng.yaml     | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
 > > 
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+> > diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
 > > new file mode 100644
-> > index 000000000000..b2de251328e4
+> > index 000000000000..c2f5ef69cf07
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
-> > @@ -0,0 +1,45 @@
+> > +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+> > @@ -0,0 +1,60 @@
 > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > > +%YAML 1.2
 > > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsrcc.yaml#
+> > +$id: http://devicetree.org/schemas/rng/rockchip,rk3568-rng.yaml#
 > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +title: Qualcomm TCSR Clock Controller on SM8550
+> > +title: Rockchip TRNG
+> > +
+> > +description: True Random Number Generator for some Rockchip SoCs
+> 
+> s/for some Rockchip SoCs/on Rokchip RK3568 SoC/
+
+My point there is that this driver should also work for other Rockchip
+SoCs like the RK3588, but 1) it support for this SoC is being added and
+not yet available in the Linux kernel 2) it hasn't been tested.
+
+Should we mark it as RK3568 specific (or rather RK356x) and change that
+once a compatible entry is added for the RK3588?
+
 > > +
 > > +maintainers:
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +
-> > +description: |
-> > +  Qualcomm TCSR clock control module provides the clocks, resets and
-> > +  power domains on SM8550
-> > +
-> > +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> > +  - Aurelien Jarno <aurelien@aurel32.net>
 > > +
 > > +properties:
 > > +  compatible:
-> > +    const: qcom,sm8550-tcsrcc
-> 
-> The block described is the TCSR block, the clock controller represents
-> one of the functions provided. I think it would be more appropriate if
-> the compatible represented the generic nature of the block, even though
-> you currently only care about exposing these clocks.
-
-I think there is a rule that says the compatible string to be the same as
-the schema filename.
-
-Should I then also rename the schema file and also the binding IDs header?
-Like qcom,sm8550-tcsr.yaml and qcom,sm8550-tcsr.h ?
-
-> 
+> > +    enum:
+> > +      - rockchip,rk3568-rng
 > > +
 > > +  reg:
 > > +    maxItems: 1
 > > +
-> > +  '#clock-cells':
-> > +    const: 1
+> > +  clocks:
+> > +    items:
+> > +      - description: TRNG clock
+> > +      - description: TRNG AHB clock
 > > +
-> > +  '#reset-cells':
-> > +    const: 1
-> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: trng_clk
+> > +      - const: trng_hclk
 > 
-> Your clocks are fed by cxo. While there might be reasons for not wire
-> the parent up in the clocks, I think you should represent it in the
-> binding.
+> These are too vague names. Everything is a clk in clock-names, so no
+> need usually to add it as name suffix. Give them some descriptive names,
+> e.g. core and ahb.
 
-Right, will document the clocks property as well and describe the clock
-as xo-board.
+Those names are based on <include/dt-bindings/clock/rk3568-cru.h> and
+other drivers seems to have used those for the names. But I understand
+that broken things could have been merged, so I am fine changing that to
+core and ahb.
 
-> 
-> Regards,
-> Bjorn
-> 
-> > +required:
-> > +  - compatible
 > > +
-> > +additionalProperties: false
+> > +  resets:
+> > +    maxItems: 1
 > > +
-> > +examples:
-> > +  - |
-> > +    clock-controller@1fc0000 {
-> > +      compatible = "qcom,sm8550-tcsrcc";
-> > +      reg = <0x1fc0000 0x30000>;
-> > +      #clock-cells = <1>;
-> > +      #reset-cells = <1>;
-> > +    };
-> > +
-> > +...
-> > diff --git a/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> > new file mode 100644
-> > index 000000000000..091cb76f953a
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
-> > @@ -0,0 +1,18 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2022, Linaro Limited
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> > +#define _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> > +
-> > +/* TCSR CC clocks */
-> > +#define TCSR_PCIE_0_CLKREF_EN					0
-> > +#define TCSR_PCIE_1_CLKREF_EN					1
-> > +#define TCSR_UFS_CLKREF_EN					2
-> > +#define TCSR_UFS_PAD_CLKREF_EN					3
-> > +#define TCSR_USB2_CLKREF_EN					4
-> > +#define TCSR_USB3_CLKREF_EN					5
-> > +
-> > +#endif
-> > -- 
-> > 2.34.1
-> > 
+
+Regards
+Aurelien
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                 http://www.aurel32.net
