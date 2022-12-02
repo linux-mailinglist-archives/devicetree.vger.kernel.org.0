@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B354640026
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 07:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DCEE640092
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 07:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231493AbiLBGNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 01:13:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35970 "EHLO
+        id S232375AbiLBGdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 01:33:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231449AbiLBGNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 01:13:16 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9ADFA6CD7;
-        Thu,  1 Dec 2022 22:13:14 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669961582; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=njvltCNXE9INRA89a/A8l9GSmbg7W3g4FmXRdRNuO6xdy4g0oujIcGE5Gu4+tKwiFtaJlFEEgt5kTraGV3RVz2FWZ9dAjc8ibSG4Y8Vs7EHPAvU9GQUld2EKFI4/vfY1cOzTM3z0KdoFYOiWnweKh3zrh18nCrbNUROc0NmKst8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669961582; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=LbijN6aeKiT2uH/R45xRpGeOX2EWdCb/9cdCuJ6Cl7A=; 
-        b=IYxavsz+nDjTwFh2K1reKptJC/obpCniagPMTSMXDYsiGpn0GdXbR9hOYEnShHbS93yhlMLiSz+ml4jfOX1YGwExmpdv15Q3of8S0R6YYYmJN5p9Qhqk1cdPsap0WqeRIY/msNsF8+/1ZY2lWobaJQtqaEG3tt7/Nga26itY764=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669961582;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=LbijN6aeKiT2uH/R45xRpGeOX2EWdCb/9cdCuJ6Cl7A=;
-        b=iGu6Yzy2Pe5JHoPFFZBwlu8t1jOTksdOAjcSNJgzdU0IhBZg38k0FR7uaJfibg8D
-        PCHgSeY7O7OJrVJGfpvjpgV9iosHNVNlftO+eb9JLWHb6n5rcu9ANPyxDIEMnPcgDEk
-        WU7sPRNhg9sNk1ASyVsweBSKE4hmDVaIniji3aCw=
-Received: from edelgard.fodlan.icenowy.me (120.85.99.229 [120.85.99.229]) by mx.zohomail.com
-        with SMTPS id 1669961580397796.7845658650348; Thu, 1 Dec 2022 22:13:00 -0800 (PST)
-Message-ID: <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
-Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible
- for OpenC906
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232339AbiLBGdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 01:33:19 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C2798959
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 22:33:18 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id x13-20020a17090a46cd00b00218f611b6e9so4296232pjg.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 22:33:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2e1OCsgpQNrHz221Q80v+bgx3Vtueie52dKFWOYQJSQ=;
+        b=cLwhrx2YMiyfexSmRCG6SM82EW5jtTgg3wsriLEp/9LKaJKD23d2JHKrIT3Y+LSUYR
+         zXzzs15WgIGKR62/1sIg0wxQxnM2fFpVPz38dIzaCTUS0Lp1MzHlpGSApedTw8igk1M9
+         Z5J3ZEduWncWqp06Qhsfwq7DrlSqRXZ567dy1gbr7PCk0io3XxDIRmXljq4y6hejN3eo
+         3hW2b2df4W092RtPIfjev+F9cbGR+p1MFXKoZPFUKk/9JgY2Z2M8XJWLsdhkCz8olKRb
+         e8S23JmkDYohlg63hMhm6MAk7SMlLtQpsprUGmOhknKg3tt5SLTruS8dD4/wsl0owD+X
+         mrzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2e1OCsgpQNrHz221Q80v+bgx3Vtueie52dKFWOYQJSQ=;
+        b=NlSt3dgktX3mOtZlke070uiFksLcI1Y1pNnkODKu8yfA6cmcSPwUel7rWvs1zpC/2m
+         UwLxbJ+sKzMLIpYajCSF3YVwDTF4XakieQMI7W3MFjqRHUd47eErr7D6GyndURyXb3D3
+         wFSZnPUw3JYCBm84kPf46xbsF5t9kU1v2TFBaom88pxDUSuSkkB7c2XA58r0UNULyhNC
+         ZTZJwj4V7YugrqJXoW0EWcwad0DswpcL8Yht7mQAXEvRxl/8jGEh77xQKsk5RT4Vt8x8
+         M/SMfB5B5jUFJchki91nbRQJafPm879aXzQX6swx4itYjnRAqALmUPgYoWHAtriNYy6O
+         XfQg==
+X-Gm-Message-State: ANoB5pm0yUFyZNlhM0ISiYSX2qI4UGWXxX1YG/HhzkXc10BdDpb3a6x+
+        Q8+2kTw5R1qMkvGjX36UzSQu2zeDQQCphBjOcwkhrQ==
+X-Google-Smtp-Source: AA0mqf6edCrbkPO/2NIPJtveMoyJuTxhGlTMC/i4iyB4uN+af8x0IEyVANxR79VxqTYPY+zUxaMHPVZhgvFjHJXeGDk=
+X-Received: by 2002:a17:90b:1d45:b0:218:6db5:fd98 with SMTP id
+ ok5-20020a17090b1d4500b002186db5fd98mr75858015pjb.164.1669962797780; Thu, 01
+ Dec 2022 22:33:17 -0800 (PST)
+MIME-Version: 1.0
+References: <20221201123954.1111603-1-apatel@ventanamicro.com>
+ <20221201123954.1111603-4-apatel@ventanamicro.com> <20221202000603.GA1720201-robh@kernel.org>
+In-Reply-To: <20221202000603.GA1720201-robh@kernel.org>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Fri, 2 Dec 2022 12:03:05 +0530
+Message-ID: <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP
+ based on DT
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
         Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Fri, 02 Dec 2022 14:12:54 +0800
-In-Reply-To: <Y4j+Gpptk3NAFBNV@spud>
-References: <20221121041757.418645-1-uwu@icenowy.me>
-         <20221121041757.418645-3-uwu@icenowy.me>
-         <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
-         <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
-         <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
-         <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
-         <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud>
-Organization: Anthon Open-Source Community
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Palmer Dabbelt <palmer@rivosinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
-MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,107 +78,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2022-12-01=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:18 +0000=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Wed, Nov 30, 2022 at 12:13:30PM -0600, Rob Herring wrote:
-> > On Tue, Nov 22, 2022 at 03:41:27PM +0800, Icenowy Zheng wrote:
-> > >=20
-> > >=20
-> > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=
-=8D=883:35:48, Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> =E5=86=99=E5=88=B0:
-> > > > On 22/11/2022 08:18, Icenowy Zheng wrote:
-> > > > > =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:06 +0=
-100=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > On 21/11/2022 05:17, Icenowy Zheng wrote:
-> > > > > > > T-Head OpenC906 is a open-source-licensed fixed-
-> > > > > > > configuration of
-> > > > > > > C906,
-> > > > > > > which is now public and able to be integrated.
-> > > > > > >=20
-> > > > > > > Add a compatible for the CLINT shipped as part of
-> > > > > > > OpenC906, which
-> > > > > > > should
-> > > > > > > just be ordinary C9xx CLINT.
-> > > > > > >=20
-> > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > > > > ---
-> > > > > > > =C2=A0Documentation/devicetree/bindings/timer/sifive,clint.ya=
-m
-> > > > > > > l | 1 +
-> > > > > > > =C2=A01 file changed, 1 insertion(+)
-> > > > > > >=20
-> > > > > > > diff --git
-> > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
-> > > > > > > ml
-> > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
-> > > > > > > ml
-> > > > > > > index aada6957216c..86703e995e31 100644
-> > > > > > > ---
-> > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
-> > > > > > > ml
-> > > > > > > +++
-> > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
-> > > > > > > ml
-> > > > > > > @@ -35,6 +35,7 @@ properties:
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-- const: sifive,clint0
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-- enum:
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 - thead,openc906-clint
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
-> > > > > >=20
-> > > > > > Add entries sorted alphabetically. This should be squashed
-> > > > > > with
-> > > > > > previous
-> > > > > > patch.
-> > > > >=20
-> > > > > I make it a seperated patch because I think it's a
-> > > > > questionable
-> > > > > approach.
-> > > > >=20
-> > > > > If you think it's okay, I will just squash it and put it as
-> > > > > the second
-> > > > > patch in the next iteration, with adding openc906-plic as the
-> > > > > first
-> > > > > one.
-> > > >=20
-> > > > What is a questionable approach? Why commit msg is not saying
-> > > > this?
-> > >=20
-> > > Ah I mentioned it in the cover letter. The problem is just I
-> > > doubt whether
-> > > binding strings for single SoCs are necessary.
-> >=20
-> > They are.
-> >=20
-> > Unless all the quirks/bugs/features are somehow guaranteed to be
-> > exactly=20
-> > the same as other SoCs sharing the same compatible string, or there
-> > is=20
-> > another mechanism to identify the exact version (e.g. a version=20
-> > register).
->=20
-> Icenowy,
->=20
-> Having thought about this a little - are we not *more* likely to see
-> bug/quirk disparity between implementations of the OpenC906 stuff by
-> the very nature of being an open-source IP?
+On Fri, Dec 2, 2022 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Dec 01, 2022 at 06:09:54PM +0530, Anup Patel wrote:
+> > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
+> > when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
+> > timer DT node.
+> >
+> > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
+> > based on RISC-V platform capabilities rather than having it set for
+> > all RISC-V platforms.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > ---
+> >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
+> >  1 file changed, 11 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+> > index 969a552da8d2..1b4b36df5484 100644
+> > --- a/drivers/clocksource/timer-riscv.c
+> > +++ b/drivers/clocksource/timer-riscv.c
+> > @@ -28,6 +28,7 @@
+> >  #include <asm/timex.h>
+> >
+> >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
+> > +static bool riscv_timer_cannot_wake_cpu;
+> >
+> >  static int riscv_clock_next_event(unsigned long delta,
+> >               struct clock_event_device *ce)
+> > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
+> >  static unsigned int riscv_clock_event_irq;
+> >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
+> >       .name                   = "riscv_timer_clockevent",
+> > -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
+> > +     .features               = CLOCK_EVT_FEAT_ONESHOT,
+>
+> A platform that depended on CLOCK_EVT_FEAT_C3STOP being set will break
+> with this change because its existing DT will not have the new property.
+>
+> It needs to be the other way around which would effectively be the
+> existing 'always-on' property.
 
-It's an open-source edition of a specific version of the commercial IP,
-a fixed configuration.
+There are no RISC-V platforms using C3STOP. The patch which
+added C3STOP has been reverted.
+(Refer, https://lore.kernel.org/lkml/a218ebf8-0fba-168d-6598-c970bbff5faf@sholland.org/T/)
 
-In addition, maybe we can just retrieve the version infomation via a T-
-Head custom CPU configuration register, mcpuid. Despite the
-implementation of this register is weird -- it contains 7 different
-read-only values, with the most significant nibble behaving as an
-index.
+I just need to rebase this patch upon the C3STOP revert patch.
 
->=20
-> Thanks,
-> Conor.
->=20
+>
+> >       .rating                 = 100,
+> >       .set_next_event         = riscv_clock_next_event,
+> >  };
+> > @@ -85,6 +86,8 @@ static int riscv_timer_starting_cpu(unsigned int cpu)
+> >
+> >       ce->cpumask = cpumask_of(cpu);
+> >       ce->irq = riscv_clock_event_irq;
+> > +     if (riscv_timer_cannot_wake_cpu)
+> > +             ce->features |= CLOCK_EVT_FEAT_C3STOP;
+> >       clockevents_config_and_register(ce, riscv_timebase, 100, 0x7fffffff);
+> >
+> >       enable_percpu_irq(riscv_clock_event_irq,
+> > @@ -139,6 +142,13 @@ static int __init riscv_timer_init_dt(struct device_node *n)
+> >       if (cpuid != smp_processor_id())
+> >               return 0;
+> >
+> > +     child = of_find_compatible_node(NULL, NULL, "riscv,timer");
+> > +     if (child) {
+> > +             riscv_timer_cannot_wake_cpu = of_property_read_bool(child,
+> > +                                     "riscv,timer-cannot-wake-cpu");
+> > +             of_node_put(child);
+> > +     }
+> > +
+> >       domain = NULL;
+> >       child = of_get_compatible_child(n, "riscv,cpu-intc");
+> >       if (!child) {
+> > --
+> > 2.34.1
+> >
+> >
 
+Regards,
+Anup
