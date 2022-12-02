@@ -2,111 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D2D640E36
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF37B640E4F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233874AbiLBTKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 14:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34992 "EHLO
+        id S234369AbiLBTTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 14:19:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233873AbiLBTKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:10:54 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90F68ED692;
-        Fri,  2 Dec 2022 11:10:53 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id q79so2649309iod.4;
-        Fri, 02 Dec 2022 11:10:53 -0800 (PST)
+        with ESMTP id S234415AbiLBTTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:19:11 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A704387C
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 11:19:08 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id n21so13699786ejb.9
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 11:19:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+LpbR4BJNFL+FnY5sm/YUcXeZkcYNe0cWTXNSMmQaY4=;
-        b=AWtns0QBhoENJWbCHlZfqWEQKtbmRHrXdjkVjLyykgbaiflI9oiSoCT+1/mlsSCfuw
-         WKsQoV2T8BtUiAGH85r6PESA+XSmtlcK/sIpTCLgef+b7PhJoFtnwK3qHh9KNDuc8IRP
-         JKvGzpGSk3i23I7Q6rzE9WvgyUvYnoK/P/gd8SChr/DoBXOxLc1O/5UFMbtP3dnPu61k
-         2ZPpYMPn6JnqrZBEunWPiGp6DaVX1xnEgtkmO00Zn48QTVtMRVr4w/88kAAZAmcn5wdO
-         c7MuvWKr2+cgOgOzPfXaRIP+SjtquMYwGvbig1wVEw5hiEJRwJA1NNYw0OWFVVZOgWsF
-         7WIw==
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=J943yYpuo0jFR9PCG/F9JS9VvWtOyHZ6S8cQEy5PX9s=;
+        b=zIMn7QfCJdbk4wTH0N8lemUAvDDcSZo/Z+gBiKFz8ilbUjpEIe4S3P4uvqDDd+H+AM
+         5gg1OTe8VLzeMxXf7HC69s4F9H4ZSyW3R7jEzr7aF4yQKHXHdU/lehSD3gNzfp8rU39A
+         Vqlg2vFP9WXVXctmx3ERTPpjFSf6OMwn9RV+Byk6C16lfFBg4FaDKOD2udXMBBbmBXJI
+         arkM87qCeV3zTeBHIWUXH3wxhO/NL6FUao54jNTnlB1v7krtXvEviNPYKYZsHJCMN2Vg
+         Nbbz0g91IPi1Nm65INfGgyfvaED0KbuKOFkLLGhK7D6/JP/XyNkf4FJH/R/pV+p/7vGx
+         1Nxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+LpbR4BJNFL+FnY5sm/YUcXeZkcYNe0cWTXNSMmQaY4=;
-        b=EEn7BRnAfIfRnWxESO4gxVcB2t7++dec1XWlLIAxjHgWVfrZgu3ZPx66mkkFix0Cs0
-         G5fZtXEqEG3GQAibK3sooBOnr0DmZ8gooBRM7BEn8u093UzVnt0zIA5xISOYYDXq1Gdv
-         qT2vPtiRfyxz66F1nqJM1SmC9YLJaXpnsbVgPvENts2sq7mRZwegFvS7Ta2JMZseYMyB
-         E544yWBjY9IJ/DbKSHMixAoYewpAm0cTYvCJVKKzACAKYtGVgHfdKWi/PkwXUuRbgxWE
-         3z3idYjuyhPJVNEdqGpRzi8LNUfu9nS1VOvK2d80XhTLezOaow1qAbLNF5uDBONjdNuf
-         3x1A==
-X-Gm-Message-State: ANoB5pmhEQ8XBRJJc1ndEN3CtZBCRjOCXW8po+dHdeT4ndHYOZbYdUaJ
-        YbqQAbDsIcu3qBJYmQdm7KY=
-X-Google-Smtp-Source: AA0mqf4oyMLLvpyOY9JXz8LY12rzDa2cNVQND89+qF/+c4r5b9tuTdah8seJra732ngvOAbQG2iTig==
-X-Received: by 2002:a5d:9b14:0:b0:6de:a34a:e93d with SMTP id y20-20020a5d9b14000000b006dea34ae93dmr24666298ion.179.1670008252803;
-        Fri, 02 Dec 2022 11:10:52 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
-        by smtp.gmail.com with ESMTPSA id z30-20020a027a5e000000b0037465a1dd3fsm2940271jad.156.2022.12.02.11.10.51
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J943yYpuo0jFR9PCG/F9JS9VvWtOyHZ6S8cQEy5PX9s=;
+        b=EjliwoRXcSl18fvMPxhxPwwLGiIAQe0dDtaKbm8cZzqLUBXMdTK4JdljpShFhwBTxv
+         F3li0QoC0mGuae/yxQsFc8MKnjQN6XWJBFOAmZXG+UlWA+piZzpOZ/Dh1O67RdcBzXCv
+         kE7nXUC1pAhl0UK1dU6qv+T9bpHe5GEz8g3wyw2BFYqTRYFbLp1LXsxC+Cp7hvP4fXPP
+         qeZnr73Ssxm8jc1/Hhjv1xnoRFXyYSdIy6+MqrwPlaUvQ+IQhueVJUq8dPyNKn3FFqII
+         ngHu6y69sBbCN1GI36ouhZxx9ssfnzyqyPXT6uLNFzgXqOTnIqpWASZsY0kuOk41L3Iy
+         DZXg==
+X-Gm-Message-State: ANoB5pnrU/NPLHxT1P5nEfC6zlbiIOqGJSrnY61as18xsXk+Ar61i5Ka
+        0h6+Cbit6E8XSrXGX1FWxCr6rA==
+X-Google-Smtp-Source: AA0mqf7ogr9/tON+JEkHrEd1+Lltn3rha/i65c/OtJZfitNnrjQd44HPiL5kZj9Rj48yTucY21oj+w==
+X-Received: by 2002:a17:906:94c8:b0:7c0:a321:8df2 with SMTP id d8-20020a17090694c800b007c0a3218df2mr10838829ejy.308.1670008746540;
+        Fri, 02 Dec 2022 11:19:06 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id d13-20020a17090694cd00b007c0b28b85c5sm2145585ejy.138.2022.12.02.11.19.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 11:10:52 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     cstevens@beaconembedded.com, aford@beaconembedded.com,
-        Adam Ford <aford173@gmail.com>,
+        Fri, 02 Dec 2022 11:19:05 -0800 (PST)
+Date:   Fri, 2 Dec 2022 21:19:04 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mm-beacon: Fix ecspi2 pinmux
-Date:   Fri,  2 Dec 2022 13:10:37 -0600
-Message-Id: <20221202191037.167718-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/9] dt-bindings: clock: Add SM8550 TCSR CC clocks
+Message-ID: <Y4pPqAbKLI5L/u0G@linaro.org>
+References: <20221130112852.2977816-1-abel.vesa@linaro.org>
+ <20221130112852.2977816-3-abel.vesa@linaro.org>
+ <20221201221220.7kdbndug3m3om62p@builder.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221201221220.7kdbndug3m3om62p@builder.lan>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Early hardware did not support hardware handshaking on the UART, but
-final production hardware did.  When the hardware was updated the chip
-select was changed to facilitate hardware handshaking on UART3.  Fix the
-ecspi2 pin mux to eliminate a pin conflict with UART3 and allow the
-EEPROM to operate again.
+On 22-12-01 16:12:20, Bjorn Andersson wrote:
+> On Wed, Nov 30, 2022 at 01:28:45PM +0200, Abel Vesa wrote:
+> > Add bindings documentation for clock TCSR driver on SM8550.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../bindings/clock/qcom,sm8550-tcsrcc.yaml    | 45 +++++++++++++++++++
+> >  .../dt-bindings/clock/qcom,sm8550-tcsrcc.h    | 18 ++++++++
+> >  2 files changed, 63 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+> >  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+> > new file mode 100644
+> > index 000000000000..b2de251328e4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsrcc.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsrcc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm TCSR Clock Controller on SM8550
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <andersson@kernel.org>
+> > +
+> > +description: |
+> > +  Qualcomm TCSR clock control module provides the clocks, resets and
+> > +  power domains on SM8550
+> > +
+> > +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sm8550-tcsrcc
+> 
+> The block described is the TCSR block, the clock controller represents
+> one of the functions provided. I think it would be more appropriate if
+> the compatible represented the generic nature of the block, even though
+> you currently only care about exposing these clocks.
 
-Fixes: 4ce01ce36d77 ("arm64: dts: imx8mm-beacon: Enable RTS-CTS on UART3")
-Signed-off-by: Adam Ford <aford173@gmail.com>
+I think there is a rule that says the compatible string to be the same as
+the schema filename.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-index 03266bd90a06..169f047fbca5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-@@ -120,7 +120,7 @@ &csi {
- &ecspi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_espi2>;
--	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
- 	eeprom@0 {
-@@ -316,7 +316,7 @@ pinctrl_espi2: espi2grp {
- 			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x82
- 			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x82
- 			MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x82
--			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x41
-+			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13              0x41
- 		>;
- 	};
- 
--- 
-2.34.1
+Should I then also rename the schema file and also the binding IDs header?
+Like qcom,sm8550-tcsr.yaml and qcom,sm8550-tcsr.h ?
 
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  '#reset-cells':
+> > +    const: 1
+> > +
+> 
+> Your clocks are fed by cxo. While there might be reasons for not wire
+> the parent up in the clocks, I think you should represent it in the
+> binding.
+
+Right, will document the clocks property as well and describe the clock
+as xo-board.
+
+> 
+> Regards,
+> Bjorn
+> 
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    clock-controller@1fc0000 {
+> > +      compatible = "qcom,sm8550-tcsrcc";
+> > +      reg = <0x1fc0000 0x30000>;
+> > +      #clock-cells = <1>;
+> > +      #reset-cells = <1>;
+> > +    };
+> > +
+> > +...
+> > diff --git a/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> > new file mode 100644
+> > index 000000000000..091cb76f953a
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/qcom,sm8550-tcsrcc.h
+> > @@ -0,0 +1,18 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+> > + * Copyright (c) 2022, Linaro Limited
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
+> > +#define _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
+> > +
+> > +/* TCSR CC clocks */
+> > +#define TCSR_PCIE_0_CLKREF_EN					0
+> > +#define TCSR_PCIE_1_CLKREF_EN					1
+> > +#define TCSR_UFS_CLKREF_EN					2
+> > +#define TCSR_UFS_PAD_CLKREF_EN					3
+> > +#define TCSR_USB2_CLKREF_EN					4
+> > +#define TCSR_USB3_CLKREF_EN					5
+> > +
+> > +#endif
+> > -- 
+> > 2.34.1
+> > 
