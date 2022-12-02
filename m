@@ -2,115 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC4864080C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 14:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2478F640890
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 15:37:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233659AbiLBN4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 08:56:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56788 "EHLO
+        id S232265AbiLBOhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 09:37:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233791AbiLBN4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 08:56:19 -0500
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 688FAC2D35;
-        Fri,  2 Dec 2022 05:56:15 -0800 (PST)
-Received: by mail-qv1-f41.google.com with SMTP id c14so3462630qvq.0;
-        Fri, 02 Dec 2022 05:56:15 -0800 (PST)
+        with ESMTP id S232557AbiLBOhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 09:37:17 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF29DF600
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 06:37:10 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id z20so6668064edc.13
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 06:37:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=R7S1hXfJrdA2OO05qT0bVLolHIgquQtzY/qiJ0ELKso=;
+        b=iFbV+ZBpq8wDqSDeD0899VZYy/j7fXEh0JVZ4Ka/doaR3TEJKeRuxWUCeWOlPa2fPr
+         abC1KxI3WehkC31cOilHKIqbJIsG5th63gllZOJqo10ba+MTr51kqHv2Anx6CKgXJwY1
+         Qn/K+41ta0ATg6z/bJC9YrqtPWaQT/RDRGo7A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XXuttiq+R35t3Lo1CqjcwEovWJl6+re6p/cH4Ee/PUs=;
-        b=UTFz8deE0KCnQIBybQNKkgjblOsY3xo9Thf3OPHe1Ve6xx6o7zi8RE4eY9Zph0fUte
-         H+lWz+Md4RDd+tBFWJBPya6ZpScj6Rom+3sp3Yr53plJzfeik6n+uYesI6GN4R/L/47v
-         oVfKVJVaOdX4x61vodzWRyIa1oy8lyJXTyMtgi0dH355Ahw4GdggrAmh+0vIAJEaJNjF
-         0AoUw9tt1OdTwHtuUVDqp4/JkXK3PvGQEgijHcSurEq0I/3bVetiiWh0pRgPKIXPsHeP
-         hfvQ7lIwsSbxgRvecrz7HSZXxN8fkDzlXVm4xrN64Lyry4m1RCF1Qa79jpIs0OgFmHvg
-         7YsQ==
-X-Gm-Message-State: ANoB5pn4HGwOjynxds3mbFy4NKvJO7/6mordlfssnQRJ2X03xEueYOkl
-        yM7cdlYRHuOe2ExN+qNnKU18gH8CAf5aIA==
-X-Google-Smtp-Source: AA0mqf7EotnjCRg12TMFv9oNz06TcFiGa3bMoK1j7LQ2msOx+V9O7apwLlVtsVW9EEPKLmrcwpq4dQ==
-X-Received: by 2002:a05:6214:5a82:b0:4b8:2644:a050 with SMTP id ln2-20020a0562145a8200b004b82644a050mr48306124qvb.74.1669989374184;
-        Fri, 02 Dec 2022 05:56:14 -0800 (PST)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id o6-20020ac872c6000000b003a68dc901e0sm4135771qtp.47.2022.12.02.05.56.13
+        bh=R7S1hXfJrdA2OO05qT0bVLolHIgquQtzY/qiJ0ELKso=;
+        b=AlautV4uPt0kD2V7UM5AQbSqRu27Xg7dmdGBWljfMJPkgAV7mzw+rS554E/4knKDuH
+         72qeC/38CHVg0ch1o/rsUgYSl3QAulvVSvEtDK615c27We9DhT4G+wbLyIXUQ6d6bCAa
+         sB0k195ESy98ELXg9UYGv9J/SzwQ1VDWWejJpG5MpDC0DoXS4Y5pwfs7OaBUI9xxSzHV
+         XM2TEGoZaBKM5ZvERXOufMQa326X3MgOXyKUvtphLDslnW/ZI3e+ByP8bTAKbOLcPbnD
+         5u8s1LwGLj+yci1KpDKKi82L1Y8jMvcPdRuCcXHbF5YOanLVvltdzeZIVrWbPxBRIWXm
+         zG1w==
+X-Gm-Message-State: ANoB5pnfDVNxgV3R/M4gPTSSsd8k1Dx+NqKXRBK+Iibd/q9l1MQgvxEF
+        5SjFPRtkAXPrIKYOAg4hEqnx0/crJJ1hoTFAaZY=
+X-Google-Smtp-Source: AA0mqf4ExIgcZHzCfyGKhUuzPZySXbqmZWnyiVYhbPEPskrrpbd2adClmRgsy1Dq2d/sgw4f0PXfwQ==
+X-Received: by 2002:aa7:c60b:0:b0:462:750b:bced with SMTP id h11-20020aa7c60b000000b00462750bbcedmr62498731edq.313.1669991828961;
+        Fri, 02 Dec 2022 06:37:08 -0800 (PST)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id j10-20020a17090623ea00b00782ee6b34f2sm3041379ejg.183.2022.12.02.06.37.07
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 05:56:13 -0800 (PST)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-381662c78a9so49304897b3.7;
-        Fri, 02 Dec 2022 05:56:13 -0800 (PST)
-X-Received: by 2002:a81:1486:0:b0:36b:56d3:71b8 with SMTP id
- 128-20020a811486000000b0036b56d371b8mr1834074ywu.384.1669989373149; Fri, 02
- Dec 2022 05:56:13 -0800 (PST)
+        Fri, 02 Dec 2022 06:37:07 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id t1so3646564wmi.4
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 06:37:07 -0800 (PST)
+X-Received: by 2002:a05:600c:3c8e:b0:3d0:69f4:d3d0 with SMTP id
+ bg14-20020a05600c3c8e00b003d069f4d3d0mr12058890wmb.93.1669991827159; Fri, 02
+ Dec 2022 06:37:07 -0800 (PST)
 MIME-Version: 1.0
-References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
- <1503a3857107e3a4f34e0c7fb5dada39@walle.cc>
-In-Reply-To: <1503a3857107e3a4f34e0c7fb5dada39@walle.cc>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 2 Dec 2022 14:56:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
-Message-ID: <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
- more MT25QU parts
-To:     Michael Walle <michael@walle.cc>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+References: <20221118164201.321147-1-krzysztof.kozlowski@linaro.org>
+ <20221118164201.321147-2-krzysztof.kozlowski@linaro.org> <CAD=FV=XeaskcBRVRQDoha7Xiv9j57fuvtcSJUeN7HCZSGVJ8uQ@mail.gmail.com>
+ <68bcdf25-e8e3-f817-f213-efb0bce3f43a@linaro.org>
+In-Reply-To: <68bcdf25-e8e3-f817-f213-efb0bce3f43a@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 2 Dec 2022 06:36:54 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WBNpeWK31dCgzX5QAuR7AySkp_dEyY8WK3o8+SaiPxOg@mail.gmail.com>
+Message-ID: <CAD=FV=WBNpeWK31dCgzX5QAuR7AySkp_dEyY8WK3o8+SaiPxOg@mail.gmail.com>
+Subject: Re: [RFT PATCH v2 2/2] arm64: dts: qcom: sdm845: align TLMM pin
+ configuration with DT schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
+        Fritz Koenig <frkoenig@google.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi,
 
-On Fri, Dec 2, 2022 at 2:50 PM Michael Walle <michael@walle.cc> wrote:
-> Am 2022-12-02 14:37, schrieb Geert Uytterhoeven:
-> > Document support for the Micron MT25QU256A and MT25QU512A Serial NOR
-> > FLASHes.
-> >
-> > Merge the new entries with the existing entry for MT25QU02G.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > mt25qu512a is already in active use, causing "make dtbs_check" errors.
-> > mt25qu256a is supported by the Linux spi-nor driver, but there are no
-> > upstream users yet.
+On Fri, Dec 2, 2022 at 12:15 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Is it encouraged to use the specific compatible with SPI-NOR flashes?
-> As far as I know it isn't. The spi-nor subsys tries hard to identify
-> any flashes at runtime and any additional information in the device tree
-> is used as a last resort (just for flashes which doesn't support the
-> read jedec id command yet). And usually boards have different sources
-> for flash chips, so hardcoding a particular part in the device tree
-> doesn't make sense.
+> >>                         qup_uart6_4pin: qup-uart6-4pin-state {
+> >> -
+> >> -                               cts-pins {
+> >> +                               qup_uart6_4pin_cts: cts-pins {
+> >>                                         pins = "gpio45";
+> >>                                         function = "qup6";
+> >> -                                       bias-pull-down;
+> >
+> > After your patch, where is the above bias set for cheza, db845c,
+> > oneplus, shift-axolotl, ...?
+> >
+> >
+> >>                                 };
+> >>
+> >> -                               rts-tx-pins {
+> >> +                               qup_uart6_4pin_rts_tx: rts-tx-pins {
+> >>                                         pins = "gpio46", "gpio47";
+> >>                                         function = "qup6";
+> >> -                                       drive-strength = <2>;
+> >> -                                       bias-disable;
+> >
+> > After your patch, where is the above bias / drive-strength set?
+>
+> They don't use 4-pin setup. If they use, I would assume they will
+> override the entries just like sdm850 boards (where I override it to set
+> these).
+>
+> Alternatively I can keep it in DTSI, but it is not really property of
+> the SoC.
 
-Thanks, I am aware there have been pushbacks when trying to
-document more compatible values.
+I see things like:
 
-IMHO either all or none of them should be documented.
-If device-specific compatible values are discouraged, the bindings
-should be updated to reflect that, and document a single compatible
-value ("jedec,spi-nor") only.
+.../sdm845-cheza.dtsi:     pinctrl-0 = <&qup_uart6_4pin>;
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+...before your patch that would get the bias/drive strength from the
+SoC dtsi, right? After your patch, you've removed it from the dtsi but
+not added it to the board. ...so I think it's a net change. Did I mess
+up / miss something?
