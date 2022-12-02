@@ -2,126 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AEA0640346
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8857F640372
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:37:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbiLBJZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 04:25:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46556 "EHLO
+        id S232653AbiLBJhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 04:37:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232292AbiLBJZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:25:35 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E361E3;
-        Fri,  2 Dec 2022 01:25:33 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id DD5671C09FE; Fri,  2 Dec 2022 10:25:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1669973131;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=eN/M3VFir9/Er0HKbCX2QJULPmPCZJVKZYJsRXCiqME=;
-        b=NbJ8si1POoI7gqgOEk8vRyw/czdZeW5eTXG85BmKdpehvzsa4ALHEYFyEG52a76CnsD89/
-        FXq9KTikHGopROX+4Nl5B+9vHq8gM0fRc2V0MO859uLwJ2R3VH/HexTI5e95CJ4Qu9wKlL
-        32Jyftnr8j2ucovOmqj1/ArUiHpKRB8=
-Date:   Fri, 2 Dec 2022 10:25:31 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S232637AbiLBJhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:37:10 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E542115706
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 01:37:03 -0800 (PST)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 244C41F87B;
+        Fri,  2 Dec 2022 10:37:00 +0100 (CET)
+Date:   Fri, 2 Dec 2022 10:36:58 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        kernel@dh-electronics.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
-Message-ID: <Y4nEi1Q1iEYFdkht@duo.ucw.cz>
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <Y3y/S5COG7VPbsqL@duo.ucw.cz>
- <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
- <20221130191905.GA2631320-robh@kernel.org>
- <Y4eufPCzKbfp9k3z@duo.ucw.cz>
- <CAL_JsqK6+Yyn29QNV2tjUM-zm9WbuW57Jb=LKmqCLXHmvEoJYA@mail.gmail.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
+ peripheral
+Message-ID: <20221202093658.vg6t2ptar2arh7hn@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>
+References: <20221101161801.1058969-1-luca@z3ntu.xyz>
+ <20221101161801.1058969-2-luca@z3ntu.xyz>
+ <20221104234435.xwjpwfxs73puvfca@SoMainline.org>
+ <20221106193722.j64xrhitdencrjxy@SoMainline.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="ll8oqkCr+kIaxupW"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqK6+Yyn29QNV2tjUM-zm9WbuW57Jb=LKmqCLXHmvEoJYA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221106193722.j64xrhitdencrjxy@SoMainline.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-11-06 20:37:24, Marijn Suijten wrote:
+> On 2022-11-05 00:44:37, Marijn Suijten wrote:
+> > On 2022-11-01 17:18:00, Luca Weiss wrote:
+> > > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > > 
+> > > The PMI8950 features integrated peripherals like ADC, GPIO controller,
+> > > MPPs and others.
+> > > 
+> > > [luca@z3ntu.xyz: remove pm8950, style changes for 2022 standards, add wled]
+> > > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > > ---
+> > > Changes since v2:
+> > > * Pick up patch, and adjust as mentioned above sign-offs
+> > > 
+> > >  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 97 +++++++++++++++++++++++++++
+> > >  1 file changed, 97 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> > > new file mode 100644
+> > > index 000000000000..32d27e2187e3
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> > > @@ -0,0 +1,97 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +// Copyright (c) 2019, AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > > +
+> > > +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > > +#include <dt-bindings/spmi/spmi.h>
+> > > +
+> > > +&spmi_bus {
+> > > +	pmic@2 {
+> > > +		compatible = "qcom,pmi8950", "qcom,spmi-pmic";
+> > > +		reg = <0x2 SPMI_USID>;
+> > > +		#address-cells = <1>;
+> > > +		#size-cells = <0>;
+> > > +
+> > > +		pmi8950_vadc: adc@3100 {
+> > > +			compatible = "qcom,spmi-vadc";
+> > > +			reg = <0x3100>;
+> > > +			interrupts = <0x2 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> > > +			#address-cells = <1>;
+> > > +			#size-cells = <0>;
+> > > +			#io-channel-cells = <1>;
+> > > +
+> > > +			adc-chan@0 {
+> > > +				reg = <VADC_USBIN>;
+> > > +				qcom,pre-scaling = <1 4>;
+> > > +				label = "usbin";
+> > 
+> > I've previously sent a patch with labels in the node name instead [1],
+> > what's the preferred way nowadays?
+> > 
+> > [1]: https://lore.kernel.org/linux-arm-msm/20220926190148.283805-4-marijn.suijten@somainline.org/
+> 
+> As it turns out that patch relied on the ADC5 driver propagating the DT
+> node name (and label name if set) to IIO, which doesn't happen for the
+> legacy VADC driver used here.  I sent an RFC to that effect, with a
+> large discussion whether or not we should use node names, labels, or
+> rely on hardcoded names in the drivers entirely.  The recent migration
+> to fwnode made the node name include the `@xx` suffix which makes for
+> unpleasant reading in sysfs, so that's at least one reason to have
+> generic node names *and skip node names in these drivers altogether*.
+> 
+>     https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
+> 
+> In short: we may want to hold off changing these patches until a
+> clear-cut decision has been made (but I think your patch here is the
+> right approach in the end: generic node name *with label*, when the
+> label is more clear than the name hardcoded in the driver).
 
---ll8oqkCr+kIaxupW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+We came to the conclusion in [1] that using labels is the way to go so
+that the name doesn't get all mangled, then we can opt for generic node
+names here as well.  This does mean I'll have to send a followup for [2]
+and have to revise [3] again to use generic node names and labels.
 
-Hi!
+- Marijn
 
-> > > > So far, the documentation states that "label" is deprecated, and us=
-ers
-> > > > should replace it with "function" and "color".
-> > >
-> > > 'function' is what activity/operation the LED is associated with. It =
-is
-> > > a fixed set of strings which s/w may use. It is a replacement for
-> > > 'linux,default-trigger'.
-> > >
-> > > 'label' is what is printed next to the LED for a human to read. 'labe=
-l'
-> > > can be anything and the OS shouldn't care what it is.
-> >
-> > Unfortunately, no.
->=20
-> That's why I said 'shouldn't care', not 'doesn't care'.
->=20
-> 'label' is also not just an LED property. It's used elsewhere, but
-> unfortunately the LED subsystem makes more use of it than it perhaps
-> should.
->=20
-> > We use label as a path in /sys/class/leds.
->=20
-> Yes, or node name if no label. That's still not really caring what the
-> value of label is. At least the kernel doesn't. A well behaved
-> userspace wouldn't either and doesn't for most classes.
-
-A well behaved userspace needs that to tell what kind of LED it is. It
-is important to tell keyboard backlight from HDD activity LED and from
-fllash on back camera for example.
-
-> > And it looks like integer
-> > "function" is not really adequate for describing what LED does. There
-> > are too many LEDs and not enough integers, and it is common to have
-> > same function ("activity") on multiple devices ("wifi", "mmc", "eth").
->=20
-> Whatever the problems are, 'label' is not the solution.
->=20
-> There is a way to associate leds with devices. 'trigger-source'
-> IIRC.
-
-Neither is trigger-source a solution.
-
-Can we have linux,sysfs-path or something?
-
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---ll8oqkCr+kIaxupW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY4nEiwAKCRAw5/Bqldv6
-8sLHAJ9mdtKAHeFl8I9YQNzZ0x7r/prTjACgnKZpSbkzl0S7r9tqGBdV4pisN7k=
-=tVtK
------END PGP SIGNATURE-----
-
---ll8oqkCr+kIaxupW--
+[1]: https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei/
+[2]: https://lore.kernel.org/linux-arm-msm/20220926190148.283805-4-marijn.suijten@somainline.org/
+[3]: https://lore.kernel.org/linux-arm-msm/20221111120156.48040-10-angelogioacchino.delregno@collabora.com/
