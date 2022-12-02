@@ -2,97 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0569964037A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:38:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A7D6403BC
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:49:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232182AbiLBJit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 04:38:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
+        id S233143AbiLBJt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 04:49:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbiLBJis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:38:48 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B68B0DC3;
-        Fri,  2 Dec 2022 01:38:48 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id n20so10346524ejh.0;
-        Fri, 02 Dec 2022 01:38:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tJDjgBXpMszFeIAvqAsFvMh1NYdd/aFzFWK8zEmUqAM=;
-        b=U9mb0G6OeUfsr7F5qkXSmk4SmSORG85/hynvQ3+ZvNSDVJJSF9UUp3dvjqnV8dN3AQ
-         b8R7Epvw/vVnuKFZZBf5CX50e2YB3bNRbr1mX5J0Ko8RsXQ3c+73nnbWgmYfpAmNl+OP
-         EfWByawDHJnTPX1QmdsVi2NPI+6qDT7QCHLa9n53KBCgCDH4mUUgHaz7DyJu+4xlzFeK
-         RTu5Y8Xc6hZ/yg/OwmvtBWTpIEkMZtMdUJtXa7HIrm0xa7FpGRfSa8ixUoBojckvRZNN
-         liIEKa3Cg7ntlatroMxJOSoU5rLmyMMZDXHw73yebWyq282HSXPnHCIXP8tYyA3PMOgB
-         rUUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tJDjgBXpMszFeIAvqAsFvMh1NYdd/aFzFWK8zEmUqAM=;
-        b=yozWmOwQTlDZmOyJDb4MnBkF9ikpJ3RUmq6ytI+jhLbIGLDCdIdBUlYryhoU2NMo2S
-         mflb0E86E62N/v93WA+LtTq3nFF13TOujoDCimKplO5ShrBRJQUg4Z64E3D+7vWNOIO2
-         lJ2G3hsdlxQ81irt2ynjh60exM7u7AlhmGKG0jGTxkqG6iQLP8VgOSmiH3L2CRMWHf5p
-         v0jQ2WiE06mtTtrayG2mIvtVteH4PfJDppdu5dWlkf62N+TIieD2v8hsYvDepjVaia4W
-         1pRDSTGX4CIr5GA3UFV+qv6ykYr7/m7x1VymyETRiXhpJEu2wgQQfvvbh0zepFfCNLaz
-         um4g==
-X-Gm-Message-State: ANoB5pnyq+3Yu9PYLBFxYPgbhCA4vJV3bI2or3+uqPNRhsE9dE7S6zu+
-        R9zQXw0OascoEbeYaXgps1Y1aYR0reOq4YttR4U=
-X-Google-Smtp-Source: AA0mqf7FIABNiGeTLlM0hVvJiKrNKmFgn+etb0uKjE4IT1Q/r1PLThWQVRPMXCJk1tD3bz6ZJt+mnaCfzIV6oA0v5mI=
-X-Received: by 2002:a17:906:9497:b0:7c0:cbc9:ab68 with SMTP id
- t23-20020a170906949700b007c0cbc9ab68mr635147ejx.155.1669973926567; Fri, 02
- Dec 2022 01:38:46 -0800 (PST)
+        with ESMTP id S232815AbiLBJts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:49:48 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08794CB229;
+        Fri,  2 Dec 2022 01:49:44 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id D027B5FD0A;
+        Fri,  2 Dec 2022 12:49:41 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1669974581;
+        bh=FbqsU5GM/s6H3tix6hLnnOQO0K56pMLJtqHLVhUNgXs=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=UPYOpBXln+D9Lxmxx9q2ygclqrJdoUAa8swbKYm+8ASGftkpKx8beygRXG6PDCV9n
+         HgQuF0cb+CgZx7AOSCrDHHp7oZmRUVK9kEasMLDnPWYCyeaIianqRHgb2Qgc1TL7yK
+         0/dZrba9wr0NfWFU5U+4wSXwiaYrtrPqO0s4M3FGue8qiTqjuHsOBTeKE4ZteYBix6
+         z0xkxkFAE89NSuG2hysxpUUXcIGBahNZHJZbaRfLPR7IVVxsknE0nS83aYFCFtvExS
+         JPsRvTSVerFnrsPEzUzjmXHFqugK929a1DRr2cAK7dFDahM9yzU5w/BtTKIDcJs/TG
+         ONH9njUxEksEg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri,  2 Dec 2022 12:49:41 +0300 (MSK)
+Date:   Fri, 2 Dec 2022 12:49:40 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     <martin.blumenstingl@googlemail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <jian.hu@amlogic.com>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <linux-amlogic@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <rockosov@gmail.com>,
+        <kernel@sberdevices.ru>, <neil.armstrong@linaro.org>,
+        <robh+dt@kernel.org>, <sboyd@kernel.org>
+Subject: Re: [PATCH v8 03/11] dt-bindings: clock: meson: add A1 peripheral
+ clock controller bindings
+Message-ID: <20221202094940.elhjbz7tbgxesr52@CAB-WSD-L081021>
+References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-4-ddrokosov@sberdevices.ru>
+ <166995398331.2089708.18189499743713568568.robh@kernel.org>
 MIME-Version: 1.0
-References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y4k6ct+iA4j0NZgR@spud>
-In-Reply-To: <Y4k6ct+iA4j0NZgR@spud>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 2 Dec 2022 09:38:20 +0000
-Message-ID: <CA+V-a8v5-nz_f-_P=L0miBPHOVAND-V8ed-tVttXV52nOJth6w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] AX45MP: Add support to non-coherent DMA
-To:     Conor Dooley <conor@kernel.org>
-Cc:     palmer@dabbelt.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <166995398331.2089708.18189499743713568568.robh@kernel.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 07:44:00 #20636821
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Thu, Dec 01, 2022 at 10:10:04PM -0600, Rob Herring wrote:
+> 
+> On Fri, 02 Dec 2022 01:56:55 +0300, Dmitry Rokosov wrote:
+> > From: Jian Hu <jian.hu@amlogic.com>
+> > 
+> > Add the documentation to support Amlogic A1 peripheral clock driver,
+> > and add A1 peripheral clock controller bindings.
+> > 
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >  .../bindings/clock/amlogic,a1-clkc.yaml       | 65 ++++++++++++
+> >  include/dt-bindings/clock/a1-clkc.h           | 98 +++++++++++++++++++
+> >  2 files changed, 163 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> >  create mode 100644 include/dt-bindings/clock/a1-clkc.h
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml: $id: relative path/filename doesn't match actual path or filename
+> 	expected: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
+> Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:18.48-30.11: Warning (unit_address_vs_reg): /example-0/periphs-clock-controller: node has a reg or ranges property, but no unit name
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dtb: periphs-clock-controller: reg: [[0, 2048], [0, 260]] is too long
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221201225703.6507-4-ddrokosov@sberdevices.ru
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-On Thu, Dec 1, 2022 at 11:36 PM Conor Dooley <conor@kernel.org> wrote:
->
-> Hi Prabhakar,
->
-> I'm going to mark this series as "Changes Requested" in patchwork since
-> there's been quite a lot of commentary and it looks like Samuel & Heiko
-> have both suggested some changes.
-Sounds good, I am working on the changes requested.
+That's totally right warnings and errors. All of them are fixed in the
+my "fixup" patch of Jian's original dt_binding schema:
 
-Cheers,
-Prabhakar
+https://lore.kernel.org/linux-amlogic/20221201225703.6507-11-ddrokosov@sberdevices.ru/
+
+-- 
+Thank you,
+Dmitry
