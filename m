@@ -2,188 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80295640734
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530B4640737
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:55:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233578AbiLBMzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 07:55:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55108 "EHLO
+        id S233632AbiLBMz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 07:55:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233584AbiLBMzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:55:45 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21C2D3A33;
-        Fri,  2 Dec 2022 04:55:44 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id v82so5213627oib.4;
-        Fri, 02 Dec 2022 04:55:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5HMulQtDEYr8StaCD+M2NKtZZtuACwzVH39fWb0WUyQ=;
-        b=eEQQ6uvfOl76Ao5O0QbsLd3+0LQZ2O3gFdB2kh6fVLE3YJOs4VVYyiLKhQU9rUTcr1
-         1olRnVzFXOjq40mdtJXb/44+tzDY9fL+8HjvDbf2xBDWkq15yq0MIh3g6J+orM3XGrfn
-         pPQx/kge9o5aDiJnpS4POr6VBFDbCxDpARtIBpU4ptxhxaUnXvA3Egdt4VjAj0IEJLws
-         A4AUuIBpYpfo4AEIvn+rQWazbii5/MQ4Bj35iT5dr/YHEBKOD3tmo/wtU/2vHYtliZxI
-         QRbfucJ5HTEEABlxb6GF0lWzPgfkNWcRnptv5yDCK5JGeENRD+HdZ10XdwLXYlgwN3Zq
-         yufg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5HMulQtDEYr8StaCD+M2NKtZZtuACwzVH39fWb0WUyQ=;
-        b=UwfdifmDfse11UqoXwJTVElK3bu7R0f0BUreLMb2MhhWusJjTa3PeuMyOpvcisu2QE
-         HL+oi5PboAJkI5ToEbo9rGt/JakJMpre5188ojwM+1eiqPWoAmPy5Xn9CuS+XUV30tSV
-         XCJw0Mj+Os/7xKINMgzNnJw/juU/+hjzkxL96/XAO2TbRMnf8HaODEkV2muZ+kjRS337
-         1NVXSjyFRLLzH3ynnDOr0Sjhs/Onbl7RAvH0TK2SfeRvkHT+TDK9n8qz/2dAzkb5jHMJ
-         HZF+LP7Qmcvr9zqGqs11qOId22Mm8IzCuNPdvHvDNx2zhRRJzppA1K+EqMsOAelNCFJB
-         N/wQ==
-X-Gm-Message-State: ANoB5pkXYOB3llzYe8blfdlm3iP020KqXb1cFuE8uyra/zOXrrhHCeZD
-        IJ+uaxJ7GZzB455WBbnR3hiDtgXC1p9zI+QFqA0=
-X-Google-Smtp-Source: AA0mqf6aVBf+NKOWch0Jfc9fmrrRGCBM5i7QIhLaLUn3iF/LlY6ukN9sg76KFvOQTE8JRdrMBKkdiWRi+9drUADmgYI=
-X-Received: by 2002:a05:6808:2ca:b0:359:ca42:419 with SMTP id
- a10-20020a05680802ca00b00359ca420419mr36163478oid.98.1669985743872; Fri, 02
- Dec 2022 04:55:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
- <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org>
-In-Reply-To: <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Fri, 2 Dec 2022 20:55:32 +0800
-Message-ID: <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S233607AbiLBMzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:55:55 -0500
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04828DCBD2
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 04:55:50 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2d07:19c5:4d8b:89d9])
+        by laurent.telenet-ops.be with bizsmtp
+        id rQvn2800M0ys3B701QvnFx; Fri, 02 Dec 2022 13:55:48 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p15Zz-002Iso-4R; Fri, 02 Dec 2022 13:55:47 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p15Zy-005gP8-Hi; Fri, 02 Dec 2022 13:55:46 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Damien Horsley <Damien.Horsley@imgtec.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] dt-bindings: sound: ti,pcm3168a: json-schema conversion and fixes
+Date:   Fri,  2 Dec 2022 13:55:42 +0100
+Message-Id: <cover.1669980383.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+	Hi all,
 
-On Fri, Dec 2, 2022 at 7:14 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 02/12/2022 04:42, Chuanhong Guo wrote:
-> > This patch adds dt binding schema for WorldSemi WS2812B driven using SPI
-> > bus.
->
-> Do not use "This commit/patch".
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+This patch series is an attempt to convert the existing DT binding
+documentation for the Texas Instruments PCM3168A Audio Codec to
+json-schema ("another one bites the dust" ;-).
 
-OK.
+It consists of two parts:
+  1. The actual DT binding conversion,
+  2. An RFC patch to fix the impedance mismatch between the bindings
+     and the description in the Shimafuji Kingfisher board DTS.
 
-> [...]
-> > +
-> > +      default-brightness:
-> > +        description:
-> > +          The default brightness that should be applied to the LED by the operating
-> > +          system on start-up. The brightness should not exceed the brightness the
-> > +          LED can provide.
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        minimum: 0
-> > +        maximum: 255
-> > +        default: 0
-> > +
-> > +      default-intensity:
-> > +        description: |
-> > +          An array of 3 integer specifying the default intensity of each color
-> > +          components in this LED. <255 255 255> if unspecified.
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
->
-> I am still not convinced these two properties are correct. Why this LED
-> is special and defines default brightness and intensity and other LEDs
-> do not? You explained you are doing it for user-space which is usually
-> not a valid reason for changes specific to one binding. Either all
-> bindings should support it or none.
+I'm not super-familiar with the audio details, so I would be very
+grateful to receive your comments.
 
-There's already a default-state for simple LEDs without brightness
-control so I think it makes sense to add default-brightness for LEDs
-with brightness control and default-intensity for colored LEDs.
-The default-state seems to be implemented in various LED drivers,
-so I implemented these two properties in my LED driver.
-There's nothing device-specific about these two properties.
+Thanks!
 
->
-> > +        maxItems: 3
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 255
-> > +
-> > +      reg:
-> > +        description: |
-> > +          Which LED this node represents. The reg of the first LED on the chain
-> > +          is 0.
-> > +        maxItems: 1
-> > +
-> > +    required:
-> > +      - reg
-> > +      - color
-> > +      - function
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/leds/common.h>
-> > +    spi {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        leds@0 {
->
-> git grep leds@ -- Documentation/devicetree/ | wc -l
-> 1
-> git grep led@ -- Documentation/devicetree/ | wc -l
-> 165
->
-> so rather not the first one ("leds").
+Geert Uytterhoeven (2):
+  dt-bindings: sound: ti,pcm3168a: Convert to json-schema
+  [RFC] arm64: dts: renesas: ulcb-kf: Fix pcm3168a audio codec node
 
-As you can see, this node describes a chain of LEDs, not
-a single LED, so the plural form is more appropriate than
-the singular form.
+ .../devicetree/bindings/sound/ti,pcm3168a.txt |  56 ----------
+ .../bindings/sound/ti,pcm3168a.yaml           | 105 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      |   5 +-
+ 3 files changed, 107 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
 
->
-> There is also:
-> git grep led-controller@ -- Documentation/devicetree/ | wc -l
-> 30
+-- 
+2.25.1
 
-This also isn't appropriate. WS2812B is a single LED package
-of 3 diodes and a microcontroller. If we treat every package
-as a LED, the SPI MOSI is connected directly to the LED
-packages themselves with no controller in between.
-If we treat the microcontroller as a led-controller, every
-LED contains its own controller, instead of one controller
-controlling all LEDs, and the parent node still shouldn't
-be called a led-controller.
+Gr{oetje,eeting}s,
 
-Here's a picture of the WS2812B LED package:
-https://cdn-shop.adafruit.com/970x728/1655-00.jpg
-and a chain of them:
-https://cdn-shop.adafruit.com/970x728/1463-00.jpg
+						Geert
 
 --
-Regards,
-Chuanhong Guo
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
