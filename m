@@ -2,128 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3286640AF9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:41:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A700640B0C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:48:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233755AbiLBQlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:41:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
+        id S233375AbiLBQse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:48:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233483AbiLBQlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:41:44 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B88C7267
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:41:43 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p8so8193961lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:41:42 -0800 (PST)
+        with ESMTP id S233860AbiLBQsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:48:33 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E081D3E080
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:48:32 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id 124so5453035pfy.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:48:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BAq+fVHmIhCdKS7zABOm6n+xbqhaX7I/kqj6V6QJRdA=;
-        b=cEvbPinNNHFoSzYYRCjmu+dZle00/Om99aGXDsuGwJtsjH0kcHXB3AbG7Fln+3Xe7f
-         9Ed2Du4oJ5VfR09EEqhaFLIbzhnk5sWAK2MB+M56NYEEraFEowoahozwZZ+OWMDVj1va
-         L3Fg4QmE2KsZEk3e5XZTI18U4ZDwDAMHxKNUEHD60Tr1hOTIjff3AcLWl8/9JxEzCjsJ
-         hshnf+ycPMcOSSBoCJEZB4FCrFbyo2cmXpZ01qt7NDSqa2HT1ZL+dnv0wVUdbSFfwf7K
-         PssCqh2six1PYS51W4kh3lg7t4NDp5FR8oEOeim1Ak1FoxS0jWbXqIjzYU8OsSt7oW3Z
-         3QRw==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VpCL2d3ounGZBt3k6mgRGj9QyacZoaCLu4k4bWG1Yac=;
+        b=uQvm2c1tO51a/rQoZNRtiADI9dHao31nXC9Zx0NiYXLga7u/NWO73HTQLXgtIho58D
+         lSAZRSMDXPuOw/nfovLgcuktW9WoDQ0gzcW6SOJj6coNTP26hTvrTRVPHfDC7HgksY5g
+         Sz4E4AWTi+U+gRYLDqA4ZuVWi9I+OQxdhWtcM8GQW8Sk1iihMP7VW6twhgLAq9RzKB/R
+         bihOTTnuLqENotY5mOUnhAaiv1hh0Go9leX8SCmTavqMcaMsTSH31fvXkbCOwP+xk05z
+         cveak6F7RDRdk/hRZxiqmcx74h9WGPd45Jw9wnVzLuJK4/oBRc2kxESoye0uWuQn1iuJ
+         3RYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAq+fVHmIhCdKS7zABOm6n+xbqhaX7I/kqj6V6QJRdA=;
-        b=7mfQUtOn5lLUqWI/y0Dqe9xp+DZykZUMG4WCV0ZPVnc+nSi0zp6l8YqbbADuRPM4Uu
-         4oT1av3PHNx8VdCjlQSdgETTBYs+YAM2GHdsm0vo7rhcs5uxvowMO8bmjC+5GtQ+JBEF
-         wSJaVTwK6BjxvdfuekAG3Sz3DOa5W2O9arvVlORdi6h4sY6hiFZRo28tfr/gU36J/d//
-         wNeBStP34bbyj8aK5tQ5O4uUBJ31mcW10w0CO0t7HdlkzBqdnI1cIcn3YG+jhxeWFNky
-         +CDuYunFcBCfzVICC3gz2QyHKqarATDKWNspma2johfTIlkTYdGvTFMZi3ffvFasEMOf
-         E6Ig==
-X-Gm-Message-State: ANoB5pmTZ89jfBGJeiSVXbxgX0ncwNKhVe6uiYSBMejPMhk3WUSlkeO+
-        PxDQuKktWp6xoSQlm+NOsBT94A==
-X-Google-Smtp-Source: AA0mqf6oea5Kvs0FUDDil6DVjGdcz2bh7/d3UarMFl9jl+UoVskWak6MPuASvv0rchDNa4BGdJu6aA==
-X-Received: by 2002:a05:6512:484:b0:4a2:33f8:2d0f with SMTP id v4-20020a056512048400b004a233f82d0fmr23443294lfq.140.1669999301382;
-        Fri, 02 Dec 2022 08:41:41 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b004a25468d86asm1075351lfa.68.2022.12.02.08.41.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 08:41:39 -0800 (PST)
-Message-ID: <620b19f5-2202-21a5-7e3b-816dcd42d1b4@linaro.org>
-Date:   Fri, 2 Dec 2022 17:41:37 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VpCL2d3ounGZBt3k6mgRGj9QyacZoaCLu4k4bWG1Yac=;
+        b=B/zN1oAudz20pPW+F7STo/8gglI7X9Fk5Qhix9Y2hjD7Ebne8bxxhPI85uswSIVEkU
+         Y/k7vVFludMwOwcpnR0MF/7geTc1H6kvR7pnODMuHUv9n28TGy7f3+Fa+pUgFSRv8ah3
+         RJyGyfUMxAPVxhehHV2PY45v70ygGryVO5+O8AhA08kW8DMc1xlD32olDKHIwgK7OOMb
+         jyxpF6WWaSfaIEVYBILfCCI2we9t/MQ5qZ0dj5r1+YUZuh1FlNP3HVhJULbftRrS2l/f
+         3aLrsR/2iM7FQauIDrcWUawx68ZvKiAImCo5YNuoS4rzo/7Eh8hEsGpW/H4cyVbz0XZN
+         H8PA==
+X-Gm-Message-State: ANoB5plU/i83maDNUX5WnOzhm3NUAbuW6wxJAdel5+98onDSQvk3/1+D
+        MXiQ3xA2xpkEkOpyRHO8I61Hdf3ms0MkxLrRqyRP8A==
+X-Google-Smtp-Source: AA0mqf7bcoXCz2VyG+4c+4abOMfZTrobZGtLxUSOA42mZfx9Lcj5Dwi46rPi9w1XHDcNCsXU6W0HzUK3LDwBx4YwCOw=
+X-Received: by 2002:a62:b501:0:b0:563:771d:417f with SMTP id
+ y1-20020a62b501000000b00563771d417fmr54371490pfe.45.1669999712341; Fri, 02
+ Dec 2022 08:48:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: leds: add binding for aw200xx
-Content-Language: en-US
-To:     Martin Kurbanov <MMKurbanov@sberdevices.ru>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+References: <20221201003109.448693-1-tharvey@gateworks.com>
+ <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com> <Y4n41iL6cG9FsndI@lunn.ch>
+In-Reply-To: <Y4n41iL6cG9FsndI@lunn.ch>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 2 Dec 2022 08:48:21 -0800
+Message-ID: <CAJ+vNU0kAoVFFmoFfiOhtErxqAkB3MmP3Q2dNCZP4xm_AaWhcA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>
-References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
- <20221124204807.1593241-2-mmkurbanov@sberdevices.ru>
- <bb12ea88-b416-7e32-93b9-730b6f009b98@linaro.org>
- <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2022 18:43, Martin Kurbanov wrote:
-> Hi. Thank you for quick reply. 
-> 
-> On 25.11.2022 11:29, Krzysztof Kozlowski wrote:
->>> +
->>> +  imax:
->>> +    maxItems: 1
->>> +    description:
->>> +      Maximum supply current, see dt-bindings/leds/leds-aw200xx.h
->>
->> No. Use existing properties from common.yaml. This looks like
->> led-max-microamp and it is per LED, not per entire device.
-> 
-> The AW200XX LED chip does not support imax setup per led.
-> Imax is the global parameter over the all leds. I suppose, it's better
-> to add vendor prefix or take minimum from all subnodes?
-> How do you think?
+On Fri, Dec 2, 2022 at 5:08 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Thu, Dec 01, 2022 at 10:02:08PM -0300, Fabio Estevam wrote:
+> > Hi Tim,
+> >
+> > [Adding Andrew]
+>
+> It is not wrong, but it should also mostly not be needed. The switch
+> driver can link internal PHYs to ports.
 
-Have in mind that led-max-microamp is a required property in some cases,
-so skipping it and using per-device properties does not solve the
-problem of adjusting proper currents. What if each LED you set for
-something which in total gives more than your imax?
+Andrew,
 
-> 
-> 
->>> +/* Global max current (IMAX) */
->>> +#define AW200XX_IMAX_3_3MA  8
->>> +#define AW200XX_IMAX_6_7MA  9
->>
->> No. Bindings are not for storing register constants. Feel free to store
->> here IDs (ID start from 0 or 1 and is incremented by 1)... but how the
->> IMAX even matches any need for "ID"?
-> 
-> IMAX can be chosen from the predefined values in the
-> datasheet (10mA, 20mA, etc). Do you mean the IMAX should be round down
-> to nearest supported value in the driver?
+I should have mentioned in the commit log that this does not change
+behavior on Linux but is required for boot firmware. Specifically
+U-Boot requires the internal PHY ports to be defined for its DSA
+architecture and they share dt's as much as possible.
 
-What Linux driver support does not matter here. Bindings should reflect
-hardware and the same time not store register constants but logical
-values (for current this is in uA).
+>
+> > >                                 port@5 {
+> > >                                         reg = <5>;
+> > >                                         label = "cpu";
+> > >                                         ethernet = <&fec>;
+> > > +                                       phy-mode = "rgmii-id";
+> > > +
+> > > +                                       fixed-link {
+> > > +                                               speed = <1000>;
+> > > +                                               full-duplex;
+> > > +                                       };
+> > >                                 };
+>
+> This part is needed to make a warning go away. Does the SoC network interface
+> have phy-mode = "rgmii"; ?
 
-Best regards,
-Krzysztof
+No, it looks like this:
 
+&fec {
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_enet>;
+        phy-mode = "rgmii-id";
+        status = "okay";
+
+        fixed-link {
+                speed = <1000>;
+                full-duplex;
+        };
+
+        mdio {
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                switch@0 {
+                        compatible = "marvell,mv88e6085";
+                        reg = <0>;
+...
+
+Is something here wrong?
+
+Best Regards,
+
+Tim
