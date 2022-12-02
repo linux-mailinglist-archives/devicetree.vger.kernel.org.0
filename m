@@ -2,137 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 893DC6406BF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:24:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABE166406C8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233368AbiLBMYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 07:24:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49532 "EHLO
+        id S233481AbiLBM1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 07:27:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233444AbiLBMYD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:24:03 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F23ECBA72
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 04:24:00 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id x11so5227517ljh.7
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 04:24:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B1IE4PC6erRK/A01N47UIMsmxLEl+S0fBRDo4ibGO5I=;
-        b=dn1rHkT/ZUpHyXQkzsJGPlvGVowx9j7sNI5P/+sOF6lJyJwhCYBWbkJwSr3gHcJJPT
-         Q9r6ceBkL275DvXfUzbEqklBMKatqISFq5ByqpfiH77IxA+aqi1nsdx8UqE8aFKOCUve
-         JVl4GDzVLUSZQmwVNuJ/GSOdKxu2UouZMWjkJfJHNeUZLbvWJMeGu6G7EkkctXoe+qmv
-         rbHyfjT0CrCz0n2I7qy7bNGvfhYgxstTUXa3No67EHRP1GiAkgEqGl7/PYlbjat6XoMe
-         Pa6uhNEly0HAYIIlDUmSuXuZXiB1sz/6HXkgNwufU+VG60kgLAEtS1ancfJo+5o2GS09
-         PVFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B1IE4PC6erRK/A01N47UIMsmxLEl+S0fBRDo4ibGO5I=;
-        b=IB2GD9NHMK93n93qLkKaOMh6vXEutf8iz5hUBEzrzu5goGUKwp4n1EeGEA2IDPihQi
-         gQrpOcPbuRJLPQ46fdWTEO1DtVrNuWrLMwfQlVzM1wdg7j9l4Jc/UNdszRbiaxL5qcNO
-         ug3MwAngwriozNr+hJpMfEJkISF6ynMQf8EuBmvV3/rEsBdj1tYkml2TSG1LSo8CU0iK
-         rnKukBz8zu4B9QkIceWFNM5RTOjQPXyAO2YcjRqNlw0yrMGu7gTcfKcx/Usj6TW5vwi3
-         awG1Qj3Fg7x7nyj1aAYldxu9mFQ2cdVE/UCbgj6RAz6yvCZFZl03B/IAFcoEPSdZxsPn
-         hPrA==
-X-Gm-Message-State: ANoB5plRdhwVPkDBXYnsp0mr+wt1dhZIm6P3lB6sQywTUgm6xPqyCQVb
-        RDqV3xLfcjEmW1Gcxe3zreIvnQ==
-X-Google-Smtp-Source: AA0mqf5wOgdF/ULr5YJPk+SAVqYWOsw8ngbLK8kRKQAy9jLV7eusYZ85qij8jL5qnFKYUl2GvVdx6Q==
-X-Received: by 2002:a2e:b894:0:b0:277:1c8f:7e8c with SMTP id r20-20020a2eb894000000b002771c8f7e8cmr18986171ljp.296.1669983838529;
-        Fri, 02 Dec 2022 04:23:58 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c24-20020a056512075800b004a01105eea2sm997019lfs.150.2022.12.02.04.23.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 04:23:58 -0800 (PST)
-Message-ID: <f633b0f3-9fdb-8beb-7edf-7967c7c0c3d5@linaro.org>
-Date:   Fri, 2 Dec 2022 13:23:56 +0100
+        with ESMTP id S233023AbiLBM0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:26:55 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C9DCBA70;
+        Fri,  2 Dec 2022 04:26:53 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 3F1A95FD0B;
+        Fri,  2 Dec 2022 15:26:51 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1669984011;
+        bh=8OBXNzSAS41lpYJ9BhmbrARwv9XI5QpXEVQ2Yvfc/tU=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=ihCgOiIlELXCrpiiNICxGJoV1LWQ8yVz8asct5UUredVutLNjzuZzGGP98L78Jk27
+         kN62mykio3iggELzYidmLK0/Rwr9hX3A+AiWyee/sjbsRENF1jTvns51bqlB8seRX5
+         waaFao0pEXNng9fC/oErDwUTGMlVGPtzuF6a9xMAm5DwIwa4uOB1ZITqR3o8rAfjiz
+         R8duAW65C6r2TLY4skcIBg/y30jv52znpi4dqt3SeK72UEUQO8w3IGcN4eL0AUNUqO
+         5bOiARbtf2MHlHgySg2RST4PzqdhEcd5iVnigkXp6VjMIXMnbgZ6mnaMJR5MLde52X
+         AW3/Iz2wJRcPQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri,  2 Dec 2022 15:26:50 +0300 (MSK)
+Date:   Fri, 2 Dec 2022 15:26:50 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+CC:     <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v8 01/11] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Message-ID: <20221202122650.bybwjszlgdnu3zvm@CAB-WSD-L081021>
+References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+ <1jbkom83fg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos
- SOCs
-Content-Language: en-US
-To:     Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daehwan Jung <dh10.jung@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Colin Ian King <colin.i.king@gmail.com>,
-        Artur Bujdoso <artur.bujdoso@gmail.com>,
-        Juergen Gross <jgross@suse.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
- <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
- <Y4hgnxGMEuizJumr@kroah.com>
- <c524cba6-4438-461a-ab05-9325fe09f832@app.fastmail.com>
- <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1jbkom83fg.fsf@starbuckisacylon.baylibre.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 07:44:00 #20636821
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 13:22, Mathias Nyman wrote:
-> On 1.12.2022 11.01, Arnd Bergmann wrote:
->> On Thu, Dec 1, 2022, at 09:06, Greg Kroah-Hartman wrote:
->>> On Thu, Dec 01, 2022 at 11:13:31AM +0900, Daehwan Jung wrote:
->>>> This driver works with xhci platform driver. It needs to override
->>>> functions of xhci_plat_hc_driver. Wakelocks are used for sleep/wakeup
->>>> scenario of system.
->>>
->>> So this means that no other platform xhci driver can be supported in the
->>> same system at the same time.
->>>
->>> Which kind of makes sense as that's not anything a normal system would
->>> have, BUT it feels very odd.  This whole idea of "override the platform
->>> driver" feels fragile, why not make these just real platform drivers and
->>> have the xhci platform code be a library that the other ones can use?
->>> That way you have more control overall, right?
+On Fri, Dec 02, 2022 at 12:11:53PM +0100, Jerome Brunet wrote:
 > 
-> Agree that overriding the generic platform driver xhci_hc_platform_driver
-> from this exynos driver is odd.
+> On Fri 02 Dec 2022 at 01:56, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 > 
-> But I don't understand how this works.
-> Where are the hcds created and added when this xhci-exonys driver binds to
-> the device? all this driver does in probe is the overriding?
+> > From: Jian Hu <jian.hu@amlogic.com>
+> >
+> > Add the documentation to support Amlogic A1 PLL clock driver,
+> > and add A1 PLL clock controller bindings.
+> >
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+> >  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+> >  2 files changed, 68 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> >  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > new file mode 100644
+> > index 000000000000..d67250fbeece
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Neil Armstrong <narmstrong@baylibre.com>
+> > +  - Jerome Brunet <jbrunet@baylibre.com>
+> > +  - Jian Hu <jian.hu@jian.hu.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: amlogic,a1-pll-clkc
+> > +
+> > +  "#clock-cells":
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +     - description: input xtal_fixpll
+> > +     - description: input xtal_hifipll
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: xtal_fixpll
+> > +      - const: xtal_hifipll
 > 
-> Am I missing something here?
+> Do we really need the "xtal_" prefix ?
+> 
+> Seems like the clock is the PLL, not the xtal
+> 
 
-Because it is not a driver for Exynos... it's a driver for wakelocks for
-their specific Android use-cases which the manufacturer ships for their
-Android devices. Due to Google GKI, they try to squeeze into upstream.
-But this is huge misconception what should go to upstream and Samsung
-does not want to keep discussing. They just send random patches and
-disappear...
+This name was formed from specification registers description. Register
+CLKTREE_SYS_OSCIN_CTRL has "gate en" field which calls "xtal ->
+HIFIPLL", therefore if was transformed to xtal_hifipll name.
 
-Best regards,
-Krzysztof
-
+But I agree with you, that "hifipll" is better name choice.
+ 
+-- 
+Thank you,
+Dmitry
