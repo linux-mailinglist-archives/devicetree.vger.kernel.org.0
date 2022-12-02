@@ -2,159 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 971EC64065C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 365AE640664
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233155AbiLBMHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 07:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56726 "EHLO
+        id S232922AbiLBMI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 07:08:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232011AbiLBMHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:07:09 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68027BD0E2
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 04:07:08 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id h12so7446610wrv.10
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 04:07:08 -0800 (PST)
+        with ESMTP id S233184AbiLBMIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:08:24 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA4E228E0D
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 04:08:23 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id be13so7110938lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 04:08:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=ufkksRCnKTyw8dIplA/b/uLD8QaAG4PtkuYozKAX1Z0=;
-        b=Z0M6DwF7LCtwmn/juE9eFrYObIzTrdrAjL4bg6fXZ9E6KUOBabZPQY0qTqII5jvLBp
-         cMw2Ack4Ouvc5Ma5M8TUMhU5ZFHANZTj+BNojedcmz4qxNKUFGVjoEJ3LG6lXKFzKpHO
-         /aJz+K/ZjoCZIEdycG9SH4B2stg9SGb9yEuQUJFBdiqKIWqy4F3Tbsn5D4jmDd42zG8U
-         EQwSdpBKOdFIyG0K4vqZ9MXMtn6F8bHyiBN4gsK4jGpR3ydfLSmtyRPo4Lp9CM6XUdlQ
-         agajMzxyImZ3PZfXKMjzknUtcFHE13TUbPuNwcAYTGK2t5ysDZK2em3Mvj72Eg05koL5
-         ypYA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aduZyZsfoBSNeS7PUzHQe3IQH2NBuBYUfQB0aJd37+E=;
+        b=vZYgHHxJgzG7uGa8/l+TR4Sys+oq5ytJ9eFelFwVpL5EFD54fCjgS+0UxakUpZYF6B
+         pCc6dINKs8kjbILfld67LYdMEOBWPpPXGIApYs2Mg4d+Fz22ePwuIZGZJGbx7CaFXxRK
+         6I9c+omo2pVqiwKrDXkapRG46Dj3hDD0JZqur4i82ogXIT8azPVl3P/YM/E0zleJ/isw
+         p9A4+OkYK6aRhb1f/C+4TP/G9eq5w9XgLJ6IEeOpRguQQ3T11G0FJcwcGTFeRDaYrG9F
+         V/xgtlYGqFHWecxcqf7ovrBXi4A+hbCCi4RRZ6orbQQ3SA75AVi7OcULKH40bJB1hPr+
+         RKdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ufkksRCnKTyw8dIplA/b/uLD8QaAG4PtkuYozKAX1Z0=;
-        b=1Dpptz9mU/grJcDNCiQOYQ71FukoVK2dDK+azCprUbAEhVNB5D9rN1DwGkTrasPByB
-         klxOKWhK5bRegjxcd4mVhEXSA521TKuBfvV+FLTJrOdGG9KqkiMBhk6rQ14lKnxLMEZc
-         qcJW1TPI8VEYxjuFq85tTnC2xVrQX3dUN0G+BtQWs1V2B6HKv8xKr/LF6TbJHdYvrSYO
-         1X5MB51PS4THj6tg2hwcXOGFsnDlsBzTbk6MRnBjO82Ho6YTfRR0lj5uymBN6N5WDEZJ
-         HK1pOevapLzVN3WjtnabQya0rCWwdRp0Ds1b+4FGTCX8R0BRoLIHFfF2F2RY8ekH2nGd
-         ZWyQ==
-X-Gm-Message-State: ANoB5pnTi6ygJrG3BGUyI++xW5Mx46mQ3ZWQKf/Hssjr+LQFn0hrf1+F
-        bPiOdWG1IQ8+MUFGD8C4Gw9xVA==
-X-Google-Smtp-Source: AA0mqf7OMOowsFNaor0Sk6Vwy+31GQ71GxxItMw6BB+vya1kxwo11iMY7T1bzqWILnH0q/SYNXJl2g==
-X-Received: by 2002:a05:6000:1b86:b0:241:9606:1123 with SMTP id r6-20020a0560001b8600b0024196061123mr38434943wru.537.1669982826911;
-        Fri, 02 Dec 2022 04:07:06 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a23-20020a05600c225700b003cfe1376f68sm8168690wmm.9.2022.12.02.04.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 04:07:06 -0800 (PST)
-References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-12-ddrokosov@sberdevices.ru>
-User-agent: mu4e 1.8.10; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        neil.armstrong@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com
-Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 11/11] arm64: dts: meson: a1: introduce PLL and
- Peripherals clk controllers
-Date:   Fri, 02 Dec 2022 13:03:59 +0100
-In-reply-to: <20221201225703.6507-12-ddrokosov@sberdevices.ru>
-Message-ID: <1jlenq6mc7.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aduZyZsfoBSNeS7PUzHQe3IQH2NBuBYUfQB0aJd37+E=;
+        b=Sb0jH4L1rc4oOJC+OCG/eIX2L+LQlFkQRZPy+ZV3TyME/2NbpIp3KXaXqqwCUkyQT/
+         kZsLEZVWjn0sh9+GF9o5E89PGJQy55w6udqXyxbm3yWi5VSP+qgtC1nHsdh/+qLeVGka
+         +6C3aOWCVVU2JJ6RfRDMiElqrZ5VDvF8yT+3NMsDE9aYcdMfljghcW0kbhPmyghIS6nZ
+         BHnYYpS1XB+H2q9f4dLaSzr8YVAD3IohCTFFIFJeWJM/qhVLtFo+j7tiF1Q9dSxAo9uO
+         irg04YZTbDCjIFuyMuuXwrrzP7FK/VEaoxUZtEyzIYMosr9PFnrGlGZX00eFgtN5+msT
+         aNHQ==
+X-Gm-Message-State: ANoB5plrOIFzYiVqquxjX5+wVFL3+ZIpojUpmQQdEQa4eHfsPclFG2TW
+        bXUHcJ+d49hZ3djmyPrpNaOsMQ==
+X-Google-Smtp-Source: AA0mqf7zq3pmBogeq/BXvzyr/S6ku4C+ro/un1B7bvvRgBTagttqVf4EMSjp0gZD7ymuiLT4pSW4jg==
+X-Received: by 2002:a05:6512:12d5:b0:4b5:f51:aa72 with SMTP id p21-20020a05651212d500b004b50f51aa72mr5518700lfg.371.1669982902095;
+        Fri, 02 Dec 2022 04:08:22 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b004917a30c82bsm992831lfo.153.2022.12.02.04.08.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Dec 2022 04:08:21 -0800 (PST)
+Message-ID: <4345f968-8c2b-6c54-7f2c-81effaba3ab2@linaro.org>
+Date:   Fri, 2 Dec 2022 13:08:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 8/8] dt-bindings: soc: socionext: Add UniPhier AHCI glue
+ layer
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20221129103509.9958-1-hayashi.kunihiko@socionext.com>
+ <20221129103509.9958-9-hayashi.kunihiko@socionext.com>
+ <33ca35f4-acee-6b2b-1a73-41ed5882819e@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <33ca35f4-acee-6b2b-1a73-41ed5882819e@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/12/2022 10:30, Kunihiko Hayashi wrote:
+> Hi Krzysztof,
+> 
+> On 2022/11/29 19:35, Kunihiko Hayashi wrote:
+>> Add DT binding schema for components belonging to the platform-specific
+>> AHCI glue layer implemented in UniPhier SoCs.
+>>
+>> This AHCI glue layer works as a sideband logic for the host controller,
+>> including core reset, PHYs, and some signals to the controller.
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> 
+> (snip)
+> 
+>> +examples:
+>> +  - |
+>> +    sata-controller@65700000 {
+>> +        compatible = "socionext,uniphier-pxs3-ahci-glue", "simple-mfd";
+>> +        reg = <0x65b00000 0x400>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0 0x65700000 0x100>;
+> 
+> In PATCH 7/8, you suggested that the node name of "USB glue layer" should
+> changes to the generic node name "usb@...".
+> 
+> However, in case of this "AHCI glue layer", I can't change "sata-controller"
+> to the generic node name "sata@...", because ata/sata-common.yaml has pattern
+> "^sata(@.*)?$", and the changed node matches this pattern unintentionally.
+> 
+> This layer isn't a sata host controller, so it's hard to give a generic name
+> to this node. I'd like you opinion.
 
-On Fri 02 Dec 2022 at 01:57, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+Yeah, I think it's fine. We do not have good names for such nodes.
 
-> This patch adds clkc_periphs and clkc_pll dts nodes to A1 SoC main dtsi.
-> The first one clk controller is responsible for all SoC peripherals
-> clocks excluding audio clocks. The second one clk controller is used by
-> A1 SoC PLLs. Actually, there are two different APB heads, so we have two
-> different drivers.
-
-Please send this change through a separate patcheset.
-
-One patcheset/series for clk (and bindings)
-Another one for the DTS (usually sent after the first one is accepted)
-
->
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 27 ++++++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index b4000cf65a9a..38e6517c603c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -6,6 +6,8 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/gpio/meson-a1-gpio.h>
-> +#include <dt-bindings/clock/a1-pll-clkc.h>
-> +#include <dt-bindings/clock/a1-clkc.h>
->  
->  / {
->  	compatible = "amlogic,a1";
-> @@ -81,7 +83,6 @@ apb: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
->  
-> -
->  			reset: reset-controller@0 {
->  				compatible = "amlogic,meson-a1-reset";
->  				reg = <0x0 0x0 0x0 0x8c>;
-> @@ -124,6 +125,30 @@ uart_AO_B: serial@2000 {
->  				clock-names = "xtal", "pclk", "baud";
->  				status = "disabled";
->  			};
-> +
-> +			clkc_periphs: periphs-clock-controller@800 {
-
-device name should be generic so
-
-clkc_periphs: clock-controller@800 would be better
-
-> +				compatible = "amlogic,a1-periphs-clkc";
-> +				reg = <0 0x800 0 0x104>;
-> +				#clock-cells = <1>;
-> +				clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-> +					 <&clkc_pll CLKID_FCLK_DIV3>,
-> +					 <&clkc_pll CLKID_FCLK_DIV5>,
-> +					 <&clkc_pll CLKID_FCLK_DIV7>,
-> +					 <&clkc_pll CLKID_HIFI_PLL>,
-> +					 <&xtal>;
-> +				clock-names = "fclk_div2", "fclk_div3",
-> +					      "fclk_div5", "fclk_div7",
-> +					      "hifi_pll", "xtal";
-> +			};
-> +
-> +			clkc_pll: pll-clock-controller@7c80 {
-
-Same here
-
-> +				compatible = "amlogic,a1-pll-clkc";
-> +				reg = <0 0x7c80 0 0x18c>;
-> +				#clock-cells = <1>;
-> +				clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
-> +					 <&clkc_periphs CLKID_XTAL_HIFIPLL>;
-> +				clock-names = "xtal_fixpll", "xtal_hifipll";
-> +			};
->  		};
->  
->  		gic: interrupt-controller@ff901000 {
+Best regards,
+Krzysztof
 
