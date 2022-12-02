@@ -2,122 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61FF4640AAB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AFC640ACE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:31:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233827AbiLBQ0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:26:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
+        id S234173AbiLBQb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:31:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233764AbiLBQ0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:26:47 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 283672AE5
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:26:46 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id b9so5969063ljr.5
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:26:46 -0800 (PST)
+        with ESMTP id S233375AbiLBQbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:31:04 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0732AE19
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:30:35 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id n21so3389625iod.5
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:30:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0UF5I9xvAaNLvIJujC4MXTflu00bNErvoIoO/UHyR+U=;
-        b=MMHLX/rYkTO6DNuNz5CGYYz2/LRrC4kK+iaqOPC2lld4zqAcWZQDW9JwxgFmSRVK43
-         soc+3LnasSwCmZV7er/Eqp1x3hFIeaWBgKheWS1ih+GwvTD4TZvvfhl3ob/nnmvy1Bog
-         H7cx9W3Vmz/F6Rg98rPxb9KwGI0qaHciECzbf4lfz/g0Bc9l9AKDlD45Q+7iigmTuW3R
-         hRPxDRPD20+Ypn73lFvbQgkklMQR13Mhd/qTXcU2nzVRNTkdJ5CsuNZGetmyW9YHMiuL
-         VeAn9Gx0J4vlJKVBA1S+VA+igDqwMTawlKO9Em6bbnmNcR50RQygshB0pw+R/NKo3cpy
-         GCww==
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TGI79l3SB2scnIYPbbhh2hhFnWNncxoQkx+8jpYYaN8=;
+        b=GsR7n5qIgPW+1f7kTo/JlCpHSrf1WCdh3jPpQddfge5gMtUrhk5D1sPUfrGLhAtG7t
+         FNwRT+mGFpmBPFCoG9hCcQ+XoFhGjBQG22EToyuBfCkkNtBQwyZRZosUeA5MZvQXViku
+         cf6fyOcAdg1JO6PBSOS7Cx3tH2XtVlTr3OabA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0UF5I9xvAaNLvIJujC4MXTflu00bNErvoIoO/UHyR+U=;
-        b=JOpuvrxoa6o3A4i0l826QGGFJj42PmNa1OWp2R6KQOSRn7fFoBvWboHAiVg74hBlgl
-         g2f85krpQMZeFYf1p5sEvRzTaktqMtCBVJBIaiPhKxRswdGe49Zew23EJt26YTaRUOY9
-         usS68viQb56gCVdVDPF6r5tpARiGbXoH5ay18nya9fGzm5eRBy93e21ODMkU9qbJeCu1
-         ehUeHBqf7NBmB8M75gg3+i2GXOev15CDNZB3StzYkL57oOqXbV09GD8T8AzWVv2wJi/q
-         2QB8vtE4JG+VgoWYBl3fskxs6XtEOMQKx3dz0EtrJN2QLPeOx+ir94/Qr5UWH/xGQqsd
-         bIYg==
-X-Gm-Message-State: ANoB5pnXNrMmJQ3HnkJfMvCwulABTNi0BoVgwhKwwlJ/vvbpVZgUkn6d
-        e4rFrLUkvUcDaKIwgKDicCf2iw==
-X-Google-Smtp-Source: AA0mqf5lCR6dD2t++a9tnKVO+0/luzxPDifl4p+kmYbtSEFfuYBxDaWMLm1Fiibk9ZBslnwyiuaqqw==
-X-Received: by 2002:a2e:b90a:0:b0:278:ec8b:4783 with SMTP id b10-20020a2eb90a000000b00278ec8b4783mr18134537ljb.91.1669998404415;
-        Fri, 02 Dec 2022 08:26:44 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05651c03ce00b0027998486803sm661724ljp.130.2022.12.02.08.26.42
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TGI79l3SB2scnIYPbbhh2hhFnWNncxoQkx+8jpYYaN8=;
+        b=6QSZclHuBpvG/COSFxS7ydILA/BTHqNA/AX/czFtpv+yp1n+iP8z8hMXGQaZeDeq1t
+         9cv/wYyEljdxztWX2eXbYefyB8JCQmy+tWM5PN7k3xGtz11h146poD3Zra9EsxO9pS08
+         9UZwXQqaUs19y7ipbWjG4HtEiiPUSvDzhAsIZKCE/JGRFhucgccIidMDvfXtQb6UbZnu
+         LzGi99VsYFdMTEQTHBuoNiFC3mC850B4ybAtAk4xr7TME7Yufc4lu5I4rUbzMqCgYht7
+         e9LqOROS788c2/VZiBdPY/kFs2VwzTZ8MFfl70rblt8Z+w9AqxVmGz2DKp9JZVhqHQw/
+         X4pg==
+X-Gm-Message-State: ANoB5pmtT5AqiC7+Ozdm7gZEYCPuP/2c4fcZ2/MoCxGQOqqdzv6vyOYu
+        c2vYUCpF7J5FNMgNCTPnWrxbGg==
+X-Google-Smtp-Source: AA0mqf7A4Sb/myv6BWvienPqG3g9CQzW5iEVb2ADr2Mn6YNdixqQrqPxoPmb3nLpqUyf6mSPcop++A==
+X-Received: by 2002:a02:715a:0:b0:375:260d:56ad with SMTP id n26-20020a02715a000000b00375260d56admr34073591jaf.302.1669998634914;
+        Fri, 02 Dec 2022 08:30:34 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id i14-20020a0566022c8e00b006df19c8671fsm2845290iow.27.2022.12.02.08.30.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 08:26:43 -0800 (PST)
-Message-ID: <875a9a21-1cb7-3708-30f1-af6dd48e4f20@linaro.org>
-Date:   Fri, 2 Dec 2022 17:26:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: sdm845-db845c: fix audio codec
- interrupt pin name
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        Fri, 02 Dec 2022 08:30:34 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+X-Google-Original-From: Matthias Kaehlcke <mka@google.com>
+Date:   Fri, 2 Dec 2022 16:30:34 +0000
+To:     Owen Yang <ecs.taipeikernel@gmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Gavin Lee <gavin.lee@ecs.com.tw>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Abner Yen <abner.yen@ecs.com.tw>, Harvey <hunge@google.com>,
+        Bob Moragues <moragues@google.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221202155738.383301-1-krzysztof.kozlowski@linaro.org>
- <CAD=FV=U86PyVQP4wbhwEkzYprJxz2-S3ooniuYKJBNQOudx2uA@mail.gmail.com>
- <CAD=FV=VjfFx_GBNh9zC=fdV5gUBHww+4BhSSpAq0iq-72i62TQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=VjfFx_GBNh9zC=fdV5gUBHww+4BhSSpAq0iq-72i62TQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v13 2/2] arm64: dts: qcom: sc7280: Add DT for
+ sc7280-herobrine-zombie
+Message-ID: <Y4ooKlcDdfHPzEpw@google.com>
+References: <20221202095048.v13.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+ <20221202095048.v13.2.I80aa32497bfd67bc8a372c1418ccc443ccf193e4@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221202095048.v13.2.I80aa32497bfd67bc8a372c1418ccc443ccf193e4@changeid>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 17:18, Doug Anderson wrote:
-> Hi,
+On Fri, Dec 02, 2022 at 09:57:03AM +0800, Owen Yang wrote:
+> Add DT for sc7280-herobrine-zombie
 > 
-> On Fri, Dec 2, 2022 at 8:08 AM Doug Anderson <dianders@chromium.org> wrote:
->>
->> Hi,
->>
->> On Fri, Dec 2, 2022 at 7:57 AM Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> The pin config entry should have a string, not number, for the GPIO used
->>> as WCD9340 audio codec interrupt.
->>>
->>> Reported-by: Doug Anderson <dianders@chromium.org>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> ---
->>>
->>> Cc: Doug Anderson <dianders@chromium.org>
->>>
->>> Changes since v2:
->>> 1. New patch.
->>> ---
->>>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> Presumably should have a "Fixes" tag since this is likely a true bug.
->>
->> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> 
-> FWIW, this got copy-pasta-ed to another place, which I just noticed as
-> I'm looking at your v3. So while your change is correct, it'd be
-> better to also fix "sdm845-xiaomi-beryllium-common.dtsi"
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
 
-Yep...
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
