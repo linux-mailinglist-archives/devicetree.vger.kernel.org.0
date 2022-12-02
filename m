@@ -2,118 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FF164072B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80295640734
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 13:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232825AbiLBMvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 07:51:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50192 "EHLO
+        id S233578AbiLBMzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 07:55:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbiLBMvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:51:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C72CA7A0;
-        Fri,  2 Dec 2022 04:51:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C853EB82162;
-        Fri,  2 Dec 2022 12:51:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE0E5C433D6;
-        Fri,  2 Dec 2022 12:51:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1669985468;
-        bh=N8iaXOkKMk2SIfbdKoOvU4dUqWAClTiQ1M1kpcY5fRQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JGINdKTPKXiGv6UTf0X8Qw+ztPj3cqJDc7ewQSCHgZN+TpOy/EsAsvFnTdcex3S4F
-         L1YLM39fspk34rrak5QgmWiM2LPzi2rfMveQw/CoNRQAbLqMnUC8SRldMmdikyNFGU
-         jT4x0NFBnRvLsvIvxOSXJjeNDGMCwAWBUTx5yG78=
-Date:   Fri, 2 Dec 2022 13:51:04 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        with ESMTP id S233584AbiLBMzp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 07:55:45 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21C2D3A33;
+        Fri,  2 Dec 2022 04:55:44 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id v82so5213627oib.4;
+        Fri, 02 Dec 2022 04:55:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5HMulQtDEYr8StaCD+M2NKtZZtuACwzVH39fWb0WUyQ=;
+        b=eEQQ6uvfOl76Ao5O0QbsLd3+0LQZ2O3gFdB2kh6fVLE3YJOs4VVYyiLKhQU9rUTcr1
+         1olRnVzFXOjq40mdtJXb/44+tzDY9fL+8HjvDbf2xBDWkq15yq0MIh3g6J+orM3XGrfn
+         pPQx/kge9o5aDiJnpS4POr6VBFDbCxDpARtIBpU4ptxhxaUnXvA3Egdt4VjAj0IEJLws
+         A4AUuIBpYpfo4AEIvn+rQWazbii5/MQ4Bj35iT5dr/YHEBKOD3tmo/wtU/2vHYtliZxI
+         QRbfucJ5HTEEABlxb6GF0lWzPgfkNWcRnptv5yDCK5JGeENRD+HdZ10XdwLXYlgwN3Zq
+         yufg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5HMulQtDEYr8StaCD+M2NKtZZtuACwzVH39fWb0WUyQ=;
+        b=UwfdifmDfse11UqoXwJTVElK3bu7R0f0BUreLMb2MhhWusJjTa3PeuMyOpvcisu2QE
+         HL+oi5PboAJkI5ToEbo9rGt/JakJMpre5188ojwM+1eiqPWoAmPy5Xn9CuS+XUV30tSV
+         XCJw0Mj+Os/7xKINMgzNnJw/juU/+hjzkxL96/XAO2TbRMnf8HaODEkV2muZ+kjRS337
+         1NVXSjyFRLLzH3ynnDOr0Sjhs/Onbl7RAvH0TK2SfeRvkHT+TDK9n8qz/2dAzkb5jHMJ
+         HZF+LP7Qmcvr9zqGqs11qOId22Mm8IzCuNPdvHvDNx2zhRRJzppA1K+EqMsOAelNCFJB
+         N/wQ==
+X-Gm-Message-State: ANoB5pkXYOB3llzYe8blfdlm3iP020KqXb1cFuE8uyra/zOXrrhHCeZD
+        IJ+uaxJ7GZzB455WBbnR3hiDtgXC1p9zI+QFqA0=
+X-Google-Smtp-Source: AA0mqf6aVBf+NKOWch0Jfc9fmrrRGCBM5i7QIhLaLUn3iF/LlY6ukN9sg76KFvOQTE8JRdrMBKkdiWRi+9drUADmgYI=
+X-Received: by 2002:a05:6808:2ca:b0:359:ca42:419 with SMTP id
+ a10-20020a05680802ca00b00359ca420419mr36163478oid.98.1669985743872; Fri, 02
+ Dec 2022 04:55:43 -0800 (PST)
+MIME-Version: 1.0
+References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
+ <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org>
+In-Reply-To: <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Fri, 2 Dec 2022 20:55:32 +0800
+Message-ID: <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daehwan Jung <dh10.jung@samsung.com>,
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Colin Ian King <colin.i.king@gmail.com>,
-        Artur Bujdoso <artur.bujdoso@gmail.com>,
-        Juergen Gross <jgross@suse.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos
- SOCs
-Message-ID: <Y4n0uNqTUmGpdS6P@kroah.com>
-References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
- <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
- <Y4hgnxGMEuizJumr@kroah.com>
- <c524cba6-4438-461a-ab05-9325fe09f832@app.fastmail.com>
- <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
- <f633b0f3-9fdb-8beb-7edf-7967c7c0c3d5@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f633b0f3-9fdb-8beb-7edf-7967c7c0c3d5@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 01:23:56PM +0100, Krzysztof Kozlowski wrote:
-> On 02/12/2022 13:22, Mathias Nyman wrote:
-> > On 1.12.2022 11.01, Arnd Bergmann wrote:
-> >> On Thu, Dec 1, 2022, at 09:06, Greg Kroah-Hartman wrote:
-> >>> On Thu, Dec 01, 2022 at 11:13:31AM +0900, Daehwan Jung wrote:
-> >>>> This driver works with xhci platform driver. It needs to override
-> >>>> functions of xhci_plat_hc_driver. Wakelocks are used for sleep/wakeup
-> >>>> scenario of system.
-> >>>
-> >>> So this means that no other platform xhci driver can be supported in the
-> >>> same system at the same time.
-> >>>
-> >>> Which kind of makes sense as that's not anything a normal system would
-> >>> have, BUT it feels very odd.  This whole idea of "override the platform
-> >>> driver" feels fragile, why not make these just real platform drivers and
-> >>> have the xhci platform code be a library that the other ones can use?
-> >>> That way you have more control overall, right?
-> > 
-> > Agree that overriding the generic platform driver xhci_hc_platform_driver
-> > from this exynos driver is odd.
-> > 
-> > But I don't understand how this works.
-> > Where are the hcds created and added when this xhci-exonys driver binds to
-> > the device? all this driver does in probe is the overriding?
-> > 
-> > Am I missing something here?
-> 
-> Because it is not a driver for Exynos... it's a driver for wakelocks for
-> their specific Android use-cases which the manufacturer ships for their
-> Android devices. Due to Google GKI, they try to squeeze into upstream.
+Hi!
 
-GKI has nothing to do with this, this is Samsung not understanding how
-to properly submit code upstream.  Odd that it comes down to them only
-as this same driver is used by _many_ OEMs who have good teams that know
-how to upstream code properly.  All the blame shouldn't be on Samsung
-right now (see Google's last attempt at getting USB hooks accepted for
-this same hardware IP block...)
+On Fri, Dec 2, 2022 at 7:14 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/12/2022 04:42, Chuanhong Guo wrote:
+> > This patch adds dt binding schema for WorldSemi WS2812B driven using SPI
+> > bus.
+>
+> Do not use "This commit/patch".
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-thanks,
+OK.
 
-greg k-h
+> [...]
+> > +
+> > +      default-brightness:
+> > +        description:
+> > +          The default brightness that should be applied to the LED by the operating
+> > +          system on start-up. The brightness should not exceed the brightness the
+> > +          LED can provide.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        minimum: 0
+> > +        maximum: 255
+> > +        default: 0
+> > +
+> > +      default-intensity:
+> > +        description: |
+> > +          An array of 3 integer specifying the default intensity of each color
+> > +          components in this LED. <255 255 255> if unspecified.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>
+> I am still not convinced these two properties are correct. Why this LED
+> is special and defines default brightness and intensity and other LEDs
+> do not? You explained you are doing it for user-space which is usually
+> not a valid reason for changes specific to one binding. Either all
+> bindings should support it or none.
+
+There's already a default-state for simple LEDs without brightness
+control so I think it makes sense to add default-brightness for LEDs
+with brightness control and default-intensity for colored LEDs.
+The default-state seems to be implemented in various LED drivers,
+so I implemented these two properties in my LED driver.
+There's nothing device-specific about these two properties.
+
+>
+> > +        maxItems: 3
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 255
+> > +
+> > +      reg:
+> > +        description: |
+> > +          Which LED this node represents. The reg of the first LED on the chain
+> > +          is 0.
+> > +        maxItems: 1
+> > +
+> > +    required:
+> > +      - reg
+> > +      - color
+> > +      - function
+> > +
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        leds@0 {
+>
+> git grep leds@ -- Documentation/devicetree/ | wc -l
+> 1
+> git grep led@ -- Documentation/devicetree/ | wc -l
+> 165
+>
+> so rather not the first one ("leds").
+
+As you can see, this node describes a chain of LEDs, not
+a single LED, so the plural form is more appropriate than
+the singular form.
+
+>
+> There is also:
+> git grep led-controller@ -- Documentation/devicetree/ | wc -l
+> 30
+
+This also isn't appropriate. WS2812B is a single LED package
+of 3 diodes and a microcontroller. If we treat every package
+as a LED, the SPI MOSI is connected directly to the LED
+packages themselves with no controller in between.
+If we treat the microcontroller as a led-controller, every
+LED contains its own controller, instead of one controller
+controlling all LEDs, and the parent node still shouldn't
+be called a led-controller.
+
+Here's a picture of the WS2812B LED package:
+https://cdn-shop.adafruit.com/970x728/1655-00.jpg
+and a chain of them:
+https://cdn-shop.adafruit.com/970x728/1463-00.jpg
+
+--
+Regards,
+Chuanhong Guo
