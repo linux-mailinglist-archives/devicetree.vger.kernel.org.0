@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE0A640A34
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:07:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E87FA640A35
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233565AbiLBQHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232364AbiLBQHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 2 Dec 2022 11:07:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45764 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbiLBQHw (ORCPT
+        with ESMTP id S233412AbiLBQHw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:52 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93753192B7
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:46 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id b2so12597542eja.7
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:46 -0800 (PST)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1E12127C
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:48 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id o13so12630733ejm.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=melexis.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CNTO40Ok4F3wT6nUp6jH7yU9/UGuuLve2Grw8oDnk/g=;
-        b=ARkRdYTOiXiipZTE47HPue2MN+UObGHSxr/guZ9T22CLYI8fZvcUWlGs4iMdg6BMjV
-         wJWDrkIscj6W+pHXw4+jU4/qftMwEKN0w75esdlK62rEiICnyaoxpM9Ed60mqsl05I3q
-         eRv7WZfr4Kz1tmYxaUEYTezCsKrKu2EMbKc8ZZqiAgREX7MlOiYyBqTK1FOZ5GGYn7+o
-         rymH4Esoo7ZCfp8ZDuACLoqd5M0OhM8ojPMDXnWlJD3PiG2AtZnG7y6P0mfEByqEB2LP
-         CWZV0fdqxxchAWbnm0pxjbPW9ewvyXnkxK42CurPCw+WOY290/CzPVRi42vCu2H2j8fP
-         ZITA==
+        bh=/5AfNXqpB6DMNrychPSr6MWpW654YYiXw8vNhHpBK+Q=;
+        b=RMdfeOtQsNQ+/8/Fq8Xc60mn4XySkz60hft9vF0461mpZ5ZLBKCtwZPyIKIRHVpmiV
+         FKjJjxbREtLHZ+x+k7dxHWKjf7Z68DXCqXvnhPCNyS5at9D82repNSmNs/1xnh+oJDPu
+         jeWy2x04BuoD4eHemkfocCYCffozpY4mGwSCU9ef2Ep8wocDs5gLLPiLhLhWB2BvdCQ5
+         jVrJg3c6wgfiPXuQdCEJeDmE6vrHcvaSkefRjU0bTI/cGa7K45qVjjGIjusXe00LYYzm
+         55GUQ/AuiwbP53G/i9BkEdDett4UDh31jamV3flfreQPGzOmyfJwZTt+gMPhRosRuSeo
+         kWnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CNTO40Ok4F3wT6nUp6jH7yU9/UGuuLve2Grw8oDnk/g=;
-        b=NuYSmsHm+e65GlLgIzypLJy2VNoXyUXQDYf5KlvQjDIhbbJcMBObBd8k1vt63QlM7f
-         6i4bVWFMlAM4qroIGNmogqAUcyZ2BBn29ajtAQNfv3ivLbQP/KJrr45B4Frm47BXRZKb
-         X2Xc5coN2BoRmh6uIlILFM2LolJWf1x5gZKQYP38sO1xnFRP12gtCXmxFQ1t4gHZTXFF
-         urpdWUdrMTTpueglGX24jVXyQIJgjq8OVXjI1gGOhUpr4ujpYA/UOn5GmTLSFzSKD5/3
-         A91yWw7JnfLNXWTG5BIGLez9XhCSOnaFPvh/Zl8j/9B0ZnsB6lDr1Bd8rxRzo2xy3gDI
-         iu3w==
-X-Gm-Message-State: ANoB5pl+n2n/qnyrNSRqZu1xZdEYN1y9h4xC9yAaLJq5sL2OvXQ7Wfkm
-        dYQneokPQzDkuegcC+auKQAWfg==
-X-Google-Smtp-Source: AA0mqf4+eZS/iQUOCNUyH9I+uLK1obE77VOcynm8gb+ynq8oTfHZVGerl+a8pOuYDFD5xXvVSXvi2A==
-X-Received: by 2002:a17:906:3411:b0:7c0:d3e6:cce with SMTP id c17-20020a170906341100b007c0d3e60ccemr137787ejb.742.1669997265139;
-        Fri, 02 Dec 2022 08:07:45 -0800 (PST)
+        bh=/5AfNXqpB6DMNrychPSr6MWpW654YYiXw8vNhHpBK+Q=;
+        b=g6vsMnkCrlZSmPNWpBTj8G3GN2lIgApWNcKzOE0SZPVKhdE+S8yNPExI3+xUDolWcx
+         DbEPcH1HRV7h/wWORsW+iQh9uQwtFdjV9jQoUjU8XVIGrapJ7yJqCxbUHrG+Wx5ZA4FP
+         /Or7J+otib5YuTY3JvvlmeUpaRPLVgPTtYPnpstyxK38KHztv+BGHy6jR1ytpahZr2yt
+         ihO6owlHnvWzYzb2l8I4ELdVc9NpW7SY35qlTPZWUMzKgwjR/Vu0qcV/KeUJpKdaKSpS
+         GJHltuYCqoGFun/N5VVgTY5zjIMoZBM3ryEiI32Qxa5ht2mad0KqLOA/HocfdIICLUgA
+         woTA==
+X-Gm-Message-State: ANoB5pkbLAzo6PNIf9htUhoWV+CQTmCfNglnPIJ5Z9lTSwWGlDL4HRiD
+        gbEOU1yjHVsGukZd1Uh7BLHDUQ==
+X-Google-Smtp-Source: AA0mqf6cGBoCWv+9d8yCdT9jT5/xQg78fZ4WsDqDyjFJG1FX5OXwlmLE/31F5enLIHeiWNlNotnM/g==
+X-Received: by 2002:a17:906:a1a:b0:79e:9aea:7b60 with SMTP id w26-20020a1709060a1a00b0079e9aea7b60mr62150021ejf.444.1669997267339;
+        Fri, 02 Dec 2022 08:07:47 -0800 (PST)
 Received: from melexis ([91.192.183.26])
-        by smtp.gmail.com with ESMTPSA id m11-20020a056402050b00b00467cc919072sm3063885edv.17.2022.12.02.08.07.43
+        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b007415f8ffcbbsm3230644ejd.98.2022.12.02.08.07.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 08:07:44 -0800 (PST)
+        Fri, 02 Dec 2022 08:07:46 -0800 (PST)
 From:   Volodymyr Kharuk <vkh@melexis.com>
 To:     <linux-media@vger.kernel.org>
 Cc:     Andrii Kyselov <ays@melexis.com>,
@@ -61,9 +61,9 @@ Cc:     Andrii Kyselov <ays@melexis.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
         Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
         Volodymyr Kharuk <vkh@melexis.com>
-Subject: [PATCH v4 1/8] media: uapi: ctrls: Add Time of Flight class controls
-Date:   Fri,  2 Dec 2022 18:07:31 +0200
-Message-Id: <3a4d7724d689b72a5cea89824821f392ded50478.1669978791.git.vkh@melexis.com>
+Subject: [PATCH v4 2/8] media: v4l: ctrls: Fill V4L2_CID_TOF_CLASS controls
+Date:   Fri,  2 Dec 2022 18:07:32 +0200
+Message-Id: <76aa4a3333da2a8cda9af1f25f41abebe292b9c2.1669978791.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <cover.1669978791.git.vkh@melexis.com>
 References: <cover.1669978791.git.vkh@melexis.com>
@@ -78,43 +78,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define Time of Flight class controls.
-Also add most common TOF controls:
- - phase sequence
- - time integration
- - frequency modulation
+Define names, flags and types of TOF controls. *dims* is driver specific.
+It also means, that it is not possible to use new_std for arrays.
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- include/uapi/linux/v4l2-controls.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/media/v4l2-core/v4l2-ctrls-defs.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-index 410d778c1243..3a6b6231b6f7 100644
---- a/include/uapi/linux/v4l2-controls.h
-+++ b/include/uapi/linux/v4l2-controls.h
-@@ -68,6 +68,7 @@
- #define V4L2_CTRL_CLASS_DETECT		0x00a30000	/* Detection controls */
- #define V4L2_CTRL_CLASS_CODEC_STATELESS 0x00a40000	/* Stateless codecs controls */
- #define V4L2_CTRL_CLASS_COLORIMETRY	0x00a50000	/* Colorimetry controls */
-+#define V4L2_CTRL_CLASS_TOF		0x00a60000	/* Time of flight camera controls */
- 
- /* User-class control IDs */
- 
-@@ -2788,6 +2789,13 @@ struct v4l2_ctrl_vp9_compressed_hdr {
- 	struct v4l2_vp9_mv_probs mv;
- };
- 
-+#define V4L2_CID_TOF_CLASS_BASE		(V4L2_CTRL_CLASS_TOF | 0x900)
-+#define V4L2_CID_TOF_CLASS		(V4L2_CTRL_CLASS_TOF | 1)
+diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
+index 564fedee2c88..3c0ab290589a 100644
+--- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
++++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
+@@ -1196,6 +1196,13 @@ const char *v4l2_ctrl_get_name(u32 id)
+ 	case V4L2_CID_COLORIMETRY_CLASS:	return "Colorimetry Controls";
+ 	case V4L2_CID_COLORIMETRY_HDR10_CLL_INFO:		return "HDR10 Content Light Info";
+ 	case V4L2_CID_COLORIMETRY_HDR10_MASTERING_DISPLAY:	return "HDR10 Mastering Display";
 +
-+#define V4L2_CID_TOF_PHASE_SEQ		(V4L2_CID_TOF_CLASS_BASE + 0)
-+#define V4L2_CID_TOF_FREQ_MOD		(V4L2_CID_TOF_CLASS_BASE + 1)
-+#define V4L2_CID_TOF_TIME_INTEGRATION	(V4L2_CID_TOF_CLASS_BASE + 2)
-+
- /* MPEG-compression definitions kept for backwards compatibility */
- #ifndef __KERNEL__
- #define V4L2_CTRL_CLASS_MPEG            V4L2_CTRL_CLASS_CODEC
++	/* Time of light camera controls */
++	/* Keep the order of the 'case's the same as in v4l2-controls.h! */
++	case V4L2_CID_TOF_CLASS:	return "Time of Flight Camera Controls";
++	case V4L2_CID_TOF_PHASE_SEQ:		return "TOF Phase Sequence";
++	case V4L2_CID_TOF_FREQ_MOD:		return "TOF Frequency Modulation";
++	case V4L2_CID_TOF_TIME_INTEGRATION:	return "TOF Time Integration";
+ 	default:
+ 		return NULL;
+ 	}
+@@ -1403,6 +1410,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
+ 	case V4L2_CID_DETECT_CLASS:
+ 	case V4L2_CID_CODEC_STATELESS_CLASS:
+ 	case V4L2_CID_COLORIMETRY_CLASS:
++	case V4L2_CID_TOF_CLASS:
+ 		*type = V4L2_CTRL_TYPE_CTRL_CLASS;
+ 		/* You can neither read nor write these */
+ 		*flags |= V4L2_CTRL_FLAG_READ_ONLY | V4L2_CTRL_FLAG_WRITE_ONLY;
+@@ -1541,6 +1549,18 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
+ 	case V4L2_CID_COLORIMETRY_HDR10_MASTERING_DISPLAY:
+ 		*type = V4L2_CTRL_TYPE_HDR10_MASTERING_DISPLAY;
+ 		break;
++	case V4L2_CID_TOF_PHASE_SEQ:
++		*type = V4L2_CTRL_TYPE_U16;
++		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
++		break;
++	case V4L2_CID_TOF_FREQ_MOD:
++		*type = V4L2_CTRL_TYPE_U8;
++		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
++		break;
++	case V4L2_CID_TOF_TIME_INTEGRATION:
++		*type = V4L2_CTRL_TYPE_U16;
++		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
++		break;
+ 	default:
+ 		*type = V4L2_CTRL_TYPE_INTEGER;
+ 		break;
 -- 
 BR,
 Volodymyr Kharuk
