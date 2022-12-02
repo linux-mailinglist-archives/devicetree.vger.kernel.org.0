@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6776404EC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0E036404F1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:43:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232975AbiLBKnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:43:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
+        id S232935AbiLBKnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:43:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232873AbiLBKnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:43:07 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2E227DF0
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:43:01 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id be13so6804225lfb.4
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:43:01 -0800 (PST)
+        with ESMTP id S233155AbiLBKne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:43:34 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C420BE4C7
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:43:23 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id a19so5012541ljk.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:43:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FOsmaL4anJC2+9DXpJewYEXrleBsDHtL92Z/rXNrpKo=;
-        b=eAJDJN0qMViRxh4ns/kXNjw3fCtoTmUzOhKbXZdJvcQZbau/z2W5Qc6/daAooUOecV
-         uyUKNXPmweLEKWUTHQZCxwzcqMwACGyy6FmbUhXldMkW/gSleQF1bLL3NOPV4aFwlwpH
-         n+GY/namLNOMdT2DS4dUYsedkTRkW6TgMEgD2ezt9ZBUmBXUCdoWjjUHVH9ePr50Ckr8
-         iQWtNbUMDPmoqC9osJ/+PemjROT/CUXFTBhJf1bYD3kL6MtqPhi+NqEcb1D5+u62HcJL
-         9vbkRqQs9V2qXMoPjzKw0xUFDk6DqqHoC0ikgIZZ32bn0po80tojrIP94rDaItgmwNK2
-         eH9A==
+        bh=d+0ulguKeXm/n7vuYd1eLCO9MpBSp6kkQ2zGIF22QHY=;
+        b=plS6eIMbW/mDhBfftfW1Z8n7t5W9K5Mmg9a6PoOhB/Gv/GCVNDZBWq26hnL+vr589I
+         0bl7zWf5dtuyyFwWRzdML1dSlMQfjDfYElaHi30+0izuSYsRmfV+OdnGo4sDV8jfjBr+
+         5QQWmvwcfw97JBtAlIz6I5kZa3lyTQvKQUU6MMlS32xbu3yqsqLiVDMuyh6wqEgWw6LI
+         ENuAwratBd1coZ4BX8QWVAVgYUhoFV3Pi0lVCjTc3nlVqvxFa/KBhtd9xrYzCdkjij9/
+         2ZGyfMXdq3s4lTjyWkanpPmyR5jl6JDm5AoAKS1MVgfCsgtxwpVdUTtWUWOorcod/CPw
+         T+Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FOsmaL4anJC2+9DXpJewYEXrleBsDHtL92Z/rXNrpKo=;
-        b=SiQkYzS/IDOCHr8QijV1AfjzKJ5n2yiShn6iHQh0xRnBzGeiLFnaWkKPhj6wM/NCAa
-         CbSWHl5VHG7VDry8v5ynUil2IJZPn0zNtSGVwMVkKstOqh16WioatgqN3Gjcqt/AE6UR
-         1ksByvCiZlvphR74PLgwXPaJj67fl991PLKiqesfmeKcS1t+mtN+y5duJrB7GEA52oAp
-         vgabRqmCjTpB79OpOBM4YwDqATBH/3geTq9JdDtOyr6h1eWmJIP4vD3MnVJl9GMQ1yN5
-         91/Sf8X6XWy+MJiuUeGiQ4C+bC0dSoeBNF31SCpw2NO2tFFole5/2wTCIL50qsvy3tfj
-         insw==
-X-Gm-Message-State: ANoB5pk81NovMWhN8u7jdsO3gNzsCYMixXakC1scpHz5weC7huNt8cNh
-        vFqmaXZ125/FbGRZ0uroUwcYlQ==
-X-Google-Smtp-Source: AA0mqf5UBOg0i6Xr6M6KKYFT9OI7GF9i21kFLBRMat9GNrL6pNiojrS10vzl1eD/ZKgZfWiEKVBctA==
-X-Received: by 2002:a19:7111:0:b0:499:b4b3:2f68 with SMTP id m17-20020a197111000000b00499b4b32f68mr16889454lfc.203.1669977779852;
-        Fri, 02 Dec 2022 02:42:59 -0800 (PST)
+        bh=d+0ulguKeXm/n7vuYd1eLCO9MpBSp6kkQ2zGIF22QHY=;
+        b=7Fdeqe5zOTyCT8Mfj45aBpl+c5uGfJkzQ2JRiNtdxqZLqaHjOi7ThvEd+moYX+qb9F
+         fmqRi2EUjFO27fskZ4e+6rNLDf0jh9TzZosNWbJbM5SsWGME4uXfmJ3+xGkO1dzw8jIz
+         rq2w9qL/w+xh+oFEM8Mt4PMQ7KgZS8PhDv7eRT+xE8aNPDy5IzXPekoY010t8ySmR0LZ
+         zM+vJxM7JSuBdcEeV1JIGJrejRuWgj8aU1g2GfcRtWns4I/V54TT9eWBd2gsJDJM/+sP
+         vfcRS/xoeFtPC0MEdEnajbcJN+i2WPlQCHdXCGMbnsthNg37bMFNnRVDzYJ9sayDze7z
+         gyfA==
+X-Gm-Message-State: ANoB5pm2fGFppP3A0XVGdXxMECCGcO6B3aEryEs63J0LcNb4PNuxepjf
+        UYZU5Boc6IUHjsg8F3Q+/BX7HQ==
+X-Google-Smtp-Source: AA0mqf4RmALN2uJz6Yih1UczV5VibEASyt5/O2GGhNQ/c1rtTmGSmJJA71Hj6QLdVDxJtW/rqtQOVg==
+X-Received: by 2002:a2e:8888:0:b0:279:ca3e:69f5 with SMTP id k8-20020a2e8888000000b00279ca3e69f5mr3666255lji.391.1669977801676;
+        Fri, 02 Dec 2022 02:43:21 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c10-20020a056512074a00b00499f9aaa9desm972863lfs.179.2022.12.02.02.42.57
+        by smtp.gmail.com with ESMTPSA id c1-20020a19e341000000b00492b494c4e8sm971845lfk.298.2022.12.02.02.43.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:42:58 -0800 (PST)
-Message-ID: <38fda078-e4d4-5172-25c7-b126282f9f88@linaro.org>
-Date:   Fri, 2 Dec 2022 11:42:56 +0100
+        Fri, 02 Dec 2022 02:43:20 -0800 (PST)
+Message-ID: <9e40f25b-3223-2fa2-6f33-fe91871aed1f@linaro.org>
+Date:   Fri, 2 Dec 2022 11:43:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v8 01/11] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
+Subject: Re: [PATCH v8 03/11] dt-bindings: clock: meson: add A1 peripheral
+ clock controller bindings
 Content-Language: en-US
 To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
         neil.armstrong@linaro.org, jbrunet@baylibre.com,
@@ -67,14 +67,15 @@ Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-4-ddrokosov@sberdevices.ru>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+In-Reply-To: <20221201225703.6507-4-ddrokosov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,104 +85,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 01/12/2022 23:56, Dmitry Rokosov wrote:
 > From: Jian Hu <jian.hu@amlogic.com>
 > 
-> Add the documentation to support Amlogic A1 PLL clock driver,
-> and add A1 PLL clock controller bindings.
+> Add the documentation to support Amlogic A1 peripheral clock driver,
+> and add A1 peripheral clock controller bindings.
 > 
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
->  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
->  2 files changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>  .../bindings/clock/amlogic,a1-clkc.yaml       | 65 ++++++++++++
+>  include/dt-bindings/clock/a1-clkc.h           | 98 +++++++++++++++++++
+>  2 files changed, 163 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
 > new file mode 100644
-> index 000000000000..d67250fbeece
+> index 000000000000..7729850046cf
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> @@ -0,0 +1,65 @@
+> +#SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
+> +$id: "http://devicetree.org/schemas/amlogic,a1-clkc.yaml#"
 > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-
-Drop quotes from both.
-
 > +
-> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
+> +title: Amlogic Meson A/C serials Peripheral Clock Control Unit Device Tree Bindings
 
-Drop "Device Tree Bindings"
+Same comments as with previous patch. All of them.
 
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-
-Not correct email address.
-
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,a1-pll-clkc
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +     - description: input xtal_fixpll
-> +     - description: input xtal_hifipll
-
-As pointed already - this patch cannot work and must not be merged.
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal_fixpll
-> +      - const: xtal_hifipll
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clkc_pll: pll-clock-controller@7c80 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +                compatible = "amlogic,a1-pll-clkc";
-
-Use 4 spaces for example indentation.
-
-> +                reg = <0 0x7c80 0 0x18c>;
-> +                #clock-cells = <1>;
-> +                clocks = <&clkc_periphs 1>,
-> +                         <&clkc_periphs 4>;
-> +                clock-names = "xtal_fixpll", "xtal_hifipll";
-> +    };
-> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
-> new file mode 100644
-> index 000000000000..58eae237e503
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/a1-pll-clkc.h 
-
-Filename matching compatible / bindings file.
-
-> @@ -0,0 +1,16 @@
 
 Best regards,
 Krzysztof
