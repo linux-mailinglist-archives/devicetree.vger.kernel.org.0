@@ -2,236 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B365640211
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E709640220
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232649AbiLBI26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:28:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
+        id S232185AbiLBIay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:30:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbiLBI2I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:28:08 -0500
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00AABD898
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:22:22 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2d07:19c5:4d8b:89d9])
-        by andre.telenet-ops.be with bizsmtp
-        id rLNH2800U0ys3B701LNHQP; Fri, 02 Dec 2022 09:22:19 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p11JJ-002Hbf-68; Fri, 02 Dec 2022 09:22:17 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p11JI-005TUo-3d; Fri, 02 Dec 2022 09:22:16 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232446AbiLBI3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:29:22 -0500
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861382CE0B;
+        Fri,  2 Dec 2022 00:27:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669969654; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=Um7bLjMJkRzzGMWjDwOiZM7Q4Zr7Ff+nuz5l/iFK/JNF+0ZovQCa1Kbjs8pkQIt0dTDRsRvQAJWDQq8e/rEKwoRzdxvBOrNJ4NQiQ+Wum9zcGwvPS8jWeSWo+wTrhD0w1S97+qSCP51YXzX+AQkMU1I6YXsdcw3ydjSp+0trONE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1669969654; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=QKJjRg+TFMrDUXn3W6BnSgamQp8z40egqO35KV5JwBc=; 
+        b=kZo75enxAj+NBcU0ug9nHc7X7z1QXllK2apZH9Qvc4cRbREFPe+CUAeNHJ0WqJ3HRCbFW5LYRcQ3YsGWc+TwzqbFzAv6+9Y3//EjS4y0MNPOlzPopqF5XlX9Yc+tE8x9f/wAIzXkjL3puamR3r7jRQYk2nFV+j3Nf5dxIN7uChs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669969654;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=QKJjRg+TFMrDUXn3W6BnSgamQp8z40egqO35KV5JwBc=;
+        b=fRboHy8wzAAEegZvuWhEkMLFDSeDl+tcJjEVq2ywfQ8zEUM7A8Q2yYc/DOY5CW3H
+        TlxIaKCqNMyiePJGCVBqBuFx2Od557WAjw7N2hxXliBJXKmZJSAR44ILLskFDueGv1k
+        RZjkF4GpphuSII4YU6X89wqgQZKaze+E68G1+lSo=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.229 [120.85.99.229]) by mx.zohomail.com
+        with SMTPS id 1669969653716805.4032075516008; Fri, 2 Dec 2022 00:27:33 -0800 (PST)
+Message-ID: <a2441e5ca47ff90474cd844801e6c7c43af91f50.camel@icenowy.me>
+Subject: Re: [PATCH v2 04/12] riscv: dts: allwinner: Add the D1/D1s SoC
+ devicetree
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor@kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of channels for R-Car V3U
-Date:   Fri,  2 Dec 2022 09:22:11 +0100
-Message-Id: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>
+Date:   Fri, 02 Dec 2022 16:27:25 +0800
+In-Reply-To: <Y4I45Uu6eFKUo69B@spud>
+References: <20221125234656.47306-1-samuel@sholland.org>
+         <20221125234656.47306-5-samuel@sholland.org> <Y4I45Uu6eFKUo69B@spud>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the bindings, only two channels are supported.
-However, R-Car V3U supports eight, leading to "make dtbs" failures:
+=E5=9C=A8 2022-11-26=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 16:03 +0000=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Fri, Nov 25, 2022 at 05:46:48PM -0600, Samuel Holland wrote:
+> > D1 (aka D1-H), D1s (aka F133), R528, and T113 are a family of SoCs
+> > based
+> > on a single die, or at a pair of dies derived from the same design.
+> >=20
+> > D1 and D1s contain a single T-HEAD Xuantie C906 CPU, whereas R528
+> > and
+> > T113 contain a pair of Cortex-A7's.
+>=20
+> Is this "additionally contain" or a case of the D1 is the R528 but
+> with
+> s/arm/riscv/? It's the latter, right?
 
-        arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+Technically they're the same die, but the CPU cores are selectively
+enabled, and at least what Allwinner says is that D1 contains only RV
+and R528 contains only ARM.
 
-Update the number of channels to 8 on R-Car V3U.
-While at it, prevent adding more properties to the channel nodes, as
-they must contain no other properties than a status property.
-
-Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Is there a way to express this using positive logic (i.e. default to 2
-channels, extend to more where needed)? R-Car V3H_2 (which is not yet
-supported) has 3 channels.
-Or perhaps the check should be dropped completely?
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 132 ++++++++++--------
- 1 file changed, 72 insertions(+), 60 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index 6f71fc96bc4e3156..6a4fb26cfd7b8979 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -9,9 +9,6 @@ title: Renesas R-Car CAN FD Controller
- maintainers:
-   - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- 
--allOf:
--  - $ref: can-controller.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -77,13 +74,15 @@ properties:
-     description: Maximum frequency of the CANFD clock.
- 
- patternProperties:
--  "^channel[01]$":
-+  "^channel[0-7]$":
-     type: object
-     description:
--      The controller supports two channels and each is represented as a child
--      node.  Each child node supports the "status" property only, which
-+      The controller supports multiple channels and each is represented as a
-+      child node.  Each child node supports the "status" property only, which
-       is used to enable/disable the respective channel.
- 
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -98,60 +97,73 @@ required:
-   - channel0
-   - channel1
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - renesas,rzg2l-canfd
--then:
--  properties:
--    interrupts:
--      items:
--        - description: CAN global error interrupt
--        - description: CAN receive FIFO interrupt
--        - description: CAN0 error interrupt
--        - description: CAN0 transmit interrupt
--        - description: CAN0 transmit/receive FIFO receive completion interrupt
--        - description: CAN1 error interrupt
--        - description: CAN1 transmit interrupt
--        - description: CAN1 transmit/receive FIFO receive completion interrupt
--
--    interrupt-names:
--      items:
--        - const: g_err
--        - const: g_recc
--        - const: ch0_err
--        - const: ch0_rec
--        - const: ch0_trx
--        - const: ch1_err
--        - const: ch1_rec
--        - const: ch1_trx
--
--    resets:
--      maxItems: 2
--
--    reset-names:
--      items:
--        - const: rstp_n
--        - const: rstc_n
--
--  required:
--    - reset-names
--else:
--  properties:
--    interrupts:
--      items:
--        - description: Channel interrupt
--        - description: Global interrupt
--
--    interrupt-names:
--      items:
--        - const: ch_int
--        - const: g_int
--
--    resets:
--      maxItems: 1
-+allOf:
-+  - $ref: can-controller.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-canfd
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: CAN global error interrupt
-+            - description: CAN receive FIFO interrupt
-+            - description: CAN0 error interrupt
-+            - description: CAN0 transmit interrupt
-+            - description: CAN0 transmit/receive FIFO receive completion interrupt
-+            - description: CAN1 error interrupt
-+            - description: CAN1 transmit interrupt
-+            - description: CAN1 transmit/receive FIFO receive completion interrupt
-+
-+        interrupt-names:
-+          items:
-+            - const: g_err
-+            - const: g_recc
-+            - const: ch0_err
-+            - const: ch0_rec
-+            - const: ch0_trx
-+            - const: ch1_err
-+            - const: ch1_rec
-+            - const: ch1_trx
-+
-+        resets:
-+          maxItems: 2
-+
-+        reset-names:
-+          items:
-+            - const: rstp_n
-+            - const: rstc_n
-+
-+      required:
-+        - reset-names
-+    else:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: Channel interrupt
-+            - description: Global interrupt
-+
-+        interrupt-names:
-+          items:
-+            - const: ch_int
-+            - const: g_int
-+
-+        resets:
-+          maxItems: 1
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: renesas,r8a779a0-canfd
-+    then:
-+      patternProperties:
-+        "^channel[2-7]$": false
- 
- unevaluatedProperties: false
- 
--- 
-2.25.1
+>=20
+> > D1 and R528 are the full version of
+> > the chip with a BGA package, whereas D1s and T113 are low-pin-count
+> > QFP
+> > variants.
+> >=20
+> > Because the original design supported both ARM and RISC-V CPUs,
+> > some
+> > peripherals are duplicated. In addition, all variants except D1s
+> > contain
+> > a HiFi 4 DSP with its own set of peripherals.
+> >=20
+> > The devicetrees are organized to minimize duplication:
+> > =C2=A0- Common perhiperals are described in sunxi-d1s-t113.dtsi
+> > =C2=A0- DSP-related peripherals are described in sunxi-d1-t113.dtsi
+> > =C2=A0- RISC-V specific hardware is described in sun20i-d1s.dtsi
+> > =C2=A0- Functionality unique to the D1 variant is described in sun20i-
+> > d1.dtsi
+> >=20
+> > The SOC_PERIPHERAL_IRQ macro handles the different #interrupt-cells
+> > values between the ARM (GIC) and RISC-V (PLIC) versions of the SoC.
+>=20
+> Modulo the warnings I replied to the cover with & one minor comment
+> below:
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> > Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > ---
+> >=20
+> > Changes in v2:
+> > =C2=A0- Split into separate files for sharing with D1s/R528/T113
+> > =C2=A0- Use SOC_PERIPHERAL_IRQ macro for interrupts
+> > =C2=A0- Rename osc24M to dcxo and move the frequency to the board DTs
+> > =C2=A0- Drop analog LDOs due to the missing binding
+> > =C2=A0- Correct tcon_top DSI clock reference
+> > =C2=A0- Add DMIC, DSI controller, and DPHY (bindings are in linux-next)
+> > =C2=A0- Add CPU OPP table
+> >=20
+> > =C2=A0arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi=C2=A0 |=C2=A0 66 ++
+> > =C2=A0arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |=C2=A0 76 ++
+> > =C2=A0.../boot/dts/allwinner/sunxi-d1-t113.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 15 +
+> > =C2=A0.../boot/dts/allwinner/sunxi-d1s-t113.dtsi=C2=A0=C2=A0=C2=A0 | 84=
+4
+> > ++++++++++++++++++
+> > =C2=A04 files changed, 1001 insertions(+)
+> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
+> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1-
+> > t113.dtsi
+> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1s-
+> > t113.dtsi
+>=20
+>=20
+> > diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> > b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> > new file mode 100644
+> > index 000000000000..c8815cbf0b46
+> > --- /dev/null
+> > +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> > @@ -0,0 +1,844 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > +// Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
+> > +
+> > +#include <dt-bindings/clock/sun6i-rtc.h>
+> > +#include <dt-bindings/clock/sun8i-de2.h>
+> > +#include <dt-bindings/clock/sun8i-tcon-top.h>
+> > +#include <dt-bindings/clock/sun20i-d1-ccu.h>
+> > +#include <dt-bindings/clock/sun20i-d1-r-ccu.h>
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/reset/sun8i-de2.h>
+> > +#include <dt-bindings/reset/sun20i-d1-ccu.h>
+> > +#include <dt-bindings/reset/sun20i-d1-r-ccu.h>
+> > +
+> > +/ {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <1>;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dcxo: dcxo-clk {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "fixed-clock";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0/* This value must be overridden by the board */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clock-frequency =3D <0>;
+>=20
+> Since this is a "must", can you drop the clock-frequency =3D <0> here
+> so
+> that if someone doesn't override it in their board dt-validate
+> complains?
+>=20
+> Thanks,
+> Conor.
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clock-output-names =3D "dcxo";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0#clock-cells =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> =C2=A0
+>=20
 
