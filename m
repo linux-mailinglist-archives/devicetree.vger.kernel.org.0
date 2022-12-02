@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB3E63FE96
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 04:14:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4641E63FE97
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 04:14:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231387AbiLBDOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 22:14:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55534 "EHLO
+        id S231281AbiLBDOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 22:14:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231299AbiLBDN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 22:13:58 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7266CA9CCE
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 19:13:57 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id o12so3693637pjo.4
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 19:13:57 -0800 (PST)
+        with ESMTP id S231493AbiLBDOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 22:14:00 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03E8D49D2
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 19:13:59 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id 62so3311736pgb.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 19:13:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ym9YTdhefXOHHkd3Jf4XxEyW1/V8EXozYna2j5niSpo=;
-        b=PDjsxCWo+qZ79bbBq4qHpmcDxR9sR3rSO23hLyzgQHSTrzDIOvnMZBnQcYP00pnFuz
-         6Q0tJqxg+6Rd9XG3zv3fOj8ww1c99qYnNB3mGBO9T8IRGx4ZryIK9m3atpCrJxfBP99t
-         w7M4y0AQzJTZF3yKEy7YbCubW3Td4Pv85SuxY=
+        bh=agIvM+RESqFOi6zq2PfLhwbAmjFDfRo+ieTUEwufHOc=;
+        b=eaVziJwbJ8GXqtHJD7dVAD9LkmXFaz+/poyw0LaBJDLiFpSyHR+1VRLe/nqkKbrDki
+         zMFNro3K5/jF+5N2wM8g6zjqN/SUzk6j48iJrdU4dmje0CkvEX0Y8vgtCS8Zo2ChzbG1
+         5K1y6rNSZDThLxCrWlpCeWeEk3ZfnErSv3xZs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ym9YTdhefXOHHkd3Jf4XxEyW1/V8EXozYna2j5niSpo=;
-        b=PDW5xmNStLSuEcDWJ4VDAQ9vNRvrcpg7iQol6LtlS1+79e6wx8u85lKAWez/3Hs7iw
-         xU+daCItYuvTNDX0aYN1utAvSzLpKJy6SvQfGo0h5+t7L53Hw5a9/+YS+wq90amVqzUb
-         1BPS3If0ioJ2wcKbzUe7XpEfgoLYlIQZWCXZcxOzc0d3+QjpjmUp7k1UOa2cAyvIIxnT
-         QLrQf3lijdeRvSHMN4hvCOTJp8MQx9LNZqNjQ6As/LmNdmo/lNB+GTugW7YXMEEBQ1wJ
-         f5Reo8VbVW3wUfY9KXD5KnlAkVdAbtd1qxnZee5N/arhnQrRv5u1GduIEFzPRLpxIQD+
-         bqmA==
-X-Gm-Message-State: ANoB5pnRsT6uWitAeOTSFl26jEc0DbfEY0PTtfNw3gpva2kvEaRq54ZE
-        rTD7JKBxQMrpEqfsDgazsC0HmQ==
-X-Google-Smtp-Source: AA0mqf5ZYpxHSgY7GvM3UxFAtjuVFa98HNtyC+pVpnUKJeJ++FHDcyWIP/eOqg/y+5EE3Fc0EqnAow==
-X-Received: by 2002:a17:902:dacd:b0:189:6889:c30a with SMTP id q13-20020a170902dacd00b001896889c30amr34384066plx.6.1669950836835;
-        Thu, 01 Dec 2022 19:13:56 -0800 (PST)
+        bh=agIvM+RESqFOi6zq2PfLhwbAmjFDfRo+ieTUEwufHOc=;
+        b=KWcooYFuLgiLuBsPwIrGMsYNnnz7yYASSMQmDk090QgTuZhjLH6caliqVEduLvFQ+T
+         xWOLpxDTmVElvj+zyf8j0jGl6ibPVHsg5/MOU6XODUNMLoya6OR7jiDeicSLl4PCny3O
+         86tZew5nC4atjuP7WLko2j2WXj95xvVSvgnthfMHAXXZ7MoGHtgwGydhVSVpwHAbm6qd
+         WBjH4cCj7N0h3cjJrVjws5OEIeWtRtB+mWDJ+73qinGQN9kUdK4QvEgSCIQUUksEnh3t
+         Ey5T/GzxWRnTpNkv2d/uNn9bfqUm4m53Vk5gtC3GFZECdC6JrpWfqnQb2HkOcCTV6tNt
+         9w/w==
+X-Gm-Message-State: ANoB5pkbj6nZDcd+xi+VYY72r0dasYiD4T3jBkXESHNGoqnKlVuX9rxE
+        01KSszSKvrRariHPs6s+VvXw9Q==
+X-Google-Smtp-Source: AA0mqf4K1NiC1zJPzjzp/rwODq9vS7RxKPAosQIViGm6J4QjknqA1LGCxbi/8+JFxVBqnV+XLQPZlA==
+X-Received: by 2002:a63:e510:0:b0:476:a862:53d2 with SMTP id r16-20020a63e510000000b00476a86253d2mr42354672pgh.163.1669950839021;
+        Thu, 01 Dec 2022 19:13:59 -0800 (PST)
 Received: from doug-ryzen-5700G.. ([192.183.212.197])
-        by smtp.gmail.com with ESMTPSA id jx24-20020a17090b46d800b00213202d77d9sm3708410pjb.43.2022.12.01.19.13.56
+        by smtp.gmail.com with ESMTPSA id jx24-20020a17090b46d800b00213202d77d9sm3708410pjb.43.2022.12.01.19.13.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Dec 2022 19:13:56 -0800 (PST)
+        Thu, 01 Dec 2022 19:13:58 -0800 (PST)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Adrian Hunter <adrian.hunter@intel.com>
@@ -53,9 +53,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         Doug Brown <doug@schmorgal.com>
-Subject: [PATCH v2 3/8] mmc: sdhci-pxav2: add register workaround for PXA168 silicon bug
-Date:   Thu,  1 Dec 2022 19:13:25 -0800
-Message-Id: <20221202031330.94130-4-doug@schmorgal.com>
+Subject: [PATCH v2 4/8] mmc: sdhci-pxav2: change clock name to match DT bindings
+Date:   Thu,  1 Dec 2022 19:13:26 -0800
+Message-Id: <20221202031330.94130-5-doug@schmorgal.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221202031330.94130-1-doug@schmorgal.com>
 References: <20221202031330.94130-1-doug@schmorgal.com>
@@ -63,52 +63,39 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PXA168 has a documented silicon bug that results in a data abort
-exception when accessing the SDHCI_HOST_VERSION register on SDH2 and
-SDH4 through a 16-bit read. Implement the workaround described in the
-errata, which performs a 32-bit read from a lower address instead. This
-is safe to use on all four SDH peripherals.
+The devicetree bindings for this driver specify that the two allowed
+clock names are io and core. Change this driver to look for io, but
+allow any name if it fails for backwards compatibility. Follow the same
+pattern used in sdhci-pxav3.
 
 Signed-off-by: Doug Brown <doug@schmorgal.com>
 ---
- drivers/mmc/host/sdhci-pxav2.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/mmc/host/sdhci-pxav2.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/mmc/host/sdhci-pxav2.c b/drivers/mmc/host/sdhci-pxav2.c
-index 2f9fa0ecbddd..0a16098b963f 100644
+index 0a16098b963f..509ba5dd4a4a 100644
 --- a/drivers/mmc/host/sdhci-pxav2.c
 +++ b/drivers/mmc/host/sdhci-pxav2.c
-@@ -80,6 +80,15 @@ static void pxav2_reset(struct sdhci_host *host, u8 mask)
- 	}
- }
+@@ -189,7 +189,9 @@ static int sdhci_pxav2_probe(struct platform_device *pdev)
  
-+static u16 pxav1_readw(struct sdhci_host *host, int reg)
-+{
-+	/* Workaround for data abort exception on SDH2 and SDH4 on PXA168 */
-+	if (reg == SDHCI_HOST_VERSION)
-+		return readl(host->ioaddr + SDHCI_HOST_VERSION - 2) >> 16;
-+
-+	return readw(host->ioaddr + reg);
-+}
-+
- static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
- {
- 	u8 ctrl;
-@@ -102,6 +111,7 @@ static void pxav2_mmc_set_bus_width(struct sdhci_host *host, int width)
- }
+ 	pltfm_host = sdhci_priv(host);
  
- static const struct sdhci_ops pxav1_sdhci_ops = {
-+	.read_w        = pxav1_readw,
- 	.set_clock     = sdhci_set_clock,
- 	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
- 	.set_bus_width = pxav2_mmc_set_bus_width,
+-	clk = devm_clk_get(dev, "PXA-SDHCLK");
++	clk = devm_clk_get(dev, "io");
++	if (IS_ERR(clk))
++		clk = devm_clk_get(dev, NULL);
+ 	if (IS_ERR(clk)) {
+ 		dev_err(dev, "failed to get io clock\n");
+ 		ret = PTR_ERR(clk);
 -- 
 2.34.1
 
