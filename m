@@ -2,196 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 757E063FFFE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 06:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B354640026
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 07:13:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231195AbiLBFx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 00:53:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48566 "EHLO
+        id S231493AbiLBGNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 01:13:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbiLBFxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 00:53:25 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40592D585B;
-        Thu,  1 Dec 2022 21:53:23 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 125FA24DBCB;
-        Fri,  2 Dec 2022 13:53:20 +0800 (CST)
-Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Dec
- 2022 13:53:20 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
- (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Dec
- 2022 13:53:18 +0800
-Message-ID: <40c1995e-07ea-9c84-e36f-8d179daa5c0b@starfivetech.com>
-Date:   Fri, 2 Dec 2022 13:53:17 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 6/7] riscv: dts: starfive: jh7110: Add ethernet device
- node
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231449AbiLBGNQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 01:13:16 -0500
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9ADFA6CD7;
+        Thu,  1 Dec 2022 22:13:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669961582; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=njvltCNXE9INRA89a/A8l9GSmbg7W3g4FmXRdRNuO6xdy4g0oujIcGE5Gu4+tKwiFtaJlFEEgt5kTraGV3RVz2FWZ9dAjc8ibSG4Y8Vs7EHPAvU9GQUld2EKFI4/vfY1cOzTM3z0KdoFYOiWnweKh3zrh18nCrbNUROc0NmKst8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1669961582; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=LbijN6aeKiT2uH/R45xRpGeOX2EWdCb/9cdCuJ6Cl7A=; 
+        b=IYxavsz+nDjTwFh2K1reKptJC/obpCniagPMTSMXDYsiGpn0GdXbR9hOYEnShHbS93yhlMLiSz+ml4jfOX1YGwExmpdv15Q3of8S0R6YYYmJN5p9Qhqk1cdPsap0WqeRIY/msNsF8+/1ZY2lWobaJQtqaEG3tt7/Nga26itY764=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669961582;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=LbijN6aeKiT2uH/R45xRpGeOX2EWdCb/9cdCuJ6Cl7A=;
+        b=iGu6Yzy2Pe5JHoPFFZBwlu8t1jOTksdOAjcSNJgzdU0IhBZg38k0FR7uaJfibg8D
+        PCHgSeY7O7OJrVJGfpvjpgV9iosHNVNlftO+eb9JLWHb6n5rcu9ANPyxDIEMnPcgDEk
+        WU7sPRNhg9sNk1ASyVsweBSKE4hmDVaIniji3aCw=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.229 [120.85.99.229]) by mx.zohomail.com
+        with SMTPS id 1669961580397796.7845658650348; Thu, 1 Dec 2022 22:13:00 -0800 (PST)
+Message-ID: <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible
+ for OpenC906
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-7-yanhong.wang@starfivetech.com> <Y4joSiz0gKvyuecn@spud>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <Y4joSiz0gKvyuecn@spud>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Fri, 02 Dec 2022 14:12:54 +0800
+In-Reply-To: <Y4j+Gpptk3NAFBNV@spud>
+References: <20221121041757.418645-1-uwu@icenowy.me>
+         <20221121041757.418645-3-uwu@icenowy.me>
+         <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
+         <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
+         <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
+         <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+         <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud>
+Organization: Anthon Open-Source Community
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS063.cuchost.com (172.16.6.23) To EXMBX173.cuchost.com
- (172.16.6.93)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
+MIME-Version: 1.0
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+=E5=9C=A8 2022-12-01=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:18 +0000=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Wed, Nov 30, 2022 at 12:13:30PM -0600, Rob Herring wrote:
+> > On Tue, Nov 22, 2022 at 03:41:27PM +0800, Icenowy Zheng wrote:
+> > >=20
+> > >=20
+> > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=
+=8D=883:35:48, Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> =E5=86=99=E5=88=B0:
+> > > > On 22/11/2022 08:18, Icenowy Zheng wrote:
+> > > > > =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:06 +0=
+100=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > > On 21/11/2022 05:17, Icenowy Zheng wrote:
+> > > > > > > T-Head OpenC906 is a open-source-licensed fixed-
+> > > > > > > configuration of
+> > > > > > > C906,
+> > > > > > > which is now public and able to be integrated.
+> > > > > > >=20
+> > > > > > > Add a compatible for the CLINT shipped as part of
+> > > > > > > OpenC906, which
+> > > > > > > should
+> > > > > > > just be ordinary C9xx CLINT.
+> > > > > > >=20
+> > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > ---
+> > > > > > > =C2=A0Documentation/devicetree/bindings/timer/sifive,clint.ya=
+m
+> > > > > > > l | 1 +
+> > > > > > > =C2=A01 file changed, 1 insertion(+)
+> > > > > > >=20
+> > > > > > > diff --git
+> > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > ml
+> > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > ml
+> > > > > > > index aada6957216c..86703e995e31 100644
+> > > > > > > ---
+> > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > ml
+> > > > > > > +++
+> > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > ml
+> > > > > > > @@ -35,6 +35,7 @@ properties:
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+- const: sifive,clint0
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+- enum:
+> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 - thead,openc906-clint
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
+> > > > > >=20
+> > > > > > Add entries sorted alphabetically. This should be squashed
+> > > > > > with
+> > > > > > previous
+> > > > > > patch.
+> > > > >=20
+> > > > > I make it a seperated patch because I think it's a
+> > > > > questionable
+> > > > > approach.
+> > > > >=20
+> > > > > If you think it's okay, I will just squash it and put it as
+> > > > > the second
+> > > > > patch in the next iteration, with adding openc906-plic as the
+> > > > > first
+> > > > > one.
+> > > >=20
+> > > > What is a questionable approach? Why commit msg is not saying
+> > > > this?
+> > >=20
+> > > Ah I mentioned it in the cover letter. The problem is just I
+> > > doubt whether
+> > > binding strings for single SoCs are necessary.
+> >=20
+> > They are.
+> >=20
+> > Unless all the quirks/bugs/features are somehow guaranteed to be
+> > exactly=20
+> > the same as other SoCs sharing the same compatible string, or there
+> > is=20
+> > another mechanism to identify the exact version (e.g. a version=20
+> > register).
+>=20
+> Icenowy,
+>=20
+> Having thought about this a little - are we not *more* likely to see
+> bug/quirk disparity between implementations of the OpenC906 stuff by
+> the very nature of being an open-source IP?
 
+It's an open-source edition of a specific version of the commercial IP,
+a fixed configuration.
 
-On 2022/12/2 1:45, Conor Dooley wrote:
-> On Thu, Dec 01, 2022 at 05:02:41PM +0800, Yanhong Wang wrote:
->> Add JH7110 ethernet device node to support gmac driver for the JH7110
->> RISC-V SoC.
->> 
->> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->> ---
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 80 ++++++++++++++++++++++++
->>  1 file changed, 80 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> index c22e8f1d2640..97ed5418d91f 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -433,5 +433,85 @@
->>  			reg-shift = <2>;
->>  			status = "disabled";
->>  		};
->> +
->> +		stmmac_axi_setup: stmmac-axi-config {
->> +			snps,wr_osr_lmt = <4>;
->> +			snps,rd_osr_lmt = <4>;
->> +			snps,blen = <256 128 64 32 0 0 0>;
->> +		};
->> +
->> +		gmac0: ethernet@16030000 {
->> +			compatible = "starfive,dwmac", "snps,dwmac-5.20";
->> +			reg = <0x0 0x16030000 0x0 0x10000>;
->> +			clocks = <&aoncrg JH7110_AONCLK_GMAC0_AXI>,
->> +				 <&aoncrg JH7110_AONCLK_GMAC0_AHB>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC0_PTP>,
->> +				 <&aoncrg JH7110_AONCLK_GMAC0_TX>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC0_GTXC>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC0_GTXCLK>;
->> +			clock-names = "stmmaceth",
->> +					"pclk",
->> +					"ptp_ref",
->> +					"tx",
->> +					"gtxc",
->> +					"gtx";
-> 
-> Can you sort this into fewer lines please?
+In addition, maybe we can just retrieve the version infomation via a T-
+Head custom CPU configuration register, mcpuid. Despite the
+implementation of this register is weird -- it contains 7 different
+read-only values, with the most significant nibble behaving as an
+index.
 
-Will sort in the next version.
+>=20
+> Thanks,
+> Conor.
+>=20
 
-> 
->> +			resets = <&aoncrg JH7110_AONRST_GMAC0_AXI>,
->> +				 <&aoncrg JH7110_AONRST_GMAC0_AHB>;
->> +			reset-names = "stmmaceth", "ahb";
->> +			interrupts = <7>, <6>, <5> ;
-> 
-> Please also remove the space before the ;
-
-Will remove the space.
-
-> 
->> +			interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
-> 
-> The answer is probably "the dw driver needs this" but my OCD really
-> hates "macirq" vs "eth_wake_irq"..
-
-The definition of  "macirq" and "eth_wake_irq"  is to reuse stmmac_get_platform_resources() API. 
-
-> 
->> +			phy-mode = "rgmii-id";
->> +			snps,multicast-filter-bins = <64>;
->> +			snps,perfect-filter-entries = <8>;
->> +			rx-fifo-depth = <2048>;
->> +			tx-fifo-depth = <2048>;
->> +			snps,fixed-burst;
->> +			snps,no-pbl-x8;
->> +			snps,force_thresh_dma_mode;
->> +			snps,axi-config = <&stmmac_axi_setup>;
->> +			snps,tso;
->> +			snps,en-tx-lpi-clockgating;
->> +			snps,lpi_en;
->> +			snps,txpbl = <16>;
->> +			snps,rxpbl = <16>;
->> +			status = "disabled";
->> +		};
->> +
->> +		gmac1: ethernet@16040000 {
->> +			compatible = "starfive,dwmac", "snps,dwmac-5.20";
->> +			reg = <0x0 0x16040000 0x0 0x10000>;
->> +			clocks = <&syscrg JH7110_SYSCLK_GMAC1_AXI>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC1_AHB>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC1_PTP>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC1_TX>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC1_GTXC>,
->> +				 <&syscrg JH7110_SYSCLK_GMAC1_GTXCLK>;
->> +			clock-names = "stmmaceth",
->> +					"pclk",
->> +					"ptp_ref",
->> +					"tx",
->> +					"gtxc",
->> +					"gtx";
->> +			resets = <&syscrg JH7110_SYSRST_GMAC1_AXI>,
->> +				 <&syscrg JH7110_SYSRST_GMAC1_AHB>;
->> +			reset-names = "stmmaceth", "ahb";
->> +			interrupts = <78>, <77>, <76> ;
-> 
-> Same comments for this node.
-
-Will remove the space.
-
-> 
->> +			interrupt-names = "macirq", "eth_wake_irq", "eth_lpi";
->> +			phy-mode = "rgmii-id";
->> +			snps,multicast-filter-bins = <64>;
->> +			snps,perfect-filter-entries = <8>;
->> +			rx-fifo-depth = <2048>;
->> +			tx-fifo-depth = <2048>;
->> +			snps,fixed-burst;
->> +			snps,no-pbl-x8;
->> +			snps,force_thresh_dma_mode;
->> +			snps,axi-config = <&stmmac_axi_setup>;
->> +			snps,tso;
->> +			snps,en-tx-lpi-clockgating;
->> +			snps,lpi_en;
->> +			snps,txpbl = <16>;
->> +			snps,rxpbl = <16>;
->> +			status = "disabled";
->> +		};
->>  	};
->>  };
->> -- 
->> 2.17.1
->> 
