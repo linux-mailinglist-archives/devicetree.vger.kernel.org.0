@@ -2,70 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9D263FF86
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 05:37:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0F863FFC2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 06:15:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbiLBEhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 23:37:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45468 "EHLO
+        id S232213AbiLBFPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 00:15:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232090AbiLBEg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 23:36:59 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AA6E4D3781;
-        Thu,  1 Dec 2022 20:36:56 -0800 (PST)
-Received: from loongson.cn (unknown [117.133.84.183])
-        by gateway (Coremail) with SMTP id _____8Bx1vDngIljqrcCAA--.6342S3;
-        Fri, 02 Dec 2022 12:36:55 +0800 (CST)
-Received: from [192.168.1.2] (unknown [117.133.84.183])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx9VblgIljvRckAA--.5510S3;
-        Fri, 02 Dec 2022 12:36:54 +0800 (CST)
-Message-ID: <c46e5ebf-5293-5123-52d3-b3594c6e9244@loongson.cn>
-Date:   Fri, 2 Dec 2022 12:36:53 +0800
-MIME-Version: 1.0
+        with ESMTP id S232050AbiLBFPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 00:15:19 -0500
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34571D15AF;
+        Thu,  1 Dec 2022 21:15:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hy9qb0vRcu85W5lxF+AzyyAVz3TzfdqZbYdV3fAm/A4ioPRBiu5BObp6o7M41WQSMjRQRXmOnjqL86oQbtf/dUi+OgdvMO5Y0V2IpnE1vALl7tETMBg5c4JYamf9/IsQRV/NIcKEa8nRf0Q4lHCP+UUcIepm/m8KBPCHX9AU3t1vXB0NigusvBcEfAgDx4dgwWIjFbYf2xmwGfDk9gOPVT+UnJ2JysAHmfZskYwRJJyRWcPcvczc4YO1knoBUYhe5IC8oX3CcqTMvwaeM64j2NlkrhKN+SWdf3te0Bke40hezPSsQxXf224m+0ngJIrQfzNRl5WJVnsJfLmZEXlP5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4lQuaVTtaWP7epLRpwxnl2hjN2LwLeOQ665Rf5prEKY=;
+ b=bqyHWok0AbvMWiVTaG7OiMp8L34ttdarMbKnuQAtnuE0oFO0UT4gVl+v652USEdJQrCtNVcUyv36wBMsy9fQwavyjtOW1ugMmDEESTOaZrA54EVY49zL/nJvtdoF/xe+cZPwEPXH2EKYty6ZWmYBv9QyrWCynbjNbx4DknmsMSv0mUaYWPG7+7fnDJ71cQxAMpMkO0fUeORE4FC9cefWAgw6U2hLfEvagExZd3q8/4/8EOtwp3LAmAyZ2/iXexrTh0/caDFY4YarmzRzfB2mVTiDhR1PYGEQ0bsjqb1ZeG2Z9rF/6KJaZ2qBjgQfLY0xJ6+vd3YDi1h7k77uocjiCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4lQuaVTtaWP7epLRpwxnl2hjN2LwLeOQ665Rf5prEKY=;
+ b=leUn/ilqwiBMLzg6ERZIhTMzdUpvtwmr473FvcUrsPniNmfuPS1Zdd+KnbhbDOA0p3w6sBCQKTzQjW2Py8IwvvGzh9bNLkg2EbHKYzrYVbQsR9Zyu44e434v6mABU9Yfm7/8NzsEbHvKqIikmOqQhdlltDntkv21zU2VDo2nwaMbl8jLEaDFBivyTJICXEYq5sQPTbys8RBuHEdqXleBob0rDFmFe0nZbaFTcbOTQPUy98M/WynjHocbMDmacq63sqpsrxQP8jFMPBnOOkl/oo8i2DwEIQag3plxsMXl9RvGrw2727d0qhWt3T5PdrhsqyfbdkS6vddI+s6vrstGWw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM6PR12MB3356.namprd12.prod.outlook.com (2603:10b6:5:38::11) by
+ BL0PR12MB4915.namprd12.prod.outlook.com (2603:10b6:208:1c9::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.23; Fri, 2 Dec
+ 2022 05:15:10 +0000
+Received: from DM6PR12MB3356.namprd12.prod.outlook.com
+ ([fe80::c267:3c38:d5bb:db3b]) by DM6PR12MB3356.namprd12.prod.outlook.com
+ ([fe80::c267:3c38:d5bb:db3b%3]) with mapi id 15.20.5880.010; Fri, 2 Dec 2022
+ 05:15:10 +0000
+Message-ID: <099c5fab-3edc-71ba-ed65-2002ed2427fb@nvidia.com>
+Date:   Fri, 2 Dec 2022 10:44:55 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v11 1/3] clocksource: loongson2_hpet: add hpet driver
- support
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, zhuyinbo@loongson.cn
-References: <20221129030925.14074-1-zhuyinbo@loongson.cn>
- <87k03bs6pj.ffs@tglx>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-In-Reply-To: <87k03bs6pj.ffs@tglx>
+Subject: Re: [PATCH 2/3] arm64: tegra: Add uphy lane number and intr in p2u
+ nodes
+To:     Jon Hunter <jonathanh@nvidia.com>, vkoul@kernel.org,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com, vidyas@nvidia.com
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, bhelgaas@google.com,
+        lpieralisi@kernel.org, nkristam@nvidia.com
+References: <20221124083510.3008139-1-mmaddireddy@nvidia.com>
+ <20221124083510.3008139-3-mmaddireddy@nvidia.com>
+ <1940f7ef-3119-59c6-0ddc-9498806766c9@nvidia.com>
+Content-Language: en-US
+X-Nvconfidentiality: public
+From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
+In-Reply-To: <1940f7ef-3119-59c6-0ddc-9498806766c9@nvidia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx9VblgIljvRckAA--.5510S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3JF17Kr48Jr1rCF1Duw17ZFb_yoWxArWUpF
-        yIvFsxtFWDJr1kXr1jqrs8urWqq3yfury7Kry5tayUJ34qvwn3GFy0939xCr10krZ3Ja9F
-        ya1Yq347uF9FyaDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8FAp5UUUUU==
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: MAXP287CA0005.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:49::16) To DM6PR12MB3356.namprd12.prod.outlook.com
+ (2603:10b6:5:38::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3356:EE_|BL0PR12MB4915:EE_
+X-MS-Office365-Filtering-Correlation-Id: be4a58f3-6044-4a6f-a179-08dad4242f0e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EruvrVKS4E3f7ezxmMW8LAU76DmLateuOCG3EMq+N5LSNBrjYFi9klvMCC6xsL5DZXsc7ulEINnKMNUYiHkRG918nvkXRkm2VccmYid+UDQTSFZrcfkVcoJZkK7rl1y+6sGV9Ey1ceB37YsQtNR7FaulmdraRTiSDYJUmGmyDnSxJpU3zf3dfJxUpj95HwY+dINtx6CJtn9AVkX2ArgZT1eiLApOXjQF+MGe0RDsCu2ow7hSO0tasrRT7fqnnV4Q1JadUAM1lpxq1yOubXIsLaIFAvzjCnhmvRbOrpLqoe+GwytaFgGMi028JISxiyOHJl09vpxanykOXQ2xc3G3xKVZBz+3I0q+546awEoyMJnUz4uKLGQAwKwkYILA6YHPRjtBazgLv/G9nG8EXJ7i8LN1WY6MEpO4bPpQa0vNZmzqunJH+qDOAVQNbVsMil2P6H8UXC1rnQ8LmuFbFDAIMJEWWJ/wOT+ytaQ/HMuWuH9jpqEY39vyDNJHCVnjfR2ec8YbBJJ2Hq+hQ2MbyHs5UoK4xk4kkjQFC5n9GUSCTIND00F/0w3F14O50cuuWwViOg7RV9nbyiZaXm+JvSvoQ/tpMnVFFlhGu3dM+zKtsQuGbKzHmr3ojxBqifs9+Jvth/codc2MbLTaiGYnyjFRRrp5dL/CUgpNFRP1uxIezft3mq8jFm1y1LQeJYqp+Tmpi6bXDQxyZ8uBILmBpfT1dQqh45i5LV+jhVbAvgER1Bc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3356.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(366004)(376002)(346002)(39860400002)(451199015)(31696002)(86362001)(6512007)(36756003)(107886003)(6506007)(26005)(6486002)(5660300002)(186003)(8676002)(478600001)(8936002)(4744005)(4326008)(66556008)(53546011)(66946007)(2906002)(316002)(66476007)(41300700001)(7416002)(6636002)(6666004)(2616005)(38100700002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c3FNRXJwWUxPWHduWXh4R3VZUnY1VnVEczZyVWo3QzM5NUxpZExpVVZYU0Yw?=
+ =?utf-8?B?OHVXTGs1WGFBNEJrS0J5MzNQaGdaL2NCT3k5dXBKQ3VYS2NTb3ROYnpPNSt0?=
+ =?utf-8?B?Zk45emhUV1dtOVNlNE1QZ0NRRG5ZcUJYK2dlS0VoMEFHZURMRFZYc1hMc3NX?=
+ =?utf-8?B?WUFSWGVNOFlsa0dLeFRrSDBTWDdnS3dRMmJKVXE5cUs2YS9IMnkvOE96Uld2?=
+ =?utf-8?B?REg3SWF2LzNRZHE0bWZxOTZxdXdRMGthTmtUSisySXFkeUI3Mkd4cFp5WGFt?=
+ =?utf-8?B?YXNNcDNXTDAxSDdKaFhmK2craVVSRzI3eFYyRTRuQlRmcHZGbUpMNHBKS1NE?=
+ =?utf-8?B?NnlYYzMyN1hKbHJxVHNYZURBa1l1U09LNDRSZlJxY2RXbk9MZkowbmp4TjZz?=
+ =?utf-8?B?c3VBdzZ3ajlURzB5OFpWMU4yTHZhMEIxV1NPRU9ZOGhtR3k1amNqSG9sVnBH?=
+ =?utf-8?B?d25QUElYaW9zcWs2d2ZjdnY1NEZ1L2JkOFN4U0I1N3lzZ2h3K2lBbkcxWlpZ?=
+ =?utf-8?B?cXlEWkNnZ0ZnZ0RBZmVFNzZQK0k2QklPNTU4dHVyODFkYytyK3lBbnlGM2lh?=
+ =?utf-8?B?SmtBRmsydWphNlgxcWZkNURnY0ZrMk5pbkU2amZYdFdhM0NIakU2M1p0cStY?=
+ =?utf-8?B?a1M1UkpLRkJBV245Si9hbGdZNVVUTy9oZ1AyWm50dXcxWmtEMmM2T0Jnd2dk?=
+ =?utf-8?B?USs4Z0RYRjNNRGNHNmtUbjZid1BCVDBZSHlDMVBwSE1XTCtHeURKeEdhWUJy?=
+ =?utf-8?B?OFVPa0FVS1pIUHR0YWRtUHJWdlZaazRCbHU1N1dySWFrcVZBRXdsdkhTeUsy?=
+ =?utf-8?B?KzVPTmtwLzJFQzk0ZWpxaTRpWDg0RkJDSWVZSk00SlFrQlNrL1dkWTJrZklp?=
+ =?utf-8?B?ajVsUU5yRHRzRGhFVnRIYnB4bWY0L0JiRmptekpWbVVMRnVkd3VjU3U4Qml4?=
+ =?utf-8?B?aHIrWGtTekhhVWVwRy9QbmJ5dDV1L3BHQnQzRjFQcFhicTZxSjJXZGZlQTNC?=
+ =?utf-8?B?N1pYOWVaaVhrTU81VktwTjVad1hUcDd0NUxzMUwxOXRQTXYxZStQWUc3NnJp?=
+ =?utf-8?B?czNmZ0VtMVYxN1NNK1ZmbTNVYU5ZSmtUL2NRV0lRRGdnY3JkSGZMSkxUUDBq?=
+ =?utf-8?B?aVhqYWxmSnd5NVhFbDJHU1Urc05lZnVMNVdiZ0VLdFZ4NlFCTTJkV0pTYklB?=
+ =?utf-8?B?VDJqWTFoSWRETXhkMEE5dzg2S2RTNHh3R0cwRUg5TkVDMFFlVTkzeEU4L1Nl?=
+ =?utf-8?B?R2hpWHNHTlBmcjJoc1k1allkY3FNVlNmUjUzODd5R2ZxbWh0dkI2UG0wUDdX?=
+ =?utf-8?B?UTk0UTZlZ2JKLzBpVXhpLzZsUy9VNUdaeFJyRE9JYXVWc1dNeHFMRVdsaGpy?=
+ =?utf-8?B?Z3V5VFFibXJ2VVN0Zkk0QVNHMDE1RmlPVEtGRERKcDNLVi9OMWJFWEpDRUpE?=
+ =?utf-8?B?UGN6NkdLVEVvV1dac1RVdDAxeEcyRkx3cUppdEFSYytlZkFBNVljcFdMdDRp?=
+ =?utf-8?B?LzczVkhtTVNiUFZ0aWNwUnAwcWI4bCt2TGJFUUZSVXRIRnZVdmJFdG5xN1N0?=
+ =?utf-8?B?MkoxSXAxaG9QSExRclFPU0lXaUMzQ3pSNk8yY1ZGeEprZHhOdDgzMTF6bEtz?=
+ =?utf-8?B?VWp2RFJpbzVnb2JrZUR6NXN0aU4xcTFCWGVPWlMzNUdzMHpkb0xjQ2lVbGk1?=
+ =?utf-8?B?MzljWm9kNFFEY1BkTnk2SHgxZ1pTMkc4c1NvNDFIcWhxNlp0NUkvSVFyV2Ew?=
+ =?utf-8?B?V1RNQkRObWVIRDJKcm5SL29HOFl4bFYwbHE4MUg4a0t5TXBvZjg3RG16Ukla?=
+ =?utf-8?B?TldLUXM1ZWpyWEI1bWFYbDZRWmloaHUwV05VcDR6NUVKS3M3Zm9LbmlEQmZ4?=
+ =?utf-8?B?TW0rU3ZpRGh1NlNOaW9VOG5hWjF1Q21xZDlLQlVqek5nL1pSa3BNRGdKdXo3?=
+ =?utf-8?B?T1JWcHdMWTRKak9UeGxhYlYyZHlWdXdVQVY5WWR1d2tQVWd5NS9MWE82b3U4?=
+ =?utf-8?B?UGVtUjZCMTNNUDBSYVhSTml0Vm1NN0lFYmNscUlYSUJyYUFSUm01SkVYZmhK?=
+ =?utf-8?B?eE9mR1hCdDZWZks5eTBpS0tEL1djc29kcU8zbUZ0TW9WYVpZMGVBQmhCUnJo?=
+ =?utf-8?B?OHV1dUVKanloeXNxSG5tNmo4MDFIRFVUMEhqMUxwSzNoaWVSeG84NS9Bdk1R?=
+ =?utf-8?B?SHc9PQ==?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be4a58f3-6044-4a6f-a179-08dad4242f0e
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3356.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2022 05:15:10.3964
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eCIjJC3fIyDRk/5MHOROnBOSl/Ew6XshXDwSrRE8Tt5MDEjrxd63qW12SUTErGrxxrxn0HYIDmgRghUOyCM11Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4915
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,263 +134,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-在 2022/12/1 19:29, Thomas Gleixner 写道:
-> On Tue, Nov 29 2022 at 11:09, Yinbo Zhu wrote:
->> HPET (High Precision Event Timer) defines a new set of timers, which
-> It's not really new. The HPET specification is 20 years old :)
-
-I will change it.
-
-thanks.
-
+On 12/1/2022 3:14 PM, Jon Hunter wrote:
 >
->> +++ b/drivers/clocksource/loongson2_hpet.c
->> @@ -0,0 +1,334 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
->> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
->> + */
->> +
->> +#include <linux/init.h>
->> +#include <linux/percpu.h>
->> +#include <linux/delay.h>
->> +#include <linux/spinlock.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/of_address.h>
->> +#include <linux/clk.h>
->> +#include <asm/time.h>
->> +
->> +/* HPET regs */
->> +#define HPET_CFG                0x010
->> +#define HPET_STATUS             0x020
->> +#define HPET_COUNTER            0x0f0
->> +#define HPET_T0_IRS             0x001
->> +#define HPET_T0_CFG             0x100
->> +#define HPET_T0_CMP             0x108
->> +#define HPET_CFG_ENABLE         0x001
->> +#define HPET_TN_LEVEL           0x0002
->> +#define HPET_TN_ENABLE          0x0004
->> +#define HPET_TN_PERIODIC        0x0008
->> +#define HPET_TN_SETVAL          0x0040
->> +#define HPET_TN_32BIT           0x0100
-> So this is another copy of the defines which are already available in
-> x86 and mips. Seriously?
-
-in fact, these definition was also record in LoongArch Loongson-2 SoC
-
-datasheet.
-
+> On 24/11/2022 08:35, Manikanta Maddireddy wrote:
+>> UPHY lane number is required to exchange lane margin data between P2U
+>> and UPHY. Add uphy lane number in p2u device tree nodes.
+>>
+>> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 120 +++++++++++++++++++++++
+>>   1 file changed, 120 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi 
+>> b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> index eaf05ee9acd1..ec8a28a9d380 100644
+>> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> @@ -1109,6 +1109,11 @@ p2u_hsio_0: phy@3e00000 {
+>>               reg = <0x03e00000 0x10000>;
+>>               reg-names = "ctl";
+>>   +            interrupts = <0 336 0x04>;
 >
->> +static DEFINE_SPINLOCK(hpet_lock);
-> This wants to be a raw spinlock if at all. But first you have to explain
-> the purpose of this lock.
 >
->> +DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device);
-> Why needs this to be global and why is it needed at all?
->
-> This code does support exactly _ONE_ clock event device.
-
-This is consider that the one hardware clock_event_device is used for 
-multiple cpu cores,
-
-and earch cpu cores has a device from its perspective, so add 
-DEFINE_SPINLOCK(hpet_lock)
-
-and DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device),
-
-the use of locks described below is also this reason .
-
-
-and I will use raw spinlock to replace spin lock.
-
->
->> +static int hpet_read(int offset)
->> +{
->> +	return readl(hpet_mmio_base + offset);
->> +}
->> +
->> +static void hpet_write(int offset, int data)
->> +{
->> +	writel(data, hpet_mmio_base + offset);
->> +}
->> +
->> +static void hpet_start_counter(void)
->> +{
->> +	unsigned int cfg = hpet_read(HPET_CFG);
->> +
->> +	cfg |= HPET_CFG_ENABLE;
->> +	hpet_write(HPET_CFG, cfg);
->> +}
->> +
->> +static void hpet_stop_counter(void)
->> +{
->> +	unsigned int cfg = hpet_read(HPET_CFG);
->> +
->> +	cfg &= ~HPET_CFG_ENABLE;
->> +	hpet_write(HPET_CFG, cfg);
->> +}
->> +
->> +static void hpet_reset_counter(void)
->> +{
->> +	hpet_write(HPET_COUNTER, 0);
->> +	hpet_write(HPET_COUNTER + 4, 0);
->> +}
->> +
->> +static void hpet_restart_counter(void)
->> +{
->> +	hpet_stop_counter();
->> +	hpet_reset_counter();
->> +	hpet_start_counter();
->> +}
-> This is also a copy of the x86 HPET code....
->
->> +static void hpet_enable_legacy_int(void)
->> +{
->> +	/* Do nothing on Loongson2 */
->> +}
->> +
->> +static int hpet_set_state_periodic(struct clock_event_device *evt)
->> +{
->> +	int cfg;
->> +
->> +	spin_lock(&hpet_lock);
-> What's the purpose of this lock ?
->
->> +	pr_info("set clock event to periodic mode!\n");
->> +
->> +	/* stop counter */
->> +	hpet_stop_counter();
->> +	hpet_reset_counter();
->> +	hpet_write(HPET_T0_CMP, 0);
->> +
->> +	/* enables the timer0 to generate a periodic interrupt */
->> +	cfg = hpet_read(HPET_T0_CFG);
->> +	cfg &= ~HPET_TN_LEVEL;
->> +	cfg |= HPET_TN_ENABLE | HPET_TN_PERIODIC | HPET_TN_SETVAL |
->> +		HPET_TN_32BIT | hpet_irq_flags;
->> +	hpet_write(HPET_T0_CFG, cfg);
->> +
->> +	/* set the comparator */
->> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
->> +	udelay(1);
->> +	hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
->> +
->> +	/* start counter */
->> +	hpet_start_counter();
-> Pretty much the same code as hpet_clkevt_set_state_periodic()
->
->> +	spin_unlock(&hpet_lock);
->> +	return 0;
->> +}
->> +
->> +static int hpet_set_state_shutdown(struct clock_event_device *evt)
->> +{
->> +	int cfg;
->> +
->> +	spin_lock(&hpet_lock);
->> +
->> +	cfg = hpet_read(HPET_T0_CFG);
->> +	cfg &= ~HPET_TN_ENABLE;
->> +	hpet_write(HPET_T0_CFG, cfg);
->> +
->> +	spin_unlock(&hpet_lock);
-> Another slightly different copy of the x86 code
->
->> +	return 0;
->> +}
->> +
->> +static int hpet_set_state_oneshot(struct clock_event_device *evt)
->> +{
->> +	int cfg;
->> +
->> +	spin_lock(&hpet_lock);
->> +
->> +	pr_info("set clock event to one shot mode!\n");
->> +	cfg = hpet_read(HPET_T0_CFG);
->> +	/*
->> +	 * set timer0 type
->> +	 * 1 : periodic interrupt
->> +	 * 0 : non-periodic(oneshot) interrupt
->> +	 */
->> +	cfg &= ~HPET_TN_PERIODIC;
->> +	cfg |= HPET_TN_ENABLE | HPET_TN_32BIT |
->> +		hpet_irq_flags;
->> +	hpet_write(HPET_T0_CFG, cfg);
-> Yet another copy.
->
->> +	/* start counter */
->> +	hpet_start_counter();
-> Why doe you need an explicit start here?
-
-if the hpet doesn't support period mode,  the the hpet irq doesn't enable in
-
-oneshot mode, so add it in here.
-
->
->> +	spin_unlock(&hpet_lock);
->> +	return 0;
->> +}
->> +
->> +static int hpet_tick_resume(struct clock_event_device *evt)
->> +{
->> +	spin_lock(&hpet_lock);
->> +	hpet_enable_legacy_int();
->> +	spin_unlock(&hpet_lock);
-> More copy and paste just to slap a spinlock on to it which has zero
-> value AFAICT.
-thank you for reminding me, I will remove it.
->> +	return 0;
->> +}
->> +
->> +static int hpet_next_event(unsigned long delta,
->> +		struct clock_event_device *evt)
->> +{
->> +	u32 cnt;
->> +	s32 res;
->> +
->> +	cnt = hpet_read(HPET_COUNTER);
->> +	cnt += (u32) delta;
->> +	hpet_write(HPET_T0_CMP, cnt);
->> +
->> +	res = (s32)(cnt - hpet_read(HPET_COUNTER));
->> +
->> +	return res < HPET_MIN_CYCLES ? -ETIME : 0;
-> Another copy of the x86 code except for omitting the big comment which
-> explains the logic.
->
-> Seriously, this is not how it works. Instead of copy & paste, we create
-> shared infrastructure and just keep the real architecture specific
-> pieces separate.
->
-> Thanks,
->
->          tglx
-
-I don't find the shared infrastructure in LoongArch, I want to support  
-hpet for LoongArch
-
-architecture Loongson-2 SoC series.   the peripherals on the SoC are 
-generally
-
-descriped by dts.
-
-
-In addition, I havent' found any architecture releated differences for 
-hpet, at least Mips (loongson)
-
-and LoongArch should be like this,  in addtion to the hpet control base 
-address.
-
-
-Loongson-2 SoC need to support dts, so I refer to the hpet driver of 
-Mips and add
-
-hpet dts support for LoongArch architecture Loongson-2 SoC.
-
+> Please use definitions and don't hard-code the values apart from the 
+> interrupt number.
+Ack, I will address in V2.
 
 Thanks,
-
-Yinbo.
-
+Manikanta
+>
+> Jon
+>
