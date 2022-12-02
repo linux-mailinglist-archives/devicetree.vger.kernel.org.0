@@ -2,107 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8634664022E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A06364024F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232615AbiLBIcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:32:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49344 "EHLO
+        id S232862AbiLBIgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:36:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232753AbiLBIcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:32:03 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E6EBFCF2
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:30:35 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id f13so6331289lfa.6
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 00:30:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KRzGhbLWq/EVeiZHGstPvpADlY6Gw7yqGMWIECivDNo=;
-        b=xoj8AZ6d1kfLfbrh/1nP+oAlaN/s8oPmYwYT/hB6egk/w+lJdPUxsqJ46XJM3kbu0v
-         WNUMr6WXob3ixTtB51PWsOXZzSlyrJcZLyRzbcgZi78Y1oJwINnDLMJM4a2ueJBeKMuK
-         CyVOsxw/RuNXwGigC3yJ2I7cBnky9KWiIXQJw3IWO1Z+mXd2PsMZtANOSftFTuhJvKv6
-         cE+CMjZzK4Fice7ltOPWuQshHPwSPh6MvI7X3NPzrj2Kv0mh/ji2pFO/HwpUPwvSTNZP
-         SBSeEph/wNbB/wspk+QfqCy5GVMHP8NQ4JoQl0gKzql0icb+jMFLtHd+S0MY0fBxkzmh
-         LT4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KRzGhbLWq/EVeiZHGstPvpADlY6Gw7yqGMWIECivDNo=;
-        b=ntyeEzS7/XOKdmmbrJ8grlPw6QQY2Aj44Av5TIm7UaH/UCnbxEmNSl5hAVEEk/Savu
-         X/c7Mwbx9PwnrfB9i47B/tV+HjUSOzjwr9/Zw+fjCNjIBgJDo6qvt1G+Bdmtl+jcFpOY
-         lQ6umHP3riDCaDlHRQlwSiYfHgCp4CSfRevivFqTqwMi1JIeianDiV6OMzi4MH/At7Ud
-         Ca5HwgK9c7nLejs1K6meOd8AC5c+9HTxULKL/idZdBv3fByYTR+21nLchpiFeWq/4dzK
-         Ee4FBt0/EkXZz0DxiDYqeUgG/3M7TgzbBzhCPJtFKo3bsC58xc3UoJJd6q+qU96Xmrm0
-         zWxw==
-X-Gm-Message-State: ANoB5pnJtIvfVYsbC7jyzTw+a6Q/nRwNKMQMbwpUuOdRaWogWqjg4HBY
-        sLH9t3GlwP7DhJA20T8wj9Z4wg==
-X-Google-Smtp-Source: AA0mqf5cRBXi+/1IoddLYtVQ1uiytPbiTqxIIwwNl5HC3xS8mRSFxfzJjaxjqWgC+iIbow0ml/Z0Bg==
-X-Received: by 2002:ac2:51a2:0:b0:4b5:3d3:224d with SMTP id f2-20020ac251a2000000b004b503d3224dmr11000207lfk.69.1669969833654;
-        Fri, 02 Dec 2022 00:30:33 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k26-20020ac2457a000000b0049462af8614sm941669lfm.145.2022.12.02.00.30.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 00:30:32 -0800 (PST)
-Message-ID: <bdfb93b6-76de-e047-abeb-b36f79ee8f23@linaro.org>
-Date:   Fri, 2 Dec 2022 09:30:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH] leds: qcom,pm8058-led: Convert to DT schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S232884AbiLBIgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:36:06 -0500
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE0FC3FD3;
+        Fri,  2 Dec 2022 00:34:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669970069; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=NgtWSF4877or8VUSFEbYKgCJE7v7r6fMA8Y2tfuOhjzTsPe16g5y84jeQrrHye30rwh8OsT72z3hPk/Z/GZ2teMCYXkm9PEPFqyTC8Ah7WuQiIcbxqJyfuAnhJYwnyzh90uisa8McLSYw/7uTBT9xre7IOtv6Qj6YNhWOEVtsNo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1669970069; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=Bb/2sdCTtx4lJG/AtrjSyYbXRs5Y+VwRBAhs9A9oZqw=; 
+        b=AGfljpSdkc1zAYxfKZnaNOi61nXu3pGYykN/gitp8IVueTgqhSCWyIqg46U6nY20sIlOK/b/nl27gyNlIh+uxLLWHPbPwbzi+Mge0HdjXIhKUlEvZ4L2SBEr7Gxxu2F3M7rMsiaxE10YkHrLC17maUbG8ZCzlKGbneKKcahIKlw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669970069;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=Bb/2sdCTtx4lJG/AtrjSyYbXRs5Y+VwRBAhs9A9oZqw=;
+        b=g2Bvw/BwoXZ7egBpBTRgnc9WUdAJ+SOen8MVZHWPCWdMQk818KBieLtNwHiE6KiA
+        FlyUwUjf7RukYk5RRmajMR1QKvMZnxVLacnJNQqCuasGx1Orw/C8M8e90raC9h3Wl3e
+        6np07gChYH87U20q83v3SigF9yPVnIjR/BN9ZhmU=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.229 [120.85.99.229]) by mx.zohomail.com
+        with SMTPS id 1669970067473948.4031125749295; Fri, 2 Dec 2022 00:34:27 -0800 (PST)
+Message-ID: <8685fd07e7abd6ed5b0321d9d9ba3abc5a8db2fc.camel@icenowy.me>
+Subject: Re: [PATCH v2 12/12] riscv: defconfig: Enable the Allwinner D1
+ platform and drivers
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Guo Ren <guoren@kernel.org>, Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221201131505.42292-1-krzysztof.kozlowski@linaro.org>
- <20221202000858.GA1737135-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221202000858.GA1737135-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>
+Date:   Fri, 02 Dec 2022 16:34:20 +0800
+In-Reply-To: <CAJF2gTTOKPAqazF5w03NBzxMW7MGpoCn7vvdj=RabGrzp5WVZQ@mail.gmail.com>
+References: <20221125234656.47306-1-samuel@sholland.org>
+         <20221125234656.47306-13-samuel@sholland.org>
+         <CAJF2gTTOKPAqazF5w03NBzxMW7MGpoCn7vvdj=RabGrzp5WVZQ@mail.gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
+MIME-Version: 1.0
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,URIBL_BLACK autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 01:08, Rob Herring wrote:
-> On Thu, Dec 01, 2022 at 02:15:05PM +0100, Krzysztof Kozlowski wrote:
->> Convert the Qualcomm PM8058 PMIC LED bindings to DT schema.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/leds/leds-pm8058.txt  | 67 -------------------
->>  .../bindings/leds/qcom,pm8058-led.yaml        | 57 ++++++++++++++++
->>  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml  |  4 ++
->>  3 files changed, 61 insertions(+), 67 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pm8058.txt
->>  create mode 100644 Documentation/devicetree/bindings/leds/qcom,pm8058-led.yaml
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Or should I apply it?
+=E5=9C=A8 2022-11-26=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 08:24 +0800=EF=BC=
+=8CGuo Ren=E5=86=99=E9=81=93=EF=BC=9A
+> On Sat, Nov 26, 2022 at 7:47 AM Samuel Holland <samuel@sholland.org>
+> wrote:
+> >=20
+> > Now that several D1-based boards are supported, enable the platform
+> > in
+> > our defconfig. Build in the drivers which are necessary to boot,
+> > such as
+> > the pinctrl, MMC, RTC (which provides critical clocks), SPI (for
+> > flash),
+> > and watchdog (which may be left enabled by the bootloader). Other
+> > common
+> > onboard peripherals are enabled as modules.
+> >=20
+> > Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > ---
+> >=20
+> > (no changes since v1)
+> >=20
+> > =C2=A0arch/riscv/configs/defconfig | 23 ++++++++++++++++++++++-
+> > =C2=A01 file changed, 22 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/riscv/configs/defconfig
+> > b/arch/riscv/configs/defconfig
+> > index 05fd5fcf24f9..8dfe0550c0e6 100644
+> > --- a/arch/riscv/configs/defconfig
+> > +++ b/arch/riscv/configs/defconfig
+> > @@ -25,6 +25,7 @@ CONFIG_BLK_DEV_INITRD=3Dy
+> > =C2=A0CONFIG_EXPERT=3Dy
+> > =C2=A0# CONFIG_SYSFS_SYSCALL is not set
+> > =C2=A0CONFIG_PROFILING=3Dy
+> > +CONFIG_ARCH_SUNXI=3Dy
+> > =C2=A0CONFIG_SOC_MICROCHIP_POLARFIRE=3Dy
+> > =C2=A0CONFIG_SOC_SIFIVE=3Dy
+> > =C2=A0CONFIG_SOC_STARFIVE=3Dy
+> > @@ -118,22 +119,31 @@ CONFIG_VIRTIO_NET=3Dy
+> > =C2=A0CONFIG_MACB=3Dy
+> > =C2=A0CONFIG_E1000E=3Dy
+> > =C2=A0CONFIG_R8169=3Dy
+> > +CONFIG_STMMAC_ETH=3Dm
+> > =C2=A0CONFIG_MICROSEMI_PHY=3Dy
+> > =C2=A0CONFIG_INPUT_MOUSEDEV=3Dy
+> > +CONFIG_KEYBOARD_SUN4I_LRADC=3Dm
+> > =C2=A0CONFIG_SERIAL_8250=3Dy
+> > =C2=A0CONFIG_SERIAL_8250_CONSOLE=3Dy
+> > +CONFIG_SERIAL_8250_DW=3Dy
+> > =C2=A0CONFIG_SERIAL_OF_PLATFORM=3Dy
+> > =C2=A0CONFIG_VIRTIO_CONSOLE=3Dy
+> > =C2=A0CONFIG_HW_RANDOM=3Dy
+> > =C2=A0CONFIG_HW_RANDOM_VIRTIO=3Dy
+> > +CONFIG_I2C_MV64XXX=3Dm
+> > =C2=A0CONFIG_SPI=3Dy
+> > =C2=A0CONFIG_SPI_SIFIVE=3Dy
+> > +CONFIG_SPI_SUN6I=3Dy
+> > =C2=A0# CONFIG_PTP_1588_CLOCK is not set
+> > -CONFIG_GPIOLIB=3Dy
+> > =C2=A0CONFIG_GPIO_SIFIVE=3Dy
+> > +CONFIG_WATCHDOG=3Dy
+> > +CONFIG_SUNXI_WATCHDOG=3Dy
+> > +CONFIG_REGULATOR=3Dy
+> > +CONFIG_REGULATOR_FIXED_VOLTAGE=3Dy
+> > =C2=A0CONFIG_DRM=3Dm
+> > =C2=A0CONFIG_DRM_RADEON=3Dm
+> > =C2=A0CONFIG_DRM_NOUVEAU=3Dm
+> > +CONFIG_DRM_SUN4I=3Dm
+> > =C2=A0CONFIG_DRM_VIRTIO_GPU=3Dm
+> > =C2=A0CONFIG_FB=3Dy
+> > =C2=A0CONFIG_FRAMEBUFFER_CONSOLE=3Dy
+> > @@ -146,19 +156,30 @@ CONFIG_USB_OHCI_HCD=3Dy
+> > =C2=A0CONFIG_USB_OHCI_HCD_PLATFORM=3Dy
+> > =C2=A0CONFIG_USB_STORAGE=3Dy
+> > =C2=A0CONFIG_USB_UAS=3Dy
+> > +CONFIG_USB_MUSB_HDRC=3Dm
+> > +CONFIG_USB_MUSB_SUNXI=3Dm
+> > +CONFIG_NOP_USB_XCEIV=3Dm
+> > =C2=A0CONFIG_MMC=3Dy
+> > =C2=A0CONFIG_MMC_SDHCI=3Dy
+> > =C2=A0CONFIG_MMC_SDHCI_PLTFM=3Dy
+> > =C2=A0CONFIG_MMC_SDHCI_CADENCE=3Dy
+> > =C2=A0CONFIG_MMC_SPI=3Dy
+> > +CONFIG_MMC_SUNXI=3Dy
+> > =C2=A0CONFIG_RTC_CLASS=3Dy
+> > +CONFIG_RTC_DRV_SUN6I=3Dy
+> > +CONFIG_DMADEVICES=3Dy
+> > +CONFIG_DMA_SUN6I=3Dm
+> > =C2=A0CONFIG_VIRTIO_PCI=3Dy
+> > =C2=A0CONFIG_VIRTIO_BALLOON=3Dy
+> > =C2=A0CONFIG_VIRTIO_INPUT=3Dy
+> > =C2=A0CONFIG_VIRTIO_MMIO=3Dy
+> > +CONFIG_SUN8I_DE2_CCU=3Dm
+> > +CONFIG_SUN50I_IOMMU=3Dy
+> Do we need IOMMU?
 
-There will be conflicts with:
-https://lore.kernel.org/all/20221201202144.448694-4-dmitry.baryshkov@linaro.org/
+It's utilized by some peripherals, e.g. the display engine.
 
-So both patches could go via same tree to avoid it.
-
-Best regards,
-Krzysztof
+>=20
+> Others:
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+>=20
+> > =C2=A0CONFIG_RPMSG_CHAR=3Dy
+> > =C2=A0CONFIG_RPMSG_CTRL=3Dy
+> > =C2=A0CONFIG_RPMSG_VIRTIO=3Dy
+> > +CONFIG_PHY_SUN4I_USB=3Dm
+> > +CONFIG_NVMEM_SUNXI_SID=3Dy
+> > =C2=A0CONFIG_EXT4_FS=3Dy
+> > =C2=A0CONFIG_EXT4_FS_POSIX_ACL=3Dy
+> > =C2=A0CONFIG_EXT4_FS_SECURITY=3Dy
+> > --
+> > 2.37.4
+> >=20
+>=20
+>=20
 
