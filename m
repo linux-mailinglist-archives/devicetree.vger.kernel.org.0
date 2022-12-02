@@ -2,118 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 586A3640E2C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D2D640E36
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:10:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234500AbiLBTEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 14:04:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S233874AbiLBTKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 14:10:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234472AbiLBTEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:04:24 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7742FE11A9
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 11:04:23 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id f3so5118075pgc.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 11:04:23 -0800 (PST)
+        with ESMTP id S233873AbiLBTKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:10:54 -0500
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90F68ED692;
+        Fri,  2 Dec 2022 11:10:53 -0800 (PST)
+Received: by mail-io1-xd36.google.com with SMTP id q79so2649309iod.4;
+        Fri, 02 Dec 2022 11:10:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=imr/GnqPcqLqa9JjMVgPxbyj/eiQHdpFYtFNeUfm5rU=;
-        b=gjGe+7auDv+ZXu6qt73zTRHUZnU4jIZZDL8KgYXKoGC8YpiLul81hfXyWSVs8xKDya
-         t46krBPFaRKw9a19sjeRINFTz7UVLN6gOzU36gNecQUBhsUnE22CNUE+K4xhyRNaUBM+
-         p8I9Og0ekoekO2mPafx4QjwACLsfml6Z6s+j2L61u/ZKeaPYRl7AEEFelJj6Whh8nNXV
-         eiye/7Dl58HiuzcKADeL0yHqi6QrhQKHVwgx/vxEkwSdfKEsTmTgqLl0LRZATTbULKB3
-         p0QOn4w0Sg5f7gdC2LWyBahjjxFDIiqEIMv8r9AJNnux9OJVgDNi5yAS6L2MvsVP94Qb
-         Fd3w==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+LpbR4BJNFL+FnY5sm/YUcXeZkcYNe0cWTXNSMmQaY4=;
+        b=AWtns0QBhoENJWbCHlZfqWEQKtbmRHrXdjkVjLyykgbaiflI9oiSoCT+1/mlsSCfuw
+         WKsQoV2T8BtUiAGH85r6PESA+XSmtlcK/sIpTCLgef+b7PhJoFtnwK3qHh9KNDuc8IRP
+         JKvGzpGSk3i23I7Q6rzE9WvgyUvYnoK/P/gd8SChr/DoBXOxLc1O/5UFMbtP3dnPu61k
+         2ZPpYMPn6JnqrZBEunWPiGp6DaVX1xnEgtkmO00Zn48QTVtMRVr4w/88kAAZAmcn5wdO
+         c7MuvWKr2+cgOgOzPfXaRIP+SjtquMYwGvbig1wVEw5hiEJRwJA1NNYw0OWFVVZOgWsF
+         7WIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=imr/GnqPcqLqa9JjMVgPxbyj/eiQHdpFYtFNeUfm5rU=;
-        b=Kn8pWKxY9v5JkdUL7CN97+2lYbp95NwRtRy8yUn/A/UsEFrkSqM7IZso+qrbs9vXa1
-         mbm9bFfmLXNqskINvWBHm7hDhlMXx/Gjnlx+p7Pl5cFNb/U7ugDX47bAwPkIeFvkRXNo
-         tYREUDnaqQBh355sD0ZD7tfSdQFeWzw2rZ7EkPpTOOC6rtoP8+kZEImekQl2jtFlN3Jv
-         Ex1DaXqphYnz0aleq2paIzDHE64RMjzS71gVAEFxIv1GSBHT3BGTn0SepXGqTKtE6P5O
-         SViDPg4mVJNWWFPqSflxRK4NXT8odipIHY6uvFUmszSyI2o5d2/YhT+96EqHHQKpic47
-         M+XA==
-X-Gm-Message-State: ANoB5pmdExoyTO4mJK46DELHCR3lUGaBoYdlbQTntBe3hCZBSx68bn1Q
-        AKI+JBJEYJ8YCNfMqtb46FfxRw==
-X-Google-Smtp-Source: AA0mqf6FmyD0wOrbzu3xmRH000pMYIZ+lhNtF3BHMD8wby88YkYEyGqw52oKyOS+R5dIP4i/6feQ8w==
-X-Received: by 2002:a65:588b:0:b0:456:f7bd:a1 with SMTP id d11-20020a65588b000000b00456f7bd00a1mr64729248pgu.79.1670007862734;
-        Fri, 02 Dec 2022 11:04:22 -0800 (PST)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id pl11-20020a17090b268b00b001faafa42a9esm5104893pjb.26.2022.12.02.11.04.22
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+LpbR4BJNFL+FnY5sm/YUcXeZkcYNe0cWTXNSMmQaY4=;
+        b=EEn7BRnAfIfRnWxESO4gxVcB2t7++dec1XWlLIAxjHgWVfrZgu3ZPx66mkkFix0Cs0
+         G5fZtXEqEG3GQAibK3sooBOnr0DmZ8gooBRM7BEn8u093UzVnt0zIA5xISOYYDXq1Gdv
+         qT2vPtiRfyxz66F1nqJM1SmC9YLJaXpnsbVgPvENts2sq7mRZwegFvS7Ta2JMZseYMyB
+         E544yWBjY9IJ/DbKSHMixAoYewpAm0cTYvCJVKKzACAKYtGVgHfdKWi/PkwXUuRbgxWE
+         3z3idYjuyhPJVNEdqGpRzi8LNUfu9nS1VOvK2d80XhTLezOaow1qAbLNF5uDBONjdNuf
+         3x1A==
+X-Gm-Message-State: ANoB5pmhEQ8XBRJJc1ndEN3CtZBCRjOCXW8po+dHdeT4ndHYOZbYdUaJ
+        YbqQAbDsIcu3qBJYmQdm7KY=
+X-Google-Smtp-Source: AA0mqf4oyMLLvpyOY9JXz8LY12rzDa2cNVQND89+qF/+c4r5b9tuTdah8seJra732ngvOAbQG2iTig==
+X-Received: by 2002:a5d:9b14:0:b0:6de:a34a:e93d with SMTP id y20-20020a5d9b14000000b006dea34ae93dmr24666298ion.179.1670008252803;
+        Fri, 02 Dec 2022 11:10:52 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan (c-75-72-166-104.hsd1.mn.comcast.net. [75.72.166.104])
+        by smtp.gmail.com with ESMTPSA id z30-20020a027a5e000000b0037465a1dd3fsm2940271jad.156.2022.12.02.11.10.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 11:04:22 -0800 (PST)
-Date:   Fri, 02 Dec 2022 11:04:22 -0800 (PST)
-X-Google-Original-Date: Fri, 02 Dec 2022 11:04:12 PST (-0800)
-Subject:     Re: [PATCH v2 0/8] Basic device tree support for StarFive JH7110 RISC-V SoC
-In-Reply-To: <167000761729.13669.16471163583440376052.git-patchwork-notify@kernel.org>
-CC:     hal.feng@starfivetech.com, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, ben.dooks@sifive.com, tglx@linutronix.de,
-        Marc Zyngier <maz@kernel.org>, sboyd@kernel.org,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        linus.walleij@linaro.org, emil.renner.berthing@canonical.com,
-        linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     patchwork-bot+linux-riscv@kernel.org
-Message-ID: <mhng-9bf55be8-1ce6-4f4d-91ef-7a18f694d8da@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Fri, 02 Dec 2022 11:10:52 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     cstevens@beaconembedded.com, aford@beaconembedded.com,
+        Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon: Fix ecspi2 pinmux
+Date:   Fri,  2 Dec 2022 13:10:37 -0600
+Message-Id: <20221202191037.167718-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Dec 2022 11:00:17 PST (-0800), patchwork-bot+linux-riscv@kernel.org wrote:
-> Hello:
->
-> This series was applied to riscv/linux.git (for-next)
-> by Palmer Dabbelt <palmer@rivosinc.com>:
->
-> On Fri, 18 Nov 2022 09:17:06 +0800 you wrote:
->> The original patch series "Basic StarFive JH7110 RISC-V SoC support" [1]
->> is split into 3 patch series. They respectively add basic clock&reset,
->> pinctrl and device tree support for StarFive JH7110 SoC. These patch
->> series are independent, but the Visionfive2 board can boot up successfully
->> only if all these patches series applied. This one adds basic device
->> tree support. This patch series is pulled out from the patch 1~6 and
->> patch 27~30 of v1 [1]. You can simply get or review the patches at the
->> link [2].
->>
->> [...]
->
-> Here is the summary with links:
->   - [v2,1/8] dt-bindings: riscv: Add StarFive JH7110 SoC and VisionFive2 board
->     (no matching commit)
->   - [v2,2/8] dt-bindings: timer: Add StarFive JH7110 clint
->     (no matching commit)
->   - [v2,3/8] dt-bindings: interrupt-controller: Add StarFive JH7110 plic
->     (no matching commit)
->   - [v2,4/8] dt-bindings: sifive,ccache0: Support StarFive JH7110 SoC
->     (no matching commit)
->   - [v2,5/8] soc: sifive: ccache: Add StarFive JH7110 support
->     (no matching commit)
->   - [v2,6/8] riscv: dts: starfive: Add initial StarFive JH7110 device tree
->     (no matching commit)
->   - [v2,7/8] riscv: dts: starfive: Add StarFive JH7110 VisionFive2 board device tree
->     (no matching commit)
->   - [v2,8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
->     https://git.kernel.org/riscv/c/6925ba3d9b8c
->
-> You are awesome, thank you!
+Early hardware did not support hardware handshaking on the UART, but
+final production hardware did.  When the hardware was updated the chip
+select was changed to facilitate hardware handshaking on UART3.  Fix the
+ecspi2 pin mux to eliminate a pin conflict with UART3 and allow the
+EEPROM to operate again.
 
-Looks like the bot is a little confused here, it's just that last patch 
-that's been merged.
+Fixes: 4ce01ce36d77 ("arm64: dts: imx8mm-beacon: Enable RTS-CTS on UART3")
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index 03266bd90a06..169f047fbca5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -120,7 +120,7 @@ &csi {
+ &ecspi2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_espi2>;
+-	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
++	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ 
+ 	eeprom@0 {
+@@ -316,7 +316,7 @@ pinctrl_espi2: espi2grp {
+ 			MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x82
+ 			MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x82
+ 			MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x82
+-			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x41
++			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13              0x41
+ 		>;
+ 	};
+ 
+-- 
+2.34.1
+
