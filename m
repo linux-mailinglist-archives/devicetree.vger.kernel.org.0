@@ -2,146 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8857F640372
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0569964037A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232653AbiLBJhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 04:37:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
+        id S232182AbiLBJit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 04:38:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232637AbiLBJhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:37:10 -0500
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E542115706
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 01:37:03 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 244C41F87B;
-        Fri,  2 Dec 2022 10:37:00 +0100 (CET)
-Date:   Fri, 2 Dec 2022 10:36:58 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
- peripheral
-Message-ID: <20221202093658.vg6t2ptar2arh7hn@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
- <20221101161801.1058969-2-luca@z3ntu.xyz>
- <20221104234435.xwjpwfxs73puvfca@SoMainline.org>
- <20221106193722.j64xrhitdencrjxy@SoMainline.org>
+        with ESMTP id S232577AbiLBJis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:38:48 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B68B0DC3;
+        Fri,  2 Dec 2022 01:38:48 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id n20so10346524ejh.0;
+        Fri, 02 Dec 2022 01:38:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tJDjgBXpMszFeIAvqAsFvMh1NYdd/aFzFWK8zEmUqAM=;
+        b=U9mb0G6OeUfsr7F5qkXSmk4SmSORG85/hynvQ3+ZvNSDVJJSF9UUp3dvjqnV8dN3AQ
+         b8R7Epvw/vVnuKFZZBf5CX50e2YB3bNRbr1mX5J0Ko8RsXQ3c+73nnbWgmYfpAmNl+OP
+         EfWByawDHJnTPX1QmdsVi2NPI+6qDT7QCHLa9n53KBCgCDH4mUUgHaz7DyJu+4xlzFeK
+         RTu5Y8Xc6hZ/yg/OwmvtBWTpIEkMZtMdUJtXa7HIrm0xa7FpGRfSa8ixUoBojckvRZNN
+         liIEKa3Cg7ntlatroMxJOSoU5rLmyMMZDXHw73yebWyq282HSXPnHCIXP8tYyA3PMOgB
+         rUUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tJDjgBXpMszFeIAvqAsFvMh1NYdd/aFzFWK8zEmUqAM=;
+        b=yozWmOwQTlDZmOyJDb4MnBkF9ikpJ3RUmq6ytI+jhLbIGLDCdIdBUlYryhoU2NMo2S
+         mflb0E86E62N/v93WA+LtTq3nFF13TOujoDCimKplO5ShrBRJQUg4Z64E3D+7vWNOIO2
+         lJ2G3hsdlxQ81irt2ynjh60exM7u7AlhmGKG0jGTxkqG6iQLP8VgOSmiH3L2CRMWHf5p
+         v0jQ2WiE06mtTtrayG2mIvtVteH4PfJDppdu5dWlkf62N+TIieD2v8hsYvDepjVaia4W
+         1pRDSTGX4CIr5GA3UFV+qv6ykYr7/m7x1VymyETRiXhpJEu2wgQQfvvbh0zepFfCNLaz
+         um4g==
+X-Gm-Message-State: ANoB5pnyq+3Yu9PYLBFxYPgbhCA4vJV3bI2or3+uqPNRhsE9dE7S6zu+
+        R9zQXw0OascoEbeYaXgps1Y1aYR0reOq4YttR4U=
+X-Google-Smtp-Source: AA0mqf7FIABNiGeTLlM0hVvJiKrNKmFgn+etb0uKjE4IT1Q/r1PLThWQVRPMXCJk1tD3bz6ZJt+mnaCfzIV6oA0v5mI=
+X-Received: by 2002:a17:906:9497:b0:7c0:cbc9:ab68 with SMTP id
+ t23-20020a170906949700b007c0cbc9ab68mr635147ejx.155.1669973926567; Fri, 02
+ Dec 2022 01:38:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221106193722.j64xrhitdencrjxy@SoMainline.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20221124172207.153718-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y4k6ct+iA4j0NZgR@spud>
+In-Reply-To: <Y4k6ct+iA4j0NZgR@spud>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 2 Dec 2022 09:38:20 +0000
+Message-ID: <CA+V-a8v5-nz_f-_P=L0miBPHOVAND-V8ed-tVttXV52nOJth6w@mail.gmail.com>
+Subject: Re: [PATCH v4 0/7] AX45MP: Add support to non-coherent DMA
+To:     Conor Dooley <conor@kernel.org>
+Cc:     palmer@dabbelt.com, Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-11-06 20:37:24, Marijn Suijten wrote:
-> On 2022-11-05 00:44:37, Marijn Suijten wrote:
-> > On 2022-11-01 17:18:00, Luca Weiss wrote:
-> > > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > > 
-> > > The PMI8950 features integrated peripherals like ADC, GPIO controller,
-> > > MPPs and others.
-> > > 
-> > > [luca@z3ntu.xyz: remove pm8950, style changes for 2022 standards, add wled]
-> > > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > > ---
-> > > Changes since v2:
-> > > * Pick up patch, and adjust as mentioned above sign-offs
-> > > 
-> > >  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 97 +++++++++++++++++++++++++++
-> > >  1 file changed, 97 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> > > new file mode 100644
-> > > index 000000000000..32d27e2187e3
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> > > @@ -0,0 +1,97 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +// Copyright (c) 2019, AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > > +
-> > > +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> > > +#include <dt-bindings/interrupt-controller/irq.h>
-> > > +#include <dt-bindings/spmi/spmi.h>
-> > > +
-> > > +&spmi_bus {
-> > > +	pmic@2 {
-> > > +		compatible = "qcom,pmi8950", "qcom,spmi-pmic";
-> > > +		reg = <0x2 SPMI_USID>;
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;
-> > > +
-> > > +		pmi8950_vadc: adc@3100 {
-> > > +			compatible = "qcom,spmi-vadc";
-> > > +			reg = <0x3100>;
-> > > +			interrupts = <0x2 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> > > +			#address-cells = <1>;
-> > > +			#size-cells = <0>;
-> > > +			#io-channel-cells = <1>;
-> > > +
-> > > +			adc-chan@0 {
-> > > +				reg = <VADC_USBIN>;
-> > > +				qcom,pre-scaling = <1 4>;
-> > > +				label = "usbin";
-> > 
-> > I've previously sent a patch with labels in the node name instead [1],
-> > what's the preferred way nowadays?
-> > 
-> > [1]: https://lore.kernel.org/linux-arm-msm/20220926190148.283805-4-marijn.suijten@somainline.org/
-> 
-> As it turns out that patch relied on the ADC5 driver propagating the DT
-> node name (and label name if set) to IIO, which doesn't happen for the
-> legacy VADC driver used here.  I sent an RFC to that effect, with a
-> large discussion whether or not we should use node names, labels, or
-> rely on hardcoded names in the drivers entirely.  The recent migration
-> to fwnode made the node name include the `@xx` suffix which makes for
-> unpleasant reading in sysfs, so that's at least one reason to have
-> generic node names *and skip node names in these drivers altogether*.
-> 
->     https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-> 
-> In short: we may want to hold off changing these patches until a
-> clear-cut decision has been made (but I think your patch here is the
-> right approach in the end: generic node name *with label*, when the
-> label is more clear than the name hardcoded in the driver).
+Hi Conor,
 
-We came to the conclusion in [1] that using labels is the way to go so
-that the name doesn't get all mangled, then we can opt for generic node
-names here as well.  This does mean I'll have to send a followup for [2]
-and have to revise [3] again to use generic node names and labels.
+On Thu, Dec 1, 2022 at 11:36 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> Hi Prabhakar,
+>
+> I'm going to mark this series as "Changes Requested" in patchwork since
+> there's been quite a lot of commentary and it looks like Samuel & Heiko
+> have both suggested some changes.
+Sounds good, I am working on the changes requested.
 
-- Marijn
-
-[1]: https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei/
-[2]: https://lore.kernel.org/linux-arm-msm/20220926190148.283805-4-marijn.suijten@somainline.org/
-[3]: https://lore.kernel.org/linux-arm-msm/20221111120156.48040-10-angelogioacchino.delregno@collabora.com/
+Cheers,
+Prabhakar
