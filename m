@@ -2,139 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7E86401EA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B365640211
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232538AbiLBITh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36100 "EHLO
+        id S232649AbiLBI26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:28:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232778AbiLBISf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:18:35 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9E813E0D
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:17:42 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id a7so4565351ljq.12
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 00:17:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JfOE5/j8wj6BlDWOHD6m2libhAmOvjCZ5n2WeZxrTXY=;
-        b=X3Enft4Bpx+GTL1CPeXDZoyBQ66NZLIxzBRVdN+TPzDhGtMCu6dlZ2xMOaMTq+YjHm
-         gC2qrQuZLsuv+KicuuY1xPo5eUrl/Uuzl/EhQx90HB3TbZ0dVeoTvVN7Du/UUq0en3oF
-         SzcZFWepba2yxMyU5cTBjKUQQs9GktN+2efJ1qrqDDUaGBiWoEqFGgeHxWL5PzweU8/d
-         P3BKCaiwFGuWblaZgmv+vQsJPqxk51Roe4mz1p3XPpWuIihygsHcLqHUt9fg5n2yjlRY
-         vFVvEw/C9VVH2I/HHuHX5lfIF6OvahtLdzf9hrRNGPBkZBVXaOgUNIafWH0xK7xup73w
-         WcsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JfOE5/j8wj6BlDWOHD6m2libhAmOvjCZ5n2WeZxrTXY=;
-        b=Ue+GohjELouUPh9DKrKKxVEas1jGWQgVWwBzVGT4FLJo084S5hcKaZQThdR9cW/Fhh
-         CMX77uAKbBhHzRV9PcltDZxA+zHiZZ8yfEFvl+4RZ/zLcc1oBYu+9FI3Mb8lj4zppFhx
-         TRvM70nHrHJsbbIWPE7lzdFJD5fiElmgd6u+bam8CgO8W0a80NMxJXC5xjBs+HCLzm9J
-         8SFaVMc3UXLrhtJ+UJ+ey3wTe0Dr8Yx/AaaduwuNgmrfpM1+Cmvncd6fjS/xelGt1Jkk
-         HlOXEGrGfulxs/5WRTKjQS+mFYeEZWNDYIHsJEds2HZnd3vsAclveAtCI/n4lDsAk8vW
-         dmxA==
-X-Gm-Message-State: ANoB5pnVYA2v+V5wrnPAH4TXSJs3AUJ+pgQfMPdOXbZpKwg796/Fn+Pd
-        TM8sGmpPRi8VU6ugLBwVDrBXjA==
-X-Google-Smtp-Source: AA0mqf5lKw0C907wt2lGjVxAsXvSsZaJfGqEkfGG95X36RWWZ83jYHx5z+q6KTosvWG1oB+aM3U97A==
-X-Received: by 2002:a2e:b0c3:0:b0:279:ba97:a2e7 with SMTP id g3-20020a2eb0c3000000b00279ba97a2e7mr4509787ljl.304.1669969061201;
-        Fri, 02 Dec 2022 00:17:41 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s21-20020a056512203500b004ab98cd5644sm940491lfs.182.2022.12.02.00.17.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 00:17:40 -0800 (PST)
-Message-ID: <ca4693a5-e941-a2c9-b023-42a91589dad6@linaro.org>
-Date:   Fri, 2 Dec 2022 09:17:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [RFT PATCH v2 1/2] arm64: dts: qcom: sdm845-db845c: drop unneeded
- qup_spi0_default
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S232661AbiLBI2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:28:08 -0500
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00AABD898
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:22:22 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2d07:19c5:4d8b:89d9])
+        by andre.telenet-ops.be with bizsmtp
+        id rLNH2800U0ys3B701LNHQP; Fri, 02 Dec 2022 09:22:19 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p11JJ-002Hbf-68; Fri, 02 Dec 2022 09:22:17 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p11JI-005TUo-3d; Fri, 02 Dec 2022 09:22:16 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221118164201.321147-1-krzysztof.kozlowski@linaro.org>
- <CAD=FV=Vo9zbsjgYEn0eBkC8eKRceg6v4u1g=w6nSYHNctFQWxg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=Vo9zbsjgYEn0eBkC8eKRceg6v4u1g=w6nSYHNctFQWxg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of channels for R-Car V3U
+Date:   Fri,  2 Dec 2022 09:22:11 +0100
+Message-Id: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 01:49, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Nov 18, 2022 at 8:42 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> The qup_spi0_default pin override is exactly the same as one already in
->> sdm845.dtsi.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Cc: Doug Anderson <dianders@chromium.org>
->>
->> Changes since v1:
->> 1. New patch.
->> ---
->>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 --------
->>  1 file changed, 8 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> index 02dcf75c0745..56a7afb697ed 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
->> @@ -1274,11 +1274,3 @@ ov7251_ep: endpoint {
->>                 };
->>         };
->>  };
->> -
->> -/* PINCTRL - additions to nodes defined in sdm845.dtsi */
->> -&qup_spi0_default {
->> -       config {
->> -               drive-strength = <6>;
->> -               bias-disable;
->> -       };
->> -};
-> 
-> I guess it's more of a question for what Bjorn thinks, but I view the
-> fact that the drive-strength / bias are in the dtsi file to begin with
-> as more as a bug in commit 8f6e20adaaf3 ("arm64: dts: qcom: sdm845:
-> enable dma for spi"), which is where these properties were introduced
-> to sdm845.dtsi.
-> 
-> The historical guidance from Bjorn was that things like
-> "drive-strength" and "bias" didn't belong in the SoC dtsi file. Later
-> we came to an agreement that it could be OK to put drive-strength in
-> the SoC dtsi file but that bias was still problematic because it meant
-> ugly "/delete-property/" stuff in the board dtsi files [1].
+According to the bindings, only two channels are supported.
+However, R-Car V3U supports eight, leading to "make dtbs" failures:
 
-So let's move it from DTSI to all boards? Although what if the board
-does not use SPI0?
+        arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
 
-Best regards,
-Krzysztof
+Update the number of channels to 8 on R-Car V3U.
+While at it, prevent adding more properties to the channel nodes, as
+they must contain no other properties than a status property.
+
+Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Is there a way to express this using positive logic (i.e. default to 2
+channels, extend to more where needed)? R-Car V3H_2 (which is not yet
+supported) has 3 channels.
+Or perhaps the check should be dropped completely?
+---
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 132 ++++++++++--------
+ 1 file changed, 72 insertions(+), 60 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+index 6f71fc96bc4e3156..6a4fb26cfd7b8979 100644
+--- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+@@ -9,9 +9,6 @@ title: Renesas R-Car CAN FD Controller
+ maintainers:
+   - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+ 
+-allOf:
+-  - $ref: can-controller.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -77,13 +74,15 @@ properties:
+     description: Maximum frequency of the CANFD clock.
+ 
+ patternProperties:
+-  "^channel[01]$":
++  "^channel[0-7]$":
+     type: object
+     description:
+-      The controller supports two channels and each is represented as a child
+-      node.  Each child node supports the "status" property only, which
++      The controller supports multiple channels and each is represented as a
++      child node.  Each child node supports the "status" property only, which
+       is used to enable/disable the respective channel.
+ 
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+@@ -98,60 +97,73 @@ required:
+   - channel0
+   - channel1
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        enum:
+-          - renesas,rzg2l-canfd
+-then:
+-  properties:
+-    interrupts:
+-      items:
+-        - description: CAN global error interrupt
+-        - description: CAN receive FIFO interrupt
+-        - description: CAN0 error interrupt
+-        - description: CAN0 transmit interrupt
+-        - description: CAN0 transmit/receive FIFO receive completion interrupt
+-        - description: CAN1 error interrupt
+-        - description: CAN1 transmit interrupt
+-        - description: CAN1 transmit/receive FIFO receive completion interrupt
+-
+-    interrupt-names:
+-      items:
+-        - const: g_err
+-        - const: g_recc
+-        - const: ch0_err
+-        - const: ch0_rec
+-        - const: ch0_trx
+-        - const: ch1_err
+-        - const: ch1_rec
+-        - const: ch1_trx
+-
+-    resets:
+-      maxItems: 2
+-
+-    reset-names:
+-      items:
+-        - const: rstp_n
+-        - const: rstc_n
+-
+-  required:
+-    - reset-names
+-else:
+-  properties:
+-    interrupts:
+-      items:
+-        - description: Channel interrupt
+-        - description: Global interrupt
+-
+-    interrupt-names:
+-      items:
+-        - const: ch_int
+-        - const: g_int
+-
+-    resets:
+-      maxItems: 1
++allOf:
++  - $ref: can-controller.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,rzg2l-canfd
++    then:
++      properties:
++        interrupts:
++          items:
++            - description: CAN global error interrupt
++            - description: CAN receive FIFO interrupt
++            - description: CAN0 error interrupt
++            - description: CAN0 transmit interrupt
++            - description: CAN0 transmit/receive FIFO receive completion interrupt
++            - description: CAN1 error interrupt
++            - description: CAN1 transmit interrupt
++            - description: CAN1 transmit/receive FIFO receive completion interrupt
++
++        interrupt-names:
++          items:
++            - const: g_err
++            - const: g_recc
++            - const: ch0_err
++            - const: ch0_rec
++            - const: ch0_trx
++            - const: ch1_err
++            - const: ch1_rec
++            - const: ch1_trx
++
++        resets:
++          maxItems: 2
++
++        reset-names:
++          items:
++            - const: rstp_n
++            - const: rstc_n
++
++      required:
++        - reset-names
++    else:
++      properties:
++        interrupts:
++          items:
++            - description: Channel interrupt
++            - description: Global interrupt
++
++        interrupt-names:
++          items:
++            - const: ch_int
++            - const: g_int
++
++        resets:
++          maxItems: 1
++
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: renesas,r8a779a0-canfd
++    then:
++      patternProperties:
++        "^channel[2-7]$": false
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.25.1
 
