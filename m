@@ -2,254 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2AA3641029
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 22:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 814F164109C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 23:29:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234712AbiLBVqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 16:46:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33238 "EHLO
+        id S234555AbiLBW3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 17:29:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234678AbiLBVqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 16:46:38 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FDFF1CF9;
-        Fri,  2 Dec 2022 13:46:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670017546; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=DnXhT2OUlhlC5DwILJKEz4FKOfX14rJuU1Z5pzoNKTHRt0IUEa9cKCxGC4LhhHuaTHuIVkQLu9THL5C9MN53zX4Lw32mj3sFgx+Ie6bN410Bu32ZGi8nu3VMyzkgRbo05Xn8LajJ48A+CPQiVZ0T9zuAwYnAJANtBLQAwfNb/ZY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1670017546; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=JTgtnJqoI3mBOnlXVRuirNE3H0rwkt9IzKJ3dXVz2R0=; 
-        b=UQF4RXBepui+yim0KwIXhj7dIhvabk1ebfPx5aBM/OJRRVD6h9B8XSbiylbUJV+tZHQL36Y4iJfWYF+VdvHoF1PXZ7gMR8OXrmh3SCTSa4m6FYGWRfT2VZbwTMq6/KIDyBCGu6sJHv5q6FsnmmHLdUsfXpwsDfS1Q21BO4D0uhQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670017546;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=JTgtnJqoI3mBOnlXVRuirNE3H0rwkt9IzKJ3dXVz2R0=;
-        b=bFc/Twx+wSKbN8cptiRq7XpT5s0ryu0P35a+jvbqT8ZRJwgPIDEnK6Ps6plwEu81
-        w0cLAsN8BAPiqk64Tf8fnP6ZotcTzZJaT2y0LQeZqZ/qb55X7oq1a6rVSyUT44eQhXw
-        Igl7pFg4wtB7Ywjk7u/WCAm/0bsT69eVVbU85i2c=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1670017543642787.7203324647592; Fri, 2 Dec 2022 13:45:43 -0800 (PST)
-Message-ID: <bfc6810b-3c21-201b-3c4f-a0def3928597@arinc9.com>
-Date:   Sat, 3 Dec 2022 00:45:34 +0300
+        with ESMTP id S234389AbiLBW3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 17:29:34 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52F8FCC3
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 14:29:32 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id jl24so5884062plb.8
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 14:29:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GDvPEgw54XMXnHzNSFDDYTrwGtxyeOf1PlA18WSZUyw=;
+        b=IIj6sXH1Y1xQiin9pYNGovuDGIU+1okfMlKkWcTa1IOEZwsS2c2HsrYD0IJkR3Bl5z
+         fy0WP98jps6Mv56gZrL9UEzrhFUHEC6n9EOABGo7xwN0IlfJvZe3puhPvpy6p2g0ZACt
+         4Nr+2SJossSPw+RxFTqlw0uIlAmKzyKuDK0b6VJl9XFq2lJK2oG8+BB1Q64z2OZ6XKn9
+         jPvg5E2no0JD6CrfUMTLeO+u7IA0aU0tSMIYQYOQDACK1oQ3Q06Jgynz8Ft9LCZgRGA8
+         pUW4FtmEWZzZUQCObJEX7UeJ1pLwmgic4RYPEWZ/KYFjrC5uSaLrtQpFzp9BYAouqhzj
+         WRVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GDvPEgw54XMXnHzNSFDDYTrwGtxyeOf1PlA18WSZUyw=;
+        b=XIrVHwJHcA18124dJs8W1tiHULDRG4d2fE8ISWw00s56T2J8I4vMX0Y7yDJnpko63c
+         9dSiQKO+fyDOLpnZA2xbe34/pbaG6vwe0Ugx7f44rhkDjuGHJ7u7RuVwJ+CHswasyhOi
+         wm+tUYdiNjjBCoMuFer0zZW1kjZAy66u0RjfM3IDm/+7f8MmuHSbfs6V7oI9ItM/o41g
+         ooi731Mm75HEMTEZIV/n09SD5ZbhpDSrqur+RNK99VdQ+3lCkFIdIi/nDdr7OTKP4RL6
+         y7GJg/MzGWs9jr3sJT0CWcOuSzqw/hU0JU+UoOvx6Ltc2biss3WlHUBUkRvaY9Ox5Afj
+         auKw==
+X-Gm-Message-State: ANoB5pmr/4hGIvEg5nmK6tg+VuVIg5E800Bud1IJnvrrp12ZqvgMHgJJ
+        2UdmULgAGkOkXSIwbdKjkxL0z+dS0RFIhCTaUc3d4Q==
+X-Google-Smtp-Source: AA0mqf49PLirJ7mqsjOqF0AQC0DheXW69JDuDNz9qFlpoUcR6poh9e8QRekuQyLfCWi+QBml37VOY2tcrF+3jfujssM=
+X-Received: by 2002:a17:902:ccd1:b0:189:2370:7f6a with SMTP id
+ z17-20020a170902ccd100b0018923707f6amr60605847ple.158.1670020172373; Fri, 02
+ Dec 2022 14:29:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 net-next 3/9] dt-bindings: net: dsa: utilize base
- definitions for standard dsa switches
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20221201003109.448693-1-tharvey@gateworks.com>
+ <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com>
+ <Y4n41iL6cG9FsndI@lunn.ch> <CAJ+vNU0kAoVFFmoFfiOhtErxqAkB3MmP3Q2dNCZP4xm_AaWhcA@mail.gmail.com>
+ <Y4o2TFGH6DK3tRcH@lunn.ch>
+In-Reply-To: <Y4o2TFGH6DK3tRcH@lunn.ch>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 2 Dec 2022 14:29:20 -0800
+Message-ID: <CAJ+vNU1NDggHF4Wn_kg120uPZ=LPCQf2fZ+x6ii6tEMf7DzxFQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
-        Rob Herring <robh@kernel.org>
-References: <20221202204559.162619-1-colin.foster@in-advantage.com>
- <20221202204559.162619-4-colin.foster@in-advantage.com>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20221202204559.162619-4-colin.foster@in-advantage.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.12.2022 23:45, Colin Foster wrote:
-> DSA switches can fall into one of two categories: switches where all ports
-> follow standard '(ethernet-)?port' properties, and switches that have
-> additional properties for the ports.
-> 
-> The scenario where DSA ports are all standardized can be handled by
-> swtiches with a reference to the new 'dsa.yaml#/$defs/ethernet-ports'.
-> 
-> The scenario where DSA ports require additional properties can reference
-> '$dsa.yaml#' directly. This will allow switches to reference these standard
-> defitions of the DSA switch, but add additional properties under the port
-> nodes.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-> Acked-by: Alvin Šipraga <alsi@bang-olufsen.dk> # realtek
-> ---
-> 
-> v3 -> v4
->    * Rename "$defs/base" to "$defs/ethernet-ports" to avoid implication of a
->      "base class" and fix commit message accordingly
->    * Add the following to the common etherent-ports node:
->        "additionalProperties: false"
->        "#address-cells" property
->        "#size-cells" property
->    * Fix "etherenet-ports@[0-9]+" to correctly be "ethernet-port@[0-9]+"
->    * Remove unnecessary newline
->    * Apply changes to mediatek,mt7530.yaml that were previously in a separate patch
->    * Add Reviewed and Acked tags
-> 
-> v3
->    * New patch
-> 
-> ---
->   .../bindings/net/dsa/arrow,xrs700x.yaml       |  2 +-
->   .../devicetree/bindings/net/dsa/brcm,b53.yaml |  2 +-
->   .../devicetree/bindings/net/dsa/dsa.yaml      | 25 ++++++++++++++++---
->   .../net/dsa/hirschmann,hellcreek.yaml         |  2 +-
->   .../bindings/net/dsa/mediatek,mt7530.yaml     | 16 +++---------
->   .../bindings/net/dsa/microchip,ksz.yaml       |  2 +-
->   .../bindings/net/dsa/microchip,lan937x.yaml   |  2 +-
->   .../bindings/net/dsa/mscc,ocelot.yaml         |  2 +-
->   .../bindings/net/dsa/nxp,sja1105.yaml         |  2 +-
->   .../devicetree/bindings/net/dsa/realtek.yaml  |  2 +-
->   .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |  2 +-
->   11 files changed, 35 insertions(+), 24 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-> index 259a0c6547f3..5888e3a0169a 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
->   
->   allOf:
-> -  - $ref: dsa.yaml#
-> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->   
->   maintainers:
->     - George McCollister <george.mccollister@gmail.com>
-> diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> index 1219b830b1a4..5bef4128d175 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-> @@ -66,7 +66,7 @@ required:
->     - reg
->   
->   allOf:
-> -  - $ref: dsa.yaml#
-> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->     - if:
->         properties:
->           compatible:
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> index b9d48e357e77..b9e366e46aed 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> @@ -19,9 +19,6 @@ description:
->   select: false
->   
->   properties:
-> -  $nodename:
-> -    pattern: "^(ethernet-)?switch(@.*)?$"
-> -
->     dsa,member:
->       minItems: 2
->       maxItems: 2
-> @@ -58,4 +55,26 @@ oneOf:
->   
->   additionalProperties: true
->   
-> +$defs:
-> +  ethernet-ports:
-> +    description: A DSA switch without any extra port properties
-> +    $ref: '#/'
-> +
-> +    patternProperties:
-> +      "^(ethernet-)?ports$":
-> +        type: object
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          '#address-cells':
-> +            const: 1
-> +          '#size-cells':
-> +            const: 0
-> +
-> +        patternProperties:
-> +          "^(ethernet-)?port@[0-9]+$":
-> +            description: Ethernet switch ports
-> +            $ref: dsa-port.yaml#
-> +            unevaluatedProperties: false
-> +
->   ...
-> diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> index 73b774eadd0b..748ef9983ce2 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
->   
->   allOf:
-> -  - $ref: dsa.yaml#
-> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->   
->   maintainers:
->     - Andrew Lunn <andrew@lunn.ch>
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index f2e9ff3f580b..b815272531fa 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -156,17 +156,6 @@ patternProperties:
->   
->       patternProperties:
->         "^(ethernet-)?port@[0-9]+$":
-> -        type: object
-> -        description: Ethernet switch ports
-> -
-> -        unevaluatedProperties: false
-> -
-> -        properties:
-> -          reg:
-> -            description:
-> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
-> -              for user ports.
+On Fri, Dec 2, 2022 at 9:31 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > > > >                                 port@5 {
+> > > > >                                         reg = <5>;
+> > > > >                                         label = "cpu";
+> > > > >                                         ethernet = <&fec>;
+> > > > > +                                       phy-mode = "rgmii-id";
+> > > > > +
+> > > > > +                                       fixed-link {
+> > > > > +                                               speed = <1000>;
+> > > > > +                                               full-duplex;
+> > > > > +                                       };
+> > > > >                                 };
+> > >
+> > > This part is needed to make a warning go away. Does the SoC network interface
+> > > have phy-mode = "rgmii"; ?
+> >
+> > No, it looks like this:
+> >
+> > &fec {
+> >         pinctrl-names = "default";
+> >         pinctrl-0 = <&pinctrl_enet>;
+> >         phy-mode = "rgmii-id";
+>
+> > Is something here wrong?
+>
+> It suggests both ends should insert RGMII delays. So you will end up
+> with double delays. Have one end say plain "rgmii" and the other
+> "rgmii-id". I would probably go with the FEC being "rgmii".
+>
+>     Andrew
 
-This shouldn't be moved. Please reread our conversation on the previous 
-version.
+Andrew,
 
-> -
->           allOf:
->             - $ref: dsa-port.yaml#
->             - if:
-> @@ -174,6 +163,9 @@ patternProperties:
->               then:
->                 properties:
->                   reg:
-> +                  description:
-> +                    Port address described must be 5 or 6 for CPU port and from
-> +                    0 to 5 for user ports
+That makes sense - I will change the fec node to rgmii.
 
-Arınç
+Upon further testing I find there is something else wrong with this
+patch however that I don't yet understand.
+
+Without it the switch works fine (due to RGMII delay being configured
+via boot firmware) but I do get the warning you had mentioned due to
+the phy-mode/phy-handle props missing:
+mv88e6085 2188000.ethernet-1:00: switch 0x1760 detected: Marvell
+88E6176, revision 1
+mv88e6085 2188000.ethernet-1:00: OF node
+/soc/bus@2100000/ethernet@2188000/mdio/switch@0/ports/port@5 of CPU
+port 5 lacks the required "phy-mode" property
+mv88e6085 2188000.ethernet-1:00: OF node
+/soc/bus@2100000/ethernet@2188000/mdio/switch@0/ports/port@5 of CPU
+port 5 lacks the required "phy-handle", "fixed-link" or "managed"
+properties
+mv88e6085 2188000.ethernet-1:00: Skipping phylink registration for CPU port 5
+mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): PHY
+[mv88e6xxx-1:00] driver [Generic PHY] (irq=POLL)
+mv88e6085 2188000.ethernet-1:00 lan3 (uninitialized): PHY
+[mv88e6xxx-1:01] driver [Generic PHY] (irq=POLL)
+mv88e6085 2188000.ethernet-1:00 lan2 (uninitialized): PHY
+[mv88e6xxx-1:02] driver [Generic PHY] (irq=POLL)
+mv88e6085 2188000.ethernet-1:00 lan1 (uninitialized): PHY
+[mv88e6xxx-1:03] driver [Generic PHY] (irq=POLL)
+
+When I add the phy-mode/phy-handle props with this patch I get the
+following failure:
+mv88e6085 2188000.ethernet-1:00: switch 0x1760 detected: Marvell
+88E6176, revision 1
+mv88e6085 2188000.ethernet-1:00: switch 0x1760 detected: Marvell
+88E6176, revision 1
+mv88e6085 2188000.ethernet-1:00: configuring for fixed/rgmii-id link mode
+mv88e6085 2188000.ethernet-1:00: p5: delay RXCLK yes, TXCLK yes
+mv88e6085 2188000.ethernet-1:00: p5: delay RXCLK yes, TXCLK yes
+mv88e6085 2188000.ethernet-1:00: Link is Up - 1Gbps/Full - flow control off
+mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): validation of
+internal with support 00000000,00000000,000062ff and advertisement
+00000000,00000000,000062ff failed: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): failed to
+connect to PHY: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): error -22
+setting up PHY for tree 0, switch 0, port 0
+mv88e6085 2188000.ethernet-1:00 lan3 (uninitialized): validation of
+internal with support 00000000,00000000,000062ff and advertisement
+00000000,00000000,000062ff failed: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan3 (uninitialized): failed to
+connect to PHY: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan3 (uninitialized): error -22
+setting up PHY for tree 0, switch 0, port 1
+mv88e6085 2188000.ethernet-1:00 lan2 (uninitialized): validation of
+internal with support 00000000,00000000,000062ff and advertisement
+00000000,00000000,000062ff failed: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan2 (uninitialized): failed to
+connect to PHY: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan2 (uninitialized): error -22
+setting up PHY for tree 0, switch 0, port 2
+mv88e6085 2188000.ethernet-1:00 lan1 (uninitialized): validation of
+internal with support 00000000,00000000,000062ff and advertisement
+00000000,00000000,000062ff failed: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan1 (uninitialized): failed to
+connect to PHY: -EINVAL
+mv88e6085 2188000.ethernet-1:00 lan1 (uninitialized): error -22
+setting up PHY for tree 0, switch 0, port 3
+
+I've run into this message before and had a hard time understanding
+the issue from the message - it seems to indicate the phy status
+matches advertisement but that its an invalid mode?
+
+Thanks,
+
+Tim
