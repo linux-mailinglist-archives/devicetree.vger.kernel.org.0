@@ -2,203 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E709640220
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9916640227
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:31:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232185AbiLBIay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
+        id S232817AbiLBIbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:31:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232446AbiLBI3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:29:22 -0500
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861382CE0B;
-        Fri,  2 Dec 2022 00:27:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1669969654; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=Um7bLjMJkRzzGMWjDwOiZM7Q4Zr7Ff+nuz5l/iFK/JNF+0ZovQCa1Kbjs8pkQIt0dTDRsRvQAJWDQq8e/rEKwoRzdxvBOrNJ4NQiQ+Wum9zcGwvPS8jWeSWo+wTrhD0w1S97+qSCP51YXzX+AQkMU1I6YXsdcw3ydjSp+0trONE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1669969654; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=QKJjRg+TFMrDUXn3W6BnSgamQp8z40egqO35KV5JwBc=; 
-        b=kZo75enxAj+NBcU0ug9nHc7X7z1QXllK2apZH9Qvc4cRbREFPe+CUAeNHJ0WqJ3HRCbFW5LYRcQ3YsGWc+TwzqbFzAv6+9Y3//EjS4y0MNPOlzPopqF5XlX9Yc+tE8x9f/wAIzXkjL3puamR3r7jRQYk2nFV+j3Nf5dxIN7uChs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1669969654;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=QKJjRg+TFMrDUXn3W6BnSgamQp8z40egqO35KV5JwBc=;
-        b=fRboHy8wzAAEegZvuWhEkMLFDSeDl+tcJjEVq2ywfQ8zEUM7A8Q2yYc/DOY5CW3H
-        TlxIaKCqNMyiePJGCVBqBuFx2Od557WAjw7N2hxXliBJXKmZJSAR44ILLskFDueGv1k
-        RZjkF4GpphuSII4YU6X89wqgQZKaze+E68G1+lSo=
-Received: from edelgard.fodlan.icenowy.me (120.85.99.229 [120.85.99.229]) by mx.zohomail.com
-        with SMTPS id 1669969653716805.4032075516008; Fri, 2 Dec 2022 00:27:33 -0800 (PST)
-Message-ID: <a2441e5ca47ff90474cd844801e6c7c43af91f50.camel@icenowy.me>
-Subject: Re: [PATCH v2 04/12] riscv: dts: allwinner: Add the D1/D1s SoC
- devicetree
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232738AbiLBI37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:29:59 -0500
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9697860B66;
+        Fri,  2 Dec 2022 00:29:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1669969786; x=1701505786;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=4tZ8P1rjFZqQdEDu1Entw+Faj29DY+fm4wogYriUb4s=;
+  b=Jdt8OOBFCU2iBd2rV6fjNUU1WhsCSQfugO5vi918dZQOBVDmUURee7kF
+   wy4DNQmulxM9x2mekJdHFLN6ZLJc91iOJz7qwS3qFjUgjUujIKaGnQboA
+   0b1nADg7T/1N2kz+QR31RJem6yAOD9cxhO7pHMPmOM1+adtqmoLK55QvU
+   Tq4jJ0nBdNViYr7fKzjgIPgqe3LRl95LOeif7HKCBeZd9ZOCClCQdeZru
+   xiC3dKvU0NIdH8g9k13TV7JVkXB7WZ9Xiu8hwQ9UmCMZine8eaPBRayq/
+   cbqZA2psQ5Lrurx4B3yQwAHqcrtyA8sLt9uCX2Xl4/IASLIsn7Ry5L5PL
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="317764272"
+X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; 
+   d="scan'208";a="317764272"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2022 00:29:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10548"; a="973832094"
+X-IronPort-AV: E=Sophos;i="5.96,210,1665471600"; 
+   d="scan'208";a="973832094"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP; 02 Dec 2022 00:29:24 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p11QA-003HNL-05;
+        Fri, 02 Dec 2022 10:29:22 +0200
+Date:   Fri, 2 Dec 2022 10:29:21 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Wolfram Sang <wsa@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Date:   Fri, 02 Dec 2022 16:27:25 +0800
-In-Reply-To: <Y4I45Uu6eFKUo69B@spud>
-References: <20221125234656.47306-1-samuel@sholland.org>
-         <20221125234656.47306-5-samuel@sholland.org> <Y4I45Uu6eFKUo69B@spud>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+Subject: Re: [PATCH V4 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
+ controller
+Message-ID: <Y4m3Ycs88nOk5zs9@smile.fi.intel.com>
+References: <cover.1669777792.git.zhoubinbin@loongson.cn>
+ <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
+ <Y4e/6KewuHjAluSZ@smile.fi.intel.com>
+ <f0060385-644a-847e-48cf-865c12b96473@loongson.cn>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f0060385-644a-847e-48cf-865c12b96473@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2022-11-26=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 16:03 +0000=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Fri, Nov 25, 2022 at 05:46:48PM -0600, Samuel Holland wrote:
-> > D1 (aka D1-H), D1s (aka F133), R528, and T113 are a family of SoCs
-> > based
-> > on a single die, or at a pair of dies derived from the same design.
-> >=20
-> > D1 and D1s contain a single T-HEAD Xuantie C906 CPU, whereas R528
-> > and
-> > T113 contain a pair of Cortex-A7's.
->=20
-> Is this "additionally contain" or a case of the D1 is the R528 but
-> with
-> s/arm/riscv/? It's the latter, right?
+On Fri, Dec 02, 2022 at 11:22:19AM +0800, Binbin Zhou wrote:
+> 在 2022/12/1 04:41, Andy Shevchenko 写道:
+> > On Wed, Nov 30, 2022 at 01:56:20PM +0800, Binbin Zhou wrote:
 
-Technically they're the same die, but the CPU cores are selectively
-enabled, and at least what Allwinner says is that D1 contains only RV
-and R528 contains only ARM.
+...
 
->=20
-> > D1 and R528 are the full version of
-> > the chip with a BGA package, whereas D1s and T113 are low-pin-count
-> > QFP
-> > variants.
-> >=20
-> > Because the original design supported both ARM and RISC-V CPUs,
-> > some
-> > peripherals are duplicated. In addition, all variants except D1s
-> > contain
-> > a HiFi 4 DSP with its own set of peripherals.
-> >=20
-> > The devicetrees are organized to minimize duplication:
-> > =C2=A0- Common perhiperals are described in sunxi-d1s-t113.dtsi
-> > =C2=A0- DSP-related peripherals are described in sunxi-d1-t113.dtsi
-> > =C2=A0- RISC-V specific hardware is described in sun20i-d1s.dtsi
-> > =C2=A0- Functionality unique to the D1 variant is described in sun20i-
-> > d1.dtsi
-> >=20
-> > The SOC_PERIPHERAL_IRQ macro handles the different #interrupt-cells
-> > values between the ARM (GIC) and RISC-V (PLIC) versions of the SoC.
->=20
-> Modulo the warnings I replied to the cover with & one minor comment
-> below:
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> > Signed-off-by: Samuel Holland <samuel@sholland.org>
-> > ---
-> >=20
-> > Changes in v2:
-> > =C2=A0- Split into separate files for sharing with D1s/R528/T113
-> > =C2=A0- Use SOC_PERIPHERAL_IRQ macro for interrupts
-> > =C2=A0- Rename osc24M to dcxo and move the frequency to the board DTs
-> > =C2=A0- Drop analog LDOs due to the missing binding
-> > =C2=A0- Correct tcon_top DSI clock reference
-> > =C2=A0- Add DMIC, DSI controller, and DPHY (bindings are in linux-next)
-> > =C2=A0- Add CPU OPP table
-> >=20
-> > =C2=A0arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi=C2=A0 |=C2=A0 66 ++
-> > =C2=A0arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi |=C2=A0 76 ++
-> > =C2=A0.../boot/dts/allwinner/sunxi-d1-t113.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 15 +
-> > =C2=A0.../boot/dts/allwinner/sunxi-d1s-t113.dtsi=C2=A0=C2=A0=C2=A0 | 84=
-4
-> > ++++++++++++++++++
-> > =C2=A04 files changed, 1001 insertions(+)
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1-
-> > t113.dtsi
-> > =C2=A0create mode 100644 arch/riscv/boot/dts/allwinner/sunxi-d1s-
-> > t113.dtsi
->=20
->=20
-> > diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > new file mode 100644
-> > index 000000000000..c8815cbf0b46
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-> > @@ -0,0 +1,844 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > +// Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
-> > +
-> > +#include <dt-bindings/clock/sun6i-rtc.h>
-> > +#include <dt-bindings/clock/sun8i-de2.h>
-> > +#include <dt-bindings/clock/sun8i-tcon-top.h>
-> > +#include <dt-bindings/clock/sun20i-d1-ccu.h>
-> > +#include <dt-bindings/clock/sun20i-d1-r-ccu.h>
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/reset/sun8i-de2.h>
-> > +#include <dt-bindings/reset/sun20i-d1-ccu.h>
-> > +#include <dt-bindings/reset/sun20i-d1-r-ccu.h>
-> > +
-> > +/ {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <1>;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dcxo: dcxo-clk {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0compatible =3D "fixed-clock";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0/* This value must be overridden by the board */
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0clock-frequency =3D <0>;
->=20
-> Since this is a "must", can you drop the clock-frequency =3D <0> here
-> so
-> that if someone doesn't override it in their board dt-validate
-> complains?
->=20
-> Thanks,
-> Conor.
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0clock-output-names =3D "dcxo";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0#clock-cells =3D <0>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > +
-> =C2=A0
->=20
+> > > +	for (retry = 0; retry < adap->retries; retry++) {
+> > > +		ret = ls2x_i2c_doxfer(adap, msgs, num);
+> > > +		if (ret != -EAGAIN)
+> > > +			return ret;
+> > > +
+> > > +		dev_dbg(priv->dev, "Retrying transmission (%d)\n", retry);
+> > > +		udelay(100);
+> > Why atomic? This long (esp. atomic) delay must be explained.
+> 
+> The modification records for this part of the source code are no longer
+> traceable.
+> 
+> Communicating with colleagues offline, I learned that this part of the code
+> first appeared on Linux 2.6.36, which was done to circumvent the problem of
+> probable failure to scan the device for i2c devices on some boards.
+> 
+> How about I add a comment here to explain the reason for this?
+
+Yes, that's what we want, and not what you said above. I.o.w. the comment like
+"reason is unknown" is not accepted.
+
+Can you be more specific about the boards and why do you still need this delay?
+
+And also why is it atomic?
+
+> > > +	}
+
+...
+
+> > > +	r = devm_request_irq(dev, irq, ls2x_i2c_irq_handler,
+> > > +				IRQF_SHARED, "ls2x-i2c", priv);
+> > Indentation.
+> 
+> Do you mean  "IRQF_SHARE"  should be aligned to "dev"  ?
+
+Yes.
+
+...
+
+> > > +static const struct dev_pm_ops ls2x_i2c_pm_ops = {
+> > > +	SET_SYSTEM_SLEEP_PM_OPS(ls2x_i2c_suspend, ls2x_i2c_resume)
+> > > +};
+> > Use corresponding DEFINE_ macro.
+> 
+> ok.
+> 
+> I will use
+> 
+> "static DEFINE_SIMPLE_DEV_PM_OPS(ls2x_i2c_pm_ops, ls2x_i2c_suspend,
+> ls2x_i2c_resume);"  corresponding to  ".pm     = pm_ptr(&ls2x_i2c_pm_ops),"
+
+Shouldn't be pm_sleep_ptr()?
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
