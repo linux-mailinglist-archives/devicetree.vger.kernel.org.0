@@ -2,158 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 370A063FD4A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 01:50:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB71563FD6F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 02:02:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbiLBAul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 19:50:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41606 "EHLO
+        id S230238AbiLBBCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 20:02:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231465AbiLBAuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 19:50:40 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79621CE416
-        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 16:50:39 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id s12so4538285edd.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 16:50:39 -0800 (PST)
+        with ESMTP id S229473AbiLBBCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 20:02:21 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E2CDE93
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 17:02:20 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id 130so3486875pfu.8
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 17:02:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=F7pFB+ZvlcrA8R79s7DUy7BFXLwcQol/AYjTA4sACPo=;
-        b=L9GHDfR84Id1CY6HR4mg5KxP96kN0GT3UaBgmyWCgrj+17Kj66luUSBTwgx+QJANfU
-         ZNWC4ILSyeqj48kxKnBUQ+aN1bUUmji4fvyf/IljruXwv4pDdYOmZCB7zzmNMtXgueIX
-         6vd19tOOrS+jBOQKfR1Pa3GlU7MXJlliRINiM=
+        bh=6RbPKa0bMOhoI6ZZTdeBQWODfjh0GcmWYZjoJGzwqLQ=;
+        b=ApqDjexZF7uBcC556B9tJaauD/1dXhs/ee5fidp91tA2Ihs6FMpiz+psAtR1qqA/bx
+         bUVbz8rD97USxAcmHLUa8GAj4j1N0flGQk52qXNAvn1yK3qzFTm1FEGO7cFPTp5wAdBH
+         qdpTJ8ozhZod8QYI4PAMyiU77g4f1kLK0p3wC1fd/47jvgrQM86kt/W1JZYEXQIjURdg
+         ZreB/tXYaBfFvdxxE2DwyFgZNUOzfzlwCiBM8rMIGbdF7YYhUZxScEdDcUnQVxZ9pWU4
+         8hU426gTBHtMcCdiF/oydLj7wCLEGORg+kFdlfgDyoUARDZ4ZiZRZ1QnB3kBi5LcMifO
+         G8bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F7pFB+ZvlcrA8R79s7DUy7BFXLwcQol/AYjTA4sACPo=;
-        b=AQkw7Ih2uYKPJBsbejMCTkzm57zwSuusEuFb8dFVociv/aWv6FZclbozXki36SC+Dp
-         y5/dz1WkNVjjbRsW9zRLmfLS7MpeSzd6BlVuOUaZ6hEFc/D62tyyZlRjxYGX94RgYpx4
-         roQbMWHJV6UxveEHirhMLWpNZO/iUelp/v3GQllE9eLTbOonp2TAQbdCbEdbLuTChnBW
-         LesgsTx2HXruhvnYk3Lr7M8JErVBox/zQiUFly28ajGHCwydDtOq56K4ErxMAG8Jzqk0
-         fnfN+TgjsMhO+5V1uB8BUHoWGPdnhCJ8ckoMozygaQHnxXfh525x4uS7KkJcpn00asgy
-         /7Fg==
-X-Gm-Message-State: ANoB5plpP94ycWgTJmkuXuIiT/+vOnqln7C2CRtTGngPT7ZlPvhD7j4v
-        tx0DBxSl0I0hUHDYIVciKuvnRQm5CFTXWfge
-X-Google-Smtp-Source: AA0mqf55Bi72MWTjZs8qpTCeDqUYQQiSpE84DvS4kiTTTE8wdCq2CFMo5XgCQ72k50kAI5VVz0HdtQ==
-X-Received: by 2002:a05:6402:104b:b0:461:7d1f:1a7b with SMTP id e11-20020a056402104b00b004617d1f1a7bmr43419104edu.400.1669942237882;
-        Thu, 01 Dec 2022 16:50:37 -0800 (PST)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id 9-20020a170906318900b007b839689adesm2365959ejy.166.2022.12.01.16.50.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Dec 2022 16:50:36 -0800 (PST)
-Received: by mail-wm1-f47.google.com with SMTP id m7-20020a05600c090700b003cf8a105d9eso3087242wmp.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 16:50:36 -0800 (PST)
-X-Received: by 2002:a7b:c4d8:0:b0:3cf:b0ed:de9d with SMTP id
- g24-20020a7bc4d8000000b003cfb0edde9dmr36726708wmk.188.1669942236049; Thu, 01
- Dec 2022 16:50:36 -0800 (PST)
+        bh=6RbPKa0bMOhoI6ZZTdeBQWODfjh0GcmWYZjoJGzwqLQ=;
+        b=sFLGelnHVGmAw2BNVUBdlRgk5uyPevwvalX0BvDyNzp/M3QfVHwBC8Rq0PdzypzSCI
+         zMwD0lni6MCH9Lb2eQixP9/CnaRb/HLrRBHiGhgagGNUL43twphBHMrB8bm02AprDqQD
+         5BSwwdLPQoekkb/5Qv4t7jCUpKCk3ggJHWN85v297BzfaAeAku2vTPq9JDGsHHxKZDTf
+         sjtC2ARX+PpOXF47wb8whHErXFcAMqzjExg+K0o+1Hxgr+GI6cbZR6kTkokX0XmqOymA
+         SGeSRz4opQqrWntGVm85XNWFAqn65+aNHDekgD3ALes4u82DF2p8Ca84HE3XGx3r19RJ
+         WnmA==
+X-Gm-Message-State: ANoB5pmDPU9MX97aTqWfuICZOEXdZtQZu6E6A0Eelz3TVTi0UFGUZho2
+        XFBs+4AVc8b9gikvGJUoImaOhgpJIu0P0xbCfvM=
+X-Google-Smtp-Source: AA0mqf5tefT1KilM2fU//QzAhUaZ2rqXqhj4Vbddqoj9CHTQzp5APiuKVC+/CxLSTwkkLIv7GKWU6digKboWWbZhwa8=
+X-Received: by 2002:a62:d10b:0:b0:575:ad52:ba94 with SMTP id
+ z11-20020a62d10b000000b00575ad52ba94mr14080335pfg.74.1669942940014; Thu, 01
+ Dec 2022 17:02:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20221118164201.321147-1-krzysztof.kozlowski@linaro.org> <20221118164201.321147-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221118164201.321147-2-krzysztof.kozlowski@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 1 Dec 2022 16:50:24 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XeaskcBRVRQDoha7Xiv9j57fuvtcSJUeN7HCZSGVJ8uQ@mail.gmail.com>
-Message-ID: <CAD=FV=XeaskcBRVRQDoha7Xiv9j57fuvtcSJUeN7HCZSGVJ8uQ@mail.gmail.com>
-Subject: Re: [RFT PATCH v2 2/2] arm64: dts: qcom: sdm845: align TLMM pin
- configuration with DT schema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221201003109.448693-1-tharvey@gateworks.com>
+In-Reply-To: <20221201003109.448693-1-tharvey@gateworks.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 1 Dec 2022 22:02:08 -0300
+Message-ID: <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
+To:     Tim Harvey <tharvey@gateworks.com>, Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Fritz Koenig <frkoenig@google.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Tim,
 
-On Fri, Nov 18, 2022 at 8:42 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+[Adding Andrew]
+
+On Wed, Nov 30, 2022 at 9:31 PM Tim Harvey <tharvey@gateworks.com> wrote:
 >
-> DT schema expects TLMM pin configuration nodes to be named with
-> '-state' suffix and their optional children with '-pins' suffix.
+> Complete the switch definition by adding the internal mdio nodes.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+
 > ---
+>  arch/arm/boot/dts/imx6qdl-gw5904.dtsi | 35 +++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 >
-> Cc: Doug Anderson <dianders@chromium.org>
+> diff --git a/arch/arm/boot/dts/imx6qdl-gw5904.dtsi b/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
+> index 612b6e068e28..08463e65dca3 100644
+> --- a/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
+> @@ -212,6 +212,27 @@ switch@0 {
+>                         compatible = "marvell,mv88e6085";
+>                         reg = <0>;
 >
-> Tested on Qualcomm RB3. Please kndly test a bit more on other devices.
-> This should not have an functional impact.
-
-Added Rob Clark and Fritz who are the only people I know that still do
-anything with cheza.
-
-
-> -       wcd_intr_default: wcd_intr_default {
-> +       wcd_intr_default: wcd-intr-default-state {
->                 pins = <54>;
-
-Not new to your patch, but I'm surprised it truly works to use an
-integer for a pin? How does it know that 54 is an integer and not a
-string???
-
-
->  &qup_uart3_default {
-> -       pinmux {
-> -               pins = "gpio41", "gpio42", "gpio43", "gpio44";
-> +       cts-rts-pins {
-> +               pins = "gpio41", "gpio42";
->                 function = "qup3";
->         };
->  };
-
-FWIW, I would have expected that the SoC dtsi file would get a "4-pin"
-definition (similar to what you did with qup_uart6_4pin) and then we'd
-use that here.
-
-
->                         qup_uart6_4pin: qup-uart6-4pin-state {
-> -
-> -                               cts-pins {
-> +                               qup_uart6_4pin_cts: cts-pins {
->                                         pins = "gpio45";
->                                         function = "qup6";
-> -                                       bias-pull-down;
-
-After your patch, where is the above bias set for cheza, db845c,
-oneplus, shift-axolotl, ...?
-
-
+> +                       mdio {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +
+> +                               sw_phy0: ethernet-phy@0 {
+> +                                       reg = <0x0>;
+> +                               };
+> +
+> +                               sw_phy1: ethernet-phy@1 {
+> +                                       reg = <0x1>;
+> +                               };
+> +
+> +                               sw_phy2: ethernet-phy@2 {
+> +                                       reg = <0x2>;
+> +                               };
+> +
+> +                               sw_phy3: ethernet-phy@3 {
+> +                                       reg = <0x3>;
+> +                               };
+> +                       };
+> +
+>                         ports {
+>                                 #address-cells = <1>;
+>                                 #size-cells = <0>;
+> @@ -219,27 +240,41 @@ ports {
+>                                 port@0 {
+>                                         reg = <0>;
+>                                         label = "lan4";
+> +                                       phy-handle = <&sw_phy0>;
+> +                                       phy-mode = "internal";
 >                                 };
 >
-> -                               rts-tx-pins {
-> +                               qup_uart6_4pin_rts_tx: rts-tx-pins {
->                                         pins = "gpio46", "gpio47";
->                                         function = "qup6";
-> -                                       drive-strength = <2>;
-> -                                       bias-disable;
-
-After your patch, where is the above bias / drive-strength set?
-
-
+>                                 port@1 {
+>                                         reg = <1>;
+>                                         label = "lan3";
+> +                                       phy-handle = <&sw_phy1>;
+> +                                       phy-mode = "internal";
 >                                 };
 >
-> -                               rx-pins {
-> +                               qup_uart6_4pin_rx: rx-pins {
->                                         pins = "gpio48";
->                                         function = "qup6";
-> -                                       bias-pull-up;
-
-After your patch, where is the above bias set?
+>                                 port@2 {
+>                                         reg = <2>;
+>                                         label = "lan2";
+> +                                       phy-handle = <&sw_phy2>;
+> +                                       phy-mode = "internal";
+>                                 };
+>
+>                                 port@3 {
+>                                         reg = <3>;
+>                                         label = "lan1";
+> +                                       phy-handle = <&sw_phy3>;
+> +                                       phy-mode = "internal";
+>                                 };
+>
+>                                 port@5 {
+>                                         reg = <5>;
+>                                         label = "cpu";
+>                                         ethernet = <&fec>;
+> +                                       phy-mode = "rgmii-id";
+> +
+> +                                       fixed-link {
+> +                                               speed = <1000>;
+> +                                               full-duplex;
+> +                                       };
+>                                 };
+>                         };
+>                 };
+> --
+> 2.25.1
+>
