@@ -2,143 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F097864055F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:58:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C81A640563
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:58:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232307AbiLBK6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:58:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44762 "EHLO
+        id S231929AbiLBK6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:58:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231929AbiLBK6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:58:38 -0500
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C14A9381B;
-        Fri,  2 Dec 2022 02:58:37 -0800 (PST)
-Received: by mail-qv1-f48.google.com with SMTP id c14so3199027qvq.0;
-        Fri, 02 Dec 2022 02:58:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WLjo6NrLzv2cehaX1IIFnQYvk2Lc89gcTFnanKE7jbE=;
-        b=kpDJZHNk/NP/OrIeaoJwcha8o+sBHjHDtqm+ymb8VhJvNiTLpUbef1OknmqUmesWae
-         13bfU2Xba0dFEr8QFqfxjKjldMZOa/V55tUH2p/oZGfz6iubl/W8gfvJWHWHoTSCvuT0
-         NOHIU3mFp/K5ObUyMzXrTJACkwA6ot21s2OqZt+phPsc5gdIf1vf+B+3pb6+2PdNksXm
-         v2ppTN9vkI5UybXCOET2D9jfN+s6hgNwgVXHxR/nw+dD2d4mje6o2wUWhB+GlZ9IzG7M
-         E3Vsot+tUZguLXeBdKyEtdXOeyY8NlHKGUtdPiQAcxwETjRsIuGT63u9Pvo5WTbD4tbU
-         3tXg==
-X-Gm-Message-State: ANoB5pkrQ60Tw3f2uUSoNTa/BHpydjkLstAGf0D2aBPU/OER0CzGoOmd
-        CFm2eJAFimeq9PWF4fvOXfNRi1NUN17DNg==
-X-Google-Smtp-Source: AA0mqf6RKQt9uKHhAtCjjalwicMAU0La9zdZVbEDvmEAOlXH2e/RtXn01qVNybDFdvkT8GGb9pyC0Q==
-X-Received: by 2002:a0c:e7c5:0:b0:4c6:f8a7:3dcf with SMTP id c5-20020a0ce7c5000000b004c6f8a73dcfmr25665421qvo.59.1669978715950;
-        Fri, 02 Dec 2022 02:58:35 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id br36-20020a05620a462400b006faa2c0100bsm5232844qkb.110.2022.12.02.02.58.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:58:35 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-3b48b139b46so44790077b3.12;
-        Fri, 02 Dec 2022 02:58:35 -0800 (PST)
-X-Received: by 2002:a81:4e09:0:b0:370:202b:f085 with SMTP id
- c9-20020a814e09000000b00370202bf085mr1005374ywb.502.1669978715325; Fri, 02
- Dec 2022 02:58:35 -0800 (PST)
-MIME-Version: 1.0
-References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
- <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org> <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
- <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org>
-In-Reply-To: <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 2 Dec 2022 11:58:23 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
-Message-ID: <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
- channels for R-Car V3U
+        with ESMTP id S232598AbiLBK6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:58:47 -0500
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21799381B;
+        Fri,  2 Dec 2022 02:58:38 -0800 (PST)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id CB99C5FD0B;
+        Fri,  2 Dec 2022 13:58:35 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1669978715;
+        bh=bmtQOp0MHFjIRwhVsuo8y6uKrcRollt9lDuoEi9K2Ns=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=sDgpn/xX2RPFtFDVGuLMmeVg7uLVdiBcZaROU6x3DAGgZM0FchEFeCx3JRUpYdwY9
+         y0yN84dSkfMyxuZZx5BqNzh6pjlUzcngmgoy7o3gSei2fdiZaCs5SqM1MiSuh8ENyr
+         4Q9BGy/bvHKtkCPe7M+FE2HhijT3NzguM1r8bkpMBxuUn6oTb13fzxElpr6Z+ihNdV
+         Si1fMikx9d8XNdgMs5pwxrKkmv/S6Y8nd2pIjbIHKLXOO4BCi17f5m7qlR9lQNN8gJ
+         QU0PJlCJ7QtMAGiuJKKIh9fzjGqMACArv3WmsnL7QrIZdZBOGAbqvVkBYxf+aXuCrG
+         nVZ6pfv+kampw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri,  2 Dec 2022 13:58:35 +0300 (MSK)
+Date:   Fri, 2 Dec 2022 13:58:34 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+CC:     Rob Herring <robh@kernel.org>,
+        <martin.blumenstingl@googlemail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
+        <jian.hu@amlogic.com>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <linux-amlogic@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <rockosov@gmail.com>,
+        <kernel@sberdevices.ru>, <neil.armstrong@linaro.org>,
+        <robh+dt@kernel.org>, <sboyd@kernel.org>
+Subject: Re: [PATCH v8 03/11] dt-bindings: clock: meson: add A1 peripheral
+ clock controller bindings
+Message-ID: <20221202105834.4avip2trjbm3tpn7@CAB-WSD-L081021>
+References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-4-ddrokosov@sberdevices.ru>
+ <166995398331.2089708.18189499743713568568.robh@kernel.org>
+ <20221202094940.elhjbz7tbgxesr52@CAB-WSD-L081021>
+ <640ad325-91c4-109a-5ccd-05ac653a29bb@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <640ad325-91c4-109a-5ccd-05ac653a29bb@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 07:44:00 #20636821
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hello Krzysztof,
 
-On Fri, Dec 2, 2022 at 11:49 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 02/12/2022 10:25, Geert Uytterhoeven wrote:
-> > On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
-> >>> According to the bindings, only two channels are supported.
-> >>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
-> >>>
-> >>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
-> >>>
-> >>> Update the number of channels to 8 on R-Car V3U.
-> >>> While at it, prevent adding more properties to the channel nodes, as
-> >>> they must contain no other properties than a status property.
-> >>>
-> >>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
-> >>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> >
-> >>>      description: Maximum frequency of the CANFD clock.
-> >>>
-> >>>  patternProperties:
-> >>> -  "^channel[01]$":
-> >>> +  "^channel[0-7]$":
-> >>>      type: object
-> >>>      description:
-> >>> -      The controller supports two channels and each is represented as a child
-> >>> -      node.  Each child node supports the "status" property only, which
-> >>> +      The controller supports multiple channels and each is represented as a
-> >>> +      child node.  Each child node supports the "status" property only, which
-> >>>        is used to enable/disable the respective channel.
-> >>>
-> >>> +    unevaluatedProperties: false
+Thank you for quick review. Let me explain you why I sent Jian broken
+patches and applied my fixup patches above.
+
+I've found several versions of A1 clkc drivers from Jian Hu Amlogic engineer,
+the last one version was a couple years ago.
+I've reworked the last (v7) version and didn't know the correct way to apply
+all fixes.
+
+From my point of view I thought about two options:
+1) Merge all my changes with Jian Hu patches and leave Jian Hu SoB
+2) Don't touch Jian Hu v7 patches and apply my changes above.
+
+I have chosen the second option, because it looks like respect Jian Hu's
+effort. I don't want to "stealing" his patches, just want to fix all
+broken things.
+
+So I'm sorry for misunderstanding here and please correct
+me what's right workflow in such situation.
+
+On Fri, Dec 02, 2022 at 11:39:47AM +0100, Krzysztof Kozlowski wrote:
+> On 02/12/2022 10:49, Dmitry Rokosov wrote:
+> > On Thu, Dec 01, 2022 at 10:10:04PM -0600, Rob Herring wrote:
 > >>
-> >> There are no other properties within a channel, so this should be rather
-> >> additionalProperties: false.
-> >
-> > Are you sure? Then I also have to add:
-> >
-> >         properties:
-> >           status: true
->
-> Do you? I think it would be first schema needing it, so maybe that would
-> be a problem for dtschema...
+> >> On Fri, 02 Dec 2022 01:56:55 +0300, Dmitry Rokosov wrote:
+> >>> From: Jian Hu <jian.hu@amlogic.com>
+> >>>
+> >>> Add the documentation to support Amlogic A1 peripheral clock driver,
+> >>> and add A1 peripheral clock controller bindings.
+> >>>
+> >>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> >>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> >>> ---
+> >>>  .../bindings/clock/amlogic,a1-clkc.yaml       | 65 ++++++++++++
+> >>>  include/dt-bindings/clock/a1-clkc.h           | 98 +++++++++++++++++++
+> >>>  2 files changed, 163 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> >>>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
+> >>>
+> >>
+> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >>
+> >> yamllint warnings/errors:
+> >>
+> >> dtschema/dtc warnings/errors:
+> >> ./Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml: $id: relative path/filename doesn't match actual path or filename
+> >> 	expected: http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#
+> >> Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dts:18.48-30.11: Warning (unit_address_vs_reg): /example-0/periphs-clock-controller: node has a reg or ranges property, but no unit name
+> >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.example.dtb: periphs-clock-controller: reg: [[0, 2048], [0, 260]] is too long
+> >> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> >>
+> >> doc reference errors (make refcheckdocs):
+> >>
+> >> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221201225703.6507-4-ddrokosov@sberdevices.ru
+> >>
+> >> The base for the series is generally the latest rc1. A different dependency
+> >> should be noted in *this* patch.
+> >>
+> >> If you already ran 'make dt_binding_check' and didn't see the above
+> >> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> >> date:
+> >>
+> >> pip3 install dtschema --upgrade
+> >>
+> >> Please check and re-submit after running the above command yourself. Note
+> >> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> >> your schema. However, it must be unset to test all examples with your schema.
+> >>
+> > 
+> > That's totally right warnings and errors. All of them are fixed in the
+> > my "fixup" patch of Jian's original dt_binding schema:
+> > 
+> > https://lore.kernel.org/linux-amlogic/20221201225703.6507-11-ddrokosov@sberdevices.ru/
+> 
+> No, this patch must be fixed. It's not correct.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-You think I haven't tried? ;-)
-
-    arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dtb:
-can@e66c0000: channel0: Additional properties are not allowed
-('status' was unexpected)
-
-And indeed, that would be the first reference to status in a bindings
-file...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Thank you,
+Dmitry
