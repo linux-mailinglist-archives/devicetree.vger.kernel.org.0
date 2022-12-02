@@ -2,51 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17AC5640FA3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 21:59:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E646640FA5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 21:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234450AbiLBU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 15:59:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S234513AbiLBU7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 15:59:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233844AbiLBU7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 15:59:11 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4090EBC80;
-        Fri,  2 Dec 2022 12:59:05 -0800 (PST)
+        with ESMTP id S234297AbiLBU72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 15:59:28 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89CE0EBC84;
+        Fri,  2 Dec 2022 12:59:07 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 329FEB822B2;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 20D7CB822B7;
+        Fri,  2 Dec 2022 20:59:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13E82C43147;
         Fri,  2 Dec 2022 20:59:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93C6C433C1;
-        Fri,  2 Dec 2022 20:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670014742;
-        bh=4f91Ig4lqU05AgsUoYBx452LJNygOSOyb5lsao0prkU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=sT1mWac9NI1E+ViQpWuRr07cYjHj6m4WFD6zI1CAsqNA4T/g/1nXerzuoOaaeyabH
-         PFiJ+EAa1+YRPgCC2oIUzUOOwphW1QPfp+GnUfGz7pZR/NObiReR+eoSDmqXlOBW3I
-         tedBKMY/VmlvQIr0pC2Ag6db4zOwue4dzOxpNdg0rBvH/RUDcCMkfpZ6E90WoOh4K8
-         lX65XqF+a0xCC1WhggEgVfO+ZJ2MTyJJVt4XOFH6ebRTDpZjoNzI0FvcOegazayoEY
-         LjdaG9oXLpH94YrzoydTtz5EJr0TlimZpOBX8ihACTkX9WsPoBuc/Lz5KpsvKxyk0o
-         Qky8EnUYawl8Q==
+        s=k20201202; t=1670014744;
+        bh=zwk3G/W9G3eInMd5bV6RPwk5PdxVTHRY8sMtXBmGsds=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=Bnv1MLY/e9wknW7/fzS/4jzZ7EYtdtOl8n3GW3+9z4d8uicbYDzUQCafzqEHcRvnl
+         Yjb2RBKEdsrpoo2choNdMFTlmsYbAHgaRD+0reRtCDmmH1Ksp5f7s7DXd/YFO0D8Fv
+         qUmNl9SZDy8EbzHF/EDwMeThKJNeDVOoC+LQqeaGSL1cLplsx0QXt1K4HncSv1d7ov
+         ln9/gAC+rvCv4obgrEOuUmaoXXx49LOji4ETkO5GBHClr/sj+28izjxBFTKieoUB30
+         g58B3qrnfIfl4LxKdhfLeEKCRcd8omR+x0UQPWcF2QcCF28ylITWXtJBAS86uNhIHG
+         9wG+/hpBaoCzA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     johan+linaro@kernel.org
-Cc:     konrad.dybcio@somainline.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        catalin.marinas@arm.com, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, will@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, ardb@kernel.org,
-        robin.murphy@arm.com, Christoph Hellwig <hch@lst.de>,
-        agross@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-Date:   Fri,  2 Dec 2022 14:58:48 -0600
-Message-Id: <167001472414.2721945.8639781336468185182.b4-ty@kernel.org>
+To:     konrad.dybcio@somainline.org, robimarko@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        sboyd@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/3] clk: qcom: reset: support resetting multiple bits
+Date:   Fri,  2 Dec 2022 14:58:50 -0600
+Message-Id: <167001472421.2721945.16481256998331888527.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221124142501.29314-1-johan+linaro@kernel.org>
-References: <20221124142501.29314-1-johan+linaro@kernel.org>
+In-Reply-To: <20221107132901.489240-1-robimarko@gmail.com>
+References: <20221107132901.489240-1-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,21 +56,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Nov 2022 15:25:01 +0100, Johan Hovold wrote:
-> The devices on the SC8280XP PCIe buses are cache coherent and must be
-> marked as such to avoid data corruption.
+On Mon, 7 Nov 2022 14:28:59 +0100, Robert Marko wrote:
+> This patch adds the support for giving the complete bitmask
+> in reset structure and reset operation will use this bitmask
+> for all reset operations.
 > 
-> A coherent device can, for example, end up snooping stale data from the
-> caches instead of using data written by the CPU through the
-> non-cacheable mapping which is used for consistent DMA buffers for
-> non-coherent devices.
+> Currently, reset structure only takes a single bit for each reset
+> and then calculates the bitmask by using the BIT() macro.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8280xp: fix PCIe DMA coherency
-      commit: 0922df8f52b88d5c718d0cfe10794ac44b95ac78
+[1/3] clk: qcom: reset: support resetting multiple bits
+      commit: 4a5210893625f89723ea210d7c630b730abb37ad
+[2/3] dt-bindings: clock: qcom: ipq8074: add missing networking resets
+      commit: bb524058eb5635ee6ecbe3ef154d44088f7a2154
+[3/3] clk: qcom: ipq8074: add missing networking resets
+      commit: ce520e312918bc8f02d1c6bd58b288c2eb2d23c0
 
 Best regards,
 -- 
