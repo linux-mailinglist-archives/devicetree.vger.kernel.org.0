@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E87FA640A35
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D2EE640A37
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:07:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbiLBQHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:07:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
+        id S233621AbiLBQHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:07:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233412AbiLBQHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:52 -0500
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1E12127C
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:48 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id o13so12630733ejm.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:48 -0800 (PST)
+        with ESMTP id S233548AbiLBQHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:53 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CF625E8B
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:51 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id z92so7119974ede.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=melexis.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/5AfNXqpB6DMNrychPSr6MWpW654YYiXw8vNhHpBK+Q=;
-        b=RMdfeOtQsNQ+/8/Fq8Xc60mn4XySkz60hft9vF0461mpZ5ZLBKCtwZPyIKIRHVpmiV
-         FKjJjxbREtLHZ+x+k7dxHWKjf7Z68DXCqXvnhPCNyS5at9D82repNSmNs/1xnh+oJDPu
-         jeWy2x04BuoD4eHemkfocCYCffozpY4mGwSCU9ef2Ep8wocDs5gLLPiLhLhWB2BvdCQ5
-         jVrJg3c6wgfiPXuQdCEJeDmE6vrHcvaSkefRjU0bTI/cGa7K45qVjjGIjusXe00LYYzm
-         55GUQ/AuiwbP53G/i9BkEdDett4UDh31jamV3flfreQPGzOmyfJwZTt+gMPhRosRuSeo
-         kWnQ==
+        bh=Dwv58T09d/KB7jqX1V9halxszsP4/34vGrJ0OjWbt8U=;
+        b=XxclInnMyqmh/SZshAAbX6onBtcXowCuQsQDyCIc3TWQtz8dO2QiXILEwEIlYnxiOm
+         4nfeB6WcPIJ3ugF2TXOyJ04Z6QohPQOm0eZ3pH+u6X8PSgsWafJNimkAlFlF7OKotjcc
+         j1KkJE3kEo7veN89HPP2DW+7cSsELKlZJo8XJtOyHOjGxLsyxFJeWDbzMq/YF6aM7c94
+         EUM55Af2efbwJ1V1w5MzK3mJjJojk6J+p0lVi2PXOJX+RIlCET4iTvBIG3hWQ1x8vTIN
+         uCV+A2VegBgulbTS9GJ2N/vRMQf9C5jO2ifQsfM6BtpQ/IrxXoHrJ0V3WaSCg2Fy2H8b
+         5AGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/5AfNXqpB6DMNrychPSr6MWpW654YYiXw8vNhHpBK+Q=;
-        b=g6vsMnkCrlZSmPNWpBTj8G3GN2lIgApWNcKzOE0SZPVKhdE+S8yNPExI3+xUDolWcx
-         DbEPcH1HRV7h/wWORsW+iQh9uQwtFdjV9jQoUjU8XVIGrapJ7yJqCxbUHrG+Wx5ZA4FP
-         /Or7J+otib5YuTY3JvvlmeUpaRPLVgPTtYPnpstyxK38KHztv+BGHy6jR1ytpahZr2yt
-         ihO6owlHnvWzYzb2l8I4ELdVc9NpW7SY35qlTPZWUMzKgwjR/Vu0qcV/KeUJpKdaKSpS
-         GJHltuYCqoGFun/N5VVgTY5zjIMoZBM3ryEiI32Qxa5ht2mad0KqLOA/HocfdIICLUgA
-         woTA==
-X-Gm-Message-State: ANoB5pkbLAzo6PNIf9htUhoWV+CQTmCfNglnPIJ5Z9lTSwWGlDL4HRiD
-        gbEOU1yjHVsGukZd1Uh7BLHDUQ==
-X-Google-Smtp-Source: AA0mqf6cGBoCWv+9d8yCdT9jT5/xQg78fZ4WsDqDyjFJG1FX5OXwlmLE/31F5enLIHeiWNlNotnM/g==
-X-Received: by 2002:a17:906:a1a:b0:79e:9aea:7b60 with SMTP id w26-20020a1709060a1a00b0079e9aea7b60mr62150021ejf.444.1669997267339;
-        Fri, 02 Dec 2022 08:07:47 -0800 (PST)
+        bh=Dwv58T09d/KB7jqX1V9halxszsP4/34vGrJ0OjWbt8U=;
+        b=VYzX+bTvdNbAZWVlgaGDIm8/adGCYQef+SR4XamPFIAT5GhGld7C+aJZ/Z32kX6VP+
+         cCC1Iivb+aLUJ5oeMHJLDAiRZeiK6VNeRvb9On/wFmzvO+KDBJ1Sb71lCwDVUJUXqYHU
+         CQ+LxqyCd4eG3UDrQQ77DNvhWvV4paV+hrtzJdKuMAs1ye7yFNAf1Z7zEmYck6AuUN4X
+         tnGor+Hu5qf9qTEpY3/XHrBiTjns7b3t87VPkicXq67UyyhFv9ZXyUA2L76mvvqotecY
+         UiGTg+oCgBkj+EuNZgosGbKx/f+QA189o1VBTGF9KlFJ0N4XjDj+bodv3IbZTND+YF4r
+         NMTw==
+X-Gm-Message-State: ANoB5pk+b65k9iKM1oD3RC36x2fR59YK+pCQ6E2ZaTtmy8SVyc/zXACs
+        kFOd/ec1f/yV4KchWemnWc2HXg==
+X-Google-Smtp-Source: AA0mqf5EByCNdrzRt/dX8oTXLVB71IJRsHwEdQ4zkcRQe7BTn1zMR+m7aS3V2KL5w9YA6WVUcaM0iw==
+X-Received: by 2002:a05:6402:910:b0:468:74:9668 with SMTP id g16-20020a056402091000b0046800749668mr4642915edz.394.1669997269620;
+        Fri, 02 Dec 2022 08:07:49 -0800 (PST)
 Received: from melexis ([91.192.183.26])
-        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b007415f8ffcbbsm3230644ejd.98.2022.12.02.08.07.46
+        by smtp.gmail.com with ESMTPSA id v6-20020a170906180600b007c0c679ca2fsm800538eje.26.2022.12.02.08.07.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 08:07:46 -0800 (PST)
+        Fri, 02 Dec 2022 08:07:49 -0800 (PST)
 From:   Volodymyr Kharuk <vkh@melexis.com>
 To:     <linux-media@vger.kernel.org>
 Cc:     Andrii Kyselov <ays@melexis.com>,
@@ -61,9 +61,9 @@ Cc:     Andrii Kyselov <ays@melexis.com>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
         Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
         Volodymyr Kharuk <vkh@melexis.com>
-Subject: [PATCH v4 2/8] media: v4l: ctrls: Fill V4L2_CID_TOF_CLASS controls
-Date:   Fri,  2 Dec 2022 18:07:32 +0200
-Message-Id: <76aa4a3333da2a8cda9af1f25f41abebe292b9c2.1669978791.git.vkh@melexis.com>
+Subject: [PATCH v4 3/8] media: Documentation: v4l: Add TOF class controls
+Date:   Fri,  2 Dec 2022 18:07:33 +0200
+Message-Id: <73057b03463bbaccc7780418f7b32518fe17a144.1669978791.git.vkh@melexis.com>
 X-Mailer: git-send-email 2.38.0
 In-Reply-To: <cover.1669978791.git.vkh@melexis.com>
 References: <cover.1669978791.git.vkh@melexis.com>
@@ -78,59 +78,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define names, flags and types of TOF controls. *dims* is driver specific.
-It also means, that it is not possible to use new_std for arrays.
+Add description about V4L2_CID_TOF_PHASE_SEQ, V4L2_CID_TOF_FMOD
+and V4L2_CID_TOF_TINT.
+Also updated MAINTAINERS with new ext-ctrls-tof file.
 
 Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
 ---
- drivers/media/v4l2-core/v4l2-ctrls-defs.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ .../userspace-api/media/v4l/common.rst        |  1 +
+ .../userspace-api/media/v4l/ext-ctrls-tof.rst | 56 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 3 files changed, 64 insertions(+)
+ create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
 
-diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-index 564fedee2c88..3c0ab290589a 100644
---- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-+++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-@@ -1196,6 +1196,13 @@ const char *v4l2_ctrl_get_name(u32 id)
- 	case V4L2_CID_COLORIMETRY_CLASS:	return "Colorimetry Controls";
- 	case V4L2_CID_COLORIMETRY_HDR10_CLL_INFO:		return "HDR10 Content Light Info";
- 	case V4L2_CID_COLORIMETRY_HDR10_MASTERING_DISPLAY:	return "HDR10 Mastering Display";
+diff --git a/Documentation/userspace-api/media/v4l/common.rst b/Documentation/userspace-api/media/v4l/common.rst
+index ea0435182e44..1ea79e453066 100644
+--- a/Documentation/userspace-api/media/v4l/common.rst
++++ b/Documentation/userspace-api/media/v4l/common.rst
+@@ -52,6 +52,7 @@ applicable to all devices.
+     ext-ctrls-fm-rx
+     ext-ctrls-detect
+     ext-ctrls-colorimetry
++    ext-ctrls-tof
+     fourcc
+     format
+     planar-apis
+diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+new file mode 100644
+index 000000000000..62a5a316fb77
+--- /dev/null
++++ b/Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+@@ -0,0 +1,56 @@
++.. SPDX-License-Identifier: GFDL-1.1-no-invariants-or-later
 +
-+	/* Time of light camera controls */
-+	/* Keep the order of the 'case's the same as in v4l2-controls.h! */
-+	case V4L2_CID_TOF_CLASS:	return "Time of Flight Camera Controls";
-+	case V4L2_CID_TOF_PHASE_SEQ:		return "TOF Phase Sequence";
-+	case V4L2_CID_TOF_FREQ_MOD:		return "TOF Frequency Modulation";
-+	case V4L2_CID_TOF_TIME_INTEGRATION:	return "TOF Time Integration";
- 	default:
- 		return NULL;
- 	}
-@@ -1403,6 +1410,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
- 	case V4L2_CID_DETECT_CLASS:
- 	case V4L2_CID_CODEC_STATELESS_CLASS:
- 	case V4L2_CID_COLORIMETRY_CLASS:
-+	case V4L2_CID_TOF_CLASS:
- 		*type = V4L2_CTRL_TYPE_CTRL_CLASS;
- 		/* You can neither read nor write these */
- 		*flags |= V4L2_CTRL_FLAG_READ_ONLY | V4L2_CTRL_FLAG_WRITE_ONLY;
-@@ -1541,6 +1549,18 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
- 	case V4L2_CID_COLORIMETRY_HDR10_MASTERING_DISPLAY:
- 		*type = V4L2_CTRL_TYPE_HDR10_MASTERING_DISPLAY;
- 		break;
-+	case V4L2_CID_TOF_PHASE_SEQ:
-+		*type = V4L2_CTRL_TYPE_U16;
-+		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
-+		break;
-+	case V4L2_CID_TOF_FREQ_MOD:
-+		*type = V4L2_CTRL_TYPE_U8;
-+		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
-+		break;
-+	case V4L2_CID_TOF_TIME_INTEGRATION:
-+		*type = V4L2_CTRL_TYPE_U16;
-+		*flags |= V4L2_CTRL_FLAG_DYNAMIC_ARRAY;
-+		break;
- 	default:
- 		*type = V4L2_CTRL_TYPE_INTEGER;
- 		break;
++.. _tof-controls:
++
++***************************************
++Time of Flight Camera Control Reference
++***************************************
++
++The Time of Flight class includes controls for digital features
++of the TOF sensor.
++
++TOF sensor is a receiver chip. Each pixel in the sensor measures the travel time
++of light to that pixel and hence the distance to the object seen by that pixel.
++There are different types of TOF sensors. Direct TOF sensors (also known
++as Lidars) send a single pulse and measure direct time of flight.
++Another type of TOF is indirect TOF sensors, which emit continuous wave
++(could be radio or infrared) and then measure phase shift of reflected light.
++The sensor modulates outgoing light and then collects reflected photons
++as an electric charge with modulated pattern. Knowing the frequency of
++the pattern you can calculate the real distance.
++
++For more information about TOF sensors see
++`TOF <https://en.wikipedia.org/wiki/Time-of-flight_camera>`__ from Wikipedia.
++Also, there are other nice explanations from vendors about indirect TOF:
++`Microsoft <https://devblogs.microsoft.com/azure-depth-platform/understanding-indirect-tof-depth-sensing/>`__,
++`Melexis <https://media.melexis.com/-/media/files/documents/application-notes/time-of-flight-basics-application-note-melexis.pdf>`__,
++`TI <https://www.ti.com/lit/wp/sloa190b/sloa190b.pdf?ts=1657842732275&ref_url=https%253A%252F%252Fwww.google.com%252F>`__.
++
++.. _tof-control-id:
++
++Time of Flight Camera Control IDs
++=================================
++
++``V4L2_CID_TOF_CLASS (class)``
++    The TOF class descriptor. Calling :ref:`VIDIOC_QUERYCTRL` for
++    this control will return a description of this control class.
++
++``V4L2_CID_TOF_PHASE_SEQ (dynamic array u16)``
++    Change the shift between illumination and sampling for each phase
++    in degrees. The distance / amplitude (confidence) pictures are obtained
++    by merging 3..8 captures of the same scene using different phase shifts
++    (some TOF sensors use different frequency modulations).
++
++    The size of dynamic array specify the number of captures.
++    Also driver may decide whether V4L2_CID_TOF_FREQ_MOD and
++    V4L2_CID_TOF_TIME_INTEGRATION should change the number
++    of captures or rely on V4L2_CID_TOF_PHASE_SEQ control.
++    The maximum size of the array is driver specific.
++
++``V4L2_CID_TOF_FREQ_MOD (dynamic array u8)``
++    The control sets the modulation frequency (in Mhz) for each phase.
++    The maximum array size is driver specific.
++
++``V4L2_CID_TOF_TIME_INTEGRATION (dynamic array u16)``
++    The control sets the integration time (in us) for each phase.
++    The maximum array size is driver specific.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6f4ff0ef4523..6f9072f3b1da 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13111,6 +13111,13 @@ S:	Supported
+ W:	http://www.melexis.com
+ F:	drivers/iio/temperature/mlx90632.c
+ 
++MELEXIS MLX7502X DRIVER
++M:	Volodymyr Kharuk <vkh@melexis.com>
++L:	linux-media@vger.kernel.org
++S:	Supported
++W:	http://www.melexis.com
++F:	Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
++
+ MELFAS MIP4 TOUCHSCREEN DRIVER
+ M:	Sangwon Jee <jeesw@melfas.com>
+ S:	Supported
 -- 
 BR,
 Volodymyr Kharuk
