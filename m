@@ -2,145 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5BD6404F7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:44:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6776404EC
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:43:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232677AbiLBKoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:44:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
+        id S232975AbiLBKnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:43:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232990AbiLBKnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:43:46 -0500
-Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B061EA80BA;
-        Fri,  2 Dec 2022 02:43:41 -0800 (PST)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx2.securetransport.de (Postfix) with ESMTPSA id A1B3D5E99E;
-        Fri,  2 Dec 2022 11:42:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1669977770;
-        bh=jqDVLZ1Ing9hJRDRxYi7bntuyllmW9Hd+BSl+I1NndE=;
-        h=From:To:CC:Subject:Date:From;
-        b=HU/pXZLZmRcF1uN0PFqfGG/og/EYzT8EzGJ7udmm9gEpOOkX9JCFzVSANYXIlfuMI
-         tE5SmtRUfP/v6+Bo4GbkqEQy3Jdcrsftl2L0ti4lb+ozTgZiOyoU748gTKrc3/WkS5
-         c3DyGZkTyI3BuyAO78hB00QVcMV0cplew+2Ar/OSF89/zBxwVVYSqIWPl3WXXS4ZZd
-         Buc65mtcnhfd5ppZd8xKIUXBqITPq02n/mRxeW3p+8zHWzCNJ3Tft/V9Ggru1dNMe2
-         00mBpEK48B3VsIy9V6vAbz/40sE1t3WpK5bN/0RbJT8+yDg5g/9UNFL2i0LOZ1PLJL
-         nUDC4J9yaw8Vw==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20; Fri, 2 Dec 2022 11:42:37 +0100
-Received: from localhost.localdomain (172.16.51.2) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.20 via Frontend Transport; Fri, 2 Dec 2022 11:42:36 +0100
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-serial@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <marex@denx.de>,
-        <jirislaby@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alexander Dahl" <ada@thorsis.com>, <kernel@dh-electronics.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH V4 1/4] dt-bindings: serial: rs485: Add GPIO controlling RX enable during TX
-Date:   Fri, 2 Dec 2022 11:41:24 +0100
-Message-ID: <20221202104127.122761-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
+        with ESMTP id S232873AbiLBKnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:43:07 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2E227DF0
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:43:01 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id be13so6804225lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:43:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FOsmaL4anJC2+9DXpJewYEXrleBsDHtL92Z/rXNrpKo=;
+        b=eAJDJN0qMViRxh4ns/kXNjw3fCtoTmUzOhKbXZdJvcQZbau/z2W5Qc6/daAooUOecV
+         uyUKNXPmweLEKWUTHQZCxwzcqMwACGyy6FmbUhXldMkW/gSleQF1bLL3NOPV4aFwlwpH
+         n+GY/namLNOMdT2DS4dUYsedkTRkW6TgMEgD2ezt9ZBUmBXUCdoWjjUHVH9ePr50Ckr8
+         iQWtNbUMDPmoqC9osJ/+PemjROT/CUXFTBhJf1bYD3kL6MtqPhi+NqEcb1D5+u62HcJL
+         9vbkRqQs9V2qXMoPjzKw0xUFDk6DqqHoC0ikgIZZ32bn0po80tojrIP94rDaItgmwNK2
+         eH9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FOsmaL4anJC2+9DXpJewYEXrleBsDHtL92Z/rXNrpKo=;
+        b=SiQkYzS/IDOCHr8QijV1AfjzKJ5n2yiShn6iHQh0xRnBzGeiLFnaWkKPhj6wM/NCAa
+         CbSWHl5VHG7VDry8v5ynUil2IJZPn0zNtSGVwMVkKstOqh16WioatgqN3Gjcqt/AE6UR
+         1ksByvCiZlvphR74PLgwXPaJj67fl991PLKiqesfmeKcS1t+mtN+y5duJrB7GEA52oAp
+         vgabRqmCjTpB79OpOBM4YwDqATBH/3geTq9JdDtOyr6h1eWmJIP4vD3MnVJl9GMQ1yN5
+         91/Sf8X6XWy+MJiuUeGiQ4C+bC0dSoeBNF31SCpw2NO2tFFole5/2wTCIL50qsvy3tfj
+         insw==
+X-Gm-Message-State: ANoB5pk81NovMWhN8u7jdsO3gNzsCYMixXakC1scpHz5weC7huNt8cNh
+        vFqmaXZ125/FbGRZ0uroUwcYlQ==
+X-Google-Smtp-Source: AA0mqf5UBOg0i6Xr6M6KKYFT9OI7GF9i21kFLBRMat9GNrL6pNiojrS10vzl1eD/ZKgZfWiEKVBctA==
+X-Received: by 2002:a19:7111:0:b0:499:b4b3:2f68 with SMTP id m17-20020a197111000000b00499b4b32f68mr16889454lfc.203.1669977779852;
+        Fri, 02 Dec 2022 02:42:59 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id c10-20020a056512074a00b00499f9aaa9desm972863lfs.179.2022.12.02.02.42.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Dec 2022 02:42:58 -0800 (PST)
+Message-ID: <38fda078-e4d4-5172-25c7-b126282f9f88@linaro.org>
+Date:   Fri, 2 Dec 2022 11:42:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v8 01/11] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+Content-Language: en-US
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for a generic definition of an output GPIO that sets the
-state of rs485-rx-during-tx. The idea is that the hardware already controls
-the option receiving during sending before it gets to the signal receiving
-hardware. The standard RS485 is a half-duplex bus that in most cases is
-driven by an UART controller. The advantage of using this GPIO is that it
-is independent of the capabilities of the UART core and the UART driver.
-On the hardware side the interface to the bus is controlled by a transceiver,
-that has a pin called RE (RX Enable) or similar, which connects the bus to
-the RX signal of the UART controller. The GPIO can switch between two states
-to control the RE pin via an electrical circuit:
-- Active:
-  The RE pin is always active. The UART RX see everything on the bus and
-  therefore also what happens with the TX signal on the bus.
-- Inactive:
-  The RE pin is always active, but during sending on the bus the pin RE is
-  inactive. So basically the receiving during sending is suppressed.
+On 01/12/2022 23:56, Dmitry Rokosov wrote:
+> From: Jian Hu <jian.hu@amlogic.com>
+> 
+> Add the documentation to support Amlogic A1 PLL clock driver,
+> and add A1 PLL clock controller bindings.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+>  2 files changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..d67250fbeece
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-A possible circuit diagram could look like this:
-                                  ┌──────────────────┐
-                                  │       RS485      │
-                TX ───────────────┤D                 │
-                                  │    Transceiver   │
-               RTS ────┬──────────┤DE                │
-                       │          │                  │
-                       │ ┌─────┐  │                  │
-                       └─┤&    │  │                  │
-                         │     ├──┤!RE               │
-!rx_during_tx_gpio ──────┤     │  │                  │
-                         └─────┘  │                  │
-                                  │                  │
-                RX ───────────────┤R                 │
-                                  │                  │
-                                  └──────────────────┘
+Drop quotes from both.
 
-Here the RTS pin of the UART core is used to control TX via the transceiver
-pin DE (Drive Enable). RE and rx_during_tx_gpio are active low.
+> +
+> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Alexander Dahl <ada@thorsis.com>
-Cc: Marek Vasut <marex@denx.de>
-Cc: kernel@dh-electronics.com
-Cc: devicetree@vger.kernel.org
-To: linux-serial@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
-V2: - Rework of the commit message
-    - Rework GPIO property comment
-V3: - Rework the binding description
-    - Rework message title
-    - Rework of the commit message
-V4: - Add Reviewed-by tag
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Drop "Device Tree Bindings"
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 90a1bab40f05..a973ab7d7e46 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -51,6 +51,12 @@ properties:
-     description: GPIO pin to enable RS485 bus termination.
-     maxItems: 1
- 
-+  rs485-rx-during-tx-gpios:
-+    description: Output GPIO pin that sets the state of rs485-rx-during-tx. This
-+      signal can be used to control the RX part of an RS485 transceiver. Thereby
-+      the active state enables RX during TX.
-+    maxItems: 1
-+
- additionalProperties: true
- 
- ...
--- 
-2.11.0
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+
+Not correct email address.
+
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-pll-clkc
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +     - description: input xtal_fixpll
+> +     - description: input xtal_hifipll
+
+As pointed already - this patch cannot work and must not be merged.
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xtal_fixpll
+> +      - const: xtal_hifipll
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clkc_pll: pll-clock-controller@7c80 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +                compatible = "amlogic,a1-pll-clkc";
+
+Use 4 spaces for example indentation.
+
+> +                reg = <0 0x7c80 0 0x18c>;
+> +                #clock-cells = <1>;
+> +                clocks = <&clkc_periphs 1>,
+> +                         <&clkc_periphs 4>;
+> +                clock-names = "xtal_fixpll", "xtal_hifipll";
+> +    };
+> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+> new file mode 100644
+> index 000000000000..58eae237e503
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-pll-clkc.h 
+
+Filename matching compatible / bindings file.
+
+> @@ -0,0 +1,16 @@
+
+Best regards,
+Krzysztof
 
