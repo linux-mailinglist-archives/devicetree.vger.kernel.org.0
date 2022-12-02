@@ -2,91 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 140BC63FE5C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 03:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1EB563FE90
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 04:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbiLBCyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Dec 2022 21:54:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        id S231245AbiLBDNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Dec 2022 22:13:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbiLBCyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 21:54:01 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341FD8DBD6;
-        Thu,  1 Dec 2022 18:54:00 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id EFF2324E059;
-        Fri,  2 Dec 2022 10:53:53 +0800 (CST)
-Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Dec
- 2022 10:53:53 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
- (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 2 Dec
- 2022 10:53:52 +0800
-Message-ID: <22123903-ee95-a82e-d792-01417ceb63b1@starfivetech.com>
-Date:   Fri, 2 Dec 2022 10:53:09 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 1/7] dt-bindings: net: snps,dwmac: Add compatible
- string for dwmac-5.20 version.
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231281AbiLBDNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Dec 2022 22:13:52 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEC6AA8C9
+        for <devicetree@vger.kernel.org>; Thu,  1 Dec 2022 19:13:50 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id l127so3085036pfl.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Dec 2022 19:13:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=schmorgal.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/KCyW/nZsCSOBqrMJLS3BfqoCX4HTe2xd1fQxSnYf4c=;
+        b=Mgl3zQz64SSTsWS5jS3ZAVpbPf4ufwqiaqntCB5pAiMQXUrS9nQWsnbIEndDrjN5Ic
+         Ue7BehdwCUNS02VQpUbrYG5E2zKMgVddhWykQtijzZ6RfV/T9SioCLPes/q0Kk4Eg6xy
+         L/TWFrycIj/XCYHmlKkGS4BACNlygdvmCSBSc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/KCyW/nZsCSOBqrMJLS3BfqoCX4HTe2xd1fQxSnYf4c=;
+        b=74zl2FLZtQMpSejc7HG2m0T15TUU3vH3Kf2CtDhVZQ+kwiqG/22twv6EEp4vqDxKRB
+         e0qg+++Mq24HK97TEnztI3oRymshQOAOrLOsDVN8uFLc5bZoVwQd7lMqzwNVLboV9RCB
+         ZacxbfASXKslVzoFf1fgDK+WwCtkM8HLHtI3d7wAxDzkdyxf07hhYFAv/IoEVLLouRaU
+         IRfgah68fcLZn0PMMH+GPod+xzMRAM72sudT36VJ6S4vXQWU2q3ako8YxY4dmcNRgFia
+         DXjvD7GkxGdXaQRMBFtNNVsUdjeV3KyVByDGdFFjeWlAIqgRpjzl7ejxPls5Xl2Gb8fH
+         qu6g==
+X-Gm-Message-State: ANoB5pk8WduBVtZiggBlzVAFUSf5DoOsaFfLZRZ6NRzP8/ZZsJGxzfvB
+        /6FJZ+sDRhKQbT3bXZr/cMNA2g==
+X-Google-Smtp-Source: AA0mqf4bsC0ceRf9eG10Yhj6Qr71xtd1D/giJttzYDpCc1/ktkNuFv9ydePp+pSyzGPXrnj7W5/EyA==
+X-Received: by 2002:a63:db0a:0:b0:459:35b1:1396 with SMTP id e10-20020a63db0a000000b0045935b11396mr46503851pgg.593.1669950830237;
+        Thu, 01 Dec 2022 19:13:50 -0800 (PST)
+Received: from doug-ryzen-5700G.. ([192.183.212.197])
+        by smtp.gmail.com with ESMTPSA id jx24-20020a17090b46d800b00213202d77d9sm3708410pjb.43.2022.12.01.19.13.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 19:13:49 -0800 (PST)
+From:   Doug Brown <doug@schmorgal.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-2-yanhong.wang@starfivetech.com>
- <277f9665-e691-b0ad-e6ef-e11acddc2006@linaro.org>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <277f9665-e691-b0ad-e6ef-e11acddc2006@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX173.cuchost.com
- (172.16.6.93)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Doug Brown <doug@schmorgal.com>
+Subject: [PATCH v2 0/8] mmc: sdhci-pxav2: Add support for PXA168
+Date:   Thu,  1 Dec 2022 19:13:22 -0800
+Message-Id: <20221202031330.94130-1-doug@schmorgal.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is a revival of an earlier patch series from 2013 to add support
+for the PXA168 SDHC controller, with an additional SDIO IRQ errata fix.
+It also cleans up the clock naming to be consistent with the existing DT
+schema shared with the pxav3 driver (in a backwards-compatible way).
 
+Here is the original patch series this is based on:
+https://lore.kernel.org/linux-mmc/1363544206-3671-1-git-send-email-tanmay.upadhyay@einfochips.com/
 
-On 2022/12/2 0:18, Krzysztof Kozlowski wrote:
-> On 01/12/2022 10:02, Yanhong Wang wrote:
->> Add dwmac-5.20 version to snps.dwmac.yaml
-> 
-> Drop full stop from subject and add it here instead.
-> 
+Note that I left out the platform_specific_completion and clock gating
+changes from the original patches. They both seemed controversial, and
+don't seem necessary based on my testing. I've been running this code on
+a PXA168 for months without any issues.
 
-Will update in the next version.
+Changes in v2:
+- Fix mistakes in devicetree binding
+- Use cleaner code for pxav1_readw suggested by Adrian
+- Switch to request_done() and irq() for SDIO workaround CMD0 handling
 
->> 
->> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> 
-> Two people contributed this one single line?
-> 
+Doug Brown (8):
+  mmc: sdhci-pxav2: add initial support for PXA168 V1 controller
+  mmc: sdhci-pxav2: enable CONFIG_MMC_SDHCI_IO_ACCESSORS
+  mmc: sdhci-pxav2: add register workaround for PXA168 silicon bug
+  mmc: sdhci-pxav2: change clock name to match DT bindings
+  mmc: sdhci-pxav2: add optional core clock
+  mmc: sdhci-pxav2: add SDIO card IRQ workaround for PXA168 V1
+    controller
+  mmc: sdhci-pxav2: add optional pinctrl for SDIO IRQ workaround
+  dt-bindings: mmc: sdhci-pxa: add pxav1
 
-Emil made this patch and I submitted it.
+ .../devicetree/bindings/mmc/sdhci-pxa.yaml    |  19 ++-
+ drivers/mmc/host/Kconfig                      |   1 +
+ drivers/mmc/host/sdhci-pxav2.c                | 150 +++++++++++++++++-
+ 3 files changed, 163 insertions(+), 7 deletions(-)
 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.34.1
+
