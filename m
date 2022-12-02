@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D75C964054A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:54:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8590A64054E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:54:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233358AbiLBKyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:54:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
+        id S233385AbiLBKyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:54:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232315AbiLBKxh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:53:37 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8047993816
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:53:02 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id n1so4996696ljg.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:53:02 -0800 (PST)
+        with ESMTP id S233268AbiLBKxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:53:46 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918C0B90D1
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:53:25 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id z4so4996930ljq.6
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:53:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ozG/UpJ3bPaswuvxlA6GlaGwfzIvrdrSod17QPiF3RU=;
-        b=VnRfxu9nNzzswT8wEXi/i183yZLJRDzC4A1K/Fiw/h2bpk3Sw8aOKG7jTN62zP4qJk
-         orl6/lzBhRZ9GCycb806ntQgMFusHnDXYp8YNnYu72LcScqY0/ycnzDJfmarUJA35rjd
-         o+UsA3ICCh89hAioEY5k7YQ8dAQsy4Oocqs46VFNEZNBdCDtz1BDMJtte9QpYpXEScRS
-         rpvuuHQ47yCpXaboEhGzSEt3xZIHgXUlhslFK1jy2sNWUiFUyOew8e0Emwq59QKG236Y
-         VkNClbkGA0sP43zbSRdGjkEPyAYIv+5+N/fpuUA25N+1UaGQUGDFPDv7m2ASEymVG/Z/
-         YScw==
+        bh=QSjLefHNHZegI4ZB3gSSmSL4psXmiBZX3/AQmAdB8Ek=;
+        b=ch4jUTh+E3zvsapTjxKlw6JsDVlBzQYaZ5O8kVerM7kpCX2FBvPZYn3qeUr1QQZU3O
+         BjIFqyOVP0VzlZdrYwOBjJWUy9BwBLm4q0E4EMfCHeMcjlKO8Eikcf4ClB+bDLz8iO6/
+         dLAGlkXSDi1FKKzjOcKkuj/04GRP9Hb9gNOq4rFp7hokzk8sVFSx81Xla51/6dDBFqKt
+         V5F8GJph0J2RgpMW3KufXy2TyGgauHvKChv5gYffMgLKMMY1ynixHJ5Qdgya29NyvEfm
+         9prQo3uOdKoPFcIRRxSQ++/CQLwEvWLVmJs2tK62CSHSk515Is2F6Ir/CALtnbdP2L5D
+         0+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ozG/UpJ3bPaswuvxlA6GlaGwfzIvrdrSod17QPiF3RU=;
-        b=Nakrr7LfYVcNiwUf3qcqSJzRSI/N5FkR9uTnrfdxr5MELJKbVgUrsh0/pbYlwnYjoY
-         UkGFhN2X2XGYBfJxoYbWxUf4GkIHXApkpRCnqDGaGfjiWUzSkymJ8S/LwFT1mywjM5Bp
-         nH27IyTMe/VF7cn79u6HCxg5Nty0uuXL5n4BAxhYGhi3JPb0JmjSseQ6Drro9AUMp1aB
-         cLh397nInJ5dJQ0q9SfX4y65QJVgGtymE4vDgUBaWQ+8LlVBRezxcUygyzBASrj0jV1L
-         bkntOdm1lLPI20QveLqHuHRt03RnCDHEGcAWN34IT21qJSv9+wpY+xeFPFoiewELj7Le
-         ZpEg==
-X-Gm-Message-State: ANoB5pkWRoLscMitiDznYd24LW6SBOzy5k6eBKYBVfgWZwwOoP9sz/OR
-        /iH5GZeW6+TRf9+QZgVMSgzCag==
-X-Google-Smtp-Source: AA0mqf5UDZibFF2eJbCdKm3k1Hn0SM83w0I9K8FzTMHa2/oIUf03uj7BBCTGwnQAjufz6lEHSgSo5w==
-X-Received: by 2002:a2e:a263:0:b0:276:be89:5616 with SMTP id k3-20020a2ea263000000b00276be895616mr15253849ljm.347.1669978380884;
-        Fri, 02 Dec 2022 02:53:00 -0800 (PST)
+        bh=QSjLefHNHZegI4ZB3gSSmSL4psXmiBZX3/AQmAdB8Ek=;
+        b=rZKZudnIUQJeziZ53LnLVjrAVk8UrlqjfUpJzwOdYeShB1DddFkgdIcdBU2o/W+q0k
+         5J7SMDD2Ewktqic/BUj7ha5KksuzsFL5CWevLzCUDOWOBTYjzWy28fzCyJgzcIC58Su7
+         LjEnin7xXijKwuIsZuYcWYviH4cImjjslNE60g6yRjk/DutzINWZ2xgcr8F14zD69oSn
+         MevFbc6wRo4TtxCkM50BEV34AwsTc2+Yx7QB/aiolC1DTUaRVTuiSeJJS+5EOmIrhbsm
+         uJq9rlfchCQ7BFf08pMpwJGITyhAzTGtZBGYTg+rIHyzb5BE52GssJ/1TMVsAKfS5v38
+         sLbQ==
+X-Gm-Message-State: ANoB5pmKsm41ucVQHYeXpsxx/mqUG3Md5zck0F/iEtMoO/5K9ztKAI/s
+        JkDKyPQ/LDI7hqAZVzCBzBTEfA==
+X-Google-Smtp-Source: AA0mqf4kz7feCFmRNFDMS6l36HrfZmoNajxlZNp7L0xiUTayIiHEtz0mWo6MExr869Z4OeFjYceg+Q==
+X-Received: by 2002:a2e:b90a:0:b0:278:ec8b:4783 with SMTP id b10-20020a2eb90a000000b00278ec8b4783mr17773054ljb.91.1669978403987;
+        Fri, 02 Dec 2022 02:53:23 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u8-20020a05651c130800b0026fb5525ee4sm588660lja.116.2022.12.02.02.52.59
+        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b004a0589786ddsm981504lfa.69.2022.12.02.02.53.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:53:00 -0800 (PST)
-Message-ID: <624cba7f-1be9-7100-91d7-f9232c855d9f@linaro.org>
-Date:   Fri, 2 Dec 2022 11:52:59 +0100
+        Fri, 02 Dec 2022 02:53:23 -0800 (PST)
+Message-ID: <67a3fb3e-7d27-f0b0-4858-fd66fd3424e0@linaro.org>
+Date:   Fri, 2 Dec 2022 11:53:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add an entry for
+ WorldSemi
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+To:     Chuanhong Guo <gch981213@gmail.com>, linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
-        Richard Cochran <richardcochran@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-4-yanhong.wang@starfivetech.com>
- <166990139276.476262.15116409959152660279.robh@kernel.org>
- <Y4jaQ4snp6x1oU6k@spud>
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221202034240.455831-1-gch981213@gmail.com>
+ <20221202034240.455831-2-gch981213@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y4jaQ4snp6x1oU6k@spud>
+In-Reply-To: <20221202034240.455831-2-gch981213@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,53 +85,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 17:45, Conor Dooley wrote:
-> Hey Yanhong,
+On 02/12/2022 04:42, Chuanhong Guo wrote:
+> Add vendor prefix for WorldSemi that makes WS2812B
+> individually-addressable RGB LEDs.
 > 
-> On Thu, Dec 01, 2022 at 07:36:29AM -0600, Rob Herring wrote:
->>
->> On Thu, 01 Dec 2022 17:02:38 +0800, Yanhong Wang wrote:
->>> Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
->>>
->>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->>>  .../bindings/net/starfive,dwmac-plat.yaml     | 106 ++++++++++++++++++
->>>  MAINTAINERS                                   |   5 +
->>>  3 files changed, 112 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->> ./Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml:30:16: [warning] wrong indentation: expected 14 but found 15 (indentation)
->>
->> dtschema/dtc warnings/errors:
->> ./Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml: $id: relative path/filename doesn't match actual path or filename
->> 	expected: http://devicetree.org/schemas/net/starfive,dwmac-plat.yaml#
->> Documentation/devicetree/bindings/net/starfive,dwmac-plat.example.dts:21:18: fatal error: dt-bindings/clock/starfive-jh7110.h: No such file or directory
->>    21 |         #include <dt-bindings/clock/starfive-jh7110.h>
-> 
-> Perhaps, rather than putting a long list of "prerequisite-patch-id" in
-> your cover letters etc, you drop the need for headers from your bindings
-> entirely? Otherwise, you need to wait for the clock bindings to be applied
-> before any of your other peripherals etc can have drivers/bindings upstream.
-> 
-> AFAIU, and Rob/Krzk please correct me, the example in a dt-binding
-> really is an *example* and there's no requirement for it to match the
-> jh7110 dts exactly. Because of that you can drop the header & just do
-> something like `clocks = <&clk 7>, <&clk 77>;` etc and the example is
-> still valid. Same goes for all of the other driver patchsets for new
-> StarFive stuff, like the pmu or crypto, that also have dt-bindings.
-> 
-> The only person who has to worry then about dependencies is me when I
-> apply the .dts patches :)
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> --
+> Change since v1:
+> reword commit message
 
-It's nice when example looks good and matching final DTS, but that's not
-a requirement. Pretty often clocks/resets/domains are mocked for the
-example.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
