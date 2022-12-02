@@ -2,94 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F307B640194
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B4A64019E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232547AbiLBIJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:09:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S232406AbiLBILQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:11:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232422AbiLBIJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:09:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31CBE70DF5;
-        Fri,  2 Dec 2022 00:09:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D2F08B81E5A;
-        Fri,  2 Dec 2022 08:09:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC8EFC433C1;
-        Fri,  2 Dec 2022 08:09:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1669968585;
-        bh=8+gNM22UEiZvcMiIBcHcTs/pXIXI8H7d72J7cmSl0Ss=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dJDdYI8NwoBqhCsnasmkykXxWx8nO6qZQG3935HThM4ivYW3+E6v0tbVkxyDsNC7+
-         QhGiXKef/dVDme2c1W+XpbIetzQuY3NkoyEAIoHZVFtKiyZJjATtSSyQJK9VAGZZ/3
-         GPmr2mYwlaVfSv5lp8uTHDYG3XGbgYzqt+tjJ2swXFUF3UjuNAKqVsUWPONoPIImxD
-         lq1EWYDIODZsjojwGgKs+I5+X04gvFvALU6VmlxUwaaimoNadIkIwSlP1Gf/0cLK60
-         iCOOpUslJ9gidbK1U6+ifTA94RxKtr0OWNNFemRqDSMvqiFNzhRa0eCyUMS81zEYa9
-         T1wIQDz5MtVsw==
-Date:   Fri, 2 Dec 2022 08:09:38 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Markus Laine <markus.laine@fi.rohmeurope.com>,
-        Mikko Mutanen <mikko.mutanen@fi.rohmeurope.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix maintainer email for a few ROHM ICs
-Message-ID: <Y4mywve76roQ6NtO@google.com>
-References: <7986d30480df6179a3989fba4cd13817738635c5.1669877740.git.mazziesaccount@gmail.com>
+        with ESMTP id S231705AbiLBILP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:11:15 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8995BAC6E3;
+        Fri,  2 Dec 2022 00:11:13 -0800 (PST)
+Received: from booty (unknown [77.244.183.192])
+        (Authenticated sender: luca.ceresoli@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id A93C11C0007;
+        Fri,  2 Dec 2022 08:11:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1669968672;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3FRgB5fOfGPmedW428TvFCtP0/QrMozmnJseWIpuk7A=;
+        b=a//fnsh5+JyreJYDyDTikySU4J9EpX5psA+Cjwlklv/RaKg7TDsrvAEcGmhM4hp5vs6WHw
+        gIZzeMTHZjznvSMUy2X6BLGCWQn0fYb4ann0a685qwnuD4ZVrb30qVpPDnmWjAGogzd85M
+        mgutn9ghLSfx+9lazos999ygFgzLHIrme9jRJw6kscmrUemRC0ow1l4dgFIR8gk28a+Ih9
+        cjykEEOcVsVTGk4bUO1on5Ug3HKwn5xTZsbKzTfbpshUpJuqeCKRVuKNaMngEqhMyIMCNl
+        Zv4v0jJT35BFM5ckjTuZWA1fR4ycYl+7WVuzrNchNOw3lChUT2yHpJtikprYXQ==
+Date:   Fri, 2 Dec 2022 09:11:08 +0100
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+Subject: Re: [PATCH v2 01/21] dt-bindings: display: tegra: add Tegra20 VIP
+Message-ID: <20221202091108.5f492d6f@booty>
+In-Reply-To: <20221201231936.GB1660613-robh@kernel.org>
+References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
+        <20221128152336.133953-2-luca.ceresoli@bootlin.com>
+        <20221201231936.GB1660613-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7986d30480df6179a3989fba4cd13817738635c5.1669877740.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Dec 2022, Matti Vaittinen wrote:
+Hello Rob,
 
-> The email backend used by ROHM keeps labeling patches as spam. This can
-> result to missing the patches.
-> 
-> Switch my mail address from a company mail to a personal one.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> ---
-> 
-> I did this a while ago for my email addresses at the MAINTAINERS. Forgot
-> the dt-bindings and doing the conversion for bindings now.
-> ---
->  Documentation/devicetree/bindings/leds/rohm,bd71828-leds.yaml   | 2 +-
->  Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml    | 2 +-
->  Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml    | 2 +-
->  Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml    | 2 +-
->  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml    | 2 +-
->  Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml     | 2 +-
->  .../devicetree/bindings/power/supply/rohm,bd99954.yaml          | 2 +-
->  .../devicetree/bindings/regulator/rohm,bd71815-regulator.yaml   | 2 +-
->  .../devicetree/bindings/regulator/rohm,bd71828-regulator.yaml   | 2 +-
->  .../devicetree/bindings/regulator/rohm,bd71837-regulator.yaml   | 2 +-
->  .../devicetree/bindings/regulator/rohm,bd71847-regulator.yaml   | 2 +-
->  .../devicetree/bindings/regulator/rohm,bd9576-regulator.yaml    | 2 +-
->  12 files changed, 12 insertions(+), 12 deletions(-)
+Thanks for your review.
 
-Applied, thanks.
+On Thu, 1 Dec 2022 17:19:36 -0600
+Rob Herring <robh@kernel.org> wrote:
+
+> On Mon, Nov 28, 2022 at 04:23:16PM +0100, Luca Ceresoli wrote:
+> > VIP is the parallel video capture component within the video input
+> > subsystem of Tegra20 (and other Tegra chips, apparently).
+> > 
+> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > 
+> > ---
+> > 
+> > Changed in v2 (suggested by Krzysztof Kozlowski):
+> > - remove redundant "bindings" from subject line
+> > - remove $nodename
+> > - add channel@0 description
+> > - add reg: const: 0
+> > ---
+> >  .../display/tegra/nvidia,tegra20-vip.yaml     | 63 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 +++
+> >  2 files changed, 70 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+> > new file mode 100644
+> > index 000000000000..44be2e16c9b4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vip.yaml
+> > @@ -0,0 +1,63 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-vip.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra VIP (parallel video capture) controller
+> > +
+> > +maintainers:
+> > +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nvidia,tegra20-vip
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +  channel@0:  
+> 
+> Kind of odd there is only 1 channel with a unit-address. Are more 
+> channels coming? Please make the binding as complete as possible even if 
+> no driver support yet.
+
+This was discussed in v1 with Krzysztof and the outcome was that it's
+OK because it's likely that other SoCs have more, but the documentation
+is not public so I cannot add examples.
+
+Full discussion (pretty short indeed):
+
+https://lore.kernel.org/linux-devicetree/5292cc1b-c951-c5c5-b2ef-c154baf6d7fd@linaro.org/
+
+Do you agree that the unit-address should be kept?
+
+> > +    description: parallel video capture interface for the VI
+> > +    type: object
+> > +
+> > +    properties:
+> > +      reg:
+> > +        const: 0
+> > +
+> > +      ports:
+> > +        $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +        properties:
+> > +          port@0:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description:
+> > +              Port receiving the video stream from the sensor
+> > +
+> > +          port@1:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description:
+> > +              Port sending the video stream to the VI
+> > +
+> > +        required:
+> > +          - port@0
+> > +          - port@1
+> > +
+> > +    additionalProperties: false  
+> 
+> A bit easier to read the indented cases if this is above 'properties'.
+
+Sure, will do in v3.
 
 -- 
-Lee Jones [李琼斯]
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
