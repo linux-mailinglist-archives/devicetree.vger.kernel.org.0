@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D54F640622
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 12:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11713640624
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 12:52:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233371AbiLBLwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 06:52:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40540 "EHLO
+        id S233318AbiLBLwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 06:52:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233185AbiLBLwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 06:52:42 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF5915811;
-        Fri,  2 Dec 2022 03:52:39 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id fc4so4039069ejc.12;
-        Fri, 02 Dec 2022 03:52:39 -0800 (PST)
+        with ESMTP id S233000AbiLBLwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 06:52:43 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5A024F2C;
+        Fri,  2 Dec 2022 03:52:42 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id d14so1212396edj.11;
+        Fri, 02 Dec 2022 03:52:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zpYJc8YISu2BRlH3hvxZv0fOIwXysejIA3F+djx3hbo=;
-        b=f7b0KJLVs/0oskAJftN1Qp6QFdvpMjsxCbNbiw0zdeJ72tKWquaI5caqW/LDnVfhR6
-         qJE/N6ti/sPb37MKmE2J/YRHHtMYf8XzCrwNN6Ke0peHMXKrCYhfIgGPjcuQjEynX7vN
-         +kkZBsFOtGrX1xrJxn60nO5hHLeUJirZu/2+KqNDANHoqK7k6ipCIyRLqSAb0Ziiv4Nt
-         0DWFlY+mVPZG1/1OnMG9Mqc4ys2wu0LJA08/RlR4xs0s8ZQ4kdsKne2bVNbON9vRt3DZ
-         XGhIij0pQQD5Z9GvAKmms2+JemxRJHrHirV+kRiopMh9nuFp/C26GaAFMpNNAi5cGu/n
-         oBgw==
+        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
+        b=qGbxd30K3aoUCNRV3nAecE6ozZ6k5GHFTNjZ5lhz+nyIpwhHjEZJfCB8u43XI0hp1u
+         zbB8Tob8DUgVVO8rRxdGFIOqh3jMy2eK7U+XhSBFf+9rEUbDnrs1qUBP0nC5Gvc2iknW
+         ZKUgSSJrvtsFh/Yd+PGy012+1gt4J20IbV859+eln+HHAZ5JAiB30wBSxQXz2J+oKHhR
+         nv06iSAIyqgwx0kgnRHP8g+jnjJiAmMotHkQIJfI0xCgVs7n4vXx4QHICBYoRM7cbsOj
+         kSV64zlK5zrdMd6/mDfTKl5uoQbbNzN86Aab3UiFezv+24LDB3G0mDpfCj04F4+pbruV
+         uJ1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=zpYJc8YISu2BRlH3hvxZv0fOIwXysejIA3F+djx3hbo=;
-        b=jrJ9fOy0/LvQDufSPMkuB+yOSGsYclrOR/3SAD+Jktfo/tnNzDBeMZUEg0WJUDXTtF
-         k0KZcL6xzv9nfIzjXbi1igjgwBr8sOqdVNbcT36U1DcV9CYidocsQeJ7/tV6gOEmMeBN
-         F6wxNYNl79USFHh7HB49W7dj7YpDEXDgU8fBausJKTDWfwtNJJ3Bgqh8pI9PJS8ewp+g
-         7QOjcQ1IL78KHoQufLAv6AQiDc/RkB25jHAEr1YUPIFgOAF8dmTZxSHUVimuSqYJpAX1
-         T54DYyY+6qep8M/1YE3hXUQhxS3Ka5Oo9JHj0QuotqO4+OoE9coEBLRAR6jURGjtJGIU
-         RsVw==
-X-Gm-Message-State: ANoB5pnPKTamGvaTU+IlS8TNjls8BlbDf/TFV3wEXP4uOqmpXJms8ABH
-        Y7ywVyQ4kb0kA2bhSaF/Ihm1VEV9QwM4jQ==
-X-Google-Smtp-Source: AA0mqf6nsc6YYjKGVTd3lWG1CooxDXTgbjwEpGKczarRIZtXYEjv/A+Z7GaUd+d2lI3Yo0V2wBadoQ==
-X-Received: by 2002:a17:906:c2c9:b0:7c0:ba35:b9ec with SMTP id ch9-20020a170906c2c900b007c0ba35b9ecmr4229488ejb.687.1669981958335;
-        Fri, 02 Dec 2022 03:52:38 -0800 (PST)
+        bh=emFoOM20hOM5X61XhU2Zz+3u4EcYFFGnLjIcqz3xjIc=;
+        b=h5M+W3ekBW0J3orE3DCEmlCwRY4TMPGM1bZmBNnxlK4aX7nAvS0jDV6rGA+7H4nhl6
+         72VJmx2wxJ3xKvOfySuFjnBRaKRicaZWBD2euZmDkPdZctqOg5mxYXYKJ/5oFHkBcihS
+         J7Icu7dCSReNFvuYWYuazgN6N3EUdmGDmwdkIbaE1ABAHVHQZLnTyNkiyccyNUuvF0Y9
+         FqTpcKpODjAWhMvi3nFl5cWAOt2ZWNBLt+F1AVKQnOfASUWsrixhuj7jlHQbN80zOQsp
+         xeUpYB3lRTn4BFeFWyHJabMdIYLbjZoMl+eqdspFPNXSc49OJ3GEIJIm6CpBMO409S+1
+         4TPQ==
+X-Gm-Message-State: ANoB5plyfAl4qvEnwxChd5QY9OXN78tvrOCtFEelUqfKY1sL0Zjq/EbC
+        BM1itjXYs3UjUo8TplfSjwk=
+X-Google-Smtp-Source: AA0mqf5V6uCq7x3xqjBW+9xhSr7fmB9ifJ0yaL8Q+0LV5jIiurfuIcPejyhfPVb44rvShzNrrmpCag==
+X-Received: by 2002:aa7:da01:0:b0:46b:9f6e:4005 with SMTP id r1-20020aa7da01000000b0046b9f6e4005mr12419198eds.203.1669981960977;
+        Fri, 02 Dec 2022 03:52:40 -0800 (PST)
 Received: from cizrna.home (cst-prg-44-69.cust.vodafone.cz. [46.135.44.69])
-        by smtp.gmail.com with ESMTPSA id ha7-20020a170906a88700b007c0bb571da5sm1206762ejb.41.2022.12.02.03.52.37
+        by smtp.gmail.com with ESMTPSA id ha7-20020a170906a88700b007c0bb571da5sm1206762ejb.41.2022.12.02.03.52.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 03:52:37 -0800 (PST)
+        Fri, 02 Dec 2022 03:52:40 -0800 (PST)
 Sender: Tomeu Vizoso <tomeu.vizoso@gmail.com>
 From:   Tomeu Vizoso <tomeu.vizoso@collabora.com>
 Cc:     italonicola@collabora.com,
         Tomeu Vizoso <tomeu.vizoso@collabora.com>,
         Neil Armstrong <neil.armstrong@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS),
         linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson
         SoC support),
         linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC
         support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v6 2/8] dt-bindings: power: Add G12A NNA power domain
-Date:   Fri,  2 Dec 2022 12:52:14 +0100
-Message-Id: <20221202115223.39051-3-tomeu.vizoso@collabora.com>
+Subject: [PATCH v6 4/8] arm64: dts: Add DT node for the VIPNano-QI on the A311D
+Date:   Fri,  2 Dec 2022 12:52:16 +0100
+Message-Id: <20221202115223.39051-5-tomeu.vizoso@collabora.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
 References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
@@ -84,26 +84,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add define for the NNA power domain for the NPU in the G12A.
+This "NPU" is very similar to the Vivante GPUs and Etnaviv works well
+with it with just a few small changes.
+
+v2: Add reference to RESET_NNA (Neil)
+v3: Fix indentation (Neil)
 
 Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- include/dt-bindings/power/meson-g12a-power.h | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 11 +++++++++++
+ .../boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts |  4 ++++
+ 2 files changed, 15 insertions(+)
 
-diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
-index bb5e67a842de..93b03bdd60b7 100644
---- a/include/dt-bindings/power/meson-g12a-power.h
-+++ b/include/dt-bindings/power/meson-g12a-power.h
-@@ -9,5 +9,6 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 45947c1031c4..61c8461df614 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+ #include <dt-bindings/thermal/thermal.h>
++#include <dt-bindings/power/meson-g12a-power.h>
  
- #define PWRC_G12A_VPU_ID		0
- #define PWRC_G12A_ETH_ID		1
-+#define PWRC_G12A_NNA_ID		2
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -2484,4 +2485,14 @@ xtal: xtal-clk {
+ 		#clock-cells = <0>;
+ 	};
  
- #endif
++	npu: npu@ff100000 {
++		compatible = "vivante,gc";
++		reg = <0x0 0xff100000 0x0 0x20000>;
++		interrupts = <0 147 4>;
++		clocks = <&clkc CLKID_NNA_CORE_CLK>,
++			 <&clkc CLKID_NNA_AXI_CLK>;
++		clock-names = "core", "bus";
++		resets = <&reset RESET_NNA>;
++		power-domains = <&pwrc PWRC_G12A_NNA_ID>;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+index 124a80901084..73f3d87dcefd 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+@@ -15,6 +15,10 @@ / {
+ 	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
+ };
+ 
++&npu {
++	status = "okay";
++};
++
+ /*
+  * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+  * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
 -- 
 2.38.1
 
