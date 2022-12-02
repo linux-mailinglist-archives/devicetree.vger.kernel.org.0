@@ -2,126 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B8B4640509
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1462B640520
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233052AbiLBKsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:48:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60634 "EHLO
+        id S232433AbiLBKtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:49:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232930AbiLBKsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:48:06 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1941D975CA
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:48:05 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id a19so5024722ljk.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:48:05 -0800 (PST)
+        with ESMTP id S232359AbiLBKtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:49:39 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D656FC4CE2
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:49:38 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id p8so6787044lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:49:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rtYcu6/3CQ2S7j8h20Y4A6KAn9ZcSJMr/CDNrzIstnQ=;
-        b=Hk/Li4JaaBWRgFd1nMX7JJDu1fjwBX3sjpsJWIwGzephlDPZiA0DG3oR/1IBdlJBHc
-         3AxVGQowYtusxWTTcYll8wjfvwMUH+Pisxon83SbDwMiR1j0832B0FuJdXxqwKp8ls7M
-         cfjBZqWHag+V8EfW4d9kx9ISJkAmvjVyyfZm3aUl6uCUSn/tHCBnXPCUTv7GhIo6+iWh
-         5D//Aw/6VB1mJLZcF1CJrdCa1Dk0L1Ag1msAFjRoWBlbe1izqBRxWvgF4bcS/aAhEj6a
-         LVUh65SvjG4TxbSxxKaibmPilM/mfxDn+3KjIbDBxVAubnNkqurweUq80+qLwe4CEMU2
-         foWg==
+        bh=jW6y8+mPDb9kuBlxMtBNIHAxUSBlrElhmRnvpEEfr3E=;
+        b=Br5B60iYwj3UJV2SZlq5ruNo4XWBUKAYgISQRN17fb4ZRB82q5tBKnIvvugGjCXSsx
+         XNR8fykvOxoJwC9I/oiVv8FPSY0qkZEfpQTCrb1Bq8jfeF/cWE5L9EOSrA5ZfeP8/BVE
+         dNEq6wjvCXwwMJ4vNvX3TPyoT8dSwuorHF4vXzvMs2MXPEZZWJ3592WFcxGboKnW8FA2
+         /2P7d3LEbitOP5ZdCUzBHYgvZJvQw597LvU/IPceMmWWyuwcpT23LVQ2Fq5qPx8p6GBY
+         UEPy1G2i4QOgEjIPitGVV5qsiD63ekeO6+amMLvJi3biy6CNxiw8N11QYHFv/8aUYJTl
+         ScHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rtYcu6/3CQ2S7j8h20Y4A6KAn9ZcSJMr/CDNrzIstnQ=;
-        b=AFZxIjq1DZuAMXUdvPk8fybdaEK3UfCCDhm01MvGlfrrQPfDD2DKoqd0SVOrrrmbEp
-         zzQIGfpHmsP0vKmXIS+guOkmhSl4NOSppufqraItAmxMe0VkcJI8t3h9XJAWs68LHihw
-         eua/WK9TQR3YNpxQkJxjXj1cIluEOXUMSk51jqr9Gd0QofD+2W4mtIcGY4xpwovoS3Sz
-         IrB5gjDUUTrjV8M6qNH9nW6Zdal9qD4SyaN8soEY0TZCxgeGHClldcXns1J0GXhLbzel
-         H/KFvrwfc0QJiRGuBKy7Vy1Jn8ESUpMXM+CBhJdO6UzDUxMTnwCEF+do/nGcRWim7Xje
-         E2yg==
-X-Gm-Message-State: ANoB5pmn6CuXnFR1alYbsFebSHsOYR8rm2nPBUh2QNdcRwJseTjDGdK4
-        2FrhTVzinZFHliiPicqDzTi8nvXn963M6WdlLMQ=
-X-Google-Smtp-Source: AA0mqf5kICRVgIlw6pQmSQRYTPuyrEjRpC1cLcHLMJHCp2kVwoaY5Hrz+SdFZjavsjSxLsCYIrXicg==
-X-Received: by 2002:a2e:be07:0:b0:26c:6dce:ce59 with SMTP id z7-20020a2ebe07000000b0026c6dcece59mr17660429ljq.130.1669978083449;
-        Fri, 02 Dec 2022 02:48:03 -0800 (PST)
+        bh=jW6y8+mPDb9kuBlxMtBNIHAxUSBlrElhmRnvpEEfr3E=;
+        b=gZr4xre75u5NftCDCRye+LHZdqBYCTXXyhjDejvqnWI+JUPhNoDGlhjA/Laq7UygQQ
+         Wju7TM9qWG1RI5rNHpfx+chJlWntFet02hA6qp7Sw6Bl4Zit8Ahv0YP8huIqNrB7NHkN
+         hgNJHj+/BHUYV4pTkM2/ovl4nxvALgm/p15Qiw+QYwTkA7/6i3VlfCJtDOUvmLYqcYy0
+         27+Al8cd/XQRJ3PElghvGgE/l2FKmjz3rin8+4usWp2joJwMyqLweQBOmq+JNyq6QuZu
+         VI2BLNquaiNjpeD8QYvCCEz/iO6KR1hB78FnsQlPpWiLS9cSUNZhAaph7r06yWoAEW3E
+         EzMA==
+X-Gm-Message-State: ANoB5pmq+A+YRxO6Fga7tfzr1qREISsMeq8Rzt3mQ7Hcm7RwOA07Ag4t
+        JZNOxYngzXm3YkwLEXEQDyVk7CLtXfv0aSC1Ofc=
+X-Google-Smtp-Source: AA0mqf7ktYnk3XWmcGW4CGl7M8NI9jnfOkabPGQGTPOed7MAlSwnyGBNVMdddCQoaV9KwizR3kI5HQ==
+X-Received: by 2002:a05:6512:1584:b0:4b5:345c:516a with SMTP id bp4-20020a056512158400b004b5345c516amr4310320lfb.483.1669978177248;
+        Fri, 02 Dec 2022 02:49:37 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b26-20020a2e895a000000b00279e0b8bae7sm92593ljk.65.2022.12.02.02.48.02
+        by smtp.gmail.com with ESMTPSA id x28-20020a0565123f9c00b004b550c26949sm207070lfa.290.2022.12.02.02.49.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:48:03 -0800 (PST)
-Message-ID: <66e66749-cc0f-f147-2648-03b52f95cca5@linaro.org>
-Date:   Fri, 2 Dec 2022 11:48:01 +0100
+        Fri, 02 Dec 2022 02:49:36 -0800 (PST)
+Message-ID: <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org>
+Date:   Fri, 2 Dec 2022 11:49:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: jh7110: Add watchdog node
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
+ channels for R-Car V3U
 Content-Language: en-US
-To:     "xingu.wu" <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org
-References: <20221202093943.149674-1-xingyu.wu@starfivetech.com>
- <20221202093943.149674-4-xingyu.wu@starfivetech.com>
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+ <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org>
+ <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221202093943.149674-4-xingyu.wu@starfivetech.com>
+In-Reply-To: <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 10:39, xingu.wu wrote:
-> From: Xingyu Wu <xingyu.wu@starfivetech.com>
+On 02/12/2022 10:25, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> This adds the watchdog node for the Starfive JH7110 SoC.
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+> On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
+>>> According to the bindings, only two channels are supported.
+>>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
+>>>
+>>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+>>>
+>>> Update the number of channels to 8 on R-Car V3U.
+>>> While at it, prevent adding more properties to the channel nodes, as
+>>> they must contain no other properties than a status property.
+>>>
+>>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index c22e8f1d2640..22f5a37d691e 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -433,5 +433,19 @@ uart5: serial@12020000 {
->  			reg-shift = <2>;
->  			status = "disabled";
->  		};
-> +
-> +		wdog: watchdog@13070000 {
-> +			compatible = "starfive,jh7110-wdt";
-> +			reg = <0x0 0x13070000 0x0 0x10000>;
-> +			interrupts = <68>;
-> +			clocks = <&syscrg JH7110_SYSCLK_WDT_CORE>,
-> +				 <&syscrg JH7110_SYSCLK_WDT_APB>;
-> +			clock-names = "core_clk", "apb_clk";
-> +			resets = <&syscrg JH7110_SYSRST_WDT_APB>,
-> +				 <&syscrg JH7110_SYSRST_WDT_CORE>;
-> +			reset-names = "rst_apb", "rst_core";
-> +			timeout-sec = <15>;
-> +			status = "okay";
+>>>      description: Maximum frequency of the CANFD clock.
+>>>
+>>>  patternProperties:
+>>> -  "^channel[01]$":
+>>> +  "^channel[0-7]$":
+>>>      type: object
+>>>      description:
+>>> -      The controller supports two channels and each is represented as a child
+>>> -      node.  Each child node supports the "status" property only, which
+>>> +      The controller supports multiple channels and each is represented as a
+>>> +      child node.  Each child node supports the "status" property only, which
+>>>        is used to enable/disable the respective channel.
+>>>
+>>> +    unevaluatedProperties: false
+>>
+>> There are no other properties within a channel, so this should be rather
+>> additionalProperties: false.
+> 
+> Are you sure? Then I also have to add:
+> 
+>         properties:
+>           status: true
+> 
 
-Why? okay is by default
+Do you? I think it would be first schema needing it, so maybe that would
+be a problem for dtschema...
 
 Best regards,
 Krzysztof
