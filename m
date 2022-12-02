@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CA52640174
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD8064017D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:03:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231705AbiLBIBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:01:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44590 "EHLO
+        id S232540AbiLBIDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:03:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbiLBIBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:01:24 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59EBB6B3A1
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:01:23 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id j4so6290843lfk.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 00:01:23 -0800 (PST)
+        with ESMTP id S232529AbiLBIC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:02:59 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3D25FC2
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:02:57 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id be13so6253869lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 00:02:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=myxyATfyN+1auJfJuG3H5dbd93oQNnjh+ve1JpPtApU=;
-        b=jY7HCGbEyRP9FdG8tKLmzbtJXZI8Axu41H2Vys9oMDnirag9oo7VWLM4TwWa9iI9dM
-         lVb+H7GoEdDbnTqp/nILHCyel8iTyJ88R0P5t8KkFda0CFrc4knMHL7/4hTe6OZ85OCE
-         8MERBbP3ttRPfE3YXR48lY8XR/E21hCyyHRJJuCEUjo/Lwglp7Jc95d8sJc60fWqEDra
-         dJnnmoYYkBGxGGbbM5OPL+gcLn0o1X6d6GhfHtxlXDnMJwo5SACyWEkcejWhihkb3fUr
-         FpbS97VBffF5cZR5YK6sa0xrZetZbPAfkeAvNpRhWxWg5gGD2gSQyz51HM0Uv0gDrL03
-         /ULw==
+        bh=4IdzLY27aCfwCW+1kAuSU/YopF0MIss2eIYe4Dhln+A=;
+        b=WwORmOy0PdSeZraQD4PW1wRX4DBbzps3+/13hXtqSupW3mVWggBYxzs0sl9NVLdSR3
+         SGeEXsKV58pwrZTUo0xD9oQKZOAoWVgCQ/pDd8C5UW9UJfhur8r2tV9ZgOs9deGme9w6
+         xdqGGLei8ZRlIT5wNI5qoPpnR9uRFUV2onDVarxh16nbs7nwN++8pES26K5EiXr3QsmL
+         /dkCeM9ha1Z125/Xe/w8PXBjc6J3t8Q83TYtDlbJPVp8ObRJ3O8VCRW1e7cD792FgVv8
+         imvViUQyi4yU/4nWID4wMVr5YpA+Xdsg+8PWWt8rISVt3C2AKZYvUYg7RdpybprTPHb0
+         wWsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=myxyATfyN+1auJfJuG3H5dbd93oQNnjh+ve1JpPtApU=;
-        b=s/eTkRjJoxEhTvOnFP9hR28xPCmC+dCQsW5vGGr9bkh1u3aPf8bYacc1+e+hjyG/1x
-         btNF3Pp+XVjcnt9EIWiC15SZ60mAjM+xRkHGIAYPvFGAX5xJoQ14ofub0tHmigH6eMch
-         B5tGD4nWVVBCGzN7jS+VnXQwsnjrFrxgIpieE1kvfWQMP3DjiLRTK44mWIyCVxja/LzE
-         bx+qIoDnX0OD9SUM96pGmOwCQtTpapjtroMVR+MMoFZ+gl9Dv7gilhNw2pApCZ/y8VzB
-         6wgQLwTHOn6CDg31wolvV6ZcFgZR0Robc+bS3niaWZqDoa7s8roQPeAnvaW1jDOA9H0C
-         nk9w==
-X-Gm-Message-State: ANoB5pkkAYLtNEwyXWw66lrdikkd+Kn3NpQv8f9qsG3gL14zp3kfiOIB
-        7Mq4z+7/0bvPmpY61uH+AeOEKcaFf+tn7Bcw8vE=
-X-Google-Smtp-Source: AA0mqf6kG9n38g0CPH5KhVFXIHW7Ha126mJzbmxKhe6FZ82LqLmbRbd47TptGcuSA0OZG9yXslUBSQ==
-X-Received: by 2002:a05:6512:3e0c:b0:4a9:bdb3:9db8 with SMTP id i12-20020a0565123e0c00b004a9bdb39db8mr27055157lfv.643.1669968081531;
-        Fri, 02 Dec 2022 00:01:21 -0800 (PST)
+        bh=4IdzLY27aCfwCW+1kAuSU/YopF0MIss2eIYe4Dhln+A=;
+        b=SDCG6rHMr6yMnMQLcI/2k1xZ1Fxb+YG3/WKabzlL6ZKEl2v/Ec7wO25NOTxOOrdB/c
+         XJoUzxYsTn3qOdYuv1aC15Fg/GNEPpWfqxOyMVesLiOpGduawluLMko/N2gYtQDsiEBr
+         x4+ZBHKajgUpuqrGnmWzGANUqqhWLEdseMY2T8BNjfXDVCdVP0Lp9cnqo5vT8LctD88Y
+         Av7BzfCTfdejmP9uCkjs280FfpHWfgXaB0FfAYVc4Hq9zdvbMre/x7cv3Cpr1KWbhrk1
+         TcZrKr6UfbOBZL5mdf0GmyGeddvZLop8LxNU4XMZTDAr7CpkVtAce3okz17D8DZ3BtQ+
+         EQ3w==
+X-Gm-Message-State: ANoB5pnt2nVGQaPI5y5IVGYWMN7QipGWR/tIkWF2B6X5mGG/CLynNZIx
+        2i3o65ZqGh9amwvm5qdKxRsCXA==
+X-Google-Smtp-Source: AA0mqf70C1bJlKmKFjcvD7Qyc8TcS8FceaKeI5XTpRJUCRbVV4tThfx7ViN/h19grRUXplwWTc59zA==
+X-Received: by 2002:a05:6512:4017:b0:4b1:be16:4a4a with SMTP id br23-20020a056512401700b004b1be164a4amr26683347lfb.0.1669968176004;
+        Fri, 02 Dec 2022 00:02:56 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b13-20020a0565120b8d00b004b373f61a60sm940253lfv.96.2022.12.02.00.01.18
+        by smtp.gmail.com with ESMTPSA id x31-20020a0565123f9f00b00497a32e2576sm940879lfa.32.2022.12.02.00.02.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 00:01:19 -0800 (PST)
-Message-ID: <3a9ef360-73c3-cf26-3eca-4903b9a04ea3@linaro.org>
-Date:   Fri, 2 Dec 2022 09:01:18 +0100
+        Fri, 02 Dec 2022 00:02:55 -0800 (PST)
+Message-ID: <84d26a47-2d7a-bf7d-9e0b-fd9952262620@linaro.org>
+Date:   Fri, 2 Dec 2022 09:02:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v1 1/7] dt-bindings: net: snps,dwmac: Add compatible
- string for dwmac-5.20 version.
+Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
+Content-Language: en-US
 To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     "David S . Miller" <davem@davemloft.net>,
+        Conor Dooley <conor@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
@@ -71,46 +72,60 @@ Cc:     "David S . Miller" <davem@davemloft.net>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Peter Geis <pgwipeout@gmail.com>
 References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-2-yanhong.wang@starfivetech.com>
- <277f9665-e691-b0ad-e6ef-e11acddc2006@linaro.org>
- <22123903-ee95-a82e-d792-01417ceb63b1@starfivetech.com>
-Content-Language: en-US
+ <20221201090242.2381-4-yanhong.wang@starfivetech.com>
+ <36565cc1-3c48-0fa8-f98b-414a7ac8f5bf@linaro.org> <Y4jl6awCMFgZsQGC@spud>
+ <1d3f1334-b6bf-57cb-7f7e-48e3c08a5560@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <22123903-ee95-a82e-d792-01417ceb63b1@starfivetech.com>
+In-Reply-To: <1d3f1334-b6bf-57cb-7f7e-48e3c08a5560@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 03:53, yanhong wang wrote:
+On 02/12/2022 08:16, yanhong wang wrote:
 > 
 > 
-> On 2022/12/2 0:18, Krzysztof Kozlowski wrote:
->> On 01/12/2022 10:02, Yanhong Wang wrote:
->>> Add dwmac-5.20 version to snps.dwmac.yaml
->>
->> Drop full stop from subject and add it here instead.
->>
-> 
-> Will update in the next version.
-> 
+> On 2022/12/2 1:35, Conor Dooley wrote:
+>> On Thu, Dec 01, 2022 at 05:21:04PM +0100, Krzysztof Kozlowski wrote:
+>>> On 01/12/2022 10:02, Yanhong Wang wrote:
+>>>> Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
 >>>
->>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>> Subject: drop second, redundant "bindings".
+>>>
+>>>>
+>>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>>>> ---
+>>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>
+>>> Drop oneOf. You do not have more cases here.
+>>>
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +               - starfive,dwmac
+>>>
+>>> Wrong indentation.... kind of expected since you did not test the bindings.
+>>>
+>>>> +          - const: snps,dwmac-5.20
 >>
->> Two people contributed this one single line?
+>> Disclaimer: no familiarity with the version info with DW stuff
+>>
+>> Is it a bit foolish to call this binding "starfive,dwmac"? Could there
+>> not be another StarFive SoC in the future that uses another DW mac IP
+>> version & this would be better off as "starfive,jh7110-dwmac" or similar?
 >>
 > 
-> Emil made this patch and I submitted it.
+> The StarFive JH8100 SoC in the future that uses the same mac IP version, so call this binding "starfive,dwmac".
 
-If Emil made this patch, then your From field is incorrect.
+It's not a reason to make compatible generic.
 
 Best regards,
 Krzysztof
