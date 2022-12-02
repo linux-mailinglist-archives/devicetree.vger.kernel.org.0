@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E44FD640DF1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 19:54:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D63FE640E20
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:00:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234741AbiLBSx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 13:53:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40794 "EHLO
+        id S233926AbiLBTA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 14:00:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234744AbiLBSxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 13:53:41 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28295F1150;
-        Fri,  2 Dec 2022 10:53:11 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id C7ED85FD0D;
-        Fri,  2 Dec 2022 21:53:09 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1670007189;
-        bh=iQuycMZtPbvV3NkGCSrY+6L3hWEFkqI8nUbsdweZv5I=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=PdwMshCwBMAKVTGNeWOXTPj2ABBu4B+QFW/VUvJDRztT4++AWjxWutSaFASALLwZq
-         bEqT3rHN2CxVJ/8lDehljuoOWlksuKZxT9z0J5iCqVcjteJoW7fuJO761V9kbO4oxK
-         eoftSwrKuQWrXBbx4qZEoj0/rPdL2l3x/ScJdW9I+aLvhWKvUwVsEWJLTj8LJrfE/C
-         Jl1diTs38oUToyIcP70K51f3x8I3ahf7X+mXWL0IU+fpn1VRX/mg9dDP3rOe+N3s1J
-         eYJo1Iy1ZWotOurCndP1VDqbU+rPgqoJRFEODrVMJ9dSuo+hfdEnHVT1dUcqWRQ9la
-         WxQUF/1jlhtlg==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri,  2 Dec 2022 21:53:08 +0300 (MSK)
-Date:   Fri, 2 Dec 2022 21:53:08 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Martin Kurbanov <MMKurbanov@sberdevices.ru>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v1 1/2] dt-bindings: leds: add binding for aw200xx
-Message-ID: <20221202185308.zh5kesfxvyrco2cr@CAB-WSD-L081021>
-References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
- <20221124204807.1593241-2-mmkurbanov@sberdevices.ru>
- <bb12ea88-b416-7e32-93b9-730b6f009b98@linaro.org>
- <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
- <620b19f5-2202-21a5-7e3b-816dcd42d1b4@linaro.org>
+        with ESMTP id S234641AbiLBTAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:00:19 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94543DBF75;
+        Fri,  2 Dec 2022 11:00:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2EC7F61C35;
+        Fri,  2 Dec 2022 19:00:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 67320C433B5;
+        Fri,  2 Dec 2022 19:00:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670007617;
+        bh=If0m8v1brmMDcVp3BHUNVEs197Sy9gAdV8ES1Njbxbs=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=rJh7egSiMtfUfFIs91xYk+l3hKxnd1GXELQk1R9dC1GQQphG4vVtfKCcCUQr2+kN1
+         dMgZ5UmA+bZ/XyK+5Q51yIuBxfG72EcOkwyRR8aY3611VZQW9T8PAvrTGsZcDr/+Um
+         E/Wc025NTyytX6J++VFok3M54wX7UE9+WYrU6K5TEPPtqWuSASJFhRvGvdYf3fEOoT
+         uDWwI4SBJxOUK0tiAmJzi0MIT0egfjjAAknm84lswIhVoVJSD8/1fllCa6SXvMBp9Y
+         NocHDIKg4f1kFtMU7wz9IlasEga19MqPrQK3C+dU6oYsXVbsaYegNZuoAlyMMSz4KR
+         tSTGVE4GGTH4g==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 480C2E21EEF;
+        Fri,  2 Dec 2022 19:00:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <620b19f5-2202-21a5-7e3b-816dcd42d1b4@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 17:01:00 #20638911
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/8] Basic device tree support for StarFive JH7110 RISC-V
+ SoC
+From:   patchwork-bot+linux-riscv@kernel.org
+Message-Id: <167000761729.13669.16471163583440376052.git-patchwork-notify@kernel.org>
+Date:   Fri, 02 Dec 2022 19:00:17 +0000
+References: <20221118011714.70877-1-hal.feng@starfivetech.com>
+In-Reply-To: <20221118011714.70877-1-hal.feng@starfivetech.com>
+To:     Hal Feng <hal.feng@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        conor@kernel.org, palmer@dabbelt.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, ben.dooks@sifive.com, tglx@linutronix.de,
+        maz@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, linus.walleij@linaro.org,
+        emil.renner.berthing@canonical.com, linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hello:
 
-On Fri, Dec 02, 2022 at 05:41:37PM +0100, Krzysztof Kozlowski wrote:
-> On 28/11/2022 18:43, Martin Kurbanov wrote:
-> > Hi. Thank you for quick reply. 
-> > 
-> > On 25.11.2022 11:29, Krzysztof Kozlowski wrote:
-> >>> +
-> >>> +  imax:
-> >>> +    maxItems: 1
-> >>> +    description:
-> >>> +      Maximum supply current, see dt-bindings/leds/leds-aw200xx.h
-> >>
-> >> No. Use existing properties from common.yaml. This looks like
-> >> led-max-microamp and it is per LED, not per entire device.
-> > 
-> > The AW200XX LED chip does not support imax setup per led.
-> > Imax is the global parameter over the all leds. I suppose, it's better
-> > to add vendor prefix or take minimum from all subnodes?
-> > How do you think?
+This series was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
+
+On Fri, 18 Nov 2022 09:17:06 +0800 you wrote:
+> The original patch series "Basic StarFive JH7110 RISC-V SoC support" [1]
+> is split into 3 patch series. They respectively add basic clock&reset,
+> pinctrl and device tree support for StarFive JH7110 SoC. These patch
+> series are independent, but the Visionfive2 board can boot up successfully
+> only if all these patches series applied. This one adds basic device
+> tree support. This patch series is pulled out from the patch 1~6 and
+> patch 27~30 of v1 [1]. You can simply get or review the patches at the
+> link [2].
 > 
-> Have in mind that led-max-microamp is a required property in some cases,
-> so skipping it and using per-device properties does not solve the
-> problem of adjusting proper currents. What if each LED you set for
-> something which in total gives more than your imax?
-> 
+> [...]
 
-You are right. From my point of view too, we must build our solutions from
-HW capabilities. In the current situation, AW200XX chips support global
-Imax value, so it's acceptable decision to use vendor prefix for global
-imax parameter, why not?
+Here is the summary with links:
+  - [v2,1/8] dt-bindings: riscv: Add StarFive JH7110 SoC and VisionFive2 board
+    (no matching commit)
+  - [v2,2/8] dt-bindings: timer: Add StarFive JH7110 clint
+    (no matching commit)
+  - [v2,3/8] dt-bindings: interrupt-controller: Add StarFive JH7110 plic
+    (no matching commit)
+  - [v2,4/8] dt-bindings: sifive,ccache0: Support StarFive JH7110 SoC
+    (no matching commit)
+  - [v2,5/8] soc: sifive: ccache: Add StarFive JH7110 support
+    (no matching commit)
+  - [v2,6/8] riscv: dts: starfive: Add initial StarFive JH7110 device tree
+    (no matching commit)
+  - [v2,7/8] riscv: dts: starfive: Add StarFive JH7110 VisionFive2 board device tree
+    (no matching commit)
+  - [v2,8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
+    https://git.kernel.org/riscv/c/6925ba3d9b8c
 
-...
-
+You are awesome, thank you!
 -- 
-Thank you,
-Dmitry
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
