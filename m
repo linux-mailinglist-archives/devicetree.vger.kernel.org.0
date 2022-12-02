@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95AFC640ACE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3286640AF9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:41:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234173AbiLBQb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:31:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
+        id S233755AbiLBQlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:41:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233375AbiLBQbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:31:04 -0500
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0732AE19
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:30:35 -0800 (PST)
-Received: by mail-io1-xd32.google.com with SMTP id n21so3389625iod.5
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:30:35 -0800 (PST)
+        with ESMTP id S233483AbiLBQlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:41:44 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B88C7267
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:41:43 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id p8so8193961lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TGI79l3SB2scnIYPbbhh2hhFnWNncxoQkx+8jpYYaN8=;
-        b=GsR7n5qIgPW+1f7kTo/JlCpHSrf1WCdh3jPpQddfge5gMtUrhk5D1sPUfrGLhAtG7t
-         FNwRT+mGFpmBPFCoG9hCcQ+XoFhGjBQG22EToyuBfCkkNtBQwyZRZosUeA5MZvQXViku
-         cf6fyOcAdg1JO6PBSOS7Cx3tH2XtVlTr3OabA=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BAq+fVHmIhCdKS7zABOm6n+xbqhaX7I/kqj6V6QJRdA=;
+        b=cEvbPinNNHFoSzYYRCjmu+dZle00/Om99aGXDsuGwJtsjH0kcHXB3AbG7Fln+3Xe7f
+         9Ed2Du4oJ5VfR09EEqhaFLIbzhnk5sWAK2MB+M56NYEEraFEowoahozwZZ+OWMDVj1va
+         L3Fg4QmE2KsZEk3e5XZTI18U4ZDwDAMHxKNUEHD60Tr1hOTIjff3AcLWl8/9JxEzCjsJ
+         hshnf+ycPMcOSSBoCJEZB4FCrFbyo2cmXpZ01qt7NDSqa2HT1ZL+dnv0wVUdbSFfwf7K
+         PssCqh2six1PYS51W4kh3lg7t4NDp5FR8oEOeim1Ak1FoxS0jWbXqIjzYU8OsSt7oW3Z
+         3QRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TGI79l3SB2scnIYPbbhh2hhFnWNncxoQkx+8jpYYaN8=;
-        b=6QSZclHuBpvG/COSFxS7ydILA/BTHqNA/AX/czFtpv+yp1n+iP8z8hMXGQaZeDeq1t
-         9cv/wYyEljdxztWX2eXbYefyB8JCQmy+tWM5PN7k3xGtz11h146poD3Zra9EsxO9pS08
-         9UZwXQqaUs19y7ipbWjG4HtEiiPUSvDzhAsIZKCE/JGRFhucgccIidMDvfXtQb6UbZnu
-         LzGi99VsYFdMTEQTHBuoNiFC3mC850B4ybAtAk4xr7TME7Yufc4lu5I4rUbzMqCgYht7
-         e9LqOROS788c2/VZiBdPY/kFs2VwzTZ8MFfl70rblt8Z+w9AqxVmGz2DKp9JZVhqHQw/
-         X4pg==
-X-Gm-Message-State: ANoB5pmtT5AqiC7+Ozdm7gZEYCPuP/2c4fcZ2/MoCxGQOqqdzv6vyOYu
-        c2vYUCpF7J5FNMgNCTPnWrxbGg==
-X-Google-Smtp-Source: AA0mqf7A4Sb/myv6BWvienPqG3g9CQzW5iEVb2ADr2Mn6YNdixqQrqPxoPmb3nLpqUyf6mSPcop++A==
-X-Received: by 2002:a02:715a:0:b0:375:260d:56ad with SMTP id n26-20020a02715a000000b00375260d56admr34073591jaf.302.1669998634914;
-        Fri, 02 Dec 2022 08:30:34 -0800 (PST)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id i14-20020a0566022c8e00b006df19c8671fsm2845290iow.27.2022.12.02.08.30.34
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAq+fVHmIhCdKS7zABOm6n+xbqhaX7I/kqj6V6QJRdA=;
+        b=7mfQUtOn5lLUqWI/y0Dqe9xp+DZykZUMG4WCV0ZPVnc+nSi0zp6l8YqbbADuRPM4Uu
+         4oT1av3PHNx8VdCjlQSdgETTBYs+YAM2GHdsm0vo7rhcs5uxvowMO8bmjC+5GtQ+JBEF
+         wSJaVTwK6BjxvdfuekAG3Sz3DOa5W2O9arvVlORdi6h4sY6hiFZRo28tfr/gU36J/d//
+         wNeBStP34bbyj8aK5tQ5O4uUBJ31mcW10w0CO0t7HdlkzBqdnI1cIcn3YG+jhxeWFNky
+         +CDuYunFcBCfzVICC3gz2QyHKqarATDKWNspma2johfTIlkTYdGvTFMZi3ffvFasEMOf
+         E6Ig==
+X-Gm-Message-State: ANoB5pmTZ89jfBGJeiSVXbxgX0ncwNKhVe6uiYSBMejPMhk3WUSlkeO+
+        PxDQuKktWp6xoSQlm+NOsBT94A==
+X-Google-Smtp-Source: AA0mqf6oea5Kvs0FUDDil6DVjGdcz2bh7/d3UarMFl9jl+UoVskWak6MPuASvv0rchDNa4BGdJu6aA==
+X-Received: by 2002:a05:6512:484:b0:4a2:33f8:2d0f with SMTP id v4-20020a056512048400b004a233f82d0fmr23443294lfq.140.1669999301382;
+        Fri, 02 Dec 2022 08:41:41 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b004a25468d86asm1075351lfa.68.2022.12.02.08.41.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 08:30:34 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-X-Google-Original-From: Matthias Kaehlcke <mka@google.com>
-Date:   Fri, 2 Dec 2022 16:30:34 +0000
-To:     Owen Yang <ecs.taipeikernel@gmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Gavin Lee <gavin.lee@ecs.com.tw>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Abner Yen <abner.yen@ecs.com.tw>, Harvey <hunge@google.com>,
-        Bob Moragues <moragues@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v13 2/2] arm64: dts: qcom: sc7280: Add DT for
- sc7280-herobrine-zombie
-Message-ID: <Y4ooKlcDdfHPzEpw@google.com>
-References: <20221202095048.v13.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
- <20221202095048.v13.2.I80aa32497bfd67bc8a372c1418ccc443ccf193e4@changeid>
+        Fri, 02 Dec 2022 08:41:39 -0800 (PST)
+Message-ID: <620b19f5-2202-21a5-7e3b-816dcd42d1b4@linaro.org>
+Date:   Fri, 2 Dec 2022 17:41:37 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20221202095048.v13.2.I80aa32497bfd67bc8a372c1418ccc443ccf193e4@changeid>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1 1/2] dt-bindings: leds: add binding for aw200xx
+Content-Language: en-US
+To:     Martin Kurbanov <MMKurbanov@sberdevices.ru>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>
+References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
+ <20221124204807.1593241-2-mmkurbanov@sberdevices.ru>
+ <bb12ea88-b416-7e32-93b9-730b6f009b98@linaro.org>
+ <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,10 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 09:57:03AM +0800, Owen Yang wrote:
-> Add DT for sc7280-herobrine-zombie
+On 28/11/2022 18:43, Martin Kurbanov wrote:
+> Hi. Thank you for quick reply. 
 > 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+> On 25.11.2022 11:29, Krzysztof Kozlowski wrote:
+>>> +
+>>> +  imax:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      Maximum supply current, see dt-bindings/leds/leds-aw200xx.h
+>>
+>> No. Use existing properties from common.yaml. This looks like
+>> led-max-microamp and it is per LED, not per entire device.
+> 
+> The AW200XX LED chip does not support imax setup per led.
+> Imax is the global parameter over the all leds. I suppose, it's better
+> to add vendor prefix or take minimum from all subnodes?
+> How do you think?
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Have in mind that led-max-microamp is a required property in some cases,
+so skipping it and using per-device properties does not solve the
+problem of adjusting proper currents. What if each LED you set for
+something which in total gives more than your imax?
+
+> 
+> 
+>>> +/* Global max current (IMAX) */
+>>> +#define AW200XX_IMAX_3_3MA  8
+>>> +#define AW200XX_IMAX_6_7MA  9
+>>
+>> No. Bindings are not for storing register constants. Feel free to store
+>> here IDs (ID start from 0 or 1 and is incremented by 1)... but how the
+>> IMAX even matches any need for "ID"?
+> 
+> IMAX can be chosen from the predefined values in the
+> datasheet (10mA, 20mA, etc). Do you mean the IMAX should be round down
+> to nearest supported value in the driver?
+
+What Linux driver support does not matter here. Bindings should reflect
+hardware and the same time not store register constants but logical
+values (for current this is in uA).
+
+Best regards,
+Krzysztof
+
