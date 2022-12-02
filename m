@@ -2,89 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C900F6402E3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD3BB6402E4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 10:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232880AbiLBJEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 04:04:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
+        id S232977AbiLBJEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 04:04:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233067AbiLBJEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:04:13 -0500
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7711FBA097;
-        Fri,  2 Dec 2022 01:03:57 -0800 (PST)
-Received: by mail-qt1-f180.google.com with SMTP id h16so4289629qtu.2;
-        Fri, 02 Dec 2022 01:03:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=huPi3mO3JwmcKD8PXnAQJA0W3KS/sLn8mZJ3LPlDLCA=;
-        b=6GPsNnf3ISFdoi1GN7ZHY6JMFTIlJeyimFDXshH4cCZF/+uiD/PqVcxBFFOMgZaltj
-         eT2A8mh7hQAXk4CN93Lys77qg72oTC+z5IpLZ53Mfn4CDX2Q2t4//ZRZ6dZQqNOFw/NR
-         bIGF5GUuLIGOOb1p7bEMkXj/Og6dCTErcSHyJZuG/d8OLO1zGfKWNUWZBHnHaRWfQlyP
-         7+Skr2P9/qgOzcgMlCYNrbd87/oJflKacpKaS+4jXjAYprpHV5Xf8kfhEF5BYC48Omce
-         c73ZAA6x7+JkeoiVCcjTUsKuMjeSAtv2weSgrFyHIKpxbVAVR0KXNxEchJULgYFZ5bd7
-         /Cvg==
-X-Gm-Message-State: ANoB5pnHbY6vktMXtqFlpBQ3rAY7hDqN7MTGeuBMZ9LtihwAfZIvRoQu
-        LTmoHy4OOIMya2pRwMWHkbV8cBj5X6v6MA==
-X-Google-Smtp-Source: AA0mqf4gJ6XFiMctjQmnolvaXCjI657slbAH+3T2rN7JpeVYuK+Ky3IR0/44DqMzrlVqYCatn360fA==
-X-Received: by 2002:a05:622a:1e94:b0:3a5:8423:ebb7 with SMTP id bz20-20020a05622a1e9400b003a58423ebb7mr47461339qtb.593.1669971836866;
-        Fri, 02 Dec 2022 01:03:56 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id bp39-20020a05620a45a700b006cbe3be300esm5159766qkb.12.2022.12.02.01.03.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 01:03:56 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-3c21d6e2f3aso42241727b3.10;
-        Fri, 02 Dec 2022 01:03:56 -0800 (PST)
-X-Received: by 2002:a81:f80f:0:b0:38e:e541:d8ca with SMTP id
- z15-20020a81f80f000000b0038ee541d8camr63421672ywm.283.1669971836163; Fri, 02
- Dec 2022 01:03:56 -0800 (PST)
-MIME-Version: 1.0
-References: <20221122213529.2103849-1-biju.das.jz@bp.renesas.com> <20221122213529.2103849-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20221122213529.2103849-6-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 2 Dec 2022 10:03:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXQ+SRrPhpZxj2_nuGU+Na1T1K4HeWUOEf+YLXeMDkeAA@mail.gmail.com>
-Message-ID: <CAMuHMdXQ+SRrPhpZxj2_nuGU+Na1T1K4HeWUOEf+YLXeMDkeAA@mail.gmail.com>
-Subject: Re: [PATCH 5/7] arm64: dts: renesas: r9a07g054: Add fcpvd node
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232323AbiLBJEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 04:04:24 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C872BA632;
+        Fri,  2 Dec 2022 01:04:16 -0800 (PST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1669971853;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=MckjuAgrX9lPRRxAXgnWKVuqqFRTRL6g7Q93m+oxRpw=;
+        b=zm9bAyKz9vWaZbKqWxM2FlRGsBKSUCB+fz3hebT+5HdIbA2ov/u5M1rmdOmRJ8xGtK++8s
+        YfybLezzeXk3FvqzMOeEJ1zJnQSvdH5IvfSvum1gRGPkEnauyZJeKxwg1r8STWcwFqDxzk
+        dd84kLqb9t8NYTV9haq10aBOHxu3cgnOWEs4TgR++hdbC+3og6jnqluG2Nn9pHQ5C3auIE
+        UvbVr9hcopOIHfJSxrYfDfrdQFl1Cd3vxNkFHYpeCDO7aA5hRWPr8NnQWPlg7J4MX/nGKP
+        Nm6y6Eu3LJmK5ywjoTWFXqIBQ3BOuL3N2/5Xo2nagc7iVyXZ1K7n53Cfk0EelA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1669971853;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=MckjuAgrX9lPRRxAXgnWKVuqqFRTRL6g7Q93m+oxRpw=;
+        b=3T1FVTK1GegP2cFse6RkU9JjMvJHY94AqQTDeH2joWNRB/quwq2MG0RhxW5q6BeesKfias
+        6WWT9gXfkMWcQsAw==
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev, zhuyinbo@loongson.cn
+Subject: Re: [PATCH v11 1/3] clocksource: loongson2_hpet: add hpet driver
+ support
+In-Reply-To: <c46e5ebf-5293-5123-52d3-b3594c6e9244@loongson.cn>
+References: <20221129030925.14074-1-zhuyinbo@loongson.cn>
+ <87k03bs6pj.ffs@tglx> <c46e5ebf-5293-5123-52d3-b3594c6e9244@loongson.cn>
+Date:   Fri, 02 Dec 2022 10:04:12 +0100
+Message-ID: <87bkomqir7.ffs@tglx>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 22, 2022 at 10:35 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add fcpvd node to RZ/V2L SoC DTSI.
+On Fri, Dec 02 2022 at 12:36, Yinbo Zhu wrote:
+> =E5=9C=A8 2022/12/1 19:29, Thomas Gleixner =E5=86=99=E9=81=93:
+>>
+>>> +static DEFINE_SPINLOCK(hpet_lock);
+>> This wants to be a raw spinlock if at all. But first you have to explain
+>> the purpose of this lock.
+>>
+>>> +DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device);
+>> Why needs this to be global and why is it needed at all?
+>>
+>> This code does support exactly _ONE_ clock event device.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> Note:
->  This patch depen upon binding patch [1]
->  [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20221122193415.1873179-2-biju.das.jz@bp.renesas.com/
+> This is consider that the one hardware clock_event_device is used for=20
+> multiple cpu cores,
+>
+> and earch cpu cores has a device from its perspective, so add=20
+> DEFINE_SPINLOCK(hpet_lock)
+>
+> and DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device),
+>
+> the use of locks described below is also this reason .
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+You cannot use _ONE_ clock event device as per CPU clock event device
+for multiple CPUs. That simply cannot work ever.
 
-Gr{oetje,eeting}s,
+There are two types of clockevent devices:
 
-                        Geert
+      1) strictly per CPU, i.e. one distinct device per CPU
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+      2) global broadcast device
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+The global broadcast device is used if there are less physical devices
+than CPUs or to handle the cases where the per CPU device stops in
+deep idle states.
+
+For the case that there are less physical devices than CPUs, you have to
+install dummy per CPU devices. Grep for CLOCK_EVT_FEAT_DUMMY.
+
+The core code will use the broadcast device to provide timer interrupts
+and it propagates them to the CPUs which are backed by a dummy per CPU
+device via IPIs.
+
+None of this needs a lock in the driver code unless the hardware is
+really dumb designed and has a register shared with something else.
+
+The serialization for all clockevent devices is completely provided by
+the core code.
+
+>> Seriously, this is not how it works. Instead of copy & paste, we create
+>> shared infrastructure and just keep the real architecture specific
+>> pieces separate.
+>
+> I don't find the shared infrastructure in LoongArch, I want to support=C2=
+=A0=20
+> hpet for LoongArch
+
+Of course you can't find shared infrastructure because there is none.
+
+That's the whole point. Instead of creating copies of code, you rework
+the code so that the common parts can be shared between x86, longson and
+loongarch. Then you have the architecture/platform specific pieces which
+deal with the specific enumeration/initialization and use the shared
+infrastructure.
+
+Thanks,
+
+        tglx
+
+
+
+
