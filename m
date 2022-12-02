@@ -2,85 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD8064017D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1AE864018D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 09:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232540AbiLBIDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 03:03:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46382 "EHLO
+        id S232446AbiLBIHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 03:07:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232529AbiLBIC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:02:59 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3D25FC2
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 00:02:57 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id be13so6253869lfb.4
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 00:02:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4IdzLY27aCfwCW+1kAuSU/YopF0MIss2eIYe4Dhln+A=;
-        b=WwORmOy0PdSeZraQD4PW1wRX4DBbzps3+/13hXtqSupW3mVWggBYxzs0sl9NVLdSR3
-         SGeEXsKV58pwrZTUo0xD9oQKZOAoWVgCQ/pDd8C5UW9UJfhur8r2tV9ZgOs9deGme9w6
-         xdqGGLei8ZRlIT5wNI5qoPpnR9uRFUV2onDVarxh16nbs7nwN++8pES26K5EiXr3QsmL
-         /dkCeM9ha1Z125/Xe/w8PXBjc6J3t8Q83TYtDlbJPVp8ObRJ3O8VCRW1e7cD792FgVv8
-         imvViUQyi4yU/4nWID4wMVr5YpA+Xdsg+8PWWt8rISVt3C2AKZYvUYg7RdpybprTPHb0
-         wWsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4IdzLY27aCfwCW+1kAuSU/YopF0MIss2eIYe4Dhln+A=;
-        b=SDCG6rHMr6yMnMQLcI/2k1xZ1Fxb+YG3/WKabzlL6ZKEl2v/Ec7wO25NOTxOOrdB/c
-         XJoUzxYsTn3qOdYuv1aC15Fg/GNEPpWfqxOyMVesLiOpGduawluLMko/N2gYtQDsiEBr
-         x4+ZBHKajgUpuqrGnmWzGANUqqhWLEdseMY2T8BNjfXDVCdVP0Lp9cnqo5vT8LctD88Y
-         Av7BzfCTfdejmP9uCkjs280FfpHWfgXaB0FfAYVc4Hq9zdvbMre/x7cv3Cpr1KWbhrk1
-         TcZrKr6UfbOBZL5mdf0GmyGeddvZLop8LxNU4XMZTDAr7CpkVtAce3okz17D8DZ3BtQ+
-         EQ3w==
-X-Gm-Message-State: ANoB5pnt2nVGQaPI5y5IVGYWMN7QipGWR/tIkWF2B6X5mGG/CLynNZIx
-        2i3o65ZqGh9amwvm5qdKxRsCXA==
-X-Google-Smtp-Source: AA0mqf70C1bJlKmKFjcvD7Qyc8TcS8FceaKeI5XTpRJUCRbVV4tThfx7ViN/h19grRUXplwWTc59zA==
-X-Received: by 2002:a05:6512:4017:b0:4b1:be16:4a4a with SMTP id br23-20020a056512401700b004b1be164a4amr26683347lfb.0.1669968176004;
-        Fri, 02 Dec 2022 00:02:56 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id x31-20020a0565123f9f00b00497a32e2576sm940879lfa.32.2022.12.02.00.02.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 00:02:55 -0800 (PST)
-Message-ID: <84d26a47-2d7a-bf7d-9e0b-fd9952262620@linaro.org>
-Date:   Fri, 2 Dec 2022 09:02:53 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v1 3/7] dt-bindings: net: Add bindings for StarFive dwmac
-Content-Language: en-US
-To:     yanhong wang <yanhong.wang@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232227AbiLBIHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 03:07:35 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761F5B26;
+        Fri,  2 Dec 2022 00:07:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 011F461DD1;
+        Fri,  2 Dec 2022 08:07:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E4C3C433D6;
+        Fri,  2 Dec 2022 08:07:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1669968452;
+        bh=1uhJa0usWhJzcL6S4WIUaqWRA60pTOMkeg94LevHE3k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QnzAfRsuY+rCQ+cUYXP3AZBQSiil79WTGhdXBUIpkgsCdtXxddFCl+pgWPOryfLhO
+         k9RyLfw6nRg+HFHKwy9it9eseCxdYBBuol2OyospDin/xHzsxrjkQe0ALI6HXDD9wj
+         g/vd5DA37K1g4XWDfaB0ssHAyYkSnB9sjz6brCxU/pe6bv7w0SwzJEgU3rGcdhLh2I
+         ofbIZRLlBKroUAO6uAUmowNCOB9x+eoFZHmkgejVMGnA3tiT+5oD2v6oy4HaJUKei4
+         Y033vz3h8fzaHQSxrZ/Zf5FaNDCfV677BeD5IbfXRS6hIDodqzt2p6QmafuEimV1No
+         FAhg52az7eHtQ==
+Date:   Fri, 2 Dec 2022 08:07:26 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-4-yanhong.wang@starfivetech.com>
- <36565cc1-3c48-0fa8-f98b-414a7ac8f5bf@linaro.org> <Y4jl6awCMFgZsQGC@spud>
- <1d3f1334-b6bf-57cb-7f7e-48e3c08a5560@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1d3f1334-b6bf-57cb-7f7e-48e3c08a5560@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] leds: qcom,pm8058-led: Convert to DT schema
+Message-ID: <Y4myPkrukylAUokB@google.com>
+References: <20221201131505.42292-1-krzysztof.kozlowski@linaro.org>
+ <6f5ef197-057f-400e-d4e0-649ed5becd38@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6f5ef197-057f-400e-d4e0-649ed5becd38@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,45 +60,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 08:16, yanhong wang wrote:
-> 
-> 
-> On 2022/12/2 1:35, Conor Dooley wrote:
->> On Thu, Dec 01, 2022 at 05:21:04PM +0100, Krzysztof Kozlowski wrote:
->>> On 01/12/2022 10:02, Yanhong Wang wrote:
->>>> Add bindings for the StarFive dwmac module on the StarFive RISC-V SoCs.
->>>
->>> Subject: drop second, redundant "bindings".
->>>
->>>>
->>>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->>>> ---
->>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->>>> +properties:
->>>> +  compatible:
->>>> +    oneOf:
->>>
->>> Drop oneOf. You do not have more cases here.
->>>
->>>> +      - items:
->>>> +          - enum:
->>>> +               - starfive,dwmac
->>>
->>> Wrong indentation.... kind of expected since you did not test the bindings.
->>>
->>>> +          - const: snps,dwmac-5.20
->>
->> Disclaimer: no familiarity with the version info with DW stuff
->>
->> Is it a bit foolish to call this binding "starfive,dwmac"? Could there
->> not be another StarFive SoC in the future that uses another DW mac IP
->> version & this would be better off as "starfive,jh7110-dwmac" or similar?
->>
-> 
-> The StarFive JH8100 SoC in the future that uses the same mac IP version, so call this binding "starfive,dwmac".
+On Thu, 01 Dec 2022, Krzysztof Kozlowski wrote:
 
-It's not a reason to make compatible generic.
+> On 01/12/2022 14:15, Krzysztof Kozlowski wrote:
+> > Convert the Qualcomm PM8058 PMIC LED bindings to DT schema.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../devicetree/bindings/leds/leds-pm8058.txt  | 67 -------------------
+> >  .../bindings/leds/qcom,pm8058-led.yaml        | 57 ++++++++++++++++
+> >  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml  |  4 ++
+> >  3 files changed, 61 insertions(+), 67 deletions(-)
+> 
+> Note to myself:
+> 
+> Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
-Best regards,
-Krzysztof
+=:-D
 
+-- 
+Lee Jones [李琼斯]
