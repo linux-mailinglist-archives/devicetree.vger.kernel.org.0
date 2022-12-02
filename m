@@ -2,101 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 982FD6405D8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 12:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7906405E4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 12:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232596AbiLBLb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 06:31:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47634 "EHLO
+        id S232676AbiLBLfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 06:35:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233073AbiLBLbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 06:31:11 -0500
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CABD3DF9;
-        Fri,  2 Dec 2022 03:31:10 -0800 (PST)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id E9A9E5FD0C;
-        Fri,  2 Dec 2022 14:31:08 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1669980669;
-        bh=gUwn4rgw/3aJmLAswDc3LzNzhfrHmZOgM875DBVbpAc=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=XGyZdqRXwz2PxRkJNwfZSoNCSfGDhus0I1vEL7cbMnV8+FsGo+A3SvzQe9cnc7SzW
-         1hLaBgaL2BcBlepqocMiYJw584LlYyPuEl4yolnIldOEFA1uQPYbrIgrZvs4nQM9FA
-         yKjGAWOA47MRsNulb+a/MpT/dVHB+nSHfVl+Z/MEYLZWvsjpr2TIwypLyPH1hrReF8
-         +Y9qolJbnWOaWg34cLllhhcYMObceltpeueE0JmI8YAqm8z3oP4e6zNidNgw7zFJny
-         UetZFTW+5iAVlDR0+udXcKFN0OVMPmd3XnazM9U9yCJ1uNPXOKx6mvSmESSt7in96I
-         KGEUel/ByZAfw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri,  2 Dec 2022 14:31:08 +0300 (MSK)
-Date:   Fri, 2 Dec 2022 14:31:08 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-CC:     <neil.armstrong@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v8 02/11] clk: meson: a1: add support for Amlogic A1 PLL
- clock driver
-Message-ID: <20221202113108.netb53ajd4ayqnfy@CAB-WSD-L081021>
-References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
- <20221201225703.6507-3-ddrokosov@sberdevices.ru>
- <1j7cza8368.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S233156AbiLBLey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 06:34:54 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0503ED4AFC
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 03:34:53 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id d6so6955045lfs.10
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 03:34:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DjU7gmeecy9X61DB+8CnNlr7X7DQnou4PN68yDZ7iyk=;
+        b=xqC+4AXl8dQjgVXLH4YDTPUBgck4CaGtIFcFIIodspgqI6JcJCxLVhAHZPe1vUKrVU
+         KfrFh0eDRyPvq9dCj+aiJWr0WPsIbRMZ+BxpCoCzz4gfxkzT5wMfxkC3sUqqUjVbAZFq
+         Ra5tLu6Se62k9Txy16A7+RStF0Eb88H9j+tU8bOfD5g+wGqY++Zya42Y5/zL2oO2VGGL
+         jmJJ7ZN9AVIuFmyPEmMv5CHS66NytjOSfylxmQMrHOfSaYAxP6Ym+xvMGNhtLD1FtkOm
+         kaD3lO/rprhWd51PwYq6hId/45whAZsU++aApjIxItcaUau3/5izl2rTjCalX6639HC6
+         Ev+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DjU7gmeecy9X61DB+8CnNlr7X7DQnou4PN68yDZ7iyk=;
+        b=Xmdtq5FRtKWvfiuyA5VL4BWpg9KQcHsxxNPJFFg+jW4mJIWJ9K3GDMMZERsVVfv8Yy
+         MuBWc3uuPm/EAhg7h0UbtgSgKxtCT+Rehn1AI5p6laaNmt3HNAOLHyVArf/F5DexWlSo
+         GM0O0BUoyqJH5gm00CQM5xBePaCjhUKsyMNepZOQFNgbK4+ZWzpX5v5QTgWSoN5ojjSl
+         6vzyyGe4neCCr4r+/3WI+QLX11O7v/ZJOOemUOoREE+W1ZoKiYzyOyrKijoO3f+bPU78
+         mSVTD24RhHUN+YVNOSdff+Gi+82hnJLd8zO32gPMqQfF98zJx4myNo4Fio4iTiha100O
+         SW0g==
+X-Gm-Message-State: ANoB5pk2bsxlz7wXK0c++m27w76uHaTtDwNlOQJaTDKeZxvh/GwzEnrV
+        G+/cVkpmdOKtsg8QEgK//Sq6xA==
+X-Google-Smtp-Source: AA0mqf7Pu/NQeIo3r9+lq4/ieJWfM9TAq2n5oJUUrQKDBvMVWk362OTbtxfdjbZaH+0tV6uJgkQsdA==
+X-Received: by 2002:a05:6512:260f:b0:4b4:caeb:c9b1 with SMTP id bt15-20020a056512260f00b004b4caebc9b1mr16910934lfb.500.1669980891389;
+        Fri, 02 Dec 2022 03:34:51 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bp25-20020a056512159900b00497a0ea92desm986276lfb.135.2022.12.02.03.34.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Dec 2022 03:34:51 -0800 (PST)
+Message-ID: <dda27c55-0d95-1407-f5a0-94123298e50a@linaro.org>
+Date:   Fri, 2 Dec 2022 12:34:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1j7cza8368.fsf@starbuckisacylon.baylibre.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/12/02 07:44:00 #20636821
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 02/21] dt-bindings: display: tegra: vi: add 'vip'
+ property and example
+Content-Language: en-US
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Richard Leitner <richard.leitner@skidata.com>
+References: <20221128152336.133953-1-luca.ceresoli@bootlin.com>
+ <20221128152336.133953-3-luca.ceresoli@bootlin.com>
+ <20221201231636.GA1660613-robh@kernel.org> <20221202091117.52a9a8f0@booty>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221202091117.52a9a8f0@booty>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 12:16:12PM +0100, Jerome Brunet wrote:
-> >  drivers/clk/meson/Kconfig  |   9 +
-> >  drivers/clk/meson/Makefile |   1 +
-> >  drivers/clk/meson/a1-pll.c | 360 +++++++++++++++++++++++++++++++++++++
-> >  drivers/clk/meson/a1-pll.h |  56 ++++++
-> >  4 files changed, 426 insertions(+)
-> >  create mode 100644 drivers/clk/meson/a1-pll.c
-> >  create mode 100644 drivers/clk/meson/a1-pll.h
-> >
-> > diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> > index fc002c155bc3..ab34662b24f0 100644
-> > --- a/drivers/clk/meson/Kconfig
-> > +++ b/drivers/clk/meson/Kconfig
-> > @@ -99,6 +99,15 @@ config COMMON_CLK_AXG_AUDIO
-> >  	  Support for the audio clock controller on AmLogic A113D devices,
-> >  	  aka axg, Say Y if you want audio subsystem to work.
-> >  
-> > +config COMMON_CLK_A1_PLL
-> > +	bool
+On 02/12/2022 09:11, Luca Ceresoli wrote:
+> Hello Rob,
 > 
-> Could you add a tristate with some text please ?
+> On Thu, 1 Dec 2022 17:16:36 -0600
+> Rob Herring <robh@kernel.org> wrote:
 > 
+>> On Mon, Nov 28, 2022 at 04:23:17PM +0100, Luca Ceresoli wrote:
+>>> The Tegra20 VI peripheral can receive parallel input from the VIP parallel
+>>> input module. Add it to the allowed properties and augment the existing
+>>> nvidia,tegra20-vi example to show a 'vip' property.
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>>>
+>>> ---
+>>>
+>>> Changed in v2 (suggested by Krzysztof Kozlowski):
+>>> - rename "i2c3" -> "ic2"
+>>> - add review tag
+>>> ---
+>>>  .../display/tegra/nvidia,tegra20-vi.yaml      | 68 +++++++++++++++++++
+>>>  MAINTAINERS                                   |  1 +
+>>>  2 files changed, 69 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
+>>> index 782a4b10150a..5b5583c2b562 100644
+>>> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-vi.yaml
+>>> @@ -74,6 +74,22 @@ properties:
+>>>    avdd-dsi-csi-supply:
+>>>      description: DSI/CSI power supply. Must supply 1.2 V.
+>>>  
+>>> +  vip:
+>>> +    $ref: /schemas/display/tegra/nvidia,tegra20-vip.yaml
+>>> +
+>>> +  ports:
+>>> +    $ref: /schemas/graph.yaml#/properties/ports
+>>> +
+>>> +    properties:
+>>> +      port@0:
+>>> +        $ref: /schemas/graph.yaml#/properties/port
+>>> +        description:
+>>> +          Input from the VIP (parallel input capture) module
+>>> +
+>>> +        properties:
+>>> +          endpoint:
+>>> +            $ref: /schemas/graph.yaml#/properties/endpoint  
+>>
+>> You can drop 'endpoint'. You only need port nodes if there's no extra 
+>> properties in the endpoints.
+> 
+> Oh, nice, will remove in v3.
+> 
+> Krzysztof, can I keep your Reviewed-by after this change?
 
-Yep... I did it in my fixup patches :-) Looks like it's better to review
-the next version with already squashed patches.
+Yes.
 
--- 
-Thank you,
-Dmitry
+Best regards,
+Krzysztof
+
