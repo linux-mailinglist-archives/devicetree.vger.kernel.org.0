@@ -2,180 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A147640B2E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE9C640B41
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:53:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233914AbiLBQuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 11:50:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46000 "EHLO
+        id S233392AbiLBQxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:53:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233679AbiLBQuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:50:09 -0500
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE3BCFE7F
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:50:02 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2d07:19c5:4d8b:89d9])
-        by laurent.telenet-ops.be with bizsmtp
-        id rUpW2800G0ys3B701UpWDW; Fri, 02 Dec 2022 17:49:59 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p19E9-002K67-IM; Fri, 02 Dec 2022 17:49:29 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p19E8-006WbA-HQ; Fri, 02 Dec 2022 17:49:28 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
+        with ESMTP id S233449AbiLBQxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:53:01 -0500
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3B954478
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:52:58 -0800 (PST)
+Received: by mail-il1-x12c.google.com with SMTP id h15so2291904ilh.12
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:52:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pt4n+Bc+eDdCru9ZY4GLZ4Q8PtpiBAtoUiS2Dufe20M=;
+        b=RDLXegfhfNzZVOEiLG3Xs6+uYe8OAYXU1MhaAQWOrsBarzTzN/dPBkKdAMqADWe2BN
+         LwZgOtZEsPva5jY9b0sxLN3yFrNv9HZT5LaXky9DGBme+/+K7aU705E2+llHmX0iIhAj
+         Jn7EY8sIHWNTUGBvJ2wA2W0dzkUc+D8PHjYQw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Pt4n+Bc+eDdCru9ZY4GLZ4Q8PtpiBAtoUiS2Dufe20M=;
+        b=qz+3sMnaS/kvc1lI7ZZLtxaqgcNZNVNLO/5/IQdlTf/TWgLla9V1PCjDwPRSDvODgq
+         +IuKbRP5guo6KE2ie3fSps0BiuSJSttF1Of/ESZGzZaCn0/PTMTSZUb5239+vysWSIIw
+         ldry9Tla/8NBBPN9i4Z+AYqXFbcuq7dsqaW+cCieckmTrM5iPm9koeLgqmKkO9+r062d
+         3YEEYk/wA0tOWYI0KTGg5ScTI0dYE5cOlZQcIwEjv2e/UwZOsL0weqHueg0uup0p/FIi
+         Cnn9tOcw2NIa9MAfgMrIn/7WPa7OdOtJXedGk5jaeBDX+BvRGV1thLJK5XdeeYs4hMfY
+         QFDg==
+X-Gm-Message-State: ANoB5plK9wSYCjI9UeGMoTK7jJ85+ZSyVePgLhssbRuqlV7AwIAFy8+b
+        CNAvisg0FY83b7d8CSEboeVzhg==
+X-Google-Smtp-Source: AA0mqf5258QR3nGa5TuixpgHlPAodopMppWne3AWeZO4Dc+3ajcjKPVWFgo23JOBLlXdud+lP5NhhA==
+X-Received: by 2002:a92:504:0:b0:303:634:b07d with SMTP id q4-20020a920504000000b003030634b07dmr13958276ile.25.1669999977388;
+        Fri, 02 Dec 2022 08:52:57 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id f3-20020a05660215c300b006dfd3599b60sm2326297iow.26.2022.12.02.08.52.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Dec 2022 08:52:56 -0800 (PST)
+Date:   Fri, 2 Dec 2022 16:52:56 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Icenowy Zheng <uwu@icenowy.me>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Subject: [PATCH 11/11] powerpc: dts: fsl: Fix pca954x i2c-mux node names
-Date:   Fri,  2 Dec 2022 17:49:26 +0100
-Message-Id: <6c5d86c49ac170e9d56ab121ea0602f3873849ca.1669999298.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1669999298.git.geert+renesas@glider.be>
-References: <cover.1669999298.git.geert+renesas@glider.be>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 3/6] usb: misc: onboard_usb_hub: add Genesys Logic
+ GL850G hub support
+Message-ID: <Y4otaPmwWfJ24I7k@google.com>
+References: <20221202081647.3183870-1-uwu@icenowy.me>
+ <20221202081647.3183870-4-uwu@icenowy.me>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221202081647.3183870-4-uwu@icenowy.me>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"make dtbs_check":
+On Fri, Dec 02, 2022 at 04:16:44PM +0800, Icenowy Zheng wrote:
+> Genesys Logic GL850G is a 4-port USB 2.0 STT hub that has a reset pin to
+> toggle and a 3.3V core supply exported (although an integrated LDO is
+> available for powering it with 5V).
+> 
+> Add the support for this hub, for controlling the reset pin and the core
+> power supply.
+> 
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 
-    arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dtb: pca9546@77: $nodename:0: 'pca9546@77' does not match '^(i2c-?)?mux'
-           From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-    arch/powerpc/boot/dts/fsl/t1024qds.dtb: pca9547@77: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@2', 'i2c@3' were unexpected)
-           From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-    ...
+Acked-by: Matthias Kaehlcke <mka@chromium.org>
 
-Fix this by renaming pca954x nodes to "i2c-mux", to match the I2C bus
-multiplexer/switch DT bindings and the Generic Names Recommendation in
-the Devicetree Specification.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/powerpc/boot/dts/fsl/t1024qds.dts  | 2 +-
- arch/powerpc/boot/dts/fsl/t1024rdb.dts  | 2 +-
- arch/powerpc/boot/dts/fsl/t104xqds.dtsi | 2 +-
- arch/powerpc/boot/dts/fsl/t104xrdb.dtsi | 2 +-
- arch/powerpc/boot/dts/fsl/t208xqds.dtsi | 2 +-
- arch/powerpc/boot/dts/fsl/t208xrdb.dtsi | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/powerpc/boot/dts/fsl/t1024qds.dts b/arch/powerpc/boot/dts/fsl/t1024qds.dts
-index d6858b7cd93fb5d5..9ea7942f914e14ee 100644
---- a/arch/powerpc/boot/dts/fsl/t1024qds.dts
-+++ b/arch/powerpc/boot/dts/fsl/t1024qds.dts
-@@ -151,7 +151,7 @@ slic@3 {
- 		};
- 
- 		i2c@118000 {
--			pca9547@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9547";
- 				reg = <0x77>;
- 				#address-cells = <1>;
-diff --git a/arch/powerpc/boot/dts/fsl/t1024rdb.dts b/arch/powerpc/boot/dts/fsl/t1024rdb.dts
-index dbcd31cc35dcd2bb..270aaf631f2ab0fa 100644
---- a/arch/powerpc/boot/dts/fsl/t1024rdb.dts
-+++ b/arch/powerpc/boot/dts/fsl/t1024rdb.dts
-@@ -165,7 +165,7 @@ rtc@68 {
- 		};
- 
- 		i2c@118100 {
--			pca9546@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9546";
- 				reg = <0x77>;
- 				#address-cells = <1>;
-diff --git a/arch/powerpc/boot/dts/fsl/t104xqds.dtsi b/arch/powerpc/boot/dts/fsl/t104xqds.dtsi
-index 615479732252404f..1c329f076f64f2dc 100644
---- a/arch/powerpc/boot/dts/fsl/t104xqds.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/t104xqds.dtsi
-@@ -268,7 +268,7 @@ flash@0 {
- 		};
- 
- 		i2c@118000 {
--			pca9547@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9547";
- 				reg = <0x77>;
- 			};
-diff --git a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-index bfe1ed5be337492e..fc7bec5dcb90fc2d 100644
---- a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-@@ -128,7 +128,7 @@ adt7461@4c {
- 		};
- 
- 		i2c@118100 {
--			pca9546@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9546";
- 				reg = <0x77>;
- 				#address-cells = <1>;
-diff --git a/arch/powerpc/boot/dts/fsl/t208xqds.dtsi b/arch/powerpc/boot/dts/fsl/t208xqds.dtsi
-index db4139999b28ebf4..962c99941645b965 100644
---- a/arch/powerpc/boot/dts/fsl/t208xqds.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/t208xqds.dtsi
-@@ -135,7 +135,7 @@ flash@2 {
- 		};
- 
- 		i2c@118000 {
--			pca9547@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9547";
- 				reg = <0x77>;
- 				#address-cells = <1>;
-diff --git a/arch/powerpc/boot/dts/fsl/t208xrdb.dtsi b/arch/powerpc/boot/dts/fsl/t208xrdb.dtsi
-index ff87e67c70da4a29..ecc3e8c7394cad20 100644
---- a/arch/powerpc/boot/dts/fsl/t208xrdb.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/t208xrdb.dtsi
-@@ -138,7 +138,7 @@ eeprom@50 {
- 		};
- 
- 		i2c@118100 {
--			pca9546@77 {
-+			i2c-mux@77 {
- 				compatible = "nxp,pca9546";
- 				reg = <0x77>;
- 			};
--- 
-2.25.1
-
+> ---
+> Changes in v2:
+> - Sort things, by names or vendor IDs.
+> 
+>  drivers/usb/misc/onboard_usb_hub.c | 2 ++
+>  drivers/usb/misc/onboard_usb_hub.h | 5 +++++
+>  2 files changed, 7 insertions(+)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index d63c63942af1..94e7966e199d 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -331,6 +331,7 @@ static struct platform_driver onboard_hub_driver = {
+>  
+>  /************************** USB driver **************************/
+>  
+> +#define VENDOR_ID_GENESYS	0x05e3
+>  #define VENDOR_ID_MICROCHIP	0x0424
+>  #define VENDOR_ID_REALTEK	0x0bda
+>  #define VENDOR_ID_TI		0x0451
+> @@ -407,6 +408,7 @@ static void onboard_hub_usbdev_disconnect(struct usb_device *udev)
+>  }
+>  
+>  static const struct usb_device_id onboard_hub_id_table[] = {
+> +	{ USB_DEVICE(VENDOR_ID_GENESYS, 0x0608) }, /* Genesys Logic GL850G USB 2.0 */
+>  	{ USB_DEVICE(VENDOR_ID_MICROCHIP, 0x2514) }, /* USB2514B USB 2.0 */
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS5411 USB 3.1 */
+>  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
+> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> index 34beab8bce3d..62129a6a1ba5 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.h
+> +++ b/drivers/usb/misc/onboard_usb_hub.h
+> @@ -22,10 +22,15 @@ static const struct onboard_hub_pdata ti_tusb8041_data = {
+>  	.reset_us = 3000,
+>  };
+>  
+> +static const struct onboard_hub_pdata genesys_gl850g_data = {
+> +	.reset_us = 3,
+> +};
+> +
+>  static const struct of_device_id onboard_hub_match[] = {
+>  	{ .compatible = "usb424,2514", .data = &microchip_usb424_data, },
+>  	{ .compatible = "usb451,8140", .data = &ti_tusb8041_data, },
+>  	{ .compatible = "usb451,8142", .data = &ti_tusb8041_data, },
+> +	{ .compatible = "usb5e3,608", .data = &genesys_gl850g_data, },
+>  	{ .compatible = "usbbda,411", .data = &realtek_rts5411_data, },
+>  	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
+>  	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
+> -- 
+> 2.38.1
+> 
