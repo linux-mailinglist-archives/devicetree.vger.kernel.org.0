@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F2DE6404B3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A026404D7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233368AbiLBKdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:33:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
+        id S231637AbiLBKj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:39:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233073AbiLBKdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:33:23 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B945C1BFB
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:33:22 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id ja4-20020a05600c556400b003cf6e77f89cso4647008wmb.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:33:22 -0800 (PST)
+        with ESMTP id S229719AbiLBKj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:39:28 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DD56F0E4
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:39:26 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id d6so6754510lfs.10
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:39:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=319dmF23gwJK1akaWUytWINSdZyUZn6mYWv2AFrEvXo=;
-        b=LolCNAjp8odhCiMzE1CWcI/k7ve1fvFvyHmzTvLl5QBZgGw7eXneQh8wD3olh4o1Ri
-         rtEuowwpMdnrC9s5Rlfw2Gwc+VTnv3ZBkXo2w94zYQcvWR9kE/WB8nW0pr15EpoxWOTU
-         AndyX49+UzNhi65llM4u34e0ctQ8/hsQa2lOuUNBfnkTOylumMgMUIYC3074fH0TUoJR
-         G6U2JLUDTbig+kheenO6WKmhAcSH3hIndDuqck25IWkIo+rm3kSYUS4L2AGTmBmHkmj6
-         l6gTFk+CmulioyhUbFT8qf2n0YDBajiHS5nAKiKiw4AaU53sG+zU7JmL3bVpYqR89lJm
-         Jimw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ef557i72aMQlngP0CR0TyvH/ZX7gYwQJNFizHVtrS8s=;
+        b=ek+L0K7Nla/F75a0wpr2UxYvBlS35TOSE8Y4aOZSPRGN+orKx3eaQmegEynNl4VcZc
+         rQ8hj2UGt2g+Nd2cUGE5/A9iur4qvaD58k9HH0c85RQ38SpLWG190z/TfK+OB5CB28XE
+         6Ob8d3L7p+39h8slyCLdErS2iDCLPk0DvJBMvVO8sj5XfZtOcrQ0eaUueB0S2HErbJsh
+         greR/NkPNQEjF5eTng5Na28Rn765Kz0qPJPk0BDWr3DpXxThA8iClKOsotMR5x6WXPf2
+         EJE8QX0vt5BCeAScVGIzjA9cuOsmysGD8Vd/Jsjnf8MoU3Jq1UtS8FMrQzF7oPvvZ8Yx
+         EQSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=319dmF23gwJK1akaWUytWINSdZyUZn6mYWv2AFrEvXo=;
-        b=Af33f4J5L5Yp7rjA7YRTbqRtnc4KYm257p35+DtwUdf+1jRLZDZJbYYzq8kS6mnqLb
-         x5sjR8WKS7XghTj+jNbUnTxf69P9kCLGEmQFaqqa/pgTiqMJlLW5VOw2do+44Lu1OWEs
-         uwKQUHod3YKg1lhYb/zvF/FAgUWN8ugFgJZ6uKD2Tefw63NWE5O1WyFDEgqPwSt4lsu5
-         PM3C2o/AstV6SIsN0WRM1iWjHJ13TXO974N67DZlRHWAsI2U27XU9ZaaRJ18V4wIwy5Y
-         qWV4A+P2tk0UdXYHa+Labhgjmljn5lRpI5cHdBi3SrC0GzdyaH9RGx9lNExWiKbPK8hF
-         3Bng==
-X-Gm-Message-State: ANoB5pk5PBMjiYWaFWkGTG8fG6kI7nEw/0kDcGs9KaZ7bxgGFq9l6bLs
-        9jGNUvdXYHk4yBV5CGOsV/K17w==
-X-Google-Smtp-Source: AA0mqf5MasTI2olKjBxig8ppzSE99CaJVV90JPkC7fb8qDKJK8xOdMTP/AoSJjoRRLZElCCYyX9HRg==
-X-Received: by 2002:a05:600c:35c4:b0:3cf:9668:e8f8 with SMTP id r4-20020a05600c35c400b003cf9668e8f8mr42600076wmq.195.1669977200633;
-        Fri, 02 Dec 2022 02:33:20 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:c6e:eb0:b551:55ee? ([2a01:e0a:982:cbb0:c6e:eb0:b551:55ee])
-        by smtp.gmail.com with ESMTPSA id z12-20020a5d44cc000000b002362f6fcaf5sm6640919wrr.48.2022.12.02.02.33.19
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ef557i72aMQlngP0CR0TyvH/ZX7gYwQJNFizHVtrS8s=;
+        b=cFbMXH2fBb/tMKRIeuFByCbIYfEHc1fcVQQ6u2aCBO4a05/EddyJiuM+bY9jcF+8Wq
+         1dWY86f1JXFn/4+TwPAygvqNlI3wtbr1JWzsXgWGEiQr6sLuWoNWA5fQvbcM5psoZ6VC
+         jHdKERe57evr5QMuio/TjOYzqGtROeCdZR2KnZ6j+PQJYu61HrBJinbV04OEQvB1GHGp
+         LIMRjZDePLgYmV08VEuRnlwfukC43QKiW6ehNt3rhLmxROVN04jb6FiCB/A+2jZige2M
+         bmr8hfoOiCOvJ21hLjzGgZTz467T2mSPQrllmmr9qk5jL4mKedZvsA/gMsRTVcpclzT0
+         hNkQ==
+X-Gm-Message-State: ANoB5pkSB6oGgICTbTyhJ+BQU6FPHoj/7YTBzleL1VOTHOwnbdKXDlQn
+        PyomxsdQQCuFATBti2GzYgpm3w==
+X-Google-Smtp-Source: AA0mqf5CiqJzkOnZgB2HygNfmbp7IoLeH7ChCoKN+8ZqGkL7yeYNWcM7WmVgmTfPsS+E7EtfU93Idg==
+X-Received: by 2002:a19:dc08:0:b0:4b4:6460:24d with SMTP id t8-20020a19dc08000000b004b46460024dmr22964505lfg.386.1669977564984;
+        Fri, 02 Dec 2022 02:39:24 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v5-20020ac258e5000000b00492ea54beeasm972470lfo.306.2022.12.02.02.39.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:33:20 -0800 (PST)
-Message-ID: <ace35de2-9aa8-8cfa-1f4c-46480fbbc442@linaro.org>
-Date:   Fri, 2 Dec 2022 11:33:19 +0100
+        Fri, 02 Dec 2022 02:39:23 -0800 (PST)
+Message-ID: <cea3cdd4-3d36-1439-b211-047091c05a0f@linaro.org>
+Date:   Fri, 2 Dec 2022 11:39:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: remoteproc: qcom: adsp: document
- sm8550 adsp, cdsp & mpss compatible
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v8 01/11] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-remoteproc@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v2-0-12bc22255474@linaro.org>
- <20221114-narmstrong-sm8550-upstream-remoteproc-v2-2-12bc22255474@linaro.org>
- <8d7367b2-126a-d8ba-b616-be1ef9c67122@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <8d7367b2-126a-d8ba-b616-be1ef9c67122@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, sboyd@kernel.org, khilman@baylibre.com,
+        kernel@sberdevices.ru, robh+dt@kernel.org,
+        martin.blumenstingl@googlemail.com,
+        linux-arm-kernel@lists.infradead.org, jian.hu@amlogic.com,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+        rockosov@gmail.com, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, neil.armstrong@linaro.org
+References: <20221201225703.6507-1-ddrokosov@sberdevices.ru>
+ <20221201225703.6507-2-ddrokosov@sberdevices.ru>
+ <166995398251.2089685.16059995540663317860.robh@kernel.org>
+ <20221202095124.4ecpfqhtzf34lwbf@CAB-WSD-L081021>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221202095124.4ecpfqhtzf34lwbf@CAB-WSD-L081021>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -89,89 +84,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2022 11:58, Krzysztof Kozlowski wrote:
-> On 30/11/2022 11:29, Neil Armstrong wrote:
->> This documents the compatible for the component used to boot the
->> aDSP, cDSP and MPSS on the SM8550 SoC.
+On 02/12/2022 10:51, Dmitry Rokosov wrote:
+> On Thu, Dec 01, 2022 at 10:10:04PM -0600, Rob Herring wrote:
 >>
->> The SM8550 boot process on SM8550 now requires a secondary "Devicetree"
->> firmware to be passed along the main Firmware, and the cDSP a new power
->> domain named "NSP".
+>> On Fri, 02 Dec 2022 01:56:53 +0300, Dmitry Rokosov wrote:
+>>> From: Jian Hu <jian.hu@amlogic.com>
+>>>
+>>> Add the documentation to support Amlogic A1 PLL clock driver,
+>>> and add A1 PLL clock controller bindings.
+>>>
+>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>>> ---
+>>>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 52 +++++++++++++++++++
+>>>  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
+>>>  2 files changed, 68 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>>>
 >>
->> A third memory domain for the DSM memory zone is also needed for the MPSS
->> PAS bindings.
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> yamllint warnings/errors:
+>> ./Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml:26:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+>>
+>> dtschema/dtc warnings/errors:
+>> ./Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml: $id: relative path/filename doesn't match actual path or filename
+>> 	expected: http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.example.dtb: pll-clock-controller@7c80: reg: [[0, 31872], [0, 396]] is too long
+>> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221201225703.6507-2-ddrokosov@sberdevices.ru
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>>
 > 
-> Thank you for your patch. There is something to discuss/improve.
+> Please find all fixes of above warnings and errors in the my patch
+> located at the link:
 > 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,sm8550-adsp-pas
->> +    then:
->> +      properties:
->> +        power-domains:
->> +          items:
->> +            - description: LCX power domain
->> +            - description: LMX power domain
->> +        power-domain-names:
->> +          items:
->> +            - const: lcx
->> +            - const: lmx
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - qcom,sm8550-cdsp-pas
->> +    then:
->> +      properties:
->> +        power-domains:
->> +          items:
->> +            - description: CX power domain
->> +            - description: MXC power domain
->> +        power-domain-names:
->> +          items:
->> +            - const: cx
->> +            - const: mxc
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sm8550-cdsp-pas
-> 
-> This entire if does not look valid - compatible is covered in the
-> previous one. You should see `dtbs_check` warnings on your DTS.
+> https://lore.kernel.org/linux-amlogic/20221201225703.6507-9-ddrokosov@sberdevices.ru/
 
-Wow indeed, this should be mpss-pas...
+Why? This patch here is broken and it should be fixed. Don't apply
+broken patches...
 
-The main changes here was firmware-name and memory-region to handle
-the dtb firmware and the DSM memory region, are those OK ?
-
-Neil
-
-> 
->> +    then:
->> +      properties:
->> +        power-domains:
->> +          items:
->> +            - description: CX power domain
->> +            - description: MXC power domain
->> +            - description: NSP power domain
->> +        power-domain-names:
->> +          items:
->> +            - const: cx
->> +            - const: mxc
->> +            - const: nsp
->> +
->> +unevaluatedProperties: false
->> +
-> 
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+Krzysztof
 
