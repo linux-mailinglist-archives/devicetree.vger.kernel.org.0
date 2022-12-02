@@ -2,291 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C1AF640E7C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:30:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD3E640E83
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 20:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234056AbiLBTaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 14:30:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58214 "EHLO
+        id S234634AbiLBTbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 14:31:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233679AbiLBTaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:30:19 -0500
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044B4EC80E;
-        Fri,  2 Dec 2022 11:30:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-        bh=QeityKeWX9SH19NfeKIppN2I0iFKaIHoIc1Zkqq/E6k=; b=nOXshjpnQjf5mZxj6cFVHdAk9h
-        mLpBsfcpsow8dQYvO9/n9gm9O2xfktkDZJKMivAnd/LFuSFifh0wgQPFW9A7Qkk58fafdAkQG0zRI
-        hy9hov2mll82bo3A465yPE/vpjH0x7fq3VBzHw9/UIDgZU6GVhey83YDczWtYtIAcj2sop3e2n9Ke
-        YsWbaVmg7FAOYXlKDU0Rxy5VCHxKpIy2ll/rabony7mUTO4o3ySDgqto7PVzA5kMI9YldodwGlmyM
-        5l6Dl6b9XpjgNN6ayskbZf8yioFtpLsZ16JM7xoxeW2e9DtA+eHxolMZbV8Vuv/cL47R78SJPkNf1
-        ip5A3ZoQ==;
-Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1p1Bjb-0098bq-Hu; Fri, 02 Dec 2022 20:30:07 +0100
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1p1Bja-00ExHt-30;
-        Fri, 02 Dec 2022 20:30:06 +0100
-Date:   Fri, 2 Dec 2022 20:30:06 +0100
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233890AbiLBTbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 14:31:38 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2105.outbound.protection.outlook.com [40.107.223.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D322EF37C9;
+        Fri,  2 Dec 2022 11:31:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aHAil+MvOUrpWpNp/PJES4EgboNXEurA/yzKKMld3IpsiqpNgXoObbZzn4yllzpZY6BjkHVD/i/XvBOFa2obuxQJPqHt1dJ743UG7hWpjSmMC87JUauj3N2WW9tk7XEC57syTgQyKyo9L6Vr02MptbEFo0J/lOB0d9xglXLUKuk9FTVMOUUzoTP+F9iN4zp/0wcsBHLxEU+30NHw44jqdAk0kZPTX78udzYSort8AtCbF4nvtB9TO+cNhznIaDmBIi47Qd53eFw8krzNAilqb1YdTW/+EtYkwuw4KEdnDrvUOv0wP9xyKWxZpKWzyURyBA+XjE2+iQfFfMtNS7JDoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xgYJ9LUb6UH6aUEiPKQkgfKqjylK309mu1ea+X1OH7g=;
+ b=B34ZJoXTTeMj0u/VPWDhNjWpegBqGRPJkhgriXpZRg/Sr/Z7es13prrq+0Abcm6Mguy1TCrbbIDMWVxMf44+o/CRhW7+2uTK8YbHVNjgPAmtOpg342dQhlArGls37R4w2+YVqSmavLChxZN/tJoZmrPVAxJ6kvkyYvxKWROyz4fjJxW8kVX7kKEcOdatcr1UlPV4nQK9BsK1ZZNXkva/dQqZ5ozzkUGV9KvMSOAnH0+BUgo8HX4iecdAWp3MwrYF53mIgPlE+2TsQPctB82CmEWKNxyu2+uw0M8mUbNYFhDREDcv8ANLA5tFLERepOLN/mZBb/V5WUKX9ZHMGHVSsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xgYJ9LUb6UH6aUEiPKQkgfKqjylK309mu1ea+X1OH7g=;
+ b=RUgF88UPUgyNPnXG7KP0SVN48YiKF/rUaZHhwIDKVbAz30xpuxXOYOKHdtcK5v1OU/TKmcJ3phzhRQbWfmO1kSFW9NxiL6KTfrblFTB/fDwXPjO9Nc2aJ1YRiFH8sdSj5h2R5UeMFkhQsjqd28Bm2FQvNRXmRq5BtJyL9lljMSc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by SJ1PR10MB5905.namprd10.prod.outlook.com
+ (2603:10b6:a03:48c::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5857.21; Fri, 2 Dec
+ 2022 19:31:34 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::45b5:a860:9cea:a74c]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::45b5:a860:9cea:a74c%4]) with mapi id 15.20.5857.023; Fri, 2 Dec 2022
+ 19:31:33 +0000
+Date:   Fri, 2 Dec 2022 11:31:28 -0800
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lin Jinhan <troy.lin@rock-chips.com>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] hwrng: add Rockchip SoC hwrng driver
-Message-ID: <Y4pSPrIHPL8yH6cq@aurel32.net>
-Mail-Followup-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lin Jinhan <troy.lin@rock-chips.com>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221128184718.1963353-1-aurelien@aurel32.net>
- <20221128184718.1963353-3-aurelien@aurel32.net>
- <76091207-d81c-e737-34a2-884153251925@linaro.org>
-MIME-Version: 1.0
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>
+Subject: Re: [PATCH v3 net-next 05/10] dt-bindings: net: dsa: qca8k: utilize
+ shared dsa.yaml
+Message-ID: <Y4pSkOFaGQKc7j/6@euler>
+References: <20221127224734.885526-1-colin.foster@in-advantage.com>
+ <20221127224734.885526-6-colin.foster@in-advantage.com>
+ <20221201224240.GA1565974-robh@kernel.org>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <76091207-d81c-e737-34a2-884153251925@linaro.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221201224240.GA1565974-robh@kernel.org>
+X-ClientProxiedBy: BYAPR08CA0021.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::34) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|SJ1PR10MB5905:EE_
+X-MS-Office365-Filtering-Correlation-Id: e5b40e68-b9fe-4bde-d812-08dad49bd1db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kagT2FcWxP2POLSUCqRQJQR8BpvvFY/1ILSGuNpBpV8/JYhbgDnJmyDQQrv4DbpIsnpaOEibBNtEomAMkDT97QKgcPWe+MbeYFoT1W9uvnDvzKRRS33Xg5FpMoS3bA/88KBytgvXFELq5VUZi/Y5gkXXWQQhL2U71D5ymARV4IkJsg8OjyXjL4GVWXzdGAV6b9eEOcDy4xd4v/hUvYiztGRDGureLrxkZ+RCpGu4hnR7YZzmRnISwhMsURh/BJYYDLngVLjNWvh2l5TOuxY1zoGsUyVPY/HJZMr7WKuolSTXQxAtqivHuP+7e5zx994UNbh10HAqHcpBkmrQJbalK2layimYiDdXBKJEKRYF3zo6Oi/vM4GNHedDdN0sUTgIUKe5hfM4ml+c9ELTJ+AhmynkB82NW4q2mzkpFQ6XWWQsxxXFLAf/xQ5jC7fHTFH+hQe2FS8cUseYIGb7eQd3GfSowTs+a+RCU7rgpSRRcMsCVS9gJs51WvDuCblQd5R6x6m0QsSIdcUO6bzY5M/3Zp84BYeESWAI73RzV9O/zPQXX8ucOULfGThy1VZlmkhiujuS4B3WXF6hSsekdV4yj1i3iuV650D2RAZGwMT2+xQHDpqglKyXkSDIf5eFY42ws0KLKs0lYyfZ72xAx9qdz2TYd02JswQmawxhUaZrtG5ngcWxZLN1Gc7jKTrEbgxC
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(376002)(39840400004)(396003)(136003)(366004)(346002)(451199015)(83380400001)(38100700002)(6666004)(6506007)(6486002)(6512007)(54906003)(86362001)(9686003)(26005)(478600001)(186003)(66946007)(5660300002)(2906002)(8936002)(6916009)(66476007)(8676002)(7406005)(7416002)(33716001)(316002)(66556008)(44832011)(4326008)(41300700001)(32563001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2Kd/z5rEr/ry1LVUu8IwMHuCR/kwx6pD2EOTkYXbzntU0tLkAkn4HUSpN0CT?=
+ =?us-ascii?Q?O0xKv+KDLEy3ojeHsNF2t+/VpQ2a2213s0NtlDxShhrkmb7RCzb1htZR18hu?=
+ =?us-ascii?Q?zB1ubZBrNyktUGRlQ9p1x2cWmMGAR6V2Ak6zHKpwYsmC7KMX5+xmrn6Wu9RB?=
+ =?us-ascii?Q?9ybmxhp0vXCsT9jJbwEJgz71cuCu6iZlc1Dzweg5aZbrgUkovLg4YFoUettd?=
+ =?us-ascii?Q?QStizf1bxTKD6k258QEL02KL4FxUsaBHEeKzWj8qEFzOzIYmY7AQAP4Zl3b9?=
+ =?us-ascii?Q?H4lCDbm4K4x1qV7Jul28waljBrv0rm8rmIZByI0Dg9x9qQfyEd4aikC91NVs?=
+ =?us-ascii?Q?AH8XL9XUNOOjOqAYqaQRE1/gD6sBl8FiPzohyPSr63HMcraiPHbRfNuBKHrU?=
+ =?us-ascii?Q?KmTxpwaw8K64O3l8EcEyxjFeqW91aerpd+IAxe1H2BjWsDfFxRDxlbv96yCT?=
+ =?us-ascii?Q?oqRF3g8EIrGI1pMU2Qo89WFWHpoBVlFzTbBArGd5a4QY4crUC2LHUqC03SRW?=
+ =?us-ascii?Q?ZxMge4EdN+vcFl4iti+X8mZ1+dauYpifKeKc5xpujPxpZILZqDgk+NDJtHfC?=
+ =?us-ascii?Q?VJdl7UPf4rLvTfCCgWEyF1lupVa2SzhpH+AtpCn6A6e7Nkl2DcT7vYAi8y/r?=
+ =?us-ascii?Q?zNoZfVlrPj2Z/vtSviDUf6lzfuhmPl6AEwQJyv+zIP9ceLfjM76/16yyOJW7?=
+ =?us-ascii?Q?jCaox1VTp70WC9oBCzg5Uxo0EDgONZwSwdyK7JiUdpUkgjXiOwV4qVkmPRyE?=
+ =?us-ascii?Q?UJ4x3LCFhB0UrCNbUVMbDXffoY2o9XmX8Rhomhpz7i3hVJQ9UgP7u0WN1+M5?=
+ =?us-ascii?Q?lDs2Aa/BsK5oloQWvYo9alkXwaf9PRdGUThQ9PycGOdgNEj34P5TSAdfsCre?=
+ =?us-ascii?Q?HcFDals3N0Jlrh6nQ/QAmVLhaOXrWbZkVVa1mXCvb8ayFIp4HwzsKAJ/oOoZ?=
+ =?us-ascii?Q?iE5LcNcq7QdIBcqGm4pAmpLe/ATcw75UxhfCEXVuDuv63umzC+Al65mrgCwA?=
+ =?us-ascii?Q?WUibV4/+lN5qNqhZGfwpNKICy1SqF1UNXHsu9Tq6Gj5rVcSVRLUGErtb9aRn?=
+ =?us-ascii?Q?Jx2QN5MXVHery18wijgKHtUIwpj4fJVawwyobCvqke23TVYvkMByW6HkfMAR?=
+ =?us-ascii?Q?OSI8c3pVB+kciziQ/W1Z0MB0fn32kVUqZm3qJFFjFrtJSN3pkZbDbWL80z96?=
+ =?us-ascii?Q?xUTvB2Fuudrc7/fvL8EBFBiAsQtj1F9r+GmRCU8oEpR/j0F7ZMggCaZjbN7N?=
+ =?us-ascii?Q?sDNWsvY+E5INRgd9RnpxrapbP90VPzgUf8lkDsRbIfeGEVxR/cSnbIyqkNJv?=
+ =?us-ascii?Q?aPYdipJTp9Cti2Ty9iOru8VxSXkasrbZlYCdtedL+g/BvR/c1ejxG9nM4WFA?=
+ =?us-ascii?Q?ZF/k/N0Tt7pXrryY4aXkCs0oH06M88tU7J+0WUvGTFR/SDzSvzGxgIbVBrXc?=
+ =?us-ascii?Q?chCscZ9rjD79FQae+bu5xB5W8hI3BoKVVZTDeS4AFQxEQHZScCwIT6EKPkD5?=
+ =?us-ascii?Q?DdNXQWra08Xm9r/ioKHfbdAO/XAZFlBz71LOqGUhUYJa838xzklRvcfnJS/P?=
+ =?us-ascii?Q?sK0jUBd2dxfplkGMr50YjSpmhFDwRaO/OLnmYaW14CgDs3f4atFoVnAH9jvw?=
+ =?us-ascii?Q?+Q=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5b40e68-b9fe-4bde-d812-08dad49bd1db
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2022 19:31:33.4711
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: no/h5nyDE2pT5c5Xp3ccX1WkGNtTwiRQnEslSDwnAUp68/HKXZ+FbV1kerWDXz7SliX2F9RcOla0892cqVhQB5hzEomheMRxLufw+CD3C28=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR10MB5905
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-Thanks for your feedback.
-
-On 2022-11-29 10:33, Krzysztof Kozlowski wrote:
-> On 28/11/2022 19:47, Aurelien Jarno wrote:
-> > diff --git a/drivers/char/hw_random/rockchip-rng.c b/drivers/char/hw_random/rockchip-rng.c
-> > new file mode 100644
-> > index 000000000000..18cdd91ad8c3
-> > --- /dev/null
-> > +++ b/drivers/char/hw_random/rockchip-rng.c
-> > @@ -0,0 +1,250 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * rockchip-rng.c True Random Number Generator driver for Rockchip SoCs
-> > + *
-> > + * Copyright (c) 2018, Fuzhou Rockchip Electronics Co., Ltd.
-> > + * Copyright (c) 2022, Aurelien Jarno
-> > + * Authors:
-> > + *  Lin Jinhan <troy.lin@rock-chips.com>
-> > + *  Aurelien Jarno <aurelien@aurel32.net>
-> > + */
-> > +#include <linux/clk.h>
-> > +#include <linux/hw_random.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/slab.h>
+On Thu, Dec 01, 2022 at 04:42:40PM -0600, Rob Herring wrote:
+> On Sun, Nov 27, 2022 at 02:47:29PM -0800, Colin Foster wrote:
+> > The dsa.yaml binding contains duplicated bindings for address and size
+> > cells, as well as the reference to dsa-port.yaml. Instead of duplicating
+> > this information, remove the reference to dsa-port.yaml and include the
+> > full reference to dsa.yaml.
+> > 
+> > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> > Suggested-by: Vladimir Oltean <olteanv@gmail.com>
+> > ---
+> > 
+> > v2 -> v3
+> >   * Remove #address-cells and #size-cells from v2. The examples were
+> >     incorrect and fixed elsewhere.
+> >   * Remove erroneous unevaluatedProperties: true under Ethernet Port.
+> >   * Add back ref: dsa-port.yaml#.
+> > 
+> > v1 -> v2
+> >   * Add #address-cells and #size-cells to the switch layer. They aren't
+> >     part of dsa.yaml.
+> >   * Add unevaluatedProperties: true to the ethernet-port layer so it can
+> >     correctly read properties from dsa.yaml.
+> > 
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/qca8k.yaml | 11 +++--------
+> >  1 file changed, 3 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> > index 6fc9bc985726..93a9ddebcac8 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> > @@ -66,20 +66,15 @@ properties:
+> >                   With the legacy mapping the reg corresponding to the internal
+> >                   mdio is the switch reg with an offset of -1.
+> >  
+> > +$ref: "dsa.yaml#"
 > > +
-> > +#define RK_RNG_AUTOSUSPEND_DELAY	100
-> > +#define RK_RNG_MAX_BYTE			32
-> > +#define RK_RNG_POLL_PERIOD_US		100
-> > +#define RK_RNG_POLL_TIMEOUT_US		10000
-> > +
-> > +/*
-> > + * TRNG collects osc ring output bit every RK_RNG_SAMPLE_CNT time. The value is
-> > + * a tradeoff between speed and quality and has been adjusted to get a quality
-> > + * of ~900 (~90% of FIPS 140-2 successes).
-> > + */
-> > +#define RK_RNG_SAMPLE_CNT		1000
-> > +
-> > +/* TRNG registers from RK3568 TRM-Part2, section 5.4.1 */
-> > +#define TRNG_RST_CTL			0x0004
-> > +#define TRNG_RNG_CTL			0x0400
-> > +#define TRNG_RNG_CTL_LEN_64_BIT		(0x00 << 4)
-> > +#define TRNG_RNG_CTL_LEN_128_BIT	(0x01 << 4)
-> > +#define TRNG_RNG_CTL_LEN_192_BIT	(0x02 << 4)
-> > +#define TRNG_RNG_CTL_LEN_256_BIT	(0x03 << 4)
-> > +#define TRNG_RNG_CTL_OSC_RING_SPEED_0	(0x00 << 2)
-> > +#define TRNG_RNG_CTL_OSC_RING_SPEED_1	(0x01 << 2)
-> > +#define TRNG_RNG_CTL_OSC_RING_SPEED_2	(0x02 << 2)
-> > +#define TRNG_RNG_CTL_OSC_RING_SPEED_3	(0x03 << 2)
-> > +#define TRNG_RNG_CTL_ENABLE		BIT(1)
-> > +#define TRNG_RNG_CTL_START		BIT(0)
-> > +#define TRNG_RNG_SAMPLE_CNT		0x0404
-> > +#define TRNG_RNG_DOUT_0			0x0410
-> > +#define TRNG_RNG_DOUT_1			0x0414
-> > +#define TRNG_RNG_DOUT_2			0x0418
-> > +#define TRNG_RNG_DOUT_3			0x041c
-> > +#define TRNG_RNG_DOUT_4			0x0420
-> > +#define TRNG_RNG_DOUT_5			0x0424
-> > +#define TRNG_RNG_DOUT_6			0x0428
-> > +#define TRNG_RNG_DOUT_7			0x042c
-> > +
-> > +struct rk_rng {
-> > +	struct hwrng rng;
-> > +	void __iomem *base;
-> > +	struct reset_control *rst;
-> > +	int clk_num;
-> > +	struct clk_bulk_data *clk_bulks;
-> > +};
-> > +
-> > +/* The mask determine the bits that are updated */
-> > +static void rk_rng_write_ctl(struct rk_rng *rng, u32 val, u32 mask)
-> > +{
-> > +	writel_relaxed((mask << 16) | val, rng->base + TRNG_RNG_CTL);
-> > +}
-> > +
-> > +static int rk_rng_init(struct hwrng *rng)
-> > +{
-> > +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> > +	u32 reg;
-> > +	int ret;
-> > +
-> > +	/* start clocks */
-> > +	ret = clk_bulk_prepare_enable(rk_rng->clk_num, rk_rng->clk_bulks);
-> > +	if (ret < 0) {
-> > +		dev_err((struct device *) rk_rng->rng.priv,
-> > +			"Failed to enable clks %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* set the sample period */
-> > +	writel(RK_RNG_SAMPLE_CNT, rk_rng->base + TRNG_RNG_SAMPLE_CNT);
-> > +
-> > +	/* set osc ring speed and enable it */
-> > +	reg = TRNG_RNG_CTL_LEN_256_BIT |
+> >  patternProperties:
+> >    "^(ethernet-)?ports$":
+> >      type: object
+> > -    properties:
+> > -      '#address-cells':
+> > -        const: 1
+> > -      '#size-cells':
+> > -        const: 0
+> > -
+> >      patternProperties:
+> >        "^(ethernet-)?port@[0-6]$":
+> >          type: object
+> >          description: Ethernet switch ports
+> > -
+> >          $ref: dsa-port.yaml#
 > 
-> It's not reg. It's val.
-
-Ok, I'll fix that.
-
-> > +		   TRNG_RNG_CTL_OSC_RING_SPEED_0 |
-> > +		   TRNG_RNG_CTL_ENABLE;
-> > +	rk_rng_write_ctl(rk_rng, reg, 0xffff);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void rk_rng_cleanup(struct hwrng *rng)
-> > +{
-> > +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> > +	u32 reg;
-> > +
-> > +	/* stop TRNG */
-> > +	reg = 0;
+> So here you need 'unevaluatedProperties: false'.
 > 
-> It's not reg. It's val.
+> unevaluatedProperties only applies to the properties defined in a single 
+> node level, and child nodes properties from 2 schemas can't 'see' each 
+> other. IOW, what dsa.yaml has in child nodes has no effect on this node. 
 
-I'll also fix that one.
+I'm buttoning up v4 right now and removing this line deletion.
+unevaluatedProperties: false exists under the etherent-port node, just
+at the end of the properties list.
 
-> > +	rk_rng_write_ctl(rk_rng, reg, 0xffff);
-> > +
-> > +	/* stop clocks */
-> > +	clk_bulk_disable_unprepare(rk_rng->clk_num, rk_rng->clk_bulks);
-> > +}
-> > +
-> > +static int rk_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-> > +{
-> > +	struct rk_rng *rk_rng = container_of(rng, struct rk_rng, rng);
-> > +	u32 reg;
-> > +	int ret = 0;
-> > +	int i;
-> > +
-> > +	pm_runtime_get_sync((struct device *) rk_rng->rng.priv);
+Since the etherent-ports node in net/dsa/dsa.yaml has
+unevaluatedProperties: false, I understand that isn't necessary here.
+
 > 
-> Missing error handling.
-
-I'll fix that.
- 
-> > +
-> > +	/* Start collecting random data */
-> > +	reg = TRNG_RNG_CTL_START;
+> >  
+> >          properties:
+> > @@ -116,7 +111,7 @@ required:
+> >    - compatible
+> >    - reg
+> >  
+> > -additionalProperties: true
+> > +unevaluatedProperties: false
 > 
-> This is not usefull. Just use it directly in write call. Actually this
-> is heavy confusing, as reg suggests address. This would be val instead...
-
-This was to avoid passing the value twice, as it is used for both the
-mask and the value. But I can pass it directly if it's better.
-
-> > +	rk_rng_write_ctl(rk_rng, reg, reg);
-> > +
-> > +	ret = readl_poll_timeout(rk_rng->base + TRNG_RNG_CTL, reg,
-> > +				 !(reg & TRNG_RNG_CTL_START),
-> > +				 RK_RNG_POLL_PERIOD_US,
-> > +				 RK_RNG_POLL_TIMEOUT_US);
-> > +	if (ret < 0)
-> > +		goto out;
-> > +
-> > +	/* Read random data stored in the registers */
-> > +	ret = min_t(size_t, max, RK_RNG_MAX_BYTE);
-> > +	for (i = 0; i < ret; i += 4) {
-> > +		*(u32 *)(buf + i) = readl_relaxed(rk_rng->base + TRNG_RNG_DOUT_0 + i);
-> > +	}
+> So this has no effect on anything within "^(ethernet-)?port@[0-6]$" and 
+> below.
 > 
-> This cannot be just memcpy_fromio?
-
-According to the TRM, we should ensure 32-bit accesses, so I am not sure
-memcpy_fromio will work. However it seems __ioread32_copy could be a
-good replacement.
-
-> > +
-> > +out:
-> > +	pm_runtime_mark_last_busy((struct device *) rk_rng->rng.priv);
-> > +	pm_runtime_put_sync_autosuspend((struct device *) rk_rng->rng.priv);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int rk_rng_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct rk_rng *rk_rng;
-> > +	int ret;
-> > +
-> > +	rk_rng = devm_kzalloc(dev, sizeof(struct rk_rng), GFP_KERNEL);
-> 
-> sizeof(*rk_rng)
-
-I'll fix that.
-
-> > +	if (!rk_rng)
-> > +		return -ENOMEM;
-> > +
-
-Regards
-Aurelien
-
-
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                 http://www.aurel32.net
+> Rob
