@@ -2,134 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1462B640520
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4484640526
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 11:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbiLBKtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 05:49:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
+        id S232931AbiLBKvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 05:51:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232359AbiLBKtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:49:39 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D656FC4CE2
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:49:38 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id p8so6787044lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:49:38 -0800 (PST)
+        with ESMTP id S232572AbiLBKvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 05:51:19 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05660D0394
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 02:50:53 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id l8so4961355ljh.13
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 02:50:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jW6y8+mPDb9kuBlxMtBNIHAxUSBlrElhmRnvpEEfr3E=;
-        b=Br5B60iYwj3UJV2SZlq5ruNo4XWBUKAYgISQRN17fb4ZRB82q5tBKnIvvugGjCXSsx
-         XNR8fykvOxoJwC9I/oiVv8FPSY0qkZEfpQTCrb1Bq8jfeF/cWE5L9EOSrA5ZfeP8/BVE
-         dNEq6wjvCXwwMJ4vNvX3TPyoT8dSwuorHF4vXzvMs2MXPEZZWJ3592WFcxGboKnW8FA2
-         /2P7d3LEbitOP5ZdCUzBHYgvZJvQw597LvU/IPceMmWWyuwcpT23LVQ2Fq5qPx8p6GBY
-         UEPy1G2i4QOgEjIPitGVV5qsiD63ekeO6+amMLvJi3biy6CNxiw8N11QYHFv/8aUYJTl
-         ScHQ==
+        bh=aUa/VqnmfOXM9528l3SlSKgYGZjywEB8U8BxliATOOw=;
+        b=VFw82rS8XMajD7JLPjZ+OrY2yzep2Gk0Guq0onC/auwfDMFkEMBSJJx0LP3b4ROEyM
+         2x3u8HkPtMufM29Iq9RK8weMrGcVDy/xOxXIpnO5gchMRnIkz9XuuvErWhRoxKUkLKVb
+         iZ8pqsFFDI13GWdDwYvRk/NinjvRI7NcQoS88pEGR1eiHd+jOPwSuxn434tG0RgAtWo5
+         2QpjE8VMyjSbugZmbk4n7RCYbqKN9dr0LBsqTKnbTzspVVZ4nSA3PsLaM5T3X5/PEiel
+         Ymb4nUB3J5/loHSM/+OQieYDX2c6bUPKBYsnYIucB+ujPfnCgTFJRRYKGrqYfkVR7yDk
+         SWwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jW6y8+mPDb9kuBlxMtBNIHAxUSBlrElhmRnvpEEfr3E=;
-        b=gZr4xre75u5NftCDCRye+LHZdqBYCTXXyhjDejvqnWI+JUPhNoDGlhjA/Laq7UygQQ
-         Wju7TM9qWG1RI5rNHpfx+chJlWntFet02hA6qp7Sw6Bl4Zit8Ahv0YP8huIqNrB7NHkN
-         hgNJHj+/BHUYV4pTkM2/ovl4nxvALgm/p15Qiw+QYwTkA7/6i3VlfCJtDOUvmLYqcYy0
-         27+Al8cd/XQRJ3PElghvGgE/l2FKmjz3rin8+4usWp2joJwMyqLweQBOmq+JNyq6QuZu
-         VI2BLNquaiNjpeD8QYvCCEz/iO6KR1hB78FnsQlPpWiLS9cSUNZhAaph7r06yWoAEW3E
-         EzMA==
-X-Gm-Message-State: ANoB5pmq+A+YRxO6Fga7tfzr1qREISsMeq8Rzt3mQ7Hcm7RwOA07Ag4t
-        JZNOxYngzXm3YkwLEXEQDyVk7CLtXfv0aSC1Ofc=
-X-Google-Smtp-Source: AA0mqf7ktYnk3XWmcGW4CGl7M8NI9jnfOkabPGQGTPOed7MAlSwnyGBNVMdddCQoaV9KwizR3kI5HQ==
-X-Received: by 2002:a05:6512:1584:b0:4b5:345c:516a with SMTP id bp4-20020a056512158400b004b5345c516amr4310320lfb.483.1669978177248;
-        Fri, 02 Dec 2022 02:49:37 -0800 (PST)
+        bh=aUa/VqnmfOXM9528l3SlSKgYGZjywEB8U8BxliATOOw=;
+        b=m/+y4kzB83ksiVMJm6pqzGc/vL4MI3nEh8anhd4EoP5PMpo+VQ0WeNJqF7IF+uhCni
+         k58A4n586CYhgon+sYMyVhbI/7oKbydB1t4CJdJ8FGn3W5BvkkNe+778feTMiVrdQII3
+         gOOdn1dqdaDdfhJl1gTGL+cZNPAPoUwrXOuMHoKBlk+NCAF9rQw6avBmjY3B3ZW7xO2j
+         PiiWbhUZ2hTQyPA5nTRvHaDAK+hxanXdJYZsxhhqQwC/4t9lINPTQlzAXqdX3Ezs0+uc
+         GxIF3lwvHmBW4AIp4XyoiVWKf4hLwyo35qrGqHjFjIr61PEuO/YoY9mP4k35UNDRIcew
+         s/bA==
+X-Gm-Message-State: ANoB5plfHdISNQeD83MBby7zIzXCRHG1+VuAfMsPH36TorKdX+XnrgVT
+        8yQ+BiUwcWU7ntV5OB9zxvIt3w==
+X-Google-Smtp-Source: AA0mqf69Td280s1XXMPVErEzICrOPlatkrfekwHdq7BevjGZeeR2/YEfCma2e9rB3r0TZ9CLNv+Ehw==
+X-Received: by 2002:a05:651c:1070:b0:276:ac05:b821 with SMTP id y16-20020a05651c107000b00276ac05b821mr24330666ljm.84.1669978251393;
+        Fri, 02 Dec 2022 02:50:51 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id x28-20020a0565123f9c00b004b550c26949sm207070lfa.290.2022.12.02.02.49.36
+        by smtp.gmail.com with ESMTPSA id c20-20020a056512075400b004a25bb4494fsm974799lfs.178.2022.12.02.02.50.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Dec 2022 02:49:36 -0800 (PST)
-Message-ID: <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org>
-Date:   Fri, 2 Dec 2022 11:49:35 +0100
+        Fri, 02 Dec 2022 02:50:51 -0800 (PST)
+Message-ID: <1b2ae3ef-a27e-accf-4533-66916fe59773@linaro.org>
+Date:   Fri, 2 Dec 2022 11:50:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
- channels for R-Car V3U
+Subject: =?UTF-8?Q?Re=3a_Re=ef=bc=9aRe=3a_=5bPATCH=5d_arm64/boot/dts_and_arm?=
+ =?UTF-8?Q?=5fscpi=3a_add_to_support_Phytium_FT2004_CPU?=
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+To:     =?UTF-8?B?546L5rSq6L6J?= <honghui.wang@ucas.com.cn>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc <soc@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
- <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org>
- <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <tencent_12CFBB7717187D6F2B9A3246@qq.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
+In-Reply-To: <tencent_12CFBB7717187D6F2B9A3246@qq.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 10:25, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
->>> According to the bindings, only two channels are supported.
->>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
->>>
->>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
->>>
->>> Update the number of channels to 8 on R-Car V3U.
->>> While at it, prevent adding more properties to the channel nodes, as
->>> they must contain no other properties than a status property.
->>>
->>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
->>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
->>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
->>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> 
->>>      description: Maximum frequency of the CANFD clock.
->>>
->>>  patternProperties:
->>> -  "^channel[01]$":
->>> +  "^channel[0-7]$":
->>>      type: object
->>>      description:
->>> -      The controller supports two channels and each is represented as a child
->>> -      node.  Each child node supports the "status" property only, which
->>> +      The controller supports multiple channels and each is represented as a
->>> +      child node.  Each child node supports the "status" property only, which
->>>        is used to enable/disable the respective channel.
->>>
->>> +    unevaluatedProperties: false
->>
->> There are no other properties within a channel, so this should be rather
->> additionalProperties: false.
-> 
-> Are you sure? Then I also have to add:
-> 
->         properties:
->           status: true
-> 
+On 02/12/2022 10:23, 王洪辉 wrote:
+> The approach is passed the test and verification on FT2004 DEV board.
 
-Do you? I think it would be first schema needing it, so maybe that would
-be a problem for dtschema...
+I don't know what does it mean but for sure you did not run dtbs_check.
+Whether it works on your board is different story.
+
+Please also do not top-post and respond to comments inline.
 
 Best regards,
 Krzysztof
