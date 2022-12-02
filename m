@@ -2,110 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBACD6409A5
-	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 16:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4375C640A31
+	for <lists+devicetree@lfdr.de>; Fri,  2 Dec 2022 17:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233829AbiLBP55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 10:57:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59960 "EHLO
+        id S231470AbiLBQHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 11:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233808AbiLBP5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 10:57:51 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C42193EF
-        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 07:57:48 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id p8so7998019lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 07:57:48 -0800 (PST)
+        with ESMTP id S232364AbiLBQHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 11:07:47 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D377D15820
+        for <devicetree@vger.kernel.org>; Fri,  2 Dec 2022 08:07:44 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id e13so7033751edj.7
+        for <devicetree@vger.kernel.org>; Fri, 02 Dec 2022 08:07:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9YbiQi8bpVzcfCjoZJyL06JibybCKaHt7b1twZeD9Ow=;
-        b=iq4Yg0chddeZ/+a+TH7hdmk7jz4NC3LXdjGWASg5iv2ySSOkMQmsCxRscSlOAVzGlM
-         i6FACaaNxNSr37RCfDGqXPWAHFEe6ju4svzxl9w6Ghbgxx4OfyIxxz+/4ALfmRdhDVS+
-         zF+YigAQ4EpPxwe0nNc5c5rLzAN/ZfUU2hwgpJFnFL5sGIpZU1Ygh5RgigUP6NZ5JNhS
-         oA2cuYsIMnckPURgKRBd6ywMeqNuL0GaKKAJBaLYs8AL4ERjM1LR/LCrCEyl0peee/jy
-         1J1Js760+8ekAw/oQ8vgnlwZ7ENAS1vAc9LeuCCbLnsHrZ8WKb8ilJchKUapiChVaTn0
-         UeEg==
+        d=melexis.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JRuyXMw8hyC+Rg2csC0rqJ6/Pq3ZMpmr4yGDWOjzxHU=;
+        b=K2dlfod9Ocgem+SDOxuJzxbJDjaR3ggv06WHA62zkJ9sHwqK1j8fuP39nbVo09S7Ib
+         mSGlalccjwi0Vfc8XbPnWxY/fN0q3VYNr6jbn1EsChPteu1qmOeK/ycQZoIMZGNs0EMi
+         p1Tted4M/QLJvRd2QAWUQzeGntWTGt8zJqxGdvIsq1c3sih0Q6vswauKjhIxT2LGC4eX
+         bQe/QIeLxOgXdv0VQAJ7K6CsGAaLkGsEgTTYLqKyLqp+/+Cy2wooLmbTIcN32eo9+J7p
+         3wahCLFKH/e2qRmFaj2N2bY0FvSVAH68XFxgArPoqKcAtc3137p2i7Oc9NlLwv6cFT2y
+         tvkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9YbiQi8bpVzcfCjoZJyL06JibybCKaHt7b1twZeD9Ow=;
-        b=oIZlrIB9d9KdSUiRG12ksWQnos1Ml2A2m2+5mHvHLN/aEusJcA7gJHU7t2SEHIYL1t
-         h8xMANUFycjCH1niZRkiw/iC4FyBSp5f7HKnKOXXnCQkkKEgWBuz+6bL+9SOVLFgCauz
-         09/waYTA5MVXt1YofAPGVCxHIkHfFfp1S1Km4aNCZNSAWHaVf6Tuj5N/kMD2UcsHK/ZX
-         5fuE/vo5HDKv0QSSuE+JaVpl9UY9ADkE1eM3k+5NgdglBiyUPdNvWrWpR+7nibZ09aN2
-         NvHbMWy3aW3GMZYoQ3lf8iY5bH1km9+EGA0hEYOH6jbaCFqy4IPK/KmxPKvfNCX6QeFJ
-         /v8g==
-X-Gm-Message-State: ANoB5pnbUcTHUzeXQwZ6ugipBmte23CvKt5LOq3/hZ2wz2uIoWDKJQ4t
-        9YswfWBxSYqJpPH7p747fU5AJg==
-X-Google-Smtp-Source: AA0mqf7s3RliaLsyzAtkDaMbZCuLfy4R1OzeVMS8XQ6V3f3kYsxxyIFggzAuQUFFvANvd4fYvEvpoA==
-X-Received: by 2002:a05:6512:2203:b0:4aa:83e6:53e8 with SMTP id h3-20020a056512220300b004aa83e653e8mr14950951lfu.606.1669996666905;
-        Fri, 02 Dec 2022 07:57:46 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b25-20020ac25e99000000b004b4e6dab30esm1049133lfq.222.2022.12.02.07.57.44
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JRuyXMw8hyC+Rg2csC0rqJ6/Pq3ZMpmr4yGDWOjzxHU=;
+        b=qJ43jb8nQJ1cJF8UO+oVru+vbWlIft7Q50sJYWfW/SKGA9sfUsYwQGTOzgqebML1i7
+         5fRj/jV8pKugfbOSLDGRX5ObFZ+XgVa2dPFjby8WnbAU+9jcKR/h3ce4CNQ1YKI5QJXi
+         /jeq/uxGUnrIkboNmWUrpDpnagw/k3TWuv7MkgANCkWmhKADciqJxjAJJo+rmHGH31z0
+         TgGM4EKJVkPffnSLuAIPnAGyMlI4hl4shOn+lNRIzyBwMPwiaL/8dVd1zMfAWDfYiyQ6
+         DX0GSDqUjUJ5/63XZZ1dAmsf1gkTdX4rWyp79FD89HxBPCgyzWmbBLO85FUH8YWglkNV
+         Pn7g==
+X-Gm-Message-State: ANoB5plokCf8DBs9SDIuyzBvT6Jwq3lgXe2ChOpi9qpxCnmlfP14J6Dx
+        X1KInFT6O/uPSWL2Nzm3nxV3j0mxiW4L4T24xKI=
+X-Google-Smtp-Source: AA0mqf7QnQOsrbMNEnBh0+PlULLMaqwjCbYnDTotdWYQm+Gam0RBE9YEJdOmVYi/UNNlGtpQWw+R/g==
+X-Received: by 2002:aa7:c70a:0:b0:46b:c11:9f2c with SMTP id i10-20020aa7c70a000000b0046b0c119f2cmr25001745edq.122.1669997262766;
+        Fri, 02 Dec 2022 08:07:42 -0800 (PST)
+Received: from melexis ([91.192.183.26])
+        by smtp.gmail.com with ESMTPSA id 5-20020a170906310500b0073d81b0882asm3140423ejx.7.2022.12.02.08.07.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Dec 2022 07:57:46 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Fri, 02 Dec 2022 08:07:41 -0800 (PST)
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     <linux-media@vger.kernel.org>
+Cc:     Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Doug Anderson <dianders@chromium.org>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sdm845: do not customize SPI0 pin drive/bias
-Date:   Fri,  2 Dec 2022 16:57:38 +0100
-Message-Id: <20221202155738.383301-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221202155738.383301-1-krzysztof.kozlowski@linaro.org>
-References: <20221202155738.383301-1-krzysztof.kozlowski@linaro.org>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Volodymyr Kharuk <vkh@melexis.com>
+Subject: [PATCH v4 0/8] media: i2c: mlx7502x ToF camera support
+Date:   Fri,  2 Dec 2022 18:07:30 +0200
+Message-Id: <cover.1669978791.git.vkh@melexis.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each board should define pin drive/bias for used busses.  All boards
-using SPI0 (db845c and cheza) already do it, so drop the bias/drive
-strength from SoC DTSI.
+Hello,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds support for the Melexis 75026 and 75027 Time of Flight
+camera sensors, with DT bindings in patch 7/8 and a driver in patch 8/8.
+In patches 1/8, 2/8 and 3/8, I've add ToF controls as separate
+ToF control class.
 
----
+v4:
+- fix output mode
+- forbid array for menu and warn if validate_new return an error
+- add enums to custom control OUTPUT_MODE
+- update doc
+- minor fixes
 
-Cc: Doug Anderson <dianders@chromium.org>
+v3:
+- move FMOD, TINT, PHASE_SEQ to common V4L2 as ToF common controls
+- FMOD and TINT became dynamic arrays
+- remove PHASE_NUM, use dynamic_array for PHASE_SEQ,
+  ctrl->new_elems pass number of phases
+- remove leden-gpios, will be used gpio explicitly in library for now
+- remade probe: use probe_new, no power on during probe
+- remove autodetect and wildcard
+- make all supplies to be required
+- remove trigger ioctl, will add in separate patch series
+- remove temperature ioctl, will add in separate patch series
+- add documentation about custom ioctl
+- style: 80 cols
+- minor fixes device tree
 
-Changes since v2:
-1. New patch.
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+v2:
+- added external clock to the sensor
+- added all regulators required by the sensor
+- added posibility to choose sensor type in device tree
+- added prefixes to all custom types in device tree and driver as well
+- style fixes
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index e6019009533e..1a7999843dd6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2785,8 +2785,6 @@ qup_i2c15_default: qup-i2c15-default-state {
- 			qup_spi0_default: qup-spi0-default-state {
- 				pins = "gpio0", "gpio1", "gpio2", "gpio3";
- 				function = "qup0";
--				drive-strength = <6>;
--				bias-disable;
- 			};
- 
- 			qup_spi1_default: qup-spi1-default-state {
+Volodymyr Kharuk (8):
+  media: uapi: ctrls: Add Time of Flight class controls
+  media: v4l: ctrls: Fill V4L2_CID_TOF_CLASS controls
+  media: Documentation: v4l: Add TOF class controls
+  media: v4l: ctrls-api: Allow array update in __v4l2_ctrl_modify_range
+  media: v4l: ctrls: Add user control base for mlx7502x
+  media: uapi: Add mlx7502x header file
+  media: dt-bindings: Add mlx7502x camera sensor
+  media: i2c: Add driver for mlx7502x ToF sensor
+
+ .../bindings/media/i2c/melexis,mlx7502x.yaml  |  126 ++
+ .../userspace-api/media/drivers/index.rst     |    1 +
+ .../userspace-api/media/drivers/mlx7502x.rst  |   28 +
+ .../userspace-api/media/v4l/common.rst        |    1 +
+ .../userspace-api/media/v4l/ext-ctrls-tof.rst |   56 +
+ MAINTAINERS                                   |   11 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/mlx7502x.c                  | 1747 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-ctrls-api.c      |   25 +-
+ drivers/media/v4l2-core/v4l2-ctrls-defs.c     |   20 +
+ include/uapi/linux/mlx7502x.h                 |   28 +
+ include/uapi/linux/v4l2-controls.h            |   14 +
+ 13 files changed, 2059 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/melexis,mlx7502x.yaml
+ create mode 100644 Documentation/userspace-api/media/drivers/mlx7502x.rst
+ create mode 100644 Documentation/userspace-api/media/v4l/ext-ctrls-tof.rst
+ create mode 100644 drivers/media/i2c/mlx7502x.c
+ create mode 100644 include/uapi/linux/mlx7502x.h
+
+
+base-commit: a7bab6f8b73fe15a6181673149734a2756845dae
 -- 
-2.34.1
+BR,
+Volodymyr Kharuk
 
