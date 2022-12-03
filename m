@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D17DD6415B3
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 11:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08278641605
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 11:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbiLCKVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 05:21:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56928 "EHLO
+        id S229521AbiLCKoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 05:44:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiLCKVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 05:21:50 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF7B88B73
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 02:21:48 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id x6so8018427lji.10
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 02:21:48 -0800 (PST)
+        with ESMTP id S229463AbiLCKoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 05:44:08 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D8E4218C
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 02:44:07 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id x6so8054716lji.10
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 02:44:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hmgt/iyu02rNPVNn3vYDUjZ04+GCE84QtQpd7vm6pdo=;
-        b=KH2AYi5fpuGthg1ngm1jx+9SkH9FDx+tTssv/UjnujQEnEpN1s/jF9xLGeDU9LCKzQ
-         br2taW9lq2iZ4ZbkjNlCDMoipETo2kv3XXE3btXdUvF48cbTzOvHKD/LCGqEl5JgVcCv
-         bIqQl6aesp3EWu9XIHnOS/t6xM9cfgxG7YMPxYzLTpQROHbWke0LskkTa1vwKVQOo4Mg
-         oKXDKgtgQSeVBeLQ213xKjKlAmeVrOMKzaE3Hmb1VfUZflGPBsh+Veb5y5aHQPtSd2gD
-         GX1LHOI3hBApAwQD1iXbPgWgVUnNhmCwFLS0cI6wTx17zs/mpBvP7rRoHbn+pm4MOj5+
-         Kxfg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VA6bgdS0eWxkTgT0XZ0SoXlx4jS/fw585JN+2qGw6LU=;
+        b=JkYod0TCwxV83odqnX1BI8Nd4HLmNhA21w18fCZuPeRbW5BF5gMZRsztxQU2yxZD15
+         IX9JscIQJHdBEqSDz8WdAofRaFs7XY6Fz6i/Cbg/APN/Zwn3hXSF7hnsuuTlpgs4ilvy
+         sQ61VmIBiuT+Eeo1L9VHIFTQN8FM2AWk+Xt/ADvxRx4tRdL4gFQrNNp6Vc4xCa4Cr6ak
+         JEeS9QKFoi945AMiu/kZCPpMTiKxkMv69T5rYg78v8u77IDwHc3FzDW2F8pS6NgMG2QM
+         erl2d6HprOJNtkdR/rLHHhfarJHm3/skPewUDi+6Yz5UtM3Qt4wFlKTGYj7PkraXy8oy
+         zTcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hmgt/iyu02rNPVNn3vYDUjZ04+GCE84QtQpd7vm6pdo=;
-        b=ybK++s7z8OLwRSOw3oxp4B1WqJVGCnVkNSmeHepX6EfqDyq8jl52y2RJK2fQJUDCsH
-         7eZMaYCAfn61gTGTRKdGyRrMaTOo2JCQkEEIqp9nu9YfQD5yFa3dS77542q+c/2tCZiQ
-         jFlrdNOpoPYGSvjz9KnzYw3Z2pCPg7UBI1d4ZRm8dmRftINHqs/pBMSCgicKaxt7kZZl
-         jjtPtGkthVHp0mY1uBOMEZEAwFygVhVuLF8Kcwk0w7RvS/0oxQNidjy7QMKjVKQSX12U
-         NlI/4C2M9KqGwXGPsYJIz/n4M9f5mkIXndsXzdE+8Ye87cs1sd6mZCctqGDYzFXIjIQ+
-         XgbQ==
-X-Gm-Message-State: ANoB5pl2dfPteFwDs6DCgwwEiSYphiRSlzrN8O2Mb8yUX9tv9MRWMc3b
-        0KgeWMyl+DBXuTBnL2Bt9J7a8g==
-X-Google-Smtp-Source: AA0mqf4NL6HSNAV5Dnug62cV144G7MGCTZ/rTlGmnPVWCawFZl0BbSvqNC1o0eUdKPmv+P+cINdEZg==
-X-Received: by 2002:a05:651c:1590:b0:279:dfe:897a with SMTP id h16-20020a05651c159000b002790dfe897amr24703470ljq.365.1670062906985;
-        Sat, 03 Dec 2022 02:21:46 -0800 (PST)
+        bh=VA6bgdS0eWxkTgT0XZ0SoXlx4jS/fw585JN+2qGw6LU=;
+        b=OBzjRPuo/i/BeelKylRctbY6AD80igge8ESNxiO8LBAnb6GK2QsQnBDxOWSpKPzORF
+         TJT9G215SLEy35vf1h2QUy/l2KpPTBQyrC6Yrt0wa2s5px2D3wLvCiyS/JLmZQQB+Gjy
+         9XwBvU8Bt6/OO3455DoZA+cgh7tQAKM4btAyk0psOygBJQGFDMY6kBCa3FJljLUF4ObN
+         /9NMcMB31/wgIyxJ35VcPKQCvzsDGWKaAQ8HorMx6pmIUR8HUmNm8w7cMEYIgy+u0ir9
+         JKlSVJl6dk8gb1Jqc3plFieluC4UFNFsLm8LHAFVJCm4n2g4qyXSsvWxii8/kGRYkfRw
+         NHuw==
+X-Gm-Message-State: ANoB5pllFibQ+c1pd5U6L28s95TQBg/nvcQwlgU55h9mxCHzhsVKs+9N
+        HH4c+NkfZ9/uY0LOIzSH8qeyU6w77Qzrsiidnqw=
+X-Google-Smtp-Source: AA0mqf65bteWp/5x2VGymOoQTMXDSV6uq3dkYvxgSK7hCEwsZMR8HN1bOyqzRgWw+dQpYM/+lHc/tg==
+X-Received: by 2002:a2e:a0c2:0:b0:279:95c2:c154 with SMTP id f2-20020a2ea0c2000000b0027995c2c154mr12495316ljm.44.1670064245500;
+        Sat, 03 Dec 2022 02:44:05 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512358400b004b19f766b07sm1005571lfr.91.2022.12.03.02.21.45
+        by smtp.gmail.com with ESMTPSA id c24-20020a056512239800b004b40c1f1c70sm1351910lfv.212.2022.12.03.02.44.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Dec 2022 02:21:46 -0800 (PST)
-Message-ID: <ee72df94-aa01-9ac1-f74e-fbfa1e71d2a2@linaro.org>
-Date:   Sat, 3 Dec 2022 11:21:45 +0100
+        Sat, 03 Dec 2022 02:44:04 -0800 (PST)
+Message-ID: <f4c98f85-a39a-77ff-3b69-e461f482fee7@linaro.org>
+Date:   Sat, 3 Dec 2022 11:44:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: RNG: Add Rockchip RNG bindings
-To:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lin Jinhan <troy.lin@rock-chips.com>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221128184718.1963353-1-aurelien@aurel32.net>
- <20221128184718.1963353-2-aurelien@aurel32.net>
- <89b16ec5-f9a5-f836-f51a-8325448e4775@linaro.org>
- <Y4pQGRMzILrkRP/2@aurel32.net>
+Subject: Re: [PATCH v1 1/2] dt-bindings: leds: add binding for aw200xx
 Content-Language: en-US
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     Martin Kurbanov <MMKurbanov@sberdevices.ru>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>
+References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
+ <20221124204807.1593241-2-mmkurbanov@sberdevices.ru>
+ <bb12ea88-b416-7e32-93b9-730b6f009b98@linaro.org>
+ <0a9e7d65-4ad7-b753-ec9b-8e58a549b5db@sberdevices.ru>
+ <620b19f5-2202-21a5-7e3b-816dcd42d1b4@linaro.org>
+ <20221202185308.zh5kesfxvyrco2cr@CAB-WSD-L081021>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y4pQGRMzILrkRP/2@aurel32.net>
+In-Reply-To: <20221202185308.zh5kesfxvyrco2cr@CAB-WSD-L081021>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,103 +86,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 20:20, Aurelien Jarno wrote:
-> Hi,
+On 02/12/2022 19:53, Dmitry Rokosov wrote:
+> Hello Krzysztof,
 > 
-> Thanks for your feedback.
-> 
-> On 2022-11-29 10:24, Krzysztof Kozlowski wrote:
->> On 28/11/2022 19:47, Aurelien Jarno wrote:
->>> Add the RNG bindings for the RK3568 SoC from Rockchip
->>
->> Use subject prefixes matching the subsystem (git log --oneline -- ...),
->> so it is rng, not RNG. Also, you are not adding all-Rockhip RNG but a
->> specific device.
->>
->> Subject: drop second, redundant "bindings".
->>
+> On Fri, Dec 02, 2022 at 05:41:37PM +0100, Krzysztof Kozlowski wrote:
+>> On 28/11/2022 18:43, Martin Kurbanov wrote:
+>>> Hi. Thank you for quick reply. 
 >>>
->>> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
->>> ---
->>>  .../bindings/rng/rockchip,rk3568-rng.yaml     | 60 +++++++++++++++++++
->>>  1 file changed, 60 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+>>> On 25.11.2022 11:29, Krzysztof Kozlowski wrote:
+>>>>> +
+>>>>> +  imax:
+>>>>> +    maxItems: 1
+>>>>> +    description:
+>>>>> +      Maximum supply current, see dt-bindings/leds/leds-aw200xx.h
+>>>>
+>>>> No. Use existing properties from common.yaml. This looks like
+>>>> led-max-microamp and it is per LED, not per entire device.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
->>> new file mode 100644
->>> index 000000000000..c2f5ef69cf07
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
->>> @@ -0,0 +1,60 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/rng/rockchip,rk3568-rng.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Rockchip TRNG
->>> +
->>> +description: True Random Number Generator for some Rockchip SoCs
+>>> The AW200XX LED chip does not support imax setup per led.
+>>> Imax is the global parameter over the all leds. I suppose, it's better
+>>> to add vendor prefix or take minimum from all subnodes?
+>>> How do you think?
 >>
->> s/for some Rockchip SoCs/on Rokchip RK3568 SoC/
-> 
-> My point there is that this driver should also work for other Rockchip
-> SoCs like the RK3588, but 1)
-
-Driver maybe less, but bindings might not.
-
-> it support for this SoC is being added and
-> not yet available in the Linux kernel 2) it hasn't been tested.
-> 
-> Should we mark it as RK3568 specific (or rather RK356x) and change that
-> once a compatible entry is added for the RK3588?
-
-Describe what you are adding here, not something else.
-
-> 
->>> +
->>> +maintainers:
->>> +  - Aurelien Jarno <aurelien@aurel32.net>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - rockchip,rk3568-rng
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: TRNG clock
->>> +      - description: TRNG AHB clock
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: trng_clk
->>> +      - const: trng_hclk
+>> Have in mind that led-max-microamp is a required property in some cases,
+>> so skipping it and using per-device properties does not solve the
+>> problem of adjusting proper currents. What if each LED you set for
+>> something which in total gives more than your imax?
 >>
->> These are too vague names. Everything is a clk in clock-names, so no
->> need usually to add it as name suffix. Give them some descriptive names,
->> e.g. core and ahb.
 > 
-> Those names are based on <include/dt-bindings/clock/rk3568-cru.h> and
+> You are right. From my point of view too, we must build our solutions from
+> HW capabilities. 
 
-clock-names is not for the actual name of the clock feeding it, but
-rather name of input of the device. Reader-friendly.
+And there was no proposal to go around HW capabilities. We talk only
+about representation.
 
-> other drivers seems to have used those for the names. But I understand
-> that broken things could have been merged, so I am fine changing that to
-> core and ahb.
-> 
->>> +
->>> +  resets:
->>> +    maxItems: 1
->>> +
-> 
-> Regards
-> Aurelien
-> 
+> In the current situation, AW200XX chips support global
+> Imax value, so it's acceptable decision to use vendor prefix for global
+> imax parameter, why not?
+
+Jacek made his statement some time ago quite clear:
+
+https://lore.kernel.org/all/5785F17D.3010108@samsung.com/
+
+"If you question the idea of having different maximum brightness per
+sub-LEDs controlled by the same device, then it means that you have
+objections to the entire idea of LED subsystem max_brightness property,
+whereas it has been broadly accepted and successfully used for years."
 
 Best regards,
 Krzysztof
