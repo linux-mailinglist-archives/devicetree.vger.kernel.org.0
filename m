@@ -2,160 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7507564172B
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 14:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E80464173C
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 15:20:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbiLCN6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 08:58:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
+        id S229502AbiLCOT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 09:19:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbiLCN6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 08:58:53 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2C101275D5;
-        Sat,  3 Dec 2022 05:58:52 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4658123A;
-        Sat,  3 Dec 2022 05:58:58 -0800 (PST)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD4A23F73D;
-        Sat,  3 Dec 2022 05:58:49 -0800 (PST)
-Date:   Sat, 3 Dec 2022 13:57:13 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/5] clk: sunxi-ng: Remove duplicate ARCH_SUNXI
- dependencies
-Message-ID: <20221203135713.0591b0b7@slackpad.lan>
-In-Reply-To: <b7774c58-ccf8-4204-2e7e-6841fd13002d@sholland.org>
-References: <20221126191319.6404-1-samuel@sholland.org>
-        <20221126191319.6404-2-samuel@sholland.org>
-        <20221203001439.64284671@slackpad.lan>
-        <b7774c58-ccf8-4204-2e7e-6841fd13002d@sholland.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229436AbiLCOT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 09:19:56 -0500
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193BF2018D;
+        Sat,  3 Dec 2022 06:19:53 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id o5-20020a4aa805000000b004a020f841cbso1092461oom.3;
+        Sat, 03 Dec 2022 06:19:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MTgd+n7LWusiGOC/Gub2PoyKrV2kI0pnTuI95oFDai0=;
+        b=BDVneJCxIrMna9yC+EpEf1j1Hbqu3pcPoJi5CMWgTijdGMglsyuYUONh3qkwJQ+5jw
+         VcoBTNQf1629Ds1Z/Hj/GCHPi2xJ6OjCT8d9Ol73ipsxN39ZLolMjFAFrW62/7P1reDb
+         OGLb3pw/zJqS7dIvSSnQkMVaSjezbxRSpzruNUfQ25Q1N+X7U52WapD8lspytaiCKR6y
+         NsIOv4fwCbwr29rM/7Kqje00KEPeQHjoqIqOTE1R/xYyIaZtey+876irAaYGPEyVUN0V
+         CO3rZ/viqCelPJgNoo/5L6niZPMqpxwm7JhseYGszV6ixGKxfQkndcNwj2cmWWugnrTr
+         qRjg==
+X-Gm-Message-State: ANoB5pmzGw0meUQhbSYYkbQMxuATFK+TnwgF+LckpMkMiwEmWnv5eGQB
+        SZNNsfrhG4fAyoe8yRzHdSQ+IY5/lw==
+X-Google-Smtp-Source: AA0mqf6Ehf7v80eg1GhYvnEpyx8HUbLu9JP+5En8/00R6WxVWYs8KVfvWUUSlsVbZ3BaLed0gqqgNw==
+X-Received: by 2002:a4a:b813:0:b0:49f:8d3:14f4 with SMTP id g19-20020a4ab813000000b0049f08d314f4mr32275886oop.80.1670077192169;
+        Sat, 03 Dec 2022 06:19:52 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t4-20020a4adbc4000000b0049f5ce88583sm4105243oou.7.2022.12.03.06.19.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Dec 2022 06:19:51 -0800 (PST)
+Received: (nullmailer pid 1270254 invoked by uid 1000);
+        Sat, 03 Dec 2022 14:19:51 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-pm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+In-Reply-To: <20221202232054.2666830-2-abel.vesa@linaro.org>
+References: <20221202232054.2666830-1-abel.vesa@linaro.org>
+ <20221202232054.2666830-2-abel.vesa@linaro.org>
+Message-Id: <167007709608.1267842.9280978291039468846.robh@kernel.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: interconnect: Add Qualcomm SM8550
+Date:   Sat, 03 Dec 2022 08:19:51 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Dec 2022 19:52:41 -0600
-Samuel Holland <samuel@sholland.org> wrote:
 
-Hi Samuel,
-
-> On 12/2/22 18:14, Andre Przywara wrote:
-> > On Sat, 26 Nov 2022 13:13:15 -0600
-> > Samuel Holland <samuel@sholland.org> wrote:
-> > 
-> > Hi,
-> > 
-> > thanks for addressing this!
-> >   
-> >> SUNXI_CCU already depends on ARCH_SUNXI, so adding the dependency to
-> >> individual SoC drivers is redundant.
-> >>
-> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> >> ---
-> >>
-> >>  drivers/clk/sunxi-ng/Kconfig | 43 ++++++++++++++++++------------------
-> >>  1 file changed, 21 insertions(+), 22 deletions(-)
-> >>
-> >> diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
-> >> index 461537679c04..64cfa022e320 100644
-> >> --- a/drivers/clk/sunxi-ng/Kconfig
-> >> +++ b/drivers/clk/sunxi-ng/Kconfig
-> >> @@ -14,43 +14,43 @@ config SUNIV_F1C100S_CCU
-> >>  
-> >>  config SUN20I_D1_CCU
-> >>  	tristate "Support for the Allwinner D1 CCU"
-> >> -	default RISCV && ARCH_SUNXI
-> >> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
-> >> +	default RISCV
-> >> +	depends on RISCV || COMPILE_TEST  
-> > 
-> > I agree on the "depends" part: Indeed the guard symbol already covers
-> > that, so it's redundant.
-> > However I am not so sure about the "default" part: When ARCH_SUNXI is
-> > deselected, but COMPILE_TEST in enabled, we default to every CCU driver
-> > being built-in. I am not sure this is the intention, or at least
-> > expected when doing compile testing?  
+On Sat, 03 Dec 2022 01:20:53 +0200, Abel Vesa wrote:
+> The Qualcomm SM8550 SoC has several bus fabrics that could be
+> controlled and tuned dynamically according to the bandwidth demand.
 > 
-> SUNXI_CCU, which these depend on, is still "default ARCH_SUNXI", so if
-> you have ARCH_SUNXI disabled, you only get any drivers if you manually
-> enable SUNXI_CCU. I mentioned this in the patch 2 description, but maybe
-> I should move that comment here.
-
-Yeah, I read this later on, I guess it's fine then.
-
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 > 
-> >>  
-> >>  config SUN20I_D1_R_CCU
-> >>  	tristate "Support for the Allwinner D1 PRCM CCU"
-> >> -	default RISCV && ARCH_SUNXI
-> >> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
-> >> +	default RISCV
-> >> +	depends on RISCV || COMPILE_TEST
-> >>  
-> >>  config SUN50I_A64_CCU
-> >>  	tristate "Support for the Allwinner A64 CCU"
-> >> -	default ARM64 && ARCH_SUNXI
-> >> -	depends on (ARM64 && ARCH_SUNXI) || COMPILE_TEST
-> >> +	default ARM64
-> >> +	depends on ARM64 || COMPILE_TEST  
-> > 
-> > I wonder if this "depends" line was always wrong and should be fixed:
-> > We can compile a 32-bit ARM kernel and run it on an A64. Granted this
-> > requires a special bootloader or a hacked U-Boot (tried that), and
-> > reveals some other issues with the decompressor, but technically there
-> > is no 64-bit dependency in here.
-> > The same goes for all the other ARM64 CCUs: Cortex-A53s can run AArch32
-> > in all exception levels.  
+> Changes since v4:
+>  * Added Krzysztof's R-b tag
 > 
-> I was trying to simplify things by hiding irrelevant options, and you
-> bring up an edge case of an edge case. :) I am okay with relaxing the
-> dependency, though I would want to leave them disabled by default for
-> 32-bit kernels (excluding them from the change in patch 2).
-
-Yes, definitely, that was the idea.
-
-And sorry for being a nuisance, but I think this "depends on ARCH_SUNXI"
-here is and was always misplaced. In contrast to things like "depends
-on PCI" or "depends on GPIOLIB", there is no real dependency on
-ARCH_SUNXI or even ARM/RISCV here, it's more a "only useful on
-ARCH_SUNXI".
-And this ARM vs ARM64 was just another rationale for not being
-overzealous with the dependency.
-
-But I see that this is an orthogonal discussion to this patch, so this
-should not block it. I will meditate over both patches again, since I
-have the gut feeling that the end result is fine.
-
-Cheers,
-Andre
-
+>  .../interconnect/qcom,sm8550-rpmh.yaml        | 139 +++++++++++++
+>  .../interconnect/qcom,sm8550-rpmh.h           | 190 ++++++++++++++++++
+>  2 files changed, 329 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sm8550-rpmh.h
 > 
-> > So shall we just completely remove the "depends" line for those, and
-> > let SUNXI_CCU do that job? Or use use !RISCV || COMPILE_TEST?  
-> 
-> That, or we could add MACH_SUN8I to the condition. I don't have a strong
-> opinion.
-> 
-> Regards,
-> Samuel
-> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,sm8550-gcc.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221202232054.2666830-2-abel.vesa@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
