@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A4CE641310
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 02:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E22EA641316
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 03:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234578AbiLCBwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Dec 2022 20:52:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39236 "EHLO
+        id S234947AbiLCCCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Dec 2022 21:02:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234568AbiLCBwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 20:52:50 -0500
+        with ESMTP id S234933AbiLCCCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Dec 2022 21:02:06 -0500
 Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861F01C424;
-        Fri,  2 Dec 2022 17:52:47 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id C186D5C00C2;
-        Fri,  2 Dec 2022 20:52:44 -0500 (EST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCDEA9E8D;
+        Fri,  2 Dec 2022 18:02:05 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1414F5C0086;
+        Fri,  2 Dec 2022 21:02:05 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 02 Dec 2022 20:52:44 -0500
+  by compute2.internal (MEProxy); Fri, 02 Dec 2022 21:02:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
         cc:cc:content-transfer-encoding:content-type:date:date:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1670032364; x=
-        1670118764; bh=qCFdQNJyL5Qi9scJku+NmJywt0J5lgF/iOTG+QsY94g=; b=i
-        vYLCqdVtr8DPyj6NdN0/Y84CnCuPO8LxmvuHIGUHazadhfwpV5MKxl4GH2rTfKgi
-        LknmZ67+mCkDVa7CH8O04Fdrb4EaWkEXY2XJmvsS37kXD7iFoT45tG11sJrprgXr
-        LcXF4qC2gJjb95B+bmAXBC4JT49jAO13fW7hpjo5MGOYLRXxqhVtu75vhTRDnSBX
-        CI4NhaKPqHVqeQUkEgIatk2BRkFdoHM1DWP1CuAgSwP2E/eXPwOJMBNbYkqrLFdq
-        1N+haPpxilqj9awxUdm9SnAIUtfteJmd3G7RXHLJ8Tv1WTIaJZzugyDt98GP19H6
-        I0kJc4s+eQN2CA8NK4eTg==
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1670032925; x=
+        1670119325; bh=S0NzbHNIAiwIskxOXPjYN0odudyl1Jgaifx5SiPE8rU=; b=O
+        fD41iGhaxp1TMU39xNDN0hiws8ith/AkDhK0UXzuGCBATOxVhJPKMKXWYCAy3nf9
+        UMKD8D8NNCqVy1BN5h7in/cQTaN+BO5aRUGOd9zc73FTxHL9EItPSSrwD3m7+Wfg
+        HrbosXwh588WQJcft6CAm7pe4VG4yun8QHMoJZ1SI6jPOidERNuCsry3yaVSgUmm
+        Y+WT+yDEZRpsIVbk23TNJzuYaSYSFTKoAhZ5hyDO3Jd4NgP/GoWzAshSZDH2g5ES
+        Fn2JKT9/R0oWpj9vBGtKQmL7K0u3K8X/aTka+pHI6VioPYf2fck8MGLxmXxAKy+m
+        Tuc+nUmrD7aOgSx7lRggA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-transfer-encoding
         :content-type:date:date:feedback-id:feedback-id:from:from
         :in-reply-to:in-reply-to:message-id:mime-version:references
         :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1670032364; x=
-        1670118764; bh=qCFdQNJyL5Qi9scJku+NmJywt0J5lgF/iOTG+QsY94g=; b=D
-        lHkpOYDxiC1wCVtKKi5YMDF0b/EKrJaTwUrkn31v9epUy9z+1NgGGW5puIUWMbYB
-        U/0c+pKz96WzOrSY+Kdlr59Tv26wX/lATGlNchwBh1OXhSwFfy77nROahKyyJNJQ
-        of44jMCkd1GvSR7NlIGEbQYvyxxKPHUQmfSqboP1FtDS7sczAfjP8U0VHv+zmj1Y
-        mq+V/ErnUyU6wzT+WYn1riw2glmsaF8eTjpKC/pY/yYFnDqdWO+ZCvpzMhXdLc/z
-        Ot/qBabML4dLtn6SmTfhNY76Mf9nFyefGoSrnsPiO9O4Hb50EqriHm47+V+1lFvp
-        VwQ5Mm0TIfKogx4QLSAoQ==
-X-ME-Sender: <xms:66uKY7GB6fI_mJm_rPpWdeai4QQGlKnRly1BF7oZC9WIaWaOI351qg>
-    <xme:66uKY4VaE40ZtgUr-H3uiedM9K9VRw_-1MK1Cy7Tbw_GmSWxg8GJqTULw8bRydIZ3
-    8rTUgaj33Cn23TYQg>
-X-ME-Received: <xmr:66uKY9JgjTRZ2AwsxPguwwP4Bm9sjDLNmNHP1ROSBmJjBNhL5JbLL726_vxbNT2rhPRmkpaMrHadw_xoa6p3TTlpctJ8PP0A9o3StaMkLa6PmaEJeEn8hfu1Bg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdelgdeflecutefuodetggdotefrodftvf
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1670032925; x=
+        1670119325; bh=S0NzbHNIAiwIskxOXPjYN0odudyl1Jgaifx5SiPE8rU=; b=C
+        4e31EijofWm+tmlo+sd7gMaDMWfYK0/F1RFudCAkFgFuc3gZBqThm5Zj2h0uUZgJ
+        vsG+kLo2qCcUCkCcNlolivEM3/rhjgoPY02LTbvl0QJjVxQJpNja8hNj5QDDiZTQ
+        TX13dmZ5EB3mD1jhiJ8JhD4VDRtltIrtQdHdyWHHh3BtUOpzfwavC2qTyE9GeiuZ
+        7eTpA597IduJ7iJKpxD01jI4S0vt1pQxPg1YMDIaBuGLwa4EDFTHl3lbZ1jSKqOD
+        /eaOgIxNIz0MGvcYQD2TZm0f3tSRDff7/pLAMoHGFjD/L5My8mixd9lw1uHBcsC0
+        6FEJuFaGNPJIsKiI3G0Ng==
+X-ME-Sender: <xms:HK6KY4pSz1DYBVLjPwswS6-9fkAjPXQ5hahTxdXJa0DOSayNX9cWlA>
+    <xme:HK6KY-o8nLcOpbbvcqtAyoOfsdvucRQkgu63KF3GbYfJaJI3gg1sRTbNyFfjwUQR1
+    0DMULmWYGLsT9gyfQ>
+X-ME-Received: <xmr:HK6KY9ODWJfH5Zfyk-_iuQ6tS1LKdIMuMlFAsdlJ-q5b74cyahyxZit_0Cm86axXbx3HlnOG3-99dbpA_0P8g_xz29ucarlcYWDw3manWENg5vnInaepbpohaw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdelgdegudcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefkffggfgfvvehfhffujggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
@@ -55,36 +55,35 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrtdelgdeflecutefuodetggdote
     ftrfgrthhtvghrnhepjefgfffhudejfedtuedugeeutdetgfeiteffffehjeeugfeuvdeh
     jeetfedtffdtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
     homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:66uKY5FRqgfZgwKo988t8REdQu7HUxb7_-iAq2qbgv1NyF3Wk9Agxw>
-    <xmx:66uKYxXFvHTMkFletaQrcdKSLTQQtP3rI4gKBGaY3NmFrCnhsnbaEA>
-    <xmx:66uKY0Nks7PoT7NA7Toc3fZLf4SoRWOV7-49zHnFytxDGrn7Ttrd8w>
-    <xmx:7KuKY8MNR9QDNkxdTyVkSMbTZ7yuLzIPsRebrvU_OkQeDgSZjj9OJA>
+X-ME-Proxy: <xmx:HK6KY_4eh7xxfsn07JzTdrNdhy9sghN40aL7HFeM8MAwlHidQxTYgw>
+    <xmx:HK6KY34qzL2NwZC0SVM8UjAHgskkHl0xYt0N_sth4fLkVuE_pJiJfw>
+    <xmx:HK6KY_jnKS9CLM9W-tcisWceuaHZTQlWsCs-s2R3GziZkC8UTRkZQA>
+    <xmx:Ha6KY_zpl94MFL4JJcla-uWp5ZhLz8ABLAauiXRtsL00WIOgSTPfVg>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 2 Dec 2022 20:52:42 -0500 (EST)
-Message-ID: <b7774c58-ccf8-4204-2e7e-6841fd13002d@sholland.org>
-Date:   Fri, 2 Dec 2022 19:52:41 -0600
+ 2 Dec 2022 21:02:04 -0500 (EST)
+Message-ID: <291a9677-47b9-69e6-0a21-8e7269cfb230@sholland.org>
+Date:   Fri, 2 Dec 2022 20:02:03 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
 Content-Language: en-US
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20221126191319.6404-1-samuel@sholland.org>
- <20221126191319.6404-2-samuel@sholland.org>
- <20221203001439.64284671@slackpad.lan>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20221202081647.3183870-1-uwu@icenowy.me>
+ <20221202081647.3183870-6-uwu@icenowy.me>
 From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 1/5] clk: sunxi-ng: Remove duplicate ARCH_SUNXI
- dependencies
-In-Reply-To: <20221203001439.64284671@slackpad.lan>
+Subject: Re: [PATCH v2 5/6] dt-bindings: arm: sunxi: add Rongpin RP-H6B board
+In-Reply-To: <20221202081647.3183870-6-uwu@icenowy.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -97,82 +96,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/2/22 18:14, Andre Przywara wrote:
-> On Sat, 26 Nov 2022 13:13:15 -0600
-> Samuel Holland <samuel@sholland.org> wrote:
+On 12/2/22 02:16, Icenowy Zheng wrote:
+> Rongpin RP-H6B is a development board with RP-H6C SoM, which uses an
+> Allwinner H6 SoC.
 > 
-> Hi,
+> Add compatible strings for it, including the board-specific compatible
+> and the SoM compatible.
 > 
-> thanks for addressing this!
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes in v2:
+> - Add Krzysztof's ACK.
 > 
->> SUNXI_CCU already depends on ARCH_SUNXI, so adding the dependency to
->> individual SoC drivers is redundant.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->>  drivers/clk/sunxi-ng/Kconfig | 43 ++++++++++++++++++------------------
->>  1 file changed, 21 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
->> index 461537679c04..64cfa022e320 100644
->> --- a/drivers/clk/sunxi-ng/Kconfig
->> +++ b/drivers/clk/sunxi-ng/Kconfig
->> @@ -14,43 +14,43 @@ config SUNIV_F1C100S_CCU
->>  
->>  config SUN20I_D1_CCU
->>  	tristate "Support for the Allwinner D1 CCU"
->> -	default RISCV && ARCH_SUNXI
->> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
->> +	default RISCV
->> +	depends on RISCV || COMPILE_TEST
-> 
-> I agree on the "depends" part: Indeed the guard symbol already covers
-> that, so it's redundant.
-> However I am not so sure about the "default" part: When ARCH_SUNXI is
-> deselected, but COMPILE_TEST in enabled, we default to every CCU driver
-> being built-in. I am not sure this is the intention, or at least
-> expected when doing compile testing?
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-SUNXI_CCU, which these depend on, is still "default ARCH_SUNXI", so if
-you have ARCH_SUNXI disabled, you only get any drivers if you manually
-enable SUNXI_CCU. I mentioned this in the patch 2 description, but maybe
-I should move that comment here.
-
->>  
->>  config SUN20I_D1_R_CCU
->>  	tristate "Support for the Allwinner D1 PRCM CCU"
->> -	default RISCV && ARCH_SUNXI
->> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
->> +	default RISCV
->> +	depends on RISCV || COMPILE_TEST
->>  
->>  config SUN50I_A64_CCU
->>  	tristate "Support for the Allwinner A64 CCU"
->> -	default ARM64 && ARCH_SUNXI
->> -	depends on (ARM64 && ARCH_SUNXI) || COMPILE_TEST
->> +	default ARM64
->> +	depends on ARM64 || COMPILE_TEST
-> 
-> I wonder if this "depends" line was always wrong and should be fixed:
-> We can compile a 32-bit ARM kernel and run it on an A64. Granted this
-> requires a special bootloader or a hacked U-Boot (tried that), and
-> reveals some other issues with the decompressor, but technically there
-> is no 64-bit dependency in here.
-> The same goes for all the other ARM64 CCUs: Cortex-A53s can run AArch32
-> in all exception levels.
-
-I was trying to simplify things by hiding irrelevant options, and you
-bring up an edge case of an edge case. :) I am okay with relaxing the
-dependency, though I would want to leave them disabled by default for
-32-bit kernels (excluding them from the change in patch 2).
-
-> So shall we just completely remove the "depends" line for those, and
-> let SUNXI_CCU do that job? Or use use !RISCV || COMPILE_TEST?
-
-That, or we could add MACH_SUN8I to the condition. I don't have a strong
-opinion.
-
-Regards,
-Samuel
+Reviewed-by: Samuel Holland <samuel@sholland.org>
 
