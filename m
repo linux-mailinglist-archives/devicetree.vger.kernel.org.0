@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E80464173C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 15:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC25564176B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 16:01:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiLCOT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 09:19:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36314 "EHLO
+        id S229687AbiLCPBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 10:01:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiLCOT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 09:19:56 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193BF2018D;
-        Sat,  3 Dec 2022 06:19:53 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id o5-20020a4aa805000000b004a020f841cbso1092461oom.3;
-        Sat, 03 Dec 2022 06:19:53 -0800 (PST)
+        with ESMTP id S229436AbiLCPBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 10:01:31 -0500
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E91721252
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 07:01:29 -0800 (PST)
+Received: by mail-vs1-xe34.google.com with SMTP id k185so7266362vsc.2
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 07:01:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=09mwFGz4NcvFbSVkdum1P3oLswumOl7iXfX4mGer/Fg=;
+        b=vn+zFXCqAI+urZrIK5ppevghvUY5FHb+9sphp7ac70gMg3YE73mE+3g6peM3093a25
+         hkTfTljMkA5Eqx6zV+xR1Pyt/yAza1JBC1goCDnAlzFq/AsZ7OtkPRHW41rflaABgnWO
+         TGNlRpgOfV6BdiXnzVvsCY+NLf2YVgOGiUylST1lMoI07iuJq/2xX8wYjKkxeeKqnJ7i
+         +3KXGfXgPGEcFiBrShZLl+2f/OKRgHsdqmsfSrxrgaKFKRy2wI/JrD2fvUYwWuWX/Ik5
+         EGtYyO+NZ4WPWm9KBrxhTujEFlUYCldEOB7A49T8wo8S51qhMeisMKqn6ygUqgQJcZ/R
+         8JcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MTgd+n7LWusiGOC/Gub2PoyKrV2kI0pnTuI95oFDai0=;
-        b=BDVneJCxIrMna9yC+EpEf1j1Hbqu3pcPoJi5CMWgTijdGMglsyuYUONh3qkwJQ+5jw
-         VcoBTNQf1629Ds1Z/Hj/GCHPi2xJ6OjCT8d9Ol73ipsxN39ZLolMjFAFrW62/7P1reDb
-         OGLb3pw/zJqS7dIvSSnQkMVaSjezbxRSpzruNUfQ25Q1N+X7U52WapD8lspytaiCKR6y
-         NsIOv4fwCbwr29rM/7Kqje00KEPeQHjoqIqOTE1R/xYyIaZtey+876irAaYGPEyVUN0V
-         CO3rZ/viqCelPJgNoo/5L6niZPMqpxwm7JhseYGszV6ixGKxfQkndcNwj2cmWWugnrTr
-         qRjg==
-X-Gm-Message-State: ANoB5pmzGw0meUQhbSYYkbQMxuATFK+TnwgF+LckpMkMiwEmWnv5eGQB
-        SZNNsfrhG4fAyoe8yRzHdSQ+IY5/lw==
-X-Google-Smtp-Source: AA0mqf6Ehf7v80eg1GhYvnEpyx8HUbLu9JP+5En8/00R6WxVWYs8KVfvWUUSlsVbZ3BaLed0gqqgNw==
-X-Received: by 2002:a4a:b813:0:b0:49f:8d3:14f4 with SMTP id g19-20020a4ab813000000b0049f08d314f4mr32275886oop.80.1670077192169;
-        Sat, 03 Dec 2022 06:19:52 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t4-20020a4adbc4000000b0049f5ce88583sm4105243oou.7.2022.12.03.06.19.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Dec 2022 06:19:51 -0800 (PST)
-Received: (nullmailer pid 1270254 invoked by uid 1000);
-        Sat, 03 Dec 2022 14:19:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=09mwFGz4NcvFbSVkdum1P3oLswumOl7iXfX4mGer/Fg=;
+        b=lIUzSoQug8kHdEdRaCeGAzRkG7W9V1CmU9x2rsEYtRCZF4bg6twuJ9oUCwb+fgz/OH
+         bA2+pt2b+6gphlIItTipGxeFyGE2aDfGi68gfW2AoXpB8/7Y8O//bx4zbZghR7HvqbSx
+         cXX15NSSW5fOBa9V+v2n68Dch6BLNFpHGJooKZNdjwsRJmkOGsSPUEknWYg8BEpK9VHD
+         ld6fIs1t405JXGai8CIKLwkzmsHfzeSvTog1Lx1uvDuhskD71rzODZB53Ss82YtXgMiZ
+         CYDrZriSuWAPWSfMHgN5PKrPq95v4cpMLwn1GWPutjvhin+fFtEDH2DfDbf/HEnB2UUp
+         nQ/A==
+X-Gm-Message-State: ANoB5pkSR3+UrEUyoFssMMFWpD2utCIIbprmcGG03BXj78unePP/BkiO
+        Z8qBY6JpvOhIlGeti1csWWmfbVGlDslN2bzxJ1EQZw==
+X-Google-Smtp-Source: AA0mqf4prrZgY5AZGLl8TsqsXt+T07g61OMhnTaRfqtm8oQHZV4+gNzjg0YMjGFSea+wglI7ScShDYsKrWU3UL7H+B4=
+X-Received: by 2002:a67:e8d7:0:b0:3b0:767f:e291 with SMTP id
+ y23-20020a67e8d7000000b003b0767fe291mr29399514vsn.47.1670079688361; Sat, 03
+ Dec 2022 07:01:28 -0800 (PST)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+References: <20221203105825.15886-1-zhuyinbo@loongson.cn> <b6b34bc4-4089-9c02-81b2-9eaf2c9a4663@loongson.cn>
+In-Reply-To: <b6b34bc4-4089-9c02-81b2-9eaf2c9a4663@loongson.cn>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Sat, 3 Dec 2022 16:01:17 +0100
+Message-ID: <CAMRc=MdqOA_xU6TdcMspF=GMYx0MbKv0MzrTNOuZ7W=kg2skDw@mail.gmail.com>
+Subject: Re: [PATCH v1] gpio: loongson: enable irqdomain hierarchy config
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-pm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-In-Reply-To: <20221202232054.2666830-2-abel.vesa@linaro.org>
-References: <20221202232054.2666830-1-abel.vesa@linaro.org>
- <20221202232054.2666830-2-abel.vesa@linaro.org>
-Message-Id: <167007709608.1267842.9280978291039468846.robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: interconnect: Add Qualcomm SM8550
-Date:   Sat, 03 Dec 2022 08:19:51 -0600
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,53 +78,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Dec 3, 2022 at 12:05 PM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>
+>
+> =E5=9C=A8 2022/12/3 18:58, Yinbo Zhu =E5=86=99=E9=81=93:
+> > The loongson gpio driver need select IRQ_DOMAIN_HIERARCHY and add
+> > such support.
+> >
+> > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> > ---
+> >   drivers/gpio/Kconfig | 1 +
+> >   1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> > index 55b7c5bae4aa..0f014411703e 100644
+> > --- a/drivers/gpio/Kconfig
+> > +++ b/drivers/gpio/Kconfig
+> > @@ -395,6 +395,7 @@ config GPIO_LOONGSON_64BIT
+> >       depends on LOONGARCH || COMPILE_TEST
+> >       select GPIO_GENERIC
+> >       select GPIOLIB_IRQCHIP
+> > +     select IRQ_DOMAIN_HIERARCHY
+> >       help
+> >         Say yes here to support the GPIO functionality of a number of
+> >         Loongson series of chips. The Loongson GPIO controller supports
+>
+> Hi Bartosz,
+>
+>
+> please help merge this patch on top of the existing series.
+>
 
-On Sat, 03 Dec 2022 01:20:53 +0200, Abel Vesa wrote:
-> The Qualcomm SM8550 SoC has several bus fabrics that could be
-> controlled and tuned dynamically according to the bandwidth demand.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> Changes since v4:
->  * Added Krzysztof's R-b tag
-> 
->  .../interconnect/qcom,sm8550-rpmh.yaml        | 139 +++++++++++++
->  .../interconnect/qcom,sm8550-rpmh.h           | 190 ++++++++++++++++++
->  2 files changed, 329 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,sm8550-rpmh.h
-> 
+I applied this, but please don't ping me an hour after you submit a
+patch on a Saturday.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,sm8550-gcc.h: No such file or directory
-   18 |         #include <dt-bindings/clock/qcom,sm8550-gcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/interconnect/qcom,sm8550-rpmh.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221202232054.2666830-2-abel.vesa@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Bart
