@@ -2,102 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E65641814
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 18:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E716B641808
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 18:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbiLCRYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 12:24:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
+        id S229650AbiLCRM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 12:12:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbiLCRYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 12:24:38 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03B6B1E70B;
-        Sat,  3 Dec 2022 09:24:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=b8jU26nVv5zOpuzDY4RwO7PBnJsJWgH0sc80AjiDjCg=; b=0Opbfyx0A7KcUTzMBxsQam5MR2
-        l6MSrcSSRtyJaDFtsvuJcPz7EPzYJo8F4ynaXRbCsckseKpHhXtY4+iCjwqSTJenHcMa5yeXLC9sk
-        nUEidgOVOL46zFwEyJgxDaCUWRgVII7sB5/A1M4lqWymyUKmAPx2EnMsVwJFa1NHXI4a3YFSALpt0
-        kamqwpd3Mn/B3Xg2VIdd3wesfmfG8mrHhfIn+27CIwFDR+pX3P7Z16usnSlH/4VY5F1Bgixddfcno
-        JLwkg5LnNx/9PQnWHj+gEDA85AnJz1IlZMBoUDNqtj6NQRH+Mo3hhpXpSi7YCWHLE33+2M4W9LZ8Q
-        Z57YNhHg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35548)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1p1WFe-0005Gi-11; Sat, 03 Dec 2022 17:24:34 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1p1WFb-0005W0-Or; Sat, 03 Dec 2022 17:24:31 +0000
-Date:   Sat, 3 Dec 2022 17:24:31 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     kernel test robot <lkp@intel.com>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, netdev@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH net-next v2] net: sfp: clean up i2c-bus property parsing
-Message-ID: <Y4uGT19d1Euz75Vd@shell.armlinux.org.uk>
-References: <E1p1OIG-0098J4-EV@rmk-PC.armlinux.org.uk>
- <202212040026.WN9NQzqq-lkp@intel.com>
+        with ESMTP id S229597AbiLCRM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 12:12:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E07D11C912;
+        Sat,  3 Dec 2022 09:12:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7A961B8074C;
+        Sat,  3 Dec 2022 17:12:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AB65C433C1;
+        Sat,  3 Dec 2022 17:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670087540;
+        bh=HCj01ypWGHi8MG8ZVE2o2OTaMzH427TOChQYWQAYPjE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=YmU3qTT3PU1o1LD/wkyrVxX/Od51+zUOtSZEY/Y/84DLVcVC2wBuiOVmxTC6HPKyY
+         vBfWFEEEFr/I0utlf0iMq7yxoiUtoE+DQTXto5Q+J5EuS6qJN8fL2Q5b7VB/gflLev
+         dCMwd5AWUWak9i8toT8sMqIkUpAWX+EwU2gfHJ8o3sY/a5AyslJM/rCdVvG1dtrvQk
+         9OoGyiQeW0/bu0lEseqrKT3YLrj/hEyJXy1D6ncaLoxPem4mQ2KSZsIMJCxseVlmSb
+         TR/Lwkm35S7rj/FQROFHY7xOLWVSbtBE41dCrUUKm3pB+r1fwZBRlCZJGeZNbkEyCO
+         EUP1omNTNxFQg==
+Date:   Sat, 3 Dec 2022 17:25:04 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Gerald Loacker <gerald.loacker@wolfvision.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v6 0/3] add ti tmag5273 driver
+Message-ID: <20221203172504.4b366d54@jic23-huawei>
+In-Reply-To: <20221201072220.402585-1-gerald.loacker@wolfvision.net>
+References: <20221201072220.402585-1-gerald.loacker@wolfvision.net>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202212040026.WN9NQzqq-lkp@intel.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 04, 2022 at 12:40:25AM +0800, kernel test robot wrote:
-> Thank you for the patch! Perhaps something to improve:
+On Thu,  1 Dec 2022 08:22:17 +0100
+Gerald Loacker <gerald.loacker@wolfvision.net> wrote:
 
-Sigh... this is another stupidity.
+> Hi all,
+> 
+> This patch set adds support for the TI TMAG5273 Low-Power Linear 3D Hall-
+> Effect Sensor. Additionally to temperature and magnetic X, Y and Z-axes the
+> angle and magnitude are reported. The sensor is operating in continuous
+> measurement mode and changes to sleep mode if not used for 5 seconds.
+> 
+> Tests were done on a ROCK3 Model A board using the TMAG5273 evaluation
+> module.
 
-> 73970055450eeb Russell King          2017-07-25  2701  	if (pdev->dev.of_node) {
-> 73970055450eeb Russell King          2017-07-25 @2702  		struct device_node *node = pdev->dev.of_node;
+Hi Gerald,
 
-"node" declared here...
+Looks good to me (thanks to Andy for his work reviewing!)
 
-> 259c8618b0099b Russell King          2017-12-14  2703  		const struct of_device_id *id;
-> 73970055450eeb Russell King          2017-07-25  2704  
-> 259c8618b0099b Russell King          2017-12-14  2705  		id = of_match_node(sfp_of_match, node);
+Unfortunately timing is such that we are too close to the merge window, so
+I'm not planning on doing another pull request for this cycle. As such it's
+the first thing I've queued up for 6.3.
 
-... and clearly used here, so the code looks to be correct.
+Applied to the togreg branch of iio.git and pushed out as testing for
+0-day to take a look at it.
 
-However, when CONFIG_OF is not set, of_match_node() does not make use
-of this argument:
+Note I'll probably rebase the tree after rc1 and so it won't push out as
+togreg (which is meant to be non-rebasing) until after that point.
 
-#define of_match_node(_matches, _node)  NULL
+Thanks,
 
-which results in otherwise correct code issuing a warning when
-CONFIG_OF is disabled... and sure enough, your configuration has:
+Jonathan
 
-> # CONFIG_OF is not set
 
-This illustrates just how bad an idea it is to use compiler macros for
-this stuff - it actively hurts compile testing, because you have to
-test every damn combination of configuration options to get proper
-coverage, which is totally and utterly rediculous.
+> 
+> Changes in v6:
+>  - Defined TMAG5273_MAX_REG
+>  - Added comment for wrong device ID
+>  
+> Changes in v5:
+>  - Fixed dev_err_probe
+>  - Removed unnecessary '&' for function pointers
+>  - Removed warning for device tree reading failure as Linux should not
+>    validate device tree.
+>  - Added comment for device name
+>  - Added tmag5273_wake_up() and improved comments
+>  - Reformatted pm_ops
+>  
+> Changes in v4:
+>  - Add only struct for IIO_VAL_INT_PLUS_MICRO iio type to iio.h.
+>  - Simplified tmag5273_write_scale()
+>  - Removed unnecessary  != 0
+>  - Fixed regmap max_register
+>  - Simplified tmag5273_read_device_property()
+>  - Fixed some line breaks.
+> 
+> Changes in v3:
+>  - Added structs for iio types to iio.h. Using these structs for iio type
+>    arrays such as IIO_AVAIL_LIST makes the code more readable than just
+>    using (int *). It was suggested by Andy Shevchenko to move these structs
+>    to the iio headers to avoid different approaches.
+>  - dt-bindings: dropped quotes from strings
+>  - Added include <linux/bitfield.h>
+>    | Reported-by: kernel test robot <lkp@intel.com> 
+>  - Added include <linux/bits.h>
+>  - Removed <asm/unaligned.h>
+>  - Added missing "static const" for tmag5273_avg_table
+>  - Documented Device ID
+>  - Fixed index of tmag5273_scale definition
+>  - Clarify TMAG5273_MAG_CH_EN_X_Y_Z as an index
+>  - Removed unnecessary print
+>  - Introduced tmag5273_write_scale() and tmag5273_write_osr() helper
+>    functions
+>  - Use of match_string()
+>  - Format
+> 
+> Changes in v2:
+>  Thanks to Krzysztof, Andy and Jonathan for your detailed review and
+>  explanations on the first version. This patch includes all your
+>  suggestions and some additional cleanup in the probe function.
+> 
+> Gerald Loacker (3):
+>   iio: add struct declaration for iio types
+>   dt-bindings: iio: magnetometer: add ti tmag5273 documentation file
+>   iio: magnetometer: add ti tmag5273 driver
+> 
+>  .../iio/magnetometer/ti,tmag5273.yaml         |  75 ++
+>  MAINTAINERS                                   |   7 +
+>  drivers/iio/magnetometer/Kconfig              |  12 +
+>  drivers/iio/magnetometer/Makefile             |   2 +
+>  drivers/iio/magnetometer/tmag5273.c           | 743 ++++++++++++++++++
+>  include/linux/iio/iio.h                       |   5 +
+>  6 files changed, 844 insertions(+)
+>  create mode 100644 .../bindings/iio/magnetometer/ti,tmag5273.yaml
+>  create mode 100644 drivers/iio/magnetometer/tmag5273.c
+> 
 
-of_match_node() and ACPI_HANDLE_FWNODE() should *both* be inline
-functions when the subsystem is disabled, so that incorrect arguments
-can be detected, and warnings about unused variables such as the one
-you're reporting here doesn't happen.
-
-While the issue lies firmly in the realms of the DT (and ACPI) headers,
-I will yet again respin this patch to sort this out - but really the
-correct solution is to fix the bloody headers so compile coverage
-actually works.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
