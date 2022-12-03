@@ -2,173 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F00364171C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 14:46:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7507564172B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 14:58:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbiLCNqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 08:46:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
+        id S229559AbiLCN6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 08:58:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbiLCNqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 08:46:14 -0500
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7C9A1B8;
-        Sat,  3 Dec 2022 05:46:13 -0800 (PST)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1441d7d40c6so8521858fac.8;
-        Sat, 03 Dec 2022 05:46:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UZUeqVR+YNS254T8ghrOY0br3+YG9kpDkIyVm5x/F6Y=;
-        b=qRGRjM8J5rb2ZDwDTRn79jhnQNreMJM4+wgZxFQ2ktqCJa5uoCvkJLyYapat94blo+
-         ZFkjUp1v6+Akll140+hFahBUvNiKiJkPQMsUzAOPyraZ/nmbz0FYawnmYknzZ4YQg0l2
-         HDg5r3YdkBd1xhewe58Saj9dRAHIvEIJqEflYBzGFYvcmSsl90pynLeWVXk6Ff03KF7J
-         rO2At1ZzLaa9QB1RseJ/uTrF6UW45GEQZnC1fvSALcTSmeR7GckKZiscnyl+7qrddx7H
-         u+jdfXZZ9HpY7APpffFpVkZRjvhISzSOR9rBYHEWEdA7bRdfrnxnALavioLZk0yytspW
-         cGgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UZUeqVR+YNS254T8ghrOY0br3+YG9kpDkIyVm5x/F6Y=;
-        b=nDo1jasWAoadzY+QcAAFypfwmatD3aUFgwT/7183u6/swN5kUgDkkxig94fLYEG69f
-         bi0ltX6k7x6a38VEH1BiPDkI0w2fx/xeowQ7ZuiTc+jxXeDjJuV6b+QFw1JhHK0J4yYe
-         rJROzjsXojY7/LqCeZJ7hc4q1tjBaVbvbiDQVtK2fCLLJS+D9ziwxs/Gi59ZDGpzmnAf
-         zV3gCgsqB04MEKG8IlUVXBYgijkrFH7NCjakkZB4FWep03SE+3DFPHIo7JMb0g5rkXvT
-         mUBPD5RriZdJUJ68gOx11P8z3XH7gqH1ac9brLdbzMdggXIGB6B4lzvvayJHGLBS7W5/
-         kPPA==
-X-Gm-Message-State: ANoB5pknbd8CJWrjyLkcgmFj4l1sCp7lGy6LReNtIi9oRuIUMv86uvY1
-        mBPrIuCQzlBb4sLdiI+NJZT/QlJVBtITrSTRK0k=
-X-Google-Smtp-Source: AA0mqf7WM7gwxmrkTyxIs8uTreJx+nLeBeWG+Yvq9dufiFgID0aEFwuQfJwhWKSa1r92UD+zvhhjlhh8IU17p80NCo4=
-X-Received: by 2002:a05:6870:ab86:b0:13c:5763:9411 with SMTP id
- gs6-20020a056870ab8600b0013c57639411mr41158023oab.288.1670075172372; Sat, 03
- Dec 2022 05:46:12 -0800 (PST)
-MIME-Version: 1.0
-References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
- <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org> <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
- <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org> <CAJsYDVLuXG9UiOixxs997QdfeQVitFhhRDRbJ-uQ4Agz7LuMAQ@mail.gmail.com>
- <b4f881aa-a0a6-1ee1-5346-cfc31ab6c1e7@linaro.org>
-In-Reply-To: <b4f881aa-a0a6-1ee1-5346-cfc31ab6c1e7@linaro.org>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Sat, 3 Dec 2022 21:46:01 +0800
-Message-ID: <CAJsYDV+hZFVej2fk41TphgAbv+zsRKG+KOLjJJCJ9eiuGrOLhw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229477AbiLCN6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 08:58:53 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2C101275D5;
+        Sat,  3 Dec 2022 05:58:52 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4658123A;
+        Sat,  3 Dec 2022 05:58:58 -0800 (PST)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD4A23F73D;
+        Sat,  3 Dec 2022 05:58:49 -0800 (PST)
+Date:   Sat, 3 Dec 2022 13:57:13 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/5] clk: sunxi-ng: Remove duplicate ARCH_SUNXI
+ dependencies
+Message-ID: <20221203135713.0591b0b7@slackpad.lan>
+In-Reply-To: <b7774c58-ccf8-4204-2e7e-6841fd13002d@sholland.org>
+References: <20221126191319.6404-1-samuel@sholland.org>
+        <20221126191319.6404-2-samuel@sholland.org>
+        <20221203001439.64284671@slackpad.lan>
+        <b7774c58-ccf8-4204-2e7e-6841fd13002d@sholland.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 3, 2022 at 8:25 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> >>>>> +        maxItems: 3
-> >>>>> +        items:
-> >>>>> +          minimum: 0
-> >>>>> +          maximum: 255
-> >>>>> +
-> >>>>> +      reg:
-> >>>>> +        description: |
-> >>>>> +          Which LED this node represents. The reg of the first LED on the chain
-> >>>>> +          is 0.
-> >>>>> +        maxItems: 1
-> >>>>> +
-> >>>>> +    required:
-> >>>>> +      - reg
-> >>>>> +      - color
-> >>>>> +      - function
-> >>>>> +
-> >>>>> +required:
-> >>>>> +  - compatible
-> >>>>> +
-> >>>>> +additionalProperties: false
-> >>>>> +
-> >>>>> +examples:
-> >>>>> +  - |
-> >>>>> +    #include <dt-bindings/leds/common.h>
-> >>>>> +    spi {
-> >>>>> +        #address-cells = <1>;
-> >>>>> +        #size-cells = <0>;
-> >>>>> +
-> >>>>> +        leds@0 {
-> >>>>
-> >>>> git grep leds@ -- Documentation/devicetree/ | wc -l
-> >>>> 1
-> >>>> git grep led@ -- Documentation/devicetree/ | wc -l
-> >>>> 165
-> >>>>
-> >>>> so rather not the first one ("leds").
-> >>>
-> >>> As you can see, this node describes a chain of LEDs, not
-> >>> a single LED, so the plural form is more appropriate than
-> >>> the singular form.
-> >>>
-> >>>>
-> >>>> There is also:
-> >>>> git grep led-controller@ -- Documentation/devicetree/ | wc -l
-> >>>> 30
-> >>>
-> >>> This also isn't appropriate. WS2812B is a single LED package
-> >>> of 3 diodes and a microcontroller. If we treat every package
-> >>> as a LED, the SPI MOSI is connected directly to the LED
-> >>> packages themselves with no controller in between.
-> >>> If we treat the microcontroller as a led-controller, every
-> >>> LED contains its own controller, instead of one controller
-> >>> controlling all LEDs, and the parent node still shouldn't
-> >>> be called a led-controller.
-> >>>
-> >>> Here's a picture of the WS2812B LED package:
-> >>> https://cdn-shop.adafruit.com/970x728/1655-00.jpg
-> >>> and a chain of them:
-> >>> https://cdn-shop.adafruit.com/970x728/1463-00.jpg
+On Fri, 2 Dec 2022 19:52:41 -0600
+Samuel Holland <samuel@sholland.org> wrote:
+
+Hi Samuel,
+
+> On 12/2/22 18:14, Andre Przywara wrote:
+> > On Sat, 26 Nov 2022 13:13:15 -0600
+> > Samuel Holland <samuel@sholland.org> wrote:
+> > 
+> > Hi,
+> > 
+> > thanks for addressing this!
+> >   
+> >> SUNXI_CCU already depends on ARCH_SUNXI, so adding the dependency to
+> >> individual SoC drivers is redundant.
 > >>
-> >> Then your bindings and DTS do not represent the hardware.
-> >
-> > How should this hardware be represented, then?
-> >
-> > The connection can be:
-> >
-> > SPI-MOSI---LED1---LED2---LED3---...---LEDN
-> >
-> > or
-> >
-> > SPI-MOSI---Tri-state signal gate---LED1---LED2---LED3---...---LEDN
-> > SPI-CS-----|
->
-> I would look at it this as either of:
-> 1. serially linked separate LED controllers (so multiple device nodes)
->
-> 2. one LED controller handling the entire LED system of many
-> sub-controllers.
->
-> For the (2) I proposed the name led-controller. If you think this is not
-> (2), then looks like (1) and you should have many devices... which
-> probably is not doable on itself. And how to call this entire set of
-> separate LED controllers? Heh, can be also some controller, like
-> led-controller.
+> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> >> ---
+> >>
+> >>  drivers/clk/sunxi-ng/Kconfig | 43 ++++++++++++++++++------------------
+> >>  1 file changed, 21 insertions(+), 22 deletions(-)
+> >>
+> >> diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
+> >> index 461537679c04..64cfa022e320 100644
+> >> --- a/drivers/clk/sunxi-ng/Kconfig
+> >> +++ b/drivers/clk/sunxi-ng/Kconfig
+> >> @@ -14,43 +14,43 @@ config SUNIV_F1C100S_CCU
+> >>  
+> >>  config SUN20I_D1_CCU
+> >>  	tristate "Support for the Allwinner D1 CCU"
+> >> -	default RISCV && ARCH_SUNXI
+> >> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
+> >> +	default RISCV
+> >> +	depends on RISCV || COMPILE_TEST  
+> > 
+> > I agree on the "depends" part: Indeed the guard symbol already covers
+> > that, so it's redundant.
+> > However I am not so sure about the "default" part: When ARCH_SUNXI is
+> > deselected, but COMPILE_TEST in enabled, we default to every CCU driver
+> > being built-in. I am not sure this is the intention, or at least
+> > expected when doing compile testing?  
+> 
+> SUNXI_CCU, which these depend on, is still "default ARCH_SUNXI", so if
+> you have ARCH_SUNXI disabled, you only get any drivers if you manually
+> enable SUNXI_CCU. I mentioned this in the patch 2 description, but maybe
+> I should move that comment here.
 
-OK. I'll name it led-controller in the next version.
+Yeah, I read this later on, I guess it's fine then.
 
--- 
-Regards,
-Chuanhong Guo
+> 
+> >>  
+> >>  config SUN20I_D1_R_CCU
+> >>  	tristate "Support for the Allwinner D1 PRCM CCU"
+> >> -	default RISCV && ARCH_SUNXI
+> >> -	depends on (RISCV && ARCH_SUNXI) || COMPILE_TEST
+> >> +	default RISCV
+> >> +	depends on RISCV || COMPILE_TEST
+> >>  
+> >>  config SUN50I_A64_CCU
+> >>  	tristate "Support for the Allwinner A64 CCU"
+> >> -	default ARM64 && ARCH_SUNXI
+> >> -	depends on (ARM64 && ARCH_SUNXI) || COMPILE_TEST
+> >> +	default ARM64
+> >> +	depends on ARM64 || COMPILE_TEST  
+> > 
+> > I wonder if this "depends" line was always wrong and should be fixed:
+> > We can compile a 32-bit ARM kernel and run it on an A64. Granted this
+> > requires a special bootloader or a hacked U-Boot (tried that), and
+> > reveals some other issues with the decompressor, but technically there
+> > is no 64-bit dependency in here.
+> > The same goes for all the other ARM64 CCUs: Cortex-A53s can run AArch32
+> > in all exception levels.  
+> 
+> I was trying to simplify things by hiding irrelevant options, and you
+> bring up an edge case of an edge case. :) I am okay with relaxing the
+> dependency, though I would want to leave them disabled by default for
+> 32-bit kernels (excluding them from the change in patch 2).
+
+Yes, definitely, that was the idea.
+
+And sorry for being a nuisance, but I think this "depends on ARCH_SUNXI"
+here is and was always misplaced. In contrast to things like "depends
+on PCI" or "depends on GPIOLIB", there is no real dependency on
+ARCH_SUNXI or even ARM/RISCV here, it's more a "only useful on
+ARCH_SUNXI".
+And this ARM vs ARM64 was just another rationale for not being
+overzealous with the dependency.
+
+But I see that this is an orthogonal discussion to this patch, so this
+should not block it. I will meditate over both patches again, since I
+have the gut feeling that the end result is fine.
+
+Cheers,
+Andre
+
+> 
+> > So shall we just completely remove the "depends" line for those, and
+> > let SUNXI_CCU do that job? Or use use !RISCV || COMPILE_TEST?  
+> 
+> That, or we could add MACH_SUN8I to the condition. I don't have a strong
+> opinion.
+> 
+> Regards,
+> Samuel
+> 
+
