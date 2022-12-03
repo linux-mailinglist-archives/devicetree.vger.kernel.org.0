@@ -2,104 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB196417C2
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 17:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B206417EF
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 17:58:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229834AbiLCQV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 11:21:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
+        id S229631AbiLCQ6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 11:58:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbiLCQVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 11:21:54 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC442034A
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 08:21:52 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id be13so12011357lfb.4
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 08:21:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IzcwhdiyD/Q33ZvF0rEIEBBj6MaYk3GPfXyKlwUxX/8=;
-        b=IA251Nt6Xcc3Xc4GjmQAov6Ml+2Bevcx+RocH3fpU9Hc1HwqvbvWGSwM4NaeN2NIOO
-         HkchpiBL0CboifjCr6JaQVtDL5rwQ1mVMPMMTiafYFiWo+slUOFsNvR/Ggr3gg0TJlWH
-         FiIAHEwcCs4yfXSinTqYCPn5s8kGNU5mW/3qQSEeiEzOWwMjyEuQP3O8ut43FkgF/69k
-         aq0mtB+j0rSKJ63BsGJcI1YziuGVyjQfQmDdBCvstsCMccefgsBEVU4LW4LcFkSonOY3
-         3gp6nLo74h2xaMJLyFmN6gfuEozh9ox+jGl1uBRKbtBWwzh76Y5R5gyUVNLqQ7Ov4CPD
-         dFjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IzcwhdiyD/Q33ZvF0rEIEBBj6MaYk3GPfXyKlwUxX/8=;
-        b=KDB+bM4jXS5Ec6OhomFcNPs4vvrdiuLUqDx+rj0adWoVK9MjR83veD2lFLHJglEoiH
-         FBVZGtCnro3pVH8FF3WJaaHaHNzZMCRafbY1mg5foLc5tVbWQxjoEFAFbQKaXHkpv2AN
-         thbrmvBtfhdRVWC8x29wG8E1alfV6hQGUFuNTEsf+nPUzaeEjz5ukQYqpDJzzR9hA/fw
-         uZhGZGEGRXSdXbmapgEwZsEdjTShqN2yA6sjN5UE06Y42wyaGhiG2DXRW+GFimd9k9bB
-         gXdCXz2UhnAGcAStZNnP3ysFNku55+4LmYAYN6/RAAFOXBQjWqxxe5KR5KFrxhBqqcCp
-         UbMg==
-X-Gm-Message-State: ANoB5plrm/DesEhCl0it/YR7dPoZrveqWPEHS9iT3my2Qpt8cB6Q1g4S
-        6gDV3KnV9k4bhHu3BFeaxWM3oQ==
-X-Google-Smtp-Source: AA0mqf7Lwc3YeYZdxgkprTOWEMJC8O1f+aQqo4H1mCRSujMIbT1nT2tPvuzpVfJNT7y3N6zhlEsTxQ==
-X-Received: by 2002:a05:6512:3e13:b0:4b5:3f5f:da27 with SMTP id i19-20020a0565123e1300b004b53f5fda27mr4089537lfv.666.1670084511051;
-        Sat, 03 Dec 2022 08:21:51 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi35-20020a0565120ea300b004ac6a444b26sm1443935lfb.141.2022.12.03.08.21.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Dec 2022 08:21:50 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S229540AbiLCQ6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 11:58:49 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532031AF36;
+        Sat,  3 Dec 2022 08:58:48 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C55ED60CA0;
+        Sat,  3 Dec 2022 16:58:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 107BEC433D7;
+        Sat,  3 Dec 2022 16:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670086727;
+        bh=iWh2UI3d2eVdkhHsEtxuowy62D6hweHEheaMfQIiPGQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nRVt5ZkovxmoP3SscT6h8w6Mb0YCHL9mKuNjV64jVGDEv++PNuONvT6tx0Ls7PgGI
+         paC2O338Wp1q3Sdueumthu4Fcm6C+2hW/UHls6j8s9wJKdasZwJs6XQxkhlVAA4Sx0
+         jsIgZ3ZMZKFkQmaJ+JZhQ7guBAqcTb0KG+NY0/tLykNi29elb6e65G3C/Esn0MHuf3
+         QAD2c7FMA4vDYdLpK7aiuUXGmdolrm7dZRaC+Om1RzBPCNhQRKb0ORRCRBMZRgpGKs
+         SSAB57mko0vd8YA5RapplU+7uq1aHDs+X7Mq2bpdBEGmp+B6Ihpqi7H4tGQOiVKSLw
+         VqI419aMTdq5g==
+Date:   Sat, 3 Dec 2022 17:11:31 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ASoC: dt-bindings: Correct Alexandre Belloni email
-Date:   Sat,  3 Dec 2022 17:21:44 +0100
-Message-Id: <20221203162144.99225-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
-References: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
+        Jakob Hauser <jahau@rocketmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Subject: Re: [PATCH v3 1/3] iio: add struct declarations for iio types
+Message-ID: <20221203171131.6d096078@jic23-huawei>
+In-Reply-To: <b56cdcf1-459b-63a2-a060-49564e11ce9f@wolfvision.net>
+References: <20221125083526.2422900-1-gerald.loacker@wolfvision.net>
+        <20221125083526.2422900-2-gerald.loacker@wolfvision.net>
+        <Y4CcspD1xkmhmWbh@smile.fi.intel.com>
+        <Y4CgiMd4XQMV4KFV@smile.fi.intel.com>
+        <a55e73f7-4daf-6892-34dc-61c6f6581d8e@wolfvision.net>
+        <Y4S3WnYWVnmiVFc+@smile.fi.intel.com>
+        <4d1b0054-efd4-e10e-17a6-d236052afa49@wolfvision.net>
+        <Y4TAF1hn0l1CziUh@smile.fi.intel.com>
+        <b56cdcf1-459b-63a2-a060-49564e11ce9f@wolfvision.net>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct domain name in Alexandre Belloni's email address.
+On Mon, 28 Nov 2022 15:26:51 +0100
+Michael Riesch <michael.riesch@wolfvision.net> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/sound/adi,adau1372.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Hi Andy,
+> 
+> On 11/28/22 15:05, Andy Shevchenko wrote:
+> > On Mon, Nov 28, 2022 at 02:48:48PM +0100, Michael Riesch wrote:  
+> >> On 11/28/22 14:27, Andy Shevchenko wrote:  
+> >>> On Mon, Nov 28, 2022 at 01:18:04PM +0100, Gerald Loacker wrote:  
+> >>>> Am 25.11.2022 um 12:01 schrieb Andy Shevchenko:  
+> > 
+> > ...
+> >   
+> >>> It's a rule to use _t for typedef:s in the kernel. That's why
+> >>> I suggested to leave struct definition and only typedef the same structures
+> >>> (existing) to new names (if needed).  
+> >>
+> >> Andy, excuse our ignorance but we are not sure how this typedef approach
+> >> is supposed to look like...
+> >>  
+> >>>> or  
+> >>>  
+> >>>> 	typedef iio_val_int_plus_micro iio_val_int_plus_micro_db;  
+> >>
+> >> ... because
+> >>
+> >> #include <stdio.h>
+> >>
+> >> struct iio_val_int_plus_micro {
+> >> 	int integer;
+> >> 	int micro;
+> >> };
+> >>
+> >> typedef iio_val_int_plus_micro iio_val_int_plus_micro_db;
+> >>
+> >> int main()
+> >> {
+> >>   struct iio_val_int_plus_micro a = { .integer = 100, .micro = 10, };
+> >>   struct iio_val_int_plus_micro_db b = { .integer = 20, .micro = 10, };
+> >>   return 0;
+> >> }
+> >>
+> >> won't compile.  
+> > 
+> > I see. Thanks for pointing this out.
+> > 
+> > Then the question is why do we need the two same structures with different
+> > names?  
+> 
+> Most probably we don't need "struct iio_val_int_plus_micro_db" at all
+> since IIO_VAL_INT_PLUS_MICRO_DB and IIO_VAL_INT_PLUS_MICRO get the same
+> treatment in industrialio-core.c. At least it should not be introduced
+> in the scope of this series. In the end this is up to whoever writes the
+> first driver using the common data structures and IIO_VAL_INT_PLUS_MICRO_DB.
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau1372.yaml b/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
-index f1ba70723e6a..044bcd370d49 100644
---- a/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
-+++ b/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
-@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Analog Devices ADAU1372 CODEC
- 
- maintainers:
--  - Alexandre Belloni <alexandre.belloni@bootlin.om>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
- 
- description: |
-   Analog Devices ADAU1372 four inputs and two outputs codec.
--- 
-2.34.1
+They get same treatment today because we don't attempt to deal with
+IIO_VAL_INT_PLUS_MICRO_DB in conjunction with any of the analog circuit type
+front ends yet. Mind you, even though the handling in iio-rescale.c will be
+different if anyone ever adds support for the DB form (I shudder at the maths
+of combining this with other scale factors), I don't see the possibility meaning
+we need a different structure.  
+
+Jonathan
+
+
+> 
+> Best regards,
+> Michael
+> 
 
