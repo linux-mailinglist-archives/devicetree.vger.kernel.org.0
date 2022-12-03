@@ -2,134 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A22656416CA
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 14:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F00364171C
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 14:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbiLCNJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 08:09:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39048 "EHLO
+        id S229611AbiLCNqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 08:46:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbiLCNJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 08:09:06 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952012C67C
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 05:09:05 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id bs21so11917441wrb.4
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 05:09:05 -0800 (PST)
+        with ESMTP id S229502AbiLCNqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 08:46:14 -0500
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7C9A1B8;
+        Sat,  3 Dec 2022 05:46:13 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1441d7d40c6so8521858fac.8;
+        Sat, 03 Dec 2022 05:46:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=he4pvbcj9k7gldXO1AUh5F+PmpcqjQDOE40QJU9PQgY=;
-        b=IpTDWkg/+W6qtb6/BO+Rextf9MvVMSlQQo2APxxM4BQDnn7qkZcjkB9FFMGn9O0vXJ
-         xmbYFo0ZqKzC+reWi5Ui9m8ZE1DJ75WQ/bFAPBwaB3yh9eWT2bus6awgqTyx7PNgfhCI
-         BIvAAuR9hVxe/O2K+n3uaJUi0elOaR19s/Wse5pkabhXyOshgLmtSwZzqtvZqzXN08Qn
-         kDzAwrurvkG00GxtgVAhvrZdg82nMPvqvv+CKvcporDHyn64rgrQ7nLeu1tWshBlJ8TS
-         GDHMfMYnKweZp0ELa2PUHmSv5lLnkW7A+qy+Wew81JoaPQynn0ljjylNO17zoxC18jz1
-         TURQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UZUeqVR+YNS254T8ghrOY0br3+YG9kpDkIyVm5x/F6Y=;
+        b=qRGRjM8J5rb2ZDwDTRn79jhnQNreMJM4+wgZxFQ2ktqCJa5uoCvkJLyYapat94blo+
+         ZFkjUp1v6+Akll140+hFahBUvNiKiJkPQMsUzAOPyraZ/nmbz0FYawnmYknzZ4YQg0l2
+         HDg5r3YdkBd1xhewe58Saj9dRAHIvEIJqEflYBzGFYvcmSsl90pynLeWVXk6Ff03KF7J
+         rO2At1ZzLaa9QB1RseJ/uTrF6UW45GEQZnC1fvSALcTSmeR7GckKZiscnyl+7qrddx7H
+         u+jdfXZZ9HpY7APpffFpVkZRjvhISzSOR9rBYHEWEdA7bRdfrnxnALavioLZk0yytspW
+         cGgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=he4pvbcj9k7gldXO1AUh5F+PmpcqjQDOE40QJU9PQgY=;
-        b=IDoPapwkan8uKuxHe27FeBbOlIGIX+N2gtksLqRjpdWHnI49zqL46IdPIF9hi5VVSU
-         GslFubqbe4qOcMQBt3hp3I0SwPLvDQyJrCsVj949FALumuU4D48hh4hRTFpLxqNZiViO
-         nu75rgNvvj1vNw1N+oJfIU7oF+F3BuSxLnvpTeXCob32iS5oO9KswT51bKECPTqEqjul
-         uZflN9lE7dCrCYB/rIv9WCdWM2PCQNrztV+dXYKJJLFNRxhJE7UgwDB4ADVObCkIuBaJ
-         s9wEOSYVhVNphavy/mqQGbWkSORqYZqEh341USO3UnOcr8AbMSAo7qrVJA0XU6G0EBvl
-         N9NQ==
-X-Gm-Message-State: ANoB5pnrfyI8tokX/6zk9YN3zKdGkP6BKiAb/D6vEYAK1KT/rr4TX9QK
-        8QmDL+fhHMQMYckhdQteOZaGpg==
-X-Google-Smtp-Source: AA0mqf7FEFUrgBHbSYwX9vCImy4IPfSr1vGLJ8MA6ZSfnzZGkyWh6DJhnsHrk4VGpak6bs/xb0bb7g==
-X-Received: by 2002:adf:eb92:0:b0:236:80a8:485e with SMTP id t18-20020adfeb92000000b0023680a8485emr38696645wrn.362.1670072944015;
-        Sat, 03 Dec 2022 05:09:04 -0800 (PST)
-Received: from [192.168.1.115] ([185.126.107.38])
-        by smtp.gmail.com with ESMTPSA id n3-20020a05600c3b8300b003cfbbd54178sm19062878wms.2.2022.12.03.05.09.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Dec 2022 05:09:03 -0800 (PST)
-Message-ID: <9bd630af-6f88-baa7-7bd4-e99d818fb977@linaro.org>
-Date:   Sat, 3 Dec 2022 14:09:00 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UZUeqVR+YNS254T8ghrOY0br3+YG9kpDkIyVm5x/F6Y=;
+        b=nDo1jasWAoadzY+QcAAFypfwmatD3aUFgwT/7183u6/swN5kUgDkkxig94fLYEG69f
+         bi0ltX6k7x6a38VEH1BiPDkI0w2fx/xeowQ7ZuiTc+jxXeDjJuV6b+QFw1JhHK0J4yYe
+         rJROzjsXojY7/LqCeZJ7hc4q1tjBaVbvbiDQVtK2fCLLJS+D9ziwxs/Gi59ZDGpzmnAf
+         zV3gCgsqB04MEKG8IlUVXBYgijkrFH7NCjakkZB4FWep03SE+3DFPHIo7JMb0g5rkXvT
+         mUBPD5RriZdJUJ68gOx11P8z3XH7gqH1ac9brLdbzMdggXIGB6B4lzvvayJHGLBS7W5/
+         kPPA==
+X-Gm-Message-State: ANoB5pknbd8CJWrjyLkcgmFj4l1sCp7lGy6LReNtIi9oRuIUMv86uvY1
+        mBPrIuCQzlBb4sLdiI+NJZT/QlJVBtITrSTRK0k=
+X-Google-Smtp-Source: AA0mqf7WM7gwxmrkTyxIs8uTreJx+nLeBeWG+Yvq9dufiFgID0aEFwuQfJwhWKSa1r92UD+zvhhjlhh8IU17p80NCo4=
+X-Received: by 2002:a05:6870:ab86:b0:13c:5763:9411 with SMTP id
+ gs6-20020a056870ab8600b0013c57639411mr41158023oab.288.1670075172372; Sat, 03
+ Dec 2022 05:46:12 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH 00/11] Fix pca954x i2c-mux node names
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
+ <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org> <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
+ <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org> <CAJsYDVLuXG9UiOixxs997QdfeQVitFhhRDRbJ-uQ4Agz7LuMAQ@mail.gmail.com>
+ <b4f881aa-a0a6-1ee1-5346-cfc31ab6c1e7@linaro.org>
+In-Reply-To: <b4f881aa-a0a6-1ee1-5346-cfc31ab6c1e7@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Sat, 3 Dec 2022 21:46:01 +0800
+Message-ID: <CAJsYDV+hZFVej2fk41TphgAbv+zsRKG+KOLjJJCJ9eiuGrOLhw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-References: <cover.1669999298.git.geert+renesas@glider.be>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <cover.1669999298.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/12/22 17:49, Geert Uytterhoeven wrote:
-> 	Hi all,
-> 
-> According to the I2C bus multiplexer/switch DT bindings, i2c-mux nodes
-> should be named "i2c-mux" (or something similar).
-> This patch series renames nodes for pca954x i2c-muxes that are flagged
-> by
-> 
->      make dtbs_checK DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> 
-> Please apply where appropriate.
-> Thanks!
-> 
-> Geert Uytterhoeven (11):
->    ARM: dts: ti: Fix pca954x i2c-mux node names
->    ARM: dts: aspeed: Fix pca954x i2c-mux node names
->    ARM: dts: imx: Fix pca9547 i2c-mux node name
->    ARM: dts: nuvoton: Fix pca954x i2c-mux node names
->    ARM: dts: socfpga: Fix pca9548 i2c-mux node name
->    ARM: dts: vf610: Fix pca9548 i2c-mux node names
->    arm64: dts: freescale: Fix pca954x i2c-mux node names
->    arm64: dts: marvell: Fix pca954x i2c-mux node names
->    arm64: dts: renesas: ulcb-kf: Fix pca9548 i2c-mux node names
->    MIPS: mscc: jaguar2: Fix pca9545 i2c-mux node names
->    powerpc: dts: fsl: Fix pca954x i2c-mux node names
+On Sat, Dec 3, 2022 at 8:25 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> >>>>> +        maxItems: 3
+> >>>>> +        items:
+> >>>>> +          minimum: 0
+> >>>>> +          maximum: 255
+> >>>>> +
+> >>>>> +      reg:
+> >>>>> +        description: |
+> >>>>> +          Which LED this node represents. The reg of the first LED on the chain
+> >>>>> +          is 0.
+> >>>>> +        maxItems: 1
+> >>>>> +
+> >>>>> +    required:
+> >>>>> +      - reg
+> >>>>> +      - color
+> >>>>> +      - function
+> >>>>> +
+> >>>>> +required:
+> >>>>> +  - compatible
+> >>>>> +
+> >>>>> +additionalProperties: false
+> >>>>> +
+> >>>>> +examples:
+> >>>>> +  - |
+> >>>>> +    #include <dt-bindings/leds/common.h>
+> >>>>> +    spi {
+> >>>>> +        #address-cells = <1>;
+> >>>>> +        #size-cells = <0>;
+> >>>>> +
+> >>>>> +        leds@0 {
+> >>>>
+> >>>> git grep leds@ -- Documentation/devicetree/ | wc -l
+> >>>> 1
+> >>>> git grep led@ -- Documentation/devicetree/ | wc -l
+> >>>> 165
+> >>>>
+> >>>> so rather not the first one ("leds").
+> >>>
+> >>> As you can see, this node describes a chain of LEDs, not
+> >>> a single LED, so the plural form is more appropriate than
+> >>> the singular form.
+> >>>
+> >>>>
+> >>>> There is also:
+> >>>> git grep led-controller@ -- Documentation/devicetree/ | wc -l
+> >>>> 30
+> >>>
+> >>> This also isn't appropriate. WS2812B is a single LED package
+> >>> of 3 diodes and a microcontroller. If we treat every package
+> >>> as a LED, the SPI MOSI is connected directly to the LED
+> >>> packages themselves with no controller in between.
+> >>> If we treat the microcontroller as a led-controller, every
+> >>> LED contains its own controller, instead of one controller
+> >>> controlling all LEDs, and the parent node still shouldn't
+> >>> be called a led-controller.
+> >>>
+> >>> Here's a picture of the WS2812B LED package:
+> >>> https://cdn-shop.adafruit.com/970x728/1655-00.jpg
+> >>> and a chain of them:
+> >>> https://cdn-shop.adafruit.com/970x728/1463-00.jpg
+> >>
+> >> Then your bindings and DTS do not represent the hardware.
+> >
+> > How should this hardware be represented, then?
+> >
+> > The connection can be:
+> >
+> > SPI-MOSI---LED1---LED2---LED3---...---LEDN
+> >
+> > or
+> >
+> > SPI-MOSI---Tri-state signal gate---LED1---LED2---LED3---...---LEDN
+> > SPI-CS-----|
+>
+> I would look at it this as either of:
+> 1. serially linked separate LED controllers (so multiple device nodes)
+>
+> 2. one LED controller handling the entire LED system of many
+> sub-controllers.
+>
+> For the (2) I proposed the name led-controller. If you think this is not
+> (2), then looks like (1) and you should have many devices... which
+> probably is not doable on itself. And how to call this entire set of
+> separate LED controllers? Heh, can be also some controller, like
+> led-controller.
 
-Series:
-Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
+OK. I'll name it led-controller in the next version.
 
+-- 
+Regards,
+Chuanhong Guo
