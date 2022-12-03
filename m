@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B87D6417C1
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 17:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB196417C2
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 17:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiLCQVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 11:21:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59804 "EHLO
+        id S229834AbiLCQV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 11:21:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbiLCQVy (ORCPT
+        with ESMTP id S229723AbiLCQVy (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 11:21:54 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18ECB20375
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 08:21:51 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id x6so8665344lji.10
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 08:21:51 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC442034A
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 08:21:52 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id be13so12011357lfb.4
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 08:21:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WmsziUEVNyrB815nizPNa/ZJ8qOnilpxFHdElLoBzSA=;
-        b=LQw7z2kjsssWSsBkfx3bILAe/YLOZgyD4Y16sUlwmkJvefhwXkM7WWNyj+p6fomstF
-         Jm9rxTMlweprI+gzh0Znx/J4CbO3jm9aPGU3zMlQd2QXpFvZowYUp2QN0ECtRe5/3aqY
-         +mBoN2lDn9AIWGJUAypg9WvcLh8JHlqKn4cANSZX4OvRGnhQxz8Vg2zYob3XQ9yCU/a+
-         48VJfvdMhEGNYGgLliIJH+2IpYwUFIGAkK0AFUNjAGPrl5kUcG1bjLByaZYeKIlWp10G
-         SAXnbuv1sShmlUsKDK6AB+8dA7eHnO76ZAGstUzKzivOSjgUtiXZaKgUuM7aYSp0Bi9k
-         crgg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IzcwhdiyD/Q33ZvF0rEIEBBj6MaYk3GPfXyKlwUxX/8=;
+        b=IA251Nt6Xcc3Xc4GjmQAov6Ml+2Bevcx+RocH3fpU9Hc1HwqvbvWGSwM4NaeN2NIOO
+         HkchpiBL0CboifjCr6JaQVtDL5rwQ1mVMPMMTiafYFiWo+slUOFsNvR/Ggr3gg0TJlWH
+         FiIAHEwcCs4yfXSinTqYCPn5s8kGNU5mW/3qQSEeiEzOWwMjyEuQP3O8ut43FkgF/69k
+         aq0mtB+j0rSKJ63BsGJcI1YziuGVyjQfQmDdBCvstsCMccefgsBEVU4LW4LcFkSonOY3
+         3gp6nLo74h2xaMJLyFmN6gfuEozh9ox+jGl1uBRKbtBWwzh76Y5R5gyUVNLqQ7Ov4CPD
+         dFjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WmsziUEVNyrB815nizPNa/ZJ8qOnilpxFHdElLoBzSA=;
-        b=UWrCAy5ZjWuME9Jg/qRnrckDi1qzWB4XxBy1o6jAdWs/eskxGZavLC6+A6BrlOGCX1
-         R1q3QrirLqALrS0LggiMpBCIbICaINjUUw717UK1SNkoBoDSNroKxOtG/HnoK5/aUsO0
-         YrH7ZDXjbJ5CjKoKXZl8XxAcsQf06EVjxYeJZnif2t2K3XTjVelRQ/pseSaaldHRd9Ui
-         14QmHcTiwAAEApQ6nuM08OM3INerkg9cPhnWy5XNTamvSmd2oOGFI8zx/aGVb+FeZX50
-         fesNqBgU6jNvn3/AJUkqpGFv6iv1MpFER3r7stkA5g5D0NgGgokEGpLxh5HXQamK3zVQ
-         V0xA==
-X-Gm-Message-State: ANoB5pmN2gUaBXapb8QqsPjEBm+beTK7Un/FPyNEwh0Nn5MfgcYLCBOO
-        enEao6ZY/fH5YZDYtSahv2WmSHHAmkMxpv5txR4=
-X-Google-Smtp-Source: AA0mqf7z5dEVm1KfVLYRrxQdVeTEh+cIsEEzj4vzDM1C/l5Tlgc/KhNAEzuPMpsLbJoK8Z5qAGkiiw==
-X-Received: by 2002:a2e:9b17:0:b0:279:cd10:a511 with SMTP id u23-20020a2e9b17000000b00279cd10a511mr4327347lji.502.1670084509318;
-        Sat, 03 Dec 2022 08:21:49 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IzcwhdiyD/Q33ZvF0rEIEBBj6MaYk3GPfXyKlwUxX/8=;
+        b=KDB+bM4jXS5Ec6OhomFcNPs4vvrdiuLUqDx+rj0adWoVK9MjR83veD2lFLHJglEoiH
+         FBVZGtCnro3pVH8FF3WJaaHaHNzZMCRafbY1mg5foLc5tVbWQxjoEFAFbQKaXHkpv2AN
+         thbrmvBtfhdRVWC8x29wG8E1alfV6hQGUFuNTEsf+nPUzaeEjz5ukQYqpDJzzR9hA/fw
+         uZhGZGEGRXSdXbmapgEwZsEdjTShqN2yA6sjN5UE06Y42wyaGhiG2DXRW+GFimd9k9bB
+         gXdCXz2UhnAGcAStZNnP3ysFNku55+4LmYAYN6/RAAFOXBQjWqxxe5KR5KFrxhBqqcCp
+         UbMg==
+X-Gm-Message-State: ANoB5plrm/DesEhCl0it/YR7dPoZrveqWPEHS9iT3my2Qpt8cB6Q1g4S
+        6gDV3KnV9k4bhHu3BFeaxWM3oQ==
+X-Google-Smtp-Source: AA0mqf7Lwc3YeYZdxgkprTOWEMJC8O1f+aQqo4H1mCRSujMIbT1nT2tPvuzpVfJNT7y3N6zhlEsTxQ==
+X-Received: by 2002:a05:6512:3e13:b0:4b5:3f5f:da27 with SMTP id i19-20020a0565123e1300b004b53f5fda27mr4089537lfv.666.1670084511051;
+        Sat, 03 Dec 2022 08:21:51 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi35-20020a0565120ea300b004ac6a444b26sm1443935lfb.141.2022.12.03.08.21.46
+        by smtp.gmail.com with ESMTPSA id bi35-20020a0565120ea300b004ac6a444b26sm1443935lfb.141.2022.12.03.08.21.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Dec 2022 08:21:47 -0800 (PST)
+        Sat, 03 Dec 2022 08:21:50 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
         Vinod Koul <vkoul@kernel.org>,
@@ -61,10 +62,12 @@ To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] dt-bindings: Drop Jee Heng Sia
-Date:   Sat,  3 Dec 2022 17:21:43 +0100
-Message-Id: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] ASoC: dt-bindings: Correct Alexandre Belloni email
+Date:   Sat,  3 Dec 2022 17:21:44 +0100
+Message-Id: <20221203162144.99225-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
+References: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,41 +80,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Jee Heng Sia bounce ("550 #5.1.0 Address rejected.").  Add
-Keembay platform maintainers as Keembay I2S maintainers.
+Correct domain name in Alexandre Belloni's email address.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml    | 1 -
- Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml | 3 ++-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/sound/adi,adau1372.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-index 67aa7bb6d36a..ad107a4d3b33 100644
---- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-@@ -8,7 +8,6 @@ title: Synopsys DesignWare AXI DMA Controller
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau1372.yaml b/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
+index f1ba70723e6a..044bcd370d49 100644
+--- a/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
++++ b/Documentation/devicetree/bindings/sound/adi,adau1372.yaml
+@@ -8,7 +8,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADAU1372 CODEC
  
  maintainers:
-   - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
--  - Jee Heng Sia <jee.heng.sia@intel.com>
- 
- description:
-   Synopsys DesignWare AXI DMA Controller DT Binding
-diff --git a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-index 2ac0a4b3cd18..33ab0be036a1 100644
---- a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-@@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Intel KeemBay I2S
- 
- maintainers:
--  - Sia, Jee Heng <jee.heng.sia@intel.com>
-+  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-+  - Paul J. Murphy <paul.j.murphy@intel.com
+-  - Alexandre Belloni <alexandre.belloni@bootlin.om>
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
  
  description: |
-  Intel KeemBay I2S
+   Analog Devices ADAU1372 four inputs and two outputs codec.
 -- 
 2.34.1
 
