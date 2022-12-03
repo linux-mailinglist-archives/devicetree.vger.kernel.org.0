@@ -2,200 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9175641690
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 13:11:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15006641695
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 13:13:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbiLCMLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 07:11:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
+        id S229619AbiLCMNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 07:13:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLCMLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 07:11:23 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2587245EC1;
-        Sat,  3 Dec 2022 04:11:22 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id p8-20020a056830130800b0066bb73cf3bcso4481735otq.11;
-        Sat, 03 Dec 2022 04:11:22 -0800 (PST)
+        with ESMTP id S229605AbiLCMN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 07:13:29 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4744318376
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 04:13:28 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id z4so8230333ljq.6
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 04:13:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0edhihdfvOG7GSghtxT+LhbhV0OXh1bVTVRGZ1/Gd/Q=;
-        b=NtIqbUHB9s0JExCbH3hcdSLI4mJPgYlS1tpz9JJBGBL3VI3SGB5M5W6ogy9f3P3qXS
-         CWUaK9ZWEAbvVkDm7XaZiFjGlsHylCEQk+uOYIQb3zXXfRdAKvC5uBsdp4JZxYb1loXv
-         AF4kOhbjZevXykpYw2OB3IrD3gJ6NgfCHZt1MXQTfnFadoWcA1C4ehVnprXIF1CGWuka
-         2r5RglbQYaEdoQlehDK++8Hol1a0oT7mfBGhrDVle55vMh4WBadg3OaTITnVYmCnwfH7
-         P+y8nOKM/+gI4t0N7RAvjixMAIAgPw4fq7Ue8Lq69fo+A4Nfn1JdLOOfG9kmFpYIFLrg
-         2KYg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uTLYaWLVJ3C0TmmrxY/Wlk5QB4gl21jsIw90UM9GCgw=;
+        b=TnNs9TwiVoGP6+Qg+OkyabJ+bgPHJieiTBkcYu9dRVC7i7WSf/fLJTmB5udj48+2U1
+         zfcETkFb6ZtHlxR244bg38LCsPI4tBoriYkymcYllJA3WzhHh6gA90CumAWcuJ6IqdJw
+         /MwXajb+AfCNJQeKsj62EiNwaz86Bcz/ILQqrt3qXXnjRMYXzUAex5avXCUwn+pHRG6A
+         Y1t1UDahXHcinAPAHqqln/psjNoTLBVZH4GLHX7DIsvyE+Bxq/t+N3kuqZxML5odrYp3
+         xS+ZpJe5ctync7cXMXCTYjw3J8Sm5pL9ZszMY/SxE3ihtIxsfijlj71faNqcwRvRCgia
+         FUQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0edhihdfvOG7GSghtxT+LhbhV0OXh1bVTVRGZ1/Gd/Q=;
-        b=jiXRP9MF2gD77GD7GLy48A3rgAjjJ5HVz6/o+GXTHjcSVZKMDfkbSjqDKl4QMyLqUG
-         Q81Zh+Vo05sxTWuXfV0CJVRVfgU4ByRatt+OmlyjCyaCDXzMWSdd8gxy5omI180ET8ef
-         jzNZFvdx5j06mHI7170W0j5WXQxiD26AgninwEQeHmw+/ZIVBKEHSbGz7+7oU+hO2hlE
-         rmeVNoDoS3s/f1u3b2uRT7v4duZeepfg51D5Wc30F4xMFsmDlNQvK0RNcFYPfpvcHvQ0
-         otwyS2FD7meHRjrzpXZgEe9GOlP/6KRRLMnRI9P/Z0dTOB6yNW50XiFe8alPU2lOT+Iv
-         k8ug==
-X-Gm-Message-State: ANoB5pm0d9Gk+yn38D2yv4z/SUrptQD5GNoHHnTDgQjdftPXKB2MM0h8
-        DVVk2A3y6Lzt39+GM10f1rbEjn6neiUf8YBmpyw=
-X-Google-Smtp-Source: AA0mqf5BT/ikEpWtI0KOKprcNPIe7cE6MLRo9+hTCopidi/QEYkiNbQMX4qGccGD1EGu0jbGsouRViA+H+EMqJPCaNU=
-X-Received: by 2002:a05:6830:699b:b0:66e:7ba6:5e0f with SMTP id
- cy27-20020a056830699b00b0066e7ba65e0fmr5004392otb.312.1670069481425; Sat, 03
- Dec 2022 04:11:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uTLYaWLVJ3C0TmmrxY/Wlk5QB4gl21jsIw90UM9GCgw=;
+        b=MH9DG6udeWKHWsfZEEUUbGJRJydN7Zq2XN4JApmE+kI38u1UoO0UisSvLSWuCeiQ3S
+         Hy+MzwhoaSZ04Huxc05sQvWI6ty0+g6esBLi5E3+u3vBJ68qBm/O58DuKrF/jvMo+23X
+         /VfWyz8MgHQenUjvPNQbrgJy7KgOAZr1K7fvX2EwnFZIftNZRODZO7vUUmINOaIAEm81
+         fTmu6hrugTZUvs2jwYFDhQvdNOXk31QEpzcsJDH1IhrU/R9YYsYefMiuKwxTxmpghyeT
+         U70+0UrqGIPplexD/7fo3hD4t4WDfsegYhU4NG8IYhyeJqC0wuFKcZQADbnqDVd6Bxz0
+         mvKw==
+X-Gm-Message-State: ANoB5pmER6OVIH3sNyblOzls0q+ORT3EoYyPZeoctN6ZDe4Sd3vBhAQJ
+        cjFNmW7U7ebNpUf29+jAdrQu2w==
+X-Google-Smtp-Source: AA0mqf6qff40XMjznJ0Uc00ZtXlqwql+i8LRDjdpsFjDBTZPaIiihrY4OqHpg8vJFPboQPskLEyh4A==
+X-Received: by 2002:a05:651c:213:b0:277:e01:610e with SMTP id y19-20020a05651c021300b002770e01610emr22567717ljn.181.1670069606462;
+        Sat, 03 Dec 2022 04:13:26 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j15-20020a05651231cf00b004b4b0a68f67sm1380403lfe.185.2022.12.03.04.13.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 03 Dec 2022 04:13:26 -0800 (PST)
+Message-ID: <b105572c-96fe-dbad-c435-43233cfb25a7@linaro.org>
+Date:   Sat, 3 Dec 2022 13:13:24 +0100
 MIME-Version: 1.0
-References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
- <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org> <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
- <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org>
-In-Reply-To: <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Sat, 3 Dec 2022 20:11:10 +0800
-Message-ID: <CAJsYDVLuXG9UiOixxs997QdfeQVitFhhRDRbJ-uQ4Agz7LuMAQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: sound: ti,pcm3168a: Convert to
+ json-schema
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Damien Horsley <Damien.Horsley@imgtec.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1669980383.git.geert+renesas@glider.be>
+ <9f2a2474ec71dcc2a76e868295202a8c425a5d41.1669980383.git.geert+renesas@glider.be>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9f2a2474ec71dcc2a76e868295202a8c425a5d41.1669980383.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On 02/12/2022 13:55, Geert Uytterhoeven wrote:
+> Convert the Texas Instruments PCM3168A Audio Codec Device Tree binding
+> documentation to json-schema.
+> 
+> Add missing properties.
+> Drop unneeded pinctrl properties from example.
 
-On Sat, Dec 3, 2022 at 6:52 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 02/12/2022 13:55, Chuanhong Guo wrote:
-> >>> +
-> >>> +      default-brightness:
-> >>> +        description:
-> >>> +          The default brightness that should be applied to the LED by the operating
-> >>> +          system on start-up. The brightness should not exceed the brightness the
-> >>> +          LED can provide.
-> >>> +        $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +        minimum: 0
-> >>> +        maximum: 255
-> >>> +        default: 0
-> >>> +
-> >>> +      default-intensity:
-> >>> +        description: |
-> >>> +          An array of 3 integer specifying the default intensity of each color
-> >>> +          components in this LED. <255 255 255> if unspecified.
-> >>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> >>
-> >> I am still not convinced these two properties are correct. Why this LED
-> >> is special and defines default brightness and intensity and other LEDs
-> >> do not? You explained you are doing it for user-space which is usually
-> >> not a valid reason for changes specific to one binding. Either all
-> >> bindings should support it or none.
-> >
-> > There's already a default-state for simple LEDs without brightness
-> > control so I think it makes sense to add default-brightness for LEDs
-> > with brightness control and default-intensity for colored LEDs.
-> > The default-state seems to be implemented in various LED drivers,
-> > so I implemented these two properties in my LED driver.
-> > There's nothing device-specific about these two properties.
->
-> default-state has a bit different purpose - to prevent any
-> glitches/changes when probing driver.
+Thank you for your patch. There is something to discuss/improve.
 
-OK. I didn't know that property is used in this way.
-I can live without them. I'll drop it in the next version.
+> +description:
+> +  The Texas Instruments PCM3168A is a 24-bit Multi-channel Audio CODEC with
+> +  96/192kHz sampling rate, supporting both SPI and I2C bus access.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,pcm3168a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: System clock input
+> +
+> +  clock-names:
+> +    items:
+> +      - const: scki
+> +
+> +  reset-gpios:
+> +    items:
+> +      - description: |
+> +          GPIO line connected to the active-low RST pin of the codec.
+> +            RST = low: device power-down
+> +            RST = high: device is enabled
+> +
+> +  "#sound-dai-cells":
+> +    enum: [0, 1]
 
->
-> >>
-> >>> +        maxItems: 3
-> >>> +        items:
-> >>> +          minimum: 0
-> >>> +          maximum: 255
-> >>> +
-> >>> +      reg:
-> >>> +        description: |
-> >>> +          Which LED this node represents. The reg of the first LED on the chain
-> >>> +          is 0.
-> >>> +        maxItems: 1
-> >>> +
-> >>> +    required:
-> >>> +      - reg
-> >>> +      - color
-> >>> +      - function
-> >>> +
-> >>> +required:
-> >>> +  - compatible
-> >>> +
-> >>> +additionalProperties: false
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    #include <dt-bindings/leds/common.h>
-> >>> +    spi {
-> >>> +        #address-cells = <1>;
-> >>> +        #size-cells = <0>;
-> >>> +
-> >>> +        leds@0 {
-> >>
-> >> git grep leds@ -- Documentation/devicetree/ | wc -l
-> >> 1
-> >> git grep led@ -- Documentation/devicetree/ | wc -l
-> >> 165
-> >>
-> >> so rather not the first one ("leds").
-> >
-> > As you can see, this node describes a chain of LEDs, not
-> > a single LED, so the plural form is more appropriate than
-> > the singular form.
-> >
-> >>
-> >> There is also:
-> >> git grep led-controller@ -- Documentation/devicetree/ | wc -l
-> >> 30
-> >
-> > This also isn't appropriate. WS2812B is a single LED package
-> > of 3 diodes and a microcontroller. If we treat every package
-> > as a LED, the SPI MOSI is connected directly to the LED
-> > packages themselves with no controller in between.
-> > If we treat the microcontroller as a led-controller, every
-> > LED contains its own controller, instead of one controller
-> > controlling all LEDs, and the parent node still shouldn't
-> > be called a led-controller.
-> >
-> > Here's a picture of the WS2812B LED package:
-> > https://cdn-shop.adafruit.com/970x728/1655-00.jpg
-> > and a chain of them:
-> > https://cdn-shop.adafruit.com/970x728/1463-00.jpg
->
-> Then your bindings and DTS do not represent the hardware.
+This is a bit unexpected. Looking at DTSes:
+1. I see in ulcb-kf.dtsi with cells==0, but two endpoints. The dai cells
+seem unused? In such case shall dai-cells be skipped if we have endpoints?
 
-How should this hardware be represented, then?
+2. in k3-j721e-common-proc-board.dts has cells=1, but user's phandle
+does not have an argument, so practically it is ==0? The user -
+sound/soc/ti/j721e-evm.c - just gets the node and does not use cells,
+right? So even though dai-cells==1, it does not matter, because user
+gets its own parsing?
 
-The connection can be:
+3. The pcm3168a driver also does not have any xlate function, but it
+registers to DAIs, so all uses should be with cells==1 to select proper
+DAI...
 
-SPI-MOSI---LED1---LED2---LED3---...---LEDN
 
-or
+> +
+> +  VDD1-supply:
+> +    description: Digital power supply regulator 1 (+3.3V)
+> +
+> +  VDD2-supply:
+> +    description: Digital power supply regulator 2 (+3.3V)
+> +
+> +  VCCAD1-supply:
+> +    description: ADC power supply regulator 1 (+5V)
+> +
+> +  VCCAD2-supply:
+> +    description: ADC power supply regulator 2 (+5V)
+> +
+> +  VCCDA1-supply:
+> +    description: DAC power supply regulator 1 (+5V)
+> +
+> +  VCCDA2-supply:
+> +    description: DAC power supply regulator 2 (+5V)
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    properties:
+> +      port@0:
+> +        $ref: audio-graph-port.yaml#
+> +        description: Audio input port.
 
-SPI-MOSI---Tri-state signal gate---LED1---LED2---LED3---...---LEDN
-SPI-CS-----|
+unevaluatedProperties: false
 
--- 
-Regards,
-Chuanhong Guo
+> +
+> +      port@1:
+> +        $ref: audio-graph-port.yaml#
+> +        description: Audio output port.
+
+unevaluatedProperties: false
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - VDD1-supply
+> +  - VDD2-supply
+> +  - VCCAD1-supply
+> +  - VCCAD2-supply
+> +  - VCCDA1-supply
+> +  - VCCDA2-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pcm3168a: audio-codec@44 {
+> +            compatible = "ti,pcm3168a";
+> +            reg = <0x44>;
+> +            reset-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+> +            clocks = <&clk_core 42>;
+> +            clock-names = "scki";
+> +            VDD1-supply = <&supply3v3>;
+> +            VDD2-supply = <&supply3v3>;
+> +            VCCAD1-supply = <&supply5v0>;
+> +            VCCAD2-supply = <&supply5v0>;
+> +            VCCDA1-supply = <&supply5v0>;
+> +            VCCDA2-supply = <&supply5v0>;
+
+Can you extend the example with dai cells or with endpoints (or both,
+depending on my previous comment...)
+
+> +        };
+> +    };
+
+Best regards,
+Krzysztof
+
