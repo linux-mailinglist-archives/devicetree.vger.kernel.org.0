@@ -2,106 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CAA8641645
-	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 12:05:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9175641690
+	for <lists+devicetree@lfdr.de>; Sat,  3 Dec 2022 13:11:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiLCLFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 06:05:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40532 "EHLO
+        id S229503AbiLCMLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 07:11:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiLCLFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 06:05:05 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AC9521F9E5;
-        Sat,  3 Dec 2022 03:05:02 -0800 (PST)
-Received: from loongson.cn (unknown [117.133.84.183])
-        by gateway (Coremail) with SMTP id _____8Axz+tdLYtjDPgCAA--.6899S3;
-        Sat, 03 Dec 2022 19:05:01 +0800 (CST)
-Received: from [192.168.1.2] (unknown [117.133.84.183])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxBldcLYtjzwclAA--.7740S3;
-        Sat, 03 Dec 2022 19:05:00 +0800 (CST)
-Message-ID: <b6b34bc4-4089-9c02-81b2-9eaf2c9a4663@loongson.cn>
-Date:   Sat, 3 Dec 2022 19:04:59 +0800
+        with ESMTP id S229448AbiLCMLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 07:11:23 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2587245EC1;
+        Sat,  3 Dec 2022 04:11:22 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id p8-20020a056830130800b0066bb73cf3bcso4481735otq.11;
+        Sat, 03 Dec 2022 04:11:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0edhihdfvOG7GSghtxT+LhbhV0OXh1bVTVRGZ1/Gd/Q=;
+        b=NtIqbUHB9s0JExCbH3hcdSLI4mJPgYlS1tpz9JJBGBL3VI3SGB5M5W6ogy9f3P3qXS
+         CWUaK9ZWEAbvVkDm7XaZiFjGlsHylCEQk+uOYIQb3zXXfRdAKvC5uBsdp4JZxYb1loXv
+         AF4kOhbjZevXykpYw2OB3IrD3gJ6NgfCHZt1MXQTfnFadoWcA1C4ehVnprXIF1CGWuka
+         2r5RglbQYaEdoQlehDK++8Hol1a0oT7mfBGhrDVle55vMh4WBadg3OaTITnVYmCnwfH7
+         P+y8nOKM/+gI4t0N7RAvjixMAIAgPw4fq7Ue8Lq69fo+A4Nfn1JdLOOfG9kmFpYIFLrg
+         2KYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0edhihdfvOG7GSghtxT+LhbhV0OXh1bVTVRGZ1/Gd/Q=;
+        b=jiXRP9MF2gD77GD7GLy48A3rgAjjJ5HVz6/o+GXTHjcSVZKMDfkbSjqDKl4QMyLqUG
+         Q81Zh+Vo05sxTWuXfV0CJVRVfgU4ByRatt+OmlyjCyaCDXzMWSdd8gxy5omI180ET8ef
+         jzNZFvdx5j06mHI7170W0j5WXQxiD26AgninwEQeHmw+/ZIVBKEHSbGz7+7oU+hO2hlE
+         rmeVNoDoS3s/f1u3b2uRT7v4duZeepfg51D5Wc30F4xMFsmDlNQvK0RNcFYPfpvcHvQ0
+         otwyS2FD7meHRjrzpXZgEe9GOlP/6KRRLMnRI9P/Z0dTOB6yNW50XiFe8alPU2lOT+Iv
+         k8ug==
+X-Gm-Message-State: ANoB5pm0d9Gk+yn38D2yv4z/SUrptQD5GNoHHnTDgQjdftPXKB2MM0h8
+        DVVk2A3y6Lzt39+GM10f1rbEjn6neiUf8YBmpyw=
+X-Google-Smtp-Source: AA0mqf5BT/ikEpWtI0KOKprcNPIe7cE6MLRo9+hTCopidi/QEYkiNbQMX4qGccGD1EGu0jbGsouRViA+H+EMqJPCaNU=
+X-Received: by 2002:a05:6830:699b:b0:66e:7ba6:5e0f with SMTP id
+ cy27-20020a056830699b00b0066e7ba65e0fmr5004392otb.312.1670069481425; Sat, 03
+ Dec 2022 04:11:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v1] gpio: loongson: enable irqdomain hierarchy config
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+References: <20221202034240.455831-1-gch981213@gmail.com> <20221202034240.455831-3-gch981213@gmail.com>
+ <df8a683a-0df9-c32a-4272-19e7313ef7d7@linaro.org> <CAJsYDVLwyCG2xnWXDo72H-T4Tk7Edxmv_GSfJFvvWKrXZgBtCA@mail.gmail.com>
+ <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org>
+In-Reply-To: <783fd2ff-cf7a-d820-6be7-9863e1786349@linaro.org>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Sat, 3 Dec 2022 20:11:10 +0800
+Message-ID: <CAJsYDVLuXG9UiOixxs997QdfeQVitFhhRDRbJ-uQ4Agz7LuMAQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: leds: add dt schema for worldsemi,ws2812b-spi
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Juxin Gao <gaojuxin@loongson.cn>,
-        Bibo Mao <maobibo@loongson.cn>,
-        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
-        Arnaud Patard <apatard@mandriva.com>,
-        Huacai Chen <chenhuacai@kernel.org>
-References: <20221203105825.15886-1-zhuyinbo@loongson.cn>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-In-Reply-To: <20221203105825.15886-1-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxBldcLYtjzwclAA--.7740S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoWrKFyDWry8Ww1rCr1ftrW5Wrg_yoW3uFX_Cw
-        nF9Fs3Xr1UCryq9F4a9r4fZry2kayUWr1fZw1vq343X34xX3WUuw1a93Z5W3W7Wr17WFZ5
-        ZrWfAryIyryxWjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        17CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCj
-        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
-        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
-        c4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
-        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
-        6xIIjxv20xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8mQ6JUUUUU==
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi!
 
-在 2022/12/3 18:58, Yinbo Zhu 写道:
-> The loongson gpio driver need select IRQ_DOMAIN_HIERARCHY and add
-> such support.
+On Sat, Dec 3, 2022 at 6:52 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->   drivers/gpio/Kconfig | 1 +
->   1 file changed, 1 insertion(+)
+> On 02/12/2022 13:55, Chuanhong Guo wrote:
+> >>> +
+> >>> +      default-brightness:
+> >>> +        description:
+> >>> +          The default brightness that should be applied to the LED by the operating
+> >>> +          system on start-up. The brightness should not exceed the brightness the
+> >>> +          LED can provide.
+> >>> +        $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +        minimum: 0
+> >>> +        maximum: 255
+> >>> +        default: 0
+> >>> +
+> >>> +      default-intensity:
+> >>> +        description: |
+> >>> +          An array of 3 integer specifying the default intensity of each color
+> >>> +          components in this LED. <255 255 255> if unspecified.
+> >>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> >>
+> >> I am still not convinced these two properties are correct. Why this LED
+> >> is special and defines default brightness and intensity and other LEDs
+> >> do not? You explained you are doing it for user-space which is usually
+> >> not a valid reason for changes specific to one binding. Either all
+> >> bindings should support it or none.
+> >
+> > There's already a default-state for simple LEDs without brightness
+> > control so I think it makes sense to add default-brightness for LEDs
+> > with brightness control and default-intensity for colored LEDs.
+> > The default-state seems to be implemented in various LED drivers,
+> > so I implemented these two properties in my LED driver.
+> > There's nothing device-specific about these two properties.
 >
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 55b7c5bae4aa..0f014411703e 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -395,6 +395,7 @@ config GPIO_LOONGSON_64BIT
->   	depends on LOONGARCH || COMPILE_TEST
->   	select GPIO_GENERIC
->   	select GPIOLIB_IRQCHIP
-> +	select IRQ_DOMAIN_HIERARCHY
->   	help
->   	  Say yes here to support the GPIO functionality of a number of
->   	  Loongson series of chips. The Loongson GPIO controller supports
+> default-state has a bit different purpose - to prevent any
+> glitches/changes when probing driver.
 
-Hi Bartosz,
+OK. I didn't know that property is used in this way.
+I can live without them. I'll drop it in the next version.
 
+>
+> >>
+> >>> +        maxItems: 3
+> >>> +        items:
+> >>> +          minimum: 0
+> >>> +          maximum: 255
+> >>> +
+> >>> +      reg:
+> >>> +        description: |
+> >>> +          Which LED this node represents. The reg of the first LED on the chain
+> >>> +          is 0.
+> >>> +        maxItems: 1
+> >>> +
+> >>> +    required:
+> >>> +      - reg
+> >>> +      - color
+> >>> +      - function
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +
+> >>> +additionalProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    #include <dt-bindings/leds/common.h>
+> >>> +    spi {
+> >>> +        #address-cells = <1>;
+> >>> +        #size-cells = <0>;
+> >>> +
+> >>> +        leds@0 {
+> >>
+> >> git grep leds@ -- Documentation/devicetree/ | wc -l
+> >> 1
+> >> git grep led@ -- Documentation/devicetree/ | wc -l
+> >> 165
+> >>
+> >> so rather not the first one ("leds").
+> >
+> > As you can see, this node describes a chain of LEDs, not
+> > a single LED, so the plural form is more appropriate than
+> > the singular form.
+> >
+> >>
+> >> There is also:
+> >> git grep led-controller@ -- Documentation/devicetree/ | wc -l
+> >> 30
+> >
+> > This also isn't appropriate. WS2812B is a single LED package
+> > of 3 diodes and a microcontroller. If we treat every package
+> > as a LED, the SPI MOSI is connected directly to the LED
+> > packages themselves with no controller in between.
+> > If we treat the microcontroller as a led-controller, every
+> > LED contains its own controller, instead of one controller
+> > controlling all LEDs, and the parent node still shouldn't
+> > be called a led-controller.
+> >
+> > Here's a picture of the WS2812B LED package:
+> > https://cdn-shop.adafruit.com/970x728/1655-00.jpg
+> > and a chain of them:
+> > https://cdn-shop.adafruit.com/970x728/1463-00.jpg
+>
+> Then your bindings and DTS do not represent the hardware.
 
-please help merge this patch on top of the existing series.
+How should this hardware be represented, then?
 
+The connection can be:
 
-Thanks,
+SPI-MOSI---LED1---LED2---LED3---...---LEDN
 
-Yinbo
+or
 
+SPI-MOSI---Tri-state signal gate---LED1---LED2---LED3---...---LEDN
+SPI-CS-----|
+
+-- 
+Regards,
+Chuanhong Guo
