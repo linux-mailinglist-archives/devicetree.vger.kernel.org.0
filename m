@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 224BB641EB5
+	by mail.lfdr.de (Postfix) with ESMTP id DC8D7641EB7
 	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 19:29:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230464AbiLDS3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 13:29:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
+        id S230411AbiLDS3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 13:29:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiLDS31 (ORCPT
+        with ESMTP id S230378AbiLDS31 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 13:29:27 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F077E12ABE
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 10:29:22 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id cf42so9584290lfb.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 10:29:22 -0800 (PST)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5036312D27
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 10:29:24 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id 1so1732386lfz.4
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 10:29:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1gjIuLbuYm9eN5Zaq7wruCJOGXBkxk9TEVxr2ELzNyM=;
-        b=msr4c6dETd0XxzdYTY6W9ZWmBlM+poak3c3oJp5hQc7K1UIwvRlM2VBsa7cprd/zQA
-         jzQ/8PRGd3A+ElhWXkO6twmZZxLFir6zHwGBm8UisZjmvLN4D4jS1AzP+dMMa4+69kHx
-         aX8ktNb/E2zX5YVF1PBWxMsZn2am3+NSy9M4cgd/b621JlEyPONraQ49XsXeTpFGb951
-         PJZEUEDu8HMthVkriHZcZmUTppE/i6Z4FHD9CYiTEJZBX1xZB/wPCMtddQSKOx66r4O/
-         bda7BXQz69llTsbmmjaT9a/tTot1p/pySV6q73ie9U99cpO0jtqXSGEjTo5u95pvaXv3
-         s6Nw==
+        bh=k3M3VyN+gt6ftGeaDe6rXF+qMLaJNZCrheDPOaVNkN4=;
+        b=Ds+u0ZbE0sJq/iBjWNK+IxPNbNDviPYZcAp+xql3tG9OD0vWUJ8mfgXG/Vaw9ddwiW
+         xEav0N5hivFM+WsRUKsisnKVi+OmcpfL+dZh8IyGIx3ry1F7tciUd61J6xe5BkkBOu35
+         qcgH6KTuszPG+CggawH1zVfd+rwsK/WqTeoFO4uhXP40rVGDcGMBqo3AJ7jCC99KeYuS
+         3slDIWRZWydsycY6PPEmkDMDfNgcnAMpx0XUZpzcDVZls3N9jS2EkxyZUeIlfG8lW2To
+         BbA7HiVcq1qaBvak1jJPKyygT50cVcPfUrAjRvEflATLZXrFKApwLkzPdn4FeUE+3iUa
+         XySg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1gjIuLbuYm9eN5Zaq7wruCJOGXBkxk9TEVxr2ELzNyM=;
-        b=afbrWnMGArLX+XckRGeIoXCv3TpJ49JjdPpmvXwzi4OQpbG8CmcPMFsLuLhRlLKzWh
-         tuzJBBVG7qK9wlvRpBj1vrNfPdAUlxMKPL/5U5V5dps2LqkeuwBpGhHUqKrUX0L2trzf
-         buzlkN6R8jfQOFiWVLWbOh7PGqI8myNzJyUVjq3kWDvoAwH24A4VqYJTJe1oXTZxEfk7
-         YjqtRVCaA+kFE7GyJMmbRE0TtECQTsnhBudfln3f5jOUbe63uvockIvDUG9Lx+j74bPU
-         Qv08UyHG88vmrAnLQ/PSbvDSOScNjoZHJXQhBnt917mJ74z7GP9LM62pFuS4HBbIBDno
-         KACQ==
-X-Gm-Message-State: ANoB5pnvyKx05A8Dkzc8A7/GdjUJ5NEuv/CupD/YFAIvSfCIdd57dXgE
-        1jK5YPY8ssOhsUXiSwF6PGg1bw==
-X-Google-Smtp-Source: AA0mqf4UPCxxvMoekZXXvXot8m/zQ+q1fGTUZPaIMlMJIt4kh2HXIM0T5KqpWhb2o21ZZrh+KyfCPg==
-X-Received: by 2002:a05:6512:250f:b0:4b4:abb4:c34d with SMTP id be15-20020a056512250f00b004b4abb4c34dmr24680669lfb.218.1670178561302;
-        Sun, 04 Dec 2022 10:29:21 -0800 (PST)
+        bh=k3M3VyN+gt6ftGeaDe6rXF+qMLaJNZCrheDPOaVNkN4=;
+        b=jTLqH78xVyCr+WcgHZCzTrCfHeDCpIVFp+6zhS2XCPWUQ3snKFX32qIWGqpJAil9Mc
+         uGWpp+fgZ3KeJstA/tyw0z7DfMXw9l88z4c12g5C/qLRG0IZ9gEBdfttV7SMenginFvx
+         fupm30gBXVVHl1ItrvRiqh/pXE+lz15ds2bjhv1bRGG0WSz7A/t2OR53W1oFQvL53S9c
+         mgfvUpGyDe664bEhQYaSkyKI+w50ckVvFKjby0Lx4069mgtteezHxql8V2Poz6jgT5f2
+         z7SlHb8LT3x8VHuwkm9u0V3N7jQ8zTKvxAtz6biT5+bLRfEUpSUbZN2HSTDf+KJhaHZ0
+         PjcQ==
+X-Gm-Message-State: ANoB5pk6aABoKNnl1Uz09QrRHFNJdxnjllsCYNUFsDkxEkmr09m4q2xX
+        2VUS/sZmQBMi0W+znSL2TuzeIg==
+X-Google-Smtp-Source: AA0mqf6pY51XPJcwK4YklKJNLUWc3bAAU36hqO/Jj5kXIUWVKjswhYHVnyQo7swA5lN98jdcrzxwiA==
+X-Received: by 2002:a19:f713:0:b0:498:f36a:76fa with SMTP id z19-20020a19f713000000b00498f36a76famr27418948lfe.532.1670178562707;
+        Sun, 04 Dec 2022 10:29:22 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.19
+        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm1838996lfr.4.2022.12.04.10.29.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 10:29:20 -0800 (PST)
+        Sun, 04 Dec 2022 10:29:22 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -72,9 +72,9 @@ To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/9] media: dt-bindings: cec: convert common CEC properties to DT schema
-Date:   Sun,  4 Dec 2022 19:29:02 +0100
-Message-Id: <20221204182908.138910-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/9] media: dt-bindings: amlogic,meson-gx-ao-cec: reference common CEC properties
+Date:   Sun,  4 Dec 2022 19:29:03 +0100
+Message-Id: <20221204182908.138910-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
 References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
@@ -82,85 +82,48 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert common HDMI CEC adapter bindings to DT schema.
+Reference common HDMI CEC adapter properties to simplify the binding and
+have only one place of definition for common properties.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/media/cec.txt         |  8 ------
- .../bindings/media/cec/cec-common.yaml        | 28 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 29 insertions(+), 9 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/cec.txt
- create mode 100644 Documentation/devicetree/bindings/media/cec/cec-common.yaml
+ .../bindings/media/cec/amlogic,meson-gx-ao-cec.yaml        | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/cec.txt b/Documentation/devicetree/bindings/media/cec.txt
-deleted file mode 100644
-index 22d7aae3d3d7..000000000000
---- a/Documentation/devicetree/bindings/media/cec.txt
-+++ /dev/null
-@@ -1,8 +0,0 @@
--Common bindings for HDMI CEC adapters
+diff --git a/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+index f65c9681a9f7..b1fab53418f9 100644
+--- a/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
++++ b/Documentation/devicetree/bindings/media/cec/amlogic,meson-gx-ao-cec.yaml
+@@ -33,11 +33,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  hdmi-phandle:
+-    description: phandle to the HDMI controller
+-    $ref: /schemas/types.yaml#/definitions/phandle
 -
--- hdmi-phandle: phandle to the HDMI controller.
--
--- needs-hpd: if present the CEC support is only available when the HPD
--  is high. Some boards only let the CEC pin through if the HPD is high,
--  for example if there is a level converter that uses the HPD to power
--  up or down.
-diff --git a/Documentation/devicetree/bindings/media/cec/cec-common.yaml b/Documentation/devicetree/bindings/media/cec/cec-common.yaml
-new file mode 100644
-index 000000000000..af6ee5f1c73f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/cec/cec-common.yaml
-@@ -0,0 +1,28 @@
-+# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/cec/cec-common.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDMI CEC Adapters Common Properties
-+
-+maintainers:
-+  - Hans Verkuil <hverkuil@xs4all.nl>
-+
-+properties:
-+  $nodename:
-+    pattern: "^cec(@[0-9a-f]+|-[0-9]+)?$"
-+
-+  hdmi-phandle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to the HDMI controller.
-+
-+  needs-hpd:
-+    type: boolean
-+    description:
-+      The CEC support is only available when the HPD is high. Some boards only
-+      let the CEC pin through if the HPD is high, for example if there is a
-+      level converter that uses the HPD to power up or down.
-+
-+additionalProperties: true
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 07cb85cac4c3..45402e03cda5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4832,7 +4832,7 @@ S:	Supported
- W:	http://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/ABI/testing/debugfs-cec-error-inj
--F:	Documentation/devicetree/bindings/media/cec.txt
-+F:	Documentation/devicetree/bindings/media/cec/cec-common.yaml
- F:	Documentation/driver-api/media/cec-core.rst
- F:	Documentation/userspace-api/media/cec
- F:	drivers/media/cec/
+ allOf:
++  - $ref: cec-common.yaml#
+   - if:
+       properties:
+         compatible:
+@@ -81,7 +78,7 @@ required:
+   - clocks
+   - clock-names
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.34.1
 
