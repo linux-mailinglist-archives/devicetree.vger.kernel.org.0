@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF2B641C64
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 11:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F011641C7C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 12:01:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbiLDKng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 05:43:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
+        id S229915AbiLDLBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 06:01:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230074AbiLDKne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 05:43:34 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10AA8F038
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 02:43:32 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id x6so10361709lji.10
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 02:43:32 -0800 (PST)
+        with ESMTP id S229892AbiLDLBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 06:01:50 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D279D17E3A
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 03:01:49 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id b16so2366629yba.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 03:01:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wKxfJBtE9R/RmkSFqJuCs7AeQseJPQiGfkmXFgO8eRE=;
-        b=NygHRy+2Rq2KEujc0x//tVDRPbwYxxkTgX0T8P3Q/v5z3iW/dLE0/BDRYVBawgtseE
-         eL4FgeKIuUuY2tGMaqMlw9fZdNPZZt5ePgAH/Eto9xbh3DkxYud33xSJB0mbnxefpfGU
-         sGu/ZcKSq53vZmHeg6kuu/+i8rdk4dLzICM3EF49ab4hc6THSqcTNkFoACIedqh2yyA8
-         PvQul1RCxyko/hakFADrfzbTHb2my/63HUGLIpbG9/gKzhCn5WlkxUs9yQnDmxWE4cq6
-         0qJqpG35dZ8ctNqOCwJ81nwzpUanTauxvBV9obWzs3HI++tIB48tCyzp5VkEWowh4pKF
-         zfxA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5mJSnVdKTdgMT3o81l9Htw0CZsj1J6zKH8gGCQy7w2g=;
+        b=zVOjMyrtfEC4BS9SwTeuJKV8C/DUiP9E/yoF0opYqIh3X9X37iKXU6IlQ4LqifEvrt
+         p2mt4/OAllbSbflKpynrYGob4yl3P5IDCofVHwFV/gJJvFo1fqhSEINot/yhcIYPt30V
+         wJMQ7gPqo8O4sz18vXss1EI/Xj4iSQs+97K1jmvFO7yZlYemMtfLEvbzAlNUHISP3kBz
+         z7+mcnYNog4k9CeCJJxhqoM/+Fx1rhDHhL4bhcl9TJFc8yJhUfxOqlUNJJ5LS0XGHOZ5
+         TXavBv1RhESHyEQmzBpowh8tbHeevt/ETy8iBi+ceSlojUvkya8olydx4X4oN76jSq1C
+         cShQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wKxfJBtE9R/RmkSFqJuCs7AeQseJPQiGfkmXFgO8eRE=;
-        b=0spClK6uMsDdqh5H83wwIhKvOZtATT8DJprFQJmA3QGjpS9I/TuuVVVyn5qQQ6RBdx
-         oPT0US/COkyW1JFv8MHcdldIs4UzYYIFUq0Srl2YaZIYTwfx3BMv3kL09z7vUwXte/Mi
-         e4WtC3m8sx0ZZnhVgIYyZ9RkvGhcXzh9jqptvOCHJU/fzRsbpAuFXuMPKNs6/dKAKC7e
-         l3CRllIGIXYjpLcC+kvbb5OyJJjG6SRSJAScUM0zkke6NQ7dl1LdFCXi4d7wUr2RLxCA
-         Fsvw2n6tmDsUCee62NjPcAonD1dB2n9ZKe7o+DZMSif48HgkzIV42DqFqAkPz1T5uPT/
-         uTIA==
-X-Gm-Message-State: ANoB5pmfEAxVkUyUdXbP3nQ2/yYcTsObYd4C3IJzWNZmSwBv+e/hXRv4
-        f7SGwQjIfgdgNOycajTCqNPy4Q==
-X-Google-Smtp-Source: AA0mqf7rV6MT2d/H87OYhumdmZsVNt9zVAycKUBv1fuw5Ut5PGBgkF6tBZoRJNoqMP/K0QgxgJWjMg==
-X-Received: by 2002:a05:651c:1187:b0:279:d72d:215e with SMTP id w7-20020a05651c118700b00279d72d215emr3750216ljo.184.1670150611194;
-        Sun, 04 Dec 2022 02:43:31 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w13-20020a05651c118d00b0026c42f67eb8sm893318ljo.7.2022.12.04.02.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 02:43:30 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sean Young <sean@mess.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: leds: irled: ir-spi-led: convert to DT schema
-Date:   Sun,  4 Dec 2022 11:43:23 +0100
-Message-Id: <20221204104323.117974-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221204104323.117974-1-krzysztof.kozlowski@linaro.org>
-References: <20221204104323.117974-1-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5mJSnVdKTdgMT3o81l9Htw0CZsj1J6zKH8gGCQy7w2g=;
+        b=ptOi64004hfDRBuhmwbT0MvZOjVGby4Isw7M4CaaZfYknjUIZlJRrmB6jQ3DMG2G8g
+         YFZK8sPpGBj69MN4ilFpKoKFsMQmJ1+jVs2orIB6JwAjxmO3rxJr4i8X/pr2sWhzwCtX
+         oLPrNVpkieQKd8obs+Plu95izxN0qYMMhHWhDDUCdoEiRqTiCM7Sg8KB8bXJwF4fdNIM
+         8RUePtODIqSDpzgjAWMU0ffnvEQVNFOkvYaSeuNdctxi7NnR4MmgpT+/04AHOMQOvA3b
+         D/JvYDXXY383EycBYhjLYOOwBFhkV1EI2JtGy/MydscmoXMT75DSYDFmt+25kLhaz90L
+         mOew==
+X-Gm-Message-State: ANoB5pmIKFOowRMhaLauGA0TsC8C/pIh7jcdiofOkiSSiEgcOtra7Jr+
+        zOYt/q45YKQF8KFvwxvfrpbYWvcSKu2lYstf/1082g==
+X-Google-Smtp-Source: AA0mqf6SbDhMwV6A9k7IEy/faMzy07GUewJXv1KpTqPROARL5EWrdex+l949N3Obodpn6/n62n27yKfASro6UToq72U=
+X-Received: by 2002:a25:bdd2:0:b0:6e0:c7d3:f026 with SMTP id
+ g18-20020a25bdd2000000b006e0c7d3f026mr60062593ybk.275.1670151709083; Sun, 04
+ Dec 2022 03:01:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221204094438.73288-1-krzysztof.kozlowski@linaro.org> <20221204094438.73288-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221204094438.73288-6-krzysztof.kozlowski@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 4 Dec 2022 13:01:38 +0200
+Message-ID: <CAA8EJpq2h-U7u4Ey0kahRDDgRrZCWffnimtwVLtEAvwZusOAKQ@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8250-sony-xperia-edo: fix no-mmc
+ property for SDHCI
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -73,118 +71,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the SPI IR LED bindings to DT schema.
+On Sun, 4 Dec 2022 at 11:44, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> There is no "no-emmc" property, so intention for SD/SDIO only nodes was
+> to use "no-mmc":
+>
+>   qcom/sm8250-sony-xperia-edo-pdx206.dtb: mmc@8804000: Unevaluated properties are not allowed ('no-emmc' was unexpected)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/leds/irled/ir-spi-led.yaml       | 61 +++++++++++++++++++
- .../bindings/leds/irled/spi-ir-led.txt        | 29 ---------
- 2 files changed, 61 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
- delete mode 100644 Documentation/devicetree/bindings/leds/irled/spi-ir-led.txt
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml b/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
-new file mode 100644
-index 000000000000..72cadebf6e3e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/irled/ir-spi-led.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: IR LED connected through SPI bus
-+
-+maintainers:
-+  - Sean Young <sean@mess.org>
-+
-+description:
-+  IR LED switch is connected to the MOSI line of the SPI device and the data
-+  is delivered through that.
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: ir-spi-led
-+
-+  reg:
-+    maxItems: 1
-+
-+  duty-cycle:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    enum: [50, 60, 70, 75, 80, 90]
-+    description:
-+      Percentage of one period in which the signal is active.
-+
-+  led-active-low:
-+    type: boolean
-+    description:
-+      Output is negated with a NOT gate.
-+
-+  power-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        irled@0 {
-+            compatible = "ir-spi-led";
-+            reg = <0x0>;
-+
-+            duty-cycle = /bits/ 8 <60>;
-+            led-active-low;
-+            power-supply = <&irda_regulator>;
-+            spi-max-frequency = <5000000>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/leds/irled/spi-ir-led.txt b/Documentation/devicetree/bindings/leds/irled/spi-ir-led.txt
-deleted file mode 100644
-index 83ff1b4d70a6..000000000000
---- a/Documentation/devicetree/bindings/leds/irled/spi-ir-led.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Device tree bindings for IR LED connected through SPI bus which is used as
--remote controller.
--
--The IR LED switch is connected to the MOSI line of the SPI device and the data
--are delivered thourgh that.
--
--Required properties:
--	- compatible: should be "ir-spi-led".
--
--Optional properties:
--	- duty-cycle: 8 bit value that represents the percentage of one period
--	  in which the signal is active.  It can be 50, 60, 70, 75, 80 or 90.
--	- led-active-low: boolean value that specifies whether the output is
--	  negated with a NOT gate.
--	- power-supply: specifies the power source. It can either be a regulator
--	  or a gpio which enables a regulator, i.e. a regulator-fixed as
--	  described in
--	  Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
--
--Example:
--
--	irled@0 {
--		compatible = "ir-spi-led";
--		reg = <0x0>;
--		spi-max-frequency = <5000000>;
--		power-supply = <&vdd_led>;
--		led-active-low;
--		duty-cycle = /bits/ 8 <60>;
--	};
 -- 
-2.34.1
-
+With best wishes
+Dmitry
