@@ -2,82 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD75641E00
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:43:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E08B4641E05
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:47:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbiLDQnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 11:43:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
+        id S230209AbiLDQrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 11:47:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbiLDQna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:43:30 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E659F15713
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:43:28 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id q7so15319629wrr.8
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:43:28 -0800 (PST)
+        with ESMTP id S230201AbiLDQrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:47:12 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B27191570A
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:47:10 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id bn5so11016358ljb.2
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:47:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gT/B/EAWvvQ3x+0gmDPuocEhB6PCpHAkErzF+d1wppY=;
-        b=GZ1kDmpbbIPKd0G/oggHqKbaOzNeRecnfrW9VNrGs/KovxgXNa2vcg/54YMCTO2Xai
-         pI96qy/5HEI/+1OEPKKQPGrTKkCuPipVBy5gMXKeI9K5J2f/Jyo6G1p1U2O9QOKG7wKE
-         P4XqqO4dkq8KBeql5lJa1NWUBNZl+mQCWqbc1whrC5nA4giONxRyIzIUuYx7VnCnrboJ
-         Sm93EcBT7B8RCSH5v+IZF5Bwfa4yfnD4UsK7QCI/W0B/KOqU0pNcJFtl6iuyjx5T7B8V
-         fKPy5ReHyk9AAFDcx9/CMoGJ1XKEImc0Rc8SlYM61N9nEIE0IyDRCwR9fMbI6nVQ9nX8
-         JFnA==
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=IBSaaBdFn+BP+xzbg2xAiyjV0AjU3IsjmFiKfeCqqvI=;
+        b=wJTrVXJOn+oqKMcWQtvULX7ulDXWLrtPzSQaCY4aUPic6EJRnTU8lpjcSCs4NXujGa
+         5B/GwS81kHr5ShQHFdRjt18fi0NXOrNAxrT32DzlDZqRkiOO5QiTijH3HjRfEmwPz/hA
+         1XRsGbRqG4MCscTzmETpOCXB8HlJc04gBwdTPqQUbctpbJDffiaNKZ5OjZmS+oaGNOEw
+         k4gP18xu7u1DfYB80LqsTWgMRMj2XnMS8u/wnDxGaqKvhZQc4/fOU45+Lhn+N04UZVc6
+         IJlhricGMUAFHmurSmdMVqg9SwBN3M2FwtGiSoFgVVS5Ly1wTyC/jXRj8agENVJkzVw+
+         KPiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gT/B/EAWvvQ3x+0gmDPuocEhB6PCpHAkErzF+d1wppY=;
-        b=tYNt3SDaDUbUwDNOiaj31dvrLKG/UmuoWgNFOVDYNxGhqtKjUVI8o4AoU/0PhU4Ydp
-         19yeD7Nb9CAv6LM60/yh9Zb/kk1059EmR6TVaeBpXprYCrd2/rXVxugACL6at0EOh10n
-         crc8bkWG4lFYdepmqRbbtNeuTQoJ7nLzcSCrZlNtKgtLmrwUDU73xE9hSmzYO2l1c6xn
-         u1ow8OtQvASyqeidZFd2CeByvFBlyFLQ/B3UxIUU1MV/ZKyohHPq4A8k42kPXUNeTB57
-         /3p32ehu+bk8NG+aEJr7Zv4AXYDoyk9J6drbwqykbiz9ajh6TKCatwDK3njiOh7u9kPQ
-         OGNw==
-X-Gm-Message-State: ANoB5pkXwyY4/Dv6ZXfyNpB21l/C7fOJn8S/zM6Otc1avCo6+r3Zk4Z7
-        UWQxCjytJ4SQWFFNgK3eqXMrPw==
-X-Google-Smtp-Source: AA0mqf4sAuxjvaOBDZhtrGGYt7BstKJKEBiKdUr3ZkgAhbTJspC6aS7UljKY//5yJR5pedqGj15Pqw==
-X-Received: by 2002:adf:f5c9:0:b0:242:10ac:e8c with SMTP id k9-20020adff5c9000000b0024210ac0e8cmr22318955wrp.67.1670172207444;
-        Sun, 04 Dec 2022 08:43:27 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id bs4-20020a056000070400b0023677081f3asm12202573wrb.42.2022.12.04.08.43.25
+        bh=IBSaaBdFn+BP+xzbg2xAiyjV0AjU3IsjmFiKfeCqqvI=;
+        b=Nkum5RBxfoZ3D7V+LQGq/BYozgorkvCOQQgtXVsU4tU3GtLusAV5o7JBURO7GFVAD0
+         A8TQkILrroGD/DnTjGW+rlXg8cnMylDULPxh7gmqD5C7K+B6MBqWz7kMbsm5qehwg1xh
+         2HaSRV2TqGij/ATFoDAacwao9Z36l3Pg76WHm1A+5PMTzYzhW/kVSQ/ntfbfReTsIZep
+         3Gx6Df0D69bOg7kNgvEXTwIqLSOBpt4oAV8qKZWOZ+lzI1Z+hhiyG3tQvGu6MQiY8FXD
+         0SR8+6d6rlbSszgSq2yok+GNqQRzX9ydT/MOp/PrdaTYjFhUbKIY0tz4HhPbps+AFie2
+         lt2A==
+X-Gm-Message-State: ANoB5pmc/vOCYCvsGPZaURaabXohn6XEVsv/zCbWRwusEfDNy6s5hRFY
+        asoaeEM0sckA+hlBHlIGATMUfQ==
+X-Google-Smtp-Source: AA0mqf4kBdTo6SDQ4Um37LTIlSLql9Lw0iLy1FQ9H6KpXZOkmUBpkamfuV9PNogA/0JeVQ7HB2Tjjw==
+X-Received: by 2002:a05:651c:1510:b0:277:75fb:1fc5 with SMTP id e16-20020a05651c151000b0027775fb1fc5mr24664380ljf.405.1670172429042;
+        Sun, 04 Dec 2022 08:47:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b13-20020a0565120b8d00b004b373f61a60sm1828538lfv.96.2022.12.04.08.47.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Dec 2022 08:43:26 -0800 (PST)
-Message-ID: <0a91ac56-f888-8127-8a1e-69519223177c@linaro.org>
-Date:   Sun, 4 Dec 2022 17:43:25 +0100
+        Sun, 04 Dec 2022 08:47:08 -0800 (PST)
+Message-ID: <7c258f71-23d0-36bd-8abf-b227d2522267@linaro.org>
+Date:   Sun, 4 Dec 2022 17:47:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: narrow interrupts for
- SC8280XP, SM6350 and SM8450
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: Reference common DAI properties
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Ban Tao <fengzheng923@gmail.com>,
+        =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
+        James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Lucas Tanure <tanureal@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>
-References: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.om>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Bogdan Togorean <bogdan.togorean@analog.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>,
+        - <patches@opensource.cirrus.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Daniel Drake <drake@endlessm.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Jee Heng <jee.heng.sia@intel.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Mohan Kumar <mkumard@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Derek Fang <derek.fang@realtek.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Jose Abreu <joabreu@synopsys.com>, Andrew Davis <afd@ti.com>,
+        Shi Fu <shifu0704@thundersoft.com>,
+        Shenghao Ding <shenghao-ding@ti.com>,
+        Matt Flax <flatmax@flatmax.com>,
+        Ricard Wanderlof <ricardw@axis.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, dri-devel@lists.freedesktop.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-sunxi@lists.linux.dev,
+        asahi@lists.linux.dev, chrome-platform@lists.linux.dev,
+        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20221203160442.69594-1-krzysztof.kozlowski@linaro.org>
+ <20221203160442.69594-2-krzysztof.kozlowski@linaro.org>
+ <2251607.XGVbBG2WQu@archbook>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2251607.XGVbBG2WQu@archbook>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,19 +152,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2022 12:31, Krzysztof Kozlowski wrote:
-> Narrow number of interrupts per variants: SC8280XP, SM6350 and SM8450.
-> The compatibles are already used and described.  They only missed the
-> constraints of number of interrupts.
+On 04/12/2022 17:09, Nicolas Frattaroli wrote:
+> On Samstag, 3. Dezember 2022 17:04:41 CET Krzysztof Kozlowski wrote:
+>> Reference in all sound components which have '#sound-dai-cells' the
+>> dai-common.yaml schema, which allows to use 'sound-name-prefix'
+>> property.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> This is an output of discussion here:
+>> https://lore.kernel.org/all/Y255C+TGNVJ9fs8A@sirena.org.uk/
+>>
+>> This patch supersedes previous WSA883x one.
+>> ---
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Hello,
+> 
+> for rockchip,i2s-tdm, we get some (new?) warnings with W=1:
+> 
+>     /home/fratti/Projekte/linux/arch/arm64/boot/dts/rockchip/rk3566-pinenote-v1.1.dtb: i2s@fe420000: reset-names:0: 'm' is not one of ['tx-m', 'rx-m']
+>             From schema: /home/fratti/Projekte/linux/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
 
-Applied, thanks
+I did not touch reset names, so are you sure these are not old warnings?
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
