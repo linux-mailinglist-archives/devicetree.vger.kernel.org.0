@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42CB3641DEB
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:33:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD75641E00
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:43:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbiLDQdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 11:33:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51260 "EHLO
+        id S230193AbiLDQnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 11:43:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbiLDQdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:33:49 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0B41114C
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:33:48 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id w15so15295235wrl.9
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:33:48 -0800 (PST)
+        with ESMTP id S230006AbiLDQna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:43:30 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E659F15713
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:43:28 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id q7so15319629wrr.8
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:43:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=s73rXHrAxMtPGwi99sqcpRgefCBmkZ6Y/H/iMaBpQ54=;
-        b=VliLnHpQFPE4eTiC/g9R2V8fggkR7Urm96PGlq5uxnjmmudbCGbG+4VrsfGEr6DLJT
-         mGztrPDB0LTXJDXEB/1ZQat9oijOqk9KZVtxhXvunbZsrCacO6IjQWCjPAwyf0LieES3
-         v7K4z5yZry6jJ6GX8bj1EtM78z629aL7r4WdGrTu3EcD5MG7xpwFS7AmitiGkljykrL+
-         rWSDc8sMYsxGrI66yL7ywBnffSPz7da0YKS+Ob7VoshG4MryemHfyu7C1yo/dYuH/+xg
-         knXfyhBu06+PxM34s2nj4j2HLopB1HTGOIPnujpKhOtq1i8Wz8FkvqiduwkCEA72Q86p
-         qw1w==
+        bh=gT/B/EAWvvQ3x+0gmDPuocEhB6PCpHAkErzF+d1wppY=;
+        b=GZ1kDmpbbIPKd0G/oggHqKbaOzNeRecnfrW9VNrGs/KovxgXNa2vcg/54YMCTO2Xai
+         pI96qy/5HEI/+1OEPKKQPGrTKkCuPipVBy5gMXKeI9K5J2f/Jyo6G1p1U2O9QOKG7wKE
+         P4XqqO4dkq8KBeql5lJa1NWUBNZl+mQCWqbc1whrC5nA4giONxRyIzIUuYx7VnCnrboJ
+         Sm93EcBT7B8RCSH5v+IZF5Bwfa4yfnD4UsK7QCI/W0B/KOqU0pNcJFtl6iuyjx5T7B8V
+         fKPy5ReHyk9AAFDcx9/CMoGJ1XKEImc0Rc8SlYM61N9nEIE0IyDRCwR9fMbI6nVQ9nX8
+         JFnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s73rXHrAxMtPGwi99sqcpRgefCBmkZ6Y/H/iMaBpQ54=;
-        b=X9odYegO2Nwg8vyDsF3Z3qckpHzSby+B14dbf8tRR6viNzbwE8fHAtESZt/5Nzf0Yl
-         6kdKmjBGj42/Ee6X3RdfSFRmbgsHd05ssxNbh7f1q06qakgiToiMQcrK3o8Eg+yYbMCW
-         044JPVFGO6sjAt1mGRHRpvvlUOcOpO95PCjcXHPR3hu7BYLFAPYL1/aGe6e8HBfx+49Q
-         KkhAlLbKaymLw1V8+VDiPsyZOshBh9GdqaCkal6pnZAhQxH30/J1QwN/bdm+SvDXZBib
-         AN5sI5a/P27CbHLVo3BH363CqQLDonWlFPtdvxj7ZGAnwhCLev3sSWXEEFSMl1vgx9en
-         MQkw==
-X-Gm-Message-State: ANoB5pkz2a2Ij4dod2dlgapBSSH6jfiLr7+hzIn+AHvCTSWOZrBu+Kao
-        esbwSvi82P6EzZznKaoQg5/MoQ==
-X-Google-Smtp-Source: AA0mqf5e3/VxCpvgJ7AtNfqqg/dDz6G+esrs6P1IJNGNclRmlGo8zfq6HOayTGeXqwkxJZAIM4EyBw==
-X-Received: by 2002:a5d:5712:0:b0:242:4bac:a100 with SMTP id a18-20020a5d5712000000b002424baca100mr5182569wrv.117.1670171626706;
-        Sun, 04 Dec 2022 08:33:46 -0800 (PST)
+        bh=gT/B/EAWvvQ3x+0gmDPuocEhB6PCpHAkErzF+d1wppY=;
+        b=tYNt3SDaDUbUwDNOiaj31dvrLKG/UmuoWgNFOVDYNxGhqtKjUVI8o4AoU/0PhU4Ydp
+         19yeD7Nb9CAv6LM60/yh9Zb/kk1059EmR6TVaeBpXprYCrd2/rXVxugACL6at0EOh10n
+         crc8bkWG4lFYdepmqRbbtNeuTQoJ7nLzcSCrZlNtKgtLmrwUDU73xE9hSmzYO2l1c6xn
+         u1ow8OtQvASyqeidZFd2CeByvFBlyFLQ/B3UxIUU1MV/ZKyohHPq4A8k42kPXUNeTB57
+         /3p32ehu+bk8NG+aEJr7Zv4AXYDoyk9J6drbwqykbiz9ajh6TKCatwDK3njiOh7u9kPQ
+         OGNw==
+X-Gm-Message-State: ANoB5pkXwyY4/Dv6ZXfyNpB21l/C7fOJn8S/zM6Otc1avCo6+r3Zk4Z7
+        UWQxCjytJ4SQWFFNgK3eqXMrPw==
+X-Google-Smtp-Source: AA0mqf4sAuxjvaOBDZhtrGGYt7BstKJKEBiKdUr3ZkgAhbTJspC6aS7UljKY//5yJR5pedqGj15Pqw==
+X-Received: by 2002:adf:f5c9:0:b0:242:10ac:e8c with SMTP id k9-20020adff5c9000000b0024210ac0e8cmr22318955wrp.67.1670172207444;
+        Sun, 04 Dec 2022 08:43:27 -0800 (PST)
 Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id h20-20020a05600c351400b003c6cd82596esm21828797wmq.43.2022.12.04.08.33.45
+        by smtp.googlemail.com with ESMTPSA id bs4-20020a056000070400b0023677081f3asm12202573wrb.42.2022.12.04.08.43.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Dec 2022 08:33:46 -0800 (PST)
-Message-ID: <b31c5497-2f14-8a5b-0980-72fb6a87e227@linaro.org>
-Date:   Sun, 4 Dec 2022 17:33:44 +0100
+        Sun, 04 Dec 2022 08:43:26 -0800 (PST)
+Message-ID: <0a91ac56-f888-8127-8a1e-69519223177c@linaro.org>
+Date:   Sun, 4 Dec 2022 17:43:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/2] dt-bindings: thermal: mediatek: add compatible
- string for MT7986 and MT7981 SoC
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: narrow interrupts for
+ SC8280XP, SM6350 and SM8450
 Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Amit Kucheria <amitk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Steven Liu <steven.liu@mediatek.com>,
-        Henry Yen <Henry.Yen@mediatek.com>
-References: <Y4dYpoVBmKZSaX2q@makrotopia.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>
+References: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <Y4dYpoVBmKZSaX2q@makrotopia.org>
+In-Reply-To: <20221116113140.69587-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,14 +85,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2022 14:20, Daniel Golle wrote:
-> Document compatible string 'mediatek,mt7986-thermal' for V3 thermal
-> unit found in MT7986 SoCs.
-> 'mediatek,mt7981-thermal' is also added as it is identical with the
-> thermal unit of MT7986.
+On 16/11/2022 12:31, Krzysztof Kozlowski wrote:
+> Narrow number of interrupts per variants: SC8280XP, SM6350 and SM8450.
+> The compatibles are already used and described.  They only missed the
+> constraints of number of interrupts.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied, thanks
 
