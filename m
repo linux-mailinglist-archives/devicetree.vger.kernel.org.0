@@ -2,87 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 653D7641B4B
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 08:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23DD0641B95
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 09:30:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiLDHUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 02:20:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34174 "EHLO
+        id S229982AbiLDIaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 03:30:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiLDHUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 02:20:48 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B7517A82;
-        Sat,  3 Dec 2022 23:20:44 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DCF1824DC31;
-        Sun,  4 Dec 2022 15:20:36 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 4 Dec
- 2022 15:20:37 +0800
-Received: from [192.168.0.111] (183.27.98.23) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 4 Dec
- 2022 15:20:35 +0800
-Message-ID: <84b119e1-19b5-65ae-d002-98ceab6cd5ef@starfivetech.com>
-Date:   Sun, 4 Dec 2022 15:20:35 +0800
+        with ESMTP id S229870AbiLDIaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 03:30:12 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B317917880
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 00:30:11 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id z24so10185389ljn.4
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 00:30:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NEAdA2tVF8LZsf2n1iXOw7OGaaP2byXd0qqESevi+8I=;
+        b=KEBOyL1H3wNxjNsCsrflL9EbNiiXkVxCp5C4hjn4Hr8zHQfX9sqaXAA6omrLiM3/B1
+         NiwIl+tjZVJXnT4eQi7GJG0eRAWGU9XSO9UHU/FQmg2JUc3X83dkUzksPZsnAfSdA1/x
+         dEQ49WCHjJq6Txvc7ccAke9CottCxLUY0LtONsCqKURYa1YXNvvX3jRc4tF8qimmdzWi
+         gYHLvcXBoWlzCQupbHyZDPvcSW39mKDMpALiQRLF021DWcjIhQOcIARheZic4q2CEvO6
+         lt34gekM3ahYf+43pRrDo6RX5uSPlgz9C31g4d/1QFkIP0640anP3CqAsdZ5/Ly8C0/D
+         P4jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NEAdA2tVF8LZsf2n1iXOw7OGaaP2byXd0qqESevi+8I=;
+        b=ZxzuQk7zLvY3YGOXal6xwvpEaZVRTD6Pk6iqPVn1xm0YAAkFXNgxxRgNZDSqZrQgZI
+         DmE48zUlWwr8hU4q6wef0zPYELHZdc2DFjuprtgOCV2wmWK64NZmxPe4H8QU1M8nq1LH
+         9/0kA2c8hycvztLOacyEC3c20HujsXEEPAScu619F45cKcVP2/kRrynNkfxsRutlc7JZ
+         G9wqgJAIn8MHSophv7pcyw9ogklRtP/ymIQ/XfEApW4zFSwt3Ha+RHYZUV2DVsNAg5CG
+         cklROE5TTYrbM02551ycNwwyg/QvGb5xmn9c6LbPYCugMFIuHe4yjDrFipSs9HdYBq0K
+         801g==
+X-Gm-Message-State: ANoB5pksXkr1MbhKM1No4PbsZDxm3puNZVcWSG7P/wpkiP5qZtVofb1T
+        6MFm773Bk2jZiWEsH32RbbPKGQ==
+X-Google-Smtp-Source: AA0mqf5C7jR+6hYSd6dpy0tVAxQpBI7eTmjIBiT886Zz8Nn3VihEMxKjc3qUdA7dDL0h1CFKel4yHQ==
+X-Received: by 2002:a2e:875a:0:b0:26e:1d9:c2a5 with SMTP id q26-20020a2e875a000000b0026e01d9c2a5mr24793234ljj.353.1670142609979;
+        Sun, 04 Dec 2022 00:30:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b0049fff3f645esm1692861lfa.70.2022.12.04.00.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Dec 2022 00:30:09 -0800 (PST)
+Message-ID: <e78b8c4c-81e3-3d36-10b4-36f8b52e6131@linaro.org>
+Date:   Sun, 4 Dec 2022 09:30:08 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v2 8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
-To:     Palmer Dabbelt <palmer@rivosinc.com>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ben Dooks <ben.dooks@sifive.com>,
-        "Michael Turquette" <mturquette@baylibre.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 01/15] dt-bindings: thermal: tsens: add msm8956 compat
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        Marc Zyngier <maz@kernel.org>
-References: <20221118011714.70877-1-hal.feng@starfivetech.com>
- <20221118011714.70877-9-hal.feng@starfivetech.com>
- <167000658679.29055.15185601584520551755.b4-ty@rivosinc.com>
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221204055909.1351895-1-dmitry.baryshkov@linaro.org>
+ <20221204055909.1351895-2-dmitry.baryshkov@linaro.org>
 Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <167000658679.29055.15185601584520551755.b4-ty@rivosinc.com>
-Content-Type: text/plain; charset="UTF-8"
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221204055909.1351895-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.98.23]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Dec 2022 10:43:06 -0800, Palmer Dabbelt wrote:
-> On Fri, 18 Nov 2022 09:17:14 +0800, Hal Feng wrote:
-> > Add CONFIG_SERIAL_8250_DW=y, which is a necessary option for
-> > StarFive JH7110 and JH7100 SoCs to boot with serial ports.
-> > 
-> > 
+On 04/12/2022 06:58, Dmitry Baryshkov wrote:
+> When adding support for msm8976 it was thought that msm8956 would reuse
+> the same compat. However checking the vendor kernel revealed that these
+> two platforms use different slope values for calculating the calibration
+> data.
 > 
-> Applied, thanks!
+> Add new compatible for the tsens on msm8956 SoC.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Thank you so much!
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-Hal
-
-> 
-> [8/8] RISC-V: defconfig: Enable CONFIG_SERIAL_8250_DW
->       https://git.kernel.org/palmer/c/6925ba3d9b8c
+Krzysztof
 
