@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87932641D2C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 14:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D57E2641D6A
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 15:19:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbiLDNRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 08:17:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34700 "EHLO
+        id S229917AbiLDOTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 09:19:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiLDNQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 08:16:59 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CED31743F;
-        Sun,  4 Dec 2022 05:16:58 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id fz10so9798268qtb.3;
-        Sun, 04 Dec 2022 05:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KZhZpM5cHhUCwZksT75Tvb0qA2vjAhs1vuqKj336jow=;
-        b=a60QoO+xVNgbQY9we7mD7q0dQQ4XoWxe4kgMUilk34N0+5L6idjZMohA1dYXQGzb66
-         CeaAMaoXxIx3Fd/Ma6wDXMfeiN0i04TaupAXTjxLH2TFiUFNd4MM+17Sv2XHIMhBee5Y
-         ViynbvN4Cwgxq212tN6Ep5esKHTD05oDPJBINoImXthI8yONqA2a9IcPlLQ8BEX4HqMm
-         345nluHQE6NzE24R1m0wQeKxRhYnij9w+w9eU+6cHVOtxoG3EqAgIul0V5oaYa/ziSYu
-         13TdrVd3vVhvI9WP6jSJANkHTLMaSfMiZIDTYVEvxBwA24qx/RpZTPobLTMLyTpOtG9w
-         AdeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KZhZpM5cHhUCwZksT75Tvb0qA2vjAhs1vuqKj336jow=;
-        b=ZAA3gG+nlNpe1Frc5jYVA+P0xCmC3+U69TZAKuMgGHTTRrNavu6EfY4nq12hT+KWdW
-         FkhvpZh6JiJ6/ItaDupPghtcytKoWROXGIPiT0YmFKm5NBTwrRN58KB2XBNt4xiFiOGK
-         JJXYD/9bl++UCDipKr3rP7TgjPdAz7T13PmbGNPBQ9txXZjTlpC/qP7adxwlKU5HGy0Z
-         XdDHZ76i75KVDeV/Yslm4Qchx7iKxPDaHVOJdSxv5X89q0wJUOesuUvxYF3biZ4Rz8jH
-         aLDD0nCcGsCRqoxWsoivDRWKJsmX03s+dau4X4cam4pfxqOuhtajFr2lWZWxjxUbt+Sm
-         ujBw==
-X-Gm-Message-State: ANoB5pl7N8Xcwu+SXT+P1rZ3oFQ2kqvLvjD51c0hMeMWyBHuq55kMLJF
-        T3zIdxbtSEEwXL+xA3kEKEICrflKSqPZPZz5A2Y=
-X-Google-Smtp-Source: AA0mqf6ud1fqZro323jiTV4bc9uqJBBYPY3DKldBZiC3nP9GM9uf2gI6UjydTPhNTCVuZ/fr/lI5kPYQFRIwOdF8DzQ=
-X-Received: by 2002:a05:622a:4d43:b0:3a5:7848:4b4 with SMTP id
- fe3-20020a05622a4d4300b003a5784804b4mr74985309qtb.176.1670159817371; Sun, 04
- Dec 2022 05:16:57 -0800 (PST)
+        with ESMTP id S229892AbiLDOTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 09:19:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67704167DC;
+        Sun,  4 Dec 2022 06:19:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0D291B80926;
+        Sun,  4 Dec 2022 14:19:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE22BC433D6;
+        Sun,  4 Dec 2022 14:19:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670163588;
+        bh=xZkBew3Fuzfr7oqLmJurxFUhwqQkOLe/nyGcHc7MpRg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bj1BZvhuCNkAy1H1CgFN67WZm50icZdB10u5wEJsTgawtHXhUwbp1OUstlD3GwKXn
+         r2YkySc7rj/o1zasuvwv0t5WfHY0CEc5MARW2v99HmLvrvngmWdL3kBs+gw+ZdoVtx
+         6Qy2SuQ7uzjpX0I6eywH+bnDGS4zy9igsqFOdsJqEiCupWvCuYOhtbSbPJrGI8DjCT
+         EBbEYCBu8hJV9Ryw/LgWKcky+5D3CYju8agv4UGnLJgD/i9nVsIv2nUPK827eNEN+/
+         vBblcVS5HB1hHvoUFOImjlr7LYfvz49g/OtvUc8vjjiKuAEuFPTphnSkM71KmxzZ+L
+         LiOLtylS3KJiw==
+Date:   Sun, 4 Dec 2022 14:32:34 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
+        kernel@pengutronix.de, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: add TI LMP92064
+ controller
+Message-ID: <20221204143234.77fd74ee@jic23-huawei>
+In-Reply-To: <997ba29d-6fc3-529a-c069-3688d5a72bc8@linaro.org>
+References: <20221128133503.1355898-1-l.goehrs@pengutronix.de>
+        <997ba29d-6fc3-529a-c069-3688d5a72bc8@linaro.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221126010531.466046-1-pevik@seznam.cz>
-In-Reply-To: <20221126010531.466046-1-pevik@seznam.cz>
-From:   Petr Vorel <petr.vorel@gmail.com>
-Date:   Sun, 4 Dec 2022 14:16:44 +0100
-Message-ID: <CAB1t1CzmNK8i0qT43qVw7VGUPVi67Up6QU-kYDoEsrV7=N7u7w@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8992-lg-bullhead: Disable cont_splash_mem
-To:     Petr Vorel <pevik@seznam.cz>,
-        Dominik Kobinski <dominikkobinski314@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Bart Ribbers <bribbers@disroot.org>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+On Mon, 28 Nov 2022 22:25:20 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
+> On 28/11/2022 14:35, Leonard G=C3=B6hrs wrote:
+> > Add binding documentation for the TI LMP92064 dual channel SPI ADC.
+> >=20
+> > Signed-off-by: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
+> > ---
+> >  =20
+>=20
+>=20
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I got reply from Dominik that he noticed dfps_data_mem (reserved in
-msm8994.dtsi) overlaps with the framebuffer region.
-I'll retest it next week, maybe removing it instead of cont_splash_mem
-fixes the reboot.
+Series applied to the togreg branch of iio.git. This is now 6.3 material
+as the merge window will open soon so we've missed this cycle.
 
-He also noticed, that Linux doesn't reboot when loaded from uefi (his
-project [1]).
-Not sure if there is any difference.
+For now I'll push out as testing to let 0-day look at it prior to rebasing
+the branch on rc1.
 
-Kind regards,
-Petr
+Thanks,
 
-[1] https://github.com/Dominduchami/Nexus5XPkg/
+Jonathan
+>=20
+
