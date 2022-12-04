@@ -2,71 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A55A641C46
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 10:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E74D4641C59
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 11:42:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbiLDJrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 04:47:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32908 "EHLO
+        id S230022AbiLDKmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 05:42:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230096AbiLDJrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 04:47:39 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F3DC389
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 01:47:33 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id b13so3257772lfo.3
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 01:47:33 -0800 (PST)
+        with ESMTP id S229539AbiLDKms (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 05:42:48 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B969DE84
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 02:42:47 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id z4so10378766ljq.6
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 02:42:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HV9iDq9ASawaJ80Vnkd4V2c06IYqg91+S5dBHxjopKQ=;
-        b=Ywq8JTIppvGS+u73xDuB2V1FMFl9uieH9iGsVs28JoExEMBFJRczI3+P86bLxbCzE8
-         1aEy646UPgd2Af8q09vFWDK+vbEWz478Sv6T21j93UhiqDsFsIc5o+3VkgP1SzSyoy++
-         3/SKzQl2i12sDhxT9eWoPrRbmhD11ABYZQA3dCwC9qkEETnI1VG739LObJQvmgNy+6oF
-         pCkeNNF71XO/BPFx3NapEsof0aCLPfeOx4PXiCSArGNwD99ODDQAt08kW2PinqtZ3Sit
-         npa0cK3x+3NSGnzrjgIa+NLTNf4/domrz0P4dODoSnRdmczWxgZQxC3eD5k7qwrL/lSf
-         Tv0g==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wIYmumdV6gF7dGwolIurE0WSvXTzLO3ZVkYOJH7esYo=;
+        b=gaoyEdeCSpXIkrztrskMmFzKZd+uKAC02WjdIn4Xxuc9BR2vWmKAQWMNsGBCF3AB3v
+         Qgszu/gsbChP24xLYUK7O2LSLbvxXYZuRbrf8tEUJ+NSFxW9ebpgjMV0dSllrstC8iBa
+         u+dLBEc7E3IvTBRuO6Vm7u+kApHQO8ensK4VphpQBAwj7LkhLl1VKff+J1J2fuQLAWLK
+         d96YTcWt4HPipDxIP9UFrFk+1lHweC/phnhqZ5O4TcE3NTg4qHg6HU65+3dBgUVQCxEF
+         rBEWGm0HtlecCdu/apd2u+DaDYxvuG4SCIBH5qnZogziN0yRvVuJsS7W325TBDj1qcBY
+         qISQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HV9iDq9ASawaJ80Vnkd4V2c06IYqg91+S5dBHxjopKQ=;
-        b=jKyChFcruzXzNrn9KYxat9tzcE1RnDk8WfiClNERqVgKrziZcMimVqi7uvLCvUeiiU
-         mD3Cmr3rsR3BXpQ4SIpM2TrKpeCbn7GGuJdqo58neZdP8Ewu07HJ2E6Ss14ZQ9rLM4aK
-         xlwMoCdg8NQ5q1oFbUUS3kOo4cXRA7AWoEpPJL4zURHqrEyXiOsyo46rOdYmLMJ+bzQ9
-         hfXXZiGBZ1nyc4jXdseNUHHDZjCu8A0XnChf7Ng2DSUJ0JbkOXn70WY3G/v2E5wgKPNY
-         oxF8nbbX3jvzsG4wHYTWtA0FrmqkiUj3ttQnqRW0V2buH8R5FBqnIbbkXy9xMyuQZVsY
-         Ujcg==
-X-Gm-Message-State: ANoB5pnIEYiK/xpitTjsw5RHLioWnr+xDJX4VpZAispzRmbJDazU5+oL
-        WPGBxnpewtEV1rpXq2Gd/rngfA==
-X-Google-Smtp-Source: AA0mqf4NXpqkpNJWIOCVpnhjza3+x2Mh1nBOpGFv66z4tTQHVxxOKG6fb3yuxq20BEQywA/02mkD8g==
-X-Received: by 2002:a05:6512:3153:b0:4a2:da6:d969 with SMTP id s19-20020a056512315300b004a20da6d969mr23719756lfi.671.1670147251886;
-        Sun, 04 Dec 2022 01:47:31 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wIYmumdV6gF7dGwolIurE0WSvXTzLO3ZVkYOJH7esYo=;
+        b=Rd898Y+sW/KP1hu5l0MFShzzVqX2/Io71RD+gDyVbTlYwBAtjYHbXRmmXIe4ut6tiW
+         SPDrHFaHuceec9EFCFZMiJQYVbUJ/oq1sGZh0ZNjMJ+iMrMoks7LMp4zS/l8/d/bJxdc
+         CJGAaW9vk2isi4h6HZMv5KqvGAFOhqBK7ZW5Ayt27ibsNrAN2MKlsVHmQZOtcqdSpDv8
+         UcSyk+P2oVmE6NUVMNg38e6lcxrCSdVrHmPTfRx3AXFHZWZr4nnO4IiegK3VXSGMELpE
+         RnqhkuXP419+ziItFUZxj2c6sFZoCYk5kE/m6kP+JeHcWedWne8Og1ILotzn/9eYQ4dn
+         OtWA==
+X-Gm-Message-State: ANoB5plOSbu07kMOFDQDeXnXu+Pgpf1snvKm/louubhTOsiVtJLAJr8J
+        etVww82+KgLWxQNnpR0D1urU+w==
+X-Google-Smtp-Source: AA0mqf5jbzbV2Z96L1gL7GUlH/q5OZ2ofi46akDEv9/ZqWeiTjVTCgL4WLyT21ULbLWJ/re3wyLCZQ==
+X-Received: by 2002:a2e:a37c:0:b0:26e:93:980d with SMTP id i28-20020a2ea37c000000b0026e0093980dmr26233053ljn.488.1670150565638;
+        Sun, 04 Dec 2022 02:42:45 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e18-20020a056512091200b00498f00420e9sm1706703lft.194.2022.12.04.01.47.30
+        by smtp.gmail.com with ESMTPSA id k4-20020ac257c4000000b004afac783b5esm1715433lfo.238.2022.12.04.02.42.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 01:47:31 -0800 (PST)
+        Sun, 04 Dec 2022 02:42:45 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>, abel.vesa@linaro.org,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/5] dt-bindings: mmc: sdhci-msm: allow dma-coherent
-Date:   Sun,  4 Dec 2022 10:47:17 +0100
-Message-Id: <20221204094717.74016-5-krzysztof.kozlowski@linaro.org>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: exynos: use 8-bit for SPI IR LED duty-cycle in TM2
+Date:   Sun,  4 Dec 2022 11:42:42 +0100
+Message-Id: <20221204104242.117558-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
-References: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,33 +70,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8350, SM8450 and SM8550 SDHCI controllers for SD card are marked with
-dma-coherent, so allow it.
+The 'duty-cycle' of SPI IR LED property is u8:
+
+  exynos/exynos5433-tm2e.dtb: irled@0: duty-cycle:0: [0, 0, 0, 60] is too long
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-dma-coherent was first added to SM8450... then to SM8350 (not merged
-yet) and now it appeared in SM8550 patches, but I actually do not know
-if this is copy-paste or real need.
----
- Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-index 39e303468bc4..6b89238f0565 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-@@ -83,6 +83,8 @@ properties:
-       - const: cal
-       - const: sleep
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+index bde6a6bb8dfc..5b002a85b792 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+@@ -1315,7 +1315,7 @@ irled@0 {
+ 		reg = <0x0>;
+ 		spi-max-frequency = <5000000>;
+ 		power-supply = <&irda_regulator>;
+-		duty-cycle = <60>;
++		duty-cycle = /bits/ 8 <60>;
+ 		led-active-low;
  
-+  dma-coherent: true
-+
-   interrupts:
-     maxItems: 2
- 
+ 		controller-data {
 -- 
 2.34.1
 
