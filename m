@@ -2,54 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D57E2641D6A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 15:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B37BF641D78
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 15:27:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbiLDOTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 09:19:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40300 "EHLO
+        id S229892AbiLDO1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 09:27:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbiLDOTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 09:19:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67704167DC;
-        Sun,  4 Dec 2022 06:19:51 -0800 (PST)
+        with ESMTP id S229875AbiLDO1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 09:27:54 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7089D7643;
+        Sun,  4 Dec 2022 06:27:53 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0D291B80926;
-        Sun,  4 Dec 2022 14:19:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE22BC433D6;
-        Sun,  4 Dec 2022 14:19:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6BC3B60D2F;
+        Sun,  4 Dec 2022 14:27:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D9F6C433C1;
+        Sun,  4 Dec 2022 14:27:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670163588;
-        bh=xZkBew3Fuzfr7oqLmJurxFUhwqQkOLe/nyGcHc7MpRg=;
+        s=k20201202; t=1670164071;
+        bh=XSvIDwN3cWxgy86D24e4+Qi0IcagP/e6rbFBtLjZs4Y=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bj1BZvhuCNkAy1H1CgFN67WZm50icZdB10u5wEJsTgawtHXhUwbp1OUstlD3GwKXn
-         r2YkySc7rj/o1zasuvwv0t5WfHY0CEc5MARW2v99HmLvrvngmWdL3kBs+gw+ZdoVtx
-         6Qy2SuQ7uzjpX0I6eywH+bnDGS4zy9igsqFOdsJqEiCupWvCuYOhtbSbPJrGI8DjCT
-         EBbEYCBu8hJV9Ryw/LgWKcky+5D3CYju8agv4UGnLJgD/i9nVsIv2nUPK827eNEN+/
-         vBblcVS5HB1hHvoUFOImjlr7LYfvz49g/OtvUc8vjjiKuAEuFPTphnSkM71KmxzZ+L
-         LiOLtylS3KJiw==
-Date:   Sun, 4 Dec 2022 14:32:34 +0000
+        b=grS+Bad4FUKjFI0t2w/D+Rsgr66JLR6vlXdvUDvKT0A+H5hqnZ53coFGu9+kAWqVN
+         yIDbtf6XUrDOLyb5YK6gQbyLm8vhe6BZv+F9YQXgC6k+HuJ10Ac9bL41bMh25LAPc1
+         8TxcoRXp4VWJlD5N7VKeHiE5hvDcV9DZlZE3Ig4mlPju2ifK9GEh/xXPcUjy43XIBM
+         9/HCbsSlIFvrzQ1KNrRZJ5rj1ABmwIfM5P7rayvqMaHFy249OubTjpOoHjlA0PhTQH
+         Y/d/kcnepV+fbYIIPtkRyThsv78hVL8C/CPoInFBkuxYwilsSgDGVZzZaJaISx1yCD
+         0ciNd21PRjNxw==
+Date:   Sun, 4 Dec 2022 14:40:36 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
-        kernel@pengutronix.de, Lars-Peter Clausen <lars@metafoo.de>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: add TI LMP92064
- controller
-Message-ID: <20221204143234.77fd74ee@jic23-huawei>
-In-Reply-To: <997ba29d-6fc3-529a-c069-3688d5a72bc8@linaro.org>
-References: <20221128133503.1355898-1-l.goehrs@pengutronix.de>
-        <997ba29d-6fc3-529a-c069-3688d5a72bc8@linaro.org>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: mfd: qcom-pm8xxx: add missing child
+ nodes
+Message-ID: <20221204144036.25da4490@jic23-huawei>
+In-Reply-To: <20221204061555.1355453-3-dmitry.baryshkov@linaro.org>
+References: <20221204061555.1355453-1-dmitry.baryshkov@linaro.org>
+        <20221204061555.1355453-3-dmitry.baryshkov@linaro.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -59,28 +65,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Nov 2022 22:25:20 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Sun,  4 Dec 2022 08:15:53 +0200
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
 
-> On 28/11/2022 14:35, Leonard G=C3=B6hrs wrote:
-> > Add binding documentation for the TI LMP92064 dual channel SPI ADC.
-> >=20
-> > Signed-off-by: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
-> > ---
-> >  =20
->=20
->=20
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add gpio, keypad, led, mpps, pwrkey, vibrator and xoadc as possible
+> child nodes of qcom,pm8xxx, referencing existint schema files.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml  | 26 ++++++++++++++++++-
+>  1 file changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+> index 9acad9d326eb..7fe3875a5996 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+> @@ -43,13 +43,37 @@ properties:
+>    interrupt-controller: true
+>  
+>  patternProperties:
+> +  "gpio@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/pinctrl/qcom,pmic-gpio.yaml#
+> +
+> +  "keypad@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/input/qcom,pm8921-keypad.yaml#
+> +
+>    "led@[0-9a-f]+$":
+>      type: object
+>      $ref: /schemas/leds/qcom,pm8058-led.yaml#
+>  
+> +  "mpps@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/pinctrl/qcom,pmic-mpp.yaml#
+> +
+> +  "pwrkey@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/input/qcom,pm8921-pwrkey.yaml#
+> +
+>    "rtc@[0-9a-f]+$":
+>      type: object
+> -    $ref: "../rtc/qcom-pm8xxx-rtc.yaml"
+> +    $ref: /schemas/rtc/qcom-pm8xxx-rtc.yaml#
+> +
+> +  "vibrator@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/input/qcom,pm8xxx-vib.yaml#
+> +
+> +  "xoadc@[0-9a-f]+$":
 
-Series applied to the togreg branch of iio.git. This is now 6.3 material
-as the merge window will open soon so we've missed this cycle.
+Should probably have a generic node name of
+adc@...
 
-For now I'll push out as testing to let 0-day look at it prior to rebasing
-the branch on rc1.
 
-Thanks,
-
-Jonathan
->=20
+> +    type: object
+> +    $ref: /schemas/iio/adc/qcom,pm8018-adc.yaml#
+>  
+>  required:
+>    - compatible
 
