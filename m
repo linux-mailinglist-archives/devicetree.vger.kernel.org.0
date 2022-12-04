@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD20641DE3
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:26:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42CB3641DEB
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 17:33:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229949AbiLDQ0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 11:26:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47498 "EHLO
+        id S230137AbiLDQdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 11:33:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229996AbiLDQ0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:26:21 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712D113D1E
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:26:19 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id m14so15271068wrh.7
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:26:19 -0800 (PST)
+        with ESMTP id S229970AbiLDQdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 11:33:49 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0B41114C
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 08:33:48 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id w15so15295235wrl.9
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 08:33:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LfrSJ+Hx2mSXkLXYYQ7pynRVDi4pq+DwkFGUE4rIUFk=;
-        b=oiw8/4+KhmGgQqDiXEleJw9k6csJiTPiHDRDUK96t1A1aNLBZ5G6wK7f9uEwmYx486
-         aASUS41Apspt7QnSiD9sx4IABR1XN7Lssee3AlNqm/J7+NIlrWOfhjHC0jS2V8Z66S+Q
-         fTZ5gQz+gWrBpgcSQQvv4QUdVf1C/xYFf2xCAhRzGqtxUvrZA3xaFDMPxZY01iej+NPe
-         drkyXrjLqzANLhEF4FPRUYYSmx3GsFs38LPF253SbcJ0U8cbXh2hhy8Wr7i5dA1OoaH5
-         cyJC4EJC4uZpv4ExGcBkAnhqbr8oHuE/GoKtzDfbRXDvuOGvse+N6tjoV7w5t5YlMcys
-         M3VA==
+        bh=s73rXHrAxMtPGwi99sqcpRgefCBmkZ6Y/H/iMaBpQ54=;
+        b=VliLnHpQFPE4eTiC/g9R2V8fggkR7Urm96PGlq5uxnjmmudbCGbG+4VrsfGEr6DLJT
+         mGztrPDB0LTXJDXEB/1ZQat9oijOqk9KZVtxhXvunbZsrCacO6IjQWCjPAwyf0LieES3
+         v7K4z5yZry6jJ6GX8bj1EtM78z629aL7r4WdGrTu3EcD5MG7xpwFS7AmitiGkljykrL+
+         rWSDc8sMYsxGrI66yL7ywBnffSPz7da0YKS+Ob7VoshG4MryemHfyu7C1yo/dYuH/+xg
+         knXfyhBu06+PxM34s2nj4j2HLopB1HTGOIPnujpKhOtq1i8Wz8FkvqiduwkCEA72Q86p
+         qw1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LfrSJ+Hx2mSXkLXYYQ7pynRVDi4pq+DwkFGUE4rIUFk=;
-        b=ez1In6Yqd2S7yE95Uq6B+LhxXg81xL9NR8n2LW5HiD0ofju5n7hBXaKQAKqKMFN5TN
-         AaDNk6htD1bjacqiGnRYESliiIVyjIw/1GMkw5muXP3olPlKPMowfpG5bhZIydygaT/Q
-         0M0+hR3xudIO56d4g0PbMmFGySBXfLG4ShVVd8JgLriYfi/5YfR0yxznJ8JrCu1lk3fw
-         wC8QxOeVWAxfBrx6MJZ7qB2NFV2w9z2kCiyV4aOGBbLcfPOO072Nw8X9sTsYD6GylH3E
-         HG8EDyjaVIqzDkpBwA7ORUQ9uZQyMmm87mJzhnqXNP42Ye+HrKpgCBkim8EUfMQID656
-         wqSQ==
-X-Gm-Message-State: ANoB5pmCXEhnCyFA6veokcYyuiDDrG2Vgl9EVRNp+1Stnkt0VoTMqkmw
-        jBJPkaMF8tNRrl9bM/8V0ngdWQ==
-X-Google-Smtp-Source: AA0mqf6oyj5M+PolOdXe22U2kMZ5ilLTNpktgvejN5XTgaZLNIA4bH/KYCmKiWHP3oPQQ5Oay62ODA==
-X-Received: by 2002:adf:db10:0:b0:236:58c8:2ba2 with SMTP id s16-20020adfdb10000000b0023658c82ba2mr47837756wri.224.1670171178665;
-        Sun, 04 Dec 2022 08:26:18 -0800 (PST)
+        bh=s73rXHrAxMtPGwi99sqcpRgefCBmkZ6Y/H/iMaBpQ54=;
+        b=X9odYegO2Nwg8vyDsF3Z3qckpHzSby+B14dbf8tRR6viNzbwE8fHAtESZt/5Nzf0Yl
+         6kdKmjBGj42/Ee6X3RdfSFRmbgsHd05ssxNbh7f1q06qakgiToiMQcrK3o8Eg+yYbMCW
+         044JPVFGO6sjAt1mGRHRpvvlUOcOpO95PCjcXHPR3hu7BYLFAPYL1/aGe6e8HBfx+49Q
+         KkhAlLbKaymLw1V8+VDiPsyZOshBh9GdqaCkal6pnZAhQxH30/J1QwN/bdm+SvDXZBib
+         AN5sI5a/P27CbHLVo3BH363CqQLDonWlFPtdvxj7ZGAnwhCLev3sSWXEEFSMl1vgx9en
+         MQkw==
+X-Gm-Message-State: ANoB5pkz2a2Ij4dod2dlgapBSSH6jfiLr7+hzIn+AHvCTSWOZrBu+Kao
+        esbwSvi82P6EzZznKaoQg5/MoQ==
+X-Google-Smtp-Source: AA0mqf5e3/VxCpvgJ7AtNfqqg/dDz6G+esrs6P1IJNGNclRmlGo8zfq6HOayTGeXqwkxJZAIM4EyBw==
+X-Received: by 2002:a5d:5712:0:b0:242:4bac:a100 with SMTP id a18-20020a5d5712000000b002424baca100mr5182569wrv.117.1670171626706;
+        Sun, 04 Dec 2022 08:33:46 -0800 (PST)
 Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id q14-20020adfdfce000000b00241cbb7f15csm12210032wrn.106.2022.12.04.08.26.17
+        by smtp.googlemail.com with ESMTPSA id h20-20020a05600c351400b003c6cd82596esm21828797wmq.43.2022.12.04.08.33.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Dec 2022 08:26:18 -0800 (PST)
-Message-ID: <9f30e38c-61ef-d245-56ce-fc9911f54814@linaro.org>
-Date:   Sun, 4 Dec 2022 17:26:16 +0100
+        Sun, 04 Dec 2022 08:33:46 -0800 (PST)
+Message-ID: <b31c5497-2f14-8a5b-0980-72fb6a87e227@linaro.org>
+Date:   Sun, 4 Dec 2022 17:33:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 5/5] thermal/drivers/imx: Add support for loading
- calibration data from OCOTP
+Subject: Re: [PATCH v2 2/2] dt-bindings: thermal: mediatek: add compatible
+ string for MT7986 and MT7981 SoC
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Peng Fan <peng.fan@nxp.com>, Adam Ford <aford173@gmail.com>,
-        Alice Guo <alice.guo@nxp.com>,
+To:     Daniel Golle <daniel@makrotopia.org>, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         Amit Kucheria <amitk@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Li Jun <jun.li@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org
-References: <20221202162353.274009-1-marex@denx.de>
- <20221202162353.274009-5-marex@denx.de>
+        Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Steven Liu <steven.liu@mediatek.com>,
+        Henry Yen <Henry.Yen@mediatek.com>
+References: <Y4dYpoVBmKZSaX2q@makrotopia.org>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221202162353.274009-5-marex@denx.de>
+In-Reply-To: <Y4dYpoVBmKZSaX2q@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,21 +84,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 17:23, Marek Vasut wrote:
-> The TMU TASR, TCALIVn, TRIM registers must be explicitly programmed with
-> calibration values in OCOTP. Add support for reading the OCOTP calibration
-> data and programming those into the TMU hardware.
+On 30/11/2022 14:20, Daniel Golle wrote:
+> Document compatible string 'mediatek,mt7986-thermal' for V3 thermal
+> unit found in MT7986 SoCs.
+> 'mediatek,mt7981-thermal' is also added as it is identical with the
+> thermal unit of MT7986.
 > 
-> The MX8MM/MX8MN TMUv1 uses only one OCOTP cell, while MX8MP TMUv2 uses 4,
-> the programming differs in each case.
-> 
-> Based on U-Boot commits:
-> 70487ff386c ("imx8mm: Load fuse for TMU TCALIV and TASR")
-> ebb9aab318b ("imx: load calibration parameters from fuse for i.MX8MP")
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
 
 Applied, thanks
 
