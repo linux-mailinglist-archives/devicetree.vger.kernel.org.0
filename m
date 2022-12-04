@@ -2,138 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62A34641FE7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 22:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E1D64208D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 00:34:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbiLDVcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 16:32:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
+        id S230404AbiLDXe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 18:34:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiLDVb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 16:31:56 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC6513EB0
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 13:31:52 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id y135so7740344yby.12
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 13:31:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lI01SEvVv3MktbLdSo/+mTT0yrIOdj+1vIgFJfDfN34=;
-        b=ihXgyprU2JPflAJxQ2hlVAlQWQi84KLxjubvaMjwbXraHSizz8TCIx4U240bsQyj7+
-         f4S620hisnyPfhiCwKcejyelzlojnRQY4jMp9A5DZ+yb6q2aq4EA73+dpm0+UL0Oxh1a
-         IYwnyg3VzbGB2nq4bXM6+FsV3LOGBHWgjtL25AWN7IG9Q1azGQhN55hwsfFxbGLKWiOD
-         f/a/T7Q/HJsAQI/owlcuy6xGaGqVr+p5wZVckWegEIRl5Ivc5Qji4Sl+FvX4zG7kVyuj
-         +sXdCe5JgrGyvJk71T09UvTiajH6J8eboYF7zb6jD/uuzxRFmOa9C/7E2gTQahmgh7lS
-         cwKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lI01SEvVv3MktbLdSo/+mTT0yrIOdj+1vIgFJfDfN34=;
-        b=yeQyd0zmElzP76b/6J+RO0zXQ+lwBo9RiNVedSkHDMipSctq/Pd/QZ7TGnvHnXvB+k
-         uZsGzRdiSgW5vsxc6yiG9N3lEJ2/u9HrTRr9+MSFkNLED9iT0QyOWV/rjxxEqFRQ9qIo
-         k0jUEuZK3IMjjRhZUmwnKk+fTxjKQT6+yZDuKXGDZc6TY5y2GV8jssCQFl1QJktKJu1O
-         lYySTuIfOkRBwERLGjmvQWLQvk5QH+e4a+ekpRjwkkCcZgSMZ/rpZP0JgaBnoPoQxvKD
-         PrxQCoAAIaeR4W65PM9d40rXunfH9bcgX1SvF8W8i94n9jTxisr7u6RDcBq6mfruG59c
-         xHvg==
-X-Gm-Message-State: ANoB5plOFIVA5lTpWH7ydEqP23Z6YWyshe8aW2ov2Bl9N+F1e4Xn4PR4
-        Oe6CHAY893zrsemBdbZkQcV+utYBVLdEpBrN2XCf+Q==
-X-Google-Smtp-Source: AA0mqf6AghRoYoTD/xrAAjTRoEs/YU038ITJkX/3Vhiv+Ox9xXlJbEIBdnkIbFDPiPE2mKag2EXwUYp2ImAROIxTvOc=
-X-Received: by 2002:a25:c485:0:b0:6be:8e8d:639f with SMTP id
- u127-20020a25c485000000b006be8e8d639fmr72141889ybf.506.1670189512119; Sun, 04
- Dec 2022 13:31:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20221130141040.32447-1-arinc.unal@arinc9.com> <20221130141040.32447-3-arinc.unal@arinc9.com>
-In-Reply-To: <20221130141040.32447-3-arinc.unal@arinc9.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 4 Dec 2022 22:31:40 +0100
-Message-ID: <CACRpkdbojTVjR2G+95YS1Xqvau9XmwTkp_KtpaeE7-+v41hgeg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] arm: dts: remove label = "cpu" from DSA dt-binding
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        soc@kernel.org, "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229954AbiLDXe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 18:34:28 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1A9101D7;
+        Sun,  4 Dec 2022 15:34:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0B679B80B4E;
+        Sun,  4 Dec 2022 23:34:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19EE3C433C1;
+        Sun,  4 Dec 2022 23:34:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670196863;
+        bh=0cK0lUJ9KkiCl80pkQTKTOocwELvWyVAqXmQVTnv1c0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lovS8maHB9ktQb+Ww5yw81rPcCZRXSE1XC/6VM5+f/JzRlywQpDbXevjsTf3XGvwo
+         hscWSSHlMxx3ebYCbnH326mOeJsoC5YYQGGFW6Ht9lcNBlPL24prA8E9YlkLl0+iXS
+         gT7b/JylxCuJNt1lrjulIfpbqQbDa8QczvHB3edaPIrjidCAFPcARr2CadVdz3r0S9
+         gA6chTikmaPXADK1iQkCKLL6y6E5g3Csy8L2MmjmnSKtZKyAcXC6nAplTg1PCwNide
+         61gS7CsPom3Y5PON4htb0C6MeaLRDxBTApvUrtVGdJQwIChLQAb1g1+of2ruMJFfSA
+         5pm8SjNmeoAgg==
+Date:   Sun, 4 Dec 2022 23:34:17 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh@kernel.org>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
         Samuel Holland <samuel@sholland.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Rasmus Villemoes <rasmus.villemoes@prevas.dk>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v5 3/3] clocksource: timer-riscv: Set
+ CLOCK_EVT_FEAT_C3STOP based on DT
+Message-ID: <Y40ueQiTZK6hi7RS@spud>
+References: <20221201123954.1111603-1-apatel@ventanamicro.com>
+ <20221201123954.1111603-4-apatel@ventanamicro.com>
+ <20221202000603.GA1720201-robh@kernel.org>
+ <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HlfaDJpKZhs96dAp"
+Content-Disposition: inline
+In-Reply-To: <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 30, 2022 at 3:13 PM Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc=
-9.com> wrote:
 
-> This is not used by the DSA dt-binding, so remove it from all devicetrees=
-.
->
-> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+--HlfaDJpKZhs96dAp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Hey Rob, Anup, Prabhakar,
 
-Yours,
-Linus Walleij
+On Fri, Dec 02, 2022 at 12:03:05PM +0530, Anup Patel wrote:
+> On Fri, Dec 2, 2022 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Thu, Dec 01, 2022 at 06:09:54PM +0530, Anup Patel wrote:
+> > > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
+> > > when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
+> > > timer DT node.
+> > >
+> > > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
+> > > based on RISC-V platform capabilities rather than having it set for
+> > > all RISC-V platforms.
+> > >
+> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > > ---
+> > >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
+> > >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/=
+timer-riscv.c
+> > > index 969a552da8d2..1b4b36df5484 100644
+> > > --- a/drivers/clocksource/timer-riscv.c
+> > > +++ b/drivers/clocksource/timer-riscv.c
+> > > @@ -28,6 +28,7 @@
+> > >  #include <asm/timex.h>
+> > >
+> > >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
+> > > +static bool riscv_timer_cannot_wake_cpu;
+> > >
+> > >  static int riscv_clock_next_event(unsigned long delta,
+> > >               struct clock_event_device *ce)
+> > > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long del=
+ta,
+> > >  static unsigned int riscv_clock_event_irq;
+> > >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) =
+=3D {
+> > >       .name                   =3D "riscv_timer_clockevent",
+> > > -     .features               =3D CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_=
+FEAT_C3STOP,
+> > > +     .features               =3D CLOCK_EVT_FEAT_ONESHOT,
+> >
+> > A platform that depended on CLOCK_EVT_FEAT_C3STOP being set will break
+> > with this change because its existing DT will not have the new property.
+> >
+> > It needs to be the other way around which would effectively be the
+> > existing 'always-on' property.
+>=20
+> There are no RISC-V platforms using C3STOP. The patch which
+> added C3STOP has been reverted.
+> (Refer, https://lore.kernel.org/lkml/a218ebf8-0fba-168d-6598-c970bbff5faf=
+@sholland.org/T/)
+>=20
+> I just need to rebase this patch upon the C3STOP revert patch.
+
+I guess you could say that the C3STOP addition was done spec-ulatively*,
+as the platform that actually exhibits that behaviour does not use the
+riscv-timer & its maintainer acked the revert (allwinner d1 family).
+
+*The spec does not make any guarantees about whether events arrive
+during suspend, only the behaviour *if* they arrive.
+
+Switching the property to "always-on" would require retrofitting that
+property to every other existing platform (and therefore regressing some
+behaviour there, no?).
+
+Most of the existing platforms are "toys" or demo platforms though, so
+it would not, I guess, be the end of the world to do so. Doubly so since
+none of them actually implement any sleep states that making it an
+"always-on" property.
+
+I've said since the start that defaulting to C3STOP is the "safer" thing
+to do, and although we disagreed on this last time Anup, I think the
+better outcome of someone missing a DT property is inaccessible sleep
+states rather than going into sleep states they cannot get out of.
+
+For PolarFire SoC, which I guess is one of the few "commerical"
+platforms, I'd be willing to accept retrofitting, since we have not yet
+implemented such sleep states yet.
+
+Maybe Prabhakar knows whether the RZ/Five has either a) implemented
+sleep states and b) which side of the "timer events arrive in suspend"
+divide their platform lies on.
+I'm particular interested here since that is not a SiFive core complex.
+
+I would like to get DT maintainer approval of an approach here soon-ish
+so that we can something sorted for the jh7110 stuff and for the
+bouffalolabs SoC - the latter of which may very well be in the "no
+events in suspend" camp as it also uses thead stuff.
+
+Sorry for kinda rowing back on my previous acceptance of the approach,
+but I am really between two minds on this.
+
+Thanks,
+Conor.
+
+
+--HlfaDJpKZhs96dAp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY40uVQAKCRB4tDGHoIJi
+0iXwAQDvaIbyKF4NJU9VaT5Lh4McyjHE+Y8vdOlJksMvF+Hc1AEA60gVnGIV8CWe
+iMzMzE7jeqmjP23QMLt5HftoInManQg=
+=ydQx
+-----END PGP SIGNATURE-----
+
+--HlfaDJpKZhs96dAp--
