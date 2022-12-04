@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54436641C31
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 10:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D16641C39
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 10:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbiLDJo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 04:44:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58236 "EHLO
+        id S230025AbiLDJrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 04:47:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230077AbiLDJou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 04:44:50 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B75A183BB
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 01:44:48 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id d3so10299658ljl.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 01:44:48 -0800 (PST)
+        with ESMTP id S230032AbiLDJrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 04:47:31 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A343186C5
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 01:47:29 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id b3so14194664lfv.2
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 01:47:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6pmjHkxg9cw9s588xsCCx9TGpqKV308uQqtKF8DUe3E=;
-        b=EF8Gjmi0BqHFGm0Awu+rO6RhpSxKFK0ai+y5jJwRG5n/9EuAvK/RLd8qIvAWeC+ZQV
-         vzLdT1O/KTG3e8VTyPnNzYCFyEEkpqJVxjEHnqP9yAcTFaynxyGV93wSTJUDPmEWkwQU
-         h6nQaVii0n0gCN9+Ur/GNGj+4U6EG/Wg2UyLgsmiDh3cKDmsTF0RapT2eUZkOrHMyHn6
-         QFlinoGJRtsZ3ZHNkC5sGtsgWDO8P8x4i/6JHCCKqt42988f4aoor558OVGvgEmbdZ48
-         ouw5QCH0FdswTQWOc2BMrfw4Ax1H2rszc8XEv7ZRBcs34Bmo5NmZWdxz+o1beNnt8jcW
-         auVQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2EgtMAreZX6v1a607duaaNtdR2Ho0lCLyBFIAD2u3Bg=;
+        b=UWp5jxo5SgZmhR0ShSmbaFj2r/WTYvATnZCcb7Y1/Z8uIpW/2lS9xmd8kKm1Amh3r0
+         SxbkFRMragD1BtlHGxx9EE1jOkLTJpdPyZVkEeCmuf/lna+QNz7teiHwXzcLr2C8TN1X
+         He16v951Ffc6greL0gE0+xyxeOf27PkSE+u2iExhp+PVEBMsi0l+U5DukPYjVxhxRSlI
+         ZsZTLazwK2iceFkYAGlt8LQNcwijhJa1ZmuGvNdFwwtwgGnhoYwvlIYFBdQcRUt8uKrs
+         snrLHZvchdcWFOVEB82bx3MNaGN4fAIjSYzESwO0D45AW81gxMudu1AO/Qujy498EyKT
+         radw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6pmjHkxg9cw9s588xsCCx9TGpqKV308uQqtKF8DUe3E=;
-        b=39wnWgfBAldb7Sq59Pxi/v11GHEUInmx0+BdNruldXm86DzVcB6ZEY+JS69ovF7qF+
-         NRhLluOMLApogTvH1sdSXiBjO+UcdV+KOka0SXjTmj9IoIdrShB47VaPwzDB8YGZOlQv
-         +yk/Q2PpWtP9TdKj87gTZiGdRxsORDsrJJvepmJ96zCyc0A1CErhwbhBpGygXchAKn9C
-         exK6niTKGIKoQFpwzX8KXICWMlRCNk6Oo3MoY7Tasoh+bZ894dFHE7Zfd1iVTPZGUall
-         nc5FE60S8GVXAjAbKBzKXY3UzPX2p4I5H4iO7mVmWl/93MV331pAhHgIExJU+uWs4FTg
-         2ovA==
-X-Gm-Message-State: ANoB5pnAtmhwCbiBdiiHusiqq6hTx8+ZDVwbmZhqaDDBVRLM+6usReiZ
-        yC9pxBraTiERaD1p0pXSaoqelA==
-X-Google-Smtp-Source: AA0mqf7VsLtops04VrB6HEtPXcE8xanx5DZlMCheyt7EXimJuUREfFrDXL0G8Fi/6qF5Dgvuf1o92Q==
-X-Received: by 2002:a2e:380a:0:b0:279:aef2:292f with SMTP id f10-20020a2e380a000000b00279aef2292fmr7859683lja.479.1670147086676;
-        Sun, 04 Dec 2022 01:44:46 -0800 (PST)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2EgtMAreZX6v1a607duaaNtdR2Ho0lCLyBFIAD2u3Bg=;
+        b=k3SguhLnMfJ5HeExrzJdzwG9XUfTWGllD/yfIAMueLVcdjc1sUxJseXj7cMtokFnV9
+         hIVLTdngYbCo0jQ5052IWxnImLiRta5B6zlnPRu7xSKt1Rm9hOQKQUUykIE0/MbYG2tJ
+         603HvISuIyc4Wvzt/cEigOEciLbx5l9k1C8dusBPRjRQnV4/WNWQljNyjpKp8TJ5nyN3
+         csVrDhvQh7yErbJwqoOVICnuIPl3bYsxHsfqrVYgoZEZ+CG+NP0JC2+ozRYO+zXKgXuM
+         206HYas3SuF09W5l8VFf1oEKtHsdBs7u5FGi5qwAwnPX4f8ECQ0LD/Q+hIayWNlMLMuR
+         Qnmg==
+X-Gm-Message-State: ANoB5pn4N7PnY6+tm9fq00iuN5dNSU1nBLbZ/NSAFicpPY+ilbSuGkto
+        cWi9if2MClZOFv51lkxRAg9Zig==
+X-Google-Smtp-Source: AA0mqf4W++yII+JEJwHg1ZSnJBcLnVCaLxtGiBo9TVPZxhyKrxyFYE9NY5p/RQ+ELRJQi3lL/QqSWg==
+X-Received: by 2002:a05:6512:1515:b0:4b5:5785:625c with SMTP id bq21-20020a056512151500b004b55785625cmr2429989lfb.361.1670147247643;
+        Sun, 04 Dec 2022 01:47:27 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o10-20020a056512052a00b004b07cdef19csm1711593lfc.138.2022.12.04.01.44.45
+        by smtp.gmail.com with ESMTPSA id e18-20020a056512091200b00498f00420e9sm1706703lft.194.2022.12.04.01.47.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 01:44:46 -0800 (PST)
+        Sun, 04 Dec 2022 01:47:27 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8250-sony-xperia-edo: fix no-mmc property for SDHCI
-Date:   Sun,  4 Dec 2022 10:44:38 +0100
-Message-Id: <20221204094438.73288-6-krzysztof.kozlowski@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, abel.vesa@linaro.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: mmc: sdhci: document sdhci-caps and sdhci-caps-mask
+Date:   Sun,  4 Dec 2022 10:47:13 +0100
+Message-Id: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221204094438.73288-1-krzysztof.kozlowski@linaro.org>
-References: <20221204094438.73288-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,29 +76,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no "no-emmc" property, so intention for SD/SDIO only nodes was
-to use "no-mmc":
-
-  qcom/sm8250-sony-xperia-edo-pdx206.dtb: mmc@8804000: Unevaluated properties are not allowed ('no-emmc' was unexpected)
+The Linux SDHCI driver core reads 'sdhci-caps' and 'sdhci-caps-mask'
+properties and few devices already use it (e.g. Qualcomm SM8450), so add
+them to a shared SDHCI bindings.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/mmc/sdhci-am654.yaml  |  4 +--
+ .../devicetree/bindings/mmc/sdhci-common.yaml | 32 +++++++++++++++++++
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |  2 +-
+ MAINTAINERS                                   |  1 +
+ 4 files changed, 35 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-common.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index 2a223ed50102..a9dc318e45f2 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -587,7 +587,7 @@ &sdhc_2 {
- 	vqmmc-supply = <&vreg_l6c_2p9>;
- 	bus-width = <4>;
- 	no-sdio;
--	no-emmc;
-+	no-mmc;
- };
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+index 382d5face49a..c4c73ee1422c 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+@@ -11,7 +11,7 @@ maintainers:
+   - Ulf Hansson <ulf.hansson@linaro.org>
  
- &slpi {
+ allOf:
+-  - $ref: mmc-controller.yaml#
++  - $ref: sdhci-common.yaml#
+ 
+ properties:
+   compatible:
+@@ -49,8 +49,6 @@ properties:
+       - const: clk_ahb
+       - const: clk_xin
+ 
+-  sdhci-caps-mask: true
+-
+   dma-coherent:
+     type: boolean
+ 
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-common.yaml b/Documentation/devicetree/bindings/mmc/sdhci-common.yaml
+new file mode 100644
+index 000000000000..1664615187c8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/sdhci-common.yaml
+@@ -0,0 +1,32 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/sdhci-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SDHCI Controller Common Properties
++
++maintainers:
++  - Adrian Hunter <adrian.hunter@intel.com>
++
++description:
++  Common properties present on Secure Digital Host Controller Interface (SDHCI)
++  devices.
++
++properties:
++  sdhci-caps:
++    $ref: /schemas/types.yaml#/definitions/uint64
++    description:
++      Additionally present SDHCI capabilities - values for SDHCI_CAPABILITIES
++      and SDHCI_CAPABILITIES_1 registers.
++
++  sdhci-caps-mask:
++    $ref: /schemas/types.yaml#/definitions/uint64
++    description:
++      Masked SDHCI capabilities to remove from SDHCI_CAPABILITIES and
++      SDHCI_CAPABILITIES_1 registers.
++
++allOf:
++  - $ref: mmc-controller.yaml#
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+index fade797af150..2736c9a79f65 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+@@ -169,7 +169,7 @@ required:
+   - interrupts
+ 
+ allOf:
+-  - $ref: mmc-controller.yaml#
++  - $ref: sdhci-common.yaml#
+ 
+   - if:
+       properties:
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3583c5f6889d..be71999cea73 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18732,6 +18732,7 @@ SECURE DIGITAL HOST CONTROLLER INTERFACE (SDHCI) DRIVER
+ M:	Adrian Hunter <adrian.hunter@intel.com>
+ L:	linux-mmc@vger.kernel.org
+ S:	Supported
++F:	Documentation/devicetree/bindings/mmc/sdhci-common.yaml
+ F:	drivers/mmc/host/sdhci*
+ 
+ SECURE DIGITAL HOST CONTROLLER INTERFACE (SDHCI) MICROCHIP DRIVER
 -- 
 2.34.1
 
