@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B446641C42
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 10:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90326641C40
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 10:47:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbiLDJrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 04:47:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
+        id S230103AbiLDJrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 04:47:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbiLDJrg (ORCPT
+        with ESMTP id S230087AbiLDJrg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 04:47:36 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F883186F2
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE99183B1
         for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 01:47:31 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 1so574746lfz.4
+Received: by mail-lf1-x12e.google.com with SMTP id j4so14243016lfk.0
         for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 01:47:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=srKBWWOhJxYyjQwFZkBs/XLc9rLtWfdgyHo2JMkH7Vk=;
-        b=VFdR1I3gqvoJOg0RDy0RBE3NAkURp4Oxnx1mtTBCPMzIiwf798wsfSZFQwyzrlhQAT
-         sVcF4zuOzTDKxXMDL3ydljMPQHXXDdQ3PIqZD/SQp4bZqC44gwiMjkVjxGXi0C+FD+uC
-         MHyxEWbft5Sa+CT1qmG0o322ZeKZSf9hxJaQ9blkmYfwvtBT3shA+MbSMLQbdDDxi5Gf
-         jBn2uvBq1SFLCUfFA5CX+gOXMB1ouYcCLpxMGn4JtEqQh+fOin8JOJj8zLUv124z5jxt
-         rFe6vjshig4dNr446ocPcWHlvYURqm5bpcl983g8HRwWwdNcxd+hx4yOlnjsMRVf0sYo
-         muuQ==
+        bh=janko4BgJGtkNL8mFckP2GXu+qyT3OukB4Vav5ERFlI=;
+        b=TtfIZK00X69U8N7vJ76x9AKxq4Au2EonaQTQS244qskV0JbfPwZWKNum52oRCrHbjN
+         F/G7VIwn9c+W4nmwga39MRt3aGUzU35rkNKfyXtIfAoAvauhyT/h0Sxo0gUCf2OrRfju
+         623UhVKeej8b10C0sZhM1dTdT2pf6j11GLAtFpKSvKmt1ZLFGJdYHybX+mNaOR+8DcGP
+         5LinRJ3wYjR7HOWhMaDoHKI6cYPxzoGsA8Hmlzsl2ij5+o/Uoi9UKtAq2eYeUthkA3Pv
+         qWGfK3UacKPbifbDNWz4EqavTdVqcoa0g8i+F/CoXuD8ejbjjiliXW3hRB0WdVBgwoXm
+         vYCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=srKBWWOhJxYyjQwFZkBs/XLc9rLtWfdgyHo2JMkH7Vk=;
-        b=gS8gdlSJ+8oCDNH7oVgEsaZt5N5JG6syr2yhddjk4b2TD0V0zH+3od86djr4DOgSx8
-         GgeNV1M6SNphEocorwduQ2f2z60XqzixPY2UQmu40CdA4nEhsXsCWkJjTe/PeA4Bk69P
-         Ugo8KkUdyTXDTtNpLTRAzMpLUt5hdhnIa92Hosyb2iqWDW3IDvn10SeL/A1WHOAik6LF
-         tkENkqysesscmtVUZwS+zG7vgG1elc5dCWXPZVmyVoLtdtnj8HOD3JFMwqzZu/Fe9kVg
-         TKvvnQ1HHYMKbICG5QTnA8ic8T0SG97GK0mG2XESpatEnKQWXw8DfT7Wpgt0d5sZDZys
-         de9A==
-X-Gm-Message-State: ANoB5pkB8ImxrpKyeGuewBWP74JSi3RDCoW3ZY/+8rAeD9nQKq20+KI0
-        q7HdZfV7W3njOQpURI7hexN9+A==
-X-Google-Smtp-Source: AA0mqf4lr/mGSjU8QsCMm+HChH3211vl5JOKt8EuaZDBBHJQjmbqjp3DrpMuS+qmcLkLrjWxQjk+4w==
-X-Received: by 2002:ac2:4f05:0:b0:497:aa48:8fe7 with SMTP id k5-20020ac24f05000000b00497aa488fe7mr29383228lfr.612.1670147249756;
-        Sun, 04 Dec 2022 01:47:29 -0800 (PST)
+        bh=janko4BgJGtkNL8mFckP2GXu+qyT3OukB4Vav5ERFlI=;
+        b=q+dAkGQDFG2iOmIGa7UeOYcNxzgGHZjT9jWNubSUlZrTIqiLJ/mCoiFey1MjpdA7vv
+         lLrpd2v7Q9+Ajagr4EgwynRfczdnhUHMeRPccZLT3x0Dcsd3w817/PlbQNLyq9zvJgb5
+         6daPRQ8VxCAjTU81pEbTFVsdwdfHQjh/urZPhqC0VoUDjZOaixKPPAC/jSAR6K5VIqh+
+         z7OIwxIKe3dP4iw7RnvIHcJ8nCQMoZLrVcRMEWNknnjTmb25FXVz3M2LboNlorrTkSLg
+         2V+MvDIRckpMADZeF4vNbDTrFdJAr72dviw1A3JGlXTQhBzlfhFFH2ANFz45U7xwKkd5
+         qq5Q==
+X-Gm-Message-State: ANoB5pmgiGnAmANH6WYC753hP5WbXG4LebooQ9ZLqrbcpmEREDCTnlNj
+        qc3+zRQ8jQuQWaz9ZYY9FImBSQ==
+X-Google-Smtp-Source: AA0mqf70DTCspnTZa1ay9+Qc++Song3setHNd0YTNsFVECp207Nslru7RAQM+uUhDMMRdNdgYgeVHg==
+X-Received: by 2002:a05:6512:3983:b0:4b4:f88:90d3 with SMTP id j3-20020a056512398300b004b40f8890d3mr27581895lfu.37.1670147250857;
+        Sun, 04 Dec 2022 01:47:30 -0800 (PST)
 Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e18-20020a056512091200b00498f00420e9sm1706703lft.194.2022.12.04.01.47.28
+        by smtp.gmail.com with ESMTPSA id e18-20020a056512091200b00498f00420e9sm1706703lft.194.2022.12.04.01.47.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 01:47:29 -0800 (PST)
+        Sun, 04 Dec 2022 01:47:30 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,9 +61,9 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>, abel.vesa@linaro.org,
         Johan Hovold <johan+linaro@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/5] dt-bindings: mmc: sdhci-msm: cleanup style
-Date:   Sun,  4 Dec 2022 10:47:15 +0100
-Message-Id: <20221204094717.74016-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/5] dt-bindings: mmc: sdhci-msm: drop properties mentioned in common MMC
+Date:   Sun,  4 Dec 2022 10:47:16 +0100
+Message-Id: <20221204094717.74016-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
 References: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
@@ -78,29 +78,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop unnecessary quotes from $ref.
+There is no need to explicitly list properties already brought by
+mmc-controller.yaml schema.
 
+Fixes: 8574adf5222d ("dt-bindings: mmc: sdhci-msm: Fix issues in yaml bindings")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 10 ----------
+ 1 file changed, 10 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-index 2736c9a79f65..9e7c0e3803c6 100644
+index 9e7c0e3803c6..39e303468bc4 100644
 --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
 +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-@@ -1,9 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+@@ -136,16 +136,6 @@ properties:
+     description: A phandle to sdhci power domain node
+     maxItems: 1
+ 
+-  mmc-ddr-1_8v: true
 -
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/mmc/sdhci-msm.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/mmc/sdhci-msm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+-  mmc-hs200-1_8v: true
+-
+-  mmc-hs400-1_8v: true
+-
+-  bus-width: true
+-
+-  max-frequency: true
+-
+   operating-points-v2: true
  
- title: Qualcomm SDHCI controller (sdhci-msm)
- 
+ patternProperties:
 -- 
 2.34.1
 
