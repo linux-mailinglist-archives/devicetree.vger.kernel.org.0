@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D89641AF2
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 06:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 994CC641AF5
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 06:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229903AbiLDF70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 00:59:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49822 "EHLO
+        id S229995AbiLDF72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 00:59:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbiLDF7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 00:59:19 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB02E1A3A4
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 21:59:17 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id s8so13729972lfc.8
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 21:59:17 -0800 (PST)
+        with ESMTP id S229834AbiLDF7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 00:59:20 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B1E1A20D
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 21:59:19 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id b13so2799356lfo.3
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 21:59:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cS8+Tw8CpPa5UI72UFBU+Fs2VulFRliA0Wpow1r/YP4=;
-        b=fy0VGVO7YprmBCR0tjk+K/81WJzaTOKgQPfL0CyOHoTzDViuZBWWJuwmhNENNw6CYB
-         3hhk7NJpoK4D3qqLGsFgDEt96ZJlB7aOuys3fbbgZUrvbMOU5VZAwm1lsrOdpr8l2gC1
-         XT7wk8nelF7JgfyY64Ga4oLZGSTz7gONsuX8Yog6ol6uIkSd/H/7h2rWPzGcggxM9JUi
-         v1GWEeVNvkxNquJjlruXtbq1+o2KblbByKVCGE7WdNJgwIs76GTodwwcXxb5qMjPeRgg
-         7pn7j3TdIT1ZheaGJ/uJBNiZeXKOIwqKgodOK7QXK24Y4C5O02EvcYTkH4tNRR7DLvkR
-         Cepw==
+        bh=DRYmmsGMtCh0vhHBz8nWsTEotdKXt8fxYlhjfd0exgU=;
+        b=peVCkE3DdjqcVO1tUaP9rclRyzDN0GbWm/q52ALPIjkMcDWUIIc2P22ACypqszzibm
+         os7MtPHFBZg+c2ZZ/lsIgZhGEhu9VBZXQM+5nEwNC/+28eEb7npMmeFbZRg/1yKxSaQ9
+         8wNYGNBtbtQ5OB0qa1JFLdg7MUCv2ktPqZTw0sFiiSWkVp44gtz3nnOGHpOXxUfuHw27
+         Uu4aYyrqy868Eo72BWleN1Ig3Tq7WkZjy3s3+JWq3NikJvBc1bknBancbL4GNZL/hqrq
+         m5kl8NPwj9Yf26DtlwkN3gLww5BtP17W7PapgWlMlke1JYt5mh2CiReN7nyIdZQ6zKZm
+         8VmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cS8+Tw8CpPa5UI72UFBU+Fs2VulFRliA0Wpow1r/YP4=;
-        b=M4vdffwIIcyBNsWZGFUxKJ4eM9XmT3tVrtS6fRPnCPr0J032bfTiLeg/SWpArBvg6r
-         3bg8hiWcpeQv0lBjPr+nQdJFtY5XBki6DvguOjxyeajB4cRyp1HsISJjFTZEKZecHCY5
-         rnh7BXUzTFfv58M8bkl4GN8vPBm2gsYUNxTPEI/omPeGRTBTmycZCycHsMOqLJKdPT+B
-         wbMEOp3+z2b250zXy1yR/u7oMO/hNI9PZgaW0OVwc+py3XIIruMEAZzAK/H+xUiNq2WH
-         1d9/MLmybEEpAc0UHRvfi5FLJABocVS0wXzRKYBY+z81YnMjkS4UzfwpiQipe9Q5vepS
-         pRqQ==
-X-Gm-Message-State: ANoB5pnKUibIJ+7BI5ZccoyRnk6rv2s3+V48fBmiK6KTqVukKL/CvWBJ
-        Gfm2+5PUy0FxUKI1tI3gMbb4/Q==
-X-Google-Smtp-Source: AA0mqf7hIRoMbi2xRnYfAAuB8wdS5UK6nRxoSS1Z9ICXULPcCcYVo5LknSrShnCkLNHaPTSzWGwynQ==
-X-Received: by 2002:ac2:5331:0:b0:4ab:35a8:2fa0 with SMTP id f17-20020ac25331000000b004ab35a82fa0mr25317184lfh.233.1670133557365;
-        Sat, 03 Dec 2022 21:59:17 -0800 (PST)
+        bh=DRYmmsGMtCh0vhHBz8nWsTEotdKXt8fxYlhjfd0exgU=;
+        b=27cHu4pHznLuAOyUyRi5dENU+iU0JoHmWPgNlhhpgAmK93WNRdZZUKPyqhpKGMIjxM
+         MgvTt4BHxv7XQkWykxoUWlK3NYTngde8eczd/27ojMAfde8iLRShSUTJ4qVFAKGL9Hhz
+         uvHRkDqXuYk9YDSYjVAZasl27HOLup22OtIYAqb4y9qmtlENNK7dt/lqL0ynzGH+hlrY
+         8/93mcUbjA+OuZekHLYqbShR9L/oZ/wwVB3Eb6iAHkxzJTCpzg8kG4Brca5QcmSGmEZ6
+         8unAI8yf7VyiiM0nh85oyO2zpZUhJTCdfgfngUSrj1Zhfwh9OPwixwlBRVBFuhHGniAS
+         8lvA==
+X-Gm-Message-State: ANoB5pkaLlatCydUFhF0Z7rOsfK1XnCROPFPkovT17uv5K89kGWftwQq
+        XWuQ9INDZTUq0wysyIzkJSc2ZQ==
+X-Google-Smtp-Source: AA0mqf5Y8p+JYOdEWQQIUa7N4IVAmDK266RGyUlyTyCpKPSeHpg00ttomLuNkbOkW2emeiywHDN8pw==
+X-Received: by 2002:a05:6512:104e:b0:4b5:604a:5b24 with SMTP id c14-20020a056512104e00b004b5604a5b24mr1454242lfb.550.1670133558164;
+        Sat, 03 Dec 2022 21:59:18 -0800 (PST)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b004917a30c82bsm1650028lfo.153.2022.12.03.21.59.16
+        by smtp.gmail.com with ESMTPSA id o6-20020a05651205c600b004917a30c82bsm1650028lfo.153.2022.12.03.21.59.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sat, 03 Dec 2022 21:59:17 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -61,11 +61,10 @@ To:     Andy Gross <agross@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Zhang Rui <rui.zhang@intel.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: [PATCH v2 08/15] thermal/drivers/tsens: Drop single-cell code for msm8939
-Date:   Sun,  4 Dec 2022 07:59:02 +0200
-Message-Id: <20221204055909.1351895-9-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 09/15] thermal/drivers/tsens: Drop single-cell code for mdm9607
+Date:   Sun,  4 Dec 2022 07:59:03 +0200
+Message-Id: <20221204055909.1351895-10-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221204055909.1351895-1-dmitry.baryshkov@linaro.org>
 References: <20221204055909.1351895-1-dmitry.baryshkov@linaro.org>
@@ -73,103 +72,78 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no dtsi file for msm8939 in the kernel sources. Drop the
+There is no dtsi file for mdm9607 in the kernel sources. Drop the
 compatibility with unofficial dtsi and remove support for handling the
-single-cell calibration data on msm8939.
+single-cell calibration data on mdm9607.
 
-Cc: Shawn Guo <shawn.guo@linaro.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/thermal/qcom/tsens-v0_1.c | 146 ++----------------------------
- 1 file changed, 7 insertions(+), 139 deletions(-)
+ drivers/thermal/qcom/tsens-v0_1.c | 95 +------------------------------
+ 1 file changed, 1 insertion(+), 94 deletions(-)
 
 diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
-index 56c4e47db0c0..a273a0643053 100644
+index a273a0643053..c84abe9b4299 100644
 --- a/drivers/thermal/qcom/tsens-v0_1.c
 +++ b/drivers/thermal/qcom/tsens-v0_1.c
-@@ -48,63 +48,6 @@
- #define MSM8916_CAL_SEL_MASK	0xe0000000
- #define MSM8916_CAL_SEL_SHIFT	29
+@@ -133,39 +133,6 @@
  
--/* eeprom layout data for 8939 */
--#define MSM8939_BASE0_MASK	0x000000ff
--#define MSM8939_BASE1_MASK	0xff000000
--#define MSM8939_BASE0_SHIFT	0
--#define MSM8939_BASE1_SHIFT	24
+ #define BIT_APPEND		0x3
+ 
+-/* eeprom layout data for mdm9607 */
+-#define MDM9607_BASE0_MASK	0x000000ff
+-#define MDM9607_BASE1_MASK	0x000ff000
+-#define MDM9607_BASE0_SHIFT	0
+-#define MDM9607_BASE1_SHIFT	12
 -
--#define MSM8939_S0_P1_MASK	0x000001f8
--#define MSM8939_S1_P1_MASK	0x001f8000
--#define MSM8939_S2_P1_MASK_0_4	0xf8000000
--#define MSM8939_S2_P1_MASK_5	0x00000001
--#define MSM8939_S3_P1_MASK	0x00001f80
--#define MSM8939_S4_P1_MASK	0x01f80000
--#define MSM8939_S5_P1_MASK	0x00003f00
--#define MSM8939_S6_P1_MASK	0x03f00000
--#define MSM8939_S7_P1_MASK	0x0000003f
--#define MSM8939_S8_P1_MASK	0x0003f000
--#define MSM8939_S9_P1_MASK	0x07e00000
+-#define MDM9607_S0_P1_MASK	0x00003f00
+-#define MDM9607_S1_P1_MASK	0x03f00000
+-#define MDM9607_S2_P1_MASK	0x0000003f
+-#define MDM9607_S3_P1_MASK	0x0003f000
+-#define MDM9607_S4_P1_MASK	0x0000003f
 -
--#define MSM8939_S0_P2_MASK	0x00007e00
--#define MSM8939_S1_P2_MASK	0x07e00000
--#define MSM8939_S2_P2_MASK	0x0000007e
--#define MSM8939_S3_P2_MASK	0x0007e000
--#define MSM8939_S4_P2_MASK	0x7e000000
--#define MSM8939_S5_P2_MASK	0x000fc000
--#define MSM8939_S6_P2_MASK	0xfc000000
--#define MSM8939_S7_P2_MASK	0x00000fc0
--#define MSM8939_S8_P2_MASK	0x00fc0000
--#define MSM8939_S9_P2_MASK_0_4	0xf8000000
--#define MSM8939_S9_P2_MASK_5	0x00002000
+-#define MDM9607_S0_P2_MASK	0x000fc000
+-#define MDM9607_S1_P2_MASK	0xfc000000
+-#define MDM9607_S2_P2_MASK	0x00000fc0
+-#define MDM9607_S3_P2_MASK	0x00fc0000
+-#define MDM9607_S4_P2_MASK	0x00000fc0
 -
--#define MSM8939_S0_P1_SHIFT	3
--#define MSM8939_S1_P1_SHIFT	15
--#define MSM8939_S2_P1_SHIFT_0_4	27
--#define MSM8939_S2_P1_SHIFT_5	0
--#define MSM8939_S3_P1_SHIFT	7
--#define MSM8939_S4_P1_SHIFT	19
--#define MSM8939_S5_P1_SHIFT	8
--#define MSM8939_S6_P1_SHIFT	20
--#define MSM8939_S7_P1_SHIFT	0
--#define MSM8939_S8_P1_SHIFT	12
--#define MSM8939_S9_P1_SHIFT	21
+-#define MDM9607_S0_P1_SHIFT	8
+-#define MDM9607_S1_P1_SHIFT	20
+-#define MDM9607_S2_P1_SHIFT	0
+-#define MDM9607_S3_P1_SHIFT	12
+-#define MDM9607_S4_P1_SHIFT	0
 -
--#define MSM8939_S0_P2_SHIFT	9
--#define MSM8939_S1_P2_SHIFT	21
--#define MSM8939_S2_P2_SHIFT	1
--#define MSM8939_S3_P2_SHIFT	13
--#define MSM8939_S4_P2_SHIFT	25
--#define MSM8939_S5_P2_SHIFT	14
--#define MSM8939_S6_P2_SHIFT	26
--#define MSM8939_S7_P2_SHIFT	6
--#define MSM8939_S8_P2_SHIFT	18
--#define MSM8939_S9_P2_SHIFT_0_4	27
--#define MSM8939_S9_P2_SHIFT_5	13
+-#define MDM9607_S0_P2_SHIFT	14
+-#define MDM9607_S1_P2_SHIFT	26
+-#define MDM9607_S2_P2_SHIFT	6
+-#define MDM9607_S3_P2_SHIFT	18
+-#define MDM9607_S4_P2_SHIFT	6
 -
--#define MSM8939_CAL_SEL_MASK	0x7
--#define MSM8939_CAL_SEL_SHIFT	0
+-#define MDM9607_CAL_SEL_MASK	0x00700000
+-#define MDM9607_CAL_SEL_SHIFT	20
 -
- /* eeprom layout data for 8974 */
- #define BASE1_MASK		0xff
- #define S0_P1_MASK		0x3f00
-@@ -284,81 +227,6 @@ static int calibrate_8916(struct tsens_priv *priv)
+ static int calibrate_8916(struct tsens_priv *priv)
+ {
+ 	int base0 = 0, base1 = 0, i;
+@@ -363,60 +330,6 @@ static int calibrate_8974(struct tsens_priv *priv)
  	return 0;
  }
  
--static int calibrate_8939(struct tsens_priv *priv)
+-static int calibrate_9607(struct tsens_priv *priv)
 -{
--	int base0 = 0, base1 = 0, i;
--	u32 p1[10], p2[10];
+-	int base, i;
+-	u32 p1[5], p2[5];
 -	int mode = 0;
 -	u32 *qfprom_cdata;
--	u32 cdata[6];
 -	int ret;
 -
 -	ret = tsens_calibrate_common(priv);
@@ -180,49 +154,29 @@ index 56c4e47db0c0..a273a0643053 100644
 -	if (IS_ERR(qfprom_cdata))
 -		return PTR_ERR(qfprom_cdata);
 -
--	/* Mapping between qfprom nvmem and calibration data */
--	cdata[0] = qfprom_cdata[12];
--	cdata[1] = qfprom_cdata[13];
--	cdata[2] = qfprom_cdata[0];
--	cdata[3] = qfprom_cdata[1];
--	cdata[4] = qfprom_cdata[22];
--	cdata[5] = qfprom_cdata[21];
--
--	mode = (cdata[0] & MSM8939_CAL_SEL_MASK) >> MSM8939_CAL_SEL_SHIFT;
+-	mode = (qfprom_cdata[2] & MDM9607_CAL_SEL_MASK) >> MDM9607_CAL_SEL_SHIFT;
 -	dev_dbg(priv->dev, "calibration mode is %d\n", mode);
 -
 -	switch (mode) {
 -	case TWO_PT_CALIB:
--		base1 = (cdata[3] & MSM8939_BASE1_MASK) >> MSM8939_BASE1_SHIFT;
--		p2[0] = (cdata[0] & MSM8939_S0_P2_MASK) >> MSM8939_S0_P2_SHIFT;
--		p2[1] = (cdata[0] & MSM8939_S1_P2_MASK) >> MSM8939_S1_P2_SHIFT;
--		p2[2] = (cdata[1] & MSM8939_S2_P2_MASK) >> MSM8939_S2_P2_SHIFT;
--		p2[3] = (cdata[1] & MSM8939_S3_P2_MASK) >> MSM8939_S3_P2_SHIFT;
--		p2[4] = (cdata[1] & MSM8939_S4_P2_MASK) >> MSM8939_S4_P2_SHIFT;
--		p2[5] = (cdata[2] & MSM8939_S5_P2_MASK) >> MSM8939_S5_P2_SHIFT;
--		p2[6] = (cdata[2] & MSM8939_S6_P2_MASK) >> MSM8939_S6_P2_SHIFT;
--		p2[7] = (cdata[3] & MSM8939_S7_P2_MASK) >> MSM8939_S7_P2_SHIFT;
--		p2[8] = (cdata[3] & MSM8939_S8_P2_MASK) >> MSM8939_S8_P2_SHIFT;
--		p2[9] = (cdata[4] & MSM8939_S9_P2_MASK_0_4) >> MSM8939_S9_P2_SHIFT_0_4;
--		p2[9] |= ((cdata[5] & MSM8939_S9_P2_MASK_5) >> MSM8939_S9_P2_SHIFT_5) << 5;
+-		base = (qfprom_cdata[2] & MDM9607_BASE1_MASK) >> MDM9607_BASE1_SHIFT;
+-		p2[0] = (qfprom_cdata[0] & MDM9607_S0_P2_MASK) >> MDM9607_S0_P2_SHIFT;
+-		p2[1] = (qfprom_cdata[0] & MDM9607_S1_P2_MASK) >> MDM9607_S1_P2_SHIFT;
+-		p2[2] = (qfprom_cdata[1] & MDM9607_S2_P2_MASK) >> MDM9607_S2_P2_SHIFT;
+-		p2[3] = (qfprom_cdata[1] & MDM9607_S3_P2_MASK) >> MDM9607_S3_P2_SHIFT;
+-		p2[4] = (qfprom_cdata[2] & MDM9607_S4_P2_MASK) >> MDM9607_S4_P2_SHIFT;
 -		for (i = 0; i < priv->num_sensors; i++)
--			p2[i] = (base1 + p2[i]) << 2;
+-			p2[i] = ((base + p2[i]) << 2);
 -		fallthrough;
 -	case ONE_PT_CALIB2:
--		base0 = (cdata[2] & MSM8939_BASE0_MASK) >> MSM8939_BASE0_SHIFT;
--		p1[0] = (cdata[0] & MSM8939_S0_P1_MASK) >> MSM8939_S0_P1_SHIFT;
--		p1[1] = (cdata[0] & MSM8939_S1_P1_MASK) >> MSM8939_S1_P1_SHIFT;
--		p1[2] = (cdata[0] & MSM8939_S2_P1_MASK_0_4) >> MSM8939_S2_P1_SHIFT_0_4;
--		p1[2] |= ((cdata[1] & MSM8939_S2_P1_MASK_5) >> MSM8939_S2_P1_SHIFT_5) << 5;
--		p1[3] = (cdata[1] & MSM8939_S3_P1_MASK) >> MSM8939_S3_P1_SHIFT;
--		p1[4] = (cdata[1] & MSM8939_S4_P1_MASK) >> MSM8939_S4_P1_SHIFT;
--		p1[5] = (cdata[2] & MSM8939_S5_P1_MASK) >> MSM8939_S5_P1_SHIFT;
--		p1[6] = (cdata[2] & MSM8939_S6_P1_MASK) >> MSM8939_S6_P1_SHIFT;
--		p1[7] = (cdata[3] & MSM8939_S7_P1_MASK) >> MSM8939_S7_P1_SHIFT;
--		p1[8] = (cdata[3] & MSM8939_S8_P1_MASK) >> MSM8939_S8_P1_SHIFT;
--		p1[9] = (cdata[4] & MSM8939_S9_P1_MASK) >> MSM8939_S9_P1_SHIFT;
+-		base = (qfprom_cdata[0] & MDM9607_BASE0_MASK);
+-		p1[0] = (qfprom_cdata[0] & MDM9607_S0_P1_MASK) >> MDM9607_S0_P1_SHIFT;
+-		p1[1] = (qfprom_cdata[0] & MDM9607_S1_P1_MASK) >> MDM9607_S1_P1_SHIFT;
+-		p1[2] = (qfprom_cdata[1] & MDM9607_S2_P1_MASK) >> MDM9607_S2_P1_SHIFT;
+-		p1[3] = (qfprom_cdata[1] & MDM9607_S3_P1_MASK) >> MDM9607_S3_P1_SHIFT;
+-		p1[4] = (qfprom_cdata[2] & MDM9607_S4_P1_MASK) >> MDM9607_S4_P1_SHIFT;
 -		for (i = 0; i < priv->num_sensors; i++)
--			p1[i] = ((base0) + p1[i]) << 2;
+-			p1[i] = ((base + p1[i]) << 2);
 -		break;
 -	default:
 -		for (i = 0; i < priv->num_sensors; i++) {
@@ -238,39 +192,26 @@ index 56c4e47db0c0..a273a0643053 100644
 -	return 0;
 -}
 -
- static int calibrate_8974(struct tsens_priv *priv)
- {
- 	int base1 = 0, base2 = 0, i;
-@@ -595,6 +463,12 @@ static const struct reg_field tsens_v0_1_regfields[MAX_REGFIELDS] = {
- 	[TRDY] = REG_FIELD(TM_TRDY_OFF, 0, 0),
- };
+ /* v0.1: 8916, 8939, 8974, 9607 */
  
-+static const struct tsens_ops ops_v0_1 = {
-+	.init		= init_common,
-+	.calibrate	= tsens_calibrate_common,
-+	.get_temp	= get_temp_common,
-+};
-+
- static const struct tsens_ops ops_8916 = {
- 	.init		= init_common,
- 	.calibrate	= calibrate_8916,
-@@ -610,15 +484,9 @@ struct tsens_plat_data data_8916 = {
+ static struct tsens_features tsens_v0_1_feat = {
+@@ -506,15 +419,9 @@ struct tsens_plat_data data_8974 = {
  	.fields	= tsens_v0_1_regfields,
  };
  
--static const struct tsens_ops ops_8939 = {
+-static const struct tsens_ops ops_9607 = {
 -	.init		= init_common,
--	.calibrate	= calibrate_8939,
+-	.calibrate	= calibrate_9607,
 -	.get_temp	= get_temp_common,
 -};
 -
- struct tsens_plat_data data_8939 = {
- 	.num_sensors	= 10,
--	.ops		= &ops_8939,
+ struct tsens_plat_data data_9607 = {
+ 	.num_sensors	= 5,
+-	.ops		= &ops_9607,
 +	.ops		= &ops_v0_1,
- 	.hw_ids		= (unsigned int []){ 0, 1, 2, 3, 5, 6, 7, 8, 9, 10 },
- 
  	.feat		= &tsens_v0_1_feat,
+ 	.fields	= tsens_v0_1_regfields,
+ };
 -- 
 2.35.1
 
