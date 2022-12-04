@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE3D641A2E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 01:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC18641A2F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 01:52:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbiLDAv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Dec 2022 19:51:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41334 "EHLO
+        id S229599AbiLDAv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Dec 2022 19:51:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbiLDAv4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 19:51:56 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E055BC91
-        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 16:51:55 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id h28so8169250pfq.9
-        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 16:51:55 -0800 (PST)
+        with ESMTP id S229539AbiLDAv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Dec 2022 19:51:59 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1ECBC91
+        for <devicetree@vger.kernel.org>; Sat,  3 Dec 2022 16:51:57 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id o12so8137436pjo.4
+        for <devicetree@vger.kernel.org>; Sat, 03 Dec 2022 16:51:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=schmorgal.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rAIdxB/uhWaqluy9p1yExqxU/j3lY8YtbD1rShEtynw=;
-        b=cKMxtbJnpIJEqPHXyzAbx2pJ5Ikfa8MkbHc9Jm0g8oe9tiIw7/3lE+FufaAtWhDSYa
-         5huOrqN2dzcWyMfWIao7Oi/6tu3OLdn5WlEreeS4YsvxwunaKVDgMJFVe7zNi9AdqBWB
-         VkhcWF+myAhT6w3OthUYkb9Bzpf/RuNmB2ofg=
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kkp6H4X+fpDMPFBsB8sOoDo9ZeS/k8d6GtMAjtbvGiY=;
+        b=mVAcfpH3dVqP7p/ORvMYN5pgMRXcaLiqslxX34EuUqBNNhn+QFxZB2qK7OesAPRlHa
+         XNmgh+sDi1ydPwQV9oXILG49j4VmSmgNhHnBTyEsHk//o4EbjJkZrY8lKQUE3u3bX0wc
+         vBEQsDthL3NmbTrAIAgz5tE08tBHGGkYMa+2A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rAIdxB/uhWaqluy9p1yExqxU/j3lY8YtbD1rShEtynw=;
-        b=Y+T98kKdzVuJUGyehZATBSbVkNDpbfrby7OcqpVbJ/M6WfcVYMmj2BwKlLttNvRkMx
-         PG0Q5Ufs5J9gCE4rXqGxUJoTV2Ik0t4vymHp5J0Uviti+hswL8tU+Rrpu3/GD/0jLp4U
-         AKOsROkDa1nUsZMaluOVtaXCv1ZtiP3UTqEI0nDmg9FckPpbfXlY6M1vq4ZrbHBKmZgr
-         My13ACJU7C36XA0X8ktyt1b7NeYKqqHC+T5llx/mV/j1JVyQCfq3d/jrEW7deWkZWYEh
-         083fZ8U2VrXqJ1wJSCjc4jWoSo50GUV7ixpKH6IecDTVdbrDxr347V81A/0r9qWfAj9O
-         Jr1Q==
-X-Gm-Message-State: ANoB5pleoFp3xQRl8Yvt6hKHXUUnDUazk7+WJD1Dpl1idFc8XFFz20Xg
-        nWoD2pYjohIgx3L5AbFqYe73kA==
-X-Google-Smtp-Source: AA0mqf4Kt49GMYnoKU8LCS8WR0zqHaeAoF29MwClPOxS6l1UBCVn1hOk6L+c8RK/tabnPMtMqc+/QQ==
-X-Received: by 2002:a63:f346:0:b0:477:b53d:19 with SMTP id t6-20020a63f346000000b00477b53d0019mr46174630pgj.166.1670115114419;
-        Sat, 03 Dec 2022 16:51:54 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Kkp6H4X+fpDMPFBsB8sOoDo9ZeS/k8d6GtMAjtbvGiY=;
+        b=Taxh3gn20C9DI8z8xZBW2TmRhttFNdTnwq1xUnLFqDMNs5fTQgf55OoUdTF3wi/yOl
+         6NykE962J0tb48dO/MA90OjcP8MyUXSVILU1+Ty5FA+b1IkzNyRaN/h4hwA0Mgpsax4g
+         0x+ClCrPCIbJYzS4bKu2DSYgaTb3TxCHLkAL0heTYgvrlXrXpwZtYgOY60qkNkm6Rozo
+         vn7ss1JDHRzXcoOJpJlrA328Kiet9VwZPmys9/2Sa/b5kQw42FjOhwldli3WY6bDKd90
+         zpH8mnWXcYeHRS1RQW+HbPsPYZ0b4JLugLXYWqBJf0C/m+CScTNJs87jDDWqsV4Jp174
+         ADVA==
+X-Gm-Message-State: ANoB5pkpeCgY21XikmHtG79AnEBFOv4fBgx4pdtKeh02QfucOPKv7Ikc
+        R9ukFGLzMkIIZ01s7f4OgHf045o7nDd36CZrdE2l5w==
+X-Google-Smtp-Source: AA0mqf5J72lgZlsrjE7EnY6shxwoidkz0ut9aVO2Zn7wbp/iIrqhDchnHtRBsf/3ccPViaK9XoheMA==
+X-Received: by 2002:a17:90a:9a85:b0:219:1353:f66 with SMTP id e5-20020a17090a9a8500b0021913530f66mr43397648pjp.190.1670115117209;
+        Sat, 03 Dec 2022 16:51:57 -0800 (PST)
 Received: from doug-ryzen-5700G.. ([192.183.212.197])
-        by smtp.gmail.com with ESMTPSA id 24-20020a631358000000b004393f60db36sm6058977pgt.32.2022.12.03.16.51.52
+        by smtp.gmail.com with ESMTPSA id 24-20020a631358000000b004393f60db36sm6058977pgt.32.2022.12.03.16.51.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Dec 2022 16:51:53 -0800 (PST)
+        Sat, 03 Dec 2022 16:51:56 -0800 (PST)
 From:   Doug Brown <doug@schmorgal.com>
 To:     Russell King <linux@armlinux.org.uk>,
         Lubomir Rintel <lkundrak@v3.sk>
@@ -52,10 +53,12 @@ Cc:     soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Doug Brown <doug@schmorgal.com>
-Subject: [PATCH 0/2] ARM: mmp: PXA168 timer fixes
-Date:   Sat,  3 Dec 2022 16:51:15 -0800
-Message-Id: <20221204005117.53452-1-doug@schmorgal.com>
+Subject: [PATCH 1/2] ARM: dts: pxa168: add timer reset and clock
+Date:   Sat,  3 Dec 2022 16:51:16 -0800
+Message-Id: <20221204005117.53452-2-doug@schmorgal.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221204005117.53452-1-doug@schmorgal.com>
+References: <20221204005117.53452-1-doug@schmorgal.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -67,30 +70,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series contains a couple of bug fixes for the PXA168 timer. The
-clock wasn't assigned in pxa168.dtsi which eventually resulted in a hang
-at every boot after the clock was disabled. Also, the timer read
-function wasn't waiting long enough to capture the new timer value,
-which resulted in erroneous high CPU usage percent being reported with
-CONFIG_NO_HZ_IDLE=y.
+The timer was missing the clock and reset like the other peripherals.
+Add them to allow the timer to continue working after boot completes.
 
-I don't have any other MMP systems to test with, but I suspect the timer
-read delay problem also affected them. For example, the OLPC XO-4 kernel
-disabled CONFIG_NO_HZ due to incorrect high CPU usage reporting:
+Signed-off-by: Doug Brown <doug@schmorgal.com>
+---
+ arch/arm/boot/dts/pxa168.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-http://dev.laptop.org/git/olpc-kernel/commit?h=arm-3.5&id=5bd2520f8f51fc44911ec7a86b84f41a1f3e384c
-
-CCing soc@kernel.org because I didn't receive any responses when I
-submitted these last time and was hoping these fixes could get merged.
-
-Doug Brown (2):
-  ARM: dts: pxa168: add timer reset and clock
-  ARM: mmp: fix timer_read delay
-
- arch/arm/boot/dts/pxa168.dtsi |  2 ++
- arch/arm/mach-mmp/time.c      | 11 +++++++----
- 2 files changed, 9 insertions(+), 4 deletions(-)
-
+diff --git a/arch/arm/boot/dts/pxa168.dtsi b/arch/arm/boot/dts/pxa168.dtsi
+index 4fe7735c7c58..16212b912b94 100644
+--- a/arch/arm/boot/dts/pxa168.dtsi
++++ b/arch/arm/boot/dts/pxa168.dtsi
+@@ -53,6 +53,8 @@ timer0: timer@d4014000 {
+ 				compatible = "mrvl,mmp-timer";
+ 				reg = <0xd4014000 0x100>;
+ 				interrupts = <13>;
++				clocks = <&soc_clocks PXA168_CLK_TIMER>;
++				resets = <&soc_clocks PXA168_CLK_TIMER>;
+ 			};
+ 
+ 			uart1: serial@d4017000 {
 -- 
 2.34.1
 
