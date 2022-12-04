@@ -2,167 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BDC0641C77
-	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 11:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AA3D641C5D
+	for <lists+devicetree@lfdr.de>; Sun,  4 Dec 2022 11:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbiLDK7M convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 4 Dec 2022 05:59:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44850 "EHLO
+        id S230151AbiLDKnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 05:43:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbiLDK7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 05:59:09 -0500
-Received: from sender11-of-o51.zoho.eu (sender11-of-o51.zoho.eu [31.186.226.237])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B00D218344;
-        Sun,  4 Dec 2022 02:59:07 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670150631; cv=none; 
-        d=zohomail.eu; s=zohoarc; 
-        b=XV8U0fIewNZMDyRQfh1ndXul/l8myE4FgPeN4LNja3joTSpD4lNJcZOuseOn2/jGzL1R50D3rO6q+AiWnDUWOJ5/ImWPS+wiSVGNc9ixEZu57mfjA0D7Q80aL2emm46nb2IqVMbqmvl2sPQYH5Da68QLWVtssk40JH2eU+YCZrw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-        t=1670150631; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=tnqaXZrkk+J8/iyv+u9EIdqT2hYanUoFYILAn5CMJ+s=; 
-        b=jcM+O5KfnvMwtltAZzCXjVerZB/7026DlMRRtF2PjXnD2UtYHmi0tvBmtEKehDlcOu9Qm2PgrcW4vkO+LLhSqE8KZXWDvibQPxf+iWjY60vueIVIw2VqEQQG76SCv02GMg84YI1RpMRfzqrqy9mFVhADTNEq9K8q08KoXmjhfLI=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
-        dmarc=pass header.from=<philipp@uvos.xyz>
-Received: from localhost.localdomain (ip-095-222-026-199.um34.pools.vodafone-ip.de [95.222.26.199]) by mx.zoho.eu
-        with SMTPS id 1670150628750701.5439332715536; Sun, 4 Dec 2022 11:43:48 +0100 (CET)
-From:   Carl Philipp Klemm <philipp@uvos.xyz>
-To:     linux-omap@vger.kernel.org, tony@atomide.com, sre@kernel.org
-Cc:     devicetree@vger.kernel.org, Carl Philipp Klemm <philipp@uvos.xyz>
-Message-ID: <20221204104313.17478-4-philipp@uvos.xyz>
-Subject: [PATCH 4/4] arch: arm: dts: cpcap-mapphone: Move cpcap leds from common dts file to devices as apropriate
-Date:   Sun,  4 Dec 2022 11:43:13 +0100
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221204104313.17478-1-philipp@uvos.xyz>
-References: <20221204104313.17478-1-philipp@uvos.xyz>
+        with ESMTP id S230105AbiLDKnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 05:43:32 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB9E0C0
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 02:43:31 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id c1so14304024lfi.7
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 02:43:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mkpnkgS661CL81tREqROjXb5VEYTJXJHdLfxFTagbbs=;
+        b=eyNqK8ehsyoOUvVJLufQ4cBhyIoGEL8itAxijDj/69skdhojwUO9aEX6194hgAbilG
+         JtUv8ryuYSlmJf79TOm7u+qaJxs4aRRX/zxOfIy3yYhYEokxgv0dLcRA5q75bFrs0NKi
+         cMocSXaPOcjITs7K0srq4EJDfFi9snUEy7IPTe0V2cyuO4LagEwmpiiCOpKBffdCJeDU
+         ObmRoXmP6xF5bA8iGaDaQK83wR9udl5gDBtquqoYSznoz6xMSJmTTWunRtp+/xx/K8ow
+         MceG8sv0IlTallBvAADkCN/Je74E4AZgHL+QFRtcZ33T0UnYUxdR2BnUvjpdv2v+P9eD
+         Jq3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mkpnkgS661CL81tREqROjXb5VEYTJXJHdLfxFTagbbs=;
+        b=bIM5pOeREyKUk599KsLJbbPz+8FC+20SRFPROvjh+fOhFO6kba444Qm8C2tukpDxvn
+         tZ5wYszpmqyUO0bGegpx5MjXcWurBZ6QaQ31ICzlEH1crpWJ+fg4F2z/mBieReuEbc9+
+         uCMql8NdWaZqa3b8j41cxb8CAB8yQ/FfTES6FhgkFi5KPp9VGh+L68Ho88eCBmX4LXZ7
+         mkgYpDW9x8A49D461dewBO/iwmGMDddl3q4FeO9C+A1cHbOJV6GWZxopnGZpoGIwkNE5
+         JPvjfX2Ll8lOlZl9z+RVbfd63jlYVRazgHOGVKCiJMLmlb7FJTqR4b8/BVd6AE5m+4aZ
+         KIeg==
+X-Gm-Message-State: ANoB5pk2qaCLWVCatimmmgwS8BlOWIqM1O8WsK2R/srwZS0yfQU7Irh6
+        bEpBG7QnQ8DGlzVGKIbyv9+WwQ==
+X-Google-Smtp-Source: AA0mqf6aMt0hHEGgulKA17NECqV5/ZqIGJZyzP3de5FpTiPlOrSIXDIMVOxunD7VvSXotiN0a3eqxQ==
+X-Received: by 2002:ac2:5979:0:b0:4b5:7607:3191 with SMTP id h25-20020ac25979000000b004b576073191mr11601lfp.93.1670150609232;
+        Sun, 04 Dec 2022 02:43:29 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id w13-20020a05651c118d00b0026c42f67eb8sm893318ljo.7.2022.12.04.02.43.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Dec 2022 02:43:28 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Young <sean@mess.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: leds: irled: gpio-ir-tx: convert to DT schema
+Date:   Sun,  4 Dec 2022 11:43:21 +0100
+Message-Id: <20221204104323.117974-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-X-ZohoMailClient: External
-Content-Type: text/plain; charset=utf8
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FROM_SUSPICIOUS_NTLD,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Removes non-functional leds from xt875 and adds its touchscreen
-button light
+Convert the GPIO IR LED bindings to DT schema.
 
-Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../arm/boot/dts/motorola-cpcap-mapphone.dtsi | 47 ++++++++-----------
- .../arm/boot/dts/omap4-droid-bionic-xt875.dts |  7 +++
- arch/arm/boot/dts/omap4-droid4-xt894.dts      | 14 ++++++
- 3 files changed, 41 insertions(+), 27 deletions(-)
+ .../bindings/leds/irled/gpio-ir-tx.txt        | 14 --------
+ .../bindings/leds/irled/gpio-ir-tx.yaml       | 36 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 37 insertions(+), 14 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
 
-diff --git a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-index ea02fd403a9b..f7ddcf122404 100644
---- a/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-+++ b/arch/arm/boot/dts/motorola-cpcap-mapphone.dtsi
-@@ -115,36 +115,29 @@ cpcap_usb2_phy: phy {
- 			io-channel-names = "vbus", "id";
- 			vusb-supply = <&vusb>;
- 		};
-+	};
-+};
- 
--		led_red: led-red {
--			compatible = "motorola,cpcap-led-red";
--			vdd-supply = <&sw5>;
--			label = "status-led:red";
--		};
+diff --git a/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.txt b/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.txt
+deleted file mode 100644
+index cbe8dfd29715..000000000000
+--- a/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-Device tree bindings for IR LED connected through gpio pin which is used as
+-remote controller transmitter.
 -
--		led_green: led-green {
--			compatible = "motorola,cpcap-led-green";
--			vdd-supply = <&sw5>;
--			label = "status-led:green";
--		};
+-Required properties:
+-	- compatible: should be "gpio-ir-tx".
+-	- gpios :  Should specify the IR LED GPIO, see "gpios property" in
+-	  Documentation/devicetree/bindings/gpio/gpio.txt.  Active low LEDs
+-	  should be indicated using flags in the GPIO specifier.
 -
--		led_blue: led-blue {
--			compatible = "motorola,cpcap-led-blue";
--			vdd-supply = <&sw5>;
--			label = "status-led:blue";
--		};
-+/ {
-+	led_red: led-red {
-+		compatible = "motorola,cpcap-led-red";
-+		vdd-supply = <&sw5>;
-+		label = "status-led:red";
-+		cpcap-phandle = <&cpcap>;
-+	};
- 
--		led_adl: led-adl {
--			compatible = "motorola,cpcap-led-adl";
--			vdd-supply = <&sw5>;
--			label = "button-backlight";
--		};
-+	led_green: led-green {
-+		compatible = "motorola,cpcap-led-green";
-+		vdd-supply = <&sw5>;
-+		label = "status-led:green";
-+		cpcap-phandle = <&cpcap>;
-+	};
- 
--		led_cp: led-cp {
--			compatible = "motorola,cpcap-led-cp";
--			vdd-supply = <&sw5>;
--			label = "shift-key-light";
--		};
-+	led_blue: led-blue {
-+		compatible = "motorola,cpcap-led-blue";
-+		vdd-supply = <&sw5>;
-+		label = "status-led:blue";
-+		cpcap-phandle = <&cpcap>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-index ccf03a743678..eae69ec9b3f1 100644
---- a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-+++ b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-@@ -6,6 +6,13 @@
- / {
- 	model = "Motorola Droid Bionic XT875";
- 	compatible = "motorola,droid-bionic", "ti,omap4430", "ti,omap4";
+-Example:
+-	irled@0 {
+-		compatible = "gpio-ir-tx";
+-		gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml b/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
+new file mode 100644
+index 000000000000..5839d00c7089
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/irled/gpio-ir-tx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	led_kl: led-kl {
-+		compatible = "motorola,cpcap-led-kl";
-+		vdd-supply = <&sw5>;
-+		label = "button-backlight";
-+		cpcap-phandle = <&cpcap>;
-+	};
- };
- 
- &keypad {
-diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-index e833c21f1c01..a590f28edbf6 100644
---- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
-+++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-@@ -31,6 +31,20 @@ slider {
- 			debounce-interval = <10>;
- 		};
- 	};
++title: IR LED connected through GPIO pin
 +
-+	led_adl: led-adl {
-+		compatible = "motorola,cpcap-led-adl";
-+		vdd-supply = <&sw5>;
-+		label = "button-backlight";
-+		cpcap-phandle = <&cpcap>;
-+	};
++maintainers:
++  - Sean Young <sean@mess.org>
 +
-+	led_cp: led-cp {
-+		compatible = "motorola,cpcap-led-cp";
-+		vdd-supply = <&sw5>;
-+		label = "shift-key-light";
-+		cpcap-phandle = <&cpcap>;
-+	};
- };
++description:
++  IR LED connected through GPIO pin which is used as remote controller
++  transmitter.
++
++properties:
++  compatible:
++    const: gpio-ir-tx
++
++  gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    irled {
++        compatible = "gpio-ir-tx";
++        gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index be71999cea73..25b7fbf09e7b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8839,6 +8839,7 @@ GPIO IR Transmitter
+ M:	Sean Young <sean@mess.org>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/leds/irled/gpio-ir-tx.yaml
+ F:	drivers/media/rc/gpio-ir-tx.c
  
- / {
+ GPIO MOCKUP DRIVER
 -- 
-2.38.1
-
+2.34.1
 
