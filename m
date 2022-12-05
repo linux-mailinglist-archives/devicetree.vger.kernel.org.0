@@ -2,133 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184956428AC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 13:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F05756428CD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 13:53:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbiLEMmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 07:42:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
+        id S231952AbiLEMxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 07:53:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbiLEMmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 07:42:42 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0756955B9
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 04:42:41 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id ay40so1910972wmb.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 04:42:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wBq0xf1ib+5rVsU/RG/zffg8sAypcSuxfGRRhzzRwog=;
-        b=IQ+TxF85ix2dk31TwICOEahYelRxviIJs2I91vJQKzNosbIqkCBA3F1peo/glFipUN
-         xTjv6j0c+3ELEKvdZNQcXYQ3g3OMkJoew81Z8gLjm8lIWDJ5Hcoi3haWOiUVWF17vw9N
-         qI6t7Fp+QgTQSeXb8d+RgwPtAE1Thaxs0vTkVvGcbD/z7oK+ansLRFgO92N5NoRGvGna
-         wl1AyzIz6e5YWub5udBTo+HnqYpm8rOYmcmcC7EOm8Qzig7G7g+2TxwrQZkhiyfYLRzx
-         1pPg2/ROtVoKgjh6JvvFex9HSh0fcCAAHGqndRtq2pdJKXJa1LnSu7tuN9VE1MoECNkh
-         MmTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wBq0xf1ib+5rVsU/RG/zffg8sAypcSuxfGRRhzzRwog=;
-        b=4Q4T83SCZ728ZuTGJtpwC/qg7cSkVc72Ko1yzI1wGSxnyj7Wzn01wQbDxqNpHRw1mD
-         9RgYVIHVNiBB98ZHQ0yEzCin/iwFKCIsTdPnA9LQrLoLD05LqP+Io2Iv0KiWdeN+gwQY
-         riR/9Bs282xf11rUqcywDZxDU3ZFEjE1fD3TlMNwZp51/8fwSOqwsRid3AECwiNCljEI
-         OOTyivqzGmy7UsPW73uWJiSn/57L0PawxbKvdG0C76NHw8UVe1iqXe4ip+sUuTTBPeoj
-         mFMFWuO0pjmklYiTZFLTHNbMZBb7wrAc+oQzho4LML0nY5xRh6NaKmUeeX/k8gaKxi7+
-         A9Yg==
-X-Gm-Message-State: ANoB5pmssyB8iMyhjo4Bfln20jOeMIbb0pyPkZffrHQCoGtsP7SVZd4C
-        dXArzWWOegHthkgW9374fopLZw==
-X-Google-Smtp-Source: AA0mqf67Bcdu4x+N7rcLCItnV2vvyODsCAzYBgt0W9/YevLByMxiT7zcuwZvLU4ITpwtPup7R2Qa5w==
-X-Received: by 2002:a05:600c:a3a2:b0:3cf:7267:5b40 with SMTP id hn34-20020a05600ca3a200b003cf72675b40mr60542237wmb.164.1670244159517;
-        Mon, 05 Dec 2022 04:42:39 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id c2-20020a05600c0a4200b003cfd4cf0761sm23298106wmq.1.2022.12.05.04.42.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 04:42:39 -0800 (PST)
-Message-ID: <97651945-428e-c667-b7d8-7e627f900d05@linaro.org>
-Date:   Mon, 5 Dec 2022 12:42:38 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 08/15] thermal/drivers/tsens: Drop single-cell code for
- msm8939
-Content-Language: en-US
-To:     Vincent Knecht <vincent.knecht@mailoo.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231652AbiLEMxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 07:53:18 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29521A212;
+        Mon,  5 Dec 2022 04:53:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1670244797; x=1701780797;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Qnk8evx1bCs9pSHx08fCvWXFHhwjrBycZptawhJUfPQ=;
+  b=fwdNAPfE+X9eH+iUJobJdm8ost4sW/QaAHRDp96ZclhPWrTw0K3qs8L0
+   SRUN0UxnD8gQ6rMX+zahJXbZ71X3gckFsgNpYFL8SceBeeZO7BX1PqHSh
+   4JFT4caoia0y2GjNIkCJbUKdNh2JVnxUAfpaTQAJ2ZOtduTy2JvrlGnWK
+   5S6/JV1VdjQ5dksTPIGxVPp4M4o0uCdnJewsdGTgAhrx8a44ZyJ5Uf8Us
+   3ulriDt5+k41jhqokZCRe2bbG50UsTZtO7gj/l2bFBNeQitOcOGYHpVRC
+   G4KCO/CkXiCmiWS/hnx3BA1ATYxbK5oacDxmfUsjUZ3ys2mvg+whnZsRN
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="299765106"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
+   d="scan'208";a="299765106"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2022 04:53:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="752176970"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
+   d="scan'208";a="752176970"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP; 05 Dec 2022 04:53:11 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1p2Ay5-004sPI-2Z;
+        Mon, 05 Dec 2022 14:53:09 +0200
+Date:   Mon, 5 Dec 2022 14:53:09 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20221204055909.1351895-1-dmitry.baryshkov@linaro.org>
- <20221204055909.1351895-9-dmitry.baryshkov@linaro.org>
- <2186df0393c6cf4dab88772aceed7202090f5a1d.camel@mailoo.org>
- <b0d37b049ebedd5e04f69d505afb36ab6f0a1492.camel@mailoo.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <b0d37b049ebedd5e04f69d505afb36ab6f0a1492.camel@mailoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Hongchen Zhang <zhanghongchen@loongson.cn>,
+        Liu Peibao <liupeibao@loongson.cn>
+Subject: Re: [PATCH v10 1/2] gpio: loongson: add gpio driver support
+Message-ID: <Y43ptYqOznh+jhFG@smile.fi.intel.com>
+References: <20221201123220.7893-1-zhuyinbo@loongson.cn>
+ <CACRpkdZm-4-5625szX_VqJoQH1OQZnw+jH3SqWsb9nr3S0Nbmw@mail.gmail.com>
+ <35ff475a-e925-81eb-ffeb-448be43f59ff@loongson.cn>
+ <Y4tq4i2CJdnQWFZC@smile.fi.intel.com>
+ <Y4tuOyKOdZcQ4sjm@smile.fi.intel.com>
+ <899d9d4c-36e8-6a4f-4243-dcf16f9ef29f@loongson.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <899d9d4c-36e8-6a4f-4243-dcf16f9ef29f@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/12/2022 19:25, Vincent Knecht wrote:
-> Le dimanche 04 décembre 2022 à 19:42 +0100, Vincent Knecht a écrit :
->> Le dimanche 04 décembre 2022 à 07:59 +0200, Dmitry Baryshkov a écrit :
->>> There is no dtsi file for msm8939 in the kernel sources. Drop the
->>> compatibility with unofficial dtsi and remove support for handling the
->>> single-cell calibration data on msm8939.
->>
->> Could one invoke a "msm8916-like exemption" here ?
+On Mon, Dec 05, 2022 at 02:04:09PM +0800, Yinbo Zhu wrote:
+> 在 2022/12/3 23:41, Andy Shevchenko 写道:
+
+...
+
+> I just compile it that it is still okay when remove acpi.h, so I will remove
+> it in v11.
+
+You need to address all review comments. I don't remember if I reviewed this,
+but there are a lot of contribution from your side to the different subsystems
+where I have commented on your code and you can check those reviews because
+some of the remarks can be applied to this contribution as well.
+
+Nevertheless, please Cc me in your v11 when you consider it will be ready.
+Note, you have approx. month now to make it better. Of course you can
+send a version to review before that.
+
+...
+
+> and, I'm afraid I didn't catch your meaning about "
 > 
-> Ignore that, guess we'll just have to implement it like there:
-> https://lore.kernel.org/linux-arm-msm/20221204055909.1351895-9-dmitry.baryshkov@linaro.org/T/#m19cffb13114b6f4f153058e3e7a1943251acaf81
+> what that "nice" container of the platform device for."
 > 
->> Also, msm8939.dtsi was submitted once [1],
->> and if helps we could send a v2 this month...
->>
->> [1] https://lore.kernel.org/linux-arm-msm/20220419010903.3109514-1-bryan.odonoghue@linaro.org/
-> 
-> Offer still stands, the current community one is here:
-> https://github.com/msm8916-mainline/linux/blob/msm8916/6.1-rc7/arch/arm64/boot/dts/qcom/msm8939.dtsi
-> 
-> 
-> 
+> you said is for following code ?
+> 144         struct platform_device *pdev =
+> 145                 container_of(chip->parent, struct platform_device, dev);
 
-heh - here's my current
+Have you seen to_platform_device() macro?
 
-https://git.linaro.org/landing-teams/working/qualcomm/kernel.git/log/?h=tracking-qcomlt-msm8939
-
-I've been working on clearing out blockages in legacy yaml conversions
-
-phy
-mdss-dsi-ctrl
-
-which thrown up errors on 8939
-
-I took a good bunch of feedback from the list for v1 into that dtsi - 
-there's not much left blocking v2.
-
-I'll see if I can get that out this week
-
----
-bod
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
