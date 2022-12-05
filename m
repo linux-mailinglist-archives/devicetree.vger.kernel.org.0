@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E27764236B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85CBC642380
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:20:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231483AbiLEHIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 02:08:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49068 "EHLO
+        id S231755AbiLEHU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 02:20:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231426AbiLEHIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:08:01 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60CF2D2DE
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:07:59 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id cm20so10347932pjb.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:07:59 -0800 (PST)
+        with ESMTP id S231567AbiLEHUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:20:21 -0500
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5EEEF020
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:20:19 -0800 (PST)
+Received: by mail-io1-xd2c.google.com with SMTP id o189so1333221iof.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:20:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nCeYJurbgyO+nL655ExDiSNWRqYe0gXmml8lBML9H2U=;
-        b=QEkIW2fRqUp2t4BkqsBbbHMkP0T61HngVh0rr9beqzdFbjIwAWVe/E/8fnHOqsXwcQ
-         oswhEzvLSveFBupjfAtkgE+Q/kM/ZOVPIf0AwUlE99u7DtucVQ/qtsEcwPP5ZTJqHinV
-         BCGUi8NsZwmtwxmClfy1Gp9moKg9UTVWM6DzTRgIwMCkRAVr7BtqGj2GXxoMmpE+Rg2/
-         OhxiZlTBEfEvXH1f3sqvEe4JPY0FxGmgsw1y0fqP1AoYpk9IeOTDNRZKL3g9YaiD91JJ
-         FF/rLqo0iEk9nLS+JK2uZLOEW3uq5KyMOId/EDE1f4RRHL23ZCnUYSR0dNlw/mveR7T7
-         GWMA==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1tmfIAFg5Gn6maLaUosoE4qK2kRKNnA216yinP3k8AE=;
+        b=H+itvEoTRVUiX1FWmONFBFoKDIAL6a6uCF7h9yTs9BmKIxRT35H6ZMyXnDRtPID4bV
+         XF2vZVkCtBEu4/FcueE6lH7ptBNrY9Q/82TsrtBoT7kmhF9SDOswU2MN6qe3BOgnzioG
+         hO9QFIb5XTcSAx/ZASCU9TclLSwd4wsjnKGDc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nCeYJurbgyO+nL655ExDiSNWRqYe0gXmml8lBML9H2U=;
-        b=JV3+mf1Kec4ns+qk3ldjqqALTusnFowvS0U96yYs5noA3KXcVe2u1yzDrAl6scQNfY
-         4J5KMPdWYSELefxQoLJ/gA3Mzq/U5owaXLXS4bcKvi5kKURHQ8yJXGEUSUFGQnpgPet8
-         Fix7/yHKzsAg8s0cVFmaUyZ8K9uk7wSJ9IUXbig6REHKET/4/na7LVyd6ZcmQHhbtyFh
-         HMKDzoJ3gIuSq88mkoAhcUGEgYDat9pjkQIPNYX9iuITEZXK12txTAoTCVbc5+Jayt/I
-         lWG2bWeChY4rxW0jJ7wlsWZ3asRPC5GJ+Fwo24sNfU99voYZOMWXkgV50MT6zl/do/HN
-         vXGg==
-X-Gm-Message-State: ANoB5pkaYMWPRFGZcIjQr/m1+Qvit0EC/KfjWkEe2j9faK/pCinDu4VB
-        5Br+wfRs6T8Qm6KNPfFC3tXZqg==
-X-Google-Smtp-Source: AA0mqf6t87rDcq3fLtVfOimsu10TxjiC/3mJ3jlM2px6j+fTKTUCsybiqTvYhUgtKNO38goGbrZOPw==
-X-Received: by 2002:a17:902:f707:b0:176:b0ce:3472 with SMTP id h7-20020a170902f70700b00176b0ce3472mr75856340plo.169.1670224078825;
-        Sun, 04 Dec 2022 23:07:58 -0800 (PST)
-Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
-        by smtp.gmail.com with ESMTPSA id u10-20020a170902e5ca00b00188f07c10c9sm9813900plf.192.2022.12.04.23.07.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Dec 2022 23:07:58 -0800 (PST)
-Message-ID: <6b8dd272-1ccc-3d68-d8d5-15c9081e6313@9elements.com>
-Date:   Mon, 5 Dec 2022 12:37:54 +0530
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1tmfIAFg5Gn6maLaUosoE4qK2kRKNnA216yinP3k8AE=;
+        b=a8Pbo+iheXbKffFvKEc8ccFgS2aXhId3FMreYwL+jxxa9Laqqw4B1OG3VFfXHECmNx
+         6iUdeQIM36b2t0VVh41CcB4ycJK8wSocpb5RR8XZ/o1Lt4JCjPdq27gWEtlxmvr1sQxQ
+         nMyQmZgiIR8doo6cgMKlLdATtgRQAZbJ7beFcFjJJKjf5Ou+9JpGTPNkBBCKl2U/127S
+         0FuWt+tCk+AgtbHqARcvExDLw8Jt7fCJFqBTrdO0Dvy3ddHxBgn4lpPGygIPvoYFfD9r
+         ez5vYwtQSE+SPMz639tsqo8zoLvzFGSbte4H3Rkc4RZ17AZ25bVy+bgYmVvDweYkcz4r
+         4D1g==
+X-Gm-Message-State: ANoB5plvGeR9xFXeTU8gXTifVmrp51YH7gPJ9VjIXlIWz6rmZZcdM6op
+        5O3Aw8TYJF4BMnw9mUJlu7q4Ew==
+X-Google-Smtp-Source: AA0mqf5yl/hJSGq91vZq/GoSz5IGy4KgxRszruI1sS2TUorJyRD/x06on1xd6ywwsDaLDEE+VwDfAQ==
+X-Received: by 2002:a6b:c343:0:b0:6df:aa48:aa04 with SMTP id t64-20020a6bc343000000b006dfaa48aa04mr11773662iof.161.1670224818991;
+        Sun, 04 Dec 2022 23:20:18 -0800 (PST)
+Received: from markhas1.roam.corp.google.com (63-225-246-100.hlrn.qwest.net. [63.225.246.100])
+        by smtp.gmail.com with ESMTPSA id a8-20020a021608000000b003755aa71fffsm5581184jaa.105.2022.12.04.23.20.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Dec 2022 23:20:18 -0800 (PST)
+From:   Mark Hasemeyer <markhas@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Mark Hasemeyer <markhas@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: [PATCH v9 2/3] dt-bindings: mfd: Add compatible string for UART support
+Date:   Mon,  5 Dec 2022 00:20:00 -0700
+Message-Id: <20221205001932.v9.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
+X-Mailer: git-send-email 2.39.0.rc0.267.gcb52ba06e7-goog
+In-Reply-To: <20221205001932.v9.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+References: <20221205001932.v9.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v5 3/5] hwmon: (pmbus/core): Notify hwmon events
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221201193025.1584365-1-Naresh.Solanki@9elements.com>
- <20221201193025.1584365-3-Naresh.Solanki@9elements.com>
- <20221201201537.GC2110128@roeck-us.net>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <20221201201537.GC2110128@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,120 +74,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
 
-On 02-12-2022 01:45 am, Guenter Roeck wrote:
-> On Thu, Dec 01, 2022 at 08:30:22PM +0100, Naresh Solanki wrote:
->> Notify hwmon events using the pmbus irq handler.
->>
-> 
-> Unfortunately, as implemented, this only works if regulator support
-> is enabled, which is unacceptable.
-Will work on this to check all pages instead of regulators. I hope that 
-is ok.
+Add a compatible string to support the UART implementation of the cros
+ec interface. The driver does not support the reg and interrupt
+properties, so exempt them from being required for UART compatible nodes.
 
-Regards,
-Naresh
-> 
-> Guenter
-> 
->> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->> ---
->>   drivers/hwmon/pmbus/pmbus_core.c | 46 +++++++++++++++++++++++++++++---
->>   1 file changed, 43 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
->> index 6a3a3fd59b8e..ad3c0cc884a4 100644
->> --- a/drivers/hwmon/pmbus/pmbus_core.c
->> +++ b/drivers/hwmon/pmbus/pmbus_core.c
->> @@ -2782,7 +2782,35 @@ static const struct pmbus_regulator_status_category pmbus_regulator_flag_map[] =
->>   	},
->>   };
->>   
->> -static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
->> +#define to_dev_attr(_dev_attr) \
->> +	container_of(_dev_attr, struct device_attribute, attr)
->> +
->> +static void pmbus_notify(struct pmbus_data *data, int page, int reg, int flags)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < data->num_attributes; i++) {
->> +		struct device_attribute *da = to_dev_attr(data->group.attrs[i]);
->> +		struct sensor_device_attribute *attr = to_sensor_dev_attr(da);
->> +		int index = attr->index;
->> +		u16 smask = pb_index_to_mask(index);
->> +		u8 spage = pb_index_to_page(index);
->> +		u16 sreg = pb_index_to_reg(index);
->> +
->> +		if (reg == sreg && page == spage && (smask & flags)) {
->> +			dev_dbg(data->dev, "sysfs notify: %s", da->attr.name);
->> +			sysfs_notify(&data->dev->kobj, NULL, da->attr.name);
->> +			kobject_uevent(&data->dev->kobj, KOBJ_CHANGE);
->> +			flags &= ~smask;
->> +		}
->> +
->> +		if (!flags)
->> +			break;
->> +	}
->> +}
->> +
->> +static int pmbus_regulator_get_flags(struct regulator_dev *rdev, unsigned int *error,
->> +				    bool notify)
->>   {
->>   	int i, status;
->>   	const struct pmbus_regulator_status_category *cat;
->> @@ -2812,6 +2840,9 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   			if (status & bit->pflag)
->>   				*flags |= bit->rflag;
->>   		}
->> +
->> +		if (notify && status)
->> +			pmbus_notify(data, page, cat->reg, status);
->>   	}
->>   
->>   	/*
->> @@ -2856,6 +2887,11 @@ static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned
->>   	return 0;
->>   }
->>   
->> +static int pmbus_regulator_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
->> +{
->> +	return pmbus_regulator_get_flags(rdev, flags, false);
->> +}
->> +
->>   static int pmbus_regulator_get_status(struct regulator_dev *rdev)
->>   {
->>   	struct device *dev = rdev_get_dev(rdev);
->> @@ -3087,7 +3123,7 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
->>   {
->>   	struct pmbus_data *data = pdata;
->>   	struct i2c_client *client = to_i2c_client(data->dev);
->> -	int i, status;
->> +	int i, ret = IRQ_NONE, status;
->>   	u8 page;
->>   
->>   	for (i = 0; i < data->info->num_regulators; i++) {
->> @@ -3095,6 +3131,10 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
->>   		if (!data->rdevs[i])
->>   			continue;
->>   
->> +		ret = pmbus_regulator_get_flags(data->rdevs[i], &status, true);
->> +		if (ret)
->> +			return ret;
->> +
->>   		page = rdev_get_id(data->rdevs[i]);
->>   		mutex_lock(&data->update_lock);
->>   		status = pmbus_read_status_word(client, page);
->> @@ -3109,7 +3149,7 @@ static irqreturn_t pmbus_fault_handler(int irq, void *pdata)
->>   		mutex_unlock(&data->update_lock);
->>   	}
->>   
->> -	return IRQ_HANDLED;
->> +	return ret;
->>   }
->>   
->>   static int pmbus_irq_setup(struct i2c_client *client, struct pmbus_data *data)
->> -- 
->> 2.37.3
->>
+Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
+Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+
+Changes in v9:
+- Rebase onto for-next
+- Update node-name from uart0 to serial
+- Remove reg and interrupt property requirement for UART compatible
+  nodes.
+- Update authorship
+
+Changes in v8:
+- Update commit message
+
+Changes in v7:
+- No change
+
+Changes in v6:
+- No change
+
+Changes in v5:
+- No change
+
+Changes in v4:
+- Changes in commit message.
+
+Changes in v3:
+- Rebased changes on google,cros-ec.yaml
+
+Changes in v2:
+- No change
+
+---
+ .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+index 3d5efa5578d1b..cdf1d719efe9d 100644
+--- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
++++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+@@ -33,6 +33,9 @@ properties:
+       - description:
+           For implementations of the EC connected through RPMSG.
+         const: google,cros-ec-rpmsg
++      - description:
++          For implementations of the EC connected through UART.
++        const: google,cros-ec-uart
+ 
+   controller-data: true
+ 
+@@ -187,6 +190,15 @@ allOf:
+       properties:
+         mediatek,rpmsg-name: false
+ 
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              enum:
++                - google,cros-ec-rpmsg
++                - google,cros-ec-uart
++    then:
+       required:
+         - reg
+         - interrupts
+@@ -299,4 +311,12 @@ examples:
+         vdd-supply = <&pp3300_fp_mcu>;
+       };
+     };
++
++  # Example for UART
++  - |
++    serial {
++        cros-ec {
++            compatible = "google,cros-ec-uart";
++        };
++    };
+ ...
+-- 
+2.39.0.rc0.267.gcb52ba06e7-goog
+
