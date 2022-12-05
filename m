@@ -2,135 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D2C642CC1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5855642CC3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232033AbiLEQ00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:26:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
+        id S230012AbiLEQ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231722AbiLEQ0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:26:23 -0500
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2301E3DE
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 08:26:20 -0800 (PST)
-X-KPN-MessageId: 8bb85bc4-74b9-11ed-8ce8-005056ab378f
-Received: from smtp.kpnmail.nl (unknown [10.31.155.39])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id 8bb85bc4-74b9-11ed-8ce8-005056ab378f;
-        Mon, 05 Dec 2022 17:26:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=subject:to:from:message-id:date;
-        bh=CfEttA1FTi4AQiwQc2S061M8eH1bU8ujIZnK8AP1oeQ=;
-        b=tuxrP4iDj3gFH2k+uiOY5AfY+VDm6lVhO28bzix8YLolw2WAb9dOlUjt6DU1RYah/hqPen25aYdBj
-         Lzxz6CzqzzxZZ1ADc1Wfswn3J3cI3A1zYphYND/h+RB5++kN0VXm4o7yMIaChUXEWwsE26bXpgVd2d
-         Gx0QhmtFMTh9HEiqQ51WT8cqWmow/+zkN5jFOIBfMmWjay79ZStZD0jO3Now+514+yuc0CUotJU0J8
-         rKsRltX3NP6CSHdR2UsmT8jiZLX/kc6xgjj5ph8F46lHvlW6Gt9QNIoRPObzd+0r/uIp+8XBTHCiAm
-         A6uTNRabcexvUPTUsus1Q3wy+CQihyQ==
-X-KPN-MID: 33|/HodZ7OyzfPhmz8Wusw/hvCrbfwF8XAK2F6SsbeLUeM5/1JFyfL42Q6rfOIUZT5
- vs4/subOAw9WbxRrOMNUpjys7KE1IU/78c9NChulDz6k=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|HlvWMV6eR643KdYhfvNggMVMrOq6Fo+jZ0b/IE5gCpz70CJjmaqY8DBfnSwYzJL
- Vv4nF2ndQQ97M5SSCHFJAHA==
-X-Originating-IP: 80.61.163.207
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id 8aa4c61b-74b9-11ed-b8b1-005056ab7447;
-        Mon, 05 Dec 2022 17:26:16 +0100 (CET)
-Date:   Mon, 05 Dec 2022 17:26:16 +0100
-Message-Id: <87tu293jh3.fsf@bloch.sibelius.xs4all.nl>
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     povik+lin@cutebit.org, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        devicetree@vger.kernel.org, asahi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, marcan@marcan.st
-In-Reply-To: <20221205100211.3155-1-marcan@marcan.st> (message from Hector
-        Martin on Mon, 5 Dec 2022 19:02:11 +0900)
-Subject: Re: [PATCH] arm64: dts: apple: Rename dart-sio* to sio-dart*
-References: <20221205100211.3155-1-marcan@marcan.st>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232548AbiLEQ1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:27:01 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9AF1EC55;
+        Mon,  5 Dec 2022 08:26:56 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2DEA685681;
+        Mon,  5 Dec 2022 17:26:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670257615;
+        bh=8TDuGb7NmlheQkJwLnPHVwZdfqltcWdZV1PRx3pDHs4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cNYKGcIOLrLB1Qgs4Y/uLtIQitpBgjq+RAWA65IWHdfmXPqqU4J2xJEpvMeE+lRtu
+         iUdnxipgd3Ayh24AmBP/0Wd+JwoovbhNVJ7xipD8VrdXD9SxAAm2JBHH6I+pFSVzlN
+         ImxnviW03anPjGpZq6VwfeOS1CFV1jnhuNuIsXjI3qd2OJyfpwJXvlXNW41hBhvxCk
+         uZ/Vz++oAKdJEYH/qiGZSYymPz6pc0+N5F6lZfuGjLrxGWQ1uTx9nIwThQFOexFXTu
+         JtufwP9qZ63nfuygZ7khOviD0QAHJmtmgrBJY1Xc5M+C3G/AyA8pD45LNz3spGajNS
+         +xV81wlPt1wIw==
+Message-ID: <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+Date:   Mon, 5 Dec 2022 17:26:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+References: <20221205152327.26881-1-francesco@dolcini.it>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20221205152327.26881-1-francesco@dolcini.it>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Hector Martin <marcan@marcan.st>
-> Date: Mon,  5 Dec 2022 19:02:11 +0900
+On 12/5/22 16:23, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> All the other DARTs are named foo-dart, so let's keep things consistent.
+> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
 > 
-> Fixes: 51979fbb7fb8 ("arm64: dts: apple: t600x: Add MCA and its support")
-> Fixes: 8a3df85ad87d ("arm64: dts: apple: t8103: Add MCA and its support")
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-
-Consistency is good!
-
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-
+> It introduced a boot regression on colibri-imx7, and potentially any
+> other i.MX7 boards with MTD partition list generated into the fdt by
+> U-Boot.
+> 
+> While the commit we are reverting here is not obviously wrong, it fixes
+> only a dt binding checker warning that is non-functional, while it
+> introduces a boot regression and there is no obvious fix ready.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
+> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 > ---
->  arch/arm64/boot/dts/apple/t600x-die0.dtsi | 6 +++---
->  arch/arm64/boot/dts/apple/t8103.dtsi      | 4 ++--
->  2 files changed, 5 insertions(+), 5 deletions(-)
+>   arch/arm/boot/dts/imx7s.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> index 0b8958a8db77..e2f972c2c147 100644
-> --- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
-> @@ -53,7 +53,7 @@ wdt: watchdog@2922b0000 {
->  		interrupts = <AIC_IRQ 0 631 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> -	dart_sio_0: iommu@39b004000 {
-> +	sio_dart_0: iommu@39b004000 {
->  		compatible = "apple,t6000-dart";
->  		reg = <0x3 0x9b004000 0x0 0x4000>;
->  		interrupt-parent = <&aic>;
-> @@ -62,7 +62,7 @@ dart_sio_0: iommu@39b004000 {
->  		power-domains = <&ps_sio_cpu>;
->  	};
->  
-> -	dart_sio_1: iommu@39b008000 {
-> +	sio_dart_1: iommu@39b008000 {
->  		compatible = "apple,t6000-dart";
->  		reg = <0x3 0x9b008000 0x0 0x8000>;
->  		interrupt-parent = <&aic>;
-> @@ -179,7 +179,7 @@ admac: dma-controller@39b400000 {
->  				      <&aic AIC_IRQ 0 1118 IRQ_TYPE_LEVEL_HIGH>,
->  				      <0>,
->  				      <0>;
-> -		iommus = <&dart_sio_0 2>, <&dart_sio_1 2>;
-> +		iommus = <&sio_dart_0 2>, <&sio_dart_1 2>;
->  		power-domains = <&ps_sio_adma>;
->  		resets = <&ps_audio_p>;
->  	};
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 6f5a2334e5b1..1ea760ef2c25 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -318,7 +318,7 @@ cpufreq_p: performance-controller@211e20000 {
->  			#performance-domain-cells = <0>;
->  		};
->  
-> -		dart_sio: iommu@235004000 {
-> +		sio_dart: iommu@235004000 {
->  			compatible = "apple,t8103-dart";
->  			reg = <0x2 0x35004000 0x0 0x4000>;
->  			interrupt-parent = <&aic>;
-> @@ -431,7 +431,7 @@ admac: dma-controller@238200000 {
->  					      <0>,
->  					      <0>;
->  			#dma-cells = <1>;
-> -			iommus = <&dart_sio 2>;
-> +			iommus = <&sio_dart 2>;
->  			power-domains = <&ps_sio_adma>;
->  			resets = <&ps_audio_p>;
->  		};
-> -- 
-> 2.35.1
-> 
-> 
-> 
+> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+> index 03d2e8544a4e..0fc9e6b8b05d 100644
+> --- a/arch/arm/boot/dts/imx7s.dtsi
+> +++ b/arch/arm/boot/dts/imx7s.dtsi
+> @@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+>   			clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+>   		};
+>   
+> -		gpmi: nand-controller@33002000 {
+> +		gpmi: nand-controller@33002000{
+>   			compatible = "fsl,imx7d-gpmi-nand";
+>   			#address-cells = <1>;
+> -			#size-cells = <0>;
+> +			#size-cells = <1>;
+>   			reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
+>   			reg-names = "gpmi-nand", "bch";
+>   			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+
+I suspect this fix should eventually be reverted again, once a proper 
+fix is agreed upon in the MTD OF parser, right ?
+
+With that:
+
+Acked-by: Marek Vasut <marex@denx.de>
