@@ -2,228 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E0B864271C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5568642726
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbiLELDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 06:03:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
+        id S231346AbiLELFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 06:05:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiLELDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:03:49 -0500
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3B64223;
-        Mon,  5 Dec 2022 03:03:47 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670238205; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=dCg4L4dDwtUFfG26pp3MyF8p17XNUTGmBxNM8y8NIA4DDp7mqXy0T5jL5m16R5BfzufupFRzzCMTmrRM0Zxu7m4pHiCgFtEi0uk0GkhXSNlBhQdTvocuCGvA91fAebtA4syW7/fCUTpDwfoUDTah9GEd5WHaqPTjhliVrT9bS6I=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1670238205; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=qqmUi98VANfk0PufkZdOVcDiymv+qgsHjWmqFJQ5X8s=; 
-        b=fB9KHUif2F8HCU7guYPqfQrxRDHMI6hxL54nHOt9nX00zBB0MXJS5sXmmhAZwl4Y1BmYiaYSJ4CNqVF0Rqqc75GyiLxV0UZWgCcUcTUDBrCPyQib4IEHo7vNNxAg35Q9qLO6zbzyRZJsvpTBTeAjS8XHh5XhSMaNsG/7h4S5JI8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670238205;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=qqmUi98VANfk0PufkZdOVcDiymv+qgsHjWmqFJQ5X8s=;
-        b=V0Yb2KDHkPy5QzDgxAdB6hcvdIo9/h5nK28X5LTlXdnsK3121DiaM2Lg9LrNJmzi
-        Q58YBu09jugZMqNS8TN3ywBkTNlkhfSpRaWIcWL7Ea+r+y67MwsscpEvpX1hYszT1ls
-        q3QRTzqDI5eAaHms1lKEsXDVcv4HBpKNtNJ/CZXk=
-Received: from edelgard.fodlan.icenowy.me (120.85.99.143 [120.85.99.143]) by mx.zohomail.com
-        with SMTPS id 1670238202532178.59673950121748; Mon, 5 Dec 2022 03:03:22 -0800 (PST)
-Message-ID: <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
-Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible
- for OpenC906
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S231315AbiLELFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:05:50 -0500
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2086.outbound.protection.outlook.com [40.107.20.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E37F587;
+        Mon,  5 Dec 2022 03:05:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JgDrrbwbqOSH9LyvxMOUgDK8yK6z40GdvBnIqUKYchWtWW1A3Xj+Mt61w5Eq5YAeMeIvuEX15xw7SkLBhPxC8KfzplsI93wgg+bbLi01OmBsuaHZ80ZpHZjk+ntZsPNhBdIRE6z2yMvP78owq3LZFgwBGPt6e6yH3cfZlFfaDs0vIlemPbnsqcZQwBAtLR7MyIZMN9gjQWJU62lG2Q4L84+SBtZdEGVxPdCNouBfIQI8rTZOanQwhfCkAJpoLfuhzwz86K8F7HogqIV+Ya3GtrWDqwkCDBm7dyF4vYFLLGneYda7ou7XBgddD9gjPsVYGtWWLoJSr4zwt1cyKjs4Rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=08oa9C+RdUIorBkMgw8biNnB0Es7ENixPL3h+Nnkj8o=;
+ b=GunCvmvTVv0Pb1qyb8Dx7cX4wyTZVSzZloKdXURX0hsKDKNQIhWTJTQakCt3yYnrv0YXnZVdLCVvbX3gh8JJylKvLiMISPMOlk1PBO8ctFqP2Y3Yp5khpNl1rzBFVLz4zrtmO86FKtK2IxdGsrTVkUKazl7WelDaPZmr3V36Gom16/h5+oEdT3TEGoKjJ58GeGdH5rFWfd1g3swqNswbWjH38Z70Fr6cl1s3hMVBZS9cuKNv+rPI2G9zWRqQ7JXYWMBdKvCaWd9XXBkHG+ZNDeDLx8/LG9iwQIsLZnWOZYYNCahKIaxGLeyCeVq2GrJ8l8CM85QWsHOLdN64lCxC6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=08oa9C+RdUIorBkMgw8biNnB0Es7ENixPL3h+Nnkj8o=;
+ b=3wTODy4NDv44Tqlw+DswOvYTbLHlEZcoAOqG8xHPQb0jXRuDVdZ/IotCCZtDA0hAr/UMNPVht7iML+tOxmYPIG74EOdNL3sSygQcOuHJ1lDMSyxlxvK4w6LHtMK8X0o9IXoi2N0DaoaXjuRAX7m77Ek1lIJKfPs27wWDoaPahDG2Sfi+nPf46UcBzhCaqKF+1Cdq4YmuQoht0oAaZXPw9D/nh3RDmqS+2BCJWpZhTL7pKha8Tg2EnuJgjea9qs0SLDoeMybrKVWHlxtFGPN5w6XGqEazXlyCB3gC3AM18+aSn3sC0vgqLlG19NhyRbDK6Wi4B3VUhyCvcvXxVxPLdw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by AM7PR04MB7095.eurprd04.prod.outlook.com (2603:10a6:20b:11c::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.11; Mon, 5 Dec
+ 2022 11:05:45 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::28d6:1b8:94d9:89f5]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::28d6:1b8:94d9:89f5%7]) with mapi id 15.20.5880.011; Mon, 5 Dec 2022
+ 11:05:45 +0000
+Date:   Mon, 5 Dec 2022 19:05:25 +0800
+From:   Chester Lin <clin@suse.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Mon, 05 Dec 2022 19:03:17 +0800
-In-Reply-To: <Y43Jt3YOSbFyh954@wendy>
-References: <20221121041757.418645-1-uwu@icenowy.me>
-         <20221121041757.418645-3-uwu@icenowy.me>
-         <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
-         <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
-         <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
-         <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
-         <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud>
-         <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
-         <Y43Jt3YOSbFyh954@wendy>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        s32@nxp.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        ghennadi.procopciuc@oss.nxp.com, Chester Lin <clin@suse.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: add schema for NXP S32 SoCs
+Message-ID: <Y43Qdco0y61C4l1I@linux-8mug>
+References: <20221128054820.1771-1-clin@suse.com>
+ <20221128054820.1771-2-clin@suse.com>
+ <6ad95ce3-887d-48fd-3c08-f50d4e666ded@linaro.org>
+ <Y42MyyLumVa8phpd@linux-8mug>
+ <e839274d-6696-63aa-14e6-f52a534c9ed2@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e839274d-6696-63aa-14e6-f52a534c9ed2@linaro.org>
+X-ClientProxiedBy: TY2PR0101CA0020.apcprd01.prod.exchangelabs.com
+ (2603:1096:404:92::32) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|AM7PR04MB7095:EE_
+X-MS-Office365-Filtering-Correlation-Id: b29787bf-2b53-420f-7a68-08dad6b0a7de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Hy96mVpZofz9XDmyo6BRll95eiOjKF53AN12KLjNkZxyte1DNIkGMP/701z54VkzoTUgOQ3vUSvy+VjrqFrI/5yCaA2z+/sdHL8aCKrH6c/01Yj0+nE5UAcffxAcfsSwKdZeabbwl1MVYYqjjv91PYUDp3J0Smox5ku5ZCdaJoj8bG+riRXv8dbbBjn3xzOoyU16p/rKoLmJQuHJgJaeaZY6U9A859cV7dWXe+wa8l+wF1kT7u5UuOgm66J1ig7GX9Qj1VoOLyqQJCwQNcMw0rYILTH61comStReVrmHxaDQr8jpY/nqpemZzho1KjrtA2U4o5eMMVLGSvixqdykp6HENkqenNw/3hzv1LkKbDEXF3bXCBktkZiBjd3Dk8dfnyfF1dffOrdL2F3J6CDHtahg3I0O2qYMFsmUZuEc/VKFQ5fIxnqwCXQbVmyLpf1keCsqWBUToydhwFj3CdlAE3fpyV6i6Zk0Kz6h55b3XbBfyvUdAcU6xr6kRyP/IViX7diDiJiS4RwMs5iPwsSfgLEcDCI1MKMvf1DZp9yWaoJMLwnHBcT7vtdehyl77PBgSmx7quobeM9yjTQ32USyiLmkOrKAZ3+EfOF6tHq3TR5Bnk+ATIMWWI1e+VbwJk1F8L/U2rFHebZ7CEYOuuY2QQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(6029001)(7916004)(396003)(346002)(376002)(366004)(39850400004)(136003)(451199015)(83380400001)(86362001)(38100700002)(7416002)(2906002)(41300700001)(5660300002)(8936002)(4326008)(33716001)(8676002)(53546011)(6512007)(9686003)(6506007)(26005)(186003)(107886003)(6666004)(316002)(54906003)(6916009)(66556008)(66476007)(478600001)(66946007)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hShi+8H/AkNrbgUrTErzzN+LXyEcZkxIL8XDuOQQkMdOy2YZxqQsf2N7iUCn?=
+ =?us-ascii?Q?YhnNz5VmCuQp0cpRW+dqnNNvfjk3Tpjw1pSyAAI8fiuuEYbG83+990/19ZP/?=
+ =?us-ascii?Q?AZjcTx0/eIUSsto69JJAU05I3ckFBzNdi6tLBYSxl5vI6ELX56Z+x708WFP0?=
+ =?us-ascii?Q?1gDrOQU7ZkH0rKOYa3g37g20Hw8AyzdMERkwUtN2bFm5lyuqAOF+B2VIZK4a?=
+ =?us-ascii?Q?3+dqnSotfzbiUAMCLBzaHKhnEW2hHICVCDyj5gFd33pa+xgrle8cnZ0bZy5C?=
+ =?us-ascii?Q?twFQk6L4iurEyPFY8C/qSyj4JfLZWFjGnUZY/ztgt64c/HztZA6qMrWv88d3?=
+ =?us-ascii?Q?C6T7EKonY4EhQy2rrmru/FThvyxL0fpk44q6pOfqgVEmMb0sh7ywBO/7v/29?=
+ =?us-ascii?Q?Ynin4v/syjCM2W1qlfZXQaAHnx/LFNNhEJ6Woh9CCvJCdKgvVioLRHZ1i0ij?=
+ =?us-ascii?Q?Umfgn2i6JYOiSIhppDJyA4Gi6lXG/KwtkqYwR4QUw+n672+Da/3dCrqKXp26?=
+ =?us-ascii?Q?jRtZDXcPM30GGH5/CLs9kW1JjZ+bR2YMBEzEohtYi20Ld500ahkcpV67sEu8?=
+ =?us-ascii?Q?yU/WuVqzZE9T0sp1D/CSdgvdCwKylWhebqhpCpMUw/DR7VqiIzlQPrOP4441?=
+ =?us-ascii?Q?RxILqforiv7rdc+g7VrIRLB+JYOkjRROJoPDnZgtjnSGfRiB/hJfa7ffE/MG?=
+ =?us-ascii?Q?dShfwXk0Q90LhxGAPY2A1xfHBmi+SgwSrQhVG/A/Kg8DPdYjEJ9YBvjeu9Aq?=
+ =?us-ascii?Q?wI4SrBx1uSF4vMnMM45bH8ztOQhJ0pf2uFvQ/bAvdUiMIwEUvLc4ZxtawovW?=
+ =?us-ascii?Q?nRhlJbC2nnH8Kv3dSRWzWC2ix49bqF1zPjWiVe/h6j5WejA71IF9a4S8+H5E?=
+ =?us-ascii?Q?Tk9emy+CdevAQsiNs8vuVaspIXr58ELgHSKN7eB1ab/bTfyVxxeC1XRt0iBg?=
+ =?us-ascii?Q?GMfIfyOUmIt3/bvyBtDVYCYYXWxgpwUUMgxSZ2mZbkSrVBuotWLC8IrO8xj5?=
+ =?us-ascii?Q?cKkmU6GnV2oCCbGwKKpea6BhslN45e5cBCag+j85M9Q4zGAsxgkJDEb/71PM?=
+ =?us-ascii?Q?CF3Wqs1C9HGnxISlqzLfmf4+pry6fNh5051IeLGptSVEviAezQwZgTJVHCvn?=
+ =?us-ascii?Q?AIxqEx5GyqjcRpJf+SLSPmSwEDITZrILgQUZ0iM2YF5A/b6MLvViF55nbKdk?=
+ =?us-ascii?Q?doHziFXtcvEvCua6dmqwX2mLvGTmyffzG0CwXfcOQNgV0Do3ijdxoi3alRt+?=
+ =?us-ascii?Q?biw4PXHYh6dQDC0aiZFfnhQT9E9b6669tX2R/AHFmJFaY3ep/Y0mNneOjdfy?=
+ =?us-ascii?Q?E47/jLhNrfoKzLRvr68nxZLL4+5r9mLiEa4zfv3ZMxsf6rsEBeTscsqj8Qqd?=
+ =?us-ascii?Q?du/cIUUl4hJMCCpd9zRqYJs6H6FD+hVH7p5OdHXaWej/HENCbK+F1yToD+ck?=
+ =?us-ascii?Q?Uhr77hWzUE36/UNUlrUhx0W8EI7z42aq5D/p3IoBUO1DPe1zwS73hayOZUsE?=
+ =?us-ascii?Q?JnfBh+w+UU26ORY1GM87XnU3TulmERVfMXliQMpOZDmrVGXPyCHO+01p7JmP?=
+ =?us-ascii?Q?omGupTf60G9+OF3HDzw=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b29787bf-2b53-420f-7a68-08dad6b0a7de
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2022 11:05:45.3903
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FF+NQFj6UqOxSrEDlbIDf4mX5Vn08ihurFdms7QDmNI83n2c0y7NOvqHZ0hVvIsl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7095
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=EF=BC=
-=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> On Fri, Dec 02, 2022 at 02:12:54PM +0800, Icenowy Zheng wrote:
-> > =E5=9C=A8 2022-12-01=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:18 +0000=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
-> > > On Wed, Nov 30, 2022 at 12:13:30PM -0600, Rob Herring wrote:
-> > > > On Tue, Nov 22, 2022 at 03:41:27PM +0800, Icenowy Zheng wrote:
-> > > > >=20
-> > > > >=20
-> > > > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=
-=E5=8D=883:35:48, Krzysztof Kozlowski
-> > > > > <krzysztof.kozlowski@linaro.org> =E5=86=99=E5=88=B0:
-> > > > > > On 22/11/2022 08:18, Icenowy Zheng wrote:
-> > > > > > > =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:0=
-6 +0100=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > > > On 21/11/2022 05:17, Icenowy Zheng wrote:
-> > > > > > > > > T-Head OpenC906 is a open-source-licensed fixed-
-> > > > > > > > > configuration of
-> > > > > > > > > C906,
-> > > > > > > > > which is now public and able to be integrated.
-> > > > > > > > >=20
-> > > > > > > > > Add a compatible for the CLINT shipped as part of
-> > > > > > > > > OpenC906, which
-> > > > > > > > > should
-> > > > > > > > > just be ordinary C9xx CLINT.
-> > > > > > > > >=20
-> > > > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > > > > > > ---
-> > > > > > > > > =C2=A0Documentation/devicetree/bindings/timer/sifive,clin=
-t
-> > > > > > > > > .yam
-> > > > > > > > > l | 1 +
-> > > > > > > > > =C2=A01 file changed, 1 insertion(+)
-> > > > > > > > >=20
-> > > > > > > > > diff --git
-> > > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clin
-> > > > > > > > > t.ya
-> > > > > > > > > ml
-> > > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clin
-> > > > > > > > > t.ya
-> > > > > > > > > ml
-> > > > > > > > > index aada6957216c..86703e995e31 100644
-> > > > > > > > > ---
-> > > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clin
-> > > > > > > > > t.ya
-> > > > > > > > > ml
-> > > > > > > > > +++
-> > > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clin
-> > > > > > > > > t.ya
-> > > > > > > > > ml
-> > > > > > > > > @@ -35,6 +35,7 @@ properties:
-> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 - const: sifive,clint0
-> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
-> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 - enum:
-> > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 - thead,openc906-clint
-> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
-> > > > > > > >=20
-> > > > > > > > Add entries sorted alphabetically. This should be
-> > > > > > > > squashed
-> > > > > > > > with
-> > > > > > > > previous
-> > > > > > > > patch.
-> > > > > > >=20
-> > > > > > > I make it a seperated patch because I think it's a
-> > > > > > > questionable
-> > > > > > > approach.
-> > > > > > >=20
-> > > > > > > If you think it's okay, I will just squash it and put it
-> > > > > > > as
-> > > > > > > the second
-> > > > > > > patch in the next iteration, with adding openc906-plic as
-> > > > > > > the
-> > > > > > > first
-> > > > > > > one.
-> > > > > >=20
-> > > > > > What is a questionable approach? Why commit msg is not
-> > > > > > saying
-> > > > > > this?
-> > > > >=20
-> > > > > Ah I mentioned it in the cover letter. The problem is just I
-> > > > > doubt whether
-> > > > > binding strings for single SoCs are necessary.
-> > > >=20
-> > > > They are.
-> > > >=20
-> > > > Unless all the quirks/bugs/features are somehow guaranteed to
-> > > > be
-> > > > exactly=20
-> > > > the same as other SoCs sharing the same compatible string, or
-> > > > there
-> > > > is=20
-> > > > another mechanism to identify the exact version (e.g. a version
-> > > > register).
-> > >=20
-> > > Icenowy,
-> > >=20
-> > > Having thought about this a little - are we not *more* likely to
-> > > see
-> > > bug/quirk disparity between implementations of the OpenC906 stuff
-> > > by
-> > > the very nature of being an open-source IP?
-> >=20
-> > It's an open-source edition of a specific version of the commercial
-> > IP,
-> > a fixed configuration.
-> >=20
-> > In addition, maybe we can just retrieve the version infomation via
-> > a T-
-> > Head custom CPU configuration register, mcpuid. Despite the
-> > implementation of this register is weird -- it contains 7 different
-> > read-only values, with the most significant nibble behaving as an
-> > index.
->=20
-> You lot all know the situation here a lot more than I do...
-> I don't think "letting" people use the bare "thead,c900-foo" makes
-> much
-> sense as it gives us no chance to deal with quirks down the line.
+On Mon, Dec 05, 2022 at 10:02:14AM +0100, Krzysztof Kozlowski wrote:
+> On 05/12/2022 07:16, Chester Lin wrote:
+> > Hi Krzysztof,
+> > 
+> > On Wed, Nov 30, 2022 at 03:58:52PM +0100, Krzysztof Kozlowski wrote:
+> >> On 28/11/2022 06:48, Chester Lin wrote:
+> >>> Add DT schema for the pinctrl driver of NXP S32 SoC family.
+> >>>
+> >>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> >>> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+> >>> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+> >>> Signed-off-by: Chester Lin <clin@suse.com>
+> >>> ---
+> >>>
+> >>> Changes in v2:
+> >>> - Remove the "nxp,pins" property since it has been moved into the driver.
+> >>> - Add descriptions for reg entries.
+> >>> - Refine the compatible name from "nxp,s32g-..." to "nxp,s32g2-...".
+> >>> - Fix schema issues and revise the example.
+> >>> - Fix the copyright format suggested by NXP.
+> >>>
+> >>>  .../pinctrl/nxp,s32cc-siul2-pinctrl.yaml      | 125 ++++++++++++++++++
+> >>>  1 file changed, 125 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..2fc25a9362af
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+> >>
+> >> Usually filename matches the compatible (or family name), so any reason
+> >> why compatible is "nxp,s32g2" but filename is "nxp,s32cc"?
+> >>
+> > 
+> > According to NXP, the S32CC is a microarch which is adapted by different S32 SoCs,
+> > such as S32G2/G3 and S32R45. Some common IPs are implemented in S32CC, such as
+> > serial, pinctrl, mmc, gmac and some other peripheral interfaces. S32R45 has
+> > different pinouts compared to S32G2, which means that there would not be just
+> > "s32g2-siul2-pinctrl" but also "s32r45-siul2-pinctrl" in the compatible enum if
+> > S32R45 has to be upstreamed in the future. For this case, it seems to be
+> > inappropriate that adding a compatible name without any "s32g" keyword in the
+> > filename "nxp,s32g2-.." unless creating a new yaml for each platform, such as
+> > nxp,s32r45-siul2-pinctl.yaml.
+> 
+> First, you can always rename a file if such need arises. Maybe new SoCs
+> will come, maybe not.
+> 
+> Second, when you actually upstream new SoC it might anyway require new
+> bindings file, because pinctrls are quite specific and it is usually
+> difficult to support multiple devices in a nice, readable way in one
+> file. Therefore anyway another file is quite likely.
+> 
 
-Well, after rechecking the manual, I found it possible to handle quirks
--- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can be
-used to retrieve some identification info of the core, including its
-model ID, version, etc; and the T-Head PLIC/CLINT are part of their
-C906 SoC design that there's another "mapbaddr" CSR that could be used
-to retrieve the base address of them.
+Thanks for your guidance. Will fix it.
 
-So I think it okay to just use "thead,c900-clint" here, and when
-necessary, try to retrieve mcpuid for dealing with quirks.
+> (...)
+> 
+> >>> +
+> >>> +patternProperties:
+> >>> +  '-pins$':
+> >>> +    type: object
+> >>> +    additionalProperties: false
+> >>> +
+> >>> +    patternProperties:
+> >>> +      '-grp[0-9]$':
+> >>> +        type: object
+> >>> +        allOf:
+> >>> +          - $ref: pinmux-node.yaml#
+> >>> +          - $ref: pincfg-node.yaml#
+> >>> +        unevaluatedProperties: false
+> >>> +        description:
+> >>> +          Pinctrl node's client devices specify pin muxes using subnodes,
+> >>> +          which in turn use the standard properties.
+> >>
+> >> All properties are accepted? What about values, e.g. for drive strength?
+> > 
+> > For those unsupported properties such as drive-strength, the s32g2 pinctrl driver
+> > returns -EOPNOTSUPP.
+> 
+> I don't care what the driver is doing, we do not discuss the driver. You
+> need to describe properly the hardware and I doubt that hardware accepts
+> all drive-strengths, all forms of pull resistors (so any Ohm value).
+> 
+> Add constrains.
+> 
 
-> I don't think that using "thead,openc906-clint", "thead,c900-clint"
-> makes all that much sense either, in case someone does something
-> wacky
-> with the open-source version of the core.
->=20
-> That leaves us with either:
-> "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
-> or:
-> "vendor,soc-clint", "thead,c900-clint"
-> right?
->=20
-> The first one seems like possibly the better option as you'd kinda
-> expect that, in a perfect word, all of the open-source IP
-> implementations would share quirks etc?
->=20
-> Thanks,
-> Conor.
->=20
+Thanks for the suggestion. IIUC, I should specifically described the supported
+pinmux and pincfg properties in this schema and then add an "additionalProperties: false"
+in the end in order to constrain unsupported properties listed in the pattern
+pin groups.
 
+> >>
+> >>> +
+> >>> +additionalProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +
+> >>> +    /* Pins functions (SSS field) */
+> >>> +    #define FUNC0  0
+> >>> +    #define FUNC1  1
+> >>> +    #define FUNC2  2
+> >>> +    #define FUNC3  3
+> >>> +    #define FUNC4  4
+> >>> +    #define FUNC5  5
+> >>> +    #define FUNC6  6
+> >>> +    #define FUNC7  7
+> 
+> This is another surprise - functions are texts, not numbers.
+> 
+
+Maybe the FUNC[0|9] are not accurate to describe Source Signal Select [SSS].
+I will drop these definitions from the example and try elaborating 'pinmux'
+in its property description.
+
+> >>> +
+> >>> +    #define S32CC_PINMUX(PIN, FUNC) (((PIN) << 4) | (FUNC))
+> >>> +
+> >>> +    #define S32CC_SLEW_208MHZ  0
+> >>> +    #define S32CC_SLEW_166MHZ  4
+> >>> +    #define S32CC_SLEW_150MHZ  5
+> >>> +    #define S32CC_SLEW_133MHZ  6
+> >>> +    #define S32CC_SLEW_83MHZ   7
+> 
+> Don't store register values in the bindings examples. Instead you need
+> to be explain the slew-rate property.
+> 
+
+Will do.
+
+> >>> +
+> >>> +    pinctrl@4009c240 {
+> >>> +        compatible = "nxp,s32g2-siul2-pinctrl";
+> >>> +
+> >>> +        /*
+> >>> +         * There are two SIUL2 controllers in S32G2:
+> >>> +         *
+> >>> +         *   siul2_0 @ 0x4009c000
+> >>> +         *   siul2_1 @ 0x44010000
+> >>> +         *
+> >>> +         * Every SIUL2 controller has multiple register types, and here
+> >>> +         * only MSCR and IMCR registers need to be revealed for kernel
+> >>> +         * to configure pinmux. Please note that some indexes are reserved,
+> >>> +         * such as MSCR102-MSCR111 in the following reg property.
+> >>> +         */
+> >>> +
+> >>
+> >> Either this should be part of description or should be dropped. It blows
+> >> example and probably duplicates DTS.
+> >>
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> 
+> Best regards,
+> Krzysztof
+> 
