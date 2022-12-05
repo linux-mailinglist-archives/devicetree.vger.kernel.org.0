@@ -2,63 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A346420B1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 01:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B14D6420E6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 01:57:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbiLEAKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 19:10:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42060 "EHLO
+        id S231186AbiLEA5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 19:57:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbiLEAKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 19:10:42 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71964EE07;
-        Sun,  4 Dec 2022 16:10:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 26C01B807E5;
-        Mon,  5 Dec 2022 00:10:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D05C433D7;
-        Mon,  5 Dec 2022 00:10:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670199038;
-        bh=wHwBkSo7+9OsXeSnyzm3ampLGK0mAtM78dM7PJjSBzA=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=LYVLlfwQlNqL4IrP/fLTZ3aY/WveKlAsLqqhxuFI9pBkv+61ywlfdBNMfEMI9et2f
-         thECXDLwAUFxfeeVM8QUEWgp7TBGxEtSu5VlmPcK+J60pVhutgNhTlH7p8UBnE9jL0
-         8X/2rQRT2w9Zvb+FeyUc2vBdRx4qP182YKwbzfhWLUI37EPceVJP8CYXp5PSZ/S6Ot
-         ZrVHhapPO83mb1NbCEtQgjoKxhc3/EF4Xo1vmN6QZXLu+zdKgWFWxFMQw+DBlVk4Gc
-         FF/sP7sHmrgqSCOEICFxjr6Nkk+MmIRkCoVRyhcUR9/XALh3NdyB+FgAouCnRPCGH6
-         dF0ChJteyChfw==
-Date:   Mon, 05 Dec 2022 00:10:34 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Anup Patel <apatel@ventanamicro.com>,
+        with ESMTP id S230453AbiLEA5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 19:57:36 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CFA34BC01;
+        Sun,  4 Dec 2022 16:57:32 -0800 (PST)
+Received: from loongson.cn (unknown [117.133.84.183])
+        by gateway (Coremail) with SMTP id _____8CxpfD7QY1jHCoDAA--.7225S3;
+        Mon, 05 Dec 2022 08:57:31 +0800 (CST)
+Received: from [192.168.1.2] (unknown [117.133.84.183])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_eH6QY1jcKklAA--.27000S3;
+        Mon, 05 Dec 2022 08:57:30 +0800 (CST)
+Message-ID: <2b86e0a3-2367-c7e8-1086-ee79ffb19907@loongson.cn>
+Date:   Mon, 5 Dec 2022 08:57:30 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1] gpio: loongson: enable irqdomain hierarchy config
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v5_1/3=5D_RISC-V=3A_time=3A_initialize?= =?US-ASCII?Q?_hrtimer_based_broadcast_clock_event_device?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20221201123954.1111603-2-apatel@ventanamicro.com>
-References: <20221201123954.1111603-1-apatel@ventanamicro.com> <20221201123954.1111603-2-apatel@ventanamicro.com>
-Message-ID: <04CBEBD4-3EDC-4FA0-BB11-DDD6B710C60C@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Juxin Gao <gaojuxin@loongson.cn>,
+        Bibo Mao <maobibo@loongson.cn>,
+        Yanteng Si <siyanteng@loongson.cn>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, linux-mips@vger.kernel.org,
+        Arnaud Patard <apatard@mandriva.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+References: <20221203105825.15886-1-zhuyinbo@loongson.cn>
+ <b6b34bc4-4089-9c02-81b2-9eaf2c9a4663@loongson.cn>
+ <CAMRc=MdqOA_xU6TdcMspF=GMYx0MbKv0MzrTNOuZ7W=kg2skDw@mail.gmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+In-Reply-To: <CAMRc=MdqOA_xU6TdcMspF=GMYx0MbKv0MzrTNOuZ7W=kg2skDw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dx_eH6QY1jcKklAA--.27000S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvdXoW7XF4kWrWrCFy8GF4UtrWfuFg_yoWkArg_Cw
+        nFyFs7Cr1UGr929FsI9rWfZr9IkayDWr1rC3Wqqw13Xw12qay8uw1Yvwn3W3W7WrW7WFn7
+        ZrWSyFy7ZrWIgjkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
+        17CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCj
+        c4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21lc7CjxVAaw2AFwI
+        0_JF0_Jw1l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCj
+        c4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
+        Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY
+        6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6x
+        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY
+        1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8FAp5UUUUU==
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,71 +75,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+在 2022/12/3 23:01, Bartosz Golaszewski 写道:
+> On Sat, Dec 3, 2022 at 12:05 PM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>>
+>> 在 2022/12/3 18:58, Yinbo Zhu 写道:
+>>> The loongson gpio driver need select IRQ_DOMAIN_HIERARCHY and add
+>>> such support.
+>>>
+>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>> ---
+>>>    drivers/gpio/Kconfig | 1 +
+>>>    1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+>>> index 55b7c5bae4aa..0f014411703e 100644
+>>> --- a/drivers/gpio/Kconfig
+>>> +++ b/drivers/gpio/Kconfig
+>>> @@ -395,6 +395,7 @@ config GPIO_LOONGSON_64BIT
+>>>        depends on LOONGARCH || COMPILE_TEST
+>>>        select GPIO_GENERIC
+>>>        select GPIOLIB_IRQCHIP
+>>> +     select IRQ_DOMAIN_HIERARCHY
+>>>        help
+>>>          Say yes here to support the GPIO functionality of a number of
+>>>          Loongson series of chips. The Loongson GPIO controller supports
+>> Hi Bartosz,
+>>
+>>
+>> please help merge this patch on top of the existing series.
+>>
+> I applied this, but please don't ping me an hour after you submit a
+> patch on a Saturday.
+>
+> Bart
 
-On 1 December 2022 12:39:52 GMT, Anup Patel <apatel@ventanamicro=2Ecom> wr=
-ote:
->From: Conor Dooley <conor=2Edooley@microchip=2Ecom>
->
->Similarly to commit 022eb8ae8b5e ("ARM: 8938/1: kernel: initialize
->broadcast hrtimer based clock event device"), RISC-V needs to initiate
->hrtimer based broadcast clock event device before C3STOP can be used=2E
->Otherwise, the introduction of C3STOP for the RISC-V arch timer in
->commit 232ccac1bd9b ("clocksource/drivers/riscv: Events are stopped
->during CPU suspend") leaves us without any broadcast timer registered=2E
->This prevents the kernel from entering oneshot mode, which breaks timer
->behaviour, for example clock_nanosleep()=2E
->
->A test app that sleeps each cpu for 6, 5, 4, 3 ms respectively, HZ=3D250
->& C3STOP enabled, the sleep times are rounded up to the next jiffy:
->=3D=3D CPU: 1 =3D=3D      =3D=3D CPU: 2 =3D=3D      =3D=3D CPU: 3 =3D=3D =
-     =3D=3D CPU: 4 =3D=3D
->Mean: 7=2E974992    Mean: 7=2E976534    Mean: 7=2E962591    Mean: 3=2E952=
-179
->Std Dev: 0=2E154374 Std Dev: 0=2E156082 Std Dev: 0=2E171018 Std Dev: 0=2E=
-076193
->Hi: 9=2E472000      Hi: 10=2E495000     Hi: 8=2E864000      Hi: 4=2E73600=
-0
->Lo: 6=2E087000      Lo: 6=2E380000      Lo: 4=2E872000      Lo: 3=2E40300=
-0
->Samples: 521      Samples: 521      Samples: 521      Samples: 521
->
->Link: https://lore=2Ekernel=2Eorg/linux-riscv/YzYTNQRxLr7Q9JR0@spud/
->Fixes: 232ccac1bd9b ("clocksource/drivers/riscv: Events are stopped durin=
-g CPU suspend")
->Suggested-by: Samuel Holland <samuel@sholland=2Eorg>
->Signed-off-by: Conor Dooley <conor=2Edooley@microchip=2Ecom>
->Reviewed-by: Samuel Holland <samuel@sholland=2Eorg>
->Acked-by: Palmer Dabbelt <palmer@rivosinc=2Ecom>
+okay, I'll pay attention later.
 
-Huh, thought I replied already but I just have forgotten to=2E=2E=2E
-Since you've added this patch to your series,  it needs your SoB appended=
-=2E
 
 Thanks,
-Conor=2E
 
->---
-> arch/riscv/kernel/time=2Ec | 3 +++
-> 1 file changed, 3 insertions(+)
->
->diff --git a/arch/riscv/kernel/time=2Ec b/arch/riscv/kernel/time=2Ec
->index 8217b0f67c6c=2E=2E1cf21db4fcc7 100644
->--- a/arch/riscv/kernel/time=2Ec
->+++ b/arch/riscv/kernel/time=2Ec
->@@ -5,6 +5,7 @@
->  */
->=20
-> #include <linux/of_clk=2Eh>
->+#include <linux/clockchips=2Eh>
-> #include <linux/clocksource=2Eh>
-> #include <linux/delay=2Eh>
-> #include <asm/sbi=2Eh>
->@@ -29,6 +30,8 @@ void __init time_init(void)
->=20
-> 	of_clk_init(NULL);
-> 	timer_probe();
->+
->+	tick_setup_hrtimer_broadcast();
-> }
->=20
-> void clocksource_arch_init(struct clocksource *cs)
+Yinbo.
+
