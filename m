@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E64642F91
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:07:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C2D1642F97
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231823AbiLESHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:07:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
+        id S230295AbiLESHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:07:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231425AbiLESGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:06:34 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620581FF86
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 10:06:33 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id d6so19832530lfs.10
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 10:06:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vu0CtkB3guUPfMS7CpRIQ8Dt+ybBzQKNPH967OkF8/Y=;
-        b=g4pIHPDZX+J+V9jbIhleYoPH4Ky6J49WImIDyRq+xZGDBfM1kXOdGOH+nF8mvI3dKw
-         VrQ8/1Ozz6coJQZ/Hlhc6lls89bIXCW7UpAFco/beUfUmvgSkfCyudHrogv0zUmUvO56
-         O8Kbeeuk+PqOUPqQEYiSg2pvDMn9J/MiHpZj20Sc6NUysfGzCcVGDnUN3ouarV3kxjyS
-         0QuXBaREDv5LWVp3MLPwbZlXuT4hD/Kz7RSkavWjSBQbD/3Ft5Wnfme2N15xwy2DpaVy
-         ehK2F+xBNCyyy48eQHgXYsv1L+ReAxO+Ebu6TIQuLeZZJBZWicqW1HbqBOwPgyHw10J+
-         INOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Vu0CtkB3guUPfMS7CpRIQ8Dt+ybBzQKNPH967OkF8/Y=;
-        b=jEZ+auyK1RNsUvLP3Ll3IzfUV9FPL9VHc+Ifduwq/yQtOTag0eDX+ysUUxCCuDt5pG
-         oCnSOCTeHcHVegZW40FD/i1MXBUNNT9XGmp/fShLh1MldHm+m9rRK2nmGiqa5o4MbyUl
-         0cI0j+KbUnzhWnkWq1EQQYfXdmlvU3v1o6IYb0B/SRmNC2VGAfqY0RF25aXx4mrVkF09
-         U+Q1pEIPRJleEHQK4rZusDs3ESeDzpuU+i1yojhiKbnSTBvcS9Uvwd+u5KtuE8y3dtum
-         gmlzcnwbvqZoY++9PS/FLDBM3JYt9leVeY2SHOib4FDHjRSitFQ8uloA1ALndGedWdm9
-         RgXw==
-X-Gm-Message-State: ANoB5pnBslSVZO8vHZ7LAzSR6ABvqPh7wXZckHQKUj2uDZ992yVDTt8d
-        fW79O6PN0dHU3fTtXAkHn9YGmg==
-X-Google-Smtp-Source: AA0mqf7WZnJMfbF8n+RBXU4uu5pM8fReKBOlV5mHLtDEaIRnYn8/ZKFur+vdSSzkmPlELLWK+afIfg==
-X-Received: by 2002:a19:674a:0:b0:4b1:3931:af with SMTP id e10-20020a19674a000000b004b1393100afmr25019742lfj.394.1670263591688;
-        Mon, 05 Dec 2022 10:06:31 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id o18-20020a05651205d200b004b5323639d8sm2179775lfo.155.2022.12.05.10.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 10:06:30 -0800 (PST)
-Message-ID: <2761807c-b4b1-9c8d-50e3-efe8258ba610@linaro.org>
-Date:   Mon, 5 Dec 2022 19:06:28 +0100
+        with ESMTP id S231890AbiLESHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:07:20 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE9520360;
+        Mon,  5 Dec 2022 10:07:18 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5AA5384D9F;
+        Mon,  5 Dec 2022 19:07:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670263636;
+        bh=UmCGmZ5cTHpj4mMtSRcGtVRFook/NiOWwYPr8VdESow=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XN8XSiKvotx+uOJaeUrEiev7N+6Jq/qGOyjXLrC7PSBIeatNrdXefjibVwCv0bqRB
+         YDs/ZJ7g6j6TCMBzZX076nHTJs9aNUz9Tx55V+HEVjEC625TjznAfmB667xGq9hEzu
+         IHETUfIJApvC62aqddUs3WMi/y0gXJfuV6p5wL0oNkTR6hVmnlHv7yLDBh2Rb+vfF9
+         uEwFY/wT3LKI8t/DLH6T+qmpKsQxQ4/fKXeJYPoYvb9Xxw1yR8p/0OczS1Lc/z5IvM
+         8feGXRzklpLVgOb9VthYV6d+kGEk/SeBpsLgcwJMqr0uzjNGEaRkVN37skIIiiHrvI
+         7iPbnI8HLDIEA==
+Message-ID: <f69746b0-51c0-041c-4035-679c27fcba64@denx.de>
+Date:   Mon, 5 Dec 2022 19:07:14 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH] arm64: dts: qcom: sa8295p-adp: Add RTC node
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221205174309.16733-1-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221205174309.16733-1-quic_bjorande@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+References: <20221205152327.26881-1-francesco@dolcini.it>
+ <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+ <20221205185859.433d6cbf@xps-13>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20221205185859.433d6cbf@xps-13>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,37 +69,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/5/22 18:58, Miquel Raynal wrote:
+> Hi Marek,
 
+Hi,
 
-On 05/12/2022 18:43, Bjorn Andersson wrote:
-> The first PM8540 PMIC has an available RTC block, describe this in the
-> SA8295P ADP. Mark it as wakeup-source to allow waking the system from
-> sleep.
+> marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->   arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>> On 12/5/22 16:23, Francesco Dolcini wrote:
+>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>
+>>> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
+>>>
+>>> It introduced a boot regression on colibri-imx7, and potentially any
+>>> other i.MX7 boards with MTD partition list generated into the fdt by
+>>> U-Boot.
+>>>
+>>> While the commit we are reverting here is not obviously wrong, it fixes
+>>> only a dt binding checker warning that is non-functional, while it
+>>> introduces a boot regression and there is no obvious fix ready.
+>>>
+>>> Cc: stable@vger.kernel.org
+>>> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+>>> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
+>>> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+>>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>> ---
+>>>    arch/arm/boot/dts/imx7s.dtsi | 4 ++--
+>>>    1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+>>> index 03d2e8544a4e..0fc9e6b8b05d 100644
+>>> --- a/arch/arm/boot/dts/imx7s.dtsi
+>>> +++ b/arch/arm/boot/dts/imx7s.dtsi
+>>> @@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+>>>    			clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+>>>    		};
+>>>    > -		gpmi: nand-controller@33002000 {
+>>> +		gpmi: nand-controller@33002000{
+>>>    			compatible = "fsl,imx7d-gpmi-nand";
+>>>    			#address-cells = <1>;
+>>> -			#size-cells = <0>;
+>>> +			#size-cells = <1>;
+>>>    			reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
+>>>    			reg-names = "gpmi-nand", "bch";
+>>>    			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+>>
+>> I suspect this fix should eventually be reverted again, once a proper fix is agreed upon in the MTD OF parser, right ?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index d55c8c5304cc..d2eb3d870f5a 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -510,6 +510,14 @@ pm8450a: pmic@0 {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
->   
-> +		rtc@6000 {
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>;
-> +			reg-names = "rtc", "alarm";
-> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-> +			wakeup-source;
-> +		};
-> +
->   		pm8450a_gpios: gpio@c000 {
->   			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
->   			reg = <0xc000>;
+> I guess it's time to migrate to a more modern definition
+
+Is that the nand-chip@N { status="disabled"; } part ?
+
+>, it's not
+> complex to do, there are plenty of examples. This would be IMHO a
+> better step ahead rather than just a cell change. Anyway, I don't mind
+> reverting this once we've sorted this mess out and fixed U-Boot.
+
+Won't we still have issues with older bootloader versions which paste 
+partitions directly into this &gpmi {} node, and which needs to be fixed 
+up in the parser in the end ?
