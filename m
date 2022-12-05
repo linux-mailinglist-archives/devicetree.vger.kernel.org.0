@@ -2,105 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B52FF64358C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 21:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E68F643595
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 21:25:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230254AbiLEUWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 15:22:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S232529AbiLEUZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 15:25:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbiLEUWq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:22:46 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F276338;
-        Mon,  5 Dec 2022 12:22:44 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id f7so17433502edc.6;
-        Mon, 05 Dec 2022 12:22:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dkl0GaWgeqVQmFYobiRcFtfUz3ufHqhTS+/iP5/CmzY=;
-        b=b2zK3kxwbCERv7eiKN8zG2OpB/f3DOYQlaYVNclSh7psvFOndpURX2gBPS7wIUTzVP
-         klxZ6VI6nnErkb2f+B/jUZylC/c/Aq+B8Z38vBEU0TlHSK4wvAqR12UeEmrIcL3a5dHE
-         WdltyzxWxKtBcOhMl2zaV6JgO4PKSAUnkKmH6B1HGGe41iezzP0OVh+KgQCs/tnz/UnG
-         nQgrGyCLV1JmDpEXUSOFrY/B7pYg8e7JCaZMmfY4PS7Ma4VRcC9hEd5j5e9eJzZnkWtY
-         W9KO+tJm+gpFTy/o1PLnHD8TP4GyXCc9lfa6f0lqbIJgepsJoYcxQFs24WuHTgRFnhCS
-         viHw==
+        with ESMTP id S229891AbiLEUZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:25:12 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F3F27CC0;
+        Mon,  5 Dec 2022 12:25:12 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-14449b7814bso9890125fac.3;
+        Mon, 05 Dec 2022 12:25:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dkl0GaWgeqVQmFYobiRcFtfUz3ufHqhTS+/iP5/CmzY=;
-        b=JQwkE7LfibY+l0XpxoX6rVo+7G2WLvdGVcgD1FUVhdi6FwsFr0mTU///Bed3eijlPn
-         pPt+XdjObv0Dyi6LZnwXmwIqqbFyAZPAnQRGjUp6GY+QA/Mf0ASHzsYH9DazRlWVFUiA
-         1WP53xsiNGpzrn5F+jOzO0TMZqXk9vO5HQS0UwuinXLo3i9cB05/+KUwhgCriUTbAUUx
-         urBb0l3uNv6sNeq08F35Sfrfp/Pe9vOBxdk8JLzUrkEzkDU7nSzjjkPbXwbTLmHpOfCp
-         1zljacHe9ysIBdba6Eg5PBV7AWvjHRj7+K0LLJDd+R9f7RO9W89FWqIXT7bpsiG+qKAK
-         qOVA==
-X-Gm-Message-State: ANoB5plGMO7wISAVFOl3tKcSuLfT8Xdx7Dxnoh+QwSecGTMpu/66bD4W
-        wncv8HAjfDgmGbKlt34X9ms=
-X-Google-Smtp-Source: AA0mqf6OusveNiyokREy9CpPUEzcYnrvTHBiSncuuqjcAmK6ab/MZsPZLAbESEuZEGGmnGGJ5ab0WQ==
-X-Received: by 2002:a05:6402:28c9:b0:469:ba7c:bc75 with SMTP id ef9-20020a05640228c900b00469ba7cbc75mr1454416edb.286.1670271762323;
-        Mon, 05 Dec 2022 12:22:42 -0800 (PST)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id fe17-20020a1709072a5100b007be301a1d51sm6546663ejc.211.2022.12.05.12.22.40
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P054ussJ/RdkrcHDPcUoxHTe6TuWEX4I2BKRN4ty+wY=;
+        b=BU4ETCXJCfdtnd6twbypU25JBQye0kkVBXw48PP15ZEpmKp2wTK6qoqS7TdccRr2cH
+         sS/Exv4/ZQYcQTJYM71lZykiFaLTSYbckHVW72R3VfE5odY9/OOOQUrbCQoiY4PdqBxO
+         jJAwHNNPUxd7txp0DD9/P5cxnPjPxaNOKAD3MrWWeuTJrT/rnLbuxo0CNry6nye39K/Y
+         FlcD5lay0xgGn31+l+3IC+/Rt05KrQrbvjtTpgX1OGN2a2dq3uneC8aJS2KXKZ/YBh4y
+         yu6GKZo2S2Q0Z676gyhg11H/rG6c49v+K9rWSGGL74aKkYkbLYuiqWrqZyQdP7K8jj3H
+         B0wg==
+X-Gm-Message-State: ANoB5pn7ND41I66SaZ4aCJUe9LrngRamVjwiHdDKVM+vKUAjUzef4r2y
+        fj0WP0Qbx0Jiy8tFhyjgcg==
+X-Google-Smtp-Source: AA0mqf5YLolm7RBXnIcgwg3A6/dqWELfE1936HKE1Qc86vamM++nt9HuUf2h4xJuavcVG+mapkGhyg==
+X-Received: by 2002:a05:6870:4788:b0:132:341e:e01a with SMTP id c8-20020a056870478800b00132341ee01amr34560090oaq.191.1670271911327;
+        Mon, 05 Dec 2022 12:25:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s22-20020a4a2d56000000b004982f2d3c03sm7152298oof.25.2022.12.05.12.25.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 12:22:42 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org,
+        Mon, 05 Dec 2022 12:25:11 -0800 (PST)
+Received: (nullmailer pid 2566218 invoked by uid 1000);
+        Mon, 05 Dec 2022 20:25:10 -0000
+Date:   Mon, 5 Dec 2022 14:25:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Subject: Re: [PATCH v2 01/12] MAINTAINERS: Match the sun20i family of Allwinner SoCs
-Date:   Mon, 05 Dec 2022 21:22:40 +0100
-Message-ID: <3201066.aeNJFYEL58@kista>
-In-Reply-To: <20221125234656.47306-2-samuel@sholland.org>
-References: <20221125234656.47306-1-samuel@sholland.org> <20221125234656.47306-2-samuel@sholland.org>
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
+ channels for R-Car V3U
+Message-ID: <20221205202510.GA2513520-robh@kernel.org>
+References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+ <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org>
+ <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
+ <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org>
+ <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 26. november 2022 ob 00:46:45 CET je Samuel Holland napisal(a):
-> Allwinner sunxi SoCs with a RISC-V CPU use the sun20i designator. Match
-> that pattern in addition to the designators for 32 and 64-bit ARM SoCs.
+On Fri, Dec 02, 2022 at 11:58:23AM +0100, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> On Fri, Dec 2, 2022 at 11:49 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> > On 02/12/2022 10:25, Geert Uytterhoeven wrote:
+> > > On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
+> > >>> According to the bindings, only two channels are supported.
+> > >>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
+> > >>>
+> > >>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+> > >>>
+> > >>> Update the number of channels to 8 on R-Car V3U.
+> > >>> While at it, prevent adding more properties to the channel nodes, as
+> > >>> they must contain no other properties than a status property.
+> > >>>
+> > >>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+> > >>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > >
+> > >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > >
+> > >>>      description: Maximum frequency of the CANFD clock.
+> > >>>
+> > >>>  patternProperties:
+> > >>> -  "^channel[01]$":
+> > >>> +  "^channel[0-7]$":
+> > >>>      type: object
+> > >>>      description:
+> > >>> -      The controller supports two channels and each is represented as a child
+> > >>> -      node.  Each child node supports the "status" property only, which
+> > >>> +      The controller supports multiple channels and each is represented as a
+> > >>> +      child node.  Each child node supports the "status" property only, which
+> > >>>        is used to enable/disable the respective channel.
+> > >>>
+> > >>> +    unevaluatedProperties: false
+> > >>
+> > >> There are no other properties within a channel, so this should be rather
+> > >> additionalProperties: false.
+> > >
+> > > Are you sure? Then I also have to add:
+> > >
+> > >         properties:
+> > >           status: true
+> >
+> > Do you? I think it would be first schema needing it, so maybe that would
+> > be a problem for dtschema...
+> 
+> You think I haven't tried? ;-)
+> 
+>     arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dtb:
+> can@e66c0000: channel0: Additional properties are not allowed
+> ('status' was unexpected)
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+I guess nodes with no properties aren't too common.
 
-Best regards,
-Jernej
+Now fixed in dtschema.
 
-
+Rob
