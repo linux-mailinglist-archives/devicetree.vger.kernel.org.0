@@ -2,111 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81434643127
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 20:12:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9B0C64317D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 20:15:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229891AbiLETLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 14:11:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58350 "EHLO
+        id S232300AbiLETPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 14:15:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbiLETK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 14:10:58 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC81FDF4D
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 11:10:57 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id 62so11310162pgb.13
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 11:10:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=B0Kd9WBq2dzTQ7BS0kMNrkl8WPJjrmUTw0XBlwIkqlY=;
-        b=ErWWnE+PGz0f9dFVCEKmShw8K2ieOGtKXer8wC4ZSvmxljZHtXtwAOYY/F1cnXus3p
-         68nWLKS11EJvi6WoVdfnoDCW6GelyddnfdTU1SVWmLYPsyh8iCE46qa/zZPH990TnH1D
-         hWdB1F80j3WBomMj2yETkbc7WLt+4I/ltUqBast4ezXhqbHRlDGupeWBaRRu18kt2JMv
-         /ucXcqqmrfts5LtF8e/62IGtXxqIdVaAnz07IQeFHkD7rUnw5en59pUOq26h7pMHWqns
-         pbYoMx/XUul5j/PhUrG21oe4cPT68iu+1Nw3pkeinH4C1cTAYdeN3IeY+608DHJITzPQ
-         kFQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B0Kd9WBq2dzTQ7BS0kMNrkl8WPJjrmUTw0XBlwIkqlY=;
-        b=NlHhy03jevVg28mzqoMWBOK9R201X19YY3jwClUCtTZe/KlseFgLjzfhqKaOo/jIgE
-         PhXWO0NrpSf+1koESZr8a9lFUevC2f1Nk2ECrOjpgI8ptB/1hXc5LassKJ5l4hr8p1Ud
-         HjOB+j2YAM86I87mfMbOQqUlux+HZ5PhZY01PLDpn0SoOXk1T+twKCw6HxugdhP9taNk
-         jRYACLq1hiI8y8MAXjPxKUFer9RBl8cyQpwSWOIV4G4dKpiI10t0aT6bkgDi2xz/9U3E
-         ad0FfXBsh62b+PglpRQ8qr6tp8iFrtsJbdklFFUuYDFt9r0PWfk3O6o4DRSvCMAwl3Rn
-         PBJg==
-X-Gm-Message-State: ANoB5pm9/JDzQsr+rvDd6IlalzOnaQ5nKW6BLSSpNFa35QH01fqerKPB
-        fGj2gYGIVW7IJHZcPPnXrp7HbsQzC7bBxDfR/+DSOg==
-X-Google-Smtp-Source: AA0mqf6JFNvdfIh4wsNAWevITO9Kt/gTQ/YE2h9k/CnZIdwKcM7iNEAMXrAtzrhw4JwsR8kpHUKgtlRquGCpjbJk37c=
-X-Received: by 2002:a62:b501:0:b0:563:771d:417f with SMTP id
- y1-20020a62b501000000b00563771d417fmr67300246pfe.45.1670267457266; Mon, 05
- Dec 2022 11:10:57 -0800 (PST)
+        with ESMTP id S233178AbiLETPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 14:15:07 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C029209A5;
+        Mon,  5 Dec 2022 11:15:06 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B5JEfWF021763;
+        Mon, 5 Dec 2022 19:14:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=BsIhV61f48a1exBvKZpEkb+RMgLqTQbvrtEGK9lnO6E=;
+ b=mATROBkqtMjScK3P+4ab5UYYYJUWWSrEbw0zRqWvfopey2ovTC3gCd3ZZP+J1aQluXgl
+ Pqn1vuFuqR2lChqGNo893mjeVITBtLOqRoRjhdskHMZNmTQOG2LrNLrJ7ZMUB4bU/FxT
+ AVcv13MtuSEZvSBAw7iXRKVTyxZApSLUEiHgfS5jmnKgVawnDfSLkizcujcIOT3SclFC
+ Xvzeay5cAmgXudZp3XkuBTJCJJCxmmxBhfge1gfGK0Iggn8uHPEfjgRaW1xT8Z7l4HDm
+ Kul2Nb1YQie4JihWvR0q91YyO3N1Si++qD5XCjjKx/jEmSauMpnpxUKbtu4lOpMwvE4P Sg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m7wdxw4ee-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 05 Dec 2022 19:14:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B5JEeRL026638
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 5 Dec 2022 19:14:40 GMT
+Received: from khsieh-linux1.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Mon, 5 Dec 2022 11:14:39 -0800
+From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <robdclark@gmail.com>,
+        <sean@poorly.run>, <swboyd@chromium.org>, <dianders@chromium.org>,
+        <vkoul@kernel.org>, <daniel@ffwll.ch>, <airlied@linux.ie>,
+        <agross@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@somainline.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <airlied@gmail.com>
+CC:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        <quic_abhinavk@quicinc.com>, <quic_sbillaka@quicinc.com>,
+        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 0/5] Add data-lanes and link-frequencies to dp_out endpoint
+Date:   Mon, 5 Dec 2022 11:14:25 -0800
+Message-ID: <1670267670-15832-1-git-send-email-quic_khsieh@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20221201003109.448693-1-tharvey@gateworks.com>
- <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com>
- <Y4n41iL6cG9FsndI@lunn.ch> <CAJ+vNU0kAoVFFmoFfiOhtErxqAkB3MmP3Q2dNCZP4xm_AaWhcA@mail.gmail.com>
- <Y4o2TFGH6DK3tRcH@lunn.ch> <CAJ+vNU1NDggHF4Wn_kg120uPZ=LPCQf2fZ+x6ii6tEMf7DzxFQ@mail.gmail.com>
- <20221205171045.m5ayo3loh32cdgwo@skbuf> <CAJ+vNU123JTbk_t5Eto4M-Wrj6o1fo=8z8qdqf98_rDO=w2yOA@mail.gmail.com>
- <20221205190214.uy6rn4whd6vndo23@skbuf>
-In-Reply-To: <20221205190214.uy6rn4whd6vndo23@skbuf>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 5 Dec 2022 11:10:45 -0800
-Message-ID: <CAJ+vNU1M-LEiM2guowP-Ubb8cFnQE+YCFTZ=vL2C79Y0g0v1dQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: z72bwSbJOYammp8RfJ6DetVcz6rAwQ2l
+X-Proofpoint-ORIG-GUID: z72bwSbJOYammp8RfJ6DetVcz6rAwQ2l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-05_01,2022-12-05_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 mlxscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=861 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212050160
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 5, 2022 at 11:02 AM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
->
-> On Mon, Dec 05, 2022 at 10:01:35AM -0800, Tim Harvey wrote:
-> > Vladimir,
-> >
-> > Yes, this patch resolves the issue. Enabling CONFIG_MARVELL_PHY
-> > without this patch still shows the issue.
->
-> Yeah, that makes sense considering what the issue is.
->
-> > Thanks - please cc me on that and I'll respond (unless you want me to send it).
-> >
-> > I'll submit a v2 of my dt patch with fec phy-mode = 'rgmii' after this
-> > patch lands.
->
-> The question is how far to backport this change.
->
-> I see that the GW5904 board was introduced in 2017. Which kernels do you
-> need to support the complete/unambiguous dt-binding?
+Add DP both data-lanes and link-frequencies property to dp_out endpoint and support
+functions to DP driver.
 
-before adding the internal PHY nodes it works fine so no backporting
-needed. I just don't want to add the complete/unambiguous dt-bindings
-until your patch lands as at that point it would otherwise be broken.
+Kuogee Hsieh (5):
+  arm64: dts: qcom: add data-lanes and link-freuencies into dp_out
+    endpoint
+  dt-bindings: msm/dp: add data-lanes and link-frequencies property
+  drm/msm/dp: parser data-lanes as property of dp_out endpoint
+  drm/msm/dp: parser link-frequencies as property of dp_out endpoint
+  drm/msm/dp: add support of max dp link rate
 
-Best Regards,
+ .../bindings/display/msm/dp-controller.yaml        | 22 +++++++++----
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi       |  6 +++-
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi     |  6 +++-
+ drivers/gpu/drm/msm/dp/dp_display.c                |  4 +++
+ drivers/gpu/drm/msm/dp/dp_panel.c                  |  7 ++--
+ drivers/gpu/drm/msm/dp/dp_panel.h                  |  1 +
+ drivers/gpu/drm/msm/dp/dp_parser.c                 | 38 ++++++++++++++++++----
+ drivers/gpu/drm/msm/dp/dp_parser.h                 |  2 ++
+ 8 files changed, 68 insertions(+), 18 deletions(-)
 
-Tim
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
->
-> I'm tempted to submit the patch to the "net" tree (making it a candidate
-> for stable releases) but without a Fixes: tag, making it go as far as it
-> will. That would be down to kernel 5.18, where the mv88e6xxx_get_caps()
-> function was introduced. Further down, and we'd need different patches
-> for older stable trees.
