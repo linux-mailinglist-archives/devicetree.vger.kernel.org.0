@@ -2,77 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F926642A42
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 15:22:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97766642A6C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 15:33:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbiLEOV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 09:21:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34142 "EHLO
+        id S232037AbiLEOda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 09:33:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232037AbiLEOVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 09:21:49 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA1F1A83E;
-        Mon,  5 Dec 2022 06:21:44 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E305A66015ED;
-        Mon,  5 Dec 2022 14:21:41 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670250102;
-        bh=CwHD0VEBE8fR5lRlAcCaCZCWDstk5+5AzD84VuvkyY0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YmlutJOBO9n6hN5JadWlPiPB6phZpkLtc4C5xle2IbfSQFZ8ukE3EKGfI3zmk8f/m
-         YYbXfLlnHe6L85P433USLdluCdw8aouJaYNprmvA3lDaIAwa57Uj4Nkj4d5ixcB0x4
-         +rVTqa5YWBo6M/86Egl9AZw6+wsHbwuy0o0zBPUZaPugpXkMdfeAkS6t4mqCnh/9CT
-         l/DdldDQDo66XTLZGqVZOh1jJyY+OIqZDSNjfpEidyRVshJvHdnUFuh9ta7myh09Ot
-         uAg3vyd+wqElJSL/PcCFTvcgzKCvfvpCfJJCyAdVZWWz8NuKg0cgRCCI6ngIemAyq8
-         Gc2hnTidkB2LA==
-Message-ID: <8544ba11-7a87-665b-e0d1-5ed52559f083@collabora.com>
-Date:   Mon, 5 Dec 2022 15:21:39 +0100
+        with ESMTP id S229970AbiLEOd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 09:33:28 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF417186D5;
+        Mon,  5 Dec 2022 06:33:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1670250807; x=1701786807;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=2OBOfD2t0N8EJ/uY+cDMKQSnWSQHCvSrSmWj83dLn6E=;
+  b=KB0axOQPLP1EdGDBtxymLXy40/rrqXkEFJ/T1hmo1/kG7zeqePKeYKdz
+   tEvztcPRvTpoLnPmP0F1HIiTGwr71SN9aLvxL8ikKIY2Xh5+bcNAfkFOt
+   gz160HdVDBx0WIxNp29aTipAn3yAX5wd11pQZ3fk7ARPcvz4Qip8WJ31H
+   0jaGMbP6sFysg+Wb6VdeZxfRjRuMV6/1Dfg1hQfwsAM3Tcck9tgQsdE4c
+   Au40D+dsEG31I2NwVb8lSlFEylygy7zDBz5Dpv/iqe3zVRBQteL59duX2
+   OPcNZ2+ibuOZRFJ6JE76iFobz42JKYozMJNQdEkO1Tue9V8FA9J/G3a6s
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="296719660"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
+   d="scan'208";a="296719660"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2022 06:33:27 -0800
+X-IronPort-AV: E=McAfee;i="6500,9779,10552"; a="974700771"
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
+   d="scan'208";a="974700771"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.55.104])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2022 06:33:22 -0800
+Message-ID: <c4e2a00c-d09e-95e2-eaf2-1de6b820ac6e@intel.com>
+Date:   Mon, 5 Dec 2022 16:33:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 1/9] spi: mtk-snfi: Add snfi support for MT7986 IC
+ Firefox/102.0 Thunderbird/102.5.1
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
 Content-Language: en-US
-To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
-        bin.zhang@mediatek.com
-References: <20221205065756.26875-1-xiangsheng.hou@mediatek.com>
- <20221205065756.26875-2-xiangsheng.hou@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221205065756.26875-2-xiangsheng.hou@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com,
+        skhan@linuxfoundation.org, davidgow@google.com,
+        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
+        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+References: <20221205085351.27566-1-tmaimon77@gmail.com>
+ <20221205085351.27566-3-tmaimon77@gmail.com>
+ <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
+ <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
+ <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com>
+ <c200557f-c30a-62f9-287a-af804e818cf1@intel.com>
+ <CAHp75VczbNpHPi-TBe81Ad=P=eXJZpAmkj=m4-apGF1e0uh5kg@mail.gmail.com>
+ <CAHp75VemBiGUTspEYDe3hwA9pEzjNMQGY6_kUoVMJyCuEWgChw@mail.gmail.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <CAHp75VemBiGUTspEYDe3hwA9pEzjNMQGY6_kUoVMJyCuEWgChw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/12/22 07:57, Xiangsheng Hou ha scritto:
-> Add snfi support for MT7986 IC.
+On 5/12/22 16:17, Andy Shevchenko wrote:
+> On Mon, Dec 5, 2022 at 4:14 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+>>
+>> On Mon, Dec 5, 2022 at 3:41 PM Adrian Hunter <adrian.hunter@intel.com> wrote:
+>>> On 5/12/22 15:25, Andy Shevchenko wrote:
+>>>> On Mon, Dec 5, 2022 at 1:20 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+>>>>> On Mon, 5 Dec 2022 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>>>>>> On Mon, Dec 5, 2022 at 10:54 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
+>>
+>> ...
+>>
+>>>>>>> +       pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
+>>>>>>
+>>>>>> You can't mix devm with non-devm in this way.
+>>>>> Can you explain what you mean You can't mix devm with non-devm in this
+>>>>> way, where is the mix?
+>>>>> In version 1 used devm_clk_get, is it problematic?
+>>>>
+>>>> devm_ is problematic in your case.
+>>>> TL;DR: you need to use clk_get_optional() and clk_put().
+>>>
+>>> devm_ calls exactly those, so what is the issue?
+>>
+>> The issue is the error path or removal stage where it may or may be
+>> not problematic. To be on the safe side, the best approach is to make
+>> sure that allocated resources are being deallocated in the reversed
+>> order. That said, the
+>>
+>> 1. call non-devm_func()
+>> 2. call devm_func()
+>>
+>> is wrong strictly speaking.
 > 
-> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+> To elaborate more, the
+> 
+> 1. call all devm_func()
+> 2. call only non-devm_func()
+> 
+> is the correct order.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+1. WRT pltfm_host->clk, that is what is happening
+2. WRT other resources that is simply not always possible because not every resource is wrapped by devm_
+e.g. mmc_alloc_host() / mmc_free_host()
 
+> 
+> Hence in this case the driver can be worked around easily (by
+> shuffling the order in ->probe() to call devm_ first), but as I said
+> looking into implementation of the _unregister() I'm pretty sure that
+> clock management should be in sdhci-pltfm, rather than in all callers
+> who won't need the full customization.
+> 
+> Hope this helps to understand my point.
+> 
+>>>> Your ->remove() callback doesn't free resources in the reversed order
+>>>> which may or, by luck, may not be the case of all possible crashes,
+>>>> UAFs, races, etc during removal stage. All the same for error path in
+>>>> ->probe().
+>>
+>> I also pointed out above what would be the outcome of neglecting this rule.
+>>
+>>>>>>> +       if (IS_ERR(pltfm_host->clk))
+>>>>>>> +               return PTR_ERR(pltfm_host->clk);
+>>>>>>> +
+>>>>>>> +       ret = clk_prepare_enable(pltfm_host->clk);
+>>>>>>> +       if (ret)
+>>>>>>> +               return ret;
+>>>>>>> +
+>>>>>>> +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
+>>>>>>> +       if (caps & SDHCI_CAN_DO_8BIT)
+>>>>>>> +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
+>>>>>>> +
+>>>>>>> +       ret = mmc_of_parse(host->mmc);
+>>>>>>> +       if (ret)
+>>>>>>> +               goto err_sdhci_add;
+>>>>>>> +
+>>>>>>> +       ret = sdhci_add_host(host);
+>>>>>>> +       if (ret)
+>>>>>>> +               goto err_sdhci_add;
+>>>>>>
+>>>>>> Why can't you use sdhci_pltfm_register()?
+>>>>> two things are missing in sdhci_pltfm_register
+>>>>> 1. clock.
+>>>>
+>>>> Taking into account the implementation of the corresponding
+>>>> _unregister() I would add the clock handling to the _register() one.
+>>>> Perhaps via a new member of the platform data that supplies the name
+>>>> and index of the clock and hence all clk_get_optional() / clk_put will
+>>>> be moved there.
+>>>>
+>>>>> 2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
+>>>>
+>>>> All the same, why can't platform data be utilised for this?
+>>>>
+>>>>>>> +       return 0;
+>>>>>>> +
+>>>>>>> +err_sdhci_add:
+>>>>>>> +       clk_disable_unprepare(pltfm_host->clk);
+>>>>>>> +       sdhci_pltfm_free(pdev);
+>>>>>>> +       return ret;
+>>>>>>> +}
+>>
+>>
+>> --
+>> With Best Regards,
+>> Andy Shevchenko
+> 
+> 
+> 
 
