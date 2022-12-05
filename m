@@ -2,159 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 187476429EB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 14:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6754F642A25
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 15:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232481AbiLENxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 08:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
+        id S230148AbiLEOPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 09:15:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232479AbiLENwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 08:52:16 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3663317E38
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 05:52:13 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id y16so18701495wrm.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 05:52:13 -0800 (PST)
+        with ESMTP id S229891AbiLEOPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 09:15:18 -0500
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F34DF09;
+        Mon,  5 Dec 2022 06:15:17 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id g10so5003853qkl.6;
+        Mon, 05 Dec 2022 06:15:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3uc9R8Uf/pCe2qvKF4aFF/8KuZBFNDVNUUa6PyIFKSQ=;
-        b=RkjkX1iZ5R0Yaqz0WAQr37pobuFT+aJMIBmxyWhCn6lx6BNIMq1ZuMmZIi5eq7x44P
-         fI58BD0j/5M2j/PhK/mv6zK5XSPQDLjr6cFSQp7/290ryoDIthzp7GH6pCqbcq33Czws
-         tu72Agr5scZe48h6R/exhLO7qC5J7LJHAdfIpgHSs/TOAB91haaBQlcCdornhma56CwQ
-         ycTatCKwkajBhUQxSrgwuayQvqRmJiKpekpHKYhpb1GxoDvybMyrHy6uIu+xb5lkoK2+
-         FovoXA66R3UESptREd5ICtcrnTOQjuIuFFfqsAAV8nHpPZfoa2l91ZG/fM1sUtWdxAEz
-         1lXg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ETRLBr7m2UGmCQXe683KOxNheUD/IYWYoya+6Nn/uo=;
+        b=d44SgSjlGvYyzFMai6sJSkp4cLcI9vtSwmIU5gPpLuZ2gk5eDt7or6p38k+Zku6Szs
+         u6hC3TnhtfPDZBM5LZPcTNins2JdhZ/qwsPv1vqsvIsHKKyQjVcn5lQ7e4PJyssBkNx1
+         AIcCnCS4HjLRBl8k765TGR9sypcbyl4YXdEDxpot58dMkvrtMqYCG//k+o2+Jwd+jPjQ
+         STq3i2cKOGvZe+YBvA/HoYhZ7S1Ucfc0raY/HI5GMecw7yYx+PVzgyuAYh1782iMT4qH
+         gHgszg5LwiOOKwQgGQpWfYWE+nnpT6wtsJyTrwi9qqWy1TtBBPyEyRTQpDMly5ykgMqR
+         UUUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3uc9R8Uf/pCe2qvKF4aFF/8KuZBFNDVNUUa6PyIFKSQ=;
-        b=Ef/bzOBIIriV9IesMgTBKXao8b4gfR5xhmwl4p3Wgy0Sm+FBEYIL52ToTsjaX/nhlh
-         XCyLF7wgfbhLYtuhqC3GWzLDsgf+6MBBC6WlLZBPiKh/p/vwufYgZYaaSQvTLfBtbns8
-         NOvNrjqE9IQnL69svtVkA6v5k8BpKH/fVyv2/bx2yyDN3stacsWfMZwUSMWfA0seq/rh
-         uJSnYxeJU7L/w04aMa3vQwuklxqcycBaBceGGpmbcQXwjEarG+WyrHVHeWFHVc1dZccU
-         jT4PvyfaxQLBJ3KMbWtWKH5ew1CVTcQvFL/DmB6zGELHa55WohmGxaES0t/ghmtxSm5t
-         jALg==
-X-Gm-Message-State: ANoB5pk2k6ip8q8uMeH/X+44iTredr6d1gxDW/RWwyXsfijOl8kXaSiq
-        iFp9a4txsbnDJT1CBcK95lxTWFK/qXz64J/6cRl5yg==
-X-Google-Smtp-Source: AA0mqf5FPRwt19PLh2T1fJ+ixYYqormZd+LI8rffdiI7G4LLSJQHjGxKOWRYJ5cKOJWEYhztpWv1xA==
-X-Received: by 2002:adf:fec6:0:b0:242:4697:d828 with SMTP id q6-20020adffec6000000b002424697d828mr8422358wrs.494.1670248331460;
-        Mon, 05 Dec 2022 05:52:11 -0800 (PST)
-Received: from predatorhelios.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a3-20020adffac3000000b0024245e543absm9012700wrs.88.2022.12.05.05.52.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 05:52:11 -0800 (PST)
-From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-To:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        krzysztof.kozlowski@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, khilman@baylibre.com,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH v4 3/3] ARM: dts: stm32: Remove the pins-are-numbered property
-Date:   Mon,  5 Dec 2022 14:51:58 +0100
-Message-Id: <20221205135158.1842465-4-bero@baylibre.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221205135158.1842465-1-bero@baylibre.com>
-References: <20221205135158.1842465-1-bero@baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/ETRLBr7m2UGmCQXe683KOxNheUD/IYWYoya+6Nn/uo=;
+        b=zBsUGqm6yuXLz/QZ5U/iKYXCGuZggS1PqBXvd5o5NSHQR7eXYKMGGdMcaVXaypRWTh
+         kotfs0tAEit9bI0cVNKvfOB2fojFCCLhgG5H2dRZJiVfXFFnZQiu1Btk8pHpERPmC4kv
+         qMHx0RgatrKYI6UvX2YQvngZaiUBoPdAW2nJFr71vQL48kCBwY5MWRLXtb09NqmdaJZk
+         y98tbr+Pmx0FRVYFH4B6PW71icMBxDqkZqQBIb5ilCT2qkog4D2HePmR90QAcfzcMyTy
+         KeDxK/Kq50xwqh4/8E1BI1nFPlL9AHOyxN3ufHe2YURWjfDG5/hPGkGnYGZ8NqeRVyt3
+         u+5w==
+X-Gm-Message-State: ANoB5pkhWOWes6VHAkDyf76UNz/dfWVf3Y1vp70lbP0dIUTBtoes1uCD
+        mGhROVnuB4hCq/GS4+hJQTttUfJXSuJvVzywREk=
+X-Google-Smtp-Source: AA0mqf7AQnWAIYBmTV2Xhgr/VzCxgXbQBlsZRglqcMfEIxw+36nUNhCIgmcpZkRhRl695byUDZO8I+ImQRD/0FJk/sI=
+X-Received: by 2002:a05:620a:21ce:b0:6fa:d149:6d47 with SMTP id
+ h14-20020a05620a21ce00b006fad1496d47mr57027718qka.734.1670249716789; Mon, 05
+ Dec 2022 06:15:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
+ <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
+ <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
+ <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com> <c200557f-c30a-62f9-287a-af804e818cf1@intel.com>
+In-Reply-To: <c200557f-c30a-62f9-287a-af804e818cf1@intel.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 5 Dec 2022 16:14:40 +0200
+Message-ID: <CAHp75VczbNpHPi-TBe81Ad=P=eXJZpAmkj=m4-apGF1e0uh5kg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
+To:     Adrian Hunter <adrian.hunter@intel.com>
+Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com,
+        skhan@linuxfoundation.org, davidgow@google.com,
+        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
+        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the pins-are-numbered property from STM32 DeviceTrees
+On Mon, Dec 5, 2022 at 3:41 PM Adrian Hunter <adrian.hunter@intel.com> wrote:
+> On 5/12/22 15:25, Andy Shevchenko wrote:
+> > On Mon, Dec 5, 2022 at 1:20 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> >> On Mon, 5 Dec 2022 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> >>> On Mon, Dec 5, 2022 at 10:54 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
 
-Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
----
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 1 -
- arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 1 -
- arch/arm/boot/dts/stm32h743.dtsi       | 1 -
- arch/arm/boot/dts/stm32mp131.dtsi      | 1 -
- arch/arm/boot/dts/stm32mp151.dtsi      | 2 --
- 5 files changed, 6 deletions(-)
+...
 
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 500bcc302d422..4523c63475e4c 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -51,7 +51,6 @@ pinctrl: pinctrl@40020000 {
- 			ranges = <0 0x40020000 0x3000>;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&syscfg 0x8>;
--			pins-are-numbered;
- 
- 			gpioa: gpio@40020000 {
- 				gpio-controller;
-diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-index 8f37aefa73150..c8e6c52fb248e 100644
---- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
-@@ -15,7 +15,6 @@ pinctrl: pinctrl@40020000 {
- 			ranges = <0 0x40020000 0x3000>;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&syscfg 0x8>;
--			pins-are-numbered;
- 
- 			gpioa: gpio@40020000 {
- 				gpio-controller;
-diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
-index 28e3deb20e1e1..f30796f7adf36 100644
---- a/arch/arm/boot/dts/stm32h743.dtsi
-+++ b/arch/arm/boot/dts/stm32h743.dtsi
-@@ -588,7 +588,6 @@ pinctrl: pinctrl@58020000 {
- 			ranges = <0 0x58020000 0x3000>;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&syscfg 0x8>;
--			pins-are-numbered;
- 
- 			gpioa: gpio@58020000 {
- 				gpio-controller;
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index accc3824f7e98..6b86e031f60e6 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -547,7 +547,6 @@ pinctrl: pinctrl@50002000 {
- 			ranges = <0 0x50002000 0x8400>;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&exti 0x60 0xff>;
--			pins-are-numbered;
- 
- 			gpioa: gpio@50002000 {
- 				gpio-controller;
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 5491b6c4dec20..4e437d3f2ed66 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1660,7 +1660,6 @@ pinctrl: pinctrl@50002000 {
- 			ranges = <0 0x50002000 0xa400>;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&exti 0x60 0xff>;
--			pins-are-numbered;
- 
- 			gpioa: gpio@50002000 {
- 				gpio-controller;
-@@ -1789,7 +1788,6 @@ pinctrl_z: pinctrl@54004000 {
- 			#size-cells = <1>;
- 			compatible = "st,stm32mp157-z-pinctrl";
- 			ranges = <0 0x54004000 0x400>;
--			pins-are-numbered;
- 			interrupt-parent = <&exti>;
- 			st,syscfg = <&exti 0x60 0xff>;
- 
+> >>>> +       pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
+> >>>
+> >>> You can't mix devm with non-devm in this way.
+> >> Can you explain what you mean You can't mix devm with non-devm in this
+> >> way, where is the mix?
+> >> In version 1 used devm_clk_get, is it problematic?
+> >
+> > devm_ is problematic in your case.
+> > TL;DR: you need to use clk_get_optional() and clk_put().
+>
+> devm_ calls exactly those, so what is the issue?
+
+The issue is the error path or removal stage where it may or may be
+not problematic. To be on the safe side, the best approach is to make
+sure that allocated resources are being deallocated in the reversed
+order. That said, the
+
+1. call non-devm_func()
+2. call devm_func()
+
+is wrong strictly speaking.
+
+> > Your ->remove() callback doesn't free resources in the reversed order
+> > which may or, by luck, may not be the case of all possible crashes,
+> > UAFs, races, etc during removal stage. All the same for error path in
+> > ->probe().
+
+I also pointed out above what would be the outcome of neglecting this rule.
+
+> >>>> +       if (IS_ERR(pltfm_host->clk))
+> >>>> +               return PTR_ERR(pltfm_host->clk);
+> >>>> +
+> >>>> +       ret = clk_prepare_enable(pltfm_host->clk);
+> >>>> +       if (ret)
+> >>>> +               return ret;
+> >>>> +
+> >>>> +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
+> >>>> +       if (caps & SDHCI_CAN_DO_8BIT)
+> >>>> +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
+> >>>> +
+> >>>> +       ret = mmc_of_parse(host->mmc);
+> >>>> +       if (ret)
+> >>>> +               goto err_sdhci_add;
+> >>>> +
+> >>>> +       ret = sdhci_add_host(host);
+> >>>> +       if (ret)
+> >>>> +               goto err_sdhci_add;
+> >>>
+> >>> Why can't you use sdhci_pltfm_register()?
+> >> two things are missing in sdhci_pltfm_register
+> >> 1. clock.
+> >
+> > Taking into account the implementation of the corresponding
+> > _unregister() I would add the clock handling to the _register() one.
+> > Perhaps via a new member of the platform data that supplies the name
+> > and index of the clock and hence all clk_get_optional() / clk_put will
+> > be moved there.
+> >
+> >> 2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
+> >
+> > All the same, why can't platform data be utilised for this?
+> >
+> >>>> +       return 0;
+> >>>> +
+> >>>> +err_sdhci_add:
+> >>>> +       clk_disable_unprepare(pltfm_host->clk);
+> >>>> +       sdhci_pltfm_free(pdev);
+> >>>> +       return ret;
+> >>>> +}
+
+
 -- 
-2.38.1
-
+With Best Regards,
+Andy Shevchenko
