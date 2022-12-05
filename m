@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EE21642435
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26666642447
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231918AbiLEIN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:13:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36958 "EHLO
+        id S232063AbiLEIOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:14:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231725AbiLEINZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:13:25 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83BAA478
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 00:13:22 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id u12so16386168wrr.11
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 00:13:22 -0800 (PST)
+        with ESMTP id S232072AbiLEIOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:14:15 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9FD1658F
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 00:14:09 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id h12so17304120wrv.10
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 00:14:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9HQObmrwSMX8vA4JHKJaj2b6CjK14qWpD9rpN9nU90U=;
-        b=hH8EH4emacWt/i3dinMgGS8nSqTXKGuNzRdVns89xp9lootuIhBo2OtYbrD8lkN1nC
-         My+UVHjJw/oudKcISaxuAMfMeXv9FW/cX5R/Vkd4B1O5WU08dx8bw7PBC+kidyn/bINY
-         qZi5EgJQD3FezXn6kyyA4EJlsO+b7YSOUK7A5lZrlCP9/CHrKE+R1EnIkfjwppZsZBQT
-         4KFTZWay7o3jQZ1jVQsjLLUyGtdXHx1XVkRvxjI44hT/vnfsNMlzAMnEWZWTfr8cl61h
-         SdxwhsbqUnqud1MpVoNIX6o7ozKyrgJU3rXXWjygMst1MvcCv7RojdyVlzk6dj08P93d
-         bo+Q==
+        bh=mOAaEDQ/+KQ94HSAsqFzfVKtm6woYUzL9fBYQMgBuLc=;
+        b=e2HPFLjESRMzz+xhAqeTVs6J7M+U5l/REgtnswgMQLAoEHF/udvkXCFDUTJYrrvMGi
+         jHHsPiLyYeKKoRaxUjgoK7P8q2ezNypfzTTxa0qlXXVzoCFdagY3iEM9fu6Pl/3SlkM5
+         kNfB4w+ejaH0GTXmk5Cgws3weouY5xJ4dC82oEfJbV//rO+LNGvQzpbG+y9ly+gIi1d2
+         ejLRyrd3502i1iV1ag9UqznyKebBPAEpbOWpMlg++nslY0vV10UABAICcYEElgww1IRz
+         k3xU+st9iv1wiJ29GiJOjUTyFkkR0atN/Gc/rgw/RldEa7aJdlE5Lm+QB5Jf7FUrW3yh
+         0b7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:organization:references:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9HQObmrwSMX8vA4JHKJaj2b6CjK14qWpD9rpN9nU90U=;
-        b=sPNuxcHVmV0gJfL70vRuWzXdSM3fhy/JOe00hV+avhBdEbXTVG5Ai1c41ix8N8/NgI
-         5XmPqhF47cFJlli/Fg3lVgTkbSZo1XhMfT9nqarpT9X7OyXi2M1YfcHe0wH1CohvKl8m
-         9C2EFeS5h9+wF4JeP4nIoW52ZYTTekYKDq0f9IfBRu8zg32eAxYhPaHtnf96my3y1Jh9
-         OvEF9P9LFY8JqhJjp0T+d0Kb95c3nlq5J/o0SxMijXrl7UZcCRXJIGVnggn85jCU+w9T
-         hJNL9RanJ3PLJa7fsSlhvmvvx8ISjD6Th3ZTVkRDq0I4gbR56cZ4jzQNW4dTuy25NzVv
-         mjYQ==
-X-Gm-Message-State: ANoB5pmi/bFQDIdAcWclrxbwtFQ70oSXUa9s4kbcywEX4oxjOfn5/iw6
-        ziuJdw0/iy2YQNuMKctv21P/eA==
-X-Google-Smtp-Source: AA0mqf7ai5wgiIRIYciqsXgXnPof4ogfREHeWVAWQiK2meZ1Z7k5m4sdbH7en5NgAmqIhis69vieQA==
-X-Received: by 2002:a05:6000:1c15:b0:242:28c9:d112 with SMTP id ba21-20020a0560001c1500b0024228c9d112mr15235142wrb.294.1670228001367;
-        Mon, 05 Dec 2022 00:13:21 -0800 (PST)
+        bh=mOAaEDQ/+KQ94HSAsqFzfVKtm6woYUzL9fBYQMgBuLc=;
+        b=ObbJFsYPt0CyHPYZ4i2lfET+O+K7vDzJ+ghxmm5ASj/ZHnWnQXfREnj00pqjgf1pm1
+         ltbkCGmc/r2Vsjtq8rfGA8FcEQWVcGuPbW+3GIK1arADZ7T3HkFsDfSnBz5T82H+LbDo
+         H9mq72s2Ega4vEkmqqP7LMAvA8YR1lZhyAxKgAaxHs2kOpjkrBum2WVQt1JokF+IoiO8
+         SL555UG3LfsZ5IoUyOFDCmcrk5otyuG5tXSv+WNAlgFtqxsd/L7+OeqgWZM0Mn4kY2db
+         RciyPMhNN3iYPlG7pP8eA6qU813/8Ne+jZwqv4QFjYTKovsxWjP1Ws+diIxAhiiDoIQH
+         4RYw==
+X-Gm-Message-State: ANoB5pn6UMiUys+tw8h3Nbv4qAQ1T6NczeulOI6fGRTuPBiRvIhij8Ov
+        568z7GEw4l3FMkLhQ9O6LWB18A==
+X-Google-Smtp-Source: AA0mqf5Ch2HHmf8vDl45Rz3/ktkKscqe8a3oGxpy7NLT/9M1FQnwqH+PvbPyBevvGm9zi9w+mCtgXw==
+X-Received: by 2002:a5d:5685:0:b0:235:f0a6:fafd with SMTP id f5-20020a5d5685000000b00235f0a6fafdmr50278628wrv.75.1670228048267;
+        Mon, 05 Dec 2022 00:14:08 -0800 (PST)
 Received: from [192.168.7.93] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id z2-20020a5d4402000000b00226dba960b4sm13376083wrq.3.2022.12.05.00.13.20
+        by smtp.gmail.com with ESMTPSA id z10-20020a05600c0a0a00b003c70191f267sm23656674wmp.39.2022.12.05.00.14.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 00:13:20 -0800 (PST)
-Message-ID: <b258ce94-627f-c029-6aa5-3723a87c0002@linaro.org>
-Date:   Mon, 5 Dec 2022 09:13:19 +0100
+        Mon, 05 Dec 2022 00:14:07 -0800 (PST)
+Message-ID: <938d6732-adc8-5e45-6177-33cfe8c1ab70@linaro.org>
+Date:   Mon, 5 Dec 2022 09:14:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/9] media: dt-bindings: amlogic,meson-gx-ao-cec: move to
- cec subfolder
+Subject: Re: [PATCH 4/9] media: dt-bindings: amlogic,meson-gx-ao-cec:
+ reference common CEC properties
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -82,13 +82,15 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com
 References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+ <20221204182908.138910-4-krzysztof.kozlowski@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221204182908.138910-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,15 +98,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/12/2022 19:29, Krzysztof Kozlowski wrote:
-> Move amlogic,meson-gx-ao-cec.yaml bindings to cec subfolder and drop
-> unneeded quotes.
+> Reference common HDMI CEC adapter properties to simplify the binding and
+> have only one place of definition for common properties.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   .../bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml     | 4 ++--
->   MAINTAINERS                                                   | 2 +-
->   2 files changed, 3 insertions(+), 3 deletions(-)
->   rename Documentation/devicetree/bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml (93%)
+>   .../bindings/media/cec/amlogic,meson-gx-ao-cec.yaml        | 7 ++-----
+>   1 file changed, 2 insertions(+), 5 deletions(-)
+> 
 
 <snip>
 
