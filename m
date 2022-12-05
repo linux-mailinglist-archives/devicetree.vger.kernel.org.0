@@ -2,145 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3CD642180
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 03:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D7D64218F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 03:33:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231186AbiLECYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 21:24:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34406 "EHLO
+        id S231283AbiLECd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 21:33:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbiLECX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 21:23:59 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D1B1912093;
-        Sun,  4 Dec 2022 18:23:56 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.110])
-        by gateway (Coremail) with SMTP id _____8BxXes7Vo1jhi4DAA--.7608S3;
-        Mon, 05 Dec 2022 10:23:55 +0800 (CST)
-Received: from [0.0.0.0] (unknown [112.20.109.110])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLuI4Vo1j17MlAA--.27729S3;
-        Mon, 05 Dec 2022 10:23:54 +0800 (CST)
-Message-ID: <1c07ce92-cd17-8d6a-05d1-d6ea8cc39b56@loongson.cn>
-Date:   Mon, 5 Dec 2022 10:23:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: Re: [PATCH V4 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S230518AbiLECdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 21:33:55 -0500
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293CCF02A
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 18:33:53 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221205023350epoutp04a4d1202ec8259c822347421dbdc247fd~txP2ZvWnD2067920679epoutp04N
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 02:33:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221205023350epoutp04a4d1202ec8259c822347421dbdc247fd~txP2ZvWnD2067920679epoutp04N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1670207630;
+        bh=t3r1eSa3NMhGWj5E9vHOcmDhjhBVmQtWQLLxmViU1oQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Tz+chi/wjJDEphsHi+FSCdxumBNqgJQHHNgax8TRdt/aUCTBGUikjv0opOoRdT3PU
+         KAvTmKwpIdDwHOUm+1WLY64JOls6OIs99x09obboPsKvJ9V3cVLaBnBL9LeUawxsC4
+         jESygoflhV4saiy8oY24o5xYrbV7W5SGbuy4cxao=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20221205023349epcas2p3c58fed1b7e0147398b9d3e8ec8d15975~txP15BVok2165521655epcas2p3t;
+        Mon,  5 Dec 2022 02:33:49 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.100]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4NQSKT2Fllz4x9Pp; Mon,  5 Dec
+        2022 02:33:49 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D2.BD.10048.D885D836; Mon,  5 Dec 2022 11:33:49 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20221205023348epcas2p368016dfb7cd9b13057269142d9f76812~txP06Z-QD2953529535epcas2p3a;
+        Mon,  5 Dec 2022 02:33:48 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221205023348epsmtrp177d1f0ad128a440a4158d8cf9c5cca17~txP05arms2949029490epsmtrp1O;
+        Mon,  5 Dec 2022 02:33:48 +0000 (GMT)
+X-AuditID: b6c32a45-7a3fe70000002740-22-638d588d561f
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B0.36.18644.C885D836; Mon,  5 Dec 2022 11:33:48 +0900 (KST)
+Received: from ubuntu (unknown [10.229.95.128]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221205023348epsmtip2f490df09b8313f11f5b997e3e415e4da~txP0lwW3D0370003700epsmtip2L;
+        Mon,  5 Dec 2022 02:33:48 +0000 (GMT)
+Date:   Mon, 5 Dec 2022 11:28:09 +0900
+From:   Jung Daehwan <dh10.jung@samsung.com>
+To:     Mathias Nyman <mathias.nyman@linux.intel.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669777792.git.zhoubinbin@loongson.cn>
- <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
- <Y4e/6KewuHjAluSZ@smile.fi.intel.com>
- <f0060385-644a-847e-48cf-865c12b96473@loongson.cn>
- <Y4m3Ycs88nOk5zs9@smile.fi.intel.com>
-In-Reply-To: <Y4m3Ycs88nOk5zs9@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLuI4Vo1j17MlAA--.27729S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7KrW8JF18ur18Gw47Jw43ZFb_yoW8tFy7pF
-        WfJFyYkF4kXF1I9rn2vw15u3Z0y398Jr47Zr4rGw1kCF909wn3Ar48tr1j9r1xWrWxJFW8
-        ZFW5KrW5Gr95ZaDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bqxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJVWxJr1l
-        n4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
-        ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E
-        87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0V
-        AS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCF
-        s4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI
-        8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41l
-        IxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIx
-        AIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2
-        jsIEc7CjxVAFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8Dl1DUUUUU==
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Colin Ian King <colin.i.king@gmail.com>,
+        Artur Bujdoso <artur.bujdoso@gmail.com>,
+        Juergen Gross <jgross@suse.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
+        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
+        eomji.oh@samsung.com
+Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos
+ SOCs
+Message-ID: <20221205022809.GC54922@ubuntu>
+MIME-Version: 1.0
+In-Reply-To: <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TfVRTZRzHz7O73V3A5XU4eZoHnTMtQNhLvFyMeSyUruk5QXR6sw5etuvG
+        GWw72yjqH0hlLF4UeSkdJG8KtDA8G4q8SAeEgjqJgSFgCBSSQHSQdZBDUO220fG/z/P7/t5/
+        58EQ/hIqxFJ0Ztqoo1LFqC/72s2gqNCCtwqU0oksHjFx4RpKrBV9wyVGChsAUZTzJ4eo6L7F
+        Ib6rq2IRJ2saUaJ8RE6MTS6zidMPJxGiZLWORTh+HeIQg63lKHGuv4NFVNdmI8RJRwmHmFs4
+        wSayb3RzidyxYXe6TgGx0jQL9gvIv1aKANliG+OSNe0zLNJh/wQlfx5qR8kLfQnk1583cEnn
+        xUzydJMdkI1NP7FJl2NbvN872hgNTaloo4jWKfWqFJ1aIT6cmBSbFBEplYXKookosUhHpdEK
+        8YEj8aFxKanuMcWi96nUdLcpnjKZxJJ9MUZ9upkWafQms0JMG1SphihDmIlKM6Xr1GE62rxX
+        JpXKI9yOx7Sa/Olh1NAYkPHl7A9oFsjzzwU+GMTD4ZXvh5Bc4Ivx8esAjt+Z5DACH18EsG/U
+        K7gALC+c5qxH9BTd5nqEVgDriwdYnscUgJZTU24vDGPjz8DR5V1MAIoHw/vLvQjDm3EZXBpo
+        Bow/gndw4XDzDMoI/ngizLGUchnm4SHQ0lDA8fAm2Hd+is2wDx4L7zX3ACa/wJ1/tjOTyQPx
+        PB9Y0l+NeLo7AMdq573sD2e/beJ6WAhnzli8rIV3l/LYHs6A9TfW+Xlom84BDCO4BhYN3kGZ
+        WhDfCbtH2R7zU9B6c43rMfOg1cL3RO6Enw0WevfzNOycu+XtgISjNWXeXc2w4D1rBbsQbLc9
+        MZntiWoe3gMr2xbdjLl5K6z7G/NgEGxslVQCjh1soQ2mNDVtkhtk/99aqU9zgP8+QPDB66B4
+        fiGsC7Aw0AUghog383bX5Cv5PBX14Ue0UZ9kTE+lTV0gwn2ms4hQoNS7f5DOnCQLj5aGR0bK
+        ouQR0ihxAK+sxKrk42rKTGtp2kAb1+NYmI8wi9Uxrj51pnxc/4bz6LPlAsnhWY5gRt+LvXo2
+        aEIYWIqVuqxC/7TAtiNtqChZbrDYaiXz7Ocet+QqEq5Y219wFUt/W0COVx29veH+IZsibjd1
+        KTZW9kt21tvq+h0xTdH127XVzd2BG50P7Jrk967uaQ7gb9n/sdR+aTL9YbCLY9Qef4RWjat2
+        jTwSdCOJE6/1qj6NVGyc63uzZnWgU+7Xu3XF2Z7sTDmW+NJIgP5gWz/2YkbPIhkZVzXsdK2+
+        8oVo28Uwqvef83v5ZX7auXdDKsrQD/b98TizpUPStyH+8uv4+KaEE4NrdxsFLIldfTU0UOi7
+        +uPll3+vzv9qrHKHVvLAESJmmzSULBgxmqh/AeGimuWJBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsWy7bCSvG5PRG+ywfY98hYP5m1js/g76Ri7
+        xc0JaxgtJrV/YbWYf+Qcq8Wp5QuZLJoXr2ezmHPTyOLuwx8sFn0vHjJbTPmznMli0+NrrBaX
+        d81hs5hxfh+TxaJlrcwWzZumsFq8/tDEYtG69wi7RdfdG0DjDopa/NryitFB1OP3r0mMHjtn
+        3WX3WLznJZPHplWdbB53ru1h85h3MtBj/9w17B6bl9R79G1ZxeixfstVFo/Pm+QCuKO4bFJS
+        czLLUov07RK4Ml73fGIreC9ScaN/F3sD4xOBLkZODgkBE4mjky6wdzFycQgJ7GCUaLj7ihUi
+        ISmxdO4NdghbWOJ+yxFWiKJHjBJHZp4ASnBwsAioSNz6oQpSwyagJXHvxwlmEFtEwFDi26Xt
+        jCD1zAJH2CXOr+pgBEkICwRLtLdNBRvKK6At0bamF2roSyaJrsnLWCASghInZz4Bs5mBpt74
+        95IJZBmzgLTE8n8cIGFOAWeJ29uPMoKERYFueHWwfgKj4CwkzbOQNM9CaF7AyLyKUTK1oDg3
+        PbfYsMAoL7Vcrzgxt7g0L10vOT93EyM4hrW0djDuWfVB7xAjEwfjIUYJDmYlEV61xT3JQrwp
+        iZVVqUX58UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5NLUgtgskycXBKNTAxzPl9Jrs451ro
+        +0fFTMzBWUzNHUY2Lnwbpd4Kr+W5Uj39zvwd9pOZHndkNp+53rBRuPaR6HchhTLGJZ0KfyL8
+        HZ347516nlp7ZPOxCQLvL3Ln/du3O3bVFr/FlRcVlEN8Jf26867271z73o0vM91Po9z1d1qm
+        4v/TzYZtNufaOWcpbm68IP4h595/GTPTdXlhQmEZu58bCD+Rmiw+y2qxqeaEoxWZCzfJT/YV
+        4bmY+2t1ovcCbxdhQ+Z5veeiuk+rnzrn43Nj9hQ75leSLJPXVHyVDrpkynPlxvPjeVtijT2L
+        ov8pyWfm+f65f2FxQWy51NeOOdOOBtz+VaPxR9b4yR2ezLRDvdIGCq9c5ymxFGckGmoxFxUn
+        AgALJsisUAMAAA==
+X-CMS-MailID: 20221205023348epcas2p368016dfb7cd9b13057269142d9f76812
+X-Msg-Generator: CA
+Content-Type: multipart/mixed;
+        boundary="----3fo7lev8HRxwEdfRbJiPjGY7XcYF58l8nMiK-NSEDm8eBp4M=_1539a_"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7
+References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
+        <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
+        <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
+        <Y4hgnxGMEuizJumr@kroah.com>
+        <c524cba6-4438-461a-ab05-9325fe09f832@app.fastmail.com>
+        <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+------3fo7lev8HRxwEdfRbJiPjGY7XcYF58l8nMiK-NSEDm8eBp4M=_1539a_
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-在 2022/12/2 16:29, Andy Shevchenko 写道:
-> On Fri, Dec 02, 2022 at 11:22:19AM +0800, Binbin Zhou wrote:
->> 在 2022/12/1 04:41, Andy Shevchenko 写道:
->>> On Wed, Nov 30, 2022 at 01:56:20PM +0800, Binbin Zhou wrote:
-> ...
->
->>>> +	for (retry = 0; retry < adap->retries; retry++) {
->>>> +		ret = ls2x_i2c_doxfer(adap, msgs, num);
->>>> +		if (ret != -EAGAIN)
->>>> +			return ret;
->>>> +
->>>> +		dev_dbg(priv->dev, "Retrying transmission (%d)\n", retry);
->>>> +		udelay(100);
->>> Why atomic? This long (esp. atomic) delay must be explained.
->> The modification records for this part of the source code are no longer
->> traceable.
->>
->> Communicating with colleagues offline, I learned that this part of the code
->> first appeared on Linux 2.6.36, which was done to circumvent the problem of
->> probable failure to scan the device for i2c devices on some boards.
->>
->> How about I add a comment here to explain the reason for this?
-> Yes, that's what we want, and not what you said above. I.o.w. the comment like
-> "reason is unknown" is not accepted.
->
-> Can you be more specific about the boards and why do you still need this delay?
->
-> And also why is it atomic?
+On Fri, Dec 02, 2022 at 02:22:39PM +0200, Mathias Nyman wrote:
+> On 1.12.2022 11.01, Arnd Bergmann wrote:
+> >On Thu, Dec 1, 2022, at 09:06, Greg Kroah-Hartman wrote:
+> >>On Thu, Dec 01, 2022 at 11:13:31AM +0900, Daehwan Jung wrote:
+> >>>This driver works with xhci platform driver. It needs to override
+> >>>functions of xhci_plat_hc_driver. Wakelocks are used for sleep/wakeup
+> >>>scenario of system.
+> >>
+> >>So this means that no other platform xhci driver can be supported in the
+> >>same system at the same time.
+> >>
+> >>Which kind of makes sense as that's not anything a normal system would
+> >>have, BUT it feels very odd.  This whole idea of "override the platform
+> >>driver" feels fragile, why not make these just real platform drivers and
+> >>have the xhci platform code be a library that the other ones can use?
+> >>That way you have more control overall, right?
+> 
+> Agree that overriding the generic platform driver xhci_hc_platform_driver
+> from this exynos driver is odd.
+> 
+> But I don't understand how this works.
+> Where are the hcds created and added when this xhci-exonys driver binds to
+> the device? all this driver does in probe is the overriding?
+> 
+> Am I missing something here?
+> 
+
+This works mainly with xhci platform driver. But xhci-exynos needs to override
+some funtions. xhci-exynos probes first with override own functons and
+it works with xhci platform driver.
+
+> >
+> >Agreed, having another layer here (hcd -> xhci -> xhcd_platform ->
+> >xhcd_exynos) would fit perfectly well into how other SoC specific
+> >drivers are abstracted. This could potentially also help reduce
+> >the amount of code duplication between other soc specific variants
+> >(mtk, tegra, mvebu, ...) that are all platform drivers but don't
+> >share code with xhci-plat.c.
+> >
+> >Alternatively, it seems that all of the xhci-exynos support could
+> >just be part of the generic xhci-platform driver: as far as I can
+> >tell, none of the added code is exynos specific at all, instead it
+> >is a generic xhci that is using the wakeup_source framework.
+> 
+> Sounds reasonable as well, and if some exynos specific code is needed
+> then just create a xhci_plat_priv struct for exynos and pass it in
+> of_device_id data like other vendors that use the generic
+> xhci-platform driver do.
+> 
+
+I considered using existing overrides like xhci_plat_priv but I couldn't
+find a solution. My driver invokes probing xhci platform driver in
+source code not device tree. Allocation of platform device is done
+in dwc3_host_init(usb/dwc3/host.c). That's why I can't pass device data
+to xhci platform driver.
+
+> -Mathias
+> 
+> 
+
+------3fo7lev8HRxwEdfRbJiPjGY7XcYF58l8nMiK-NSEDm8eBp4M=_1539a_
+Content-Type: text/plain; charset="utf-8"
 
 
-As we expected, the driver is geared towards Loongosn-2K and Loongson 
-LS7A bridge chips, some of the older hardware still in use has scan 
-failure issues and we expect to keep that part as compatible.
-
-"Atomic" may not be necessary, It is expected to try a few more times 
-when the scan device fails. Also, I think the corresponding part of the 
-s3c2410 may have been referenced in the beginning.
-
-I will try to drop the loop part to do the relevant i2c read/write tests.
-
-
-Thanks.
-
-Binbin
-
->>>> +	}
-> ...
->
->>>> +	r = devm_request_irq(dev, irq, ls2x_i2c_irq_handler,
->>>> +				IRQF_SHARED, "ls2x-i2c", priv);
->>> Indentation.
->> Do you mean  "IRQF_SHARE"  should be aligned to "dev"  ?
-> Yes.
->
-> ...
->
->>>> +static const struct dev_pm_ops ls2x_i2c_pm_ops = {
->>>> +	SET_SYSTEM_SLEEP_PM_OPS(ls2x_i2c_suspend, ls2x_i2c_resume)
->>>> +};
->>> Use corresponding DEFINE_ macro.
->> ok.
->>
->> I will use
->>
->> "static DEFINE_SIMPLE_DEV_PM_OPS(ls2x_i2c_pm_ops, ls2x_i2c_suspend,
->> ls2x_i2c_resume);"  corresponding to  ".pm     = pm_ptr(&ls2x_i2c_pm_ops),"
-> Shouldn't be pm_sleep_ptr()?
->
->
-
+------3fo7lev8HRxwEdfRbJiPjGY7XcYF58l8nMiK-NSEDm8eBp4M=_1539a_--
