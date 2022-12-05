@@ -2,165 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CBC642380
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C4C8642394
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbiLEHU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 02:20:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55984 "EHLO
+        id S231521AbiLEHbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 02:31:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbiLEHUV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:20:21 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5EEEF020
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:20:19 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id o189so1333221iof.0
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:20:19 -0800 (PST)
+        with ESMTP id S231178AbiLEHa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:30:59 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F169B10071
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:30:57 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id f21so16295917lfm.9
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:30:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1tmfIAFg5Gn6maLaUosoE4qK2kRKNnA216yinP3k8AE=;
-        b=H+itvEoTRVUiX1FWmONFBFoKDIAL6a6uCF7h9yTs9BmKIxRT35H6ZMyXnDRtPID4bV
-         XF2vZVkCtBEu4/FcueE6lH7ptBNrY9Q/82TsrtBoT7kmhF9SDOswU2MN6qe3BOgnzioG
-         hO9QFIb5XTcSAx/ZASCU9TclLSwd4wsjnKGDc=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ic6F8QFCJK13ebf9asWvu6VyveRvaroZzcFBrpHB3Nc=;
+        b=Qq4IFm0i4P/LFoDZKUn2+/rtTIoRv5thuIbrz0XBnAyu3AEn7V2FNqZoUTfzaGV+gy
+         BY72zOHlUP/wv1LSN/dyZJLQkhGOu5n6q43ypzUObe4hAGjjiGuyhxa8JPWr8ZzNQZZe
+         ytN3Dhh4aPVxiitji9JQse26dzXnYQnRfN6ZeYJSKyz9wP8+513YDHI5sX/ds5IDb10E
+         V8at/+WnV1FgKjbfkOjpB1GewQys8cDF0mWGh1S/QNBz7p94cNvD/K/l/15R4U8gV+3T
+         f8DYACT+Jj/X22clRfhvJGMTjcKKc16vfMmPQ2XGo5W7u5LvORxeyRcngkImmvm0MBbE
+         LBVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1tmfIAFg5Gn6maLaUosoE4qK2kRKNnA216yinP3k8AE=;
-        b=a8Pbo+iheXbKffFvKEc8ccFgS2aXhId3FMreYwL+jxxa9Laqqw4B1OG3VFfXHECmNx
-         6iUdeQIM36b2t0VVh41CcB4ycJK8wSocpb5RR8XZ/o1Lt4JCjPdq27gWEtlxmvr1sQxQ
-         nMyQmZgiIR8doo6cgMKlLdATtgRQAZbJ7beFcFjJJKjf5Ou+9JpGTPNkBBCKl2U/127S
-         0FuWt+tCk+AgtbHqARcvExDLw8Jt7fCJFqBTrdO0Dvy3ddHxBgn4lpPGygIPvoYFfD9r
-         ez5vYwtQSE+SPMz639tsqo8zoLvzFGSbte4H3Rkc4RZ17AZ25bVy+bgYmVvDweYkcz4r
-         4D1g==
-X-Gm-Message-State: ANoB5plvGeR9xFXeTU8gXTifVmrp51YH7gPJ9VjIXlIWz6rmZZcdM6op
-        5O3Aw8TYJF4BMnw9mUJlu7q4Ew==
-X-Google-Smtp-Source: AA0mqf5yl/hJSGq91vZq/GoSz5IGy4KgxRszruI1sS2TUorJyRD/x06on1xd6ywwsDaLDEE+VwDfAQ==
-X-Received: by 2002:a6b:c343:0:b0:6df:aa48:aa04 with SMTP id t64-20020a6bc343000000b006dfaa48aa04mr11773662iof.161.1670224818991;
-        Sun, 04 Dec 2022 23:20:18 -0800 (PST)
-Received: from markhas1.roam.corp.google.com (63-225-246-100.hlrn.qwest.net. [63.225.246.100])
-        by smtp.gmail.com with ESMTPSA id a8-20020a021608000000b003755aa71fffsm5581184jaa.105.2022.12.04.23.20.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Dec 2022 23:20:18 -0800 (PST)
-From:   Mark Hasemeyer <markhas@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Mark Hasemeyer <markhas@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v9 2/3] dt-bindings: mfd: Add compatible string for UART support
-Date:   Mon,  5 Dec 2022 00:20:00 -0700
-Message-Id: <20221205001932.v9.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
-X-Mailer: git-send-email 2.39.0.rc0.267.gcb52ba06e7-goog
-In-Reply-To: <20221205001932.v9.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-References: <20221205001932.v9.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ic6F8QFCJK13ebf9asWvu6VyveRvaroZzcFBrpHB3Nc=;
+        b=Ilqpq+ttFAUfP5AAVL3gwowcTYsANd3TVHAOxs3y5tWpZK96DKHo20eCX1FgdAaSII
+         9ejBml8jALUV1QyCLyFpuRMM0hnveO6PimxSVqRBBht56gfLGPrEoc32e46AzeQqFtW7
+         qGBWsVcJplKMVlfPquGKIkBo5lDBXsJE56t8fuLQxyK4tm3lGJmvHrnaaBSLdh5r7bqb
+         8xxRO1css9y2FEkx/nrWtAMkth/vFwnGEk2xIeNhXodiY8rYNFns0hB1qDTGl7hTuoXV
+         pZiuwvmGzJ84n11qi3Pu2nhHZkHkJ67K31OZS1AwCIolXwpaWtUDUYomDOKGp3pV5ZqJ
+         yb9w==
+X-Gm-Message-State: ANoB5pkNqQWZQxUt+cVwuI0v3B4qUnd7RX55ounR5ZLS2CfWkvL1yLlB
+        wzbWWDz11EC4J587AbHa+XSKJA==
+X-Google-Smtp-Source: AA0mqf4PVweKhUkPQ+6ewoxxuSwatBKT8xqhq+m8lOVYNmSqJASY6f8sMB6+9CprV3sdvonxsW9kEA==
+X-Received: by 2002:ac2:50c9:0:b0:4b5:7dd6:4df5 with SMTP id h9-20020ac250c9000000b004b57dd64df5mr138521lfm.410.1670225456216;
+        Sun, 04 Dec 2022 23:30:56 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t26-20020a056512031a00b004a03fd4476esm2027492lfp.287.2022.12.04.23.30.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Dec 2022 23:30:55 -0800 (PST)
+Message-ID: <d6f3d8ac-4fbe-40ca-299b-046973cd0b25@linaro.org>
+Date:   Mon, 5 Dec 2022 08:30:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v1 1/3] dt-bindings: watchdog: Add watchdog for StarFive
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Samin Guo <samin.guo@starfivetech.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-kernel@vger.kernel.org
+References: <20221202093943.149674-1-xingyu.wu@starfivetech.com>
+ <20221202093943.149674-2-xingyu.wu@starfivetech.com>
+ <cb8deb55-902a-0058-4764-a5f391f8de6d@linaro.org>
+ <e0551ed7-2208-6d08-235b-993702f0d89b@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e0551ed7-2208-6d08-235b-993702f0d89b@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+On 05/12/2022 04:49, Xingyu Wu wrote:
+> On 2022/12/2 18:46, Krzysztof Kozlowski wrote:
+>> On 02/12/2022 10:39, xingu.wu wrote:
+>>> From: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>>
+>>> Add bindings to describe the watchdog for the StarFive SoCs.
+>>>
+>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>>> ---
+>>>  .../bindings/watchdog/starfive,wdt.yaml       | 77 +++++++++++++++++++
+>>>  1 file changed, 77 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml b/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
+>>> new file mode 100644
+>>> index 000000000000..ece3e80153a0
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
+>>
+>> Filename should be based on compatible. You do not allow here any other
+>> models... If you intent and you are 100% sure you will grow with new
+>> models, make it maybe a family-based name.
+> 
+> First, thank you for your reply. We have some other SoCs like JH7100 would use
+> this watchdog driver, but we now use JH7110 as our main release chip.
+> As you say, should we use "starfive,jh71xx-wdt.yaml" as filename?
 
-Add a compatible string to support the UART implementation of the cros
-ec interface. The driver does not support the reg and interrupt
-properties, so exempt them from being required for UART compatible nodes.
+starfive,jh7110-wdt.yaml
+I would say because you do not expect any other models (const for
+compatible, not enum)
 
-Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-
-Changes in v9:
-- Rebase onto for-next
-- Update node-name from uart0 to serial
-- Remove reg and interrupt property requirement for UART compatible
-  nodes.
-- Update authorship
-
-Changes in v8:
-- Update commit message
-
-Changes in v7:
-- No change
-
-Changes in v6:
-- No change
-
-Changes in v5:
-- No change
-
-Changes in v4:
-- Changes in commit message.
-
-Changes in v3:
-- Rebased changes on google,cros-ec.yaml
-
-Changes in v2:
-- No change
-
----
- .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 3d5efa5578d1b..cdf1d719efe9d 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -33,6 +33,9 @@ properties:
-       - description:
-           For implementations of the EC connected through RPMSG.
-         const: google,cros-ec-rpmsg
-+      - description:
-+          For implementations of the EC connected through UART.
-+        const: google,cros-ec-uart
- 
-   controller-data: true
- 
-@@ -187,6 +190,15 @@ allOf:
-       properties:
-         mediatek,rpmsg-name: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          not:
-+            contains:
-+              enum:
-+                - google,cros-ec-rpmsg
-+                - google,cros-ec-uart
-+    then:
-       required:
-         - reg
-         - interrupts
-@@ -299,4 +311,12 @@ examples:
-         vdd-supply = <&pp3300_fp_mcu>;
-       };
-     };
-+
-+  # Example for UART
-+  - |
-+    serial {
-+        cros-ec {
-+            compatible = "google,cros-ec-uart";
-+        };
-+    };
- ...
--- 
-2.39.0.rc0.267.gcb52ba06e7-goog
+Best regards,
+Krzysztof
 
