@@ -2,133 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5623A64399A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 00:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A526A6439BB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 00:58:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232597AbiLEXhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 18:37:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51652 "EHLO
+        id S232788AbiLEX64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 18:58:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232825AbiLEXgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 18:36:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2699A1FFA1;
-        Mon,  5 Dec 2022 15:36:29 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 471C7B815BD;
-        Mon,  5 Dec 2022 23:36:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5042C433D6;
-        Mon,  5 Dec 2022 23:36:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670283385;
-        bh=HmzCjfAOF4UyYdOVbdTC1bINOmWkHWowuczF6T9yrCo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KAVNMilO9ElFYsCYk+f6sXJeBj3cqfDZZnWVz5y9TC8O8dp5L8y+M+vctPM6oQrkk
-         SryXr+iJKEjmF1uISoGHeOP9WgX8dBRvflov8duvWJDLyKec3hSd6MAmRDymTTMCRL
-         5RXEfls4gS1unqyR1QpBB5Ta/HrVRVFFxs0P0qDMmqAEXAKnZkaK4kH8miu56v1gGT
-         dZXCAZP8vTcDHfoNocPbp+sUafMRTd3US8iIf/7Jha6fCelImKXoboSIXsFFUHdRgc
-         VBo36gS03LeDEJOhHG+vzaKqpWp6Lr5mhd+LcfYr68SuDootsPYl5HcWJactq2okjo
-         dRui1sXuj766w==
-Received: by mail-vk1-f170.google.com with SMTP id o5so3760787vkn.7;
-        Mon, 05 Dec 2022 15:36:25 -0800 (PST)
-X-Gm-Message-State: ANoB5pm8YG4lWi20a4s+ZSvWHd1VkLuWyBz0sHEy+1wr0TWFsdqMou3i
-        BWIJpQVU3HKIcjNlcPySKHQ6kyL0mkoNRFMPbA==
-X-Google-Smtp-Source: AA0mqf45vIAxbqhtzcJrgQ9/zSu41J+UkpRu+Qvmux7lBoo2dhfhQAUIqUVwT2CGZiLqMQzjmDl3xNRIfH6P4NW2gmU=
-X-Received: by 2002:a1f:9110:0:b0:3bc:fc56:597 with SMTP id
- t16-20020a1f9110000000b003bcfc560597mr16411535vkd.14.1670283384892; Mon, 05
- Dec 2022 15:36:24 -0800 (PST)
+        with ESMTP id S232724AbiLEX6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 18:58:52 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4113415836
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 15:58:49 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id s8so21105593lfc.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 15:58:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=doSWp/8FuNr+NEV3HjPTJkGGPY6r8PL0hvET2gbpcas=;
+        b=Qerm5bC31eCO/u9ZcVP1OcqKBknqnslFPZd1KK3o1V2jy51sySmxFQBQZRAhfyjlr5
+         0iF9IRsEbwty3qVO1wOSB1T87h54s4gx2dJ/E70LBpDUfxeBT2cSM76kwX5YzDpxthuy
+         UnYbMgHX4IGFYzj1YAZQBQTpVChrQM5rc9K3429C+Jc0ZgfYBnYlDrz+7g2oiSPSXnK2
+         QHFngs5DeLtpPzW019h10iP/OTn9g1CjjuZZRz4zuO33qvD06K6FnsWDYHMpslkxGyAW
+         kCsR8n5tZFQ550S05KB+1mMT0htMsGwqyCLZkyGESXATDlNoAS3dU+8IhaYxSoZUBpq5
+         Kgiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=doSWp/8FuNr+NEV3HjPTJkGGPY6r8PL0hvET2gbpcas=;
+        b=gSqQwYWkTScDjdnKDONzNFlyjjbqMRjUAgusn2NhWYouJbjDfMfPRI5tQKnxJgDH3x
+         1AJiopczlE56AFkzrzezjCQ665WS1c5qv6bj6c3OhErxAW5durkvGSEDYHs9F2dToLDc
+         KYzdDQGxijQwSfCZqEMoRewfI/1no6pyxGVIWyjB16vmCOTcPxqCfOhu8ZOWMEImYWgX
+         +V6NujG5dWwxH6R/xDRURpslstXQ85QT92IVGJl1Jek+CQcxvS4pZzH2kw9vomCpZ1sP
+         CTPVlDZCW6Ogb0KIrDY/JMeHGzdHYVr8VwO/yeIZOxOoR4JL+g880bppCXzX5SjPA1Cc
+         QBDg==
+X-Gm-Message-State: ANoB5pkcf57P6Yxe8VPt/x/I5YUcp5JWDkRlGrXpE+KUHtkTjQQF3t+a
+        NsC5nX8fid4/PTybNj6GAKQK3w==
+X-Google-Smtp-Source: AA0mqf4iVNbwTKjN8IO9W2OPq2uXL5c4w2KkFC+MzkP3JxqHL9eP3wjuwJUr9hB+oLt1r/8eCoxMEA==
+X-Received: by 2002:ac2:4e14:0:b0:4af:f5a0:8786 with SMTP id e20-20020ac24e14000000b004aff5a08786mr26291071lfr.265.1670284727601;
+        Mon, 05 Dec 2022 15:58:47 -0800 (PST)
+Received: from [127.0.0.1] ([188.170.72.128])
+        by smtp.gmail.com with ESMTPSA id bp33-20020a05651215a100b004b5701b5337sm721215lfb.104.2022.12.05.15.58.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 15:58:47 -0800 (PST)
+Date:   Tue, 06 Dec 2022 02:41:21 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        airlied@gmail.com
+CC:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v9_4/5=5D_drm/msm/dp=3A_parser_link?= =?US-ASCII?Q?-frequencies_as_property_of_dp=5Fout_endpoint?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <1670281694-13281-5-git-send-email-quic_khsieh@quicinc.com>
+References: <1670281694-13281-1-git-send-email-quic_khsieh@quicinc.com> <1670281694-13281-5-git-send-email-quic_khsieh@quicinc.com>
+Message-ID: <90C493B1-E7E3-46A9-89F0-443922B8FEF5@linaro.org>
 MIME-Version: 1.0
-References: <20221117121307.264550-1-krzysztof.kozlowski@linaro.org>
- <20221117122256.GG93179@thinkpad> <a3da2ab9-ad36-2283-0659-ad8ebf877e17@linaro.org>
- <20221117155658.00005d08@Huawei.com> <9ddf7e56-f396-5720-9960-e3ef4aa9a204@linaro.org>
- <20221117165806.00007f55@huawei.com>
-In-Reply-To: <20221117165806.00007f55@huawei.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Dec 2022 17:36:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ980WdxiUzUSp+p9qTA_BA-n0e_+5qp9Kbw9==MoQpXw@mail.gmail.com>
-Message-ID: <CAL_JsqJ980WdxiUzUSp+p9qTA_BA-n0e_+5qp9Kbw9==MoQpXw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: iio: adc: qcom,spmi-vadc: fix PM8350 define
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 17, 2022 at 10:58 AM Jonathan Cameron
-<Jonathan.Cameron@huawei.com> wrote:
+6 =D0=B4=D0=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=8F 2022 =D0=B3=2E 02:08:13 GMT+03=
+:00, Kuogee Hsieh <quic_khsieh@quicinc=2Ecom> =D0=BF=D0=B8=D1=88=D0=B5=D1=
+=82:
+>Add capability to parser and retrieve max DP link supported rate from
+>link-frequencies property of dp_out endpoint=2E
 >
-> On Thu, 17 Nov 2022 17:21:25 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>Changes in v6:
+>-- second patch after split parser patch into two patches
 >
-> > On 17/11/2022 16:56, Jonathan Cameron wrote:
-> > > On Thu, 17 Nov 2022 13:28:33 +0100
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > >> On 17/11/2022 13:22, Manivannan Sadhasivam wrote:
-> > >>> On Thu, Nov 17, 2022 at 01:13:07PM +0100, Krzysztof Kozlowski wrote:
-> > >>>> The defines from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h were
-> > >>>> changed to take sid argument:
-> > >>>>
-> > >>>>   Error: Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.example.dts:99.28-29 syntax error
-> > >>>>
-> > >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > >>>
-> > >>> Looks like I didn't rebase on top of Bjorn's for-next for my series, so didn't
-> > >>> see this example.
-> > >>>
-> > >>> Thanks for fixing!
-> > >>>
-> > >>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > >>>
-> > >>
-> > >> This should not go via Bjorn's tree without IIO ack and
-> > >> Jonathan/Lars-Peter/IIO lists were not in CC.
-> > >>
-> > > Thanks for the heads up.
-> > >
-> > > Not sure I'd have registered there would have been a problem here even
-> > > if I had seen original patch.  Anyhow, I assume Bjorn will pick this up
-> > > and all will be well again.
-> > >
-> > > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> >
-> > I am afraid it cannot go via Bjorn's tree, because this depends on a
-> > change in your tree:
-> > https://lore.kernel.org/all/20221027143411.277980-2-krzysztof.kozlowski@linaro.org/
-> >
-> > Can you pick it up instead? This is the only way to fix the linux-next,
-> > although your tree will have a dt_binding_check error.
-> >
-> > Other way is to have cross-tree merge, but the commit to bindings
-> > headers ended up in DTS patch, so it cannot be shared with driver tree.
+>Changes in v7:
+>-- without checking cnt against DP_MAX_NUM_DP_LANES to retrieve link rate
 >
-> Ah. I've sent Greg a pull reuqest including that patch, so this is going to get
-> worse and the linux-next intermediate builds are going to fail which is never good.
+>Changes in v9:
+>-- separate parser link-frequencies out of data-lanes
 >
-> Best bet at this point may be for Bjorn to also take the dependency
-> you list above and the fix.
+>Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>
+>---
+> drivers/gpu/drm/msm/dp/dp_parser=2Ec | 20 ++++++++++++++++++--
+> drivers/gpu/drm/msm/dp/dp_parser=2Eh |  2 ++
+> 2 files changed, 20 insertions(+), 2 deletions(-)
 >
-> Git will happily unwind the same patch turning up in two trees and
-> that way he'll have everything and the IIO tree  + char-misc will
-> be fine on their own as well.
->
-> That work for everyone?
+>diff --git a/drivers/gpu/drm/msm/dp/dp_parser=2Ec b/drivers/gpu/drm/msm/d=
+p/dp_parser=2Ec
+>index b5f7e70=2E=2Efdea843 100644
+>--- a/drivers/gpu/drm/msm/dp/dp_parser=2Ec
+>+++ b/drivers/gpu/drm/msm/dp/dp_parser=2Ec
+>@@ -94,15 +94,17 @@ static int dp_parser_ctrl_res(struct dp_parser *parse=
+r)
+> static int dp_parser_misc(struct dp_parser *parser)
+> {
+> 	struct device_node *of_node =3D parser->pdev->dev=2Eof_node;
+>+	struct device_node *endpoint;
+>+	u64 frequency;
+> 	int cnt;
+>=20
+> 	/*
+> 	 * data-lanes is the property of dp_out endpoint
+> 	 */
+> 	cnt =3D drm_of_get_data_lanes_count_ep(of_node, 1, 0, 1, DP_MAX_NUM_DP_=
+LANES);
+>-	if (cnt > 0)
+>+	if (cnt > 0) {
+> 		parser->max_dp_lanes =3D cnt;
+>-	else {
+>+	} else {
 
-linux-next is failing still. Is someone going to sort this out?
+This belongs to the previous patch=20
 
-Rob
+> 		/*
+> 		 * legacy code, data-lanes is the property of mdss_dp node
+> 		 */
+>@@ -113,6 +115,20 @@ static int dp_parser_misc(struct dp_parser *parser)
+> 			parser->max_dp_lanes =3D DP_MAX_NUM_DP_LANES; /* 4 lanes */
+> 	}
+>=20
+>+	cnt =3D 0;
+>+	endpoint =3D of_graph_get_endpoint_by_regs(of_node, 1, 0); /* port@1 */
+>+	if (endpoint)
+>+		cnt =3D of_property_count_u64_elems(endpoint, "link-frequencies");
+>+	of_node_put(endpoint);
+>+	if (cnt > 0) {
+>+		of_property_read_u64_index(endpoint, "link-frequencies",
+
+And this is use after free=2E
+
+I still think than an additional function would make code simpler=2E You c=
+an return an error code at any point=2E And then handle it in the calling c=
+ode=2E
+
+>+						cnt - 1, &frequency);
+>+		frequency /=3D 10;	/* from symbol rate to link rate */
+>+		parser->max_dp_link_rate =3D (frequency / 1000); /* kbits */
+>+	} else {
+>+		parser->max_dp_link_rate =3D DP_LINK_RATE_HBR2; /* 540000 khz */
+>+	}
+>+
+> 	return 0;
+> }
+>=20
+>diff --git a/drivers/gpu/drm/msm/dp/dp_parser=2Eh b/drivers/gpu/drm/msm/d=
+p/dp_parser=2Eh
+>index 866c1a8=2E=2E3ddf639 100644
+>--- a/drivers/gpu/drm/msm/dp/dp_parser=2Eh
+>+++ b/drivers/gpu/drm/msm/dp/dp_parser=2Eh
+>@@ -15,6 +15,7 @@
+> #define DP_LABEL "MDSS DP DISPLAY"
+> #define DP_MAX_PIXEL_CLK_KHZ	675000
+> #define DP_MAX_NUM_DP_LANES	4
+>+#define DP_LINK_RATE_HBR2       540000
+>=20
+> enum dp_pm_type {
+> 	DP_CORE_PM,
+>@@ -119,6 +120,7 @@ struct dp_parser {
+> 	struct dp_io io;
+> 	struct dp_display_data disp_data;
+> 	u32 max_dp_lanes;
+>+	u32 max_dp_link_rate;
+> 	struct drm_bridge *next_bridge;
+>=20
+> 	int (*parse)(struct dp_parser *parser);
+
