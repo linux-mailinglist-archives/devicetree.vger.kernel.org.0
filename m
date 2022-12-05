@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B53836425C9
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 10:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ECEA642602
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 10:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbiLEJ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 04:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46832 "EHLO
+        id S231387AbiLEJqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 04:46:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230519AbiLEJ31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 04:29:27 -0500
+        with ESMTP id S231366AbiLEJqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 04:46:31 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0784F15A10;
-        Mon,  5 Dec 2022 01:29:27 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1982319284;
+        Mon,  5 Dec 2022 01:46:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 982CA60FEB;
-        Mon,  5 Dec 2022 09:29:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76619C433C1;
-        Mon,  5 Dec 2022 09:29:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6761760FFB;
+        Mon,  5 Dec 2022 09:46:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6519C433C1;
+        Mon,  5 Dec 2022 09:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670232566;
-        bh=wOIgdTS5+LY6LwdutNtlRBp6YjjmQTDkbAMmitLdD1A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GQ2RDXp8WvglH0rSpUX/1WeA08ECgYx2FIFjWSiXtTpV8IfDvna9baL+JeeSEw1Ub
-         Yu/wY5aAPIq8F31k4Jlb8hJRgMHWZ4K8gGkMWE2Of3thjL4UlC25rebTEHKdgsk3WA
-         lMKF8XnGZRVqT943qlWAuOkx4yrB8uuc3csKhfF1cQRIVSze2G8Km4I2h4t9RJvBcd
-         wBjV+LhQPaFNv4Q7nLTUn0IaIQA84YO531XzvjYZpOjbQj6IVKnTWL47bsHdJtHUXt
-         WwJOhTt8HMShlZyrwBFm7XxxWExVBE/wFWT+cCYSWzWMkqwaL7/o2yYp/5SbLLp+6M
-         maRTYm8/gdN3w==
-Date:   Mon, 5 Dec 2022 10:29:22 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        s=k20201202; t=1670233588;
+        bh=vlbWmQAQsqVoCP5/iGG9T+Mh7FPLIm+omDon8p2JA10=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bMM7gHLW3WMCRoSscjKR3d5B7dFagYLse28B06cubnjjcjtgrJoAZ+mozdLgS7ydy
+         y5ZCvY/WCTD6z2bVf0C1W9CFnw59bAxUF9kadLyEG+2HzQMm5/HYH7bd49MnBMdfKR
+         1tUBwdYYB96V8fKRqnLE7PL+41HSeabo+7seDSyYP7esxY81ZbM7zLbDny4pH5HZk+
+         y4KdxMaWjF2YIU0+lVh1Z5UVdSsnd8Fuh68iEMqfXaZyaga+vK/ZDp5V+38ankjxya
+         +YoHo9+l/4aIqIJhEV6dNz+CPgjzQen0DRn7EjrZWkEWWpqeZOc7B23iJdH0Z7M/0F
+         talFkUPKSoOlQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1p283U-0003MH-Im; Mon, 05 Dec 2022 10:46:33 +0100
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V4 1/5] i2c: gpio: Fix potential unused warning for
- 'i2c_gpio_dt_ids'
-Message-ID: <Y4258kcvPwtA5YvY@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669777792.git.zhoubinbin@loongson.cn>
- <fda9f8bc2477a3a49bd57ea219f88b4199c2163e.1669777792.git.zhoubinbin@loongson.cn>
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] dt-bindings: PCI: qcom: Allow 'dma-coherent' property
+Date:   Mon,  5 Dec 2022 10:45:30 +0100
+Message-Id: <20221205094530.12883-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wVwLnbPgqIqSgWNQ"
-Content-Disposition: inline
-In-Reply-To: <fda9f8bc2477a3a49bd57ea219f88b4199c2163e.1669777792.git.zhoubinbin@loongson.cn>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -72,42 +61,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Devices on some PCIe buses may be cache coherent and must be marked as
+such in the devicetree to avoid data corruption.
 
---wVwLnbPgqIqSgWNQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is specifically needed on recent Qualcomm platforms like SC8280XP.
 
-On Wed, Nov 30, 2022 at 01:55:51PM +0800, Binbin Zhou wrote:
-> Dropping a matching #ifdef check along with dropping of_match_ptr()
-> is just a cleanup, while dropping of_match_ptr() that has no
-> corresponding #ifdef fixes an actual warning.
->=20
-> Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
 
-Applied to for-next, thanks!
+Lorenzo, the corresponding SC8280XP DT fix is heading for 6.2 so it
+would be nice if this one could be merged for 6.2-rc1 (or -rc2) as well
+to avoid the corresponding DT validation warnings.
+
+Johan
 
 
---wVwLnbPgqIqSgWNQ
-Content-Type: application/pgp-signature; name="signature.asc"
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 2f851c804bb0..a5859bb3dc28 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -62,6 +62,8 @@ properties:
+     minItems: 3
+     maxItems: 13
+ 
++  dma-coherent: true
++
+   interconnects:
+     maxItems: 2
+ 
+-- 
+2.37.4
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmONue8ACgkQFA3kzBSg
-KbYrtQ/8D4XmsGL3LvHHPDjn+Ghpx73AUmU0ESeUC+sIovCGAGClW2Y9DKAeP97v
-JJINAq5eJ8OStqmVGQCsqz8T3erEOgnuy3Od+5Bv4pK9yJ0MdL5jWYICMUYDpc9x
-ImcpuUD+6sGFbSIYL2iWTkFqGzu37sDmHfQdTD74/fBGbzG97XhkSwpmTTLzbaP8
-jAVVMT51n49VedlMktCH+ACJwM2M9Vf3mbm/TaWdA2VxkWRRQ2M+RW48Yk6qApEZ
-L9a1yfhof1+rbbOtktMfRMLKzPgXaZyvvBk5l3rYYrcCI6tQIJ64QX2+NDXytHVn
-HBQm3GwdqYKzP8HeLHlcWgEQpu45m3Grv/IIPCJe9zLlQ7086Newy1u/y6wmig6+
-y5UMTFMyKpLqC7DrQE8upMEDMfpTi1ztLncxdE7cIUCvhhP99awrR3TqJJ0so6gB
-KkHAD9iSpyclHO0ygZtT3/XznBqYDP3v5d2xZh2bSZlsBLf5yzWZMKoJRurVszrc
-eR+dygg3cpw6jm6ZK00jrxPJsrT5SOA34xMeYRkmROxkS9g1WqXaGIign7+ucCLh
-zYD3Zkui2O29A7wl9rScQaQW7QXIo+KFSU2393cRi4+D33AMs/2mEJJIIMMPoqs9
-FT41Yo4VG6yvdsgwsn0VosygKhjOrNS9FuQdcr10YxoYBDXo+yI=
-=Xr/Q
------END PGP SIGNATURE-----
-
---wVwLnbPgqIqSgWNQ--
