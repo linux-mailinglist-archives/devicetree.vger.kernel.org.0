@@ -2,81 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E826F6436A3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 456D06436B5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:23:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231963AbiLEVQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:16:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S231156AbiLEVXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:23:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbiLEVQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:16:27 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F44813F62;
-        Mon,  5 Dec 2022 13:16:27 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9F19B6145B;
-        Mon,  5 Dec 2022 21:16:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF00C433C1;
-        Mon,  5 Dec 2022 21:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670274986;
-        bh=2YCgsYtgXchcK2HQN9j4UPzSu5I9SAEgamI3XGdIwNM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DzViI502CGY9RMc9HkFPZ2iRr74SbWdCu4D9+c4rSejbfKimjFp+wxyI+ozoKzLjk
-         6eg9yP+Gu5/0fsUwcgwwI43jpxqCuBk5Rdo/57F4WzvJZQz/AQcbvuh/5b9im5D+A+
-         JutQF2vxoBzxuhFz/kOCYQG3E9DtW7itTK5DxeVUPJ85wG6xkDsnuue6lBtK2mZjN6
-         ytV2/2uy8rm5YBxKsStNmV8UR7l8YTdvgqXlukU+PCSueCiJz23tfMaIsU29ULDlfn
-         9cGRMGag+Bvz/6qJB2csMTFKPOlU/GsZs+ViuZ1iqzXd8U7gWb7/MefwaVsBSWm5G1
-         nv4Mo4jCt1GZw==
-Date:   Mon, 5 Dec 2022 15:16:23 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: qcom: aoss: Add compatible for SM8550
-Message-ID: <20221205211623.extu4b22fsowilyd@builder.lan>
-References: <20221116113128.2655441-1-abel.vesa@linaro.org>
- <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
+        with ESMTP id S230100AbiLEVXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:23:47 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178B9240AD;
+        Mon,  5 Dec 2022 13:23:47 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id d3so12046132plr.10;
+        Mon, 05 Dec 2022 13:23:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oqw42TAUE/YjCYP3ea6wZv0qMyuIlb809z0kPS2OjGs=;
+        b=JqkVPPUtlEvwJH9hNkzmERSCuPsycqZ4Nonb2GJZ4fnDUW8wAD45oIvSXGsX7CMxxX
+         bdZeW0j9NQUkzXTsrDVpWsF+MP1J6HsyHsSGksh5qguXsAw3BRSNA0b8NXCUGO6SEI0h
+         yiwER9nO1QzVUuGMjn1TbBExW/2Vz+jncI+kdHmZjq1R3CxIPW9ERxbad1yicKCGnU2d
+         QomOc+zWh5+aWGbHHVpOxCTdFvXt6+dn0ylZXCy6/lcS3mh+J+ATVAPUv2sh7QqBMX1i
+         jItaOXASi2IEEHa5xk7PTzemAU9wnmH9uaofVm5zyckpEunAH+/glfnoxhwCHwmGihZU
+         BERw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Oqw42TAUE/YjCYP3ea6wZv0qMyuIlb809z0kPS2OjGs=;
+        b=MVpfcFv0b8sEQU+OsX62PSdZzrgxcInbU2SB5fApgrX4/Jr9htz37v9WUifoE5hhw4
+         wgOJ2eCHhnPqS5Fc5WsYSum5463RCjBXxLdogq+0t7HTNjEkoJXu7jOqm3cbEQNKTE+X
+         WLU9kSv/AD/8/HzEbrhMQhHTN/prz1iq5AZ+1SM5nKgoJKBwgxLSVMGgNrlh+CpRi9z1
+         SmI2fLkKdE6DU3n+1twKCa3QNfMnTHY/DuiFZDchIWUtsHrDy1kh0a2GJ/J4tbHRoyO3
+         bJj5AiZt1BacP5HA4uIf719KwOomrBYnb34g2E1uXk00ydAOoCTGKZ8lg7pDkpx3z8if
+         uN5A==
+X-Gm-Message-State: ANoB5pmGZoQKwGvihrFkKBdaow23NPT476vZIQaFUisstkYFD3BVFQI/
+        MX6DtnUQ34TW5n5OE8cvwuARi2iLe96eog==
+X-Google-Smtp-Source: AA0mqf4TRoFef9dAkjio+oQlREb9eLb0nDBwFsWGmKK3Xoc35/cWfiLvLYe9e6VSdk9p+UbnMohRmg==
+X-Received: by 2002:a17:902:8604:b0:186:fe2d:f3cb with SMTP id f4-20020a170902860400b00186fe2df3cbmr70106898plo.132.1670275426148;
+        Mon, 05 Dec 2022 13:23:46 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y2-20020a17090264c200b00189348ab156sm4029270pli.283.2022.12.05.13.23.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 13:23:45 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
+        / MXC ARM ARCHITECTURE)
+Subject: [PATCH net 0/2] Update Joakim Zhang entries
+Date:   Mon,  5 Dec 2022 13:23:38 -0800
+Message-Id: <20221205212340.1073283-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 16, 2022 at 12:43:26PM +0100, Krzysztof Kozlowski wrote:
-> On 16/11/2022 12:31, Abel Vesa wrote:
-> > Document the compatible for SM8550.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> 
-> Why this is not part of other SoC patches? I just received many single
-> patches for this SM8550 topic. All these should be set of few series,
-> not 10 or more...
-> 
+Shawn, since you are the i.MX maintainer I added you and the NXP Linux
+Team as the de-facto maintainers for those entries, however there may be
+other people to list, thanks!
 
-Because these patches are independent of each other and done in this way
-means the maintainer can merge each piece on its own. I much prefer this
-over having these series with 20+ patches being sent over and over
-because one of the patches is getting feedback.
+Florian Fainelli (2):
+  MAINTAINERS: Update NXP FEC maintainer
+  dt-bindings: FEC/i.MX DWMAC and INTMUX maintainer
 
-Regards,
-Bjorn
+ .../devicetree/bindings/interrupt-controller/fsl,intmux.yaml   | 3 ++-
+ Documentation/devicetree/bindings/net/fsl,fec.yaml             | 3 ++-
+ Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml       | 3 ++-
+ MAINTAINERS                                                    | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.34.1
+
