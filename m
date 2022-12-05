@@ -2,108 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A81546424DF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E7B6424F5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:45:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232003AbiLEImq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:42:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34490 "EHLO
+        id S232321AbiLEIpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:45:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232072AbiLEImp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:42:45 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A10C119
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 00:42:43 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id y16so17473866wrm.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 00:42:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=If5qlixuUuCrpqJqTQzfWNyU5P9n2l4cyuUetIlMVDA=;
-        b=mvcWfHXUs+nS4mi6KaQhhybAcY63Fu3k9wkvPSzubDOVRxXnWdQnGlvmDA2gwoUaJM
-         PIYM0OVjn2K3cY4mxtML7Prk73+rLaCpRElmP7hINu8qUyIxSnlQKVSxmZZfM58duaM9
-         mIqjs1DfmePgdp+lDpG4lNCy7tZ3jKIbapWYdvMdCaQbJ6S2DMEm5fXivffQ13OBjURJ
-         MZnZ6kub4xIdQGo0Gskxgp/sgL79BOGNV8eX0sSx31wNuvY7z1aPkELiIT+mv+CKeXb1
-         Z7fu+RkUawlZ0iJ8kEP1PrURInk5r4DerdaWnElJwgRAksWUyUUnIG5bMtFjszjTR6p0
-         t2Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=If5qlixuUuCrpqJqTQzfWNyU5P9n2l4cyuUetIlMVDA=;
-        b=X7/EEe8YQUtIXrEACIplGySnwIp0QwipMqwVIuDENnwB8mf6kCRGSpSzqTdVYyTyZr
-         a/Sk87fcClsWVCIry0ug4wmmSxJJt66lEPF+FTMUuS+fAcgslxdlqWwn4+w6ROep1/ex
-         pdBBOhPuLFf30QwkifEVGSsx6IfbXWG1bNaBi5KsFFY8zE9oBu40D3ugzKcsj1JEVBWr
-         zeYNxSNqxhKlnLheQD5f+PkcJyb1FyB/9MVf3JwQMvffv8Ap3GT0AX8BwTesevn+X41C
-         d3khR+IWPnE5jOzYnTZKuQzktD63IHv8lHCDqxrsv4GlJX/ENG7UJjzv/8n6pn/IGOwG
-         w41Q==
-X-Gm-Message-State: ANoB5pnWlWcp+ejzb+XqwrziJvs6bSdyoLIXPTPH1DV4xfXSMojXBnI7
-        WB5zA12wZv7ivlLCyMiZU4P9g1jzpWSPTrQp
-X-Google-Smtp-Source: AA0mqf7ftmwbCHcJjnnGuPWrlw7r3FnwQ27WNFbwK36TbXGmqA9uPXrcdiSRAypn+Q9Bh85Th5WD0w==
-X-Received: by 2002:adf:cf11:0:b0:242:4f41:2ef6 with SMTP id o17-20020adfcf11000000b002424f412ef6mr5486456wrj.56.1670229761713;
-        Mon, 05 Dec 2022 00:42:41 -0800 (PST)
-Received: from [192.168.7.93] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id fn9-20020a05600c688900b003cf75213bb9sm20089291wmb.8.2022.12.05.00.42.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 00:42:41 -0800 (PST)
-Message-ID: <5f4579fc-36d4-608a-3ef3-8033faed6873@linaro.org>
-Date:   Mon, 5 Dec 2022 09:42:40 +0100
+        with ESMTP id S232338AbiLEIpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:45:15 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CED17A80;
+        Mon,  5 Dec 2022 00:45:09 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 278291D08;
+        Mon,  5 Dec 2022 09:45:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1670229907;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=SeNUztr539lKtOjkDPJXHLKWIhr1Ln9xNj0gAvIEWDo=;
+        b=eHZzTkjLqogN3gV+suNRQjDiUzrbDtAegwFaGE9CWtjjDwHwqA6R0T/yPkZuyydQsyQmOS
+        A0qoInVVcZjZcYD1VZ0g70g5BBpzn6bltAiuiJxdpf1aYZn1AQbZWSe3qjPyhpeQ4xkjS/
+        R8Ubc+u0vEqS3IFdUI7aW54GIDZVLJq6M9Gr9/u6DjJ09F+yjX+I3WxEXSjVybJubCMPGE
+        QpgpAxE2vfKByyc94cIM+TdRjnok7NEwt73SzoQODdwgAsJeCugfKdCY2R/rv8KhB0z3Cb
+        56haCMLnp+xHRagVQPnOBvmgaMCPR5M8NZ09lNNoCgV6fVFv2CsHf4bOC4tX6A==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v6 8/8] arm64: dts: Fix NPU power domain references in
- Amlogic G12-based SoCs
-Content-Language: en-US
-To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
-Cc:     italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Amlogic Meson SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson SoC support" 
-        <linux-amlogic@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
- <20221202115223.39051-9-tomeu.vizoso@collabora.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20221202115223.39051-9-tomeu.vizoso@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Date:   Mon, 05 Dec 2022 09:45:06 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Dan Carpenter <error27@gmail.com>
+Cc:     oe-kbuild@lists.linux.dev, Jonathan Corbet <corbet@lwn.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>, lkp@intel.com,
+        oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 10/20] nvmem: core: use nvmem_add_one_cell() in
+ nvmem_add_cells_from_of()
+In-Reply-To: <202212030011.DQpDmsBb-lkp@intel.com>
+References: <202212030011.DQpDmsBb-lkp@intel.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <a14ed4423ad9f0ce7bd931b33fd94810@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2022 12:52, Tomeu Vizoso wrote:
-> The power sequence is different between SoCs in that family, so get the
-> right bits for each one.
+Am 2022-12-03 09:30, schrieb Dan Carpenter:
+> Hi Michael,
 > 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 --
->   arch/arm64/boot/dts/amlogic/meson-g12b.dtsi       | 4 ++++
->   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 4 ++++
->   3 files changed, 8 insertions(+), 2 deletions(-)
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:
+> https://github.com/intel-lab-lkp/linux/commits/Michael-Walle/nvmem-core-introduce-NVMEM-layouts/20221124-020554
+> patch link:
+> https://lore.kernel.org/r/20221123180151.2160033-11-michael%40walle.cc
+> patch subject: [PATCH v4 10/20] nvmem: core: use nvmem_add_one_cell()
+> in nvmem_add_cells_from_of()
+> config: i386-randconfig-m021
+> compiler: gcc-11 (Debian 11.3.0-8) 11.3.0
+> 
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Reported-by: Dan Carpenter <error27@gmail.com>
+> 
+> New smatch warnings:
+> drivers/nvmem/core.c:731 nvmem_add_cells_from_of() warn: possible
+> memory leak of 'cell'
+> 
+> Old smatch warnings:
+> drivers/nvmem/core.c:735 nvmem_add_cells_from_of() warn: possible
+> memory leak of 'cell'
+> 
+> vim +/cell +731 drivers/nvmem/core.c
+> 
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  689  static int
+> nvmem_add_cells_from_of(struct nvmem_device *nvmem)
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  690  {
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  691  	struct device
+> *dev = &nvmem->dev;
+> 7ae6478b304bc0 Srinivas Kandagatla 2021-10-13  692  	struct
+> nvmem_cell_entry *cell;
+> 18f50dbcfd3676 Michael Walle       2022-11-23  693  	struct device_node 
+> *child;
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  694  	const __be32 
+> *addr;
+> 18f50dbcfd3676 Michael Walle       2022-11-23  695  	int len, ret;
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  696
+> 18f50dbcfd3676 Michael Walle       2022-11-23  697
+> 	for_each_child_of_node(dev->of_node, child) {
+> 18f50dbcfd3676 Michael Walle       2022-11-23  698  		struct
+> nvmem_cell_info info = {0};
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  699
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  700  		addr =
+> of_get_property(child, "reg", &len);
+> 0445efacec75b8 Ahmad Fatoum        2021-01-29  701  		if (!addr)
+> 0445efacec75b8 Ahmad Fatoum        2021-01-29  702  			continue;
+> 0445efacec75b8 Ahmad Fatoum        2021-01-29  703  		if (len < 2 *
+> sizeof(u32)) {
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  704  			dev_err(dev,
+> "nvmem: invalid reg on %pOF\n", child);
+> 63879e2964bcee Christophe JAILLET  2021-06-11  705  
+> 			of_node_put(child);
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  706  			return -EINVAL;
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  707  		}
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  708
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  709  		cell =
+> kzalloc(sizeof(*cell), GFP_KERNEL);
+> 63879e2964bcee Christophe JAILLET  2021-06-11  710  		if (!cell) {
+> 63879e2964bcee Christophe JAILLET  2021-06-11  711  
+> 			of_node_put(child);
+> e888d445ac33a5 Bartosz Golaszewski 2018-09-21  712  			return -ENOMEM;
+> 63879e2964bcee Christophe JAILLET  2021-06-11  713  		}
+> 
+> Seems like "cell" is not used any more so this just leaks.
 
+Damn, what a stupid bug from me. Thanks for catching this.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-
-I'll probably squash it in patch 4.
-
-thanks,
-Neil
+-michael
