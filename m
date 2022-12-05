@@ -2,161 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BD0642F80
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 18:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98FED642F8A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:00:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbiLERzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 12:55:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
+        id S230012AbiLESA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:00:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232589AbiLERz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 12:55:29 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0941AD;
-        Mon,  5 Dec 2022 09:54:32 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id l127so13917887oia.8;
-        Mon, 05 Dec 2022 09:54:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qjD5jvfs1Q2x/cdcxaQ+cfzZKHiqKwOk2YSAqbwKlVo=;
-        b=X12WQ97Y1cgdbJd+Eq81q+PZMhgnH2VWJ7k8nas1LVX7HtErvLPJmbZnbKfPvHgyaZ
-         /P7eBRWTHI3zClC0vfSSSEy4rs1C7JoMTBE0Uc9Na9kipWBZzjkBJoyrI5UuXtaQfPU+
-         JppG1awGmtr8B9T4xceJPpgsv4x520zIxWfsV37RPEYj3xowGnK3++CSXr9CtnZY/MiI
-         Q7l1kTfKzpkSxjIEnGb8PvNQMKOabTE/B2vIs4aAJpMp6bKB80pONIn/uh1BSsRxUamT
-         Nz47oUWRALat8n1bVZfbJvMSZRMtcio5ttxtBUX8U70OJ8rrniJ1kVNpXazpsF6umkJl
-         +kXQ==
-X-Gm-Message-State: ANoB5pmwX1kNReqCmNg6lXSW/lWmTeTutk9gS98uenkkZ6hc4iTWkbX+
-        WfQBByfpzj5RXGOIkpyHUQ==
-X-Google-Smtp-Source: AA0mqf7MQR4VlM3j15dfYZl5T10+IaF4xou+7DEW3p2t0/AF/R9GuAMvPe+A/m3AS1CZqrt91T0rvQ==
-X-Received: by 2002:a05:6808:1246:b0:354:4b35:2809 with SMTP id o6-20020a056808124600b003544b352809mr40266726oiv.256.1670262871784;
-        Mon, 05 Dec 2022 09:54:31 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m6-20020a056870a40600b0012d939eb0bfsm9448668oal.34.2022.12.05.09.54.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 09:54:31 -0800 (PST)
-Received: (nullmailer pid 2143933 invoked by uid 1000);
-        Mon, 05 Dec 2022 17:54:30 -0000
-Date:   Mon, 5 Dec 2022 11:54:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S229999AbiLESAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:00:25 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336781AF35;
+        Mon,  5 Dec 2022 10:00:24 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B3392C0003;
+        Mon,  5 Dec 2022 18:00:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670263222;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bdDAK4fk0/LkRHjnH0BkmGmCTYghTKYbvgGTDqO6qbw=;
+        b=RJT+NX/HjGkRaEKxNE1nU6nMYtt5KlOk/54xxD7j7LG3edYFnqlkLjSH0uPt283JmMZcVN
+        fyW5E1/3qI1zBegF9fgDNIkazpfB9v2dBmAPEeX94sVZblmKCmt/qeG7WgDxchOLaJ0W1U
+        JPjOwdCHxDpzHQsceatybjmpQmxFYrHCKvBde5QuNv1sPmmMr4AKiI4SQCthSQsPVTLrSx
+        wtgYrAANr2kNkKn01T857747NGoF9JzEYGKEqMZGM5IyUk61RRv5tpTaiCxAwryULlUNof
+        3YHj42zSTzS0JsXQpL9wxHPYBR6bewIvZJT3Ob7IE7SvlObK3toCDf/8zLbhCg==
+Date:   Mon, 5 Dec 2022 18:58:59 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4,1/3] media: dt-bindings: media: mediatek: vcodec:
- adapt to the 'clock-names' of different platforms
-Message-ID: <20221205175430.GA2136513-robh@kernel.org>
-References: <20221202034450.3808-1-yunfei.dong@mediatek.com>
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Message-ID: <20221205185859.433d6cbf@xps-13>
+In-Reply-To: <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+References: <20221205152327.26881-1-francesco@dolcini.it>
+        <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221202034450.3808-1-yunfei.dong@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 11:44:48AM +0800, Yunfei Dong wrote:
-> mt8195 and mt8192 have different clock numbers, separate 'clock-names'
-> according to compatible name.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> compared with v3:
-> - rewrite clock-names according to different platforms.
-> 
-> Reference series:
-> [1]: v5 of this series is presend by Allen-KH Cheng.
->      message-id: 20221128143832.25584-4-allen-kh.cheng@mediatek.com
-> ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 41 ++++++++++++++++---
->  1 file changed, 35 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> index 7c5b4a91c59b..a08b2c814f40 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> @@ -110,15 +110,12 @@ patternProperties:
->            Refer to bindings/iommu/mediatek,iommu.yaml.
->  
->        clocks:
-> +        minItems: 1
+Hi Marek,
 
-Why 1? Looks like it should be 4 or 5 clocks.
+marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
 
->          maxItems: 5
->  
->        clock-names:
-> -        items:
-> -          - const: sel
-> -          - const: soc-vdec
-> -          - const: soc-lat
-> -          - const: vdec
-> -          - const: top
-> +        minItems: 1
-> +        maxItems: 5
->  
->        assigned-clocks:
->          maxItems: 1
-> @@ -159,6 +156,38 @@ then:
->    required:
->      - interrupts
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8192-vcodec-dec
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: sel
-> +            - const: soc-vdec
-> +            - const: soc-lat
-> +            - const: vdec
-> +            - const: top
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8195-vcodec-dec
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: sel
-> +            - const: vdec
-> +            - const: lat
-> +            - const: top
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.18.0
-> 
-> 
+> On 12/5/22 16:23, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> >=20
+> > This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
+> >=20
+> > It introduced a boot regression on colibri-imx7, and potentially any
+> > other i.MX7 boards with MTD partition list generated into the fdt by
+> > U-Boot.
+> >=20
+> > While the commit we are reverting here is not obviously wrong, it fixes
+> > only a dt binding checker warning that is non-functional, while it
+> > introduces a boot regression and there is no obvious fix ready.
+> >=20
+> > Cc: stable@vger.kernel.org
+> > Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+> > Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.tor=
+adex.com/
+> > Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >   arch/arm/boot/dts/imx7s.dtsi | 4 ++--
+> >   1 file changed, 2 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+> > index 03d2e8544a4e..0fc9e6b8b05d 100644
+> > --- a/arch/arm/boot/dts/imx7s.dtsi
+> > +++ b/arch/arm/boot/dts/imx7s.dtsi
+> > @@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+> >   			clocks =3D <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+> >   		}; =20
+> >   > -		gpmi: nand-controller@33002000 { =20
+> > +		gpmi: nand-controller@33002000{
+> >   			compatible =3D "fsl,imx7d-gpmi-nand";
+> >   			#address-cells =3D <1>;
+> > -			#size-cells =3D <0>;
+> > +			#size-cells =3D <1>;
+> >   			reg =3D <0x33002000 0x2000>, <0x33004000 0x4000>;
+> >   			reg-names =3D "gpmi-nand", "bch";
+> >   			interrupts =3D <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>; =20
+>=20
+> I suspect this fix should eventually be reverted again, once a proper fix=
+ is agreed upon in the MTD OF parser, right ?
+
+I guess it's time to migrate to a more modern definition, it's not
+complex to do, there are plenty of examples. This would be IMHO a
+better step ahead rather than just a cell change. Anyway, I don't mind
+reverting this once we've sorted this mess out and fixed U-Boot.
+
+Cheers,
+Miqu=C3=A8l
