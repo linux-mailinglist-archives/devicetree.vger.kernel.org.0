@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46A8364386E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EC86438E2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 00:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbiLEWwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 17:52:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47378 "EHLO
+        id S233918AbiLEXCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 18:02:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbiLEWwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:52:45 -0500
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E9C658B;
-        Mon,  5 Dec 2022 14:52:44 -0800 (PST)
-Received: by mail-il1-x133.google.com with SMTP id s16so5780293iln.4;
-        Mon, 05 Dec 2022 14:52:44 -0800 (PST)
+        with ESMTP id S234092AbiLEXBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 18:01:32 -0500
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F33C1E719;
+        Mon,  5 Dec 2022 15:01:31 -0800 (PST)
+Received: by mail-il1-x12c.google.com with SMTP id x12so5795818ilg.1;
+        Mon, 05 Dec 2022 15:01:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oj8eAjDnDlvWoM48S+3smPWtkFQiM0Ns+EyA+iPBhQs=;
-        b=kuFiWen/FsqQNEH1nCOmmeVPeYR1IBswq0Q/IvB9aMDpSurNFfES9zJFk7DXNQJ8zy
-         V5uASHczcHPB2u1GEmtH7Hie5qmVPNTDxvMHPR66TfP7NhJ57FVka4lHoilNFGKHbrnQ
-         D20qHOVq/04qhrjBZw6z6dqCDHS7cmb36CRCZNB/kmuIEJGkLPpG0mMIsceZnmQKV3Is
-         hucNqyJ2XQYOwcZIoALG33cLRq71eLceoiWErtnvls/KZwOYasODVlkE6/YoQse3U6P1
-         Vi8X8Bq3nX2JUAD5pqsS8XLXN8/g+mbAhNzSivFvFaDn3mTSbXz49jRRfr4iBWQmKMf0
-         Xhhw==
+        bh=3EcKf/WiZ053M5Zlh9oslP3C4L9UIGaow1VWS03f4p8=;
+        b=pxFPs4abDJ1Hie/qZ3IZMTsdTOwAVCuFmRc4swy8B4yQMn/3FLPpqMFrdCsSndTQtR
+         kHe0lQsRDC00AYm5ISYSl0O7ZX8jgz0uf9Hd9+NXoeVoGeAndW38F4/MLqESlu9zsc+r
+         XO8hhw/HBcBcFy5mtFgcDkw3hX67LFZTcvdwN5doixzIbDG4iy9ZeLYhws6Gr39ply6w
+         Cw74nCdEtGSh9ixU1FAqqQHAEMbvllUcdRBnuwUR7SmSLv+xqpgaDXOigSPR0cTQ/fFR
+         wCvX+oaJbByeAPQ+dc1xKix4F2vCUg3BMC5DculKRe/yHpAKofU5wJ//kETEflpjvtO3
+         K88w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oj8eAjDnDlvWoM48S+3smPWtkFQiM0Ns+EyA+iPBhQs=;
-        b=i4aolK/zDb2yYX6LWG9cR+stjpHQ4whMMAHrPPCFRkM/nENqPhbZPGofEbnkIc/m4V
-         tdRJvKEMCnC0i8M9fETStBjYLlwAbqUSI9GjoVGHHn9mUI8ttohlFxbs+oDSFqBT8OFI
-         3+hZrowNooznyJ9MX6m2O9h2auJJZGGcXxWvT6/IVUepiSdKbXE7zyfK5QAkqHVwIog8
-         SopMcaMfAB4dshQKW25iqBEHtq+NAWJMs/gSfX2OHT4u59CkXeFzq5sIzB2SR/gJmmx9
-         jYZepDecslkXsGE6ZrroLiy6iAcy3ltoqXeTQ1G4Rpelv7vsmlgbwpmN1aC4vxgasiwr
-         rX0w==
-X-Gm-Message-State: ANoB5plD/lqTrayBMVUip0zO+akHbAD6DYNXkU/i45b3LLd1LIBfyef7
-        HivNz8arF/IECdwc8k7Tum8=
-X-Google-Smtp-Source: AA0mqf7hl5FsVq7DmxyQMxcmuOzW6Z6FjoGzAi8MEbNVKGdgV4eLlvGromT96YCpf5hvr5rVImrU/Q==
-X-Received: by 2002:a05:6e02:194b:b0:303:387f:2ac0 with SMTP id x11-20020a056e02194b00b00303387f2ac0mr8960078ilu.122.1670280764233;
-        Mon, 05 Dec 2022 14:52:44 -0800 (PST)
+        bh=3EcKf/WiZ053M5Zlh9oslP3C4L9UIGaow1VWS03f4p8=;
+        b=rhlsmtiusztmausKq4fddleeDTSTlFTqmiHcekuj7xu/uZc/WrhebhhxDJZKJaXBLG
+         HhPS4MlftMU79VbjeXDmmPa5MFF/SmkWyk/1lcWaC8CsvlCvl2KuUaIv+XX/MdvOgZnu
+         PmARmKA2An5zFZm58wGguLr4sBOo1xlKIGfN2cjRL87XnteVREa88MLsVqiCd3s0gaxz
+         a/p0t6DfHN7tZhI5OtstN9HxiYqadQEVESz6AchruP32J0znDyHPgripxx5JiZNF8ZOS
+         vjJ3ZlOgnG4dl0hLQJta2TyRJCIUM2qyX6LZp0P5YHExq5e6Dc67BUUhx6GtuJ/dSj24
+         9Tlw==
+X-Gm-Message-State: ANoB5pkmEXiF7Q6X6sPikfT+3ojLh4ASXIh7IGKMIGkJPm90l/rzPe5s
+        Kg1mxYFBFpJVoLn0hk6VVS9MEl5ahpg=
+X-Google-Smtp-Source: AA0mqf72OFe/uOLUh5hZENDrPXmEecW7I781TX/u3gInX+WCGdUKFOCmkyRStBn0nujkth8QY9ofbg==
+X-Received: by 2002:a92:c10f:0:b0:303:1f6a:b30c with SMTP id p15-20020a92c10f000000b003031f6ab30cmr14953344ile.254.1670281290898;
+        Mon, 05 Dec 2022 15:01:30 -0800 (PST)
 Received: from localhost ([2607:fea8:a2df:3d00::be63])
-        by smtp.gmail.com with ESMTPSA id y6-20020a027306000000b00389d6a02740sm6036104jab.157.2022.12.05.14.52.42
+        by smtp.gmail.com with ESMTPSA id e17-20020a5d8ad1000000b006c75c702342sm6321912iot.14.2022.12.05.15.01.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 14:52:43 -0800 (PST)
+        Mon, 05 Dec 2022 15:01:30 -0800 (PST)
 From:   Richard Acayan <mailingradian@gmail.com>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sdm670-google-sargo: keep pm660 ldo8 on
-Date:   Mon,  5 Dec 2022 17:52:37 -0500
-Message-Id: <20221205225237.200564-1-mailingradian@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: nvmem: qfprom: add sdm670 compatible
+Date:   Mon,  5 Dec 2022 18:01:14 -0500
+Message-Id: <20221205230116.2204-1-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -72,29 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the downstream device tree, the regulator that powers the
-I/O for eMMC should not be turned off. Keep it always on just in case
-the eMMC driver fails and doesn't enable it, or unloads and disables it.
+There is some configuration in SDM670's QFPROM. Add the compatible for
+it.
 
-Fixes: 07c8ded6e373 ("arm64: dts: qcom: add sdm670 and pixel 3a device trees")
-Link: https://android.googlesource.com/kernel/msm/+/9ed6ddbe955d3b84d1416a1cf77e83904d1e8421/arch/arm64/boot/dts/google/sdm670-bonito-common.dtsi#105
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts | 1 +
+ Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-index cf2ae540db12..e3e61b9d1b9d 100644
---- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-@@ -256,6 +256,7 @@ vreg_l8a_1p8: ldo8 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 			regulator-enable-ramp-delay = <250>;
-+			regulator-always-on;
- 		};
- 
- 		vreg_l9a_1p8: ldo9 {
+diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+index 2eab2f46cb65..01ec2143a3b5 100644
+--- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
++++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+@@ -27,6 +27,7 @@ properties:
+           - qcom,sc7180-qfprom
+           - qcom,sc7280-qfprom
+           - qcom,sdm630-qfprom
++          - qcom,sdm670-qfprom
+           - qcom,sdm845-qfprom
+           - qcom,sm6115-qfprom
+       - const: qcom,qfprom
 -- 
 2.38.1
 
