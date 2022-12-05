@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C63D6427EA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7786427F5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 13:02:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbiLEL7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 06:59:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
+        id S231483AbiLEMB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 07:01:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbiLEL7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:59:14 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA60EDFB3
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 03:59:13 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id n3so6848104pfq.10
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 03:59:13 -0800 (PST)
+        with ESMTP id S231192AbiLEMB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 07:01:59 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BC110B49
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 04:01:58 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id z8-20020a17090abd8800b00219ed30ce47so356243pjr.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 04:01:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=JVDnYep+OGuO+Z3tpAIsly50JpE3CrqELGalA8PHONg=;
-        b=N5wjABROTlnOf0xkjlrF9DD5NNlAXltNebNeRxy6Iv6U/IFxnXWNcch0ApbhNbuAXl
-         aq5kgXkOXdXhCSD/TXtuGnck53j8/j46CwFfsglAkBnlBm2YAVb6ZXcTgUafrPfTKQgB
-         7+Xo19wDL124a9m4i+RrLankKSnka65OFqOpGxVwHpl0sPH3U/NyCQFP7kWwfPeH3ykb
-         DBjxyYWknWDfL0DlZr2bnBKKx8PVNOBMwAJ1BU6gQWxIgthRQaQjSFJaAknrZCbfI5ck
-         I/LtR1ye1+e5jEKWC3Jw6EtnuDFfmfv7Ld0QOH9LYL9jlMTJMcD7uJMo9Xp7UUJHnJ4V
-         lFkg==
+        bh=1ZssqNs7pInPJStfO2e2atX8UAeVUe46DyiwPRJ0RFE=;
+        b=gTBYAJ1Ma45a7BHMHwGS1ZHQV1LzleQ4PEZfCy/Ms1jqJq/R7XCBojvZSjVwDytGBl
+         tN14rL/HENx9Q5LlPX4WuMwJJWzclkPHBO9+LZKJTz/HIKA4jprkU1CfYiI1uAJTkXd7
+         bAgZYDgbFWJKn4v/rY41b572E1K6UC569OXTBdMo7U+3FZQDQEdsTjILrOy+rVYjyOs/
+         YCycs2rfLeKfHd6aBIwTaX0NPMV979GVAoutZb5kZ50M/ShuegX+x0jDvwsyTBcUTBRO
+         ODLrgTt2ljReb36H/LfPWCcaIYRTLWo+a1qfjZdYigWKef8l/KWzX9x0AUIGEgfzvD5G
+         OIuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JVDnYep+OGuO+Z3tpAIsly50JpE3CrqELGalA8PHONg=;
-        b=ZiDrOpWZr9Y5az21eQyi5OKcgS9GMzhYSuf7N8Iv5soHhw5ZqKFaAiCd7gLQb9HpGE
-         V37XrKRtfrlWXaR5gwZvO8idbZ5aSc/iOFZ/x8fMh9CQaH2CsVqwpcSk/r95psZ1vOvv
-         NStVt2t46f83jG7ELCv+PbGwclDiLfM1MFd+JS17AMntl4hVc6JRDbXQ3UMChwah5Fa/
-         dOXJdVTcWrl9jjHflP3T1LEVJ+m8LEjf2Vq8Cr1jrrYN14hGQoejrSg/YJbSMtq8VDbe
-         to20SFWXjGNzSCxmFdeZssTwCkCuSipsOXqZ5/xA8dK7d1IK+Y00hGkWsr3jV28vDhOS
-         hGmw==
-X-Gm-Message-State: ANoB5pkZ34zplN1i+Li86puRLMxDnWhKaVb4MYY0jG6WwgKJTMDn3gX3
-        S8pEMpSmTrdhJHUtxGWGl71v
-X-Google-Smtp-Source: AA0mqf6j5YhyfdVOKSjtKnCH3MyZNtcxxRSjvEhSz/uAs3E8YB7W4Bx982aZrQIQQ3CVU/0VtFH8dA==
-X-Received: by 2002:a63:570e:0:b0:477:a381:84d with SMTP id l14-20020a63570e000000b00477a381084dmr53526864pgb.207.1670241553326;
-        Mon, 05 Dec 2022 03:59:13 -0800 (PST)
+        bh=1ZssqNs7pInPJStfO2e2atX8UAeVUe46DyiwPRJ0RFE=;
+        b=eWkyjSm47h1zH8TQ/oDf7izaVDJg25xzHXQRgeqWZDlzRYhhgRQp98xAPQhSY/qLP6
+         hlaV4jZJIyz+NjR49Tvf6J7DJeSkbd6Sdl98/LJOWGsRi5X7MGER5FSxQvUHVGfCLtQi
+         dsTJU5kh5udJTpJQAAodQY9zLIcfYTVKkS8TA3h1tq0NzgvqzIzlqT1q2t3IrSJB7LU2
+         fS93SnutBseM3zhQNMhdrIrmkE5xJzL6TLT3J9oHNq+vUNaKkAPZ2fbnLmGMZOai22yJ
+         RYd5os4BrC8LsHacIkVCuVa09qsvh7IktXQJhiW52DMzSC65iRbe2PJm+3xHUwOmWZRM
+         2Acw==
+X-Gm-Message-State: ANoB5pkR/pnoZWrZ+ntF/UjuJLJ84HRBBOaujtsHcDVsslWdBj1dwTTO
+        x/wDakKB0+6FvVrfH0j1QLuF
+X-Google-Smtp-Source: AA0mqf4DBEnBQ8pyT7ohyPkzU+t1mQ/uJBWCKhtQbdoYDM2WCK+EWk0MTEIdyx8km5XU4ssgP5EsjQ==
+X-Received: by 2002:a17:902:d0c9:b0:189:9cfd:be76 with SMTP id n9-20020a170902d0c900b001899cfdbe76mr30410742pln.21.1670241717355;
+        Mon, 05 Dec 2022 04:01:57 -0800 (PST)
 Received: from thinkpad ([59.92.98.136])
-        by smtp.gmail.com with ESMTPSA id i28-20020a056a00005c00b005771f5ea2ebsm789766pfk.135.2022.12.05.03.59.08
+        by smtp.gmail.com with ESMTPSA id p8-20020aa79e88000000b005743b5ebd7csm3318672pfq.92.2022.12.05.04.01.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 03:59:12 -0800 (PST)
-Date:   Mon, 5 Dec 2022 17:29:06 +0530
+        Mon, 05 Dec 2022 04:01:55 -0800 (PST)
+Date:   Mon, 5 Dec 2022 17:31:48 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Johan Hovold <johan+linaro@kernel.org>
 Cc:     Bjorn Andersson <andersson@kernel.org>,
@@ -61,56 +61,64 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: ufs: qcom: allow 'dma-coherent' property
-Message-ID: <20221205115906.GA20192@thinkpad>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: fix UFS DMA coherency
+Message-ID: <20221205120148.GB20192@thinkpad>
 References: <20221205100837.29212-1-johan+linaro@kernel.org>
- <20221205100837.29212-2-johan+linaro@kernel.org>
+ <20221205100837.29212-3-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221205100837.29212-2-johan+linaro@kernel.org>
+In-Reply-To: <20221205100837.29212-3-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 05, 2022 at 11:08:36AM +0100, Johan Hovold wrote:
-> UFS controllers may be cache coherent and must be marked as such in the
-> devicetree to avoid data corruption.
+On Mon, Dec 05, 2022 at 11:08:37AM +0100, Johan Hovold wrote:
+> The SC8280XP UFS controllers are cache coherent and must be marked as
+> such in the devicetree to avoid potential data corruption.
 > 
-> This is specifically needed on recent Qualcomm platforms like SC8280XP.
-> 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Cc: stable@vger.kernel.org      # 6.0
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index f2d6298d926c..1f1d286749c0 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -44,6 +44,8 @@ properties:
->      minItems: 8
->      maxItems: 11
->  
-> +  dma-coherent: true
-> +
 
-This property is not applicable to all SoCs. So setting true here will make it
-valid for all.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 Thanks,
 Mani
 
->    interconnects:
->      minItems: 2
->      maxItems: 2
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index c4947c563099..23d1f51527aa 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1430,6 +1430,7 @@ ufs_mem_hc: ufs@1d84000 {
+>  			required-opps = <&rpmhpd_opp_nom>;
+>  
+>  			iommus = <&apps_smmu 0xe0 0x0>;
+> +			dma-coherent;
+>  
+>  			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>  				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> @@ -1491,6 +1492,7 @@ ufs_card_hc: ufs@1da4000 {
+>  			power-domains = <&gcc UFS_CARD_GDSC>;
+>  
+>  			iommus = <&apps_smmu 0x4a0 0x0>;
+> +			dma-coherent;
+>  
+>  			clocks = <&gcc GCC_UFS_CARD_AXI_CLK>,
+>  				 <&gcc GCC_AGGRE_UFS_CARD_AXI_CLK>,
 > -- 
 > 2.37.4
 > 
