@@ -2,89 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF9B642B79
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 831F9642BA5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232168AbiLEPT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:19:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
+        id S230235AbiLEP1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 10:27:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231880AbiLEPTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:19:14 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E9B11478;
-        Mon,  5 Dec 2022 07:19:12 -0800 (PST)
-Received: from zn.tnic (p200300ea9733e72f329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e72f:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231991AbiLEP0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:26:09 -0500
+Received: from smtp-out-05.comm2000.it (smtp-out-05.comm2000.it [212.97.32.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB0F1F9D7;
+        Mon,  5 Dec 2022 07:23:41 -0800 (PST)
+Received: from francesco-nb.toradex.int (31-10-206-125.static.upc.ch [31.10.206.125])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E7D2A1EC06C0;
-        Mon,  5 Dec 2022 16:19:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1670253551;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=95iNo7XBx2EAevSVm0yU9Tlm8vGSIeCCvja2S35CbLg=;
-        b=bJSC/MbUhkSfB9Og+S6sT+bDA6QHOtBaOVX3qw8u4DVMC5N4/TD2KakiVsmY6Yd7G7AO5Q
-        mmy7pxdJyjAOmie44EfjediHSIGRB16aKLHjIaoRENQfxTLLzktW5bZFw6kIwhTwMx52GM
-        qYpU77dZ203z5d/2EQN2wZLSaNWXsCs=
-Date:   Mon, 5 Dec 2022 16:19:06 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
+        (Authenticated sender: francesco@dolcini.it)
+        by smtp-out-05.comm2000.it (Postfix) with ESMTPSA id E8EAA8240D3;
+        Mon,  5 Dec 2022 16:23:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
+        s=mailsrv; t=1670253819;
+        bh=kHr0aTjYplJsrICaBlaf8mmyRJ9l5EZ0Gq7KL8EAlqE=;
+        h=From:To:Cc:Subject:Date;
+        b=cBPD/nURivJ8O5RZoA8hzMlVtiZuEZgWhN4Wj8BDRChGtKFKVdWF4sane+Zcr1Jzs
+         RqSIfZWiRpnxRFre97ab42h1KMU4/LbK6kceQMQegJsbIAHZ4PBTLBu2v4PrEP3581
+         B7BuQMvFC2UoGobIRy8/W9DRCwxHFvHrYoiAcuWI53oNo6BnFsCazJHTDMw25hJOKB
+         QP+AYYkOBeDyEe2vdN0q0lKTZb279ljQVlf62Nzm8amMGJRdym4Z/VrLWM4+QWxkR7
+         kLcSYsi6QEMHUYTOAIP5vMZX9ICmGlOchHLaJHF5WLb4epdEzoB8EIxSJQBsz/69D1
+         FO+fk/0FDzurg==
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v6 2/2] EDAC/zynqmp: Add EDAC support for Xilinx ZynqMP
- OCM
-Message-ID: <Y44L6lOptqDIwvxe@zn.tnic>
-References: <20221102070655.247511-1-sai.krishna.potthuri@amd.com>
- <20221102070655.247511-3-sai.krishna.potthuri@amd.com>
- <Y4DbXaan258cZK+q@zn.tnic>
- <BY5PR12MB42582EA4A4ACEA56367544E6DB189@BY5PR12MB4258.namprd12.prod.outlook.com>
- <Y43vJECWJI99tc1x@zn.tnic>
- <330f1b49-eb59-c55e-3f7d-dfbf4886f247@amd.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+Subject: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller size-cells"
+Date:   Mon,  5 Dec 2022 16:23:27 +0100
+Message-Id: <20221205152327.26881-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <330f1b49-eb59-c55e-3f7d-dfbf4886f247@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 05, 2022 at 03:49:33PM +0100, Michal Simek wrote:
-> Some history around this. Based on
-> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
-> Chapter 2.2.2 Generic Names Recommendation
-> memory-controller name is recommended.
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Sure, fair enough. Except that this is debugfs so not really user ABI
-like sysfs.
+This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
 
-Rather, I'd aim here for simplicity. But your call in the end.
+It introduced a boot regression on colibri-imx7, and potentially any
+other i.MX7 boards with MTD partition list generated into the fdt by
+U-Boot.
 
-Thx.
+While the commit we are reverting here is not obviously wrong, it fixes
+only a dt binding checker warning that is non-functional, while it
+introduces a boot regression and there is no obvious fix ready.
 
+Cc: stable@vger.kernel.org
+Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
+Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm/boot/dts/imx7s.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 03d2e8544a4e..0fc9e6b8b05d 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+ 			clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+ 		};
+ 
+-		gpmi: nand-controller@33002000 {
++		gpmi: nand-controller@33002000{
+ 			compatible = "fsl,imx7d-gpmi-nand";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
++			#size-cells = <1>;
+ 			reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
+ 			reg-names = "gpmi-nand", "bch";
+ 			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-Regards/Gruss,
-    Boris.
+2.25.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
