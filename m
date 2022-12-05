@@ -2,101 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B796642F76
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 18:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89BD0642F80
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 18:55:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbiLERvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 12:51:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44340 "EHLO
+        id S230236AbiLERzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 12:55:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232887AbiLERv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 12:51:26 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD497248C5;
-        Mon,  5 Dec 2022 09:49:01 -0800 (PST)
-Received: from mercury (dyndsl-091-096-035-193.ewe-ip-backbone.de [91.96.35.193])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 77A5F66015BC;
-        Mon,  5 Dec 2022 17:49:00 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670262540;
-        bh=EN7vOdDtU16zR3wMYmUnijJWLV25CQBQa2ccyrarwdE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CqVMgRXUS7CTXTDs/OiPG5jDPIbk5lygaQxdeVMGp5HWmnhehMXrAU4KzPoxxw4kc
-         P7VehkucF+Xw5co/WorTU9CmK4QBKlqMo9R5b2nP3+ohRgtHr81ztQlg33up3lo7iA
-         vCZRx5XvQ6KbkGITZ2TTaxc7klBz2rdUM805JGjwWt5ai0PpGkUkDSINA9Yo+WeC2c
-         ZBhCSTgyj1g5rvIPTOSBfb7btgxfLCAevaSDZoV+kvIMp3pfW3jwkuAAA8i+eTFU2b
-         KR7LBBjepsDos7Aspy+1baTFFYlM2LQIX1EY4DA3c1N46DQ8qbYLp4D3n6BBjP0SbA
-         CEzgo87wshIsg==
-Received: by mercury (Postfix, from userid 1000)
-        id AA6451060F2F; Mon,  5 Dec 2022 18:48:57 +0100 (CET)
-Date:   Mon, 5 Dec 2022 18:48:57 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Carl Philipp Klemm <philipp@uvos.xyz>
-Cc:     linux-omap@vger.kernel.org, tony@atomide.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] leds: cpcap: make leds-cpcap an independent platform
- device to allow varying led setups
-Message-ID: <20221205174857.asf6uant7ve7k5pe@mercury.elektranox.org>
-References: <20221204104313.17478-1-philipp@uvos.xyz>
- <20221204104313.17478-2-philipp@uvos.xyz>
+        with ESMTP id S232589AbiLERz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 12:55:29 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0941AD;
+        Mon,  5 Dec 2022 09:54:32 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id l127so13917887oia.8;
+        Mon, 05 Dec 2022 09:54:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qjD5jvfs1Q2x/cdcxaQ+cfzZKHiqKwOk2YSAqbwKlVo=;
+        b=X12WQ97Y1cgdbJd+Eq81q+PZMhgnH2VWJ7k8nas1LVX7HtErvLPJmbZnbKfPvHgyaZ
+         /P7eBRWTHI3zClC0vfSSSEy4rs1C7JoMTBE0Uc9Na9kipWBZzjkBJoyrI5UuXtaQfPU+
+         JppG1awGmtr8B9T4xceJPpgsv4x520zIxWfsV37RPEYj3xowGnK3++CSXr9CtnZY/MiI
+         Q7l1kTfKzpkSxjIEnGb8PvNQMKOabTE/B2vIs4aAJpMp6bKB80pONIn/uh1BSsRxUamT
+         Nz47oUWRALat8n1bVZfbJvMSZRMtcio5ttxtBUX8U70OJ8rrniJ1kVNpXazpsF6umkJl
+         +kXQ==
+X-Gm-Message-State: ANoB5pmwX1kNReqCmNg6lXSW/lWmTeTutk9gS98uenkkZ6hc4iTWkbX+
+        WfQBByfpzj5RXGOIkpyHUQ==
+X-Google-Smtp-Source: AA0mqf7MQR4VlM3j15dfYZl5T10+IaF4xou+7DEW3p2t0/AF/R9GuAMvPe+A/m3AS1CZqrt91T0rvQ==
+X-Received: by 2002:a05:6808:1246:b0:354:4b35:2809 with SMTP id o6-20020a056808124600b003544b352809mr40266726oiv.256.1670262871784;
+        Mon, 05 Dec 2022 09:54:31 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m6-20020a056870a40600b0012d939eb0bfsm9448668oal.34.2022.12.05.09.54.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 09:54:31 -0800 (PST)
+Received: (nullmailer pid 2143933 invoked by uid 1000);
+        Mon, 05 Dec 2022 17:54:30 -0000
+Date:   Mon, 5 Dec 2022 11:54:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4,1/3] media: dt-bindings: media: mediatek: vcodec:
+ adapt to the 'clock-names' of different platforms
+Message-ID: <20221205175430.GA2136513-robh@kernel.org>
+References: <20221202034450.3808-1-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="em3uei6ijrssfsui"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221204104313.17478-2-philipp@uvos.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221202034450.3808-1-yunfei.dong@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 02, 2022 at 11:44:48AM +0800, Yunfei Dong wrote:
+> mt8195 and mt8192 have different clock numbers, separate 'clock-names'
+> according to compatible name.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+> compared with v3:
+> - rewrite clock-names according to different platforms.
+> 
+> Reference series:
+> [1]: v5 of this series is presend by Allen-KH Cheng.
+>      message-id: 20221128143832.25584-4-allen-kh.cheng@mediatek.com
+> ---
+>  .../media/mediatek,vcodec-subdev-decoder.yaml | 41 ++++++++++++++++---
+>  1 file changed, 35 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> index 7c5b4a91c59b..a08b2c814f40 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> @@ -110,15 +110,12 @@ patternProperties:
+>            Refer to bindings/iommu/mediatek,iommu.yaml.
+>  
+>        clocks:
+> +        minItems: 1
 
---em3uei6ijrssfsui
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Why 1? Looks like it should be 4 or 5 clocks.
 
-Hi,
-
-On Sun, Dec 04, 2022 at 11:43:11AM +0100, Carl Philipp Klemm wrote:
-> Previously led-cpcap devices where defined statically in mfd_cell
-> of the parent mdf device. This causes issues for devices like
-> xt875 that have less and different leds than xt894. Splitting the
-> device like this is posssible, as in reality the cpcap led ip block
-> is totaly independent from the mdf device and cpcap core.
->=20
-> Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
-
-I don't follow. Can't you just use 'status =3D "disabled;"' for the
-unavailable nodes?
-
--- Sebastian
-
---em3uei6ijrssfsui
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOOLwkACgkQ2O7X88g7
-+prbqg//acIuGRi5cNFsSNfLCR5nrlaBI+WG/Kq3YFWw54nXI+L5wTNGT3iwFoeq
-OBUvz/fWrFRBHVuzOf/BJP3rP3+QLYBBlNxgtIpw3eCXK0GwXs4cslkdsqVmhh1x
-TZ1i+o4Do3MSEZWOIgNbBwBgtW+YOb96702hSy9OczP/siV9LE7jQVH2LRzOoSlx
-MlIQ+j2ufrh1J5rvLCGEwVWQVBIfxk/addOpbzkdKWvipnS5Ra/S7GfDX5ZWgWIR
-2OnByICmJZhpsH5B8fj18u/Q9kKpjoqwJp8ZzC+262eGs1HEAoibwy7eNyoTnXIg
-zPSeVN5jOYx0HIdbETcO6ltS/h1zydJJ9vlKCejXFmsmyjAdm4pRfvaNPJJ13K7j
-5k6sxokju9Gg6UY74uzpTZGXmFJ0z0EULEAtOdSgw9qFlyQx24ag73agvq/g7CTu
-5+fKa/mq8ckqv0F5vv+PKCJ6aNgYFFc6xPJb0Ba/8xEuPRXZ9s2kcPKcHLd+A9rm
-kJgfLC6VkYvW36tN/WGvsY4ApJuShtpo8TKEGUmGutPEqtaKo2hTzI27Xh8YpgwZ
-3MVlhDVtRRgapqf9fDCgNQU1HyENxrygK8XSumcPSLnM0HaAxgxxAF80c6Y6q88c
-QHbN2+XjmpUyaLDwxjfpAIbU+pXLljqa+Ebp6UxyQpJTPX71fUQ=
-=AqBd
------END PGP SIGNATURE-----
-
---em3uei6ijrssfsui--
+>          maxItems: 5
+>  
+>        clock-names:
+> -        items:
+> -          - const: sel
+> -          - const: soc-vdec
+> -          - const: soc-lat
+> -          - const: vdec
+> -          - const: top
+> +        minItems: 1
+> +        maxItems: 5
+>  
+>        assigned-clocks:
+>          maxItems: 1
+> @@ -159,6 +156,38 @@ then:
+>    required:
+>      - interrupts
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8192-vcodec-dec
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: sel
+> +            - const: soc-vdec
+> +            - const: soc-lat
+> +            - const: vdec
+> +            - const: top
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8195-vcodec-dec
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: sel
+> +            - const: vdec
+> +            - const: lat
+> +            - const: top
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.18.0
+> 
+> 
