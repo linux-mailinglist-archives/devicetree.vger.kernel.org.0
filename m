@@ -2,262 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E096435F5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 21:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA9E64360C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 21:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbiLEUpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 15:45:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48512 "EHLO
+        id S231736AbiLEUvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 15:51:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbiLEUpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:45:53 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A5611802;
-        Mon,  5 Dec 2022 12:45:51 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id t17so1442799eju.1;
-        Mon, 05 Dec 2022 12:45:51 -0800 (PST)
+        with ESMTP id S230169AbiLEUvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:51:17 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0CC2934A
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 12:51:16 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id f16so3297736ljc.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 12:51:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JdCzDmfj+PMHQDUvK9ErBKQf22vLpZFbnSwddzqkBTo=;
-        b=p9fSY8XETv3RHePrGV3MDO2XyCRE1jd6mL34JSRpdOKhWD3WlJGQjGptXoF8VZuPEq
-         dnbk9/32BH2Dj4nx6d2NcxQQKcggqztzcWAAsAx0ACYdji4tYQC3ZnU4Zvp6sKhenrNA
-         bwZcYvqCt/8i3efoRfdKJVzPoks24Z/07I215moJvpGMJunrovVScmaLw9wke1o1im04
-         4TldQ1LayCkorK/pKXE19/UrLm7N2kuCdy/R+iLLHbgiM1UrdASQBpAYAeLDS2/3i5vK
-         K+ewL+hxFzSnTssJpYRCtjr3srglWfDi8Hnas4gLfFO883RXW5LX60VGGKMRxKcDiQaX
-         1v0g==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z2XpYiD/ntYKWMtGcoP22Vxvmru2pM1Nsi3jqANT0Rk=;
+        b=cOSYWKjXUDbi5y3AIxWi01YF61DZ9ZNKMHn9yOgeHXmrxiv+s3K0CMfKoVSfUt3rjG
+         0AKDtxond5QdIsglUBvFvFHjOjB80Bqhj86a+C74/tRnAF32bc4H0tVSW/C+G4XWtDyO
+         PdooF6HHjlOX6eFwd4dLhkGgL3lDNIY6VhmmNhZDpP7mYuexMNzSnMmAtC4ebn/qjLK4
+         WFqV5FcwvZMjuDJnj6Zw1HPacDdSDCCfB+/ALbU14rmAALSJfdjVBiZ4SVDfUKJd9jRm
+         qG+f94wGkK/2KOc/SyqoEzG/2zt8ZSN/JgexZWos+WoO/YJjj3ss82+DHLsBMtbho7Sd
+         0pzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JdCzDmfj+PMHQDUvK9ErBKQf22vLpZFbnSwddzqkBTo=;
-        b=kW6D7Ksh4usQ1a2IVcfmKRmnSqyhIbYm8x6dEiyGN9iU/F8/AXUGmWMyaeankeuSLS
-         srJeAWVa0krWedZ3cgGc+eHnDR1iaTlopN3QhnTazTVhgrrL0mxzvPGk8fKD5pnAK9gt
-         uQi+knZ5IxfO0JCmT8c4Hxtdxbl1ZKmfQ7OtRsQy/q4QDOhL3rc48YdwVtn7bbmolLpQ
-         jWf/HY8b+4T0jI3Mgvupld/RfFopUd1cTT2njJT8Mq24RAwQ280ypAcTHyo+S3HeqXoB
-         RwfQzChDGpjsz4bxRz5Ye+d9mYf/+QbkGeCIB8bdStEtbcX4APCS+kx7o2o7+v6g2kcP
-         JTKg==
-X-Gm-Message-State: ANoB5pmHjiRp3Yety15SEdhAFTngrwSXZ+5Lp1zK4nAKVWkRsI/4kGrk
-        KMnBCWqBlCvDewxVcuny0o4=
-X-Google-Smtp-Source: AA0mqf7nxYjWF996Pj53wpbOQnisfsFuRhfTWZwFDtA1zE5lRwBI0zRJz72CdbUiwigSZSlh9Gwbhg==
-X-Received: by 2002:a17:907:b014:b0:7b4:86be:f3e3 with SMTP id fu20-20020a170907b01400b007b486bef3e3mr64798905ejc.741.1670273150394;
-        Mon, 05 Dec 2022 12:45:50 -0800 (PST)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id e10-20020a170906314a00b007bfc5cbaee8sm6678374eje.17.2022.12.05.12.45.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 12:45:50 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>
-Subject: Re: [PATCH v2 09/12] riscv: dts: allwinner: Add Dongshan Nezha STU devicetree
-Date:   Mon, 05 Dec 2022 21:45:48 +0100
-Message-ID: <3389289.QJadu78ljV@kista>
-In-Reply-To: <20221125234656.47306-10-samuel@sholland.org>
-References: <20221125234656.47306-1-samuel@sholland.org> <20221125234656.47306-10-samuel@sholland.org>
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z2XpYiD/ntYKWMtGcoP22Vxvmru2pM1Nsi3jqANT0Rk=;
+        b=BhiqA5947CU33JqokG26Yg7kh6BrSIaH6D1RYg+WEjQJdrM09pumN3lYVIxVvhRQ8B
+         aQGvHOyj1SRNq4day5Evf+Y3wtrO1kTY2skUxK1tN/MG9r8j6do66nhOwkI82PY9Uyq0
+         oNkOMdGi6msml37eb6MivVpmPU2pcLH+Qlb+eTUJKKnlqBmP6WoFYOktZ7y7+OuOWz0n
+         7mvhTwajQGieuDL47fh1CzRJcWsefLM+qjThwMLQQmCjvOJQK3Cd6dWJ6gQNFqJBJy+b
+         86yI74LUaGngYxyTUIok8vbg4f86RtE/reS7iBt/OsJuHjeWGInsXG3jCKiYaKqCAb9L
+         7B3w==
+X-Gm-Message-State: ANoB5pmwfYRGqYjJP7FqI9xTqAS2VxnStefmL0s11TTm+V64THOdEX7t
+        LemIc5qOhlpevMzkWfInRp0jDg==
+X-Google-Smtp-Source: AA0mqf7SyCarcsRC8IOaK+qAfXMjpkGjzn1YGRp10LvTsSAbg66dy+LzP+D/fg9rb7Tk/wTKQLbJCQ==
+X-Received: by 2002:a2e:a37c:0:b0:26e:93:980d with SMTP id i28-20020a2ea37c000000b0026e0093980dmr28205439ljn.488.1670273474926;
+        Mon, 05 Dec 2022 12:51:14 -0800 (PST)
+Received: from [127.0.0.1] ([94.25.229.129])
+        by smtp.gmail.com with ESMTPSA id q8-20020a19f208000000b0048b0696d0b1sm2217877lfh.90.2022.12.05.12.51.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Dec 2022 12:51:14 -0800 (PST)
+Date:   Mon, 05 Dec 2022 23:49:08 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        airlied@gmail.com
+CC:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v8_1/5=5D_arm64=3A_dts=3A_qcom=3A_add_data-?= =?US-ASCII?Q?lanes_and_link-freuencies_into_dp=5Fout_endpoint?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <1670267670-15832-2-git-send-email-quic_khsieh@quicinc.com>
+References: <1670267670-15832-1-git-send-email-quic_khsieh@quicinc.com> <1670267670-15832-2-git-send-email-quic_khsieh@quicinc.com>
+Message-ID: <0E711F23-A5C6-4AA1-A4EF-F6097ADA91AE@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Samuel,
-
-Dne sobota, 26. november 2022 ob 00:46:53 CET je Samuel Holland napisal(a):
-> The 100ask Dongshan Nezha STU is a system-on-module that can be used
-> standalone or with a carrier board. The SoM provides gigabit Ethernet,
-> HDMI, a USB peripheral port, and WiFi/Bluetooth via an RTL8723DS chip.
-> 
-> The "DIY" carrier board exposes almost every pin from the D1 SoC to 0.1"
-> headers, but contains no digital circuitry, so it does not have its own
-> devicetree.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> 
-> (no changes since v1)
-> 
->  arch/riscv/boot/dts/allwinner/Makefile        |   1 +
->  .../sun20i-d1-dongshan-nezha-stu.dts          | 118 ++++++++++++++++++
->  2 files changed, 119 insertions(+)
->  create mode 100644
-> arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-> 
-> diff --git a/arch/riscv/boot/dts/allwinner/Makefile
-> b/arch/riscv/boot/dts/allwinner/Makefile index 2ed586fafaea..87f70b1af6b4
-> 100644
-> --- a/arch/riscv/boot/dts/allwinner/Makefile
-> +++ b/arch/riscv/boot/dts/allwinner/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_SUNXI) += sun20i-d1-dongshan-nezha-stu.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun20i-d1-lichee-rv-86-panel-480p.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun20i-d1-lichee-rv-86-panel-720p.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) += sun20i-d1-lichee-rv-dock.dtb
-> diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-> b/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts new file
-> mode 100644
-> index 000000000000..c549a1c5fbf0
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +// Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/dts-v1/;
-> +
-> +#include "sun20i-d1.dtsi"
-> +#include "sun20i-common-regulators.dtsi"
-> +
-> +/ {
-> +	model = "Dongshan Nezha STU";
-> +	compatible = "100ask,dongshan-nezha-stu", "allwinner,sun20i-d1";
-> +
-> +	aliases {
-> +		ethernet0 = &emac;
-> +		mmc0 = &mmc0;
-
-Sorry, I just noticed now, but why is there above alias? It's not sunxi 
-practice to add mmc aliases.
-
-Best regards,
-Jernej
-
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&pio 2 1 GPIO_ACTIVE_HIGH>; /* PC1 
-*/
-> +		};
-> +	};
-> +
-> +	reg_usbvbus: usbvbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usbvbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
-> +		enable-active-high;
-> +		vin-supply = <&reg_vcc>;
-> +	};
-> +
-> +	/*
-> +	 * This regulator is PWM-controlled, but the PWM controller is not
-> +	 * yet supported, so fix the regulator to its default voltage.
-> +	 */
-> +	reg_vdd_cpu: vdd-cpu {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd-cpu";
-> +		regulator-min-microvolt = <1100000>;
-> +		regulator-max-microvolt = <1100000>;
-> +		vin-supply = <&reg_vcc>;
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	cpu-supply = <&reg_vdd_cpu>;
-> +};
-> +
-> +&dcxo {
-> +	clock-frequency = <24000000>;
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&emac {
-> +	pinctrl-0 = <&rgmii_pe_pins>;
-> +	pinctrl-names = "default";
-> +	phy-handle = <&ext_rgmii_phy>;
-> +	phy-mode = "rgmii-id";
-> +	phy-supply = <&reg_vcc_3v3>;
-> +	status = "okay";
-> +};
-> +
-> +&mdio {
-> +	ext_rgmii_phy: ethernet-phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&mmc0 {
-> +	broken-cd;
-> +	bus-width = <4>;
-> +	disable-wp;
-> +	vmmc-supply = <&reg_vcc_3v3>;
-> +	vqmmc-supply = <&reg_vcc_3v3>;
-> +	pinctrl-0 = <&mmc0_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&ohci0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-0 = <&uart0_pb8_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&usb_otg {
-> +	dr_mode = "otg";
-> +	status = "okay";
-> +};
-> +
-> +&usbphy {
-> +	usb0_id_det-gpios = <&pio 3 21 GPIO_ACTIVE_HIGH>; /* PD21 */
-> +	usb0_vbus_det-gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
-> +	usb0_vbus-supply = <&reg_usbvbus>;
-> +	status = "okay";
-> +};
-> --
-> 2.37.4
 
 
+On 5 December 2022 22:14:26 GMT+03:00, Kuogee Hsieh <quic_khsieh@quicinc=
+=2Ecom> wrote:
+>Move data-lanes property from mdss_dp node to dp_out endpoint=2E Also
+>add link-frequencies property into dp_out endpoint as well=2E The last
+>frequency specified at link-frequencies will be the max link rate
+>supported by DP=2E
+>
+>Changes in v5:
+>-- revert changes at sc7180=2Edtsi and sc7280=2Edtsi
+>-- add &dp_out to sc7180-trogdor=2Edtsi and sc7280-herobrine=2Edtsi
+>
+>Changes in v6:
+>-- add data-lanes and link-frequencies to yaml
+>
+>Changes in v7:
+>-- change 160000000 to 1620000000
+>-- separate yaml to different patch
+>
+>Changes in v8:
+>-- correct Bjorn mail address to kernel=2Eorg
+>
+>Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>
+>---
+> arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi   | 6 +++++-
+> arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi | 6 +++++-
+> 2 files changed, 10 insertions(+), 2 deletions(-)
+>
+>diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi b/arch/arm64/=
+boot/dts/qcom/sc7180-trogdor=2Edtsi
+>index eae22e6=2E=2E0ad50e2 100644
+>--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi
+>+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor=2Edtsi
+>@@ -814,7 +814,11 @@ hp_i2c: &i2c9 {
+> 	status =3D "okay";
+> 	pinctrl-names =3D "default";
+> 	pinctrl-0 =3D <&dp_hot_plug_det>;
+>-	data-lanes =3D <0 1>;
+>+};
+>+
+>+&dp_out {
+>+    data-lanes =3D <0  1>;
+>+    link-frequencies =3D /bits/ 64 <162000000 270000000 540000000>;
+
+This property still uses old values, it was not updated to Hz=2E
+
+> };
+>=20
+> &pm6150_adc {
+>diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi b/arch/arm6=
+4/boot/dts/qcom/sc7280-herobrine=2Edtsi
+>index c11e371=2E=2E3c7a9d8 100644
+>--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi
+>+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine=2Edtsi
+>@@ -442,7 +442,11 @@ ap_i2c_tpm: &i2c14 {
+> 	status =3D "okay";
+> 	pinctrl-names =3D "default";
+> 	pinctrl-0 =3D <&dp_hot_plug_det>;
+>-	data-lanes =3D <0 1>;
+>+};
+>+
+>+&dp_out {
+>+	data-lanes =3D <0  1>;
+>+	link-frequencies =3D /bits/ 64 <1620000000 2700000000 5400000000 810000=
+0000>;
+> };
+>=20
+> &mdss_mdp {
+
+--=20
+With best wishes
+Dmitry
