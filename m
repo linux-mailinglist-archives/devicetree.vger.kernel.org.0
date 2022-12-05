@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85503642CBA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D2C642CC1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbiLEQZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:25:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49716 "EHLO
+        id S232033AbiLEQ00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:26:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiLEQZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:25:11 -0500
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E151DA50;
-        Mon,  5 Dec 2022 08:25:10 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1447c7aa004so5898368fac.11;
-        Mon, 05 Dec 2022 08:25:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nazdpu5NA/yzv3brewocclL6XUkEccB3TGTof1h3fCI=;
-        b=pqr6TerEjhxOsLOA6E16VhQsdWP6jIe9KPle/Or1vvMlaSdGtFJHYYWrwnIp0gG9Jy
-         NFN5G2Z21slpsbclrh2vL3AD29T1qHrHDitIL7M8/V63vDRBEwCHnz3sME7H91Hhd9HJ
-         vNKChNEZY9aVQgWq/uxBNGCKaKyEgcthb7+Li9imRUD3icSA2ngJZgqHb+dyGfobNjE8
-         kZ5pWMgo1+UANmh8nn6pcIgnqMwYwyn+3h1salcQxSbHduQ3lHa+HJotMwAchKNJ4eRd
-         SV0UeZWdydFKc834sgPi8DX6j7C4FmVQltsHBIgG6DOeuNjRxEMoPdDFkXMwqL5Itt68
-         NfUw==
-X-Gm-Message-State: ANoB5plHgbzfr5ceDmB0CvHGrPvNkNr7PxeTUm77z7ODFwV827iocC03
-        PDJHLmD5mOforLDP7gFNfA==
-X-Google-Smtp-Source: AA0mqf6b9a/2JVjrHrs9gtn3XTd/wBdw4WAOH5TxXmqIUyBPNjYrVJzgOxwTiw3L4gZ04JUs5qgfpg==
-X-Received: by 2002:a05:6871:60d:b0:144:514c:434d with SMTP id w13-20020a056871060d00b00144514c434dmr6527676oan.50.1670257509908;
-        Mon, 05 Dec 2022 08:25:09 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c14-20020a9d784e000000b0066e83a74b99sm5026643otm.35.2022.12.05.08.25.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 08:25:09 -0800 (PST)
-Received: (nullmailer pid 2023663 invoked by uid 1000);
-        Mon, 05 Dec 2022 16:25:08 -0000
-Date:   Mon, 5 Dec 2022 10:25:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
- more MT25QU parts
-Message-ID: <20221205162508.GA2012644-robh@kernel.org>
-References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S231722AbiLEQ0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:26:23 -0500
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2301E3DE
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 08:26:20 -0800 (PST)
+X-KPN-MessageId: 8bb85bc4-74b9-11ed-8ce8-005056ab378f
+Received: from smtp.kpnmail.nl (unknown [10.31.155.39])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 8bb85bc4-74b9-11ed-8ce8-005056ab378f;
+        Mon, 05 Dec 2022 17:26:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=CfEttA1FTi4AQiwQc2S061M8eH1bU8ujIZnK8AP1oeQ=;
+        b=tuxrP4iDj3gFH2k+uiOY5AfY+VDm6lVhO28bzix8YLolw2WAb9dOlUjt6DU1RYah/hqPen25aYdBj
+         Lzxz6CzqzzxZZ1ADc1Wfswn3J3cI3A1zYphYND/h+RB5++kN0VXm4o7yMIaChUXEWwsE26bXpgVd2d
+         Gx0QhmtFMTh9HEiqQ51WT8cqWmow/+zkN5jFOIBfMmWjay79ZStZD0jO3Now+514+yuc0CUotJU0J8
+         rKsRltX3NP6CSHdR2UsmT8jiZLX/kc6xgjj5ph8F46lHvlW6Gt9QNIoRPObzd+0r/uIp+8XBTHCiAm
+         A6uTNRabcexvUPTUsus1Q3wy+CQihyQ==
+X-KPN-MID: 33|/HodZ7OyzfPhmz8Wusw/hvCrbfwF8XAK2F6SsbeLUeM5/1JFyfL42Q6rfOIUZT5
+ vs4/subOAw9WbxRrOMNUpjys7KE1IU/78c9NChulDz6k=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|HlvWMV6eR643KdYhfvNggMVMrOq6Fo+jZ0b/IE5gCpz70CJjmaqY8DBfnSwYzJL
+ Vv4nF2ndQQ97M5SSCHFJAHA==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 8aa4c61b-74b9-11ed-b8b1-005056ab7447;
+        Mon, 05 Dec 2022 17:26:16 +0100 (CET)
+Date:   Mon, 05 Dec 2022 17:26:16 +0100
+Message-Id: <87tu293jh3.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     povik+lin@cutebit.org, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        devicetree@vger.kernel.org, asahi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, marcan@marcan.st
+In-Reply-To: <20221205100211.3155-1-marcan@marcan.st> (message from Hector
+        Martin on Mon, 5 Dec 2022 19:02:11 +0900)
+Subject: Re: [PATCH] arm64: dts: apple: Rename dart-sio* to sio-dart*
+References: <20221205100211.3155-1-marcan@marcan.st>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 02:37:58PM +0100, Geert Uytterhoeven wrote:
-> Document support for the Micron MT25QU256A and MT25QU512A Serial NOR
-> FLASHes.
+> From: Hector Martin <marcan@marcan.st>
+> Date: Mon,  5 Dec 2022 19:02:11 +0900
 > 
-> Merge the new entries with the existing entry for MT25QU02G.
+> All the other DARTs are named foo-dart, so let's keep things consistent.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> mt25qu512a is already in active use, causing "make dtbs_check" errors.
-> mt25qu256a is supported by the Linux spi-nor driver, but there are no
-> upstream users yet.
-> ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index 6cc491083650a0f9..92f65f682059a6ea 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - items:
->            - pattern: "^((((micron|spansion|st),)?\
->                (m25p(40|80|16|32|64|128)|\
-> +              mt25qu(02g|256a|512a)|\
+> Fixes: 51979fbb7fb8 ("arm64: dts: apple: t600x: Add MCA and its support")
+> Fixes: 8a3df85ad87d ("arm64: dts: apple: t8103: Add MCA and its support")
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 
-Let's not add new cases where the vendor is optional.
+Consistency is good!
 
->                n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
->                atmel,at25df(321a|641|081a)|\
->                everspin,mr25h(10|40|128|256)|\
-> @@ -34,7 +35,6 @@ properties:
->        - items:
->            - enum:
->                - issi,is25lp016d
-> -              - micron,mt25qu02g
->                - mxicy,mx25r1635f
->                - mxicy,mx25u6435f
->                - mxicy,mx25v8035f
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+
+> ---
+>  arch/arm64/boot/dts/apple/t600x-die0.dtsi | 6 +++---
+>  arch/arm64/boot/dts/apple/t8103.dtsi      | 4 ++--
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/apple/t600x-die0.dtsi b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
+> index 0b8958a8db77..e2f972c2c147 100644
+> --- a/arch/arm64/boot/dts/apple/t600x-die0.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t600x-die0.dtsi
+> @@ -53,7 +53,7 @@ wdt: watchdog@2922b0000 {
+>  		interrupts = <AIC_IRQ 0 631 IRQ_TYPE_LEVEL_HIGH>;
+>  	};
+>  
+> -	dart_sio_0: iommu@39b004000 {
+> +	sio_dart_0: iommu@39b004000 {
+>  		compatible = "apple,t6000-dart";
+>  		reg = <0x3 0x9b004000 0x0 0x4000>;
+>  		interrupt-parent = <&aic>;
+> @@ -62,7 +62,7 @@ dart_sio_0: iommu@39b004000 {
+>  		power-domains = <&ps_sio_cpu>;
+>  	};
+>  
+> -	dart_sio_1: iommu@39b008000 {
+> +	sio_dart_1: iommu@39b008000 {
+>  		compatible = "apple,t6000-dart";
+>  		reg = <0x3 0x9b008000 0x0 0x8000>;
+>  		interrupt-parent = <&aic>;
+> @@ -179,7 +179,7 @@ admac: dma-controller@39b400000 {
+>  				      <&aic AIC_IRQ 0 1118 IRQ_TYPE_LEVEL_HIGH>,
+>  				      <0>,
+>  				      <0>;
+> -		iommus = <&dart_sio_0 2>, <&dart_sio_1 2>;
+> +		iommus = <&sio_dart_0 2>, <&sio_dart_1 2>;
+>  		power-domains = <&ps_sio_adma>;
+>  		resets = <&ps_audio_p>;
+>  	};
+> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> index 6f5a2334e5b1..1ea760ef2c25 100644
+> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> @@ -318,7 +318,7 @@ cpufreq_p: performance-controller@211e20000 {
+>  			#performance-domain-cells = <0>;
+>  		};
+>  
+> -		dart_sio: iommu@235004000 {
+> +		sio_dart: iommu@235004000 {
+>  			compatible = "apple,t8103-dart";
+>  			reg = <0x2 0x35004000 0x0 0x4000>;
+>  			interrupt-parent = <&aic>;
+> @@ -431,7 +431,7 @@ admac: dma-controller@238200000 {
+>  					      <0>,
+>  					      <0>;
+>  			#dma-cells = <1>;
+> -			iommus = <&dart_sio 2>;
+> +			iommus = <&sio_dart 2>;
+>  			power-domains = <&ps_sio_adma>;
+>  			resets = <&ps_audio_p>;
+>  		};
 > -- 
-> 2.25.1
+> 2.35.1
+> 
 > 
 > 
