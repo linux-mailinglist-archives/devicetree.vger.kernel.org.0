@@ -2,147 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B93EF642F8D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:02:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E64642F91
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:07:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiLESCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:02:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51756 "EHLO
+        id S231823AbiLESHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:07:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbiLESBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:01:52 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243BE1B7B6
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 10:01:48 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id q15so10949562pja.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 10:01:48 -0800 (PST)
+        with ESMTP id S231425AbiLESGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:06:34 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620581FF86
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 10:06:33 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id d6so19832530lfs.10
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 10:06:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdakVwIH2qEMG6ouc1uCW6UuBCDdUN/ThzZoNQVFobY=;
-        b=rq/uq9EaHmn1xIgNusX9BNWdPkCDDpZjKZCJUVeQPcCwFNWl+LkH+3nbbCW+OfvqV8
-         GO0W+om4KD3p6kte7RYKnGo0zs8HMSbkh4VVy0TJZlD2pC2YGx7175VBWCNLcKKxvBUh
-         +/w5Q6K7rTMlBA+kgBprPSgfSlDobjze3mzgis5oNX1cV5Syrp1VKneJcj3D0uwXUJr+
-         JcDO5Qztck7ESpwtXTsXq9OgZ9g7LaAwvKRZzJODL3xaWswwoNN5ast5+4QK9O0/EoJ6
-         NEtKShRGo8jAtksn7vGGEg2rUmgqAIaOYs518aXmj9BfMD0nOFLN36i0l4tBYJL3H1Md
-         SiYg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vu0CtkB3guUPfMS7CpRIQ8Dt+ybBzQKNPH967OkF8/Y=;
+        b=g4pIHPDZX+J+V9jbIhleYoPH4Ky6J49WImIDyRq+xZGDBfM1kXOdGOH+nF8mvI3dKw
+         VrQ8/1Ozz6coJQZ/Hlhc6lls89bIXCW7UpAFco/beUfUmvgSkfCyudHrogv0zUmUvO56
+         O8Kbeeuk+PqOUPqQEYiSg2pvDMn9J/MiHpZj20Sc6NUysfGzCcVGDnUN3ouarV3kxjyS
+         0QuXBaREDv5LWVp3MLPwbZlXuT4hD/Kz7RSkavWjSBQbD/3Ft5Wnfme2N15xwy2DpaVy
+         ehK2F+xBNCyyy48eQHgXYsv1L+ReAxO+Ebu6TIQuLeZZJBZWicqW1HbqBOwPgyHw10J+
+         INOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cdakVwIH2qEMG6ouc1uCW6UuBCDdUN/ThzZoNQVFobY=;
-        b=446BCTxK2srJJkM1BcxklhynkJ7U7R4h1PLO8JviYv2Q4+muJ9PjV/gSP+UWFzRWPJ
-         SlXb1ijUl8zjPhCGQER8GYovwD6H2H/gZmvwpKjgTzDLBWZ8eLCcPZxw4xE7OuRor4yv
-         ktYNdVfXQrFGKYJC3heFm+Bce623WjgXnywEvtMkOid4kxU+VFLHLjyr4EY1BmpFI38Y
-         nXj9EPhe7VtdCzUTAk7BsbMwUvw5LtVECGRzhfoG0FT6S/e1BNCWbjzONsnAZsthffR/
-         lCiC8RTMlRy6lppRJA8t/Te8JGgY3msW6ySyPlhys5ps4ijoT4UhTsX/5WWvpaUyxtV+
-         52Kg==
-X-Gm-Message-State: ANoB5plNNmOEBAKhKowOECGpsUx7+RIx8z7L4JcR81mAUJ0PQ4LE5LwV
-        b8IfvkuOtohutCerfhFab8Pd5T0+KNaCBSwB+oF1mw==
-X-Google-Smtp-Source: AA0mqf5PHx3namgvOla/pbcB9sVA+cD/nu9Re2WaeahOZ5Oiv0nfjt78xjFkOy0sYt9xne1bWaonfRuy0P5GCAbVJG8=
-X-Received: by 2002:a17:902:ccd1:b0:189:2370:7f6a with SMTP id
- z17-20020a170902ccd100b0018923707f6amr72328358ple.158.1670263307542; Mon, 05
- Dec 2022 10:01:47 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Vu0CtkB3guUPfMS7CpRIQ8Dt+ybBzQKNPH967OkF8/Y=;
+        b=jEZ+auyK1RNsUvLP3Ll3IzfUV9FPL9VHc+Ifduwq/yQtOTag0eDX+ysUUxCCuDt5pG
+         oCnSOCTeHcHVegZW40FD/i1MXBUNNT9XGmp/fShLh1MldHm+m9rRK2nmGiqa5o4MbyUl
+         0cI0j+KbUnzhWnkWq1EQQYfXdmlvU3v1o6IYb0B/SRmNC2VGAfqY0RF25aXx4mrVkF09
+         U+Q1pEIPRJleEHQK4rZusDs3ESeDzpuU+i1yojhiKbnSTBvcS9Uvwd+u5KtuE8y3dtum
+         gmlzcnwbvqZoY++9PS/FLDBM3JYt9leVeY2SHOib4FDHjRSitFQ8uloA1ALndGedWdm9
+         RgXw==
+X-Gm-Message-State: ANoB5pnBslSVZO8vHZ7LAzSR6ABvqPh7wXZckHQKUj2uDZ992yVDTt8d
+        fW79O6PN0dHU3fTtXAkHn9YGmg==
+X-Google-Smtp-Source: AA0mqf7WZnJMfbF8n+RBXU4uu5pM8fReKBOlV5mHLtDEaIRnYn8/ZKFur+vdSSzkmPlELLWK+afIfg==
+X-Received: by 2002:a19:674a:0:b0:4b1:3931:af with SMTP id e10-20020a19674a000000b004b1393100afmr25019742lfj.394.1670263591688;
+        Mon, 05 Dec 2022 10:06:31 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id o18-20020a05651205d200b004b5323639d8sm2179775lfo.155.2022.12.05.10.06.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 10:06:30 -0800 (PST)
+Message-ID: <2761807c-b4b1-9c8d-50e3-efe8258ba610@linaro.org>
+Date:   Mon, 5 Dec 2022 19:06:28 +0100
 MIME-Version: 1.0
-References: <20221201003109.448693-1-tharvey@gateworks.com>
- <CAOMZO5Ba6Kmt-a7FMxj-gN5rEyMJJ=9CFRkS0vQkPf_-72rR2w@mail.gmail.com>
- <Y4n41iL6cG9FsndI@lunn.ch> <CAJ+vNU0kAoVFFmoFfiOhtErxqAkB3MmP3Q2dNCZP4xm_AaWhcA@mail.gmail.com>
- <Y4o2TFGH6DK3tRcH@lunn.ch> <CAJ+vNU1NDggHF4Wn_kg120uPZ=LPCQf2fZ+x6ii6tEMf7DzxFQ@mail.gmail.com>
- <20221205171045.m5ayo3loh32cdgwo@skbuf>
-In-Reply-To: <20221205171045.m5ayo3loh32cdgwo@skbuf>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 5 Dec 2022 10:01:35 -0800
-Message-ID: <CAJ+vNU123JTbk_t5Eto4M-Wrj6o1fo=8z8qdqf98_rDO=w2yOA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Cc:     Fabio Estevam <festevam@gmail.com>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.5.0
+Subject: Re: [PATCH] arm64: dts: qcom: sa8295p-adp: Add RTC node
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221205174309.16733-1-quic_bjorande@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221205174309.16733-1-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 5, 2022 at 9:10 AM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
->
-> Hi Tim,
->
-> On Fri, Dec 02, 2022 at 02:29:20PM -0800, Tim Harvey wrote:
-> > When I add the phy-mode/phy-handle props with this patch I get the
-> > following failure:
-> > mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): validation of internal with support 00000000,00000000,000062ff and advertisement 00000000,00000000,000062ff failed: -EINVAL
-> > mv88e6085 2188000.ethernet-1:00 lan4 (uninitialized): failed to connect to PHY: -EINVAL
-> >
-> > I've run into this message before and had a hard time understanding
-> > the issue from the message - it seems to indicate the phy status
-> > matches advertisement but that its an invalid mode?
->
-> Does this patch help?
->
-> From 6bd79d9b9994fcb7762301fe297f963c272d9210 Mon Sep 17 00:00:00 2001
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Date: Mon, 5 Dec 2022 19:05:24 +0200
-> Subject: [PATCH] net: dsa: mv88e6xxx: accept phy-mode = "internal" for
->  internal PHY ports
->
-> The ethernet-controller dt-schema, mostly evolved by Linux, has the
-> "internal" PHY mode for connections between a MAC and internal PHY.
->
-> U-Boot may provide device tree blobs where this phy-mode is specified,
-> so make the Linux driver accept them.
->
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+
+
+On 05/12/2022 18:43, Bjorn Andersson wrote:
+> The first PM8540 PMIC has an available RTC block, describe this in the
+> SA8295P ADP. Mark it as wakeup-source to allow waking the system from
+> sleep.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 > ---
->  drivers/net/dsa/mv88e6xxx/chip.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-> index ccfa4751d3b7..ba4fff8690aa 100644
-> --- a/drivers/net/dsa/mv88e6xxx/chip.c
-> +++ b/drivers/net/dsa/mv88e6xxx/chip.c
-> @@ -833,10 +833,13 @@ static void mv88e6xxx_get_caps(struct dsa_switch *ds, int port,
->
->         chip->info->ops->phylink_get_caps(chip, port, config);
->
-> -       /* Internal ports need GMII for PHYLIB */
-> -       if (mv88e6xxx_phy_is_internal(ds, port))
-> +       if (mv88e6xxx_phy_is_internal(ds, port)) {
-> +               __set_bit(PHY_INTERFACE_MODE_INTERNAL,
-> +                         config->supported_interfaces);
-> +               /* Internal ports with no phy-mode need GMII for PHYLIB */
->                 __set_bit(PHY_INTERFACE_MODE_GMII,
->                           config->supported_interfaces);
-> +       }
->  }
->
->  static void mv88e6xxx_mac_config(struct dsa_switch *ds, int port,
-> --
-> 2.34.1
->
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Vladimir,
-
-Yes, this patch resolves the issue. Enabling CONFIG_MARVELL_PHY
-without this patch still shows the issue.
-
-Thanks - please cc me on that and I'll respond (unless you want me to send it).
-
-I'll submit a v2 of my dt patch with fec phy-mode = 'rgmii' after this
-patch lands.
-
-Best Regards,
-
-Tim
+Konrad
+>   arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index d55c8c5304cc..d2eb3d870f5a 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -510,6 +510,14 @@ pm8450a: pmic@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> +		rtc@6000 {
+> +			compatible = "qcom,pm8941-rtc";
+> +			reg = <0x6000>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
+> +			wakeup-source;
+> +		};
+> +
+>   		pm8450a_gpios: gpio@c000 {
+>   			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
+>   			reg = <0xc000>;
