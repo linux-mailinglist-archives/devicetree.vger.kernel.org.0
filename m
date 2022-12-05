@@ -2,329 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE346426B0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 11:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 147E76426CC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 11:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbiLEKaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 05:30:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33806 "EHLO
+        id S231274AbiLEKhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 05:37:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbiLEKaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 05:30:11 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA29B7C5;
-        Mon,  5 Dec 2022 02:30:07 -0800 (PST)
+        with ESMTP id S231776AbiLEKhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 05:37:02 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C7A14D29;
+        Mon,  5 Dec 2022 02:37:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1670236207; x=1701772207;
+  t=1670236622; x=1701772622;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=bupgB8+dQa6kyDr72Pv4zxzXEVg6/MGHJZw4SDOkbhY=;
-  b=wqRALHLVkTkkX0QJHa54BWYnp/RN/OILQfx/xaX2it1Bot/N+YOYRn4D
-   Dl6MwGodMmzsUZYVzQyw+TJ3dLGdfy0/VCwtfa94QK2H6wdzbgqAs85bU
-   IG+rRTEKc9xa/bq6CDtyWgAHAJdKilM626QGSR4mSQEpq6ISIYCDYTSWV
-   Tn7ffn5CvwvyCfzipvHmbHuK7D3bMSVE6mXGiyU4YtjcxwYaiyeSCFwiJ
-   LW45ae5VPZqUIir8edA0LjMhhOWVvrCquQv0yjOiYI1kDkQLxP975gY8q
-   VgUyX0s5CCPepW38NwWKAyXMevqXxdsGwynbuPQMYneTRnikF7aNc4YFH
-   w==;
+  bh=jYfx+B+UAYkydHRZ5isoOVyDSGssXGO6Y1vwW6SpTNk=;
+  b=Nn+2nSFPnrJ2h4fyHPtf3i65vm835co49Ec5zMgba88JQODBSTsKZZoI
+   qrCfH9OJ/qFgBCUJlxDmb227itwn5Vtj/B2yeD6Jf4n1pyIDcDOy7LSI7
+   axBx2EraM7gMcM8WCqhVqyT8AMBN2PDB1y6YfSV20UXAYT0ShAZOHiEuE
+   CNypLy/8P1yZh1dY6lW5sSWcvMGqI6A+YdwAGkN4OPds+gLvMcTXEHeUG
+   VmCx5XEoJbpo3f72+DAOaqJCwVv5KOrTiCe+N90KY92oWQx3l73W1NgDG
+   /AjZBSzfEsqg54iOpNiJ9REVtHeWmJApiJKfAX0awWWazJh3zg920VFv4
+   g==;
 X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
-   d="asc'?scan'208";a="190034863"
+   d="asc'?scan'208";a="191713849"
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Dec 2022 03:30:06 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Dec 2022 03:37:01 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 5 Dec 2022 03:30:05 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ 15.1.2507.12; Mon, 5 Dec 2022 03:37:00 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Mon, 5 Dec 2022 03:30:03 -0700
-Date:   Mon, 5 Dec 2022 10:29:43 +0000
+ Transport; Mon, 5 Dec 2022 03:36:58 -0700
+Date:   Mon, 5 Dec 2022 10:36:39 +0000
 From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Icenowy Zheng <uwu@icenowy.me>,
-        Samuel Holland <samuel@sholland.org>,
-        Jisheng Zhang <jszhang@kernel.org>
-CC:     Samuel Holland <samuel@sholland.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
+To:     Icenowy Zheng <uwu@icenowy.me>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [PATCH v2 6/9] riscv: dts: bouffalolab: add the bl808 SoC base
- device tree
-Message-ID: <Y43IF/MpM9kX2gD6@wendy>
-References: <20221127132448.4034-1-jszhang@kernel.org>
- <20221127132448.4034-7-jszhang@kernel.org>
- <d4d8998f-288c-3ff6-141d-02814f8e35d0@sholland.org>
- <04abc8d6d8a9200e593f3f667a31ea0d3674c64b.camel@icenowy.me>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible for
+ OpenC906
+Message-ID: <Y43Jt3YOSbFyh954@wendy>
+References: <20221121041757.418645-1-uwu@icenowy.me>
+ <20221121041757.418645-3-uwu@icenowy.me>
+ <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
+ <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
+ <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
+ <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+ <20221130181330.GA2544489-robh@kernel.org>
+ <Y4j+Gpptk3NAFBNV@spud>
+ <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="U2PfE6iLzEQxY5EZ"
+        protocol="application/pgp-signature"; boundary="CSc7m2POAGcYksfe"
 Content-Disposition: inline
-In-Reply-To: <04abc8d6d8a9200e593f3f667a31ea0d3674c64b.camel@icenowy.me>
+In-Reply-To: <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---U2PfE6iLzEQxY5EZ
+--CSc7m2POAGcYksfe
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 05, 2022 at 04:17:59PM +0800, Icenowy Zheng wrote:
-> =E5=9C=A8 2022-11-30=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 01:21 -0600=EF=
-=BC=8CSamuel Holland=E5=86=99=E9=81=93=EF=BC=9A
-> > On 11/27/22 07:24, Jisheng Zhang wrote:
-> > > Add a baisc dtsi for the bouffalolab bl808 SoC.
+On Fri, Dec 02, 2022 at 02:12:54PM +0800, Icenowy Zheng wrote:
+> =E5=9C=A8 2022-12-01=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:18 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> > On Wed, Nov 30, 2022 at 12:13:30PM -0600, Rob Herring wrote:
+> > > On Tue, Nov 22, 2022 at 03:41:27PM +0800, Icenowy Zheng wrote:
+> > > >=20
+> > > >=20
+> > > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=
+=E5=8D=883:35:48, Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski@linaro.org> =E5=86=99=E5=88=B0:
+> > > > > On 22/11/2022 08:18, Icenowy Zheng wrote:
+> > > > > > =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:06 =
++0100=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > > > On 21/11/2022 05:17, Icenowy Zheng wrote:
+> > > > > > > > T-Head OpenC906 is a open-source-licensed fixed-
+> > > > > > > > configuration of
+> > > > > > > > C906,
+> > > > > > > > which is now public and able to be integrated.
+> > > > > > > >=20
+> > > > > > > > Add a compatible for the CLINT shipped as part of
+> > > > > > > > OpenC906, which
+> > > > > > > > should
+> > > > > > > > just be ordinary C9xx CLINT.
+> > > > > > > >=20
+> > > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > > ---
+> > > > > > > > =C2=A0Documentation/devicetree/bindings/timer/sifive,clint.=
+yam
+> > > > > > > > l | 1 +
+> > > > > > > > =C2=A01 file changed, 1 insertion(+)
+> > > > > > > >=20
+> > > > > > > > diff --git
+> > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > > ml
+> > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > > ml
+> > > > > > > > index aada6957216c..86703e995e31 100644
+> > > > > > > > ---
+> > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > > ml
+> > > > > > > > +++
+> > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clint.ya
+> > > > > > > > ml
+> > > > > > > > @@ -35,6 +35,7 @@ properties:
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 - const: sifive,clint0
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 - enum:
+> > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 - thead,openc906-clint
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
+> > > > > > >=20
+> > > > > > > Add entries sorted alphabetically. This should be squashed
+> > > > > > > with
+> > > > > > > previous
+> > > > > > > patch.
+> > > > > >=20
+> > > > > > I make it a seperated patch because I think it's a
+> > > > > > questionable
+> > > > > > approach.
+> > > > > >=20
+> > > > > > If you think it's okay, I will just squash it and put it as
+> > > > > > the second
+> > > > > > patch in the next iteration, with adding openc906-plic as the
+> > > > > > first
+> > > > > > one.
+> > > > >=20
+> > > > > What is a questionable approach? Why commit msg is not saying
+> > > > > this?
+> > > >=20
+> > > > Ah I mentioned it in the cover letter. The problem is just I
+> > > > doubt whether
+> > > > binding strings for single SoCs are necessary.
 > > >=20
-> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > > ---
-> > > =C2=A0arch/riscv/boot/dts/bouffalolab/bl808.dtsi | 74
-> > > ++++++++++++++++++++++
-> > > =C2=A01 file changed, 74 insertions(+)
-> > > =C2=A0create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+> > > They are.
 > > >=20
-> > > diff --git a/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> > > b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> > > new file mode 100644
-> > > index 000000000000..f4b170ccc32e
-> > > --- /dev/null
-> > > +++ b/arch/riscv/boot/dts/bouffalolab/bl808.dtsi
-> > > @@ -0,0 +1,74 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > > +/*
-> > > + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> > > + */
-> > > +
-> > > +#include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +/ {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "bouffalola=
-b,bl808";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <1>;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cpus {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0timebase-frequency =3D <1000000>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0cpu0: cpu@0 {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0com=
-patible =3D "thead,c906", "riscv";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dev=
-ice_type =3D "cpu";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg=
- =3D <0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
-ache-block-size =3D <64>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
-ache-sets =3D <256>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0d-c=
-ache-size =3D <32768>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
-ache-block-size =3D <64>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
-ache-sets =3D <128>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i-c=
-ache-size =3D <32768>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmu=
--type =3D "riscv,sv39";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ris=
-cv,isa =3D "rv64imafdc";
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cpu=
-0_intc: interrupt-controller {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "riscv,cpu-intc=
-";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0interrupt-controller;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#interrupt-cells =3D <1>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0xtal: xtal-clk {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "fixed-clock";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0#clock-cells =3D <0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0/* This value must be overridden by the board */
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0clock-frequency =3D <0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0soc {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "simple-bus";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0ranges;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&plic>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0dma-noncoherent;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <1>;
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0uart0: serial@30002000 {
+> > > Unless all the quirks/bugs/features are somehow guaranteed to be
+> > > exactly=20
+> > > the same as other SoCs sharing the same compatible string, or there
+> > > is=20
+> > > another mechanism to identify the exact version (e.g. a version=20
+> > > register).
 > >=20
-> > It's unfortunate that the SDK/documentation calls this peripheral
-> > both
-> > UART0 and UART3. I don't know if we can/should put the "M0" and "D0"
-> > bus
-> > peripherals in the same DT; it seems like most of the "M0"
-> > peripherals
-> > are not accessible from the C906. But if we did, this would conflict
-> > with the other UART0.
+> > Icenowy,
+> >=20
+> > Having thought about this a little - are we not *more* likely to see
+> > bug/quirk disparity between implementations of the OpenC906 stuff by
+> > the very nature of being an open-source IP?
 >=20
-> They're accessible but their interrupts are not, and I think this is
-> called d0_uart or uart3, but not uart0 at all.
+> It's an open-source edition of a specific version of the commercial IP,
+> a fixed configuration.
 >=20
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0com=
-patible =3D "bouffalolab,bl808-uart";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg=
- =3D <0x30002000 0x1000>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int=
-errupts =3D <20 IRQ_TYPE_LEVEL_HIGH>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clo=
-cks =3D <&xtal>;
-> >=20
-> > There's a clock controller with a mux and a gate between the crystal
-> > and the UART. I'm not sure what the policy is about adding "fake"
-> > suppliers before the real supplier has a binding defined.
-> >=20
-> > Unfortunately, Bouffalolab threw everything and the kitchen sink into
-> > the GLB register space, so that complicates defining the binding for
-> > the clock/reset controller part.
+> In addition, maybe we can just retrieve the version infomation via a T-
+> Head custom CPU configuration register, mcpuid. Despite the
+> implementation of this register is weird -- it contains 7 different
+> read-only values, with the most significant nibble behaving as an
+> index.
 
-I think it depends on how backwards/forwards compatible it's going to
-be? If new kernel + old DT works then that's all that's "required",
-right? Old kernel + new DT isn't going to work, but that's not required
-AFAIU.
+You lot all know the situation here a lot more than I do...
+I don't think "letting" people use the bare "thead,c900-foo" makes much
+sense as it gives us no chance to deal with quirks down the line.
+I don't think that using "thead,openc906-clint", "thead,c900-clint"
+makes all that much sense either, in case someone does something wacky
+with the open-source version of the core.
 
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sta=
-tus =3D "disabled";
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0plic: interrupt-controller@e0000000 {
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0com=
-patible =3D "thead,c900-plic";
->=20
-> Using a single c900-plic here needs more discussion, I think.
+That leaves us with either:
+"vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
+or:
+"vendor,soc-clint", "thead,c900-clint"
+right?
 
-Yah. Per the discussion on [1], I think I'd rather we avoided the single
-c900-plic. Either a SoC-specific value, or "something" involving the
-"openplic" naming is needed here.
+The first one seems like possibly the better option as you'd kinda
+expect that, in a perfect word, all of the open-source IP
+implementations would share quirks etc?
 
 Thanks,
 Conor.
 
-1 - https://lore.kernel.org/linux-riscv/20221121041757.418645-3-uwu@icenowy=
-=2Eme/
 
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg=
- =3D <0xe0000000 0x4000000>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int=
-errupts-extended =3D <&cpu0_intc
-> > > 0xffffffff>,
-> >=20
-> > The C906 PLIC has an M-mode context, so 0xffffffff is not correct.
-> > This
-> > should reference the M-mode external interrupt.
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <&cpu0_intc 9>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int=
-errupt-controller;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#ad=
-dress-cells =3D <0>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#in=
-terrupt-cells =3D <2>;
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ris=
-cv,ndev =3D <64>;
-> >=20
-> > The SDK/documentation lists IRQ numbers up to BL808_IRQ_PDS =3D=3D 82, =
-so
-> > this value should be at least that.
-> >=20
-> > Regards,
-> > Samuel
-> >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > > +};
-
-
---U2PfE6iLzEQxY5EZ
+--CSc7m2POAGcYksfe
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY43IFwAKCRB4tDGHoIJi
-0jHqAP9sHKFru08Vy/LyY7BmPVOf/Q2x6tbCB1xx6sCi1t5fYQEAmj/nvnnKvgiu
-BImLWQ5XZFH6PkXyQU9IeMGGHtaV/Qs=
-=0waD
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY43JtwAKCRB4tDGHoIJi
+0toiAP0Wp6WtOkNedxf/lHQRpp41vBitePX07cxy201boMcEOAD/Wp9iYknpe+Ir
+SYzdybJGmgh0saRrntCdz76LUhf4vAw=
+=Nmh2
 -----END PGP SIGNATURE-----
 
---U2PfE6iLzEQxY5EZ--
+--CSc7m2POAGcYksfe--
