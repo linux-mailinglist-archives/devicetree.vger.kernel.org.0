@@ -2,83 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB509642DDC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2929642E04
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230293AbiLEQvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:51:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46762 "EHLO
+        id S229938AbiLEQ4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:56:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232656AbiLEQu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:50:57 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D20F0CE3B
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 08:49:57 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id z92so16675115ede.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 08:49:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OmbRhFoEX+2zLzyBtDeN3v1+jbWEErrwHpEUGgptp/s=;
-        b=AKa7bBrXUFLEo7+yTlrl43wgFvRNWWkV/Oj65/9/+1YnvHZTc+WJ0k2vMjmgRSzL8/
-         mA5bGTfRdoJpS+SKKk5AKd9GrO4IOASpNnpk8E5/plwvWjdGvTQvkFf5PWIy7K6AXDvh
-         +XY5UHN099TZISLy+svWHn9s15kI2+kVsmg9qYt5plmPFTM2ngb2uzrMuSMYGOL7kNcG
-         BNc3u89omhfkSToSE8ZgbSvmJY1cnch4+prEHR80dzCZMBxhADoJPAyXDpwZJ8Y1Fn6w
-         en7FcksBtb8w5kKXN+jIsD6JpsR+zasnPe52nZh5rQPH4haozYxV9oruTF19X/zpUvJS
-         03EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OmbRhFoEX+2zLzyBtDeN3v1+jbWEErrwHpEUGgptp/s=;
-        b=rE1WrXx0WyDUGt3jIMzyiNLRXKgNo1Xa4yo19hKsT/0F3ZhdbSi6xmAdU+sxujOSu9
-         wontHexK0me2OsUCPCUxloiIFZfhUHf8t+df3WmshDCPUL7O0N6CTkKbihJ+IV+ppSM7
-         zolQj7I9IL5XzmDNUqoeGDU/W284ixdLxtpF6Ge1GRAqnRxMzh2MBLslepKW+C43/OYC
-         FvMI3samq/CPPFwaC4RBsof4j1IM1CAaKpI+PGlmh6PNFnoWpQ+t793SCTtQu7X2S+0M
-         97GRBRfuAVoK58JYBj30w7ENaUGLPRQhorn8MwJy9zAFhI9gxW82jJnANm0YdZIUdBDh
-         pXtw==
-X-Gm-Message-State: ANoB5plczWwrsFMO/8ptcjbMpvtM1NjoO5wFurrvGe+OzRXgEwSKkLva
-        MeHFF2clfWq1HKZZJmqQESEsHA==
-X-Google-Smtp-Source: AA0mqf5VU9XSaeM55klchfdUEM78X31MeC820ny7k7ADhRph1/Zd+ruLYwdKvh0Y6mNhHK1R4eoTwA==
-X-Received: by 2002:aa7:d659:0:b0:46b:1687:2e5d with SMTP id v25-20020aa7d659000000b0046b16872e5dmr33667281edr.136.1670258996422;
-        Mon, 05 Dec 2022 08:49:56 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id ku11-20020a170907788b00b007c0c91eae04sm3900313ejc.151.2022.12.05.08.49.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 08:49:55 -0800 (PST)
-Message-ID: <5aea6717-8a16-0316-ae6e-d89082d390a8@linaro.org>
-Date:   Mon, 5 Dec 2022 17:49:52 +0100
+        with ESMTP id S231601AbiLEQzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:55:49 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE95218A4;
+        Mon,  5 Dec 2022 08:54:54 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E1C9611F8;
+        Mon,  5 Dec 2022 16:54:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49641C433C1;
+        Mon,  5 Dec 2022 16:54:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670259293;
+        bh=8BXqDKQEGhK85bBV9PqvuptFk8jDXft+wx34YVG0dT8=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=JnXgqlzLbN9ScbMN51sTOc1hORuahCUYcmrvyRCfypUj0dSHUxz4WWLbqWQzixEFb
+         Ngznul2rHCClPEsGF5/Hgg3gUaFOojr6uXPic0gqDSoenHv2T8WBbTAqZC14d88RML
+         dDfeBQ24o7fPJKsDDsh86i8oyAezrzEc3ShMP6xFQJLIYdWCuF1dVsDH4PrHaydyzv
+         /U/gHqqzTJWFBigGfb7Yj8+ZLa0o3SWnjGFWh3bQsY2bTr01hj49KQKhf8+e6MS1Yr
+         aRymfrXFJA8m9L7hs0aahq5NhiBpyPk/ODrV+4ILyzzcJNmjUnj39h4QM0p6eFBjrW
+         +aJSI5po+GLGQ==
+Date:   Mon, 05 Dec 2022 16:54:48 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Icenowy Zheng <uwu@icenowy.me>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/3=5D_dt-bindings=3A_timer=3A_si?= =?US-ASCII?Q?five=2Cclint=3A_add_compatible_for_OpenC906?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <879345cd8609cddccbf7bcf230923139af320b17.camel@icenowy.me>
+References: <20221121041757.418645-3-uwu@icenowy.me> <98005150-83a7-5439-0db1-d93d459c3809@linaro.org> <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me> <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org> <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me> <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud> <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me> <Y43Jt3YOSbFyh954@wendy> <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me> <Y44IoC765yztZ6VF@wendy> <879345cd8609cddccbf7bcf230923139af320b17.camel@icenowy.me>
+Message-ID: <B1B2FC9D-D971-435B-A9FD-B092DE726367@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH v3 09/11] arm64: dts: qcom: sm8350: Add display system
- nodes
-To:     Robert Foss <robert.foss@linaro.org>, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        quic_kalyant@quicinc.com, angelogioacchino.delregno@somainline.org,
-        loic.poulain@linaro.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>,
-        vinod.koul@linaro.org, quic_jesszhan@quicinc.com,
-        andersson@kernel.org
-References: <20221205163754.221139-1-robert.foss@linaro.org>
- <20221205163754.221139-10-robert.foss@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221205163754.221139-10-robert.foss@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,258 +66,74 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 05/12/2022 17:37, Robert Foss wrote:
-> Add mdss, mdss_mdp, dsi0, dsi0_phy nodes. With these
-> nodes the display subsystem is configured to support
-> one DSI output.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8350.dtsi | 199 ++++++++++++++++++++++++++-
->   1 file changed, 195 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 434f8e8b12c1..fb1c616c5e89 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -3,6 +3,7 @@
->    * Copyright (c) 2020, Linaro Limited
->    */
->   
-> +#include <dt-bindings/interconnect/qcom,sm8350.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/qcom,dispcc-sm8350.h>
->   #include <dt-bindings/clock/qcom,gcc-sm8350.h>
-> @@ -2536,14 +2537,203 @@ usb_2_dwc3: usb@a800000 {
->   			};
->   		};
->   
-> +		mdss: mdss@ae00000 {
-> +			compatible = "qcom,sm8350-mdss";
-> +			reg = <0 0x0ae00000 0 0x1000>;
-> +			reg-names = "mdss";
-> +
-> +			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&mmss_noc MASTER_MDP1 0 &mc_virt SLAVE_EBI1 0>;
-> +			interconnect-names = "mdp0-mem", "mdp1-mem";
-> +
-> +			power-domains = <&dispcc MDSS_GDSC>;
-> +			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
-> +
-> +			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +				 <&gcc GCC_DISP_SF_AXI_CLK>,
-> +				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> +			clock-names = "iface", "bus", "nrt_bus", "core";
-> +
-> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +
-> +			iommus = <&apps_smmu 0x820 0x402>;
-> +
-> +			status = "disabled";
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			mdss_mdp: display-controller@ae01000 {
-> +				compatible = "qcom,sm8350-dpu";
-> +				reg = <0 0x0ae01000 0 0x8f000>,
-> +				      <0 0x0aeb0000 0 0x2008>;
-> +				reg-names = "mdp", "vbif";
-> +
-> +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +					<&gcc GCC_DISP_SF_AXI_CLK>,
-> +					<&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					<&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-> +					<&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +					<&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +				clock-names = "bus",
-> +					      "nrt_bus",
-> +					      "iface",
-> +					      "lut",
-> +					      "core",
-> +					      "vsync";
-> +
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +				assigned-clock-rates = <19200000>;
-> +
-> +				operating-points-v2 = <&mdp_opp_table>;
-> +				power-domains = <&rpmhpd SM8350_MMCX>;
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <0>;
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						dpu_intf1_out: endpoint {
-> +							remote-endpoint = <&dsi0_in>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			dsi0: dsi@ae94000 {
-With the 8280 patchset [1], it was decided that mdss nodes should now 
-have a mdss_ prefix in their labels, to keep them near each other when 
-referencing them in device DTSes.
+On 5 December 2022 15:59:44 GMT, Icenowy Zheng <uwu@icenowy=2Eme> wrote:
+>=E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 15:05 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+>> On Mon, Dec 05, 2022 at 07:03:17PM +0800, Icenowy Zheng wrote:
+>> > =E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=
+=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+>>=20
+>> > > You lot all know the situation here a lot more than I do=2E=2E=2E
+>> > > I don't think "letting" people use the bare "thead,c900-foo"
+>> > > makes
+>> > > much
+>> > > sense as it gives us no chance to deal with quirks down the line=2E
+>> >=20
+>> > Well, after rechecking the manual, I found it possible to handle
+>> > quirks
+>> > -- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can
+>> > be
+>> > used to retrieve some identification info of the core, including
+>> > its
+>> > model ID, version, etc; and the T-Head PLIC/CLINT are part of their
+>> > C906 SoC design that there's another "mapbaddr" CSR that could be
+>> > used
+>> > to retrieve the base address of them=2E
+>> >=20
+>> > So I think it okay to just use "thead,c900-clint" here, and when
+>> > necessary, try to retrieve mcpuid for dealing with quirks=2E
+>>=20
+>> I'm not super sure I follow=2E What's the relevance of "mapbaddr" here?
+>> We've got a reg property, so I don't think we need "mapbaddr"?
+>
+>Yes, it's not relevant to us here, it's only to prove that PLIC/CLINT
+>is part of C906 "Core Complex"=2E
+>
+>>=20
+>> For "mcpuid", can you be sure that implementers will not omit setting
+>> that value to something unique? I'd be happier if we were overly
+>> clear
+>> now rather than have some headaches later=2E Have I missed something?
+>
+>These values are set by T-Head instead of individual SoC implementers
+>as a CPU CSR, and it's not for uniqueness, but it's for identification
+>of the CPU core revision (thus the PLIC/CLINT that come with it)=2E
 
+I really am missing something here that must be obvious to you=2E
+Let me try and explain where my gap in understanding is=2E
+If someone takes the open cores & makes a minor tweak in the plic how does=
+ knowing mcpuid help us identify that that plic is marginally different?
 
-> +				compatible = "qcom,mdss-dsi-ctrl";
-> +				reg = <0 0x0ae94000 0 0x400>;
-> +				reg-names = "dsi_ctrl";
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <4>;
-> +
-> +				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
-> +				clock-names = "byte",
-> +					      "byte_intf",
-> +					      "pixel",
-> +					      "core",
-> +					      "iface",
-> +					      "bus";
-> +
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
-> +						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-> +				assigned-clock-parents = <&dsi0_phy 0>,
-> +							 <&dsi0_phy 1>;
-> +
-> +				operating-points-v2 = <&dsi_opp_table>;
-> +				power-domains = <&rpmhpd SM8350_MMCX>;
-> +
-> +				phys = <&dsi0_phy>;
-> +
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						dsi0_in: endpoint {
-> +							remote-endpoint = <&dpu_intf1_out>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						dsi0_out: endpoint {
-> +						};
-> +					};
-> +				};
-> +
-> +				mdp_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					/* TODO: opp-200000000 should work with
-/*
-  * TODO:
+I must have missed something that should be apparent and look like an eeji=
+t right now!
 
-and the wrapping looks rather weird.. or is that my email client?
-
-
-Other than that, lgtm!
-
-Konrad
-
-[1] 
-https://lore.kernel.org/linux-arm-msm/20221130200739.ube7hvobythkbhuy@builder.lan/T/#m93e15b290b40c2d2c2ec6f639135ffa38882d0b2
-> +					 * &rpmhpd_opp_low_svs, but one some of
-> +					 * sm8350_hdk boards reboot using this
-> +					 * opp.
-> +					 */
-> +					opp-200000000 {
-> +						opp-hz = /bits/ 64 <200000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-300000000 {
-> +						opp-hz = /bits/ 64 <300000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-345000000 {
-> +						opp-hz = /bits/ 64 <345000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +
-> +					opp-460000000 {
-> +						opp-hz = /bits/ 64 <460000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +				};
-> +			};
-> +
-> +			dsi0_phy: phy@ae94400 {
-> +				compatible = "qcom,dsi-phy-5nm-8350";
-> +				reg = <0 0x0ae94400 0 0x200>,
-> +				      <0 0x0ae94600 0 0x280>,
-> +				      <0 0x0ae94900 0 0x260>;
-> +				reg-names = "dsi_phy",
-> +					    "dsi_phy_lane",
-> +					    "dsi_pll";
-> +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&rpmhcc RPMH_CXO_CLK>;
-> +				clock-names = "iface", "ref";
-> +
-> +				status = "disabled";
-> +
-> +				dsi_opp_table: dsi-opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-187500000 {
-> +						opp-hz = /bits/ 64 <187500000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-> +					};
-> +
-> +					opp-300000000 {
-> +						opp-hz = /bits/ 64 <300000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-358000000 {
-> +						opp-hz = /bits/ 64 <358000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		dispcc: clock-controller@af00000 {
->   			compatible = "qcom,sm8350-dispcc";
->   			reg = <0 0x0af00000 0 0x10000>;
->   			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>,
-> -				 <0>,
-> +				 <&dsi0_phy 0>, <&dsi0_phy 1>,
-> +				 <0>, <0>,
->   				 <0>,
->   				 <0>;
->   			clock-names = "bi_tcxo",
-> @@ -2558,6 +2748,7 @@ dispcc: clock-controller@af00000 {
->   			#power-domain-cells = <1>;
->   
->   			power-domains = <&rpmhpd SM8350_MMCX>;
-> +			required-opps = <&rpmhpd_opp_low_svs>;
->   		};
->   
->   		adsp: remoteproc@17300000 {
+>
+>>=20
+>> > > I don't think that using "thead,openc906-clint", "thead,c900-
+>> > > clint"
+>> > > makes all that much sense either, in case someone does something
+>> > > wacky
+>> > > with the open-source version of the core=2E
+>> > >=20
+>> > > That leaves us with either:
+>> > > "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
+>> > > or:
+>> > > "vendor,soc-clint", "thead,c900-clint"
+>> > > right?
+>> > >=20
+>> > > The first one seems like possibly the better option as you'd
+>> > > kinda
+>> > > expect that, in a perfect word, all of the open-source IP
+>> > > implementations would share quirks etc?
+>>=20
+>
