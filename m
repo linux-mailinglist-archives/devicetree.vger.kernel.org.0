@@ -2,116 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7935F642544
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 10:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B649642551
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 10:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231816AbiLEJAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 04:00:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
+        id S232477AbiLEJD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 04:03:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231841AbiLEJAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 04:00:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F148F186FF;
-        Mon,  5 Dec 2022 00:58:32 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 883B2B80D8E;
-        Mon,  5 Dec 2022 08:58:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84A99C43470;
-        Mon,  5 Dec 2022 08:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670230710;
-        bh=CyytMSAI0EJHLFeZ3ModFSXv5+D4fj2pSfK7LNwIbXE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PaLoCxSVdHM3PNcX8lTYwlQsrtKj7I9+DQZzzXpPfGVj90aEmzLIkPsdUsYBx2Z/t
-         urs4pCGBaRpKX/8gnh/bgkrbeYS2tmcYduV1yp6DwzvsCFZs1y2Gy56iayOQRRudth
-         QS5mD080JorQY7zQ69u6enT08mWHEySgnyYWjmrYM7uTeqbA6ANKod5Wntfnbk8LOU
-         R0VwkgLbb29uEZhqjORF+kuAZlre9OHoG+lgPZCjACa+CDvlAy7Ys1W85bqO9foEYA
-         f0SAKV1dY+lm2aarEdfY5qG+y9qDk1rm9C2sOIa7NVUTA7z2XioL8fiZS0XIWrAbUK
-         P9VqU7zuqzUMQ==
-Date:   Mon, 5 Dec 2022 09:58:26 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-Subject: Re: [PATCH V4 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-Message-ID: <Y42ysiAqk8ynGxe6@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1669777792.git.zhoubinbin@loongson.cn>
- <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
- <Y42uBT34H6alb4O9@ninjato>
- <250be32a-adc1-832c-c10d-38d99d23f647@loongson.cn>
+        with ESMTP id S232127AbiLEJCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 04:02:49 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B222AE2C
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 01:02:17 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id c1so17473197lfi.7
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 01:02:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dMxaUycmxl+S2uvPgIxMwOG2DftPOi9wfPWh+AneDcw=;
+        b=p3j+D/Wc9M3g6mr5ZEjzMfyRifRhIHwMJypgDKfta9PMuwgoTVGNReurNgJgM40RID
+         i6nOixIcHO+ZSqF1YUnjcQZ7B2WQGbiEIbL/v7r2pLEPDa17J/q1dU9j5VC4jItH073l
+         n/JBYUwbmGRZ275nF9CH3drL4fbAlmRELBdtigLgppWgKB8IbOf/TtiXeA3ksgRoSOk/
+         AhKb8FNLb7TJtIYXrHmYMPI9iIvVkWaYnAHUltNlqsXWPJCEVQ4SDYBPplDA4tMFtoKk
+         cubhx/a9UDW8SGhFdPwe9OSMu8mNFXhv+TfxvfBMLYlwmqrpMrn9TRJ7zLFFwsHGXugs
+         +Sxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dMxaUycmxl+S2uvPgIxMwOG2DftPOi9wfPWh+AneDcw=;
+        b=7RlZrXK9OCdgX/oaSaznIJ1iEIROyzmR3IYk699aqCAyNffFfz9cVrirUd4y8c4qAH
+         ru6ucveYwOCaHzN6oTeYSIFJpw0hz9PB/PFoU9p3reHVOFB0PcSitQH+U6J8T/bAxNLd
+         4uKO3D6E+aUM8JAaPpXN3UVJWy5tAVdn3+WYDLHjpyJu2MQhPi57HmOy+kImoXSBgvus
+         1UH7eVl7/FlZuIIFVh55BknW7IPLfqxugAWcA1LxeXb8r8PnKhy55k2Tclgc97zxjhb7
+         9tagMH3DVXJL2bRux4XAXfkzckg/xwDv6SxEOMspJE/PF55utMreS0tnJ3X+8QNVheFu
+         6Tag==
+X-Gm-Message-State: ANoB5pkYyAwu7n/QF2DatVlKMQN1Ce5GRVZ/lwRfHqXfC+BzWp62OMXy
+        t2EB2wHbUhE2WONC6qSsg/5qjQ==
+X-Google-Smtp-Source: AA0mqf40OKDV1s//nLvesSXyQnTAgCIILP/C93w3TBXdq9B6xV9CZ5i6fZyJP1TzIyYZqpsla/JVew==
+X-Received: by 2002:ac2:5e2a:0:b0:4b5:6b51:c5ef with SMTP id o10-20020ac25e2a000000b004b56b51c5efmr1864900lfg.336.1670230935845;
+        Mon, 05 Dec 2022 01:02:15 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h24-20020a2e9018000000b0027a00aab48fsm227356ljg.66.2022.12.05.01.02.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 01:02:15 -0800 (PST)
+Message-ID: <e839274d-6696-63aa-14e6-f52a534c9ed2@linaro.org>
+Date:   Mon, 5 Dec 2022 10:02:14 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3AoALBoHv65wX7ah"
-Content-Disposition: inline
-In-Reply-To: <250be32a-adc1-832c-c10d-38d99d23f647@loongson.cn>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: add schema for NXP S32 SoCs
+Content-Language: en-US
+To:     Chester Lin <clin@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        s32@nxp.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        ghennadi.procopciuc@oss.nxp.com
+References: <20221128054820.1771-1-clin@suse.com>
+ <20221128054820.1771-2-clin@suse.com>
+ <6ad95ce3-887d-48fd-3c08-f50d4e666ded@linaro.org>
+ <Y42MyyLumVa8phpd@linux-8mug>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y42MyyLumVa8phpd@linux-8mug>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05/12/2022 07:16, Chester Lin wrote:
+> Hi Krzysztof,
+> 
+> On Wed, Nov 30, 2022 at 03:58:52PM +0100, Krzysztof Kozlowski wrote:
+>> On 28/11/2022 06:48, Chester Lin wrote:
+>>> Add DT schema for the pinctrl driver of NXP S32 SoC family.
+>>>
+>>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>>> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+>>> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@nxp.com>
+>>> Signed-off-by: Chester Lin <clin@suse.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>> - Remove the "nxp,pins" property since it has been moved into the driver.
+>>> - Add descriptions for reg entries.
+>>> - Refine the compatible name from "nxp,s32g-..." to "nxp,s32g2-...".
+>>> - Fix schema issues and revise the example.
+>>> - Fix the copyright format suggested by NXP.
+>>>
+>>>  .../pinctrl/nxp,s32cc-siul2-pinctrl.yaml      | 125 ++++++++++++++++++
+>>>  1 file changed, 125 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+>>> new file mode 100644
+>>> index 000000000000..2fc25a9362af
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
+>>
+>> Usually filename matches the compatible (or family name), so any reason
+>> why compatible is "nxp,s32g2" but filename is "nxp,s32cc"?
+>>
+> 
+> According to NXP, the S32CC is a microarch which is adapted by different S32 SoCs,
+> such as S32G2/G3 and S32R45. Some common IPs are implemented in S32CC, such as
+> serial, pinctrl, mmc, gmac and some other peripheral interfaces. S32R45 has
+> different pinouts compared to S32G2, which means that there would not be just
+> "s32g2-siul2-pinctrl" but also "s32r45-siul2-pinctrl" in the compatible enum if
+> S32R45 has to be upstreamed in the future. For this case, it seems to be
+> inappropriate that adding a compatible name without any "s32g" keyword in the
+> filename "nxp,s32g2-.." unless creating a new yaml for each platform, such as
+> nxp,s32r45-siul2-pinctl.yaml.
 
---3AoALBoHv65wX7ah
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+First, you can always rename a file if such need arises. Maybe new SoCs
+will come, maybe not.
 
+Second, when you actually upstream new SoC it might anyway require new
+bindings file, because pinctrls are quite specific and it is usually
+difficult to support multiple devices in a nice, readable way in one
+file. Therefore anyway another file is quite likely.
 
-> When Krzysztof found out about this, Yinbo and I had negotiated offline t=
-hat
-> I would follow up on this series of patchset submissions,
->=20
-> and this was Yinbo's previous response:
->=20
-> https://lore.kernel.org/all/2e10ae64-3c91-ccf8-a970-eb6e3371b948@loongson=
-=2Ecn/ <https://lore.kernel.org/all/2e10ae64-3c91-ccf8-a970-eb6e3371b948@lo=
-ongson.cn/>
+(...)
 
-OK, I see. Thank you for the quick response!
+>>> +
+>>> +patternProperties:
+>>> +  '-pins$':
+>>> +    type: object
+>>> +    additionalProperties: false
+>>> +
+>>> +    patternProperties:
+>>> +      '-grp[0-9]$':
+>>> +        type: object
+>>> +        allOf:
+>>> +          - $ref: pinmux-node.yaml#
+>>> +          - $ref: pincfg-node.yaml#
+>>> +        unevaluatedProperties: false
+>>> +        description:
+>>> +          Pinctrl node's client devices specify pin muxes using subnodes,
+>>> +          which in turn use the standard properties.
+>>
+>> All properties are accepted? What about values, e.g. for drive strength?
+> 
+> For those unsupported properties such as drive-strength, the s32g2 pinctrl driver
+> returns -EOPNOTSUPP.
 
+I don't care what the driver is doing, we do not discuss the driver. You
+need to describe properly the hardware and I doubt that hardware accepts
+all drive-strengths, all forms of pull resistors (so any Ohm value).
 
---3AoALBoHv65wX7ah
-Content-Type: application/pgp-signature; name="signature.asc"
+Add constrains.
 
------BEGIN PGP SIGNATURE-----
+>>
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +
+>>> +    /* Pins functions (SSS field) */
+>>> +    #define FUNC0  0
+>>> +    #define FUNC1  1
+>>> +    #define FUNC2  2
+>>> +    #define FUNC3  3
+>>> +    #define FUNC4  4
+>>> +    #define FUNC5  5
+>>> +    #define FUNC6  6
+>>> +    #define FUNC7  7
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmONsrIACgkQFA3kzBSg
-KbaqQQ/+PIMd9b8O9j4ykXh7OC3gzCEiA3H/gwcIZQfXcdl3fJ36iieTsj2zWwIN
-eRtvFc8ZqMIZGDSJaeHmfBZdkuoDJqJ86Xm4+eGEvXevH23KCtsPe2xVnDf1TVqU
-7IieGqB+rRe15aGJ1DZRMhc3MMlX13TlIhQVdi23p3F+6iIDOUmSNUwNzuZTD5YA
-k4ET/8+DCKApf06MDbQ0vx5DvoW6hzSenWt0WDgwmo03a2na7Zt9IizkzRXLdAUa
-ULxsAWiShOteo87AzPZX14vk6uOuMwptb+E93NcT1I6MQ5pb3+cS+8kodreUT9vf
-emmsii8SqdEMKprwFdcgN3sthwVn11SMbhffq6O8wccYwlXjJbiZMzQLuX90tbUZ
-moMP1Ttiz3sXiv96mxMpokxc409CAQQwW6u5fwUTlQwX6DshBd1M7uzPnvzISqAT
-//9iAGrNt+xxZ6sbQCHPavABIYxEj/cLryjRJSgyZOql2T/hixwuajvYyJsphgqj
-BOGDtWghHSwWA7j1PYznIUrgxNyI76dzxD1gfVq63lYAyAbvNUgYzYkE87+MPvt+
-ZOKcTweGutofs6SV86MffPXFl+pTFSRZB4L1KBq08U7YUPy8vVCLJbFvoJ0zqaDi
-lstby5v7kl24fVKOmR7oPWt0Z7JqFpjlHMqiXiHhsYcc3ouRhVw=
-=zoFc
------END PGP SIGNATURE-----
+This is another surprise - functions are texts, not numbers.
 
---3AoALBoHv65wX7ah--
+>>> +
+>>> +    #define S32CC_PINMUX(PIN, FUNC) (((PIN) << 4) | (FUNC))
+>>> +
+>>> +    #define S32CC_SLEW_208MHZ  0
+>>> +    #define S32CC_SLEW_166MHZ  4
+>>> +    #define S32CC_SLEW_150MHZ  5
+>>> +    #define S32CC_SLEW_133MHZ  6
+>>> +    #define S32CC_SLEW_83MHZ   7
+
+Don't store register values in the bindings examples. Instead you need
+to be explain the slew-rate property.
+
+>>> +
+>>> +    pinctrl@4009c240 {
+>>> +        compatible = "nxp,s32g2-siul2-pinctrl";
+>>> +
+>>> +        /*
+>>> +         * There are two SIUL2 controllers in S32G2:
+>>> +         *
+>>> +         *   siul2_0 @ 0x4009c000
+>>> +         *   siul2_1 @ 0x44010000
+>>> +         *
+>>> +         * Every SIUL2 controller has multiple register types, and here
+>>> +         * only MSCR and IMCR registers need to be revealed for kernel
+>>> +         * to configure pinmux. Please note that some indexes are reserved,
+>>> +         * such as MSCR102-MSCR111 in the following reg property.
+>>> +         */
+>>> +
+>>
+>> Either this should be part of description or should be dropped. It blows
+>> example and probably duplicates DTS.
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+
+Best regards,
+Krzysztof
+
