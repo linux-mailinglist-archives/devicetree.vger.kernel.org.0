@@ -2,245 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 261D3643081
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:38:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05473643099
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232700AbiLESie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:38:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57712 "EHLO
+        id S233074AbiLESkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:40:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbiLESiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:38:19 -0500
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E5E2CDD1;
-        Mon,  5 Dec 2022 10:31:25 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1670265002; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=d39PER/uA0WU7GJHb00ysvyLArJZ6UUUuKcmZ84WE9VEHbhHR2Q4D9NcZ6+x5W6zfAXtxaVtNmYTNH7ZFDAtIQJOi6bS/u0crLgjLNK6RPBRr3IQMUT6rtnKRVSjtqJtxaPLJ1ol0baxxOFSzKAaQSe6O54UswOlJug2jrWrjjI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1670265002; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=9HVdrBThZ7f9kI3x9rrZ++0Pvhvtd65Mi6XXfbUOn9c=; 
-        b=AL2nQEsnMcKMtUOYykXfMvmcbkQLcpedDcvrdxyjy5fiMTZjK9pMeg2rBO0+1j3NHRi63c57ikBPN3sRl+oOZeAJ972EMH22w9j6SOReZFHsmkKwGE66XzMS4AYafqoRXU53e/pbMsaZPJ9SDvnh5G6oqVQ6kmUllHPfzuJylmI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670265002;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=9HVdrBThZ7f9kI3x9rrZ++0Pvhvtd65Mi6XXfbUOn9c=;
-        b=XhdGy4YeG9Falqel0Qndo43n2Mp+f7bOMMrpz6rL/JRYMsWSXTxLZRYkakSfPPhG
-        CICCMMpu3VUk1yS49eAIOUYLP0i2pGDGwB+m34k7Zg0pVoCgUzqvBCilnadCSLJb/UA
-        N6hPXawTLamOoRrjmsBVoQmHwVI7JHubtr63QQoQ=
-Received: from [192.168.100.172] (86.121.172.71 [86.121.172.71]) by mx.zohomail.com
-        with SMTPS id 1670264999977312.89271187774307; Mon, 5 Dec 2022 10:29:59 -0800 (PST)
-Message-ID: <25804819-f767-6272-4ef1-9b9e92d825cb@arinc9.com>
-Date:   Mon, 5 Dec 2022 21:29:50 +0300
+        with ESMTP id S229457AbiLESj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:39:59 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AA48620BD9;
+        Mon,  5 Dec 2022 10:36:13 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 25D2323A;
+        Mon,  5 Dec 2022 10:36:20 -0800 (PST)
+Received: from [10.57.71.118] (unknown [10.57.71.118])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3C193F73B;
+        Mon,  5 Dec 2022 10:36:10 -0800 (PST)
+Message-ID: <d3a64bcb-870b-76fb-884b-2beaeaf3af66@arm.com>
+Date:   Mon, 5 Dec 2022 18:36:02 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v4 net-next 3/9] dt-bindings: net: dsa: utilize base
- definitions for standard dsa switches
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v12 3/4] iommu: Implement of_iommu_get_resv_regions()
+Content-Language: en-GB
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
+        Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh@kernel.org>
-References: <20221202204559.162619-1-colin.foster@in-advantage.com>
- <20221202204559.162619-4-colin.foster@in-advantage.com>
- <bfc6810b-3c21-201b-3c4f-a0def3928597@arinc9.com>
- <Y46m3/oqtoqJWFlv@COLIN-DESKTOP1.localdomain>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <Y46m3/oqtoqJWFlv@COLIN-DESKTOP1.localdomain>
+References: <20221117185424.2359687-1-thierry.reding@gmail.com>
+ <20221117185424.2359687-4-thierry.reding@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20221117185424.2359687-4-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.12.2022 05:20, Colin Foster wrote:
-> On Sat, Dec 03, 2022 at 12:45:34AM +0300, Arınç ÜNAL wrote:
->> On 2.12.2022 23:45, Colin Foster wrote:
->>> DSA switches can fall into one of two categories: switches where all ports
->>> follow standard '(ethernet-)?port' properties, and switches that have
->>> additional properties for the ports.
->>>
->>> The scenario where DSA ports are all standardized can be handled by
->>> swtiches with a reference to the new 'dsa.yaml#/$defs/ethernet-ports'.
->>>
->>> The scenario where DSA ports require additional properties can reference
->>> '$dsa.yaml#' directly. This will allow switches to reference these standard
->>> defitions of the DSA switch, but add additional properties under the port
->>> nodes.
->>>
->>> Suggested-by: Rob Herring <robh@kernel.org>
->>> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
->>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
->>> Acked-by: Alvin Šipraga <alsi@bang-olufsen.dk> # realtek
->>> ---
->>>
->>> v3 -> v4
->>>     * Rename "$defs/base" to "$defs/ethernet-ports" to avoid implication of a
->>>       "base class" and fix commit message accordingly
->>>     * Add the following to the common etherent-ports node:
->>>         "additionalProperties: false"
->>>         "#address-cells" property
->>>         "#size-cells" property
->>>     * Fix "etherenet-ports@[0-9]+" to correctly be "ethernet-port@[0-9]+"
->>>     * Remove unnecessary newline
->>>     * Apply changes to mediatek,mt7530.yaml that were previously in a separate patch
->>>     * Add Reviewed and Acked tags
->>>
->>> v3
->>>     * New patch
->>>
->>> ---
->>>    .../bindings/net/dsa/arrow,xrs700x.yaml       |  2 +-
->>>    .../devicetree/bindings/net/dsa/brcm,b53.yaml |  2 +-
->>>    .../devicetree/bindings/net/dsa/dsa.yaml      | 25 ++++++++++++++++---
->>>    .../net/dsa/hirschmann,hellcreek.yaml         |  2 +-
->>>    .../bindings/net/dsa/mediatek,mt7530.yaml     | 16 +++---------
->>>    .../bindings/net/dsa/microchip,ksz.yaml       |  2 +-
->>>    .../bindings/net/dsa/microchip,lan937x.yaml   |  2 +-
->>>    .../bindings/net/dsa/mscc,ocelot.yaml         |  2 +-
->>>    .../bindings/net/dsa/nxp,sja1105.yaml         |  2 +-
->>>    .../devicetree/bindings/net/dsa/realtek.yaml  |  2 +-
->>>    .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |  2 +-
->>>    11 files changed, 35 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
->>> index 259a0c6547f3..5888e3a0169a 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
->>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>    title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
->>>    allOf:
->>> -  - $ref: dsa.yaml#
->>> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->>>    maintainers:
->>>      - George McCollister <george.mccollister@gmail.com>
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
->>> index 1219b830b1a4..5bef4128d175 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
->>> @@ -66,7 +66,7 @@ required:
->>>      - reg
->>>    allOf:
->>> -  - $ref: dsa.yaml#
->>> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->>>      - if:
->>>          properties:
->>>            compatible:
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
->>> index b9d48e357e77..b9e366e46aed 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
->>> @@ -19,9 +19,6 @@ description:
->>>    select: false
->>>    properties:
->>> -  $nodename:
->>> -    pattern: "^(ethernet-)?switch(@.*)?$"
->>> -
->>>      dsa,member:
->>>        minItems: 2
->>>        maxItems: 2
->>> @@ -58,4 +55,26 @@ oneOf:
->>>    additionalProperties: true
->>> +$defs:
->>> +  ethernet-ports:
->>> +    description: A DSA switch without any extra port properties
->>> +    $ref: '#/'
->>> +
->>> +    patternProperties:
->>> +      "^(ethernet-)?ports$":
->>> +        type: object
->>> +        additionalProperties: false
->>> +
->>> +        properties:
->>> +          '#address-cells':
->>> +            const: 1
->>> +          '#size-cells':
->>> +            const: 0
->>> +
->>> +        patternProperties:
->>> +          "^(ethernet-)?port@[0-9]+$":
->>> +            description: Ethernet switch ports
->>> +            $ref: dsa-port.yaml#
->>> +            unevaluatedProperties: false
->>> +
->>>    ...
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
->>> index 73b774eadd0b..748ef9983ce2 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
->>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>    title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
->>>    allOf:
->>> -  - $ref: dsa.yaml#
->>> +  - $ref: dsa.yaml#/$defs/ethernet-ports
->>>    maintainers:
->>>      - Andrew Lunn <andrew@lunn.ch>
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> index f2e9ff3f580b..b815272531fa 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> @@ -156,17 +156,6 @@ patternProperties:
->>>        patternProperties:
->>>          "^(ethernet-)?port@[0-9]+$":
->>> -        type: object
->>> -        description: Ethernet switch ports
->>> -
->>> -        unevaluatedProperties: false
->>> -
->>> -        properties:
->>> -          reg:
->>> -            description:
->>> -              Port address described must be 5 or 6 for CPU port and from 0 to 5
->>> -              for user ports.
->>
->> This shouldn't be moved. Please reread our conversation on the previous
->> version.
+On 2022-11-17 18:54, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> I see - I missed your point. My apologies. This binding should keep the
-> reg properties where they were. I'll wait a few more days for any
-> additional feedback.
+> This is an implementation that IOMMU drivers can use to obtain reserved
+> memory regions from a device tree node. It uses the reserved-memory DT
+> bindings to find the regions associated with a given device. If these
+> regions are marked accordingly, identity mappings will be created for
+> them in the IOMMU domain that the devices will be attached to.
 
-Feel free to add my acked-by with the next version.
+Acked-by: Robin Murphy <robin.murphy@arm.com>
 
-Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-
-Arınç
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v10:
+> - extract more code into the new iommu_resv_region_get_type() function
+> - rename variables for physical and I/O virtual addresses for clarity
+> - default to IOMMU_RESV_DIRECT instead of IOMMU_RESV_DIRECT_RELAXABLE
+> - use newly introduced of_translate_dma_region()
+> 
+> Changes in v9:
+> - address review comments by Robin Murphy:
+>    - warn about non-direct mappings since they are not supported yet
+>    - cleanup code to require less indentation
+>    - narrow scope of variables
+> 
+> Changes in v8:
+> - cleanup set-but-unused variables
+> 
+> Changes in v6:
+> - remove reference to now unused dt-bindings/reserved-memory.h include
+> 
+> Changes in v5:
+> - update for new "iommu-addresses" device tree bindings
+> 
+> Changes in v4:
+> - fix build failure on !CONFIG_OF_ADDRESS
+> 
+> Changes in v3:
+> - change "active" property to identity mapping flag that is part of the
+>    memory region specifier (as defined by #memory-region-cells) to allow
+>    per-reference flags to be used
+> 
+> Changes in v2:
+> - use "active" property to determine whether direct mappings are needed
+> 
+>   drivers/iommu/of_iommu.c | 94 ++++++++++++++++++++++++++++++++++++++++
+>   include/linux/of_iommu.h |  8 ++++
+>   2 files changed, 102 insertions(+)
+> 
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index 5696314ae69e..fa7c63a4abbf 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/module.h>
+>   #include <linux/msi.h>
+>   #include <linux/of.h>
+> +#include <linux/of_address.h>
+>   #include <linux/of_iommu.h>
+>   #include <linux/of_pci.h>
+>   #include <linux/pci.h>
+> @@ -172,3 +173,96 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>   
+>   	return ops;
+>   }
+> +
+> +static enum iommu_resv_type iommu_resv_region_get_type(struct device *dev, struct resource *phys,
+> +						       phys_addr_t start, size_t length)
+> +{
+> +	phys_addr_t end = start + length - 1;
+> +
+> +	/*
+> +	 * IOMMU regions without an associated physical region cannot be
+> +	 * mapped and are simply reservations.
+> +	 */
+> +	if (phys->start >= phys->end)
+> +		return IOMMU_RESV_RESERVED;
+> +
+> +	/* may be IOMMU_RESV_DIRECT_RELAXABLE for certain cases */
+> +	if (start == phys->start && end == phys->end)
+> +		return IOMMU_RESV_DIRECT;
+> +
+> +	dev_warn(dev, "treating non-direct mapping [%pr] -> [%pap-%pap] as reservation\n", &phys,
+> +		 &start, &end);
+> +	return IOMMU_RESV_RESERVED;
+> +}
+> +
+> +/**
+> + * of_iommu_get_resv_regions - reserved region driver helper for device tree
+> + * @dev: device for which to get reserved regions
+> + * @list: reserved region list
+> + *
+> + * IOMMU drivers can use this to implement their .get_resv_regions() callback
+> + * for memory regions attached to a device tree node. See the reserved-memory
+> + * device tree bindings on how to use these:
+> + *
+> + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> + */
+> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+> +{
+> +#if IS_ENABLED(CONFIG_OF_ADDRESS)
+> +	struct of_phandle_iterator it;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
+> +		const __be32 *maps, *end;
+> +		struct resource phys;
+> +		int size;
+> +
+> +		memset(&phys, 0, sizeof(phys));
+> +
+> +		/*
+> +		 * The "reg" property is optional and can be omitted by reserved-memory regions
+> +		 * that represent reservations in the IOVA space, which are regions that should
+> +		 * not be mapped.
+> +		 */
+> +		if (of_find_property(it.node, "reg", NULL)) {
+> +			err = of_address_to_resource(it.node, 0, &phys);
+> +			if (err < 0) {
+> +				dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> +					it.node, err);
+> +				continue;
+> +			}
+> +		}
+> +
+> +		maps = of_get_property(it.node, "iommu-addresses", &size);
+> +		if (!maps)
+> +			continue;
+> +
+> +		end = maps + size / sizeof(__be32);
+> +
+> +		while (maps < end) {
+> +			struct device_node *np;
+> +			u32 phandle;
+> +
+> +			phandle = be32_to_cpup(maps++);
+> +			np = of_find_node_by_phandle(phandle);
+> +
+> +			if (np == dev->of_node) {
+> +				int prot = IOMMU_READ | IOMMU_WRITE;
+> +				struct iommu_resv_region *region;
+> +				enum iommu_resv_type type;
+> +				phys_addr_t iova;
+> +				size_t length;
+> +
+> +				maps = of_translate_dma_region(np, maps, &iova, &length);
+> +				type = iommu_resv_region_get_type(dev, &phys, iova, length);
+> +
+> +				region = iommu_alloc_resv_region(iova, length, prot, type,
+> +								 GFP_KERNEL);
+> +				if (region)
+> +					list_add_tail(&region->list, list);
+> +			}
+> +		}
+> +	}
+> +#endif
+> +}
+> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
+> diff --git a/include/linux/of_iommu.h b/include/linux/of_iommu.h
+> index 55c1eb300a86..9a5e6b410dd2 100644
+> --- a/include/linux/of_iommu.h
+> +++ b/include/linux/of_iommu.h
+> @@ -12,6 +12,9 @@ extern const struct iommu_ops *of_iommu_configure(struct device *dev,
+>   					struct device_node *master_np,
+>   					const u32 *id);
+>   
+> +extern void of_iommu_get_resv_regions(struct device *dev,
+> +				      struct list_head *list);
+> +
+>   #else
+>   
+>   static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
+> @@ -21,6 +24,11 @@ static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
+>   	return NULL;
+>   }
+>   
+> +static inline void of_iommu_get_resv_regions(struct device *dev,
+> +					     struct list_head *list)
+> +{
+> +}
+> +
+>   #endif	/* CONFIG_OF_IOMMU */
+>   
+>   #endif /* __OF_IOMMU_H */
