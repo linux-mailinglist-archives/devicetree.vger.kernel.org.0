@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEA16437AC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77C276437B1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232636AbiLEWHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 17:07:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39438 "EHLO
+        id S232762AbiLEWIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 17:08:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbiLEWHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:07:14 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197DBE88;
-        Mon,  5 Dec 2022 14:07:12 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so8153938otl.10;
-        Mon, 05 Dec 2022 14:07:12 -0800 (PST)
+        with ESMTP id S232755AbiLEWI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:08:29 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C766AE7A;
+        Mon,  5 Dec 2022 14:08:28 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id cn2-20020a056830658200b0066c74617e3dso8162239otb.2;
+        Mon, 05 Dec 2022 14:08:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AzxSWx9NN6vl69+NIDxKRNbatlDFCGn78OKTeHWAgYA=;
-        b=DBvRlOcJwRGtdRtjs0ihTJqDDmnpEm1x1rDk0dQJUxxr2krZhyq9e/viwLUk22ho0P
-         6USjx/GY/i11cBhQJYmW7cjdYfQDufyVslV5UTz2LZl9mmrfuDiZV1cu+2JX3IkMhLNc
-         pMo+SI3RKVTP2qf6jIuoIYZibuIDS3VzrT+KI7zhjFpgae18ewwcZtbOOABEc4BznxvO
-         xbSt2Xwey+a/Ka/8f5BTw9DM6s2/tF6Io8rJJAdECkzGlCHTs/B8qG16oi7cLljgFd2H
-         2YAka9NA9/NvpJNY4Kp+8jovuSYQm4ic1n3nrqNC7DxlhvQKkmjPkT7dO6aLFY5TKRel
-         kb5g==
-X-Gm-Message-State: ANoB5pkLegzrkB4WM/chATqLjm3k+ryg4Z7jGfopPLFHeb4SHFBwsDwt
-        JrLvOirU2ISqbvz1oceNSA==
-X-Google-Smtp-Source: AA0mqf7fjIp7rNUXvJ0WHMseWKEOBQTSK9aHB/qZF6np4G0yQsuJTsBZ4CVyCsSs0t3dcv7pZWY+yw==
-X-Received: by 2002:a05:6830:1e65:b0:661:b632:4259 with SMTP id m5-20020a0568301e6500b00661b6324259mr33230685otr.304.1670278031257;
-        Mon, 05 Dec 2022 14:07:11 -0800 (PST)
+        bh=La6nfqN3ZBUuSu3HPW5QNxYpkhdeT1Kpud3YY7oUeJY=;
+        b=MTdUzOECruRmgacwLnj3+eGpK1vnZlJPuPjQ+sG/8MOanqiDKy+Lcpox4BrmfCHnSZ
+         8vVU8zqQWr3C6y2QR4VMAyVktsUPF1cvdBQf6Vv5DUewiWI29FvikU07PH0spNN1y8mr
+         M6F+MkgDwZ4c40PiNrECASwkMJP1fo3ayCg8eSjFSIIdb2KwrjFemKezKSoVaAMZzZMi
+         OYuvpweFX2/+8JG3d7XEnpXlndI5IPXxVpF0Fab6Mux1rPmoP7PPyUrFAXizlCLzik7r
+         lJM9jXo25jv5AaYg8bzmmBOxLZ0uE8a+lv3ZxjDnoCP+wXBtkrSUSXx5cKgB68tWJ4Xo
+         1vgw==
+X-Gm-Message-State: ANoB5plJR4xuJu5ZX4sAuQsUIGsIHF3QJMs8O9hBxqgs6a8mztffG2dq
+        pd9L9OPPBJnFtTloByRs6g==
+X-Google-Smtp-Source: AA0mqf6WQoqpmq65YPLVcN02AAgP1XPQyjXGI8F3jmOc2Gh9PE5P05vI059K5zJswpb/4/vZfu3+rg==
+X-Received: by 2002:a9d:6486:0:b0:66d:ca7a:8b1a with SMTP id g6-20020a9d6486000000b0066dca7a8b1amr32909767otl.55.1670278107499;
+        Mon, 05 Dec 2022 14:08:27 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h13-20020a4ad74d000000b004a0ad937ccdsm3240951oot.1.2022.12.05.14.07.10
+        by smtp.gmail.com with ESMTPSA id eo7-20020a056870ec8700b001446a45bb49sm4836134oab.23.2022.12.05.14.08.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 14:07:10 -0800 (PST)
-Received: (nullmailer pid 2726011 invoked by uid 1000);
-        Mon, 05 Dec 2022 22:07:09 -0000
-Date:   Mon, 5 Dec 2022 16:07:09 -0600
+        Mon, 05 Dec 2022 14:08:27 -0800 (PST)
+Received: (nullmailer pid 2741475 invoked by uid 1000);
+        Mon, 05 Dec 2022 22:08:26 -0000
+Date:   Mon, 5 Dec 2022 16:08:26 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     abel.vesa@linaro.org, linux-mmc@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-kernel@vger.kernel.org,
         Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dt-bindings: leds: Add 'cm3605' to
- 'linux,default-trigger'
-Message-ID: <20221205220709.GA2713165-robh@kernel.org>
-References: <20221204061555.1355453-1-dmitry.baryshkov@linaro.org>
- <20221204061555.1355453-5-dmitry.baryshkov@linaro.org>
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 1/5] dt-bindings: mmc: sdhci: document sdhci-caps and
+ sdhci-caps-mask
+Message-ID: <167027810532.2741118.8277664108645595118.robh@kernel.org>
+References: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221204061555.1355453-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221204094717.74016-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -73,27 +71,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 04, 2022 at 08:15:55AM +0200, Dmitry Baryshkov wrote:
-> Add 'cm3605' to possible values for 'linux,default-trigger'. This allows
-> one to specify Capella CM3605 proximity sensor as the LED trigger.
+
+On Sun, 04 Dec 2022 10:47:13 +0100, Krzysztof Kozlowski wrote:
+> The Linux SDHCI driver core reads 'sdhci-caps' and 'sdhci-caps-mask'
+> properties and few devices already use it (e.g. Qualcomm SM8450), so add
+> them to a shared SDHCI bindings.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/leds/common.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/mmc/sdhci-am654.yaml  |  4 +--
+>  .../devicetree/bindings/mmc/sdhci-common.yaml | 32 +++++++++++++++++++
+>  .../devicetree/bindings/mmc/sdhci-msm.yaml    |  2 +-
+>  MAINTAINERS                                   |  1 +
+>  4 files changed, 35 insertions(+), 4 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-common.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index f5c57a580078..4ffb1cdf6845 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -101,6 +101,7 @@ properties:
->          # LED is triggered by SD/MMC activity
->        - pattern: "^mmc[0-9]+$"
->        - pattern: "^cpu[0-9]*$"
-> +      - const: cm3605
 
-No. This would never scale to the 1000s of devices we have.
-
-Maybe 'trigger-sources' does what you need.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
