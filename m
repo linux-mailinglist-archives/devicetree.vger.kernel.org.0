@@ -2,222 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8445642B75
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF9B642B79
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:20:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232640AbiLEPTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
+        id S232168AbiLEPT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 10:19:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbiLEPTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:19:06 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20B731D331
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 07:19:02 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id j4so19130391lfk.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 07:19:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
-        b=ckoG7YLE4dTbKyEPRu6WUdAh9sc6sQyo5v4/rMvhZOfAIgvcJ5/MVrGBrf/DiDf8x4
-         XHYc5us7TZZOzmFOtgLsqPXSqWfxoE6zcD1artGeDOn81+0Jq8a689uNAvPey+6H7HLq
-         w6h/zkl/RjjKWAOa17u7skBBEoJrnXn2wkeA3766gnNbR6kaxqMxWqR21ZN7LsYOxdWL
-         k6JrlVLjcZZF41LwGnOXc2nKZjOSbPVgxRutjviPUIJaqB3kt4FMkHZAwIYKtENCwFc7
-         FOaJPmARm0f6wHeHMj4aj0Z0QQgIlBAF+xFgSaQA7TSFS9vAScvCXifGNieQ4oP0ASxm
-         yOTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9aazsYiCUK+hhkaN7DSb9BXLEifN4Vj66BPeUPEEPTM=;
-        b=L7w1KJY9uMnk3bhJriA6XyVSjIqDa4gwMecR4uS8yCel/6tESrbtcyJJ55IYBn+l1S
-         HpwZYNBADFkdAqdaAV+3/LH07p0pioMtzy5gcGZ4aBH8pjUFZltAyTnmSelljtTR1saG
-         cdrEoiaDaFPQERq9XAqes/o0WoEg1nqThwtwuj6+KvQqvD9g9G+ny0v4X1LIxs6ViqAk
-         IS4wswwzheb9rbF4IqsDuGF0z8Bd6PBoQE8dJm9eETzWYorG7EFLF6bo0Q7bwsKhPQe6
-         rFrMBkzXgkWy9nXYJpB5ceidwPzUvzQgy/UWjhZEBvz524RwFU4uyerUxOsLWhHk4g+O
-         1Fog==
-X-Gm-Message-State: ANoB5pk929KVguZ8c4q1Sd24qYF7XAIh800oL44AT3mOAMS1nn8Wc0uw
-        Wzv2T1O1/NaTkYLw8pm8SMNL7g==
-X-Google-Smtp-Source: AA0mqf5etfZUUwBnmi2OzAxBRb101NGrpAQYXEdDklkcv44ujx+sqOk4y4+zled7jnxr64dMaIx3NA==
-X-Received: by 2002:ac2:5fcc:0:b0:4b0:2675:110d with SMTP id q12-20020ac25fcc000000b004b02675110dmr24041887lfg.295.1670253541635;
-        Mon, 05 Dec 2022 07:19:01 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id w26-20020a05651204da00b004b55f60c65asm1012470lfq.284.2022.12.05.07.19.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 07:19:01 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S231880AbiLEPTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:19:14 -0500
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E9B11478;
+        Mon,  5 Dec 2022 07:19:12 -0800 (PST)
+Received: from zn.tnic (p200300ea9733e72f329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e72f:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E7D2A1EC06C0;
+        Mon,  5 Dec 2022 16:19:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1670253551;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=95iNo7XBx2EAevSVm0yU9Tlm8vGSIeCCvja2S35CbLg=;
+        b=bJSC/MbUhkSfB9Og+S6sT+bDA6QHOtBaOVX3qw8u4DVMC5N4/TD2KakiVsmY6Yd7G7AO5Q
+        mmy7pxdJyjAOmie44EfjediHSIGRB16aKLHjIaoRENQfxTLLzktW5bZFw6kIwhTwMx52GM
+        qYpU77dZ203z5d/2EQN2wZLSaNWXsCs=
+Date:   Mon, 5 Dec 2022 16:19:06 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Joe Tessler <jrt@google.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Jeff Chase <jnchase@google.com>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 9/9] media: dt-bindings: st,stih-cec: convert to DT schema
-Date:   Mon,  5 Dec 2022 16:18:45 +0100
-Message-Id: <20221205151845.21618-10-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221205151845.21618-1-krzysztof.kozlowski@linaro.org>
-References: <20221205151845.21618-1-krzysztof.kozlowski@linaro.org>
+        Michal Simek <michal.simek@xilinx.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v6 2/2] EDAC/zynqmp: Add EDAC support for Xilinx ZynqMP
+ OCM
+Message-ID: <Y44L6lOptqDIwvxe@zn.tnic>
+References: <20221102070655.247511-1-sai.krishna.potthuri@amd.com>
+ <20221102070655.247511-3-sai.krishna.potthuri@amd.com>
+ <Y4DbXaan258cZK+q@zn.tnic>
+ <BY5PR12MB42582EA4A4ACEA56367544E6DB189@BY5PR12MB4258.namprd12.prod.outlook.com>
+ <Y43vJECWJI99tc1x@zn.tnic>
+ <330f1b49-eb59-c55e-3f7d-dfbf4886f247@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <330f1b49-eb59-c55e-3f7d-dfbf4886f247@amd.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert ST STIH4xx HDMI CEC bindings to DT schema.
+On Mon, Dec 05, 2022 at 03:49:33PM +0100, Michal Simek wrote:
+> Some history around this. Based on
+> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
+> Chapter 2.2.2 Generic Names Recommendation
+> memory-controller name is recommended.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/media/cec/st,stih-cec.yaml       | 66 +++++++++++++++++++
- .../devicetree/bindings/media/stih-cec.txt    | 27 --------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 67 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/stih-cec.txt
+Sure, fair enough. Except that this is debugfs so not really user ABI
+like sysfs.
 
-diff --git a/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
-new file mode 100644
-index 000000000000..aeddf16ed339
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/cec/st,stih-cec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STIH4xx HDMI CEC
-+
-+maintainers:
-+  - Alain Volmat <alain.volmat@foss.st.com>
-+
-+allOf:
-+  - $ref: cec-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: st,stih-cec
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: cec-clk
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: cec-irq
-+
-+  resets:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - hdmi-phandle
-+  - interrupts
-+  - resets
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/stih407-resets.h>
-+
-+    cec@94a087c {
-+        compatible = "st,stih-cec";
-+        reg = <0x94a087c 0x64>;
-+
-+        clocks = <&clk_sysin>;
-+        clock-names = "cec-clk";
-+        hdmi-phandle = <&sti_hdmi>;
-+        interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "cec-irq";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_cec0_default>;
-+        resets = <&softreset STIH407_LPM_SOFTRESET>;
-+    };
-diff --git a/Documentation/devicetree/bindings/media/stih-cec.txt b/Documentation/devicetree/bindings/media/stih-cec.txt
-deleted file mode 100644
-index ece0832fdeaf..000000000000
---- a/Documentation/devicetree/bindings/media/stih-cec.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--STMicroelectronics STIH4xx HDMI CEC driver
--
--Required properties:
-- - compatible : value should be "st,stih-cec"
-- - reg : Physical base address of the IP registers and length of memory
--	 mapped region.
-- - clocks : from common clock binding: handle to HDMI CEC clock
-- - interrupts : HDMI CEC interrupt number to the CPU.
-- - pinctrl-names: Contains only one value - "default"
-- - pinctrl-0: Specifies the pin control groups used for CEC hardware.
-- - resets: Reference to a reset controller
-- - hdmi-phandle: Phandle to the HDMI controller, see also cec.txt.
--
--Example for STIH407:
--
--sti-cec@94a087c {
--	compatible = "st,stih-cec";
--	reg = <0x94a087c 0x64>;
--	clocks = <&clk_sysin>;
--	clock-names = "cec-clk";
--	interrupts = <GIC_SPI 140 IRQ_TYPE_NONE>;
--	interrupt-names = "cec-irq";
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_cec0_default>;
--	resets = <&softreset STIH407_LPM_SOFTRESET>;
--	hdmi-phandle = <&hdmi>;
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dee3f776be32..5bf8879b4a59 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19924,7 +19924,7 @@ F:	sound/soc/sti/
- STI CEC DRIVER
- M:	Alain Volmat <alain.volmat@foss.st.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/stih-cec.txt
-+F:	Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
- F:	drivers/media/cec/platform/sti/
- 
- STK1160 USB VIDEO CAPTURE DRIVER
+Rather, I'd aim here for simplicity. But your call in the end.
+
+Thx.
+
 -- 
-2.34.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
