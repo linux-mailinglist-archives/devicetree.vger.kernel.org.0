@@ -2,162 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E12643778
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:55:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5815364379E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233537AbiLEVy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:54:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55908 "EHLO
+        id S232018AbiLEWEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 17:04:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233529AbiLEVyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:54:37 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D625FF01E;
-        Mon,  5 Dec 2022 13:53:16 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 7B275124C;
-        Mon,  5 Dec 2022 22:53:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1670277194;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9JU4/lrJ7GV2uyecrNqE/O11dV0jCnMb8hnnKpYJnPk=;
-        b=eeakvmE97XoN1a1Ouy/oA2+t53U/cPndIPxffhCQyZ1L9EO/gOBdLUtZ35wpWSr0oNwcR+
-        uWGeGKm1SAh0Zeepd7ULB1HF6Cyou499gUlQAVVjDvnc13juDEX5QVwuB5R95S8RUOlYuD
-        j4+i4LCNij4SqE9O6Ps++GsgtK2stPTtTH8mNQg3ThveCZXONYJcwKtkfq336tGOCc2J3B
-        6zq0vugkJSqmUOU1Bx4ldrJhqRuET4d4RmvUVHOJxBnAdLNn9hi1GqGTKqmr/V4qrap0A+
-        9g89MYCR3eP5Uj5xoGehbMde4L1WMzHKPR9KkEyc/GREdZMncwwpT77bqoTKCA==
-MIME-Version: 1.0
-Date:   Mon, 05 Dec 2022 22:53:14 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231895AbiLEWEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:04:36 -0500
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13D211470;
+        Mon,  5 Dec 2022 14:04:35 -0800 (PST)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-14449b7814bso10197411fac.3;
+        Mon, 05 Dec 2022 14:04:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X0o74DAKGRH7Cm9VJkIU43IM86KKjNPrQtB4w12QWbA=;
+        b=sGqzU9+ZxURRohoE2SNQ/14EyCb2k0Cy+7lOJyErZfYbkAFcsDoPIpvnNQVexFgN2s
+         ediQ3fzehZrnF3pD8emD2MfLQfCmgmYomjQu/dNlmS1G+ZawUO1vVx1u2GmfRfwCfzDe
+         h4yUJH70sSA9oUesf48iCdYunkIOWjo+6TyXr2drgU5DQEyoE6htbINVA3EmZXJWgS9J
+         LIKMTf3EQXXZlYhlTZPoSWHIgcXWeZHN9fralygXCnzEmEp3+3Y4OHAO/G8I4m1R63En
+         Ph6kRJdcbOh2/kSz4vzDu73nRrbU2go8CjEQPFk5KQqwiVCvtweC4i+hmkxHXAgeQp3K
+         KC3w==
+X-Gm-Message-State: ANoB5pl9yAenJ6Igg5VkfNU+EZkZPRZyb9E0+PQiVnICx0SN6P8kk//Y
+        wFdfhsVCrmRVcuO3Gqj+yg==
+X-Google-Smtp-Source: AA0mqf5+j5X2a2K39tY4PrzDbQKhAY0J9u3F+3pE3tsRI6votXOld4GH5/oZPKPKFAfPEktnYb/4qg==
+X-Received: by 2002:a05:6870:ea81:b0:144:6881:d7e6 with SMTP id s1-20020a056870ea8100b001446881d7e6mr6088539oap.94.1670277875064;
+        Mon, 05 Dec 2022 14:04:35 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r127-20020aca4485000000b0034d9042758fsm7461646oia.24.2022.12.05.14.04.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 14:04:34 -0800 (PST)
+Received: (nullmailer pid 2709108 invoked by uid 1000);
+        Mon, 05 Dec 2022 22:04:33 -0000
+Date:   Mon, 5 Dec 2022 16:04:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v1 3/4] dt-bindings: net: phy: add MaxLinear
- GPY2xx bindings
-In-Reply-To: <20221205212924.GA2638223-robh@kernel.org>
-References: <20221202151204.3318592-1-michael@walle.cc>
- <20221202151204.3318592-4-michael@walle.cc>
- <20221205212924.GA2638223-robh@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: input: qcom,pm8921-keypad: convert
+ to YAML format
+Message-ID: <20221205220433.GA2684995-robh@kernel.org>
+References: <20221204061555.1355453-1-dmitry.baryshkov@linaro.org>
+ <20221204061555.1355453-2-dmitry.baryshkov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221204061555.1355453-2-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-12-05 22:29, schrieb Rob Herring:
-> On Fri, Dec 02, 2022 at 04:12:03PM +0100, Michael Walle wrote:
->> Add the device tree bindings for the MaxLinear GPY2xx PHYs.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->> 
->> Is the filename ok? I was unsure because that flag is only for the 
->> GPY215
->> for now. But it might also apply to others. Also there is no 
->> compatible
->> string, so..
->> 
->>  .../bindings/net/maxlinear,gpy2xx.yaml        | 47 
->> +++++++++++++++++++
->>  1 file changed, 47 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml 
->> b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->> new file mode 100644
->> index 000000000000..d71fa9de2b64
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->> @@ -0,0 +1,47 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/net/maxlinear,gpy2xx.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MaxLinear GPY2xx PHY
->> +
->> +maintainers:
->> +  - Andrew Lunn <andrew@lunn.ch>
->> +  - Michael Walle <michael@walle.cc>
->> +
->> +allOf:
->> +  - $ref: ethernet-phy.yaml#
->> +
->> +properties:
->> +  maxlinear,use-broken-interrupts:
->> +    description: |
->> +      Interrupts are broken on some GPY2xx PHYs in that they keep the
->> +      interrupt line asserted even after the interrupt status 
->> register is
->> +      cleared. Thus it is blocking the interrupt line which is 
->> usually bad
->> +      for shared lines. By default interrupts are disabled for this 
->> PHY and
->> +      polling mode is used. If one can live with the consequences, 
->> this
->> +      property can be used to enable interrupt handling.
+On Sun, Dec 04, 2022 at 08:15:52AM +0200, Dmitry Baryshkov wrote:
+> Convert the bindings for the keypad subdevices of Qualcomm PM8921 and
+> PM8058 PMICs from text to YAML format.
 > 
-> Just omit the interrupt property if you don't want interrupts and add 
-> it
-> if you do.
+> While doing the conversion also change linux,keypad-no-autorepeat
+> property to linux,input-no-autorepeat. The former property was never
+> used by DT and was never handled by the driver.
 
-How does that work together with "the device tree describes
-the hardware and not the configuration". The interrupt line
-is there, its just broken sometimes and thus it's disabled
-by default for these PHY revisions/firmwares. With this
-flag the user can say, "hey on this hardware it is not
-relevant because we don't have shared interrupts or because
-I know what I'm doing".
+Changing from the documented one to one some drivers use. I guess 
+that's a slight improvement. Please see this discussion[1]. 
 
->> +
->> +      Affected PHYs (as far as known) are GPY215B and GPY215C.
->> +    type: boolean
->> +
->> +dependencies:
->> +  maxlinear,use-broken-interrupts: [ interrupts ]
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    ethernet {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        ethernet-phy@0 {
->> +            reg = <0>;
->> +            interrupts-extended = <&intc 0>;
->> +            maxlinear,use-broken-interrupts;
-> 
-> This is never actually checked by be schema because there is nothing to
-> match on. If you want custom properties, then you need a compatible.
+Rob
 
-This seems to be a problem for any phy bindings then.
-
--michael
+[1] https://lore.kernel.org/all/YowEgvwBOSEK+kd2@google.com/
