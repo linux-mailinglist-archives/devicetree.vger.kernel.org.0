@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1768D6436FF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CBD643703
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:41:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232224AbiLEVlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:41:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40728 "EHLO
+        id S230036AbiLEVli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:41:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbiLEVlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:41:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3816B27171;
-        Mon,  5 Dec 2022 13:41:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233704AbiLEVld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:41:33 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961AF27904;
+        Mon,  5 Dec 2022 13:41:32 -0800 (PST)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 99B9D6146E;
-        Mon,  5 Dec 2022 21:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87684C433C1;
-        Mon,  5 Dec 2022 21:41:27 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
-        dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com header.b="UcX63CxV"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105;
-        t=1670276485;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Cd+XRNCKmMHT7hFR6etWaPdNaLOAGBor4KfIYpxPTiU=;
-        b=UcX63CxVLud3xJ7yYliyJ2IPekJGw8CsCg51VN7p+kv/6TMbQQMqBvjp8wY1lFXz77JzbG
-        wj4Tt4uzLPi3/F2UV8+PDDSsDKUQ+23n6PVQt+bYvBivST7DuFFlmeClAkyoZ9zEoddIDf
-        tL5RJVSkldP8/nY7JBdBKQE+J7nR3no=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 0357b102 (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO);
-        Mon, 5 Dec 2022 21:41:25 +0000 (UTC)
-Date:   Mon, 5 Dec 2022 22:41:22 +0100
-From:   "Jason A. Donenfeld" <Jason@zx2c4.com>
-To:     Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lin Jinhan <troy.lin@rock-chips.com>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] hwrng: add Rockchip SoC hwrng driver
-Message-ID: <Y45lguC4ZiniiWS/@zx2c4.com>
-References: <20221128184718.1963353-1-aurelien@aurel32.net>
- <20221128184718.1963353-3-aurelien@aurel32.net>
- <Y43uiVo41vljLsZM@zx2c4.com>
- <Y45j/hd2MnnXzcAo@aurel32.net>
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 593FA6600368;
+        Mon,  5 Dec 2022 21:41:31 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670276491;
+        bh=z3lfan09CK2D9wXcE8WBWvxWSfKIyD0HaJEgKtxKmJg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A5TmyhxaOgmm1n69LVLpUNYKHMMOcEXcRX3ytL66smsWhqEgzA9Z3Uv3e0cRw8b+S
+         oSDrJSMq/AaXcv0YWiNUJ2JqQyDbrZLXFJk6OvQRzko7uRvf1Q1OnQxws4k/54E/05
+         C/vaSxkgr6pTXLSJXfHhC7C55YOuiNvzWsHC3NekJtlyOosSAgPWQN5CIVV0Hbxdcp
+         1IZfmVR+HxYdU6rTfurJYd4pqGZmqQY5uOHDVi9eMpc6oUIMgQ1chlFd8Vqwul8tpg
+         GV5BvRCPwSNiM8k/9+ccDE6teMQ3rLC1ZNyHSMPCFM+G9S+z2Hb3MbHzD0RhJbeePg
+         7xUjU9bIp6kFQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 29A891060F2F; Mon,  5 Dec 2022 22:41:29 +0100 (CET)
+Date:   Mon, 5 Dec 2022 22:41:29 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Carl Philipp Klemm <philipp@uvos.xyz>
+Cc:     linux-omap@vger.kernel.org, tony@atomide.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] leds: cpcap: make leds-cpcap an independent platform
+ device to allow varying led setups
+Message-ID: <20221205214129.3ixuusoenlzjz6cb@mercury.elektranox.org>
+References: <20221204104313.17478-1-philipp@uvos.xyz>
+ <20221204104313.17478-2-philipp@uvos.xyz>
+ <20221205174857.asf6uant7ve7k5pe@mercury.elektranox.org>
+ <20221205191548.13296b58d9121fec36769c97@uvos.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="udh3kcsxoruobyui"
 Content-Disposition: inline
-In-Reply-To: <Y45j/hd2MnnXzcAo@aurel32.net>
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221205191548.13296b58d9121fec36769c97@uvos.xyz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aurelien,
 
-On Mon, Dec 05, 2022 at 10:34:54PM +0100, Aurelien Jarno wrote:
-> Well I am not sure it really matters. 90% is actually conservative, it's
-> the worst case I have seen, rounded down. However I often get much
-> better quality, see for instance the following run:
-> 
-> | Copyright (c) 2004 by Henrique de Moraes Holschuh
-> | This is free software; see the source for copying conditions.  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-> | 
-> | rngtest: starting FIPS tests...
-> | rngtest: entropy source drained
-> | rngtest: bits received from input: 16777216
-> | rngtest: FIPS 140-2 successes: 819
-> | rngtest: FIPS 140-2 failures: 19
-> | rngtest: FIPS 140-2(2001-10-10) Monobit: 17
-> | rngtest: FIPS 140-2(2001-10-10) Poker: 0
-> | rngtest: FIPS 140-2(2001-10-10) Runs: 2
-> | rngtest: FIPS 140-2(2001-10-10) Long run: 2
-> | rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
-> | rngtest: input channel speed: (min=132.138; avg=137.848; max=147.308)Kibits/s
-> | rngtest: FIPS tests speed: (min=16.924; avg=20.272; max=20.823)Mibits/s
-> | rngtest: Program run time: 119647459 microseconds
-> 
-> Does the exact value has an importance there? I thought it was just
-> important to not overestimate the quality.
+--udh3kcsxoruobyui
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's the right principle. I just worry about estimating it like that
-from looking at the output, rather than being derived from some
-knowledge about the hardware. Maybe 50% (quality=512) is more
-reasonable, so that it collects two bits for every one?
+Hi,
 
-Jason
+On Mon, Dec 05, 2022 at 07:15:48PM +0100, Carl Philipp Klemm wrote:
+> > I don't follow. Can't you just use 'status =3D "disabled;"' for the
+> > unavailable nodes?
+>=20
+> Sure but unless im missing something, adding some nodes to a dts, one
+> for eatch led the device in question really has feals mutch better to
+> me than going arround and setting every led channel disabled for eatch
+> device that dosent use it. xt894 being the outlier here amoung the
+> cpcap devices we intend to support (xt894, xt860, xt875, xt910, xt912,
+> mb865, mz609 and mz617) in that it uses most of the extra led channels,
+> most of these use at most one (xt875, xt910, xt912, mb865) or zero
+> (mz609, mz617) extra channels.
+
+Just mark them all status =3D 'disabled'; in the common include and
+then enable them on a per board basis. Just the same way as all the
+SoC peripherals are handled nowadays.
+
+-- Sebastian
+
+--udh3kcsxoruobyui
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOOZYQACgkQ2O7X88g7
++pqTRA//YOOIAJ+dsCNfKROCmvPM4m5DaieEtm9ZV+VKisX79j2H7oCnfM8QoOCg
+ipnGeIv2P5PGFhdxuOYZUrcoPMV2jtoXryBZmPzJ1r0CzqX8V0MARkVp2ie3JWNK
+dDeSljSfZD0WgWyVIjz8Nu7D0P/uf1MRuBQUgn/dt8pB1bBNDATlxadaCBbS99dg
+AbHfiW71AahDvLWjgq6dj+WMggF25X6cJV/FC2c38kLRxB/2LMbdq6Mte+B07Ch2
+KPsifTwi2moKeVWcf/4+aE5VPoZHi9WWFuumpwpNiaMWjzY/s5U3CJGU7+zCQkLc
+VEB23j/EqjjmXytHXr4rlOveteK4msqsaP+T7+mdf28Xj+TfObIwpYA8I44aAFUR
+MC/fSASFUcPrSxXr0gSkr9Kahnncm9Et90BIpU0Lcd21HRyFbzzcYbjdnNOH0r/U
+9nd/gVVqdm85ZtbpbyaEt2udmmBQ+QYgstiEb4l8okkG9xUz2ILuCuVmd5MxWtlB
+3yhX5EY2i1dtbKIRRSp9QvZbYn3Nt+bc2oKrgjUKi/S7LNLUPNfjjVnMwgnx3r8b
+AjdahZJ91NXh9eFVMS/+hvKrYH9p2u7AhuN+UUIAuyv0bnjuz24+7sUplnKQfmfX
+xYDOPTAQ1pTVur/rYJZhJrX2JaQXDNzVjwFV66Skd2h2CqVvImM=
+=7wAe
+-----END PGP SIGNATURE-----
+
+--udh3kcsxoruobyui--
