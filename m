@@ -2,196 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D98E6424A8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9617A6424C5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbiLEIeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:34:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56352 "EHLO
+        id S231801AbiLEIhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:37:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231292AbiLEIeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:34:21 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2822B9FEB;
-        Mon,  5 Dec 2022 00:34:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1670229256; x=1701765256;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IATEYJx4a5AMyo7aV0mVnSZjiA+z3IBbzmRcgsGBH20=;
-  b=k9+OxuMtX1h4nLXiz3DgavC0ItGFzQoRF5ihz/k2l7LK+4FKh7Xzng/N
-   DsZvUpaPifNpjXQUESt9minfhyb8pYJPv7PgR4vVfzOl0hpjLaMdWk8Bw
-   D9Riqab+5WkkO5tR5dXWU0/N3y13X3Da0zu6bZN04ie2YDgOByryhJd8n
-   FBEtbnLxTGn36nzVgqUGQhng746p/dSR4lzsRu3RKW6jtavDiKtLccDV+
-   amiHVEn5dPkfxBnxtVLRgyawdXMZLBGt8jTkpLGg4F0VyeBYJlRdpbrQb
-   IGozFmv8cLgsezHQsYBhUCp0oCer9vHOt0PAGDmDadk1p5Ui9kB/UKl9x
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,218,1665471600"; 
-   d="scan'208";a="190018603"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Dec 2022 01:34:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 5 Dec 2022 01:34:15 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Mon, 5 Dec 2022 01:34:12 -0700
-Date:   Mon, 5 Dec 2022 08:33:53 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Samuel Holland <samuel@sholland.org>
-CC:     Conor Dooley <conor@kernel.org>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Rob Herring <robh@kernel.org>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v5 3/3] clocksource: timer-riscv: Set
- CLOCK_EVT_FEAT_C3STOP based on DT
-Message-ID: <Y42s8d+RSPMkrR6j@wendy>
-References: <20221201123954.1111603-1-apatel@ventanamicro.com>
- <20221201123954.1111603-4-apatel@ventanamicro.com>
- <20221202000603.GA1720201-robh@kernel.org>
- <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
- <Y40ueQiTZK6hi7RS@spud>
- <0515dc20-2e82-bd16-301a-6ffff010af13@sholland.org>
+        with ESMTP id S232086AbiLEIhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:37:46 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB2764C9
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 00:37:43 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id o7-20020a05600c510700b003cffc0b3374so9402152wms.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 00:37:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GI9jswp1GRA+uH9qwalop7yEM48OSV6515KeCGEoZvU=;
+        b=bdiaE6hrJkK9cKFM8to2VhCp+pqCzvtUGrDl7NTDX9trA5gd2PdcY21SbsISLScUJs
+         d94RqBX1SJJocD94Fge1AzxMUQAaS2qDHbDizjESm4E0UL+0tf2I5OtE4TAw3EIMJCie
+         pTgRmxWI3TDzU6+1Io1u4ecIZ1cWPwd0kk1oImc3GMmyU1gh8UA3YBUWUFkxDhcvhrfj
+         d9m5QEpvpuaBqTmOt48UobDqHQpbR6vNEiRQ+c1NJEZHlxBQzDJIKjNcBLxRRds6/4ft
+         a6VuNO621fMvgXqYcWM2k4yfcQ8z6qrpjRgNdjwiqtjVA7Y58UiSBAjIot5EHZJb72Dr
+         kpzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GI9jswp1GRA+uH9qwalop7yEM48OSV6515KeCGEoZvU=;
+        b=TRx7hQWAV29lcycRmQ74x9whUc4sClxZQhWYiJGElZKtullRxO+pgXeGbIWEBukd5l
+         ptHIRjtui8LNm/S6ofxfQcvxKgaBTANu78hNEHTJZ08ri+ECwyH26V45qvovkTsxgYVo
+         qPM1/aBmYmhc/dCNK7PFJv6FEF5s2pSgBhCgB2KUlBi6taHTKJPy4tng7ea1xWhlA4Sj
+         9spykS48HGZvwiZD38ptcdiuc/ZEZ9qqw9Er1sXdPfgG94Nf8SD5K8bU/u8k8itTwdB4
+         QCU6erQKyQwCQqe1ZKMv/7r/hC9mRAYL1sryxHnglq/FkOkIEojSbx/b9w7cy9Jmf2a0
+         GZJg==
+X-Gm-Message-State: ANoB5pmSt6yC2JqcPG5M486iGHrCdKZ9/8V5TnEzk2oL9NdBHxDSMYI3
+        /CC7prWPRpps7V/YI8+cTuObqQ==
+X-Google-Smtp-Source: AA0mqf5VYojR3lq7hf3aCZQy8ydm7vK1TnRD+CW9y6cx6eB3j7k/GJWpwk5khg2iV5guVZchw1gSug==
+X-Received: by 2002:a05:600c:1e8d:b0:3d0:2c5c:e483 with SMTP id be13-20020a05600c1e8d00b003d02c5ce483mr43647708wmb.141.1670229462265;
+        Mon, 05 Dec 2022 00:37:42 -0800 (PST)
+Received: from [192.168.7.93] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id u14-20020a05600c19ce00b003cfd42821dasm18505854wmq.3.2022.12.05.00.37.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 00:37:41 -0800 (PST)
+Message-ID: <76433338-6930-24c7-0b11-b00196dd7559@linaro.org>
+Date:   Mon, 5 Dec 2022 09:37:40 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0515dc20-2e82-bd16-301a-6ffff010af13@sholland.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 0/6] soc: qcom: add support for the I2C Master Hub
+Content-Language: en-US
+To:     Wolfram Sang <wsa@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
+ <Y4kvcXTdwImZpaU1@shikoro> <Y42sdXiCIpj2iaag@ninjato>
+Organization: Linaro Developer Services
+In-Reply-To: <Y42sdXiCIpj2iaag@ninjato>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 05, 2022 at 02:17:40AM -0600, Samuel Holland wrote:
-> On 12/4/22 17:34, Conor Dooley wrote:
-> > Hey Rob, Anup, Prabhakar,
-> > 
-> > On Fri, Dec 02, 2022 at 12:03:05PM +0530, Anup Patel wrote:
-> >> On Fri, Dec 2, 2022 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
-> >>>
-> >>> On Thu, Dec 01, 2022 at 06:09:54PM +0530, Anup Patel wrote:
-> >>>> We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
-> >>>> when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
-> >>>> timer DT node.
-> >>>>
-> >>>> This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
-> >>>> based on RISC-V platform capabilities rather than having it set for
-> >>>> all RISC-V platforms.
-> >>>>
-> >>>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >>>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> >>>> ---
-> >>>>  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
-> >>>>  1 file changed, 11 insertions(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-> >>>> index 969a552da8d2..1b4b36df5484 100644
-> >>>> --- a/drivers/clocksource/timer-riscv.c
-> >>>> +++ b/drivers/clocksource/timer-riscv.c
-> >>>> @@ -28,6 +28,7 @@
-> >>>>  #include <asm/timex.h>
-> >>>>
-> >>>>  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-> >>>> +static bool riscv_timer_cannot_wake_cpu;
-> >>>>
-> >>>>  static int riscv_clock_next_event(unsigned long delta,
-> >>>>               struct clock_event_device *ce)
-> >>>> @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
-> >>>>  static unsigned int riscv_clock_event_irq;
-> >>>>  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
-> >>>>       .name                   = "riscv_timer_clockevent",
-> >>>> -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
-> >>>> +     .features               = CLOCK_EVT_FEAT_ONESHOT,
-> >>>
-> >>> A platform that depended on CLOCK_EVT_FEAT_C3STOP being set will break
-> >>> with this change because its existing DT will not have the new property.
-> >>>
-> >>> It needs to be the other way around which would effectively be the
-> >>> existing 'always-on' property.
-> >>
-> >> There are no RISC-V platforms using C3STOP. The patch which
-> >> added C3STOP has been reverted.
-> >> (Refer, https://lore.kernel.org/lkml/a218ebf8-0fba-168d-6598-c970bbff5faf@sholland.org/T/)
-> >>
-> >> I just need to rebase this patch upon the C3STOP revert patch.
-> > 
-> > I guess you could say that the C3STOP addition was done spec-ulatively*,
-> > as the platform that actually exhibits that behaviour does not use the
-> > riscv-timer & its maintainer acked the revert (allwinner d1 family).
+On 05/12/2022 09:31, Wolfram Sang wrote:
+> On Thu, Dec 01, 2022 at 11:49:21PM +0100, Wolfram Sang wrote:
+>> On Tue, Nov 29, 2022 at 03:47:00PM +0100, Neil Armstrong wrote:
+>>> The I2C Master Hub is a stripped down version of the GENI Serial Engine
+>>> QUP Wrapper Controller but only supporting I2C serial engines without
+>>> DMA support.
+>>>
+>>> The I2C Master Hub only supports a variant of the I2C serial engine with:
+>>> - a separate "core" clock
+>>> - no DMA support
+>>> - non discoverable fixed FIFO size
+>>>
+>>> Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
+>>> and the iommus property neither.
+>>>
+>>> This patchset adds the bindings changes to the QUPv3 wrapper and I2C serial
+>>> element bindings to reflect the different resources requirements.
+>>>
+>>> In order to reuse the QUPv3 wrapper and I2C serial element driver support,
+>>> the I2C Master Hub requirements are expressed in new desc structs passed
+>>> as device match data.
+>>
+>> Is everyone fine if I take all this via the I2C tree?
 > 
-> For clarity: that doesn't mean the platform will _never_ use the SBI
-> timer facility, just that Linux happens to not use it right now.
+> I did this now.
+> 
+> All applied to for-next, thanks!
+> 
 
-Yeah sorry - should have been a bit clearer there. There's a few other
-SoCs about that are using the thead cores, so I'd be "worried" that they
-share the timer behaviour but do not have an alternative like you do on
-the D1. That's part of what's kinda given me cold feet on the current
-approach.
+Thanks !
 
-> > *The spec does not make any guarantees about whether events arrive
-> > during suspend, only the behaviour *if* they arrive.
-> > 
-> > Switching the property to "always-on" would require retrofitting that
-> > property to every other existing platform (and therefore regressing some
-> > behaviour there, no?).
-> > 
-> > Most of the existing platforms are "toys" or demo platforms though, so
-> > it would not, I guess, be the end of the world to do so. Doubly so since
-> > none of them actually implement any sleep states that making it an
-> > "always-on" property.
-> 
-> Specifically, only sleep states with a "local-timer-stop" property would
-> be inhibited by the C3STOP flag, so there is only possibility of a
-> regression if some DT declaring such a sleep state exists anywhere.
-> 
-> Regards,
-> Samuel
-> 
-> > I've said since the start that defaulting to C3STOP is the "safer" thing
-> > to do, and although we disagreed on this last time Anup, I think the
-> > better outcome of someone missing a DT property is inaccessible sleep
-> > states rather than going into sleep states they cannot get out of.
-> > 
-> > For PolarFire SoC, which I guess is one of the few "commerical"
-> > platforms, I'd be willing to accept retrofitting, since we have not yet
-> > implemented such sleep states yet.
-> > 
-> > Maybe Prabhakar knows whether the RZ/Five has either a) implemented
-> > sleep states and b) which side of the "timer events arrive in suspend"
-> > divide their platform lies on.
-> > I'm particular interested here since that is not a SiFive core complex.
-> > 
-> > I would like to get DT maintainer approval of an approach here soon-ish
-> > so that we can something sorted for the jh7110 stuff and for the
-> > bouffalolabs SoC - the latter of which may very well be in the "no
-> > events in suspend" camp as it also uses thead stuff.
-> > 
-> > Sorry for kinda rowing back on my previous acceptance of the approach,
-> > but I am really between two minds on this.
-> > 
-> > Thanks,
-> > Conor.
-> > 
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Neil
