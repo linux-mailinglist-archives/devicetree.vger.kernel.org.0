@@ -2,195 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D9B642523
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:55:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7873642528
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:56:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232424AbiLEIzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:55:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43688 "EHLO
+        id S232253AbiLEI4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:56:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232385AbiLEIyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:54:43 -0500
-Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C3A92BBF;
-        Mon,  5 Dec 2022 00:54:01 -0800 (PST)
-Received: from NTHCCAS01.nuvoton.com (NTHCCAS01.nuvoton.com [10.1.8.28])
-        by maillog.nuvoton.com (Postfix) with ESMTP id 32ECE1C81291;
-        Mon,  5 Dec 2022 16:54:00 +0800 (CST)
-Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Mon, 5 Dec 2022
- 16:54:00 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS03.nuvoton.com
- (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Mon, 5 Dec 2022
- 16:53:59 +0800
-Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
- (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
- Transport; Mon, 5 Dec 2022 16:53:59 +0800
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 9A08563A6B; Mon,  5 Dec 2022 10:53:58 +0200 (IST)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     <ulf.hansson@linaro.org>, <avifishman70@gmail.com>,
-        <tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
-        <yuenn@google.com>, <benjaminfair@google.com>,
-        <adrian.hunter@intel.com>, <skhan@linuxfoundation.org>,
-        <davidgow@google.com>, <pbrobinson@gmail.com>, <gsomlo@gmail.com>,
-        <briannorris@chromium.org>, <arnd@arndb.de>,
-        <krakoczy@antmicro.com>, <andy.shevchenko@gmail.com>
-CC:     <openbmc@lists.ozlabs.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-Date:   Mon, 5 Dec 2022 10:53:51 +0200
-Message-ID: <20221205085351.27566-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20221205085351.27566-1-tmaimon77@gmail.com>
-References: <20221205085351.27566-1-tmaimon77@gmail.com>
+        with ESMTP id S232259AbiLEIzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:55:39 -0500
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DA4F617E26;
+        Mon,  5 Dec 2022 00:54:34 -0800 (PST)
+Received: from loongson.cn (unknown [112.20.109.110])
+        by gateway (Coremail) with SMTP id _____8BxnuvJsY1jHjwDAA--.7771S3;
+        Mon, 05 Dec 2022 16:54:33 +0800 (CST)
+Received: from [0.0.0.0] (unknown [112.20.109.110])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxXuDHsY1jqdolAA--.27108S3;
+        Mon, 05 Dec 2022 16:54:31 +0800 (CST)
+Message-ID: <250be32a-adc1-832c-c10d-38d99d23f647@loongson.cn>
+Date:   Mon, 5 Dec 2022 16:54:30 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH V4 4/5] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
+ controller
+To:     Wolfram Sang <wsa@kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jianmin Lv <lvjianmin@loongson.cn>
+References: <cover.1669777792.git.zhoubinbin@loongson.cn>
+ <f6cc2dbe5cd190031ab4f772d1cf250934288546.1669777792.git.zhoubinbin@loongson.cn>
+ <Y42uBT34H6alb4O9@ninjato>
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+In-Reply-To: <Y42uBT34H6alb4O9@ninjato>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxXuDHsY1jqdolAA--.27108S3
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjvdXoWrZF1ktrWrJFyfKFWkGF4kJFb_yoWDKrXEkF
+        yIyw1kArn5AF1xKa10gryfArn0g34jq395u3Z0qrWxu347tw1rtr48GryfCF1SvrZ7XFs0
+        9a18Jws2kryS9jkaLaAFLSUrUUUU8b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
+        07kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3w
+        AFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK
+        6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7
+        xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kK
+        e7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
+        0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280
+        aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JMxk0xIA0c2IEe2
+        xFo4CEbIxvr21lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC
+        6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+        026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF
+        0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0x
+        vE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv
+        6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUxYiiDUUUU
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/mmc/host/Kconfig      |  8 ++++
- drivers/mmc/host/Makefile     |  1 +
- drivers/mmc/host/sdhci-npcm.c | 84 +++++++++++++++++++++++++++++++++++
- 3 files changed, 93 insertions(+)
- create mode 100644 drivers/mmc/host/sdhci-npcm.c
+在 2022/12/5 16:38, Wolfram Sang 写道:
+> On Wed, Nov 30, 2022 at 01:56:20PM +0800, Binbin Zhou wrote:
+>> This I2C module is integrated into the Loongson-2K SoCs and Loongson
+>> LS7A bridge chip.
+>>
+>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> There are currently two people submitting a driver for this hardware.
+> This is the other driver:
+>
+> https://lore.kernel.org/all/20221128130025.23184-1-zhuyinbo@loongson.cn/
+>
+> Can you guys please decide which one is "better" or combine the two to
+> make a better one?
 
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index fb1062a6394c..82ab6fc25dca 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -415,6 +415,14 @@ config MMC_SDHCI_MILBEAUT
- 
- 	  If unsure, say N.
- 
-+config MMC_SDHCI_NPCM
-+	tristate "Secure Digital Host Controller Interface support for NPCM"
-+	depends on ARCH_NPCM || COMPILE_TEST
-+	depends on MMC_SDHCI_PLTFM
-+	help
-+	  This provides support for the SD/eMMC controller found in
-+	  NPCM BMC family SoCs.
-+
- config MMC_SDHCI_IPROC
- 	tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
- 	depends on ARCH_BCM2835 || ARCH_BCM_IPROC || ARCH_BRCMSTB || COMPILE_TEST
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index 4e4ceb32c4b4..a101f87a5f19 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -97,6 +97,7 @@ obj-$(CONFIG_MMC_SDHCI_MICROCHIP_PIC32)	+= sdhci-pic32.o
- obj-$(CONFIG_MMC_SDHCI_BRCMSTB)		+= sdhci-brcmstb.o
- obj-$(CONFIG_MMC_SDHCI_OMAP)		+= sdhci-omap.o
- obj-$(CONFIG_MMC_SDHCI_SPRD)		+= sdhci-sprd.o
-+obj-$(CONFIG_MMC_SDHCI_NPCM)		+= sdhci-npcm.o
- obj-$(CONFIG_MMC_CQHCI)			+= cqhci.o
- cqhci-y					+= cqhci-core.o
- cqhci-$(CONFIG_MMC_CRYPTO)		+= cqhci-crypto.o
-diff --git a/drivers/mmc/host/sdhci-npcm.c b/drivers/mmc/host/sdhci-npcm.c
-new file mode 100644
-index 000000000000..beace15b6c00
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-npcm.c
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * NPCM SDHC MMC host controller driver.
-+ *
-+ * Copyright (c) 2020 Nuvoton Technology corporation.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/mmc/host.h>
-+#include <linux/mmc/mmc.h>
-+#include <linux/module.h>
-+
-+#include "sdhci-pltfm.h"
-+
-+static const struct sdhci_pltfm_data npcm_sdhci_pdata = {
-+	.quirks  = SDHCI_QUIRK_DELAY_AFTER_POWER,
-+	.quirks2 = SDHCI_QUIRK2_STOP_WITH_TC |
-+		   SDHCI_QUIRK2_NO_1_8_V,
-+};
-+
-+static int npcm_sdhci_probe(struct platform_device *pdev)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct sdhci_host *host;
-+	u32 caps;
-+	int ret;
-+
-+	host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	pltfm_host = sdhci_priv(host);
-+
-+	pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
-+	if (IS_ERR(pltfm_host->clk))
-+		return PTR_ERR(pltfm_host->clk);
-+
-+	ret = clk_prepare_enable(pltfm_host->clk);
-+	if (ret)
-+		return ret;
-+
-+	caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-+	if (caps & SDHCI_CAN_DO_8BIT)
-+		host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	ret = sdhci_add_host(host);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	return 0;
-+
-+err_sdhci_add:
-+	clk_disable_unprepare(pltfm_host->clk);
-+	sdhci_pltfm_free(pdev);
-+	return ret;
-+}
-+
-+static const struct of_device_id npcm_sdhci_of_match[] = {
-+	{ .compatible = "nuvoton,npcm750-sdhci" },
-+	{ .compatible = "nuvoton,npcm845-sdhci" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, npcm_sdhci_of_match);
-+
-+static struct platform_driver npcm_sdhci_driver = {
-+	.driver = {
-+		.name	= "npcm-sdhci",
-+		.of_match_table = npcm_sdhci_of_match,
-+		.pm	= &sdhci_pltfm_pmops,
-+	},
-+	.probe		= npcm_sdhci_probe,
-+	.remove		= sdhci_pltfm_unregister,
-+};
-+module_platform_driver(npcm_sdhci_driver);
-+
-+MODULE_DESCRIPTION("NPCM Secure Digital Host Controller Interface driver");
-+MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.33.0
+Hi Wolfram:
+
+When Krzysztof found out about this, Yinbo and I had negotiated offline 
+that I would follow up on this series of patchset submissions,
+
+and this was Yinbo's previous response:
+
+https://lore.kernel.org/all/2e10ae64-3c91-ccf8-a970-eb6e3371b948@loongson.cn/ 
+<https://lore.kernel.org/all/2e10ae64-3c91-ccf8-a970-eb6e3371b948@loongson.cn/>
+
+Here is my previous response:
+
+https://lore.kernel.org/all/57496a84-52b3-db97-f0b9-1477de84eb1e@loongson.cn/
+
+Thanks.
+
+Binbin
+
+
+>
+> Thanks,
+>
+>     Wolfram
+>
 
