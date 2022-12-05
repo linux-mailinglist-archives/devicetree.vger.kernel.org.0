@@ -2,162 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF76C6430B8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:44:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 943406430C6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:52:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbiLESob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:44:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36574 "EHLO
+        id S231262AbiLESwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:52:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbiLESoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:44:30 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD13138;
-        Mon,  5 Dec 2022 10:44:29 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id v8so17104573edi.3;
-        Mon, 05 Dec 2022 10:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dlHbPYWA6349Ak4E81TJrxbwnHl0AOIrx3H6Nh0+tbA=;
-        b=UyO2bJTpFVjMY/0tBBDoPGsNfZlMI2tQ6T9TO0Se8rWkVDepqwR5LDaw5qoE6k4Xl6
-         RUrKk1f7VKjgKTMvPFJYmmJgoSqHZZhZNJFoYrZozl4LGj+6lPmbHwNhtbc0+PHGW/p4
-         aOQbKkS73nEae24oBKL/BgSlhEjBni+mcX+cZt2k6B9khxwMiVgAP+dFzzT8gI41hGGZ
-         FAMJ2c58IbkULB91g9pGA2CvSqvXhj+pViCw8xF7BsSO8wM5/KiG5f7ZIhG908Oz8k4k
-         07BRzeIfxNZCBKvnV6Mp3VDOVNQdnbiJV8RRNUXpOjMFNuOUsSXB3jjZiHJ96+dsQSGJ
-         5AuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dlHbPYWA6349Ak4E81TJrxbwnHl0AOIrx3H6Nh0+tbA=;
-        b=EkvbhSvietVkW9Fn+uEZslFS3nyG0U+8ESxTx7LSpJTDYTqePqj3TpfkDCYD0rNiMb
-         4OXfuYPAnbwyneoGHkJBuIcdZ+vDQ7v9elQ9RR2CTdtVHX4SR7NRTjh28p54gHsY4+UQ
-         czeWyjZd5vwgL5r9t50QQxKmFiGb06SLBQJny2lPDvD+JoW9bj4wbG6eoMJtzz2UN8F2
-         VsvqVvI3SmCeq3l/Kg3IGmTjCNJmvcM7m9txotOeUe2BUOMObmzzdblT6qg2fc9oyfWP
-         Fx97JfzNkDlcW/OXRLKlRm+1OAZR4gxagSjb3tyIlUmX6lUVEnHwwz69cGV0+4K2wTQa
-         ygTg==
-X-Gm-Message-State: ANoB5pkJW2fZVnZ/OAvK68led2q7VUB+T3hh/fmc08xfJ7A6llI7CNxc
-        /Gt720CTGQ212j7o5XTDBYA=
-X-Google-Smtp-Source: AA0mqf6Ts/kNLWVJ/stt694d1GxznEbV+QnGfRt4nf9Wu50yMePzguJgq41aTGP0fEAvkbNYwvPaJw==
-X-Received: by 2002:aa7:c046:0:b0:461:54f0:f7dc with SMTP id k6-20020aa7c046000000b0046154f0f7dcmr74844673edo.117.1670265868344;
-        Mon, 05 Dec 2022 10:44:28 -0800 (PST)
-Received: from [192.168.0.131] ([194.183.54.57])
-        by smtp.gmail.com with ESMTPSA id y20-20020a50eb94000000b004589da5e5cesm103090edr.41.2022.12.05.10.44.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 10:44:27 -0800 (PST)
-Message-ID: <38c9aae4-0cae-a5a6-7c76-f23edf259dab@gmail.com>
-Date:   Mon, 5 Dec 2022 19:44:25 +0100
+        with ESMTP id S230035AbiLESwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:52:15 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917221C918;
+        Mon,  5 Dec 2022 10:52:12 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 95041853BE;
+        Mon,  5 Dec 2022 19:52:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670266330;
+        bh=fVkxPc0IwdgxUr/zpsellVXsZzkPkcvuNcqxb3eAJKs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WI/a57Dk+ZNhNfzY33J5WNZEoEzv/x3SrgWQMxMhNjHT66epX6vbMusRvF9CeuXkG
+         Jmp6LZOJVVRO2u425Tat+BCumbyx1774giFCCHcG+Br3AjkTPuopHlstMMZJJGFSZP
+         5OWhK1wIPyABuqKPs013T7Ubqq6r/wig4L17gC5OzTstcKi4ZVfeOYxgToIQ2W2z8p
+         hYQ+7dvvMG1CsMuyTWBiQeULCKRJ3KcoTiKNlI9T/rRPTj14LPnw/+RRsSyM2qjORd
+         43ycUIt/cgJRjWdkjhJ1r3+YZq07MdnuuLMDpAqi0sMnsD/LteP8DnVN1+PTn4jHT0
+         cvfzP0xtYs0Kg==
+Message-ID: <29260d63-3240-6660-b002-cd00dc051574@denx.de>
+Date:   Mon, 5 Dec 2022 19:52:08 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: leds: Mark label property as deprecated
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        linux-kernel@vger.kernel.org,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel@dh-electronics.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221122111124.6828-1-cniedermaier@dh-electronics.com>
- <Y3y/S5COG7VPbsqL@duo.ucw.cz> <3f4c89a3-8955-ce41-ac2a-cee9b0ed5210@denx.de>
- <20221130191905.GA2631320-robh@kernel.org>
- <4043d693-7739-4709-8551-9f476031db70@denx.de>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-In-Reply-To: <4043d693-7739-4709-8551-9f476031db70@denx.de>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+References: <20221205152327.26881-1-francesco@dolcini.it>
+ <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+ <20221205185859.433d6cbf@xps-13>
+ <f69746b0-51c0-041c-4035-679c27fcba64@denx.de>
+ <20221205191828.3072d872@xps-13>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20221205191828.3072d872@xps-13>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
-
-On 12/2/22 00:41, Marek Vasut wrote:
-> On 11/30/22 20:19, Rob Herring wrote:
->> On Fri, Nov 25, 2022 at 10:26:30PM +0100, Marek Vasut wrote:
->>> On 11/22/22 13:23, Pavel Machek wrote:
->>>> Hi!
->>>
->>> Hi,
->>>
->>>>> Mark the label property as deprecated as it is mentioned
->>>>> in the description.
->>>>
->>>> Lets do it the other way around. Functions (etc) don't really provide
->>>> good enough description of LED, and label is still needed.
->>>
->>> Can you please provide a clear explanation which property or approach 
->>> is the
->>> correct one for new DTs ?
->>>
->>> So far, the documentation states that "label" is deprecated, and users
->>> should replace it with "function" and "color".
+On 12/5/22 19:18, Miquel Raynal wrote:
+> Hi Marek,
+> 
+> marex@denx.de wrote on Mon, 5 Dec 2022 19:07:14 +0100:
+> 
+>> On 12/5/22 18:58, Miquel Raynal wrote:
+>>> Hi Marek,
 >>
->> 'function' is what activity/operation the LED is associated with. It is
->> a fixed set of strings which s/w may use. It is a replacement for
->> 'linux,default-trigger'.
+>> Hi,
+>>
+>>> marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
+>>>    
+>>>> On 12/5/22 16:23, Francesco Dolcini wrote:
+>>>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>>>
+>>>>> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
+>>>>>
+>>>>> It introduced a boot regression on colibri-imx7, and potentially any
+>>>>> other i.MX7 boards with MTD partition list generated into the fdt by
+>>>>> U-Boot.
+>>>>>
+>>>>> While the commit we are reverting here is not obviously wrong, it fixes
+>>>>> only a dt binding checker warning that is non-functional, while it
+>>>>> introduces a boot regression and there is no obvious fix ready.
+>>>>>
+>>>>> Cc: stable@vger.kernel.org
+>>>>> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+>>>>> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
+>>>>> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+>>>>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+>>>>> ---
+>>>>>     arch/arm/boot/dts/imx7s.dtsi | 4 ++--
+>>>>>     1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+>>>>> index 03d2e8544a4e..0fc9e6b8b05d 100644
+>>>>> --- a/arch/arm/boot/dts/imx7s.dtsi
+>>>>> +++ b/arch/arm/boot/dts/imx7s.dtsi
+>>>>> @@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+>>>>>     			clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+>>>>>     		};
+>>>>>     > -		gpmi: nand-controller@33002000 {
+>>>>> +		gpmi: nand-controller@33002000{
+>>>>>     			compatible = "fsl,imx7d-gpmi-nand";
+>>>>>     			#address-cells = <1>;
+>>>>> -			#size-cells = <0>;
+>>>>> +			#size-cells = <1>;
+>>>>>     			reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
+>>>>>     			reg-names = "gpmi-nand", "bch";
+>>>>>     			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+>>>>
+>>>> I suspect this fix should eventually be reverted again, once a proper fix is agreed upon in the MTD OF parser, right ?
+>>>
+>>> I guess it's time to migrate to a more modern definition
+>>
+>> Is that the nand-chip@N { status="disabled"; } part ?
 > 
-> Isn't this 'function' more of a standardized replacement for 'label' ?
+> I would prefer the controller to be disabled if useless, but otherwise
+> yes.
 
-Yes it is. Introduction of function and color properties aimed at 
-standardizing LED naming. Before there was only 'label' used for that,
-with DT node name as fallback if 'label' property was not provided.
-With introduction of 'function' and 'color' label was deprecated in
-the sense that if the former two are present, they are used for
-composing the LED name.
+ACK, but see below.
 
-In LED documentation [0] people are encouraged to use definitions from
-include/dt-bindings/leds/common.h to keep LED naming uniform.
-It allows to avoid duplicates like "wlan" and "wifi".
+>>> , it's not
+>>> complex to do, there are plenty of examples. This would be IMHO a
+>>> better step ahead rather than just a cell change. Anyway, I don't mind
+>>> reverting this once we've sorted this mess out and fixed U-Boot.
+>>
+>> Won't we still have issues with older bootloader versions which paste partitions directly into this &gpmi {} node, and which needs to be fixed up in the parser in the end ?
+> 
+> I believe fdt_fixup_mtdparts() should be killed, so we should no longer
+> have this problem.
 
-> $ git grep LED_FUNCTION_ include/
-> ...
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_PLAYER5 "player-5"
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_ACTIVITY "activity"
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_ALARM "alarm"
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_BACKLIGHT 
-> "backlight"
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_BLUETOOTH 
-> "bluetooth"
-> include/dt-bindings/leds/common.h:#define LED_FUNCTION_BOOT "boot"
-> ...
-> 
-> Seems to me that ^ is closer to a "standardized" form of 'label' .
-> 
-> The LED subsystem does not infer any behavior of those LEDs based on 
-> their 'function' property as far as I can tell, at least not in the way 
-> 'linux,default-trigger' behaves.
-> 
->> 'label' is what is printed next to the LED for a human to read. 'label'
->> can be anything and the OS shouldn't care what it is.
-> 
-> This part I understand. What is not clear to me is, why is 'label' being 
-> un-deprecated.
+The fdt_fixup_mtdparts is U-Boot code. If contemporary Linux kernel is 
+booted with ancient U-Boot, then you would still get defective DT passed 
+to Linux, and that should be fixed up by Linux. Removing 
+fdt_fixup_mtdparts() from current mainline U-Boot won't solve this problem.
 
-It shouldn't be. It seems to be Pavel's ad-hoc decision.
-
-> We newly have 'function', 'function-enumerator' and 'color' DT 
-> properties for LEDs, which seem to be standardized forms of describing 
-> what the LED is used for, which LED it is (if there are multiple), and 
-> color of that LED. This was previously described in the 'label' 
-> property, usually in free form of e.g. "beaglebone:green:usr2" .
-> 
->> They serve 2 different purposes.
-> 
-> [...]
-
-[0] Documentation/leds/leds-class.rst
--- 
-Best regards,
-Jacek Anaszewski
+I think this is also what Francesco is trying to convey (please correct 
+me if I'm wrong).
