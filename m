@@ -2,238 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F2BE642712
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0B864271C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:03:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbiLELA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 06:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53930 "EHLO
+        id S230282AbiLELDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 06:03:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbiLELAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:00:01 -0500
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2118.outbound.protection.outlook.com [40.107.241.118])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B255019292;
-        Mon,  5 Dec 2022 03:00:00 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ic9l6lw6d7AQwrJoo4eELrx6h6ZuqczNDl79CU0hG2LWjsTZANClr9Ttl3/95rvG3xL8/pqevATnKwP7sek9fJyNKHTdlhAleWhHwVqJpUPtDnjIUsF4fD4OhELFCXBSwp/dbvMuNygG6KPbsOHMMBZbcE2WuOhsSe5Ub+KPBhF3DcXmkAh8kdLWswfDRuwDgklkfj6GGkCCVdxtLFU5dvgmCrFqATVYoH5netYuSKmK2oju9etr+2lpZ4YqDnKYM/Oz9dIgPm1yRe5ClfyCsQSStyy2Umf//YuZE0kslhytEHsb3N31aUmXvKKZyExRjL9SZk9pawN+dpCx86rQZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FuldcKvKeWXVmKDJ7yaKSDt9K0l06pHPOxoH4W4h1gY=;
- b=bvhoc3qJiEMTGROY8JWZDMtLA6HoQhGSp5sS5y/N1sAb3K+zja3g2e5mqAlQLGztXRrTZqfUtZ39jUywP0TG7SkvuSpBkmOmefilIoTG+h1vnyDxogMrTto/283jzAD7bfFhuo8BkXT3lZg+Zi4DVoYC/Ymz+04zeUOa0n6icOC5hpHN57SjTycOU+spX0gXy/sCdAYrkyDUYxmbX1KdNHb2tGDTQo4zikcGMQJrkul3I9tKy7N/xsXO2NiAJGFlSyshqioUQKPROolS6o44vpoUCRZu/zBXuvtnfRjNbb5UfM6DR4Iz9d6oBYLdr+g6GyWRjgX6+OOwb9n7HoEUyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
- dkim=pass header.d=plvision.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FuldcKvKeWXVmKDJ7yaKSDt9K0l06pHPOxoH4W4h1gY=;
- b=dK2HoMVgHF4TMoT+Ar6hoxmcRHCYM4KeregMPWw8BCszlw5zD34heAkXB6IscnZcJnx5QWi0iTEkJkxrKquTeJ8RzFPoZOv32Ohwv8pDG+0M2pi1r5cR/b1OczhqJLhqh9kVpXzEaqnAcMf+lL6zYRWTKjW8CYrH+YWoOpIT5dw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=plvision.eu;
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:38::26)
- by AM8P190MB0980.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:1da::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Mon, 5 Dec
- 2022 10:59:51 +0000
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::5912:e2b4:985e:265a]) by VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::5912:e2b4:985e:265a%3]) with mapi id 15.20.5880.013; Mon, 5 Dec 2022
- 10:59:51 +0000
-From:   Vadym Kochan <vadym.kochan@plvision.eu>
-To:     Hu Ziji <huziji@marvell.com>, Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229982AbiLELDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:03:49 -0500
+Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3B64223;
+        Mon,  5 Dec 2022 03:03:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670238205; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=dCg4L4dDwtUFfG26pp3MyF8p17XNUTGmBxNM8y8NIA4DDp7mqXy0T5jL5m16R5BfzufupFRzzCMTmrRM0Zxu7m4pHiCgFtEi0uk0GkhXSNlBhQdTvocuCGvA91fAebtA4syW7/fCUTpDwfoUDTah9GEd5WHaqPTjhliVrT9bS6I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1670238205; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=qqmUi98VANfk0PufkZdOVcDiymv+qgsHjWmqFJQ5X8s=; 
+        b=fB9KHUif2F8HCU7guYPqfQrxRDHMI6hxL54nHOt9nX00zBB0MXJS5sXmmhAZwl4Y1BmYiaYSJ4CNqVF0Rqqc75GyiLxV0UZWgCcUcTUDBrCPyQib4IEHo7vNNxAg35Q9qLO6zbzyRZJsvpTBTeAjS8XHh5XhSMaNsG/7h4S5JI8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670238205;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=qqmUi98VANfk0PufkZdOVcDiymv+qgsHjWmqFJQ5X8s=;
+        b=V0Yb2KDHkPy5QzDgxAdB6hcvdIo9/h5nK28X5LTlXdnsK3121DiaM2Lg9LrNJmzi
+        Q58YBu09jugZMqNS8TN3ywBkTNlkhfSpRaWIcWL7Ea+r+y67MwsscpEvpX1hYszT1ls
+        q3QRTzqDI5eAaHms1lKEsXDVcv4HBpKNtNJ/CZXk=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.143 [120.85.99.143]) by mx.zohomail.com
+        with SMTPS id 1670238202532178.59673950121748; Mon, 5 Dec 2022 03:03:22 -0800 (PST)
+Message-ID: <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible
+ for OpenC906
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Elad Nachman <enachman@marvell.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-Subject: [PATCH v3 3/3] mmc: xenon: Fix 2G limitation on AC5 SoC
-Date:   Mon,  5 Dec 2022 12:59:30 +0200
-Message-Id: <20221205105931.410686-4-vadym.kochan@plvision.eu>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221205105931.410686-1-vadym.kochan@plvision.eu>
-References: <20221205105931.410686-1-vadym.kochan@plvision.eu>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FRYP281CA0018.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::28)
- To VI1P190MB0317.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:38::26)
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Mon, 05 Dec 2022 19:03:17 +0800
+In-Reply-To: <Y43Jt3YOSbFyh954@wendy>
+References: <20221121041757.418645-1-uwu@icenowy.me>
+         <20221121041757.418645-3-uwu@icenowy.me>
+         <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
+         <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
+         <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
+         <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+         <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud>
+         <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
+         <Y43Jt3YOSbFyh954@wendy>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1P190MB0317:EE_|AM8P190MB0980:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba06d64a-842c-4ae7-6165-08dad6afd538
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yP99TKulsQ/XPm1R3zFFu8E4YHKtOx36NsL11kHm8R0yAeRRgxsfBhzHcfVeWkABqUk+PaHfLDirm5M180KAQ5qd5w14SwW0g//5n2FMqSTuKtK9fifxuwE1u0lSC6wD0R/Ob2mPZB5grvqKhj4W/PjXo+NwzMvKRXYY3Rh3XRJs8G9Xr0Kgc2YXr5LFdaXRyPA4yeWtEWnwyh+ZygEED2VG2E0Hwa3MQ6/E+rHRtjva0JOY6ng+kKXbjuUR9GK/LE6o/Tb0D3eMs3hc92vMmSoRrkEg7aaqzSYfz5+SxtZK4u06BKs6swY1S46lTGDE8kuCNsu7+rWuwem/+pzMLXiy8GDAav5XWqXsVwOOElFBe3NQjJurnplo3FXWAWIanPztnjZ/eQdftpzmXS5zxLeATpftB7RJPpPS5Y21Z5R70253Nxn0IsIsA8Boi4weYJebAGn15p6OViMUKdMUDhdD/bDFDEYRs8antR8GAn8wA8TKLVt5DzKwXctLauU22K+P0EsmlfxVhVdJGjaCorn8UNsWqCeLrUs1itIPvOObDMKnC4PO3z89DL7ywT4preCiWP3P9k5n7xOOQqIS1j3z77YAeqHzoNJ1st5OsUig51BEcMyJzJxqaCHHR+UjYYeEm39vJ3IXTzXHxQwTgyGmKVc2iCYemI+LVaHWHRy4e28gEPvcThEeNy+qwHdF
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1P190MB0317.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(346002)(136003)(39830400003)(366004)(451199015)(36756003)(38100700002)(86362001)(38350700002)(2906002)(41300700001)(8936002)(4326008)(44832011)(5660300002)(7416002)(83380400001)(66946007)(478600001)(6486002)(66476007)(66556008)(316002)(54906003)(2616005)(110136005)(8676002)(107886003)(1076003)(6666004)(52116002)(6506007)(26005)(186003)(6512007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?88ZUkP+/xJBFJYOQ1P5vFxypZv4Et7fu4X/DoRzua41khsaUYTR29PvpGqUE?=
- =?us-ascii?Q?Ox3Tn4dK2erCjVSRizUx1LQR/LgXfBF2NgEI8b/PmG4SSW8KEPkllg7s9lIC?=
- =?us-ascii?Q?QSuqkJzdZ3UOD0yPZtw+Et3nI8nS/MyOZyOYuLBLbT8WXbYhhsiMYG+ZC58n?=
- =?us-ascii?Q?z151jaZDsKuMfezEhNuaTr85N6leNYApyKoe2V2UB6v5JfzkthxJXyphDMT0?=
- =?us-ascii?Q?3/40jjZNVHnfhpMi2i2Wbtk1XvQb4f287IML2TrNc5SX2lS7vmMl9O0Rioz7?=
- =?us-ascii?Q?8/oAS8+DmEJ1049qBlEM7I/d9suTEi+gCxtzR+M2hKyqyhTDPusVB3JKzf1Z?=
- =?us-ascii?Q?h2TA1RhNQEeUrnK/uzcXjBi4C6z7kmYWYBtLn8kwiibtNjGfZILYa74cNsSL?=
- =?us-ascii?Q?Tc2H+JtVHuBe6yZg5cVAHjfCBoHR7kcSjkrts7KySFUWzYmI0X3wZoUHbMOP?=
- =?us-ascii?Q?KJ9+kP49q14X47a0wOHEUPMrIdnsNA8eRTMP54gGh2YJPn8Nq7hTFWfZSw4d?=
- =?us-ascii?Q?US1SsGgXP8wsyhKtCrDTIePyqOc06n8hdtFie0+EgWKvxJN8kOZ76OjtS3l5?=
- =?us-ascii?Q?AvxFNIsHqKY7Nmvmv5CvgH/Gy6i9lpFXlU7eYh4u2ZEsoxFkFZtht1TxR7Lc?=
- =?us-ascii?Q?KiLTnfMmttIv1HAJXo66X7stRuE25prfeO09LsktbJFWZtWqrMiu5PljeuCZ?=
- =?us-ascii?Q?Gn+en3Uy293GZcUmJhhVUGk5yjfc+R43lURIGXPeioXCA5c+EHGcaHOgRAum?=
- =?us-ascii?Q?nh+746mFzvq71lPEA0aTgWVebiGXhHelIfhwMXMans8JZpXymrtGTDd8tGCH?=
- =?us-ascii?Q?0qSyJndcJdhB+IYD3JAzbzuBMLHkyc9KHuvTN1PNcDOF/Ae3vJrZ/7MFWXx2?=
- =?us-ascii?Q?OIIA/NzOgnqocLt5d7USHVkn/lXQatihGy4glZMdqKWcttyuPzz+cUEhal7n?=
- =?us-ascii?Q?khVszXPGkcu4TOLOdF3VOgzSp8xOuZZzq7TiCnJ++PGAhkb0C8S/VIp/aC0w?=
- =?us-ascii?Q?XOO4HOMyTiLggQmv0cOPOLp5vJ0Fa2IHaw3z8lf+CwWDwVjPe0kyw4dwko4B?=
- =?us-ascii?Q?vTulrpapf7DSLamRD5W6K6MsmwAg9tAU+48fY9BB8IGmETfAB+pkyHhJMJU1?=
- =?us-ascii?Q?Luwb4l2Fy/jp0TySXoH5P15NcQ4b70tcsDrLei/2NLo1+tzmnEZUxOw2mFaS?=
- =?us-ascii?Q?wbxNwEV1Z+WVPw6yEStcVd/mCTN17Y3MTfxejhp7vOtEZBt33LTVNaEmQj3x?=
- =?us-ascii?Q?EfGNOFPbN298rnyETamPmXkOzeRmZ+Rn7/eFX3STjTsWV25EgcpFlcN7PpWi?=
- =?us-ascii?Q?ImfJyxMIgK1u9pow5Ss1hoeK+98DrTYjuFm0owVukSDTDuAk7+d3JhW7umpF?=
- =?us-ascii?Q?bW3oN6H67l1fmOvQIh6YGBEK9ECmWWUzbO1A9NPzjQEuH9647zJmppp0MVIB?=
- =?us-ascii?Q?clO571oW0jqrLdev6gRs+zIKEDbrOq3FHHvVCNqjCw4XipP32JRu6orVi5l2?=
- =?us-ascii?Q?kbLE4lvUcFXe1HgRuDKvewEdi4scPhhW2zUrRjDNk6cpfN0uRhS1K7EMm72l?=
- =?us-ascii?Q?o8tP20HLR/MMBTtjSiFPY0pFtdMGlYCpAldCPKJNzstNl97Y9DIvK8wB2v0H?=
- =?us-ascii?Q?Zw=3D=3D?=
-X-OriginatorOrg: plvision.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba06d64a-842c-4ae7-6165-08dad6afd538
-X-MS-Exchange-CrossTenant-AuthSource: VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2022 10:59:51.2771
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9HiSZn03lR21RbbMBAfCkeErssuLgYO2ZzrCjIqmZh/DbMf1reaHU9i9F1DFqECxtB4Vs+wTAJLerXX2Ufc7anSYmhN/SCP3TlVDh1IKM3M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8P190MB0980
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a limitation on AC5 SoC that mmc controller
-can't have DMA access over 2G memory, so use SDMA with
-a bounce buffer. Swiotlb can't help because on arm64 arch
-it reserves memblock's at the end of the memory.
+=E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Fri, Dec 02, 2022 at 02:12:54PM +0800, Icenowy Zheng wrote:
+> > =E5=9C=A8 2022-12-01=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 19:18 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> > > On Wed, Nov 30, 2022 at 12:13:30PM -0600, Rob Herring wrote:
+> > > > On Tue, Nov 22, 2022 at 03:41:27PM +0800, Icenowy Zheng wrote:
+> > > > >=20
+> > > > >=20
+> > > > > =E4=BA=8E 2022=E5=B9=B411=E6=9C=8822=E6=97=A5 GMT+08:00 =E4=B8=8B=
+=E5=8D=883:35:48, Krzysztof Kozlowski
+> > > > > <krzysztof.kozlowski@linaro.org> =E5=86=99=E5=88=B0:
+> > > > > > On 22/11/2022 08:18, Icenowy Zheng wrote:
+> > > > > > > =E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 11:0=
+6 +0100=EF=BC=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > > > > On 21/11/2022 05:17, Icenowy Zheng wrote:
+> > > > > > > > > T-Head OpenC906 is a open-source-licensed fixed-
+> > > > > > > > > configuration of
+> > > > > > > > > C906,
+> > > > > > > > > which is now public and able to be integrated.
+> > > > > > > > >=20
+> > > > > > > > > Add a compatible for the CLINT shipped as part of
+> > > > > > > > > OpenC906, which
+> > > > > > > > > should
+> > > > > > > > > just be ordinary C9xx CLINT.
+> > > > > > > > >=20
+> > > > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > > > ---
+> > > > > > > > > =C2=A0Documentation/devicetree/bindings/timer/sifive,clin=
+t
+> > > > > > > > > .yam
+> > > > > > > > > l | 1 +
+> > > > > > > > > =C2=A01 file changed, 1 insertion(+)
+> > > > > > > > >=20
+> > > > > > > > > diff --git
+> > > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clin
+> > > > > > > > > t.ya
+> > > > > > > > > ml
+> > > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clin
+> > > > > > > > > t.ya
+> > > > > > > > > ml
+> > > > > > > > > index aada6957216c..86703e995e31 100644
+> > > > > > > > > ---
+> > > > > > > > > a/Documentation/devicetree/bindings/timer/sifive,clin
+> > > > > > > > > t.ya
+> > > > > > > > > ml
+> > > > > > > > > +++
+> > > > > > > > > b/Documentation/devicetree/bindings/timer/sifive,clin
+> > > > > > > > > t.ya
+> > > > > > > > > ml
+> > > > > > > > > @@ -35,6 +35,7 @@ properties:
+> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 - const: sifive,clint0
+> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 - enum:
+> > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 - thead,openc906-clint
+> > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 - allwinner,sun20i-d1-clint
+> > > > > > > >=20
+> > > > > > > > Add entries sorted alphabetically. This should be
+> > > > > > > > squashed
+> > > > > > > > with
+> > > > > > > > previous
+> > > > > > > > patch.
+> > > > > > >=20
+> > > > > > > I make it a seperated patch because I think it's a
+> > > > > > > questionable
+> > > > > > > approach.
+> > > > > > >=20
+> > > > > > > If you think it's okay, I will just squash it and put it
+> > > > > > > as
+> > > > > > > the second
+> > > > > > > patch in the next iteration, with adding openc906-plic as
+> > > > > > > the
+> > > > > > > first
+> > > > > > > one.
+> > > > > >=20
+> > > > > > What is a questionable approach? Why commit msg is not
+> > > > > > saying
+> > > > > > this?
+> > > > >=20
+> > > > > Ah I mentioned it in the cover letter. The problem is just I
+> > > > > doubt whether
+> > > > > binding strings for single SoCs are necessary.
+> > > >=20
+> > > > They are.
+> > > >=20
+> > > > Unless all the quirks/bugs/features are somehow guaranteed to
+> > > > be
+> > > > exactly=20
+> > > > the same as other SoCs sharing the same compatible string, or
+> > > > there
+> > > > is=20
+> > > > another mechanism to identify the exact version (e.g. a version
+> > > > register).
+> > >=20
+> > > Icenowy,
+> > >=20
+> > > Having thought about this a little - are we not *more* likely to
+> > > see
+> > > bug/quirk disparity between implementations of the OpenC906 stuff
+> > > by
+> > > the very nature of being an open-source IP?
+> >=20
+> > It's an open-source edition of a specific version of the commercial
+> > IP,
+> > a fixed configuration.
+> >=20
+> > In addition, maybe we can just retrieve the version infomation via
+> > a T-
+> > Head custom CPU configuration register, mcpuid. Despite the
+> > implementation of this register is weird -- it contains 7 different
+> > read-only values, with the most significant nibble behaving as an
+> > index.
+>=20
+> You lot all know the situation here a lot more than I do...
+> I don't think "letting" people use the bare "thead,c900-foo" makes
+> much
+> sense as it gives us no chance to deal with quirks down the line.
 
-Additionally set mask to 34 bit since on AC5 SoC RAM starts
-at 0x2_00000000.
+Well, after rechecking the manual, I found it possible to handle quirks
+-- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can be
+used to retrieve some identification info of the core, including its
+model ID, version, etc; and the T-Head PLIC/CLINT are part of their
+C906 SoC design that there's another "mapbaddr" CSR that could be used
+to retrieve the base address of them.
 
-Co-developed-by: Elad Nachman <enachman@marvell.com>
-Signed-off-by: Elad Nachman <enachman@marvell.com>
-Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
----
- drivers/mmc/host/sdhci-xenon.c | 38 ++++++++++++++++++++++++++++++++++
- drivers/mmc/host/sdhci-xenon.h |  3 ++-
- 2 files changed, 40 insertions(+), 1 deletion(-)
+So I think it okay to just use "thead,c900-clint" here, and when
+necessary, try to retrieve mcpuid for dealing with quirks.
 
-diff --git a/drivers/mmc/host/sdhci-xenon.c b/drivers/mmc/host/sdhci-xenon.c
-index 08e838400b52..5f3db0425674 100644
---- a/drivers/mmc/host/sdhci-xenon.c
-+++ b/drivers/mmc/host/sdhci-xenon.c
-@@ -13,7 +13,9 @@
- 
- #include <linux/acpi.h>
- #include <linux/delay.h>
-+#include <linux/dma-mapping.h>
- #include <linux/ktime.h>
-+#include <linux/mm.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/pm.h>
-@@ -253,6 +255,22 @@ static unsigned int xenon_get_max_clock(struct sdhci_host *host)
- 		return pltfm_host->clock;
- }
- 
-+static int xenon_set_dma_mask(struct sdhci_host *host)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct xenon_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	struct mmc_host *mmc = host->mmc;
-+	struct device *dev = mmc_dev(mmc);
-+
-+	if (priv->hw_version == XENON_AC5) {
-+		host->flags &= ~SDHCI_USE_64_BIT_DMA;
-+
-+		return dma_set_mask_and_coherent(dev, DMA_BIT_MASK(34));
-+	}
-+
-+	return sdhci_set_dma_mask(host);
-+}
-+
- static const struct sdhci_ops sdhci_xenon_ops = {
- 	.voltage_switch		= xenon_voltage_switch,
- 	.set_clock		= sdhci_set_clock,
-@@ -261,6 +279,7 @@ static const struct sdhci_ops sdhci_xenon_ops = {
- 	.reset			= xenon_reset,
- 	.set_uhs_signaling	= xenon_set_uhs_signaling,
- 	.get_max_clock		= xenon_get_max_clock,
-+	.set_dma_mask		= xenon_set_dma_mask,
- };
- 
- static const struct sdhci_pltfm_data sdhci_xenon_pdata = {
-@@ -486,6 +505,18 @@ static void xenon_sdhc_unprepare(struct sdhci_host *host)
- 	xenon_disable_sdhc(host, sdhc_id);
- }
- 
-+static int xenon_ac5_probe(struct sdhci_host *host)
-+{
-+	struct sysinfo si;
-+
-+	si_meminfo(&si);
-+
-+	if ((si.totalram * si.mem_unit) > SZ_2G)
-+		host->quirks |= SDHCI_QUIRK_BROKEN_ADMA;
-+
-+	return 0;
-+}
-+
- static int xenon_probe(struct platform_device *pdev)
- {
- 	struct sdhci_pltfm_host *pltfm_host;
-@@ -533,6 +564,12 @@ static int xenon_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	if (priv->hw_version == XENON_AC5) {
-+		err = xenon_ac5_probe(host);
-+		if (err)
-+			goto err_clk_axi;
-+	}
-+
- 	err = mmc_of_parse(host->mmc);
- 	if (err)
- 		goto err_clk_axi;
-@@ -682,6 +719,7 @@ static const struct of_device_id sdhci_xenon_dt_ids[] = {
- 	{ .compatible = "marvell,armada-ap807-sdhci", .data = (void *)XENON_AP807},
- 	{ .compatible = "marvell,armada-cp110-sdhci", .data =  (void *)XENON_CP110},
- 	{ .compatible = "marvell,armada-3700-sdhci", .data =  (void *)XENON_A3700},
-+	{ .compatible = "marvell,ac5-sdhci", .data = (void *)XENON_AC5},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, sdhci_xenon_dt_ids);
-diff --git a/drivers/mmc/host/sdhci-xenon.h b/drivers/mmc/host/sdhci-xenon.h
-index 3e9c6c908a79..0460d97aad26 100644
---- a/drivers/mmc/host/sdhci-xenon.h
-+++ b/drivers/mmc/host/sdhci-xenon.h
-@@ -57,7 +57,8 @@ enum xenon_variant {
- 	XENON_A3700,
- 	XENON_AP806,
- 	XENON_AP807,
--	XENON_CP110
-+	XENON_CP110,
-+	XENON_AC5
- };
- 
- struct xenon_priv {
--- 
-2.25.1
+> I don't think that using "thead,openc906-clint", "thead,c900-clint"
+> makes all that much sense either, in case someone does something
+> wacky
+> with the open-source version of the core.
+>=20
+> That leaves us with either:
+> "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
+> or:
+> "vendor,soc-clint", "thead,c900-clint"
+> right?
+>=20
+> The first one seems like possibly the better option as you'd kinda
+> expect that, in a perfect word, all of the open-source IP
+> implementations would share quirks etc?
+>=20
+> Thanks,
+> Conor.
+>=20
 
