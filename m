@@ -2,382 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0988D642F9C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E9BD642FA7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:15:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231555AbiLESJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:09:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
+        id S230233AbiLESP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:15:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbiLESJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:09:50 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A144BC99
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 10:09:49 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id x28so2538508lfn.6
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 10:09:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1ygEPlHYIIbXAkVkRyyQhAxFfq5zBnEqOicPGwf/WsU=;
-        b=Vw/JTpQ1krpQXq0KPjaPn1fOgZbVwgTiAQdsY1mYISovHNk+XYvP7hgdmJ/pWU0Hqf
-         OiRGQfNlL9qzbpfQHbKwGuFE0VWht5/D5tRhz8v7r7wlQFADcOjqbkaREyEw97ey1izT
-         qFFOQ766ada8SHct1HuqMXC/nQA3FtsDuU3wnV1XCBnKQ8d95C9Um7tAYFYwXJI/+iSp
-         4/lrsIvuKwfNsGffK9dldjEa1/gqb53EhAjajlW5Rr1AxVVqGCvYvzuhS++GZt0Vue86
-         uKBVavXbAm+FUQuhJXBsMjNIYfOEVmTC9vDH7ybCvpXh6e6BwBIGB3SFCJHXs0Jj9e79
-         d3JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=1ygEPlHYIIbXAkVkRyyQhAxFfq5zBnEqOicPGwf/WsU=;
-        b=JDJOapm73XTJ9yRfwAw1FBWjJ8AFE9Hc+yhSxvc7F6w6Pi88oFdbUeMeBqAPUT237+
-         zRI9xtjVXT+Y6phr3Jb+xkQEuMP5Zz2bJhrXwxXdTjP5U3odPwG6ndl/UlksOyRnlPKA
-         dQRUh0u5GC/Qgd9BtLABrE7NrIyUL6BI49gk1kukSWmGk/DOKiGkVDgQzXkXWZr3aUUH
-         BGJpGlp2wQuTsbJZmqMlFrXJY7DEDm7ItlosFZj/KA3iC7GarC55rEKySs9KPXsymYg/
-         UhG/pOw5/WE5+N9Al/vywiQNMpIs6eaUyKAJUIdHZlm1qDVLoIWu0dKAtfGaK/i5tiwc
-         125g==
-X-Gm-Message-State: ANoB5plw7CnZiArrZaLeCluwVmtux3MeEaDTAwAyrkqR0LbWrmfsyPVl
-        N5L4p+7/bpDI7njEkz/vhS/jzQ==
-X-Google-Smtp-Source: AA0mqf5z7wLp2Dz1hSeqBNT+xZUYZDY1Sc5BuFV3VZ6xSH3BN6dWJXybUuNwSewVfTY3XHvEJRNJlg==
-X-Received: by 2002:a05:6512:2215:b0:4b5:5efb:7d29 with SMTP id h21-20020a056512221500b004b55efb7d29mr4113966lfu.477.1670263787929;
-        Mon, 05 Dec 2022 10:09:47 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id a2-20020a19ca02000000b004946a1e045fsm2175600lfg.197.2022.12.05.10.09.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 10:09:47 -0800 (PST)
-Message-ID: <b58f6935-b6ac-128b-2fec-a06dccc3210f@linaro.org>
-Date:   Mon, 5 Dec 2022 19:09:45 +0100
+        with ESMTP id S231454AbiLESP0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:15:26 -0500
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC7A2036D;
+        Mon,  5 Dec 2022 10:15:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1670264119; bh=XVPKkuLGeYz5mLqD1WBfE0UuvVM2oX5DVgXJT9tVBkQ=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=Km25UcmR+GYuyNmPwkIUcK26v4T7Pb5bdUehlqxgOfD474bB/nVk08jgTuJFGGRs0
+         d8xVcN0UuEfSNROApkPTRUo2jd1iOtIbqMqHafHlXDtp9WcrgMFsUg/v2zRxY1tBBQ
+         2qWkgeezJdXrgY2Y5groJgpv5zyjaLWiLS8ebypc=
+Date:   Mon, 5 Dec 2022 19:15:19 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Chukun Pan <amadeus@jmu.edu.cn>
+Cc:     aholmes@omnom.net, devicetree@vger.kernel.org,
+        ezequiel@vanguardiasur.com.ar, frank-w@public-files.de,
+        frattaroli.nicolas@gmail.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
+        mark.kettenis@xs4all.nl, michael.riesch@wolfvision.net,
+        pgwipeout@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com,
+        s.hauer@pengutronix.de, yifeng.zhao@rock-chips.com
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: rk356x: Fix PCIe register and
+ range mappings
+Message-ID: <20221205181519.7e5diejvhiynqmv5@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Chukun Pan <amadeus@jmu.edu.cn>, aholmes@omnom.net,
+        devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+        frank-w@public-files.de, frattaroli.nicolas@gmail.com,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
+        mark.kettenis@xs4all.nl, michael.riesch@wolfvision.net,
+        pgwipeout@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com,
+        s.hauer@pengutronix.de, yifeng.zhao@rock-chips.com
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20221112114125.1637543-2-aholmes@omnom.net>
+ <20221205162322.149967-1-amadeus@jmu.edu.cn>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH v4 13/13] arm64: dts: qcom: sa8295-adp: Enable DP
- instances
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221205174433.16847-1-quic_bjorande@quicinc.com>
- <20221205174433.16847-14-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221205174433.16847-14-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221205162322.149967-1-amadeus@jmu.edu.cn>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 06, 2022 at 12:23:22AM +0800, Chukun Pan wrote:
+> > The register and range mappings for the PCIe controller in Rockchip's
+> > RK356x SoCs are incorrect. Replace them with corrected values from the
+> > vendor BSP sources, updated to match current DT schema.
+> 
+> Hi, Andrew
+> 
+> This patch broken pcie3x2 on my board.
 
+That's because 32bit mapping for pcie3x2 config should start at 0xf0000000 and
+the patch declares it incorrectly at 0xf2000000.
 
-On 05/12/2022 18:44, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> The SA8295P ADP has, among other interfaces, six MiniDP connectors which
-> are connected to MDSS0 DP2 and DP3, and MDSS1 DP0 through DP3.
-> 
-> Enable Display Clock controllers, MDSS instanced, MDPs, DP controllers,
-> DP PHYs and link them all together.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> 
-> Changes since v3:
-> - None
-> 
->   arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 243 ++++++++++++++++++++++-
->   1 file changed, 241 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index 6c29d7d757e0..d55c8c5304cc 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -23,6 +23,90 @@ aliases {
->   	chosen {
->   		stdout-path = "serial0:115200n8";
->   	};
-> +
-> +	dp2-connector {
-> +		compatible = "dp-connector";
-> +		label = "DP2";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			dp2_connector_in: endpoint {
-> +				remote-endpoint = <&mdss1_dp0_phy_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	dp3-connector {
-> +		compatible = "dp-connector";
-> +		label = "DP3";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			dp3_connector_in: endpoint {
-> +				remote-endpoint = <&mdss1_dp1_phy_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	edp0-connector {
-> +		compatible = "dp-connector";
-> +		label = "EDP0";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 2 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			edp0_connector_in: endpoint {
-> +				remote-endpoint = <&mdss0_dp2_phy_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	edp1-connector {
-> +		compatible = "dp-connector";
-> +		label = "EDP1";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			edp1_connector_in: endpoint {
-> +				remote-endpoint = <&mdss0_dp3_phy_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	edp2-connector {
-> +		compatible = "dp-connector";
-> +		label = "EDP2";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			edp2_connector_in: endpoint {
-> +				remote-endpoint = <&mdss1_dp2_phy_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	edp3-connector {
-> +		compatible = "dp-connector";
-> +		label = "EDP3";
-> +		type = "mini";
-> +
-> +		hpd-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			edp3_connector_in: endpoint {
-> +				remote-endpoint = <&mdss1_dp3_phy_out>;
-> +			};
-> +		};
-> +	};
->   };
->   
->   &apps_rsc {
-> @@ -163,13 +247,168 @@ vreg_l7g: ldo7 {
->   
->   		vreg_l8g: ldo8 {
->   			regulator-name = "vreg_l8g";
-> -			regulator-min-microvolt = <880000>;
-> -			regulator-max-microvolt = <880000>;
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l11g: ldo11 {
-> +			regulator-name = "vreg_l11g";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
->   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->   		};
->   	};
->   };
->   
-> +&dispcc0 {
-> +	status = "okay";
-> +};
-> +
-> +&dispcc1 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss0_dp2 {
-> +	status = "okay";
-status should go last.
+https://megous.com/dl/tmp/6d1a04195112b1e0.png
 
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss0_dp2_phy_out: endpoint {
-That's quite a lot of indentation.. couldn't these endpoints be defined 
-in the SoC DT?
+> And the wireless card on pcie2x1 is still not working.
 
-Konrad
-> +				remote-endpoint = <&edp0_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss0_dp2_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l8g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
-> +&mdss0_dp3 {
-> +	status = "okay";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss0_dp3_phy_out: endpoint {
-> +				remote-endpoint = <&edp1_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss0_dp3_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l8g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
-> +&mdss1 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss1_dp0 {
-> +	status = "okay";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss1_dp0_phy_out: endpoint {
-> +				remote-endpoint = <&dp2_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss1_dp0_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l11g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
-> +&mdss1_dp1 {
-> +	status = "okay";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss1_dp1_phy_out: endpoint {
-> +				remote-endpoint = <&dp3_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss1_dp1_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l11g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
-> +&mdss1_dp2 {
-> +	status = "okay";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss1_dp2_phy_out: endpoint {
-> +				remote-endpoint = <&edp2_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss1_dp2_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l11g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
-> +&mdss1_dp3 {
-> +	status = "okay";
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss1_dp3_phy_out: endpoint {
-> +				remote-endpoint = <&edp3_connector_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss1_dp3_phy {
-> +	status = "okay";
-> +
-> +	vdda-phy-supply = <&vreg_l11g>;
-> +	vdda-pll-supply = <&vreg_l3g>;
-> +};
-> +
->   &pcie2a {
->   	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
->   	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
+> [    0.405341] pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+> [    0.670522] rockchip-dw-pcie 3c0800000.pcie: can't request region for resource [mem 0xf2000000-0xf2ffffff]
+> [    0.671527] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -16
+> [    7.354521] pci 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+> [    7.355116] mt7921e 0000:01:00.0: enabling device (0000 -> 0002)
+> [    7.355812] mt7921e: probe of 0000:01:00.0 failed with error -28
+
+That's ENOSPC. Who knows where it's comming from. Something for you to debug. ;)
+
+regards,
+	o.
+> 
+> --
+> Thanks,
+> Chukun
+> 
+> -- 
+> 2.25.1
+> 
