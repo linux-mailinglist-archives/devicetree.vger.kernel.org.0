@@ -2,57 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37CBD643703
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C10264372D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:43:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbiLEVli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:41:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40850 "EHLO
+        id S234093AbiLEVnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:43:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233704AbiLEVld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:41:33 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 961AF27904;
-        Mon,  5 Dec 2022 13:41:32 -0800 (PST)
-Received: from mercury (unknown [185.209.196.162])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 593FA6600368;
-        Mon,  5 Dec 2022 21:41:31 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670276491;
-        bh=z3lfan09CK2D9wXcE8WBWvxWSfKIyD0HaJEgKtxKmJg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A5TmyhxaOgmm1n69LVLpUNYKHMMOcEXcRX3ytL66smsWhqEgzA9Z3Uv3e0cRw8b+S
-         oSDrJSMq/AaXcv0YWiNUJ2JqQyDbrZLXFJk6OvQRzko7uRvf1Q1OnQxws4k/54E/05
-         C/vaSxkgr6pTXLSJXfHhC7C55YOuiNvzWsHC3NekJtlyOosSAgPWQN5CIVV0Hbxdcp
-         1IZfmVR+HxYdU6rTfurJYd4pqGZmqQY5uOHDVi9eMpc6oUIMgQ1chlFd8Vqwul8tpg
-         GV5BvRCPwSNiM8k/9+ccDE6teMQ3rLC1ZNyHSMPCFM+G9S+z2Hb3MbHzD0RhJbeePg
-         7xUjU9bIp6kFQ==
-Received: by mercury (Postfix, from userid 1000)
-        id 29A891060F2F; Mon,  5 Dec 2022 22:41:29 +0100 (CET)
-Date:   Mon, 5 Dec 2022 22:41:29 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Carl Philipp Klemm <philipp@uvos.xyz>
-Cc:     linux-omap@vger.kernel.org, tony@atomide.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] leds: cpcap: make leds-cpcap an independent platform
- device to allow varying led setups
-Message-ID: <20221205214129.3ixuusoenlzjz6cb@mercury.elektranox.org>
-References: <20221204104313.17478-1-philipp@uvos.xyz>
- <20221204104313.17478-2-philipp@uvos.xyz>
- <20221205174857.asf6uant7ve7k5pe@mercury.elektranox.org>
- <20221205191548.13296b58d9121fec36769c97@uvos.xyz>
+        with ESMTP id S233994AbiLEVma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:42:30 -0500
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E2D2D1CB;
+        Mon,  5 Dec 2022 13:42:12 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id s30-20020a056830439e00b0067052c70922so1312924otv.11;
+        Mon, 05 Dec 2022 13:42:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=At/Iy89jbSM+uM6oAL5A4QbrrbFSKepIZsFF2MdZt+I=;
+        b=AWAUbJDpnVUh56HB46rATCN01SoA5EjjByMGabv5rrqUpBXPZax1BeB5EvHespkX8I
+         gDu2vTQx52VjV8JxaRhu+YIsgVnWyKsg5hPUx1PfZdfJ55RAqU2IVXBWAjAYTzc2/fr2
+         knHF105pMhVjcJWQaP9GgR/TcZgN4B+SbMwWz8pQHhKtof1H5SpWtVUWr6lIBYb3cPvV
+         Oa5U61uCmNmiIIVLUSjQ61vcX6AVxsEEapZDyQuF6fGo4AcMEAxYBDp2ervUgQdch9ui
+         TKy4gbJHitK5boU5FZkn6/vE+vGxh2KyNdxn9ywZISRGBz05Ri8Ol3Q3F20Bz48PUTDq
+         B2pA==
+X-Gm-Message-State: ANoB5pkxJ0kApDpclWuLM+YxhPcDZXDW+SRTIhm75OLq1Wc5IG771fhE
+        LG7UM3M9sQt2WdnsFEP5bQ==
+X-Google-Smtp-Source: AA0mqf6kj1GoiLDfY3xtoeuyCtevhKeHsvjbFdh4JVs9EO/VSyl7R6SPPnX8FN/JLUwlfcWHCl3skQ==
+X-Received: by 2002:a9d:7751:0:b0:637:1464:cebf with SMTP id t17-20020a9d7751000000b006371464cebfmr41256218otl.100.1670276531645;
+        Mon, 05 Dec 2022 13:42:11 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b24-20020a9d5d18000000b0066da36d2c45sm8233897oti.22.2022.12.05.13.42.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 13:42:11 -0800 (PST)
+Received: (nullmailer pid 2674599 invoked by uid 1000);
+        Mon, 05 Dec 2022 21:42:10 -0000
+Date:   Mon, 5 Dec 2022 15:42:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>, UNGLinuxDriver@microchip.com,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        linux-mediatek@lists.infradead.org,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        ", DENG Qingfang" <dqfext@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH v4 net-next 3/9] dt-bindings: net: dsa: utilize base
+ definitions for standard dsa switches
+Message-ID: <167027652411.2674430.15313904791062984653.robh@kernel.org>
+References: <20221202204559.162619-1-colin.foster@in-advantage.com>
+ <20221202204559.162619-4-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="udh3kcsxoruobyui"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221205191548.13296b58d9121fec36769c97@uvos.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221202204559.162619-4-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -60,50 +91,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---udh3kcsxoruobyui
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 02 Dec 2022 12:45:53 -0800, Colin Foster wrote:
+> DSA switches can fall into one of two categories: switches where all ports
+> follow standard '(ethernet-)?port' properties, and switches that have
+> additional properties for the ports.
+> 
+> The scenario where DSA ports are all standardized can be handled by
+> swtiches with a reference to the new 'dsa.yaml#/$defs/ethernet-ports'.
+> 
+> The scenario where DSA ports require additional properties can reference
+> '$dsa.yaml#' directly. This will allow switches to reference these standard
+> defitions of the DSA switch, but add additional properties under the port
+> nodes.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> Acked-by: Alvin Šipraga <alsi@bang-olufsen.dk> # realtek
+> ---
+> 
+> v3 -> v4
+>   * Rename "$defs/base" to "$defs/ethernet-ports" to avoid implication of a
+>     "base class" and fix commit message accordingly
+>   * Add the following to the common etherent-ports node:
+>       "additionalProperties: false"
+>       "#address-cells" property
+>       "#size-cells" property
+>   * Fix "etherenet-ports@[0-9]+" to correctly be "ethernet-port@[0-9]+"
+>   * Remove unnecessary newline
+>   * Apply changes to mediatek,mt7530.yaml that were previously in a separate patch
+>   * Add Reviewed and Acked tags
+> 
+> v3
+>   * New patch
+> 
+> ---
+>  .../bindings/net/dsa/arrow,xrs700x.yaml       |  2 +-
+>  .../devicetree/bindings/net/dsa/brcm,b53.yaml |  2 +-
+>  .../devicetree/bindings/net/dsa/dsa.yaml      | 25 ++++++++++++++++---
+>  .../net/dsa/hirschmann,hellcreek.yaml         |  2 +-
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 16 +++---------
+>  .../bindings/net/dsa/microchip,ksz.yaml       |  2 +-
+>  .../bindings/net/dsa/microchip,lan937x.yaml   |  2 +-
+>  .../bindings/net/dsa/mscc,ocelot.yaml         |  2 +-
+>  .../bindings/net/dsa/nxp,sja1105.yaml         |  2 +-
+>  .../devicetree/bindings/net/dsa/realtek.yaml  |  2 +-
+>  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |  2 +-
+>  11 files changed, 35 insertions(+), 24 deletions(-)
+> 
 
-Hi,
-
-On Mon, Dec 05, 2022 at 07:15:48PM +0100, Carl Philipp Klemm wrote:
-> > I don't follow. Can't you just use 'status =3D "disabled;"' for the
-> > unavailable nodes?
->=20
-> Sure but unless im missing something, adding some nodes to a dts, one
-> for eatch led the device in question really has feals mutch better to
-> me than going arround and setting every led channel disabled for eatch
-> device that dosent use it. xt894 being the outlier here amoung the
-> cpcap devices we intend to support (xt894, xt860, xt875, xt910, xt912,
-> mb865, mz609 and mz617) in that it uses most of the extra led channels,
-> most of these use at most one (xt875, xt910, xt912, mb865) or zero
-> (mz609, mz617) extra channels.
-
-Just mark them all status =3D 'disabled'; in the common include and
-then enable them on a per board basis. Just the same way as all the
-SoC peripherals are handled nowadays.
-
--- Sebastian
-
---udh3kcsxoruobyui
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmOOZYQACgkQ2O7X88g7
-+pqTRA//YOOIAJ+dsCNfKROCmvPM4m5DaieEtm9ZV+VKisX79j2H7oCnfM8QoOCg
-ipnGeIv2P5PGFhdxuOYZUrcoPMV2jtoXryBZmPzJ1r0CzqX8V0MARkVp2ie3JWNK
-dDeSljSfZD0WgWyVIjz8Nu7D0P/uf1MRuBQUgn/dt8pB1bBNDATlxadaCBbS99dg
-AbHfiW71AahDvLWjgq6dj+WMggF25X6cJV/FC2c38kLRxB/2LMbdq6Mte+B07Ch2
-KPsifTwi2moKeVWcf/4+aE5VPoZHi9WWFuumpwpNiaMWjzY/s5U3CJGU7+zCQkLc
-VEB23j/EqjjmXytHXr4rlOveteK4msqsaP+T7+mdf28Xj+TfObIwpYA8I44aAFUR
-MC/fSASFUcPrSxXr0gSkr9Kahnncm9Et90BIpU0Lcd21HRyFbzzcYbjdnNOH0r/U
-9nd/gVVqdm85ZtbpbyaEt2udmmBQ+QYgstiEb4l8okkG9xUz2ILuCuVmd5MxWtlB
-3yhX5EY2i1dtbKIRRSp9QvZbYn3Nt+bc2oKrgjUKi/S7LNLUPNfjjVnMwgnx3r8b
-AjdahZJ91NXh9eFVMS/+hvKrYH9p2u7AhuN+UUIAuyv0bnjuz24+7sUplnKQfmfX
-xYDOPTAQ1pTVur/rYJZhJrX2JaQXDNzVjwFV66Skd2h2CqVvImM=
-=7wAe
------END PGP SIGNATURE-----
-
---udh3kcsxoruobyui--
+Reviewed-by: Rob Herring <robh@kernel.org>
