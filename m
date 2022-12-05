@@ -2,152 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D4B9643755
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:50:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E32B4643774
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:54:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233254AbiLEVuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:50:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50470 "EHLO
+        id S232958AbiLEVy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:54:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232903AbiLEVtr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:49:47 -0500
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EDA7643;
-        Mon,  5 Dec 2022 13:47:49 -0800 (PST)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-14449b7814bso10147295fac.3;
-        Mon, 05 Dec 2022 13:47:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mjzds2RzECUq1xcqjJsP8nfg2ZPV+dnkXlgwu7if9PE=;
-        b=t+gfM+a6ADFjr169f1qZXmh2Y+iLccK8cb6xXtYsc2lWB/vGHbQCwAnVGLnl9ysD3s
-         UIxfhqlw94va1T67ZXrwD9tN3rzGD6HbeVipduEDKWXxUA5WWqJ8LyCkNESNr6V6a8FD
-         vWUF3eiHvV83ANoj5kRw7eQF9O4FMa1GN1grg+KGmdxfg6OtX0iWmW+WjqH7cBUH6Q0W
-         FAo5A2rc4wBwsDfOwNrvNUc0FzLhKlDjAKISmAYzB1cJRGJ4GeJk5q/ESJmR7RGlm+lf
-         +nXkan0sTHJfBZuUlceXRT4YOidnQxir/0FJ/UPAQ1AaF1QDvCx3qMFGC6ybKQr2BTB3
-         YM5w==
-X-Gm-Message-State: ANoB5pmazc9ZaZMXjmHQ+AitrhBj+TLHibHNVEB8dKszix/z/AEbC+gr
-        b36U9LsndKeBDssJu+29gw==
-X-Google-Smtp-Source: AA0mqf4QO8UMt6OJ+ls46GBA4Vjcws9My+eLdy2ZBabpLPBkFaP2SMxFEfNh2jRUy5s9QIaB0EhSmg==
-X-Received: by 2002:a05:6870:7988:b0:13c:84e6:96d2 with SMTP id he8-20020a056870798800b0013c84e696d2mr4030384oab.72.1670276869061;
-        Mon, 05 Dec 2022 13:47:49 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y7-20020a4ac407000000b0049ea9654facsm7064489oop.32.2022.12.05.13.47.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 13:47:48 -0800 (PST)
-Received: (nullmailer pid 2682645 invoked by uid 1000);
-        Mon, 05 Dec 2022 21:47:47 -0000
-Date:   Mon, 5 Dec 2022 15:47:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?UTF-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        UNGLinuxDriver@microchip.com,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        George McCollister <george.mccollister@gmail.com>
-Subject: Re: [PATCH v4 net-next 7/9] dt-bindings: net: add generic
- ethernet-switch
-Message-ID: <20221205214747.GA2679200-robh@kernel.org>
-References: <20221202204559.162619-1-colin.foster@in-advantage.com>
- <20221202204559.162619-8-colin.foster@in-advantage.com>
+        with ESMTP id S233046AbiLEVxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:53:51 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F3B1C129;
+        Mon,  5 Dec 2022 13:52:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A6EEFB81151;
+        Mon,  5 Dec 2022 21:52:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 537DFC433C1;
+        Mon,  5 Dec 2022 21:52:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670277176;
+        bh=IgKvO2pTgDtqxJCdjeqES53WonPY2/VY3lrlG8YhaPc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VR9hqnwZXb/aa72RHD1NKo6cqSeJSoNdAmwPrw6OUOrPc7fBwBWEbmmWRdADfIyni
+         20FTzfCAY0zNj6lnQPHJH1x5TYJnaRXz06CXQa2+Qli1SbJbyy3mrEY1Kfy4Ef6str
+         L6+NpdqjzZpAqEYFxz3JLFK6bFf/FUQ+Rjswg2FnhWIwschJCkY6JWLUzPvsJjgNOx
+         H5whEfiI5SIrQlc/XIEGAIFoM2RGYEEfKSAkk0arOWApuSy970PXHTYfIcva6Izm9p
+         4AqK39EkcBx2HVePJcJ/HfrGfa9wOZgCh8jatkZpXBxVHEjJ1QGHAfu47u3eKLTmD0
+         SA4jV5sg7DAxQ==
+Date:   Mon, 5 Dec 2022 15:52:53 -0600
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mani@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+        svarbanov@mm-sol.com, shawn.guo@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/9] arm64: dts: qcom: ipq8074: fix Gen3 PCIe QMP PHY
+Message-ID: <20221205215253.itobukkyiecn7xi7@builder.lan>
+References: <20221116214841.1116735-1-robimarko@gmail.com>
+ <20221116214841.1116735-2-robimarko@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221202204559.162619-8-colin.foster@in-advantage.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221116214841.1116735-2-robimarko@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 12:45:57PM -0800, Colin Foster wrote:
-> The dsa.yaml bindings had references that can apply to non-dsa switches. To
-> prevent duplication of this information, keep the dsa-specific information
-> inside dsa.yaml and move the remaining generic information to the newly
-> created ethernet-switch.yaml.
+On Wed, Nov 16, 2022 at 10:48:34PM +0100, Robert Marko wrote:
+> IPQ8074 comes in 2 silicon versions:
+> * v1 with 2x Gen2 PCIe ports and QMP PHY-s
+> * v2 with 1x Gen3 and 1x Gen2 PCIe ports and QMP PHY-s
 > 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> v2 is the final and production version that is actually supported by the
+> kernel, however it looks like PCIe related nodes were added for the v1 SoC.
+> 
+> Now that we have Gen3 QMP PHY support, we can start fixing the PCIe support
+> by fixing the Gen3 QMP PHY node first.
+> 
+> Change the compatible to the Gen3 QMP PHY, correct the register space start
+> and size, add the missing misc PCS register space.
+> 
+
+Does this imply that the current node doesn't actually work?
+
+If that's the case, could we perhaps adopt Johan Hovolds' new binding
+and drop the subnode in favor of just a flat reg covering the whole
+QMP region?
+
+Regards,
+Bjorn
+
+> Fixes: 33057e1672fe ("ARM: dts: ipq8074: Add pcie nodes")
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
 > 
-> v3 -> v4
->   * Update ethernet-ports and ethernet-port nodes to match what the new
->     dsa.yaml has. Namely:
->       "unevaluatedProperties: false" instead of "additionalProperties: true"
->       "additionalProperties: true" instead of "unevaluatedProperties: true"
->     for ethernet-ports and ethernet-port, respectively.
->   * Add Florian Reviewed tag
-> 
-> v2 -> v3
->   * Change ethernet-switch.yaml title from "Ethernet Switch Device
->     Tree Bindings" to "Generic Ethernet Switch"
->   * Rework ethernet-switch.yaml description
->   * Add base defs structure for switches that don't have any additional
->     properties.
->   * Add "additionalProperties: true" under "^(ethernet-)?ports$" node
->   * Correct port reference from /schemas/net/dsa/dsa-port.yaml# to
->     ethernet-controller.yaml#
-> 
-> v1 -> v2
->   * No net change, but deletions from dsa.yaml included the changes for
->     "addionalProperties: true" under ports and "unevaluatedProperties:
->     true" under port.
-> 
-> ---
->  .../devicetree/bindings/net/dsa/dsa.yaml      | 28 +-------
->  .../bindings/net/ethernet-switch.yaml         | 66 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  3 files changed, 69 insertions(+), 26 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/ethernet-switch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> index 5081f4979f1b..843205ea722d 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> @@ -18,6 +18,8 @@ description:
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index 6649a758d8df..9503dfb25d50 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -232,9 +232,9 @@ qusb_phy_0: phy@79000 {
+>  			status = "disabled";
+>  		};
 >  
->  select: false
+> -		pcie_qmp0: phy@86000 {
+> -			compatible = "qcom,ipq8074-qmp-pcie-phy";
+> -			reg = <0x00086000 0x1c4>;
+> +		pcie_qmp0: phy@84000 {
+> +			compatible = "qcom,ipq8074-qmp-gen3-pcie-phy";
+> +			reg = <0x00084000 0x1bc>;
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+>  			ranges;
+> @@ -248,10 +248,11 @@ pcie_qmp0: phy@86000 {
+>  				      "common";
+>  			status = "disabled";
 >  
-> +$ref: "/schemas/net/ethernet-switch.yaml#"
-
-You can drop quotes here.
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-This is a nice clean-up.
-
-Rob
+> -			pcie_phy0: phy@86200 {
+> -				reg = <0x86200 0x16c>,
+> -				      <0x86400 0x200>,
+> -				      <0x86800 0x4f4>;
+> +			pcie_phy0: phy@84200 {
+> +				reg = <0x84200 0x16c>,
+> +				      <0x84400 0x200>,
+> +				      <0x84800 0x1f0>,
+> +				      <0x84c00 0xf4>;
+>  				#phy-cells = <0>;
+>  				#clock-cells = <0>;
+>  				clocks = <&gcc GCC_PCIE0_PIPE_CLK>;
+> -- 
+> 2.38.1
+> 
