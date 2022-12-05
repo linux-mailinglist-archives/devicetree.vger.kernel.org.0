@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E1D64208D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 00:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20A346420B1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 01:10:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230404AbiLDXe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 18:34:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
+        id S230476AbiLEAKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Dec 2022 19:10:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbiLDXe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 18:34:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1A9101D7;
-        Sun,  4 Dec 2022 15:34:26 -0800 (PST)
+        with ESMTP id S230254AbiLEAKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 19:10:42 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71964EE07;
+        Sun,  4 Dec 2022 16:10:41 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0B679B80B4E;
-        Sun,  4 Dec 2022 23:34:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19EE3C433C1;
-        Sun,  4 Dec 2022 23:34:19 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 26C01B807E5;
+        Mon,  5 Dec 2022 00:10:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26D05C433D7;
+        Mon,  5 Dec 2022 00:10:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670196863;
-        bh=0cK0lUJ9KkiCl80pkQTKTOocwELvWyVAqXmQVTnv1c0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lovS8maHB9ktQb+Ww5yw81rPcCZRXSE1XC/6VM5+f/JzRlywQpDbXevjsTf3XGvwo
-         hscWSSHlMxx3ebYCbnH326mOeJsoC5YYQGGFW6Ht9lcNBlPL24prA8E9YlkLl0+iXS
-         gT7b/JylxCuJNt1lrjulIfpbqQbDa8QczvHB3edaPIrjidCAFPcARr2CadVdz3r0S9
-         gA6chTikmaPXADK1iQkCKLL6y6E5g3Csy8L2MmjmnSKtZKyAcXC6nAplTg1PCwNide
-         61gS7CsPom3Y5PON4htb0C6MeaLRDxBTApvUrtVGdJQwIChLQAb1g1+of2ruMJFfSA
-         5pm8SjNmeoAgg==
-Date:   Sun, 4 Dec 2022 23:34:17 +0000
+        s=k20201202; t=1670199038;
+        bh=wHwBkSo7+9OsXeSnyzm3ampLGK0mAtM78dM7PJjSBzA=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=LYVLlfwQlNqL4IrP/fLTZ3aY/WveKlAsLqqhxuFI9pBkv+61ywlfdBNMfEMI9et2f
+         thECXDLwAUFxfeeVM8QUEWgp7TBGxEtSu5VlmPcK+J60pVhutgNhTlH7p8UBnE9jL0
+         8X/2rQRT2w9Zvb+FeyUc2vBdRx4qP182YKwbzfhWLUI37EPceVJP8CYXp5PSZ/S6Ot
+         ZrVHhapPO83mb1NbCEtQgjoKxhc3/EF4Xo1vmN6QZXLu+zdKgWFWxFMQw+DBlVk4Gc
+         FF/sP7sHmrgqSCOEICFxjr6Nkk+MmIRkCoVRyhcUR9/XALh3NdyB+FgAouCnRPCGH6
+         dF0ChJteyChfw==
+Date:   Mon, 05 Dec 2022 00:10:34 +0000
 From:   Conor Dooley <conor@kernel.org>
 To:     Anup Patel <apatel@ventanamicro.com>,
-        Rob Herring <robh@kernel.org>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     Andrew Jones <ajones@ventanamicro.com>,
         Atish Patra <atishp@atishpatra.org>,
         Samuel Holland <samuel@sholland.org>,
         Conor Dooley <conor.dooley@microchip.com>,
         Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
         linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
         Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v5 3/3] clocksource: timer-riscv: Set
- CLOCK_EVT_FEAT_C3STOP based on DT
-Message-ID: <Y40ueQiTZK6hi7RS@spud>
-References: <20221201123954.1111603-1-apatel@ventanamicro.com>
- <20221201123954.1111603-4-apatel@ventanamicro.com>
- <20221202000603.GA1720201-robh@kernel.org>
- <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v5_1/3=5D_RISC-V=3A_time=3A_initialize?= =?US-ASCII?Q?_hrtimer_based_broadcast_clock_event_device?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20221201123954.1111603-2-apatel@ventanamicro.com>
+References: <20221201123954.1111603-1-apatel@ventanamicro.com> <20221201123954.1111603-2-apatel@ventanamicro.com>
+Message-ID: <04CBEBD4-3EDC-4FA0-BB11-DDD6B710C60C@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="HlfaDJpKZhs96dAp"
-Content-Disposition: inline
-In-Reply-To: <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -71,119 +66,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---HlfaDJpKZhs96dAp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey Rob, Anup, Prabhakar,
+On 1 December 2022 12:39:52 GMT, Anup Patel <apatel@ventanamicro=2Ecom> wr=
+ote:
+>From: Conor Dooley <conor=2Edooley@microchip=2Ecom>
+>
+>Similarly to commit 022eb8ae8b5e ("ARM: 8938/1: kernel: initialize
+>broadcast hrtimer based clock event device"), RISC-V needs to initiate
+>hrtimer based broadcast clock event device before C3STOP can be used=2E
+>Otherwise, the introduction of C3STOP for the RISC-V arch timer in
+>commit 232ccac1bd9b ("clocksource/drivers/riscv: Events are stopped
+>during CPU suspend") leaves us without any broadcast timer registered=2E
+>This prevents the kernel from entering oneshot mode, which breaks timer
+>behaviour, for example clock_nanosleep()=2E
+>
+>A test app that sleeps each cpu for 6, 5, 4, 3 ms respectively, HZ=3D250
+>& C3STOP enabled, the sleep times are rounded up to the next jiffy:
+>=3D=3D CPU: 1 =3D=3D      =3D=3D CPU: 2 =3D=3D      =3D=3D CPU: 3 =3D=3D =
+     =3D=3D CPU: 4 =3D=3D
+>Mean: 7=2E974992    Mean: 7=2E976534    Mean: 7=2E962591    Mean: 3=2E952=
+179
+>Std Dev: 0=2E154374 Std Dev: 0=2E156082 Std Dev: 0=2E171018 Std Dev: 0=2E=
+076193
+>Hi: 9=2E472000      Hi: 10=2E495000     Hi: 8=2E864000      Hi: 4=2E73600=
+0
+>Lo: 6=2E087000      Lo: 6=2E380000      Lo: 4=2E872000      Lo: 3=2E40300=
+0
+>Samples: 521      Samples: 521      Samples: 521      Samples: 521
+>
+>Link: https://lore=2Ekernel=2Eorg/linux-riscv/YzYTNQRxLr7Q9JR0@spud/
+>Fixes: 232ccac1bd9b ("clocksource/drivers/riscv: Events are stopped durin=
+g CPU suspend")
+>Suggested-by: Samuel Holland <samuel@sholland=2Eorg>
+>Signed-off-by: Conor Dooley <conor=2Edooley@microchip=2Ecom>
+>Reviewed-by: Samuel Holland <samuel@sholland=2Eorg>
+>Acked-by: Palmer Dabbelt <palmer@rivosinc=2Ecom>
 
-On Fri, Dec 02, 2022 at 12:03:05PM +0530, Anup Patel wrote:
-> On Fri, Dec 2, 2022 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Dec 01, 2022 at 06:09:54PM +0530, Anup Patel wrote:
-> > > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
-> > > when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
-> > > timer DT node.
-> > >
-> > > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
-> > > based on RISC-V platform capabilities rather than having it set for
-> > > all RISC-V platforms.
-> > >
-> > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> > > ---
-> > >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
-> > >  1 file changed, 11 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/=
-timer-riscv.c
-> > > index 969a552da8d2..1b4b36df5484 100644
-> > > --- a/drivers/clocksource/timer-riscv.c
-> > > +++ b/drivers/clocksource/timer-riscv.c
-> > > @@ -28,6 +28,7 @@
-> > >  #include <asm/timex.h>
-> > >
-> > >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-> > > +static bool riscv_timer_cannot_wake_cpu;
-> > >
-> > >  static int riscv_clock_next_event(unsigned long delta,
-> > >               struct clock_event_device *ce)
-> > > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long del=
-ta,
-> > >  static unsigned int riscv_clock_event_irq;
-> > >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) =
-=3D {
-> > >       .name                   =3D "riscv_timer_clockevent",
-> > > -     .features               =3D CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_=
-FEAT_C3STOP,
-> > > +     .features               =3D CLOCK_EVT_FEAT_ONESHOT,
-> >
-> > A platform that depended on CLOCK_EVT_FEAT_C3STOP being set will break
-> > with this change because its existing DT will not have the new property.
-> >
-> > It needs to be the other way around which would effectively be the
-> > existing 'always-on' property.
->=20
-> There are no RISC-V platforms using C3STOP. The patch which
-> added C3STOP has been reverted.
-> (Refer, https://lore.kernel.org/lkml/a218ebf8-0fba-168d-6598-c970bbff5faf=
-@sholland.org/T/)
->=20
-> I just need to rebase this patch upon the C3STOP revert patch.
-
-I guess you could say that the C3STOP addition was done spec-ulatively*,
-as the platform that actually exhibits that behaviour does not use the
-riscv-timer & its maintainer acked the revert (allwinner d1 family).
-
-*The spec does not make any guarantees about whether events arrive
-during suspend, only the behaviour *if* they arrive.
-
-Switching the property to "always-on" would require retrofitting that
-property to every other existing platform (and therefore regressing some
-behaviour there, no?).
-
-Most of the existing platforms are "toys" or demo platforms though, so
-it would not, I guess, be the end of the world to do so. Doubly so since
-none of them actually implement any sleep states that making it an
-"always-on" property.
-
-I've said since the start that defaulting to C3STOP is the "safer" thing
-to do, and although we disagreed on this last time Anup, I think the
-better outcome of someone missing a DT property is inaccessible sleep
-states rather than going into sleep states they cannot get out of.
-
-For PolarFire SoC, which I guess is one of the few "commerical"
-platforms, I'd be willing to accept retrofitting, since we have not yet
-implemented such sleep states yet.
-
-Maybe Prabhakar knows whether the RZ/Five has either a) implemented
-sleep states and b) which side of the "timer events arrive in suspend"
-divide their platform lies on.
-I'm particular interested here since that is not a SiFive core complex.
-
-I would like to get DT maintainer approval of an approach here soon-ish
-so that we can something sorted for the jh7110 stuff and for the
-bouffalolabs SoC - the latter of which may very well be in the "no
-events in suspend" camp as it also uses thead stuff.
-
-Sorry for kinda rowing back on my previous acceptance of the approach,
-but I am really between two minds on this.
+Huh, thought I replied already but I just have forgotten to=2E=2E=2E
+Since you've added this patch to your series,  it needs your SoB appended=
+=2E
 
 Thanks,
-Conor.
+Conor=2E
 
-
---HlfaDJpKZhs96dAp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY40uVQAKCRB4tDGHoIJi
-0iXwAQDvaIbyKF4NJU9VaT5Lh4McyjHE+Y8vdOlJksMvF+Hc1AEA60gVnGIV8CWe
-iMzMzE7jeqmjP23QMLt5HftoInManQg=
-=ydQx
------END PGP SIGNATURE-----
-
---HlfaDJpKZhs96dAp--
+>---
+> arch/riscv/kernel/time=2Ec | 3 +++
+> 1 file changed, 3 insertions(+)
+>
+>diff --git a/arch/riscv/kernel/time=2Ec b/arch/riscv/kernel/time=2Ec
+>index 8217b0f67c6c=2E=2E1cf21db4fcc7 100644
+>--- a/arch/riscv/kernel/time=2Ec
+>+++ b/arch/riscv/kernel/time=2Ec
+>@@ -5,6 +5,7 @@
+>  */
+>=20
+> #include <linux/of_clk=2Eh>
+>+#include <linux/clockchips=2Eh>
+> #include <linux/clocksource=2Eh>
+> #include <linux/delay=2Eh>
+> #include <asm/sbi=2Eh>
+>@@ -29,6 +30,8 @@ void __init time_init(void)
+>=20
+> 	of_clk_init(NULL);
+> 	timer_probe();
+>+
+>+	tick_setup_hrtimer_broadcast();
+> }
+>=20
+> void clocksource_arch_init(struct clocksource *cs)
