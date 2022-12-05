@@ -2,103 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6AD7642911
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 14:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD4364292F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 14:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbiLENQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 08:16:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41150 "EHLO
+        id S231639AbiLENUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 08:20:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232111AbiLENQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 08:16:26 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9824C11C0A;
-        Mon,  5 Dec 2022 05:16:25 -0800 (PST)
-Received: from zn.tnic (p200300ea9733e72f329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9733:e72f:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 97C481EC0531;
-        Mon,  5 Dec 2022 14:16:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1670246183;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=LebK9vlxoxcDxyhwhYhootxASRZx+GLX1jsVAwpEJA0=;
-        b=cwR7RWJXOTlMHRiqIiOkofWod1zLKpp2yvb22/rbqlSzCUZBZimjsdqGDrBt2LpjyO9tUZ
-        d3V2YPZzwSIriARxl9aDB7BUXKi6P9t44BJQl7KgvnwpysEOsx2EpaIQFU9V/yo8MrorfS
-        /b1jp8OZSqoI5lx+l5T9sjaVGmg/jdE=
-Date:   Mon, 5 Dec 2022 14:16:20 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v6 2/2] EDAC/zynqmp: Add EDAC support for Xilinx ZynqMP
- OCM
-Message-ID: <Y43vJECWJI99tc1x@zn.tnic>
-References: <20221102070655.247511-1-sai.krishna.potthuri@amd.com>
- <20221102070655.247511-3-sai.krishna.potthuri@amd.com>
- <Y4DbXaan258cZK+q@zn.tnic>
- <BY5PR12MB42582EA4A4ACEA56367544E6DB189@BY5PR12MB4258.namprd12.prod.outlook.com>
+        with ESMTP id S232199AbiLENUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 08:20:13 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA331C13D
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 05:20:10 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id cf42so12736056lfb.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 05:20:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JMSqdm+byoXI4GZrO99r5Q2jzkNk8EOhmE+VVAfXhIA=;
+        b=TYLp/nW4Fa6NFLyjLzGmlbgMohyFpxuKGwG5dC+QGrkGjdQ/OzlmRVILDL5hBjuir0
+         oAaZuUiFLAa/fE6VcejI0IRQZ6b6x3nAJHJJ22EfsseILPPBciLvxUXz/Lp+qwT/pjLg
+         aAEkIgj2y56vpTqs3RpWLb7KChX5OE2eHWrUMPRpS17zZycHgojgPMeYrAWGyuDEM80P
+         jsrLxHNlNuQu4OYZIVZZzRsXLDbdUSf5bJ1ePVyLCg5ei0eIkgsbxJ6QYeOjF8Vb8zJN
+         4P5gDxbYViU2eFWUspjeHon8qACXMjUEpuzlKCrP1Yx7VAuALIckWK06R240JXaxWFYP
+         BsWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JMSqdm+byoXI4GZrO99r5Q2jzkNk8EOhmE+VVAfXhIA=;
+        b=yz/WZ+kepJWqdczsiJHvu0pUcXBxYnt9bfDsRIfV5EVqZmAIqtY5Uuctral4O+edur
+         6LeapRbCYFewfvJRf37cp416jfuybZcwrR3F6uDs2vq/Wrb0aGMEXeLvjHV1AJkbeOrO
+         THuMYVLLeI8p6NkoZXBXL6YfeSpYG9Ciw73t4/6tKi8+zQ407YnqX1g4R+xpAhfUwH+g
+         S1gVDp0DYsJzrAjjpOrnmqdMU6sFjh1Ydv8SkCD8qklzJOiqA4oavvkAuItzu59ttjIg
+         NNHbIo+zUBxZJ2PbfHgCS9j324lY+O0MIu4yaMDZIeMcabzqODpjrTHMDyytYH7qcd9N
+         HQ5A==
+X-Gm-Message-State: ANoB5pnshuReVAzf5rbT3tYc3b8ZC3Jk0YQcW1OrrzyNE2GzoH4JgB8D
+        QhFdpMD8undiyDUbD7L0D5vorQ==
+X-Google-Smtp-Source: AA0mqf6/cSYj7QQJqfUmWnhD/F/YyHbRvjsoAgdbTO0piVQBhFP+ivN2GNF3AjE4X1irf0YZW0t2BQ==
+X-Received: by 2002:ac2:4f13:0:b0:4a2:5c46:4b4d with SMTP id k19-20020ac24f13000000b004a25c464b4dmr30199948lfr.433.1670246409084;
+        Mon, 05 Dec 2022 05:20:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id t15-20020a056512208f00b004b4ec76016esm2101259lfr.113.2022.12.05.05.20.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 05:20:08 -0800 (PST)
+Message-ID: <1cd9c47e-daa4-91a2-e300-a8c23a4dd1d0@linaro.org>
+Date:   Mon, 5 Dec 2022 14:20:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BY5PR12MB42582EA4A4ACEA56367544E6DB189@BY5PR12MB4258.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
+ binding
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "lee.jackson" <lee.jackson@arducam.com>,
+        linux-media@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org
+References: <20221205103800.00007a60@arducam.com>
+ <167024503479.3691396.13573962465837376066@Monstersaurus>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <167024503479.3691396.13573962465837376066@Monstersaurus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 05, 2022 at 10:20:11AM +0000, Potthuri, Sai Krishna wrote:
-> As we communicated earlier for ZynqMP platform we have both Synopsys
-> (for DDRMC) and zynqmp_ocm_edac (for OCM) drivers. Just to be clear
-> about what this driver is targeted for, we used ocm as part of file
-> name. Ok, zynqmp_edac.c looks fine, will update.
+On 05/12/2022 13:57, Kieran Bingham wrote:
+> Hi Lee,
+> 
+> To try to avoid these circles, I've gone through and detailed precisely
+> how the name and e-mail address should be formed to meet expectations.
+> 
+> Please also handle the other comments from Krzysztof for a v5.
+> 
+> Quoting lee.jackson (2022-12-05 02:38:00)
+>> Add YAML device tree binding for IMX519 CMOS image sensor, and
+>> the relevant MAINTAINERS entries.
+>>
+>> Signed-off-by: lee.jackson <lee.jackson@arducam.com >
+> 
+> Please ensure you configure your git client as follows:
+> 
+>   git config --global user.name "Lee Jackson"
+>   git config --global user.email "lee.jackson@arducam.com"
 
-Yeah, we can always rename later, when another driver is needed. For
-now, let's keep things simple.
+... and then: git commit --amend --reset-author --signoff
 
-> Ok, will update API documentation like below.
-> echo <fault_injection count> > /sys/kernel/debug/edac/ff960000.memory-controller/inject_fault_count
-							^^^^^^^^^^^^^^^^^^^^^^^^^^
+Best regards,
+Krzysztof
 
-Any particular reason this should not be called simply "mc0" or so?
-
-At least this is how we call them on x86...
-
-> echo <bit pos0> <bit pos1> > /sys/kernel/debug/edac/ff960000.memory-controller/inject_ue_bitpos
-
-echo <bit0>,<bit1> > ...
-
-I guess.
-
-The ',' or ':' or some other separator which is not blank space would
-make it more obvious that the two bits belong together and you won't
-have to scan further for the second value but simply have a single
-string which you split at the separator.
-
-Thx.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
