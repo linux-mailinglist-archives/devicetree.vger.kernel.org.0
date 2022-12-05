@@ -2,183 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A526A6439BB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 00:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5596439A7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 00:42:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232788AbiLEX64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 18:58:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
+        id S230450AbiLEXmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 18:42:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232724AbiLEX6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 18:58:52 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4113415836
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 15:58:49 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id s8so21105593lfc.8
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 15:58:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=doSWp/8FuNr+NEV3HjPTJkGGPY6r8PL0hvET2gbpcas=;
-        b=Qerm5bC31eCO/u9ZcVP1OcqKBknqnslFPZd1KK3o1V2jy51sySmxFQBQZRAhfyjlr5
-         0iF9IRsEbwty3qVO1wOSB1T87h54s4gx2dJ/E70LBpDUfxeBT2cSM76kwX5YzDpxthuy
-         UnYbMgHX4IGFYzj1YAZQBQTpVChrQM5rc9K3429C+Jc0ZgfYBnYlDrz+7g2oiSPSXnK2
-         QHFngs5DeLtpPzW019h10iP/OTn9g1CjjuZZRz4zuO33qvD06K6FnsWDYHMpslkxGyAW
-         kCsR8n5tZFQ550S05KB+1mMT0htMsGwqyCLZkyGESXATDlNoAS3dU+8IhaYxSoZUBpq5
-         Kgiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=doSWp/8FuNr+NEV3HjPTJkGGPY6r8PL0hvET2gbpcas=;
-        b=gSqQwYWkTScDjdnKDONzNFlyjjbqMRjUAgusn2NhWYouJbjDfMfPRI5tQKnxJgDH3x
-         1AJiopczlE56AFkzrzezjCQ665WS1c5qv6bj6c3OhErxAW5durkvGSEDYHs9F2dToLDc
-         KYzdDQGxijQwSfCZqEMoRewfI/1no6pyxGVIWyjB16vmCOTcPxqCfOhu8ZOWMEImYWgX
-         +V6NujG5dWwxH6R/xDRURpslstXQ85QT92IVGJl1Jek+CQcxvS4pZzH2kw9vomCpZ1sP
-         CTPVlDZCW6Ogb0KIrDY/JMeHGzdHYVr8VwO/yeIZOxOoR4JL+g880bppCXzX5SjPA1Cc
-         QBDg==
-X-Gm-Message-State: ANoB5pkcf57P6Yxe8VPt/x/I5YUcp5JWDkRlGrXpE+KUHtkTjQQF3t+a
-        NsC5nX8fid4/PTybNj6GAKQK3w==
-X-Google-Smtp-Source: AA0mqf4iVNbwTKjN8IO9W2OPq2uXL5c4w2KkFC+MzkP3JxqHL9eP3wjuwJUr9hB+oLt1r/8eCoxMEA==
-X-Received: by 2002:ac2:4e14:0:b0:4af:f5a0:8786 with SMTP id e20-20020ac24e14000000b004aff5a08786mr26291071lfr.265.1670284727601;
-        Mon, 05 Dec 2022 15:58:47 -0800 (PST)
-Received: from [127.0.0.1] ([188.170.72.128])
-        by smtp.gmail.com with ESMTPSA id bp33-20020a05651215a100b004b5701b5337sm721215lfb.104.2022.12.05.15.58.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 15:58:47 -0800 (PST)
-Date:   Tue, 06 Dec 2022 02:41:21 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        airlied@gmail.com
-CC:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v9_4/5=5D_drm/msm/dp=3A_parser_link?= =?US-ASCII?Q?-frequencies_as_property_of_dp=5Fout_endpoint?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <1670281694-13281-5-git-send-email-quic_khsieh@quicinc.com>
-References: <1670281694-13281-1-git-send-email-quic_khsieh@quicinc.com> <1670281694-13281-5-git-send-email-quic_khsieh@quicinc.com>
-Message-ID: <90C493B1-E7E3-46A9-89F0-443922B8FEF5@linaro.org>
+        with ESMTP id S230280AbiLEXmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 18:42:12 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF631FCC5;
+        Mon,  5 Dec 2022 15:42:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2014CB815C9;
+        Mon,  5 Dec 2022 23:42:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3AFFC433D6;
+        Mon,  5 Dec 2022 23:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670283727;
+        bh=4wJabThFZ4VUXjAcvXIT97D1YyfJXyrel4+YB/Ab+gk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZobKRLT5ZAge7Mfr+9Ip+dxbQpBkCk2RTtEPH47l4VyLYW/DFp9y9lCOVM+13yuWZ
+         fllnOwfZ79glqC/04eGRrZQXiGq45ZaHctcQak9QyU0/Rb2O9O4Z82roEN2n2fq41j
+         KhCv33+LONiVSItlj/XlkeRrghNVtvj1StcxVtYxrL5NcmXUIFKcfYfEdVhatTB01t
+         lmU8URLZPu8mJmvRX1fk3gTbtlZ/wETFq4mdjBk69QVyhuf2ekVz/0kMn6hgN+irfb
+         Z6i0UmSd9ZzjN8eBqwo1DH6uCwoWPBxrZiBqHd4AdUStpbhc+gwEX+bAiMpLQpweJy
+         l3ah6Xu5mC+Dg==
+Received: by mail-vs1-f54.google.com with SMTP id c184so12679246vsc.3;
+        Mon, 05 Dec 2022 15:42:07 -0800 (PST)
+X-Gm-Message-State: ANoB5plwsgCiwfBWuug66O6CSXBgiSE1jpilM5W40J2pDh9T4PZ8C4+b
+        wdN0OjTbqOwgnsLOxBrczGGVg4IvqH5jiycOwQ==
+X-Google-Smtp-Source: AA0mqf52qMjSmyIkwFrSYPkLIs/sPSoB5CM3A/eqb99puUmDiOUo5CG5r5eXPIEw7a2BH2dvI7oXrkkI0RUmvAZQWgU=
+X-Received: by 2002:a05:6102:2381:b0:3b0:c6ec:cc6a with SMTP id
+ v1-20020a056102238100b003b0c6eccc6amr16733521vsr.0.1670283726721; Mon, 05 Dec
+ 2022 15:42:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
+ <Y3ap1o2SbNvFw8Vd@orome>
+In-Reply-To: <Y3ap1o2SbNvFw8Vd@orome>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Dec 2022 17:41:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
+Message-ID: <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sergey Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
+        mmaddireddy@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-6 =D0=B4=D0=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=8F 2022 =D0=B3=2E 02:08:13 GMT+03=
-:00, Kuogee Hsieh <quic_khsieh@quicinc=2Ecom> =D0=BF=D0=B8=D1=88=D0=B5=D1=
-=82:
->Add capability to parser and retrieve max DP link supported rate from
->link-frequencies property of dp_out endpoint=2E
+On Thu, Nov 17, 2022 at 3:38 PM Thierry Reding <thierry.reding@gmail.com> wrote:
 >
->Changes in v6:
->-- second patch after split parser patch into two patches
+> On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
+> > From: Vidya Sagar <vidyas@nvidia.com>
+> >
+> > Add support for ECAM aperture that is only supported for Tegra234
+> > devices.
+> >
+> > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> > Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > ---
+> > Changes since V2:
+> > - Avoid duplication of reg items and reg-names
+> > Changes since V1:
+> > - Restricted the ECAM aperture to only Tegra234 devices that support it.
+> >
+> >  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
+> >  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+> >  2 files changed, 33 insertions(+), 3 deletions(-)
 >
->Changes in v7:
->-- without checking cnt against DP_MAX_NUM_DP_LANES to retrieve link rate
->
->Changes in v9:
->-- separate parser link-frequencies out of data-lanes
->
->Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>
->---
-> drivers/gpu/drm/msm/dp/dp_parser=2Ec | 20 ++++++++++++++++++--
-> drivers/gpu/drm/msm/dp/dp_parser=2Eh |  2 ++
-> 2 files changed, 20 insertions(+), 2 deletions(-)
->
->diff --git a/drivers/gpu/drm/msm/dp/dp_parser=2Ec b/drivers/gpu/drm/msm/d=
-p/dp_parser=2Ec
->index b5f7e70=2E=2Efdea843 100644
->--- a/drivers/gpu/drm/msm/dp/dp_parser=2Ec
->+++ b/drivers/gpu/drm/msm/dp/dp_parser=2Ec
->@@ -94,15 +94,17 @@ static int dp_parser_ctrl_res(struct dp_parser *parse=
-r)
-> static int dp_parser_misc(struct dp_parser *parser)
-> {
-> 	struct device_node *of_node =3D parser->pdev->dev=2Eof_node;
->+	struct device_node *endpoint;
->+	u64 frequency;
-> 	int cnt;
->=20
-> 	/*
-> 	 * data-lanes is the property of dp_out endpoint
-> 	 */
-> 	cnt =3D drm_of_get_data_lanes_count_ep(of_node, 1, 0, 1, DP_MAX_NUM_DP_=
-LANES);
->-	if (cnt > 0)
->+	if (cnt > 0) {
-> 		parser->max_dp_lanes =3D cnt;
->-	else {
->+	} else {
+> Both patches applied now.
 
-This belongs to the previous patch=20
+linux-next now fails with this. I suspect it is due to Sergey's
+changes to the DWC schema.
 
-> 		/*
-> 		 * legacy code, data-lanes is the property of mdss_dp node
-> 		 */
->@@ -113,6 +115,20 @@ static int dp_parser_misc(struct dp_parser *parser)
-> 			parser->max_dp_lanes =3D DP_MAX_NUM_DP_LANES; /* 4 lanes */
-> 	}
->=20
->+	cnt =3D 0;
->+	endpoint =3D of_graph_get_endpoint_by_regs(of_node, 1, 0); /* port@1 */
->+	if (endpoint)
->+		cnt =3D of_property_count_u64_elems(endpoint, "link-frequencies");
->+	of_node_put(endpoint);
->+	if (cnt > 0) {
->+		of_property_read_u64_index(endpoint, "link-frequencies",
-
-And this is use after free=2E
-
-I still think than an additional function would make code simpler=2E You c=
-an return an error code at any point=2E And then handle it in the calling c=
-ode=2E
-
->+						cnt - 1, &frequency);
->+		frequency /=3D 10;	/* from symbol rate to link rate */
->+		parser->max_dp_link_rate =3D (frequency / 1000); /* kbits */
->+	} else {
->+		parser->max_dp_link_rate =3D DP_LINK_RATE_HBR2; /* 540000 khz */
->+	}
->+
-> 	return 0;
-> }
->=20
->diff --git a/drivers/gpu/drm/msm/dp/dp_parser=2Eh b/drivers/gpu/drm/msm/d=
-p/dp_parser=2Eh
->index 866c1a8=2E=2E3ddf639 100644
->--- a/drivers/gpu/drm/msm/dp/dp_parser=2Eh
->+++ b/drivers/gpu/drm/msm/dp/dp_parser=2Eh
->@@ -15,6 +15,7 @@
-> #define DP_LABEL "MDSS DP DISPLAY"
-> #define DP_MAX_PIXEL_CLK_KHZ	675000
-> #define DP_MAX_NUM_DP_LANES	4
->+#define DP_LINK_RATE_HBR2       540000
->=20
-> enum dp_pm_type {
-> 	DP_CORE_PM,
->@@ -119,6 +120,7 @@ struct dp_parser {
-> 	struct dp_io io;
-> 	struct dp_display_data disp_data;
-> 	u32 max_dp_lanes;
->+	u32 max_dp_link_rate;
-> 	struct drm_bridge *next_bridge;
->=20
-> 	int (*parse)(struct dp_parser *parser);
-
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+fixed:
+        'dbi' was expected
+        'dbi2' was expected
+        'ecam' is not one of ['elbi', 'app']
+        'atu' was expected
+        'dma' was expected
+        'phy' was expected
+        'config' was expected
+        /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+fixed:
+                'ecam' is not one of ['apb', 'mgmt', 'link', 'ulreg', 'appl']
+                'ecam' is not one of ['atu_dma']
+                'ecam' is not one of ['smu', 'mpu']
+        From schema:
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
