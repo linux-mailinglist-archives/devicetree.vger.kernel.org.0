@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2929642E04
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA518642E10
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 18:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbiLEQ4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:56:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53132 "EHLO
+        id S230377AbiLERAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 12:00:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231601AbiLEQzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:55:49 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE95218A4;
-        Mon,  5 Dec 2022 08:54:54 -0800 (PST)
+        with ESMTP id S231839AbiLERAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 12:00:10 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C25DF60;
+        Mon,  5 Dec 2022 09:00:07 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E1C9611F8;
-        Mon,  5 Dec 2022 16:54:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49641C433C1;
-        Mon,  5 Dec 2022 16:54:53 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E302611E2;
+        Mon,  5 Dec 2022 17:00:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B7A6C43149;
+        Mon,  5 Dec 2022 17:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670259293;
-        bh=8BXqDKQEGhK85bBV9PqvuptFk8jDXft+wx34YVG0dT8=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=JnXgqlzLbN9ScbMN51sTOc1hORuahCUYcmrvyRCfypUj0dSHUxz4WWLbqWQzixEFb
-         Ngznul2rHCClPEsGF5/Hgg3gUaFOojr6uXPic0gqDSoenHv2T8WBbTAqZC14d88RML
-         dDfeBQ24o7fPJKsDDsh86i8oyAezrzEc3ShMP6xFQJLIYdWCuF1dVsDH4PrHaydyzv
-         /U/gHqqzTJWFBigGfb7Yj8+ZLa0o3SWnjGFWh3bQsY2bTr01hj49KQKhf8+e6MS1Yr
-         aRymfrXFJA8m9L7hs0aahq5NhiBpyPk/ODrV+4ILyzzcJNmjUnj39h4QM0p6eFBjrW
-         +aJSI5po+GLGQ==
-Date:   Mon, 05 Dec 2022 16:54:48 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     Icenowy Zheng <uwu@icenowy.me>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_2/3=5D_dt-bindings=3A_timer=3A_si?= =?US-ASCII?Q?five=2Cclint=3A_add_compatible_for_OpenC906?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <879345cd8609cddccbf7bcf230923139af320b17.camel@icenowy.me>
-References: <20221121041757.418645-3-uwu@icenowy.me> <98005150-83a7-5439-0db1-d93d459c3809@linaro.org> <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me> <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org> <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me> <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud> <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me> <Y43Jt3YOSbFyh954@wendy> <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me> <Y44IoC765yztZ6VF@wendy> <879345cd8609cddccbf7bcf230923139af320b17.camel@icenowy.me>
-Message-ID: <B1B2FC9D-D971-435B-A9FD-B092DE726367@kernel.org>
+        s=k20201202; t=1670259606;
+        bh=n1tNuBxJl22jRV6QaxMEbZMS84zoN2ML70kUJauH5W8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cYrpcAW6X7bZJmUk4REzq31fe5g1ks4ZXnxngkPmCgWzb81XUjyBfR9YhvK4ado9S
+         9eEVOIHBt53gNS5aC1CZKBLtdkHgIRPz4tPxibk1wS5Tq0q9rCLokr42tqH+QUnyLU
+         DCrtmFM1QUmRfUQeq1n/u/GCYvEke1OHTrwXIbr4znzrx9Swoybys2neS3dAU/Rds4
+         7VoJQQW1B6K2qndyYWRk/MzA/wc4emCdOVnFW/GOF/cWlr9kCkVPJkeQQ+NUoQeXiv
+         DLTjH2GqCc44zMXzdWWYXxWBMrQ+IojnQjTxqrkeJpP+e9PWofCZLpxEdvd/DLkiVs
+         GaEz1d9v3J/gg==
+Received: by mail-vk1-f172.google.com with SMTP id bi15so5590005vkb.11;
+        Mon, 05 Dec 2022 09:00:06 -0800 (PST)
+X-Gm-Message-State: ANoB5pl6TqmQAzgY6KYvMbTpxX0vGENmJ3yRlrC4nq4Pce0PlJVk0AqF
+        VHvuQM974HKVhVOJgyXtgHiPo8YAJRTCf0/AYA==
+X-Google-Smtp-Source: AA0mqf7cT6MONVFTUtdo3Q9sJ7pbfQxVT3ByTs0BM06UEq5l9z+p6SfDRPcgGT9jaeApv/S7UUb/fu3WDMvBdZQxS3I=
+X-Received: by 2002:a1f:9110:0:b0:3bc:fc56:597 with SMTP id
+ t16-20020a1f9110000000b003bcfc560597mr15575139vkd.14.1670259605174; Mon, 05
+ Dec 2022 09:00:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20221117185424.2359687-1-thierry.reding@gmail.com> <Y4oOg5nSBPBieArv@orome>
+In-Reply-To: <Y4oOg5nSBPBieArv@orome>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Dec 2022 10:59:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLLz5hRVrNw0QaQiv2Xyq4ueFkMLZnxncF6JkbCgZWhNA@mail.gmail.com>
+Message-ID: <CAL_JsqLLz5hRVrNw0QaQiv2Xyq4ueFkMLZnxncF6JkbCgZWhNA@mail.gmail.com>
+Subject: Re: [PATCH v12 0/4] iommu: Support mappings/reservations in
+ reserved-memory regions
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -64,76 +70,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5 December 2022 15:59:44 GMT, Icenowy Zheng <uwu@icenowy=2Eme> wrote:
->=E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 15:05 +0000=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
->> On Mon, Dec 05, 2022 at 07:03:17PM +0800, Icenowy Zheng wrote:
->> > =E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=
-=EF=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
->>=20
->> > > You lot all know the situation here a lot more than I do=2E=2E=2E
->> > > I don't think "letting" people use the bare "thead,c900-foo"
->> > > makes
->> > > much
->> > > sense as it gives us no chance to deal with quirks down the line=2E
->> >=20
->> > Well, after rechecking the manual, I found it possible to handle
->> > quirks
->> > -- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can
->> > be
->> > used to retrieve some identification info of the core, including
->> > its
->> > model ID, version, etc; and the T-Head PLIC/CLINT are part of their
->> > C906 SoC design that there's another "mapbaddr" CSR that could be
->> > used
->> > to retrieve the base address of them=2E
->> >=20
->> > So I think it okay to just use "thead,c900-clint" here, and when
->> > necessary, try to retrieve mcpuid for dealing with quirks=2E
->>=20
->> I'm not super sure I follow=2E What's the relevance of "mapbaddr" here?
->> We've got a reg property, so I don't think we need "mapbaddr"?
+On Fri, Dec 2, 2022 at 8:41 AM Thierry Reding <thierry.reding@gmail.com> wrote:
 >
->Yes, it's not relevant to us here, it's only to prove that PLIC/CLINT
->is part of C906 "Core Complex"=2E
+> On Thu, Nov 17, 2022 at 07:54:20PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> > Hi,
+> >
+> > This version is a minor update to the previous v11, which can be found
+> > here:
+> >
+> >   https://lore.kernel.org/all/20221111161806.630527-1-thierry.reding@gmail.com/
+> >
+> > The only change here is that the #dma-{address,size}-cells is dropped.
+> > It turns out to be much simpler to just update #{address,size}-cells to
+> > what they should be rather than add extra complexity for the DMA work-
+> > around. There's a minor update to the DT binding so that it can now
+> > properly validate cases where we have both reg and iommu-addresses
+> > properties.
+> >
+> > An example is included in the DT bindings, but here is an extract of
+> > what I've used to test this:
+> >
+> >         reserved-memory {
+> >                 #address-cells = <2>;
+> >                 #size-cells = <2>;
+> >                 ranges;
+> >
+> >                 /*
+> >                  * Creates an identity mapping for the framebuffer that
+> >                  * the firmware has setup to scan out a bootsplash from.
+> >                  */
+> >                 fb: framebuffer@92cb2000 {
+> >                         reg = <0x0 0x92cb2000 0x0 0x00800000>;
+> >                         iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+> >                 };
+> >
+> >                 /*
+> >                  * Creates a reservation in the IOVA space to prevent
+> >                  * any buffers from being mapped to that region. Note
+> >                  * that on Tegra the range is actually quite different
+> >                  * from this, but it would conflict with the display
+> >                  * driver that I tested this against, so this is just
+> >                  * a dummy region for testing.
+> >                  */
+> >                 adsp: reservation-adsp {
+> >                         iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+> >                 };
+> >         };
+> >
+> >         host1x@50000000 {
+> >                 dc@54200000 {
+> >                         memory-region = <&fb>, <&adsp>;
+> >                 };
+> >         };
+> >
+> > This is abbreviated a little to focus on the essentials. Note also that
+> > the ADSP reservation is not actually used on this device and the driver
+> > for this doesn't exist yet, but I wanted to include this variant for
+> > testing, because we'll want to use these bindings for the reservation
+> > use-case as well at some point.
+> >
+> > I've also been able to make use of this binding and the IOMMU code in
+> > conjunction with the simple-framebuffer driver to hand over a display
+> > configuration set up by UEFI to the Linux kernel.
+> >
+> > Janne has confirmed[0] this to be suitable for indirect mappings as
+> > well, though these patches don't implement that feature yet. Potential
+> > extensions to this have been discussed but are not yet included at this
+> > time to not further complicate things.
+> >
+> > Thierry
+> >
+> > [0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
+> >
+> > Thierry Reding (4):
+> >   of: Introduce of_translate_dma_region()
+> >   dt-bindings: reserved-memory: Document iommu-addresses
+> >   iommu: Implement of_iommu_get_resv_regions()
+> >   iommu: dma: Use of_iommu_get_resv_regions()
+> >
+> >  .../reserved-memory/reserved-memory.yaml      | 89 +++++++++++++++++-
+> >  drivers/iommu/dma-iommu.c                     |  3 +
+> >  drivers/iommu/of_iommu.c                      | 94 +++++++++++++++++++
+> >  drivers/of/address.c                          | 41 ++++++++
+> >  include/linux/of_address.h                    |  2 +
+> >  include/linux/of_iommu.h                      |  8 ++
+> >  6 files changed, 233 insertions(+), 4 deletions(-)
 >
->>=20
->> For "mcpuid", can you be sure that implementers will not omit setting
->> that value to something unique? I'd be happier if we were overly
->> clear
->> now rather than have some headaches later=2E Have I missed something?
+> Joerg, Rob,
 >
->These values are set by T-Head instead of individual SoC implementers
->as a CPU CSR, and it's not for uniqueness, but it's for identification
->of the CPU core revision (thus the PLIC/CLINT that come with it)=2E
+> Is there anything left to do on the series? It'd be great to get some
+> feedback from Robin on patch 3 since he had some concerns about how the
+> reservation type was getting determined. All those should now be
+> addressed and I think overall this is ready to go.
+>
+> Rob, you've given a Reviewed-by on all the DT-related parts, does that
+> mean you're okay with this going through Joerg's tree?
 
-I really am missing something here that must be obvious to you=2E
-Let me try and explain where my gap in understanding is=2E
-If someone takes the open cores & makes a minor tweak in the plic how does=
- knowing mcpuid help us identify that that plic is marginally different?
+Yes. Okay with and what I'm expecting.
 
-I must have missed something that should be apparent and look like an eeji=
-t right now!
-
->
->>=20
->> > > I don't think that using "thead,openc906-clint", "thead,c900-
->> > > clint"
->> > > makes all that much sense either, in case someone does something
->> > > wacky
->> > > with the open-source version of the core=2E
->> > >=20
->> > > That leaves us with either:
->> > > "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
->> > > or:
->> > > "vendor,soc-clint", "thead,c900-clint"
->> > > right?
->> > >=20
->> > > The first one seems like possibly the better option as you'd
->> > > kinda
->> > > expect that, in a perfect word, all of the open-source IP
->> > > implementations would share quirks etc?
->>=20
->
+Rob
