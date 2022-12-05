@@ -2,163 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15DF56436E8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E266436ED
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:34:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbiLEVcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 16:32:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34644 "EHLO
+        id S233426AbiLEVeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:34:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232543AbiLEVcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:32:15 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B642BB09;
-        Mon,  5 Dec 2022 13:32:14 -0800 (PST)
-Received: from notapiano (unknown [IPv6:2804:14c:1a9:3b3c::1000])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7E9CA66015B4;
-        Mon,  5 Dec 2022 21:32:09 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670275933;
-        bh=50/6QIo85oB6JxRj95P+uB219lfikFqskeQx/8eOvno=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lRQUJmwna1Fd3WRydn/u93hKBrfttIOdTcafin+jSSCYjr8s1GC7M6p2HGiatKbtM
-         dw3/omlPJCPUvvIgvS1mZkuutCWS18K758oZj6pZrK96KiwBrh6PwsBhwsS6x8WRCZ
-         D/ZviTmlAkrpSKOigl4ACIML7N9J6ZGh3CkfXhuMDK2mQa37es2OIctUDX5itDZT+m
-         neu34try3QNXbu4wn3s9rqq7sE/HkJagVPpvFShgr97iqqxw4NfM0evX5yysOwVWFU
-         /tHa61VDvgghxpot4Q/5Q1TbgR4WHQZPJBtA1C1RFFEjnjCVpsTxLiyOiQ0t99oyby
-         //suG3cbYJkKw==
-Date:   Mon, 5 Dec 2022 18:32:04 -0300
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, yunfei.dong@mediatek.com
-Subject: Re: [PATCH v5 1/3] media: dt-bindings: media: mediatek: Rename child
- node names for decoder
-Message-ID: <20221205213204.ftnarhtsk33pprq3@notapiano>
-References: <20221128143832.25584-1-allen-kh.cheng@mediatek.com>
- <20221128143832.25584-2-allen-kh.cheng@mediatek.com>
+        with ESMTP id S233161AbiLEVeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:34:22 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07FB32CC80
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 13:34:20 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id z4so15071546ljq.6
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 13:34:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/AFtgz+lK9M2V4Cs5/9PoWBFJhdcyuHdw2Q3pWcGYM0=;
+        b=YUevHO9XgqPvry6HSJ6/W2BJQQU25R4upN0Typd6FaqC5gRATvHgY7MXNV3I064Uit
+         nFsS1oQIWZ3bcFOEW6RP4tJmb543mBunzrJK8QjQGHoK97Z2MLio0b4rznLjay2U+afj
+         qFly6OL7t9m2GhCC4P35fJtgFIlVWHZNDMbCCDlzD7b9IbaX2rscEBxya/UMGCZaB/3w
+         GInkZJ0435TBwAFZ8J1xMD60ZjO52UhcbdKENSnASGDa464v/GDfgTWMCd5VjEfcVZql
+         W1Ky8ikqcdYSkWb8EGPrM+UV08V3XNFDa/1OWa93VsbsAn0buH6/OpKDGu3YNWUYmVfr
+         tfFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/AFtgz+lK9M2V4Cs5/9PoWBFJhdcyuHdw2Q3pWcGYM0=;
+        b=UvPmDehbq+8k8twLyhW41tWj8g/hM/4CM6xAWEug1oxlXCHE/irJWeCMeN8rrzczDd
+         reW57Y6teOfI3CgNNenpV9waA7QpJdTRdG/1m9sj9Fkoq0OuImvAQhb+g97HnIbHJKX5
+         O/zrj6c8mkV8onXIaKxx7dnowLKgKaa0MW7HswfAqRPuhbYPutGJUua+nC1iTr0LGb+x
+         +cFojOjtBW6C9ieVbHNoXld4pwhFnvuTtaCmq7Xf67rZBRV/RjyhRw6BV8qhIZup6Eh2
+         /jG7gOF0AbVlL4QwRU5Latd8tS31uFiui6+gY1GCTvQIPiMRYA+YXPetKgyqDfwGqAGz
+         rXLA==
+X-Gm-Message-State: ANoB5pn+M9lkKo2rqYpVpxvDgB02HRD11sNnW5FTV5m3iD1nF9wBQlq9
+        kaZZqmLJoJOWf8oKNUjitmKyQw==
+X-Google-Smtp-Source: AA0mqf4BfnB/i1w1SRHpcZzPmtxt7+I3WAaF8JW8L4rYmlZYdEqUFnQ4Z7gOet/Ue5qWPSJ4tfTtbA==
+X-Received: by 2002:a2e:b4a3:0:b0:279:edbf:118c with SMTP id q3-20020a2eb4a3000000b00279edbf118cmr3085208ljm.425.1670276058362;
+        Mon, 05 Dec 2022 13:34:18 -0800 (PST)
+Received: from [127.0.0.1] ([94.25.229.129])
+        by smtp.gmail.com with ESMTPSA id s8-20020a2eb628000000b002776eb5b1cesm1516828ljn.8.2022.12.05.13.34.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Dec 2022 13:34:18 -0800 (PST)
+Date:   Tue, 06 Dec 2022 00:34:10 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        airlied@gmail.com
+CC:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v8_2/5=5D_dt-bindings=3A_msm/dp=3A_ad?= =?US-ASCII?Q?d_data-lanes_and_link-frequencies_property?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <1670267670-15832-3-git-send-email-quic_khsieh@quicinc.com>
+References: <1670267670-15832-1-git-send-email-quic_khsieh@quicinc.com> <1670267670-15832-3-git-send-email-quic_khsieh@quicinc.com>
+Message-ID: <5552E92A-2059-4D1E-AC88-3214D93D93E3@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221128143832.25584-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 28, 2022 at 10:38:30PM +0800, Allen-KH Cheng wrote:
-> In order to make the names of the child nodes more generic, we rename
-> "vcodec-lat" and "vcodec-core" to "video-codec" for decoder in
-> patternProperties and example.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 60 ++-----------------
->  1 file changed, 4 insertions(+), 56 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> index c4f20acdc1f8..695402041e04 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> @@ -91,12 +91,13 @@ properties:
->  
->  # Required child node:
->  patternProperties:
-> -  '^vcodec-lat@[0-9a-f]+$':
-> +  '^video-codec@[0-9a-f]+$':
->      type: object
->  
->      properties:
->        compatible:
->          enum:
-> +          - mediatek,mtk-vcodec-core
->            - mediatek,mtk-vcodec-lat
->            - mediatek,mtk-vcodec-lat-soc
->  
-> @@ -145,59 +146,6 @@ patternProperties:
->  
->      additionalProperties: false
->  
-> -  '^vcodec-core@[0-9a-f]+$':
-> -    type: object
-> -
-> -    properties:
-> -      compatible:
-> -        const: mediatek,mtk-vcodec-core
-> -
-> -      reg:
-> -        maxItems: 1
-> -
-> -      interrupts:
-> -        maxItems: 1
-> -
-> -      iommus:
-> -        minItems: 1
-> -        maxItems: 32
-> -        description: |
-> -          List of the hardware port in respective IOMMU block for current Socs.
-> -          Refer to bindings/iommu/mediatek,iommu.yaml.
-> -
-> -      clocks:
-> -        maxItems: 5
-> -
-> -      clock-names:
-> -        items:
-> -          - const: sel
-> -          - const: soc-vdec
-> -          - const: soc-lat
-> -          - const: vdec
-> -          - const: top
-> -
-> -      assigned-clocks:
-> -        maxItems: 1
-> -
-> -      assigned-clock-parents:
-> -        maxItems: 1
-> -
-> -      power-domains:
-> -        maxItems: 1
-> -
-> -    required:
-> -      - compatible
-> -      - reg
-> -      - interrupts
 
-Looks like interrupts was required for vcodec-core, but it isn't for the generic
-video-codec node. Which seems correct, given that the vcodec-lat-soc doesn't
-have an interrupt [1]. So I guess this is just the generic video-codec node in
-the binding being too generic for some cases. Ideally we would override
-interrupts to be required based on which subnode we're dealing with (for lat and
-core, but not lat-soc), but given these are subnodes matched through
-patternProperties, I'm not sure that would be possible.
 
-[1] https://lore.kernel.org/all/20221202034450.3808-3-yunfei.dong@mediatek.com/
+On 5 December 2022 22:14:27 GMT+03:00, Kuogee Hsieh <quic_khsieh@quicinc=
+=2Ecom> wrote:
+>Add both data-lanes and link-frequencies property into endpoint
+>
+>Changes in v7:
+>-- split yaml out of dtsi patch
+>-- link-frequencies from link rate to symbol rate
+>-- deprecation of old data-lanes property
+>
+>Changes in v8:
+>-- correct Bjorn mail address to kernel=2Eorg
+>
+>Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc=2Ecom>
+>---
+> =2E=2E=2E/bindings/display/msm/dp-controller=2Eyaml        | 22 ++++++++=
+++++++++------
+> 1 file changed, 16 insertions(+), 6 deletions(-)
+>
+>diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller=
+=2Eyaml b/Documentation/devicetree/bindings/display/msm/dp-controller=2Eyam=
+l
+>index f2515af=2E=2E13d2c3c 100644
+>--- a/Documentation/devicetree/bindings/display/msm/dp-controller=2Eyaml
+>+++ b/Documentation/devicetree/bindings/display/msm/dp-controller=2Eyaml
+>@@ -79,12 +79,6 @@ properties:
+>   aux-bus:
+>     $ref: /schemas/display/dp-aux-bus=2Eyaml#
+>=20
+>-  data-lanes:
+>-    $ref: /schemas/types=2Eyaml#/definitions/uint32-array
+>-    minItems: 1
+>-    maxItems: 4
+>-    items:
+>-      maximum: 3
 
-Thanks,
-Nícolas
+These properties can still be used, e=2Eg=2E Bjorn is submitting patches w=
+ith the old property=2E I think this should be marked with deprecated: true=
+ instead of removal=2E
 
-> -      - iommus
-> -      - clocks
-> -      - clock-names
-> -      - assigned-clocks
-> -      - assigned-clock-parents
-> -      - power-domains
-> -
-> -    additionalProperties: false
-> -
+>=20
+>   "#sound-dai-cells":
+>     const: 0
+>@@ -105,6 +99,19 @@ properties:
+>         $ref: /schemas/graph=2Eyaml#/properties/port
+>         description: Output endpoint of the controller
+>=20
+>+        properties:
+>+          endpoint:
+>+            $ref: /schemas/media/video-interfaces=2Eyaml#
+>+
+>+          properties:
+>+            data-lanes:
+>+              $ref: /schemas/types=2Eyaml#/definitions/uint32-array
+>+
+>+            link-frequencies:
+>+              $ref: /schemas/types=2Eyaml#/definitions/uint64-array
+>+
+>+          additionalProperties: false
+>+
+> required:
+>   - compatible
+>   - reg
+>@@ -193,6 +200,9 @@ examples:
+>                 reg =3D <1>;
+>                 endpoint {
+>                     remote-endpoint =3D <&typec>;
+>+                    data-lanes =3D <1 2>;
+>+                    link-frequencies =3D /bits/ 64 <1620000000 270000000=
+0
+>+                                                  5400000000 8100000000>=
+;
+>                 };
+>             };
+>         };
+
+--=20
+With best wishes
+Dmitry
