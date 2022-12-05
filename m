@@ -2,210 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 382D36421FC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 04:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 754066422BA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 06:30:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231139AbiLEDwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Dec 2022 22:52:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51152 "EHLO
+        id S231537AbiLEFaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 00:30:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbiLEDwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Dec 2022 22:52:31 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 298AC12D08;
-        Sun,  4 Dec 2022 19:52:27 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 95AC424E1CF;
-        Mon,  5 Dec 2022 11:52:23 +0800 (CST)
-Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Dec
- 2022 11:52:23 +0800
-Received: from [192.168.125.128] (113.72.146.33) by EXMBX161.cuchost.com
- (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 5 Dec
- 2022 11:52:22 +0800
-Message-ID: <e0551ed7-2208-6d08-235b-993702f0d89b@starfivetech.com>
-Date:   Mon, 5 Dec 2022 11:49:07 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: watchdog: Add watchdog for StarFive
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Wim Van Sebroeck" <wim@linux-watchdog.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        <linux-kernel@vger.kernel.org>
-References: <20221202093943.149674-1-xingyu.wu@starfivetech.com>
- <20221202093943.149674-2-xingyu.wu@starfivetech.com>
- <cb8deb55-902a-0058-4764-a5f391f8de6d@linaro.org>
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <cb8deb55-902a-0058-4764-a5f391f8de6d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.146.33]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX161.cuchost.com
- (172.16.6.71)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231365AbiLEFaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 00:30:21 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5C910573;
+        Sun,  4 Dec 2022 21:30:21 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id h33so9521726pgm.9;
+        Sun, 04 Dec 2022 21:30:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iqTqtUH4SGu1jZyiQDeCWeieBWj4y0izBZGPp2Zpk7I=;
+        b=MvDa0gz2S1pkesbkXJQajaXu9MsFphwcjvHX57EhueCxKWUmh8BJoSUaI9oOdIQwj9
+         4GoCz1hPlAYUhoeiQ1oRzeMpWr+DTtHiviVoARdaF8snNKZU/OsNotRFpvXYyggMt1tp
+         pN0l9JCq44V9OKcMx565ASHNCJcG5ogY6F/sKdQLNY+3jquMcqlhraLHET0qx7MF1ipc
+         GhGSUNBE3kp7Aef+Q/69j4/FqMKuzGkCP68D8GaTr+Alc2lYY0+MRROHLMr6zmOaI2cB
+         M+iQM2Da/+ZdxzMQ8LADBzlaJTd9413Jm+mf6rA7JpZm8jDZx9G7u+P5TfcpUAnIQHx1
+         xzQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iqTqtUH4SGu1jZyiQDeCWeieBWj4y0izBZGPp2Zpk7I=;
+        b=yLHdgzAWLa6uFYSmRyRn3wSAAH4IBlwOFADi+rFY5E0HjRNrbNcNU79YKOWG7jOJuS
+         Ic7N0nYASY1YZvkt+wyEtHNQKce0mIinjqF7/1AREZy6VaX+vUSoMHdmidRqL4AcHhjk
+         aKv46vfERdSiKeYtJEh8puQeXhC+6c/ha45oCLqTvjfwBaZNCdG04N55+SO8ag1DXxbC
+         YiKz/STQP4hhe+ww0+GhdX7kzRU2ZUhLFRBW8XorY5/743sMCq2fVs9Ho+up312cTO/n
+         YWaLD392m/lWkLT+AkSllsvC0wSAmJaDqHmhFvdxbf1N7UgCG6D7vVwczW8SLi619Ade
+         abOw==
+X-Gm-Message-State: ANoB5plPJh4194H0zZS4wIGtzzGnuujycGb+vPQEv2nU4uPolHPpI2e+
+        j55PuWy5moiMB2c3fQu9j+T2vExBXLU=
+X-Google-Smtp-Source: AA0mqf66qduVLZhP4T/e5mH6CJEsnoy0jTRRNV34xJAKzug/p+wgWeoLtnrd3nudduT1wxkNb4XGGQ==
+X-Received: by 2002:a63:4081:0:b0:46f:e657:7d25 with SMTP id n123-20020a634081000000b0046fe6577d25mr71093325pga.347.1670218220365;
+        Sun, 04 Dec 2022 21:30:20 -0800 (PST)
+Received: from localhost.localdomain (2001-b400-e2d4-7fe5-c00b-8015-d148-489d.emome-ip6.hinet.net. [2001:b400:e2d4:7fe5:c00b:8015:d148:489d])
+        by smtp.gmail.com with ESMTPSA id 13-20020a17090a190d00b00218cd71781csm8239556pjg.51.2022.12.04.21.30.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Dec 2022 21:30:19 -0800 (PST)
+From:   Owen Yang <ecs.taipeikernel@gmail.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Bob Moragues <moragues@google.com>, Harvey <hunge@google.com>,
+        Matthias Kaehlcke <mka@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Gavin Lee <gavin.lee@ecs.com.tw>,
+        Abner Yen <abner.yen@ecs.com.tw>,
+        Owen Yang <ecs.taipeikernel@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v14 1/2] dt-bindings: arm: qcom: Add zombie
+Date:   Mon,  5 Dec 2022 13:29:59 +0800
+Message-Id: <20221205132913.v14.1.Idfcba5344b7995b44b7fa2e20f1aa4351defeca6@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/12/2 18:46, Krzysztof Kozlowski wrote:
-> On 02/12/2022 10:39, xingu.wu wrote:
->> From: Xingyu Wu <xingyu.wu@starfivetech.com>
->> 
->> Add bindings to describe the watchdog for the StarFive SoCs.
->> 
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
->>  .../bindings/watchdog/starfive,wdt.yaml       | 77 +++++++++++++++++++
->>  1 file changed, 77 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml b/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
->> new file mode 100644
->> index 000000000000..ece3e80153a0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/watchdog/starfive,wdt.yaml
-> 
-> Filename should be based on compatible. You do not allow here any other
-> models... If you intent and you are 100% sure you will grow with new
-> models, make it maybe a family-based name.
+Add entries in the device tree binding for sc7280-zombie.
 
-First, thank you for your reply. We have some other SoCs like JH7100 would use
-this watchdog driver, but we now use JH7110 as our main release chip.
-As you say, should we use "starfive,jh71xx-wdt.yaml" as filename?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Signed-off-by: Owen Yang <ecs.taipeikernel@gmail.com>
+---
 
+Changes in v14:
+- None.
 
->> @@ -0,0 +1,77 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/watchdog/starfive,wdt.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: StarFive Watchdog
->> +
->> +allOf:
->> +  - $ref: "watchdog.yaml#"
-> 
-> Drop quotes.
+Changes in v13:
+- None.
 
-Will fix.
->> +
->> +maintainers:
->> +  - Samin Guo <samin.guo@starfivetech.com>
->> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: starfive,jh7110-wdt
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Core clock
->> +      - description: APB clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: core_clk
-> 
-> Drop _clk
+Changes in v12:
+- None.
 
-Will fix.
+Changes in v11:
+- Put all tags togather as As requested by Douglas.
 
-> 
->> +      - const: apb_clk
-> 
-> Drop _clk
+Changes in v10:
+- Add "Reviewed-by" tags in this patch log.
+- Fixed history log list.
 
-Will fix.
+Changes in v9:
+- Fixed version number (v7 and v8 were erroneously posted as v6)
 
-> 
->> +
->> +  resets:
->> +    items:
->> +      - description: APB reset
->> +      - description: Core reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: rst_apb
-> 
-> Drop rst_
+Changes in v8:
+- Correct commit log. Use "entries" instead of "an entry". As requested by Krzysztof, Matthias and Douglas.
 
-Will fix.
+Changes in v7:
+- None.
 
-> 
->> +      - const: rst_core
-> 
-> Ditto
+Changes in v6:
+- None.
 
-Will fix.
+Changes in v5:
+- None.
 
-> 
->> +
->> +  timeout-sec: true
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - timeout-sec
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/starfive-jh7110.h>
->> +    #include <dt-bindings/reset/starfive-jh7110.h>
->> +
->> +    watchdog@13070000 {
->> +            compatible = "starfive,jh7110-wdt";
-> 
-> Use 4 spaces for example indentation.
+Changes in v4:
+- None.
 
-Will fix.
+Changes in v3:
+- None.
 
-> 
->> +            reg = <0x13070000 0x10000>;
->> +            interrupts = <68>;
->> +            clocks = <&syscrg_clk JH7110_SYSCLK_WDT_CORE>,
->> +                     <&syscrg_clk JH7110_SYSCLK_WDT_APB>;
->> +            clock-names = "core_clk", "apb_clk";
->> +            resets = <&syscrg_rst JH7110_SYSRST_WDT_APB>,
->> +                     <&syscrg_rst JH7110_SYSRST_WDT_CORE>;
->> +            reset-names = "rst_apb", "rst_core";
->> +            timeout-sec = <15>;
->> +    };
->> +
-> 
-> Drop trailing line.
+Changes in v2:
+- Fixed patch order.
 
-Will fix.
+ Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Best regards,
-Xingyu Wu
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..7ec6240311db 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -655,6 +655,16 @@ properties:
+           - const: google,villager-sku512
+           - const: qcom,sc7280
+ 
++      - description: Google Zombie (newest rev)
++        items:
++          - const: google,zombie
++          - const: qcom,sc7280
++
++      - description: Google Zombie with LTE (newest rev)
++        items:
++          - const: google,zombie-sku512
++          - const: qcom,sc7280
++
+       - items:
+           - enum:
+               - lenovo,flex-5g
+-- 
+2.17.1
+
