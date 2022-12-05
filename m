@@ -2,169 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AA86429A7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 14:42:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 207FE6429E4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 14:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbiLENmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 08:42:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34992 "EHLO
+        id S231640AbiLENwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 08:52:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232143AbiLENlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 08:41:50 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E63A1CFF2;
-        Mon,  5 Dec 2022 05:41:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1670247709; x=1701783709;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=3GEBq+TnHHBMj8dKCAPrgcd5mxHNa6hFVgpFoTSTC/c=;
-  b=SpPVP0hdQppycTBJfqc525okQOHISoGrU10DQt4MPeGe/+zoIy96WjZe
-   xPWzywOdATF5flG4RQgso6tLMUNlfu82sr0fIm/lJCIVCgR0IEQ27hYNn
-   qLTsU/lzg2KK0KHd0eFHe1moYIAypi3CNFYJ930LsN73P5OU9MoY1ywSg
-   H1Ka1HeVNs1ExhFwrTd9aCa13WKW/nIQlMwnjFPY1vDiyP4p9DhrgMevW
-   2E5HplGa1ZTCDPfvi4t629DKNvDxiWZA9rxbl/pkfR5rwSTajfY9Vy/rn
-   m/L2CMNGaUm6Eo2lD9+QxbzE1Ic6kVgIf/p2Aa3qL1kpmSTwm/fCzT2tP
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="299776121"
-X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
-   d="scan'208";a="299776121"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2022 05:41:48 -0800
-X-IronPort-AV: E=McAfee;i="6500,9779,10551"; a="714401437"
-X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
-   d="scan'208";a="714401437"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.55.104])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2022 05:41:43 -0800
-Message-ID: <c200557f-c30a-62f9-287a-af804e818cf1@intel.com>
-Date:   Mon, 5 Dec 2022 15:41:39 +0200
+        with ESMTP id S232425AbiLENwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 08:52:12 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2BB11A04
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 05:52:10 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id bs21so18695111wrb.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 05:52:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hU8awQZE7orgladXdlo0GTxR4zpxwbwcESgIpxJ13kM=;
+        b=W3u+C+W4iy5BKYadzGKEwrhnX+WHxjNavB8D/PC0lF1Fg8Pe/ekhb2jrUSCOQBbdxx
+         8N2KRN/GPH3DObr5sim0ov12JwqPrWTJ1o3lzijoudRm1w8LQ45gAXxVBQHn5mnT9oTf
+         OAE1WebEs4Pv5KCp7lu0pAgvuoaQ6FUeIN/KOIIuR+80p/Exr625rhjENGDee28wLqy1
+         Hm3kWYHWdA7ZYksYwPb0aDiA7Q6eQ9wwdFw0jH4N2LruSG//NsoWgDUVA0wMSSstGuhk
+         UVywvmbJ6IMMhvdWY7hKXisfrNCOLpkC3SVBPV6u/z26MHkxZHbGqwfmSFB18vTnhgFw
+         PCNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hU8awQZE7orgladXdlo0GTxR4zpxwbwcESgIpxJ13kM=;
+        b=XwBA2iseZr1bdXPsGaYkaQW0ws3nTsFaGlHjm12ScrkTuSQ8WYcdtj+XM7AFvPmTlN
+         09e5hkA/++s4afAf/axqEu77/IvJgZeypRxD9F8n6IFzIPNgthw5qoOR+w+mRjmCJKPV
+         vj5QVMPglZfxj4FLTiRp7VWWUyIl99Me39a6Yn5DnXIctSIgPhyY+gN6eMsi51EwPJWN
+         zXrM9LmcTGGkVm5HE3AGF/wbc7z7Ey4+9r0ZTiUCLC2R7IZG2inaNTpQ2D+YY775KegP
+         rQtepFu4FtvhyLy/GtNQlZyV8GZKWNyzJxPq/JdBLVtqd2oRDAQh1Ce/2K7GLA2NLqjR
+         JNCA==
+X-Gm-Message-State: ANoB5pk8xMSiPDUL7xzhan/IagjJQj1SRU3UIPrtYBYwvA2w7E6jWXKw
+        Wla08vYJ4+F4/H8M5cmohAKrT60AfLHFsMvBj4Txig==
+X-Google-Smtp-Source: AA0mqf4zO/xd3fS5xAzDq3lcKBOsM7eSke1rV0b1O0YU+j5ch0a7K+qqm+Ozk8+g6W3Ara2pPKMung==
+X-Received: by 2002:adf:ea8f:0:b0:242:5afd:bc5d with SMTP id s15-20020adfea8f000000b002425afdbc5dmr4459827wrm.305.1670248328876;
+        Mon, 05 Dec 2022 05:52:08 -0800 (PST)
+Received: from predatorhelios.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a3-20020adffac3000000b0024245e543absm9012700wrs.88.2022.12.05.05.52.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 05:52:08 -0800 (PST)
+From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+To:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        krzysztof.kozlowski@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, khilman@baylibre.com,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH v4 0/3] Remove the pins-are-numbered DT property
+Date:   Mon,  5 Dec 2022 14:51:55 +0100
+Message-Id: <20221205135158.1842465-1-bero@baylibre.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.5.1
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com,
-        skhan@linuxfoundation.org, davidgow@google.com,
-        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
-        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
-References: <20221205085351.27566-1-tmaimon77@gmail.com>
- <20221205085351.27566-3-tmaimon77@gmail.com>
- <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
- <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
- <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/12/22 15:25, Andy Shevchenko wrote:
-> On Mon, Dec 5, 2022 at 1:20 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
->> On Mon, 5 Dec 2022 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->>> On Mon, Dec 5, 2022 at 10:54 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> 
-> ...
-> 
->>>> +#include <linux/clk.h>
->>>> +#include <linux/err.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/mmc/host.h>
->>>> +#include <linux/mmc/mmc.h>
->>>> +#include <linux/module.h>
->>>
->>> I guess platform_device.h is missing here.
->> Build and work without platform_device.h, do I need it for module use?
-> 
-> The rule of thumb is to include headers we are the direct user of. I
-> believe you have a data type and API that are defined in that header.
-> 
-> ...
-> 
->>>> +static int npcm_sdhci_probe(struct platform_device *pdev)
->>>> +{
->>>> +       struct sdhci_pltfm_host *pltfm_host;
->>>> +       struct sdhci_host *host;
->>>> +       u32 caps;
->>>> +       int ret;
->>>> +
->>>> +       host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
->>>> +       if (IS_ERR(host))
->>>> +               return PTR_ERR(host);
->>>> +
->>>> +       pltfm_host = sdhci_priv(host);
->>>
->>>> +       pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
->>>
->>> You can't mix devm with non-devm in this way.
->> Can you explain what you mean You can't mix devm with non-devm in this
->> way, where is the mix?
->> In version 1 used devm_clk_get, is it problematic?
-> 
-> devm_ is problematic in your case.
-> TL;DR: you need to use clk_get_optional() and clk_put().
+During the review of my MT8365 support patchset
+(https://lore.kernel.org/linux-mediatek/20221117210356.3178578-1-bero@baylibre.com/),
+the issue of the "pins-are-numbered" DeviceTree property has come up.
 
-devm_ calls exactly those, so what is the issue?
+This property is unique to Mediatek MT65xx and STM32 pinctrls, and
+doesn't seem to serve any purpose (both the Mediatek and STM32 drivers
+simply refuse to deal with a device unless pins-are-numbered is set to
+true).
 
-> 
-> Your ->remove() callback doesn't free resources in the reversed order
-> which may or, by luck, may not be the case of all possible crashes,
-> UAFs, races, etc during removal stage. All the same for error path in
-> ->probe().
-> 
->>>> +       if (IS_ERR(pltfm_host->clk))
->>>> +               return PTR_ERR(pltfm_host->clk);
->>>> +
->>>> +       ret = clk_prepare_enable(pltfm_host->clk);
->>>> +       if (ret)
->>>> +               return ret;
->>>> +
->>>> +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
->>>> +       if (caps & SDHCI_CAN_DO_8BIT)
->>>> +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
->>>> +
->>>> +       ret = mmc_of_parse(host->mmc);
->>>> +       if (ret)
->>>> +               goto err_sdhci_add;
->>>> +
->>>> +       ret = sdhci_add_host(host);
->>>> +       if (ret)
->>>> +               goto err_sdhci_add;
->>>
->>> Why can't you use sdhci_pltfm_register()?
->> two things are missing in sdhci_pltfm_register
->> 1. clock.
-> 
-> Taking into account the implementation of the corresponding
-> _unregister() I would add the clock handling to the _register() one.
-> Perhaps via a new member of the platform data that supplies the name
-> and index of the clock and hence all clk_get_optional() / clk_put will
-> be moved there.
-> 
->> 2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
-> 
-> All the same, why can't platform data be utilised for this?
-> 
->>>> +       return 0;
->>>> +
->>>> +err_sdhci_add:
->>>> +       clk_disable_unprepare(pltfm_host->clk);
->>>> +       sdhci_pltfm_free(pdev);
->>>> +       return ret;
->>>> +}
-> 
+There is no other use of this property in the kernel or in other projects
+using DeviceTrees (checked u-boot and FreeBSD -- in both of those, the
+flag is present in Mediatek and STM devicetrees, but not used anywhere).
+
+There is also no known use in userspace (in fact, a userland application
+relying on the property would be broken because it would get true on
+any Mediatek or STM chipset and false on all others, even though other
+chipsets use numbered pins).
+
+This patchset removes all uses of pins-are-numbered and marks the
+property as deprecated.
+
+v4:
+  - The generic pinctrl related patches are now in the pinctrl tree
+    for v6.2 - remove them and repost the remaining bits of the patch
+    set. No other changes.
+
+v3:
+  - No functional changes; add recent Reviewed-Bys and Acked-Bys,
+    add linux-gpio to Cc
+
+v2:
+  - Deprecate the property instead of removing it completely from
+    schemas
+  - squash some related commits
+
+Bernhard Rosenkränzer (3):
+  arm64: dts: mediatek: Remove pins-are-numbered property
+  ARM: dts: mediatek: Remove pins-are-numbered property
+  ARM: dts: stm32: Remove the pins-are-numbered property
+
+ arch/arm/boot/dts/mt2701.dtsi                | 1 -
+ arch/arm/boot/dts/mt7623.dtsi                | 1 -
+ arch/arm/boot/dts/mt8135.dtsi                | 1 -
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi       | 1 -
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi       | 1 -
+ arch/arm/boot/dts/stm32h743.dtsi             | 1 -
+ arch/arm/boot/dts/stm32mp131.dtsi            | 1 -
+ arch/arm/boot/dts/stm32mp151.dtsi            | 2 --
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi    | 1 -
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi     | 1 -
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 1 -
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi     | 1 -
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi     | 1 -
+ 13 files changed, 14 deletions(-)
+
+-- 
+2.38.1
 
