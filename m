@@ -2,189 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EAD464275F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E25C364279E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:37:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbiLELUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 06:20:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
+        id S231365AbiLELhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 06:37:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbiLELUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:20:24 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A45917599;
-        Mon,  5 Dec 2022 03:20:23 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id b3so18013100lfv.2;
-        Mon, 05 Dec 2022 03:20:23 -0800 (PST)
+        with ESMTP id S231255AbiLELhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:37:09 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D56E1A068
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 03:37:08 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id gu23so27004404ejb.10
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 03:37:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQZdWCk9TZHtIPbVJXmvMK2JUQWMNX+6lfb/3HP5Mec=;
-        b=NIuTszuQPXA0nhI61iLhILZmwzinSYocmIz2ZTkRZvS7NNBpFdB6UHkI70CT+WLHqR
-         V2ZgB7frGE9kT/UisM5KAQheA0htbZo4sRf8j8QymOHNBU8qE2qYqyVgR/fuUgoMUHNn
-         qcv5JXz4WtgVQc8+5Ew27rx0SG1sceX14AxTk9rppkomD78CI+wAsE80YD/DmOsT3+Ar
-         zGNF142b+8Nb/xZvolCO6kWuScBmLwmtcVXcF33+prvtXOUlX1m0u9RFJIkdT4BXx0iB
-         c96PgwgR8aEH5v4pXZDjduHt9nFg8Nve4+pjxA8Vp1EwnbQj5CWyaSzJGjdHGb27v/K1
-         MHMg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cYONg2TQ0L+lF1d2DaA1qurYIm2vbfwZznXqOxGFnmA=;
+        b=c6r33dyZUaRAYBqp/c+s1bzmydiZw5C/25gSmwq1LrhxlFMOfo3mmIL+0QbPQwYSFG
+         kqpWcZtwGiQn0fFTjXFC/50jtt2pUTslqjMFR5hAEFnbg4I2sJloV4Lp0jldsCg+j58p
+         Xrwz1c/VFjPeiRiN73DZPWNwdGyYocY6rhjsX8DodU8ePNeITAY6IrEHzdwzXvqfi5DP
+         uv7tBzYvRNuVi+TxAIDkGH0eWKBYQzKSKN5Sqi5jlp/DtnrNpHk9IGzCXLzbGJRTmYCo
+         aUzkeTl0Gtf4rHd8T0xO3ZIwEFltRyy18adXMsvjtWVRZX64d3BX7ydvsMFpWsZeFkrq
+         jVSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gQZdWCk9TZHtIPbVJXmvMK2JUQWMNX+6lfb/3HP5Mec=;
-        b=Z4SDhf2GtO0hfd2yBWytBgEiZThuSgTqudgmRCCBlYNPT6hlxZGF8CYSMtJ/5D8BJI
-         zvUvKuGlrnHuvkry7GbfYn85/jTm8vs+U6wNl0Kl9DBhU5zj40ysy/AfBZ1FA59RFzeC
-         6ndOpVOxTqRqW1u1K0aJeykADueCLVcbA0b3zkVI0RkKUF389wCoba9QriGaP9t+bn9L
-         5ePviNLRnkhoftxDDIEGIGsZw54Dnp1gr00Uqcnm9RYMLy+MTGCfEatECk8UiVBiKje4
-         MRPVsrsu5bZKeGO3HIre+EOu+XXoC/OV2Sq8gRSWSKaFnZbJRaktrlYfd6zbQWqC8y61
-         D+cQ==
-X-Gm-Message-State: ANoB5plhnBvyXiA8WNbDTKBL6FNyuZw6JAaSNM0Noa145TSu/Ro+Bvbi
-        YMmcUC08AToRqlZSxEYCuWG8J2RGXDeXx9gM6xY=
-X-Google-Smtp-Source: AA0mqf4xO4hYS4MNgipiw6LS5E03S+Whk3RNQT/CgUeZISIUHhNzH16pu5m2zRyEXR44992o+bBRV6L2seZoQ/fHU7U=
-X-Received: by 2002:ac2:4e14:0:b0:4af:f5a0:8786 with SMTP id
- e20-20020ac24e14000000b004aff5a08786mr25478865lfr.265.1670239221420; Mon, 05
- Dec 2022 03:20:21 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cYONg2TQ0L+lF1d2DaA1qurYIm2vbfwZznXqOxGFnmA=;
+        b=nQtHIncFxRkPwWPOh8H6jZkRysXIlHvTKC/ebpQr7onpgcfk/+w/MBY4dwFi37Uxib
+         Ng3wy2vtKRGXQ0261IgsaWXf6o2EU7mlHAE2A2sU8FVhOvRH9zhYbzi8ohjkiN66DjTL
+         MLndR4Coa6n81NlhF2Ea4TRiKa4vUWj4hjFX3FoDQGxWzPKXS7pWx6vOcaYkB8OUjF5g
+         khK+/FsU9QB0kt6msdT/kNS/6kjVrPFn58yefhvEldn7vy3EV2pzB1+PJvyESD3nXCZD
+         pSLNYHbbxeIs31ZR7vqZc3bxL+052cytzySblGTSoQ9WKE84vgzvERd4HvEzvTsE3BbH
+         d4pw==
+X-Gm-Message-State: ANoB5pm3SVKesQOh4gtH0C2ZXTqE+tfyXlX/rgRbCa10tZPxSsIuTXRt
+        ChF4FByYzk8f4c9wNReYOXgiAw==
+X-Google-Smtp-Source: AA0mqf4aKgFODxGCPta1Nv/wxBzu3tePNi5o9NMN2dx34jz14blVeWDZMfQ/sArMoICgz3V9zSWnpQ==
+X-Received: by 2002:a17:907:9842:b0:7b9:9492:b3f4 with SMTP id jj2-20020a170907984200b007b99492b3f4mr47621577ejc.688.1670240227134;
+        Mon, 05 Dec 2022 03:37:07 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id ca24-20020a170906a3d800b007abafe43c3bsm6140594ejb.86.2022.12.05.03.37.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 03:37:06 -0800 (PST)
+Message-ID: <61f2c58a-9ca8-3868-e3e0-31283e8b1728@linaro.org>
+Date:   Mon, 5 Dec 2022 12:37:06 +0100
 MIME-Version: 1.0
-References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
- <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
-In-Reply-To: <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Mon, 5 Dec 2022 13:20:10 +0200
-Message-ID: <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     ulf.hansson@linaro.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, adrian.hunter@intel.com,
-        skhan@linuxfoundation.org, davidgow@google.com,
-        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
-        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.5.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: fix UFS DMA coherency
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+References: <20221205100837.29212-1-johan+linaro@kernel.org>
+ <20221205100837.29212-3-johan+linaro@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221205100837.29212-3-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-Thanks for your comments.
 
-On Mon, 5 Dec 2022 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
-> On Mon, Dec 5, 2022 at 10:54 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >
-> > Add Nuvoton NPCM BMC sdhci-pltfm controller driver.
->
-> Thank you for an update, my comments below.
->
-> ...
->
-> > +config MMC_SDHCI_NPCM
->
-> >  config MMC_SDHCI_IPROC
->
-> Perhaps after IPROC?
-Will be done in the next version.
->
-> ...
->
-> > @@ -97,6 +97,7 @@ obj-$(CONFIG_MMC_SDHCI_MICROCHIP_PIC32)       += sdhci-pic32.o
-> >  obj-$(CONFIG_MMC_SDHCI_BRCMSTB)                += sdhci-brcmstb.o
-> >  obj-$(CONFIG_MMC_SDHCI_OMAP)           += sdhci-omap.o
-> >  obj-$(CONFIG_MMC_SDHCI_SPRD)           += sdhci-sprd.o
-> > +obj-$(CONFIG_MMC_SDHCI_NPCM)           += sdhci-npcm.o
->
-> Perhaps after IPROC? (There is a group of platform drivers slightly
-> below than here)
-Will be done in the next version.
->
-> >  obj-$(CONFIG_MMC_CQHCI)                        += cqhci.o
->
-> ...
->
-> > +#include <linux/clk.h>
-> > +#include <linux/err.h>
-> > +#include <linux/io.h>
-> > +#include <linux/mmc/host.h>
-> > +#include <linux/mmc/mmc.h>
-> > +#include <linux/module.h>
->
-> I guess platform_device.h is missing here.
-Build and work without platform_device.h, do I need it for module use?
->
-> ...
->
-> > +static int npcm_sdhci_probe(struct platform_device *pdev)
-> > +{
-> > +       struct sdhci_pltfm_host *pltfm_host;
-> > +       struct sdhci_host *host;
-> > +       u32 caps;
-> > +       int ret;
-> > +
-> > +       host = sdhci_pltfm_init(pdev, &npcm_sdhci_pdata, 0);
-> > +       if (IS_ERR(host))
-> > +               return PTR_ERR(host);
-> > +
-> > +       pltfm_host = sdhci_priv(host);
->
-> > +       pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
->
-> You can't mix devm with non-devm in this way.
-Can you explain what you mean You can't mix devm with non-devm in this
-way, where is the mix?
-In version 1 used devm_clk_get, is it problematic?
->
-> > +       if (IS_ERR(pltfm_host->clk))
-> > +               return PTR_ERR(pltfm_host->clk);
-> > +
-> > +       ret = clk_prepare_enable(pltfm_host->clk);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> > +       if (caps & SDHCI_CAN_DO_8BIT)
-> > +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-> > +
-> > +       ret = mmc_of_parse(host->mmc);
-> > +       if (ret)
-> > +               goto err_sdhci_add;
-> > +
-> > +       ret = sdhci_add_host(host);
-> > +       if (ret)
-> > +               goto err_sdhci_add;
->
-> Why can't you use sdhci_pltfm_register()?
-two things are missing in sdhci_pltfm_register
-1. clock.
-2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
->
-> > +       return 0;
-> > +
-> > +err_sdhci_add:
-> > +       clk_disable_unprepare(pltfm_host->clk);
-> > +       sdhci_pltfm_free(pdev);
-> > +       return ret;
-> > +}
->
-> Missing ->remove() due to above.
-Will check
->
-> Have you tried to compile as a module and then remove and insert it
-> several times?
-will try
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+On 05/12/2022 11:08, Johan Hovold wrote:
+> The SC8280XP UFS controllers are cache coherent and must be marked as
+> such in the devicetree to avoid potential data corruption.
+> 
+> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
+> Cc: stable@vger.kernel.org      # 6.0
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Best regards,
-
-Tomer
+Konrad
+>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index c4947c563099..23d1f51527aa 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -1430,6 +1430,7 @@ ufs_mem_hc: ufs@1d84000 {
+>   			required-opps = <&rpmhpd_opp_nom>;
+>   
+>   			iommus = <&apps_smmu 0xe0 0x0>;
+> +			dma-coherent;
+>   
+>   			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+>   				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> @@ -1491,6 +1492,7 @@ ufs_card_hc: ufs@1da4000 {
+>   			power-domains = <&gcc UFS_CARD_GDSC>;
+>   
+>   			iommus = <&apps_smmu 0x4a0 0x0>;
+> +			dma-coherent;
+>   
+>   			clocks = <&gcc GCC_UFS_CARD_AXI_CLK>,
+>   				 <&gcc GCC_AGGRE_UFS_CARD_AXI_CLK>,
