@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C37BD642ADD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:00:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6166F642AE0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231826AbiLEPAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:00:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60962 "EHLO
+        id S231797AbiLEPAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 10:00:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbiLEPAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:00:15 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A9CE7DF7A;
-        Mon,  5 Dec 2022 07:00:14 -0800 (PST)
+        with ESMTP id S231599AbiLEPAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:00:23 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 628A51D0F4;
+        Mon,  5 Dec 2022 07:00:22 -0800 (PST)
 X-IronPort-AV: E=Sophos;i="5.96,219,1665414000"; 
-   d="scan'208";a="142271742"
+   d="scan'208";a="145045992"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Dec 2022 00:00:14 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 06 Dec 2022 00:00:20 +0900
 Received: from localhost.localdomain (unknown [10.226.92.127])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 34B134009BED;
-        Tue,  6 Dec 2022 00:00:11 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B119B4009F87;
+        Tue,  6 Dec 2022 00:00:17 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org,
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 4/6] dt-bindings: counter: Add RZ/V2M TIM counter binding
-Date:   Mon,  5 Dec 2022 14:59:53 +0000
-Message-Id: <20221205145955.391526-5-biju.das.jz@bp.renesas.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: [PATCH 6/6] arm64: dts: renesas: r9a09g011: Add tim nodes
+Date:   Mon,  5 Dec 2022 14:59:55 +0000
+Message-Id: <20221205145955.391526-7-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
 References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
@@ -44,104 +45,221 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding for the Renesas RZ/V2M Counter Match Timer
-(a.k.a TIM).
+Add device nodes for the compare match timer(TIM) channels that are
+not assigned to the ISP.
+
+The channels 22 is assigned for clock source and channel 23 for
+clock event and rest of the channels are assigned for counter
+operation.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../counter/renesas,rzv2m-tim-cnt.yaml        | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/counter/renesas,rzv2m-tim-cnt.yaml
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 192 +++++++++++++++++++++
+ 1 file changed, 192 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/counter/renesas,rzv2m-tim-cnt.yaml b/Documentation/devicetree/bindings/counter/renesas,rzv2m-tim-cnt.yaml
-new file mode 100644
-index 000000000000..963dffe1c957
---- /dev/null
-+++ b/Documentation/devicetree/bindings/counter/renesas,rzv2m-tim-cnt.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/counter/renesas,rzv2m-tim-cnt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+index dcd3a05e54fe..69c1ebc5e0dd 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
+@@ -135,6 +135,198 @@ sys: system-controller@a3f03000 {
+ 			reg = <0 0xa3f03000 0 0x400>;
+ 		};
+ 
++		tim8: timer@a4000400 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000400 0 0x80>;
++			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM8_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+title: Renesas RZ/V2M Compare Match Timer (TIM)
++		tim9: timer@a4000480 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000480 0 0x80>;
++			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM9_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
++		tim10: timer@a4000500 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000500 0 0x80>;
++			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM10_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+description: |
-+  The Compare Match Timer(TIM) on RZ/V2M like SoCs has an internal 32-bit
-+  counter that can be used as an interval timer. This LSI has a total of 32
-+  channels of TIM from ch. 0 to ch. 31. It supports the following features
-+  * Configured with a 32-bit counter operating at INCLOCK (2 MHz)
-+  * The clock input from the count clock input pin can be divided by 2, 4,
-+    8, 16, 32, 64, 128, or 256, and one of these divided clocks can be
-+    used as the count clock.
-+  * The counter period can be set in the range of 1 to 4294967296
-+    (32-bit timer) using the selected divider clock as the count clock.
-+  * Generates an interrupt request signal every cycle set in the TIM
-+    counter.
-+  * The counter operation and the bus interface are asynchronous and
-+    can operate independently regardless of the size of the respective
-+    clock cycles.
++		tim11: timer@a4000580 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000580 0 0x80>;
++			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM11_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a09g011-tim-cnt  # RZ/V2M
-+          - renesas,r9a09g055-tim-cnt  # RZ/V2MA
-+      - const: renesas,rzv2m-tim-cnt
++		tim12: timer@a4000600 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000600 0 0x80>;
++			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM12_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  reg:
-+    maxItems: 1
++		tim13: timer@a4000680 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000680 0 0x80>;
++			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM13_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  interrupts:
-+    maxItems: 1
++		tim14: timer@a4000700 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000700 0 0x80>;
++			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM14_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  clocks:
-+    items:
-+      - description: APB clock
-+      - description: TIM clock
++		tim15: timer@a4000780 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000780 0 0x80>;
++			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM15_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  clock-names:
-+    items:
-+      - const: apb
-+      - const: tim
++		tim16: timer@a4000800 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000800 0 0x80>;
++			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM16_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  power-domains:
-+    maxItems: 1
++		tim17: timer@a4000880 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000880 0 0x80>;
++			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM17_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+  resets:
-+    maxItems: 1
++		tim18: timer@a4000900 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000900 0 0x80>;
++			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM18_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - resets
++		tim19: timer@a4000980 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000980 0 0x80>;
++			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM19_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+additionalProperties: false
++		tim20: timer@a4000a00 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000a00 0 0x80>;
++			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM20_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a09g011-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
++		tim21: timer@a4000a80 {
++			compatible = "renesas,r9a09g011-tim-cnt",
++				     "renesas,rzv2m-tim-cnt";
++			reg = <0 0xa4000a80 0 0x80>;
++			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM21_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
 +
-+    tim8: tim@a4000400 {
-+        compatible = "renesas,r9a09g011-tim-cnt", "renesas,rzv2m-tim-cnt";
-+        reg = <0xa4000400 0x80>;
-+        interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+                 <&cpg CPG_MOD R9A09G011_TIM8_CLK>;
-+        clock-names = "apb", "tim";
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+    };
++		tim22: timer@a4000b00 {
++			compatible = "renesas,r9a09g011-tim",
++				     "renesas,rzv2m-tim";
++			reg = <0 0xa4000b00 0 0x80>;
++			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM22_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
++
++		tim23: timer@a4000b80 {
++			compatible = "renesas,r9a09g011-tim",
++				     "renesas,rzv2m-tim";
++			reg = <0 0xa4000b80 0 0x80>;
++			interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
++				 <&cpg CPG_MOD R9A09G011_TIM23_CLK>;
++			clock-names = "apb", "tim";
++			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
++			power-domains = <&cpg>;
++		};
++
+ 		pwm8: pwm@a4010400 {
+ 			compatible = "renesas,r9a09g011-pwm",
+ 				     "renesas,rzv2m-pwm";
 -- 
 2.25.1
 
