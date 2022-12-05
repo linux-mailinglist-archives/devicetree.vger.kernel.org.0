@@ -2,83 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B5F642C1C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5822E642C64
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231947AbiLEPmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:42:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
+        id S232078AbiLEQAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:00:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233112AbiLEPmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:42:12 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5DFB4
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 07:42:10 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id d3so13993405ljl.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 07:42:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/TZQ/0zpx/j06MJim410qkeF/d2Q1Gh1lZXRpTFgdTE=;
-        b=h8toFZhjhBtsFxjfPPLQdJCQIu6a04PHORQN+ppqGbZ8cLbolNzMINANXlw0VPLw0m
-         Cv/JbQ3WGGgY2yUpbi9Q/VNL6OCN0Pqw05zNDe+HHn66F4gOooJQUishWya2KuC+7n2X
-         +a05LYzYnr5eMeyxzDCSrWV+FY73QTFlkcbyet7K+tH9fR/PdAnmBajTgrK7dohp8ztP
-         FZpcphS3n4castnrRiLEfdt/OfzQNoNJkLCVWtr1ga4P67Jef4RNXcBJ27H+tpvGFC7p
-         QnGO3Oxmr7vUjv14VR7SKiZVzZokITOguUHIqsbJHLci1FQAUsHS2DPePAck2OEGUnXH
-         55Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/TZQ/0zpx/j06MJim410qkeF/d2Q1Gh1lZXRpTFgdTE=;
-        b=F1X3btnOSVpNAAKkVa1spx9HcJwogpTZ/fjQ4T/J+RlB/quXopDPYmTe317kMmSJlA
-         DB9kzgTjfc8SOAFClZLBUfuHV1psmljDsxab8mpVYzg4GuWAYZoSL7FZ9s/3Kw+ao4Dj
-         rqoC3/MFjL5wD+GHx9AiCwSGHwCp1wdPFdkOtVlG5Wp/n/u4z6W5VLnHYoaM3z476EYJ
-         ZQQRm4QFRXDpO0MZHSvg0zMSBPVTvDt3pxqhBVnj1zUzwoYc2EOv3PaBBptpqwXjzB2E
-         UCNnnC0bx/RShh5nDO5klyXhM22RGtz4OnuyJ/X+kfTXfuLCSD4DCEfqD8bUokMlKybQ
-         TGNQ==
-X-Gm-Message-State: ANoB5pmpprRGMakKEkErxjX0jPWA0QvUyU6ccUOMk19DXTsYTdEez0o1
-        zMMXJCzCVVZG4h5ahKf7qgqUXQ==
-X-Google-Smtp-Source: AA0mqf6KcVNSOMb6YgXi8fU/AWTRWz5x/ZjvdsN8KIsX3BgfrtfY9oSBDJEJcHyD7B/1FUhKOMWLzg==
-X-Received: by 2002:a2e:a58b:0:b0:277:278:de24 with SMTP id m11-20020a2ea58b000000b002770278de24mr18956576ljp.388.1670254929275;
-        Mon, 05 Dec 2022 07:42:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id d23-20020ac244d7000000b004b5748fa3afsm476899lfm.107.2022.12.05.07.42.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 07:42:08 -0800 (PST)
-Message-ID: <c9ea96f9-a212-b693-12f2-b28a545b93e8@linaro.org>
-Date:   Mon, 5 Dec 2022 16:42:07 +0100
+        with ESMTP id S230375AbiLEQAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:00:11 -0500
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDFF817047;
+        Mon,  5 Dec 2022 08:00:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670255995; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=X7jn62/jMmkCOkK8ufWo0TMcd7RRQ7I9K7spYpLbdiOsmgvJmT1B6e3WyLi2EDUTeQskiuns5dIiA7X6gukJE5+tQGArrA/SsxJZBF71byI+/ojLJE6kgRJKyUffW19+ezDRE2rRI/IXg/i0LGdvx/v1aKLEFcJ97Etx0pdEfVI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1670255995; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=0jeaGZv0Hzfrv7zLGvcbO/z3eedPimr2SDOTRFy+Dug=; 
+        b=AshApFAwZWnxA/hs0EyF5hJe9b/vhgHB2PCKcVN+VLhpXKr6Irx6uIOVqcu3rf0kuTcHs0dy1zcVzfLZdBFmyluxxj50b7kBLmejSfbQGclbTkQeSd51TPqgYYBGyxHr2FMeCOduww/2ye0I9f4hdwzN/Nh5mAGbijJS4O1q8tw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670255995;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=0jeaGZv0Hzfrv7zLGvcbO/z3eedPimr2SDOTRFy+Dug=;
+        b=HsVtg30HP1bgTr/VwFkPcUOGhzTVVu1cQK71xcZm/3/VHcW5QampWsuleBa27Yl2
+        WYDJH5Efmi1FNDq6ODJoeDX53NQkpZmP/PHqdT71UHUrp/qhKN9gomD16Kl351x+wB2
+        Nm5Rcm9fN491Sz7diMbSQaVJawn6iWG70/WmYPz8=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.143 [120.85.99.143]) by mx.zohomail.com
+        with SMTPS id 1670255993421842.6596337900735; Mon, 5 Dec 2022 07:59:53 -0800 (PST)
+Message-ID: <879345cd8609cddccbf7bcf230923139af320b17.camel@icenowy.me>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible
+ for OpenC906
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Mon, 05 Dec 2022 23:59:44 +0800
+In-Reply-To: <Y44IoC765yztZ6VF@wendy>
+References: <20221121041757.418645-3-uwu@icenowy.me>
+         <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
+         <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
+         <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
+         <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+         <20221130181330.GA2544489-robh@kernel.org> <Y4j+Gpptk3NAFBNV@spud>
+         <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
+         <Y43Jt3YOSbFyh954@wendy>
+         <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
+         <Y44IoC765yztZ6VF@wendy>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI
- bridge
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
-References: <20221123210720.3593671-1-dmitry.baryshkov@linaro.org>
- <20221123210720.3593671-5-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221123210720.3593671-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,51 +78,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2022 22:07, Dmitry Baryshkov wrote:
-> From: Vinod Koul <vkoul@kernel.org>
-> 
-> Add the LT9611uxc DSI-HDMI bridge and supplies
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 59 +++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
-> 
+=E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 15:05 +0000=EF=BC=
+=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+> On Mon, Dec 05, 2022 at 07:03:17PM +0800, Icenowy Zheng wrote:
+> > =E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+>=20
+> > > You lot all know the situation here a lot more than I do...
+> > > I don't think "letting" people use the bare "thead,c900-foo"
+> > > makes
+> > > much
+> > > sense as it gives us no chance to deal with quirks down the line.
+> >=20
+> > Well, after rechecking the manual, I found it possible to handle
+> > quirks
+> > -- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can
+> > be
+> > used to retrieve some identification info of the core, including
+> > its
+> > model ID, version, etc; and the T-Head PLIC/CLINT are part of their
+> > C906 SoC design that there's another "mapbaddr" CSR that could be
+> > used
+> > to retrieve the base address of them.
+> >=20
+> > So I think it okay to just use "thead,c900-clint" here, and when
+> > necessary, try to retrieve mcpuid for dealing with quirks.
+>=20
+> I'm not super sure I follow. What's the relevance of "mapbaddr" here?
+> We've got a reg property, so I don't think we need "mapbaddr"?
 
-(...)
+Yes, it's not relevant to us here, it's only to prove that PLIC/CLINT
+is part of C906 "Core Complex".
 
->  	vph_pwr: vph-pwr-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vph_pwr";
-> @@ -353,6 +375,27 @@ &dispcc {
->  	status = "okay";
->  };
->  
-> +&i2c9 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +
-> +	lt9611_codec: hdmi-bridge@2b {
-> +		compatible = "lontium,lt9611uxc";
-> +		reg = <0x2b>;
-> +
-> +		interrupts-extended = <&tlmm 44 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		reset-gpios = <&tlmm 107 GPIO_ACTIVE_HIGH>;
-> +
-> +		vdd-supply = <&lt9611_1v2>;
-> +		vcc-supply = <&lt9611_3v3>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-> +
+>=20
+> For "mcpuid", can you be sure that implementers will not omit setting
+> that value to something unique? I'd be happier if we were overly
+> clear
+> now rather than have some headaches later. Have I missed something?
 
-Drop blank line.
+These values are set by T-Head instead of individual SoC implementers
+as a CPU CSR, and it's not for uniqueness, but it's for identification
+of the CPU core revision (thus the PLIC/CLINT that come with it).
 
-> +	};
-> +};
-Best regards,
-Krzysztof
+>=20
+> > > I don't think that using "thead,openc906-clint", "thead,c900-
+> > > clint"
+> > > makes all that much sense either, in case someone does something
+> > > wacky
+> > > with the open-source version of the core.
+> > >=20
+> > > That leaves us with either:
+> > > "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
+> > > or:
+> > > "vendor,soc-clint", "thead,c900-clint"
+> > > right?
+> > >=20
+> > > The first one seems like possibly the better option as you'd
+> > > kinda
+> > > expect that, in a perfect word, all of the open-source IP
+> > > implementations would share quirks etc?
+>=20
 
