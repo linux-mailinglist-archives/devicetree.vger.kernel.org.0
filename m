@@ -2,113 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C33E642D01
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73BEC642D24
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:39:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbiLEQhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:37:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56950 "EHLO
+        id S232664AbiLEQjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:39:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232904AbiLEQgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:36:46 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19BC12126F;
-        Mon,  5 Dec 2022 08:35:00 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id t62so13628046oib.12;
-        Mon, 05 Dec 2022 08:35:00 -0800 (PST)
+        with ESMTP id S232657AbiLEQjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:39:16 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09171FF88
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 08:38:00 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id n20so29251150ejh.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 08:38:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vw1KzIGH3Ss6fc3E2pWM7Y1p2LnTyddlJD34yedCJAo=;
+        b=pTffiomX2l7lpqqQICVRZW2YjRrUfsAG9YcxMc6p6E3UP+pPkbCOkb9YR3AoCGXC4c
+         uJeTGVrrIGm4cp5rb4tLmQqoMEBwH+Tgh3t9WBD0IeGETbJjDsFTV9nDJeLhc5XdWhsZ
+         eHUU9Jx0Gczcn80vfl33SKaNwgzfLSf3bQmGGT/8P3kz0DLCaBlG/gAZZP1CozHMziKF
+         cLZ0eADIBn4sz2f+tKf+06++2PynfoQbijcqj7zvIHcFRFWXN+DodmbngpiV8Jl7ehoy
+         OFEzrEaSVGT0abiluET+em7HubIg+MQvZjm8YmSTRyjaTrEBD/wm9UEIhqqHLQxGSQqi
+         xFDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3LmueXUXyGNVa79/vNF3eg0gla6XRQeVcGtQ/SX2HD4=;
-        b=ck82cPaf9J+Khv3IcJpj7vnCJTA1CdFnMQrGyaSxCGp1D9a5SKJQ+9qXnETjfmPbDS
-         fYBsnL1xQ3QTa9JMvwLhvQ55MR1hwuwEZsPia2trROTqypBh6dS2pBbMFFnawbyaD0he
-         2v/Tq50sq6vE0cMtgf26lbnu8ABgmZ8X1/wEryrJ38U87cQzCoEWtNSoluG9mo9jwdgB
-         F7BBoUxwcGVlp26Q53s1ISiF6w9ogJx2DE8Y8XZWeE5Ola2Sk7NzWpi1NyWtYSiWwTH7
-         qAzLBlFoTiqjAELH7Mo3tlrNPr6gxqbhxOWxuI8hCmuIVCicfg5rtUZSIScNNXn+dNiF
-         Ustg==
-X-Gm-Message-State: ANoB5pk8cqsH+mEn4XYhyelBml7wqISGtlj4KqE22wX/n22gHmv8t2KX
-        RjrWGJNE7fWsWwpwKxAXMw==
-X-Google-Smtp-Source: AA0mqf6CoNtePO5bj+mi2MYlTeJfbtyVVhhECDsbwer0VjrJUMrf9hVTNLDwy5cYNa3POnSH40rVuA==
-X-Received: by 2002:a54:4407:0:b0:34f:9f93:1f17 with SMTP id k7-20020a544407000000b0034f9f931f17mr38439368oiw.203.1670258094210;
-        Mon, 05 Dec 2022 08:34:54 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 18-20020aca1112000000b00354d9b9f6b4sm4152761oir.27.2022.12.05.08.34.53
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vw1KzIGH3Ss6fc3E2pWM7Y1p2LnTyddlJD34yedCJAo=;
+        b=E1y8zJm6WX9kNSlhWfHxbxA/kwkhW9l86b5gu7ArXTklXi6IL5A6BKHyqaTAKlt65T
+         6Vbun6bKOCzC+D9hqaGZwCCWBW3leYsW2ZSn6GnAAfX2RdOXWG0wfvVwKQzyNLpUBD+3
+         12CsaDTDIJLCxJ26Uz2mrnWwF1F8Gmygq/erf4DZtsirT09voehPbaBK2KUv0qYw4uqt
+         euwTjE4PMMKBj0pY6qbzHRw2G6hDE7KDRMTVcqQdOybMCHlQT/FxuUkc/RAaY2fpXxzu
+         NEfFK0KmBc6YotOpbcvM5xgBlI5oPXob8p11XOJYhIQnTElVafoNJ0O1WRpqcgt2H4T7
+         TGng==
+X-Gm-Message-State: ANoB5pmZ/4YK17Q4gtEotqj7fg0E3/KsiGSQMsFGV0NdrGjsU3qvZLUo
+        h00fWnMMAgTcAR8AzuzuY0BW0A==
+X-Google-Smtp-Source: AA0mqf5eJN8MzV9ViJA/mumudvzKh8vziLSQLFAlZs+wrELKleuv/lGeIxtJNoSPv68nbYDzR5yvAw==
+X-Received: by 2002:a17:906:240f:b0:7c0:f7b0:fbbb with SMTP id z15-20020a170906240f00b007c0f7b0fbbbmr4155635eja.266.1670258279325;
+        Mon, 05 Dec 2022 08:37:59 -0800 (PST)
+Received: from prec5560.localdomain (ip5f58f364.dynamic.kabel-deutschland.de. [95.88.243.100])
+        by smtp.gmail.com with ESMTPSA id e21-20020a170906315500b007bed316a6d9sm6413610eje.18.2022.12.05.08.37.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 08:34:53 -0800 (PST)
-Received: (nullmailer pid 2036863 invoked by uid 1000);
-        Mon, 05 Dec 2022 16:34:53 -0000
-Date:   Mon, 5 Dec 2022 10:34:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH 1/2] dt-bindings: Drop Jee Heng Sia
-Message-ID: <20221205163453.GA2034441-robh@kernel.org>
-References: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
+        Mon, 05 Dec 2022 08:37:58 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        quic_kalyant@quicinc.com, angelogioacchino.delregno@somainline.org,
+        robert.foss@linaro.org, loic.poulain@linaro.org,
+        swboyd@chromium.org, quic_vpolimer@quicinc.com, vkoul@kernel.org,
+        dianders@chromium.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
+        quic_jesszhan@quicinc.com, andersson@kernel.org
+Subject: [PATCH v3 00/11] Enable Display for SM8350
+Date:   Mon,  5 Dec 2022 17:37:43 +0100
+Message-Id: <20221205163754.221139-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221203162144.99225-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 03, 2022 at 05:21:43PM +0100, Krzysztof Kozlowski wrote:
-> Emails to Jee Heng Sia bounce ("550 #5.1.0 Address rejected.").  Add
-> Keembay platform maintainers as Keembay I2S maintainers.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml    | 1 -
->  Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml | 3 ++-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 67aa7bb6d36a..ad107a4d3b33 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -8,7 +8,6 @@ title: Synopsys DesignWare AXI DMA Controller
->  
->  maintainers:
->    - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-> -  - Jee Heng Sia <jee.heng.sia@intel.com>
->  
->  description:
->    Synopsys DesignWare AXI DMA Controller DT Binding
-> diff --git a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-> index 2ac0a4b3cd18..33ab0be036a1 100644
-> --- a/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-> +++ b/Documentation/devicetree/bindings/sound/intel,keembay-i2s.yaml
-> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Intel KeemBay I2S
->  
->  maintainers:
-> -  - Sia, Jee Heng <jee.heng.sia@intel.com>
-> +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> +  - Paul J. Murphy <paul.j.murphy@intel.com
+Dependencies:
+https://lore.kernel.org/all/20221102231309.583587-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221024164225.3236654-1-dmitry.baryshkov@linaro.org/
+https://lore.kernel.org/all/20221104130324.1024242-5-dmitry.baryshkov@linaro.org/
 
-Missing '>'
+Branch:
+https://git.linaro.org/people/robert.foss/linux.git/log/?h=sm8350_dsi_v3
 
->  
->  description: |
->   Intel KeemBay I2S
-> -- 
-> 2.34.1
-> 
-> 
+
+This series implements display support for SM8350 and
+enables HDMI output for the SM8350-HDK platform.
+
+
+Changes from v1:
+ - Added R-b tags from v1
+ - Added qcom,sm8350-dpu binding patch
+ - Added qcom,sm8350-mdss binding patch
+ - Corrected sm8350.dtsi according to new dpu/mdss bindings
+ - Bjorn: Removed regulator-always-on property from lt9611_1v2 regulator
+ - Bjorn: Moved lt9611 pinctl pins into a common node
+ - Bjorn/Krzysztof: Moved status property to last in node
+ - Krzysztof: Changed hdmi-out to hdmi-connector
+ - Krzysztof: Fixed regulator node name
+ - Krzysztof: Changed &mdss to status=disabled as default
+ - Krzysztof: Changed &mdss_mdp node name to display-controller
+ - Krzysztof: Fixed opp-table node name
+ - Krzysztof: Fixed phy node name
+ - Dmitry: Split commit containing dpu & mdss compatibles string
+ - Dmitry: Added msm_mdss_enable case
+ - Dmitry: Fixed dpu ctl features
+ 
+Changes from v2:
+ - Rob: Added r-b
+ - Rob: Improved mdss binding description
+ - Rob: Added interconnect names for mdss-binding
+ - Rob: Removed phy from example
+ - Konrad: Remove sc7280_pp refactor patch
+ - Konrad: Fixed upper case hex in dpu_hw_catalog
+ - Konrad: Fixed various downstream dts based values for dpu_hw_catalog
+ - Konrad: Removed status=disabled from mdss_mdp
+ - Konrad: Removed phy-names from dsi nodes
+ - Konrad/Dmitry: Change mdp_opp_table opp-200000000 to use &rpmhpd_opp_svs, add comment
+ - Dmitry: Move mdp_opp_table to dsi0 node
+
+
+Robert Foss (11):
+  dt-bindings: display: msm: Add qcom,sm8350-dpu binding
+  dt-bindings: display: msm: Add qcom,sm8350-mdss binding
+  drm/msm/dpu: Add SM8350 to hw catalog
+  drm/msm/dpu: Add support for SM8350
+  drm/msm: Add support for SM8350
+  arm64: dts: qcom: sm8350: Add &tlmm gpio-line-names
+  arm64: dts: qcom: sm8350: Remove mmxc power-domain-name
+  arm64: dts: qcom: sm8350: Use 2 interconnect cells
+  arm64: dts: qcom: sm8350: Add display system nodes
+  arm64: dts: qcom: sm8350-hdk: Enable display & dsi nodes
+  arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc dsi-hdmi bridge
+
+ .../bindings/display/msm/qcom,sm8350-dpu.yaml | 120 +++++++
+ .../display/msm/qcom,sm8350-mdss.yaml         | 221 ++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       | 332 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          | 228 +++++++++++-
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 196 +++++++++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   4 +
+ 8 files changed, 1084 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+
+-- 
+2.34.1
+
