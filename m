@@ -2,75 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1564642CB7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85503642CBA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:25:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231191AbiLEQYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:24:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48990 "EHLO
+        id S230475AbiLEQZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:25:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbiLEQX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:23:59 -0500
-Received: from mail-m121145.qiye.163.com (mail-m121145.qiye.163.com [115.236.121.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCCE13D66;
-        Mon,  5 Dec 2022 08:23:57 -0800 (PST)
-Received: from amadeus-VLT-WX0.lan (unknown [218.85.118.194])
-        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 9A038800056;
-        Tue,  6 Dec 2022 00:23:39 +0800 (CST)
-From:   Chukun Pan <amadeus@jmu.edu.cn>
-To:     aholmes@omnom.net
-Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
-        frank-w@public-files.de, frattaroli.nicolas@gmail.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
-        mark.kettenis@xs4all.nl, megi@xff.cz,
-        michael.riesch@wolfvision.net, pgwipeout@gmail.com,
-        robh+dt@kernel.org, robin.murphy@arm.com, s.hauer@pengutronix.de,
-        yifeng.zhao@rock-chips.com, Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
-Date:   Tue,  6 Dec 2022 00:23:22 +0800
-Message-Id: <20221205162322.149967-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221112114125.1637543-2-aholmes@omnom.net>
-References: <20221112114125.1637543-2-aholmes@omnom.net>
+        with ESMTP id S230133AbiLEQZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:25:11 -0500
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8E151DA50;
+        Mon,  5 Dec 2022 08:25:10 -0800 (PST)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1447c7aa004so5898368fac.11;
+        Mon, 05 Dec 2022 08:25:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nazdpu5NA/yzv3brewocclL6XUkEccB3TGTof1h3fCI=;
+        b=pqr6TerEjhxOsLOA6E16VhQsdWP6jIe9KPle/Or1vvMlaSdGtFJHYYWrwnIp0gG9Jy
+         NFN5G2Z21slpsbclrh2vL3AD29T1qHrHDitIL7M8/V63vDRBEwCHnz3sME7H91Hhd9HJ
+         vNKChNEZY9aVQgWq/uxBNGCKaKyEgcthb7+Li9imRUD3icSA2ngJZgqHb+dyGfobNjE8
+         kZ5pWMgo1+UANmh8nn6pcIgnqMwYwyn+3h1salcQxSbHduQ3lHa+HJotMwAchKNJ4eRd
+         SV0UeZWdydFKc834sgPi8DX6j7C4FmVQltsHBIgG6DOeuNjRxEMoPdDFkXMwqL5Itt68
+         NfUw==
+X-Gm-Message-State: ANoB5plHgbzfr5ceDmB0CvHGrPvNkNr7PxeTUm77z7ODFwV827iocC03
+        PDJHLmD5mOforLDP7gFNfA==
+X-Google-Smtp-Source: AA0mqf6b9a/2JVjrHrs9gtn3XTd/wBdw4WAOH5TxXmqIUyBPNjYrVJzgOxwTiw3L4gZ04JUs5qgfpg==
+X-Received: by 2002:a05:6871:60d:b0:144:514c:434d with SMTP id w13-20020a056871060d00b00144514c434dmr6527676oan.50.1670257509908;
+        Mon, 05 Dec 2022 08:25:09 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c14-20020a9d784e000000b0066e83a74b99sm5026643otm.35.2022.12.05.08.25.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 08:25:09 -0800 (PST)
+Received: (nullmailer pid 2023663 invoked by uid 1000);
+        Mon, 05 Dec 2022 16:25:08 -0000
+Date:   Mon, 5 Dec 2022 10:25:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
+ more MT25QU parts
+Message-ID: <20221205162508.GA2012644-robh@kernel.org>
+References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHRkYVhhMSxhMHUlDGkpNTFUTARMWGhIXJBQOD1
-        lXWRgSC1lBWUlKQ1VDTlVKSkNVSkJPWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVSktLVUtZBg++
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MQw6KQw4Ez0fSw8*TA0VNSsP
-        DUswCQJVSlVKTUxLSU5MT0lLT01JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlK
-        Q1VDTlVKSkNVSkJPWVdZCAFZQUlNTE43Bg++
-X-HM-Tid: 0a84e319a72bb03akuuu9a038800056
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The register and range mappings for the PCIe controller in Rockchip's
-> RK356x SoCs are incorrect. Replace them with corrected values from the
-> vendor BSP sources, updated to match current DT schema.
+On Fri, Dec 02, 2022 at 02:37:58PM +0100, Geert Uytterhoeven wrote:
+> Document support for the Micron MT25QU256A and MT25QU512A Serial NOR
+> FLASHes.
+> 
+> Merge the new entries with the existing entry for MT25QU02G.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> mt25qu512a is already in active use, causing "make dtbs_check" errors.
+> mt25qu256a is supported by the Linux spi-nor driver, but there are no
+> upstream users yet.
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 6cc491083650a0f9..92f65f682059a6ea 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - items:
+>            - pattern: "^((((micron|spansion|st),)?\
+>                (m25p(40|80|16|32|64|128)|\
+> +              mt25qu(02g|256a|512a)|\
 
-Hi, Andrew
+Let's not add new cases where the vendor is optional.
 
-This patch broken pcie3x2 on my board.
-And the wireless card on pcie2x1 is still not working.
-
-[    0.405341] pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
-[    0.670522] rockchip-dw-pcie 3c0800000.pcie: can't request region for resource [mem 0xf2000000-0xf2ffffff]
-[    0.671527] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -16
-[    7.354521] pci 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
-[    7.355116] mt7921e 0000:01:00.0: enabling device (0000 -> 0002)
-[    7.355812] mt7921e: probe of 0000:01:00.0 failed with error -28
-
---
-Thanks,
-Chukun
-
--- 
-2.25.1
-
+>                n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
+>                atmel,at25df(321a|641|081a)|\
+>                everspin,mr25h(10|40|128|256)|\
+> @@ -34,7 +35,6 @@ properties:
+>        - items:
+>            - enum:
+>                - issi,is25lp016d
+> -              - micron,mt25qu02g
+>                - mxicy,mx25r1635f
+>                - mxicy,mx25u6435f
+>                - mxicy,mx25v8035f
+> -- 
+> 2.25.1
+> 
+> 
