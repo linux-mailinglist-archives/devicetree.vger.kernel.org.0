@@ -2,132 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB106423A3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:33:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 369056423AD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 08:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231753AbiLEHdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 02:33:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
+        id S230037AbiLEHjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 02:39:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231738AbiLEHdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:33:44 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E5DFAFD
-        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:33:42 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id f21so16304773lfm.9
-        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:33:42 -0800 (PST)
+        with ESMTP id S231774AbiLEHjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 02:39:12 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40AFE1057D
+        for <devicetree@vger.kernel.org>; Sun,  4 Dec 2022 23:39:11 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id cf42so11431080lfb.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Dec 2022 23:39:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vKyvkeRamE9a3hWvsk2ihpAKYDCVRVxYyiAwylPFe8A=;
-        b=LIKhtUFyXh0G/bghBM8oVR7yeeb5PKyfqo1/clecg5SD5xD+1TT3F0WFBAHDJDaQBH
-         n0CK4GhDIB2CYYfcuYLAJ8nr5L5vrqYmAPQgk63FXei2LykNJkYmMMWbWjz7Q0kX7vos
-         GERhXFSGxCv91XHcT5x5xhOKszlXTnrWDBT3kG1FgqGL3p93zbfERKbNj3zMHEoPtQ2A
-         n91LV9CiX2paipVF1F+tKaSIkPSpSp+hMt5gCT8ZWclXhM9h+ryH4vhw5aAgJ+lWQ+1H
-         4Ua4DzdBMBodlmaVl7JaSHhVOR69QKFryxHPeXuBu6k3fdRVhOYcGnYtopgi3Kxbt9my
-         Ac5A==
+        bh=kFVu/s6wou6RS8pkEGuw13TeI6YH2MA2/9IDrBsPwO8=;
+        b=vDAQXpeWoe5nKYkiyHY4n+nsZ1IKL23vVbnLVrBJOOwz5oS+v4VpID7nXOCFa/bgcd
+         2Y5EVPOFLites6n4pWg9uZWV3AX2+yTqcaJQ3ySbqa3NF4ext1IjCXGPdFpAQab0apJk
+         kNUDWR10k3aCxJXcAyspvz/oyx7NZkDWrenkKsZVZpjbRCOdWfrXIA4ERCTLUClckoNl
+         Vb/KLmDYGETtGVLnLofGBUJfkz+7nI6niNICf8kzM33/WhFO//69hjS8Mqj+1MWxj43+
+         0mxUyuC/H2U0oNB+I/HsFg8VwRCMqX8NL9F03Xk9OZr/Yq3b82s5YN1GWWC0YsYvwYjQ
+         h/xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vKyvkeRamE9a3hWvsk2ihpAKYDCVRVxYyiAwylPFe8A=;
-        b=ngIepYBmr3MrDuOO8/yTPLv8gaUTQ7d+6FXG40CZ2gq9In7YwrCkfAi+rMar37hdjX
-         AhOU0HWkw/cVGzfOwEEZ8pDda10KXzq/9vPjasv2CUn0jN7OO+D68g7BahBNC/AAPRcd
-         88LsdHX315qK+uam1Vl7hBj0WfGoW0RnpqiEHw+qLAwGGdRaOEzZhGdMHeTzyaqw/Zt5
-         e3WtMgqlcsEoNplhs22sNcbnZM1C6BYwUSjVU4PiC2Wi0S1m4ehBfL6W1Hy5OoZNAQT/
-         NhhnWsrn2VlNNKhXMERB7ndQTEC5JBVYdrONIYjjfKy3gyQMMIbQ+VCm3hwBVfgsx0pz
-         8MYw==
-X-Gm-Message-State: ANoB5plwQFVYpSgHCnPBBF2ZDgHPmWLgEQjRYbKcjg59awqFbZ8NUy/p
-        6nemHG8RM94fb2UT+jukadfSJg==
-X-Google-Smtp-Source: AA0mqf5ikodifhglBYX/PfKt8BsPYKz7SE+18MCVYQBQHbRQFQs3Xt9PDn1r+0Ors1BkPLl4bYLNGQ==
-X-Received: by 2002:ac2:46f7:0:b0:4b0:25f9:14f5 with SMTP id q23-20020ac246f7000000b004b025f914f5mr20568296lfo.506.1670225621140;
-        Sun, 04 Dec 2022 23:33:41 -0800 (PST)
+        bh=kFVu/s6wou6RS8pkEGuw13TeI6YH2MA2/9IDrBsPwO8=;
+        b=a456NnAQD5689w9MNAtTSnOobk4Z4h+BLjv0IgvjUorPXkZMhqsy1IFPjueusbPR1W
+         r1xwM1ReaZR6ibP4jkw5pcZ2a9UlolR9BOINBekGR0+BtBeQWWcPEnD2KG/n8MCAYqlb
+         hxoeRvKTyy8rgSsPZpflw8LQ8wAImNiBt4bl4N7t+ktxjWUW+uKF8Ys2BSHJohYpbTHu
+         MFRV9xPALmDYSOPwEx5evz7cr+/VbwGXbtzh47Er1RQWRGwHu95OJ6ytC/78f+kSfUF/
+         zlESp3L1p0/9TP48LjsyyaqseFnhsW28Moe9gHqhxPPOjjyg22AstjUgRprvO3WVvan/
+         XTLA==
+X-Gm-Message-State: ANoB5pnJPsOIq9kaW//fCyiAalP/FJeyxVUX3j8VCIip263fTAVvBuGZ
+        4u1/pT/moYMPTJHQ5aZPLDKh3Y8m7sx1ToHTyP0=
+X-Google-Smtp-Source: AA0mqf4ghBWrfThgMD3Ik8hT/EQtNG7S5tr1usIg1bG5NjEEZyxgMgqNhSfxb9Ns7bIVGIYNLgbbNg==
+X-Received: by 2002:a05:6512:1687:b0:4b5:4637:3715 with SMTP id bu7-20020a056512168700b004b546373715mr5211868lfb.308.1670225949583;
+        Sun, 04 Dec 2022 23:39:09 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g3-20020a056512118300b0049ad2619becsm2028155lfr.131.2022.12.04.23.33.39
+        by smtp.gmail.com with ESMTPSA id i15-20020a056512340f00b004b3b2a9f506sm2024587lfr.4.2022.12.04.23.39.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Dec 2022 23:33:40 -0800 (PST)
-Message-ID: <92df8e1d-eb7b-ec0b-264f-a1a090cececc@linaro.org>
-Date:   Mon, 5 Dec 2022 08:33:39 +0100
+        Sun, 04 Dec 2022 23:39:09 -0800 (PST)
+Message-ID: <4f668c2e-3fc5-efa7-eeda-ba40bf0ac23f@linaro.org>
+Date:   Mon, 5 Dec 2022 08:39:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [RFC PATCH v1 2/2] usb: host: add xhci-exynos to support Exynos
- SOCs
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
+ binding
 Content-Language: en-US
-To:     Jung Daehwan <dh10.jung@samsung.com>
-Cc:     Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Colin Ian King <colin.i.king@gmail.com>,
-        Artur Bujdoso <artur.bujdoso@gmail.com>,
-        Juergen Gross <jgross@suse.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>, sc.suh@samsung.com,
-        taehyun.cho@samsung.com, jh0801.jung@samsung.com,
-        eomji.oh@samsung.com
-References: <1669860811-171746-1-git-send-email-dh10.jung@samsung.com>
- <CGME20221201021942epcas2p2429ed37e1f6146b6e1a5bef23141b3f7@epcas2p2.samsung.com>
- <1669860811-171746-3-git-send-email-dh10.jung@samsung.com>
- <Y4hgnxGMEuizJumr@kroah.com>
- <c524cba6-4438-461a-ab05-9325fe09f832@app.fastmail.com>
- <ec0ce90c-b165-d84f-340d-4973b65609b3@linux.intel.com>
- <f633b0f3-9fdb-8beb-7edf-7967c7c0c3d5@linaro.org>
- <20221205023413.GD54922@ubuntu>
+To:     "lee.jackson" <lee.jackson@arducam.com>,
+        linux-media@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org
+References: <638d5999.170a0220.52a4e.4965SMTPIN_ADDED_BROKEN@mx.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221205023413.GD54922@ubuntu>
+In-Reply-To: <638d5999.170a0220.52a4e.4965SMTPIN_ADDED_BROKEN@mx.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2022 03:34, Jung Daehwan wrote:
-
->>> Am I missing something here?
->>
->> Because it is not a driver for Exynos... it's a driver for wakelocks for
->> their specific Android use-cases which the manufacturer ships for their
->> Android devices. Due to Google GKI, they try to squeeze into upstream.
->> But this is huge misconception what should go to upstream and Samsung
->> does not want to keep discussing. They just send random patches and
->> disappear...
->>
->> Best regards,
->> Krzysztof
->>
->>
+On 05/12/2022 03:38, lee.jackson wrote:
+> Add YAML device tree binding for IMX519 CMOS image sensor, and
+> the relevant MAINTAINERS entries.
 > 
-> No. It's driver for Exynos. Currently It only has wakelocks but I will
-> submit one by one. Please think as the first patch of exynos not
-> squeezed.
+> Signed-off-by: lee.jackson <lee.jackson@arducam.com >
 
-That's not how upstream kernel development works... Your code has
-nothing for Exynos. It's Android driver, not Exynos. If you say there is
-something for Exynos it must be visible here. Wakelocks are not relevant
-to Exynos, so after dropping them there would be empty stub in upstream
-kernel which obviously cannot be accepted.
+That's still not correct entry. Except trailing space, are you sure that
+in your documents (national ID, passport) the Latin transliteration of
+your name is with a dot between names? Since it is a third try, it's
+getting more and more confusing.
 
+> ---
+>  .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 ++
+>  2 files changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> new file mode 100644
+> index 000000000000..d7ca16cfbacc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - lee.jackson <lee.jackson@arducam.com>
+
+Same question.
+
+> +
+> +description: |-
+> +  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
+> +  with an active array size of 4656H x 3496V. It is programmable through
+> +  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
+> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> +  4 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx519
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  vdig-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.05 volts
+> +
+> +  vana-supply:
+> +    description:
+> +      Analog voltage supply, 2.8 volts
+> +
+> +  vddl-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+
+maxItems: 1
+
+> +    description: |-
+
+No need for |-
+
+> +      Reference to the GPIO connected to the xclr pin, if any.
+> +      Must be released (set high) after all supplies and INCK are applied.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
 Best regards,
 Krzysztof
 
