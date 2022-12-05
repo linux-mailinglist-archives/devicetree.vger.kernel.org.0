@@ -2,94 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055EA64363D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E41E64364E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233609AbiLEU7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 15:59:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
+        id S233561AbiLEVEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 16:04:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbiLEU7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:59:48 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A5902A408;
-        Mon,  5 Dec 2022 12:59:48 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id q186so14488111oia.9;
-        Mon, 05 Dec 2022 12:59:48 -0800 (PST)
+        with ESMTP id S233335AbiLEVDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 16:03:35 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1C92B267
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 13:02:07 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id z4so14990242ljq.6
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 13:02:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=oHs+FqdUXZ8dY/1UdxeesnQgdtIGHLBMYAul3CErIMw=;
+        b=oo/3QD3RnOsB//i0LeWi6f6xfNMxY4CIVu6ymNCgcGX2szuQj5mK3IKlg43DG4CGAG
+         +m1cE1p1YACPkg553lAIpp2JKY6g0ovpeGNg2jVVWd8/48ab1FbctWf2ZfjxtJgLgP2r
+         ebGYj1hy/Uz12mNeHAUnwPzyctKuwkFFobCvL6mW3oMDzf/DUW9Vptlm8f0CTsguxFlT
+         9S0b0tieMW04bK25zhYN5vj6k5eeWvb/pWD+BhakFa5w887cHFOL+/8qh46VneOG3sU0
+         0KrETIj/yJ+fVav/i5C43uaP8sM8sHhfiSNwNydhpHdwM1O3Nh/8nv+lDsxHhiVHZW2z
+         PNjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=46QOPVoh0uxqDkXkiHjkWEM9savZteYK/kuiKA+so9g=;
-        b=eof5TwEx5IJEL/ZM+aSflFoW24SUjz9yVos1wKvBO5a8Pi/xdni4Y1fm/9lz82T2gM
-         wehnP+A0xlFTIycbIx2CFQTgyVu/ifo8Z9fJD90Qrgn93v7PkwX4X6cICSDfu8uAQZ+Q
-         mBIjrQjW96bSZsCNMMzqI/YSdiOQPzYS2Qx7MG7yxcaec3jlzQMH1FKpCdeBXyTeUlI4
-         8gilX/RUaqq2aSw6poGwZSPVaCMFXByN4jk1BMD8HzVGaC16KMFE7gg8v5C7yHBilxo8
-         oSXgdPXxGg6ZLSW3FYRVNLWC7QML/AAK3fUBvNl9GS1erufg4SJol/Ks4UQamCIbD3kM
-         QRtA==
-X-Gm-Message-State: ANoB5pnfjt5Ro53jMk/+mZ38qruDi2kpVGKJCDj0VG2+n1xyLcLplSJn
-        735rfbl0stlxq2K1q9ZUeg==
-X-Google-Smtp-Source: AA0mqf789/U8RDRQhSZPB8dU253wTPUUsERtdBRxAH7ZSW9M5bfE5zcqDjX1HUOvRX/ke77JhXSeiA==
-X-Received: by 2002:aca:f3c6:0:b0:35b:531:7134 with SMTP id r189-20020acaf3c6000000b0035b05317134mr43314325oih.217.1670273987350;
-        Mon, 05 Dec 2022 12:59:47 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id be6-20020a056870588600b00143c7a9bdb0sm9613026oab.27.2022.12.05.12.59.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Dec 2022 12:59:47 -0800 (PST)
-Received: (nullmailer pid 2612109 invoked by uid 1000);
-        Mon, 05 Dec 2022 20:59:46 -0000
-Date:   Mon, 5 Dec 2022 14:59:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oHs+FqdUXZ8dY/1UdxeesnQgdtIGHLBMYAul3CErIMw=;
+        b=L8BQ1YCpC2rvkt/N3SC1vw6RTgwdsuqQJuPsu1GoQupqWA1EOoKq0JdFCaS/FgGiOD
+         8b4HonbAHpH4qLTzGYMIvByd6dKVaA245X3yi+HV0Ll/y0nR3hDOK6i03EDWCwbT5+p5
+         aI43zD1ZmGQtqyKGgQ2M3pE9DWKu0RvWu12Ia8nS7ZQSJQqwJe7UifoQrnXbZQzJFqKZ
+         eG6ohKL8gL5X0SzJ9K6O22HUt4Rr0WRm1m4m+TRT8qGd2G1EkYhMGTrnM5rQlx5FnRrE
+         heDg0tfYmQgM3EaZXWeekqOHQ/0NuxK4JQjoOTUVNlI9glmpI83Fykm61a8UjGXE+Nzs
+         a8Tw==
+X-Gm-Message-State: ANoB5pm6x089oRZpquoByHtypEhrJeGvOMopabdc12DVY+g1sFdxeGSE
+        nUD0qnyFsMMPLqEGr4aigJWeGQ==
+X-Google-Smtp-Source: AA0mqf7b8AihvPHnHW9Fpk0XOGRCY4PnhRVvSAU8ZHOm+17Io0XAUyzYe1yURuzbjdyF40G3jN+d1w==
+X-Received: by 2002:a2e:2d01:0:b0:278:ebb5:ddd2 with SMTP id t1-20020a2e2d01000000b00278ebb5ddd2mr25350274ljt.494.1670274125389;
+        Mon, 05 Dec 2022 13:02:05 -0800 (PST)
+Received: from [127.0.0.1] ([94.25.229.129])
+        by smtp.gmail.com with ESMTPSA id z15-20020a0565120c0f00b004b56de48f05sm733929lfu.27.2022.12.05.13.02.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Dec 2022 13:02:04 -0800 (PST)
+Date:   Tue, 06 Dec 2022 00:02:00 +0300
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+CC:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
- channels for R-Car V3U
-Message-ID: <20221205205946.GB2513520-robh@kernel.org>
-References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalyan Thota <quic_kalyant@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 08/13] drm/msm/dp: Implement hpd_notify()
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20221205174433.16847-9-quic_bjorande@quicinc.com>
+References: <20221205174433.16847-1-quic_bjorande@quicinc.com> <20221205174433.16847-9-quic_bjorande@quicinc.com>
+Message-ID: <0C21338C-EC82-4A57-949F-6EE8044BBFFD@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 09:22:11AM +0100, Geert Uytterhoeven wrote:
-> According to the bindings, only two channels are supported.
-> However, R-Car V3U supports eight, leading to "make dtbs" failures:
-> 
->         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
-> 
-> Update the number of channels to 8 on R-Car V3U.
-> While at it, prevent adding more properties to the channel nodes, as
-> they must contain no other properties than a status property.
-> 
-> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Is there a way to express this using positive logic (i.e. default to 2
-> channels, extend to more where needed)? R-Car V3H_2 (which is not yet
-> supported) has 3 channels.
 
-I think you'd need an if/elif/elif/else construct which is doable, but 
-not pretty.
 
-> Or perhaps the check should be dropped completely?
+On 5 December 2022 20:44:28 GMT+03:00, Bjorn Andersson <quic_bjorande@quic=
+inc=2Ecom> wrote:
+>From: Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>
+>
+>The DisplayPort controller's hot-plug mechanism is based on pinmuxing a
+>physical signal on a GPIO pin into the controller=2E This is not always
+>possible, either because there aren't dedicated GPIOs available or
+>because the hot-plug signal is a virtual notification, in cases such as
+>USB Type-C=2E
+>
+>For these cases, by implementing the hpd_notify() callback for the
+>DisplayPort controller's drm_bridge, a downstream drm_bridge
+>(next_bridge) can be used to track and signal the connection status
+>changes=2E
+>
+>This makes it possible to use downstream drm_bridges such as
+>display-connector or any virtual mechanism, as long as they are
+>implemented as a drm_bridge=2E
+>
+>Signed-off-by: Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>
+>[bjorn: Drop connector->fwnode assignment and dev from struct msm_dp]
+>Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc=2Ecom>
+>---
+>
+>Changes since v3:
+>- None
+>
+> drivers/gpu/drm/msm/dp/dp_display=2Ec | 22 ++++++++++++++++++++++
+> drivers/gpu/drm/msm/dp/dp_drm=2Ec     |  1 +
+> drivers/gpu/drm/msm/dp/dp_drm=2Eh     |  2 ++
+> 3 files changed, 25 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/msm/dp/dp_display=2Ec b/drivers/gpu/drm/msm/=
+dp/dp_display=2Ec
+>index 666b45c8ab80=2E=2E17fcf8cd84cd 100644
+>--- a/drivers/gpu/drm/msm/dp/dp_display=2Ec
+>+++ b/drivers/gpu/drm/msm/dp/dp_display=2Ec
+>@@ -1772,3 +1772,25 @@ void dp_bridge_mode_set(struct drm_bridge *drm_bri=
+dge,
+> 	dp_display->dp_mode=2Eh_active_low =3D
+> 		!!(dp_display->dp_mode=2Edrm_mode=2Eflags & DRM_MODE_FLAG_NHSYNC);
+> }
+>+
+>+void dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>+			  enum drm_connector_status status)
+>+{
+>+	struct msm_dp_bridge *dp_bridge =3D to_dp_bridge(bridge);
+>+	struct msm_dp *dp_display =3D dp_bridge->dp_display;
+>+	struct dp_display_private *dp =3D container_of(dp_display, struct dp_di=
+splay_private, dp_display);
+>+
+>+	/* Without next_bridge interrupts are handled by the DP core directly *=
+/
+>+	if (!dp_display->next_bridge)
+>+		return;
 
-I'm fine with that.
+Can we use hpd_notify in all the cases by dropping the corresponding piece=
+ of code from the core driver?=20
 
-Rob
+
+>+
+>+	if (!dp->core_initialized) {
+>+		drm_dbg_dp(dp->drm_dev, "not initialized\n");
+>+		return;
+>+	}
+>+
+>+	if (!dp_display->is_connected && status =3D=3D connector_status_connect=
+ed)
+>+		dp_add_event(dp, EV_HPD_PLUG_INT, 0, 0);
+>+	else if (dp_display->is_connected && status =3D=3D connector_status_dis=
+connected)
+>+		dp_add_event(dp, EV_HPD_UNPLUG_INT, 0, 0);
+>+}
+>diff --git a/drivers/gpu/drm/msm/dp/dp_drm=2Ec b/drivers/gpu/drm/msm/dp/d=
+p_drm=2Ec
+>index 6db82f9b03af=2E=2E3898366ebd5e 100644
+>--- a/drivers/gpu/drm/msm/dp/dp_drm=2Ec
+>+++ b/drivers/gpu/drm/msm/dp/dp_drm=2Ec
+>@@ -102,6 +102,7 @@ static const struct drm_bridge_funcs dp_bridge_ops =
+=3D {
+> 	=2Eget_modes    =3D dp_bridge_get_modes,
+> 	=2Edetect       =3D dp_bridge_detect,
+> 	=2Eatomic_check =3D dp_bridge_atomic_check,
+>+	=2Ehpd_notify   =3D dp_bridge_hpd_notify,
+> };
+>=20
+> struct drm_bridge *dp_bridge_init(struct msm_dp *dp_display, struct drm_=
+device *dev,
+>diff --git a/drivers/gpu/drm/msm/dp/dp_drm=2Eh b/drivers/gpu/drm/msm/dp/d=
+p_drm=2Eh
+>index 82035dbb0578=2E=2E79e6b2cf2d25 100644
+>--- a/drivers/gpu/drm/msm/dp/dp_drm=2Eh
+>+++ b/drivers/gpu/drm/msm/dp/dp_drm=2Eh
+>@@ -32,5 +32,7 @@ enum drm_mode_status dp_bridge_mode_valid(struct drm_br=
+idge *bridge,
+> void dp_bridge_mode_set(struct drm_bridge *drm_bridge,
+> 			const struct drm_display_mode *mode,
+> 			const struct drm_display_mode *adjusted_mode);
+>+void dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>+			  enum drm_connector_status status);
+>=20
+> #endif /* _DP_DRM_H_ */
+
+--=20
+With best wishes
+Dmitry
