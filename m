@@ -2,108 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DEA643633
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 21:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 055EA64363D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 22:00:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233344AbiLEU7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 15:59:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58746 "EHLO
+        id S233609AbiLEU7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 15:59:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233289AbiLEU7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:59:43 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4076E25E86
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 12:59:42 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id bp15so20470591lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 12:59:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Bgy+f2L2rbGOuAQ7U6WSb8YGwu0T4H70GoPKtOQnTKw=;
-        b=CFlqt7da3YJEIvnrTwB241/AGjRWUuGLzB5DGhs7yvvo1pGgYEQSybv2RkJO4fIUBS
-         30MMfLZiIqc5laEZZf5HbB0bZQLl+RU8HRYivJe2uqPNUd7MoR8Z+MS8aLd8UlIxK4JN
-         b5fhEi+vqzJRA9iVRkXh+jxWYeK3D4Bo38GKGy5OfSV7WYhJFvl7EN+MX36abDSqdlY3
-         E0u6Dwl8brybOa4Qiw29S/PMYZBX+vuNvxm01AeBF0ehFWpUl/f1gaFmMh+gHAJDjFtG
-         SIMo+rfuK/eJ0Y62NqGMF0TnKd/RCwtGRgNP/8OOw80iZlsP8za7r3G9/EYc6ZaV8RbS
-         jV9Q==
+        with ESMTP id S233439AbiLEU7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 15:59:48 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A5902A408;
+        Mon,  5 Dec 2022 12:59:48 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id q186so14488111oia.9;
+        Mon, 05 Dec 2022 12:59:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bgy+f2L2rbGOuAQ7U6WSb8YGwu0T4H70GoPKtOQnTKw=;
-        b=jJk+A4OOqaX8ZkwBvXn3SwPpkEFy8+tUUlq918saxKhjDEaTFUgr9VKGqjWVzzFqt4
-         RQeqrxeEHhvIO3DyvIGscjhge7lPyKLIWAA6AgRUxsstIro8X0ubQZS03zFsitJgRi4j
-         x18shHqbgLVD6vPhclHGHhUIiEAXPsOSN6E3co2ZfoKNY8HkYwDjwsTC3K60diLLz24Y
-         9Kxsbi4rNsyNz0E9ifybk/OuhQNfenkdl6FW3EcbOce1K1TjhByfie8+epuJ0g/gmDg+
-         GCaJgxgfQXNBlg9mSxOleO9dPj4QWmzAaOzGhainm20Ey7QCCfIKZBExbarWsJ8AoHTS
-         AUsg==
-X-Gm-Message-State: ANoB5pkR5FO9Uj6i4S/1qIx8DbQhBCNcfvtoM301G5aVNkMQEOmR3gmK
-        BNHze1l21btMLI0KNerSJs6ItA==
-X-Google-Smtp-Source: AA0mqf68QUVq95pZFc5bKU3wSaoKsO3Awljf51PvcoFMkTesiOnzMn7rQACunOavaTjQqgAEnhQ31A==
-X-Received: by 2002:ac2:4bd2:0:b0:4a2:61b0:8d28 with SMTP id o18-20020ac24bd2000000b004a261b08d28mr21493095lfq.600.1670273980652;
-        Mon, 05 Dec 2022 12:59:40 -0800 (PST)
-Received: from [127.0.0.1] ([94.25.229.129])
-        by smtp.gmail.com with ESMTPSA id k20-20020ac24574000000b004b55da14ba8sm1128333lfm.291.2022.12.05.12.59.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Dec 2022 12:59:40 -0800 (PST)
-Date:   Mon, 05 Dec 2022 23:59:36 +0300
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=46QOPVoh0uxqDkXkiHjkWEM9savZteYK/kuiKA+so9g=;
+        b=eof5TwEx5IJEL/ZM+aSflFoW24SUjz9yVos1wKvBO5a8Pi/xdni4Y1fm/9lz82T2gM
+         wehnP+A0xlFTIycbIx2CFQTgyVu/ifo8Z9fJD90Qrgn93v7PkwX4X6cICSDfu8uAQZ+Q
+         mBIjrQjW96bSZsCNMMzqI/YSdiOQPzYS2Qx7MG7yxcaec3jlzQMH1FKpCdeBXyTeUlI4
+         8gilX/RUaqq2aSw6poGwZSPVaCMFXByN4jk1BMD8HzVGaC16KMFE7gg8v5C7yHBilxo8
+         oSXgdPXxGg6ZLSW3FYRVNLWC7QML/AAK3fUBvNl9GS1erufg4SJol/Ks4UQamCIbD3kM
+         QRtA==
+X-Gm-Message-State: ANoB5pnfjt5Ro53jMk/+mZ38qruDi2kpVGKJCDj0VG2+n1xyLcLplSJn
+        735rfbl0stlxq2K1q9ZUeg==
+X-Google-Smtp-Source: AA0mqf789/U8RDRQhSZPB8dU253wTPUUsERtdBRxAH7ZSW9M5bfE5zcqDjX1HUOvRX/ke77JhXSeiA==
+X-Received: by 2002:aca:f3c6:0:b0:35b:531:7134 with SMTP id r189-20020acaf3c6000000b0035b05317134mr43314325oih.217.1670273987350;
+        Mon, 05 Dec 2022 12:59:47 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id be6-20020a056870588600b00143c7a9bdb0sm9613026oab.27.2022.12.05.12.59.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 12:59:47 -0800 (PST)
+Received: (nullmailer pid 2612109 invoked by uid 1000);
+        Mon, 05 Dec 2022 20:59:46 -0000
+Date:   Mon, 5 Dec 2022 14:59:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 03/13] drm/msm: Introduce SC8280XP MDSS
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20221205174433.16847-4-quic_bjorande@quicinc.com>
-References: <20221205174433.16847-1-quic_bjorande@quicinc.com> <20221205174433.16847-4-quic_bjorande@quicinc.com>
-Message-ID: <A185142D-8021-4879-B75E-2C255A7A5A21@linaro.org>
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
+ channels for R-Car V3U
+Message-ID: <20221205205946.GB2513520-robh@kernel.org>
+References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 02, 2022 at 09:22:11AM +0100, Geert Uytterhoeven wrote:
+> According to the bindings, only two channels are supported.
+> However, R-Car V3U supports eight, leading to "make dtbs" failures:
+> 
+>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+> 
+> Update the number of channels to 8 on R-Car V3U.
+> While at it, prevent adding more properties to the channel nodes, as
+> they must contain no other properties than a status property.
+> 
+> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Is there a way to express this using positive logic (i.e. default to 2
+> channels, extend to more where needed)? R-Car V3H_2 (which is not yet
+> supported) has 3 channels.
 
+I think you'd need an if/elif/elif/else construct which is doable, but 
+not pretty.
 
-On 5 December 2022 20:44:23 GMT+03:00, Bjorn Andersson <quic_bjorande@quic=
-inc=2Ecom> wrote:
->From: Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>
->
->Add compatible for the SC8280XP Mobile Display Subsystem and
->initialization for version 8=2E0=2E0=2E
->
->Signed-off-by: Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>
->Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc=2Ecom>
+> Or perhaps the check should be dropped completely?
 
+I'm fine with that.
 
-Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
-
->---
-
---=20
-With best wishes
-Dmitry
+Rob
