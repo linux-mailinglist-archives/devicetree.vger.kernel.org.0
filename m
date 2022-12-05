@@ -2,141 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D394D642AFA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5E0642B06
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:08:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231945AbiLEPF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:05:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
+        id S232484AbiLEPIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 10:08:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231454AbiLEPF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:05:28 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E859413CE3;
-        Mon,  5 Dec 2022 07:05:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1670252726; x=1701788726;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zw8dxdg3m3R6zFIw4o03xsSd7j/WCHa3WWnrIy6K6ew=;
-  b=XoohWXVoaVCMNYQW0A/WwV1tkJzwHpQENlhFwqezYx99VU2AXtgKITjY
-   aGog7egJNGhgDLn6vvLAFfjj3YN6NN7BA+cHltNN5dy+9li1Iy+83/bWp
-   6APro6fChV+gnAykwt77sDMD5RDdw2DYZnpRm2HPD81hv16snquUNmzlu
-   hfzV3vkce53bY29cPalaUOYB/yjl0gvvX7kHrzmOcXc8i0aEMHBq84gso
-   RELxHWQwd9eLNb87KPYQuzZni3oXaLiif80aaHq2lXAJ94xt/FfWEAA6m
-   gmyeL86CR0tZO4RdKV5mYSR+MVITDlfciudfT11wIqcjOyU6b0LBWF7vl
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
-   d="asc'?scan'208";a="202643683"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Dec 2022 08:05:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 5 Dec 2022 08:05:25 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Mon, 5 Dec 2022 08:05:23 -0700
-Date:   Mon, 5 Dec 2022 15:05:04 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Icenowy Zheng <uwu@icenowy.me>
-CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible for
- OpenC906
-Message-ID: <Y44IoC765yztZ6VF@wendy>
-References: <20221121041757.418645-3-uwu@icenowy.me>
- <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
- <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
- <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
- <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
- <20221130181330.GA2544489-robh@kernel.org>
- <Y4j+Gpptk3NAFBNV@spud>
- <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
- <Y43Jt3YOSbFyh954@wendy>
- <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
+        with ESMTP id S232160AbiLEPIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:08:04 -0500
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986F81D0EC;
+        Mon,  5 Dec 2022 07:07:52 -0800 (PST)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1442977d77dso12628994fac.6;
+        Mon, 05 Dec 2022 07:07:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=un2tfy4ahNo9zjbkY7O4xE/RSkvkF3i02AWzGP/4rig=;
+        b=c32sEX4J51LjwbpWvqQmgfrylQBJbDFBd7LEAK6d4r6Ogq5C91Q09bCAO+qBw/zp5b
+         y5xBq4WWyA7H1AOPEIwLnvHarse0nW7C3fmZnHBP9jbc27qmn6eL3dgj5xNC3pnG8aG5
+         Z4bdCM+Nfd7I5fq8Z7kdWTUzd36h5ZmXAenzzvFZxLpUjt3QkSo6nf9AdxDSeVy+rTj5
+         ib+1k6408KivxnckKxsZwQYA26+MHQpOOPq/c43XyNDtCYseybnKJatK8pL1qWvMKyp+
+         wNifi1TyVFeAx5sGTpCzUclTpycxeIl6xnzwUBfkBV/yHMd2QRZ6s4pTPsUADUQ3usTi
+         o6Pg==
+X-Gm-Message-State: ANoB5pmFCmjrsQIAQG9yA2F4tfRwnWSTXwY5IuHr/vxX0VA2hnpPC+VF
+        oJUbG45rml0MBbVdfdb/gw==
+X-Google-Smtp-Source: AA0mqf4u4kzZ1ZBWoQtzp872W52LKIVRXUvm43N91ZDjaWGZJYwEgFGMaehPuBK+w9wgO1cB9V4ooA==
+X-Received: by 2002:a05:6870:ee16:b0:144:a24c:e1cb with SMTP id ga22-20020a056870ee1600b00144a24ce1cbmr2227077oab.164.1670252870872;
+        Mon, 05 Dec 2022 07:07:50 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y30-20020a9d22a1000000b0066ea9650da8sm3195971ota.20.2022.12.05.07.07.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 07:07:50 -0800 (PST)
+Received: (nullmailer pid 1794161 invoked by uid 1000);
+        Mon, 05 Dec 2022 15:07:49 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dsnIWWXsziWEFZwU"
-Content-Disposition: inline
-In-Reply-To: <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-amlogic@lists.infradead.org, Joe Tessler <jrt@google.com>,
+        Jeff Chase <jnchase@google.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-tegra@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20221204182908.138910-5-krzysztof.kozlowski@linaro.org>
+References: <20221204182908.138910-1-krzysztof.kozlowski@linaro.org>
+ <20221204182908.138910-5-krzysztof.kozlowski@linaro.org>
+Message-Id: <167025248440.1785019.8058849269946787324.robh@kernel.org>
+Subject: Re: [PATCH 5/9] media: dt-bindings: chrontel,ch7322: reference common
+ CEC properties
+Date:   Mon, 05 Dec 2022 09:07:49 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---dsnIWWXsziWEFZwU
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 05, 2022 at 07:03:17PM +0800, Icenowy Zheng wrote:
-> =E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=EF=
-=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
+On Sun, 04 Dec 2022 19:29:04 +0100, Krzysztof Kozlowski wrote:
+> Reference common HDMI CEC adapter properties to simplify the binding and
+> have only one place of definition for common properties.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/media/i2c/chrontel,ch7322.yaml   | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
+> 
 
-> > You lot all know the situation here a lot more than I do...
-> > I don't think "letting" people use the bare "thead,c900-foo" makes
-> > much
-> > sense as it gives us no chance to deal with quirks down the line.
->=20
-> Well, after rechecking the manual, I found it possible to handle quirks
-> -- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can be
-> used to retrieve some identification info of the core, including its
-> model ID, version, etc; and the T-Head PLIC/CLINT are part of their
-> C906 SoC design that there's another "mapbaddr" CSR that could be used
-> to retrieve the base address of them.
->=20
-> So I think it okay to just use "thead,c900-clint" here, and when
-> necessary, try to retrieve mcpuid for dealing with quirks.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I'm not super sure I follow. What's the relevance of "mapbaddr" here?
-We've got a reg property, so I don't think we need "mapbaddr"?
+yamllint warnings/errors:
 
-For "mcpuid", can you be sure that implementers will not omit setting
-that value to something unique? I'd be happier if we were overly clear
-now rather than have some headaches later. Have I missed something?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.example.dtb: ch7322@75: $nodename:0: 'ch7322@75' does not match '^cec(@[0-9a-f]+|-[0-9]+)?$'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.example.dtb: ch7322@75: Unevaluated properties are not allowed ('hdmi-phandle' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/chrontel,ch7322.yaml
 
-> > I don't think that using "thead,openc906-clint", "thead,c900-clint"
-> > makes all that much sense either, in case someone does something
-> > wacky
-> > with the open-source version of the core.
-> >=20
-> > That leaves us with either:
-> > "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
-> > or:
-> > "vendor,soc-clint", "thead,c900-clint"
-> > right?
-> >=20
-> > The first one seems like possibly the better option as you'd kinda
-> > expect that, in a perfect word, all of the open-source IP
-> > implementations would share quirks etc?
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221204182908.138910-5-krzysztof.kozlowski@linaro.org
 
---dsnIWWXsziWEFZwU
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY44IoAAKCRB4tDGHoIJi
-0kD4AQCR4eYQLgineg6X0LMoB3wJa2iav+5X+jNESvGVfuIctQEArogX3y1vXKA/
-Car1Dd1C4S5kljZMxWlathZkKWQrVgY=
-=Ozbn
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---dsnIWWXsziWEFZwU--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
