@@ -2,107 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 021B864248F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:28:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7DA16424A4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:32:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbiLEI2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:28:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52168 "EHLO
+        id S232080AbiLEIcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:32:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbiLEI2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:28:22 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E9DFEE38;
-        Mon,  5 Dec 2022 00:28:20 -0800 (PST)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B58MTF7027238;
-        Mon, 5 Dec 2022 09:28:00 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=CiJ573Jp5ZruqWdA3n8fdyNoDx4JIQSN35zKVUrzezE=;
- b=LngdjuU7iSC5beEZPTaRTNdx0XUAqI8nNGHJVgK8taGrdGHLEZ0OSPmNyGAO3vmMvXqz
- L1Q8Or2w5xFWiuz6+Ugl1wDgiJ72cc4ZGFh6dklO7ik93cYYmQoajvGiOCdTygvO/8ro
- vRl6Q5QgUk9QcP3TdY5zwUfIkTo3jo/HlOMLvUiN6i1AIoGucFyuJLjMTtgijUSnZMjQ
- bMPYGPFImwoiatRqhJj380PEU6LmkuboH1sxOqN1tuMEbyCGPNw1A8RjM57s/MbEEIb/
- 8v6ysPKkuMWYS4w1tCDeV5KcAdZ7fNrsDKRucqUxooOlH8aqk+jtBNjTo8f1KyiPT0ql gQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3m7x7pgjyd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 05 Dec 2022 09:28:00 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 02DA010003B;
-        Mon,  5 Dec 2022 09:27:55 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E0C082138CA;
-        Mon,  5 Dec 2022 09:27:55 +0100 (CET)
-Received: from [10.201.20.130] (10.201.20.130) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 5 Dec
- 2022 09:27:55 +0100
-Message-ID: <0a14f171-003b-01c4-6ed1-80f9e21120ce@foss.st.com>
-Date:   Mon, 5 Dec 2022 09:27:54 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] ARM: dts: stih410: align HDMI CEC node names with
- dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S232109AbiLEIbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:31:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF7FF165AC;
+        Mon,  5 Dec 2022 00:31:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7807B60F98;
+        Mon,  5 Dec 2022 08:31:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A5B9C433C1;
+        Mon,  5 Dec 2022 08:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670229111;
+        bh=gGSFOcfNvIV7dfWy0rhiZJ0qWM2tN+SZKzTXbj86API=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=VwIKVCG/B7HF4RtURKTESKI/7meSx5I98Km8CZ+IVlqr6g4CJEd20ZyPf3yFcXllC
+         oMJlZ4HTMdai9xjxHVnhT4e1Hj28r/1vjv6lz+iOaGcwzXTqP/kpS6k6DWEDFAn5TL
+         zDCpT/XqXh6nT/DY4JOsP+OK82Sy6YkjnFpC2aof4GFeE1vGrWpZISbQNeiOu2Zw94
+         PKAhzKu2nw1oKXXwXrjWxT610MYb/2tdS16853Ilao9MYWu1OHrg0Oa3EwJeZR/Rna
+         IWLH6KefPWqc0ArcoYdOPZXPhrvMTS9dTo4soVMzCjPImb2trs4pppArzkCbVcZrp+
+         sYqqUuLCIKWxw==
+Date:   Mon, 5 Dec 2022 09:31:49 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221204183353.140002-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20221204183353.140002-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.130]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-05_01,2022-12-01_01,2022-06-22_01
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] soc: qcom: add support for the I2C Master Hub
+Message-ID: <Y42sdXiCIpj2iaag@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-i2c-master-hub-v3-0-f6a20dc9996e@linaro.org>
+ <Y4kvcXTdwImZpaU1@shikoro>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="degf3DG1u90+YJbA"
+Content-Disposition: inline
+In-Reply-To: <Y4kvcXTdwImZpaU1@shikoro>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
 
-On 12/4/22 19:33, Krzysztof Kozlowski wrote:
-> The bindings expect "cec" for HDMI CEC node.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> See also:
-> https://lore.kernel.org/all/20221204182908.138910-3-krzysztof.kozlowski@linaro.org/
-> ---
->  arch/arm/boot/dts/stih410.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stih410.dtsi b/arch/arm/boot/dts/stih410.dtsi
-> index a39dd5f7bcae..29e95e9d3229 100644
-> --- a/arch/arm/boot/dts/stih410.dtsi
-> +++ b/arch/arm/boot/dts/stih410.dtsi
-> @@ -272,7 +272,7 @@ thermal@91a0000 {
->  			interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
->  		};
->  
-> -		sti-cec@94a087c {
-> +		cec@94a087c {
->  			compatible = "st,stih-cec";
->  			reg = <0x94a087c 0x64>;
->  			clocks = <&clk_sysin>;
+--degf3DG1u90+YJbA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+On Thu, Dec 01, 2022 at 11:49:21PM +0100, Wolfram Sang wrote:
+> On Tue, Nov 29, 2022 at 03:47:00PM +0100, Neil Armstrong wrote:
+> > The I2C Master Hub is a stripped down version of the GENI Serial Engine
+> > QUP Wrapper Controller but only supporting I2C serial engines without
+> > DMA support.
+> >=20
+> > The I2C Master Hub only supports a variant of the I2C serial engine wit=
+h:
+> > - a separate "core" clock
+> > - no DMA support
+> > - non discoverable fixed FIFO size
+> >=20
+> > Since DMA isn't supported, the wrapper doesn't need the Master AHB clock
+> > and the iommus property neither.
+> >=20
+> > This patchset adds the bindings changes to the QUPv3 wrapper and I2C se=
+rial
+> > element bindings to reflect the different resources requirements.
+> >=20
+> > In order to reuse the QUPv3 wrapper and I2C serial element driver suppo=
+rt,
+> > the I2C Master Hub requirements are expressed in new desc structs passed
+> > as device match data.
+>=20
+> Is everyone fine if I take all this via the I2C tree?
 
-Thanks
-Patrice
+I did this now.
+
+All applied to for-next, thanks!
+
+
+--degf3DG1u90+YJbA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmONrHEACgkQFA3kzBSg
+KbYwTw/8CFbsKahOCnxRWkz2eWDHdMItDVRlO7LmZc4fIQFl2pDH9iJ3otVoI7wf
+SaD2xUd3pnIAg3Ji0a6RibgTLTmqnEIS+XWdjtcuYlNAiN6jbJi/WZFLU0mPXrjh
+MJpC3++LlvkMB8vrR/rUuTZK/sPqzToNyD413FsQIh7vmyrO1DKEyRMgW6kVvT5f
+NiJHZMXirCHH5+KnKi+078gfu33untxT9m+Aqv7g3IUl9epkmgKk0mDNtQIbg5kD
+ogeyhfsidUTLk1ySvnpGW+TvvvYSTX6teJHwoDy54ua2eZkWxfKDbpAa2M8VSbbo
+q0zWrswOmN1S6MnDBor2oRZQdKNyWoZliO2co4S+nZiDg2iDMctfHJZbE6ePs/eX
+qXqs2c6DSXvdaKN8HajybpX2gxED+QAXGgRcTFaVKIxVkETjydDUSl28mAMR/4tP
+UXPhOhWF0G/B6lpxj7n38KOMUUup9MBMzyhED/dM0Rg0nQPnRJL6uSLtFvRS7QCL
+aWTgU5sehJV4ABIxkOQYU+SjuWNwlG/VnFr/ufLVJLNV+pzgGRi9bM3icrKiHSbV
+epCatGPUfnXw3svjTNd1OGcwIhm9YtEPZzN+UxnA4dVl69mJxVpbF1ud34c/E2YB
+TD6KnQMhlqPpSskAUmkbgKFZztGlZqy6TWdFJtqLWd9+jUjcLZ0=
+=6Gcb
+-----END PGP SIGNATURE-----
+
+--degf3DG1u90+YJbA--
