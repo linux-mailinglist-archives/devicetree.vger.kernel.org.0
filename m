@@ -2,264 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6166F642AE0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D394D642AFA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 16:05:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231797AbiLEPAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 10:00:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
+        id S231945AbiLEPF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 10:05:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231599AbiLEPAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:00:23 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 628A51D0F4;
-        Mon,  5 Dec 2022 07:00:22 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,219,1665414000"; 
-   d="scan'208";a="145045992"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 06 Dec 2022 00:00:20 +0900
-Received: from localhost.localdomain (unknown [10.226.92.127])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id B119B4009F87;
-        Tue,  6 Dec 2022 00:00:17 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: [PATCH 6/6] arm64: dts: renesas: r9a09g011: Add tim nodes
-Date:   Mon,  5 Dec 2022 14:59:55 +0000
-Message-Id: <20221205145955.391526-7-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
-References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S231454AbiLEPF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 10:05:28 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E859413CE3;
+        Mon,  5 Dec 2022 07:05:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1670252726; x=1701788726;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zw8dxdg3m3R6zFIw4o03xsSd7j/WCHa3WWnrIy6K6ew=;
+  b=XoohWXVoaVCMNYQW0A/WwV1tkJzwHpQENlhFwqezYx99VU2AXtgKITjY
+   aGog7egJNGhgDLn6vvLAFfjj3YN6NN7BA+cHltNN5dy+9li1Iy+83/bWp
+   6APro6fChV+gnAykwt77sDMD5RDdw2DYZnpRm2HPD81hv16snquUNmzlu
+   hfzV3vkce53bY29cPalaUOYB/yjl0gvvX7kHrzmOcXc8i0aEMHBq84gso
+   RELxHWQwd9eLNb87KPYQuzZni3oXaLiif80aaHq2lXAJ94xt/FfWEAA6m
+   gmyeL86CR0tZO4RdKV5mYSR+MVITDlfciudfT11wIqcjOyU6b0LBWF7vl
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,219,1665471600"; 
+   d="asc'?scan'208";a="202643683"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Dec 2022 08:05:26 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Mon, 5 Dec 2022 08:05:25 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Mon, 5 Dec 2022 08:05:23 -0700
+Date:   Mon, 5 Dec 2022 15:05:04 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Icenowy Zheng <uwu@icenowy.me>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH 2/3] dt-bindings: timer: sifive,clint: add compatible for
+ OpenC906
+Message-ID: <Y44IoC765yztZ6VF@wendy>
+References: <20221121041757.418645-3-uwu@icenowy.me>
+ <98005150-83a7-5439-0db1-d93d459c3809@linaro.org>
+ <b924d37d716fa8b1fd93102b1d51fac221f43d59.camel@icenowy.me>
+ <d0f3ce4f-5676-f5e1-f04f-dd069679b2d3@linaro.org>
+ <81C2234E-C92D-4F78-8295-7C6DD0A9BBC4@icenowy.me>
+ <20221130181330.GA2544489-robh@kernel.org>
+ <Y4j+Gpptk3NAFBNV@spud>
+ <4ad56fa249a30167844abcedac53d198606511d8.camel@icenowy.me>
+ <Y43Jt3YOSbFyh954@wendy>
+ <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dsnIWWXsziWEFZwU"
+Content-Disposition: inline
+In-Reply-To: <75a3ef9a175b16c46b57b2829ecbe4f97737de8a.camel@icenowy.me>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device nodes for the compare match timer(TIM) channels that are
-not assigned to the ISP.
+--dsnIWWXsziWEFZwU
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The channels 22 is assigned for clock source and channel 23 for
-clock event and rest of the channels are assigned for counter
-operation.
+On Mon, Dec 05, 2022 at 07:03:17PM +0800, Icenowy Zheng wrote:
+> =E5=9C=A8 2022-12-05=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:36 +0000=EF=
+=BC=8CConor Dooley=E5=86=99=E9=81=93=EF=BC=9A
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 192 +++++++++++++++++++++
- 1 file changed, 192 insertions(+)
+> > You lot all know the situation here a lot more than I do...
+> > I don't think "letting" people use the bare "thead,c900-foo" makes
+> > much
+> > sense as it gives us no chance to deal with quirks down the line.
+>=20
+> Well, after rechecking the manual, I found it possible to handle quirks
+> -- T-Head has a custom "mcpuid" CSR (@ RISC-V CSR 0xFC0), which can be
+> used to retrieve some identification info of the core, including its
+> model ID, version, etc; and the T-Head PLIC/CLINT are part of their
+> C906 SoC design that there's another "mapbaddr" CSR that could be used
+> to retrieve the base address of them.
+>=20
+> So I think it okay to just use "thead,c900-clint" here, and when
+> necessary, try to retrieve mcpuid for dealing with quirks.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index dcd3a05e54fe..69c1ebc5e0dd 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -135,6 +135,198 @@ sys: system-controller@a3f03000 {
- 			reg = <0 0xa3f03000 0 0x400>;
- 		};
- 
-+		tim8: timer@a4000400 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000400 0 0x80>;
-+			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM8_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim9: timer@a4000480 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000480 0 0x80>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM9_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim10: timer@a4000500 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000500 0 0x80>;
-+			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM10_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim11: timer@a4000580 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000580 0 0x80>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM11_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim12: timer@a4000600 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000600 0 0x80>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM12_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim13: timer@a4000680 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000680 0 0x80>;
-+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM13_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim14: timer@a4000700 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000700 0 0x80>;
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM14_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim15: timer@a4000780 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000780 0 0x80>;
-+			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPB_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM15_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPB_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim16: timer@a4000800 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000800 0 0x80>;
-+			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM16_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim17: timer@a4000880 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000880 0 0x80>;
-+			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM17_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim18: timer@a4000900 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000900 0 0x80>;
-+			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM18_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim19: timer@a4000980 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000980 0 0x80>;
-+			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM19_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim20: timer@a4000a00 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000a00 0 0x80>;
-+			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM20_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim21: timer@a4000a80 {
-+			compatible = "renesas,r9a09g011-tim-cnt",
-+				     "renesas,rzv2m-tim-cnt";
-+			reg = <0 0xa4000a80 0 0x80>;
-+			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM21_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim22: timer@a4000b00 {
-+			compatible = "renesas,r9a09g011-tim",
-+				     "renesas,rzv2m-tim";
-+			reg = <0 0xa4000b00 0 0x80>;
-+			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM22_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
-+		tim23: timer@a4000b80 {
-+			compatible = "renesas,r9a09g011-tim",
-+				     "renesas,rzv2m-tim";
-+			reg = <0 0xa4000b80 0 0x80>;
-+			interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A09G011_CPERI_GRPC_PCLK>,
-+				 <&cpg CPG_MOD R9A09G011_TIM23_CLK>;
-+			clock-names = "apb", "tim";
-+			resets = <&cpg R9A09G011_TIM_GPC_PRESETN>;
-+			power-domains = <&cpg>;
-+		};
-+
- 		pwm8: pwm@a4010400 {
- 			compatible = "renesas,r9a09g011-pwm",
- 				     "renesas,rzv2m-pwm";
--- 
-2.25.1
+I'm not super sure I follow. What's the relevance of "mapbaddr" here?
+We've got a reg property, so I don't think we need "mapbaddr"?
 
+For "mcpuid", can you be sure that implementers will not omit setting
+that value to something unique? I'd be happier if we were overly clear
+now rather than have some headaches later. Have I missed something?
+
+> > I don't think that using "thead,openc906-clint", "thead,c900-clint"
+> > makes all that much sense either, in case someone does something
+> > wacky
+> > with the open-source version of the core.
+> >=20
+> > That leaves us with either:
+> > "vendor,soc-clint", "thead,openc906-clint", "thead,c900-clint"
+> > or:
+> > "vendor,soc-clint", "thead,c900-clint"
+> > right?
+> >=20
+> > The first one seems like possibly the better option as you'd kinda
+> > expect that, in a perfect word, all of the open-source IP
+> > implementations would share quirks etc?
+
+
+--dsnIWWXsziWEFZwU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCY44IoAAKCRB4tDGHoIJi
+0kD4AQCR4eYQLgineg6X0LMoB3wJa2iav+5X+jNESvGVfuIctQEArogX3y1vXKA/
+Car1Dd1C4S5kljZMxWlathZkKWQrVgY=
+=Ozbn
+-----END PGP SIGNATURE-----
+
+--dsnIWWXsziWEFZwU--
