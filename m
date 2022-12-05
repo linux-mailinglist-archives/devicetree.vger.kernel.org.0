@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C057642CB2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:21:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1564642CB7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 17:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbiLEQVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 11:21:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
+        id S231191AbiLEQYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 11:24:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiLEQVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:21:42 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744171D66C
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 08:21:41 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id q83so95436oif.7
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 08:21:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O4WPtqOs6pYDke8VCfpzwsIX+8zN33o8tLS2XMy/lFU=;
-        b=BKgFbsKrLBnLPNTAN3XoKJV5uQDaqCRdMbksLcWKY3YdxLRSk0zWMH5WqvO7orcyYY
-         UH2mkEnctD/XUnY4tjuPfD9KIK8h7iE39tVaZID/L6ejgR4GMQGIBGt7uz557o3DpLMk
-         GVPMzGNjP04NZhf+XGPLYyJigz0HzKn0eciEv2yUFIuM/Y2f9okyr/Kf8V0RfdlIQPrS
-         7s3fdfinPjU7/gL+2hGu1lFrfAuvsYnxJPmSlM1EJRZqwsEJ67AMV5vBBxD06kbvK8zd
-         iKdYaYfTNMnmZT8VQICe8XEIGnWgpyoRT+zOEnoEgnmSCElF23kOdBV9Ri74ZvYgXkTO
-         TyQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O4WPtqOs6pYDke8VCfpzwsIX+8zN33o8tLS2XMy/lFU=;
-        b=0vFCUPsQfbAZQEUhHq+eDJ3Tli5WvZABQGBWT9MYxxGgXS9NGTpWZm7I+JtX95STPB
-         KNWp7JP+ZNs2Bz0zO+crKzst46/GgZiL7OMgxwKIjB4gZTJ+U5WwCB5BF0NUJJdDsxEa
-         nD2Fzcha4/YbMyDt5YVjMrkolW22cWGwu6COdbKaVMY53hvRT0Zi7r4xWIidwYvOKV5n
-         NoiRgfHS0TN7ltW3DGOOsES4EoJNUNwMJY13IPRf6uF7WlaZegGuj2oKG+7RKwRJf4HF
-         XLuLSAt0xyVD12MRsAWCZCbjWv63wG3EoRPM0cOM10D1oNgpbd47FEZzQbtKIv1J53Ig
-         ebjg==
-X-Gm-Message-State: ANoB5pmQCy44IoPdZS0aMgaJUvRTtWwQskHk5HiH8XyjT8I5j2ucatFF
-        tRh19tfwjXl1FGWuLivtHmLDUqr072BUSMxwUNs=
-X-Google-Smtp-Source: AA0mqf5+1DbOLMMR+st7/BBeRUgguA1KF/GhiyEJF5FGkYDWX4mrIJ+XjcHHqKF9RVMdFB0dvkyORUg1JjS9ICvFHo4=
-X-Received: by 2002:a05:6808:1905:b0:35b:e3c4:c1ab with SMTP id
- bf5-20020a056808190500b0035be3c4c1abmr9887108oib.204.1670257300821; Mon, 05
- Dec 2022 08:21:40 -0800 (PST)
+        with ESMTP id S230475AbiLEQX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 11:23:59 -0500
+Received: from mail-m121145.qiye.163.com (mail-m121145.qiye.163.com [115.236.121.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCCE13D66;
+        Mon,  5 Dec 2022 08:23:57 -0800 (PST)
+Received: from amadeus-VLT-WX0.lan (unknown [218.85.118.194])
+        by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 9A038800056;
+        Tue,  6 Dec 2022 00:23:39 +0800 (CST)
+From:   Chukun Pan <amadeus@jmu.edu.cn>
+To:     aholmes@omnom.net
+Cc:     devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
+        frank-w@public-files.de, frattaroli.nicolas@gmail.com,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
+        mark.kettenis@xs4all.nl, megi@xff.cz,
+        michael.riesch@wolfvision.net, pgwipeout@gmail.com,
+        robh+dt@kernel.org, robin.murphy@arm.com, s.hauer@pengutronix.de,
+        yifeng.zhao@rock-chips.com, Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 1/1] arm64: dts: rockchip: rk356x: Fix PCIe register and range mappings
+Date:   Tue,  6 Dec 2022 00:23:22 +0800
+Message-Id: <20221205162322.149967-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221112114125.1637543-2-aholmes@omnom.net>
+References: <20221112114125.1637543-2-aholmes@omnom.net>
 MIME-Version: 1.0
-Received: by 2002:a05:6870:5ccc:b0:143:84e0:abae with HTTP; Mon, 5 Dec 2022
- 08:21:40 -0800 (PST)
-Reply-To: phmanu212@hotmail.com
-From:   Philip Manul <phmanu005@gmail.com>
-Date:   Mon, 5 Dec 2022 08:21:40 -0800
-Message-ID: <CAFKg=dYDhO9JYWNvfVUWd-mWhAM2uz=4OEo8QB3Q63Q-S1tQxQ@mail.gmail.com>
-Subject: REP:
-To:     in <in@proposal.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=2.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: **
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+        tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHRkYVhhMSxhMHUlDGkpNTFUTARMWGhIXJBQOD1
+        lXWRgSC1lBWUlKQ1VDTlVKSkNVSkJPWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVSktLVUtZBg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MQw6KQw4Ez0fSw8*TA0VNSsP
+        DUswCQJVSlVKTUxLSU5MT0lLT01JVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlK
+        Q1VDTlVKSkNVSkJPWVdZCAFZQUlNTE43Bg++
+X-HM-Tid: 0a84e319a72bb03akuuu9a038800056
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Guten tag,
-Mein Name ist Philip Manul. Ich bin von Beruf Rechtsanwalt. Ich habe
-einen verstorbenen Kunden, der zuf=C3=A4llig denselben Namen mit Ihnen
-teilt. Ich habe alle Papierdokumente in meinem Besitz. Ihr Verwandter,
-mein verstorbener Kunde, hat hier in meinem Land einen nicht
-beanspruchten Fonds zur=C3=BCckgelassen. Ich warte auf Ihre Antwort zum
-Verfahren.
-Philip Manul.
+> The register and range mappings for the PCIe controller in Rockchip's
+> RK356x SoCs are incorrect. Replace them with corrected values from the
+> vendor BSP sources, updated to match current DT schema.
+
+Hi, Andrew
+
+This patch broken pcie3x2 on my board.
+And the wireless card on pcie2x1 is still not working.
+
+[    0.405341] pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+[    0.670522] rockchip-dw-pcie 3c0800000.pcie: can't request region for resource [mem 0xf2000000-0xf2ffffff]
+[    0.671527] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -16
+[    7.354521] pci 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
+[    7.355116] mt7921e 0000:01:00.0: enabling device (0000 -> 0002)
+[    7.355812] mt7921e: probe of 0000:01:00.0 failed with error -28
+
+--
+Thanks,
+Chukun
+
+-- 
+2.25.1
+
