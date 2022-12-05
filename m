@@ -2,89 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86BD0643859
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50324643869
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 23:50:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbiLEWtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 17:49:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44812 "EHLO
+        id S232119AbiLEWux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 17:50:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231678AbiLEWte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:49:34 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8D920E;
-        Mon,  5 Dec 2022 14:49:34 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AF0FF6146A;
-        Mon,  5 Dec 2022 22:49:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A49CC433D6;
-        Mon,  5 Dec 2022 22:49:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670280573;
-        bh=vtkCzJjaJz2NbCG4zHvNZrsu3+zbmbPfubvrskhvQBA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QhX4/H7ukZhrhq3B+SvY//EcSTOKrlc87WikbOP91kXi5/d/i7lhqXJuZOOwGP793
-         Mq/V/RRiUjq1NJNe/7Zgg+GmY/GE7Z0+NAG/qlOBABZ+C46Gz0mkTJP4/7VispO9CP
-         o2kATitKDlvHTbV7ENWP/NNF/lZZ+gtqO2E6ugeuz+ZtIFep4mDRc7RBLelT9LFzdR
-         rVYEVWVQLNP/88/PAAe4RheFAQ7FCGvjJs+JtvtSpSNkaHZDuUUtVVzQElTqrckGk7
-         QAxK9FYAq4zpGHbO5oMfXo7IvhD4JMUB3KEcdEiNIXQjzFHDUfymy1wwKd8Gfe4CYb
-         6wcjeazDtR/vQ==
-Date:   Mon, 5 Dec 2022 16:49:29 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Adam Skladowski <a39.skl@gmail.com>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        with ESMTP id S232135AbiLEWup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 17:50:45 -0500
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DB960C8;
+        Mon,  5 Dec 2022 14:50:44 -0800 (PST)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-12c8312131fso15297218fac.4;
+        Mon, 05 Dec 2022 14:50:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TxzHvxWYmZNaSPLEYbPmMtXeESk2K7kyfAJQblqVQ4Y=;
+        b=J7EJVj65xEzNemPIjtCvtsbeKGBMvJkD6qDOySW1LhpNKCwB8S4RXKRDLrWrdgEv3l
+         XCmSqJUuRidalQ2rr1weme+ZYipxdpnfxX8qILWblZWx7U1EHnqgFgRHzwilYHsvkYti
+         JJrNk+o0BFW2szZ6wzO+tv5ooMT7uRwwRPk0ewYsh1Y5tgNYhkwKnhnLJNP2jsFmU6ND
+         qp+Z6pqFQ5hCv5nVTNl8Sv0CuLPpeol6ZiDGhkoq+ani0Hz5QcA85eqKR/aE5bBxmmdd
+         JYYktI+5pIU8M5djZ3y2V8XclxrqrhrfAbSUMo6gaSHaALa8aoWA6bnyr+0g5p3fqbA/
+         X0Qw==
+X-Gm-Message-State: ANoB5pku6zBlAoXZX9M5hWcIDKQYBB16yGZJ/mIH7Gc+SugRCnCPVggt
+        1or/Iz3tMgsGtH8Uh0X24A==
+X-Google-Smtp-Source: AA0mqf7KXJ756pvRNU+pFCeaYq8k5ygB2LcP2STdNxTP3B6jBGxIhCZjdG51aLUleUczY8Cm7yTj0A==
+X-Received: by 2002:a05:6870:ad09:b0:143:bdd8:ee2f with SMTP id nt9-20020a056870ad0900b00143bdd8ee2fmr21163024oab.7.1670280644076;
+        Mon, 05 Dec 2022 14:50:44 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y39-20020a05687045a700b0014435b51ef7sm6783694oao.30.2022.12.05.14.50.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Dec 2022 14:50:43 -0800 (PST)
+Received: (nullmailer pid 2831916 invoked by uid 1000);
+        Mon, 05 Dec 2022 22:50:42 -0000
+Date:   Mon, 5 Dec 2022 16:50:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 11/12] arm64: dts: qcom: sm6115: Add WCN node.
-Message-ID: <20221205224929.jlvrgrt4nth2bd7u@builder.lan>
-References: <20221130200950.144618-1-a39.skl@gmail.com>
- <20221130200950.144618-12-a39.skl@gmail.com>
- <382df687-c535-4dd6-125a-5f3b6022cbd2@linaro.org>
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-iio@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: Re: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+Message-ID: <20221205225042.GA2812115-robh@kernel.org>
+References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <382df687-c535-4dd6-125a-5f3b6022cbd2@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 01, 2022 at 11:38:16AM +0100, Krzysztof Kozlowski wrote:
-> On 30/11/2022 21:09, Adam Skladowski wrote:
-> > Add WCN node to allow using wifi module.
-> > 
+On Mon, Dec 05, 2022 at 02:59:49PM +0000, Biju Das wrote:
+> This patch series aims to add support for Compare-Match Timer (TIM)
+> module found on RZ/V2M SoC.
 > 
-> A nit: Drop full stop from commit subject.
+> it is composed of 32 channels and channels 0-7 and 24-32 are
+> reserved for ISP usage.
 > 
+> Channel 22 is modelled as clock source and Channel 23 is modelled as clock
+> event driver and the rest of the channels are modelled as counter driver
+> as it provides
 
-Done. Thanks for pointing it out :)
+Why did you pick those 2 counters for those functions?
 
-Regards,
-Bjorn
+Unless the h/w blocks are different, this is an abuse of compatible 
+strings. What's the h/w difference that makes you care which counter the 
+OS picks? That's what the DT should describe. If any timer will do, just 
+let the OS pick.
 
-> Best regards,
-> Krzysztof
 > 
+> 1) counter for counting
+> 2) configurable counter value for generating timer interrupt
+> 3) userspace event for each interrupt.
+> 
+> logs:-
+> Counter driver:
+> Counter driver is tested by reading counts and interrupts tested by
+> counter-example in tools/counter/counter_example.c
+> 
+> Count snapshot value:
+> 3114
+> Output from counter_example when it triggers interrupts:
+> Timestamp 0: 24142152969        Count 0: 5
+> Error Message 0: Success
+> 
+> Clock source:
+> Clock source driver is tested by clock-source-switch app.
+> [ 1275.703567] clocksource: Switched to clocksource arch_sys_counter
+> [ 1275.710189] clocksource: Switched to clocksource a4000b00.timer
+
+Do you have any use case to really switch. Doing so disables the vDSO 
+access to the clocksource.
+
+Rob
