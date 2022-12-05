@@ -2,98 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E9BD642FA7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A15642FAD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 19:16:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbiLESP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 13:15:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59742 "EHLO
+        id S231994AbiLESQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 13:16:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231454AbiLESP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:15:26 -0500
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC7A2036D;
-        Mon,  5 Dec 2022 10:15:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1670264119; bh=XVPKkuLGeYz5mLqD1WBfE0UuvVM2oX5DVgXJT9tVBkQ=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=Km25UcmR+GYuyNmPwkIUcK26v4T7Pb5bdUehlqxgOfD474bB/nVk08jgTuJFGGRs0
-         d8xVcN0UuEfSNROApkPTRUo2jd1iOtIbqMqHafHlXDtp9WcrgMFsUg/v2zRxY1tBBQ
-         2qWkgeezJdXrgY2Y5groJgpv5zyjaLWiLS8ebypc=
-Date:   Mon, 5 Dec 2022 19:15:19 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Chukun Pan <amadeus@jmu.edu.cn>
-Cc:     aholmes@omnom.net, devicetree@vger.kernel.org,
-        ezequiel@vanguardiasur.com.ar, frank-w@public-files.de,
-        frattaroli.nicolas@gmail.com, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
-        mark.kettenis@xs4all.nl, michael.riesch@wolfvision.net,
-        pgwipeout@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com,
-        s.hauer@pengutronix.de, yifeng.zhao@rock-chips.com
-Subject: Re: [PATCH 1/1] arm64: dts: rockchip: rk356x: Fix PCIe register and
- range mappings
-Message-ID: <20221205181519.7e5diejvhiynqmv5@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Chukun Pan <amadeus@jmu.edu.cn>, aholmes@omnom.net,
-        devicetree@vger.kernel.org, ezequiel@vanguardiasur.com.ar,
-        frank-w@public-files.de, frattaroli.nicolas@gmail.com,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, macromorgan@hotmail.com,
-        mark.kettenis@xs4all.nl, michael.riesch@wolfvision.net,
-        pgwipeout@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com,
-        s.hauer@pengutronix.de, yifeng.zhao@rock-chips.com
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20221112114125.1637543-2-aholmes@omnom.net>
- <20221205162322.149967-1-amadeus@jmu.edu.cn>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221205162322.149967-1-amadeus@jmu.edu.cn>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231934AbiLESP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 13:15:59 -0500
+Received: from sender11-of-o51.zoho.eu (sender11-of-o51.zoho.eu [31.186.226.237])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E93205D1;
+        Mon,  5 Dec 2022 10:15:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670264152; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=K0O3z3F/QsD0Rk/2fzMDxblBmqyw+KM6XEmSN0+fB/l7p0QjrDAjiKQIoAuV2vdY+WM2XHs4Ixp4WLHyGsp009oKVZxrZupDmWMPS4HmxvXnlaRedeJiGxA7HYvEl+kl/wd/K/AmFMpoS+TfCFrNR3+K0BCMoYCm6HlwFBW+1Ds=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1670264152; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=7k4LEuG1PsM2sOEL2T0vRIxAqHEZrZj00zBPK+VWwuk=; 
+        b=hAdpNMLmYuua2VZt4UlXkEzkHf3ugVtkwt5KD3eTgTC6EimRInN6xWZ7ncNdr4qjEqz4AziYI6ym3Q8z6+3Jxc+KQgaArAc6+WvVvwDIgrnVkz2aVAZVoAPzvPs0x4whpHw6dQRfqMKtmjZOL6utY8G+ppK/GheOXWeKoNgNuak=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
+        dmarc=pass header.from=<philipp@uvos.xyz>
+Received: from UVOSLinux (ip-095-222-026-177.um34.pools.vodafone-ip.de [95.222.26.177]) by mx.zoho.eu
+        with SMTPS id 1670264149592460.12014936950334; Mon, 5 Dec 2022 19:15:49 +0100 (CET)
+Date:   Mon, 5 Dec 2022 19:15:48 +0100
+From:   Carl Philipp Klemm <philipp@uvos.xyz>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     linux-omap@vger.kernel.org, tony@atomide.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] leds: cpcap: make leds-cpcap an independent
+ platform device to allow varying led setups
+Message-Id: <20221205191548.13296b58d9121fec36769c97@uvos.xyz>
+In-Reply-To: <20221205174857.asf6uant7ve7k5pe@mercury.elektranox.org>
+References: <20221204104313.17478-1-philipp@uvos.xyz>
+        <20221204104313.17478-2-philipp@uvos.xyz>
+        <20221205174857.asf6uant7ve7k5pe@mercury.elektranox.org>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-unknown-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,FROM_SUSPICIOUS_NTLD,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 06, 2022 at 12:23:22AM +0800, Chukun Pan wrote:
-> > The register and range mappings for the PCIe controller in Rockchip's
-> > RK356x SoCs are incorrect. Replace them with corrected values from the
-> > vendor BSP sources, updated to match current DT schema.
-> 
-> Hi, Andrew
-> 
-> This patch broken pcie3x2 on my board.
+Hi,
 
-That's because 32bit mapping for pcie3x2 config should start at 0xf0000000 and
-the patch declares it incorrectly at 0xf2000000.
+> I don't follow. Can't you just use 'status = "disabled;"' for the
+> unavailable nodes?
 
-https://megous.com/dl/tmp/6d1a04195112b1e0.png
+Sure but unless im missing something, adding some nodes to a dts, one
+for eatch led the device in question really has feals mutch better to
+me than going arround and setting every led channel disabled for eatch
+device that dosent use it. xt894 being the outlier here amoung the
+cpcap devices we intend to support (xt894, xt860, xt875, xt910, xt912,
+mb865, mz609 and mz617) in that it uses most of the extra led channels,
+most of these use at most one (xt875, xt910, xt912, mb865) or zero
+(mz609, mz617) extra channels.
 
-> And the wireless card on pcie2x1 is still not working.
-
-> [    0.405341] pcieport 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
-> [    0.670522] rockchip-dw-pcie 3c0800000.pcie: can't request region for resource [mem 0xf2000000-0xf2ffffff]
-> [    0.671527] rockchip-dw-pcie: probe of 3c0800000.pcie failed with error -16
-> [    7.354521] pci 0000:00:00.0: of_irq_parse_pci: failed with rc=-22
-> [    7.355116] mt7921e 0000:01:00.0: enabling device (0000 -> 0002)
-> [    7.355812] mt7921e: probe of 0000:01:00.0 failed with error -28
-
-That's ENOSPC. Who knows where it's comming from. Something for you to debug. ;)
-
-regards,
-	o.
-> 
-> --
-> Thanks,
-> Chukun
-> 
-> -- 
-> 2.25.1
-> 
+Carl
