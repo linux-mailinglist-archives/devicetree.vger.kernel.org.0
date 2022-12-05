@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094A464272B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F13AF64272E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 12:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbiLELJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 06:09:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34042 "EHLO
+        id S231265AbiLELKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 06:10:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbiLELJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:09:18 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CB8AA45E
-        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 03:09:17 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id i15so7057096edf.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 03:09:17 -0800 (PST)
+        with ESMTP id S230505AbiLELKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 06:10:07 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A00A45E
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 03:10:06 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id vp12so26889490ejc.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 03:10:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FwfUzflGu1+z0kHjmPww1C0Zp4cmqkMxpg9SKp1UOmI=;
-        b=twUIUHoD4Mzqf8n/F71EPPBOQAktxihqjY+bfaV2h3TxSuyTOe3ODSJoyrWC7JyLqJ
-         t6T+bGGWxPImCubtvCy4HphHDnBuZlM1DXji0d33YHmMUR7/tSzesKsiF5XoBeHyCgV3
-         D1Svsm5+kcrFB2c1yFpMikT1obSNif+UUq5b3y/fnZfWVWTtYbdkhTHEg4rGOZ/NPMts
-         Rym61FupYStWIzuc0vvNuOTG8JOZL2la3wTQY1IyMZfduCdWh7QLB7ApFHILfidFpyMP
-         STlg3bqZ/b11kirdvtoLT4ymJkqj9gVFRsU1wsmdksWmLIDx8kFcum099AvyY5tXuhzE
-         dOcQ==
+        bh=2Mmb411gxG59C/vq5LPOBd0dV5AuT6MZ2sN1vOzntkY=;
+        b=fAQWfwdkB43y4Moj0ttbJNqXEuy88lWGbG1BQKnJo2+McDw+9b8PhlSwL/iOETDvHY
+         SQF2/2q6uhF6dRhkkphJM9E/2+TqZKYgLosKYKvM3Mdt8fTixvXaTCM+MPcSPSUzr3we
+         GzWs6Cai84OdW1gZAjeurmkcVz/CJTHwBc473SjxVUghEpzYWusOoZrxk3mmmZIT7rZ/
+         jRBCw3mw3ufCQP/iK7KQ7tu4zt+oJ4sfgjReqjBSSYeSU2j6huWOc/ClAGeRwT5wDu61
+         /viG8bNiF7VM5pTI5heN9bmsMCSCAl4WsNuLbB1gmtaU1eVEG2wYazZmJnDNO8q28rD7
+         Hang==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=FwfUzflGu1+z0kHjmPww1C0Zp4cmqkMxpg9SKp1UOmI=;
-        b=iGJ8dKiZqX4bhtTHkWk9j8PBx9jTWnLJwDb7SDoX/bE3E5ouUNHePl4Q+Jpfftj/N/
-         V9NfwT6icr16qRdhjEfYmANdtppotgmTX+5RPr5YpFMcfZxXHJcvmgTFm0XKT/P+HyMj
-         1JHhro9tQO2g2ZPmH5rW3rkD3+mTBDOG1loCnA0mSSSDQ4+qQXGBsF0QVpe8BGpXei3Z
-         ghrSVDT6JkLefOUOsEDnzq7rmE+rQDnEe3SOznGx8qIoaL2qcYy+tObLkxpX/XrB53M9
-         MgmcuoP1bQmAGJTSk6IRq9I4izi0BG8aJIZ8tNtFhyEWxhAvBUubS5UgW2Tf1nilymgb
-         nJGQ==
-X-Gm-Message-State: ANoB5pmvvE8d7n9PAmmhKjjl8WY8v6U6HzHKhpJO1kVTIw3pUs5AV2Zq
-        D8GzVipnwHRovu4qZXKkxcU7iw==
-X-Google-Smtp-Source: AA0mqf69ODOqMulw7Mj8mxJDLpUgqbnk8OoxUwuSacbG0HGb7Y9L0Nkc5h0egNoD/7CH1ox3dBY4Rw==
-X-Received: by 2002:aa7:ca4c:0:b0:46c:24fc:ba0f with SMTP id j12-20020aa7ca4c000000b0046c24fcba0fmr12258232edt.140.1670238555590;
-        Mon, 05 Dec 2022 03:09:15 -0800 (PST)
+        bh=2Mmb411gxG59C/vq5LPOBd0dV5AuT6MZ2sN1vOzntkY=;
+        b=6Nx6Wo3joM17g/u55uEZnpW/QPxQkAciEAZa5t+IvCJfUJFOQ/amEOLd5SRDqzGeH3
+         QA9SJ11OVENAtj5S5I+ZpNq8b1Ny0Be70V1/Rr9Qq8wJ3OHoh4Rp4IodEZ4mrz0tuqE9
+         BGzSohUuX3DuEIuAlYbo52RHW9Khv27iZcjfO5ITMx+rmekf7EDLa8lk6lJz1rmB2nbB
+         Bti2eCQYEbPW4IXmNJ9QV/uhkMD6qIw7czGQYVUSf8MZApxwd5tMlnWhLL7LLq2b7Iat
+         JOS5lTUxA32FqUqCqFgWnNHYowj4eTg2esvOHOFzqXP882BgN8fVOL3H3PBNPv1MOV9A
+         o+cw==
+X-Gm-Message-State: ANoB5plG8A5lZkYXAwAAM2Mlm3W+h/IOI7XC/zC9s2/8XD3VowkCBFLk
+        MxC4fWbM0bGu0LL73LZ4JXN4AA==
+X-Google-Smtp-Source: AA0mqf4bMmRfecXMmgVclFnWK09ACrm+aPQCdBA1GGFug9wgq+kz/CReZdUbBp2Iw5zo9u49OHUTqA==
+X-Received: by 2002:a17:906:3289:b0:78d:4cb3:f65d with SMTP id 9-20020a170906328900b0078d4cb3f65dmr59125456ejw.79.1670238605014;
+        Mon, 05 Dec 2022 03:10:05 -0800 (PST)
 Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id o7-20020a056402444700b0044dbecdcd29sm4632097edb.12.2022.12.05.03.09.09
+        by smtp.gmail.com with ESMTPSA id og40-20020a1709071de800b007c0d6b34d54sm2751006ejc.129.2022.12.05.03.10.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Dec 2022 03:09:10 -0800 (PST)
-Message-ID: <2cf45767-7974-3b40-fa18-ec33db5d5ac2@linaro.org>
-Date:   Mon, 5 Dec 2022 12:09:09 +0100
+        Mon, 05 Dec 2022 03:10:03 -0800 (PST)
+Message-ID: <ec3f805c-f624-2e17-b3dc-d2f1f2124599@linaro.org>
+Date:   Mon, 5 Dec 2022 12:10:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.5.0
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8992-lg-bullhead: Disable
- cont_splash_mem
-To:     Petr Vorel <petr.vorel@gmail.com>, Petr Vorel <pevik@seznam.cz>,
-        Dominik Kobinski <dominikkobinski314@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Bart Ribbers <bribbers@disroot.org>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-References: <20221126010531.466046-1-pevik@seznam.cz>
- <CAB1t1CzmNK8i0qT43qVw7VGUPVi67Up6QU-kYDoEsrV7=N7u7w@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8450: align MMC node names with
+ dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221204094438.73288-1-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAB1t1CzmNK8i0qT43qVw7VGUPVi67Up6QU-kYDoEsrV7=N7u7w@mail.gmail.com>
+In-Reply-To: <20221204094438.73288-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,28 +79,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 04/12/2022 14:16, Petr Vorel wrote:
-> Hi all,
+On 04/12/2022 10:44, Krzysztof Kozlowski wrote:
+> The bindings expect "mmc" for MMC/SDHCI nodes:
 > 
+>    qcom/sm8450-sony-xperia-nagara-pdx223.dtb: sdhci@8804000: $nodename:0: 'sdhci@8804000' does not match '^mmc(@.*)?$'
 > 
-> I got reply from Dominik that he noticed dfps_data_mem (reserved in
-> msm8994.dtsi) overlaps with the framebuffer region.
-They are usually next to each other..
-
-> I'll retest it next week, maybe removing it instead of cont_splash_mem
-> fixes the reboot.
-Maybe your bootloader reads it? And needs it to be at a certain address,
-maybe with a certain node name or a label?
-
-> 
-> He also noticed, that Linux doesn't reboot when loaded from uefi (his
-> project [1]).
-> Not sure if there is any difference.
-Is it loaded with this DTB or does it rely on ACPI?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Kind regards,
-> Petr
-> 
-> [1] https://github.com/Dominduchami/Nexus5XPkg/
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index f20db5456765..e0d30dadbf8b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -3354,7 +3354,7 @@ ufs_mem_phy_lanes: phy@1d87400 {
+>   			};
+>   		};
+>   
+> -		sdhc_2: sdhci@8804000 {
+> +		sdhc_2: mmc@8804000 {
+>   			compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
+>   			reg = <0 0x08804000 0 0x1000>;
+>   
