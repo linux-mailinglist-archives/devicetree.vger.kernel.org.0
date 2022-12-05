@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 992D76424D4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:40:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A81546424DF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Dec 2022 09:42:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbiLEIkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 03:40:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60596 "EHLO
+        id S232003AbiLEImq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Dec 2022 03:42:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231292AbiLEIkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:40:18 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC1ADF43;
-        Mon,  5 Dec 2022 00:40:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 678FA60FC8;
-        Mon,  5 Dec 2022 08:40:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4693EC433D6;
-        Mon,  5 Dec 2022 08:40:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670229616;
-        bh=FnGsUFy5sYWAfmF2yzspb8rioGnomy2eD9q3k4siupc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LxlvvCoQn9Yw37WvFvN6nEpWCOyjzPSt/NiWGp0+Ux90+dSHb2BpdHfZ2Tatlnp0Q
-         EZElfk2w9ovBwKfKV8kk1o0l+QZrVZhL3BZch4zvplwqXO/ms3Dn4/BBO0/IESs2xj
-         uxquQ56riHfX4JK+cwXoR81ByQcJmvIKxVD2POgsTDMsRRNeay8/rwalRshZH2QiZs
-         uwp6tp/3bkChisigYT0R6zw7dCzWdV9YaNmqYjAwvsNCCDeWSjbdAnDLoP5BTgoGGK
-         VkBPVOciHg3sKnKCLw/Pgi19BW8LKJ7Fl2boQYKfaeHseccSkqDDtVSjrYm63ki/B3
-         f0mqVyjSZt3KA==
-Date:   Mon, 5 Dec 2022 09:40:13 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        William Zhang <william.zhang@broadcom.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jan Dabros <jsd@semihalf.com>,
-        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] i2c: loongson: add bus driver for the loongson
- i2c controller
-Message-ID: <Y42ubaVQclaTA7Eh@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Jean Delvare <jdelvare@suse.de>,
-        William Zhang <william.zhang@broadcom.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Jan Dabros <jsd@semihalf.com>,
-        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Tyrone Ting <kfting@nuvoton.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221128130025.23184-1-zhuyinbo@loongson.cn>
+        with ESMTP id S232072AbiLEImp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 03:42:45 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A10C119
+        for <devicetree@vger.kernel.org>; Mon,  5 Dec 2022 00:42:43 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id y16so17473866wrm.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Dec 2022 00:42:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=If5qlixuUuCrpqJqTQzfWNyU5P9n2l4cyuUetIlMVDA=;
+        b=mvcWfHXUs+nS4mi6KaQhhybAcY63Fu3k9wkvPSzubDOVRxXnWdQnGlvmDA2gwoUaJM
+         PIYM0OVjn2K3cY4mxtML7Prk73+rLaCpRElmP7hINu8qUyIxSnlQKVSxmZZfM58duaM9
+         mIqjs1DfmePgdp+lDpG4lNCy7tZ3jKIbapWYdvMdCaQbJ6S2DMEm5fXivffQ13OBjURJ
+         MZnZ6kub4xIdQGo0Gskxgp/sgL79BOGNV8eX0sSx31wNuvY7z1aPkELiIT+mv+CKeXb1
+         Z7fu+RkUawlZ0iJ8kEP1PrURInk5r4DerdaWnElJwgRAksWUyUUnIG5bMtFjszjTR6p0
+         t2Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=If5qlixuUuCrpqJqTQzfWNyU5P9n2l4cyuUetIlMVDA=;
+        b=X7/EEe8YQUtIXrEACIplGySnwIp0QwipMqwVIuDENnwB8mf6kCRGSpSzqTdVYyTyZr
+         a/Sk87fcClsWVCIry0ug4wmmSxJJt66lEPF+FTMUuS+fAcgslxdlqWwn4+w6ROep1/ex
+         pdBBOhPuLFf30QwkifEVGSsx6IfbXWG1bNaBi5KsFFY8zE9oBu40D3ugzKcsj1JEVBWr
+         zeYNxSNqxhKlnLheQD5f+PkcJyb1FyB/9MVf3JwQMvffv8Ap3GT0AX8BwTesevn+X41C
+         d3khR+IWPnE5jOzYnTZKuQzktD63IHv8lHCDqxrsv4GlJX/ENG7UJjzv/8n6pn/IGOwG
+         w41Q==
+X-Gm-Message-State: ANoB5pnWlWcp+ejzb+XqwrziJvs6bSdyoLIXPTPH1DV4xfXSMojXBnI7
+        WB5zA12wZv7ivlLCyMiZU4P9g1jzpWSPTrQp
+X-Google-Smtp-Source: AA0mqf7ftmwbCHcJjnnGuPWrlw7r3FnwQ27WNFbwK36TbXGmqA9uPXrcdiSRAypn+Q9Bh85Th5WD0w==
+X-Received: by 2002:adf:cf11:0:b0:242:4f41:2ef6 with SMTP id o17-20020adfcf11000000b002424f412ef6mr5486456wrj.56.1670229761713;
+        Mon, 05 Dec 2022 00:42:41 -0800 (PST)
+Received: from [192.168.7.93] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id fn9-20020a05600c688900b003cf75213bb9sm20089291wmb.8.2022.12.05.00.42.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Dec 2022 00:42:41 -0800 (PST)
+Message-ID: <5f4579fc-36d4-608a-3ef3-8033faed6873@linaro.org>
+Date:   Mon, 5 Dec 2022 09:42:40 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ae0viO7PKLMg849Y"
-Content-Disposition: inline
-In-Reply-To: <20221128130025.23184-1-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 8/8] arm64: dts: Fix NPU power domain references in
+ Amlogic G12-based SoCs
+Content-Language: en-US
+To:     Tomeu Vizoso <tomeu.vizoso@collabora.com>
+Cc:     italonicola@collabora.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Amlogic Meson SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson SoC support" 
+        <linux-amlogic@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221202115223.39051-1-tomeu.vizoso@collabora.com>
+ <20221202115223.39051-9-tomeu.vizoso@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221202115223.39051-9-tomeu.vizoso@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,54 +88,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---ae0viO7PKLMg849Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 28, 2022 at 09:00:24PM +0800, Yinbo Zhu wrote:
-> This bus driver supports the Loongson i2c hardware controller in the
-> Loongson platforms and supports to use DTS and ACPI framework to
-> register i2c adapter device resources.
->=20
-> The Loongson i2c controller supports operating frequencty is 50MHZ
-> and supports the maximum transmission rate is 400kbps.
->=20
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-
-There are currently two people submitting a driver for this hardware.
-This is the other driver:
-
-https://lore.kernel.org/all/f6cc2dbe5cd190031ab4f772d1cf250934288546.166977=
-7792.git.zhoubinbin@loongson.cn/
-
-Can you guys please decide which one is "better" or combine the two to
-make a better one?
-
-Thanks,
-
-   Wolfram
+On 02/12/2022 12:52, Tomeu Vizoso wrote:
+> The power sequence is different between SoCs in that family, so get the
+> right bits for each one.
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 --
+>   arch/arm64/boot/dts/amlogic/meson-g12b.dtsi       | 4 ++++
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 4 ++++
+>   3 files changed, 8 insertions(+), 2 deletions(-)
 
 
---ae0viO7PKLMg849Y
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmONrm0ACgkQFA3kzBSg
-KbYizxAAsxQb5yyGCMIeSopmZK+v8I/skPq/XvnFG61ON5mkTQ5cDyRu1bKpt+qz
-3Ym0xhdmrStCJLXqGN2SeNoWhV/Kw0tcgxH/bz7Fg2AZWMUuhqFUQTynOPJpC99b
-Uwvj4pxlsxOJubjzGY2HfbX+WibtjkE4GWRRUHLcZtuDcA9FN3m1vssGhu5mLU5i
-5rSw22CiYi+Bnu5Ra4Pq4AgvJoVUINGaEgoA5jnrbkPkP+qEzUh/dxJaK6SdqCmh
-DETgGL+IfzZnVcaka3wR00Aoz5JVTUXnm19QMOq+veuLCcaoFMI3rUk61xAVyulg
-np9gM5Ud1bClA1sN/imZmFrh/fdRUE9ZK8MPny0vj6kYi/rLzTzQs4gwGBbswE8V
-+AXTTJzMYvZs5u2o4eWCHC2JoWYkmWUO84dPpi/LL5gSCKgEvk3CYbZfUT5b0+jo
-gB+2TXwBUUW6AEESsdrkHO4GveODbXfeoQBEx6jotCrydWet7mfvRaz/DKWmS00m
-7nhdxkqrzLiAeDq/p3UNgy4fqDm3NlnnUwJUslj2ZHfLL4GNz7AvKAfjIyVJqBWM
-MpwFBoqypHxBBucpPgPVJ43dxY+55OZ89T3/FhVfgNqi0RSW3BJR1QDa761abgbO
-zmsih5T6iov6gXcTcLw4G7h9e19y91Jspa4bw9ev255ad3oxxag=
-=gBwl
------END PGP SIGNATURE-----
+I'll probably squash it in patch 4.
 
---ae0viO7PKLMg849Y--
+thanks,
+Neil
