@@ -2,157 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA56643F9B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2452E643FB8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:20:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234457AbiLFJRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 04:17:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
+        id S234742AbiLFJT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 04:19:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234827AbiLFJQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:16:33 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8904F21820
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 01:16:10 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id a7so16462827ljq.12
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 01:16:10 -0800 (PST)
+        with ESMTP id S234754AbiLFJTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:19:37 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E752120984
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 01:17:56 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id d82so5219140pfd.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 01:17:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nSz8+pdzVOvO17mmGP1PwKitaiaqBA0sMFckD9UpIz8=;
-        b=bF7aDatVUWwwHFmYq8p+W4TB9+kDOfdUJgkLUAEalM21QMbDFEPI1W1nnH+5/Y/jKH
-         zHjgOiwFTzniV9CrNh1lMlnmhL4Vuo9XhdXvJnBwX91UmAI9DeX1ket72WcxUYyxBD+N
-         2rMaYpDsSEVHHbYj1x57wfg4bUwPFFEK0yrWD3MZTiaZgKfsXKZv/uw0j3eXg7VsvP35
-         aLL1meaCDJdkEgFOn2al3FRv3Mo63jXDIGbiy3o4MghtDitEuFV4iAvFjsEcdeqnp/bg
-         VVfW/IyQ2oIph+wPv4fgyDExBk1aMzJMqO4H0ZFDE/WnXMfMAlZl/9fr9pJpIHtue+0K
-         5xow==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ePWQHlJZ1ifQfk6Te5xFRB+dPeDDvHuJ9FBMyduq99Y=;
+        b=bCtcy40TBkMMs+Bx7uvp/8ffgWsN8SmTCqqiq0rSu0lzo3hObF4h5AzqBWU1RUxsqe
+         d9MjQKefgoEX5/ePs9f3/OyR8DC51smp0jwcbADoc9qCq4inshfq5p5V7sgXUDG4uLai
+         KLXihMWFtwtTsuuVwt23cYGHe47HidgigeuHK5cyOTYqesLPqPXhHvcNC7desZNJ45zS
+         PW7yLVv9J/DfOZtUAtCLPuIhRUfjduXXxZfp+MLVw8Yk0bQgjlUR1OBYeVxyrZMW+uoU
+         0r/VfW72EUgKAG/Ppl1J9m5QfsSehrdRa/Muf1Fo7fgEn7PBewdOnKcrGMX/MeHJAhGG
+         Zvrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nSz8+pdzVOvO17mmGP1PwKitaiaqBA0sMFckD9UpIz8=;
-        b=LlndTfdX9mCQw9cLotVTyZIjRPfSCo1NAnFj3nreFQV3fQitIwhjqbR3PL8OuIIJE2
-         9q3p+/L2iEoTkM87vzMxZIj4OCRmY1BuAr0Ouf+4BMjAYFSBo/phovFPAKCyvzUsL0Q3
-         pPnwx6R1pVh+dzT5KT0BrLcutti3DD3D/U8SKeB/ckEewnAUyJJgOYDfgMR1Ktms4aeJ
-         Qtq6Y64akHdWEOyml4kRVrLKQ0CNecXLFOkw126NyzQuU4YlOYXze6s7cy6bU4cde4Aq
-         SibABWd5CsSNDB0WALX9YtwuSAog6uIEeaBhXiptkwS+bL4H/pFIvlcfgjNWg74jpiVA
-         UgXA==
-X-Gm-Message-State: ANoB5pn5Y7i/L42YMWIWSZnXTT8Xxr0b3TzcI1+DK+lmW64lpeTKA8Sx
-        WWT/g7DJgdAkVzlAGobnI1xREkdwNjyTx54Beo8=
-X-Google-Smtp-Source: AA0mqf52hPel6Y7yp0GvQe24wYR3MQwPfgyyDGxL0XTTjSrgY2kcLkcne0d6WDnxB9zk3iTNPDFRlw==
-X-Received: by 2002:a2e:c52:0:b0:277:9bf:9411 with SMTP id o18-20020a2e0c52000000b0027709bf9411mr19869694ljd.504.1670318168431;
-        Tue, 06 Dec 2022 01:16:08 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b26-20020a2e895a000000b00279e0b8bae7sm1077010ljk.65.2022.12.06.01.16.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 01:16:07 -0800 (PST)
-Message-ID: <0565a333-3bb7-89db-735d-56006405bda4@linaro.org>
-Date:   Tue, 6 Dec 2022 10:16:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: sound: ti,pcm3168a: Convert to
- json-schema
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        bh=ePWQHlJZ1ifQfk6Te5xFRB+dPeDDvHuJ9FBMyduq99Y=;
+        b=aq55J4S5LLIZiOocVCjrvLt9ROxuasg+YpU3Fp7ABBLo5NxrsM2jDRtaDVns0OF7Nb
+         a2wwbn/ac0M3lR3afJihdekSKzfYjv9ZOmEb1ZXiSBuc/DvSOyXTOZfwNV1jDUT+p7ao
+         RZUPIHsex+1FeGzglQ+mxEsZ0zQeIDnjDmQ4tr0Z/PUs/8XuxsPgfWOhXEBGbinM7vyz
+         XpwnRDUe/Wv+ibTAM7uBxCAzhAvAksK85zjt4YSTjVVoSZekbypOAKSQmoVnPQQzCc9o
+         iD8k5iGI86SHeA+pdnEzBIEn6xDgyabjddHh7X3oS5c7bH6Fd0mOq3X18bbkWW/IwMg8
+         eYcQ==
+X-Gm-Message-State: ANoB5pmlyrCNSH9K47mJEXaPK8btgpkjEfAZ9s9znH6gkbCMQy20X60u
+        bqLqipKOKRU35if5Qjc5Fx4O
+X-Google-Smtp-Source: AA0mqf5UTduCpVAOsvqnU2Aq3c7POTsT0fXfbeT+OrZbKq34wo4NaKVMNSIIuYy0HS/p/CxktBtqMA==
+X-Received: by 2002:a65:58ca:0:b0:470:2c91:9579 with SMTP id e10-20020a6558ca000000b004702c919579mr58584377pgu.22.1670318276006;
+        Tue, 06 Dec 2022 01:17:56 -0800 (PST)
+Received: from thinkpad ([59.92.103.18])
+        by smtp.gmail.com with ESMTPSA id u10-20020a170902e5ca00b00189371b5971sm12147194plf.220.2022.12.06.01.17.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 01:17:54 -0800 (PST)
+Date:   Tue, 6 Dec 2022 14:47:37 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Horsley <Damien.Horsley@imgtec.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <cover.1669980383.git.geert+renesas@glider.be>
- <9f2a2474ec71dcc2a76e868295202a8c425a5d41.1669980383.git.geert+renesas@glider.be>
- <b105572c-96fe-dbad-c435-43233cfb25a7@linaro.org>
- <CAMuHMdXG39BoMScDpH_Cxc-BXBKZHxyQqe6MJMEhnerN3yU6Uw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdXG39BoMScDpH_Cxc-BXBKZHxyQqe6MJMEhnerN3yU6Uw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: ufs: qcom: allow 'dma-coherent' property
+Message-ID: <20221206091737.GC15486@thinkpad>
+References: <20221205100837.29212-1-johan+linaro@kernel.org>
+ <20221205100837.29212-2-johan+linaro@kernel.org>
+ <20221205115906.GA20192@thinkpad>
+ <Y43e9KRDsTCS5VI4@hovoldconsulting.com>
+ <20221205122018.GC20192@thinkpad>
+ <Y43jtpHqlyiIEZ0S@hovoldconsulting.com>
+ <20221205130048.GD20192@thinkpad>
+ <Y43uUA2X4Vzn+VLF@hovoldconsulting.com>
+ <20221205133712.GE20192@thinkpad>
+ <2699840b-9746-473b-fa17-900258db555d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2699840b-9746-473b-fa17-900258db555d@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2022 09:00, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
+On Tue, Dec 06, 2022 at 09:14:30AM +0100, Krzysztof Kozlowski wrote:
+> On 05/12/2022 14:37, Manivannan Sadhasivam wrote:
+> > On Mon, Dec 05, 2022 at 02:12:48PM +0100, Johan Hovold wrote:
+> >> On Mon, Dec 05, 2022 at 06:30:48PM +0530, Manivannan Sadhasivam wrote:
+> >>> On Mon, Dec 05, 2022 at 01:27:34PM +0100, Johan Hovold wrote:
+> >>>> On Mon, Dec 05, 2022 at 05:50:18PM +0530, Manivannan Sadhasivam wrote:
+> >>>>> On Mon, Dec 05, 2022 at 01:07:16PM +0100, Johan Hovold wrote:
+> >>>>>> On Mon, Dec 05, 2022 at 05:29:06PM +0530, Manivannan Sadhasivam wrote:
+> >>>>>>> On Mon, Dec 05, 2022 at 11:08:36AM +0100, Johan Hovold wrote:
+> >>>>>>>> UFS controllers may be cache coherent and must be marked as such in the
+> >>>>>>>> devicetree to avoid data corruption.
+> >>>>>>>>
+> >>>>>>>> This is specifically needed on recent Qualcomm platforms like SC8280XP.
+> >>>>>>>>
+> >>>>>>>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> >>
+> >>>>>> Yes, it would be a valid, but it will only be added to the DTs of SoCs
+> >>>>>> that actually require it. No need to re-encode the dtsi in the binding.
+> >>>>>>
+> >>>>>
+> >>>>> But if you make a property valid in the binding then it implies that anyone
+> >>>>> could add it to DTS which is wrong. You should make this property valid for
+> >>>>> SoCs that actually support it.
+> >>>>
+> >>>> No, it's not wrong.
+> >>>>
+> >>>> Note that the binding only requires 'compatible' and 'regs', all other
+> >>>> properties are optional, and you could, for example, add a
+> >>>> 'reset' property to a node for a device which does not have a reset
+> >>>> without the DT validation failing.
 > 
-> Thanks for your comments!
+> Optional properties are optional primarily looking at one variant. It
+> means that on different boards with the same SoC, things can be routed a
+> bit differently and some property can be skipped. E.g. sometimes
+> regulators come from PMIC and sometimes are wired to some VBATT, so we
+> do not have regulator in DTS for them. Or some interrupt/pin is not
+> connected.
 > 
-> On Sat, Dec 3, 2022 at 1:13 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 02/12/2022 13:55, Geert Uytterhoeven wrote:
->>> Convert the Texas Instruments PCM3168A Audio Codec Device Tree binding
->>> documentation to json-schema.
->>>
->>> Add missing properties.
->>> Drop unneeded pinctrl properties from example.
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +description:
->>> +  The Texas Instruments PCM3168A is a 24-bit Multi-channel Audio CODEC with
->>> +  96/192kHz sampling rate, supporting both SPI and I2C bus access.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ti,pcm3168a
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: System clock input
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: scki
->>> +
->>> +  reset-gpios:
->>> +    items:
->>> +      - description: |
->>> +          GPIO line connected to the active-low RST pin of the codec.
->>> +            RST = low: device power-down
->>> +            RST = high: device is enabled
->>> +
->>> +  "#sound-dai-cells":
->>> +    enum: [0, 1]
->>
->> This is a bit unexpected. Looking at DTSes:
->> 1. I see in ulcb-kf.dtsi with cells==0, but two endpoints. The dai cells
->> seem unused? In such case shall dai-cells be skipped if we have endpoints?
->>
->> 2. in k3-j721e-common-proc-board.dts has cells=1, but user's phandle
->> does not have an argument, so practically it is ==0? The user -
->> sound/soc/ti/j721e-evm.c - just gets the node and does not use cells,
->> right? So even though dai-cells==1, it does not matter, because user
->> gets its own parsing?
->>
->> 3. The pcm3168a driver also does not have any xlate function, but it
->> registers to DAIs, so all uses should be with cells==1 to select proper
->> DAI...
+> Now between variants of devices - different SoCs: I don't think that
+> "optional" should be used in such context, except special cases or lack
+> of knowledge about hardware. For given SoC/variant, the property is either:
+> 1. valid and possible (can be required or optional),
+> 2. not valid, not possible.
+> And this we should express in constraints, if doable with reasonable
+> complexity.
 > 
-> I have no idea (DAI is magic to me), and hope the audio experts
-> can provide some input...
+> Therefore the question is: is dma-coherent not valid for other SoCs?
+> 
 
-It is a bit of magic to me too. Yet I think the correct usage of this is
-with dai-cells=1. I think we can skip the choice here between
-sound-dai-cells and endpoints (to allow only one) and only fix the value
-here to =1.
+Yes, it is not valid on older SoCs because they don't support I/O coherency.
+So setting this property on those un-supported SoCs may lead to wierd behavior.
+This was the concern I had for setting this property valid for all SoCs.
 
-This would also require changing
-arch/arm64/boot/dts/renesas/ulcb-kf.dtsi to dai-cells=1.
+So far we only know that SC8280XP and newer SoCs support I/O coherency.
 
-Best regards,
-Krzysztof
+Thanks,
+Mani
 
+> If it is "not needed" for other SoCs, then I would leave it like this.
+> Consider also what Rob said, that otherwise we would create DTS from the
+> bindings.
+> 
+> Also, too many allOf:if:then: constraints in the bindings make them
+> trickier to read.
+> 
+> >>>>
+> >>>
+> >>> Then what is the point of devicetree validation using bindings?
+> >>
+> >> You're still making sure that no properties are added that are not
+> >> documented, number of clocks, names of clocks, etc.
+> >>
+> >>> There is also a comment from Krzysztof: https://lkml.org/lkml/2022/11/24/390
+> >>
+> >> Speaking of Krzysztof:
+> >>
+> >> 	https://lore.kernel.org/lkml/20221204094717.74016-5-krzysztof.kozlowski@linaro.org/
+> 
+> That's not the best example, because I just do not know where
+> dma-coherent is applicable and where it is not, thus I added it as valid
+> for all variants. Also, I think that all variants are capable of using
+> IOMMU - it isn't restricted per variant. If they are capable of IOMMU,
+> then dma-coherent is a possible choice.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
