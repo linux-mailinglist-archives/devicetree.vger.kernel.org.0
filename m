@@ -2,82 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D25644C6E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 20:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D20C644C91
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 20:35:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbiLFTWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 14:22:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55886 "EHLO
+        id S229692AbiLFTfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 14:35:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbiLFTWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 14:22:34 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B0B741995
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 11:22:31 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id m14so24929408wrh.7
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 11:22:31 -0800 (PST)
+        with ESMTP id S229651AbiLFTfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 14:35:51 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F41429BD
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 11:35:50 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id e13so21799865edj.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 11:35:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4Kc0DPAtZANtmBB4/APA8h9MGVc9hC5I6CM/Vzwl2xs=;
-        b=dK3PhiQhFUgbwn2UgOzR1EI3QDvs0M1JfayULjfIe+7Gf8mqT4rqpTFUcViscqXXYc
-         fk+YnJ8+ix4y2bSgF2Nj4w2yxrOJpZPpuueGinJoBw1FUUygisozIrjlLc4iZWE8tHs0
-         sTDciBFyePOOeh5LQ0tN18H+FubhMZLZ8bO1CJT2IYa+XVPLRxblsD4OksYEu75Y95cv
-         X9OEaXZTFjAx50izorCHGRCx0ILWhWJTzgpJ0AOGkORNtvWIVf5YQ0gd04Rf1V7QHAkW
-         G1YXZImgoffra/o0hA2LHZrEI14JZ5Ua2bXusXQFQw4qqcOcTeG5Az5txUe4FCUC7Xe7
-         Zshw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WponI/OPvT2mcKk8dSrH3qaEn42D5K3v3G8XrPmRpsk=;
+        b=OdxbijA70i9J53/AspRFrAMIP/Z5xK9PGlFLF0FzSq3QZT9PV2KYfAE930hMWeIZRE
+         QzDCA7oDOSltTWxshuGDkFcazRCrz2KreOhBWPPtj0PUgqp2IqKs6jZjKyeO1Mu3I9Er
+         0cFpOoIiiywnNgfvTRRHnHgCpnA3/U2W8Jl6ST+EENwQa1uXxNvyKcGgvatjCK+cPzIc
+         FKOP2AstKicp8cKUq1/ZK1AC1B0/WpvQ1Gj0jj9CC3xmARgUD44Vvr+iQVVrUCa6XVeD
+         A3tzoR+3Ns2F3JuBlhgAzFdpV1jy6b1DtvknWoz2k6InjjOIgFu7ExGlFuGvBZVev3OS
+         Mi3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Kc0DPAtZANtmBB4/APA8h9MGVc9hC5I6CM/Vzwl2xs=;
-        b=blMPZxBkvmeg6hpp9JGOKYeOk76CkcFPavBgmITQZ1cIgT8PdaGR4dfC0HII+QW/hI
-         dvmFiCs3tXOCSy1N7o4vFuGy+6rXac2onV8xRSEhPV8ZPf378evAwZr9OlE1kOxeoply
-         jKpJkW6XDrvu5pBGSS+tldyK+wGKKxY3Qes4EIptURFVPwrbo9IT3SxDFSEqKxxG3cVk
-         9e7ktU/aDfaaLkmVpbALnhOIVF3SVTnIN+2eovinqRMw6yxVKgihrdihujwn4+wenNRT
-         Nt9trMebtBe+M/oU3aRt/768ukGCC9k0/LY+wdpKO/evFzpVpOByj7m0L5jiNPyes/u2
-         GhbA==
-X-Gm-Message-State: ANoB5pmEVPQL7TSb3694cRm13DVKSJ0dT1a5g9aFW4tRM3JCFtT+xZoL
-        2cd0XR9adUvC10lYAaLFAC5Qbw==
-X-Google-Smtp-Source: AA0mqf5rkOLSX/PBJ641Jpt5pcEBmiAtuAfQ5WZKW86lfETq6U0wWZJ5hpIkbTr4DDC8swW1DDtZVg==
-X-Received: by 2002:a5d:6a06:0:b0:242:140d:43d5 with SMTP id m6-20020a5d6a06000000b00242140d43d5mr27054697wru.53.1670354549595;
-        Tue, 06 Dec 2022 11:22:29 -0800 (PST)
-Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c2cb000b003c6bbe910fdsm32563712wmc.9.2022.12.06.11.22.28
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WponI/OPvT2mcKk8dSrH3qaEn42D5K3v3G8XrPmRpsk=;
+        b=s8YCZEcZ3O6M4hgJyDFENyUVoCuPzdq/BCtheaJvFX3+GgpZ2Phz2QROetuW0gXBjB
+         4+dVC2ZnySHEkLCtkN6JhvLN91mrFRnXuNymMqGuHtgjn7L/gFITrFJTTH3NfV5W4GpA
+         mF7YNeaHViFaMSNqxjM0V+yxShugccAIYmqtfxXm2FaTyODkvkZJghTuS5TCdFtfNJoy
+         CeyFXLST7GuSKIrnz5t1fvGbGbyVN7jXue1GgPvBQ+QWvagsPZ2irBdHZ7ETqKdpxmPs
+         LPlJSAiIcN6kLoq2R8eu5BX9hpDlF9G64NUGYXm+9kjwYDq3sLZpoil1xOF2G1dNvB52
+         gv5w==
+X-Gm-Message-State: ANoB5pm0iUFrzDytTNN585WHjzpX4aiFi+fVz3s2om1iapiDGgViuOsV
+        S14EkZaAmVyCFbJIgBITp1zLcTn1NcGBcar+
+X-Google-Smtp-Source: AA0mqf5WbHP6QRYexxGulOL+ronjmWrCEU5oYEOi/Z9KlvjMcSc8JQ4FERp6VhWuHCGGbcTT1fL4wQ==
+X-Received: by 2002:a05:6402:248e:b0:461:e2ab:912d with SMTP id q14-20020a056402248e00b00461e2ab912dmr63906605eda.93.1670355348784;
+        Tue, 06 Dec 2022 11:35:48 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id dn18-20020a05640222f200b00463b9d47e1fsm1326366edb.71.2022.12.06.11.35.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 11:22:29 -0800 (PST)
-Message-ID: <753775e9-33f6-031f-8da5-2f65894f44fe@baylibre.com>
-Date:   Tue, 6 Dec 2022 20:22:27 +0100
+        Tue, 06 Dec 2022 11:35:47 -0800 (PST)
+Message-ID: <c338d813-dbcd-776b-3c46-d3779bfea522@linaro.org>
+Date:   Tue, 6 Dec 2022 20:35:40 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v7 0/6] Add support for TI TPS65219 PMIC.
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        shawnguo@kernel.org, geert+renesas@glider.be,
-        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
-        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
-        jeff@labundy.com, afd@ti.com, khilman@baylibre.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <Y44ztV+2j4krM8mp@francesco-nb.int.toradex.com>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <Y44ztV+2j4krM8mp@francesco-nb.int.toradex.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.5.0
+Subject: Re: [PATCH 0/2] Add SM4250 RPM power domain support
+To:     Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, rnayak@codeaurora.org,
+        bhupesh.linux@gmail.com, agross@kernel.org
+References: <20221127112204.1486337-1-bhupesh.sharma@linaro.org>
+ <167035076344.3155086.2883117402843264050.b4-ty@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <167035076344.3155086.2883117402843264050.b4-ty@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,20 +77,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 05/12/2022 19:08, Francesco Dolcini wrote:
-> On Fri, Nov 04, 2022 at 04:23:05PM +0100, Jerome Neanne wrote:
->> Hi everyone,
-> Hello Jerome,
+On 06/12/2022 19:18, Bjorn Andersson wrote:
+> On Sun, 27 Nov 2022 16:52:02 +0530, Bhupesh Sharma wrote:
+>> Add RPM power domain support for SM4250.
+>>
+>> Cc: Bjorn Andersson <andersson@kernel.org>
+>> Cc: Rajendra Nayak <rnayak@codeaurora.org>
+>> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>
+>> [...]
 > 
-> are you planning to have also gpio support added to the driver?
+> Applied, thanks!
 > 
-> Francesco
+> [1/2] dt-bindings: power: rpmpd: Add SM4250 support
+>        commit: 45ac44ed10e58cf9b510e6552317ed7d2602346f
+> [2/2] soc: qcom: rpmpd: Add SM4250 support
+>        commit: 5b617b1b10c1c6a4365d8f956032e95c53b8e388
 > 
-Hi Francesco,
+> Best regards,
+This may deserve a revert.. it's a 1:1 copy of 6115, which, well..
+is the same SoC, lower binned. And they share a common dts.
 
-I don't have any requirement regarding GPIO on that PMIC. We've just 
-done this (GPIO driver) for another TI PMIC. Will see if this can be 
-reused later.
-
-Regards,
-Jerome
+Konrad
