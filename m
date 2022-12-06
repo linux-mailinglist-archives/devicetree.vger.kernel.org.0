@@ -2,104 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD02E643F1B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2853643F23
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:56:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234416AbiLFIxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:53:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47004 "EHLO
+        id S234368AbiLFI4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:56:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234420AbiLFIxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:53:34 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABB11C123
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:53:15 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 1so8974299lfz.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:53:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xaaugcKD2DWO+dKMtwtCSR92f960siJ7Bi9i7riVt0o=;
-        b=lfaejrrgm3ovECiXFErsEgWM3FnLktoMohIcaghDk9k4yTtCq05wiRFeYI4PtBeOWa
-         S3/CCBPSKsQpp766jttP73I/NSK+bKw10woE5M9+blvSyltDVUHbD34TQ0hS3/iNJgBF
-         zN9iT0CwUJx6EADjwwXSMQhYSC3D0gvPuPqKUCCiIYydqx9vSIlGTf7dgql6c0B7W5jL
-         pnPGs8KpKJj6k2o6DRgRvf229vMnWrKVdHWu29fqi3aDvlzgmrERibWH67jnhmRDwEXo
-         UQp1ToWn0YsQN678rv4eeNwbx9KiZTIX25uXMWOvZF8DSycuZBoCZyaY3J2wNrDgIt5J
-         SQIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xaaugcKD2DWO+dKMtwtCSR92f960siJ7Bi9i7riVt0o=;
-        b=2/B1ituyBfmS3lz+PvG13HZ8XyQH6vgc8+kWNiR1t8Tai0Deeg111qBB1BVYy2AYPH
-         I2Q6+aMOCpMmt0knvUerVS9DZs2EYoE07VGFEQR1TkANWgxvvTmfIfeFfpWR9rsk/1XG
-         itlsxkqqm+rHXCRcy7wi6anLyKfYC0WxVS9Ij2lOpEYuefdhlZ+Zkd/uq6rpshvM7TBp
-         Kd31Qj9aobc05hIkxyqBllvuWF+VoaNA5woeGI/096CTlim2pm92kmsAyfzcomr801DZ
-         1cM7ZIZFYJe3SzaY/+ygcbN5DdW0AnoRpyH41JnJbsIygflfH9Wui1FAdPqU4ao+uq7W
-         +tqg==
-X-Gm-Message-State: ANoB5pnLqmr/55gaUi90++g9BEc0lfcQhjqFQy3nO1mIaQeKm+ARUccZ
-        HKjO9K/UBeg3mhTT7oDBbOc8Ow==
-X-Google-Smtp-Source: AA0mqf5ChLoNGLdLOgDBauHU8k10w8GSMe8kuGmBVkkbQHaFfPKJbRwcfuSe1uAJY9+80U2eX20s2g==
-X-Received: by 2002:a05:6512:40e:b0:4b5:850a:34b6 with SMTP id u14-20020a056512040e00b004b5850a34b6mr691777lfk.668.1670316793581;
-        Tue, 06 Dec 2022 00:53:13 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u1-20020ac248a1000000b004a05767bc07sm2419944lfg.28.2022.12.06.00.53.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:53:13 -0800 (PST)
-Message-ID: <cb1ccf2e-71a8-a1d3-138c-8696338ea3d2@linaro.org>
-Date:   Tue, 6 Dec 2022 09:53:12 +0100
+        with ESMTP id S233724AbiLFI4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:56:36 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 362732652;
+        Tue,  6 Dec 2022 00:56:35 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0A7C16602395;
+        Tue,  6 Dec 2022 08:56:33 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670316993;
+        bh=nmh+741Te48C4jhFLsKlSBYv13YZbBa8FduTkcMHUUs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LkZDZWMdrTXhKeVBieD/5JS27LGYOtQfzc76kfdntdPkNfe48vn7artKC8e8lijIe
+         7IjVFuREBZU+/VgbLMqQSOMyljYh/kPULjwFQaATrYOOJ0EJ7eOVyeO6/aZtKNn9bT
+         l1QJ05UGU9bFRD5lEL3UnKOVPcO0qImoVtaDSxu8fXyqL8GsA7kVZdPJAut+F4O5iY
+         OwoUhlXTsuaIuFGmy5qexUMJQ3f6ncXRgYYAtcC5jtek/j7Egx0pvCkEodXg0emKN5
+         M85hbXe8m3sONkeeFcpNPOPJcFXfGPZKoANq5uPfcRFYbLe8ftqPxyMqgKcrYeE8L+
+         7oLW5PEjK+lPQ==
+Message-ID: <b41bd5ed-bd95-90f0-1907-cd99a63b402b@collabora.com>
+Date:   Tue, 6 Dec 2022 09:56:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH net 2/2] dt-bindings: FEC/i.MX DWMAC and INTMUX maintainer
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v5,1/3] media: dt-bindings: media: mediatek: vcodec: adapt
+ to the 'clock-names' of different platforms
 Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221205212340.1073283-1-f.fainelli@gmail.com>
- <20221205212340.1073283-3-f.fainelli@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221205212340.1073283-3-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Rob Herring <robh@kernel.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20221206064536.16592-1-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221206064536.16592-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2022 22:23, Florian Fainelli wrote:
-> Emails to Joakim Zhang bounce, add Shawn Guo (i.MX architecture
-> maintainer) and the NXP Linux Team exploder email.
+Il 06/12/22 07:45, Yunfei Dong ha scritto:
+> mt8195 and mt8192 have different clock numbers, separate 'clock-names'
+> according to compatible name.
 > 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
 
