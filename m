@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A734644CFE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 21:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD53644D47
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 21:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiLFUIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 15:08:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45208 "EHLO
+        id S229736AbiLFUaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 15:30:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbiLFUH7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 15:07:59 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20A02FFD2;
-        Tue,  6 Dec 2022 12:07:57 -0800 (PST)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 92BF13BD7;
-        Tue,  6 Dec 2022 21:07:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1670357275;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nAM+HKLY4gwei738koUpxz8j63ybVeXrZ8wbJ288zE4=;
-        b=AUgFUvzRmM1rgG3BIAQ4rpM66D1miFQGVwHZLxV/q8a9tB4ELv1z2vsQTiEh8WmgcvkHYH
-        Y09RaAencibKdSQ/GxvipGorKtG0I8IToLFxwshOAK6r9Pj9TtrCOvD8261mR0M1C3Zjp0
-        eVJu8nk+OUYBV6zgAs2mvIRzxOJIvdu6xNJwFjjvu7M9YHzb1nYThY1Jr5+l7Gm850Cbkf
-        VTZeFGZd/cFHBh69tdJEHWqIKy3y/0Lm39NgX+FzUCULHDY1bKDFKkshIDyui7/g7CJjJD
-        by1EYO+liyvohzyLeTSlew4KK69w9JpH65cAdiRID3itZAdAxPRRvTt4/9goXg==
-From:   Michael Walle <michael@walle.cc>
-To:     Jonathan Corbet <corbet@lwn.net>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Walle <michael@walle.cc>,
-        Dan Carpenter <error27@gmail.com>
-Subject: [PATCH v5 21/21] MAINTAINERS: Add myself as ONIE tlv NVMEM layout maintainer
-Date:   Tue,  6 Dec 2022 21:07:40 +0100
-Message-Id: <20221206200740.3567551-22-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221206200740.3567551-1-michael@walle.cc>
-References: <20221206200740.3567551-1-michael@walle.cc>
-MIME-Version: 1.0
+        with ESMTP id S229679AbiLFUax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 15:30:53 -0500
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7E240474;
+        Tue,  6 Dec 2022 12:30:27 -0800 (PST)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-12c8312131fso18879275fac.4;
+        Tue, 06 Dec 2022 12:30:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=70BHd3Bha/3SVQ9Fqr3IAXA2KJogPif1rbxfcGanlLI=;
+        b=l6qMrOMc1gVbYuhlAszHRHks1h0MPjaq7mTYN4fRdwTET6syx9uRLKz2nOhZth5ccC
+         179CPtZ+JPBMvoGJ5p/ir3tq6lLPajNnfuGK5nuv7ZoVzv+iZNgaXLhaYNwRWgWtI6CQ
+         Xb9QH9uVVLoznqXYEnZ4MkC5Wkx1B+D9+42TN1CPtlYKnooXzMig+smn9LZ7lMFP/kJO
+         Xi+OT4oMFALrp7UpAlxb1mBJ9JvcxwzNEHw/RZcHz49GF2dIClvRbSqLN+c5cvxXtxoE
+         oC/YA9UXvqmOwBQdQBrDoUw30C8HrvS+XHFF/QqfEWbE6WU+p7hve8ePHqb7jR3+jstr
+         AhEg==
+X-Gm-Message-State: ANoB5pnYXvPy3lQOawa2nmCiumfGJi2QdipMvzBzOy1jvwU8Vcis0tY3
+        9lkE2lAcrJUIcCsImRNVOg==
+X-Google-Smtp-Source: AA0mqf5/7tA6GtNa+ooZZfrQ3D2c18qvAkkUxKQVVV1LX5FQdtjOnvkYmlxagHeWWB71G/nuMbts8g==
+X-Received: by 2002:a05:6870:c0d1:b0:144:a87e:727d with SMTP id e17-20020a056870c0d100b00144a87e727dmr4999479oad.153.1670358626695;
+        Tue, 06 Dec 2022 12:30:26 -0800 (PST)
+Received: from robh_at_kernel.org ([4.31.143.193])
+        by smtp.gmail.com with ESMTPSA id u33-20020a05687100a100b0013ae39d0575sm11279086oaa.15.2022.12.06.12.30.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 12:30:26 -0800 (PST)
+Received: (nullmailer pid 8554 invoked by uid 1000);
+        Tue, 06 Dec 2022 20:30:25 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Edmund Berenson <edmund.berenson@emlix.com>
+Cc:     Lukasz Zemla <Lukasz.Zemla@woodward.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20221206124456.4159-1-edmund.berenson@emlix.com>
+References: <20221206124456.4159-1-edmund.berenson@emlix.com>
+Message-Id: <167035855162.6750.5481578237893135512.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: max7317: add gpio driver bindings
+Date:   Tue, 06 Dec 2022 14:30:25 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Following the introduction of the bindings for this NVMEM parser and the
-layout driver, add myself as maintainer.
+On Tue, 06 Dec 2022 13:44:55 +0100, Edmund Berenson wrote:
+> Add driver bindings for the maxim max7317 spi
+> gpio expander.
+> 
+> Co-developed-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> Signed-off-by: Lukasz Zemla <Lukasz.Zemla@woodward.com>
+> Signed-off-by: Edmund Berenson <edmund.berenson@emlix.com>
+> ---
+>  .../bindings/gpio/gpio-max7317.yaml           | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-max7317.yaml
+> 
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
-changes since v4:
- - none
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-changes since v3:
- - none
+yamllint warnings/errors:
 
-changes since v2:
- - new patch
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-max7317.yaml: 'maintainers' is a required property
+	hint: Metaschema for devicetree binding documentation
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-max7317.example.dtb: gpio5@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpio/gpio-max7317.yaml
 
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+doc reference errors (make refcheckdocs):
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 92e90fd7a19c..73a5b8d7c2f7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15529,6 +15529,12 @@ L:	linux-hwmon@vger.kernel.org
- S:	Maintained
- F:	drivers/hwmon/oxp-sensors.c
- 
-+ONIE TLV NVMEM LAYOUT DRIVER
-+M:	Miquel Raynal <miquel.raynal@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-+F:	drivers/nvmem/layouts/onie-tlv.c
-+
- ONION OMEGA2+ BOARD
- M:	Harvey Hunt <harveyhuntnexus@gmail.com>
- L:	linux-mips@vger.kernel.org
--- 
-2.30.2
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221206124456.4159-1-edmund.berenson@emlix.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
