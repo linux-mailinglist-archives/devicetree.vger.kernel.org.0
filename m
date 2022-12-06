@@ -2,99 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2079643FCE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4B7B644004
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234697AbiLFJ0B convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 6 Dec 2022 04:26:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40874 "EHLO
+        id S233785AbiLFJoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 04:44:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234990AbiLFJZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:25:40 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8709A448
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 01:25:36 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p2UCh-000107-DT; Tue, 06 Dec 2022 10:25:31 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p2UCe-002fDd-8C; Tue, 06 Dec 2022 10:25:29 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1p2UCe-0002Fh-EA; Tue, 06 Dec 2022 10:25:28 +0100
-Message-ID: <a83f62d604e70a8e58309dc7a5e2e3515227e1c4.camel@pengutronix.de>
-Subject: Re: [RFC PATCH 2/2] mfd: syscon: allow reset control for syscon
- devices
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Date:   Tue, 06 Dec 2022 10:25:28 +0100
-In-Reply-To: <e46a680f-e891-489c-9747-98ae3df42ade@app.fastmail.com>
-References: <20221206073916.1606125-1-jk@codeconstruct.com.au>
-         <20221206073916.1606125-3-jk@codeconstruct.com.au>
-         <e46a680f-e891-489c-9747-98ae3df42ade@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S231600AbiLFJoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:44:07 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE0A1B9CB;
+        Tue,  6 Dec 2022 01:44:06 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id DFDA615A7;
+        Tue,  6 Dec 2022 10:44:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1670319845;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jsEW3NAT0uIVieWN2G6SR+yV/DSLwSpgw7F9CfJYPMg=;
+        b=0c5na9E9OlQfDNdIl9jSgfLlLn3oQ0MC4Eo9Qeyh0JF2IH5QsrOjhrikUvIVuYVqYWtTzu
+        s8ZYkeoOatpO7mH4YsV+86w/l+jkesv3OC4XyDSQt348N0QGVZ9L770r72PFKi4tquh20D
+        +Pkd1JpE5Pgrr80AufP2T7GR6YPDryLMW2EN/KsulWx1srY1oVMqo/buv4qpEUZxd0zmeJ
+        kSdTe3Aysr3aHTE7GGgHxKYJQJl2gY+G79FaPA3xuXNqlK9GK/4xjIuMYS/ObjrfPKdh2Z
+        LPW3RkCWdqnzfcEgTeB16u+ifd7d/lhPRVcQTCgKN85HmuPtS7i/R8HQDcoHxw==
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Tue, 06 Dec 2022 10:44:04 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Xu Liang <lxu@maxlinear.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 3/4] dt-bindings: net: phy: add MaxLinear
+ GPY2xx bindings
+In-Reply-To: <2597b9e5-7c61-e91c-741c-3fe18247e27c@linaro.org>
+References: <20221202151204.3318592-1-michael@walle.cc>
+ <20221202151204.3318592-4-michael@walle.cc>
+ <20221205212924.GA2638223-robh@kernel.org>
+ <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
+ <9c0506a6f654f72ea62fed864c1b2a26@walle.cc>
+ <2597b9e5-7c61-e91c-741c-3fe18247e27c@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <6c82b403962aaf1450eb5014c9908328@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Di, 2022-12-06 at 09:41 +0100, Arnd Bergmann wrote:
-> On Tue, Dec 6, 2022, at 08:39, Jeremy Kerr wrote:
-> > Simple syscon devices may require deassertion of a reset signal in order
-> > to access their register set. Rather than requiring a custom driver to
-> > implement this, we can use the generic "resets" specifiers to link a
-> > reset line to the syscon.
-> > 
-> > This change adds an optional reset line to the syscon device
-> > description, and code to perform the deassertion/assertion on
-> > probe/remove.
-> > 
-> > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+Am 2022-12-06 09:38, schrieb Krzysztof Kozlowski:
+
+>>>> Just omit the interrupt property if you don't want interrupts and
+>>>> add it if you do.
+>>> 
+>>> How does that work together with "the device tree describes
+>>> the hardware and not the configuration". The interrupt line
+>>> is there, its just broken sometimes and thus it's disabled
+>>> by default for these PHY revisions/firmwares. With this
+>>> flag the user can say, "hey on this hardware it is not
+>>> relevant because we don't have shared interrupts or because
+>>> I know what I'm doing".
 > 
-> I see that this will only work after the device has been registered,
-> but not for early users of the syscon framework that bypass the
-> device logic and just call device_node_to_regmap() or 
-> syscon_regmap_lookup*() during early boot.
+> Yeah, that's a good question. In your case broken interrupts could be
+> understood the same as "not connected", so property not present. When
+> things are broken, you do not describe them fully in DTS for the
+> completeness of hardware description, right?
+
+I'd agree here, but in this case it's different. First, it isn't
+obvious in the first place that things are broken and boards in
+the field wouldn't/couldn't get that update. I'd really expect
+an erratum from MaxLinear here. And secondly, (which I
+just noticed right now, sorry), is that the interrupt line
+is also used for wake-on-lan, which can also be used even for
+the "broken" PHYs.
+
+To work around this, the basic idea was to just disable the
+normal interrupts and fall back to polling mode, as the PHY
+driver just use it for link detection and don't offer any
+advanced features like PTP (for now). But still get the system
+integrator a knob to opt-in to the old behavior on new device
+trees.
+
+>> Specifically you can't do the following: Have the same device
+>> tree and still being able to use it with a future PHY firmware
+>> update/revision. Because according to your suggestion, this
+>> won't have the interrupt property set. With this flag you can
+>> have the following cases:
+>>   (1) the interrupt information is there and can be used in the
+>>       future by non-broken PHY revisions,
+>>   (2) broken PHYs will ignore the interrupt line
+>>   (3) except the system designer opts-in with this flag (because
+>>       maybe this is the only PHY on the interrupt line etc).
 > 
-> It should be possible to solve this by adding the reset logic
-> into the of_syscon_register() function and using the
-> of_reset_control_get*() helpers instead of the devm_* ones,
-> but I'm not sure if that causes other problems with probe
-> order, or if that helps at all, if reset drivers already
-> require the device subsystem to be running.
-> 
-> Philipp, what is the earliest point at which
-> reset_controller_register() can be called? Is that
-> possible before postcore_initcall() or driver_register()?
+> I am not sure if I understand the case. You want to have a DTS with
+> interrupts and "maxlinear,use-broken-interrupts", where the latter will
+> be ignored by some future firmware?
 
-reset_controller_register() only initializes a few fields in the passed
-rcdev structure and adds it to a static list under a static mutex, so
-there's not much of a limit.
+Yes, that's correct.
 
-However, reset controllers that choose to register early without
-creating a platform device may run into issues with devlink inhibiting
-reset consumers' probe [1].
+> Isn't then the property not really correct? Broken for one firmware
+> on the same device, working for other firmware on the same device?
 
-[1] a1467faa1041 ("ARM: imx: register reset controller from a platform driver")
-    https://lore.kernel.org/linux-arm-kernel/20211005100618.730907-1-p.zabel@pengutronix.de/
+Arguable, but you can interpret "use broken-interrupts" as no-op
+if there are no broken interrupts.
 
-regards
-Philipp
+> I would assume that in such cases you (or bootloader or overlay)
+> should patch the DTS...
+
+I think this would turn the opt-in into an opt-out and we'd rely
+on the bootloader to workaround the erratum. Which isn't what we
+want here.
+
+-michael
