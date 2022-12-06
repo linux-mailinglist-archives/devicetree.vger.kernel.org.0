@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4702644F22
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 00:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93604644F24
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 00:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiLFXBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 18:01:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
+        id S229661AbiLFXBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 18:01:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiLFXBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 18:01:09 -0500
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1226E3E0A1
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 15:01:07 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id bj12so9893161ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 15:01:06 -0800 (PST)
+        with ESMTP id S229653AbiLFXBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 18:01:10 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557424A06B
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 15:01:08 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id a16so22499624edb.9
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 15:01:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qft8//kMGABEzNvs12O7aVK/fzWZWN06hWawnhLE2Vg=;
-        b=hRXHOlB/k0yfSyudbGNjHch+CQ0rwx5Qn2TWZ9gQ1ePaedMrhU7wUtUt+OzqcmWQJN
-         WWtiGF0GguBELGwfLdF0R9ZpmwKtsem0erUu5QaxUgPIrteo7rHdvvEoeHOenfms3MSY
-         mWPUXhZp1dcAvm5cnklPGkqkAMi8X4eGenq5DZPqrxKseFFkbAXkVQFPgmm8XGsPjksG
-         brZCILux8jVO2oQC1mkA8jXYBWNUC9LGynU7O61mIpgVF6FzVi8srwabNl48No2rnhh1
-         CHmen1mxuijFO14kqpywKa38/ohlUimsWRqXcTA5R2I9iubwUTXf1c4sWJj58BJIOqyG
-         /3IA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=waK5wVs7Hxj63T++mcTd6rjgYYGu6Rza9RGnKsblQEs=;
+        b=ufQh0/mWaHsYxBXJCDwfMBulsKQuXCMPLS3WDIl8W0Ildbwexuf9F4cZtN7yCAzT2z
+         RKjcx2uPlNoncma1YGj9FQy4QZAZS1568bVX9DmcC+WGdCaivpFBL1Q5aSec82ihBRdM
+         vmHEpg+P5H+MtL6butSvqzFVR8rVqQaaiywu5TpHsgJdlDokhCD4CLOd+q20oCrznr5R
+         tJjRQKWqpzPPAkNAZPmVMC3YayY+IybKBAprjbpl40+DW5uaXTVF2TrK2sqmorLyDaeK
+         Pc7n+QpsWQqp/7YK7yGp4D+UOOaDTEXhvn/AAblA00iPseFTAxE3eqdbdIlvDUMr1xkX
+         3smQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Qft8//kMGABEzNvs12O7aVK/fzWZWN06hWawnhLE2Vg=;
-        b=OQjwnbXZGv8tW5D+eF1DYoUa5vARmBvvSoIKYhkegDDR5g2wS97RNG52OqSEw7z53b
-         JspcJ3PoVe/OYUf0YsKgjHCdS1LMK/OE5MvMKXpfpq2b2Ln/vg1h35kBAvB0QDIysvyT
-         8ioWrvgl1P6Vk/6bXIKF/o5PWJrwggDLikFSFTcki32fVjix4T626emvX5MPdQ/UzfqZ
-         Z7nLepP631AcEISFoP2TO9lfK70GRUOeF6FXqNKuZUzlEcae8Nz2KrGpPbnZh5OZQqwE
-         LtHlhw6WnXns2F3GjXedo0biZ7LpkV+AmEx1wcH7+Ebysrx8mMT2prvLNlA+CSxi/Y6i
-         4aYw==
-X-Gm-Message-State: ANoB5pkem6uTgodnR9Z/fQNfhsyaEX4ImaLCC0SwK2jxjnU2kj4A3zog
-        rS+bo7zGYULxzAvExp0zo+pV0Q==
-X-Google-Smtp-Source: AA0mqf6fIn84ZYEXogY7xOf/YyPGqF9x+lw7U7dAX9fwWj2TBxDAwJTHCKjeXaV9pO98Sqk6m2QPhg==
-X-Received: by 2002:a17:906:70c2:b0:7ae:d58e:3a4a with SMTP id g2-20020a17090670c200b007aed58e3a4amr59367857ejk.332.1670367665577;
-        Tue, 06 Dec 2022 15:01:05 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=waK5wVs7Hxj63T++mcTd6rjgYYGu6Rza9RGnKsblQEs=;
+        b=wCgeTrtiVHPRpd4P+Cr5x0jDpsHhX9op5+uSkihDbeQv9fTtOuYRuYlNBRtdKL2GTT
+         5AySPuDD1n3Y7wNo/kCB2Yo4d5zY3iy8eTvSDIYpTIELc01jzFrznF16A6dJpG3aqd0c
+         MPwDIzaoNeoFoj16HmvZYG2silvgfKn6gXGle3TKWrb6C1fxCadZIQT8GkQXxK62fg+C
+         F0JZExPiv92N7HYMuZHRD5sPF9JvUmWWHFqiZwTdvPeWTSJUe/AB4sHsYdxdAcL8yPF0
+         ZZOZbI6bA9vNMaHEyJVEXHGRdImeEhPmhy1VcRcOfIPH6X04b1deh/itoJPANbTzyHzp
+         b7Yg==
+X-Gm-Message-State: ANoB5pklysggsCPVj8eQFjtt2LbVYu2kRg3T21lSUB+3TN+v5aCNfyJe
+        +B8DM1nigH0Q45hDF5oJnB6YMA==
+X-Google-Smtp-Source: AA0mqf5R9i6ENdFv1Ioh56/i62ePYfVdnBW+kU19DGH2ISKGhfdDErP+akV9DB6j8vUZr0GqDevk0A==
+X-Received: by 2002:aa7:c94a:0:b0:46b:74e1:872c with SMTP id h10-20020aa7c94a000000b0046b74e1872cmr31454706edt.301.1670367666724;
+        Tue, 06 Dec 2022 15:01:06 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id p10-20020a170906838a00b007c0dacbe00bsm4239320ejx.115.2022.12.06.15.01.04
+        by smtp.gmail.com with ESMTPSA id p10-20020a170906838a00b007c0dacbe00bsm4239320ejx.115.2022.12.06.15.01.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 15:01:05 -0800 (PST)
+        Tue, 06 Dec 2022 15:01:06 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -56,11 +57,14 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v7 00/10] arm64: dts: Add base device tree files for SM8550
-Date:   Wed,  7 Dec 2022 01:00:52 +0200
-Message-Id: <20221206230102.1521053-1-abel.vesa@linaro.org>
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v7 01/10] dt-bindings: arm: qcom: Document SM8550 SoC and boards
+Date:   Wed,  7 Dec 2022 01:00:53 +0200
+Message-Id: <20221206230102.1521053-2-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221206230102.1521053-1-abel.vesa@linaro.org>
+References: <20221206230102.1521053-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,56 +76,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds the base device tree files and MTP board support
-for the Qualcomm SM8550 SoC, including the clock, pinctrl, smmu,
-regulators, interconnect, cpufreq, and qup nodes.
+Document the SM8550 SoC binding and the MTP board.
 
-The SM8550 is the latest Qualcomm Mobile Platform.
-See more at:
-https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-8-Gen-2-Product-Brief.pdf
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-The v6 of this patchset is here:
-https://lore.kernel.org/all/20221206131252.977369-1-abel.vesa@linaro.org/
-
-Here is a branch where the entire support has been merged:
-https://git.codelinaro.org/linaro/qcomlt/linux/-/commits/topic/sm8550/next
-
-Abel Vesa (3):
-  dt-bindings: arm: qcom: Document SM8550 SoC and boards
-  arm64: dts: qcom: Add base SM8550 dtsi
-  arm64: dts: qcom: Add base SM8550 MTP dts
-
-Neil Armstrong (7):
-  arm64: dts: qcom: Add pm8010 pmic dtsi
-  arm64: dts: qcom: Add PM8550 pmic dtsi
-  arm64: dts: qcom: Add PM8550b pmic dtsi
-  arm64: dts: qcom: Add PM8550ve pmic dtsi
-  arm64: dts: qcom: Add PM8550vs pmic dtsi
-  arm64: dts: qcom: Add PMK8550 pmic dtsi
-  arm64: dts: qcom: Add PMR735d pmic dtsi
-
- .../devicetree/bindings/arm/qcom.yaml         |    6 +
- arch/arm64/boot/dts/qcom/Makefile             |    1 +
- arch/arm64/boot/dts/qcom/pm8010.dtsi          |   84 +
- arch/arm64/boot/dts/qcom/pm8550.dtsi          |   59 +
- arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   59 +
- arch/arm64/boot/dts/qcom/pm8550ve.dtsi        |   59 +
- arch/arm64/boot/dts/qcom/pm8550vs.dtsi        |  194 +
- arch/arm64/boot/dts/qcom/pmk8550.dtsi         |   55 +
- arch/arm64/boot/dts/qcom/pmr735d.dtsi         |  104 +
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  404 ++
- arch/arm64/boot/dts/qcom/sm8550.dtsi          | 3534 +++++++++++++++++
- 11 files changed, 4559 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pm8010.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pm8550.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pm8550b.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pm8550ve.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pm8550vs.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pmk8550.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pmr735d.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sm8550-mtp.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sm8550.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 463509f0f23a..4f0aa06402bf 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -68,6 +68,7 @@ description: |
+         sm8250
+         sm8350
+         sm8450
++        sm8550
+ 
+   The 'board' element must be one of the following strings:
+ 
+@@ -819,6 +820,11 @@ properties:
+               - sony,pdx223
+           - const: qcom,sm8450
+ 
++      - items:
++          - enum:
++              - qcom,sm8550-mtp
++          - const: qcom,sm8550
++
+   # Board compatibles go above
+ 
+   qcom,msm-id:
 -- 
 2.34.1
 
