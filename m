@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95F6B644835
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:43:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C4264483D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:44:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233884AbiLFPnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 10:43:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34364 "EHLO
+        id S234612AbiLFPoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 10:44:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232897AbiLFPnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:43:02 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B2A63DD;
-        Tue,  6 Dec 2022 07:43:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0C163B81AA6;
-        Tue,  6 Dec 2022 15:43:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85C8EC433C1;
-        Tue,  6 Dec 2022 15:42:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670341378;
-        bh=b/5+AO9U5t+K6P2Qc72IGGvfLNBkWTdkKVJBlGbBbqg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XW9NlZ0DGcOT577Q6XkL82z2pzFS61TaxTo/2qp6umxKWHM6XNBhYzrHaFgT72Cvi
-         JheV2qBoLC7xlJ4qQ6LhUSM5adgmQKarz+bAunznpmmJbVkTMKeIL/T8aB13Sgi4LL
-         JLwV6hJTkvwgy+k1Am6y5D0TyVOerx6Nl3+Z79cCbdwZ5n2d5NhKDDdQu5/43r5UMy
-         IhXw+wURveFx3VJCleJw02tutPVpaGfi+smUHIP7+dRTSQGAs+ro2m+1QHH2AkNMxk
-         wsu2CxraTZdSMWFKs6fPzuOHQlVkYn/DnYQSPufrEidZ0QMLGhn3WHSx53tV0Vp49s
-         xf1PAFhIlnhaw==
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        linux-pci@vger.kernel.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh@kernel.org>, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: (subset) [next v7 0/8] Add BananaPi R3
-Date:   Tue,  6 Dec 2022 16:42:50 +0100
-Message-Id: <167034135386.88271.140848740488398853.b4-ty@kernel.org>
+        with ESMTP id S234390AbiLFPoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:44:37 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D5323BE8
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:44:36 -0800 (PST)
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38F9E3D7;
+        Tue,  6 Dec 2022 16:44:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1670341474;
+        bh=k85/FyQKIAF6sQcWvkw9Yb7pvF/9cyawS4X4Y+zv0Mg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mpbxk/WUEO8FMns6YY9k5I9X3m4W68f1sWalJTK9B1J4Ws6y5RJG3t6suUQZmwS/4
+         ltEwA9POh8JHwJDZ1cfKKGGcPbEHX0a5fcRqqKW44heyz3PI7ZIGt1iAr6zCDjdeG0
+         QTDGwalhD654heW0PnHtYC2AzLT1fOBXKOluxCjU=
+From:   Daniel Scally <dan.scally@ideasonboard.com>
+To:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net,
+        Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH v5 0/3] Debix Model A board devicetree
+Date:   Tue,  6 Dec 2022 15:44:11 +0000
+Message-Id: <20221206154414.1461492-1-dan.scally@ideasonboard.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221127114142.156573-1-linux@fw-web.de>
-References: <20221127114142.156573-1-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Nov 2022 12:41:34 +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> This Series adds some Nodes to mt7986 devicetree and the BananaPi R3
-> 
-> This version is rebased on linux next from 2022/11/27.
-> 
-> i included sams series for mt7986 DTS with small changes
-> https://patchwork.kernel.org/project/linux-mediatek/cover/20220427124741.18245->
-> 
-> [...]
+Hello
 
-Applied to pci/dt, thanks!
+This series adds a .dts file for the Polyhex Debix Model A board [1]
+A binding for the vendor is also added.
 
-[3/8] dt-bindings: PCI: mediatek-gen3: add SoC based clock config
-      https://git.kernel.org/lpieralisi/pci/c/ec9eaf68c1dc
-[4/8] dt-bindings: PCI: mediatek-gen3: add support for mt7986
-      https://git.kernel.org/lpieralisi/pci/c/d3fd0ee7a4a1
+[1] http://www.polyhex.net/product/embedded-motherboard/board/nxp.html?id=483
 
-Thanks,
-Lorenzo
+Thanks
+Dan
+
+Daniel Scally (3):
+  dt-bindings: vendor-prefixes: Add Polyhex Technology Co.
+  dt-bindings: arm: fsl: Enumerate Debix Model A Board
+  arm64: dts: Add device tree for the Debix Model A Board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 509 ++++++++++++++++++
+ 4 files changed, 514 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+
+-- 
+2.34.1
+
