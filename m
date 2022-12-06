@@ -2,666 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3343F643E0A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFFC643E2E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:13:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231950AbiLFIFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:05:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41320 "EHLO
+        id S232490AbiLFINl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:13:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbiLFIFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:05:11 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2E11A38F
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:05:06 -0800 (PST)
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 055933D7;
-        Tue,  6 Dec 2022 09:05:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670313903;
-        bh=TnfLa0LCSiCBaBLASuaPdW87EkmGvtsqEeHkYHTQ9Q4=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To:From;
-        b=v3zCx+F1hAN6XL8ypb5TT/nmfZerv8JEzTqghEDRlBvYJ8U653C2y1IuExEJ36426
-         ZqqW2UWydvFJfc7ZAenzU2OuSLxugqkzHMbQALg7TcyDOcwDMzWDiB5uxNiYCINkEQ
-         iqNQ3kPkSOzutijFQN0JnoVm/hG/UeTEeW/p+f0Y=
-Message-ID: <c0d90ff9-2326-db80-6d8c-07cad39acac1@ideasonboard.com>
-Date:   Tue, 6 Dec 2022 08:05:00 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
+        with ESMTP id S232180AbiLFINk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:13:40 -0500
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2138.outbound.protection.outlook.com [40.107.114.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9F715FD7;
+        Tue,  6 Dec 2022 00:13:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N+GTyFA/jY7seS595o5i+B+XCp0KpQiC1wRo9RcfmcNFUz7k6aeFMHazIcd0TlFzNSPTUpf2G7FH2j5y1HU9QJSnTG2gxU8d2iRyusU6fRPG2G/oE9BTyUfPUxEE/Bf1ulD9CQqB/Dq3KlujW5wwP92ryRrj7cpjrW5a5ndrG3wpyrj9o7sLijBVLUHBneGE3b66/9Dz/7794qqnu9GumRU3gkt1zkv/cMom0zhI6L1esV0V4D+d08OFr4Vtd+jNr6fKFO0IeTcf1dSdy9n8FUzeIys1PiuXv9ZdbDCb921grkklISSOUyqqACd08mvkcIcTaPaKRb+yerrNEQd1nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ul5QtiMo/8ajwls2r8tW6PPe5AuI9U2HMnW4Vzq6s2A=;
+ b=iV+R+to3rNABD1SF2vCGiNr/D6XzPn1uOfCFtaZ3HrrIOHbl6H5JSRDYKOXohteeHrwA3R+KPG5i3agI0s0rhvrOnnKVQgytxxOMtQ2eNxAkSDriwPTvjtZHYdazFZcO3VHc2KkPwYHcKlYNQW+P2Em8r2EF9uhG8ihFMkDI2+6Fi6DH2cZs6pQEuvoTUoFW41DOtrrmjWd/sk/yGkf2z3/gimEZoYsALkD0PMygiUZG8fSrk++lKOQhxP2dvbRvI3V5KBslsBIxI2BdadfIdPqj8sdhCvewnOO5IePWyAKteTJ05QWJwrWyTQNmStlt9Qs3LVDaiFG9LEC4Xytx7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ul5QtiMo/8ajwls2r8tW6PPe5AuI9U2HMnW4Vzq6s2A=;
+ b=loX8Ur6pCoAQfe6MgU25W0dTSbyv3F/+Z81sG/H81shXglQ1badv5rt/cjt9K1VWSlC43SEvCbBOe7sy8cmnQ4WC/wSCdyfrB53u6xthnPbWte68AwA5iKkxk9AjBRMYsMwrjDFh5Qi6o+qAdF7aNQ2Y4Xe4j6CsPl5IUAC7b6M=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OS3PR01MB5942.jpnprd01.prod.outlook.com (2603:1096:604:c1::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Tue, 6 Dec
+ 2022 08:13:36 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::2cfb:38d2:d52e:c8a3]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::2cfb:38d2:d52e:c8a3%5]) with mapi id 15.20.5880.014; Tue, 6 Dec 2022
+ 08:13:36 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+Thread-Topic: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+Thread-Index: AQHZCLpBadXv7d6jXkypwu+29R+sIq5f5owAgACX9uA=
+Date:   Tue, 6 Dec 2022 08:13:36 +0000
+Message-ID: <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
+ <20221205225042.GA2812115-robh@kernel.org>
+In-Reply-To: <20221205225042.GA2812115-robh@kernel.org>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     krzysztof.kozlowski@linaro.org, robh@kernel.org,
-        marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        kieran.bingham@ideasonboard.com, debix-tech@polyhex.net
-References: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
- <20221017151050.2321919-4-dan.scally@ideasonboard.com>
- <20221029035029.GK125525@dragon>
-From:   Dan Scally <dan.scally@ideasonboard.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-In-Reply-To: <20221029035029.GK125525@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB5942:EE_
+x-ms-office365-filtering-correlation-id: 554f87ef-7f76-48f8-cc6a-08dad761c65c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9TlpsT4x3BqSjxxycnI4KNu44o4RkejMqATe6liaBdDQSoQO/W69bQ1IRXLIXARHCvxpyyEfvDOak3CNO9XyL01DDkliSsMxqDeTYxkhPwCFqA0msIsOBVfIOf7c6frp8pJIaVsdJGv7HN2V6iy7GsIiJXBQYphi5Kaf3waJzHFE9kWAMSubg2aFV6GpxeI3ERII/2Au38QX/mdFVXllGFCWczY3WQoHU6oDf9oKZU27ebVD1qGUxtURSHXnZYns/p67R7ew3R27rO9SSkWoZ6QOU6t35pXpm+v4LWJ9+Pshlc7CMFcjcAxc1/Vndg6/KjTVe+S/XEqw5YjCbC8s/U4j6Mddd6OlNGPmhng1e7roLkOxOSS/tLss0/xU5uRbKSlmCC9veDD4u7OzkkKx6hjKne/QMsbbKZcjgcsg7CxMdu3H8DFSJt3I0h3s7cCDIlHFENq5vhYLULbqNkDC0bMPl1H6pptc9y69JrCH4id1APjCXKwJMTIkD/p8L1kBCJx55m3ZML1rYXTv8Ilb1nzag0QEYmmS8ILVHAcHDqdW9V3Bhk0+AG+UfqrHwjUxPt4y6IQ6qZkSDai7yQx3P8ORtKuetRhZDYDbxNIYg24HCdH8jQyFVHW+SzjhOmk3rdKmQ2KvgDAK0oakgY1L9gSUi4kYBTOfDmF57kHUkst58eAuclYJC68hiTCD58H9w4iVRSlZwncSo9N+pJ8krQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(366004)(39860400002)(396003)(376002)(451199015)(83380400001)(7416002)(52536014)(86362001)(38070700005)(2906002)(33656002)(55016003)(8936002)(71200400001)(4326008)(8676002)(5660300002)(107886003)(64756008)(26005)(9686003)(6506007)(7696005)(316002)(6916009)(54906003)(186003)(41300700001)(66556008)(66476007)(76116006)(66946007)(66446008)(478600001)(38100700002)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?CT2F4rkMULzXUztCKqevXYyHiwabNkx7FDoRBqJmIUJSqs7ukwIcpt3xaJA0?=
+ =?us-ascii?Q?R6IBbR9s2WLJIojXk6/MMdajicRWUlqBXk72tkwopMNZrnykYrdhR/vvS4LO?=
+ =?us-ascii?Q?G/UMsFafGKDTeHZkCOLeVv7JdXRSsKuQECmnpSucNASKpHAyIQuQ4D3Mhtpy?=
+ =?us-ascii?Q?AAVhUS+9TO7GfQOWfvV5EZs6k5GrIupU/90mYDm3odBnkscNYh84UclZzfa+?=
+ =?us-ascii?Q?f9fvwhBAsA0FwzR6ON8kOUJzeb/HrNKGopBOcLamwLeBo9JZRgZF5aUYo4vi?=
+ =?us-ascii?Q?uFbrV5EjR2RHJtWnH3SWfZmwP6QXY986v7n6sms4pwJygKJVwMuMpSEUgcpC?=
+ =?us-ascii?Q?T8Ly1suReAiv13H3INnNI/9tRO6eQodZc2K4UaSnTjV+Kkoev7m3rxI+Ye6r?=
+ =?us-ascii?Q?+IsfsCPCTIcWa2fX6ri87xgdQGuMR9ELo5Px4iu8jjFq/bKIOMolLl/yU611?=
+ =?us-ascii?Q?S6AfOyE5BPdnS3w8L3bsABdRPgIJzuuLa9C1tGbbkSj+dvsqssT+QjHku8b2?=
+ =?us-ascii?Q?WQpCG4ABJ8krvWs2/b5WKB9E98nPr9jO+I4zQ7l2iw8XAY7WpFCID4OK4eo0?=
+ =?us-ascii?Q?+96/XTpOyhPGTfZB/M9G2Q6rdC4ZjDNrAlvYqtOhM8d0pZ+UNk+q4GxzJpiV?=
+ =?us-ascii?Q?Dem6HF1bw/B6+hMfUJovbddsTxR/dSJ4FxIXAGjusX2Z1DwP3SuVne5raRkJ?=
+ =?us-ascii?Q?wmzE35AldP9hdobDxmeaqK9Ya8wd2DN/wloJCXtHY6gEOp6D6NWUBBcXQhn4?=
+ =?us-ascii?Q?dXRzJXB0OerS6XGXir+BUwjDr1Z7hpcT4gT8rX64lIBtNRdjNN4bbrsy8vcu?=
+ =?us-ascii?Q?pEXlyA8t8D7kKASIFsz1K+ZV97eV3Z3FTZLhSSzQlYGzSn5CRfDsK7ZUeAVo?=
+ =?us-ascii?Q?FNCb2J8HEf2Xh+/sjouVwL2PbnyXKeWRuhl60RFzOygDUg+fWNSsafxk5PCz?=
+ =?us-ascii?Q?Cr4o843xSQUy9QNrAq6K5Qm9JDHPrwdGG6HO2zLjyBtm3XWJGsCW7OH2jnlq?=
+ =?us-ascii?Q?mnNedwIRNoLmUqIettWOwpmcJTZhawxebijMLpJ101F7dF04qr39jjQSPgmE?=
+ =?us-ascii?Q?dm4aub2QU0fOPB1BoiwJnHIHHqaa0Eh+5hkpzww2yVJd9gkIQ25HW89IV6me?=
+ =?us-ascii?Q?+LIkYUnEiNZKZFCfU855bGUnOUXIQuOVFLLthseyEUENlQEtQozlSPXeMcoW?=
+ =?us-ascii?Q?aIHyoNBBBWlpKNlajXsz5oVpr+K/pIFjFWJXx9f8UXLdsRGXB3277ww8qBdq?=
+ =?us-ascii?Q?gQISKo4WdZxv1feFSYWEju5edQdx/xUdYSZWtR29Sp2LrU5MErS9TvgtOKs4?=
+ =?us-ascii?Q?NTQaU0mYBs+ZffeKY1vm5J9xmuy9conZ03y8e/00iLNlGjJIiGTGmDRUnZh5?=
+ =?us-ascii?Q?xXxannFQTo7UTfA1MGp/keu+KEfpRdthXEzIJiPIl+wXwAd8vujgMhMBUSmK?=
+ =?us-ascii?Q?dLSIOspCTXSNuEkQU0ERKFGjQzHPoPHFp4DFUgB7B5pS0vSH6AIuDSqPnroV?=
+ =?us-ascii?Q?prkA3w+ev3xYBv0kchOK/7NEAORe/fb2ycBlR4dsZe8sLwBmzJ2W4+wS5TTn?=
+ =?us-ascii?Q?vBRWx11pZPgv1LIW09geMB/PO/Fqyw0PWi4mjxseJ2/zBcWFRCXxdy5yG/xy?=
+ =?us-ascii?Q?ow=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 554f87ef-7f76-48f8-cc6a-08dad761c65c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2022 08:13:36.5647
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ejSAqJ9TmHzKkj1jls5T17Vy3hwZnJ/OrKoM0mQ/uPQWJmK+U8K34WlIH/fIk5E69vkkhTgvrPI+BR5m9nC0aVGx3xea9z8n0xnZglCzCCk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5942
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn - sorry for the delay on this one
+Hi Rob,
 
-On 29/10/2022 04:50, Shawn Guo wrote:
-> On Mon, Oct 17, 2022 at 04:10:50PM +0100, Daniel Scally wrote:
->> Add a device tree file describing the Debix Model A board from
->> Polyhex Technology Co.
->>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Tested-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
->> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
->> ---
->> Changes in v4 (Laurent):
->>
->>          - Aligned the pinctrl group values with each other
->>
->> Changes in v3 (Laurent):
->>
->>      - Added IOB copyright notice
->>      - Removed the eth node for the connector that's on the separate I/O
->>      board
->>      - Re-ordered some pinctrl groups so they're alphabetical
->>
->> Changes in v2:
->>
->>      - Fixed the interrupt flag for i2c1/pmic@25
->>      - Fixed the node name for i2c4/rtc@51 (was "hym8563@51")
->>      - Fixed a group control name that didn't match the bindings pattern
->>      - Re-compared the rest of the DT with the EVK's .dts file to try to
->>      make sure it complies with the way things should be, hopefully without
->>      missing anything...
->>
->>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>   .../dts/freescale/imx8mp-debix-model-a.dts    | 529 ++++++++++++++++++
->>   2 files changed, 530 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->>
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index 8bf7f7ecebaa..6a33a08946ac 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -80,6 +80,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
->> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
->>   dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->> new file mode 100644
->> index 000000000000..92cbd6d2b73f
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
->> @@ -0,0 +1,529 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright 2019 NXP
->> + * Copyright 2022 Ideas on Board Oy
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/usb/pd.h>
->> +
->> +#include "imx8mp.dtsi"
->> +
->> +/ {
->> +	model = "Polyhex Debix Model A i.MX8MPlus board";
->> +	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
->> +
->> +	chosen {
->> +		stdout-path = &uart2;
->> +	};
->> +
->> +	gpio-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_gpio_led>;
->> +
->> +		status-led {
-> Did you run 'make dtbs_check'? The node name doesn't seem to match
-> pattern defined by leds-gpio.yaml.
+Thanks for the feedback.
 
-I did yes, it doesn't complain about this because the pattern matching 
-for leds-gpio has an "|led" in it, which is pretty broad. I'll switch to 
-the "led-0" form though.
+> Subject: Re: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+>=20
+> On Mon, Dec 05, 2022 at 02:59:49PM +0000, Biju Das wrote:
+> > This patch series aims to add support for Compare-Match Timer (TIM)
+> > module found on RZ/V2M SoC.
+> >
+> > it is composed of 32 channels and channels 0-7 and 24-32 are reserved
+> > for ISP usage.
+> >
+> > Channel 22 is modelled as clock source and Channel 23 is modelled as
+> > clock event driver and the rest of the channels are modelled as
+> > counter driver as it provides
+>=20
+> Why did you pick those 2 counters for those functions?
 
+Currently it uses architecture timer for broadcast timer, so I thought
+Since TIM has 24 channels, use 1 channel for broadcast timer and 1
+Channel for clock source. But having said that SoC has an aarch64 architect=
+ure
+clock source strictly speaking we don't need this.
 
->
->> +			function = LED_FUNCTION_POWER;
->> +			color = <LED_COLOR_ID_RED>;
->> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
->> +			default-state = "on";
->> +		};
->> +	};
->> +
->> +	reg_usdhc2_vmmc: regulator-usdhc2 {
->> +		compatible = "regulator-fixed";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
->> +		regulator-name = "VSD_3V3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +};
->> +
->> +&A53_0 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_1 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_2 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_3 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&eqos {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_eqos>;
->> +	phy-connection-type = "rgmii-id";
->> +	phy-handle = <&ethphy0>;
->> +	status = "okay";
->> +
->> +	mdio {
->> +		compatible = "snps,dwmac-mdio";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy0: ethernet-phy@0 {
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			reg = <0>;
->> +			reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
->> +			reset-assert-us = <20>;
->> +			reset-deassert-us = <200000>;
->> +		};
->> +	};
->> +};
->> +
->> +&i2c1 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c1>;
->> +	status = "okay";
->> +
->> +	pmic@25 {
->> +		reg = <0x25>;
->> +		compatible = "nxp,pca9450c";
-> We usually start properties with `compatible`.
+>=20
+> Unless the h/w blocks are different, this is an abuse of compatible
+> strings. What's the h/w difference that makes you care which counter the
+> OS picks? That's what the DT should describe. If any timer will do, just
+> let the OS pick.
 
+There is no HW difference. Same HW block can be used for mutually exclusive
+functionality.
 
-Ack
+One is for Linux Clock source/event functionality((scheduler tick/broadcast=
+ tick etc) and=20
 
->
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_pmic>;
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <3 IRQ_TYPE_EDGE_RISING>;
->> +
->> +		regulators {
->> +			buck1: BUCK1 {
->> +				regulator-name = "BUCK1";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <2187500>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +				regulator-ramp-delay = <3125>;
->> +			};
->> +
->> +			buck2: BUCK2 {
->> +				regulator-name = "BUCK2";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <2187500>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +				regulator-ramp-delay = <3125>;
->> +				nxp,dvs-run-voltage = <950000>;
->> +				nxp,dvs-standby-voltage = <850000>;
->> +			};
->> +
->> +			buck4: BUCK4{
->> +				regulator-name = "BUCK4";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			buck5: BUCK5{
->> +				regulator-name = "BUCK5";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			buck6: BUCK6 {
->> +				regulator-name = "BUCK6";
->> +				regulator-min-microvolt = <600000>;
->> +				regulator-max-microvolt = <3400000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo1: LDO1 {
->> +				regulator-name = "LDO1";
->> +				regulator-min-microvolt = <1600000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo2: LDO2 {
->> +				regulator-name = "LDO2";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <1150000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo3: LDO3 {
->> +				regulator-name = "LDO3";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo4: LDO4 {
->> +				regulator-name = "LDO4";
->> +				regulator-min-microvolt = <800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +
->> +			ldo5: LDO5 {
->> +				regulator-name = "LDO5";
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-boot-on;
->> +				regulator-always-on;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&i2c2 {
->> +	clock-frequency = <100000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c2>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c3 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c3>;
->> +	status = "okay";
->> +};
->> +
->> +&i2c4 {
->> +	clock-frequency = <100000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c4>;
->> +	status = "okay";
->> +
->> +	eeprom@50 {
->> +		compatible = "atmel,24c02";
->> +		reg = <0x50>;
->> +		pagesize = <16>;
->> +	};
->> +
->> +	rtc@51 {
->> +		compatible = "haoyu,hym8563";
->> +		reg = <0x51>;
->> +		#clock-cells = <0>;
->> +		clock-frequency = <32768>;
->> +		clock-output-names = "xin32k";
->> +		interrupt-parent = <&gpio2>;
->> +		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_rtc_int>;
->> +	};
->> +};
->> +
->> +&i2c6 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c6>;
->> +	status = "okay";
->> +};
->> +
->> +&iomuxc {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_hog>;
->> +
->> +	pinctrl_hog: hoggrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x400001c3
->> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA			0x400001c3
->> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD				0x40000019
->> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC				0x40000019
->> +		>;
->> +	};
->> +
->> +	pinctrl_eqos: eqosgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
->> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
->> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
->> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
->> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
->> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
->> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
->> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
->> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
->> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
->> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
->> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
->> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
->> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
->> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN			0x1f
->> +			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_fec: fecgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
->> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
->> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
->> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
->> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
->> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
->> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
->> +			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
->> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
->> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_gpio_led: gpioledgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c1: i2c1grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c2: i2c2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c3: i2c3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
->> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
->> +		>;
->> +	};
-> Missing newline.
+the other purpose is to expose count and event ticks from this module to us=
+er space,
+so that wide range of applications can make use of it.
 
+If it is an abuse of compatible strings for mutually exclusive functionalit=
+y
+, then I would like to drop clock source and use all the channels as=20
+Either clock events(for broadcast ticks and real time usage??) or as counte=
+rs.
 
-Thanks!
+If this is not OK, then I need to pick one. I will go with counters.
 
->
-> Shawn
->
->> +	pinctrl_i2c4: i2c4grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c3
->> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c3
->> +		>;
->> +	};
->> +
->> +	pinctrl_i2c6: i2c6grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL				0x400001c3
->> +			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA					0x400001c3
->> +		>;
->> +	};
->> +
->> +	pinctrl_pmic: pmicirqgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
->> +		>;
->> +	};
->> +
->> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x41
->> +		>;
->> +	};
->> +
->> +	pinctrl_rtc_int: rtcintgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x140
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart2: uart2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x14f
->> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x14f
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart3: uart3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x49
->> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x49
->> +		>;
->> +	};
->> +
->> +	pinctrl_uart4: uart4grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX				0x49
->> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
->> +		>;
->> +	};
->> +
->> +	pinctrl_usb1_vbus: usb1grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25				0x19
->> +			MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26				0x19
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2: usdhc2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
->> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
->> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
->> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3: usdhc3grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x190
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d0
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d0
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d0
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d0
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x190
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x194
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d4
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d4
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d4
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d4
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x194
->> +		>;
->> +	};
->> +
->> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x196
->> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d6
->> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d6
->> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d6
->> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d6
->> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x196
->> +		>;
->> +	};
->> +
->> +	pinctrl_wdog: wdoggrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B				0xc6
->> +		>;
->> +	};
->> +};
->> +
->> +&snvs_pwrkey {
->> +	status = "okay";
->> +};
->> +
->> +&uart2 {
->> +	/* console */
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart2>;
->> +	status = "okay";
->> +};
->> +
->> +&uart3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart3>;
->> +	status = "okay";
->> +};
->> +
->> +&uart4 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart4>;
->> +	status = "okay";
->> +};
->> +
->> +/* SD Card */
->> +&usdhc2 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
->> +	assigned-clock-rates = <400000000>;
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
->> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
->> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
->> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
->> +	vmmc-supply = <&reg_usdhc2_vmmc>;
->> +	bus-width = <4>;
->> +	status = "okay";
->> +};
->> +
->> +/* eMMc */
->> +&usdhc3 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
->> +	assigned-clock-rates = <400000000>;
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc3>;
->> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
->> +	bus-width = <8>;
->> +	non-removable;
->> +	status = "okay";
->> +};
->> +
->> +&wdog1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_wdog>;
->> +	fsl,ext-reset-output;
->> +	status = "okay";
->> +};
->> -- 
->> 2.34.1
->>
+Please share your thoughts.
+
+>=20
+> >
+> > 1) counter for counting
+> > 2) configurable counter value for generating timer interrupt
+> > 3) userspace event for each interrupt.
+> >
+> > logs:-
+> > Counter driver:
+> > Counter driver is tested by reading counts and interrupts tested by
+> > counter-example in tools/counter/counter_example.c
+> >
+> > Count snapshot value:
+> > 3114
+> > Output from counter_example when it triggers interrupts:
+> > Timestamp 0: 24142152969        Count 0: 5
+> > Error Message 0: Success
+> >
+> > Clock source:
+> > Clock source driver is tested by clock-source-switch app.
+> > [ 1275.703567] clocksource: Switched to clocksource arch_sys_counter
+> > [ 1275.710189] clocksource: Switched to clocksource a4000b00.timer
+>=20
+> Do you have any use case to really switch. Doing so disables the vDSO
+> access to the clocksource.
+
+Not really. Architecture timer should be sufficient for clocksource.
+
+Cheers,
+Biju
