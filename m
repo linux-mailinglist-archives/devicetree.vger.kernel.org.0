@@ -2,77 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D01644DBF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:06:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34225644DD1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:15:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiLFVF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 16:05:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52084 "EHLO
+        id S229696AbiLFVPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 16:15:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbiLFVFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:05:54 -0500
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32794664D
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 13:05:52 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id b2so9363165eja.7
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 13:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=APf10OLY3mtfkubRJpUpc31SrBMFn3lxX7iZQ4xQ0uY=;
-        b=uJxN7aR8O0reHgZqy5XrHVCw+sJmg6R+/LQxbxKqFqbQSP8UQ2b4/gOyrMCGfqn6IQ
-         c+BWInM1Z/XSvIdUG94juJMGpfsuXm6rUqu0aAV59xrZ2qBE4VxINCYJxAChyNdQB3Zm
-         mQA9FVnz20Gkt6jraTOsHWEgtlF9M201ZlvMzvZbu/DVKyyOdRJkQNz9iKrP3dtWMglN
-         /VPP4BkAkunhMhELA3vPLrG1nI5Ki3H9q1gHN+baWObClFN0r9Py4MRCFBHabRIPr4s9
-         vfcDhn6IWoocW9iDuB8NHTiTJ8VAqo4QA66fA/+ig6LUMfZkFVULUNRsUoW6DSVo8DTF
-         OP/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=APf10OLY3mtfkubRJpUpc31SrBMFn3lxX7iZQ4xQ0uY=;
-        b=FP+9/Zmxni06nRpeOT/XahUJ1DEMgOGWl5MF/r1DkxtOJjn6gTjUdJOFHjE/7qgw9N
-         Zxx9OfEwIwfAeyBaHLxkbFws8V0HICZEypAKm25BoOCojEnv4ovTY5R838f8jD0Bbveb
-         cDatASWoYGa5GGU+ZxbG8C1x0jwvMaLlUXfeM6c/02BS5gLLkS/9AVvsKxIlmVsUfxXe
-         1RLTlvIMeQLRWjVUzaU0Ar8w3u8hjm42X/oeeSfAmvNINszVwtn+P1PAVGBgmragbl1G
-         RZF6rRN1829UR5dy9jUMKkqnpbd2EKvjXGj4lWTKTP1TI5UAEKk/NSeLNZVqGvHMfaKL
-         WTeg==
-X-Gm-Message-State: ANoB5pkwnFLb9B96Ir19kDGbGraW0zk/8m0E9xijjfYBXN/rYvCpF4MJ
-        h1zFyPsjWbg60RTx09jSN+OavQ==
-X-Google-Smtp-Source: AA0mqf79uoBOQY684/QmNa2+BoMpjxGm4zltJT+RZlCgB1c74qUxAPgSy30cjKv8BUL5p3Qu7hErYw==
-X-Received: by 2002:a17:906:9c89:b0:7c1:1e5b:1db8 with SMTP id fj9-20020a1709069c8900b007c11e5b1db8mr56558ejc.39.1670360751543;
-        Tue, 06 Dec 2022 13:05:51 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id g1-20020a17090604c100b0073dc5bb7c32sm7762462eja.64.2022.12.06.13.05.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 13:05:51 -0800 (PST)
-Date:   Tue, 6 Dec 2022 23:05:49 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
-Message-ID: <Y4+urc4ZM42zflkk@linaro.org>
-References: <20221206125635.952114-1-abel.vesa@linaro.org>
- <20221206125635.952114-2-abel.vesa@linaro.org>
- <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
+        with ESMTP id S229629AbiLFVPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:15:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F9345A05;
+        Tue,  6 Dec 2022 13:15:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EC9E61903;
+        Tue,  6 Dec 2022 21:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BE07C433D7;
+        Tue,  6 Dec 2022 21:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670361311;
+        bh=QsrwkULmCSGGL3KXp7LQHjj62qmPxZ7cMQGjNXHrytU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gVaZuDyChfMqolC3EMzITcIahCmdOBYBYPsE+ouM8MK4tCUYFjpf9W9QSB1BVZnzQ
+         GslUmtDAufGU+Te3jRDKayDNrCYoKnGWsRtQra9dLdCC7gtPp+jUHd1hHOxpmchi9Y
+         tp6BA8AcuzffPr+TJmJASoYgcmaaUzJm4wldcZaLN3ILU+35lKPpjZcr0ko2k2cFyA
+         EIT3OpZcWkysj2q9Vvac5+LGd4m4U4ICXl9aKqk1GS9NU8t597k9LskbfQ2caEjzlJ
+         9HKEa2GjE6748ekYIBuH5YTQfDAf6V0SKdARlrJlzmqR7T1Xb62vOGXgY9/xgzLXoo
+         oPVCXVlQ5ON/g==
+Received: by mail-vs1-f42.google.com with SMTP id c184so15464788vsc.3;
+        Tue, 06 Dec 2022 13:15:11 -0800 (PST)
+X-Gm-Message-State: ANoB5pk+efxzJl7ngY/kjoV0kDwC8XQ9cQw2gMMfdMOyAFIodS5VauRV
+        QQ2i+FfUcTVhixZZWMvpeMkfbX9NKbVuE7R0Ng==
+X-Google-Smtp-Source: AA0mqf7o4y8r4F6Icn2YZm1TOiWT+1+sXM/NS1oROlDRjJLLjahgyIBX9VHa2gcsSR+5hapr3z1zvf63AHIsOw4RHuY=
+X-Received: by 2002:a67:c40e:0:b0:3b1:4b76:5b44 with SMTP id
+ c14-20020a67c40e000000b003b14b765b44mr4681883vsk.53.1670361310470; Tue, 06
+ Dec 2022 13:15:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
+ <Y3ap1o2SbNvFw8Vd@orome> <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
+ <Y49xg7wptRweHd4I@orome>
+In-Reply-To: <Y49xg7wptRweHd4I@orome>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Dec 2022 15:14:58 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
+Message-ID: <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sergey Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
+        mmaddireddy@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,53 +67,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-12-06 16:35:16, Krzysztof Kozlowski wrote:
-> On 06/12/2022 13:56, Abel Vesa wrote:
-> > Add bindings documentation for clock TCSR driver on SM8550.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
-> >  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
-> >  2 files changed, 71 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> >  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> > new file mode 100644
-> > index 000000000000..15176b0457d1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> > @@ -0,0 +1,53 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsr.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm TCSR Clock Controller on SM8550
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +
-> > +description: |
-> > +  Qualcomm TCSR clock control module provides the clocks, resets and
-> > +  power domains on SM8550
-> > +
-> > +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,sm8550-tcsr
-> 
-> This still misses syscon. Did you send it before we talk on IRC?
+On Tue, Dec 6, 2022 at 10:44 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> On Mon, Dec 05, 2022 at 05:41:55PM -0600, Rob Herring wrote:
+> > On Thu, Nov 17, 2022 at 3:38 PM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > >
+> > > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
+> > > > From: Vidya Sagar <vidyas@nvidia.com>
+> > > >
+> > > > Add support for ECAM aperture that is only supported for Tegra234
+> > > > devices.
+> > > >
+> > > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> > > > Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > ---
+> > > > Changes since V2:
+> > > > - Avoid duplication of reg items and reg-names
+> > > > Changes since V1:
+> > > > - Restricted the ECAM aperture to only Tegra234 devices that support it.
+> > > >
+> > > >  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
+> > > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+> > > >  2 files changed, 33 insertions(+), 3 deletions(-)
+> > >
+> > > Both patches applied now.
+> >
+> > linux-next now fails with this. I suspect it is due to Sergey's
+> > changes to the DWC schema.
+> >
+> > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > fixed:
+> >         'dbi' was expected
+> >         'dbi2' was expected
+> >         'ecam' is not one of ['elbi', 'app']
+> >         'atu' was expected
+> >         'dma' was expected
+> >         'phy' was expected
+> >         'config' was expected
+> >         /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > fixed:
+> >                 'ecam' is not one of ['apb', 'mgmt', 'link', 'ulreg', 'appl']
+> >                 'ecam' is not one of ['atu_dma']
+> >                 'ecam' is not one of ['smu', 'mpu']
+> >         From schema:
+> > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+>
+> Stephen reported the other day that he wasn't able to resolve this
+> conflict in linux-next, so he dropped the ECAM bits. The ECAM patch has
+> now propagated to ARM SoC so it can't be easily backed out, but I guess
+> we could revert on that tree and instead apply the patch to the DT tree
+> and resolve the conflict there.
+>
+> I guess the better alternative would be to try and resolve the merge
+> properly and let Stephen (and Linus) know.
 
-Oups, I forgot to squash that part in.
+Instead, can you prepare a patch on top of Sergey's adding a 'oneOf'
+entry with 'ecam'. As this is a new thing, it should have its own
+entry. Then when merging, we just throw out the change from your side.
 
-Will send a new version.
+I'd really prefer that bindings don't go thru the soc tree unless
+there's some strong reason. The default is to go via the subsystem
+trees. Beyond 'we are running the dtschema checks on all our dts files
+and can't have the warnings', I don't know what that would be. I wish
+everyone was doing that, but I'm pretty sure most are not.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Rob
