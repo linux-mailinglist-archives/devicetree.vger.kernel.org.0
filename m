@@ -2,205 +2,375 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40645644919
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 17:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2170644920
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 17:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234811AbiLFQVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 11:21:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
+        id S229780AbiLFQZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 11:25:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234794AbiLFQVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 11:21:32 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE4F1A1
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 08:19:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1670343575;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=95B8jA1kUqCpFMTm4ShvxX3NFN/etc7ByfObmPR7SeM=;
-        b=d4OIcTmnvRqFCM54ghqs00QFZxYP9OQ8OFD+RX7vq9wjDBPxl/0jQbMg0i/5iavckzkNCi
-        tv78bT6h843+KoaGSp9aBlHcQDsxDo3Bj/NEr330OMYRxHSUTe4N+PspmLvkYBOi7jCv9s
-        UgSOugJkn3C1Zi79oBWi9YHYaTIohx8=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-542-cpG_KdLoOvWh8NSXj-UKzw-1; Tue, 06 Dec 2022 11:19:32 -0500
-X-MC-Unique: cpG_KdLoOvWh8NSXj-UKzw-1
-Received: by mail-qv1-f72.google.com with SMTP id w1-20020a056214012100b004c6ecf32001so32757423qvs.8
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 08:19:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=95B8jA1kUqCpFMTm4ShvxX3NFN/etc7ByfObmPR7SeM=;
-        b=tS3zn9WiI71pW8GL3xGPwslMxmF1+pZfUljuKD2UuMK6NRvNLQutWmAkb91Le/ToBA
-         TC4M6xppEEBErkuzBWRfpHThoDZVfZDTDS7wyLodt787N9070ULfqwh9iKzf+Ky/M7Od
-         sK0vZ8GjapaXH9osTPRRRs4k2+zr6SbCeGxLBHmGUh1C8EKVnUsCbEnuCXr/UEOz2LGK
-         bpmUF3pT0YcmCBNfvd952pAQCbeuQLjqyBAQ2NVtZnVxkT55Asq+E9lJqWU0PWbgPpV4
-         DQ1jdWh+sWhm+aMzNWABAesIzEl+fdhtCIDaeAIdWR+GujVdpovEzCuW8t1j4FnCvx6v
-         nHOg==
-X-Gm-Message-State: ANoB5pl1fVLlCIVTQu7p5wy7HLYyVQZxOgGMvYFnrjcyhqrUBauUFOMt
-        FaKnShywzd2p/XNUbdnOxXxqoT8nt2tIqhCJnSrKt7WMix7fRcMlWK8HAUHC+6K2vEO+rcMc4vc
-        wt9E/skMNXshzxEbfb5dN7w==
-X-Received: by 2002:ac8:7542:0:b0:3a5:c5c1:43ff with SMTP id b2-20020ac87542000000b003a5c5c143ffmr67114668qtr.312.1670343569298;
-        Tue, 06 Dec 2022 08:19:29 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf49vR+++05b4uFXu6ATeKJjLwqI9dPd1rS6ITiN8XeTe9nr5JMY3djLwK4hc3bKkqjsD4KK3g==
-X-Received: by 2002:ac8:7542:0:b0:3a5:c5c1:43ff with SMTP id b2-20020ac87542000000b003a5c5c143ffmr67114532qtr.312.1670343567557;
-        Tue, 06 Dec 2022 08:19:27 -0800 (PST)
-Received: from x1.redhat.com (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
-        by smtp.gmail.com with ESMTPSA id d7-20020a05620a240700b006feba101f85sm5883529qkn.13.2022.12.06.08.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 08:19:27 -0800 (PST)
-From:   Brian Masney <bmasney@redhat.com>
-To:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_shazhuss@quicinc.com,
-        psodagud@quicinc.com, ahalaney@redhat.com, echanude@redhat.com
-Subject: [PATCH v4] arm64: dts: qcom: sa8540p-ride: enable PCIe support
-Date:   Tue,  6 Dec 2022 11:19:16 -0500
-Message-Id: <20221206161916.315640-1-bmasney@redhat.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S231255AbiLFQZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 11:25:01 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F07F811A28
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 08:24:59 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p2akW-0003Bf-Fy; Tue, 06 Dec 2022 17:24:52 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1p2akT-0005IK-0h; Tue, 06 Dec 2022 17:24:49 +0100
+Date:   Tue, 6 Dec 2022 17:24:48 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Daniel Scally <dan.scally@ideasonboard.com>
+Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
+        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v5 3/3] arm64: dts: Add device tree for the Debix Model A
+ Board
+Message-ID: <20221206162448.5hq4l3tifu5mlmhh@pengutronix.de>
+References: <20221206154414.1461492-1-dan.scally@ideasonboard.com>
+ <20221206154414.1461492-4-dan.scally@ideasonboard.com>
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221206154414.1461492-4-dan.scally@ideasonboard.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the vreg_l11a, pcie3a, pcie3a_phy, and tlmm nodes that are necessary
-in order to get PCIe working on the QDrive3.
+Hi Daniel,
 
-This patch also increases the width of the ranges property for the PCIe
-switch that's found on this platform. Note that this change requires
-the latest trustzone (TZ) firmware that's available from Qualcomm as
-of November 2022. If this is used against a board with the older
-firmware, then the board will go into ramdump mode when PCIe is probed
-on startup.
+sorry for jumping in that late, please see my comment(s) inline.
 
-The ranges property is overridden in this sa8540p-ride.dts file since
-this is what's used to describe the QDrive3 variant with dual SoCs.
-There's another variant of this board that only has a single SoC where
-this change is not applicable, and hence why this specific change was
-not done in sa8540p.dtsi.
+On 22-12-06, Daniel Scally wrote:
+> Add a device tree file describing the Debix Model A board from
+> Polyhex Technology Co.
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Tested-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v5:
+> 
+>         - Fixed some formatting (blank lines, compatible property order) (Shawn)
+>         - Renamed the led nodes (Shawn)
+>         - Added the less specific compatible string (Ahmad)
+>         - Added a comment describing the eth phy (Ahmad)
+>         - Removed some elements that turn out to be unused (Ahmad)
 
-These changes were derived from various patches that Qualcomm
-delivered to Red Hat in a downstream kernel.
+It would be cool to see the whole history.
 
-Signed-off-by: Brian Masney <bmasney@redhat.com>
-Tested-by: Andrew Halaney <ahalaney@redhat.com>
-Tested-by: Shazad Hussain <quic_shazhuss@quicinc.com>
----
-Changes since v3:
-- Move tlmm node to bottom of file and add PINCTRL comment (Johan)
-- Collect Tested-by tags from Andrew and Shazad
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/imx8mp-debix-model-a.dts    | 509 ++++++++++++++++++
+>  2 files changed, 510 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
 
-Changes since v2:
-- Dropped regulator-allow-set-load (Bjorn)
-- Updated first member of ranges property to match downstream:
-  s/0x32200000/0x40200000/ (Andrew)
+...
 
-Changes since v1:
-- Add -state and -pins suffixes to tlmm (Krzysztof)
+> +&iomuxc {
+> +	pinctrl-names = "default";
 
-This patch depends on the following series that hasn't made it's way
-into linux-next yet:
+This is useless if you have no pinctrl-0.
 
-[PATCH v10 0/2] arm64: dts: qcom: add dts for sa8540p-ride board
-https://lore.kernel.org/lkml/20221118025158.16902-1-quic_ppareek@quicinc.com/
+> +	pinctrl_eqos: eqosgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
+> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x3
+> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x91
+> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x91
+> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x91
+> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x91
+> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x91
+> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x91
+> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x1f
+> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x1f
+> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x1f
+> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x1f
+> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x1f
+> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x1f
+> +			MX8MP_IOMUXC_SAI1_RXFS__ENET1_1588_EVENT0_IN			0x1f
+> +			MX8MP_IOMUXC_SAI1_RXC__ENET1_1588_EVENT0_OUT			0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18				0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_fec: fecgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI1_RXD2__ENET1_MDC				0x3
+> +			MX8MP_IOMUXC_SAI1_RXD3__ENET1_MDIO				0x3
+> +			MX8MP_IOMUXC_SAI1_RXD4__ENET1_RGMII_RD0				0x91
+> +			MX8MP_IOMUXC_SAI1_RXD5__ENET1_RGMII_RD1				0x91
+> +			MX8MP_IOMUXC_SAI1_RXD6__ENET1_RGMII_RD2				0x91
+> +			MX8MP_IOMUXC_SAI1_RXD7__ENET1_RGMII_RD3				0x91
+> +			MX8MP_IOMUXC_SAI1_TXC__ENET1_RGMII_RXC				0x91
+> +			MX8MP_IOMUXC_SAI1_TXFS__ENET1_RGMII_RX_CTL			0x91
+> +			MX8MP_IOMUXC_SAI1_TXD0__ENET1_RGMII_TD0				0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD1__ENET1_RGMII_TD1				0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD2__ENET1_RGMII_TD2				0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD3__ENET1_RGMII_TD3				0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD4__ENET1_RGMII_TX_CTL			0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD5__ENET1_RGMII_TXC				0x1f
+> +			MX8MP_IOMUXC_SAI1_RXD1__ENET1_1588_EVENT1_OUT			0x1f
+> +			MX8MP_IOMUXC_SAI1_RXD0__ENET1_1588_EVENT1_IN			0x1f
+> +			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19				0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_gpio_led: gpioledgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16				0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL					0x400001c2
+> +			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA					0x400001c2
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL					0x400001c2
+> +			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA					0x400001c2
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c3: i2c3grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL					0x400001c2
+> +			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA					0x400001c2
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c4: i2c4grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c3
+> +			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c6: i2c6grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI5_RXFS__I2C6_SCL				0x400001c3
+> +			MX8MP_IOMUXC_SAI5_RXC__I2C6_SDA					0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_pmic: pmicirqgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03				0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19				0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_rtc_int: rtcintgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x140
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart2: uart2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX				0x14f
+> +			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX				0x14f
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart3: uart3grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX				0x49
+> +			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX				0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart4: uart4grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_UART4_RXD__UART4_DCE_RX				0x49
+> +			MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x194
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d4
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d4
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x196
+> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d6
+> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d6
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12				0x1c4
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3: usdhc3grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x190
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d0
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d0
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d0
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d0
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d0
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d0
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x190
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x194
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d4
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d4
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d4
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d4
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d4
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d4
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x194
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x196
+> +			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD				0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0				0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1				0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2				0x1d6
+> +			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3				0x1d6
+> +			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4				0x1d6
+> +			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5				0x1d6
+> +			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6				0x1d6
+> +			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7				0x1d6
+> +			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE				0x196
+> +		>;
+> +	};
+> +
+> +	pinctrl_wdog: wdoggrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B				0xc6
+> +		>;
+> +	};
+> +};
 
-I can't find the specific TZ firmware version that we have so that's why
-I included the date instead.
+We order the DTS alphabetical but the iomuxc is the only exception here.
+Since this is very long it is quite common to put it at the end.
 
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 55 +++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Regards,
+  Marco
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index a5f87a8629d6..bb4afd3a9632 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -51,6 +51,13 @@ vreg_l7a: ldo7 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l11a: ldo11 {
-+			regulator-name = "vreg_l11a";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
- 		vreg_l13a: ldo13 {
- 			regulator-name = "vreg_l13a";
- 			regulator-min-microvolt = <3072000>;
-@@ -139,6 +146,27 @@ vreg_l8g: ldo8 {
- 	};
- };
- 
-+&pcie3a {
-+	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
-+	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
-+	         <0x03000000 0x6 0x00000000 0x6 0x00000000 0x2 0x00000000>;
-+
-+	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie3a_default>;
-+
-+	status = "okay";
-+};
-+
-+&pcie3a_phy {
-+	vdda-phy-supply = <&vreg_l11a>;
-+	vdda-pll-supply = <&vreg_l3a>;
-+
-+	status = "okay";
-+};
-+
- &qup2 {
- 	status = "okay";
- };
-@@ -215,3 +243,30 @@ &usb_2_qmpphy0 {
- &xo_board_clk {
- 	clock-frequency = <38400000>;
- };
-+
-+/* PINCTRL */
-+
-+&tlmm {
-+	pcie3a_default: pcie3a-default-state {
-+		perst-pins {
-+			pins = "gpio151";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		clkreq-pins {
-+			pins = "gpio150";
-+			function = "pcie3a_clkreq";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		wake-pins {
-+			pins = "gpio56";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
--- 
-2.38.1
-
+> +
+> +&snvs_pwrkey {
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	/* console */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart2>;
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart3>;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart4>;
+> +	status = "okay";
+> +};
+> +
+> +/* SD Card */
+> +&usdhc2 {
+> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
+> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply = <&reg_usdhc2_vmmc>;
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
+> +
+> +/* eMMC */
+> +&usdhc3 {
+> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
+> +	assigned-clock-rates = <400000000>;
+> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+> +	pinctrl-0 = <&pinctrl_usdhc3>;
+> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
+> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	status = "okay";
+> +};
+> +
+> +&wdog1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_wdog>;
+> +	fsl,ext-reset-output;
+> +	status = "okay";
+> +};
+> -- 
+> 2.34.1
+> 
+> 
+> 
