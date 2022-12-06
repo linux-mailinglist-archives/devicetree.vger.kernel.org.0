@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EAD6644A4E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A67644A7A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:40:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234997AbiLFRbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 12:31:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32808 "EHLO
+        id S234594AbiLFRkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 12:40:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231641AbiLFRbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:31:07 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0715D32064
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 09:31:04 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id a16so21275529edb.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 09:31:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n+3e6H+rNc43BYKP5QkPBUPguk9yv8mtPl4Zi9TTV2M=;
-        b=RHo82ZeUKPpZm++b23/Vi01vKGRZbpzPstVySQnDsmBFjqptsTHMkdlt5NDuUcCjLJ
-         D+dQDJA16twpkFpjMRPfNUcCVLS7OBRiBBJ7UrlQ4Byu/mINP+boanGRQuqFFMr8IT7k
-         yjQhN5ZGdSzRfLgxMiHNCrsRlRuGLg5GMlcE1fOC0aUQiTpGoVSqLl6eI/2HzUjcs4yr
-         mTq9hJ+LvS2JPtHslPhw56nbUEklefcTDStYfKjvQdNdFw+lJ8i9PhjiPkyd9JCCeYM/
-         VkCa1mTs10BWvMrFl/koSxmJQitrGybtGFVQPX+mf8AZ+mqS2zqgZAT3HxUdux+yQk01
-         oW6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n+3e6H+rNc43BYKP5QkPBUPguk9yv8mtPl4Zi9TTV2M=;
-        b=SS1mCiQPGBjtlQnwDqH9IpkZs15b5Pa0wYOXmEjyJ48xzVFinJupIPVNOEt/92yXlg
-         RYnPdOs5nYKN0S40ow++87/ov/2xqalL0m1CTSpn3PGIlNA691YaJxHDrszpBuJvSYe5
-         y2OrH55mwXQcqRoaf4ZxGEBq5jm+scZFQgUEqiHjFsxTZFbxjKNFHE5c849HtcrnOKEI
-         6PXx3KdLrwkIw+apB65RuompJPZ1qVgI97iOS7sZz+XVk5bIcMLqkLDnIXFC9tD9s0BS
-         CBLh+8s/3ZAvFZ7doXGnVvRi7pjUw09FNUkfNV7uhLvo7T10KUJupWntCJwy2oCiLY51
-         zfVQ==
-X-Gm-Message-State: ANoB5plZXbZHwVLCFZGJyEwalbhnMFp6Ypayp4ppTfGg+s1CFEYWVLHM
-        /GJGVT5OO0J/JyLkCpn2uqrGHRKV7jA3jFuopaRmFPi21xXatwps
-X-Google-Smtp-Source: AA0mqf5z3H2sENvjKeFsCcR7szkuQlYRa/2GaINCxycrZ2LS0FpYc8bKkNTO7AkvuYIqloOUkv/rK/xOygercDPdtGM=
-X-Received: by 2002:a05:6402:538e:b0:468:ea55:ab40 with SMTP id
- ew14-20020a056402538e00b00468ea55ab40mr1832454edb.323.1670347862529; Tue, 06
- Dec 2022 09:31:02 -0800 (PST)
+        with ESMTP id S235513AbiLFRkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:40:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDF53C6E9;
+        Tue,  6 Dec 2022 09:39:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 36286B81AE2;
+        Tue,  6 Dec 2022 17:39:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E956EC433D7;
+        Tue,  6 Dec 2022 17:39:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670348346;
+        bh=+tdEznI/g0L7siq0SlLmZAepq7d3jTdsbku3dgHfOfE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YYo1ndUG1+bV2uRuoYCxh78TVHlUUOMKcPeNRetKFQNjwXSsggo+aWkaw+7M0yud1
+         MP0scbJIDw7a9FrEnCc8ex7H3/HLqyB3rd2n7nqha+tCiRd6pyk1GhI/QvcVgGNb6q
+         ZY6xkFhiw2L+baF3WJlOACspyLwb6E1O+nZntdK6pTKDQ3jxR0sSEuOwCdejoTHu8E
+         l747il4hWHyftjyDkli6B97TuWZ789rgr6qK8rYFVodUrDzmUfvYeB1azXeqj7rn0k
+         uxL3BT9zervvZB4JwIwU2k0XXyF17jTXf1rxwhtxboNNcI3zKCy21FFXKGiEeGWn16
+         jZkBQVdcJuE/Q==
+Received: by mail-vs1-f51.google.com with SMTP id 3so14026976vsq.7;
+        Tue, 06 Dec 2022 09:39:06 -0800 (PST)
+X-Gm-Message-State: ANoB5pmN1oZ/BLc9Dyp+w5ZMoIoBMZpXHoggscs4AR8VtFD/JDfC5ijD
+        wuTStZHlQ+nzFYbSI5Uw8Qj1MEFU76YmKTM3Fg==
+X-Google-Smtp-Source: AA0mqf4PpwoI1ggVpjpVZszVRkunYLheMlcwUDFh5/UuwLgs7caqmMUTxdiMDcyl4E9LOSFxuYu4a7YIhDk5ts2lZvk=
+X-Received: by 2002:a05:6102:370a:b0:3af:c63c:5536 with SMTP id
+ s10-20020a056102370a00b003afc63c5536mr46010667vst.85.1670348345753; Tue, 06
+ Dec 2022 09:39:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20221124110210.3905092-1-Naresh.Solanki@9elements.com> <20221124110210.3905092-3-Naresh.Solanki@9elements.com>
-In-Reply-To: <20221124110210.3905092-3-Naresh.Solanki@9elements.com>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Tue, 6 Dec 2022 23:00:52 +0530
-Message-ID: <CABqG17hCoY86w3usA6RNLQbGjHo_JRFioznuvdCZLo4_KNaMWg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and MAX5978
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221111162729.3381835-1-robh@kernel.org> <52d2e0c2-a04a-1ae8-cab5-b89a79150fe6@linaro.org>
+In-Reply-To: <52d2e0c2-a04a-1ae8-cab5-b89a79150fe6@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 6 Dec 2022 11:38:51 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+UOJcBKSiVpCsBO+VF8e0BA6JVfGhRtgoED0YbfD=W+g@mail.gmail.com>
+Message-ID: <CAL_Jsq+UOJcBKSiVpCsBO+VF8e0BA6JVfGhRtgoED0YbfD=W+g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: thermal: thermal-idle: Fix example paths
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,307 +64,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ping
+On Tue, Dec 6, 2022 at 11:15 AM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On 11/11/2022 17:27, Rob Herring wrote:
+> > The reference by path (&{/cpus/cpu@101/thermal-idle}) in the example causes
+> > an error with new version of dtc:
+> >
+> > FATAL ERROR: Can't generate fixup for reference to path &{/cpus/cpu@100/thermal-idle}
+> >
+> > This is because the examples are built as an overlay and absolute paths
+> > are not valid as references must be by label. The path was also not
+> > resolvable because, by default, examples are placed under 'example-N'
+> > nodes.
+> >
+> > As the example contains top-level nodes, the root node must be explicit for
+> > the example to be extracted as-is. This changes the indentation for the
+> > whole example, but the existing indentation is a mess of of random amounts.
+> > Clean this up to be 4 spaces everywhere.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > The dtc update is in my tree, so I'd prefer to take this via the DT
+> > tree.
+> >
+> >   .../bindings/thermal/thermal-idle.yaml        | 154 +++++++++---------
+> >   1 file changed, 80 insertions(+), 74 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> > index cc938d7ad1f3..72d85eb64247 100644
+> > --- a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> > +++ b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
+> > @@ -48,99 +48,105 @@ additionalProperties: false
+> >
+> >   examples:
+> >     - |
+> > -    #include <dt-bindings/thermal/thermal.h>
+> > +    /{
+> > +        #include <dt-bindings/thermal/thermal.h>
+> >
+> > -    // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
+> > -    cpus {
+> > +        compatible = "foo";
+> > +        model = "foo";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
+> > +        cpus {
+> >               #address-cells = <2>;
+> >               #size-cells = <0>;
+> >
+> >               /* ... */
+> >
+> > -                 cpu_b0: cpu@100 {
+> > -                         device_type = "cpu";
+> > -                         compatible = "arm,cortex-a72";
+> > -                         reg = <0x0 0x100>;
+> > -                         enable-method = "psci";
+> > -                         capacity-dmips-mhz = <1024>;
+> > -                         dynamic-power-coefficient = <436>;
+> > -                         #cooling-cells = <2>; /* min followed by max */
+> > -                         cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+> > -                         thermal-idle {
+> > -                                 #cooling-cells = <2>;
+> > -                                 duration-us = <10000>;
+> > -                                 exit-latency-us = <500>;
+> > -                         };
+> > +            cpu_b0: cpu@100 {
+> > +                device_type = "cpu";
+> > +                compatible = "arm,cortex-a72";
+> > +                reg = <0x0 0x100>;
+> > +                enable-method = "psci";
+> > +                capacity-dmips-mhz = <1024>;
+> > +                dynamic-power-coefficient = <436>;
+> > +                #cooling-cells = <2>; /* min followed by max */
+> > +                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+> > +                thermal-idle {
+> > +                    #cooling-cells = <2>;
+> > +                    duration-us = <10000>;
+> > +                    exit-latency-us = <500>;
+> > +                };
+> > +            };
+> > +
+> > +            cpu_b1: cpu@101 {
+> > +                device_type = "cpu";
+> > +                compatible = "arm,cortex-a72";
+> > +                reg = <0x0 0x101>;
+> > +                enable-method = "psci";
+> > +                capacity-dmips-mhz = <1024>;
+> > +                dynamic-power-coefficient = <436>;
+> > +                #cooling-cells = <2>; /* min followed by max */
+> > +                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+> > +                thermal-idle {
+> > +                    #cooling-cells = <2>;
+> > +                    duration-us = <10000>;
+> > +                    exit-latency-us = <500>;
+> >                   };
+> > +            };
+> >
+> > -                cpu_b1: cpu@101 {
+> > -                        device_type = "cpu";
+> > -                        compatible = "arm,cortex-a72";
+> > -                        reg = <0x0 0x101>;
+> > -                        enable-method = "psci";
+> > -                        capacity-dmips-mhz = <1024>;
+> > -                        dynamic-power-coefficient = <436>;
+> > -                        #cooling-cells = <2>; /* min followed by max */
+> > -                        cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
+> > -                        thermal-idle {
+> > -                                #cooling-cells = <2>;
+> > -                                duration-us = <10000>;
+> > -                                exit-latency-us = <500>;
+> > -                        };
+> > -                 };
+> > -
+> > -          /* ... */
+> > +            /* ... */
+> >
+> > -    };
+> > +        };
+> >
+> > -    /* ... */
+> > +        /* ... */
+> >
+> > -    thermal_zones {
+> > -         cpu_thermal: cpu {
+> > +        thermal_zones {
+> > +            cpu_thermal: cpu {
+> >                   polling-delay-passive = <100>;
+> >                   polling-delay = <1000>;
+> >
+> >                   /* ... */
+> >
+> >                   trips {
+> > -                        cpu_alert0: cpu_alert0 {
+> > -                                    temperature = <65000>;
+> > -                                    hysteresis = <2000>;
+> > -                                    type = "passive";
+> > -                        };
+> > -
+> > -                        cpu_alert1: cpu_alert1 {
+> > -                                    temperature = <70000>;
+> > -                                    hysteresis = <2000>;
+> > -                                    type = "passive";
+> > -                        };
+> > -
+> > -                        cpu_alert2: cpu_alert2 {
+> > -                                    temperature = <75000>;
+> > -                                    hysteresis = <2000>;
+> > -                                    type = "passive";
+> > -                        };
+> > -
+> > -                        cpu_crit: cpu_crit {
+> > -                                    temperature = <95000>;
+> > -                                    hysteresis = <2000>;
+> > -                                    type = "critical";
+> > -                        };
+> > +                    cpu_alert0: cpu_alert0 {
+> > +                        temperature = <65000>;
+> > +                        hysteresis = <2000>;
+> > +                        type = "passive";
+> > +                    };
+> > +
+> > +                    cpu_alert1: cpu_alert1 {
+> > +                        temperature = <70000>;
+> > +                        hysteresis = <2000>;
+> > +                        type = "passive";
+> > +                    };
+> > +
+> > +                    cpu_alert2: cpu_alert2 {
+> > +                        temperature = <75000>;
+> > +                        hysteresis = <2000>;
+> > +                        type = "passive";
+> > +                    };
+> > +
+> > +                    cpu_crit: cpu_crit {
+> > +                        temperature = <95000>;
+> > +                        hysteresis = <2000>;
+> > +                        type = "critical";
+> > +                    };
+> >                   };
+> >
+> >                   cooling-maps {
+> > -                        map0 {
+> > -                             trip = <&cpu_alert1>;
+> > -                             cooling-device = <&{/cpus/cpu@100/thermal-idle} 0 15 >,
+> > -                                              <&{/cpus/cpu@101/thermal-idle} 0 15>;
+> > -                        };
+> > -
+> > -                        map1 {
+> > -                             trip = <&cpu_alert2>;
+> > -                             cooling-device =
+> > -                                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > -                                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > -                       };
+> > +                    map0 {
+> > +                        trip = <&cpu_alert1>;
+> > +                        cooling-device = <&cpu_b0 0 15 >,
+> > +                                         <&cpu_b1 0 15>;
+>
+> This is pointing to the DVFS cooling device, not the idle cooling
+> device. Should it be <&cpu_b0_idle 0 15> and that label defined in
+> thermal_idle ?
 
-Regards,
-Naresh Solanki
+Ah, yes indeed. I'll fix that up with a label to the correct node.
 
+And note that 'thermal-idle' needs to be added to cpu node schema.
+That one currently allows anything extra which I'm working on
+addressing.
 
-
-9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
-Email:  naresh.solanki@9elements.com
-Mobile:  +91 9538631477
-
-Sitz der Gesellschaft: Bochum
-Handelsregister: Amtsgericht Bochum, HRB 17519
-Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
-
-Datenschutzhinweise nach Art. 13 DSGVO
-
-
-On Thu, 24 Nov 2022 at 16:32, Naresh Solanki
-<naresh.solanki@9elements.com> wrote:
->
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->
-> Implement a regulator driver with IRQ support for fault management.
-> Written against documentation [1] and [2] and tested on real hardware.
->
-> Every channel has its own regulator supplies nammed 'vss1-supply' and
-> 'vss2-supply'. The regulator supply is used to determine the output
-> voltage, as the smart switch provides no output regulation.
-> The driver requires the 'shunt-resistor-micro-ohms' property to be
-> present in Device Tree to properly calculate current related
-> values.
->
-> Datasheet links:
-> 1: https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> 2: https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
->
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Co-developed-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Co-developed-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  drivers/mfd/Kconfig         |  12 +++++
->  drivers/mfd/Makefile        |   1 +
->  drivers/mfd/max597x.c       |  93 +++++++++++++++++++++++++++++++++
->  include/linux/mfd/max597x.h | 101 ++++++++++++++++++++++++++++++++++++
->  4 files changed, 207 insertions(+)
->  create mode 100644 drivers/mfd/max597x.c
->  create mode 100644 include/linux/mfd/max597x.h
->
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 8b93856de432..416fe7986b7b 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -253,6 +253,18 @@ config MFD_MADERA_SPI
->           Support for the Cirrus Logic Madera platform audio SoC
->           core functionality controlled via SPI.
->
-> +config MFD_MAX597X
-> +       tristate "Maxim 597x Power Switch and Monitor"
-> +       depends on I2C
-> +       depends on OF
-> +       select MFD_CORE
-> +       select REGMAP_I2C
-> +       help
-> +         This driver controls a Maxim 5970/5978 switch via I2C bus.
-> +         The MAX5970/5978 is a smart switch with no output regulation, b=
-ut
-> +         fault protection and voltage and current monitoring capabilitie=
-s.
-> +         Also it supports upto 4 indication LEDs.
-> +
->  config MFD_CS47L15
->         bool "Cirrus Logic CS47L15"
->         select PINCTRL_CS47L15
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 7ed3ef4a698c..819d711fa748 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -161,6 +161,7 @@ obj-$(CONFIG_MFD_DA9063)    +=3D da9063.o
->  obj-$(CONFIG_MFD_DA9150)       +=3D da9150-core.o
->
->  obj-$(CONFIG_MFD_MAX14577)     +=3D max14577.o
-> +obj-$(CONFIG_MFD_MAX597X)      +=3D max597x.o
->  obj-$(CONFIG_MFD_MAX77620)     +=3D max77620.o
->  obj-$(CONFIG_MFD_MAX77650)     +=3D max77650.o
->  obj-$(CONFIG_MFD_MAX77686)     +=3D max77686.o
-> diff --git a/drivers/mfd/max597x.c b/drivers/mfd/max597x.c
-> new file mode 100644
-> index 000000000000..45838413f24a
-> --- /dev/null
-> +++ b/drivers/mfd/max597x.c
-> @@ -0,0 +1,93 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Maxim MAX5970/MAX5978 Power Switch & Monitor
-> + *
-> + * Copyright (c) 2022 9elements GmbH
-> + *
-> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/mfd/max597x.h>
-> +#include <linux/regmap.h>
-> +
-> +static const struct regmap_config max597x_regmap_config =3D {
-> +       .reg_bits =3D 8,
-> +       .val_bits =3D 8,
-> +       .max_register =3D MAX_REGISTERS,
-> +};
-> +
-> +static const struct mfd_cell max597x_cells[] =3D {
-> +       { .name =3D "max597x-regulator", },
-> +       { .name =3D "max597x-iio", },
-> +       { .name =3D "max597x-led", },
-> +};
-> +
-> +static int max597x_probe(struct i2c_client *i2c, const struct i2c_device=
-_id *id)
-> +{
-> +       struct max597x_data *ddata;
-> +       enum max597x_chip_type chip =3D id->driver_data;
-> +
-> +       ddata =3D devm_kzalloc(&i2c->dev, sizeof(*ddata), GFP_KERNEL);
-> +       if (!ddata)
-> +               return -ENOMEM;
-> +
-> +       /*
-> +        * Based on chip type, Initialize the number of switch. This is n=
-eeded by
-> +        * regulator & iio cells.
-> +        */
-> +       switch (chip) {
-> +       case MAX597x_TYPE_MAX5970:
-> +               ddata->num_switches =3D MAX5970_NUM_SWITCHES;
-> +               break;
-> +       case MAX597x_TYPE_MAX5978:
-> +               ddata->num_switches =3D MAX5978_NUM_SWITCHES;
-> +               break;
-> +       }
-> +
-> +       ddata->regmap =3D devm_regmap_init_i2c(i2c, &max597x_regmap_confi=
-g);
-> +       if (IS_ERR(ddata->regmap)) {
-> +               dev_err(&i2c->dev, "Failed to initialize regmap");
-> +               return PTR_ERR(ddata->regmap);
-> +       }
-> +
-> +       /* IRQ used by regulator cell */
-> +       ddata->irq =3D i2c->irq;
-> +       ddata->dev =3D &i2c->dev;
-> +       i2c_set_clientdata(i2c, ddata);
-> +
-> +       return devm_mfd_add_devices(ddata->dev, PLATFORM_DEVID_AUTO,
-> +                                   max597x_cells, ARRAY_SIZE(max597x_cel=
-ls),
-> +                                   NULL, 0, NULL);
-> +}
-> +
-> +static const struct i2c_device_id max597x_table[] =3D {
-> +       { .name =3D "max5970", MAX597x_TYPE_MAX5970 },
-> +       { .name =3D "max5978", MAX597x_TYPE_MAX5978 },
-> +       {}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, max597x_table);
-> +
-> +static const struct of_device_id max597x_of_match[] =3D {
-> +       { .compatible =3D "maxim,max5970" },
-> +       { .compatible =3D "maxim,max5978" },
-> +       {}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, max597x_of_match);
-> +
-> +static struct i2c_driver max597x_driver =3D {
-> +       .id_table =3D max597x_table,
-> +       .driver =3D {
-> +                 .name =3D "max597x",
-> +                 .of_match_table =3D of_match_ptr(max597x_of_match),
-> +                 },
-> +       .probe =3D max597x_probe,
-> +};
-> +module_i2c_driver(max597x_driver);
-> +
-> +MODULE_AUTHOR("Patrick Rudolph <patrick.rudolph@9elements.com>");
-> +MODULE_DESCRIPTION("MAX597X Power Switch and Monitor");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/include/linux/mfd/max597x.h b/include/linux/mfd/max597x.h
-> new file mode 100644
-> index 000000000000..706eff9c50a4
-> --- /dev/null
-> +++ b/include/linux/mfd/max597x.h
-> @@ -0,0 +1,101 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Maxim MAX5970/MAX5978 Power Switch & Monitor
-> + *
-> + * Copyright (c) 2022 9elements GmbH
-> + *
-> + * Author: Patrick Rudolph <patrick.rudolph@9elements.com>
-> + */
-> +
-> +#ifndef MFD_MAX597X_H
-> +#define MFD_MAX597X_H
-> +
-> +#include <linux/device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define MAX5970_NUM_SWITCHES 2
-> +#define MAX5978_NUM_SWITCHES 1
-> +#define MAX597X_NUM_LEDS     4
-> +
-> +enum max597x_chip_type {
-> +       MAX597x_TYPE_MAX5978 =3D 1,
-> +       MAX597x_TYPE_MAX5970,
-> +};
-> +
-> +#define MAX5970_REG_CURRENT_L(ch)              (0x01 + (ch) * 4)
-> +#define MAX5970_REG_CURRENT_H(ch)              (0x00 + (ch) * 4)
-> +#define MAX5970_REG_VOLTAGE_L(ch)              (0x03 + (ch) * 4)
-> +#define MAX5970_REG_VOLTAGE_H(ch)              (0x02 + (ch) * 4)
-> +#define MAX5970_REG_MON_RANGE                  0x18
-> +#define  MAX5970_MON_MASK                              0x3
-> +#define  MAX5970_MON(reg, ch)          (((reg) >> ((ch) * 2)) & MAX5970_=
-MON_MASK)
-> +#define  MAX5970_MON_MAX_RANGE_UV              16000000
-> +
-> +#define MAX5970_REG_CH_UV_WARN_H(ch)   (0x1A + (ch) * 10)
-> +#define MAX5970_REG_CH_UV_WARN_L(ch)   (0x1B + (ch) * 10)
-> +#define MAX5970_REG_CH_UV_CRIT_H(ch)   (0x1C + (ch) * 10)
-> +#define MAX5970_REG_CH_UV_CRIT_L(ch)   (0x1D + (ch) * 10)
-> +#define MAX5970_REG_CH_OV_WARN_H(ch)   (0x1E + (ch) * 10)
-> +#define MAX5970_REG_CH_OV_WARN_L(ch)   (0x1F + (ch) * 10)
-> +#define MAX5970_REG_CH_OV_CRIT_H(ch)   (0x20 + (ch) * 10)
-> +#define MAX5970_REG_CH_OV_CRIT_L(ch)   (0x21 + (ch) * 10)
-> +
-> +#define  MAX5970_VAL2REG_H(x)                  (((x) >> 2) & 0xFF)
-> +#define  MAX5970_VAL2REG_L(x)                  ((x) & 0x3)
-> +
-> +#define MAX5970_REG_DAC_FAST(ch)               (0x2E + (ch))
-> +
-> +#define MAX5970_FAST2SLOW_RATIO                        200
-> +
-> +#define MAX5970_REG_STATUS0                            0x31
-> +#define  MAX5970_CB_IFAULTF(ch)                        (1 << (ch))
-> +#define  MAX5970_CB_IFAULTS(ch)                        (1 << ((ch) + 4))
-> +
-> +#define MAX5970_REG_STATUS1                            0x32
-> +#define  STATUS1_PROT_MASK                             0x3
-> +#define  STATUS1_PROT(reg) \
-> +       (((reg) >> 6) & STATUS1_PROT_MASK)
-> +#define  STATUS1_PROT_SHUTDOWN                 0
-> +#define  STATUS1_PROT_CLEAR_PG                 1
-> +#define  STATUS1_PROT_ALERT_ONLY               2
-> +
-> +#define MAX5970_REG_STATUS2                            0x33
-> +#define  MAX5970_IRNG_MASK                             0x3
-> +#define  MAX5970_IRNG(reg, ch) \
-> +                                               (((reg) >> ((ch) * 2)) & =
-MAX5970_IRNG_MASK)
-> +
-> +#define MAX5970_REG_STATUS3                            0x34
-> +#define  MAX5970_STATUS3_ALERT                 BIT(4)
-> +#define  MAX5970_STATUS3_PG(ch)                        BIT(ch)
-> +
-> +#define MAX5970_REG_FAULT0                             0x35
-> +#define  UV_STATUS_WARN(ch)                            BIT(ch)
-> +#define  UV_STATUS_CRIT(ch)                            BIT(ch + 4)
-> +
-> +#define MAX5970_REG_FAULT1                             0x36
-> +#define  OV_STATUS_WARN(ch)                            BIT(ch)
-> +#define  OV_STATUS_CRIT(ch)                            BIT(ch + 4)
-> +
-> +#define MAX5970_REG_FAULT2                             0x37
-> +#define  OC_STATUS_WARN(ch)                            BIT(ch)
-> +
-> +#define MAX5970_REG_CHXEN                              0x3b
-> +#define  CHXEN(ch)                                             (3 << (ch=
- * 2))
-> +
-> +#define MAX5970_REG_LED_FLASH                  0x43
-> +
-> +#define MAX_REGISTERS                                  0x49
-> +#define ADC_MASK                                               0x3FF
-> +
-> +struct max597x_data {
-> +       struct device *dev;
-> +       int irq;
-> +       int num_switches;
-> +       struct regmap *regmap;
-> +       /* Chip specific parameters needed by regulator & iio cells */
-> +       u32 irng[MAX5970_NUM_SWITCHES];
-> +       u32 mon_rng[MAX5970_NUM_SWITCHES];
-> +       u32 shunt_micro_ohms[MAX5970_NUM_SWITCHES];
-> +};
-> +
-> +#endif
-> --
-> 2.37.3
->
+Rob
