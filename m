@@ -2,142 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A863644E87
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 23:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B144E644E88
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 23:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbiLFWZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 17:25:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60670 "EHLO
+        id S229731AbiLFW1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 17:27:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiLFWZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 17:25:43 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C9546650
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 14:25:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1670365542; x=1701901542;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qRoG6ojWyt2gsYvYI328yD8+tc76LgZvQ/ndWEVo0qU=;
-  b=kGH+L7mfV7O//oMCJwNszNA1Xg23OGnqewH0AXmIEFUYL9bJXMAQvUcU
-   GoHOtgNGnaoKn8UoJ8b66ZqApMed6Tdinb01HUXMM/EXmssIJcQeaDnO1
-   UjF5Lk4aj8xVNoKeq0GRoHEQdnDyiRwelIs943BdwHVWwnr/KhBBWWuLu
-   jyK6grSNpIb9bC8Pnax/IKUFkJV/1mmPK2CATdHXkgrZZG3Mk4TYII7oP
-   LGAcRqrkDDE0/YEX8r0J0u+eKnbxkNpkXTClFybGe/juvLWNfijiTBtPr
-   y8hdRKyC2vp7YwN4sP7uF/VvqAOgPqhy90580gEKZi/AuWUk4lv7uarDA
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="317888730"
-X-IronPort-AV: E=Sophos;i="5.96,223,1665471600"; 
-   d="scan'208";a="317888730"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2022 14:25:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="648496127"
-X-IronPort-AV: E=Sophos;i="5.96,223,1665471600"; 
-   d="scan'208";a="648496127"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 06 Dec 2022 14:25:40 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1p2gNe-005UXI-34;
-        Wed, 07 Dec 2022 00:25:38 +0200
-Date:   Wed, 7 Dec 2022 00:25:38 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: Mixed types of values inside a single property
-Message-ID: <Y4/BYgAQgIfahIzH@smile.fi.intel.com>
-References: <Y3t2QLqXdomHkLTN@smile.fi.intel.com>
- <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
- <Y3uG/XvhZzaIq5Zi@smile.fi.intel.com>
- <b958733a-18a0-d916-930a-e7efb481dd06@linaro.org>
- <Y3uZzR7wYy3lY++/@smile.fi.intel.com>
- <CAL_JsqKrGXMhvEGaOYg=6bNEHyakTio6DhFqLEai2BH8nEf7ig@mail.gmail.com>
+        with ESMTP id S229514AbiLFW1V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 17:27:21 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2682330577;
+        Tue,  6 Dec 2022 14:27:21 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id g20so3576193iob.2;
+        Tue, 06 Dec 2022 14:27:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5k0kbswEjedZJoi8bKEhjtoQup280Buy1WzzavyXZO4=;
+        b=fzbJofeKdbRleEVJWRjEMzLm2MzIC+yTJ/4+1Tu8Mizsj9XncsYpokV0EyTLYL2syH
+         qcZIr1X/ZGoZKbJfoL/VPi0TbaVthDOhQsUDtVW/vNf3xKp74cSwrY2R0hP/SyWw+rPj
+         XQA1t8xN7dExJrutLlhmb3uCm7nVl4nQqZT/oyc5aEF8s0H9LMRsi9wkIjNP/5DfLtxz
+         vv4QERghHd3KnmiywAR+iobBqIUVo5Vf08bIrzUdDobnS0bxPsPY16QoDYucU9e6Yd2y
+         6adn/seEpXuUeZPnyWJWUaSP5ZONeRLwmWckjpXaBXP0YI1ewfZtEI+jLcQYUyE0jYZZ
+         b+/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5k0kbswEjedZJoi8bKEhjtoQup280Buy1WzzavyXZO4=;
+        b=t0GWz+EN/coJ73hy+Y+X45lvB4e0yS+OgIqXTS3F9y7TBh9NECiZoVPMtO9EgyPCgn
+         DQZPQV+f5lTh3v/R/pn9TeD54YqINUCyZN/ynS8behn4WmT7ciyk+e8Yqqkhd9NnNrgx
+         +kwzD3EFLMaOPXA+qf5lkui45zo2211JqJeVUU85R0QBLYx/7ZaqGy57iMJn91iu2Z79
+         u8+zfW1xCfDiwnptOOt8RoGtEThPSIkUAleqtzdma7ZgfDkw60xxk5PnYK60S/k7PW6T
+         MvRrs4j9c9qevJ5ErnkYf6JVfm45h96B7h/vvCVdHPQQdQQsyX0bzhutOrp5h4zXW27T
+         TK7A==
+X-Gm-Message-State: ANoB5pmcZX5dIZnTWF9/ErYrxa3DtvndPtgAWWdUBoz4OFHmfU+4jy8Q
+        GifF6uZeZtFIPvsOjM8Um2dl2oVfb7A=
+X-Google-Smtp-Source: AA0mqf52aqNu67ZqakIchavon6BX/478ZrKc/uMGl04r4kjIHURfvqVtPERiS0svx4X2pRqyXfxoRw==
+X-Received: by 2002:a02:6a26:0:b0:389:d02c:7e4c with SMTP id l38-20020a026a26000000b00389d02c7e4cmr22837127jac.218.1670365640480;
+        Tue, 06 Dec 2022 14:27:20 -0800 (PST)
+Received: from localhost ([2607:fea8:a2df:3d00::32c2])
+        by smtp.gmail.com with ESMTPSA id d39-20020a026067000000b00389e42ac620sm7110763jaf.129.2022.12.06.14.27.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 14:27:19 -0800 (PST)
+Date:   Tue, 6 Dec 2022 17:27:17 -0500
+From:   Richard Acayan <mailingradian@gmail.com>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sdm670: add qfprom node
+Message-ID: <Y4/BxaesXpr7nnbF@radian>
+References: <20221205230116.2204-1-mailingradian@gmail.com>
+ <20221205230116.2204-2-mailingradian@gmail.com>
+ <20221205232103.bz4ar3dbmocfl3yv@builder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKrGXMhvEGaOYg=6bNEHyakTio6DhFqLEai2BH8nEf7ig@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221205232103.bz4ar3dbmocfl3yv@builder.lan>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 06, 2022 at 09:31:49AM -0600, Rob Herring wrote:
-> On Mon, Nov 21, 2022 at 9:31 AM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> >
-> > On Mon, Nov 21, 2022 at 03:23:53PM +0100, Krzysztof Kozlowski wrote:
-> > > On 21/11/2022 15:11, Andy Shevchenko wrote:
-> > > > On Mon, Nov 21, 2022 at 02:52:37PM +0100, Krzysztof Kozlowski wrote:
-> > > >> On 21/11/2022 13:59, Andy Shevchenko wrote:
-> > > >>>
-> > > >>> Hi, Rob and Krzysztof!
-> > > >>>
-> > > >>> Today on SO one question [1] was popped up, and I, remembering a bit of
-> > > >>> the code of device properties in the Linux kernel, was a bit surprised of it
-> > > >>> in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
-> > > >>> that either.
-> > > >>>
-> > > >>> Can the specification be a bit more clear about that? Or is it me and the OP of
-> > > >>> that question who missed something in the DT spec?
-> 
-> Please use devicetree-spec list for questions like this because it's a
-> spec question and I only see these on my periodic search for non-patch
-> emails.
+On Mon, Dec 05, 2022 at 05:21:03PM -0600, Bjorn Andersson wrote:
+> On Mon, Dec 05, 2022 at 06:01:15PM -0500, Richard Acayan wrote:
+>> Some hardware quirks and capabilities can be determined by reading the
+>> fuse-programmable read-only memory. Add the QFPROM node so consumers
+>> know if they need to do anything extra to support the hardware.
+>> 
+>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sdm670.dtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> index f93705bc549f..933ad2fabf3a 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> @@ -731,6 +731,13 @@ gcc: clock-controller@100000 {
+>>  			#power-domain-cells = <1>;
+>>  		};
+>>  
+>> +		qfprom: qfprom@780000 {
+>> +			compatible = "qcom,sdm670-qfprom", "qcom,qfprom";
+>> +			reg = <0 0x780000 0 0x1000>;
+>
+> I suspect the qfprom block is inherited from SDM845, if so 0x780000
+> contains raw, uncorrected data, while 0x784000 contains ECC-corrected
+> versions of these. Please validate and use the same.
 
-Sure. I will try to not forget this next time I will have a question against DT
-spec (I don't expect this will be anytime soon, though).
+I just compared the qusb2p_hstx_trim values at 0x7801eb and 0x7841eb and
+this seems to be true. Will change in the next version.
 
-> > > >>> [1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
-> > > >>
-> > > >> I saw question on Stackoverflow and I saw there answers, but what is the
-> > > >> question to us?
-> > > >
-> > > > Does the specification allows mixed types of the values in the same property?
-> > > > Because reading it doesn't give a hint.
-> > >
-> > > I think DT spec allows it ("Format is specific to the property. See the
-> > > property definition.")
-> >
-> > And the quoted sentence confuses me. Is it related to _defined_ only properties
-> > (that are in the same document) or is it to any property, then what does the
-> > second part actually mean in the latter case: "see the property definition".
-> > Where?
-> 
-> Any property in the schemas. (I would say if not in the spec, but
-> everything in the spec should have a schema.)
+>
+> Also, please pad the address to 8 digits, to make it easier to check the
+> sort order.
 
-Maybe we should add these words explicitly there?
+Ack.
 
-> > It might be though it's lack of my understanding the English language
-> > (not a native speaker).
-> >
-> > > but DT schema mostly not (finite list of property
-> > > types). To some level DT schema accepts mixes, e.g. phandle-array
-> > > containing phandle and offsets, but that's because phandle is actually
-> > > also a number (dtschema/schemas/types.yaml).
-> 
-> At the spec level, properties are just byte strings. They can be
-> anything including a file (i.e. FIT images). In theory, you could make
-> properties C structs if you wanted.
-> 
-> However, since there is 0 type or field size information in the DT
-> itself, we don't mix data types or sizes. That's enforced at the
-> schema level and by what APIs we have to read properties.
-
-Thanks for clarification!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>
+> Thanks,
+> Bjorn
+>
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +		};
+>> +
+>>  		sdhc_1: mmc@7c4000 {
+>>  			compatible = "qcom,sdm670-sdhci", "qcom,sdhci-msm-v5";
+>>  			reg = <0 0x007c4000 0 0x1000>,
+>> -- 
+>> 2.38.1
+>> 
