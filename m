@@ -2,149 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 749C1643E9D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 875CC643EAB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:32:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233912AbiLFIaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:30:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56626 "EHLO
+        id S233790AbiLFIce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:32:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233319AbiLFI35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:29:57 -0500
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A5913F93;
-        Tue,  6 Dec 2022 00:29:55 -0800 (PST)
-Received: by mail-qt1-f178.google.com with SMTP id ay32so5177482qtb.11;
-        Tue, 06 Dec 2022 00:29:55 -0800 (PST)
+        with ESMTP id S233826AbiLFIc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:32:27 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A2F71AF13
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:32:20 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id q7so16372611ljp.9
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:32:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g/U0+bRA30/guCjp3BjPsilCOo26Q3nbofGjk/PAYTc=;
+        b=lX64SB0AHg+zC6GCkwFDi3a/DgyIdNKjjPyFEkcPIndhQtcDMtI2HSEpfEdMIEkqBS
+         AaLFtGuGsXA4oywVHcNJmgvU9gAtdbuleQ39BhLTRfWHOY5IxmQ2TqOV+QC8pZlXc5mZ
+         npSqljv47Z+Pyj1GgvgIujBC2PQW/BVYnBK2HD4YR1zTQGvBdWn1e31Wx+r/rXcw0EWi
+         XFq3nELeXTi5gKPzgvc1pHOPsf79eJPIlH9BczTM1iGHdFZI1abKp5nezCzBet1Zs4rR
+         zgztbIYEZ11Tj4F7Vd09Rziw56fQWVajZO+GmBbAub1Qp5LohUgxZ2BGGKS5ay5xL+Ow
+         000A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9besuTz430+bUB/dXPphZ+0HwQHk+UhJW3qrSbIBzG0=;
-        b=HftG3Tdary4jN8VrRB/rncnDaNf5QIgPqst8Kg0LKWuByaXuAueTke+D2hnNeJRT9C
-         +50OWUSbiFI7iZ6LJQDnqDo33qOLT/vxw+M2eZNp0L3UEQPDhhnOVihlhEMrLL/9wAOC
-         hIXNgT7S3nf/C8kmhFqjYtz10ZIc4z40M3xY61aWMjjcErjq8m1fZQ6glQytnUJPwNtl
-         zEwx/cc93XcIZUw6fXHviP4e+AJbD75fkcA+Y5fU75EQLhcfo65ULzZVG4AyrEgQoit0
-         J1QzdqM+7pZH8kttkAYLpOPychE0Z6DJYifOif+cw7nhiCcLAuZ8QUwkm5PTTixBOAKB
-         GfbQ==
-X-Gm-Message-State: ANoB5pkYeu3IkLwoolh6lzWDBsL5jeqHphsJtuZaXbPoSIDVeMipz2H5
-        0AEp+344coc65Oninx0Bwx8K9tgN/l4oOg==
-X-Google-Smtp-Source: AA0mqf7DkBYI1OKLcQ+rF9UQ+RCZwqBfZ6ZyU8GjI+AgBj9PrTYC4/4fCcVKVSNliDmaLuIjxZM9GQ==
-X-Received: by 2002:a05:622a:1baa:b0:3a6:8be3:301e with SMTP id bp42-20020a05622a1baa00b003a68be3301emr24475054qtb.21.1670315394700;
-        Tue, 06 Dec 2022 00:29:54 -0800 (PST)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id x29-20020a05620a0b5d00b006f87d28ea3asm13530067qkg.54.2022.12.06.00.29.53
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/U0+bRA30/guCjp3BjPsilCOo26Q3nbofGjk/PAYTc=;
+        b=IESjRoZEBDsGjNFmnlJG9ZYKNef91Qc/sonXJjhpCoUSvOekyMbuUW1neebzJfKgtw
+         I2ugRBz2PkdgFLE8rKaPa4lm2zYnramN+WdYaC2T48h9C0hkUsCSGH2Eg3wBFZku8aF2
+         HnMgtSBhntasPJMRA/21qhx/MHxFCd9+bXN3g3Zf72nJ0FRwMMdA1UH424j1Ij9ZzHRM
+         rVo9beQQRgT5qBw+cmgD+H8ldZV/K+YfsmsTFJvBgXx+PKDFSL/NP39tdab2tR1l/8t1
+         DIRgmmxpXsIiq6WJNBCwng47EgaCI2pUm4JjJnxNw/ki18nx2QvqsSaNI5SsbqHkdelI
+         4lSA==
+X-Gm-Message-State: ANoB5pmBfbsKRaZ96P2nSCeM305io8y9LELYNELJzufLsbiIKE/aHUPG
+        1/kikQYcHdq8Hf/5ANkJpodwfw==
+X-Google-Smtp-Source: AA0mqf4TihAnfhidTWmryUNmodx2rjq7DG2qDLZsA/FbwYTTKb5ZxqFKlPpNGD89VRVGzBppANz9IA==
+X-Received: by 2002:a05:651c:1948:b0:277:21c8:aac5 with SMTP id bs8-20020a05651c194800b0027721c8aac5mr22217972ljb.491.1670315538789;
+        Tue, 06 Dec 2022 00:32:18 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id be11-20020a05651c170b00b002799b5aa42esm1585784ljb.55.2022.12.06.00.32.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:29:54 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-3e78d07ab4fso73942517b3.9;
-        Tue, 06 Dec 2022 00:29:53 -0800 (PST)
-X-Received: by 2002:a81:a8a:0:b0:37e:6806:a5f9 with SMTP id
- 132-20020a810a8a000000b0037e6806a5f9mr633079ywk.47.1670315393631; Tue, 06 Dec
- 2022 00:29:53 -0800 (PST)
+        Tue, 06 Dec 2022 00:32:18 -0800 (PST)
+Message-ID: <63e1e565-b1e7-ecfc-009a-ee036108f160@linaro.org>
+Date:   Tue, 6 Dec 2022 09:32:17 +0100
 MIME-Version: 1.0
-References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
- <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org> <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
- <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org> <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
- <20221205202510.GA2513520-robh@kernel.org>
-In-Reply-To: <20221205202510.GA2513520-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 6 Dec 2022 09:29:41 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUb7OX1nVMAGqPBXaFBBR6fA1nRJO15+aQiMk8=eFL9sA@mail.gmail.com>
-Message-ID: <CAMuHMdUb7OX1nVMAGqPBXaFBBR6fA1nRJO15+aQiMk8=eFL9sA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
- channels for R-Car V3U
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/5] dt-bindings: dma: ti: k3-bcdma: Add bindings for
+ BCDMA CSI RX
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221206043554.1521522-1-vigneshr@ti.com>
+ <20221206043554.1521522-2-vigneshr@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221206043554.1521522-2-vigneshr@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 06/12/2022 05:35, Vignesh Raghavendra wrote:
+> AM62A SoC has a dedicated BCDMA that serves Camera Serial Interface
+> (CSI) IP. Add new compatible for the same. Unlike system
+> BCDMA, this instance only has RX DMA channels and lack TX or block copy
+> channel. Thus make those properties optional. Additionally CSI RX has
+> independent power domain, add the binding for the same.
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 87 ++++++++++++++-----
+>  1 file changed, 63 insertions(+), 24 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> index 08627d91e607..d7b5adbb9b2e 100644
+> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> @@ -32,9 +32,66 @@ allOf:
+>    - $ref: /schemas/dma/dma-controller.yaml#
+>    - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+>  
 
-On Mon, Dec 5, 2022 at 9:39 PM Rob Herring <robh@kernel.org> wrote:
-> On Fri, Dec 02, 2022 at 11:58:23AM +0100, Geert Uytterhoeven wrote:
-> > On Fri, Dec 2, 2022 at 11:49 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > > On 02/12/2022 10:25, Geert Uytterhoeven wrote:
-> > > > On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
-> > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > >> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
-> > > >>> According to the bindings, only two channels are supported.
-> > > >>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
-> > > >>>
-> > > >>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
-> > > >>>
-> > > >>> Update the number of channels to 8 on R-Car V3U.
-> > > >>> While at it, prevent adding more properties to the channel nodes, as
-> > > >>> they must contain no other properties than a status property.
-> > > >>>
-> > > >>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
-> > > >>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > >
-> > > >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > > >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > > >
-> > > >>>      description: Maximum frequency of the CANFD clock.
-> > > >>>
-> > > >>>  patternProperties:
-> > > >>> -  "^channel[01]$":
-> > > >>> +  "^channel[0-7]$":
-> > > >>>      type: object
-> > > >>>      description:
-> > > >>> -      The controller supports two channels and each is represented as a child
-> > > >>> -      node.  Each child node supports the "status" property only, which
-> > > >>> +      The controller supports multiple channels and each is represented as a
-> > > >>> +      child node.  Each child node supports the "status" property only, which
-> > > >>>        is used to enable/disable the respective channel.
-> > > >>>
-> > > >>> +    unevaluatedProperties: false
-> > > >>
-> > > >> There are no other properties within a channel, so this should be rather
-> > > >> additionalProperties: false.
-> > > >
-> > > > Are you sure? Then I also have to add:
-> > > >
-> > > >         properties:
-> > > >           status: true
-> > >
-> > > Do you? I think it would be first schema needing it, so maybe that would
-> > > be a problem for dtschema...
-> >
-> > You think I haven't tried? ;-)
-> >
-> >     arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dtb:
-> > can@e66c0000: channel0: Additional properties are not allowed
-> > ('status' was unexpected)
->
-> I guess nodes with no properties aren't too common.
->
-> Now fixed in dtschema.
+When adding if:then:, please move entire allOf after "required:" part.
 
-Thanks, confirmed.
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,am62a-dmss-bcdma-csirx
+> +    then:
+> +      properties:
+> +        ti,sci-rm-range-bchan: false
+> +        ti,sci-rm-range-tchan: false
+> +
+> +        reg:
+> +          maxItems: 3
+> +
+> +        reg-names:
+> +          items:
+> +            - const: gcfg
+> +            - const: rchanrt
+> +            - const: ringrt
 
-Gr{oetje,eeting}s,
+With my changes further this can be only "maxItems: 3"
 
-                        Geert
+> +
+> +      required:
+> +        - compatible
+> +        - "#dma-cells"
+> +        - reg
+> +        - reg-names
+> +        - msi-parent
+> +        - ti,sci
+> +        - ti,sci-dev-id
+> +        - ti,sci-rm-range-rchan
+> +        - power-domains
+> +
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 5
+> +
+> +        reg-names:
+> +          items:
+> +            - const: gcfg
+> +            - const: bchanrt
+> +            - const: rchanrt
+> +            - const: tchanrt
+> +            - const: ringrt
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With my changes further this can be only "minItems: 5"
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +
+> +      required:
+> +        - compatible
+> +        - "#dma-cells"
+> +        - reg
+> +        - reg-names
+> +        - msi-parent
+> +        - ti,sci
+> +        - ti,sci-dev-id
+> +        - ti,sci-rm-range-bchan
+> +        - ti,sci-rm-range-tchan
+> +        - ti,sci-rm-range-rchan
+> +
+>  properties:
+>    compatible:
+> -    const: ti,am64-dmss-bcdma
+> +    enum:
+> +      - ti,am64-dmss-bcdma
+> +      - ti,am62a-dmss-bcdma-csirx
+
+Keep some order, e.g. alphabetical. This reduces later conflicts on
+simultaneous edits.
+
+>  
+>    "#dma-cells":
+>      const: 3
+> @@ -65,19 +122,13 @@ properties:
+>  
+>        cell 3: ASEL value for the channel
+>  
+> -  reg:
+> -    maxItems: 5
+
+Keep it here with widest constrains - minItems: 3, maxItems: 5
+
+> -
+> -  reg-names:
+> -    items:
+> -      - const: gcfg
+> -      - const: bchanrt
+> -      - const: rchanrt
+> -      - const: tchanrt
+> -      - const: ringrt
+
+Keep the list here with minItems: 3
+
+> -
+>    msi-parent: true
+>  
+> +  power-domains:
+> +    description:
+> +      Power domain if available
+> +    maxItems: 1
+> +
+>    ti,asel:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: ASEL value for non slave channels
+> @@ -115,18 +166,6 @@ properties:
+>      items:
+>        maximum: 0x3f
+>  
+> -required:
+> -  - compatible
+> -  - "#dma-cells"
+> -  - reg
+> -  - reg-names
+> -  - msi-parent
+> -  - ti,sci
+> -  - ti,sci-dev-id
+> -  - ti,sci-rm-range-bchan
+> -  - ti,sci-rm-range-tchan
+> -  - ti,sci-rm-range-rchan
+
+Keep required here. Customize it if needed in if:then:else.
+
+> -
+>  unevaluatedProperties: false
+>  
+>  examples:
+
+Best regards,
+Krzysztof
+
