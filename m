@@ -2,97 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22610643EC1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00574643EDE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234227AbiLFIgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:36:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32884 "EHLO
+        id S229457AbiLFIkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:40:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234299AbiLFIfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:35:34 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A757A17A84;
-        Tue,  6 Dec 2022 00:35:11 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 1B97B24E277;
-        Tue,  6 Dec 2022 16:35:09 +0800 (CST)
-Received: from EXMBX067.cuchost.com (172.16.6.67) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 6 Dec
- 2022 16:35:09 +0800
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX067.cuchost.com
- (172.16.6.67) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 6 Dec
- 2022 16:35:09 +0800
-Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
- EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
- 15.00.1497.044; Tue, 6 Dec 2022 16:35:09 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto
- driver
-Thread-Topic: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive
- crypto driver
-Thread-Index: AQHZBH/2P5dLP9b8iUC7OZp9LCFzsa5W7gcAgAHFddD//4unAIAIUqbQ
-Date:   Tue, 6 Dec 2022 08:35:09 +0000
-Message-ID: <e732d81f8d86499eb5e8fa9febc8cb68@EXMBX068.cuchost.com>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
- <8a8f502e-e0ed-d638-0b56-74edcbca2134@linaro.org>
- <aa388c8c99b74436ad556aeb47a5c60a@EXMBX068.cuchost.com>
- <2886dd64-435d-1cdb-168d-5851c37dc538@linaro.org>
-In-Reply-To: <2886dd64-435d-1cdb-168d-5851c37dc538@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.188.176.82]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231133AbiLFIkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:40:02 -0500
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FAB4E78;
+        Tue,  6 Dec 2022 00:40:00 -0800 (PST)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.54])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NRDKT0SrszJp6D;
+        Tue,  6 Dec 2022 16:36:29 +0800 (CST)
+Received: from huawei.com (10.67.175.83) by kwepemi500008.china.huawei.com
+ (7.221.188.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 6 Dec
+ 2022 16:39:58 +0800
+From:   ruanjinjie <ruanjinjie@huawei.com>
+To:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <ruanjinjie@huawei.com>
+Subject: [PATCH] of: overlay: fix null pointer dereferencing in find_dup_cset_node_entry() and find_dup_cset_prop()
+Date:   Tue, 6 Dec 2022 16:36:57 +0800
+Message-ID: <20221206083657.3202856-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.67.175.83]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
-RGVjZW1iZXIgMSwgMjAyMiA1OjI3IFBNDQo+IFRvOiBKaWFKaWUgSG8gPGppYWppZS5ob0BzdGFy
-Zml2ZXRlY2guY29tPjsgSGVyYmVydCBYdQ0KPiA8aGVyYmVydEBnb25kb3IuYXBhbmEub3JnLmF1
-PjsgRGF2aWQgUyAuIE1pbGxlciA8ZGF2ZW1AZGF2ZW1sb2Z0Lm5ldD47DQo+IFJvYiBIZXJyaW5n
-IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yu
-a296bG93c2tpK2R0QGxpbmFyby5vcmc+DQo+IENjOiBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwu
-b3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtl
-cm5lbC5vcmc7IGxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU3ViamVjdDogUmU6
-IFtQQVRDSCA1LzZdIGR0LWJpbmRpbmdzOiBjcnlwdG86IEFkZCBiaW5kaW5ncyBmb3IgU3RhcmZp
-dmUgY3J5cHRvDQo+IGRyaXZlcg0KPiANCj4gT24gMDEvMTIvMjAyMiAxMDowMSwgSmlhSmllIEhv
-IHdyb3RlOg0KPiANCj4gPj4+ICsNCj4gPj4+ICsgIGVuYWJsZS1zaWRlLWNoYW5uZWwtbWl0aWdh
-dGlvbjoNCj4gPj4+ICsgICAgZGVzY3JpcHRpb246IEVuYWJsZSBzaWRlLWNoYW5uZWwtbWl0aWdh
-dGlvbiBmZWF0dXJlIGZvciBBRVMgbW9kdWxlLg0KPiA+Pj4gKyAgICAgICAgRW5hYmxpbmcgdGhp
-cyBmZWF0dXJlIHdpbGwgYWZmZWN0IHRoZSBzcGVlZCBwZXJmb3JtYW5jZSBvZg0KPiA+Pj4gKyAg
-ICAgICAgY3J5cHRvIGVuZ2luZS4NCj4gPj4+ICsgICAgdHlwZTogYm9vbGVhbg0KPiA+Pg0KPiA+
-PiBXaHkgZXhhY3RseSB0aGlzIGlzIGEgaGFyZHdhcmUgKERUKSBwcm9wZXJ0eSwgbm90IHJ1bnRp
-bWU/DQo+ID4+DQo+ID4NCj4gPiBUaGlzIGlzIGEgaGFyZHdhcmUgc2V0dGluZyBwcm92aWRlZCBp
-biBTdGFyRml2ZSBjcnlwdG8gZW5naW5lIG9ubHkuDQo+ID4gVGhlIGNyeXB0byBBUEkgZG9lc24n
-dCBjb250cm9sIHRoaXMgc2V0dGluZyBkdXJpbmcgcnVudGltZSBhbmQgbGVhdmluZyB0aGlzDQo+
-IGFsd2F5cyBvbiB3aWxsIGltcGFjdCBzcGVlZCBwZXJmb3JtYW5jZS4NCj4gPiBTbywgSSBhZGRl
-ZCB0aGlzIHByb3BlcnR5IHRvIGFsbG93IHVzZXIgdG8gY29udHJvbCB0aGlzIGluIGR0Yi4NCj4g
-DQo+IERldmljZXRyZWUgc2hvdWxkIG5vdCBkZXNjcmliZSBwb2xpY2llcywgc28gd2l0aG91dCBq
-dXN0aWZpY2F0aW9uIGl0IGRvZXMgbm90DQo+IGxvb2sgbGlrZSBoYXJkd2FyZSBwcm9wZXJ0eS4g
-RHJvcC4NCj4gDQpJJ2xsIHJlbW92ZSB0aGlzIGluIHYyIGFuZCBzZXQgdGhlIHZhbHVlIHVzaW5n
-IG1vZHVsZSBwYXJhbSBpbnN0ZWFkLg0KVGhhbmtzLg0KDQpCZXN0IHJlZ2FyZHMsDQpKaWEgSmll
-DQo=
+when kmalloc() fail to allocate memory in kasprintf(), fn_1 or fn_2 will
+be NULL, strcmp() will cause null pointer dereference.
+
+Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
+Signed-off-by: ruanjinjie <ruanjinjie@huawei.com>
+---
+ drivers/of/overlay.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index bd8ff4df723d..49c066b51148 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -545,6 +545,11 @@ static int find_dup_cset_node_entry(struct overlay_changeset *ovcs,
+ 
+ 		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+ 		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
++		if (!fn_1 || !fn_2) {
++			kfree(fn_1);
++			kfree(fn_2);
++			return -ENOMEM;
++		}
+ 		node_path_match = !strcmp(fn_1, fn_2);
+ 		kfree(fn_1);
+ 		kfree(fn_2);
+@@ -580,6 +585,11 @@ static int find_dup_cset_prop(struct overlay_changeset *ovcs,
+ 
+ 		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+ 		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
++		if (!fn_1 || !fn_2) {
++			kfree(fn_1);
++			kfree(fn_2);
++			return -ENOMEM;
++		}
+ 		node_path_match = !strcmp(fn_1, fn_2);
+ 		kfree(fn_1);
+ 		kfree(fn_2);
+-- 
+2.25.1
+
