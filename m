@@ -2,116 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D1D644F7B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 00:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9762644F86
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 00:23:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiLFXSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 18:18:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
+        id S229452AbiLFXXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 18:23:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLFXSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 18:18:33 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322CBD117;
-        Tue,  6 Dec 2022 15:18:32 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id o189so5126022iof.0;
-        Tue, 06 Dec 2022 15:18:32 -0800 (PST)
+        with ESMTP id S229728AbiLFXXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 18:23:23 -0500
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 776BC2A71C
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 15:23:19 -0800 (PST)
+X-KPN-MessageId: f55a3b5c-75bc-11ed-97dd-005056abad63
+Received: from smtp.kpnmail.nl (unknown [10.31.155.37])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id f55a3b5c-75bc-11ed-97dd-005056abad63;
+        Wed, 07 Dec 2022 00:23:14 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cre6nZSUVoXSGiGw303piLfAyt0eln7OQe/31K4zAAg=;
-        b=XepLHlYR/c1jdAaDsSuKcmUCZ1DfGYZE5u/kVUQwGmFvq87bAaCbBuwDVRDOkQ5weV
-         0InV3lB2nv0t0HgsTG5w4j3nWwPoRX1MyZMZT1K2QWFWBOLcXAZchJlWa410L9XNKck1
-         gzhwRHgIhQ4QLE7j7zvqYIlrhlM0z5EihPry5uDv4KiUZiSETZ5XN8m8HaIvOGDqnrfJ
-         Tg3vruFTvAoLx1rk2CXqqzXAupoVYpRIDbpInHOKqxWV0g8f+2q3Lvsj1V2HwYgX9lLK
-         IYMgSAKWK6/qzxOhWZaZpOxa1fwjnO5/CGW/dlaRCTKw7FWAY2CLPWOJCb7duVJYu+vc
-         Subw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Cre6nZSUVoXSGiGw303piLfAyt0eln7OQe/31K4zAAg=;
-        b=g07Lyob2h1qk6UaDAsqGPByBWjaXjhgjm00o4oPuyhBr7WwfTSD37EDxQUFZReQ56D
-         9EULLSkaPAo0IFwXbqcjuclUSp/fz3MDGLTc6jaW1DQ6PoDbmX/sVunKiVNS8G9wKLxH
-         pSc3ebrkePtGWpI3N3nJJqMPyiylh1bjikX7EwLsqwH3sHAs226uJcq/IQ4pYOUQvsVr
-         wCHoZLRy1gczgdzd8P5UqIhEBrgUIGTMs6htQmc/rIAYN3mP++qkPV9Ak1z4iGjjOrdy
-         AmZy/3xjlZkTqJ6YKr3PPdQx3PCf90GWXPSg2XoCS/tvdfqhK0XU2sb9xeIfDfdlBGKY
-         ukUQ==
-X-Gm-Message-State: ANoB5pmWG44a5M6xJpzDM4+F2R+GdbHHar1YJr4qwWPs+6Fu+PC38kmQ
-        89OT4Lsa9hkE9Bzbpc2Fetc=
-X-Google-Smtp-Source: AA0mqf6qf20kC/mQzJp9+jZEhnO6XuhvTblZf2r9pYJQLyvrlYUduY8BQLG9LLZXhdNZD6aWj8+9QA==
-X-Received: by 2002:a6b:3102:0:b0:6bf:e923:388b with SMTP id j2-20020a6b3102000000b006bfe923388bmr42439122ioa.105.1670368711655;
-        Tue, 06 Dec 2022 15:18:31 -0800 (PST)
-Received: from localhost ([2607:fea8:a2df:3d00::32c2])
-        by smtp.gmail.com with ESMTPSA id x27-20020a0566380cbb00b0038a0eff63d0sm6374271jad.155.2022.12.06.15.18.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 15:18:31 -0800 (PST)
-From:   Richard Acayan <mailingradian@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: sdm670: add missing usb hstx nvmem cell
-Date:   Tue,  6 Dec 2022 18:17:32 -0500
-Message-Id: <20221206231729.164453-3-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221206231729.164453-1-mailingradian@gmail.com>
-References: <20221206231729.164453-1-mailingradian@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        d=xs4all.nl; s=xs4all01;
+        h=subject:to:from:message-id:date;
+        bh=CIBeStOO0qbBcZ6mxWmcUguUE28tbAb8XjbHrtI/l1o=;
+        b=E0LuIuM9iGdCWGe2kmEgOHZjUuwKGbwkpfDFdsKOwDmMURgVjtRp13HHbbG3iQHc0tdRyK0yjnuUc
+         ycUuAVg+HZ2x+4Cb0vnGMca6TSIw4s9UO5u6bXkpxz0g1Gae5+nYQjmqLy6Tdlta7bMjeXSfAcjgiW
+         ZXG3exOwFspPoRjbUxpSCN9NaBHITzHNI/P5DUG21Ur9hZHOsFx1q0gZtQRW9PltxdVmgFqKahZeu9
+         VbMxguncazGyD4JdAxGyVeNrJ6t5pSmbbFNvOs1/XR4L39hNr5dDg80wSPD3kSfARAzakjxlWDPsln
+         FR+vqPYHqF/jHtwP3SEggwkQVYp82Aw==
+X-KPN-MID: 33|FtOEMHrbeBIOC7vz8Aa7KogKslJJNPLGdoTAREmn8gzz/VtkhcTQLtXJvhZy4Wp
+ Y3krK5jAq0Y7cUuWfk6Rk9TD2nco14LiD13Ntve2O+eQ=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|NXpokNYCE8DxEVe8/3j3MToiwY0oPaG0xO7vx8a+f+z45yR8j+Bg1qimjDim4+q
+ 4SU69MqtF1Atl0EQ1s9QPNQ==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id f5f371eb-75bc-11ed-ae04-005056ab1411;
+        Wed, 07 Dec 2022 00:23:16 +0100 (CET)
+Date:   Wed, 07 Dec 2022 00:23:15 +0100
+Message-Id: <87mt802k2k.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Janne Grunau <j@jannau.net>
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        maz@kernel.org, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, j@jannau.net
+In-Reply-To: <20221206-arm64-dts-apple-pcie-iommu-v1-0-210c56e48c01@jannau.net>
+        (message from Janne Grunau on Tue, 06 Dec 2022 23:57:35 +0100)
+Subject: Re: [PATCH 0/2] Fix Apple silicon PCIe iommu device tree node names
+References: <20221206-arm64-dts-apple-pcie-iommu-v1-0-210c56e48c01@jannau.net>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This nvmem cell is present on SDM670 as well as SDM845. Add it in SDM670
-so there is proper tuning.
+> Content-Type: text/plain; charset="utf-8"
+> From: Janne Grunau <j@jannau.net>
+> Date: Tue, 06 Dec 2022 23:57:35 +0100
+> Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+>  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+>  Janne Grunau <j@jannau.net>
+> 
+> Hej,
+> 
+> the iommu nodes for the PCIe ports were added with the non-standard
+> node name "dart" instead of the recommended generic "iommu" from the
+> devicetree specification. This series fixes this for t8103 and t600x.
+> Patches are based on the asahi-soc-dt-6.2-v2 tag in the asahi-soc
+> repository (https://github.com/AsahiLinux/linux.git).
+> 
+> cheers,
+> 
+> Janne
+> 
+> To: Hector Martin <marcan@marcan.st>
+> To: Sven Peter <sven@svenpeter.dev>
+> To: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> To: Rob Herring <robh+dt@kernel.org>
+> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> To: Marc Zyngier <maz@kernel.org>
+> Cc: asahi@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> 
+> ---
+> Janne Grunau (2):
+>       arch: arm64: apple: t8103: Use standard "iommu" node name
+>       arch: arm64: apple: t600x: Use standard "iommu" node name
+> 
+>  arch/arm64/boot/dts/apple/t600x-die0.dtsi | 8 ++++----
+>  arch/arm64/boot/dts/apple/t8103.dtsi      | 6 +++---
+>  2 files changed, 7 insertions(+), 7 deletions(-)
+> ---
+> base-commit: d32c1530c7230b756ca9a6b6cf92ce6e60788594
+> change-id: 20221206-arm64-dts-apple-pcie-iommu-7b0d4d5d4329
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
-Changes since v1:
- - remove "primary" indicator (SDM670 only has one USB controller)
+For the series:
 
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index c78156e03d93..fcea26ba7fe9 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -736,6 +736,11 @@ qfprom: qfprom@784000 {
- 			reg = <0 0x00784000 0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+
-+			qusb2_hstx_trim: hstx-trim@1eb {
-+				reg = <0x1eb 0x1>;
-+				bits = <1 4>;
-+			};
- 		};
- 
- 		sdhc_1: mmc@7c4000 {
-@@ -1418,6 +1423,8 @@ usb_1_hsphy: phy@88e2000 {
- 
- 			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
- 
-+			nvmem-cells = <&qusb2_hstx_trim>;
-+
- 			status = "disabled";
- 		};
- 
--- 
-2.38.1
-
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
