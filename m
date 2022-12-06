@@ -2,189 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E919F643EDA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:39:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 786A5643EE4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:40:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbiLFIjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:39:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33536 "EHLO
+        id S231866AbiLFIkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:40:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232490AbiLFIiq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:38:46 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABC2FE78
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:38:44 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id cf42so16773818lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:38:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ANyVsngf65a+eFmtwb0iMJHr0EeOJEcLYKSjm4qNpxI=;
-        b=NJMk55P+sC/tqvVTE5YgKq8nQusWlrdEnAyJYx0CsOvhX9rLKLkm4pnwSIvQk6SAZm
-         ONCSQRQ1JXQIeAKiPGbM848T1ZIW2d7l+/tP6GaB06wKMQ1zq7TJupMR4/QJbvZ5AYzA
-         KApImDchL4woQ6iEfLs7s0HrjmzKegSkNkD2M+/HxZDyfrsw9Jx1zbwGJH/Kk9Uly+lq
-         zNtBHZXfMM1sNaFXNCHVqjnEJoph6+nUF/9/bZ9T+GjzR2z+j2IPdhMflij5zxKIwQwL
-         FHdA+RgpZ0/9YNbYpGoZ2PzHSdM6qC735HYmAsZ2Ow4Ex7LA2iZ7foVSmULQ6AB52RdM
-         W3Tg==
+        with ESMTP id S229461AbiLFIkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:40:36 -0500
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9412655;
+        Tue,  6 Dec 2022 00:40:35 -0800 (PST)
+Received: by mail-qt1-f182.google.com with SMTP id a27so13235829qtw.10;
+        Tue, 06 Dec 2022 00:40:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ANyVsngf65a+eFmtwb0iMJHr0EeOJEcLYKSjm4qNpxI=;
-        b=ZgSDFXZZIZYGYkQ4DFiM5cPLqDbFKHlgpzEEPbdakYCzcn4+0oq//vMT5JxzR0qYNy
-         xjDo79Oz5yyak9QuXVeJYU8OXKOhs33iYL7usc11c0zpBeE6DfimluVR3E0uC3EoKEfa
-         g6Bdvu2RMamMzlm8gp3hI+7CWxhqImp8S94GoFlBDD2PgRkllgsBHF4X7PTKGsb0OehN
-         sYbnwJhE9fDDzczJnj68pjGnTfSb9ZLtuU+ghICcmrNN6FEG3BmtFQLCm+HGnpaDe26g
-         +iOS7sNMQlVAobcIeOVYLYz63IxzJl9UOBV5Uly9zqDudZOQAEvt89ZG/cCJ2+sRMA6q
-         aNQw==
-X-Gm-Message-State: ANoB5pncS+FyRzdsqAPqsdwMpSW1mQaeQirpUBzrKawLMF1hP2lUFMsW
-        lHs7f8ukaVcreqd4AQ9aXUy0kw==
-X-Google-Smtp-Source: AA0mqf64avDHaRy5jJ5LqrBrk9vceu4eOGM5kyWEz2n90p+ntO8hFrEe7y5FzENUFnVh7tv2lJ+tuA==
-X-Received: by 2002:a05:6512:445:b0:4b5:8d2c:fc36 with SMTP id y5-20020a056512044500b004b58d2cfc36mr31490lfk.505.1670315922955;
-        Tue, 06 Dec 2022 00:38:42 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi20-20020a05651c231400b002773ac59697sm1599383ljb.0.2022.12.06.00.38.41
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=14rwrwErRJ+tInD2pg649j4kt6uhDdkQ30O3vQ8WKAg=;
+        b=GBLPlvwihuL+UGK+MI27KVuB/WWHde1+BzQKn1aboAPiY+xlKaf1kldwwdIWcy6/zP
+         LrV/kL/h1IqUxwelaS/+WKPM7V6Q8Oq7TJw7k83Ww1fn7ZS59bo7Unt1OTGU5aHI+YsP
+         i3rtEDyj/O7e8mTcoPcTat9ssW+ZIfiXfeIfKPCuvjmVE0JYQTpGoYIwP050tOhsoBtj
+         TTDm3NdaZdtfBd9dCg7KMbM7DwEm/+Dy/Va2b+hAzniW7HaRJ0xKxInjyMOD95ix3FPN
+         jmK2gDpmP+9IrNTmou0/nzZQnvMEhI6bhqBB+1URhgfVOFkSQwj+hbzJBaNUTCVASXBl
+         ROBA==
+X-Gm-Message-State: ANoB5pl5L6aT7mN1XxcGPfPCFCYD6M82x33SdIgD+uM3+ekIhHI2v07O
+        RoJod0tL20ccU3rkqcZPzSc6RgGc1Fh45Q==
+X-Google-Smtp-Source: AA0mqf5a48KAVVJL92fXditk3rGn0KqCE7wIj7zt5afPGZ0uMfDZtKMxjw4PIr3NaoyXxqn7eRgqfw==
+X-Received: by 2002:ac8:528a:0:b0:3a6:9b81:665a with SMTP id s10-20020ac8528a000000b003a69b81665amr14832468qtn.670.1670316033947;
+        Tue, 06 Dec 2022 00:40:33 -0800 (PST)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id u6-20020a05620a430600b006fc5a1d9cd4sm14338729qko.34.2022.12.06.00.40.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:38:42 -0800 (PST)
-Message-ID: <2597b9e5-7c61-e91c-741c-3fe18247e27c@linaro.org>
-Date:   Tue, 6 Dec 2022 09:38:41 +0100
+        Tue, 06 Dec 2022 00:40:33 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-3e45d25de97so88319977b3.6;
+        Tue, 06 Dec 2022 00:40:33 -0800 (PST)
+X-Received: by 2002:a81:a8a:0:b0:37e:6806:a5f9 with SMTP id
+ 132-20020a810a8a000000b0037e6806a5f9mr659593ywk.47.1670316032857; Tue, 06 Dec
+ 2022 00:40:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH net-next v1 3/4] dt-bindings: net: phy: add MaxLinear
- GPY2xx bindings
-Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>, Rob Herring <robh@kernel.org>
-Cc:     Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
+ <20221205225042.GA2812115-robh@kernel.org> <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 6 Dec 2022 09:40:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX2=AwerQZS2cqR4exq_QNtt=Fwp5KBcmPr1qmOBNOSAg@mail.gmail.com>
+Message-ID: <CAMuHMdX2=AwerQZS2cqR4exq_QNtt=Fwp5KBcmPr1qmOBNOSAg@mail.gmail.com>
+Subject: Re: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221202151204.3318592-1-michael@walle.cc>
- <20221202151204.3318592-4-michael@walle.cc>
- <20221205212924.GA2638223-robh@kernel.org>
- <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
- <9c0506a6f654f72ea62fed864c1b2a26@walle.cc>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9c0506a6f654f72ea62fed864c1b2a26@walle.cc>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 09:29, Michael Walle wrote:
-> Am 2022-12-05 22:53, schrieb Michael Walle:
->> Am 2022-12-05 22:29, schrieb Rob Herring:
->>> On Fri, Dec 02, 2022 at 04:12:03PM +0100, Michael Walle wrote:
->>>> Add the device tree bindings for the MaxLinear GPY2xx PHYs.
->>>>
->>>> Signed-off-by: Michael Walle <michael@walle.cc>
->>>> ---
->>>>
->>>> Is the filename ok? I was unsure because that flag is only for the 
->>>> GPY215
->>>> for now. But it might also apply to others. Also there is no 
->>>> compatible
->>>> string, so..
->>>>
->>>>  .../bindings/net/maxlinear,gpy2xx.yaml        | 47 
->>>> +++++++++++++++++++
->>>>  1 file changed, 47 insertions(+)
->>>>  create mode 100644 
->>>> Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>>>
->>>> diff --git 
->>>> a/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml 
->>>> b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>>> new file mode 100644
->>>> index 000000000000..d71fa9de2b64
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>>> @@ -0,0 +1,47 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/net/maxlinear,gpy2xx.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: MaxLinear GPY2xx PHY
->>>> +
->>>> +maintainers:
->>>> +  - Andrew Lunn <andrew@lunn.ch>
->>>> +  - Michael Walle <michael@walle.cc>
->>>> +
->>>> +allOf:
->>>> +  - $ref: ethernet-phy.yaml#
->>>> +
->>>> +properties:
->>>> +  maxlinear,use-broken-interrupts:
->>>> +    description: |
->>>> +      Interrupts are broken on some GPY2xx PHYs in that they keep 
->>>> the
->>>> +      interrupt line asserted even after the interrupt status 
->>>> register is
->>>> +      cleared. Thus it is blocking the interrupt line which is 
->>>> usually bad
->>>> +      for shared lines. By default interrupts are disabled for this 
->>>> PHY and
->>>> +      polling mode is used. If one can live with the consequences, 
->>>> this
->>>> +      property can be used to enable interrupt handling.
->>>
->>> Just omit the interrupt property if you don't want interrupts and add 
->>> it
->>> if you do.
->>
->> How does that work together with "the device tree describes
->> the hardware and not the configuration". The interrupt line
->> is there, its just broken sometimes and thus it's disabled
->> by default for these PHY revisions/firmwares. With this
->> flag the user can say, "hey on this hardware it is not
->> relevant because we don't have shared interrupts or because
->> I know what I'm doing".
+Hi Biju,
 
-Yeah, that's a good question. In your case broken interrupts could be
-understood the same as "not connected", so property not present. When
-things are broken, you do not describe them fully in DTS for the
-completeness of hardware description, right?
+On Tue, Dec 6, 2022 at 9:13 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+> > On Mon, Dec 05, 2022 at 02:59:49PM +0000, Biju Das wrote:
+> > > This patch series aims to add support for Compare-Match Timer (TIM)
+> > > module found on RZ/V2M SoC.
+> > >
+> > > it is composed of 32 channels and channels 0-7 and 24-32 are reserved
+> > > for ISP usage.
+> > >
+> > > Channel 22 is modelled as clock source and Channel 23 is modelled as
+> > > clock event driver and the rest of the channels are modelled as
+> > > counter driver as it provides
+> >
+> > Why did you pick those 2 counters for those functions?
+>
+> Currently it uses architecture timer for broadcast timer, so I thought
+> Since TIM has 24 channels, use 1 channel for broadcast timer and 1
+> Channel for clock source. But having said that SoC has an aarch64 architecture
+> clock source strictly speaking we don't need this.
+>
+> > Unless the h/w blocks are different, this is an abuse of compatible
+> > strings. What's the h/w difference that makes you care which counter the
+> > OS picks? That's what the DT should describe. If any timer will do, just
+> > let the OS pick.
+>
+> There is no HW difference. Same HW block can be used for mutually exclusive
+> functionality.
+>
+> One is for Linux Clock source/event functionality((scheduler tick/broadcast tick etc) and
+>
+> the other purpose is to expose count and event ticks from this module to user space,
+> so that wide range of applications can make use of it.
+>
+> If it is an abuse of compatible strings for mutually exclusive functionality
+> , then I would like to drop clock source and use all the channels as
+> Either clock events(for broadcast ticks and real time usage??) or as counters.
+>
+> If this is not OK, then I need to pick one. I will go with counters.
+>
+> Please share your thoughts.
 
-> 
-> Specifically you can't do the following: Have the same device
-> tree and still being able to use it with a future PHY firmware
-> update/revision. Because according to your suggestion, this
-> won't have the interrupt property set. With this flag you can
-> have the following cases:
->   (1) the interrupt information is there and can be used in the
->       future by non-broken PHY revisions,
->   (2) broken PHYs will ignore the interrupt line
->   (3) except the system designer opts-in with this flag (because
->       maybe this is the only PHY on the interrupt line etc).
+Can't you handle this like sh_cmt.c does:
 
-I am not sure if I understand the case. You want to have a DTS with
-interrupts and "maxlinear,use-broken-interrupts", where the latter will
-be ignored by some future firmware? Isn't then the property not really
-correct? Broken for one firmware on the same device, working for other
-firmware on the same device?
+        /*
+         * Use the first channel as a clock event device and the second channel
+         * as a clock source. If only one channel is available use it for both.
+         */
 
-I would assume that in such cases you (or bootloader or overlay) should
-patch the DTS...
+> > > 1) counter for counting
+> > > 2) configurable counter value for generating timer interrupt
+> > > 3) userspace event for each interrupt.
+> > >
+> > > logs:-
+> > > Counter driver:
+> > > Counter driver is tested by reading counts and interrupts tested by
+> > > counter-example in tools/counter/counter_example.c
+> > >
+> > > Count snapshot value:
+> > > 3114
+> > > Output from counter_example when it triggers interrupts:
+> > > Timestamp 0: 24142152969        Count 0: 5
+> > > Error Message 0: Success
+> > >
+> > > Clock source:
+> > > Clock source driver is tested by clock-source-switch app.
+> > > [ 1275.703567] clocksource: Switched to clocksource arch_sys_counter
+> > > [ 1275.710189] clocksource: Switched to clocksource a4000b00.timer
+> >
+> > Do you have any use case to really switch. Doing so disables the vDSO
+> > access to the clocksource.
+>
+> Not really. Architecture timer should be sufficient for clocksource.
 
+When multiple clocksources are registered, the clocksource
+subsystems picks the best one anyway, right?
 
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
