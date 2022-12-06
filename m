@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86EF3644459
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:14:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB3E64445C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:14:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234682AbiLFNOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 08:14:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
+        id S234142AbiLFNOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 08:14:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234693AbiLFNNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:13:49 -0500
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1FD91B1EA
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 05:13:26 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id bj12so5996324ejb.13
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 05:13:26 -0800 (PST)
+        with ESMTP id S234810AbiLFNNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:13:53 -0500
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C35127CCC
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 05:13:29 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id b2so6052113eja.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 05:13:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oCy2ZKkP+o5zw4JnVQxbpcd6lL2PTAKfa9gdKzWsPa8=;
-        b=iyGkgbdcHkaUI5kxxiAD5L5DoTE2+4DCW5JXmiCPVuMWRZt2906NYE+2uQq/yYySdX
-         NnT6bqaVrhdBqO0SykdWfzSVF0Gq1cCLkDMck/gRbupCRJwWWe1BE9wgz7WBseifNs9o
-         6LRGA3tvxUiXjzKd+/WH8iEmfRyXOghzGzU5pFfUydYfcvmzgzfGOyAu5C99rWDIgV6c
-         FznDdybdu6MS0F3BeGtM1wgQuENcoBUDdXt3cPRUh8pGfi+emAZV8YShVgR8qUDD3Tqi
-         5O6F8PK7ZAy0+Shvngn0lbjIn2oEdbj4Cw2RFwFZ0ZYCs+ESC03pBfAZ6XBifsnS2cSZ
-         mN9A==
+        bh=TxTuDuP9N5RzZdY9G7Umgi4OKE3T+v4Fwox44/I+AkY=;
+        b=ypkbZjGT4Z4uMg9Ntv3w4lpO8IRqwTWiV97jNT6lyXfjkkcnMkPRZdREhFxHdfUKHy
+         BHsOUwdyUDBd77lFtpaFBDFVIkmSWm5bIEgzCSyCyETIsfAtvC5/1zNBYIgqTFP/w+Md
+         KREg7EjJZ4T3TjPzJMpCfnq4xHSnBCg9aC1Dyk87adiEKLgq1mM2znjpvvAuNwZgLB4W
+         f5CHLX/U89eJpZg3ILguRF+a9u0yNo0vdjW1v3TqkuilPG3hgpChkF79qWqU1b2MPEXi
+         7hnVCKuuCrPyxyi6mNHVlJVO/Byxvwzq66KItLFGhnvEXEuDakWt5lfFbxv1jRFWCUO/
+         TOTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oCy2ZKkP+o5zw4JnVQxbpcd6lL2PTAKfa9gdKzWsPa8=;
-        b=wrExAAWAwxiP/64GwPshXWN3wFjiMwCEoaSP0N9Y5BLqEJRUaqCFLHVfPA+ugXsBtq
-         QTeWs04qp5cZs9N1wJG36IxCQ9KIhXri78THJTPw2m5a2ETzjUA040tm28XCNVUEDemN
-         N9Y3EZpLYZWUI+bq5GqqpiiPS0/ekMN72e1+V5yCRDSgKS2v11O9F8HLbk/SAdftYUgN
-         edwyTLQ3nfORRaCWPPbhZNbtX/7T3ZJsDOor3hzKXKwZXOsu6COUXNdc1FOQEaL150tn
-         0jMbyr6n7PyTMr8RONzzk3bd0bV6dX8vTZXgj6+OSBQ2Xyc3GZfMjTgamMU0gKJYKgRS
-         csZA==
-X-Gm-Message-State: ANoB5pkP4FtJ7Oe2HOhRbLY2MQLpxeDs6VA7hJK2RewajUrSXvCHQ4zl
-        0wZXxR2OsnLXTdbBTqTYXCTZ3g==
-X-Google-Smtp-Source: AA0mqf7pOISGsfHe5kUx9El3E05lCf20tKu+AogKpDLGg9Lolr37qT7oYu7/9mDbHNJOfe3YcVjgqg==
-X-Received: by 2002:a17:906:6dd5:b0:78d:a633:b55 with SMTP id j21-20020a1709066dd500b0078da6330b55mr76507612ejt.106.1670332406502;
-        Tue, 06 Dec 2022 05:13:26 -0800 (PST)
+        bh=TxTuDuP9N5RzZdY9G7Umgi4OKE3T+v4Fwox44/I+AkY=;
+        b=jlE9pcdift/2jBvoRHo9c6VauSdJtmvlKxdaHDkKotkjejPRsQl5EFGUAgpFsjwRjp
+         GiO1WbEEfivjwPZc37BcA0UioUA0Av3qNxkrpuFhEaIaWU+xonfGoabp0Bp3Nwj96pAR
+         6VWdilrCXAM9kxVaxHB+mcxCJsukwBNNsPDe894HxvrYtxW0a8VG1zPhwJTHAxu/QGBQ
+         T6H2SkDo5NeZKliTV6PIFT8FP8cLfXYkPbPa4X/xyLzXOK8qPthVaHgoiRF4I+TST4oj
+         nW+CVqrilpgNiUCrPXK0B6lpI7//HDhoE2wfUWKjRdpOivBDJreMV3gQiBlDSZUgmdz6
+         qEWg==
+X-Gm-Message-State: ANoB5pmBicr/A+OkZMfzCK0M1dwije07+nmkLlL83HaNlMf2MB/10TcK
+        2pW3MeQ7WJIjxvp+H3hJpBuO5g==
+X-Google-Smtp-Source: AA0mqf49oFAqt14KKLJwAVdRSsrOuwZxSrraZp/0Y4SKi5FsOw/25ZCR8aoXRGqIdYAxhKrcGccp/Q==
+X-Received: by 2002:a17:907:7613:b0:7c1:5a7:b91c with SMTP id jx19-20020a170907761300b007c105a7b91cmr3819859ejc.749.1670332407653;
+        Tue, 06 Dec 2022 05:13:27 -0800 (PST)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id u2-20020a1709061da200b007b8a8fc6674sm7345775ejh.12.2022.12.06.05.13.25
+        by smtp.gmail.com with ESMTPSA id u2-20020a1709061da200b007b8a8fc6674sm7345775ejh.12.2022.12.06.05.13.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 05:13:26 -0800 (PST)
+        Tue, 06 Dec 2022 05:13:27 -0800 (PST)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         Neil Armstrong <neil.armstrong@linaro.org>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH v6 08/10] arm64: dts: qcom: Add PMK8550 pmic dtsi
-Date:   Tue,  6 Dec 2022 15:12:50 +0200
-Message-Id: <20221206131252.977369-9-abel.vesa@linaro.org>
+Subject: [PATCH v6 09/10] arm64: dts: qcom: Add PMR735d pmic dtsi
+Date:   Tue,  6 Dec 2022 15:12:51 +0200
+Message-Id: <20221206131252.977369-10-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221206131252.977369-1-abel.vesa@linaro.org>
 References: <20221206131252.977369-1-abel.vesa@linaro.org>
@@ -78,70 +78,119 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Neil Armstrong <neil.armstrong@linaro.org>
 
-Add nodes for PMK8550 in separate dtsi file.
+Add nodes for PMR735d in separate dtsi file.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmk8550.dtsi | 55 +++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pmk8550.dtsi
+ arch/arm64/boot/dts/qcom/pmr735d.dtsi | 104 ++++++++++++++++++++++++++
+ 1 file changed, 104 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735d.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/pmr735d.dtsi b/arch/arm64/boot/dts/qcom/pmr735d.dtsi
 new file mode 100644
-index 000000000000..47213d05bf92
+index 000000000000..41fb664a10b3
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
-@@ -0,0 +1,55 @@
++++ b/arch/arm64/boot/dts/qcom/pmr735d.dtsi
+@@ -0,0 +1,104 @@
 +// SPDX-License-Identifier: BSD-3-Clause
 +/*
 + * Copyright (c) 2022, Linaro Limited
 + */
 +
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/linux-event-codes.h>
 +#include <dt-bindings/interrupt-controller/irq.h>
 +#include <dt-bindings/spmi/spmi.h>
 +
++/ {
++	thermal-zones {
++		pmr735d-k-thermal {
++			polling-delay-passive = <100>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pmr735d_k_temp_alarm>;
++
++			trips {
++				trip0 {
++					temperature = <95000>;
++					hysteresis = <0>;
++					type = "passive";
++				};
++
++				trip1 {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "hot";
++				};
++			};
++		};
++
++		pmr735d-l-thermal {
++			polling-delay-passive = <100>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pmr735d_l_temp_alarm>;
++
++			trips {
++				trip0 {
++					temperature = <95000>;
++					hysteresis = <0>;
++					type = "passive";
++				};
++
++				trip1 {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "hot";
++				};
++			};
++		};
++	};
++};
++
++
 +&spmi_bus {
-+	pmk8550: pmic@0 {
-+		compatible = "qcom,pm8550", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
++	pmr735d_k: pmic@a {
++		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
++		reg = <0xa SPMI_USID>;
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +
-+		pmk8550_pon: pon@1300 {
-+			compatible = "qcom,pm8998-pon";
-+			reg = <0x1300>, <0x800>;
-+			reg-names = "hlos", "pbs";
-+
-+			pon_pwrkey: pwrkey {
-+				compatible = "qcom,pmk8350-pwrkey";
-+				interrupts = <0x0 0x13 0x7 IRQ_TYPE_EDGE_BOTH>;
-+				linux,code = <KEY_POWER>;
-+				status = "disabled";
-+			};
-+
-+			pon_resin: resin {
-+				compatible = "qcom,pmk8350-resin";
-+				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
-+				status = "disabled";
-+			};
++		pmr735d_k_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0xa 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
 +		};
 +
-+		pmk8550_rtc: rtc@6100 {
-+			compatible = "qcom,pmk8350-rtc";
-+			reg = <0x6100>, <0x6200>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+		};
-+
-+		pmk8550_gpios: gpio@8800 {
-+			compatible = "qcom,pmk8550-gpio", "qcom,spmi-gpio";
-+			reg = <0xb800>;
++		pmr735d_k_gpios: gpio@8800 {
++			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
 +			gpio-controller;
-+			gpio-ranges = <&pmk8550_gpios 0 0 6>;
++			gpio-ranges = <&pmr735d_k_gpios 0 0 2>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmr735d_l: pmic@b {
++		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
++		reg = <0xb SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmr735d_l_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0xb 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmr735d_l_gpios: gpio@8800 {
++			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmr735d_l_gpios 0 0 2>;
 +			#gpio-cells = <2>;
 +			interrupt-controller;
 +			#interrupt-cells = <2>;
