@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B73643EE9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D595643EEF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:43:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230293AbiLFIlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:41:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39240 "EHLO
+        id S233724AbiLFInh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:43:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231771AbiLFIlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:41:36 -0500
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0628863A8;
-        Tue,  6 Dec 2022 00:41:34 -0800 (PST)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id CA2E95C00B2;
-        Tue,  6 Dec 2022 03:41:31 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 06 Dec 2022 03:41:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1670316091; x=1670402491; bh=aJo3J1Ury8
-        ++OjEv6DzcQ9jc03bCyjWjmRPfTKm3uP0=; b=cIXLZfBwkLxJvUGYhKhDoQYgg3
-        oVLwPWXuDT/Op0sWB9H0oa1jbST02sOOmrlqXck1x3pmwWp+Ci0/5vQU983BWieK
-        LsHJ7gfJQHoUoj6JFIK57gq2hg1P894i+Tz3XNgDEXKbKufDqD8LruNMqM7DWLrP
-        R64gbjNNZdJhGes3sBaJK4ZWetNyjDK22OZvuogfPQtCtGXTAYAF6lWJ4YxEnSRg
-        zuAFrgCl+OOJ0n5F9e33XnkN6E9pJ4bYrx3MLzRalO7Gm9SvMKR8O1ZRB6BLVUSV
-        hheItXaZZZIMDNct6/9dt5W93TySzSvGjzX+V+MktfpF2h94tpKYSeKuhzlg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1670316091; x=1670402491; bh=aJo3J1Ury8++OjEv6DzcQ9jc03bC
-        yjWjmRPfTKm3uP0=; b=VSRbJf5zDphz/MaojcgPtnB5M93ipX5duRgXyeju69hz
-        uwac1CtJ8HLaGSXgbetF/1gMnLFaY9yNzCTud2eU93HHc/Dh7hTmbvFrOvgGkgHw
-        XfdGs4PkyRJkoXjtw85F/iVLfgE5JnCE3F01UXkipLNC7ZQEqU2+cb7wzIg/k0kO
-        i4RSUdlDj0JK7b+a+Er+LebZ7NmkRoj/tmrt0ZQn1SrbWhSCyjaFqKlWFfG8+tQK
-        Ckg53CVInEO6/dU5NoenHuet0T9mP2EeOVoedKRS9FZBNOD7tl9NYAyNv+QyxqIh
-        +K8r+XcKhp+obbDKGqYeM7sw0k3MLJ44ANtrjNCMhA==
-X-ME-Sender: <xms:OwCPY3eLQy-IcoRbJAD_JOVDcCGRNHO3Sd89JuFFgtJfOqv2M6P8Vw>
-    <xme:OwCPY9Nnudqdi6_d2QGVlwGSag_Zeb4WKHnDo2j1pu2jPSUKBjeQ3u145VwpJZC2O
-    fpO05pS35huVIiP_AM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudehgdduvdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffgeffuddtvdehffefleethfejjeegvdelffejieegueetledvtedtudelgfdu
-    gfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:OwCPYwgfHVwEAlvGexqKDEUUEwKpg-tLjX1fwreIpiPtS2xY2R1CWg>
-    <xmx:OwCPY4_SijKSlgmczYi3cJcUy6pfrjF57dht8NYc5huq58uu2xJteQ>
-    <xmx:OwCPYzvlX5h_xvCk7vf11qm2L01v7SpDpW4ZwNl4kJ9l1chMDxQpUg>
-    <xmx:OwCPY9Lfi6zLdiidBl7GMSvefovfMsTLTG5wQnNln-KKR1t44jIU3A>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 60E0AB60086; Tue,  6 Dec 2022 03:41:31 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
-Mime-Version: 1.0
-Message-Id: <e46a680f-e891-489c-9747-98ae3df42ade@app.fastmail.com>
-In-Reply-To: <20221206073916.1606125-3-jk@codeconstruct.com.au>
-References: <20221206073916.1606125-1-jk@codeconstruct.com.au>
- <20221206073916.1606125-3-jk@codeconstruct.com.au>
-Date:   Tue, 06 Dec 2022 09:41:10 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jeremy Kerr" <jk@codeconstruct.com.au>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>
-Subject: Re: [RFC PATCH 2/2] mfd: syscon: allow reset control for syscon devices
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231771AbiLFIng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:43:36 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDC13DE8B
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:43:34 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b3so22556687lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:43:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SaSD3geb2bQJh9N/RP9IsEjubJS5gEWgGuf2e7tOAdo=;
+        b=sjhzeRgV7jr7bX4Q5DGBZ8RmwyS3taAXKME+uQhG21OQj57Z4Nh4Z9NQaLgXxXLF4Z
+         gVyjJNPB7d5uNLBtHw48ksb231/XqWpbnBLZOcCQdtE7YGlQ+O+7Z8q8lGTi5jaZlT8v
+         ti26RnFv91Y7u87la9aqRQR4+5kGkkahejIIFL0TUb9ozqRfI4CBNIBcTAKXoU4fTI74
+         KWRsYts15p4qHIxVASlI8lBYYNzKBvaUnatWmEKUrGADnsmwpjgDGxzx2g/Gn/DCoPat
+         M2GUy3wkiYzmSDDUJRqA/aGvNlr4zl8uL6X5OF5+tbezwRRv0o2+biOu4NWlfvBgjg89
+         Z6Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SaSD3geb2bQJh9N/RP9IsEjubJS5gEWgGuf2e7tOAdo=;
+        b=Xn3QCI3CzYeK/4NI1y2ZSfBOUoq97Lbckr2RSdS9viNkuZfT97tV22ERI5Qx3WCno+
+         1JM+FpCjd83Ir9DFBznYQLD6y3isLBSgBof+5fPdLEnlOGrh1SgHdulRWx3Xq4ROWZg0
+         phM/LgNTPIE1KHsQytXPGnZx5UIMMMsAHIw+B/f9tq8NDK+t2VsiZ9lQlNdaURtxhvLk
+         PmQ2YzCYbPYVuc8KWfr881TubT9l+Au+0Y8sS2KkjO4Uv6691nm1b3cEBxCzTOe3sXqf
+         1EREgcDtjXDibFh1krusv/fKeVHhOaEUp9mMQ0lfHZIo16jCbbbrllHrDhe9hQzHd8I5
+         g6Gg==
+X-Gm-Message-State: ANoB5pnKrXeIC0/OyOvtHZxbSw4kuc2HKdc7OqLpw6Oz5AXyOYioHxGs
+        oYlXthevr2y4Sh2EJSIhpIYZ9g==
+X-Google-Smtp-Source: AA0mqf7mR/e8/fiC7Foi5gFMjvFoZf6eTrsbwwZJo8KeirTkL3+gHpNzzBuTeDMmx8wswfW32qCzzQ==
+X-Received: by 2002:a05:6512:3189:b0:4b4:e3bd:6ca0 with SMTP id i9-20020a056512318900b004b4e3bd6ca0mr22528089lfe.278.1670316213184;
+        Tue, 06 Dec 2022 00:43:33 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id j6-20020a056512344600b004a27d2ea029sm2410648lfr.172.2022.12.06.00.43.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 00:43:32 -0800 (PST)
+Message-ID: <b012d945-f3f1-c9d1-09dc-c721346cb922@linaro.org>
+Date:   Tue, 6 Dec 2022 09:43:31 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] dt-bindings: soc: qcom: aoss: Add compatible for SM8550
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20221116113128.2655441-1-abel.vesa@linaro.org>
+ <adc327c7-9e99-4f2d-9641-2981b380ee47@linaro.org>
+ <20221205211623.extu4b22fsowilyd@builder.lan>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221205211623.extu4b22fsowilyd@builder.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 6, 2022, at 08:39, Jeremy Kerr wrote:
-> Simple syscon devices may require deassertion of a reset signal in order
-> to access their register set. Rather than requiring a custom driver to
-> implement this, we can use the generic "resets" specifiers to link a
-> reset line to the syscon.
->
-> This change adds an optional reset line to the syscon device
-> description, and code to perform the deassertion/assertion on
-> probe/remove.
->
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+On 05/12/2022 22:16, Bjorn Andersson wrote:
+> On Wed, Nov 16, 2022 at 12:43:26PM +0100, Krzysztof Kozlowski wrote:
+>> On 16/11/2022 12:31, Abel Vesa wrote:
+>>> Document the compatible for SM8550.
+>>>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>
+>> Why this is not part of other SoC patches? I just received many single
+>> patches for this SM8550 topic. All these should be set of few series,
+>> not 10 or more...
+>>
+> 
+> Because these patches are independent of each other and done in this way
+> means the maintainer can merge each piece on its own. I much prefer this
+> over having these series with 20+ patches being sent over and over
+> because one of the patches is getting feedback.
 
-I see that this will only work after the device has been registered,
-but not for early users of the syscon framework that bypass the
-device logic and just call device_node_to_regmap() or 
-syscon_regmap_lookup*() during early boot.
+But this one is patch for you, so should go with other patches targeting
+Qualcomm subarch. Before submission, we discussed extensively the
+proposed split per patches and it was agreed on. Yet this one here was a
+surprise.
 
-It should be possible to solve this by adding the reset logic
-into the of_syscon_register() function and using the
-of_reset_control_get*() helpers instead of the devm_* ones,
-but I'm not sure if that causes other problems with probe
-order, or if that helps at all, if reset drivers already
-require the device subsystem to be running.
+Best regards,
+Krzysztof
 
-Philipp, what is the earliest point at which
-reset_controller_register() can be called? Is that
-possible before postcore_initcall() or driver_register()?
-
-     Arnd
