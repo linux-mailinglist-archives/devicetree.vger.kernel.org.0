@@ -2,70 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB933644D48
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 21:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DDC6644DA4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229690AbiLFUa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 15:30:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
+        id S229755AbiLFVCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 16:02:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbiLFUax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 15:30:53 -0500
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85C440461;
-        Tue,  6 Dec 2022 12:30:28 -0800 (PST)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-142b72a728fso18831494fac.9;
-        Tue, 06 Dec 2022 12:30:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RWoCxddXqh1IX9FsZJ6o6oKlCitQnKXv3WnemCjP0PI=;
-        b=mKfexK9DrNhG5CSYVU23KrHmu7v3VNEVSTRsdVEam+aIxtB08E3SUD/AL4AjubFlwH
-         xnNijztnQoCV4W+qfC+YHxXAtCESUSTtRSCwfUr8O4rzRMtMu4AhBvjBIXj7fxGcmtAt
-         qcYznzk/Xux/ZG9wAiAk2De5XBFML/8KEh/Kx1+HUxXeK2t4h+qzk2P/TJQQVbNDd5sg
-         XDBMe7RIXY7rC/eXUASXRKlGNhyGXIRGoSEiet42L5UD6KK2ix2fLWKxvwy+3nLdSLlx
-         gD/OpPVpEhAXg3/oeN9dag9UVBdSRFu4VVUZ1WX0W6AddO6qvVuCT+f79lqoLvAa3P+q
-         0jZA==
-X-Gm-Message-State: ANoB5pmWlKUFPubavVuosm6r+8gPy+itI5gFqnuyg8QJWNJeNiW2egNA
-        SyA5g9l42BtlJY9O+kAdCA==
-X-Google-Smtp-Source: AA0mqf67SZpiv3IMMpKVVOcq9lhgNDxbb2wcJGIkY87fjzHwsm6U8RgSFb21JM+0UtdJK7IulZduaQ==
-X-Received: by 2002:a05:6870:805:b0:13b:f163:2732 with SMTP id fw5-20020a056870080500b0013bf1632732mr38617871oab.192.1670358627975;
-        Tue, 06 Dec 2022 12:30:27 -0800 (PST)
-Received: from robh_at_kernel.org ([4.31.143.193])
-        by smtp.gmail.com with ESMTPSA id cb5-20020a056830618500b0066e820696edsm6798200otb.13.2022.12.06.12.30.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 12:30:27 -0800 (PST)
-Received: (nullmailer pid 8557 invoked by uid 1000);
-        Tue, 06 Dec 2022 20:30:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229456AbiLFVCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:02:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C526C2F028;
+        Tue,  6 Dec 2022 13:02:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DAF6618F2;
+        Tue,  6 Dec 2022 21:02:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D33CC433D6;
+        Tue,  6 Dec 2022 21:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670360519;
+        bh=bvu32LFYIQ3mqvaTjtC2wlG+bQ9D2wDMKyzUQjMLf4M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mLTZZLRFOJuvTzmVeiD2+CyUjIalTOGm3M/E4TMnfX2uFbcuGdWa7eJLw1/8YlUI5
+         DbE+pdQmZNSGfU2yrVr37kqsQVuMvMq2z3g6OzCP6giGorFIO3+M+Jd0WHE2F6Sk8O
+         qIIRC7Yu4dDw202VtZGBeE1iMDdwvCfn3cTCt7ky0fRYQv5gZpxFGA0uE8VWJsoIMq
+         fqlWxLAhCX6knHHyU3u7iy4ECDBUKM9ynujSfKssDRRQanAv+c/MHu8BQbPfxXlUqQ
+         zurB1mt1f5M1xQlD1SXS9Z363LzSOTk4cIwZha01CKuz9YXkQ2oxSeoKQiSIcO+f0S
+         uIywgvgMBgt3w==
+Message-ID: <98a97883-3303-20eb-5a18-cfa00af9443e@kernel.org>
+Date:   Tue, 6 Dec 2022 15:01:54 -0600
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20221206125635.952114-2-abel.vesa@linaro.org>
-References: <20221206125635.952114-1-abel.vesa@linaro.org>
- <20221206125635.952114-2-abel.vesa@linaro.org>
-Message-Id: <167035855242.6793.9396626487911124131.robh@kernel.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
-Date:   Tue, 06 Dec 2022 14:30:25 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 05/11] ARM: dts: socfpga: Fix pca9548 i2c-mux node name
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+References: <cover.1669999298.git.geert+renesas@glider.be>
+ <a7bcc2de6c2c0946f56b2d9f9584c55cf28545dc.1669999298.git.geert+renesas@glider.be>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <a7bcc2de6c2c0946f56b2d9f9584c55cf28545dc.1669999298.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,45 +87,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 06 Dec 2022 14:56:31 +0200, Abel Vesa wrote:
-> Add bindings documentation for clock TCSR driver on SM8550.
+
+On 12/2/22 10:49, Geert Uytterhoeven wrote:
+> "make dtbs_check":
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>      arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb: i2cswitch@70: $nodename:0: 'i2cswitch@70' does not match '^(i2c-?)?mux'
+> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>      arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb: i2cswitch@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3', 'i2c@4', 'i2c@5', 'i2c@6', 'i2c@7' were unexpected)
+>          From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> 
+> Fix this by renaming the PCA9548 node to "i2c-mux", to match the I2C bus
+> multiplexer/switch DT bindings and the Generic Names Recommendation in
+> the Devicetree Specification.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
->  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
->  2 files changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
+>   arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> index f24f17c2f5ee6bc4..e0630b0eed036d35 100644
+> --- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> +++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+> @@ -141,7 +141,7 @@ at24@50 {
+>   		reg = <0x50>;
+>   	};
+>   
+> -	i2cswitch@70 {
+> +	i2c-mux@70 {
+>   		compatible = "nxp,pca9548";
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.example.dts:23.29-30 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221206125635.952114-2-abel.vesa@linaro.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Dinh
