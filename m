@@ -2,72 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF6764442C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:09:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F143644436
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234171AbiLFNJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 08:09:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47012 "EHLO
+        id S234790AbiLFNLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 08:11:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234032AbiLFNI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:08:59 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A7A2CDDD;
-        Tue,  6 Dec 2022 05:07:12 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1447c7aa004so9173927fac.11;
-        Tue, 06 Dec 2022 05:07:11 -0800 (PST)
+        with ESMTP id S234492AbiLFNLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:11:13 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940966243;
+        Tue,  6 Dec 2022 05:09:45 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id r11so11115589oie.13;
+        Tue, 06 Dec 2022 05:09:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=imUdSZL1p1VPSoRbaTGeAWYoJrWVTzc2KiZUbiVlSk0=;
-        b=Q+onvu7um3cXTpZ3a0pgluNaZZAFK8Bw0KIIYPemlpvMj8N8rEQflunZuVAcOL6KSu
-         rflnDDUuFZlRL4LW7jnTkmlDV146E+5LdjZ9k1Vglz3YJ1tfixbjxnbiyPQSDlUqGLv1
-         iXlFqHxDNFT5MsVj0h2U9r2ZhLZK5PgC46L266jmJd6WZNnMvnPTzw12uOUyubR1wVWu
-         4b5X2//zT8MqcuTj6hIREcmw7vXzsRIr6Ht/rH51eehxucF99hUajeAchE4nQ6kQSNc5
-         YX8NlTd9CLjyMWTzjkRRNJf2HalDOPKwtnw1Q/yEBI2OgdpJ/BBFWzPnP2axU4i7shUK
-         1NPg==
-X-Gm-Message-State: ANoB5pkNV+1gqyXIn0RfNjDdV6Xbd2Vd/QgRLOJ7FPifestzuUSvA0uG
-        STs/bUoShkAlzy8ONeEEYQ==
-X-Google-Smtp-Source: AA0mqf5z9DjerkdA2yTFa+vGGSfpZNB+NnpP2vdElYLYU29uLcQ9+ZkV9VlhJCcZpEAQoIs77c/cIA==
-X-Received: by 2002:a05:6870:828e:b0:144:9477:9f56 with SMTP id q14-20020a056870828e00b0014494779f56mr5147179oae.226.1670332031196;
-        Tue, 06 Dec 2022 05:07:11 -0800 (PST)
+        bh=Twf2LUQQZEEsPFMs0YGDTeUVVUS9EWkbM3eJUG/VOf0=;
+        b=wb94GU1QlHOKSB3GEWBJaC+I2S/bP+Wlt5KY3Qq9/I+uWBhhG2IyM1sBF3DCSo9oot
+         ZhueNpYEKM+H3XjDT5/LNyzsgAvdULgRgf5x9xAgRyH3jyAGb1gFvRCmqyklj/uzS9ad
+         YRUrRJNKjeakHHtemU7JuzumrPQVX43s1hEpb48PgZHDOscnvVq5HeVH4PENA7YnwEbt
+         JUSx1GtJ69gQUo3CuWN97VCJMqPQNWtYnppPU5C+AcjK7gpXsPKOsdnmbXpAtHNrfueM
+         Q5Upu+6wy5YpPTy2lJhct9K600n4vWpOMbWB7JfwXGqIObWUr+VyvlKFJ/FiqSUn6HQH
+         ULyw==
+X-Gm-Message-State: ANoB5pk4MhQafVBg0bFnbvLkJxa4r/6b++GgrgRQtDXGZBxUukADzkjC
+        JWp3fYIUhuBy/GhKfYvQsCwSX1+J5Q==
+X-Google-Smtp-Source: AA0mqf7a4XewMy+qenYc/uQHEe7SRvtkFJ8yQxfPCpF8rThyNv20WBRTh4LVw3I3MiVY6s7uZD0XLA==
+X-Received: by 2002:a05:6808:22a4:b0:35a:388c:743d with SMTP id bo36-20020a05680822a400b0035a388c743dmr43974263oib.258.1670332184644;
+        Tue, 06 Dec 2022 05:09:44 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s5-20020a05683004c500b0066d2fc495a4sm9098255otd.48.2022.12.06.05.07.10
+        by smtp.gmail.com with ESMTPSA id z20-20020a4a9c94000000b004a3527e8279sm1321513ooj.0.2022.12.06.05.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 05:07:10 -0800 (PST)
-Received: (nullmailer pid 232720 invoked by uid 1000);
-        Tue, 06 Dec 2022 13:07:10 -0000
-Date:   Tue, 6 Dec 2022 07:07:10 -0600
+        Tue, 06 Dec 2022 05:09:44 -0800 (PST)
+Received: (nullmailer pid 236277 invoked by uid 1000);
+        Tue, 06 Dec 2022 13:09:43 -0000
+Date:   Tue, 6 Dec 2022 07:09:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: riscv: fix single letter canonical
- order
-Message-ID: <167033202949.232654.4467238719152703044.robh@kernel.org>
-References: <20221205174459.60195-1-conor@kernel.org>
- <20221205174459.60195-3-conor@kernel.org>
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: mfd/syscon: Add resets property
+Message-ID: <167033218290.236219.3964235132732494862.robh@kernel.org>
+References: <20221206073916.1606125-1-jk@codeconstruct.com.au>
+ <20221206073916.1606125-2-jk@codeconstruct.com.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221205174459.60195-3-conor@kernel.org>
+In-Reply-To: <20221206073916.1606125-2-jk@codeconstruct.com.au>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,30 +66,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 05 Dec 2022 17:45:00 +0000, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, 06 Dec 2022 15:39:15 +0800, Jeremy Kerr wrote:
+> Simple syscon devices may require deassertion of a reset signal in order
+> to access their register set. This change adds the `resets` property from
+> reset.yaml#/properties/resets (referenced through core.yaml), specifying
+> a maxItems of 1 for a single (optional) reset descriptor.
 > 
-> I used the wikipedia table for ordering extensions when updating the
-> pattern here in commit 299824e68bd0 ("dt-bindings: riscv: add new
-> riscv,isa strings for emulators").
+> This will allow a future change to the syscon driver to implement reset
+> control.
 > 
-> Unfortunately that table did not match canonical order, as defined by
-> the RISC-V ISA Manual, which defines extension ordering in (what is
-> currently) Table 41, "Standard ISA extension names". Fix things up by
-> re-sorting v (vector) and adding p (packed-simd) & j (dynamic
-> languages). The e (reduced integer) and g (general) extensions are still
-> intentionally left out.
-> 
-> Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-unpriv-pdf-from-asciidoc-15112022 # Chapter 29.5
-> Fixes: 299824e68bd0 ("dt-bindings: riscv: add new riscv,isa strings for emulators")
-> Acked-by: Guo Ren <guoren@kernel.org>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
 > ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
