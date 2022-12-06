@@ -2,75 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A74D464430D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 13:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AE90644356
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 13:42:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbiLFMWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 07:22:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39934 "EHLO
+        id S234473AbiLFMm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 07:42:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbiLFMWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 07:22:18 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8682B2934B;
-        Tue,  6 Dec 2022 04:22:15 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S234379AbiLFMmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 07:42:22 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B99AB2A25E;
+        Tue,  6 Dec 2022 04:42:14 -0800 (PST)
+Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AE439660035D;
-        Tue,  6 Dec 2022 12:22:06 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670329327;
-        bh=HFhsBPJUZ/W3qeEbtqj0mNmnYKJB/11JNCtWMdGTv88=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JMsgBLF19vGkI7bjFVq2yyNHu0QRemrayTu3nigu593WI7AyVTqCauD9mDxXD/hsT
-         mbaMKCn1Fk40bs0z68zMZPCQimF5KjiR6da/ZD8qHC2BvOnS75PQwmj5pv+uQOKX+p
-         IZbZtZkBzkqGU5pU1Qb17m0uH9snhHja5hA3vx2qKxXl98YmycaA8W/do9/AHOn17p
-         /cCy46ruAiCy/THacT1AIQOuE9+JulTQF5rWLLxSCFmgBjViBTU4bASICxzpV8xtYE
-         ko0tQ8tX/suIToA2tf1/OcuYZ3UCihVhGwVu6BCG9kAqLd+K+Ll+iN86jTsBIJ4+1j
-         fpRs2UUzSJhXg==
-Message-ID: <b55ee8fa-7ad6-3bf9-4983-41a90bd75ce4@collabora.com>
-Date:   Tue, 6 Dec 2022 13:22:04 +0100
+        (Authenticated sender: lukma@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5052E85453;
+        Tue,  6 Dec 2022 13:42:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670330531;
+        bh=iI5SeUL51UC7eISdgdq26IjAocTkIL/OIraEMeV0ztw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kohTwBtNeMzWD5rKFY2zLgtxNV3zwHgzPawC0atjqRcJLpxirfFpg13Hq82Zwlamu
+         sfG576AIyFhd/Y/MTkXpXEnLyuM+Zk9sC/hSq1SPR8vCaVL4EnDUdWyaApDZb5s27p
+         YAnrTzcZdILPc37J49JVyzpBuiShP8+xmX55o7rEVlH7cxE7PZXcOvonhLMUeedo3q
+         CtiVJdkmWSLBAQJN6rYBO7RdsT1BbqwBzYB1uws42EYmwaGMvKpPFxZn7atebPiuUP
+         /CYp2V0pE+b7s1z+DnntkIPisnI5a62ezTyrL82FZCx252xmaDV0+TWNdHMtXwVwqF
+         USZMAjXhOD3VQ==
+Date:   Tue, 6 Dec 2022 13:42:01 +0100
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Quentin Schulz <foss+kernel@0leil.net>,
+        Samuel Holland <samuel@sholland.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Guido =?UTF-8?B?R8O8bnRoZXI=?= <agx@sigxcpu.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Angus Ainslie <angus@akkea.ca>,
+        Ondrej Jirman <megous@megous.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Andy Gross <agross@kernel.org>,
+        Aleksei Mamlin <mamlinav@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        David Jander <david@protonic.nl>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 4/9] ARM: dts: imx: fix touchscreen reset GPIO
+ polarity
+Message-ID: <20221206134201.703ad352@wsk>
+In-Reply-To: <b37272ae-a939-1dce-de47-e237c6363a0f@kontron.de>
+References: <20221103-upstream-goodix-reset-v3-0-0975809eb183@theobroma-systems.com>
+        <20221103-upstream-goodix-reset-v3-4-0975809eb183@theobroma-systems.com>
+        <b37272ae-a939-1dce-de47-e237c6363a0f@kontron.de>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 4/9] mtd: nand: ecc-mtk: Add ECC support fot MT7986 IC
-Content-Language: en-US
-To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
-        <Xiangsheng.Hou@mediatek.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "gch981213@gmail.com" <gch981213@gmail.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "richard@nod.at" <richard@nod.at>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
-        <Benliang.Zhao@mediatek.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
-References: <20221205065756.26875-1-xiangsheng.hou@mediatek.com>
- <20221205065756.26875-5-xiangsheng.hou@mediatek.com>
- <50ede482-7f03-ff55-5ad0-aa6249027cbe@collabora.com>
- <149100d0dc205a317ed352cdfb391f2147a2afab.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <149100d0dc205a317ed352cdfb391f2147a2afab.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+Content-Type: multipart/signed; boundary="Sig_/wSkO.yKQ_Y+Ill11MbjpZ3n";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,63 +90,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 06/12/22 10:04, Xiangsheng Hou (侯祥胜) ha scritto:
-> Hi Angelo,
-> 
-> On Mon, 2022-12-05 at 15:21 +0100, AngeloGioacchino Del Regno wrote:
->> Il 05/12/22 07:57, Xiangsheng Hou ha scritto:
->>> Add ECC support fot MT7986 IC.
->>>
->>> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
->>> ---
->>>    drivers/mtd/nand/ecc-mtk.c | 18 ++++++++++++++++++
->>>    1 file changed, 18 insertions(+)
->>>
->>> diff --git a/drivers/mtd/nand/ecc-mtk.c b/drivers/mtd/nand/ecc-
->>> mtk.c
->>> index 9f9b201fe706..c2f6cfa76a04 100644
->>> --- a/drivers/mtd/nand/ecc-mtk.c
->>> +++ b/drivers/mtd/nand/ecc-mtk.c
->>> @@ -79,6 +79,10 @@ static const u8 ecc_strength_mt7622[] = {
->>>    	4, 6, 8, 10, 12
->>>    };
->>>    
->>> +static const u8 ecc_strength_mt7986[] = {
->>> +	4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24
->>> +};
->>> +
->>>    enum mtk_ecc_regs {
->>>    	ECC_ENCPAR00,
->>>    	ECC_ENCIRQ_EN,
->>> @@ -483,6 +487,17 @@ static const struct mtk_ecc_caps
->>> mtk_ecc_caps_mt7622 = {
->>>    	.pg_irq_sel = 0,
->>>    };
->>>    
->>> +static const struct mtk_ecc_caps mtk_ecc_caps_mt7986 = {
->>> +	.err_mask = 0x1f,
->>
->> Can't we use GENMASK() to define err_mask instead?
->>
->> #define MT7986_ERRNUM	GENMASK(4, 0)
->>
->> P.S.: Did I get that right? Is that referred to the ERRNUM(x) bits
-> 
-> Yes, you are right.
-> I will change like
-> #define ECC_ERRMASK(x) GENMASK(x, 0),
-> since other IC driver data will use 0x3f and 0x7f err_mask.
-> 
+--Sig_/wSkO.yKQ_Y+Ill11MbjpZ3n
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-I would prefer, instead, something like
+On Tue, 6 Dec 2022 12:25:29 +0100
+Frieder Schrempf <frieder.schrempf@kontron.de> wrote:
 
-#define MT7986_ERRNUM	GENMASK(....)
-#define MT7622_ERRNUM	GENMASK(....)
-#define MT.... (etc)
+> On 05.12.22 14:40, Quentin Schulz wrote:
+> > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> >=20
+> > The reset line is active low for the Goodix touchscreen controller
+> > so let's fix the polarity in the Device Tree node.
+> >=20
+> > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> > ---
+> >  arch/arm/boot/dts/imx6q-kp.dtsi            | 2 +-
+> >  arch/arm/boot/dts/imx6ul-kontron-bl-43.dts | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx6q-kp.dtsi
+> > b/arch/arm/boot/dts/imx6q-kp.dtsi index
+> > 1ade0bff681d6..dae14aaf803a8 100644 ---
+> > a/arch/arm/boot/dts/imx6q-kp.dtsi +++
+> > b/arch/arm/boot/dts/imx6q-kp.dtsi @@ -188,7 +188,7 @@
+> > touchscreen@5d { interrupt-parent =3D <&gpio1>;
+> >  		interrupts =3D <9 IRQ_TYPE_EDGE_FALLING>;
+> >  		irq-gpios =3D <&gpio1 9 GPIO_ACTIVE_HIGH>;
+> > -		reset-gpios =3D <&gpio5 2 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios =3D <&gpio5 2 GPIO_ACTIVE_LOW>;
+> >  	};
+> > =20
+> >  	ds1307: rtc@32 {
+> > diff --git a/arch/arm/boot/dts/imx6ul-kontron-bl-43.dts
+> > b/arch/arm/boot/dts/imx6ul-kontron-bl-43.dts index
+> > 0c643706a158b..767ef5da76136 100644 ---
+> > a/arch/arm/boot/dts/imx6ul-kontron-bl-43.dts +++
+> > b/arch/arm/boot/dts/imx6ul-kontron-bl-43.dts @@ -29,7 +29,7 @@
+> > touchscreen@5d { pinctrl-0 =3D <&pinctrl_cap_touch>;
+> >  		interrupt-parent =3D <&gpio5>;
+> >  		interrupts =3D <6 IRQ_TYPE_LEVEL_LOW>;
+> > -		reset-gpios =3D <&gpio5 8 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios =3D <&gpio5 8 GPIO_ACTIVE_LOW>;
+> >  		irq-gpios =3D <&gpio5 6 GPIO_ACTIVE_HIGH>;
+> >  	};
+> >  }; =20
+>=20
+> The imx6ul-kontron-bl-43.dts misses a working panel node, so I'm
+> pretty sure it is not used and nobody will bother about change
+> breaking compatibility. I don't have the hardware at hand at the
+> moment to perform a test, so for now:
+>=20
+> Acked-by: Frieder Schrempf <frieder.schrempf@kontron.de> #
+> imx6ul-kontron-bl-43.dts
 
-instead of a macro calling another macro.
+Reviewed-by: Lukasz Majewski <lukma@denx.de>
 
-Regards,
-Angelo
+For imx6 TPC70 device.
 
+Best regards,
 
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/wSkO.yKQ_Y+Ill11MbjpZ3n
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmOPOJkACgkQAR8vZIA0
+zr3LxAf/cTdBTk+iiToN5yxnqM4qT8HJEan6BzkjWYMZcb6PMMKqHZW+Zsr/SP8o
+O+3ChkrLogmz7NjwQqaA09s4IIqYJA5+Wfqd/AqYxjoed5hnRK7tsItBPzJtBmtc
+wHxhAkrz/cMcALf8pTfzM3SL1dTB4y+8rPr7O1vhMGS7GPTZMdfXa0WU/QGi6TtZ
+GgBZjk8Qutd0SjxaHiqH0FuciHrBNXGX3cLKytigm+WFgtqSFYw9+cU41SyN1Kdx
+TodH+8TTz1tURnTAd5vBcq8INdx9N0C2xyeq228bGO2xfnGxjsuOmA00EUzsOmbU
+pp/MnwgcQS0r4qXma8E7t1o19CU7Dg==
+=buG3
+-----END PGP SIGNATURE-----
+
+--Sig_/wSkO.yKQ_Y+Ill11MbjpZ3n--
