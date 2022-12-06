@@ -2,61 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A76616440F3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:07:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AACB644109
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234776AbiLFKHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 05:07:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50616 "EHLO
+        id S235125AbiLFKLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 05:11:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234852AbiLFKG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:06:56 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412F230F70;
-        Tue,  6 Dec 2022 01:57:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E28D2B818E1;
-        Tue,  6 Dec 2022 09:56:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B61C433C1;
-        Tue,  6 Dec 2022 09:56:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670320609;
-        bh=H4M/+p7AkJ/i6ORamRR1po4sDDc3p/wTeEVuAunv+9w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ja6ECJdGE0y7qkbILuEeOYDwyaeyhKoITYR4QfZwUlHu2ON/5zDL8k0QgGa06UiXK
-         IjIFFgene1o3lkGrmu+ONTuSNB5V/FNRP3ujN2RI8AVDM91aVSnoFP0rhnIBZG3G3G
-         SOlOTjp/G5FwIShX9WSSjZikSAAHgL9VOuQLzb+VU3HOFWJlkLSkZ80qeI4p4c+G+w
-         zajPUQTlekWnMRwZ35kLKm+DMKfl/7ElvavxqktpdjzZ7ohuX199wlmYHmE9o7R63h
-         HMVZYjHACzD9nxLr8NAMI/0vN5SSVV303THnGrbDcI4RIYnxfoCI7cSB+1dbUJFeYN
-         HPFWN/VzHQKPg==
-Date:   Tue, 6 Dec 2022 09:56:43 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        krzysztof.kozlowski@linaro.org, patches@linaro.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/9] dt-bindings: arm-smmu: Allow 3 power domains on
- SM6375 MMU500
-Message-ID: <20221206095642.GA317@willie-the-truck>
-References: <20221115152727.9736-1-konrad.dybcio@linaro.org>
- <20221115152727.9736-2-konrad.dybcio@linaro.org>
- <20221118133855.GB4046@willie-the-truck>
- <20221205205640.kawreo3yyeh2meci@builder.lan>
+        with ESMTP id S235522AbiLFKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:11:28 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5BB23BC7
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 02:07:21 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id bn5so16668640ljb.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 02:07:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NMekL2LEk3JOOHB+JWji+lnO2nhMD5gf3MzPJiCM1Gg=;
+        b=zUSRpnmTc/RFKY0PPPOizXNQWMOmVuMoluFjVWCiV+y0JRoq9PKRKsnPLuWkRfegVy
+         lvfZ9F21HyLiXCuIwExrwL8Z5jwN1Dxx6yqN62A5l9sxY851fdyR0uTwUk+aZMr00KNE
+         ihmWwGw6PhJVPHsDTKorJinY9wBcTOvku5MmtsXEVIIunRv7pgDWnNZGdNdQENhYaVEj
+         nzFhav+U4nd+ot6HgsbLRfOE0P6Lv4rwKdC20iKoRYXHE2RIoB+bRQsSHAXCUicFTJO0
+         fR3jtohuRIdMNBSLfJsOzxCe2JOVL4ED/rtPpZfW1+VJEfaQxw4Niv4bP2x/I7KNzAKP
+         D0VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NMekL2LEk3JOOHB+JWji+lnO2nhMD5gf3MzPJiCM1Gg=;
+        b=Rhq7jXHa0ozOof37P64kshtH2zooeopFHJYXt3+7yE6UqEufR1SSa8r7cP7XXnXfj8
+         VZuDCYNKt9B/9DBwGXlhBhCjw0w86SDU6k9QMiktQhOZ2kdSAeJRja6KVPCFTVNP2ucY
+         yiybMyvkb8GRO0zDq37cnkfczwrteEIY1chJqy06AiWd0P4lN0JdfO3hiaS68stNoVx6
+         5Vioq5cLZwCcpbGPXNhhAXNwxeCoti6E1Jbmr6/mxrIh8GrdUNfL/MLSBO3nsisGt2ZO
+         ctEMfQ2xGyeTXirqsb1TC+lKU4I5gGRKF0R0w6GNAymsKBRJRF4neZq/FNImcOW05jMs
+         3ezA==
+X-Gm-Message-State: ANoB5pnNi681cn7jXcLNuZYQvgaWwxECsG1ykBVERWkpcQaBHapQWWel
+        FnfZQa446AWqisFaX6lMhDVaLw==
+X-Google-Smtp-Source: AA0mqf6ypVuG5zWj9XR/Lb4mql4LSQssNDupVw8L/tQ9hJunntmG6nm4nXjDV75baL3SH/xhfVddEA==
+X-Received: by 2002:a2e:b0ca:0:b0:279:c096:2e8a with SMTP id g10-20020a2eb0ca000000b00279c0962e8amr9625320ljl.433.1670321239588;
+        Tue, 06 Dec 2022 02:07:19 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id u18-20020a05651206d200b00498f23c249dsm2414432lff.74.2022.12.06.02.07.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 02:07:19 -0800 (PST)
+Message-ID: <853c1bff-f657-8696-e927-5b5278593234@linaro.org>
+Date:   Tue, 6 Dec 2022 11:07:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221205205640.kawreo3yyeh2meci@builder.lan>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 0/2] arm64: dts: Add SYSREG nodes for FSD SoC
+To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com, sathya@samsung.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <CGME20221129115540epcas5p370eb47c404a8d2c08ab4f264ae983481@epcas5p3.samsung.com>
+ <20221129115531.102932-1-sriranjani.p@samsung.com>
+ <01ff01d90950$c7768fd0$5663af70$@samsung.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <01ff01d90950$c7768fd0$5663af70$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,27 +78,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Mon, Dec 05, 2022 at 02:56:40PM -0600, Bjorn Andersson wrote:
-> On Fri, Nov 18, 2022 at 01:38:56PM +0000, Will Deacon wrote:
-> > On Tue, Nov 15, 2022 at 04:27:19PM +0100, Konrad Dybcio wrote:
-> > > The SMMU on SM6375 requires 3 power domains to be active. Add an
-> > > appropriate description of that.
-> > > 
-> > > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/iommu/arm,smmu.yaml   | 23 ++++++++++++++++++-
-> > >  1 file changed, 22 insertions(+), 1 deletion(-)
-> > 
-> > Acked-by: Will Deacon <will@kernel.org>
-> > 
-> > Let me know if you'd like me to take this one via the Arm SMMU tree.
-> > 
+On 06/12/2022 09:57, Sriranjani P wrote:
+> Hi all,
 > 
-> Yes, please pick this through the SMMU tree.
+> Gentle Reminder to review this patch series.
+> 
 
-I've already sent my pull request for 6.2, so this will have to wait until
-6.3 now (unless somebody else takes it in the meantime).
+If you ping me, then:
+1. Pinging after a week is a bit too fast. Standard is 2 weeks.
+2. It is too late in the cycle for me to pick it up. I will take it
+after the merge window. Anything sent after rc5 usually misses upcoming
+merge window.
 
-Will
+Best regards,
+Krzysztof
+
