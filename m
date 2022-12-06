@@ -2,195 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB6C7644E22
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1529644E4E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 23:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbiLFVmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 16:42:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38770 "EHLO
+        id S229744AbiLFWDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 17:03:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbiLFVmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:42:36 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB04C32
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 13:42:33 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id l11so22335453edb.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 13:42:33 -0800 (PST)
+        with ESMTP id S229758AbiLFWDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 17:03:19 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA24D36C61;
+        Tue,  6 Dec 2022 14:03:17 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id n21so9644634ejb.9;
+        Tue, 06 Dec 2022 14:03:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=w6SKBfsG69v/G59R3JpQZMBAr09gp1lj2RaDqDluJ9o=;
-        b=JyTN2+0YDPQGraLJ+F5D+m8j5jfPg/5DtRG6jPGwxOH/h98JaeKHfCjEGkq+e5qSSW
-         yxCqrFO1msTKmVZL78/TPWTLnsFh7fN7E6HYQL0XfVyTX1XFOuVrVuEvuxBHtKTa1lj4
-         4Up/L8kThSSiUUQe3EwK9xXj7AmwUa50k6X54ISqiYj7dN0SoFEVQ/i38SAb+A8IHp07
-         egPuYEJ92qkRZyWisQUgP3SBKVWOZ9Vh+bdBbPIf+Bv1pyEMQs2naOGffqDQdff7OiZg
-         +Km+hZX2Q5PSwPw1X+eHXh9Xm1NYVpqNTkV/XpNj72X/2Y0AZpi3Zdrpvc4sBrXLCu7R
-         Ntzw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1yIUVOdh+m3Dcu9OS+dIGaj9snCyPCPz+jQsInm3lVA=;
+        b=fj+mMyzKgo1mb4RVbihyunopfeH48INBzqzhUoAqeUand973K6fikqQ/4UY4BIshIz
+         BPSc2GE6YHZ9vmTlXVW/lLmbNN9LLuOX2mNUP1sPzMEja1GNI7qoudEilbfpKbL2fUTW
+         yGgNax8Im6VcKpDsJW/kt2U64HTaQ0hEwi7npvxfpk6QEraQuPK4g2wHdZ2n5BHKSz9v
+         WEdMsKqqGi7YcSFXhO7ckyc/9Hh3fAU/jtHQTzjh7bsp52AbLK7Xda+XXI03SFuZj+ic
+         3ho4DpdfmtuCixZ6NLsWYjAlXbKiUF3A1OR9/E+DW/LtHnGorpVoK/5NxfrYk10OjfAE
+         ZNxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w6SKBfsG69v/G59R3JpQZMBAr09gp1lj2RaDqDluJ9o=;
-        b=LGpZ9/yc0Nd0TPmTeLrBC4jrNenS0VQTSIxYJf0W7fjXpN/mdlzx2d7qd4zuNwx9bB
-         7aFO7qDY48VGyCXkh9GVVt8P6PsWDDrcjLNCmj345/3edtQvv6YA1rTkwGprIVGlnA9G
-         ZSea8hYraakkCrT6mSVMngtZ7M4NunEg1y26Zv/iUDhfcfIPPDLkRBwHJI4g+cSFdpOC
-         2SHrLlNStNXfU52pam6BKcxYfgNRttuBr/fGZoyOHuOJ7Mgi7akIw0w9txc7mz56+zxT
-         0sq0Ksq3LDvCyxnFODflHZvlU1Vk9UjPwvu3NYC6ARHYvODhPercSlYx/4M7edOAg9Dy
-         CpuQ==
-X-Gm-Message-State: ANoB5pkTGyFwyHFpIdhzU3hkQHvMVw6K41RZElSUIwVdfVFEQ5Jyivlm
-        VUwhqMNhaTdvP6848D0e/fzj5w==
-X-Google-Smtp-Source: AA0mqf5Ge71m/n5V0SR0lNuLf7XobkHDw98VWR3Sf/cV71e4GhWsAZSpCUcf+Tp4wkzIUcG2GUi+Mg==
-X-Received: by 2002:aa7:dd4b:0:b0:467:65a2:f635 with SMTP id o11-20020aa7dd4b000000b0046765a2f635mr66802120edw.106.1670362951972;
-        Tue, 06 Dec 2022 13:42:31 -0800 (PST)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id kx4-20020a170907774400b0079e11b8e891sm7744392ejc.125.2022.12.06.13.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 13:42:31 -0800 (PST)
-Date:   Tue, 6 Dec 2022 23:42:30 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
-Message-ID: <Y4+3RnfYzCtiUkny@linaro.org>
-References: <20221206125635.952114-1-abel.vesa@linaro.org>
- <20221206125635.952114-2-abel.vesa@linaro.org>
- <20221206182332.oi7mxxryv2kvd3wu@builder.lan>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1yIUVOdh+m3Dcu9OS+dIGaj9snCyPCPz+jQsInm3lVA=;
+        b=tqGa6K2KhVDoDKmci2puWTMRgqOGskP6Tcn+wxRk4SKiE9dtc6yUmT/VvrYbFYOB/H
+         1z0Q/j2e46uTUTsyFwovVfxAt80lClF86UHWuJAbS2rXuYnv35ZIFRYzDcrneesQdn8l
+         4qUsYQavVkovOAsHNfM6rc2+0/vYb6MLINSnK6Yz1fhXfKgDNcqQpvTDWGF2PbW665OZ
+         /GR5xim9K6ywx25Y99YEVL18ECptYuxZHJkOq6nd5stQilmLHmOBlF5vqn4RSKn3Whw7
+         ATxJaM3vzxfICdx3vHAi/78OfM7lc3H8vPXHTnrupFoHJGDOXvPhj+ONHtU9h6Hv+8IQ
+         VFig==
+X-Gm-Message-State: ANoB5pk1gJfn8PkQ9tK9sScVDjflyqiYL6mm52US3owEbZxZm3+qhIjd
+        u/xtngdAWINby+2p3aAcOdmOk9aZ2uZlAmE5vKw=
+X-Google-Smtp-Source: AA0mqf5GVsDkQt6G7Fo6+AxKAVUtqu8r2WD58xz9D2NRSSDU48e1GdP+G1fa5IRFLAvU1tEuXTVuWRgbkn9T8CXHFsM=
+X-Received: by 2002:a17:906:2793:b0:7c1:174f:d69 with SMTP id
+ j19-20020a170906279300b007c1174f0d69mr2191990ejc.447.1670364196158; Tue, 06
+ Dec 2022 14:03:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221206182332.oi7mxxryv2kvd3wu@builder.lan>
+References: <20221201123954.1111603-1-apatel@ventanamicro.com>
+ <20221201123954.1111603-4-apatel@ventanamicro.com> <20221202000603.GA1720201-robh@kernel.org>
+ <CAK9=C2VbM+CP0Y9Xx-SM9O4TFrQmOKvVWy-u5mxdPxrhacK4JQ@mail.gmail.com> <Y40ueQiTZK6hi7RS@spud>
+In-Reply-To: <Y40ueQiTZK6hi7RS@spud>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 6 Dec 2022 22:02:49 +0000
+Message-ID: <CA+V-a8vvS+0H8vv9AnifMzSoBMiOj3g4XBXcMjo-jcD__CaNCQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] clocksource: timer-riscv: Set CLOCK_EVT_FEAT_C3STOP
+ based on DT
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-12-06 12:23:32, Bjorn Andersson wrote:
-> On Tue, Dec 06, 2022 at 02:56:31PM +0200, Abel Vesa wrote:
-> > Add bindings documentation for clock TCSR driver on SM8550.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
-> >  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
-> >  2 files changed, 71 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> >  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> > new file mode 100644
-> > index 000000000000..15176b0457d1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> > @@ -0,0 +1,53 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsr.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm TCSR Clock Controller on SM8550
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +
-> > +description: |
-> > +  Qualcomm TCSR clock control module provides the clocks, resets and
-> > +  power domains on SM8550
-> > +
-> > +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,sm8550-tcsr
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Board XO source
-> 
-> This sounds like the crystal feeding the PMIC, but the clock here should
-> be the signal that arrives at the CXO pin of the SoC.
+Hi Conor,
 
-Oh, I guess this should be:
-          - description: TCXO pad clock
+On Sun, Dec 4, 2022 at 11:34 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> Hey Rob, Anup, Prabhakar,
+>
+> On Fri, Dec 02, 2022 at 12:03:05PM +0530, Anup Patel wrote:
+> > On Fri, Dec 2, 2022 at 5:36 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Thu, Dec 01, 2022 at 06:09:54PM +0530, Anup Patel wrote:
+> > > > We should set CLOCK_EVT_FEAT_C3STOP for a clock_event_device only
+> > > > when riscv,timer-cannot-wake-cpu DT property is present in the RISC-V
+> > > > timer DT node.
+> > > >
+> > > > This way CLOCK_EVT_FEAT_C3STOP feature is set for clock_event_device
+> > > > based on RISC-V platform capabilities rather than having it set for
+> > > > all RISC-V platforms.
+> > > >
+> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > > > ---
+> > > >  drivers/clocksource/timer-riscv.c | 12 +++++++++++-
+> > > >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+> > > > index 969a552da8d2..1b4b36df5484 100644
+> > > > --- a/drivers/clocksource/timer-riscv.c
+> > > > +++ b/drivers/clocksource/timer-riscv.c
+> > > > @@ -28,6 +28,7 @@
+> > > >  #include <asm/timex.h>
+> > > >
+> > > >  static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
+> > > > +static bool riscv_timer_cannot_wake_cpu;
+> > > >
+> > > >  static int riscv_clock_next_event(unsigned long delta,
+> > > >               struct clock_event_device *ce)
+> > > > @@ -51,7 +52,7 @@ static int riscv_clock_next_event(unsigned long delta,
+> > > >  static unsigned int riscv_clock_event_irq;
+> > > >  static DEFINE_PER_CPU(struct clock_event_device, riscv_clock_event) = {
+> > > >       .name                   = "riscv_timer_clockevent",
+> > > > -     .features               = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_C3STOP,
+> > > > +     .features               = CLOCK_EVT_FEAT_ONESHOT,
+> > >
+> > > A platform that depended on CLOCK_EVT_FEAT_C3STOP being set will break
+> > > with this change because its existing DT will not have the new property.
+> > >
+> > > It needs to be the other way around which would effectively be the
+> > > existing 'always-on' property.
+> >
+> > There are no RISC-V platforms using C3STOP. The patch which
+> > added C3STOP has been reverted.
+> > (Refer, https://lore.kernel.org/lkml/a218ebf8-0fba-168d-6598-c970bbff5faf@sholland.org/T/)
+> >
+> > I just need to rebase this patch upon the C3STOP revert patch.
+>
+> I guess you could say that the C3STOP addition was done spec-ulatively*,
+> as the platform that actually exhibits that behaviour does not use the
+> riscv-timer & its maintainer acked the revert (allwinner d1 family).
+>
+> *The spec does not make any guarantees about whether events arrive
+> during suspend, only the behaviour *if* they arrive.
+>
+> Switching the property to "always-on" would require retrofitting that
+> property to every other existing platform (and therefore regressing some
+> behaviour there, no?).
+>
+> Most of the existing platforms are "toys" or demo platforms though, so
+> it would not, I guess, be the end of the world to do so. Doubly so since
+> none of them actually implement any sleep states that making it an
+> "always-on" property.
+>
+> I've said since the start that defaulting to C3STOP is the "safer" thing
+> to do, and although we disagreed on this last time Anup, I think the
+> better outcome of someone missing a DT property is inaccessible sleep
+> states rather than going into sleep states they cannot get out of.
+>
+> For PolarFire SoC, which I guess is one of the few "commerical"
+> platforms, I'd be willing to accept retrofitting, since we have not yet
+> implemented such sleep states yet.
+>
+> Maybe Prabhakar knows whether the RZ/Five has either a) implemented
+> sleep states and b) which side of the "timer events arrive in suspend"
+> divide their platform lies on.
+> I'm particular interested here since that is not a SiFive core complex.
+>
+On RZ/Five we haven't implemented the sleep states yet.
 
-Will send a new version.
-
-> 
-> Other than that, this looks good now.
-> 
-> Thanks,
-> Bjorn
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  '#reset-cells':
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - clocks
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,rpmh.h>
-> > +
-> > +    clock-controller@1fc0000 {
-> > +      compatible = "qcom,sm8550-tcsr";
-> > +      reg = <0x1fc0000 0x30000>;
-> > +      clocks = <&rpmhcc RPMH_CXO_PAD_CLK>;
-> > +      #clock-cells = <1>;
-> > +      #reset-cells = <1>;
-> > +    };
-> > +
-> > +...
-> > diff --git a/include/dt-bindings/clock/qcom,sm8550-tcsr.h b/include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > new file mode 100644
-> > index 000000000000..091cb76f953a
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> > @@ -0,0 +1,18 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2022, Linaro Limited
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> > +#define _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8550_H
-> > +
-> > +/* TCSR CC clocks */
-> > +#define TCSR_PCIE_0_CLKREF_EN					0
-> > +#define TCSR_PCIE_1_CLKREF_EN					1
-> > +#define TCSR_UFS_CLKREF_EN					2
-> > +#define TCSR_UFS_PAD_CLKREF_EN					3
-> > +#define TCSR_USB2_CLKREF_EN					4
-> > +#define TCSR_USB3_CLKREF_EN					5
-> > +
-> > +#endif
-> > -- 
-> > 2.34.1
-> > 
+Cheers,
+Prabhakar
