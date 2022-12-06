@@ -2,102 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12829644922
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 17:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 871C764492D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 17:27:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233927AbiLFQZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 11:25:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
+        id S234768AbiLFQ1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 11:27:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbiLFQZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 11:25:34 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E046829CB2
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 08:25:32 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id v70so9115019oie.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 08:25:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ais45k9vzwCVRwJ6whVGyw5sNpBkvpT+u93PldECuY=;
-        b=SJXK9Njs3/WtQdYO1n5tuMWFnm8eLIT/BZjadd4iLnQyhAXZ8ONXFwPHzYKYFKmvRY
-         RUbmsPRvmSN+4oRKBXgX6i4ctkwgVYGNtMm2wdZFidfCSaQ/DQ5AEL6FMxUl0f7Vqi/N
-         T0dFcibaJyb7eo5g6dZzXHexJ1NL2vz4ACpEiBj9q+fnBYHC2WM/yLNoY640QEfGORVL
-         q3dXAZiHthjklcd02ga4DtsYdCLhAJK+YRTSkfjhD91SGLZT+gmG1wBYXQfyNTybrdWy
-         1ej3vsNkXbAOc2pSxX2XFUQEI92czeXwYRrMKtznQZsR9SW0y3QbuZ+2/3P50aDtpYBQ
-         0zvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ais45k9vzwCVRwJ6whVGyw5sNpBkvpT+u93PldECuY=;
-        b=VkDj13lfacnRtmQ7gNrIL2G35vrQZSQOu15YUJGjq7+jsXqw+KJRYp7CVFm9qopMbw
-         XybVTFgy1gK1wx2DyR0nOwSTNO/TjtMjC8NVx5d8+3uwEAL1cds+phd8TjoaK5hszNxY
-         TJSOsRtqu5TtEv/XA03Ag61jned3xFQhuufX4MM3o3z+ExA23EiO56YvazqU+26GMVQQ
-         yo4BPe1/2DJphxoGy060Gx3I35TMnM9k1SvwYvXeWdZeNU8CLrHJStYEHwDWZ681oQ12
-         M3hPcAtaq8OUAmtApPWZkTGncUFgbEojt79wN4o3tVONO9KL4j0/QaW3SPybY7FT0J36
-         zXMQ==
-X-Gm-Message-State: ANoB5pmAWOKkFzyF6vvnLedoJe+S31kZ1tvwUcm48CV0TJvqZA15Okx/
-        Kkbg1H93304YLlWHvDDaaE1Hja46wTzOzl/RJOQwKA==
-X-Google-Smtp-Source: AA0mqf7slrigjIb2YU0eOuwcUhtuWW55HhFXBRbOprBZ/PpE0rScnzOSK1B/21a3d6JGXEaZoNeytI+ZqJu+h+XBOmM=
-X-Received: by 2002:aca:de45:0:b0:354:58db:8639 with SMTP id
- v66-20020acade45000000b0035458db8639mr32339713oig.152.1670343932030; Tue, 06
- Dec 2022 08:25:32 -0800 (PST)
+        with ESMTP id S235053AbiLFQ1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 11:27:35 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37DBDF3;
+        Tue,  6 Dec 2022 08:27:34 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B6FJENR028294;
+        Tue, 6 Dec 2022 16:27:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=7c9rUUN7a3dR7QSdFDzCgZSOVng77nFk6H1OiFv6SGM=;
+ b=MCipxe8THHv/9DW5+rX4GrGGfKh0E6vw0zH7Qfan69fsdVAxhKiAMEjFNHnd3aIT8x3X
+ /+pAOIKD8TPItzmGUa2iiDvEfwyeCl3wnumhxceBMy8EGE0xpIWcHtq2xqyVCxe7TxrK
+ IV2ZFUCmwd2lGNMq9SLCFFcTm2vu2NKw6SSd3Gtb40tNZvIgZEcg1Z6vmaK4rNzS6j4U
+ 3cgEYFb0NfZYn+iuWpoTbZs9PJVRMlPhsKTD6HK+IsxMtoUwj6R+/6yb9ZUcx1btPyY8
+ 8NeIiN7CuNSgzPpa+eaq02vyL76LiGsTdKu63NRZezbz3+URyCa/eajdEDep2UgiCVmN QA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ma1661e4y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Dec 2022 16:27:26 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B6GRP8A022789
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Dec 2022 16:27:25 GMT
+Received: from [10.50.39.136] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 6 Dec 2022
+ 08:27:21 -0800
+Message-ID: <03048338-449d-6d4b-dfa9-d4eccba5cabb@quicinc.com>
+Date:   Tue, 6 Dec 2022 21:57:17 +0530
 MIME-Version: 1.0
-References: <20221129023401.278780-1-bero@baylibre.com> <CACRpkda75U=b50rK=WecNvaEoTdN2UzGyEwfPRaO6jG9FGyWhw@mail.gmail.com>
-In-Reply-To: <CACRpkda75U=b50rK=WecNvaEoTdN2UzGyEwfPRaO6jG9FGyWhw@mail.gmail.com>
-From:   =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>
-Date:   Tue, 6 Dec 2022 17:25:21 +0100
-Message-ID: <CAP2ifjN-czBPKsm6o9U0Zx3dgau6bydFSrZmtwNJecSQu9VMzg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] Remove the pins-are-numbered DT property
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-        krzysztof.kozlowski@linaro.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, khilman@baylibre.com,
-        linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v6 02/10] arm64: dts: qcom: Add base SM8550 dtsi
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20221206131252.977369-1-abel.vesa@linaro.org>
+ <20221206131252.977369-3-abel.vesa@linaro.org>
+From:   Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+In-Reply-To: <20221206131252.977369-3-abel.vesa@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4qtcHSvXVKEvRAKcAP_RZOnVilkFH2mM
+X-Proofpoint-GUID: 4qtcHSvXVKEvRAKcAP_RZOnVilkFH2mM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-06_10,2022-12-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 spamscore=0 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212060137
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 3, 2022 at 10:22 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+Hi Abel,
+
+On 12/6/2022 6:42 PM, Abel Vesa wrote:
+> Add base dtsi for SM8550 SoC and includes base description of
+> CPUs, GCC, RPMHCC, UART, interrupt controller, TLMM, reserved
+> memory, RPMh PD, TCSRCC, ITS, IPCC, AOSS QMP, LLCC, cpufreq,
+> interconnect, thermal sensor, cpu cooling maps and SMMU nodes
+> which helps boot to shell with console on boards with this SoC.
+> 
+> Co-developed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> 
+> Changes since v5:
+>   * changed the include of qcom,sm8550-tcsrcc.h to qcom,sm8550-tcsr.h
 >
-> Hi Bero,
->
-> long time no see!
 
-Hi Linus,
-indeed, I've been doing mostly userland stuff lately, and my latest
-kernel patch was x86 (got to keep all of my hardware working ;) ). Now
-that I've changed jobs, I'm expecting to be more active on the kernel
-side (though still doing a lot of userland).
+<snip>...
 
-> > This patchset removes all uses of pins-are-numbered and marks the
-> > property as deprecated.
->
-> I don't remember any more why this property was introduced, but
-> I am happy to see it go.
 
-I couldn't find why it was introduced either (and git blame wasn't
-much help). I'm assuming there was some other mode in vendor trees
-that never made it into mainline (but the flag for switching between
-the modes did).
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
 
-> I applied patches 1-4 to the pin control tree for v6.2,
-> please funnel the rest through mediatek/stm32 and
-> SoC trees!
+This should be IRQ_TYPE_LEVEL_LOW
 
-Thanks! Remaining patches reposted and currently waiting.
 
-ttyl
-bero
+> +
+> +		intc: interrupt-controller@17100000 {
+> +			compatible = "arm,gic-v3";
+> +			reg = <0 0x17100000 0 0x10000>,	/* GICD */
+> +			      <0 0x17180000 0 0x200000>;	/* GICR * 8 */
+> +			ranges;
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			#redistributor-regions = <1>;
+> +			redistributor-stride = <0 0x40000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+
+And here as well, IRQ_TYPE_LEVEL_LOW
+
+With these 2 corrections,
+
+Reviewed-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+
+
+Thanks,
+Sai
