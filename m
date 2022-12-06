@@ -2,205 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35792643FE5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA56643F9B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 10:17:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbiLFJb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 04:31:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
+        id S234457AbiLFJRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 04:17:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235042AbiLFJbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:31:17 -0500
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45850201A3
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 01:31:10 -0800 (PST)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20221206093108epoutp016b8c6f47fc0d34f56407941bbebdd638~uKlfK-xTg2310623106epoutp01x
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 09:31:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20221206093108epoutp016b8c6f47fc0d34f56407941bbebdd638~uKlfK-xTg2310623106epoutp01x
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1670319068;
-        bh=JZXQx+IsTmTwNlYjn0Q0pBoHGpl7jVav9aBC81tQrFY=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=Z3pHOBtt8KtYTOuMJbCdy/SI5DmSBxm42uV4XGee5ypNRP69C/OjPzd3apptx3jHe
-         PXZYYqdWxFJS9+0C/GTYDrXvwA+14tr0KLmQLf9YpDRe0SEAsesbRoP9vSIy3GADKI
-         joymrqDQxRJj/llwM8GDxVFzLzpx+ObhrKx4u4QQ=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-        20221206093107epcas5p21abeaf6ad2ab5b6476a2a9486ecc1e48~uKlekFpi40348903489epcas5p2n;
-        Tue,  6 Dec 2022 09:31:07 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.176]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4NRFXV0T8vz4x9Q3; Tue,  6 Dec
-        2022 09:31:06 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        70.74.56352.8DB0F836; Tue,  6 Dec 2022 18:31:04 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20221206090723epcas5p447daee3deb05ef72fac0befc9cc80aeb~uKQv8C7fy0247502475epcas5p4C;
-        Tue,  6 Dec 2022 09:07:23 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20221206090723epsmtrp1a97cc362b01d889309f0d65882dd8f5b~uKQv7SJiZ1765517655epsmtrp1D;
-        Tue,  6 Dec 2022 09:07:23 +0000 (GMT)
-X-AuditID: b6c32a4b-5f7fe7000001dc20-57-638f0bd85b31
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        91.C0.18644.B460F836; Tue,  6 Dec 2022 18:07:23 +0900 (KST)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20221206090721epsmtip16743d02d357e15dbfa820c65d0a3954a~uKQue64Se0566105661epsmtip1V;
-        Tue,  6 Dec 2022 09:07:21 +0000 (GMT)
-From:   "Ravi Patel" <ravi.patel@samsung.com>
-To:     "'Sriranjani P'" <sriranjani.p@samsung.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <alim.akhtar@samsung.com>, <pankaj.dubey@samsung.com>,
-        <sathya@samsung.com>
-Cc:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
-In-Reply-To: <20221129115531.102932-3-sriranjani.p@samsung.com>
-Subject: RE: [PATCH v4 2/2] arm64: dts: fsd: add sysreg device node
-Date:   Tue, 6 Dec 2022 14:37:20 +0530
-Message-ID: <001001d90952$26faa8f0$74effad0$@samsung.com>
+        with ESMTP id S234827AbiLFJQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 04:16:33 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8904F21820
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 01:16:10 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id a7so16462827ljq.12
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 01:16:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nSz8+pdzVOvO17mmGP1PwKitaiaqBA0sMFckD9UpIz8=;
+        b=bF7aDatVUWwwHFmYq8p+W4TB9+kDOfdUJgkLUAEalM21QMbDFEPI1W1nnH+5/Y/jKH
+         zHjgOiwFTzniV9CrNh1lMlnmhL4Vuo9XhdXvJnBwX91UmAI9DeX1ket72WcxUYyxBD+N
+         2rMaYpDsSEVHHbYj1x57wfg4bUwPFFEK0yrWD3MZTiaZgKfsXKZv/uw0j3eXg7VsvP35
+         aLL1meaCDJdkEgFOn2al3FRv3Mo63jXDIGbiy3o4MghtDitEuFV4iAvFjsEcdeqnp/bg
+         VVfW/IyQ2oIph+wPv4fgyDExBk1aMzJMqO4H0ZFDE/WnXMfMAlZl/9fr9pJpIHtue+0K
+         5xow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nSz8+pdzVOvO17mmGP1PwKitaiaqBA0sMFckD9UpIz8=;
+        b=LlndTfdX9mCQw9cLotVTyZIjRPfSCo1NAnFj3nreFQV3fQitIwhjqbR3PL8OuIIJE2
+         9q3p+/L2iEoTkM87vzMxZIj4OCRmY1BuAr0Ouf+4BMjAYFSBo/phovFPAKCyvzUsL0Q3
+         pPnwx6R1pVh+dzT5KT0BrLcutti3DD3D/U8SKeB/ckEewnAUyJJgOYDfgMR1Ktms4aeJ
+         Qtq6Y64akHdWEOyml4kRVrLKQ0CNecXLFOkw126NyzQuU4YlOYXze6s7cy6bU4cde4Aq
+         SibABWd5CsSNDB0WALX9YtwuSAog6uIEeaBhXiptkwS+bL4H/pFIvlcfgjNWg74jpiVA
+         UgXA==
+X-Gm-Message-State: ANoB5pn5Y7i/L42YMWIWSZnXTT8Xxr0b3TzcI1+DK+lmW64lpeTKA8Sx
+        WWT/g7DJgdAkVzlAGobnI1xREkdwNjyTx54Beo8=
+X-Google-Smtp-Source: AA0mqf52hPel6Y7yp0GvQe24wYR3MQwPfgyyDGxL0XTTjSrgY2kcLkcne0d6WDnxB9zk3iTNPDFRlw==
+X-Received: by 2002:a2e:c52:0:b0:277:9bf:9411 with SMTP id o18-20020a2e0c52000000b0027709bf9411mr19869694ljd.504.1670318168431;
+        Tue, 06 Dec 2022 01:16:08 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b26-20020a2e895a000000b00279e0b8bae7sm1077010ljk.65.2022.12.06.01.16.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 01:16:07 -0800 (PST)
+Message-ID: <0565a333-3bb7-89db-735d-56006405bda4@linaro.org>
+Date:   Tue, 6 Dec 2022 10:16:06 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLJnMxoNyT45a9R9PTdsX6iVXIE+wFDZibaATEvXGSsa8XgAA==
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmpu4N7v5kgw8f5S0ezNvGZjH/yDlW
-        i74XD5ktNj2+xmpxedccNosZ5/cxWSza+oXdonXvEXaLL0deM1rcfrOO1YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5
-        ibmptkouPgG6bpk5QEcpKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMCvSKE3OL
-        S/PS9fJSS6wMDQyMTIEKE7Izpl1cyFKwQKzi8Z+vbA2ML4W6GDk5JARMJE58+cDUxcjFISSw
-        m1Hi7ITnbCAJIYFPjBL7DoZCJD4zSsz/sJsZpmPj1E/sEIldjBKPbuxmhHBeMEr83rOUpYuR
-        g4NNQFviyhpDkLiIwE1Gid4zV8HGMgsUShw7s5EdxOYUsJc4s/gpE4gtLOAs8WDXMkYQm0VA
-        RWL7+Q1gNq+ApcT25kssELagxMmZT1gg5mhLLFv4GuoiBYmfT5exgtgiAk4Sl57fZYaoEZc4
-        +rOHGeQICYGVHBIdS+4xQjS4SDxbeB7KFpZ4dXwLO4QtJfGyvw3Kzpe4OKeNCcLOkOg4dRmq
-        3l7iwJU5YE8yC2hKrN+lDxGWlZh6ah0TxF4+id7fT6BaeSV2zAOxOYBsFYkZD0thNh0684lx
-        AqPSLCSfzULy2SwkH8xCWLaAkWUVo2RqQXFuemqxaYFxXmo5PL6T83M3MYKTrJb3DsZHDz7o
-        HWJk4mA8xCjBwawkwvtiY2+yEG9KYmVValF+fFFpTmrxIUZTYHBPZJYSTc4Hpvm8knhDE0sD
-        EzMzMxNLYzNDJXHepVM6koUE0hNLUrNTUwtSi2D6mDg4pRqYREPCxd43svQqqu54Ws7N9nJF
-        LYfiCrHrQtUrHx8qUnfbZi9bLRIw8V+Qw6zqrrx1q6KULNztnhkW7eo5+ff7FLVv6549yT/D
-        tym87VfVVFNrv8WbXa6pbonN0+b+0Td7arnmtB3THCfkCEYLv3csnvtjcq3yCh65E41VbVaX
-        TW1r8lddbvt9xH5Bgf/VBZpsOSXfb2ReT14der56fwx77tytTz0C9ZZPvmt+4Kr0n03XzF8E
-        7c+0Uz998udmLumdbovjU0zvK9ueutv7J9SkvqEieOtzjef3DK7umnGRQ/X8QufDHKfY5t9O
-        3anouWlPyd8PW+1mrWtb0Zu1x8009OjETUonduq/nrpk9Zs6XyWW4oxEQy3mouJEAOncGlY7
-        BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWy7bCSnK43W3+ywZJdXBYP5m1js5h/5Byr
-        Rd+Lh8wWmx5fY7W4vGsOm8WM8/uYLBZt/cJu0br3CLvFlyOvGS1uv1nH6sDlsWlVJ5vHnWt7
-        2Dw2L6n36NuyitHj8ya5ANYoLpuU1JzMstQifbsEroxDt7azFjwSqfh6Zh5jA+NqwS5GTg4J
-        AROJjVM/sXcxcnEICexglFg8dzEzREJK4s+WxywQtrDEyn/PoYqeMUpc3fAIqIiDg01AW+LK
-        GkOQuIjAQ0aJD9cXsYM0MAsUS+zbcpsZouEwo8S5rrlMIAlOAXuJM4ufgtnCAs4SD3YtYwSx
-        WQRUJLaf3wBm8wpYSmxvvsQCYQtKnJz5hAViqLbE05tP4exlC19DXaog8fPpMlYQW0TASeLS
-        87vMEDXiEkd/9jBPYBSehWTULCSjZiEZNQtJywJGllWMkqkFxbnpucWGBUZ5qeV6xYm5xaV5
-        6XrJ+bmbGMHRpqW1g3HPqg96hxiZOBgPMUpwMCuJ8L7Y2JssxJuSWFmVWpQfX1Sak1p8iFGa
-        g0VJnPdC18l4IYH0xJLU7NTUgtQimCwTB6dUA9Nsh/UtV2KD2PYHSRlHfdbytpSoKr2TkD/v
-        56Hztgu8RBgym+I3WTibbM1ax1gxQ/tN65SA8wvZrhhf57hkdGv96lV2s/PDrz/WC2+tZDWI
-        qeZa/fLkMc8H4lXx6XprlTQKpmeELd1068UnQaNt/Iuu6eY+bWi1c6/ouye6+MoB1g/V//Lt
-        vlTFfJFJuWG3Tf2U1NrlfVy/X3RZ6XHevH/5agGrzfXNDXwTqw8YZb4VerD5Vw/XBt2Nj5Z5
-        974M49ew2NZxO/aVa8Lf6rDHG5+3HLm8fP09zzcHpm169WSe5PWXBivLiznWOIqvjKqyyT+n
-        4fDcZ13Qse6a80rGh7K4nBmqMj5P3yb/fdJx77tKLMUZiYZazEXFiQAs/bOCJQMAAA==
-X-CMS-MailID: 20221206090723epcas5p447daee3deb05ef72fac0befc9cc80aeb
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221129115546epcas5p3d5ef247af122c4041f50337ed2ec148c
-References: <20221129115531.102932-1-sriranjani.p@samsung.com>
-        <CGME20221129115546epcas5p3d5ef247af122c4041f50337ed2ec148c@epcas5p3.samsung.com>
-        <20221129115531.102932-3-sriranjani.p@samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/2] dt-bindings: sound: ti,pcm3168a: Convert to
+ json-schema
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Damien Horsley <Damien.Horsley@imgtec.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1669980383.git.geert+renesas@glider.be>
+ <9f2a2474ec71dcc2a76e868295202a8c425a5d41.1669980383.git.geert+renesas@glider.be>
+ <b105572c-96fe-dbad-c435-43233cfb25a7@linaro.org>
+ <CAMuHMdXG39BoMScDpH_Cxc-BXBKZHxyQqe6MJMEhnerN3yU6Uw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdXG39BoMScDpH_Cxc-BXBKZHxyQqe6MJMEhnerN3yU6Uw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05/12/2022 09:00, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your comments!
+> 
+> On Sat, Dec 3, 2022 at 1:13 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 02/12/2022 13:55, Geert Uytterhoeven wrote:
+>>> Convert the Texas Instruments PCM3168A Audio Codec Device Tree binding
+>>> documentation to json-schema.
+>>>
+>>> Add missing properties.
+>>> Drop unneeded pinctrl properties from example.
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> +description:
+>>> +  The Texas Instruments PCM3168A is a 24-bit Multi-channel Audio CODEC with
+>>> +  96/192kHz sampling rate, supporting both SPI and I2C bus access.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ti,pcm3168a
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: System clock input
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: scki
+>>> +
+>>> +  reset-gpios:
+>>> +    items:
+>>> +      - description: |
+>>> +          GPIO line connected to the active-low RST pin of the codec.
+>>> +            RST = low: device power-down
+>>> +            RST = high: device is enabled
+>>> +
+>>> +  "#sound-dai-cells":
+>>> +    enum: [0, 1]
+>>
+>> This is a bit unexpected. Looking at DTSes:
+>> 1. I see in ulcb-kf.dtsi with cells==0, but two endpoints. The dai cells
+>> seem unused? In such case shall dai-cells be skipped if we have endpoints?
+>>
+>> 2. in k3-j721e-common-proc-board.dts has cells=1, but user's phandle
+>> does not have an argument, so practically it is ==0? The user -
+>> sound/soc/ti/j721e-evm.c - just gets the node and does not use cells,
+>> right? So even though dai-cells==1, it does not matter, because user
+>> gets its own parsing?
+>>
+>> 3. The pcm3168a driver also does not have any xlate function, but it
+>> registers to DAIs, so all uses should be with cells==1 to select proper
+>> DAI...
+> 
+> I have no idea (DAI is magic to me), and hope the audio experts
+> can provide some input...
 
+It is a bit of magic to me too. Yet I think the correct usage of this is
+with dai-cells=1. I think we can skip the choice here between
+sound-dai-cells and endpoints (to allow only one) and only fix the value
+here to =1.
 
->-----Original Message-----
->From: Sriranjani P =5Bmailto:sriranjani.p=40samsung.com=5D
->Sent: 29 November 2022 17:26
->To: robh+dt=40kernel.org; krzysztof.kozlowski+dt=40linaro.org;
->devicetree=40vger.kernel.org; alim.akhtar=40samsung.com;
->pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
->sathya=40samsung.com
->Cc: linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org=
-; linux-
->samsung-soc=40vger.kernel.org; Sriranjani P <sriranjani.p=40samsung.com>
->Subject: =5BPATCH v4 2/2=5D arm64: dts: fsd: add sysreg device node
->
->Add SYSREG controller device node, which is available in PERIC, FSYS0,
->FSYS1 and CAM block of FSD SoC.
->
->Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
->Signed-off-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
->Signed-off-by: Sriranjani P <sriranjani.p=40samsung.com>
->---
-> arch/arm64/boot/dts/tesla/fsd.dtsi =7C 20 ++++++++++++++++++++
-> 1 file changed, 20 insertions(+)
->
->diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi
->b/arch/arm64/boot/dts/tesla/fsd.dtsi
->index f35bc5a288c2..ff625fb71fbe 100644
->--- a/arch/arm64/boot/dts/tesla/fsd.dtsi
->+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
->=40=40 -466,6 +466,11 =40=40
-> 			clock-names =3D =22fin_pll=22;
-> 		=7D;
->
->+		sysreg_cam: system-controller=4012630000 =7B
->+			compatible =3D =22tesla,fsd-cam-sysreg=22, =22syscon=22;
->+			reg =3D <0x0 0x12630000 0x0 0x500>;
->+		=7D;
->+
-> 		clock_mfc: clock-controller=4012810000 =7B
-> 			compatible =3D =22tesla,fsd-clock-mfc=22;
-> 			reg =3D <0x0 0x12810000 0x0 0x3000>;
->=40=40 -492,6 +497,11 =40=40
-> 				=22dout_cmu_peric_shared1div4_dmaclk=22;
-> 		=7D;
->
->+		sysreg_peric: system-controller=4014030000 =7B
->+			compatible =3D =22tesla,fsd-peric-sysreg=22, =22syscon=22;
->+			reg =3D <0x0 0x14030000 0x0 0x1000>;
->+		=7D;
->+
-> 		clock_fsys0: clock-controller=4015010000 =7B
-> 			compatible =3D =22tesla,fsd-clock-fsys0=22;
-> 			reg =3D <0x0 0x15010000 0x0 0x3000>;
->=40=40 -506,6 +516,11 =40=40
-> 				=22dout_cmu_fsys0_shared0div4=22;
-> 		=7D;
->
->+		sysreg_fsys0: system-controller=4015030000 =7B
->+			compatible =3D =22tesla,fsd-fsys0-sysreg=22, =22syscon=22;
->+			reg =3D <0x0 0x15030000 0x0 0x1000>;
->+		=7D;
->+
-> 		clock_fsys1: clock-controller=4016810000 =7B
-> 			compatible =3D =22tesla,fsd-clock-fsys1=22;
-> 			reg =3D <0x0 0x16810000 0x0 0x3000>;
->=40=40 -518,6 +533,11 =40=40
-> 				=22dout_cmu_fsys1_shared0div4=22;
-> 		=7D;
->
->+		sysreg_fsys1: system-controller=4016830000 =7B
->+			compatible =3D =22tesla,fsd-fsys1-sysreg=22, =22syscon=22;
->+			reg =3D <0x0 0x16830000 0x0 0x1000>;
->+		=7D;
->+
-> 		mdma0: dma-controller=4010100000 =7B
-> 			compatible =3D =22arm,pl330=22, =22arm,primecell=22;
-> 			reg =3D <0x0 0x10100000 0x0 0x1000>;
->--
->2.17.1
+This would also require changing
+arch/arm64/boot/dts/renesas/ulcb-kf.dtsi to dai-cells=1.
 
-Reviewed-by: Ravi Patel <ravi.patel=40samsung.com>
-
+Best regards,
+Krzysztof
 
