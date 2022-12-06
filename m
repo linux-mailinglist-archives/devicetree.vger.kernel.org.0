@@ -2,124 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DDC6644DA4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D01644DBF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 22:06:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbiLFVCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 16:02:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
+        id S229750AbiLFVF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 16:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiLFVCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:02:01 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C526C2F028;
-        Tue,  6 Dec 2022 13:02:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DAF6618F2;
-        Tue,  6 Dec 2022 21:02:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D33CC433D6;
-        Tue,  6 Dec 2022 21:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670360519;
-        bh=bvu32LFYIQ3mqvaTjtC2wlG+bQ9D2wDMKyzUQjMLf4M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mLTZZLRFOJuvTzmVeiD2+CyUjIalTOGm3M/E4TMnfX2uFbcuGdWa7eJLw1/8YlUI5
-         DbE+pdQmZNSGfU2yrVr37kqsQVuMvMq2z3g6OzCP6giGorFIO3+M+Jd0WHE2F6Sk8O
-         qIIRC7Yu4dDw202VtZGBeE1iMDdwvCfn3cTCt7ky0fRYQv5gZpxFGA0uE8VWJsoIMq
-         fqlWxLAhCX6knHHyU3u7iy4ECDBUKM9ynujSfKssDRRQanAv+c/MHu8BQbPfxXlUqQ
-         zurB1mt1f5M1xQlD1SXS9Z363LzSOTk4cIwZha01CKuz9YXkQ2oxSeoKQiSIcO+f0S
-         uIywgvgMBgt3w==
-Message-ID: <98a97883-3303-20eb-5a18-cfa00af9443e@kernel.org>
-Date:   Tue, 6 Dec 2022 15:01:54 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 05/11] ARM: dts: socfpga: Fix pca9548 i2c-mux node name
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229777AbiLFVFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 16:05:54 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32794664D
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 13:05:52 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id b2so9363165eja.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 13:05:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=APf10OLY3mtfkubRJpUpc31SrBMFn3lxX7iZQ4xQ0uY=;
+        b=uJxN7aR8O0reHgZqy5XrHVCw+sJmg6R+/LQxbxKqFqbQSP8UQ2b4/gOyrMCGfqn6IQ
+         c+BWInM1Z/XSvIdUG94juJMGpfsuXm6rUqu0aAV59xrZ2qBE4VxINCYJxAChyNdQB3Zm
+         mQA9FVnz20Gkt6jraTOsHWEgtlF9M201ZlvMzvZbu/DVKyyOdRJkQNz9iKrP3dtWMglN
+         /VPP4BkAkunhMhELA3vPLrG1nI5Ki3H9q1gHN+baWObClFN0r9Py4MRCFBHabRIPr4s9
+         vfcDhn6IWoocW9iDuB8NHTiTJ8VAqo4QA66fA/+ig6LUMfZkFVULUNRsUoW6DSVo8DTF
+         OP/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=APf10OLY3mtfkubRJpUpc31SrBMFn3lxX7iZQ4xQ0uY=;
+        b=FP+9/Zmxni06nRpeOT/XahUJ1DEMgOGWl5MF/r1DkxtOJjn6gTjUdJOFHjE/7qgw9N
+         Zxx9OfEwIwfAeyBaHLxkbFws8V0HICZEypAKm25BoOCojEnv4ovTY5R838f8jD0Bbveb
+         cDatASWoYGa5GGU+ZxbG8C1x0jwvMaLlUXfeM6c/02BS5gLLkS/9AVvsKxIlmVsUfxXe
+         1RLTlvIMeQLRWjVUzaU0Ar8w3u8hjm42X/oeeSfAmvNINszVwtn+P1PAVGBgmragbl1G
+         RZF6rRN1829UR5dy9jUMKkqnpbd2EKvjXGj4lWTKTP1TI5UAEKk/NSeLNZVqGvHMfaKL
+         WTeg==
+X-Gm-Message-State: ANoB5pkwnFLb9B96Ir19kDGbGraW0zk/8m0E9xijjfYBXN/rYvCpF4MJ
+        h1zFyPsjWbg60RTx09jSN+OavQ==
+X-Google-Smtp-Source: AA0mqf79uoBOQY684/QmNa2+BoMpjxGm4zltJT+RZlCgB1c74qUxAPgSy30cjKv8BUL5p3Qu7hErYw==
+X-Received: by 2002:a17:906:9c89:b0:7c1:1e5b:1db8 with SMTP id fj9-20020a1709069c8900b007c11e5b1db8mr56558ejc.39.1670360751543;
+        Tue, 06 Dec 2022 13:05:51 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id g1-20020a17090604c100b0073dc5bb7c32sm7762462eja.64.2022.12.06.13.05.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 13:05:51 -0800 (PST)
+Date:   Tue, 6 Dec 2022 23:05:49 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-References: <cover.1669999298.git.geert+renesas@glider.be>
- <a7bcc2de6c2c0946f56b2d9f9584c55cf28545dc.1669999298.git.geert+renesas@glider.be>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <a7bcc2de6c2c0946f56b2d9f9584c55cf28545dc.1669999298.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
+Message-ID: <Y4+urc4ZM42zflkk@linaro.org>
+References: <20221206125635.952114-1-abel.vesa@linaro.org>
+ <20221206125635.952114-2-abel.vesa@linaro.org>
+ <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/2/22 10:49, Geert Uytterhoeven wrote:
-> "make dtbs_check":
+On 22-12-06 16:35:16, Krzysztof Kozlowski wrote:
+> On 06/12/2022 13:56, Abel Vesa wrote:
+> > Add bindings documentation for clock TCSR driver on SM8550.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
+> >  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
+> >  2 files changed, 71 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+> >  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+> > new file mode 100644
+> > index 000000000000..15176b0457d1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsr.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm TCSR Clock Controller on SM8550
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <andersson@kernel.org>
+> > +
+> > +description: |
+> > +  Qualcomm TCSR clock control module provides the clocks, resets and
+> > +  power domains on SM8550
+> > +
+> > +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsr.h
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sm8550-tcsr
 > 
->      arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb: i2cswitch@70: $nodename:0: 'i2cswitch@70' does not match '^(i2c-?)?mux'
-> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->      arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb: i2cswitch@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3', 'i2c@4', 'i2c@5', 'i2c@6', 'i2c@7' were unexpected)
->          From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> 
-> Fix this by renaming the PCA9548 node to "i2c-mux", to match the I2C bus
-> multiplexer/switch DT bindings and the Generic Names Recommendation in
-> the Devicetree Specification.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->   arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> index f24f17c2f5ee6bc4..e0630b0eed036d35 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-> @@ -141,7 +141,7 @@ at24@50 {
->   		reg = <0x50>;
->   	};
->   
-> -	i2cswitch@70 {
-> +	i2c-mux@70 {
->   		compatible = "nxp,pca9548";
->   		#address-cells = <1>;
->   		#size-cells = <0>;
+> This still misses syscon. Did you send it before we talk on IRC?
 
-Applied!
+Oups, I forgot to squash that part in.
 
-Thanks,
-Dinh
+Will send a new version.
+
+> 
+> Best regards,
+> Krzysztof
+> 
