@@ -2,107 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68EC6644847
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3D0644851
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:49:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234253AbiLFPp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 10:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S232099AbiLFPsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 10:48:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235352AbiLFPpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:45:21 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B5D2D1DC
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:45:09 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id b13so13380980lfo.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 07:45:09 -0800 (PST)
+        with ESMTP id S233419AbiLFPsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:48:42 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089F9DFF5
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:48:39 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id 82so13771393pgc.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 07:48:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lNf0oPz1+3JYITF+uARI5oqprCns7og7GMeWkwgQOfc=;
-        b=Kx8saFYoHs97DPlt7rrWo2mlAeMwmhdrZXHcU6ApGZvCEcPzi+fsL29ZykBAdUog/p
-         4RhjCcy+vvcGMq5PQyQA7TSNYry9E+K3FGHTw8SpdUT4WGFAOtEqVhtysayPFRJlxqOs
-         dPbdVzjGH4w7YTBIKP69tRClDuUpWxwP60LHj5r3/rtPtf31XDHArnKPYS4DhO00wKRn
-         +7e5S05nSpyz6sFoVtz9C7uRJj0P8kFprLbiwFBfFO/INtdatDSMEBGkPsmco4XMgMtN
-         x+QVEirO8ZUBFE4h1OAclT2O5ukRBq1bzdNO5EQ3j1uDU63bACCnKe6NYtqG9+khx8Ld
-         xIcA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/DuGuLAXdzRR4IIf8T6bkbJ/i9jtNdfks5rt8QKk20=;
+        b=XiwEnRUefPJu1b9K63JN14nPhjE0pQ/Z8VdcF/8MfhMuBbbNsEaQ4TJkTGp4kTd1xK
+         13nGcgiX8gtho0vBhQ89vUT5uucEczBM0IrV3QT7dU7juJa1Je+4NBEKq7juxz6M9Dgq
+         pdxMGM/wVat/VAYrou5WB5uukS6MG6+SAx9oBhDnlXlsLAK+XJ/VnTHmZOJmd3yr5dTr
+         EK2jiSdGsvInKWBKx9r+TuSIEt7Dx/mKrkHgSso6nPJaCpE+9IJxcZDsH3Rn1LcfhO15
+         h5uECF3ZQem2Lhb0ltNIyGz6C/9+Q3e2NlhCeSnHcaOcGoYr5HXNkysw8jXmWytGvWue
+         YH+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lNf0oPz1+3JYITF+uARI5oqprCns7og7GMeWkwgQOfc=;
-        b=VgyDPvbNj+IiLu641f0yJHNS9LWJiLLn8BlU8Uvz9JkUbTfzaHX0eVGWDiWGSyfkdM
-         M8Y0rOv4lg1o7kMfwVWFnhT9A+A6EzIZ39Z6yfYeFdBsspfnEfn4ny/jr55HijagRrO3
-         tyIC68w86i3zKhs2NK0KmxrNhvWhXgaPqytL6qilcgQGiAGIp7ilJmI3mcUIOr9pBFlx
-         mpN7gHRg3lZ1GWecpQ3fTu3aXO2jOqAsosN7QIR26tqpdYUCZdmoQIBofACLegRsq+1B
-         x5ZDrJW8OIsE/+oG22MPaGIF1JcFNkwCfvlCRgk2AUXZgAFGoS3mxi2sdzUCO4hoCfAv
-         ofhg==
-X-Gm-Message-State: ANoB5pnwBjuwgrTCpEFQkbWfRkVqndySMpQF4NOfClDf7hrYdYzEX4OR
-        dhXDbdP8hNDkUacy8HvQIzP49w==
-X-Google-Smtp-Source: AA0mqf5Jh+Dt9wCImCiy9pkyTRtPnrr1eJHFTxSsl5fLdur/tl5B+TujlU7R0CiZRMeh4aFTfnhVGA==
-X-Received: by 2002:ac2:4e0a:0:b0:4a2:2aab:5460 with SMTP id e10-20020ac24e0a000000b004a22aab5460mr22854399lfr.62.1670341507919;
-        Tue, 06 Dec 2022 07:45:07 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v5-20020ac258e5000000b00492ea54beeasm2518454lfo.306.2022.12.06.07.45.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 07:45:07 -0800 (PST)
-Message-ID: <d17bef48-0804-3ccc-a14e-9043ae615573@linaro.org>
-Date:   Tue, 6 Dec 2022 16:45:06 +0100
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g/DuGuLAXdzRR4IIf8T6bkbJ/i9jtNdfks5rt8QKk20=;
+        b=QA/3n19leqk2dQGx8nvhvot87Nhbw5igTeIMmhLkfa9DyDe4PqrdzdhQSkOEJsf9dR
+         cnk/Xxy2c1nm0XL8Tq4Gsb1xn5ulQ038snY7ZhG3tMNqEhXPrItZlFzuNgj0i+x+sHlw
+         GnLsbb3nAUwrvBQZJLn6wgbK1UeAYZP3b7EZFhScunjHhuXaWKRL9m4x/jNBq63m7+qj
+         QNvp/TBYMlA8ZejhwoOGa7o5z0YsnOkgHvPwd4ucE3j9vuoqnu392xywXcjie/sWH1IO
+         IerySE6yLE0MARrwXkcY6f1+zYnjW1P7EERE0EcBoZKn6lwq34JrkwTv5/EMLnd2jCxm
+         ijJA==
+X-Gm-Message-State: ANoB5pn1tPqh4qHiP5bZ3MjP1kkT+/CF9x8AqJktkS4SVpLzRczEh9A3
+        iDIg/kCLEu5BXv/Z0BSc2vEtDozRn5ibax9m1Lg=
+X-Google-Smtp-Source: AA0mqf40YN9ouSKGdtCwgFfsT7QPunm9ea81n1uKcK2R0aPeuqECOSFgKFTLK8kudgQnxq1BoevPRTkY1w3r+0JKtrk=
+X-Received: by 2002:a63:b54:0:b0:434:911a:301 with SMTP id a20-20020a630b54000000b00434911a0301mr63372534pgl.50.1670341718476;
+ Tue, 06 Dec 2022 07:48:38 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v4 2/6] dt-bindings: mediatek: modify VDOSYS0 mmsys device
- tree Documentations for MT8188
-Content-Language: en-US
-To:     "nathan.lu" <nathan.lu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, lancelot.wu@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221206020046.11333-1-nathan.lu@mediatek.com>
- <20221206020046.11333-3-nathan.lu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221206020046.11333-3-nathan.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221206154414.1461492-1-dan.scally@ideasonboard.com> <20221206154414.1461492-4-dan.scally@ideasonboard.com>
+In-Reply-To: <20221206154414.1461492-4-dan.scally@ideasonboard.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 6 Dec 2022 12:48:23 -0300
+Message-ID: <CAOMZO5CirMhmjb8ZSYi8PExAbt+cYR1y=O+2FyMO2J5fUxSFjQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: Add device tree for the Debix Model A Board
+To:     Daniel Scally <dan.scally@ideasonboard.com>
+Cc:     krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, kieran.bingham@ideasonboard.com,
+        debix-tech@polyhex.net
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 03:00, nathan.lu wrote:
-> From: Nathan Lu <nathan.lu@mediatek.com>
-> 
-> modify VDOSYS0 mmsys device tree Documentations for MT8188.
-> 
-> Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
+On Tue, Dec 6, 2022 at 12:44 PM Daniel Scally
+<dan.scally@ideasonboard.com> wrote:
 
+> +/* SD Card */
+> +&usdhc2 {
+> +       assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+assigned-clock-rates missing here?
