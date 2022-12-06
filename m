@@ -2,123 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E209764480D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5245064481C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:35:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234701AbiLFPcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 10:32:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54966 "EHLO
+        id S234085AbiLFPf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 10:35:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234514AbiLFPcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:32:07 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC63C2A728
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:32:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5F117B81A94
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 15:32:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1031BC433C1
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 15:32:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670340722;
-        bh=axhkrtTZzvlywYAMDwvujecvydQKXudml4jHifGsv90=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=l7JPLrL79bKdcQTiGKfEEEb9haJKAQQv8hMlI3rCTzthSGIOse4UkghrJX0CJhGHJ
-         rAisTXMmDO68/xbA+tHL3tYSZ7vqkb5uqwk07NGpvu+kFJRgYCAIx4v0mBOGLevPAm
-         7pGFk9wcLuBts6KExe8bvAMI/7NQUqxEditEN+6z5Xb/c7Q/gzswNbiSQiV80BXh3V
-         UqWsX9hkuAXHF/GVca7qKgDM8G/ZITSwFataPvHnie5205zxKfDQa78gKH2Xr0Bbki
-         +EWAJ207Xl7nRZqKjFwZ4W9vZexYx0dj5PIoeBnkIn3bYPVdvwG3h6+mkHE+mLnWq+
-         GlY7BASfduDng==
-Received: by mail-ua1-f43.google.com with SMTP id s25so4794175uac.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 07:32:02 -0800 (PST)
-X-Gm-Message-State: ANoB5pl1MA2Mtm8B/Kqch90H5JO0zhNzLNDGK1b5T/T421DxHCZPfv/1
-        sb0Al0tWSGEQ0Ytbg54sf+rFkBxFKgxvV8zpEg==
-X-Google-Smtp-Source: AA0mqf6rBdjZ3fmL2P7PWOW8Yt9Kw7MZhM13ejDWA385XqAFuxqk6Eqo6kD274e79PlFqzlaVNnQcK0WjOp/J7zrqe0=
-X-Received: by 2002:ab0:3a96:0:b0:419:678:cf31 with SMTP id
- r22-20020ab03a96000000b004190678cf31mr29671562uaw.63.1670340721006; Tue, 06
- Dec 2022 07:32:01 -0800 (PST)
+        with ESMTP id S234696AbiLFPf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:35:26 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678212BB17
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:35:20 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g7so24292172lfv.5
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 07:35:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F1KPdrNmIxp/vLqj14ywZDhQ1hvfTFyJrb/kxKX7fV4=;
+        b=lBCtYGkPkNXHFvTdm1DCtq7RzVuMzyyDGMYRTAYKnx7r0KkE9pqSJz9RwHkzTfaU/n
+         Y2s0W3b3Q9TKaSwHDG7nJrJBgDXS29ms9JSVA6+83rmsyNbMj9gxkBEL4ROyA8dDIWgn
+         xeLk8Iz1ZE4YJq4mSOP5Y1T7SQF2wEOwVI4An16JY+NKeermak7fmVqhRRn3cR3IeDDT
+         4YLXzF+Nw9bqXE8wRODMU/hNtpRgocb3NiOSIkZFYg6ysR7D0WcoodHt0kyfP4bWmV/j
+         M8Xrq0rhd36WoZDwDiJfaM46jbBmR4eURWj2CP+hZOjq+RHyamsoarrT42EEGoD33+Er
+         ItHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F1KPdrNmIxp/vLqj14ywZDhQ1hvfTFyJrb/kxKX7fV4=;
+        b=z2FtSuFxPPrnHMi4RE2yFZLaVXP7e9fJ9j8FoLdXGA8yeJwNq7QBNXyVSQzadZw+AR
+         NqqVqehrl/MLb/ZFe7Nla3apZBMnuNy81t+Ue/oxedJe6bS+csLogq+S+eIthVFIh8ZZ
+         KM0e7lwB/w3nmnFnpfef/LJhk+OHCvFPENVXYY8ZmdkcmnGqsyHgS2i2Peg5Ql5Cy6kB
+         agwc0wFK4SDESMbk5AzavvuB8wBhWRps5U1LgRZ4xJY6ekXmbc7SoP4ecDrm4YoGyXym
+         HHjqrfakaeeMjKOIfayC4/g1IR2dw8I2M/LGH9t+gfsZGj/HShg91J/JfPxEmCeTp7p4
+         qpVA==
+X-Gm-Message-State: ANoB5pkB55tcey8ic5ghXeWpNadnON3bzumwe0mPigdjEEkwZ/mdsPpD
+        tF6Iuv5TJ/41uEFyebrV3MaCWw==
+X-Google-Smtp-Source: AA0mqf5Egysi9Meisg5THM/DUVSiqhI4AENo68/EpnGy0c4t/MajZcQiQC8PBhxf+3S0Ahjn4MVrWw==
+X-Received: by 2002:a05:6512:3413:b0:4aa:b3d1:9c83 with SMTP id i19-20020a056512341300b004aab3d19c83mr22037421lfr.260.1670340918475;
+        Tue, 06 Dec 2022 07:35:18 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id g4-20020a2ea4a4000000b00279d73cdf83sm1417014ljm.128.2022.12.06.07.35.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 07:35:18 -0800 (PST)
+Message-ID: <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
+Date:   Tue, 6 Dec 2022 16:35:16 +0100
 MIME-Version: 1.0
-References: <Y3t2QLqXdomHkLTN@smile.fi.intel.com> <dc7f379a-4593-659e-a4c5-012bc11c8841@linaro.org>
- <Y3uG/XvhZzaIq5Zi@smile.fi.intel.com> <b958733a-18a0-d916-930a-e7efb481dd06@linaro.org>
- <Y3uZzR7wYy3lY++/@smile.fi.intel.com>
-In-Reply-To: <Y3uZzR7wYy3lY++/@smile.fi.intel.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Dec 2022 09:31:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKrGXMhvEGaOYg=6bNEHyakTio6DhFqLEai2BH8nEf7ig@mail.gmail.com>
-Message-ID: <CAL_JsqKrGXMhvEGaOYg=6bNEHyakTio6DhFqLEai2BH8nEf7ig@mail.gmail.com>
-Subject: Re: Mixed types of values inside a single property
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20221206125635.952114-1-abel.vesa@linaro.org>
+ <20221206125635.952114-2-abel.vesa@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221206125635.952114-2-abel.vesa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 21, 2022 at 9:31 AM Andy Shevchenko
-<andriy.shevchenko@intel.com> wrote:
->
-> On Mon, Nov 21, 2022 at 03:23:53PM +0100, Krzysztof Kozlowski wrote:
-> > On 21/11/2022 15:11, Andy Shevchenko wrote:
-> > > On Mon, Nov 21, 2022 at 02:52:37PM +0100, Krzysztof Kozlowski wrote:
-> > >> On 21/11/2022 13:59, Andy Shevchenko wrote:
-> > >>>
-> > >>> Hi, Rob and Krzysztof!
-> > >>>
-> > >>> Today on SO one question [1] was popped up, and I, remembering a bit of
-> > >>> the code of device properties in the Linux kernel, was a bit surprised of it
-> > >>> in a way that reading DT specification (0.4-rc1 as of today) doesn't clarify
-> > >>> that either.
-> > >>>
-> > >>> Can the specification be a bit more clear about that? Or is it me and the OP of
-> > >>> that question who missed something in the DT spec?
+On 06/12/2022 13:56, Abel Vesa wrote:
+> Add bindings documentation for clock TCSR driver on SM8550.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
+>  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+> new file mode 100644
+> index 000000000000..15176b0457d1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm TCSR Clock Controller on SM8550
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +
+> +description: |
+> +  Qualcomm TCSR clock control module provides the clocks, resets and
+> +  power domains on SM8550
+> +
+> +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsr.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8550-tcsr
 
-Please use devicetree-spec list for questions like this because it's a
-spec question and I only see these on my periodic search for non-patch
-emails.
+This still misses syscon. Did you send it before we talk on IRC?
 
-> > >>> [1]: https://stackoverflow.com/questions/74517569/reading-tuples-in-a-devicetree
-> > >>
-> > >> I saw question on Stackoverflow and I saw there answers, but what is the
-> > >> question to us?
-> > >
-> > > Does the specification allows mixed types of the values in the same property?
-> > > Because reading it doesn't give a hint.
-> >
-> > I think DT spec allows it ("Format is specific to the property. See the
-> > property definition.")
->
-> And the quoted sentence confuses me. Is it related to _defined_ only properties
-> (that are in the same document) or is it to any property, then what does the
-> second part actually mean in the latter case: "see the property definition".
-> Where?
+Best regards,
+Krzysztof
 
-Any property in the schemas. (I would say if not in the spec, but
-everything in the spec should have a schema.)
-
->
-> It might be though it's lack of my understanding the English language
-> (not a native speaker).
->
-> > but DT schema mostly not (finite list of property
-> > types). To some level DT schema accepts mixes, e.g. phandle-array
-> > containing phandle and offsets, but that's because phandle is actually
-> > also a number (dtschema/schemas/types.yaml).
-
-At the spec level, properties are just byte strings. They can be
-anything including a file (i.e. FIT images). In theory, you could make
-properties C structs if you wanted.
-
-However, since there is 0 type or field size information in the DT
-itself, we don't mix data types or sizes. That's enforced at the
-schema level and by what APIs we have to read properties.
-
-Rob
