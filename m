@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8F9C643F0E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD02E643F1B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234403AbiLFIwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:52:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45762 "EHLO
+        id S234416AbiLFIxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:53:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234375AbiLFIwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:52:06 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB9618E2E
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:52:05 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id h10so16429556ljk.11
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:52:05 -0800 (PST)
+        with ESMTP id S234420AbiLFIxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:53:34 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABB11C123
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:53:15 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id 1so8974299lfz.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:53:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VXjTNn9tiAsyp/wY7Vv6vP1l0Ibm8LYoSy2L8kWcIs8=;
-        b=AoYO7gScR8TYHadSiWcysyhKrc/+agmfXO8ZS9pZfaJHXRyAgyLZ78pZ2Sm4lDiQQ+
-         XnH7WRT9TvXcnQC2GTgY+5tPmyZ8iIHWR1UY7Pggp3mdCVUQ4y/b4vkD7xlIJV5vgEnF
-         yz/1ljLK2GThAYxHurgNvJxisoo273ze7a6TMXfAievQEUadP2Qa6VuaPyObv7RCC7Re
-         hdt1NEqz+WIWmmJQGwmcbq7iEVttJPlouqqMFq9XTkAbOn7zck+ih/wiFLRgizGVPlC9
-         umGcDe+B+Ww9SKZzGUDhC3ZJ9R5YrpaUai44fmvVGNYlXRZTzNDBzpg6WGqt/Q4axGsb
-         7quw==
+        bh=xaaugcKD2DWO+dKMtwtCSR92f960siJ7Bi9i7riVt0o=;
+        b=lfaejrrgm3ovECiXFErsEgWM3FnLktoMohIcaghDk9k4yTtCq05wiRFeYI4PtBeOWa
+         S3/CCBPSKsQpp766jttP73I/NSK+bKw10woE5M9+blvSyltDVUHbD34TQ0hS3/iNJgBF
+         zN9iT0CwUJx6EADjwwXSMQhYSC3D0gvPuPqKUCCiIYydqx9vSIlGTf7dgql6c0B7W5jL
+         pnPGs8KpKJj6k2o6DRgRvf229vMnWrKVdHWu29fqi3aDvlzgmrERibWH67jnhmRDwEXo
+         UQp1ToWn0YsQN678rv4eeNwbx9KiZTIX25uXMWOvZF8DSycuZBoCZyaY3J2wNrDgIt5J
+         SQIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VXjTNn9tiAsyp/wY7Vv6vP1l0Ibm8LYoSy2L8kWcIs8=;
-        b=UzvuFsv32bewkFbb73cu+43oD5cxFx5g1EquYOWu965Q6aDb2JNjYJ5n5JY37OUxrE
-         AvbRbA2aYRjxJJEcZ+coHjq9nObGI2z9hZbuKvrnp3oZLG4pFHrcaHY8TIXAaYWELfYA
-         yrh2NlPdculnQsIwsjOcv4hBc/EdIFI8EVtnpwdKtXyAdGovC9yFza+heUsc7pLMFBYI
-         Wi9lCQxD9oKVXFjzY07y+ti9R80/o9Ul536x5S3e/E+lcq0SDcUHItJNURAv9ivxIn+v
-         kCjSicWGQh5z1eG/D9IuN8YxYU+gUIC7MmlD7MJzeeqrTcd/xiU0lAbyn8qcBUly7QZw
-         v5iQ==
-X-Gm-Message-State: ANoB5pk3URHZRS6QnRux+7GtuKoqKMZLDpRorKlqLhDBYm8rfGiGz3T0
-        dF1qxEqyNyz7U/Mb/E3rx9iVeg==
-X-Google-Smtp-Source: AA0mqf4tIwds6mHwsgzp2Mb1a75e4FX0OP4DpXxx2xDDn/AcUhj2GxCicQvN/lM82XFKMMGPopYanQ==
-X-Received: by 2002:a2e:a409:0:b0:279:ebd8:37f with SMTP id p9-20020a2ea409000000b00279ebd8037fmr4104594ljn.86.1670316724199;
-        Tue, 06 Dec 2022 00:52:04 -0800 (PST)
+        bh=xaaugcKD2DWO+dKMtwtCSR92f960siJ7Bi9i7riVt0o=;
+        b=2/B1ituyBfmS3lz+PvG13HZ8XyQH6vgc8+kWNiR1t8Tai0Deeg111qBB1BVYy2AYPH
+         I2Q6+aMOCpMmt0knvUerVS9DZs2EYoE07VGFEQR1TkANWgxvvTmfIfeFfpWR9rsk/1XG
+         itlsxkqqm+rHXCRcy7wi6anLyKfYC0WxVS9Ij2lOpEYuefdhlZ+Zkd/uq6rpshvM7TBp
+         Kd31Qj9aobc05hIkxyqBllvuWF+VoaNA5woeGI/096CTlim2pm92kmsAyfzcomr801DZ
+         1cM7ZIZFYJe3SzaY/+ygcbN5DdW0AnoRpyH41JnJbsIygflfH9Wui1FAdPqU4ao+uq7W
+         +tqg==
+X-Gm-Message-State: ANoB5pnLqmr/55gaUi90++g9BEc0lfcQhjqFQy3nO1mIaQeKm+ARUccZ
+        HKjO9K/UBeg3mhTT7oDBbOc8Ow==
+X-Google-Smtp-Source: AA0mqf5ChLoNGLdLOgDBauHU8k10w8GSMe8kuGmBVkkbQHaFfPKJbRwcfuSe1uAJY9+80U2eX20s2g==
+X-Received: by 2002:a05:6512:40e:b0:4b5:850a:34b6 with SMTP id u14-20020a056512040e00b004b5850a34b6mr691777lfk.668.1670316793581;
+        Tue, 06 Dec 2022 00:53:13 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b37-20020a0565120ba500b004b5872a7003sm141213lfv.98.2022.12.06.00.52.03
+        by smtp.gmail.com with ESMTPSA id u1-20020ac248a1000000b004a05767bc07sm2419944lfg.28.2022.12.06.00.53.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:52:03 -0800 (PST)
-Message-ID: <a44c5ad2-932f-218f-add4-be727edb5dde@linaro.org>
-Date:   Tue, 6 Dec 2022 09:52:02 +0100
+        Tue, 06 Dec 2022 00:53:13 -0800 (PST)
+Message-ID: <cb1ccf2e-71a8-a1d3-138c-8696338ea3d2@linaro.org>
+Date:   Tue, 6 Dec 2022 09:53:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: qcom: sa8295p-adp: Add RTC node
+Subject: Re: [PATCH net 2/2] dt-bindings: FEC/i.MX DWMAC and INTMUX maintainer
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221205174309.16733-1-quic_bjorande@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        "open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221205212340.1073283-1-f.fainelli@gmail.com>
+ <20221205212340.1073283-3-f.fainelli@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221205174309.16733-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20221205212340.1073283-3-f.fainelli@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,30 +91,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2022 18:43, Bjorn Andersson wrote:
-> The first PM8540 PMIC has an available RTC block, describe this in the
-> SA8295P ADP. Mark it as wakeup-source to allow waking the system from
-> sleep.
+On 05/12/2022 22:23, Florian Fainelli wrote:
+> Emails to Joakim Zhang bounce, add Shawn Guo (i.MX architecture
+> maintainer) and the NXP Linux Team exploder email.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> index d55c8c5304cc..d2eb3d870f5a 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -510,6 +510,14 @@ pm8450a: pmic@0 {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> +		rtc@6000 {
-> +			compatible = "qcom,pm8941-rtc";
-> +			reg = <0x6000>;
-> +			reg-names = "rtc", "alarm";
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
-You miss one IO space.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
