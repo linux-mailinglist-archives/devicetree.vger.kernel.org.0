@@ -2,97 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F19643EAF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F33A7643EB3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:33:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234209AbiLFIdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59802 "EHLO
+        id S234142AbiLFIdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:33:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234001AbiLFIcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:32:42 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0252DC2;
-        Tue,  6 Dec 2022 00:32:40 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 3CCF724E277;
-        Tue,  6 Dec 2022 16:32:39 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 6 Dec
- 2022 16:32:39 +0800
-Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
- EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
- 15.00.1497.044; Tue, 6 Dec 2022 16:32:39 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>
-Subject: RE: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto
- driver
-Thread-Topic: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive
- crypto driver
-Thread-Index: AQHZBH/2P5dLP9b8iUC7OZp9LCFzsa5W9X0AgAlLclD//8izgIAAh0AA
-Date:   Tue, 6 Dec 2022 08:32:38 +0000
-Message-ID: <15fcb91a5214438fb69535bcf2df576e@EXMBX068.cuchost.com>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
- <166981596611.1846501.537832446745968339.robh@kernel.org>
- <14a3facb1fe642cba0048f2f2d0eb2e9@EXMBX068.cuchost.com>
- <0a2056f9-0126-4dd7-55fa-930ce61e2e81@linaro.org>
-In-Reply-To: <0a2056f9-0126-4dd7-55fa-930ce61e2e81@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [202.188.176.82]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S234259AbiLFIdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:33:13 -0500
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EBF81CB3B;
+        Tue,  6 Dec 2022 00:33:06 -0800 (PST)
+Received: by mail-qv1-f52.google.com with SMTP id h10so9950534qvq.7;
+        Tue, 06 Dec 2022 00:33:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ufiPGRxn+u+eF7V9lbnW/2wOS52DtOLgEOMLvePrXwg=;
+        b=Wt2hhv3LvJPd8qbf51nv8eYwjyVH/GFxsEQ9vdRXe9Le+U7XDHPwO4Qvsu20fuXnFE
+         22VHuatut7BFF4AgasRRIuoQiKshMTd0ZfLbcgXaM+xEVeNM3cysn7YGX1TUw4bmEhZP
+         XB8dBqbk2WMtMajPxufGNwgb1m18AXRLZeBAeKuKQMFsoqyTZzGF+Tyfp3EP4u1x3rxo
+         xOWJOtZRyomkw6JeENdZvYel3gHEVKbW+MfwNc8GI1eu+0WJuCv2MDDv8Jq2n+quY59p
+         idbx2K8xP2E+Svnuxaz7Y+BmdRf5kJgDCWy1U8uHQjhXqv6z6sNP0a3OBbLgvlxZDSuh
+         fAGw==
+X-Gm-Message-State: ANoB5plF664tGpL5yc/No2cQISkuqe/SYY4LqoHp6s0Lb+7Y9yX9n3To
+        4DfOfPcOQt3RUHaa8nqwc1vwdt5FWJT4YA==
+X-Google-Smtp-Source: AA0mqf5RTsfiCI5z9ZjjTnLPPxB4nhROhc+/OVHnIhRA9PJRL5Hi5WniKsPQm9WZ43CtH5o+nNNRjA==
+X-Received: by 2002:a0c:fe84:0:b0:4c7:2b85:9bd with SMTP id d4-20020a0cfe84000000b004c72b8509bdmr19837695qvs.107.1670315585276;
+        Tue, 06 Dec 2022 00:33:05 -0800 (PST)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id i22-20020a05620a249600b006f9f714cb6asm14610187qkn.50.2022.12.06.00.33.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 00:33:04 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-3e45d25de97so88149577b3.6;
+        Tue, 06 Dec 2022 00:33:04 -0800 (PST)
+X-Received: by 2002:a81:1486:0:b0:36b:56d3:71b8 with SMTP id
+ 128-20020a811486000000b0036b56d371b8mr16028867ywu.384.1670315584377; Tue, 06
+ Dec 2022 00:33:04 -0800 (PST)
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <363186079b4269891073f620e3e2353cf7d2559a.1669988238.git.geert+renesas@glider.be>
+ <1503a3857107e3a4f34e0c7fb5dada39@walle.cc> <CAMuHMdXN+HJb=zGeG=3t=Pie9cVpnBLYuEb_qX6=oSxG8eTkAw@mail.gmail.com>
+ <20221205163306.GB2012644-robh@kernel.org>
+In-Reply-To: <20221205163306.GB2012644-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 6 Dec 2022 09:32:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
+Message-ID: <CAMuHMdUcrh26MNYuiqiC0_FMkeHtq1YnJrZKHEV_WQm5Dgzoaw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: jedec,spi-nor: Document support for
+ more MT25QU parts
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Walle <michael@walle.cc>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUdWVzZGF5LCBE
-ZWNlbWJlciA2LCAyMDIyIDQ6MjYgUE0NCj4gVG86IEppYUppZSBIbyA8amlhamllLmhvQHN0YXJm
-aXZldGVjaC5jb20+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiBDYzogbGludXgt
-Y3J5cHRvQHZnZXIua2VybmVsLm9yZzsgbGludXgtcmlzY3ZAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
-Um9iDQo+IEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IEhlcmJlcnQgWHUNCj4gPGhlcmJl
-cnRAZ29uZG9yLmFwYW5hLm9yZy5hdT47IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyenlzenRv
-Zi5rb3psb3dza2krZHRAbGluYXJvLm9yZz47IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7
-DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBEYXZpZCBTIC4gTWlsbGVyIDxkYXZlbUBk
-YXZlbWxvZnQubmV0Pg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDUvNl0gZHQtYmluZGluZ3M6IGNy
-eXB0bzogQWRkIGJpbmRpbmdzIGZvciBTdGFyZml2ZSBjcnlwdG8NCj4gZHJpdmVyDQo+IA0KPiBP
-biAwNi8xMi8yMDIyIDA0OjQ4LCBKaWFKaWUgSG8gd3JvdGU6DQo+ID4NCj4gPg0KPiA+IFRoZSAj
-aW5jbHVkZSBpbiBleGFtcGxlIGhhdmUgZGVwZW5kZW5jaWVzIG9uIHRoZSBmb2xsb3dpbmcgcGF0
-Y2hlczoNCj4gPiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtcmlz
-Y3YvY292ZXIvMjAyMjExMTgwMTA2MjcuDQo+ID4gNzA1NzYtMS1oYWwuZmVuZ0BzdGFyZml2ZXRl
-Y2guY29tLw0KPiA+IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1y
-aXNjdi9jb3Zlci8yMDIyMTExODAxMTcxNC4NCj4gPiA3MDg3Ny0xLWhhbC5mZW5nQHN0YXJmaXZl
-dGVjaC5jb20vDQo+ID4gSSd2ZSBub3RlZCB0aGVtIGluIHRoZSBjb3ZlciBsZXR0ZXIuDQo+ID4g
-SG93IGRvIEkgYWRkIHRoZW0gaW4gdGhpcyBwYXRjaD8NCj4gDQo+IFlvdSBjYW5ub3QuIFRlc3Rp
-bmcgYm90IGRvZXMgbm90IHRha2UgZGVwZW5kZW5jaWVzLCBzbyBpdCBkaWQgbm90IGhhdmUNCj4g
-YWJvdmUgY2xvY2sgSURzLiBUaGlzIGFsc28gc2hvdWxkIHBvaW50IHlvdXIgYXR0ZW50aW9uIHRo
-YXQgaWYgY3J5cHRvDQo+IG1haW50YWluZXJzIHBpY2sgdXAgdGhpcyBwYXRjaCwgdGhleSBhbHNv
-IHdvbid0IGhhdmUgdGhlIGNsb2NrIElEcyBzbyB0aGVpciB0cmVlDQo+IHdpbGwgaGF2ZSBzdWNo
-IGZhaWx1cmUgYXMgd2VsbC4NCj4gDQo+IFlvdSBjYW4gd2FpdCB3aXRoIHlvdXIgcGF0Y2ggdGls
-bCBkZXBlbmRlbmN5IGhpdHMgbWFpbmxpbmUgb3IgeW91IGNhbiBqdXN0DQo+IHJlcGxhY2UgY2xv
-Y2sgSURzIHdpdGggbnVtYmVycyBhbmQgZHJvcCB0aGUgaGVhZGVyIChhbmQgbGF0ZXIgeW91IGNh
-bg0KPiBjb3JyZWN0IHRoZSBleGFtcGxlIGlmIG5lZWRlZC4uLiBvciBsZWF2ZSBpdCBhcyBpcyku
-DQo+IA0KSSdsbCByZXBsYWNlIHRoZSBJRHMgYW5kIGRyb3AgdGhlIGhlYWRlciB0aGVuLg0KVGhh
-bmtzLg0KDQpSZWdhcmRzLA0KSmlhIEppZQ0K
+Hi Rob,
+
+On Mon, Dec 5, 2022 at 5:33 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, Dec 02, 2022 at 02:56:01PM +0100, Geert Uytterhoeven wrote:
+> > On Fri, Dec 2, 2022 at 2:50 PM Michael Walle <michael@walle.cc> wrote:
+> > > Am 2022-12-02 14:37, schrieb Geert Uytterhoeven:
+> > > > Document support for the Micron MT25QU256A and MT25QU512A Serial NOR
+> > > > FLASHes.
+> > > >
+> > > > Merge the new entries with the existing entry for MT25QU02G.
+> > > >
+> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > ---
+> > > > mt25qu512a is already in active use, causing "make dtbs_check" errors.
+> > > > mt25qu256a is supported by the Linux spi-nor driver, but there are no
+> > > > upstream users yet.
+> > >
+> > > Is it encouraged to use the specific compatible with SPI-NOR flashes?
+> > > As far as I know it isn't. The spi-nor subsys tries hard to identify
+> > > any flashes at runtime and any additional information in the device tree
+> > > is used as a last resort (just for flashes which doesn't support the
+> > > read jedec id command yet). And usually boards have different sources
+> > > for flash chips, so hardcoding a particular part in the device tree
+> > > doesn't make sense.
+> >
+> > Thanks, I am aware there have been pushbacks when trying to
+> > document more compatible values.
+> >
+> > IMHO either all or none of them should be documented.
+> > If device-specific compatible values are discouraged, the bindings
+> > should be updated to reflect that, and document a single compatible
+> > value ("jedec,spi-nor") only.
+>
+> That's already allowed, so there's your answer.
+
+It's indeed allowed, but the alternative is documented, too (for some
+values).
+
+> The caveat is don't be adding them later to your DT when you find an
+> issue and new quirk properties will probably be rejected.
+
+Adding them later to your DT when you find an issue makes no sense,
+as that breaks compatibility with older DTBs.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
