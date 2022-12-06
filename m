@@ -2,276 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A67644A7A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB74644A8F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:45:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234594AbiLFRkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 12:40:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35582 "EHLO
+        id S229480AbiLFRpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 12:45:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235513AbiLFRkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:40:24 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDF53C6E9;
-        Tue,  6 Dec 2022 09:39:09 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 36286B81AE2;
-        Tue,  6 Dec 2022 17:39:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E956EC433D7;
-        Tue,  6 Dec 2022 17:39:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670348346;
-        bh=+tdEznI/g0L7siq0SlLmZAepq7d3jTdsbku3dgHfOfE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YYo1ndUG1+bV2uRuoYCxh78TVHlUUOMKcPeNRetKFQNjwXSsggo+aWkaw+7M0yud1
-         MP0scbJIDw7a9FrEnCc8ex7H3/HLqyB3rd2n7nqha+tCiRd6pyk1GhI/QvcVgGNb6q
-         ZY6xkFhiw2L+baF3WJlOACspyLwb6E1O+nZntdK6pTKDQ3jxR0sSEuOwCdejoTHu8E
-         l747il4hWHyftjyDkli6B97TuWZ789rgr6qK8rYFVodUrDzmUfvYeB1azXeqj7rn0k
-         uxL3BT9zervvZB4JwIwU2k0XXyF17jTXf1rxwhtxboNNcI3zKCy21FFXKGiEeGWn16
-         jZkBQVdcJuE/Q==
-Received: by mail-vs1-f51.google.com with SMTP id 3so14026976vsq.7;
-        Tue, 06 Dec 2022 09:39:06 -0800 (PST)
-X-Gm-Message-State: ANoB5pmN1oZ/BLc9Dyp+w5ZMoIoBMZpXHoggscs4AR8VtFD/JDfC5ijD
-        wuTStZHlQ+nzFYbSI5Uw8Qj1MEFU76YmKTM3Fg==
-X-Google-Smtp-Source: AA0mqf4PpwoI1ggVpjpVZszVRkunYLheMlcwUDFh5/UuwLgs7caqmMUTxdiMDcyl4E9LOSFxuYu4a7YIhDk5ts2lZvk=
-X-Received: by 2002:a05:6102:370a:b0:3af:c63c:5536 with SMTP id
- s10-20020a056102370a00b003afc63c5536mr46010667vst.85.1670348345753; Tue, 06
- Dec 2022 09:39:05 -0800 (PST)
+        with ESMTP id S229462AbiLFRph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:45:37 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E48B037210
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 09:45:36 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id m4so7721437pls.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 09:45:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QnXuCMBJLGvaQ8GD/oAIn2hbJLbNYlY5oG7JUQ6WrZs=;
+        b=Car3FCxir2IE4cCpDcdBvjDJODCtqU/FMnhPBQ2ZChw6LybsvXbSbeYIgCEpqS8zBk
+         O/bxcfu3V4iJBezsRvo6tIt26lzNsUEkzolUMvX8tnvcPUJZpNENQ3KuIYGEltvAbESe
+         kGByCtOcbf6ztbG7j7qI6gqmxiGXN2o8iBeVpgxkU/yXsZgsWcESWVqEhLhg0gCMgVFo
+         GpMQ9XoKlYkEhnvfY6KNa+LUfgqA1AyKMhMA7rnAObIHx2v/TzBYVoj3TobWg81LDXTs
+         epubBmQA9sYHkjid0ofIfDBnrGw4+sDXl/t30F4bxM97+yppivRJV0AgegKWVHoEKA1X
+         X+nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QnXuCMBJLGvaQ8GD/oAIn2hbJLbNYlY5oG7JUQ6WrZs=;
+        b=IjvsqWVCzDQPtGcI+4jQqWnMCFHQRGHRyMBCK+QkimJ8B1SOSgPpi7O5/7bQstOHwW
+         ZSY1329ovQzK7T3r1LoKJnFUtH2C9CcPADANqQ2H/1fb+jZB3jWLCQld1NA7fSB+I2wx
+         CVq6tudrX5BgAI8RkUIgCRlEEkDYgYsZdkFqqURTcmbwPswaBjeyEPMvM92xj/2vV+B+
+         yJBMZKYI4ginH/9p9xY2ljlRKwEeU60MkYO8oAthHVZ7GxJJi1agAVgcZ8FNxKbb2C8F
+         oNFk8hwx7gk8YHgxj7l1vLCOr5kyd+HMAqVEgizU7tSjWBptyoRa8j/1Ce4xcTl6vffj
+         Oyag==
+X-Gm-Message-State: ANoB5pkUTrWKTB3jGkjBArG7Jdapl2vd51oBP7ClQ4s8Rh7kyQfES0lU
+        p+NldT83CqsMC7M763m1K5SaPA==
+X-Google-Smtp-Source: AA0mqf63M5QudRaFUyWkka3wLk0yj7w6tH3rMCRjclZAEfsaj6iitdAM4YgOb8a9ZCk928yrZDL1Ig==
+X-Received: by 2002:a05:6a20:441e:b0:ac:16ae:1082 with SMTP id ce30-20020a056a20441e00b000ac16ae1082mr795935pzb.32.1670348736388;
+        Tue, 06 Dec 2022 09:45:36 -0800 (PST)
+Received: from ?IPV6:2405:201:d02f:d899:2028:7962:400:43b6? ([2405:201:d02f:d899:2028:7962:400:43b6])
+        by smtp.gmail.com with ESMTPSA id s1-20020a635241000000b0046ff3634a78sm10143474pgl.71.2022.12.06.09.45.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 09:45:35 -0800 (PST)
+Message-ID: <77c5a9e2-ce25-df19-1eba-ba4808bbeb9d@9elements.com>
+Date:   Tue, 6 Dec 2022 23:15:31 +0530
 MIME-Version: 1.0
-References: <20221111162729.3381835-1-robh@kernel.org> <52d2e0c2-a04a-1ae8-cab5-b89a79150fe6@linaro.org>
-In-Reply-To: <52d2e0c2-a04a-1ae8-cab5-b89a79150fe6@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 6 Dec 2022 11:38:51 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+UOJcBKSiVpCsBO+VF8e0BA6JVfGhRtgoED0YbfD=W+g@mail.gmail.com>
-Message-ID: <CAL_Jsq+UOJcBKSiVpCsBO+VF8e0BA6JVfGhRtgoED0YbfD=W+g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: thermal: thermal-idle: Fix example paths
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v8 4/4] hwmon: (max6639) Add pwm support
+To:     Guenter Roeck <linux@roeck-us.net>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        linux-pwm@vger.kernel.org, kernel@pengutronix.de
+References: <20221129161134.2672474-1-Naresh.Solanki@9elements.com>
+ <20221129161134.2672474-5-Naresh.Solanki@9elements.com>
+ <20221129163427.dxnqfay6ur6mvivu@pengutronix.de>
+ <d2d54a34-56dc-df83-5fde-ad0a9a73a9e0@roeck-us.net>
+Content-Language: en-US
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <d2d54a34-56dc-df83-5fde-ad0a9a73a9e0@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 6, 2022 at 11:15 AM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 11/11/2022 17:27, Rob Herring wrote:
-> > The reference by path (&{/cpus/cpu@101/thermal-idle}) in the example causes
-> > an error with new version of dtc:
-> >
-> > FATAL ERROR: Can't generate fixup for reference to path &{/cpus/cpu@100/thermal-idle}
-> >
-> > This is because the examples are built as an overlay and absolute paths
-> > are not valid as references must be by label. The path was also not
-> > resolvable because, by default, examples are placed under 'example-N'
-> > nodes.
-> >
-> > As the example contains top-level nodes, the root node must be explicit for
-> > the example to be extracted as-is. This changes the indentation for the
-> > whole example, but the existing indentation is a mess of of random amounts.
-> > Clean this up to be 4 spaces everywhere.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > The dtc update is in my tree, so I'd prefer to take this via the DT
-> > tree.
-> >
-> >   .../bindings/thermal/thermal-idle.yaml        | 154 +++++++++---------
-> >   1 file changed, 80 insertions(+), 74 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> > index cc938d7ad1f3..72d85eb64247 100644
-> > --- a/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> > +++ b/Documentation/devicetree/bindings/thermal/thermal-idle.yaml
-> > @@ -48,99 +48,105 @@ additionalProperties: false
-> >
-> >   examples:
-> >     - |
-> > -    #include <dt-bindings/thermal/thermal.h>
-> > +    /{
-> > +        #include <dt-bindings/thermal/thermal.h>
-> >
-> > -    // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
-> > -    cpus {
-> > +        compatible = "foo";
-> > +        model = "foo";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +
-> > +        // Example: Combining idle cooling device on big CPUs with cpufreq cooling device
-> > +        cpus {
-> >               #address-cells = <2>;
-> >               #size-cells = <0>;
-> >
-> >               /* ... */
-> >
-> > -                 cpu_b0: cpu@100 {
-> > -                         device_type = "cpu";
-> > -                         compatible = "arm,cortex-a72";
-> > -                         reg = <0x0 0x100>;
-> > -                         enable-method = "psci";
-> > -                         capacity-dmips-mhz = <1024>;
-> > -                         dynamic-power-coefficient = <436>;
-> > -                         #cooling-cells = <2>; /* min followed by max */
-> > -                         cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
-> > -                         thermal-idle {
-> > -                                 #cooling-cells = <2>;
-> > -                                 duration-us = <10000>;
-> > -                                 exit-latency-us = <500>;
-> > -                         };
-> > +            cpu_b0: cpu@100 {
-> > +                device_type = "cpu";
-> > +                compatible = "arm,cortex-a72";
-> > +                reg = <0x0 0x100>;
-> > +                enable-method = "psci";
-> > +                capacity-dmips-mhz = <1024>;
-> > +                dynamic-power-coefficient = <436>;
-> > +                #cooling-cells = <2>; /* min followed by max */
-> > +                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
-> > +                thermal-idle {
-> > +                    #cooling-cells = <2>;
-> > +                    duration-us = <10000>;
-> > +                    exit-latency-us = <500>;
-> > +                };
-> > +            };
-> > +
-> > +            cpu_b1: cpu@101 {
-> > +                device_type = "cpu";
-> > +                compatible = "arm,cortex-a72";
-> > +                reg = <0x0 0x101>;
-> > +                enable-method = "psci";
-> > +                capacity-dmips-mhz = <1024>;
-> > +                dynamic-power-coefficient = <436>;
-> > +                #cooling-cells = <2>; /* min followed by max */
-> > +                cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
-> > +                thermal-idle {
-> > +                    #cooling-cells = <2>;
-> > +                    duration-us = <10000>;
-> > +                    exit-latency-us = <500>;
-> >                   };
-> > +            };
-> >
-> > -                cpu_b1: cpu@101 {
-> > -                        device_type = "cpu";
-> > -                        compatible = "arm,cortex-a72";
-> > -                        reg = <0x0 0x101>;
-> > -                        enable-method = "psci";
-> > -                        capacity-dmips-mhz = <1024>;
-> > -                        dynamic-power-coefficient = <436>;
-> > -                        #cooling-cells = <2>; /* min followed by max */
-> > -                        cpu-idle-states = <&CPU_SLEEP>, <&CLUSTER_SLEEP>;
-> > -                        thermal-idle {
-> > -                                #cooling-cells = <2>;
-> > -                                duration-us = <10000>;
-> > -                                exit-latency-us = <500>;
-> > -                        };
-> > -                 };
-> > -
-> > -          /* ... */
-> > +            /* ... */
-> >
-> > -    };
-> > +        };
-> >
-> > -    /* ... */
-> > +        /* ... */
-> >
-> > -    thermal_zones {
-> > -         cpu_thermal: cpu {
-> > +        thermal_zones {
-> > +            cpu_thermal: cpu {
-> >                   polling-delay-passive = <100>;
-> >                   polling-delay = <1000>;
-> >
-> >                   /* ... */
-> >
-> >                   trips {
-> > -                        cpu_alert0: cpu_alert0 {
-> > -                                    temperature = <65000>;
-> > -                                    hysteresis = <2000>;
-> > -                                    type = "passive";
-> > -                        };
-> > -
-> > -                        cpu_alert1: cpu_alert1 {
-> > -                                    temperature = <70000>;
-> > -                                    hysteresis = <2000>;
-> > -                                    type = "passive";
-> > -                        };
-> > -
-> > -                        cpu_alert2: cpu_alert2 {
-> > -                                    temperature = <75000>;
-> > -                                    hysteresis = <2000>;
-> > -                                    type = "passive";
-> > -                        };
-> > -
-> > -                        cpu_crit: cpu_crit {
-> > -                                    temperature = <95000>;
-> > -                                    hysteresis = <2000>;
-> > -                                    type = "critical";
-> > -                        };
-> > +                    cpu_alert0: cpu_alert0 {
-> > +                        temperature = <65000>;
-> > +                        hysteresis = <2000>;
-> > +                        type = "passive";
-> > +                    };
-> > +
-> > +                    cpu_alert1: cpu_alert1 {
-> > +                        temperature = <70000>;
-> > +                        hysteresis = <2000>;
-> > +                        type = "passive";
-> > +                    };
-> > +
-> > +                    cpu_alert2: cpu_alert2 {
-> > +                        temperature = <75000>;
-> > +                        hysteresis = <2000>;
-> > +                        type = "passive";
-> > +                    };
-> > +
-> > +                    cpu_crit: cpu_crit {
-> > +                        temperature = <95000>;
-> > +                        hysteresis = <2000>;
-> > +                        type = "critical";
-> > +                    };
-> >                   };
-> >
-> >                   cooling-maps {
-> > -                        map0 {
-> > -                             trip = <&cpu_alert1>;
-> > -                             cooling-device = <&{/cpus/cpu@100/thermal-idle} 0 15 >,
-> > -                                              <&{/cpus/cpu@101/thermal-idle} 0 15>;
-> > -                        };
-> > -
-> > -                        map1 {
-> > -                             trip = <&cpu_alert2>;
-> > -                             cooling-device =
-> > -                                        <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> > -                                        <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> > -                       };
-> > +                    map0 {
-> > +                        trip = <&cpu_alert1>;
-> > +                        cooling-device = <&cpu_b0 0 15 >,
-> > +                                         <&cpu_b1 0 15>;
->
-> This is pointing to the DVFS cooling device, not the idle cooling
-> device. Should it be <&cpu_b0_idle 0 15> and that label defined in
-> thermal_idle ?
+Hi Guenter, Rob
 
-Ah, yes indeed. I'll fix that up with a label to the correct node.
+On 29-11-2022 10:11 pm, Guenter Roeck wrote:
+> On 11/29/22 08:34, Uwe Kleine-König wrote:
+>> On Tue, Nov 29, 2022 at 05:11:34PM +0100, Naresh Solanki wrote:
+>>> Add pwm support for max6639. Also configure pwm fan speed based on pwm
+>>> provided in DT.
+>>
+>> Did you do anything to resolve the questions I had in reply to v5? If
+>> yes, I must have missed it.
+>>
+> 
+> I don't see a response to my concerns either, especially regarding fan mode
+> (dc vs. pwm) in the bindings. For that reason, I won't even look at the 
+> series.
+Best I can think of regulator with voltage control. Because as per my 
+understanding, DC control fan essentially control DC voltage on negative 
+pin of fan.
 
-And note that 'thermal-idle' needs to be added to cpu node schema.
-That one currently allows anything extra which I'm working on
-addressing.
 
-Rob
+Regards,
+Naresh
+> 
+> Guenter
+> 
+>> Note that maintainer time is scarce and with sending new versions of a
+>> patch with no sign that you improved in the aspects that were critized
+>> before, you're burning that scarce time and loosing the good will of the
+>> responsible maintainers.
+>>
+>> Best regards
+>> Uwe
+>>
+> 
