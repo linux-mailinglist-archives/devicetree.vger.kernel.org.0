@@ -2,260 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5065644134
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2428644166
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233853AbiLFKZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 05:25:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
+        id S232748AbiLFKml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 05:42:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiLFKZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:25:15 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42FFE0E0
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 02:25:13 -0800 (PST)
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 855EC558;
-        Tue,  6 Dec 2022 11:25:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670322311;
-        bh=FRpVQpAKdcDLHxsdGwBa/QJJ3Wf3W/i6A3L8hkpt+Yw=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To:From;
-        b=WeNpH56Zk0+q2t8AXWXMSmwXd+JUtUthAKH4bW6EsiMr9fBLXKfJ9rWL0OjuKyYAI
-         2whV5YArlKgMDJsTcvrilpmk0BudQmQ3U7KE/lDvy/SGU2N9z69WD8VzDid0rWit4f
-         uzAJl+La6AiIsUD7WO0/XBca/JI2QOuHxrlLExg4=
-Message-ID: <2cf061d8-dc5d-ec2d-02a0-10cc59daa7b0@ideasonboard.com>
-Date:   Tue, 6 Dec 2022 10:25:08 +0000
+        with ESMTP id S233466AbiLFKmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:42:22 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 379621A3B2
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 02:42:18 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id b2so5142213eja.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 02:42:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yGNvqrTOHM4qesBe13tVQjrIrlY8iFdqHUQbZxIpkZk=;
+        b=jB3w0VKwREQFT5JmxRYC9UjWz94Zr+KlgF9v+euYtADpH9XU2OncUs0V//axQEjRpr
+         MCVdkx8uci67ns3Qm1jIzlQf83eVrv2yXbUwtJn5VK6R7mGDu92k96IVsmr255vSi+Wd
+         rjP3qjkg0t4qZv0KNVRs0vngD5+BaFg/kUbEERQ+ZREgWHUspoiK20OI1Y4PQ31ZWqQu
+         AnvYvUmIbG+oOS+DUIWSvHInehpR4qeMVQkGWMUNQa7/2oBCCUXyhBVuP05bO0Nug3qM
+         TXdQ5RGVRDwt7zwruEyFyBVtquAWcjn0NPZCF313HEdO9l3j4vc9JWURSEiCUMrylJJ3
+         Aktw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yGNvqrTOHM4qesBe13tVQjrIrlY8iFdqHUQbZxIpkZk=;
+        b=zUlup/TZTFDqrj8FeiPaweHMe8ck1O2xBSSAPE0wHv/Fp2OMVYyDWAhouDJEu9Z/cx
+         6vTna0dsUhnbEFXWZ9686PyQCQ4rc4GtTaaDMswQFdSOpVvUp60CbVeFqQ6kCyEKnfpf
+         6d3y+r+3qIZhELmBTWXXJ5bO1Cv28pIki7GR6oEWrvKwZPkRJRR/O5T+NyYMSPRtzAu+
+         NW+MgEDWk8Ns9/Ebewrmr6uhLp3AwH50OmlxUk1a3PPRjIm7PNqC0UBM/C/S5kHRKWwB
+         Ck10XL5vZFu9SmmyLRDlDmGWD2s8NyWqw5zxDbswS6FwM7Y+nuUDYU7y/gzo8uIXahXL
+         HaQg==
+X-Gm-Message-State: ANoB5pmnMzvfSJvuN/QKGORshe4mAKoH6bjQba5kwRpBfyF7gxoFGRiu
+        XNxP+Jq0ZidOLU+qMu/30J/lQw==
+X-Google-Smtp-Source: AA0mqf7A2JhngUU7ORMyFzBp08AP5pHsL0/7QbUxQnvw6mlRdqxFpD3+iVLJBHhf3k4EJbVwpJc9hA==
+X-Received: by 2002:a17:907:2127:b0:7c0:ee16:3c5a with SMTP id qo7-20020a170907212700b007c0ee163c5amr8003658ejb.298.1670323336627;
+        Tue, 06 Dec 2022 02:42:16 -0800 (PST)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id q18-20020a17090676d200b007c0e23b5615sm3240138ejn.34.2022.12.06.02.42.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 02:42:16 -0800 (PST)
+Date:   Tue, 6 Dec 2022 12:42:14 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 8/9] clk: qcom: rpmh: Add support for SM8550 rpmh
+ clocks
+Message-ID: <Y48chhGMMRFv/6DS@linaro.org>
+References: <20221130112852.2977816-1-abel.vesa@linaro.org>
+ <20221130112852.2977816-9-abel.vesa@linaro.org>
+ <CAA8EJppgpe_LK=2=qncHB_fpDz4AmUBzcRQ=8_kb0YrLCQNweg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        robh@kernel.org, marcel.ziswiler@toradex.com, leoyang.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     s.hauer@pengutronix.de, kieran.bingham@ideasonboard.com,
-        debix-tech@polyhex.net, linux-imx@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, laurent.pinchart@ideasonboard.com
-References: <20221017151050.2321919-1-dan.scally@ideasonboard.com>
- <20221017151050.2321919-4-dan.scally@ideasonboard.com>
- <23e61494-5567-5701-3a90-3b8105b4c944@pengutronix.de>
-From:   Dan Scally <dan.scally@ideasonboard.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: Add device tree for the Debix Model A
- Board
-In-Reply-To: <23e61494-5567-5701-3a90-3b8105b4c944@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJppgpe_LK=2=qncHB_fpDz4AmUBzcRQ=8_kb0YrLCQNweg@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ahmad - thanks for the review
+On 22-11-30 13:45:19, Dmitry Baryshkov wrote:
+> On Wed, 30 Nov 2022 at 13:30, Abel Vesa <abel.vesa@linaro.org> wrote:
+> >
+> > Adds the RPMH clocks present in SM8550 SoC.
+> >
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > ---
+> >  drivers/clk/qcom/clk-rpmh.c | 110 +++++++++++++++++++++++++++++-------
+> >  1 file changed, 90 insertions(+), 20 deletions(-)
+> >
+> > diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> > index 0471bab82464..3204df3fda86 100644
+> > --- a/drivers/clk/qcom/clk-rpmh.c
+> > +++ b/drivers/clk/qcom/clk-rpmh.c
+> > @@ -132,6 +132,36 @@ static DEFINE_MUTEX(rpmh_clk_lock);
+> >                 },                                                      \
+> >         }
+> >
+> > +#define DEFINE_CLK_RPMH_FIXED(_platform, _name, _name_active,  \
+> > +                                 _parent_name, _name_active_parent,    \
+> > +                                 _div)                                 \
+> > +       static struct clk_fixed_factor _platform##_##_name = {          \
+> > +               .mult = 1,                                              \
+> > +               .div = _div,                                            \
+> > +               .hw.init = &(struct clk_init_data){                     \
+> > +                       .ops = &clk_fixed_factor_ops,                   \
+> > +                       .name = #_name,                                 \
+> > +                       .parent_data =  &(const struct clk_parent_data){ \
+> > +                                       .fw_name = #_parent_name,       \
+> > +                                       .name = #_parent_name,          \
+> > +                       },                                              \
+> > +                       .num_parents = 1,                               \
+> > +               },                                                      \
+> > +       };                                                              \
+> > +       static struct clk_fixed_factor _platform##_##_name_active = {   \
+> > +               .mult = 1,                                              \
+> > +               .div = _div,                                            \
+> > +               .hw.init = &(struct clk_init_data){                     \
+> > +                       .ops = &clk_fixed_factor_ops,                   \
+> > +                       .name = #_name_active,                          \
+> > +                       .parent_data =  &(const struct clk_parent_data){ \
+> > +                                       .fw_name = #_name_active_parent,\
+> > +                                       .name = #_name_active_parent,   \
+> > +                       },                                              \
+> > +                       .num_parents = 1,                               \
+> > +               },                                                      \
+> > +       }
+> > +
+> 
+> Please use CLK_FIXED_FACTOR_FW_NAME() instead.
+> 
+> >  static inline struct clk_rpmh *to_clk_rpmh(struct clk_hw *_hw)
+> >  {
+> >         return container_of(_hw, struct clk_rpmh, hw);
+> > @@ -579,6 +609,43 @@ static const struct clk_rpmh_desc clk_rpmh_sm8450 = {
+> >         .num_clks = ARRAY_SIZE(sm8450_rpmh_clocks),
+> >  };
+> >
+> > +DEFINE_CLK_RPMH_ARC(sm8550, xo_pad, xo_pad_ao, "xo.lvl", 0x03, 2);
+> > +DEFINE_CLK_RPMH_FIXED(sm8550, bi_tcxo, bi_tcxo_ao, xo_pad, xo_pad_ao, 2);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk1, rf_clk1_ao, "clka1", 1);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk2, rf_clk2_ao, "clka2", 1);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk3, rf_clk3_ao, "clka3", 1);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, rf_clk4, rf_clk4_ao, "clka4", 1);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk1, ln_bb_clk1_ao, "clka6", 2);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk2, ln_bb_clk2_ao, "clka7", 2);
+> > +DEFINE_CLK_RPMH_VRM(sm8550, ln_bb_clk3, ln_bb_clk3_ao, "clka8", 2);
+> > +
+> > +static struct clk_hw *sm8550_rpmh_clocks[] = {
+> > +       [RPMH_CXO_PAD_CLK]      = &sm8550_xo_pad.hw,
+> > +       [RPMH_CXO_PAD_CLK_A]    = &sm8550_xo_pad_ao.hw,
+> > +       [RPMH_CXO_CLK]          = &sm8550_bi_tcxo.hw,
+> > +       [RPMH_CXO_CLK_A]        = &sm8550_bi_tcxo_ao.hw,
+> > +       [RPMH_LN_BB_CLK1]       = &sm8550_ln_bb_clk1.hw,
+> > +       [RPMH_LN_BB_CLK1_A]     = &sm8550_ln_bb_clk1_ao.hw,
+> > +       [RPMH_LN_BB_CLK2]       = &sm8550_ln_bb_clk2.hw,
+> > +       [RPMH_LN_BB_CLK2_A]     = &sm8550_ln_bb_clk2_ao.hw,
+> > +       [RPMH_LN_BB_CLK3]       = &sm8550_ln_bb_clk3.hw,
+> > +       [RPMH_LN_BB_CLK3_A]     = &sm8550_ln_bb_clk3_ao.hw,
+> > +       [RPMH_RF_CLK1]          = &sm8550_rf_clk1.hw,
+> > +       [RPMH_RF_CLK1_A]        = &sm8550_rf_clk1_ao.hw,
+> > +       [RPMH_RF_CLK2]          = &sm8550_rf_clk2.hw,
+> > +       [RPMH_RF_CLK2_A]        = &sm8550_rf_clk2_ao.hw,
+> > +       [RPMH_RF_CLK3]          = &sm8550_rf_clk3.hw,
+> > +       [RPMH_RF_CLK3_A]        = &sm8550_rf_clk3_ao.hw,
+> > +       [RPMH_RF_CLK4]          = &sm8550_rf_clk4.hw,
+> > +       [RPMH_RF_CLK4_A]        = &sm8550_rf_clk4_ao.hw,
+> > +       [RPMH_IPA_CLK]          = &sdm845_ipa.hw,
+> > +};
+> > +
+> > +static const struct clk_rpmh_desc clk_rpmh_sm8550 = {
+> > +       .clks = sm8550_rpmh_clocks,
+> > +       .num_clks = ARRAY_SIZE(sm8550_rpmh_clocks),
+> > +};
+> > +
+> >  static struct clk_hw *sc7280_rpmh_clocks[] = {
+> >         [RPMH_CXO_CLK]      = &sc7280_bi_tcxo.hw,
+> >         [RPMH_CXO_CLK_A]    = &sc7280_bi_tcxo_ao.hw,
+> > @@ -682,29 +749,31 @@ static int clk_rpmh_probe(struct platform_device *pdev)
+> >
+> >                 name = hw_clks[i]->init->name;
+> >
+> > -               rpmh_clk = to_clk_rpmh(hw_clks[i]);
+> > -               res_addr = cmd_db_read_addr(rpmh_clk->res_name);
+> > -               if (!res_addr) {
+> > -                       dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
+> > -                               rpmh_clk->res_name);
+> > -                       return -ENODEV;
+> > -               }
+> > +               if (hw_clks[i]->init->ops != &clk_fixed_factor_ops) {
+> 
+> This looks ugly a bit. I'd rather add something like non_cmd_clks to
 
-On 01/12/2022 17:10, Ahmad Fatoum wrote:
-> Hello Daniel,
->
-> On 17.10.22 17:10, Daniel Scally wrote:
->> Add a device tree file describing the Debix Model A board from
->> Polyhex Technology Co.
-> Thanks for your patch. Some minor comments below.
->
->> Changes in v3 (Laurent):
->>
->>      - Added IOB copyright notice
->>      - Removed the eth node for the connector that's on the separate I/O
->>      board
-> I'd have left the FEC node in and described the PHY, but left the FEC disabled.
-> Only the magnetics are on the expansion board, while the PHY is on the
-> base board.
+Right, but this complicates the xlate function without a really good
+reason. Assuming you meant multiple (different) arrays for cmd
+based and for non-cmd based (in this case fixed factor only), this would
+force the of_clk_rpmh_hw_get to look into different arrays, but then we
+only have one set of IDs. Wouldn't that make it even uglier? At least,
+right now we are being consistent after probe.
 
-
-Fair enough, though there's quite a lot else on the base board which 
-we've left off simply because we're not currently using it. I'm inclined 
-to treat this the same for now.
-
-
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright 2019 NXP
->> + * Copyright 2022 Ideas on Board Oy
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/usb/pd.h>
->> +
->> +#include "imx8mp.dtsi"
->> +
->> +/ {
->> +	model = "Polyhex Debix Model A i.MX8MPlus board";
->> +	compatible = "polyhex,imx8mp-debix-model-a", "fsl,imx8mp";
-> I see that Model A and Model B share the same SoC and PCB. Could you
-> add polyhex,imx8mp-debix as a second compatible? That way, bootloader
-> may match against that compatible when they support both.
-> You'll need to adjust the binding accordingly.
-
-
-Sure, makes sense to me
-
->
->> +
->> +	chosen {
->> +		stdout-path = &uart2;
->> +	};
->> +
->> +	gpio-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_gpio_led>;
->> +
->> +		status-led {
->> +			function = LED_FUNCTION_POWER;
->> +			color = <LED_COLOR_ID_RED>;
->> +			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
->> +			default-state = "on";
->> +		};
->> +	};
->> +
->> +	reg_usdhc2_vmmc: regulator-usdhc2 {
->> +		compatible = "regulator-fixed";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
->> +		regulator-name = "VSD_3V3";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +	};
->> +};
->> +
->> +&A53_0 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_1 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_2 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&A53_3 {
->> +	cpu-supply = <&buck2>;
->> +};
->> +
->> +&eqos {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_eqos>;
->> +	phy-connection-type = "rgmii-id";
->> +	phy-handle = <&ethphy0>;
->> +	status = "okay";
->> +
->> +	mdio {
->> +		compatible = "snps,dwmac-mdio";
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy0: ethernet-phy@0 {
-> Could you append a /* RTL8211E */ comment here? This can be very useful for others
-> who need to bring up the same chip in the future.
-
-
-Sure
-
->
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			reg = <0>;
-> Is the PHY really at address 0 or does it just answer at this address
-> because it's the broadcast address?
-
-
-I confess I'm unsure here, the number here comes from the downstream 
-.dts, which in this instance I've trusted...is there any way I can check?
-
->
->
->> +&iomuxc {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_hog>;
->> +
->> +	pinctrl_hog: hoggrp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x400001c3
->> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA			0x400001c3
->> +			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD				0x40000019
->> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC				0x40000019
-> Why do you hog these?
->
->> +	pinctrl_usb1_vbus: usb1grp {
-> This is unused.
-
-
-Ah both for other elements of the board which aren't included in this 
-set, as they don't work properly yet. Apologies; I'll remove those.
-
->
->> +	pinctrl_usdhc2: usdhc2grp {
->> +		fsl,pins = <
->> +			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK				0x190
->> +			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2				0x1d0
->> +			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3				0x1d0
->> +			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT				0xc1
-> Just to make sure this doesn't fry SD-Cards by mistake: VSELECT is indeed
-> connected to a 1.8V/3.3V switch powering vqmmc?
->
->> +/* SD Card */
->> +&usdhc2 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
->> +	assigned-clock-rates = <400000000>;
-> I wonder why this is necessary. Do you see a difference
-> in /sys/kernel/debug/mmcX/ios between having this and leaving
-> it out?
-
-
-I don't actually...it's present in the imx8mp-evk.dts which this is 
-based on, but in addition to not seeing any difference there the SD card 
-still seems fine as far as I can tell (same read / write speed in 
-practice) - I'll take it out, thanks
-
->
->> +	status = "okay";
->> +};
->> +
->> +/* eMMc */
-> eMMC
-
-Ack
->> +&usdhc3 {
->> +	assigned-clocks = <&clk IMX8MP_CLK_USDHC3>;
->> +	assigned-clock-rates = <400000000>;
->> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
->> +	pinctrl-0 = <&pinctrl_usdhc3>;
->> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
->> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
->> +	bus-width = <8>;
->> +	non-removable;
->> +	status = "okay";
->> +};
->> +
->> +&wdog1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_wdog>;
->> +	fsl,ext-reset-output;
->> +	status = "okay";
->> +};
->
-> Cheers,
-> Ahmad
->
+> the clk_rpmh_desc data and register them separately. Or even worse,
+> you can keep the rpmh as is, with only cmd-db based clocks and add a
+> fixed factor clock to the sm8550 dtsi directly. I have a slight
+> preference for the former method, but the latter would also work.
+> 
+> > +                       rpmh_clk = to_clk_rpmh(hw_clks[i]);
+> > +                       res_addr = cmd_db_read_addr(rpmh_clk->res_name);
+> > +                       if (!res_addr) {
+> > +                               dev_err(&pdev->dev, "missing RPMh resource address for %s\n",
+> > +                                       rpmh_clk->res_name);
+> > +                               return -ENODEV;
+> > +                       }
+> >
+> > -               data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
+> > -               if (IS_ERR(data)) {
+> > -                       ret = PTR_ERR(data);
+> > -                       dev_err(&pdev->dev,
+> > -                               "error reading RPMh aux data for %s (%d)\n",
+> > -                               rpmh_clk->res_name, ret);
+> > -                       return ret;
+> > -               }
+> > +                       data = cmd_db_read_aux_data(rpmh_clk->res_name, &aux_data_len);
+> > +                       if (IS_ERR(data)) {
+> > +                               ret = PTR_ERR(data);
+> > +                               dev_err(&pdev->dev,
+> > +                                       "error reading RPMh aux data for %s (%d)\n",
+> > +                                       rpmh_clk->res_name, ret);
+> > +                               return ret;
+> > +                       }
+> >
+> > -               /* Convert unit from Khz to Hz */
+> > -               if (aux_data_len == sizeof(*data))
+> > -                       rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
+> > +                       /* Convert unit from Khz to Hz */
+> > +                       if (aux_data_len == sizeof(*data))
+> > +                               rpmh_clk->unit = le32_to_cpu(data->unit) * 1000ULL;
+> >
+> > -               rpmh_clk->res_addr += res_addr;
+> > -               rpmh_clk->dev = &pdev->dev;
+> > +                       rpmh_clk->res_addr += res_addr;
+> > +                       rpmh_clk->dev = &pdev->dev;
+> > +               }
+> >
+> >                 ret = devm_clk_hw_register(&pdev->dev, hw_clks[i]);
+> >                 if (ret) {
+> > @@ -739,6 +808,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
+> >         { .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
+> >         { .compatible = "qcom,sm8350-rpmh-clk", .data = &clk_rpmh_sm8350},
+> >         { .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
+> > +       { .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
+> >         { .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
+> >         { }
+> >  };
+> > --
+> > 2.34.1
+> >
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
