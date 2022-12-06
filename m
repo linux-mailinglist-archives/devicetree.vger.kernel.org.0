@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5825C643E91
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 749C1643E9D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233563AbiLFI3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:29:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
+        id S233912AbiLFIaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233178AbiLFI3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:29:18 -0500
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6426315;
-        Tue,  6 Dec 2022 00:29:17 -0800 (PST)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 54BAB125C;
-        Tue,  6 Dec 2022 09:29:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1670315355;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=6x7SqeU7DjKi4snpIda9gKwYIWf96Kgh9HxDpXGjY7s=;
-        b=IF4UQKpEORyOoN+79mglJzGWZAK8gvJOd1Np/Ao/oIgdB0VPjWuwumcaI7MBzAOMQ8udYU
-        1AuyCoAIBg84DTLguD7+59ZR2MONJ/HxDtPifciKYixccbeoctBB7Q3QUVv945WGErVU7T
-        EbK+hGg5Dfh1WyljNINJ47R1bfeJZcpIwg3DPi1wu7x+dTr2p+IN5Se2S/xI0y5P/LbVj8
-        SvdPrsgsB4mSHURR0M2hyWGNPDPMyPT3MntgVHEb17XU+B0u+XXMh4z7jRZUG+cqmmtY9c
-        AQjixZ1+ns7sG/OJ5DrwfOZPQmhph7r+7EfstzRwMW0XpatmQ2QKUusVKr8tuA==
+        with ESMTP id S233319AbiLFI35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:29:57 -0500
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A5913F93;
+        Tue,  6 Dec 2022 00:29:55 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id ay32so5177482qtb.11;
+        Tue, 06 Dec 2022 00:29:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9besuTz430+bUB/dXPphZ+0HwQHk+UhJW3qrSbIBzG0=;
+        b=HftG3Tdary4jN8VrRB/rncnDaNf5QIgPqst8Kg0LKWuByaXuAueTke+D2hnNeJRT9C
+         +50OWUSbiFI7iZ6LJQDnqDo33qOLT/vxw+M2eZNp0L3UEQPDhhnOVihlhEMrLL/9wAOC
+         hIXNgT7S3nf/C8kmhFqjYtz10ZIc4z40M3xY61aWMjjcErjq8m1fZQ6glQytnUJPwNtl
+         zEwx/cc93XcIZUw6fXHviP4e+AJbD75fkcA+Y5fU75EQLhcfo65ULzZVG4AyrEgQoit0
+         J1QzdqM+7pZH8kttkAYLpOPychE0Z6DJYifOif+cw7nhiCcLAuZ8QUwkm5PTTixBOAKB
+         GfbQ==
+X-Gm-Message-State: ANoB5pkYeu3IkLwoolh6lzWDBsL5jeqHphsJtuZaXbPoSIDVeMipz2H5
+        0AEp+344coc65Oninx0Bwx8K9tgN/l4oOg==
+X-Google-Smtp-Source: AA0mqf7DkBYI1OKLcQ+rF9UQ+RCZwqBfZ6ZyU8GjI+AgBj9PrTYC4/4fCcVKVSNliDmaLuIjxZM9GQ==
+X-Received: by 2002:a05:622a:1baa:b0:3a6:8be3:301e with SMTP id bp42-20020a05622a1baa00b003a68be3301emr24475054qtb.21.1670315394700;
+        Tue, 06 Dec 2022 00:29:54 -0800 (PST)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id x29-20020a05620a0b5d00b006f87d28ea3asm13530067qkg.54.2022.12.06.00.29.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Dec 2022 00:29:54 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-3e78d07ab4fso73942517b3.9;
+        Tue, 06 Dec 2022 00:29:53 -0800 (PST)
+X-Received: by 2002:a81:a8a:0:b0:37e:6806:a5f9 with SMTP id
+ 132-20020a810a8a000000b0037e6806a5f9mr633079ywk.47.1670315393631; Tue, 06 Dec
+ 2022 00:29:53 -0800 (PST)
 MIME-Version: 1.0
-Date:   Tue, 06 Dec 2022 09:29:15 +0100
-From:   Michael Walle <michael@walle.cc>
+References: <021037bf7e422fcc23700dd62d1174c8e46ac85d.1669969283.git.geert+renesas@glider.be>
+ <8af1d8b0-8b59-6d2f-ef1c-a24ef49e5d77@linaro.org> <CAMuHMdWd3KikD=HKFTorQvD_yGRvP3zCBF=FMJQvrLnF6VX5eA@mail.gmail.com>
+ <433b5f09-e14f-b29a-782b-2eef4ae3eada@linaro.org> <CAMuHMdXLgU1x87J_suMWWYXe=T_h1iLxp8iDmmOqYjVyXqrtag@mail.gmail.com>
+ <20221205202510.GA2513520-robh@kernel.org>
+In-Reply-To: <20221205202510.GA2513520-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 6 Dec 2022 09:29:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUb7OX1nVMAGqPBXaFBBR6fA1nRJO15+aQiMk8=eFL9sA@mail.gmail.com>
+Message-ID: <CAMuHMdUb7OX1nVMAGqPBXaFBBR6fA1nRJO15+aQiMk8=eFL9sA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: can: renesas,rcar-canfd: Fix number of
+ channels for R-Car V3U
 To:     Rob Herring <robh@kernel.org>
-Cc:     Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v1 3/4] dt-bindings: net: phy: add MaxLinear
- GPY2xx bindings
-In-Reply-To: <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
-References: <20221202151204.3318592-1-michael@walle.cc>
- <20221202151204.3318592-4-michael@walle.cc>
- <20221205212924.GA2638223-robh@kernel.org>
- <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <9c0506a6f654f72ea62fed864c1b2a26@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-12-05 22:53, schrieb Michael Walle:
-> Am 2022-12-05 22:29, schrieb Rob Herring:
->> On Fri, Dec 02, 2022 at 04:12:03PM +0100, Michael Walle wrote:
->>> Add the device tree bindings for the MaxLinear GPY2xx PHYs.
->>> 
->>> Signed-off-by: Michael Walle <michael@walle.cc>
->>> ---
->>> 
->>> Is the filename ok? I was unsure because that flag is only for the 
->>> GPY215
->>> for now. But it might also apply to others. Also there is no 
->>> compatible
->>> string, so..
->>> 
->>>  .../bindings/net/maxlinear,gpy2xx.yaml        | 47 
->>> +++++++++++++++++++
->>>  1 file changed, 47 insertions(+)
->>>  create mode 100644 
->>> Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>> 
->>> diff --git 
->>> a/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml 
->>> b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>> new file mode 100644
->>> index 000000000000..d71fa9de2b64
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
->>> @@ -0,0 +1,47 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/maxlinear,gpy2xx.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MaxLinear GPY2xx PHY
->>> +
->>> +maintainers:
->>> +  - Andrew Lunn <andrew@lunn.ch>
->>> +  - Michael Walle <michael@walle.cc>
->>> +
->>> +allOf:
->>> +  - $ref: ethernet-phy.yaml#
->>> +
->>> +properties:
->>> +  maxlinear,use-broken-interrupts:
->>> +    description: |
->>> +      Interrupts are broken on some GPY2xx PHYs in that they keep 
->>> the
->>> +      interrupt line asserted even after the interrupt status 
->>> register is
->>> +      cleared. Thus it is blocking the interrupt line which is 
->>> usually bad
->>> +      for shared lines. By default interrupts are disabled for this 
->>> PHY and
->>> +      polling mode is used. If one can live with the consequences, 
->>> this
->>> +      property can be used to enable interrupt handling.
->> 
->> Just omit the interrupt property if you don't want interrupts and add 
->> it
->> if you do.
-> 
-> How does that work together with "the device tree describes
-> the hardware and not the configuration". The interrupt line
-> is there, its just broken sometimes and thus it's disabled
-> by default for these PHY revisions/firmwares. With this
-> flag the user can say, "hey on this hardware it is not
-> relevant because we don't have shared interrupts or because
-> I know what I'm doing".
+Hi Rob,
 
-Specifically you can't do the following: Have the same device
-tree and still being able to use it with a future PHY firmware
-update/revision. Because according to your suggestion, this
-won't have the interrupt property set. With this flag you can
-have the following cases:
-  (1) the interrupt information is there and can be used in the
-      future by non-broken PHY revisions,
-  (2) broken PHYs will ignore the interrupt line
-  (3) except the system designer opts-in with this flag (because
-      maybe this is the only PHY on the interrupt line etc).
+On Mon, Dec 5, 2022 at 9:39 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, Dec 02, 2022 at 11:58:23AM +0100, Geert Uytterhoeven wrote:
+> > On Fri, Dec 2, 2022 at 11:49 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > > On 02/12/2022 10:25, Geert Uytterhoeven wrote:
+> > > > On Fri, Dec 2, 2022 at 10:01 AM Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > >> On 02/12/2022 09:22, Geert Uytterhoeven wrote:
+> > > >>> According to the bindings, only two channels are supported.
+> > > >>> However, R-Car V3U supports eight, leading to "make dtbs" failures:
+> > > >>>
+> > > >>>         arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+> > > >>>
+> > > >>> Update the number of channels to 8 on R-Car V3U.
+> > > >>> While at it, prevent adding more properties to the channel nodes, as
+> > > >>> they must contain no other properties than a status property.
+> > > >>>
+> > > >>> Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+> > > >>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > >
+> > > >>> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > > >>> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> > > >
+> > > >>>      description: Maximum frequency of the CANFD clock.
+> > > >>>
+> > > >>>  patternProperties:
+> > > >>> -  "^channel[01]$":
+> > > >>> +  "^channel[0-7]$":
+> > > >>>      type: object
+> > > >>>      description:
+> > > >>> -      The controller supports two channels and each is represented as a child
+> > > >>> -      node.  Each child node supports the "status" property only, which
+> > > >>> +      The controller supports multiple channels and each is represented as a
+> > > >>> +      child node.  Each child node supports the "status" property only, which
+> > > >>>        is used to enable/disable the respective channel.
+> > > >>>
+> > > >>> +    unevaluatedProperties: false
+> > > >>
+> > > >> There are no other properties within a channel, so this should be rather
+> > > >> additionalProperties: false.
+> > > >
+> > > > Are you sure? Then I also have to add:
+> > > >
+> > > >         properties:
+> > > >           status: true
+> > >
+> > > Do you? I think it would be first schema needing it, so maybe that would
+> > > be a problem for dtschema...
+> >
+> > You think I haven't tried? ;-)
+> >
+> >     arch/arm64/boot/dts/renesas/r8a774a1-beacon-rzg2m-kit.dtb:
+> > can@e66c0000: channel0: Additional properties are not allowed
+> > ('status' was unexpected)
+>
+> I guess nodes with no properties aren't too common.
+>
+> Now fixed in dtschema.
 
--michael
+Thanks, confirmed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
