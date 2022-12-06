@@ -2,128 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5245064481C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2C9644821
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 16:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbiLFPf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 10:35:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57908 "EHLO
+        id S234702AbiLFPho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 10:37:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234696AbiLFPf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:35:26 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678212BB17
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 07:35:20 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id g7so24292172lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 07:35:20 -0800 (PST)
+        with ESMTP id S232604AbiLFPhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 10:37:43 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C726596;
+        Tue,  6 Dec 2022 07:37:40 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id v8so20833356edi.3;
+        Tue, 06 Dec 2022 07:37:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F1KPdrNmIxp/vLqj14ywZDhQ1hvfTFyJrb/kxKX7fV4=;
-        b=lBCtYGkPkNXHFvTdm1DCtq7RzVuMzyyDGMYRTAYKnx7r0KkE9pqSJz9RwHkzTfaU/n
-         Y2s0W3b3Q9TKaSwHDG7nJrJBgDXS29ms9JSVA6+83rmsyNbMj9gxkBEL4ROyA8dDIWgn
-         xeLk8Iz1ZE4YJq4mSOP5Y1T7SQF2wEOwVI4An16JY+NKeermak7fmVqhRRn3cR3IeDDT
-         4YLXzF+Nw9bqXE8wRODMU/hNtpRgocb3NiOSIkZFYg6ysR7D0WcoodHt0kyfP4bWmV/j
-         M8Xrq0rhd36WoZDwDiJfaM46jbBmR4eURWj2CP+hZOjq+RHyamsoarrT42EEGoD33+Er
-         ItHA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=d2aBoo/MYw9aBXVIt2KwK6USjefW0Af7yl2CPwd0c+Y=;
+        b=m1EAVUMRFBrbV5dDsnZXZAN6o4Dfn+5ZtDOmrO8InSOtQNuaJvKLypbDPCae4W7nE0
+         dfGD1nkqiZScFBTSAXrMo0ZYe2c1/zVQEXWKzjEE/KgtRZQbpO8vm8KF8jscF0w39kOW
+         8sTLlLy4mNogAyostv9wzFo5TXgGdzil1/3PrPjSfDo7IP96v0UG+VhXwnB0BKfvXmO8
+         FFuGHXpT6zM7CxvyVazsGMwfTMxxfOeIgZ7gYjT1KBwuMeazUAC4V5uenFL9hHPQMLbx
+         Dw6eDRVh9wTONI2EA6Ckn+eJeXox5pcjHEve47WYEX74zlrscsKFc7Y4D9701dsFQWgG
+         AuXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F1KPdrNmIxp/vLqj14ywZDhQ1hvfTFyJrb/kxKX7fV4=;
-        b=z2FtSuFxPPrnHMi4RE2yFZLaVXP7e9fJ9j8FoLdXGA8yeJwNq7QBNXyVSQzadZw+AR
-         NqqVqehrl/MLb/ZFe7Nla3apZBMnuNy81t+Ue/oxedJe6bS+csLogq+S+eIthVFIh8ZZ
-         KM0e7lwB/w3nmnFnpfef/LJhk+OHCvFPENVXYY8ZmdkcmnGqsyHgS2i2Peg5Ql5Cy6kB
-         agwc0wFK4SDESMbk5AzavvuB8wBhWRps5U1LgRZ4xJY6ekXmbc7SoP4ecDrm4YoGyXym
-         HHjqrfakaeeMjKOIfayC4/g1IR2dw8I2M/LGH9t+gfsZGj/HShg91J/JfPxEmCeTp7p4
-         qpVA==
-X-Gm-Message-State: ANoB5pkB55tcey8ic5ghXeWpNadnON3bzumwe0mPigdjEEkwZ/mdsPpD
-        tF6Iuv5TJ/41uEFyebrV3MaCWw==
-X-Google-Smtp-Source: AA0mqf5Egysi9Meisg5THM/DUVSiqhI4AENo68/EpnGy0c4t/MajZcQiQC8PBhxf+3S0Ahjn4MVrWw==
-X-Received: by 2002:a05:6512:3413:b0:4aa:b3d1:9c83 with SMTP id i19-20020a056512341300b004aab3d19c83mr22037421lfr.260.1670340918475;
-        Tue, 06 Dec 2022 07:35:18 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g4-20020a2ea4a4000000b00279d73cdf83sm1417014ljm.128.2022.12.06.07.35.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 07:35:18 -0800 (PST)
-Message-ID: <33d261f6-ab3d-7470-8e3d-6943c3fa9297@linaro.org>
-Date:   Tue, 6 Dec 2022 16:35:16 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: Add SM8550 TCSR CC clocks
-To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d2aBoo/MYw9aBXVIt2KwK6USjefW0Af7yl2CPwd0c+Y=;
+        b=IYrooWkrO2WXFdhdgwyB/iD0faluzJqQaNs6y+jml0N+gTIDByvp2IFzbXVGgOeyD4
+         LMl5sYiNa4iGaHQRoaX3D5HxaZfpg9cWHAEdqIgrkiLM/wlPDVontN04nufxIJrKe8iH
+         imFSCJKbb4cfB3zc9edVxusbxHwJyseQwR2uQGN1pNRQCVoORt96+Li70ZTO2vcybooG
+         sv7MAHngqqbUG7oQf4kXsjo3mKKNIKgtehh1PEP5cu7gmHDZHR24tsh9emqTJA/Pbr6i
+         0r9z2cCJMNS1uJH2KcYEU9zU9EdWoAAyN9ZOf6/UKmDjtleMeVwDD7+uCk0EnzPfpE9f
+         wEjw==
+X-Gm-Message-State: ANoB5pmhH78nXngF8WUUybvv3lbBtUa6TmFAQoV1DcfIL5lCFuycKIrq
+        /yPEMoZXirMiz4cEduxKudk=
+X-Google-Smtp-Source: AA0mqf7e8IIimBlKAfh2D9udgEdKCjOXXkqfj6vyYRzkBhGRJ8OJs9j1GbXUw6+eZQEmwekG0p8zRw==
+X-Received: by 2002:a05:6402:1045:b0:461:68e1:ced5 with SMTP id e5-20020a056402104500b0046168e1ced5mr13559071edu.142.1670341058481;
+        Tue, 06 Dec 2022 07:37:38 -0800 (PST)
+Received: from skbuf ([188.26.184.215])
+        by smtp.gmail.com with ESMTPSA id e14-20020a170906314e00b007aee7ca1199sm7614767eje.10.2022.12.06.07.37.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Dec 2022 07:37:38 -0800 (PST)
+Date:   Tue, 6 Dec 2022 17:37:34 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        John Crispin <john@phrozen.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        UNGLinuxDriver@microchip.com,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221206125635.952114-1-abel.vesa@linaro.org>
- <20221206125635.952114-2-abel.vesa@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221206125635.952114-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        George McCollister <george.mccollister@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 net-next 3/9] dt-bindings: net: dsa: utilize base
+ definitions for standard dsa switches
+Message-ID: <20221206153734.4os4effdzlt2calg@skbuf>
+References: <20221202204559.162619-1-colin.foster@in-advantage.com>
+ <20221202204559.162619-1-colin.foster@in-advantage.com>
+ <20221202204559.162619-4-colin.foster@in-advantage.com>
+ <20221202204559.162619-4-colin.foster@in-advantage.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221202204559.162619-4-colin.foster@in-advantage.com>
+ <20221202204559.162619-4-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 13:56, Abel Vesa wrote:
-> Add bindings documentation for clock TCSR driver on SM8550.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/clock/qcom,sm8550-tcsr.yaml      | 53 +++++++++++++++++++
->  include/dt-bindings/clock/qcom,sm8550-tcsr.h  | 18 +++++++
->  2 files changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> new file mode 100644
-> index 000000000000..15176b0457d1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm8550-tcsr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm TCSR Clock Controller on SM8550
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +
-> +description: |
-> +  Qualcomm TCSR clock control module provides the clocks, resets and
-> +  power domains on SM8550
-> +
-> +  See also:: include/dt-bindings/clock/qcom,sm8550-tcsr.h
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8550-tcsr
+On Fri, Dec 02, 2022 at 12:45:53PM -0800, Colin Foster wrote:
+> diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> index 259a0c6547f3..5888e3a0169a 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
+>  
+>  allOf:
+> -  - $ref: dsa.yaml#
+> +  - $ref: dsa.yaml#/$defs/ethernet-ports
+>  
+>  maintainers:
+>    - George McCollister <george.mccollister@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> index 1219b830b1a4..5bef4128d175 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> @@ -66,7 +66,7 @@ required:
+>    - reg
+>  
+>  allOf:
+> -  - $ref: dsa.yaml#
+> +  - $ref: dsa.yaml#/$defs/ethernet-ports
 
-This still misses syscon. Did you send it before we talk on IRC?
-
-Best regards,
-Krzysztof
-
+I'm wondering if "ethernet-ports" is the best name for this schema.
+Not very scientific, but what about "just-standard-props"?
