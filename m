@@ -2,104 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F289643E6B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6BE643E83
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:26:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231866AbiLFIX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:23:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
+        id S232060AbiLFI0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:26:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbiLFIXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:23:25 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4AE1145
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:23:24 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id b13so11562716lfo.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=95bE7p5WUY0ReK4sxIpN1wl6NEoUe1D+WDUlHeSwWZ8=;
-        b=Ehs2D9v8wmDWCxqFsfUL9Hy2Rf8HXEyftG06ZLjH95zNFFnKj+taRAjt/k+TcUGi4/
-         wNt2PrC10BlUeR7fx38zwpsxel9YXnGVZeqiaA9BqcEi/otnZmULsjkzqXqKDfyZOGu6
-         YE/Yxp3nWui+/CSUISFyroiS299v+o0Ik3uFOm4HizsM0mkVGgm3CXAwy4pViBmWXPVG
-         TwRJdo4oHvpIw7Wn6TQ+eR0T6BpM3YIKC4k5GORIDgYxzOcREL5XMi8Y1gwgHztcVJbD
-         L20va2K8zVQxPcwNupKq5EE61QaV+MQKe0WC6iyojOR3B0Ie84sPRGEpVaNX5nK6A2Ne
-         bzKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=95bE7p5WUY0ReK4sxIpN1wl6NEoUe1D+WDUlHeSwWZ8=;
-        b=WaEJPI39J4E3FigneOIrdDn3DQ3Os8VVphjuzMZiFNK1FXEqd0g/TJ3JQrhKzc1GWW
-         ku+6eTGTFiP0nl//+DxcMYpl3YdHVx5B6JGOUwpiW5c2f2UVqCzoabhuF+YgauBlEepy
-         ajfGldbNO9QcNZSXkb/81hJ62k5A1n6g6uiYoSA+aOCFUlnFkXIN8Cr5eLAJjQWhYZm/
-         xW+sJO7I7rPrDUzKBq8gcdIE5bQ1VydVzuYyy4xJVJEFcpXw5PLDKHIMm8s3lGPVdGGm
-         2vh98mkXJIGbryZo80pbGtsW/A3DfmFrNrcwwET0lvPWqLvye9quYneS2EmVyBzsGiZE
-         6KbA==
-X-Gm-Message-State: ANoB5pnLa55lY2huHzskRj/9NbLp0fJ3Mrxz5j7D9HYEhVDWfYzxVQvf
-        cUhRxMpz9axpVWFRy28lhXAC6Q==
-X-Google-Smtp-Source: AA0mqf7/Edef7H+wj1o2DgC4/r+KooEY9i1FLS7SOT10dAjuSsDQC5taTN90dU+DpU962BvjcBXzKA==
-X-Received: by 2002:a05:6512:3ca0:b0:4a2:2c4b:8138 with SMTP id h32-20020a0565123ca000b004a22c4b8138mr22685051lfv.14.1670315002789;
-        Tue, 06 Dec 2022 00:23:22 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id g8-20020a19ee08000000b004aa0870b5e5sm2396208lfb.147.2022.12.06.00.23.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:23:22 -0800 (PST)
-Message-ID: <82bd3be3-3f0b-deef-718b-0780716f2ff4@linaro.org>
-Date:   Tue, 6 Dec 2022 09:23:21 +0100
+        with ESMTP id S232521AbiLFI0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:26:23 -0500
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B2AFAE3
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:26:20 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221206082616epoutp03098217aa78f721e87722e2a8dbd23eff~uJs2nYQoX1564715647epoutp03B
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 08:26:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221206082616epoutp03098217aa78f721e87722e2a8dbd23eff~uJs2nYQoX1564715647epoutp03B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1670315176;
+        bh=IhcQl0HPVLdtWeNLGBj/d+NRbYFd5rnYwId9KFHJKc0=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=aDoNSPHvgZBaBe6fiF2BQ6FDkY/L7nu0iqkmYjy154SsSwFGqSdhgGpTo+27R8ALz
+         4ABLMQxNwIZqbzOkABVvQb9y9Y29yvRURyqQCdNtnDomjGFJqu8kqCQwyDYNXwWwpx
+         DxJ+/oVG6xEGEjEwVrXwsf12zDlYinUxDoueXrow=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20221206082615epcas5p21c28596a2f86b5089fb31c6483ffe2de~uJs13VYYH1050210502epcas5p2m;
+        Tue,  6 Dec 2022 08:26:15 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.178]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4NRD5d6w9rz4x9Q7; Tue,  6 Dec
+        2022 08:26:13 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D9.08.01710.5ACFE836; Tue,  6 Dec 2022 17:26:13 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20221206082613epcas5p3694abb2a9be9aca2788f7b91e5845beb~uJszYeC1t0439104391epcas5p3f;
+        Tue,  6 Dec 2022 08:26:13 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221206082613epsmtrp2e2849adfe87d80b5097f89408c065b53~uJszXNzC-0530205302epsmtrp2J;
+        Tue,  6 Dec 2022 08:26:13 +0000 (GMT)
+X-AuditID: b6c32a49-a41ff700000006ae-27-638efca5780f
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BB.32.14392.4ACFE836; Tue,  6 Dec 2022 17:26:12 +0900 (KST)
+Received: from pankajdubey02 (unknown [107.122.12.6]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20221206082606epsmtip1d722ea017a8488472beba38f2e7d48ab~uJss-GzeB1603816038epsmtip1l;
+        Tue,  6 Dec 2022 08:26:05 +0000 (GMT)
+From:   "Pankaj Dubey" <pankaj.dubey@samsung.com>
+To:     "'Vivek Yadav'" <vivek.2311@samsung.com>, <rcsekar@samsung.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <wg@grandegger.com>,
+        <mkl@pengutronix.de>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <ravi.patel@samsung.com>,
+        <alim.akhtar@samsung.com>, <linux-fsd@tesla.com>,
+        <robh+dt@kernel.org>
+Cc:     <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <aswani.reddy@samsung.com>, <sriranjani.p@samsung.com>
+In-Reply-To: <20221122105455.39294-3-vivek.2311@samsung.com>
+Subject: RE: [PATCH v3 2/2] arm64: dts: fsd: Add MCAN device node
+Date:   Tue, 6 Dec 2022 13:56:01 +0530
+Message-ID: <017901d9094c$669e5fc0$33db1f40$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/6] dt-bindings: usb: Add binding for Genesys Logic
- GL850G hub controller
-Content-Language: en-US
-To:     Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20221206055228.306074-1-uwu@icenowy.me>
- <20221206055228.306074-3-uwu@icenowy.me>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221206055228.306074-3-uwu@icenowy.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKzKt4C0V6WIa1X2lvfORr5q2BWDgLDsng4Azn5VYCsfFVowA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te1BUZRjG51x3sVk7cfMLG9vONM7IdZfLdnBABS9zGmlEk2oow+NyZmFY
+        zm67ixKjYYghxK7akAazrAuy27CiyEokIJsuqIMEbBIWSQUiCggJGXKppF0OFf8973t+z/d+
+        z/nmFSLec3iAMJ3TsRqOUZL4CrShdV1giOUvg1ySf0pGDZgacMp56SsBZezOR6kzbV0YNXzj
+        noAyjAwilKvBgFH2oTsYZZv5HKEGx96mepqMOPVFtwOmaitLUOqG2Z962jEOUYOTVwRUmesy
+        Rh1taRNQd8cvYNR8RStKWX5pxDb50fXVfTBttmfRU7fvQrTdVojT/Xeu4PSlqlz6+N8S+rGj
+        F6cN9TaIfpZXLqCf2NckPpecEZPGMqmsRsxyclVqOqeIJbe/mbI5JUomkYZIo6nXSDHHZLKx
+        5JaExJBt6Up3SlK8n1FmuVuJjFZLhm2I0aiydKw4TaXVxZKsOlWpjlSHaplMbRanCOVY3Xqp
+        RBIe5Qb3ZqQVuPpwtdEre+xmG34YOiEsgryEgIgE+slqtAhaIfQmmiHg+KNOwBe/Q6C8cgLm
+        i6cQMPV+jBdBwkWL0aTg+y0QGJmrWbKPQcA6dA33nIsTYaBr1oR5PvgSPTDoOOrAPQVC5MHA
+        8ci5SHkRMaB/uhHxaB8iDhQ3ty9qlHgVTE8MLDIiIhp8Zy6FeP0CaC+9j3o0QgQBa8UjhE8h
+        BnPDVsyjfYl4cKpxBuOZVWD0epuAZ855gYXiIF5vAfOl00teHzB2s36JCQBPfmtZipkALM00
+        39aBi8UWlNcbwdXvjagHQYh1oLYpjJ+0Euj/vA/zThE49ok3T68FMw+/XRr0Ehg8YoF5TYNf
+        r1XhJ6BXypblKluWq2zZ/cv+H2aGUBv0IqvWZipYbZRayrEH/ntvuSrTDi3uQODrl6GfByZD
+        nRAshJwQECKkr2ikTi/3FqUyH+awGlWKJkvJap1QlPtnn0QC/OQq9xJxuhRpZLQkUiaTRUZH
+        yKTkKpGl5Jjcm1AwOjaDZdWs5l8fLPQKOAyfzV9dX1Mq192q2NmauydObN/1MG4sbCHtsxz3
+        Npbs7/Yrf/6NzUmOqZVJAtO+XJd1OG6X7XQcN67JNv44Fz1zYBO0IbPCFDFdum93fu11UgFz
+        wU0Th9Z8ND6bl1Tonxqew11kVAnW8gvfzL5nqIyX+LdXjg5tExUEG/qmzZj5Nt4l7PjJvj1i
+        t0t/OriuK6LRnLc1/lZ/97MFrFM8nz0aTxaNFGzEzsG9pnt7HugP/jD76bvJPluPEwqba0fP
+        eunqnWebDnbXcKFz8qmXldUfvDOwtjDx/eRwvbH1/Jl6vx1HkPCCQuXkg2zJW4eCvq6iGzuv
+        dqLOhC/9rZLHs+eb9pKoNo2RBiIaLfMPYcEMPowEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsWy7bCSnO6SP33JBq2TLS0ezNvGZnFo81Z2
+        iznnW1gs5h85x2rx9Ngjdou+Fw+ZLS5s62O12PT4GqvFqu9TmS0evgq3uLxrDpvFjPP7mCzW
+        L5rCYnFsgZjFt9NvGC0eftjDbjHrwg5Wi9a9R9gtbr9Zx2rxa+FhFoul93ayOoh6bFl5k8lj
+        waZSj4+XbjN6bFrVyeZx59oeNo/NS+o9+v8aeLzfd5XNo2/LKkaPf01z2T0+b5IL4I7isklJ
+        zcksSy3St0vgyrhxo5+x4AlHxcnPHUwNjDfYuxg5OCQETCTmzEvvYuTiEBLYzSixu3Ubcxcj
+        J1BcRmLy6hWsELawxMp/z9khil4wSnw7f50dJMEmoC9x7sc8VpCEiMBjJom/3XPZQBxmgS4m
+        ibM3/rGAVAkJ7GWU+H03AMTmFLCRuPN1J9gKYQFHiZ7dJ8FsFgEVia9vH7CB2LwClhIXF8xk
+        hLAFJU7OfAI2h1lAW6L3YSsjjL1s4WuoUxUkfj5dBnaqiICTxLSd31khasQlXh49wj6BUXgW
+        klGzkIyahWTULCQtCxhZVjFKphYU56bnFhsWGOallusVJ+YWl+al6yXn525iBKcDLc0djNtX
+        fdA7xMjEwXiIUYKDWUmE98XG3mQh3pTEyqrUovz4otKc1OJDjNIcLErivBe6TsYLCaQnlqRm
+        p6YWpBbBZJk4OKUamDbPMZ9fvPuHQszS1jOLur/sYt15ILtBV7FpRumOzSu7zVZr/f7/bWHr
+        y0nr7jyUW5x6brlO08eWmUc+TvnE8/jCVw/TmSnzG5JzF6rJHF2ld/lbxY77HJVzNkjcTFDb
+        NZXRX8UkdMJ3O59zq0xvfyx2VHaaKLDsZKqbcsLMCVf+Hsi7eKXqoF7U4ddvvwTd4Hwo+V53
+        9dOGMgOnLfzhWUvKd9zP2pD1ziL05rSL16YlzNnzg01Z18XnyWy5m93VdUY82/KezHySVCga
+        s25rxccmybINa4wKvP3D5qgmsJR79AS4nd193eCwx3yzdZdsE0wEumbc/K8o5RpXuT3DeN6B
+        wrZnH/qXX0xJqT0i8mCJEktxRqKhFnNRcSIAwQ4KVHYDAAA=
+X-CMS-MailID: 20221206082613epcas5p3694abb2a9be9aca2788f7b91e5845beb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221122105027epcas5p2237c5bc9ab02cf12f6e0f603c5bb90c4
+References: <20221122105455.39294-1-vivek.2311@samsung.com>
+        <CGME20221122105027epcas5p2237c5bc9ab02cf12f6e0f603c5bb90c4@epcas5p2.samsung.com>
+        <20221122105455.39294-3-vivek.2311@samsung.com>
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        PDS_BAD_THREAD_QP_64,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 06:52, Icenowy Zheng wrote:
-> The Genesys Logic GL850G is a USB 2.0 Single TT hub controller that
-> features 4 downstream ports, an internal 5V-to-3.3V LDO regulator (can
-> be bypassed) and an external reset pin.
-
-If there is going to be resend:
-Subject: drop second, redundant "binding for" (so: "Add Genesys Logic....")
-
-> 
-> Add a device tree binding for its USB protocol part. The internal LDO is
-> not covered by this and can just be modelled as a fixed regulator.
-> 
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> -----Original Message-----
+> From: Vivek Yadav <vivek.2311=40samsung.com>
+> Sent: Tuesday, November 22, 2022 4:25 PM
+> To: rcsekar=40samsung.com; krzysztof.kozlowski+dt=40linaro.org;
+> wg=40grandegger.com; mkl=40pengutronix.de; davem=40davemloft.net;
+> edumazet=40google.com; kuba=40kernel.org; pabeni=40redhat.com;
+> pankaj.dubey=40samsung.com; ravi.patel=40samsung.com;
+> alim.akhtar=40samsung.com; linux-fsd=40tesla.com; robh+dt=40kernel.org
+> Cc: linux-can=40vger.kernel.org; netdev=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; devicetree=40vger.kernel.org;
+> aswani.reddy=40samsung.com; sriranjani.p=40samsung.com; Vivek Yadav
+> <vivek.2311=40samsung.com>
+> Subject: =5BPATCH v3 2/2=5D arm64: dts: fsd: Add MCAN device node
+>=20
+> Add MCAN device node and enable the same for FSD platform.
+> This also adds the required pin configuration for the same.
+>=20
+> Signed-off-by: Sriranjani P <sriranjani.p=40samsung.com>
+> Signed-off-by: Vivek Yadav <vivek.2311=40samsung.com>
+> ---
 
-Best regards,
-Krzysztof
+Looks good to me.=20
+Reviewed-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
 
