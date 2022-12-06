@@ -2,111 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2B76444D9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:47:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF4886444ED
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:51:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234232AbiLFNrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 08:47:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
+        id S233008AbiLFNvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 08:51:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbiLFNrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:47:47 -0500
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A506E6382;
-        Tue,  6 Dec 2022 05:47:45 -0800 (PST)
-Received: by mail-qk1-f169.google.com with SMTP id s10so5899879qkg.8;
-        Tue, 06 Dec 2022 05:47:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+zwsuo3CbkQiK4rUg7GOR+GbgfKxh+ViwiReQiXihu4=;
-        b=O0roLiliPFHMohCelMW05/SC+x27XduQuDBAIjwArJobFtgLKS/LWUKHUjNnEcl5ca
-         WQ4+C/Vzfu6xMPLwsvRW1G6OD4079gPLyIZaQjrnxrz/V/fSHKQOXP/XXB7F83pdam+d
-         LsEQBoEDBpf6vtz0dzucTaZuNYDHJXRYm+eYnxdwSOUuZZiQtCd9QpTeiNd3GQXzCKPr
-         OMzcBDhbfXk9EcCgoJy5dUndlgL1kon52aFOKu45nC5BTLc/LWsj2Uh9Iq3kQB/zBWJO
-         7bLS7vo0QTsNVVVQLvhNGAtCuPik/8TsWsxf9DlwrxeEA2OOCZ52d0clUYpx+/ZWmLWi
-         h+KQ==
-X-Gm-Message-State: ANoB5plu/By1G5bmq1lPO/XH/e6ACqSNP8/C5lGQrPvNUvbCcsHDLonZ
-        lW2/+ykyjB5KxNOhQfk4Efbjsj8cplMl/Q==
-X-Google-Smtp-Source: AA0mqf5G9ngwaiFCXxegDWVAKaFng66wuz5KJUBYewstRebV9OoFKwnm+voLiXyTZiwTLvPNev/l2Q==
-X-Received: by 2002:a37:aad1:0:b0:6fc:cbd8:25d7 with SMTP id t200-20020a37aad1000000b006fccbd825d7mr10961379qke.350.1670334462203;
-        Tue, 06 Dec 2022 05:47:42 -0800 (PST)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id t17-20020a37ea11000000b006b5cc25535fsm14738377qkj.99.2022.12.06.05.47.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 05:47:41 -0800 (PST)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-3b56782b3f6so151890997b3.13;
-        Tue, 06 Dec 2022 05:47:41 -0800 (PST)
-X-Received: by 2002:a81:4e09:0:b0:370:202b:f085 with SMTP id
- c9-20020a814e09000000b00370202bf085mr16748351ywb.502.1670334461439; Tue, 06
- Dec 2022 05:47:41 -0800 (PST)
+        with ESMTP id S232511AbiLFNvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:51:13 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228602A942;
+        Tue,  6 Dec 2022 05:51:11 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B63wmOT004231;
+        Tue, 6 Dec 2022 13:51:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=zl3Ghn1lfg9PII5lHlpDMdR89VqR/sd6LQJbi2HHqJo=;
+ b=AX1TlU7mGk4fQCNc9juJx7dT8mxiB2ixm5LDjvFhSu/fBcIRTCSKMmA5IdiNtIaEAbXF
+ 7XnMQG7rC7jWTVP1eSFN2f7BLFs2qg7MiOr5po7wCdTihVArFEQxmzt1dbmyZ0POZ3y8
+ YveleBn08+QfBRFSi6I9kgyhfUC7rJgwOHRP20/9vjBRxS5w+btmtWR0CG0cSBIC0uHJ
+ /8134+3XrVn+fbdRaQ86ViFZLBDlIJJb9fXBkEqcAqaFhcLrooadhl7idDrAJ4/JOsBk
+ X5eGoNXjKnSl+JgdgG4iBI5n8ThYYyECE0N3dobaNDfnkmIkq6KB6AcCVSz8Jjw7+s2L yg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3m9rypa64d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Dec 2022 13:51:01 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B6Dp1LR013202
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Dec 2022 13:51:01 GMT
+Received: from [10.206.12.35] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Tue, 6 Dec 2022
+ 05:50:57 -0800
+Message-ID: <aa0134fc-e34d-e437-7d1e-f060dfa1526d@quicinc.com>
+Date:   Tue, 6 Dec 2022 19:20:47 +0530
 MIME-Version: 1.0
-References: <20221201095631.89448-1-tomi.valkeinen+renesas@ideasonboard.com>
- <20221201095631.89448-6-tomi.valkeinen+renesas@ideasonboard.com>
- <CAMuHMdXXoNq0CxSqPLzZUPdVTNa+6u+DNhbm_pCSQOvTHf3EjQ@mail.gmail.com> <b35d7cf0-99ef-86b7-41b3-0751abd4642a@ideasonboard.com>
-In-Reply-To: <b35d7cf0-99ef-86b7-41b3-0751abd4642a@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 6 Dec 2022 14:47:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVeyo-8G2LtA9tgqJ8P8zT2EQGx8GYUWQx66ut29e8RTw@mail.gmail.com>
-Message-ID: <CAMuHMdVeyo-8G2LtA9tgqJ8P8zT2EQGx8GYUWQx66ut29e8RTw@mail.gmail.com>
-Subject: Re: [PATCH v5 5/7] arm64: dts: renesas: white-hawk-cpu: Add DP output support
-To:     Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v3] arm64: dts: qcom: sa8540p-ride: enable PCIe support
+To:     Brian Masney <bmasney@redhat.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <psodagud@quicinc.com>, <ahalaney@redhat.com>,
+        <echanude@redhat.com>
+References: <20221202120918.2252647-1-bmasney@redhat.com>
+Content-Language: en-US
+From:   Shazad Hussain <quic_shazhuss@quicinc.com>
+In-Reply-To: <20221202120918.2252647-1-bmasney@redhat.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: roh21xPZiP6EbhrgwQVN5zHc2PY7p3wY
+X-Proofpoint-GUID: roh21xPZiP6EbhrgwQVN5zHc2PY7p3wY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-06_09,2022-12-06_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
+ impostorscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212060113
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
 
-On Tue, Dec 6, 2022 at 2:45 PM Tomi Valkeinen
-<tomi.valkeinen+renesas@ideasonboard.com> wrote:
-> On 05/12/2022 12:10, Geert Uytterhoeven wrote:
-> > On Thu, Dec 1, 2022 at 10:56 AM Tomi Valkeinen
-> > <tomi.valkeinen+renesas@ideasonboard.com> wrote:
-> >>
-> >> Add DT nodes needed for the mini DP connector. The DP is driven by
-> >> sn65dsi86, which in turn gets the pixel data from the SoC via DSI.
-> >>
-> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> >> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> >> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-> > (same comments as v2)
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v6.3, with the mini-dp-con node
-> > moved up.
->
-> Ah, sorry, I had missed this change. I'll update my branch too.
 
-Np.  IIRC, you were sending out v5 while I was reviewing v2/v4.
+On 12/2/2022 5:39 PM, Brian Masney wrote:
+> Add the vreg_l11a, pcie3a, pcie3a_phy, and tlmm nodes that are necessary
+> in order to get PCIe working on the QDrive3.
+> 
+> This patch also increases the width of the ranges property for the PCIe
+> switch that's found on this platform. Note that this change requires
+> the latest trustzone (TZ) firmware that's available from Qualcomm as
+> of November 2022. If this is used against a board with the older
+> firmware, then the board will go into ramdump mode when PCIe is probed
+> on startup.
+> 
+> The ranges property is overridden in this sa8540p-ride.dts file since
+> this is what's used to describe the QDrive3 variant with dual SoCs.
+> There's another variant of this board that only has a single SoC where
+> this change is not applicable, and hence why this specific change was
+> not done in sa8540p.dtsi.
+> 
+> These changes were derived from various patches that Qualcomm
+> delivered to Red Hat in a downstream kernel.
+> 
+> Signed-off-by: Brian Masney <bmasney@redhat.com>
 
-Gr{oetje,eeting}s,
+Tested-by: Shazad Hussain <quic_shazhuss@quicinc.com>
 
-                        Geert
+This patch seems to work on both SOC1 and SOC2 for qdrive3 
+(sa8540p-ride) board.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-Shazad
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> ---
+> Changes since v2:
+> - Dropped regulator-allow-set-load (Bjorn)
+> - Updated first member of ranges property to match downstream:
+>    s/0x32200000/0x40200000/ (Andrew)
+> 
+> Changes since v1:
+> - Add -state and -pins suffixes to tlmm (Krzysztof)
+> 
+> This patch depends on the following series that hasn't made it's way
+> into linux-next yet:
+> 
+> [PATCH v10 0/2] arm64: dts: qcom: add dts for sa8540p-ride board
+> https://lore.kernel.org/lkml/20221118025158.16902-1-quic_ppareek@quicinc.com/
+> 
+> I can't find the specific TZ firmware version that we have so that's why
+> I included the date instead.
+> 
+>   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 53 +++++++++++++++++++++++
+>   1 file changed, 53 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> index a5f87a8629d6..a638e3784543 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> @@ -51,6 +51,13 @@ vreg_l7a: ldo7 {
+>   			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>   		};
+>   
+> +		vreg_l11a: ldo11 {
+> +			regulator-name = "vreg_l11a";
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <880000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>   		vreg_l13a: ldo13 {
+>   			regulator-name = "vreg_l13a";
+>   			regulator-min-microvolt = <3072000>;
+> @@ -139,6 +146,27 @@ vreg_l8g: ldo8 {
+>   	};
+>   };
+>   
+> +&pcie3a {
+> +	ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+> +	         <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x20000000>,
+> +	         <0x03000000 0x6 0x00000000 0x6 0x00000000 0x2 0x00000000>;
+> +
+> +	perst-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
+> +	wake-gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie3a_default>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie3a_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l3a>;
+> +
+> +	status = "okay";
+> +};
+> +
+>   &qup2 {
+>   	status = "okay";
+>   };
+> @@ -158,6 +186,31 @@ &remoteproc_nsp1 {
+>   	status = "okay";
+>   };
+>   
+> +&tlmm {
+> +	pcie3a_default: pcie3a-default-state {
+> +		perst-pins {
+> +			pins = "gpio151";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		clkreq-pins {
+> +			pins = "gpio150";
+> +			function = "pcie3a_clkreq";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		wake-pins {
+> +			pins = "gpio56";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> +
+>   &ufs_mem_hc {
+>   	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
+>   
