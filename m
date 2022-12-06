@@ -2,148 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DFF5643C65
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 05:36:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE1A643CCC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 06:53:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232958AbiLFEgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Dec 2022 23:36:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42338 "EHLO
+        id S231213AbiLFFxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 00:53:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233084AbiLFEgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Dec 2022 23:36:19 -0500
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6E119C29;
-        Mon,  5 Dec 2022 20:36:18 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2B64aFOD084443;
-        Mon, 5 Dec 2022 22:36:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1670301375;
-        bh=vVHWHciRmrYwI1HfNz9Bua0KW6oSkJzJz3dy8BcG1+E=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=a3zXR969DUyyT4wbItC+zwE/de6NshuVUB6tKF33vjMtM8edxhmqhBH7sUEwjkc+L
-         MyZO+kj+p2dL9TmpRWpgp0PRBovRPwfpjccxB9u4gBsOZ0RfIFaKZm+aZothyQCSMz
-         t4WnoEyqpFDSrQAGdFqMmIkRQZp4mR3q1hskeOr4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2B64aFjH001638
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 5 Dec 2022 22:36:15 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 5
- Dec 2022 22:36:15 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 5 Dec 2022 22:36:15 -0600
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2B64Zx2d097382;
-        Mon, 5 Dec 2022 22:36:13 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH 5/5] dmaengine: ti: k3-udma: Add support for BCDMA CSI RX
-Date:   Tue, 6 Dec 2022 10:05:54 +0530
-Message-ID: <20221206043554.1521522-6-vigneshr@ti.com>
+        with ESMTP id S230289AbiLFFxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 00:53:02 -0500
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD3C1C92A;
+        Mon,  5 Dec 2022 21:53:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670305961; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=eHUppgzpTBO7P6Lj0flr8iHol2Iqh9Me9093vkjxkY7bYpE4dYj6W2hhEh6Qs7Olr4LaPC4UpbhFzvoGmRpZSiAS7VbzXTE6Htd43EC/8DcE7A16aIwdd5d8DSkZ+gS724befRKx5giFe75il62MSksZeZNoQTgZR2viyNO3z8A=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1670305961; h=Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=8OQhkFZBuQ+Ya1Ot1lELUxMRAjlXTh0qx4g/rKP2seQ=; 
+        b=jASkVWIbn4+tmFLqv1K6zWfEojjyZfEToxajyAyMXXN4d7rGLb/Dl5TuoyO+Fjhso/QNaDbHDr7TR6fX+FYMeHThWUHdSfSyClAdmdjlg9KdqqsVR1TFAQexIxZrriBNEBEinFjT1YARnW8kR7tSlR10JnNZZ5TXwBWvgoznynM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670305961;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Transfer-Encoding:Reply-To;
+        bh=8OQhkFZBuQ+Ya1Ot1lELUxMRAjlXTh0qx4g/rKP2seQ=;
+        b=hNNjZcXFn4B4I5MWpTIt2KTE5gPT+OZWRvKLpeL812ku817GSwZoSdmEefZ8DGBH
+        JAQK1bC9D+dgQOR5Gcz5qcLWZgo2lesxeew/DL1Wu7JTwa9FqdNrdwYuP4yebqnzC/4
+        oJMj+UzakYc3vyGAeejAAkjX3iZ8TJA58TgnSZF4=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.143 [120.85.99.143]) by mx.zohomail.com
+        with SMTPS id 1670305959289556.1373358007419; Mon, 5 Dec 2022 21:52:39 -0800 (PST)
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v3 0/6] Rongpin RP-H6B support (and support for GL850G)
+Date:   Tue,  6 Dec 2022 13:52:22 +0800
+Message-Id: <20221206055228.306074-1-uwu@icenowy.me>
 X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221206043554.1521522-1-vigneshr@ti.com>
-References: <20221206043554.1521522-1-vigneshr@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BCDMA CSI RX present on AM62Ax SoC is a dedicated DMA for servicing
-Camera Serial Interface (CSI) IP. Add support for the same.
+This patchset adds support for Rongpin RP-H6B, and as a dependency,
+power sequence support for its onboard USB hub, GL850G.
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- drivers/dma/ti/k3-udma.c | 37 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 32 insertions(+), 5 deletions(-)
+The first 3 patches are for GL850G, adding a binding for it and adding
+its support to onboard_usb_hub driver.
 
-diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index 19fce52a9b53..a8b497ed3f30 100644
---- a/drivers/dma/ti/k3-udma.c
-+++ b/drivers/dma/ti/k3-udma.c
-@@ -135,6 +135,7 @@ struct udma_match_data {
- 	u32 flags;
- 	u32 statictr_z_mask;
- 	u8 burst_size[3];
-+	struct udma_soc_data *soc_data;
- };
- 
- struct udma_soc_data {
-@@ -4295,6 +4296,25 @@ static struct udma_match_data j721e_mcu_data = {
- 	},
- };
- 
-+static struct udma_soc_data am62a_dmss_csi_soc_data = {
-+	.oes = {
-+		.bcdma_rchan_data = 0xe00,
-+		.bcdma_rchan_ring = 0x1000,
-+	},
-+};
-+
-+static struct udma_match_data am62a_bcdma_csirx_data = {
-+	.type = DMA_TYPE_BCDMA,
-+	.psil_base = 0x3100,
-+	.enable_memcpy_support = false,
-+	.burst_size = {
-+		TI_SCI_RM_UDMAP_CHAN_BURST_SIZE_64_BYTES, /* Normal Channels */
-+		0, /* No H Channels */
-+		0, /* No UH Channels */
-+	},
-+	.soc_data = &am62a_dmss_csi_soc_data,
-+};
-+
- static struct udma_match_data am64_bcdma_data = {
- 	.type = DMA_TYPE_BCDMA,
- 	.psil_base = 0x2000, /* for tchan and rchan, not applicable to bchan */
-@@ -4344,6 +4364,10 @@ static const struct of_device_id udma_of_match[] = {
- 		.compatible = "ti,am64-dmss-pktdma",
- 		.data = &am64_pktdma_data,
- 	},
-+	{
-+		.compatible = "ti,am62a-dmss-bcdma-csirx",
-+		.data = &am62a_bcdma_csirx_data,
-+	},
- 	{ /* Sentinel */ },
- };
- 
-@@ -5272,12 +5296,15 @@ static int udma_probe(struct platform_device *pdev)
- 	}
- 	ud->match_data = match->data;
- 
--	soc = soc_device_match(k3_soc_devices);
--	if (!soc) {
--		dev_err(dev, "No compatible SoC found\n");
--		return -ENODEV;
-+	ud->soc_data = ud->match_data->soc_data;
-+	if (!ud->soc_data) {
-+		soc = soc_device_match(k3_soc_devices);
-+		if (!soc) {
-+			dev_err(dev, "No compatible SoC found\n");
-+			return -ENODEV;
-+		}
-+		ud->soc_data = soc->data;
- 	}
--	ud->soc_data = soc->data;
- 
- 	ret = udma_get_mmrs(pdev, ud);
- 	if (ret)
+The last 3 patches are for RP-H6B, also 2 for adding a binding and 1 for
+the real DT.
+
+Icenowy Zheng (6):
+  dt-bindings: vendor-prefixes: add Genesys Logic
+  dt-bindings: usb: Add binding for Genesys Logic GL850G hub controller
+  usb: misc: onboard_usb_hub: add Genesys Logic GL850G hub support
+  vendor-prefixes: Add Shenzhen Rongpin Electronics Co., Ltd
+  dt-bindings: arm: sunxi: add Rongpin RP-H6B board
+  arm64: dts: allwinner: h6: add Rongpin RP-H6C SoM and RP-H6B board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+ .../bindings/usb/genesys,gl850g.yaml          |  48 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../boot/dts/allwinner/sun50i-h6-rp-h6b.dts   | 241 ++++++++++++++++++
+ .../boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi  | 179 +++++++++++++
+ drivers/usb/misc/onboard_usb_hub.c            |   2 +
+ drivers/usb/misc/onboard_usb_hub.h            |   5 +
+ 8 files changed, 486 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6b.dts
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-rp-h6c.dtsi
+
 -- 
 2.38.1
 
