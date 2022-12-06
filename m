@@ -2,161 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7F2643E7E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5825C643E91
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 09:29:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231354AbiLFI0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 03:26:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53628 "EHLO
+        id S233563AbiLFI3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 03:29:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230437AbiLFI0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:26:06 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F0276468
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 00:26:04 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id a19so16427683ljk.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 00:26:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OkMxJjoW8X4kUNC+47c7765KzpRNV4xbB6ThuqIXaYA=;
-        b=g7x6H4cWlQJYECi+8ttT+RfB1nYdfNW9EGfg3yL2ZSCKJzsrTlP9H+YuWwotc2pTyW
-         shOdEKTrbkHbyrusr8EHbTlAkluPeftoC4Uzu44f7DI/6kwPn6sU1zafHnA24XvFX49O
-         ClEDTzTODxK5PYAIErwbkN/pc0HIs+EIh02NhHO8XKNyMlmz5ZMxiC92dQ7Klpr38FcL
-         HdnAg+WZZfFU4uki65XSz+HL4vc411PpfBLYLUHlGkWM+SYuONwyD0ggxZd6S3GdU4Aw
-         Wc+MhpH4G9cxIG04n/C0Y9DVTrW4ydlDCrLLXFyEcJwHgpHrZxn/fQcEP7R39qY6M6fR
-         0vZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OkMxJjoW8X4kUNC+47c7765KzpRNV4xbB6ThuqIXaYA=;
-        b=PEcLLcyZmQ18B0iN3kCn9dOCJKmaTphfJm6WsYSWKuF0ldFgQ8lUhh62EeXm8zn5O4
-         gC1YTHZFXKlIr3qXY9iT1TgNDaDixFicjaqx/zNWWOOxNcUeqFm2gpN+m/o3xlxB3csH
-         A/y3t5JzThlL4dPCMBWNlvkyGETA2bUbz8SfHvi7pcdnL2iJ/Q/CFctvm/nSYOFtM8WV
-         Vyh3nEzXURAVgP/+Le6neXrJaiXeJvOYA9fIUwyZUhF/hK8ge2hv3Hu3lRvYciukRsCj
-         /gAmzAY26Gmk8kdLgulD22kMwuKTAZ/QxCHt8DPGMqf4VoUEbu7e5cKAaYhSfS0925kp
-         Mbfw==
-X-Gm-Message-State: ANoB5pnMgHMbGjfWdFwl4N7fzHYz6xVj9fLrgeJ+NwhiJWu9V7WX6qhQ
-        Mk/4Eo+UGtKcU1JhtKtWCrfQTw==
-X-Google-Smtp-Source: AA0mqf5hJt4mcZkr+hduYVC1h4gFFiYEe5e/seICQH3DF+vHQDg04AGpXBwDBxE+G5FcRm2BXk2Vwg==
-X-Received: by 2002:a2e:b8c3:0:b0:277:2e91:e9d6 with SMTP id s3-20020a2eb8c3000000b002772e91e9d6mr22193667ljp.372.1670315162821;
-        Tue, 06 Dec 2022 00:26:02 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id s8-20020a056512214800b004b4823f02b0sm2411927lfr.152.2022.12.06.00.26.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 00:26:02 -0800 (PST)
-Message-ID: <0a2056f9-0126-4dd7-55fa-930ce61e2e81@linaro.org>
-Date:   Tue, 6 Dec 2022 09:26:01 +0100
+        with ESMTP id S233178AbiLFI3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 03:29:18 -0500
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6426315;
+        Tue,  6 Dec 2022 00:29:17 -0800 (PST)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 54BAB125C;
+        Tue,  6 Dec 2022 09:29:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1670315355;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6x7SqeU7DjKi4snpIda9gKwYIWf96Kgh9HxDpXGjY7s=;
+        b=IF4UQKpEORyOoN+79mglJzGWZAK8gvJOd1Np/Ao/oIgdB0VPjWuwumcaI7MBzAOMQ8udYU
+        1AuyCoAIBg84DTLguD7+59ZR2MONJ/HxDtPifciKYixccbeoctBB7Q3QUVv945WGErVU7T
+        EbK+hGg5Dfh1WyljNINJ47R1bfeJZcpIwg3DPi1wu7x+dTr2p+IN5Se2S/xI0y5P/LbVj8
+        SvdPrsgsB4mSHURR0M2hyWGNPDPMyPT3MntgVHEb17XU+B0u+XXMh4z7jRZUG+cqmmtY9c
+        AQjixZ1+ns7sG/OJ5DrwfOZPQmhph7r+7EfstzRwMW0XpatmQ2QKUusVKr8tuA==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto
- driver
-Content-Language: en-US
-To:     JiaJie Ho <jiajie.ho@starfivetech.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
+Date:   Tue, 06 Dec 2022 09:29:15 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Xu Liang <lxu@maxlinear.com>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <20221130055214.2416888-6-jiajie.ho@starfivetech.com>
- <166981596611.1846501.537832446745968339.robh@kernel.org>
- <14a3facb1fe642cba0048f2f2d0eb2e9@EXMBX068.cuchost.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <14a3facb1fe642cba0048f2f2d0eb2e9@EXMBX068.cuchost.com>
-Content-Type: text/plain; charset=UTF-8
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v1 3/4] dt-bindings: net: phy: add MaxLinear
+ GPY2xx bindings
+In-Reply-To: <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
+References: <20221202151204.3318592-1-michael@walle.cc>
+ <20221202151204.3318592-4-michael@walle.cc>
+ <20221205212924.GA2638223-robh@kernel.org>
+ <99d4f476d4e0ce5945fa7e1823d9824a@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <9c0506a6f654f72ea62fed864c1b2a26@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 04:48, JiaJie Ho wrote:
-> 
-> 
->> -----Original Message-----
->> From: Rob Herring <robh@kernel.org>
->> Sent: Wednesday, November 30, 2022 9:48 PM
->> To: JiaJie Ho <jiajie.ho@starfivetech.com>
->> Cc: linux-crypto@vger.kernel.org; linux-riscv@lists.infradead.org; Rob
->> Herring <robh+dt@kernel.org>; Herbert Xu
->> <herbert@gondor.apana.org.au>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; David S . Miller <davem@davemloft.net>
->> Subject: Re: [PATCH 5/6] dt-bindings: crypto: Add bindings for Starfive crypto
->> driver
->>
->>
->> On Wed, 30 Nov 2022 13:52:13 +0800, Jia Jie Ho wrote:
->>> Add documentation to describe Starfive crypto driver bindings.
->>>
->>> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
->>> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+Am 2022-12-05 22:53, schrieb Michael Walle:
+> Am 2022-12-05 22:29, schrieb Rob Herring:
+>> On Fri, Dec 02, 2022 at 04:12:03PM +0100, Michael Walle wrote:
+>>> Add the device tree bindings for the MaxLinear GPY2xx PHYs.
+>>> 
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
 >>> ---
->>>  .../bindings/crypto/starfive-crypto.yaml      | 109 ++++++++++++++++++
->>>  1 file changed, 109 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/crypto/starfive-crypto.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m
->> dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> Documentation/devicetree/bindings/crypto/starfive-
->> crypto.example.dts:21:18: fatal error: dt-bindings/clock/starfive-jh7110.h: No
->> such file or directory
->>    21 |         #include <dt-bindings/clock/starfive-jh7110.h>
->>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> compilation terminated.
->> make[1]: *** [scripts/Makefile.lib:406:
->> Documentation/devicetree/bindings/crypto/starfive-crypto.example.dtb]
->> Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make: *** [Makefile:1492: dt_binding_check] Error 2
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-
->> bindings/patch/20221130055214.2416888-6-jiajie.ho@starfivetech.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
+>>> 
+>>> Is the filename ok? I was unsure because that flag is only for the 
+>>> GPY215
+>>> for now. But it might also apply to others. Also there is no 
+>>> compatible
+>>> string, so..
+>>> 
+>>>  .../bindings/net/maxlinear,gpy2xx.yaml        | 47 
+>>> +++++++++++++++++++
+>>>  1 file changed, 47 insertions(+)
+>>>  create mode 100644 
+>>> Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
+>>> 
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml 
+>>> b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
+>>> new file mode 100644
+>>> index 000000000000..d71fa9de2b64
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml
+>>> @@ -0,0 +1,47 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/maxlinear,gpy2xx.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MaxLinear GPY2xx PHY
+>>> +
+>>> +maintainers:
+>>> +  - Andrew Lunn <andrew@lunn.ch>
+>>> +  - Michael Walle <michael@walle.cc>
+>>> +
+>>> +allOf:
+>>> +  - $ref: ethernet-phy.yaml#
+>>> +
+>>> +properties:
+>>> +  maxlinear,use-broken-interrupts:
+>>> +    description: |
+>>> +      Interrupts are broken on some GPY2xx PHYs in that they keep 
+>>> the
+>>> +      interrupt line asserted even after the interrupt status 
+>>> register is
+>>> +      cleared. Thus it is blocking the interrupt line which is 
+>>> usually bad
+>>> +      for shared lines. By default interrupts are disabled for this 
+>>> PHY and
+>>> +      polling mode is used. If one can live with the consequences, 
+>>> this
+>>> +      property can be used to enable interrupt handling.
+>> 
+>> Just omit the interrupt property if you don't want interrupts and add 
+>> it
+>> if you do.
 > 
-> Hi Rob Herring,
-> 
-> The #include in example have dependencies on the following patches:
-> https://patchwork.kernel.org/project/linux-riscv/cover/20221118010627.70576-1-hal.feng@starfivetech.com/
-> https://patchwork.kernel.org/project/linux-riscv/cover/20221118011714.70877-1-hal.feng@starfivetech.com/
-> I've noted them in the cover letter.
-> How do I add them in this patch?
+> How does that work together with "the device tree describes
+> the hardware and not the configuration". The interrupt line
+> is there, its just broken sometimes and thus it's disabled
+> by default for these PHY revisions/firmwares. With this
+> flag the user can say, "hey on this hardware it is not
+> relevant because we don't have shared interrupts or because
+> I know what I'm doing".
 
-You cannot. Testing bot does not take dependencies, so it did not have
-above clock IDs. This also should point your attention that if crypto
-maintainers pick up this patch, they also won't have the clock IDs so
-their tree will have such failure as well.
+Specifically you can't do the following: Have the same device
+tree and still being able to use it with a future PHY firmware
+update/revision. Because according to your suggestion, this
+won't have the interrupt property set. With this flag you can
+have the following cases:
+  (1) the interrupt information is there and can be used in the
+      future by non-broken PHY revisions,
+  (2) broken PHYs will ignore the interrupt line
+  (3) except the system designer opts-in with this flag (because
+      maybe this is the only PHY on the interrupt line etc).
 
-You can wait with your patch till dependency hits mainline or you can
-just replace clock IDs with numbers and drop the header (and later you
-can correct the example if needed... or leave it as is).
-
-Best regards,
-Krzysztof
-
+-michael
