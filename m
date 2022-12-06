@@ -2,83 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F143644436
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:11:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C7C64443F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 14:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234790AbiLFNLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 08:11:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
+        id S231600AbiLFNNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 08:13:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234492AbiLFNLN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:11:13 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940966243;
-        Tue,  6 Dec 2022 05:09:45 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id r11so11115589oie.13;
-        Tue, 06 Dec 2022 05:09:45 -0800 (PST)
+        with ESMTP id S231388AbiLFNNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 08:13:20 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C28DDF61
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 05:13:18 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id fc4so6009571ejc.12
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 05:13:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X49GRzjJhXbqmB1hs+2urUm1MVIZuKqOwRmIImQS47k=;
+        b=Sk/EAHvgaPaKPaq3f6GgtvesKQKbknHQ3rMC7kNAwoEjUwh9ltn4YgQoNdIcImudfv
+         7KZviIrWk1cMvdgoFQd27ULKwdIz/qjN1kxelQau+3w5UhD15z+GRnlp4DN6de/otAVy
+         72kwMYIoz44WAvGtMKps6RPjAXj4aO0M1SIeDJo5WzzbS2cZjF+kor1bJKNVY3OswxPK
+         Lp3PVQD7L3vuSr1T7jHvGVpgyn9kRBF+r6zT/SWIQ89i3NgrIWAeZIvutfRtPOepumh4
+         aLgt1pvoByLcrR+Dx29wq4iGEcL3ezfnZ81mq3apF/glTquaPidz/p/iLz9b3GBDzL3I
+         83dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Twf2LUQQZEEsPFMs0YGDTeUVVUS9EWkbM3eJUG/VOf0=;
-        b=wb94GU1QlHOKSB3GEWBJaC+I2S/bP+Wlt5KY3Qq9/I+uWBhhG2IyM1sBF3DCSo9oot
-         ZhueNpYEKM+H3XjDT5/LNyzsgAvdULgRgf5x9xAgRyH3jyAGb1gFvRCmqyklj/uzS9ad
-         YRUrRJNKjeakHHtemU7JuzumrPQVX43s1hEpb48PgZHDOscnvVq5HeVH4PENA7YnwEbt
-         JUSx1GtJ69gQUo3CuWN97VCJMqPQNWtYnppPU5C+AcjK7gpXsPKOsdnmbXpAtHNrfueM
-         Q5Upu+6wy5YpPTy2lJhct9K600n4vWpOMbWB7JfwXGqIObWUr+VyvlKFJ/FiqSUn6HQH
-         ULyw==
-X-Gm-Message-State: ANoB5pk4MhQafVBg0bFnbvLkJxa4r/6b++GgrgRQtDXGZBxUukADzkjC
-        JWp3fYIUhuBy/GhKfYvQsCwSX1+J5Q==
-X-Google-Smtp-Source: AA0mqf7a4XewMy+qenYc/uQHEe7SRvtkFJ8yQxfPCpF8rThyNv20WBRTh4LVw3I3MiVY6s7uZD0XLA==
-X-Received: by 2002:a05:6808:22a4:b0:35a:388c:743d with SMTP id bo36-20020a05680822a400b0035a388c743dmr43974263oib.258.1670332184644;
-        Tue, 06 Dec 2022 05:09:44 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z20-20020a4a9c94000000b004a3527e8279sm1321513ooj.0.2022.12.06.05.09.43
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X49GRzjJhXbqmB1hs+2urUm1MVIZuKqOwRmIImQS47k=;
+        b=u2HhTsaPAqbIItMOumo3coryRRoOUEuU/QFN3RSDKqF18HmnumXcpEqahSamQ58yfC
+         bBO6AQoXcX0oh85F6MBtHmFdKq0O+3Pk2qbhuWDZNBezVosYvN4R7yqgQBmL1TQdpv5i
+         rufDK5itrFosAe+kxGW1CvAxTQr6IXc04c0ETiLdq9oGXu51DwEwEmqrvfjGhh7mM8Vi
+         rBPR0ZYXUFa9Ss+rFyNnX/3iH6ffHvXpNbpxY9AWcmS28tBGdh3BahFbqUDJ/nUcluIn
+         eWqX7vu6F886CE9DiEJ8HIyx+aAOObGKSys0OOGimMD6/9qVx3kzh+X41qye/W9kGsPq
+         aozQ==
+X-Gm-Message-State: ANoB5pmeBl1Ytd4LNEfWt8LyeV0U8Qpk8JqWedN5q5c7/A5/esDpmQNl
+        Cbgp87/B/f1eWy3GcW43I83qiw==
+X-Google-Smtp-Source: AA0mqf5QQNbBlCkDVK/0B0Qx1XoVgtbccZYuRljgxZ7gAilOWo539hXArD5fRqnt8aEsVk2V3q6fOw==
+X-Received: by 2002:a17:906:4a0c:b0:7c0:e306:fe72 with SMTP id w12-20020a1709064a0c00b007c0e306fe72mr9877028eju.243.1670332396533;
+        Tue, 06 Dec 2022 05:13:16 -0800 (PST)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id u2-20020a1709061da200b007b8a8fc6674sm7345775ejh.12.2022.12.06.05.13.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Dec 2022 05:09:44 -0800 (PST)
-Received: (nullmailer pid 236277 invoked by uid 1000);
-        Tue, 06 Dec 2022 13:09:43 -0000
-Date:   Tue, 6 Dec 2022 07:09:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: mfd/syscon: Add resets property
-Message-ID: <167033218290.236219.3964235132732494862.robh@kernel.org>
-References: <20221206073916.1606125-1-jk@codeconstruct.com.au>
- <20221206073916.1606125-2-jk@codeconstruct.com.au>
+        Tue, 06 Dec 2022 05:13:15 -0800 (PST)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v6 00/10] arm64: dts: Add base device tree files for SM8550
+Date:   Tue,  6 Dec 2022 15:12:42 +0200
+Message-Id: <20221206131252.977369-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221206073916.1606125-2-jk@codeconstruct.com.au>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the base device tree files and MTP board support
+for the Qualcomm SM8550 SoC, including the clock, pinctrl, smmu,
+regulators, interconnect, cpufreq, and qup nodes.
 
-On Tue, 06 Dec 2022 15:39:15 +0800, Jeremy Kerr wrote:
-> Simple syscon devices may require deassertion of a reset signal in order
-> to access their register set. This change adds the `resets` property from
-> reset.yaml#/properties/resets (referenced through core.yaml), specifying
-> a maxItems of 1 for a single (optional) reset descriptor.
-> 
-> This will allow a future change to the syscon driver to implement reset
-> control.
-> 
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+The SM8550 is the latest Qualcomm Mobile Platform.
+See more at:
+https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/Snapdragon-8-Gen-2-Product-Brief.pdf
 
-Acked-by: Rob Herring <robh@kernel.org>
+The v5 of this patchset is here:
+https://lore.kernel.org/all/20221205230342.494923-1-abel.vesa@linaro.org/
+
+Here is a branch where the entire support has been merged:
+https://git.codelinaro.org/linaro/qcomlt/linux/-/commits/topic/sm8550/next
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Abel Vesa (3):
+  dt-bindings: arm: qcom: Document SM8550 SoC and boards
+  arm64: dts: qcom: Add base SM8550 dtsi
+  arm64: dts: qcom: Add base SM8550 MTP dts
+
+Neil Armstrong (7):
+  arm64: dts: qcom: Add pm8010 pmic dtsi
+  arm64: dts: qcom: Add PM8550 pmic dtsi
+  arm64: dts: qcom: Add PM8550b pmic dtsi
+  arm64: dts: qcom: Add PM8550ve pmic dtsi
+  arm64: dts: qcom: Add PM8550vs pmic dtsi
+  arm64: dts: qcom: Add PMK8550 pmic dtsi
+  arm64: dts: qcom: Add PMR735d pmic dtsi
+
+ .../devicetree/bindings/arm/qcom.yaml         |    6 +
+ arch/arm64/boot/dts/qcom/Makefile             |    1 +
+ arch/arm64/boot/dts/qcom/pm8010.dtsi          |   84 +
+ arch/arm64/boot/dts/qcom/pm8550.dtsi          |   59 +
+ arch/arm64/boot/dts/qcom/pm8550b.dtsi         |   59 +
+ arch/arm64/boot/dts/qcom/pm8550ve.dtsi        |   59 +
+ arch/arm64/boot/dts/qcom/pm8550vs.dtsi        |  194 +
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi         |   55 +
+ arch/arm64/boot/dts/qcom/pmr735d.dtsi         |  104 +
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts       |  404 ++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          | 3534 +++++++++++++++++
+ 11 files changed, 4559 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8010.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550b.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550ve.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8550vs.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmk8550.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmr735d.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8550.dtsi
+
+-- 
+2.34.1
+
