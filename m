@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AACB644109
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA5F644123
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 11:16:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235125AbiLFKLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 05:11:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54144 "EHLO
+        id S232896AbiLFKQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 05:16:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235522AbiLFKL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:11:28 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5BB23BC7
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 02:07:21 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id bn5so16668640ljb.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 02:07:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NMekL2LEk3JOOHB+JWji+lnO2nhMD5gf3MzPJiCM1Gg=;
-        b=zUSRpnmTc/RFKY0PPPOizXNQWMOmVuMoluFjVWCiV+y0JRoq9PKRKsnPLuWkRfegVy
-         lvfZ9F21HyLiXCuIwExrwL8Z5jwN1Dxx6yqN62A5l9sxY851fdyR0uTwUk+aZMr00KNE
-         ihmWwGw6PhJVPHsDTKorJinY9wBcTOvku5MmtsXEVIIunRv7pgDWnNZGdNdQENhYaVEj
-         nzFhav+U4nd+ot6HgsbLRfOE0P6Lv4rwKdC20iKoRYXHE2RIoB+bRQsSHAXCUicFTJO0
-         fR3jtohuRIdMNBSLfJsOzxCe2JOVL4ED/rtPpZfW1+VJEfaQxw4Niv4bP2x/I7KNzAKP
-         D0VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NMekL2LEk3JOOHB+JWji+lnO2nhMD5gf3MzPJiCM1Gg=;
-        b=Rhq7jXHa0ozOof37P64kshtH2zooeopFHJYXt3+7yE6UqEufR1SSa8r7cP7XXnXfj8
-         VZuDCYNKt9B/9DBwGXlhBhCjw0w86SDU6k9QMiktQhOZ2kdSAeJRja6KVPCFTVNP2ucY
-         yiybMyvkb8GRO0zDq37cnkfczwrteEIY1chJqy06AiWd0P4lN0JdfO3hiaS68stNoVx6
-         5Vioq5cLZwCcpbGPXNhhAXNwxeCoti6E1Jbmr6/mxrIh8GrdUNfL/MLSBO3nsisGt2ZO
-         ctEMfQ2xGyeTXirqsb1TC+lKU4I5gGRKF0R0w6GNAymsKBRJRF4neZq/FNImcOW05jMs
-         3ezA==
-X-Gm-Message-State: ANoB5pnNi681cn7jXcLNuZYQvgaWwxECsG1ykBVERWkpcQaBHapQWWel
-        FnfZQa446AWqisFaX6lMhDVaLw==
-X-Google-Smtp-Source: AA0mqf6ypVuG5zWj9XR/Lb4mql4LSQssNDupVw8L/tQ9hJunntmG6nm4nXjDV75baL3SH/xhfVddEA==
-X-Received: by 2002:a2e:b0ca:0:b0:279:c096:2e8a with SMTP id g10-20020a2eb0ca000000b00279c0962e8amr9625320ljl.433.1670321239588;
-        Tue, 06 Dec 2022 02:07:19 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u18-20020a05651206d200b00498f23c249dsm2414432lff.74.2022.12.06.02.07.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 02:07:19 -0800 (PST)
-Message-ID: <853c1bff-f657-8696-e927-5b5278593234@linaro.org>
-Date:   Tue, 6 Dec 2022 11:07:17 +0100
+        with ESMTP id S232568AbiLFKQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 05:16:50 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E71DB9B;
+        Tue,  6 Dec 2022 02:16:48 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7DDC140003;
+        Tue,  6 Dec 2022 10:16:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670321806;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ons113hSb6tX+xTERA8DOW/78mOwkkaZ9ZxNswFoU4A=;
+        b=Iln7tYOPNg+p89W844U31Y67FURDYoEdysuuQiq0vnbir2dudWkJaF0UHMR+BvYVtGr8Pq
+        hz5JPvc0CHX7H6dfdq1XDDJ2hAGzZEjzpyaDCxaNfqppjCO1XUKrd5ez6y5+LDCGHCznhF
+        kmvPd4Y/gZLjaXJR0k2wmLmRLt2YG3o2Cm4LauyGUIZ7PoN3XsAnwhQzRRsIzgpRNZ/lo3
+        hmBRx5O+2Lv/dGVdkJFTnDPxM0O0ELs6+8q0aAK9VruaEVW63iwILlplJ069gNS2KcOeWC
+        rnmQ0i7w2plhVfbLSgp66W/CI9yi8+qBlK0bQ2k6GIjuOPK29E6BlCtlUapPhg==
+Date:   Tue, 6 Dec 2022 11:16:43 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Message-ID: <20221206111643.1af08a9b@xps-13>
+In-Reply-To: <Y45BZs7dZokgz83I@francesco-nb.int.toradex.com>
+References: <20221205152327.26881-1-francesco@dolcini.it>
+        <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+        <20221205185859.433d6cbf@xps-13>
+        <f69746b0-51c0-041c-4035-679c27fcba64@denx.de>
+        <20221205191828.3072d872@xps-13>
+        <29260d63-3240-6660-b002-cd00dc051574@denx.de>
+        <Y45BZs7dZokgz83I@francesco-nb.int.toradex.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v4 0/2] arm64: dts: Add SYSREG nodes for FSD SoC
-To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, sathya@samsung.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <CGME20221129115540epcas5p370eb47c404a8d2c08ab4f264ae983481@epcas5p3.samsung.com>
- <20221129115531.102932-1-sriranjani.p@samsung.com>
- <01ff01d90950$c7768fd0$5663af70$@samsung.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <01ff01d90950$c7768fd0$5663af70$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2022 09:57, Sriranjani P wrote:
-> Hi all,
-> 
-> Gentle Reminder to review this patch series.
-> 
+Hi Francesco,
 
-If you ping me, then:
-1. Pinging after a week is a bit too fast. Standard is 2 weeks.
-2. It is too late in the cycle for me to pick it up. I will take it
-after the merge window. Anything sent after rc5 usually misses upcoming
-merge window.
+francesco@dolcini.it wrote on Mon, 5 Dec 2022 20:07:18 +0100:
 
-Best regards,
-Krzysztof
+> On Mon, Dec 05, 2022 at 07:52:08PM +0100, Marek Vasut wrote:
+> > On 12/5/22 19:18, Miquel Raynal wrote: =20
+> > > marex@denx.de wrote on Mon, 5 Dec 2022 19:07:14 +0100: =20
+> > > > On 12/5/22 18:58, Miquel Raynal wrote: =20
+> > > > > , it's not
+> > > > > complex to do, there are plenty of examples. This would be IMHO a
+> > > > > better step ahead rather than just a cell change. Anyway, I don't=
+ mind
+> > > > > reverting this once we've sorted this mess out and fixed U-Boot. =
+=20
+> > > >=20
+> > > > Won't we still have issues with older bootloader versions which
+> > > > paste partitions directly into this &gpmi {} node, and which needs
+> > > > to be fixed up in the parser in the end ? =20
+> > >=20
+> > > I believe fdt_fixup_mtdparts() should be killed, so we should no long=
+er
+> > > have this problem. =20
+> >=20
+> > The fdt_fixup_mtdparts is U-Boot code. If contemporary Linux kernel is
+> > booted with ancient U-Boot, then you would still get defective DT passe=
+d to
+> > Linux, and that should be fixed up by Linux. Removing fdt_fixup_mtdpart=
+s()
+> > from current mainline U-Boot won't solve this problem.
+> >=20
+> > I think this is also what Francesco is trying to convey (please correct=
+ me
+> > if I'm wrong). =20
 
+If we can get rid of fdt_fixup_mtdparts(), it means someone has to
+create the partitions. I guess the easy way would be to just provide
+mtdparts to Linux like all the other boards and let Linux deal with it.
+Then we can just assume in Linux that perhaps if the partitions are
+invalid (#size-cell is wrong?) then we should just stop their creation
+and fallback to another mechanism instead of failing entirely. This way
+no need for hackish changes in the parsers and compatibility is still
+valid with old U-Boot (if mtdparts was provided on the cmdline, to be
+checked). Otherwise we'll have to deal with it in Linux, that's a pity.
+
+Thanks,
+Miqu=C3=A8l
