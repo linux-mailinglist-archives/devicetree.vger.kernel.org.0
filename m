@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 499B7644A24
-	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:16:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DA33644A44
+	for <lists+devicetree@lfdr.de>; Tue,  6 Dec 2022 18:24:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234507AbiLFRQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 12:16:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51822 "EHLO
+        id S234811AbiLFRYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 12:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235660AbiLFRQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:16:41 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BFF2188D
-        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 09:16:40 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id o5so24475726wrm.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 09:16:40 -0800 (PST)
+        with ESMTP id S234586AbiLFRYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 12:24:23 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E652FC11
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 09:24:22 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id h10so14945523wrx.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 09:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YROQFQEPWdBQIhB1n8gHD/kr10ieWa0trY98wElq/pc=;
-        b=jhEJrHm2+Y6fhnfB8gQwOvXAWuM5bwEb2YzWwR5K7HQ3Lonzn2AOb31fX6mOuNd7Ar
-         tMF+G6+I9QcXmIF4tjKQ2UUj7FVLLUWuvdf2T8h1gBO8MrLRae0grqUDHKNNTwGCjV0P
-         ZzxM9JA9w1FQpR1/74tVbpiuciKwD4dRwS9v0MZciu3WhbG8PIctWytIbolS698ly4wV
-         0hVDklgAYWfwNkPy+jfFl5gIJMGoueC40vz67x0WruDhrTCNXkPhrEG9wjQKz9N7I++n
-         bEHOOt/pJRRwF7nsYfyQrdrYDfc9HDfTSiF87M4DI29qO2Qssdymxx3kDvmrVG7lmC1s
-         zNqA==
+        bh=wkjOSaePaW4cwPgy6cKdaGFLlxgNwbwbhmDlbNQQNyA=;
+        b=pv4LiDYE7+vhr0QpgKXN4tARx11ydjiGR6pmv/PBZOummq3valRAL64ufcMh2ZhvKj
+         fp+vbWUsAoANZLgwe0ROiC3DBWrUUAlKDaDqBV6bRbzoI0f4CUdfHO4ULR8FnHwfuz+U
+         3Fm4d3T3lNaMPJ2Cp44HIhmEHaQNNAyw368ERNcK/IPEMEPzOfSdqYDIhVSeJzYzjxJ8
+         1PXBqBA7tb+GRL3a2SVZFpgnnHQbTJA1jOH4IpWnPtmXqDpOYrSuf5PodlZ4tCv7nM3V
+         CXHyuVnnLQivwN/zagQDOYLKS0QGISD/Bzz6p7u0THaRR1fqLq79dvsFi7DzHqqdI78X
+         hmHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YROQFQEPWdBQIhB1n8gHD/kr10ieWa0trY98wElq/pc=;
-        b=1L5hPSFNQOpLuuU9ZMhkKH+NcLCZGBJPTBozzF+RcLeOoo/Lo9miJUEZgs/jWIQ27i
-         LD0P9zwAmG6+YRcEGLcZdnJ2P3YYVvt2Q+v7MbuVBMYCxzDH+epHYbeXX50i130aD34N
-         ohaSdt9uMS7h/dsvsBnZgY7JhENKOtHLxVL4h938xM43F8+5CNrid3iM3S2/ckG+N+UR
-         QSPES17O5q9SHqUFzO12bmq4KWaoYXIyL+uBwaKGbRnWYdNeXKorhesZSiRCK8jT7Sgl
-         SlWYVX3ET1HNV4BkB7cT7x0fPQ0wbChCrrWA3YD1PfXwXlaWSqUYMNYha2vKQ+SOUCbC
-         3jOQ==
-X-Gm-Message-State: ANoB5plYQyDjQsmonA/B9XZ8+pbdDV/rpH4KWWp435LRiuGPRVqO7ETj
-        Lv5VgjT4I5WDCzNBAqHUEiN5qA==
-X-Google-Smtp-Source: AA0mqf52MxkhhF+T1ebYV9lbdRoLZU3Xf4s/0EAmgmZvDSEXw/xIz0RpkpGEGRpktu+cAAj8q+zr/w==
-X-Received: by 2002:adf:f1d2:0:b0:242:509a:ad49 with SMTP id z18-20020adff1d2000000b00242509aad49mr8804253wro.345.1670346998759;
-        Tue, 06 Dec 2022 09:16:38 -0800 (PST)
+        bh=wkjOSaePaW4cwPgy6cKdaGFLlxgNwbwbhmDlbNQQNyA=;
+        b=k+8v+xCpBN+STaIKXyJhZzEg31xHYNBYs7E/F7s8WNN2Cwu/d/HBIn8OHx+z7um2XE
+         4mAhAYh5MtN/wksd+V83nFHpUCf3dwAXG4wvWS0qJEVLoWL3TBAvXW4c/gRLazHJBMlH
+         QqygzuzIIJXQPQL2OVPkpsjxbHcnYLoRlqM+MQLYJx8ZY9RNNDmsLF6yq+PNZDm/GE9e
+         vXE7zCb1Dy4p3yu5ZxyfYlkeJO5wNFyGTLv9u6FCmIkmZhX0FUIA1PI1MIbZqqWhJyFh
+         1pLh8gBeNMs51K3C9vczRaYoVt7E/1+x6NvM5LWor/WeQbOd/NJ/PBte13dkd2HkBIKq
+         Q3xA==
+X-Gm-Message-State: ANoB5pm5IzcBUgumH3LdyMzxIgLicSt+loOQU7gaLiBWBjXzK4b6mULc
+        oBSicRPHQIFKsuFfOaPvBkjCUw==
+X-Google-Smtp-Source: AA0mqf7uX5D13d2dZmniVhruFUG6up8wnz4YlxpwhY4ufp1N31TFjORCg9NlqaJoWvsPgHZG0SDxMg==
+X-Received: by 2002:adf:e990:0:b0:242:6c62:84ee with SMTP id h16-20020adfe990000000b002426c6284eemr4667192wrm.598.1670347461335;
+        Tue, 06 Dec 2022 09:24:21 -0800 (PST)
 Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id r20-20020a05600c35d400b003c6d21a19a0sm14941710wmq.29.2022.12.06.09.16.37
+        by smtp.googlemail.com with ESMTPSA id u17-20020a05600c19d100b003c6f8d30e40sm27920686wmq.31.2022.12.06.09.24.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 09:16:38 -0800 (PST)
-Message-ID: <6760fd0c-bc83-4217-4e42-76850bb42b19@linaro.org>
-Date:   Tue, 6 Dec 2022 18:16:36 +0100
+        Tue, 06 Dec 2022 09:24:20 -0800 (PST)
+Message-ID: <df1f3014-9432-60b9-a29b-3af77858bcff@linaro.org>
+Date:   Tue, 6 Dec 2022 18:24:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: thermal: rzg2l-thermal: Document RZ/Five SoC
+Subject: Re: [PATCH] dt-bindings: thermal: qcom-tsens: Add compatible for
+ sm8550
 Content-Language: en-US
-To:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221115121629.1181667-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-tsens-v1-0-0e169822830f@linaro.org>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221115121629.1181667-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-tsens-v1-0-0e169822830f@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,35 +84,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2022 13:16, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 16/11/2022 11:09, Neil Armstrong wrote:
+> The Qualcomm SM8550 platform has three instances of the tsens block,
+> add a compatible for these instances.
 > 
-> The TSU block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-> SoC. "renesas,r9a07g043-tsu" compatible string will be used on the
-> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
-> SoC.
-> 
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-tsu" will be used as a fallback on RZ/Five SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->   Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml b/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
-> index 1d8373397848..03f4b926e53c 100644
-> --- a/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
-> @@ -17,7 +17,7 @@ properties:
->     compatible:
->       items:
->         - enum:
-> -          - renesas,r9a07g043-tsu # RZ/G2UL
-> +          - renesas,r9a07g043-tsu # RZ/G2UL and RZ/Five
->             - renesas,r9a07g044-tsu # RZ/G2{L,LC}
->             - renesas,r9a07g054-tsu # RZ/V2L
->         - const: renesas,rzg2l-tsu
 
 Applied, thanks
 
