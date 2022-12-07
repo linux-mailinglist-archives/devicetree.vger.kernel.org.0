@@ -2,148 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C715164612C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 19:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41524646217
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 21:07:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiLGSgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 13:36:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
+        id S229651AbiLGUHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 15:07:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbiLGSgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 13:36:17 -0500
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8AB22E
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 10:36:16 -0800 (PST)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-3b48b139b46so195583687b3.12
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 10:36:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YkCBMDlB3hXmQeitr6CrurlYhqpOvhf1O6xFonNtxQo=;
-        b=Pj0CG1pyIpr6pqsivNG2FWlrW0K3xiy1hT4jNSjQvJHjeS6GZBsRrFqo9647GWmaiw
-         JSPjPZZRUFvAnVbiUhBimguRFOXzVJwfb7ZngeznjR025w4IK6yDuCeIhKG5/HV0BeQb
-         n3+WxW0n2ez+vrvcXYsegtuJVlDgD9tdis73WkkpQSXANiSEP4SetrLZrDHhPwk+hV+X
-         dqpx5h03FurSXVxNt95ojrqYSAcPjbuYPL+yDe0FOOrcFn3UKImHOcjjS+HHDPI+6miF
-         OkORjEdDExI0LWMAs5paMqseoVeIQ7nlGQ08/5MN0rzmw9Piywr1vcBFsD7DwxaHE5K2
-         ESaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YkCBMDlB3hXmQeitr6CrurlYhqpOvhf1O6xFonNtxQo=;
-        b=VBkPdICf4S0ilasb1kOIQi9+uBBo4bTxafL9cFES1E95VbbNOIxHHe7mUaUkMmFJx/
-         B7l38vOGgBEeccNYsSoRt1vn/3NUKIKAcKDpqkrZifOKZQGgzLnnMfsofjK+5EcbQahO
-         +7ibW8AqAHn4QYRwBwUuIcajlaPEM8Kn2O24uHI9UoNNGEZPljCImLDntwaxUMNSxfZF
-         uKfl1qiVY2E/PP1VETlXhHg3AU/vh7KJW7XjfSb0Ji4q4FXLYF79D2q7do3GQe4JE0fm
-         LUQuTLrSRRdSse0+jRm/u278wGNMkgGjrpLyjkAmjb+THl3P2IcdD4Yu3cRL1rbJOPKQ
-         LfcQ==
-X-Gm-Message-State: ANoB5pmo9XpxhiVBXuj6xkezbYcsr1YY/m61NyP4ZGyiS/cOmPnzVGe5
-        50MhR/hcgJzfu3/xpbWcggm8rmCKDU66rBiWCDrEYQ==
-X-Google-Smtp-Source: AA0mqf4m5wZ2kYRrz+V6Su/X0hXGCCxugC1U+MQcs7ps/3PXHRak9VUu+C2HY/CsHAxhi0AWrkS67g/lonIWB716Wek=
-X-Received: by 2002:a81:6c52:0:b0:370:4c23:eacc with SMTP id
- h79-20020a816c52000000b003704c23eaccmr21656043ywc.127.1670438175478; Wed, 07
- Dec 2022 10:36:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20221204061555.1355453-1-dmitry.baryshkov@linaro.org>
- <20221204061555.1355453-2-dmitry.baryshkov@linaro.org> <20221205220433.GA2684995-robh@kernel.org>
- <E5C1A37F-5758-4026-9412-F13760C465D0@linaro.org> <20221207170753.GA2402110-robh@kernel.org>
-In-Reply-To: <20221207170753.GA2402110-robh@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 7 Dec 2022 20:36:04 +0200
-Message-ID: <CAA8EJpoOuJqK7zGsU2C9Y1ZB-Lb5TvXcL30be6uVodOy=M6T5g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: input: qcom,pm8921-keypad: convert to
- YAML format
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        with ESMTP id S229449AbiLGUHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 15:07:16 -0500
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F567B4C5
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 12:07:14 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:947e:1fc0:ebbb:447b])
+        by xavier.telenet-ops.be with bizsmtp
+        id tY792800J4BwbnS01Y79el; Wed, 07 Dec 2022 21:07:11 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p30Qd-002rg7-HJ; Wed, 07 Dec 2022 20:50:03 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1p2xcj-002Xs4-Ri; Wed, 07 Dec 2022 17:50:21 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Ulrich Hecht <uli+renesas@fpond.eu>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] dt-bindings: can: renesas,rcar-canfd: Fix number of channels for R-Car V3U
+Date:   Wed,  7 Dec 2022 17:50:21 +0100
+Message-Id: <7d41d72cd7db2e90bae069ce57dbb672f17500ae.1670431681.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Dec 2022 at 19:07, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Dec 06, 2022 at 05:20:16AM +0200, Dmitry Baryshkov wrote:
-> > 6 =D0=B4=D0=B5=D0=BA=D0=B0=D0=B1=D1=80=D1=8F 2022 =D0=B3. 00:04:33 GMT+=
-02:00, Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > >On Sun, Dec 04, 2022 at 08:15:52AM +0200, Dmitry Baryshkov wrote:
-> > >> Convert the bindings for the keypad subdevices of Qualcomm PM8921 an=
-d
-> > >> PM8058 PMICs from text to YAML format.
-> > >>
-> > >> While doing the conversion also change linux,keypad-no-autorepeat
-> > >> property to linux,input-no-autorepeat. The former property was never
-> > >> used by DT and was never handled by the driver.
-> > >
-> > >Changing from the documented one to one some drivers use. I guess
-> > >that's a slight improvement. Please see this discussion[1].
-> >
-> > Well, the problem is that the documentation is misleading. The driver
-> > doesn't handle the documented property, so we should change either
-> > the driver, or the docs. Which change is the preferred one?
->
-> The preference is autorepeat is not the default and setting
-> 'autorepeat' enables it. You can't really change that unless you don't
-> really need autorepeat by default. I can't see why it would be
-> needed for the power button, but I haven't looked what else you have.
+According to the bindings, only two channels are supported.
+However, R-Car V3U supports eight, leading to "make dtbs" failures:
 
-It's not a pon/resin. this is a full-fledged keypad. For example for
-apq8060-dragonboard:
+        arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
 
-linux,keymap =3D <
-        MATRIX_KEY(0, 0, KEY_MENU)
-        MATRIX_KEY(0, 2, KEY_1)
-        MATRIX_KEY(0, 3, KEY_4)
-        MATRIX_KEY(0, 4, KEY_7)
-        MATRIX_KEY(1, 0, KEY_UP)
-        MATRIX_KEY(1, 1, KEY_LEFT)
-        MATRIX_KEY(1, 2, KEY_DOWN)
-        MATRIX_KEY(1, 3, KEY_5)
-        MATRIX_KEY(1, 3, KEY_8)
-        MATRIX_KEY(2, 0, KEY_HOME)
-        MATRIX_KEY(2, 1, KEY_REPLY)
-        MATRIX_KEY(2, 2, KEY_2)
-        MATRIX_KEY(2, 3, KEY_6)
-        MATRIX_KEY(3, 0, KEY_VOLUMEUP)
-        MATRIX_KEY(3, 1, KEY_RIGHT)
-        MATRIX_KEY(3, 2, KEY_3)
-        MATRIX_KEY(3, 3, KEY_9)
-        MATRIX_KEY(3, 4, KEY_SWITCHVIDEOMODE)
-        MATRIX_KEY(4, 0, KEY_VOLUMEDOWN)
-        MATRIX_KEY(4, 1, KEY_BACK)
-        MATRIX_KEY(4, 2, KEY_CAMERA)
-        MATRIX_KEY(4, 3, KEY_KBDILLUMTOGGLE)
-                                        >;
+Update the number of channels to 8 on R-Car V3U.
+While at it, prevent adding more properties to the channel nodes, as
+they must contain no other properties than a status property.
 
-> Of all the no autorepeat options, I prefer 'linux,no-autorepeat' as I
-> find 'input' or 'keypad' redundant. But Dmitry T. didn't think it should
-> be a common property at the time.
+Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - s/unevaluatedProperties/additionalProperties/.
+---
+ .../bindings/net/can/renesas,rcar-canfd.yaml  | 133 ++++++++++--------
+ 1 file changed, 72 insertions(+), 61 deletions(-)
 
-We have not used any of the options in the in-kernel DTs. However the
-driver for the keypad has supported the 'linux,input-no-autorepeat'
-since March 2014. I'm just changing the docs to document the correct
-option. I can split the patch into two distinct patches (one for the
-bugfix, one for conversion), if you think that it would be better.
+diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+index 6f71fc96bc4e3156..5228fd513ca89a3c 100644
+--- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+@@ -9,9 +9,6 @@ title: Renesas R-Car CAN FD Controller
+ maintainers:
+   - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+ 
+-allOf:
+-  - $ref: can-controller.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -77,12 +74,13 @@ properties:
+     description: Maximum frequency of the CANFD clock.
+ 
+ patternProperties:
+-  "^channel[01]$":
++  "^channel[0-7]$":
+     type: object
+     description:
+-      The controller supports two channels and each is represented as a child
+-      node.  Each child node supports the "status" property only, which
+-      is used to enable/disable the respective channel.
++      The controller supports multiple channels and each is represented as a
++      child node.  Each channel can be enabled/disabled individually.
++
++    additionalProperties: false
+ 
+ required:
+   - compatible
+@@ -98,60 +96,73 @@ required:
+   - channel0
+   - channel1
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        enum:
+-          - renesas,rzg2l-canfd
+-then:
+-  properties:
+-    interrupts:
+-      items:
+-        - description: CAN global error interrupt
+-        - description: CAN receive FIFO interrupt
+-        - description: CAN0 error interrupt
+-        - description: CAN0 transmit interrupt
+-        - description: CAN0 transmit/receive FIFO receive completion interrupt
+-        - description: CAN1 error interrupt
+-        - description: CAN1 transmit interrupt
+-        - description: CAN1 transmit/receive FIFO receive completion interrupt
+-
+-    interrupt-names:
+-      items:
+-        - const: g_err
+-        - const: g_recc
+-        - const: ch0_err
+-        - const: ch0_rec
+-        - const: ch0_trx
+-        - const: ch1_err
+-        - const: ch1_rec
+-        - const: ch1_trx
+-
+-    resets:
+-      maxItems: 2
+-
+-    reset-names:
+-      items:
+-        - const: rstp_n
+-        - const: rstc_n
+-
+-  required:
+-    - reset-names
+-else:
+-  properties:
+-    interrupts:
+-      items:
+-        - description: Channel interrupt
+-        - description: Global interrupt
+-
+-    interrupt-names:
+-      items:
+-        - const: ch_int
+-        - const: g_int
+-
+-    resets:
+-      maxItems: 1
++allOf:
++  - $ref: can-controller.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,rzg2l-canfd
++    then:
++      properties:
++        interrupts:
++          items:
++            - description: CAN global error interrupt
++            - description: CAN receive FIFO interrupt
++            - description: CAN0 error interrupt
++            - description: CAN0 transmit interrupt
++            - description: CAN0 transmit/receive FIFO receive completion interrupt
++            - description: CAN1 error interrupt
++            - description: CAN1 transmit interrupt
++            - description: CAN1 transmit/receive FIFO receive completion interrupt
++
++        interrupt-names:
++          items:
++            - const: g_err
++            - const: g_recc
++            - const: ch0_err
++            - const: ch0_rec
++            - const: ch0_trx
++            - const: ch1_err
++            - const: ch1_rec
++            - const: ch1_trx
++
++        resets:
++          maxItems: 2
++
++        reset-names:
++          items:
++            - const: rstp_n
++            - const: rstc_n
++
++      required:
++        - reset-names
++    else:
++      properties:
++        interrupts:
++          items:
++            - description: Channel interrupt
++            - description: Global interrupt
++
++        interrupt-names:
++          items:
++            - const: ch_int
++            - const: g_int
++
++        resets:
++          maxItems: 1
++
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: renesas,r8a779a0-canfd
++    then:
++      patternProperties:
++        "^channel[2-7]$": false
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.25.1
 
-
---=20
-With best wishes
-Dmitry
