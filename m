@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8BF645160
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 02:43:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71591645195
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 02:55:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiLGBnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 20:43:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56174 "EHLO
+        id S229530AbiLGBzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Dec 2022 20:55:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbiLGBnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 20:43:21 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E280A52887;
-        Tue,  6 Dec 2022 17:43:19 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: linasend@asahilina.net)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 06BBC41F72;
-        Wed,  7 Dec 2022 01:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
-        s=default; t=1670377398;
-        bh=OUQL2BwK22yCDGZU4/AGkA3BQUFil4yDcuraBSM6/Q0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=omNlpXQOoXIYIMWHUVP5k6HNLV5ZfkxIQeyWH0hWwT3WVQ/aHTnTsJ2jrQhRM6XX5
-         7TxmHeuifS2uLsnfLZcBlZzXm9WZiWwrRTikjrEFRJTKa0IpttgslzBOuEVWaNa33M
-         +3iLj3V5ThLV1IZ1eI3Pux1c3L+riMOGNUFXXhFQ4JSRgezCxSmZBwcTnBUCbJTFlc
-         nSxjFHGE/nOlz7GGkQ1kLnL7NW/V38AdqFdsSMScdSJ26p+wcpJhFiX1LeSpZIdXGl
-         HMMftdvUdT7DvvkRVXRc+s38FBwOQ8+rTXXBTyWnbvE4XipzU9amWRMYhaqF+xmSxh
-         efghuORndh2Rg==
-From:   Asahi Lina <lina@asahilina.net>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Janne Grunau <j@jannau.net>
-Cc:     Marc Zyngier <maz@kernel.org>, asahi@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Asahi Lina <lina@asahilina.net>
-Subject: [PATCH] arm64 dts: apple: t600x-pmgr: Fix search & replace typo
-Date:   Wed,  7 Dec 2022 10:43:05 +0900
-Message-Id: <20221207014305.21018-2-lina@asahilina.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221207014305.21018-1-lina@asahilina.net>
-References: <20221207014305.21018-1-lina@asahilina.net>
+        with ESMTP id S229534AbiLGBzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 20:55:07 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB1ACBA2
+        for <devicetree@vger.kernel.org>; Tue,  6 Dec 2022 17:55:05 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id c1so26483167lfi.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Dec 2022 17:55:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9gPf1c0smtvvJKefQzCjT4En/iaFZ6itMFzysD6Z4OM=;
+        b=F5XdJ8P+8uBnBb+dUBfic7nm5SikL1KNbn7ae+J0KeUhJ7YubLk0eOko+SSKw4JMIL
+         RMowVv0fhZjZxvuuC5XCrjHqcsOTFUOkFuxnVS4R0yoybdhUosKxPSJWgXlG8BRCR4Bl
+         qByb0+sg9hXnmrQuwKfm+1pfSWG6rpvT2eFiE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9gPf1c0smtvvJKefQzCjT4En/iaFZ6itMFzysD6Z4OM=;
+        b=HIcRX+8gn4ZuopoJHFLpeuHV4XYnWEjZMK+cXPHogBdNKZbl11kf2yfkzUyxCZUKYr
+         mUGjxoUpy9QC5dH+eMgM208ZqML/xRKD09JuLvwe/mEZQ3bnoUs38avRSZIl5eVgIbDm
+         s0AbkVfOcDBVHEGdNZqTBpu31d6+/UG7nwbtMIMLeRkoHLsCRB8TMAZF2q9GRuAZDs0U
+         ITXp1Eb4nPSluwnO7t0tgDbGpN8kUA84uy0hBYi8mmn+Bym08+iiY8HDul+ZG7wUkQoI
+         Jp9xegL1WZgHTxBu8iWfkF6RwWyMTTE0w05Np2DKOhpYwUdL97kqKxlunT96ZjHe0+7J
+         eQWw==
+X-Gm-Message-State: ANoB5pl5ALwKAqn3JOavyDHTYpnsknMWzhTQeXIPFj2P5tTdJ8QT3EJS
+        +ek4lB4mVAnY7ZYetccSoV8akoBFV8FSsdLnw1XewA==
+X-Google-Smtp-Source: AA0mqf7wtJbEWs3XklSLGf4TQG/d7BmGx6U75OCnWt3zypvQNfxMpgMOwZeyvletG+StOnG/ChUnbuE8/zaGl5Fx4vs=
+X-Received: by 2002:a05:6512:33d1:b0:4b5:1c86:9267 with SMTP id
+ d17-20020a05651233d100b004b51c869267mr15140973lfg.297.1670378104033; Tue, 06
+ Dec 2022 17:55:04 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 7 Dec 2022 01:55:03 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Wed, 7 Dec 2022 01:55:03 +0000
+Message-ID: <CAE-0n520=mjdc4H1m8au0iBo2qEeaL8OrF1HCP0bXORe2Wa_7w@mail.gmail.com>
+Subject: Re: [PATCH] remoteproc: elf_loader: Update resource table name check
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, bgoswami@quicinc.com,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, krzysztof.kozlowski@linaro.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        mathieu.poirier@linaro.org, perex@perex.cz, quic_plai@quicinc.com,
+        quic_rohkumar@quicinc.com, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It looks like the search-and-replace that happened to add die IDs to
-the t600x PMGR tree was a little bit too eager on a comment, and nobody
-noticed! Let's fix that.
+Quoting Srinivasa Rao Mandadapu (2022-12-01 04:20:48)
+> Update resource table name check with sub string search instead of
+> complete string search.
+> In general Qualcomm binary contains, section header name
+> (e.g. .resource_table), amended with extra string to differentiate
+> with other sections.
+> So far Android adsp binaries are being authenticated using TZ,
+> hence this mismatch hasn't created any problem.
+> In recent developments, ADSP binary is being used in Chrome based
+> platforms, which doesn't have TZ path, hence resource table is
+> required for memory sandboxing.
+>
 
-Fixes: fa86294eb355 ("arm64: dts: apple: Add initial t6000/t6001/t6002 DTs")
-Signed-off-by: Asahi Lina <lina@asahilina.net>
----
- arch/arm64/boot/dts/apple/t600x-pmgr.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Does this need a Fixes tag?
 
-diff --git a/arch/arm64/boot/dts/apple/t600x-pmgr.dtsi b/arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
-index b8daeb0368d5..0bd44753b76a 100644
---- a/arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
-+++ b/arch/arm64/boot/dts/apple/t600x-pmgr.dtsi
-@@ -225,7 +225,7 @@ DIE_NODE(ps_afr): power-controller@1e8 {
- 		#power-domain-cells = <0>;
- 		#reset-cells = <0>;
- 		label = DIE_LABEL(afr);
--		/* Apple Fabric, media DIE_NODE(stuff): this can power down */
-+		/* Apple Fabric, media stuff: this can power down */
- 	};
- 
- 	DIE_NODE(ps_afnc1_ioa): power-controller@1f0 {
--- 
-2.35.1
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> ---
+>  drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c b/drivers/remoteproc/remoteproc_elf_loader.c
+> index 5a412d7..0feb120 100644
+> --- a/drivers/remoteproc/remoteproc_elf_loader.c
+> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
+> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct firmware *fw)
+>                 u64 offset = elf_shdr_get_sh_offset(class, shdr);
+>                 u32 name = elf_shdr_get_sh_name(class, shdr);
+>
+> -               if (strcmp(name_table + name, ".resource_table"))
+> +               if (!strstr(name_table + name, ".resource_table"))
 
+Was the strcmp not working before because the 'name_table' has something
+else in it? It really looks like your elf file is malformed.
