@@ -2,233 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41524646217
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 21:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6DE1646195
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 20:23:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbiLGUHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 15:07:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36028 "EHLO
+        id S229699AbiLGTXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 14:23:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiLGUHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 15:07:16 -0500
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F567B4C5
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 12:07:14 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:947e:1fc0:ebbb:447b])
-        by xavier.telenet-ops.be with bizsmtp
-        id tY792800J4BwbnS01Y79el; Wed, 07 Dec 2022 21:07:11 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p30Qd-002rg7-HJ; Wed, 07 Dec 2022 20:50:03 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1p2xcj-002Xs4-Ri; Wed, 07 Dec 2022 17:50:21 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Ulrich Hecht <uli+renesas@fpond.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: can: renesas,rcar-canfd: Fix number of channels for R-Car V3U
-Date:   Wed,  7 Dec 2022 17:50:21 +0100
-Message-Id: <7d41d72cd7db2e90bae069ce57dbb672f17500ae.1670431681.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229628AbiLGTXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 14:23:35 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29CD663D6
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 11:23:32 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id bx10so29580202wrb.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 11:23:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=C/ucFAOI2Iw49PsMpiLJ1W8f9WPorHFdTdwmC6zDH1Q=;
+        b=xZcGUw7j/udNJzp6q3v9DnUQWnrnBHrOYufYXtsJ11DOBsBVl/aA7pLZMQwWVGUDcO
+         GH99Jd7+2wXr9IlQRN/nL5tdSYmJ1Q3KAPLKvhO5bFoUdnvvpPGK6arrHluEu1yjUSEd
+         ikqYxDgj+iJkfRhPQYjrL368LyVoGdnSwJnXA9SAABpiyA4ifSi17L9F7KoB/bi3iLHF
+         np6OYplDTy7zLgw+6U/HpRLl/YS7uidTY5hhdWW7f853HhWLJuv4sSYpeYK3OKABHV7p
+         +hv69RTRQpHkImI6bRmhcZllEpOvRs68tFWtRiile+Xvpv5mDD6VL/Ke52Z/LCbBOwZY
+         Tkwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C/ucFAOI2Iw49PsMpiLJ1W8f9WPorHFdTdwmC6zDH1Q=;
+        b=vBIVV17wPebEgys8gvX9B6alayVZRTtiBF/TffNeHhtz2u1YA9jsfN3Cj16ycDrEar
+         sl0+nah9PCaOc1JEln70MGJP1Dq5Ml5/WZqFIHtesEpewn4nN792fFqB5ljNhVo85EoI
+         HPaWDnhNj+zpr7gRZ1MWE1a/qEZQ6MeXCmRgnC7ZyTRH5/vecZafJdiURCCr8n+digDu
+         oMFgbWekDFawBjeJVA0Ey2kPHdyJoRhZQDTIci9kN4LwY3o8uPNBl80U8GxRrSnmLLcZ
+         QUKsBImczyDIwgWfpoFVCdoapGpss6lm2gfMG3+dwUuI/apub+azyKbYpouaWb/4Smeu
+         cPuQ==
+X-Gm-Message-State: ANoB5pllKp5r5gBz3P0Qqk45fsmdnJcFcVG6WZsLsAdYUyABVgYP02HU
+        8JO+sRV3OENn/byB6mbXK16Xlg==
+X-Google-Smtp-Source: AA0mqf7lUzeg/Mb/Jc7Mj6zbY1CYia5Xmj0KlBbI1SWWuFUnP5qsvIXERkQSaTKgQltRJR1knP0y0w==
+X-Received: by 2002:a5d:610d:0:b0:242:4fd1:1f5c with SMTP id v13-20020a5d610d000000b002424fd11f5cmr12540012wrt.376.1670441011388;
+        Wed, 07 Dec 2022 11:23:31 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id w1-20020a5d5441000000b002422b462975sm19400355wrv.34.2022.12.07.11.23.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Dec 2022 11:23:31 -0800 (PST)
+Subject: [PATCH v3 0/5] remoteproc: qcom_q6v5_pas: add support for SM8550 adsp, cdsp & mpss
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-b4-tracking: H4sIACrokGMC/52NQQ6CMBBFr0K6dkw7LRFdeQ/joq0FmkBLpkBiCHd3dOdSV5M3yX9vEyVQDEVcqk
+ 1QWGOJOTHoQyV8b1MXID6YBUpEpZSBZGksM+XUQRmbupawTMzBjkBhzHOYKHtopGl165w2rhXscrYE
+ cGST79mWlmHgZx/LnOn5aa+Kz+3XzKpAgpLGa+Oddmd1HSIv8zFTJ+6cWPEvLb616Dwi1rU5mS/tvu 8vabEcQjcBAAA=
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 07 Dec 2022 20:23:22 +0100
+Message-Id: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
+To:     Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-remoteproc@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+        linux-kernel@vger.kernel.org
+X-Mailer: b4 0.10.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the bindings, only two channels are supported.
-However, R-Car V3U supports eight, leading to "make dtbs" failures:
+This patchsets adds support for the aDSP, cDSP and MPSS found in the
+SM8550 SoC.
 
-        arch/arm64/boot/dts/renesas/r8a779a0-falcon.dtb: can@e6660000: Unevaluated properties are not allowed ('channel2', 'channel3', 'channel4', 'channel5', 'channel6', 'channel7' were unexpected)
+The aDSP, cDSP and MPSS boot process on SM8550 now requires a secondary
+"Devicetree" firmware to be passed along the main Firmware, and the cDSP
+a new power domain named "NSP".
 
-Update the number of channels to 8 on R-Car V3U.
-While at it, prevent adding more properties to the channel nodes, as
-they must contain no other properties than a status property.
+In order to satisfy the load & authentication order required by the SM8550
+SoC, the following is implemented:
+- "Devicetree" firmware request & load in dedicated memory
+- Q6V5 prepare
+- Power Domain & Clocks enable
+- "Devicetree" firmware authentication
+- Main firmware load in dedicated memory
+- Main firmware authentication
+- Q6V5 startup
+- "Devicetree" firmware metadata release
+- Main metadata release
 
-Fixes: d6254d52d70de530 ("dt-bindings: can: renesas,rcar-canfd: Document r8a779a0 support")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+When booting older platforms, the "Devicetree" steps would be
+bypassed and the load & authentication order would still be valid.
+
+Bindings changes depends on:
+- https://lore.kernel.org/all/20221124184333.133911-1-krzysztof.kozlowski@linaro.org/
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@somainline.org>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Amol Maheshwari <amahesh@qti.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-remoteproc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Abel Vesa <abel.vesa@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+
 ---
-v2:
-  - s/unevaluatedProperties/additionalProperties/.
----
- .../bindings/net/can/renesas,rcar-canfd.yaml  | 133 ++++++++++--------
- 1 file changed, 72 insertions(+), 61 deletions(-)
+Changes in v3:
+- fix mpss matching in bindings, tested against DT
+- Link to v2: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-remoteproc-v2-0-12bc22255474@linaro.org
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-index 6f71fc96bc4e3156..5228fd513ca89a3c 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-@@ -9,9 +9,6 @@ title: Renesas R-Car CAN FD Controller
- maintainers:
-   - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
- 
--allOf:
--  - $ref: can-controller.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -77,12 +74,13 @@ properties:
-     description: Maximum frequency of the CANFD clock.
- 
- patternProperties:
--  "^channel[01]$":
-+  "^channel[0-7]$":
-     type: object
-     description:
--      The controller supports two channels and each is represented as a child
--      node.  Each child node supports the "status" property only, which
--      is used to enable/disable the respective channel.
-+      The controller supports multiple channels and each is represented as a
-+      child node.  Each channel can be enabled/disabled individually.
-+
-+    additionalProperties: false
- 
- required:
-   - compatible
-@@ -98,60 +96,73 @@ required:
-   - channel0
-   - channel1
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - renesas,rzg2l-canfd
--then:
--  properties:
--    interrupts:
--      items:
--        - description: CAN global error interrupt
--        - description: CAN receive FIFO interrupt
--        - description: CAN0 error interrupt
--        - description: CAN0 transmit interrupt
--        - description: CAN0 transmit/receive FIFO receive completion interrupt
--        - description: CAN1 error interrupt
--        - description: CAN1 transmit interrupt
--        - description: CAN1 transmit/receive FIFO receive completion interrupt
--
--    interrupt-names:
--      items:
--        - const: g_err
--        - const: g_recc
--        - const: ch0_err
--        - const: ch0_rec
--        - const: ch0_trx
--        - const: ch1_err
--        - const: ch1_rec
--        - const: ch1_trx
--
--    resets:
--      maxItems: 2
--
--    reset-names:
--      items:
--        - const: rstp_n
--        - const: rstc_n
--
--  required:
--    - reset-names
--else:
--  properties:
--    interrupts:
--      items:
--        - description: Channel interrupt
--        - description: Global interrupt
--
--    interrupt-names:
--      items:
--        - const: ch_int
--        - const: g_int
--
--    resets:
--      maxItems: 1
-+allOf:
-+  - $ref: can-controller.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-canfd
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: CAN global error interrupt
-+            - description: CAN receive FIFO interrupt
-+            - description: CAN0 error interrupt
-+            - description: CAN0 transmit interrupt
-+            - description: CAN0 transmit/receive FIFO receive completion interrupt
-+            - description: CAN1 error interrupt
-+            - description: CAN1 transmit interrupt
-+            - description: CAN1 transmit/receive FIFO receive completion interrupt
-+
-+        interrupt-names:
-+          items:
-+            - const: g_err
-+            - const: g_recc
-+            - const: ch0_err
-+            - const: ch0_rec
-+            - const: ch0_trx
-+            - const: ch1_err
-+            - const: ch1_rec
-+            - const: ch1_trx
-+
-+        resets:
-+          maxItems: 2
-+
-+        reset-names:
-+          items:
-+            - const: rstp_n
-+            - const: rstc_n
-+
-+      required:
-+        - reset-names
-+    else:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: Channel interrupt
-+            - description: Global interrupt
-+
-+        interrupt-names:
-+          items:
-+            - const: ch_int
-+            - const: g_int
-+
-+        resets:
-+          maxItems: 1
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: renesas,r8a779a0-canfd
-+    then:
-+      patternProperties:
-+        "^channel[2-7]$": false
- 
- unevaluatedProperties: false
- 
+Changes in v2:
+- Moved the SM8550 pas bindings on top of "split and reorganize PAS/PIL" v3 patchset 
+- Incorporated DSM memory support into pas bindings & driver
+- Moved second DTB firmware into second entry of firmware-name
+- Dropped applied "qcom,fastrpc: increase allowed iommus entries" patch
+- Link to v1: https://lore.kernel.org/r/20221114-narmstrong-sm8550-upstream-remoteproc-v1-0-104c34cb3b91@linaro.org
+
+---
+Neil Armstrong (5):
+      dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common
+      dt-bindings: remoteproc: qcom: adsp: document sm8550 adsp, cdsp & mpss compatible
+      remoteproc: qcom_q6v5_pas: add support for dtb co-firmware loading
+      remoteproc: qcom_q6v5_pas: add support for assigning memory to firmware
+      remoteproc: qcom_q6v5_pas: add sm8550 adsp, cdsp & mpss compatible & data
+
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml  |   4 +
+ .../bindings/remoteproc/qcom,pas-common.yaml       |   8 -
+ .../bindings/remoteproc/qcom,qcs404-pas.yaml       |   8 +
+ .../bindings/remoteproc/qcom,sc7180-pas.yaml       |   8 +
+ .../bindings/remoteproc/qcom,sc8180x-pas.yaml      |   8 +
+ .../bindings/remoteproc/qcom,sc8280xp-pas.yaml     |   8 +
+ .../bindings/remoteproc/qcom,sdx55-pas.yaml        |   8 +
+ .../bindings/remoteproc/qcom,sm6350-pas.yaml       |   8 +
+ .../bindings/remoteproc/qcom,sm8150-pas.yaml       |   8 +
+ .../bindings/remoteproc/qcom,sm8350-pas.yaml       |   8 +
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml       | 178 ++++++++++++++
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 271 ++++++++++++++++++++-
+ 12 files changed, 504 insertions(+), 21 deletions(-)
+---
+base-commit: 268975e1af25cd83994d24c46ad0d95753291f64
+change-id: 20221114-narmstrong-sm8550-upstream-remoteproc-804f3fbb34bf
+
+Best regards,
 -- 
-2.25.1
-
+Neil Armstrong <neil.armstrong@linaro.org>
