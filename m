@@ -2,183 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23435645D5A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC1C8645D5C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiLGPNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 10:13:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57290 "EHLO
+        id S229696AbiLGPOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 10:14:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiLGPNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:13:10 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728A55FBB7
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:13:09 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id g7so29203675lfv.5
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:13:09 -0800 (PST)
+        with ESMTP id S229643AbiLGPOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:14:08 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18E460B4C
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:14:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EwuV0n2FcadO46u8mq+gLHcFjCqs4mgvgde47beSgFk=;
-        b=ZvS9jSQhUfL8WcXq/TxjyksIXloX15Ag5b6M8G03A1zo4+dvHKYj8t3a8r40mu0zUD
-         M2UVP7NtSB1bzo/jAucazJWb/W/54+/U+mC//YqsA4AmlQQgsTPeaF2bp/Q2fzsI6OGT
-         imkn5Y7HbXYKqZf1tA1kLjtpHdJIjCJx0GR9ufvTcuUfWjPhtUsrAOAgjoC70cQ37dZ/
-         Wa3Yk2L8Z1SS5cojk6pU9smxwWQ4hJi5nEVC96MZgjOzjP4wegHIg4v1q1KuNEkEu59Y
-         66Pb14vJxPITtwp8AGoKMUfUE7+wLmUIaLW+5uIIxpzwIoroodtdFUuONVOwugpDCrol
-         xmLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EwuV0n2FcadO46u8mq+gLHcFjCqs4mgvgde47beSgFk=;
-        b=UxxyRgC7+IqB98hhdNcFS7AJb7jsWmPmRkYvDZXSRiY2qUqBC3sH2rLQRhcgJ51StZ
-         IVzMAr0aN63u68vXqWShRviOuQy/5Y1ObM9ydWCYBr4okyn2ZREU0iTz/4wvYFm6PQDB
-         OOqnj+M7cp0fmufKXq8kGcYjA17F3qGa7+kghKJCbAd/URI95yuRC997D4aXNdRujHyV
-         ow02WvxCFz54gr9gWNR0CM+uBkQqr66MU5OVQlfG48KQb0xEbZ2uGvsims+PLn4AMWLs
-         QE3C6gv+yUCYgi0RevYb/EpDvWf36UZZVpftK2SC/2u4D4z7Bzs84hlQgklO92WeoYZo
-         fX3A==
-X-Gm-Message-State: ANoB5pk//+Mb7N+Aa3NuwYQdUb19WD7eQtphN2EhyGue/Ob58gEL461U
-        y95Fyd7Eyw9UdK9gdd83cKbhvw==
-X-Google-Smtp-Source: AA0mqf7H/u1TTdUDubpP4RFHzJ+Z6dInp9jhB+5+WVPVTc4JVsGKqJfFgAD2IAyI7TXnhs+eSOZW8A==
-X-Received: by 2002:a05:6512:3454:b0:4b5:8240:5bcb with SMTP id j20-20020a056512345400b004b582405bcbmr3082136lfr.388.1670425987664;
-        Wed, 07 Dec 2022 07:13:07 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bi27-20020a0565120e9b00b004aac23e0dd6sm2893718lfb.29.2022.12.07.07.13.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 07:13:07 -0800 (PST)
-Message-ID: <d7ecbbbf-5d6b-3254-b645-dbea369447ae@linaro.org>
-Date:   Wed, 7 Dec 2022 16:13:05 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670426047; x=1701962047;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=cHtKSJRitadayzB71exae3eDaU30fEhAC/+5NZKm/c4=;
+  b=iwmaskCqC26LWVv2tdz1DQA3R813qRSJHTwcBfg0mCw6UXSRqZ++7BGs
+   YPp9RayADGDfv2h/nl1MNeqxfXcOw9QFYVRcv39IMYeHu2LB2UrDWQSgO
+   QRJuHShdhmpHN5evwBELBuEwu9kvx7ZIvOoBhV+6WVbw4dIY42Jcc8+Ga
+   WrvtHgCQVynd6e/+kvx7N97BIVm0euPCA+Y/j18YDHMAhIRV82S1gRFkT
+   qOmVjAkvwkQlrRfT13nn9Vsg0/Rlpub7fKdaqXmJMeO40hFqcEA3fXY2K
+   h/BWCz2dv9exM9J73jXWFjIywHns6d7D5085pcyeGG1ofUZ24t4b8FtHj
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
+   d="scan'208";a="27816229"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Dec 2022 16:14:05 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 07 Dec 2022 16:14:05 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 07 Dec 2022 16:14:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670426045; x=1701962045;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=cHtKSJRitadayzB71exae3eDaU30fEhAC/+5NZKm/c4=;
+  b=F6GW9pw0Qou7FzXRoLmfwKJ/XCVNwhmiQw8649m75F9AgwM5MSoGKATW
+   bwVkuhDqG8d1b1Kb6mfTSnsvte7mThC94kOADv0b1ZlbjgwC2hNvQpTyN
+   zAiXWFMYq4dlZlRG8gIG3YflXLvImFQPTTUcyuMffoakcsCV4eM28ROg/
+   jRQNCjytQWuk3WmbX/2Eh4zvRHFRxj+aOc3Di9Z7A1thMSD7120c44gh7
+   xLq1ULRnNnLtZf+NeC0lvHqh7Qiwwm0jUEzV8puTM8wEjABpO52BLdMH3
+   kJMhxmOgnd2dnPAFBhSlRgXZ3NJ691p6NE1K9TVb/b4cKiEjt3cwHK+YU
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
+   d="scan'208";a="27816228"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Dec 2022 16:14:05 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id E1ADD280071;
+        Wed,  7 Dec 2022 16:14:04 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: lcdif: Fix clock constraints for imx8mp
+Date:   Wed,  7 Dec 2022 16:13:59 +0100
+Message-Id: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add bindings for StarFive
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-2-william.qiu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207131731.1291517-2-william.qiu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 14:17, William Qiu wrote:
-> Add documentation to describe StarFive
-> designware mobile storage host controller driver.
-> 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  .../bindings/mmc/starfive,jh7110-sdio.yaml    | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
-> new file mode 100644
-> index 000000000000..4f27ef3cf4f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-sdio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive Designware Mobile Storage Host Controller
-> +
-> +description:
-> +  StarFive uses the Synopsys designware mobile storage host controller
-> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
-> +
-> +allOf:
-> +  - $ref: "synopsys-dw-mshc-common.yaml#"
+i.MX8MP uses 3 clocks, so soften the restrictions for clocks & clock-names.
 
-Drop quotes
+Fixes: f5419cb0743f ("dt-bindings: lcdif: Add compatible for i.MX8MP")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> +
-> +maintainers:
-> +  - William Qiu <william.qiu@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-sdio
-
-Why do you call it sdio if the interface is for mmc as well?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: biu clock
-> +      - description: ciu clock
-
-I don't think the card interface clock is optional... are you sure you
-have designs working without it? No clock line at all getting to the memory?
-
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: biu
-> +      - const: ciu
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  starfive,sys-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      The desired number of times that the host execute tuning when needed.
-
-That's not matching the property name. Missing number of items... this
-is anyway confusing. Why number of tuning tries is a property of DT?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/starfive-jh7110.h>
-> +    #include <dt-bindings/reset/starfive-jh7110.h>
-> +    mmc@16010000 {
-> +            compatible = "starfive,jh7110-sdio";
-
-Use 4 spaces for example indentation.
-
-> +            reg = <0x16010000 0x10000>;
-> +            clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-> +                 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-
-Align with previous <
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index 876015a44a1e6..793e8eccf8b8b 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -70,7 +70,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: fsl,imx6sx-lcdif
++            enum:
++              - fsl,imx6sx-lcdif
++              - fsl,imx8mp-lcdif
+     then:
+       properties:
+         clocks:
+-- 
+2.34.1
 
