@@ -2,155 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE94864586A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 12:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7914645831
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:51:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbiLGLAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 06:00:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47306 "EHLO
+        id S229449AbiLGKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:51:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiLGK73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:59:29 -0500
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BD54E42C
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:59:23 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221207105922epoutp03389dc12775e51b2aa3f0a8620c3498ea~ufbzmVY061212012120epoutp03M
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 10:59:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221207105922epoutp03389dc12775e51b2aa3f0a8620c3498ea~ufbzmVY061212012120epoutp03M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1670410762;
-        bh=Snt2Sfm19TbPHC6NdC56oxXeITXd+ZYEHuxh4O0JQaQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BIpqPP3e/pIWlKxlW5oAfTbo49IY9k14zcuQqpujAUNKSJhOYl/bkVnWllblITAcq
-         qkSttcRnyWKv+cwlJdTnqTqpmR9eQXMJX9y5sHJyCOSYu5o5Lzlswv+W9Pvjg5oLWm
-         uW5QwI0oz8g79kUklg4ujNnIAnzwgHJWnBy480xA=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-        20221207105921epcas5p1d1560b1c4c8ae4b59bf7f157c0ae8f13~ufby8R-Qu1385413854epcas5p17;
-        Wed,  7 Dec 2022 10:59:21 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.183]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4NRvRq3Psvz4x9Q1; Wed,  7 Dec
-        2022 10:59:19 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        4A.29.39477.70270936; Wed,  7 Dec 2022 19:59:19 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20221207105052epcas5p1473e38c140d38909c3c98d892bc8a4c4~ufUY-A9LX0558705587epcas5p1P;
-        Wed,  7 Dec 2022 10:50:52 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20221207105052epsmtrp12e8b8d59f47cd48ea27f7617fb3b0f1d~ufUY_VxRx2853128531epsmtrp1T;
-        Wed,  7 Dec 2022 10:50:52 +0000 (GMT)
-X-AuditID: b6c32a4a-259fb70000019a35-72-639072072c41
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E6.D0.14392.C0070936; Wed,  7 Dec 2022 19:50:52 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20221207105050epsmtip13e2b239186347b50124be7e64ad2d259~ufUXetViX2632626326epsmtip1Y;
-        Wed,  7 Dec 2022 10:50:50 +0000 (GMT)
-From:   Sriranjani P <sriranjani.p@samsung.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
-        pankaj.dubey@samsung.com, ravi.patel@samsung.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Sriranjani P <sriranjani.p@samsung.com>
-Subject: [PATCH v2 4/4] arm64: dts: exynos: add dedicated SYSREG compatibles
- to Exynosautov9
-Date:   Wed,  7 Dec 2022 16:20:32 +0530
-Message-Id: <20221207105032.103510-5-sriranjani.p@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221207105032.103510-1-sriranjani.p@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAKsWRmVeSWpSXmKPExsWy7bCmpi570YRkg2PPxCwezNvGZjH/yDlW
-        i74XD5ktNj2+xmpxedccNosZ5/cxWSza+oXd4uGHPewWrXuPsFvcfrOO1YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5
-        ibmptkouPgG6bpk5QEcpKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMCvSKE3OL
-        S/PS9fJSS6wMDQyMTIEKE7IzdrX8YSyYwFWx9EhZA+Naji5GTg4JAROJCY/OsHQxcnEICexm
-        lOjZ/ZoZwvnEKLHox1Z2COcbo8Ted23sMC1b1l+CatnLKHGnZzIrhNPKJHF0zjawKjYBXYnW
-        a5+ZQBIiAksYJVq7dzGCOMwCUxgljv1axghSJSwQJ3Fv63ywDhYBVYnNM6+zgNi8AnYSZ2+t
-        h9onL7F6wwFmEJtTwF7iwtJHYBdKCNxjl3j3+DIzRJGLxOqP36AahCVeHd8CZUtJvOyHOTxd
-        YvORzawQdo5ER1MzVK+9xIErc4AWcwBdpymxfpc+RFhWYuqpdUwgNrMAn0Tv7ydMEHFeiR3z
-        YGw1icWPOqFsGYm1jz5BjfeQeLvzJhMkWCYxSvyefIF1AqPcLIQVCxgZVzFKphYU56anFpsW
-        GOWllsPjLTk/dxMjOOlpee1gfPjgg94hRiYOxkOMEhzMSiK8Lzb2JgvxpiRWVqUW5ccXleak
-        Fh9iNAUG4ERmKdHkfGDazSuJNzSxNDAxMzMzsTQ2M1QS5106pSNZSCA9sSQ1OzW1ILUIpo+J
-        g1OqgWmas0ywYpIfC2MYR4CN1Mfcc4d6r9l5xSxh5D//495Ob+VeDasrrekPombJrPB+XvSB
-        QUAr81Kq9Enp5T6iZ6e05L27Xm7Bm/3s+srHS67zPnysNGPbw73L8gtqytK1kk1jH/9YuOeN
-        6XyncxcmFvQyLwx7s093G/eXjufnYhmLTAN55Ze9t7t3ooDNOZ4vcdZPQ5l7kVJPgjQbsryN
-        rD1LFnxpVTJn0uPQvdBx9qfqje/5LXGLHRl58m6/WBw+r924h/PH9j/d+zeK/1h97273XsdV
-        di95lPPVVJwOflfdzXFt6/3CtAcrw6a65zU84dfgkJYTUp77ImjPpgS9vLjaY3kdT4KUwn+F
-        zzLnVGIpzkg01GIuKk4EAEcE57sDBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGLMWRmVeSWpSXmKPExsWy7bCSnC5PwYRkg/l3hC0ezNvGZjH/yDlW
-        i74XD5ktNj2+xmpxedccNosZ5/cxWSza+oXd4uGHPewWrXuPsFvcfrOO1YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH501yAaxRXDYpqTmZZalF+nYJXBm7Wv4wFkzgqlh6pKyBcS1HFyMnh4SA
-        icSW9ZdYuhi5OIQEdjNK3F5ymwkiISNx8sESZghbWGLlv+fsEEXNTBITD7azgyTYBHQlWq99
-        ZgJJiAisYpQ482gqmMMsMINRYunSM2wgVcICMRLHlk0FG8UioCqxeeZ1FhCbV8BO4uyt9ewQ
-        K+QlVm84AFbDKWAvcWHpIzBbCKhm14odbBMY+RYwMqxilEwtKM5Nzy02LDDMSy3XK07MLS7N
-        S9dLzs/dxAgOSi3NHYzbV33QO8TIxMF4iFGCg1lJhPfFxt5kId6UxMqq1KL8+KLSnNTiQ4zS
-        HCxK4rwXuk7GCwmkJ5akZqemFqQWwWSZODilGpjs+BZMVjOfe0bu6pJJNfWLZjK8vbr3f7EL
-        H6PD0ovLxF8KGHjO8Wasbbg579ti2y0blyqon2aO2ul/4nSRIEOvxGOd9CmsGTP+yZXnPTxY
-        ZzdVcMemDUvjroZoxnowRRz9qv2KeU/v001vV26sfrDkIguPtOHpnObryt49pexyE3muPlpV
-        +uDoZK2jEir/fI5sLJPfezbx/eq+D++/XE57eGzj49SX73YFrcr331jC4HbUKP79sQ23Gk5Z
-        1nTLum+b58J0Y/9kCfmYs/u2hGpraHz0P1H7eFq2wz6zxuQfxyq26LsvV1Wd6Ld/9bP7ykv+
-        eezSOXZC8tX+vM3lbIIaeX1nRO49kj/4JlLox6SXpkosxRmJhlrMRcWJAF1t/sm5AgAA
-X-CMS-MailID: 20221207105052epcas5p1473e38c140d38909c3c98d892bc8a4c4
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221207105052epcas5p1473e38c140d38909c3c98d892bc8a4c4
-References: <20221207105032.103510-1-sriranjani.p@samsung.com>
-        <CGME20221207105052epcas5p1473e38c140d38909c3c98d892bc8a4c4@epcas5p1.samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229732AbiLGKvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:51:33 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77ACA4908E;
+        Wed,  7 Dec 2022 02:51:31 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2B7ApCXA076319;
+        Wed, 7 Dec 2022 04:51:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1670410272;
+        bh=AqKUNtrpADpTjwQ4iK0ZGfqwTt2pZSBNCx2ItPgxtFA=;
+        h=Date:Subject:From:To:CC:References:In-Reply-To;
+        b=e1Bt+v+X8esXCmav28gUuMDsjbWVQdJNyNkoJJo2zwST3ikXb4V/cHtU9086rqco9
+         S5WJbSsDRfNCuigMS1HLP47muE7Jd3yvA3EquCemtaNp1O8lWLWzxc8vHcKdEItDvD
+         PYmE4nHJSQIXmk3GSKX9K5cLI8X1u8FEze2bFxqo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2B7ApCVg099037
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Dec 2022 04:51:12 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 7
+ Dec 2022 04:51:11 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 7 Dec 2022 04:51:11 -0600
+Received: from [10.24.69.114] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2B7Ap7ao007541;
+        Wed, 7 Dec 2022 04:51:08 -0600
+Message-ID: <74e13b7a-67d3-efbd-6de5-01b6c71be8f4@ti.com>
+Date:   Wed, 7 Dec 2022 16:21:07 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH v10 3/6] remoteproc: pru: Add enum for PRU
+ Core Indentifiers.
+Content-Language: en-US
+From:   Md Danish Anwar <a0501179@ti.com>
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <srk@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221201110500.4017889-1-danishanwar@ti.com>
+ <20221201110500.4017889-4-danishanwar@ti.com>
+ <a32f817e-6b61-7666-94f9-cf11f1f2e0a8@kernel.org>
+ <15846a05-acb7-126e-eb4f-4057c77ce696@ti.com>
+In-Reply-To: <15846a05-acb7-126e-eb4f-4057c77ce696@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynosautov9 has several different SYSREGs, so use dedicated compatibles
-for them.
+Hi Roger,
 
-Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+On 01/12/22 19:13, Md Danish Anwar wrote:
+> Hi Roger,
+> 
+> On 01/12/22 5:28 pm, Roger Quadros wrote:
+>> Danish,
+>>
+>> On 01/12/2022 13:04, MD Danish Anwar wrote:
+>>> Introducing enum pruss_pru_id for PRU Core Identifiers.
+>>> PRUSS_PRU0 indicates PRU Core 0.
+>>> PRUSS_PRU1 indicates PRU Core 1.
+>>> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
+>>>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>   drivers/remoteproc/pru_rproc.c | 16 ++++++++++++----
+>>>   include/linux/pruss.h          | 19 +++++++++++++++++--
+>>>   2 files changed, 29 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>>> index b4498a505108..7d4ed39b3772 100644
+>>> --- a/drivers/remoteproc/pru_rproc.c
+>>> +++ b/drivers/remoteproc/pru_rproc.c
+>>> @@ -186,6 +186,7 @@ static struct rproc *__pru_rproc_get(struct device_node
+>>> *np, int index)
+>>>    * pru_rproc_get() - get the PRU rproc instance from a device node
+>>>    * @np: the user/client device node
+>>>    * @index: index to use for the ti,prus property
+>>> + * @pru_id: optional pointer to return the PRU remoteproc processor id
+>>>    *
+>>>    * This function looks through a client device node's "ti,prus" property at
+>>>    * index @index and returns the rproc handle for a valid PRU remote
+>>> processor if
+>>> @@ -193,13 +194,17 @@ static struct rproc *__pru_rproc_get(struct
+>>> device_node *np, int index)
+>>>    * time. Caller must call pru_rproc_put() when done with using the rproc, not
+>>>    * required if the function returns a failure.
+>>>    *
+>>> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+>>> + * returned.
+>>> + *
+>>>    * Return: rproc handle on success, and an ERR_PTR on failure using one
+>>>    * of the following error values
+>>>    *    -ENODEV if device is not found
+>>>    *    -EBUSY if PRU is already acquired by anyone
+>>>    *    -EPROBE_DEFER is PRU device is not probed yet
+>>>    */
+>>> -struct rproc *pru_rproc_get(struct device_node *np, int index)
+>>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>>> +                enum pruss_pru_id *pru_id)
+>>
+>> You just introduced pru_rproc_get() in the previous patch and are
+>> now updating it here.
+>>
+> 
+> That's because there is dependency between these two patches. The enum
+> pruss_pru_id is declared inside linux/pruss.h file which is introduced in
+> pru_rproc_get() patch. But pru_rproc_get() and pru_rproc_put() APIs use the
+> enum as function argument. So I decided to keep pru_rproc_get() patch as second
+> patch of this series(as it introduces <linux/pruss.h> where eventually the enum
+> will be introduced).
+> 
+> Then I kept the enum introduction patch as third patch of the series and with
+> this patch I modified pru_rproc_get() API by adding pru_id field in the
+> function argument.
+> 
+>> Instead, what you need to do is, first introduce enum pruss_pru_id
+>> and make any changes to code using hardcoded values for PRU ID.
+>> This patch will have to introduce <linux/pruss.h> as it doesn't exist yet.
+> 
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 5dc361734cfe..d3c5cdeff47f 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -370,17 +370,20 @@
- 		};
- 
- 		syscon_fsys2: syscon@17c20000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-fsys2-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x17c20000 0x1000>;
- 		};
- 
- 		syscon_peric0: syscon@10220000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-peric0-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x10220000 0x2000>;
- 		};
- 
- 		syscon_peric1: syscon@10820000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-peric1-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x10820000 0x2000>;
- 		};
- 
--- 
-2.17.1
+I will be posting this series again with your suggestion by keeping enum patch
+first and then the pru_rproc_get() patch.
 
+> This also came to my mind. But I thought introduction of enum pruss_pru_id
+> patch should just introduce the enum and modify APIs which uses the enum
+> accordingly. I wanted to keep the introduction of <linux/pruss.h> file with the
+> pru_rproc_get() patch as it was. That's why I kept pru_rproc_get() patch ahead
+> of enum patch.
+> 
+>> Hopefully this clears the chicken/egg situation.
+>>
+>> Then introduce pru_rproc_get() patch with the final desired arguments.
+>>
+>>>   {
+>>>       struct rproc *rproc;
+>>>       struct pru_rproc *pru;
+>>> @@ -226,6 +231,9 @@ struct rproc *pru_rproc_get(struct device_node *np, int
+>>> index)
+>>>         mutex_unlock(&pru->lock);
+>>>   +    if (pru_id)
+>>> +        *pru_id = pru->id;
+>>> +
+>>>       return rproc;
+>>>     err_no_rproc_handle:
+>>> @@ -556,7 +564,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32
+>>> da, size_t len)
+>>>       dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>>>       dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>>>       /* PRU1 has its local RAM addresses reversed */
+>>> -    if (pru->id == 1)
+>>> +    if (pru->id == PRUSS_PRU1)
+>>>           swap(dram0, dram1);
+>>>       shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>>>   @@ -865,14 +873,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>>>       case RTU0_IRAM_ADDR_MASK:
+>>>           fallthrough;
+>>>       case PRU0_IRAM_ADDR_MASK:
+>>> -        pru->id = 0;
+>>> +        pru->id = PRUSS_PRU0;
+>>>           break;
+>>>       case TX_PRU1_IRAM_ADDR_MASK:
+>>>           fallthrough;
+>>>       case RTU1_IRAM_ADDR_MASK:
+>>>           fallthrough;
+>>>       case PRU1_IRAM_ADDR_MASK:
+>>> -        pru->id = 1;
+>>> +        pru->id = PRUSS_PRU1;
+>>>           break;
+>>>       default:
+>>>           ret = -EINVAL;
+>>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+>>> index 5c5d14b1249d..efe89c586b4b 100644
+>>> --- a/include/linux/pruss.h
+>>> +++ b/include/linux/pruss.h
+>>> @@ -14,17 +14,32 @@
+>>>     #define PRU_RPROC_DRVNAME "pru-rproc"
+>>>   +/**
+>>> + * enum pruss_pru_id - PRU core identifiers
+>>> + * @PRUSS_PRU0: PRU Core 0.
+>>> + * @PRUSS_PRU1: PRU Core 1.
+>>> + * @PRUSS_NUM_PRUS: Total number of PRU Cores available.
+>>> + *
+>>> + */
+>>> +
+>>> +enum pruss_pru_id {
+>>> +    PRUSS_PRU0 = 0,
+>>> +    PRUSS_PRU1,
+>>> +    PRUSS_NUM_PRUS,
+>>> +};
+>>> +
+>>>   struct device_node;
+>>>     #if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>>>   -struct rproc *pru_rproc_get(struct device_node *np, int index);
+>>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>>> +                enum pruss_pru_id *pru_id);
+>>>   void pru_rproc_put(struct rproc *rproc);
+>>>     #else
+>>>     static inline struct rproc *
+>>> -pru_rproc_get(struct device_node *np, int index)
+>>> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+>>>   {
+>>>       return ERR_PTR(-EOPNOTSUPP);
+>>>   }
+>>
+>> -- 
+>> cheers,
+>> -roger
+> 
+> Thanks,
+> Danish.
+
+Thanks,
+Danish.
