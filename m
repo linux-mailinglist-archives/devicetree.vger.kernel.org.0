@@ -2,75 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5174A645A4B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C55645A7D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiLGNB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 08:01:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39238 "EHLO
+        id S229456AbiLGNNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 08:13:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiLGNBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:01:52 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BFD35133D;
-        Wed,  7 Dec 2022 05:01:51 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id bn5so20840171ljb.2;
-        Wed, 07 Dec 2022 05:01:51 -0800 (PST)
+        with ESMTP id S229437AbiLGNNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:13:35 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF5B50D5C;
+        Wed,  7 Dec 2022 05:13:34 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id e13so24797510edj.7;
+        Wed, 07 Dec 2022 05:13:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=58n9OnzkX+f+tALJ3x9hXjitd2F/uK0zQDu7nLFK8BM=;
-        b=Wb7aJUSwSAqnww08AQep8NInEPaa3G9cUjc8sQqZCF2rSZLiFiCkbPvi90Q2W/JB50
-         AkZ0elNUWOZAg6iyS7IFebYNSJCSfUVNBIpyGC09Wu/HfrXcsqaxszfmVUhIfIbdz+tG
-         G+oCaum5ZcLDLT9G7P/Z0Agwbw7BLr4LKCvjVbpsts29SYIH+YuFthAG5XZtiKOgPS/P
-         ZthMdAxkIZxycgbGnmvGTYQR3cEhqarrfoenHuJepkHLokhiBap+28SWnHwc7p6Shlxp
-         nwxvkfNOpUxUFzKkXI8arTvSilK593jhVasK23lsIaSSOhsg/gGZL6ZmBnWC095w8U3Y
-         noGw==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KIJTn6uf5ipjBKv9CY5vtV1Hkp+oVF6IKDi1Z1ze17U=;
+        b=VMJLjAN+QCvNePbdKUldGx4XeyoaC26IemMCfR80C0u4Il56h62+63la6BndXvHG+u
+         7EFhxaqVTPyvlxk3lLlUG+/FX7te2J6nWv7N/IRi3n0hyk1TVEh3PbjvFSbTJVRH5FIm
+         204Ws5Xo2Cm/3UvrVgpnoXIMAWUTMpv3AtBphjio4u6wQfioOOTisL0AiwHy3GOX+vy2
+         6i4sCSCtAtkfYi8/YwjLxg8G/HjwLZSPch5/0hxlPEc0axnRMGgxipmWLznIIEdze2AA
+         6YX6ZXqjDvsYNHc9UQHlg5MTbCsnj26iYo8WT9M7KuUZu1F6Tuj77clfbPx+a5IxQMk5
+         m8TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=58n9OnzkX+f+tALJ3x9hXjitd2F/uK0zQDu7nLFK8BM=;
-        b=AIX2JyowqM1l8YEOax8X0uC/g/lloZEwk9L64AJfFeqmBWI2a411Oy7hNxEah0EHdS
-         fnLMQrTvwoYn+xpHq1s3G/A1AdUgL9SQSdrCEo/72U5Dl/AOpMDqdJQfcC4KKHmnjPhp
-         4cMBErd58yiyOYoesBvgRH3z63a7pD6twt2TNlA3ha67UGvsDb+jl0PM8GGAo1QI5FBr
-         fPYWICOj8gyC/P9aZaQSaZyQkrQ29tf33cWtcqYBKRnjlZKDDJH2b9CGwbyjBGWc5SeT
-         LCUO2hDYcpxl9vgZ+p06pgNgsVZkTOrQ9pRBVf6saC9jx9jqVAzZUZSMwWWyEhgK4bOe
-         UPgQ==
-X-Gm-Message-State: ANoB5pnnbVTeLLODKxw78frcFvk/DokvFeBFXeDn45zbW0mrhqRt9Rw5
-        V+XwIUNiuNxKTihI1DPcKgToSzM/MAyeXi866nk=
-X-Google-Smtp-Source: AA0mqf6Ide4+sp8VWwohGr/fTMvzoa8oN76VSzU4an/ivwpfuzoPSBg3rAh6NB3hKlkh7TXGWyqSO8u/qTTMSXywbfY=
-X-Received: by 2002:a05:651c:c85:b0:278:f572:c9ac with SMTP id
- bz5-20020a05651c0c8500b00278f572c9acmr30906647ljb.73.1670418109344; Wed, 07
- Dec 2022 05:01:49 -0800 (PST)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KIJTn6uf5ipjBKv9CY5vtV1Hkp+oVF6IKDi1Z1ze17U=;
+        b=tLnGOdzAxDiF+AxeH6EWMPkPgV0oGzQS9emooVImmFIWIKGqx7fUkETg30LV2LYi7a
+         udDbC3kJuyOm700Wlr22hbEJZiHzf2WETZpmlzGcu6a2Fdatz/3MgcSfMf43N3Lr+FUh
+         vuIpicBjp5mkQw55d/mLYHhdPZW1JD2JQ8NCko8X2X3D/2dVNLtyRv9mhhr8FLsG1nFH
+         7hi8SyXGyCgskwz3TFo4wHHhGhh/Cw0hjzpphyK/BDGPEJNuFxAgcXQh5deqyM7njTvB
+         roDEmRTiaKUIqOysZOO609Jy2jZH3bYbLzGqZV6nJnUrpBxL3sBtVX/0jfE3Gr9/YaPb
+         XZmQ==
+X-Gm-Message-State: ANoB5pnwbVUUFwDTflapq7wNNFomMuY4hQ4GdFaMGWFzRwn7eyBWBo4N
+        JswfTJ1ywiuM5KCFTb1er/U=
+X-Google-Smtp-Source: AA0mqf5dEGRQGRPIJU+djVze2ytX4k7QuRVTwoOo+q8OUe7Dpgl3TXGIbeQddai1A9gh6sueqqq3ng==
+X-Received: by 2002:a05:6402:2993:b0:462:845:ba98 with SMTP id eq19-20020a056402299300b004620845ba98mr1778270edb.12.1670418813147;
+        Wed, 07 Dec 2022 05:13:33 -0800 (PST)
+Received: from skbuf ([188.26.184.215])
+        by smtp.gmail.com with ESMTPSA id dk21-20020a0564021d9500b0045723aa48ccsm2176388edb.93.2022.12.07.05.13.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Dec 2022 05:13:32 -0800 (PST)
+Date:   Wed, 7 Dec 2022 15:13:30 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Jonas Gorski <jonas.gorski@gmail.com>
+Subject: Re: [PATCH 5/5] powerpc: dts: remove label = "cpu" from DSA
+ dt-binding
+Message-ID: <20221207131330.pehewfwmr6pv2sln@skbuf>
+References: <20221130141040.32447-1-arinc.unal@arinc9.com>
+ <20221130141040.32447-6-arinc.unal@arinc9.com>
+ <87a647s8zg.fsf@mpe.ellerman.id.au>
+ <20221201173902.zrtpeq4mkk3i3vpk@pali>
+ <20221201234400.GA1692656-robh@kernel.org>
+ <20221202193552.vehqk6u53n36zxwl@pali>
+ <20221204185924.a4q6cifhpyxaur6f@skbuf>
+ <84ce6297-5aff-4d6e-8d31-da3f25dc8690@arinc9.com>
 MIME-Version: 1.0
-References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
- <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
- <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
- <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com>
- <c200557f-c30a-62f9-287a-af804e818cf1@intel.com> <CAHp75VczbNpHPi-TBe81Ad=P=eXJZpAmkj=m4-apGF1e0uh5kg@mail.gmail.com>
- <CAHp75VemBiGUTspEYDe3hwA9pEzjNMQGY6_kUoVMJyCuEWgChw@mail.gmail.com> <c4e2a00c-d09e-95e2-eaf2-1de6b820ac6e@intel.com>
-In-Reply-To: <c4e2a00c-d09e-95e2-eaf2-1de6b820ac6e@intel.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Wed, 7 Dec 2022 15:01:38 +0200
-Message-ID: <CAP6Zq1h9XvH501e_nH9TkUCKPNOuH7dhOM8FrsUM=PYX4gt0qw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
-To:     Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        ulf.hansson@linaro.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com,
-        skhan@linuxfoundation.org, davidgow@google.com,
-        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
-        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <84ce6297-5aff-4d6e-8d31-da3f25dc8690@arinc9.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,129 +85,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy and Adrian,
+On Mon, Dec 05, 2022 at 10:15:16PM +0300, Arınç ÜNAL wrote:
+> As Jonas (on CC) pointed out, I only see this being used in the swconfig b53
+> driver which uses the label to identify the cpu port.
+> 
+> https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/generic/files/drivers/net/phy/b53/b53_common.c;h=87d731ec3e2a868dc8389f554b1dc9ab42c30be2;hb=HEAD#l1508
+> 
+> Maybe this got into DSA dt-bindings unchecked before it was decided to move
+> forward with DSA instead of swconfig on Linux.
 
-Thanks for your clarifications
-
-On Mon, 5 Dec 2022 at 16:33, Adrian Hunter <adrian.hunter@intel.com> wrote:
->
-> On 5/12/22 16:17, Andy Shevchenko wrote:
-> > On Mon, Dec 5, 2022 at 4:14 PM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
-> >>
-> >> On Mon, Dec 5, 2022 at 3:41 PM Adrian Hunter <adrian.hunter@intel.com> wrote:
-> >>> On 5/12/22 15:25, Andy Shevchenko wrote:
-> >>>> On Mon, Dec 5, 2022 at 1:20 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >>>>> On Mon, 5 Dec 2022 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> >>>>>> On Mon, Dec 5, 2022 at 10:54 AM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> >>
-> >> ...
-> >>
-> >>>>>>> +       pltfm_host->clk = devm_clk_get_optional(&pdev->dev, NULL);
-> >>>>>>
-> >>>>>> You can't mix devm with non-devm in this way.
-> >>>>> Can you explain what you mean You can't mix devm with non-devm in this
-> >>>>> way, where is the mix?
-> >>>>> In version 1 used devm_clk_get, is it problematic?
-> >>>>
-> >>>> devm_ is problematic in your case.
-> >>>> TL;DR: you need to use clk_get_optional() and clk_put().
-> >>>
-> >>> devm_ calls exactly those, so what is the issue?
-> >>
-> >> The issue is the error path or removal stage where it may or may be
-> >> not problematic. To be on the safe side, the best approach is to make
-> >> sure that allocated resources are being deallocated in the reversed
-> >> order. That said, the
-> >>
-> >> 1. call non-devm_func()
-> >> 2. call devm_func()
-> >>
-> >> is wrong strictly speaking.
-> >
-> > To elaborate more, the
-> >
-> > 1. call all devm_func()
-> > 2. call only non-devm_func()
-> >
-> > is the correct order.
->
-> 1. WRT pltfm_host->clk, that is what is happening
-> 2. WRT other resources that is simply not always possible because not every resource is wrapped by devm_
-> e.g. mmc_alloc_host() / mmc_free_host()
-I little confused about what to decide, should I use only
-non-devm_func because mmc_alloc_host() / mmc_free_host() is not
-warrped with devm_?
->
-> >
-> > Hence in this case the driver can be worked around easily (by
-> > shuffling the order in ->probe() to call devm_ first), but as I said
-> > looking into implementation of the _unregister() I'm pretty sure that
-> > clock management should be in sdhci-pltfm, rather than in all callers
-> > who won't need the full customization.
-> >
-> > Hope this helps to understand my point.
-> >
-> >>>> Your ->remove() callback doesn't free resources in the reversed order
-> >>>> which may or, by luck, may not be the case of all possible crashes,
-> >>>> UAFs, races, etc during removal stage. All the same for error path in
-> >>>> ->probe().
-> >>
-> >> I also pointed out above what would be the outcome of neglecting this rule.
-> >>
-> >>>>>>> +       if (IS_ERR(pltfm_host->clk))
-> >>>>>>> +               return PTR_ERR(pltfm_host->clk);
-> >>>>>>> +
-> >>>>>>> +       ret = clk_prepare_enable(pltfm_host->clk);
-> >>>>>>> +       if (ret)
-> >>>>>>> +               return ret;
-> >>>>>>> +
-> >>>>>>> +       caps = sdhci_readl(host, SDHCI_CAPABILITIES);
-> >>>>>>> +       if (caps & SDHCI_CAN_DO_8BIT)
-> >>>>>>> +               host->mmc->caps |= MMC_CAP_8_BIT_DATA;
-> >>>>>>> +
-> >>>>>>> +       ret = mmc_of_parse(host->mmc);
-> >>>>>>> +       if (ret)
-> >>>>>>> +               goto err_sdhci_add;
-> >>>>>>> +
-> >>>>>>> +       ret = sdhci_add_host(host);
-> >>>>>>> +       if (ret)
-> >>>>>>> +               goto err_sdhci_add;
-> >>>>>>
-> >>>>>> Why can't you use sdhci_pltfm_register()?
-> >>>>> two things are missing in sdhci_pltfm_register
-> >>>>> 1. clock.
-> >>>>
-> >>>> Taking into account the implementation of the corresponding
-> >>>> _unregister() I would add the clock handling to the _register() one.
-> >>>> Perhaps via a new member of the platform data that supplies the name
-> >>>> and index of the clock and hence all clk_get_optional() / clk_put will
-> >>>> be moved there.
-Do you mean to add it to sdhci_pltfm_register function? if yes I
-believe it will take some time to modify sdhci_pltfm_register
-I prefer not to use sdhci_pltfm_register.
-> >>>>
-> >>>>> 2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
-> >>>>
-> >>>> All the same, why can't platform data be utilised for this?
-> >>>>
-> >>>>>>> +       return 0;
-> >>>>>>> +
-> >>>>>>> +err_sdhci_add:
-> >>>>>>> +       clk_disable_unprepare(pltfm_host->clk);
-> >>>>>>> +       sdhci_pltfm_free(pdev);
-> >>>>>>> +       return ret;
-> >>>>>>> +}
-> >>
-> >>
-> >> --
-> >> With Best Regards,
-> >> Andy Shevchenko
-> >
-> >
-> >
->
-
-Best regards,
-
-Tomer
+Yes, but swconfig is not DSA and their bindings are not compatible
+anyway (swconfig lacks an ethernet = <&phandle> property that would
+allow DSA to work). Still waiting for Pali to clarify what he had in mind.
