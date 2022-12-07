@@ -2,56 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B634D645B68
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D28645B92
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:56:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbiLGNwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 08:52:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48058 "EHLO
+        id S229911AbiLGN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 08:56:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbiLGNwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:52:01 -0500
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 21A605B583;
-        Wed,  7 Dec 2022 05:51:59 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 458D5804D;
-        Wed,  7 Dec 2022 13:51:58 +0000 (UTC)
-Date:   Wed, 7 Dec 2022 15:51:57 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        krzysztof.kozlowski@linaro.org, rogerq@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v9 1/2] memory: omap-gpmc: wait pin additions
-Message-ID: <Y5CafQpZnjSSCMoj@atomide.com>
-References: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
- <20221102133047.1654449-2-benedikt.niedermayr@siemens.com>
+        with ESMTP id S230048AbiLGN43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:56:29 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C7A5BD4A
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 05:56:27 -0800 (PST)
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 45F6B41531
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 13:56:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1670421386;
+        bh=AN5JF4JjPpOJkZ/tkyQphRahAoTXPLdfhR7No5Nhr94=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=jei3mGbblDEH/5cUMoQs+XxsOWdroGAdN8MOzYk/4MmToDd/v3XpTjLw36WVwO55G
+         0sSfVTsv7nubsXdxEBXlwjey81B5Z5ZoMLpbXQt5Lpkfyt4laVdSkNVCl22i8TgJ7F
+         ClM8wjpm0U0h99oceRXr1OHwcyTIV8C7NSL1kpoR1rUth1O6SBBwQWTh3U//FQJ3IH
+         PWWlAKikhhk2yi+8WXi7Fgg8AfnQi8k+ile9dCG1kmsSYnsdpcmO96c3TW296gJvO+
+         oblcufOjGuqPnAPlczDq8vmV2aAQLx+LcJCt0E1W2cGQpQ9S0sYDcB3uUZjBuOIwYM
+         9HXixBwxZlwyA==
+Received: by mail-il1-f197.google.com with SMTP id d6-20020a056e02214600b00303620c6e39so6664706ilv.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 05:56:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AN5JF4JjPpOJkZ/tkyQphRahAoTXPLdfhR7No5Nhr94=;
+        b=HJ8+9IDCybuADE29o2u3tDgdb5O5nH46FVhBJWuNRlCohjwfkRAyIFzdao15aldvtz
+         DU6en6GscKbJ2Q1s5M/ZkcPlLFC6L3+N1bruTi+ToogxMqLyWDFbqNvTeEH6smaIXHxk
+         aKirXPG7dESElPOBtFMbR1h4blapHUtS60oXsDjFWekbeXBJfwL1irO/veBwCILICPyl
+         0vvxkwRNjN92btDKMvsF/XEAeLAppxlvsCScrf5UR8A8KzpEOULPVy3AwN45JQahTv1R
+         UpQKvfjoVBGEmOvJfTKcgZqfhLJhHw2TsvHCHlOmLz8CyJ596g63oL0I5CxPWjlCJbTT
+         G4kQ==
+X-Gm-Message-State: ANoB5pn5D03v6QhRmdluAeEGGUTMw+4Ciep8SK92TRtDSboopj2JjbhF
+        QY2vDBjjFe6Cs2V8DHFokbvs11/7OE1lo3GHbk35NFqhIivTfxLOzUs57AETqwvFkIxYP/gSpEf
+        2JjRMTHlFT+7xL/fIb/IoMbBN0LGbP85HqjQGGmRgNToFZ9rWwB7lJgQ=
+X-Received: by 2002:a92:cd43:0:b0:303:2fd2:f612 with SMTP id v3-20020a92cd43000000b003032fd2f612mr15125912ilq.144.1670421384613;
+        Wed, 07 Dec 2022 05:56:24 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf68T1FZSxevGnNf72rEE0f+xwVzoSCPSjB0SLRGWkB37LRAqopLc6DAcKKSJpFo/ZWVkn24R+SZbWzdDyZVHaY=
+X-Received: by 2002:a92:cd43:0:b0:303:2fd2:f612 with SMTP id
+ v3-20020a92cd43000000b003032fd2f612mr15125908ilq.144.1670421384463; Wed, 07
+ Dec 2022 05:56:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221102133047.1654449-2-benedikt.niedermayr@siemens.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
+ <20221201090242.2381-2-yanhong.wang@starfivetech.com> <277f9665-e691-b0ad-e6ef-e11acddc2006@linaro.org>
+ <22123903-ee95-a82e-d792-01417ceb63b1@starfivetech.com> <3a9ef360-73c3-cf26-3eca-4903b9a04ea3@linaro.org>
+In-Reply-To: <3a9ef360-73c3-cf26-3eca-4903b9a04ea3@linaro.org>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 7 Dec 2022 14:56:07 +0100
+Message-ID: <CAJM55Z-iLy1fZmoyk3FU7oDQcKBk6APYf-cbamKr7Gjx+NaoTQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/7] dt-bindings: net: snps,dwmac: Add compatible
+ string for dwmac-5.20 version.
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     yanhong wang <yanhong.wang@starfivetech.com>,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 2 Dec 2022 at 09:04, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/12/2022 03:53, yanhong wang wrote:
+> >
+> >
+> > On 2022/12/2 0:18, Krzysztof Kozlowski wrote:
+> >> On 01/12/2022 10:02, Yanhong Wang wrote:
+> >>> Add dwmac-5.20 version to snps.dwmac.yaml
+> >>
+> >> Drop full stop from subject and add it here instead.
+> >>
+> >
+> > Will update in the next version.
+> >
+> >>>
+> >>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> >>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> >>
+> >> Two people contributed this one single line?
+> >>
+> >
+> > Emil made this patch and I submitted it.
+>
+> If Emil made this patch, then your From field is incorrect.
 
-* B. Niedermayr <benedikt.niedermayr@siemens.com> [221102 13:21]:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-> 
-> This patch introduces support for setting the wait-pin polarity as well
-> as using the same wait-pin for different CS regions.
+Yes, please don't change the author of the commits you cherry-picked
+from my tree.
 
-Looks like Linux next commit 89aed3cd5cb9 ("memory: omap-gpmc: wait pin
-additions") breaks the old smsc911x using devices somehow for nfsroot.
+But now I'm curious. Did you check with your colleagues that the dwmac
+IP on the SoC is in fact version 5.20?
+This was just an educated guess from my side.
 
-Reverting this commit makes things work again. Any ideas?
+/Emil
 
-Regards,
-
-Tony
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
