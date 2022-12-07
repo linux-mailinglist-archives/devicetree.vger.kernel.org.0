@@ -2,122 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C059D645729
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BC9645741
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:12:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbiLGKIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:08:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38710 "EHLO
+        id S229523AbiLGKMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:12:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230078AbiLGKIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:08:44 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22AF6478;
-        Wed,  7 Dec 2022 02:08:43 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D0296602BCA;
-        Wed,  7 Dec 2022 10:08:41 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1670407721;
-        bh=AyR0RJnVKrrqQBm9hFiiBr7ZIDDoQirRHSbrqdL6UgM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Lt1ouqtzvN/cuiyAwGqv8hAf7z0yOZ7kKLfaiI2zvDgg+xHD+3X9XYLh4CPC+tpeE
-         VhrqNI5+jpml1H8zckoIDyzdcqhFTgeSKuQxKVbtMMZOJ1poRgLRvY0Pgp1PtKd44e
-         URFvFOQWTsc99dYvNbtT5MFbJcqH3/HYxxZaseaihah8pgMfxy5QD8Bo6fpBLClyM9
-         F298s/We7GqPdmqjnLOpHPmWcjMMy3tCTGUjKdw/rF8yMeP8OcNFi525DTelWSPp0C
-         qDH4/2Vqi0afKEOssANEbUKPrr/V+WKYSOpb7f9n5RUlKJMsORCAfAKfwhMejfodD5
-         0Me9nh+W+yTYg==
-Message-ID: <ff2931b5-948f-f013-056d-b0a78d7272d6@collabora.com>
-Date:   Wed, 7 Dec 2022 11:08:38 +0100
+        with ESMTP id S230242AbiLGKMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:12:38 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC6A63DA
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:12:37 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id x11so20329295ljh.7
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:12:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OC/LTw1yay9XRp7UnfXbK+UoHlH+HfeWaPk0UzxZKJk=;
+        b=AyAHobwLi8UQ8Y3RO7WvijzSRK4GKV+VjGhQSY0MFj/dZqZ1hQYnwMS48zLGlZgGu8
+         pBMU0O3mzLgrID5x4nK1Wq/HO4C26DVdzqkjpN2acNm7j7Wxo4/B2i9L+O35IC2LH0IF
+         IooyTG9pFjty+G22aC8PKNdTaWYb7kt885nOAmbyKHSOy2aovniFXCycJhDmo6Pr4/7p
+         5Fcxoc+7nK2fRWXH9wbGSqAJc11/tq+/AkLpLzPvaW3INxfQQCCoGrLmOpm3076R+gWP
+         liBtHETwG/fMs4NeFm3+CFokf2K//xmXloFe/3YvkzRqAiCpDtQPhBU8wIDf38c/g3jY
+         vYQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OC/LTw1yay9XRp7UnfXbK+UoHlH+HfeWaPk0UzxZKJk=;
+        b=yIkAzC7G9RF2s7I4cpL8QO3AOCg7Mp5Fq1jo29D+zFzssYXZpbDP/kJ0hBuerNyMbb
+         e2/hzuH/7GWnMDtyRGZlg9uYrDYI1FwSjPqb1y1s6u/FD5FY4vLLU+ApueW3i2PILei/
+         7ezeJP5aBiw0/Qr+4mlr08L2ZrLyO3KCCS61EYqo2L+1jZmic4YzOZTwCW5sxRrb2bbU
+         3DXi0xVrfixjV1qD1K8S4N4/+9gAeWWC/96xGfy6+nEyIhquSvYYwIxl/mdO2tTYQz0A
+         aA+C2ziRXBTH9bVpQedKVvPJW3609w9GZOjHebi8DWCybP/zF9DN8vFCthkK15fjcQZd
+         xwkQ==
+X-Gm-Message-State: ANoB5pmnzpm6ybr873rmArvdU7vljwadAKL3EORdFvDCwC/bG3p9o5aq
+        lE7YIJDIbJrqHhZvJMCIf2xvCA==
+X-Google-Smtp-Source: AA0mqf69CWZ3OX2KPfDh4UAI1He+Nkzx6NpNQ6qGOhkHv674OUnmjIC8peAUmlRmBQVU7KfAsW2UnQ==
+X-Received: by 2002:a2e:2c15:0:b0:27a:773:7054 with SMTP id s21-20020a2e2c15000000b0027a07737054mr2978314ljs.169.1670407955487;
+        Wed, 07 Dec 2022 02:12:35 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b00492ceda336fsm2782548lfg.278.2022.12.07.02.12.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 02:12:34 -0800 (PST)
+Message-ID: <5ebd4de2-26a8-ff2b-18e4-dc43b3cdf662@linaro.org>
+Date:   Wed, 7 Dec 2022 11:12:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v2 3/9] spi: mtk-snfi: Add optional nfi_hclk which needed
- for MT7986
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ dedicated SYSREG compatibles to Exynos850
 Content-Language: en-US
-To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
-        <Xiangsheng.Hou@mediatek.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "gch981213@gmail.com" <gch981213@gmail.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "richard@nod.at" <richard@nod.at>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
-        <Benliang.Zhao@mediatek.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
-References: <20221205065756.26875-1-xiangsheng.hou@mediatek.com>
- <20221205065756.26875-4-xiangsheng.hou@mediatek.com>
- <ef2e6859-56e1-bbf0-dbde-44ea3d7d2f3f@collabora.com>
- <4db35ac3914e444b754f9075141fd69e07e7c858.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <4db35ac3914e444b754f9075141fd69e07e7c858.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
+        ravi.patel@samsung.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20221207085832.86909-1-sriranjani.p@samsung.com>
+ <CGME20221207085846epcas5p1d1e7fb6945752fc1d9d4aba4874b2484@epcas5p1.samsung.com>
+ <20221207085832.86909-2-sriranjani.p@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207085832.86909-2-sriranjani.p@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/12/22 02:42, Xiangsheng Hou (侯祥胜) ha scritto:
-> Hi Angelo,
+On 07/12/2022 09:58, Sriranjani P wrote:
+> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
+> them and deprecate usage of generic Exynos850 compatible alone.
 > 
-> On Mon, 2022-12-05 at 15:21 +0100, AngeloGioacchino Del Regno wrote:
->> Il 05/12/22 07:57, Xiangsheng Hou ha scritto:
->>> Add optional nfi_hclk which needed for MT7986.
->>>
->>> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
->>
->> Is there any operation for which you need NFI_HCLK enabled, but at
->> the same time
->> PAD_CLK and/or NFI_CLK can be disabled?
+> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> ---
+>  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
 > 
-> No, for the new IP design on MT7986, will need the
-> PAD_CLK/NFI_CLK/NFI_HCLK enabled at the same time.
-> 
->> If NFI_HCLK and NFI_CLK must always be ON at the same time, adding
->> this clock to
->> spi-mtk-snfi.c is *not* an optimal way of doing things: you can, at
->> this point,
->> set NFI_HCLK as parent of NFI_CLK in the MT7986 clock driver instead,
->> without
->> making any addition to this driver at all.
-> 
-> For some IC, there may have only NFI_CLK/PAD_CLK, and have no NFI_HCLK,
-> this rely on IC design.
-> 
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 4954790eda6c..f57bc7c194a1 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -17,7 +17,6 @@ properties:
+>                - samsung,exynos3-sysreg
+>                - samsung,exynos4-sysreg
+>                - samsung,exynos5-sysreg
+> -              - samsung,exynos850-sysreg
+>                - samsung,exynosautov9-sysreg
+>                - tesla,fsd-cam-sysreg
+>                - tesla,fsd-fsys0-sysreg
+> @@ -36,6 +35,16 @@ properties:
+>            - const: samsung,exynos5433-sysreg
+>            - const: syscon
+>          deprecated: true
+> +      - items:
+> +          - enum:
+> +              - samsung,exynos850-cmgp-sysreg
+> +              - samsung,exynos850-peri-sysreg
+> +          - const: samsung,exynos850-sysreg
+> +          - const: syscon
+> +      - items:
+> +          - const: samsung,exynos850-sysreg
 
-I've just checked clk-mt7986-infracfg and we can't reparent NFI1_CK, nor SPINFI1_CK
-as they have xxxx_sel parents already, which are not common with the HCK.
+and this can go to existing 5433 deprecated entry (making it enum of
+deprecated compatibles).
 
-You're right, the addition of the nfi_hclk clock is needed, which means that for
-this commit, you get my
+> +          - const: syscon
+> +        deprecated: true
+>  
+>    reg:
+>      maxItems: 1
+> @@ -53,7 +62,9 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - samsung,exynos850-sysreg
+> +              - samsung,exynos850-cmgp-sysreg
+> +              - samsung,exynos850-peri-sysreg
+> +            const: samsung,exynos850-sysreg
 
+This should stay in the enum.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Best regards,
+Krzysztof
 
-
-P.S.: Thanks for clarifying!
-
-Regards,
-Angelo
