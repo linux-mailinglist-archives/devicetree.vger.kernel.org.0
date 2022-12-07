@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDBB64532A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 05:46:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 824D9645386
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 06:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiLGEqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Dec 2022 23:46:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37608 "EHLO
+        id S229572AbiLGFuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 00:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbiLGEqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Dec 2022 23:46:44 -0500
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41CF56EFD;
-        Tue,  6 Dec 2022 20:46:42 -0800 (PST)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-144bd860fdbso6890967fac.0;
-        Tue, 06 Dec 2022 20:46:42 -0800 (PST)
+        with ESMTP id S229448AbiLGFui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 00:50:38 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2D556EF7;
+        Tue,  6 Dec 2022 21:50:35 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id v3so15351954pgh.4;
+        Tue, 06 Dec 2022 21:50:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r1/Ng+Dr2rkqsmZDPUsgrcOu+0tsMrp/RZvVMuJ/HlU=;
-        b=ZZpWywYsd8k0y/0fsZ/u4iyM9Lxlpw+2K+yMBJBA9sJf5oXusPeQK53/YMwXepBj4B
-         AmqhyrEz8QndwjjCQ6mnP4PS23tKD+iq6gEy9NHk+y8lH23jBrWyGjhDuL1WUhJLi+by
-         2IKK23FZyq6NmzKQ36AxS0lWsOYUWR0xXUjyeYzso1tHiaN/YyipDsXH79O0sfO8WkpX
-         u4O9Ke/rMEbGzV3zxy5XeYywQoqHS0UIxTZJFMVbZLPCz3LGswBqiqO5BH3VLBzEyiUJ
-         nVUc4ynna4SnEiXuKMBvH9i8QdFXU/672El7IxGkL+yzHxVdB3do/s7QNhExmIqMRgcK
-         Wl6Q==
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=cwaZlpRJcZkWrW1FyxsDLEheAAy0epxJZIGVnF2OHn+vxCTv9Gx1WPd2EYZzlC2atf
+         /8i3aEbTRITS1FSxe/j6ZGozNNti9FaDRbOcmEyFYVuKEgSExDemoMc0IFJSFBm5WKgQ
+         DW0uH5ReUEnIi4wXXWMBUp6e5SQYj9oeGm8tTiYlhev8KWakKvAMnBfexG1HcwIrJgYJ
+         RUWLSFWSlJOI9+0jNiAzQh4of1wd1WwP04bX0YNmLXAqctvMYYqMRX3lXBaa3BZm0TJp
+         x8lCxvjzAGNSvnfC2Mxh9F30DXCoJq+oAk0lzAeRDRJDuclluxWXsp3LxtpsV/gZ/Elg
+         6fdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r1/Ng+Dr2rkqsmZDPUsgrcOu+0tsMrp/RZvVMuJ/HlU=;
-        b=KdvyGwWl/Oor5jxBqlb0gJOV50v0UC2IDFtRlu1B1IpEI5sylU2+J8FZpAn+dlG0lw
-         nByWH/T65xQfCfLHOVOSx+/sUDb2vo9IQju6pZlBJFQOSaRAUDYzfCQvnKG7m64mtksT
-         NybyDwSqegamYCg/mSZtqUS4VFippZHW7ChrjOpw1xekicWZUFh6QaXffTa61pcZsujr
-         7UGaz6Fe5S5j5AoLREw3WK81w39qPseoJ9MccaSbM4U6PYQUKpuiR5xVZs7I6o2uTPs9
-         6eKr5g42pRozlVdvFFJg7LIa/I25i2Ms5snOKw5mTXPGx0aBHvT8X9k9jXqrqrpbaEp9
-         A5EA==
-X-Gm-Message-State: ANoB5pkYytTsazuwG9kaVgTAeggYNL23Cd8Xm7mRVwHczAZnYRFEXEd4
-        3S7wy5akcMPWM/mjQ3UOhcrhi1WF/A0=
-X-Google-Smtp-Source: AA0mqf7RlxYY/y7aZmw8C5UIkz6KslfCL8Wn3tP1DjdGDhtHR0lc1AVg5gbcRFCBSHLWYOauAMlveA==
-X-Received: by 2002:a05:6870:9d8b:b0:143:cbc:ac46 with SMTP id pv11-20020a0568709d8b00b001430cbcac46mr38499211oab.271.1670388401977;
-        Tue, 06 Dec 2022 20:46:41 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f8-20020a056870c10800b001446d5702b5sm6675584oad.56.2022.12.06.20.46.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Dec 2022 20:46:41 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <61eb8715-958a-f81d-17ad-7086f9ea81f5@roeck-us.net>
-Date:   Tue, 6 Dec 2022 20:46:39 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To:     Saravanan Sekar <saravanan@linumiz.com>
-Cc:     linux-hwmon@vger.kernel.org, jdelvare@suse.com,
-        marten.lindahl@axis.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ztdTBdFFzUgQtkWJUCxW6jiR87PJzZ+mXWctPgKolvM=;
+        b=8FbmzSUj5VhSdi9XTzfoWHHGAW/tlvsbPvvEpJx06lP6h0RnxMuxG1pnomki+86bDQ
+         A7rgW5D/RIFQMav90cnHD4MbTVyromK7uzUNBkHvNNd6YMqbsZxb3TQ5u3LVYT9w/Bc5
+         wliwhKkgUJUM8rUbgAqHN2xLgPakD+EzjVnhbVAJdPgrQflMf0TnTRM5d+NSN3iG/7tx
+         Tx1+4wQoiOVk/yi7Y1EO8Fx2shFkye5HCH4RFyp6QWjqlJEH7seRNcdjxAMgaxn0OQXY
+         fELouO5uTsp6eEJmDpzI1nLxOHjMPKZN0BnAEzRnBnzsUFMR4CL07S89dGEeqE2UxCU9
+         dDTQ==
+X-Gm-Message-State: ANoB5pkULcLtEChWz58Hl0Tb0ykzsGbQNsNvbIpd8U3eXoH4br7c4MbQ
+        ZtwIFCPqomJVzDNEQc9iEDk=
+X-Google-Smtp-Source: AA0mqf5mbJs2dMxZ6PHqkjyrhifzu6YOoUOjBC8Ai/bTwE1VvdZ4l/P23iP+6RwVJNQPxuiZqFSnUg==
+X-Received: by 2002:a63:1055:0:b0:46e:f011:9548 with SMTP id 21-20020a631055000000b0046ef0119548mr63000322pgq.553.1670392234534;
+        Tue, 06 Dec 2022 21:50:34 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id e7-20020a630f07000000b004777c56747csm10585615pgl.11.2022.12.06.21.50.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Dec 2022 21:50:33 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     rafael@kernel.org, krzk@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org, robh+dt@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221201044643.1150870-1-saravanan@linumiz.com>
- <20221201044643.1150870-4-saravanan@linumiz.com>
- <00de62b2-51dc-2a72-6659-3425d5e1b72c@roeck-us.net>
- <6773256d-2842-fadc-1222-f76e0b495eda@linumiz.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 3/4] hwmon: (pmbus/mpq7932) Add a support for mpq7932
- Power Management IC
-In-Reply-To: <6773256d-2842-fadc-1222-f76e0b495eda@linumiz.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+Cc:     lh.kuo@sunplus.com, Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v13 0/2] Add thermal control driver for Sunplus SoC
+Date:   Wed,  7 Dec 2022 13:50:34 +0800
+Message-Id: <cover.1665990345.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,63 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/6/22 19:51, Saravanan Sekar wrote:
-> On 01/12/22 16:34, Guenter Roeck wrote:
->> On 11/30/22 20:46, Saravanan Sekar wrote:
->>> The MPQ7932 is a power management IC designed to operate from 5V buses to
->>> power a variety of Advanced driver-assistance system SOCs. Six integrated
->>> buck converters with hardware monitoring capability powers a variety of
->>> target rails configurable over PMBus interface.
->>>
->>> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
->>> ---
->>>   drivers/hwmon/pmbus/Kconfig   |  10 +++
->>>   drivers/hwmon/pmbus/Makefile  |   1 +
->>>   drivers/hwmon/pmbus/mpq7932.c | 144 ++++++++++++++++++++++++++++++++++
->>>   3 files changed, 155 insertions(+)
->>>   create mode 100644 drivers/hwmon/pmbus/mpq7932.c
->>>
->>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
->>> index 89668af67206..4a1538949a73 100644
->>> --- a/drivers/hwmon/pmbus/Kconfig
->>> +++ b/drivers/hwmon/pmbus/Kconfig
->>> @@ -317,6 +317,16 @@ config SENSORS_MP5023
->>>         This driver can also be built as a module. If so, the module will
->>>         be called mp5023.
->>> +config SENSORS_MPQ7932
->>> +    tristate "MPS MPQ7932"
->>
->> As written, a dependency on REGULATOR is missing. However, we want the driver
->> enabled even if CONFIG_REGULATOR is not enabled. I would suggest to follow the
->> approach used by other drivers: add a second configuration option
->> SENSORS_MPQ7932_REGULATOR which depends on SENSORS_MPQ7932 and REGULATOR
->> and enables regulator functionality, and use that in the driver to
->> make regulator support optional.
->>
-> 
-> Hello Guenter,
-> 
-> I need clarification or confirmation from you before V3.
-> 
-> Here is my view, communication to MPQ7932 PMIC chip is based on pmbus specification.
-> 
-> Now the conflict is that we have pmbus directory under hwmon subsystem, if pmbus spec implementation would have been separate like i2c-smbus then we can implement chip driver in regulator subsystem which access pmbus.
-> 
-> pmbus_core does supports regulator framework PMBUS_REGUALTOR and I believe it is valid MPQ7932 driver implantation under pmbus directory.
-> 
-> Kindly suggest to remove pmbus dependency on hwmon and proceed further.
-> 
+This is a patch series for thermal driver for Sunplus SoC.
 
-Every chip supporting PMBus has hwmon functionality. The PMBus core
-as implemented primarily supports hardware monitoring. Some can
-act as regulators; that is why regulator support was added to
-the PMBus core. Trying to extract it would make no sense.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-If you want to implement a driver without hardware monitoring
-support for this chip, you won't need the PMBus core. I would not
-agree with such an approach, but there is nothing that prevents you
-from implementing a regulator-only driver for this chip in the
-regulator subsystem.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Guenter
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus
+  dt-bindings: thermal: Add Sunplus schema
+
+ .../bindings/thermal/sunplus,sp7021-thermal.yaml   |  43 +++++++
+ MAINTAINERS                                        |   7 ++
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 130 +++++++++++++++++++++
+ 5 files changed, 191 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus,sp7021-thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
+-- 
+2.7.4
 
