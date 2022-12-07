@@ -2,108 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4039F645D5D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:14:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A545645D61
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiLGPOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 10:14:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57804 "EHLO
+        id S229715AbiLGPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 10:14:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiLGPOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:14:09 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0CE5FB8F
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:14:08 -0800 (PST)
+        with ESMTP id S229513AbiLGPO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:14:58 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592E160EB3
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:14:57 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id p36so24826801lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:14:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670426048; x=1701962048;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=USL4Z3za5AJaPENgC/irQE3V5/hTe59XsEqePd3fa1o=;
-  b=OHxA+fF0v/Q9yvkb0b2t3kfXDD7QHKsqYiDN7bdi7oDdu2KcP0ZRakD6
-   9K6eZCPugZ6lX3nKqUCgCPXRFnl/CWzu37HRA2jPCOF7Z7e60VkcIApRw
-   0CQvbbhYDxxF87ISB+v3cK10dY/3rtopWxS29peCvO/MgDAr/pLJ160wi
-   8IN0xP45YSyQlwz7QOowpqjOh91DTOsV3BG3ZkGOWSsSXv1gkhwE1QRVF
-   a2Cal8XI+NhxU9kVP3wycfjSddWLX/Yz/lk3JaIsIr6Vj9RxREa1wrCeQ
-   A3XX7s2uI/J6l7vfQfSnxRyESgTydXf0TjHSsjDsXjwdrq2oSeakwDAWf
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
-   d="scan'208";a="27816231"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 07 Dec 2022 16:14:05 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 07 Dec 2022 16:14:05 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 07 Dec 2022 16:14:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670426045; x=1701962045;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=USL4Z3za5AJaPENgC/irQE3V5/hTe59XsEqePd3fa1o=;
-  b=F4UgNbmU8TXZ8lBbRf8sYz3gzKuIta1QxiU74QjH+/lL4BhMcCa4O14C
-   84c8CkzIAqxN0u7twrJA2eClQfjNnHto7kv6gbUr+P9ZPxFCIAvb1jNQh
-   OZalQwgqwToUB30bzdpJ0cxYGIcxzRPm700SZooCsGXtMifkl48fEirv8
-   zbnq4A9djWWYiHZ4sk4OeRHpmfPnMd1ZNAC1dkZrKxQ6Tbhpk4eST14Ei
-   U3fen+vq9fJmG0M6mmWy860SlYP7+6ArRiPChrlNDTA6+LRCa77hMDhox
-   b2AuV+UCDI7uPOZD9aB+Kp1gEFZpAB5arAeGLIrF0OtYwCC1JbMHcDLAF
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
-   d="scan'208";a="27816230"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 07 Dec 2022 16:14:05 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1A18B280072;
-        Wed,  7 Dec 2022 16:14:05 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: lcdif: Add optional power-domain
-Date:   Wed,  7 Dec 2022 16:14:00 +0100
-Message-Id: <20221207151400.1572582-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
-References: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/NtXR99YY/YnD6oXE1Csk2UNFUAjboD1pCOokVrfPfA=;
+        b=fnwxWVsZQarOW1g820iNU+J4Hfp4bvS/sVpkweWbQfS0GISHHYMqRhJSq15oSaBsTQ
+         7nswqkdmM01rF5SmW55qYHdVK/HTsrrin66Wh3jEL69myZXFH7ebBnRWTN+IveYfSfY5
+         ELrg3kdK1l+N86IMI8fbKGj0VjgvZkeYO4trktUIw0IkUj2r9rjrS6uwse6Vp2Bp7xHV
+         KnFrzkv6Inp0lj3L+fbvHLiBbszVxxc61m67g2TCjdD2qybaXvstb601hH7T57iQJbUj
+         WCGYbE42nm0e2Z+oCjmujlYTVPByZJZCiJ1IYRyVftVYTEB7C8B4GsTDTt0G/5KclvGF
+         oxDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/NtXR99YY/YnD6oXE1Csk2UNFUAjboD1pCOokVrfPfA=;
+        b=b7XL+CtwnStdYTAi5WT81eyiFn1izt1t+Ps0AiTme6jxklBY01AISfdUMP0u47pNhG
+         FqYR8Wq/eJ1OvDcGr3NWPtaKH1nmg0xIHBipkZo91r/6CoaH0xtiTNLm7TnX4qkeec0G
+         cpSqL/dNsrCbLnQ8UoJP2LS6A3WXErzSssX/m35URAZUfYu047bosXvqgo3st0+ti2pj
+         6aP/1LU+uUh9V6+XDd7RsQI6WQPQKH5rVYF8+WpHzYoXwD89WcPzcyHRPKXIs5zFKHvA
+         UUz04kQ27shFyfAGkeeXHEZr3je0tkaGDNuA0C1mTe5r6lxvdSK4oHFlnNDAGRMzuwpS
+         yDag==
+X-Gm-Message-State: ANoB5pl665pOSFBG/MoemmugXYbZVYMWMUXs3P4FC12usXLOojmzl2Up
+        M3PlcVMXAXzBBxV0I7wh5rDEcA==
+X-Google-Smtp-Source: AA0mqf547wAIdfMLEczotwwPA5Zt/mVZpkdrWuFBMjOjByvhXT3cbXDKWUguS0TF5BEOaPkSWX+Pzw==
+X-Received: by 2002:ac2:4acf:0:b0:4b5:699e:6e9d with SMTP id m15-20020ac24acf000000b004b5699e6e9dmr5243135lfp.91.1670426094907;
+        Wed, 07 Dec 2022 07:14:54 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id e13-20020ac24e0d000000b004946b549a19sm2898207lfr.45.2022.12.07.07.14.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 07:14:54 -0800 (PST)
+Message-ID: <c0b84752-443f-d935-0ed8-c8ed4d212c2e@linaro.org>
+Date:   Wed, 7 Dec 2022 16:14:53 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: Add mmc node
+Content-Language: en-US
+To:     William Qiu <william.qiu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
+ <20221207131731.1291517-4-william.qiu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207131731.1291517-4-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MP requires a power-domain for this peripheral to use. Add it as
-an optional property.
+On 07/12/2022 14:17, William Qiu wrote:
+> This adds the mmc node for the StarFive JH7110 SoC.
+> Set sdioo node to emmc and set sdio1 node to sd.
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 38 +++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> index c8946cf3a268..6ef8e303c2e6 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
+> @@ -47,6 +47,31 @@ &clk_rtc {
+>  	clock-frequency = <32768>;
+>  };
+>  
+> +&sdio0 {
+> +	max-frequency = <100000000>;
+> +	card-detect-delay = <300>;
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	non-removable;
+> +	cap-mmc-hw-reset;
+> +	post-power-on-delay-ms = <200>;
+> +	status = "okay";
+> +};
+> +
+> +&sdio1 {
+> +	max-frequency = <100000000>;
+> +	card-detect-delay = <300>;
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-mmc;
+> +	broken-cd;
+> +	cap-sd-highspeed;
+> +	post-power-on-delay-ms = <200>;
+> +	status = "okay";
+> +};
+> +
+>  &gmac0_rmii_refin {
+>  	clock-frequency = <50000000>;
+>  };
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index c22e8f1d2640..e90b085d7e41 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -331,6 +331,11 @@ aoncrg: clock-controller@17000000 {
+>  			#reset-cells = <1>;
+>  		};
+>  
+> +		sys_syscon: sys_syscon@13030000 {
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+No underscores in node names, generic node names (syscon or
+system-controller)
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 793e8eccf8b8b..9d9fb5ad587c2 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -52,6 +52,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: The LCDIF output port
--- 
-2.34.1
+> +			compatible = "syscon";
+
+This is not allowed alone.
+
+> +			reg = <0x0 0x13030000 0x0 0x1000>;
+> +		};
+> +
+>  		gpio: gpio@13040000 {
+>  			compatible = "starfive,jh7110-sys-pinctrl";
+>  			reg = <0x0 0x13040000 0x0 0x10000>;
+> @@ -433,5 +438,38 @@ uart5: serial@12020000 {
+>  			reg-shift = <2>;
+>  			status = "disabled";
+>  		};
+> +
+> +		/* unremovable emmc as mmcblk0 */
+> +		sdio0: mmc@16010000 {
+> +			compatible = "starfive,jh7110-sdio";
+> +			reg = <0x0 0x16010000 0x0 0x10000>;
+> +			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
+> +				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+> +			clock-names = "biu","ciu";
+> +			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
+> +			reset-names = "reset";
+> +			interrupts = <74>;
+> +			fifo-depth = <32>;
+> +			fifo-watermark-aligned;
+> +			data-addr = <0>;
+> +			starfive,sys-syscon = <&sys_syscon 0x14 0x1a 0x7c000000>;
+
+This does not match your bindings at all. "&sys_syscon" is a phandle,
+not a number of tuning retries, as you expect in your bindings.
+
+
+Best regards,
+Krzysztof
 
