@@ -2,86 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08AAC645817
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E297645820
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiLGKlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:41:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37392 "EHLO
+        id S229462AbiLGKrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:47:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiLGKlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:41:00 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668E310B6A;
-        Wed,  7 Dec 2022 02:40:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670409658; x=1701945658;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Xk5goH3/wEb7wDqojnwzNi5RZQ/mTp7ePcv/KyIwGtk=;
-  b=Lu/8SbVYERU2ypF1xeTQ7401jEkMArfHWLW6mpUFFg0Yo6NjzUxll/mu
-   l0S6ud2WlVnEbhpsEQ/ZzgoUcg9WQhDSuKdC1aNIjNyEMsOjp3ph0C6PB
-   FIVtIrmOpsLUR0mLfp/tLRm2axrycW2rzjBqzVST81vqtL1zrjy9gnJcl
-   96Fswwds7avpzXzA/SJZFkNBk/uXk7l9MZ3IsNeAtdbivKBzsEFyObCUs
-   B/+IROuwvG0o2keYDx3C6fmY7ZOjCAhfesK/MVPfLDgTJ06UmIMrZWS0E
-   AqsOGX/Pi/wof/3Kvxd/Yxt0gi+wO2rQff3PAWQ1EYQL9NZh5lavnnjNG
-   g==;
-X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
-   d="scan'208";a="27807287"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 07 Dec 2022 11:40:56 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 07 Dec 2022 11:40:56 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 07 Dec 2022 11:40:56 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670409656; x=1701945656;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Xk5goH3/wEb7wDqojnwzNi5RZQ/mTp7ePcv/KyIwGtk=;
-  b=Cc25EGHsoxmorVkUmO/qr+rRB+xUGdR4Ip4NgCkQ5fvqyvZ5tudvxNNr
-   MPa1ubhkMsa/+HGjaiv/RUuWVtYUBF5zq4QuD8KBIVb2FEmFgPeBcgvWN
-   /0d64aa1zuw9lgXuJuxEy5x2u6M7DhlPO3E4SnOmkD46PG8KW182j/+wo
-   PBf7KBM0Qi3Xu4ITi7n8hH2HgUupZhh7gKqeE5OT4REPkYAvzJafVpb3A
-   6jNqbKnJMSDQn0zO6K1x8+7hX9Huy/ZNiD6z7a+ESlUgCaCUgHsk2pC4X
-   SWedk4Ju15x1iZWTC2U5u9lE5qxsTK4hQkerucjfCRPOH6Su1WwNwdjOb
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,225,1665439200"; 
-   d="scan'208";a="27807286"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 07 Dec 2022 11:40:55 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8A2FE280071;
-        Wed,  7 Dec 2022 11:40:55 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Tim Harvey <tharvey@gateworks.com>, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229489AbiLGKry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:47:54 -0500
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com [136.143.188.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F60824BF1;
+        Wed,  7 Dec 2022 02:47:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670410055; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=mBtk1g3a7Q1rismQYQWGRJkcALrsuKhh4yvLL8CeyRqRdk9enQD2KRoOeJMpeJlrg927BvWeMyyJr5aGsw5VWpi8ji/iq5V6D8sDQp4c6qe8GIlNH7gkf83pwkNf48nU3kCmq8Xn2EQKChN9s6Nsr0Eh3OV+SX4dzaTPCnBgr5Y=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1670410055; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=1JCTlL48DT3zfL4rO5+nUh4+FmToPbXqE2w5MYGFziQ=; 
+        b=I86dJHbw6Gg+WK9G7fEtSjh9xf5/Q5BKzAGMPfh249ALQQn417It3xum7gcsUwamh+NoA2FZ4Exkysnhlzs1/Lu/fIHJHWPHzYMZerRlp9yv9QxvKkX+8cnxlAljDlM3ReDUf5+Pv8JUQcH89xD59w2LoTW9mdO2DUS0L14mEeA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1670410055;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=1JCTlL48DT3zfL4rO5+nUh4+FmToPbXqE2w5MYGFziQ=;
+        b=evjAeK9ZnmkLF9u2/Jh/+ayHl4FANQIIndJCGtwgRpNkPApxo2x5OTrg+lI7cW/0
+        RX992Lx+SjGoY1R4Xhxp3cVMrBHZ6ycoJLHQQuEODfWgne0mEzLRJqAirLW5lyCh8oB
+        1IupoqBpExbx7iZgQXVwSF5DzeoJq1jwvSXgNAIo=
+Received: from edelgard.fodlan.icenowy.me (120.85.99.143 [120.85.99.143]) by mx.zohomail.com
+        with SMTPS id 1670410054297195.35225821177994; Wed, 7 Dec 2022 02:47:34 -0800 (PST)
+Message-ID: <34fe4161718e395f5e9890f9358a25f697af9e24.camel@icenowy.me>
+Subject: Re: [PATCH 1/3] dt-bindings: timer: sifive,clint: add comaptibles
+ for T-Head's C9xx
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 0/3] add dt configuration for dp83867 led modes
-Date:   Wed, 07 Dec 2022 11:40:51 +0100
-Message-ID: <4792263.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <6388f4ab.5d0a0220.a137.068e@mx.google.com>
-References: <20221118001548.635752-1-tharvey@gateworks.com> <CAJ+vNU2AbaDAMhQ0-mDh6ROC7rdkbmXoiSijRTN2ryEgT=QHiQ@mail.gmail.com> <6388f4ab.5d0a0220.a137.068e@mx.google.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Wed, 07 Dec 2022 18:47:26 +0800
+In-Reply-To: <20221121041757.418645-2-uwu@icenowy.me>
+References: <20221121041757.418645-1-uwu@icenowy.me>
+         <20221121041757.418645-2-uwu@icenowy.me>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,126 +67,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ansuel,
+=E5=9C=A8 2022-11-21=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 12:17 +0800=EF=BC=
+=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
+> T-Head C906/C910 CLINT is not compliant to SiFive ones (and even not
+> compliant to the newcoming ACLINT spec) because of lack of mtime
+> register.
+>=20
+> Add a compatible string formatted like the C9xx-specific PLIC
+> compatible, and do not allow a SiFive one as fallback because they're
+> not really compliant.
+>=20
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 
-Am Donnerstag, 1. Dezember 2022, 19:38:36 CET schrieb Christian Marangi:
-> On Thu, Dec 01, 2022 at 10:35:46AM -0800, Tim Harvey wrote:
-> > On Thu, Dec 1, 2022 at 10:31 AM Christian Marangi <ansuelsmth@gmail.com> 
-wrote:
-> > > On Thu, Dec 01, 2022 at 10:26:09AM -0800, Tim Harvey wrote:
-> > > > On Sun, Nov 20, 2022 at 3:35 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> > > > > On Fri, Nov 18, 2022 at 11:57:00AM -0800, Tim Harvey wrote:
-> > > > > > On Fri, Nov 18, 2022 at 5:11 AM Andrew Lunn <andrew@lunn.ch> 
-wrote:
-> > > > > > > > Andrew,
-> > > > > > > > 
-> > > > > > > > I completely agree with you but I haven't seen how that can be
-> > > > > > > > done
-> > > > > > > > yet. What support exists for a PHY driver to expose their LED
-> > > > > > > > configuration to be used that way? Can you point me to an
-> > > > > > > > example?
-> > > > > > > 
-> > > > > > > Nobody has actually worked on this long enough to get code
-> > > > > > > merged. e.g.
-> > > > > > > https://lore.kernel.org/netdev/20201004095852.GB1104@bug/T/
-> > > > > > > https://lists.archive.carbon60.com/linux/kernel/3396223
-> > > > > > > 
-> > > > > > > This is probably the last attempt, which was not too far away
-> > > > > > > from getting merged:
-> > > > > > > https://patches.linaro.org/project/linux-leds/cover/20220503151
-> > > > > > > 633.18760-1-ansuelsmth@gmail.com/
-> > > > > > > 
-> > > > > > > I seem to NACK a patch like yours every couple of months. If all
-> > > > > > > that
-> > > > > > > wasted time was actually spent on a common framework, this would
-> > > > > > > of
-> > > > > > > been solved years ago.
-> > > > > > > 
-> > > > > > > How important is it to you to control these LEDs? Enough to
-> > > > > > > finish
-> > > > > > > this code and get it merged?
-> > > > > > 
-> > > > > > Andrew,
-> > > > > > 
-> > > > > > Thanks for the links - the most recent attempt does look
-> > > > > > promising.
-> > > > > > For whatever reason I don't have that series in my mail history so
-> > > > > > it's not clear how I can respond to it.
-> > > > > 
-> > > > > apt-get install b4
-> > > > > 
-> > > > > > Ansuel, are you planning on posting a v7 of 'Adds support for PHY
-> > > > > > LEDs
-> > > > > > with offload triggers' [1]?
-> > > > > > 
-> > > > > > I'm not all that familiar with netdev led triggers. Is there a way
-> > > > > > to
-> > > > > > configure the default offload blink mode via dt with your series?
-> > > > > > I
-> > > > > > didn't quite follow how the offload function/blink-mode gets set.
-> > > > > 
-> > > > > The idea is that the PHY LEDs are just LEDs in the Linux LED
-> > > > > framework. So read
-> > > > > Documentation/devicetree/bindings/leds/common.yaml.
-> > > > > The PHY should make use of these standard DT properties, including
-> > > > > linux,default-trigger.
-> > > > > 
-> > > > >         Andrew
-> > > > 
-> > > > Ansuel,
-> > > > 
-> > > > Are you planning on posting a v7 of 'Adds support for PHY LEDs with
-> > > > offload triggers' [1]?
-> > > > 
-> > > > Best Regards,
-> > > > 
-> > > > Tim
-> > > > [1] https://patches.linaro.org/project/linux-leds/list/?series=174704
-> > > 
-> > > I can consider that only if there is a real interest for it and would
-> > > love some help by the netdev team to actually have a review from the
-> > > leds team...
-> > > 
-> > > I tried multiple time to propose it but I never got a review... only a
-> > > review from an external guy that wanted to follow his idea in every way
-> > > possible with the only intention of applying his code (sorry to be rude
-> > > about that but i'm more than happy to recover the work and search for a
-> > > common solution)
-> > > 
-> > > So yes this is still in my TODO list but it would help if others can
-> > > tell me that they want to actually review it. That would put that
-> > > project on priority and I would recover and push a v7.
-> > > 
-> > > --
-> > > 
-> > >         Ansuel
-> > 
-> > Ansuel,
-> > 
-> > Considering Andrew is nak'ing any phy code to configure LED's until a
-> > solution using via /sys/class/leds is provided I would say there is
-> > real interest.
-> > 
-> > It seems to me that you got very positive feedback for this last
-> > series. I would think if you submitted without RFC it would catch more
-> > eyes as well.
-> 
-> Well yes that's the fun part. netdev really liked the concept and how it
-> was implemented (and actually also liked the use of a dedicated trigger
-> instead of bloating the netdev trigger)
-> 
-> But I never got a review from LED team and that result in having the
-> patch stalled and never merged... But ok I will recover the work and
-> recheck/retest everything from the start hoping to get more traction
-> now...
+Hi, could this patch be picked ASAP? Becuase it will be used then in
+further OpenSBI patches to enable proper operation of T-Head timer.
 
-I was just trying to use your RFC patchset from May 2022 for dp83867 as well, 
-with some success at least.
-I have some comments, fixes and uncertainties. How do you want to progress? 
-Resend so I can rebase on that? Anyway, put me on CC.
+I know the following 2 patches are in doubt and further rework for them
+are needed.
 
-Best regards,
-Alexander
-
-
+> ---
+> =C2=A0Documentation/devicetree/bindings/timer/sifive,clint.yaml | 8
+> ++++++++
+> =C2=A01 file changed, 8 insertions(+)
+>=20
+> diff --git
+> a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index bbad24165837..aada6957216c 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -20,6 +20,10 @@ description:
+> =C2=A0=C2=A0 property of "/cpus" DT node. The "timebase-frequency" DT pro=
+perty
+> is
+> =C2=A0=C2=A0 described in Documentation/devicetree/bindings/riscv/cpus.ya=
+ml
+> =C2=A0
+> +=C2=A0 T-Head C906/C910 CPU cores include an implementation of CLINT too=
+,
+> however
+> +=C2=A0 their implementation lacks a memory-mapped MTIME register, thus
+> not
+> +=C2=A0 compatible with SiFive ones.
+> +
+> =C2=A0properties:
+> =C2=A0=C2=A0 compatible:
+> =C2=A0=C2=A0=C2=A0=C2=A0 oneOf:
+> @@ -29,6 +33,10 @@ properties:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - starfive,jh7100-clint
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 - canaan,k210-clint
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sif=
+ive,clint0
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 - allwinner,sun20i-d1-clint
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: thead,c9=
+00-clint
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sif=
+ive,clint0
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: ris=
+cv,clint0
 
