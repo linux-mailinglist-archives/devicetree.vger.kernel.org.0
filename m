@@ -2,86 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6369B6461E0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 20:49:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE25D646203
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 21:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbiLGTtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 14:49:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
+        id S229728AbiLGUEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 15:04:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiLGTtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 14:49:52 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BF66A771;
-        Wed,  7 Dec 2022 11:49:52 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id C8A021C09FA; Wed,  7 Dec 2022 20:49:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1670442590;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZfbX8b3IcLTSo6OiYayfHgn7c+FfgItv2i9S7oRsPSw=;
-        b=AVnDabuurJNJ9hnUxhb6HbM8HqybN1PAsn6Egi8imKYJtKBkXcKd+giVH1OaHmLkFgqt9O
-        OkMqCjUW3Z3gs51mTOnOS9BP1kocLRVqM45LuHnuxCwx+iqaamESLUoIEUAzhrzPVHGzwt
-        X7W2kW6ogHkGHgWHpZ5FC9PVM67NT5c=
-Date:   Wed, 7 Dec 2022 20:49:50 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        kernel@sberdevices.ru
-Subject: Re: [PATCH v1 2/2] leds: add aw20xx driver
-Message-ID: <Y5DuXsvJhUQGGlmD@duo.ucw.cz>
-References: <20221124204807.1593241-1-mmkurbanov@sberdevices.ru>
- <20221124204807.1593241-3-mmkurbanov@sberdevices.ru>
+        with ESMTP id S229566AbiLGUEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 15:04:20 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D2913D7C
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 12:04:19 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j4so30431706lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 12:04:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3W4AXWAS24yUYVPMlcPiaqqG/pQP+BE1R3UfjzEdCQ=;
+        b=Fs1+Z+Kws7zzF0olOZ8OzkKdCdQ0Mnb/kgdNkJrTGAXhdyZxDdzI/6FO7w4AdaaC94
+         Tf5Dn7qOl/XN97QSdCz1mKdRYls82chj7JXgXYpf+rE4mxQTMX3BCqFcQWGXgNVbGqkb
+         KoZuJYwDh3JKag9DKqgH8FLXBmIhJMmds1abSj4ragRYeQC2lmyqeOU+c0PJCjyqx4Y/
+         lxJ2YUacvczwJIPm3HMMkBQGMPvnDgMY1juM9rrBILjWJkpSIsrsS0oH5qOOVklNbG52
+         lFTOgdwH4zRKxOCx5Kqp4xHi02aixnSd05i+Q/PGSNmuwJa/GY85uPXJ1pL6JvWzDtwY
+         KlZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3W4AXWAS24yUYVPMlcPiaqqG/pQP+BE1R3UfjzEdCQ=;
+        b=ELGE6l0EorkTuoN7cYM3okq+Ohm0Nkd6irH9ZKAqi1LrkxSzAvNfjdjenlaZwmzvyo
+         7ViIrGL90klEIGxRWeuPdTFudOes0dRYgZ8ndoRuK0OeGj2/jRftVIybDRp6yfDAE5tt
+         RQFAnGvUmTzZweUCFv6hP0qs0TgRfoyXjMNoZ3eBoGnF0ZpmRotiwsBk7b450dYjYNdN
+         GoRq2pcKxDFO7vYyc+J//thtz4RcmwPKoqC45L5/JHeQIoPDxeehRzwtBr5tTygjnthp
+         zfTMwnp4HUl1IUz1tqC9XCXPkSwy0b3daBCFTKPIquX/Lh7da9b7kNbq64/+H4pXUonK
+         1uiQ==
+X-Gm-Message-State: ANoB5pmCoQjxDwn3/UmEtbZ6ADg+5iXrI+VHhrDnnwvprBQSEwM9N9KL
+        cSTODCK8UY7/sBjDlnuyg4WZUA==
+X-Google-Smtp-Source: AA0mqf7U3pgwgNVXnWuYdlHWRaFHTBavgDqmVajh1aIC4PNT3RriHB4hg+8UB2/l7yCEzpZ5R4gW0Q==
+X-Received: by 2002:a05:6512:258a:b0:4b5:6fb9:708d with SMTP id bf10-20020a056512258a00b004b56fb9708dmr5129046lfb.300.1670443457554;
+        Wed, 07 Dec 2022 12:04:17 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id c16-20020a056512325000b004994c190581sm2983236lfr.123.2022.12.07.12.04.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 12:04:17 -0800 (PST)
+Message-ID: <de67c95a-d003-c4ef-64a4-c3565ce02b7a@linaro.org>
+Date:   Wed, 7 Dec 2022 22:04:16 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="n/1XYLv8CUf7pjHq"
-Content-Disposition: inline
-In-Reply-To: <20221124204807.1593241-3-mmkurbanov@sberdevices.ru>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 02/13] drm/msm/dpu: Introduce SC8280XP
+Content-Language: en-GB
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalyan Thota <quic_kalyant@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221205174433.16847-1-quic_bjorande@quicinc.com>
+ <20221205174433.16847-3-quic_bjorande@quicinc.com>
+ <0430d878-e0cd-3708-91a3-2eca66418386@linaro.org>
+ <20221207162824.kyxecdz43v5ojatx@builder.lan>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221207162824.kyxecdz43v5ojatx@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/12/2022 18:28, Bjorn Andersson wrote:
+> On Wed, Dec 07, 2022 at 04:49:07PM +0200, Dmitry Baryshkov wrote:
+>> On 05/12/2022 19:44, Bjorn Andersson wrote:
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> [..]
+>>> +static const struct dpu_mdp_cfg sc8280xp_mdp[] = {
+>>> +	{
+>>> +	.name = "top_0", .id = MDP_TOP,
+>>> +	.base = 0x0, .len = 0x494,
+>>> +	.features = 0,
+>>> +	.highest_bank_bit = 0x3, /* TODO: 2 for LP_DDR4 */
+>>
+>> ubwc_swizzle ? I'd suppose it's 6, but I'd bet on it.
+>>
+> 
+> I don't see ubwc_swizzle defined for any other platform, and it seems to
+> be unused for DPU_HW_UBWC_VER_40. Am I perhaps missing something?
 
---n/1XYLv8CUf7pjHq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, it doesn't seem to be used for VER_40, just wanted to have it for 
+the sake of completeness. See 
+https://lore.kernel.org/linux-arm-msm/20221207142833.204193-4-dmitry.baryshkov@linaro.org/T/#u
 
-On Thu 2022-11-24 23:48:07, Martin Kurbanov wrote:
-> This commit adds support for AWINIC AW20036/AW20054/AW20072 LED driver.
-> This driver supports following AW200XX features:
->   - 3 pattern controllers for auto breathing or group dimming control
->   - Individual 64-level DIM currents
->   - Interrupt output, low active
+> 
+>>> +	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_VIG1] = { .reg_off = 0x2b4, .bit_off = 0},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_VIG2] = { .reg_off = 0x2bc, .bit_off = 0},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_VIG3] = { .reg_off = 0x2c4, .bit_off = 0},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_CURSOR0] = { .reg_off = 0x2bc, .bit_off = 8},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_CURSOR1] = { .reg_off = 0x2c4, .bit_off = 8},
+>>> +	.clk_ctrls[DPU_CLK_CTRL_REG_DMA] = { .reg_off = 0x2bc, .bit_off = 20},
+>>> +	},
+>>> +};
+>>> +
+>>>    static const struct dpu_mdp_cfg qcm2290_mdp[] = {
+>>>    	{
+>>>    	.name = "top_0", .id = MDP_TOP,
+>>> @@ -648,6 +693,45 @@ static const struct dpu_ctl_cfg sc7180_ctl[] = {
+>>>    	},
+>>>    };
+>>> +static const struct dpu_ctl_cfg sc8280xp_ctl[] = {
+>>> +	{
+>>> +	.name = "ctl_0", .id = CTL_0,
+>>> +	.base = 0x15000, .len = 0x204,
+>>> +	.features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG),
+>>
+>> Please use CTL_SC7270_MASK instead, unless you have a strong reasong not to
+>> do it.
+>>
+> 
+> No strong reason, will update.
 
-You may want to submit driver without the hardware pattern support,
-first.
+Thanks. The logic for me is to be able to update a single mask when new 
+features are added instead of going all over the code.
 
-Best regards,
-							Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+E.g. I think sc8280xp will benefit from hierarchical DSPP support, will 
+it not?
 
---n/1XYLv8CUf7pjHq
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Thanks,
+> Bjorn
 
------BEGIN PGP SIGNATURE-----
+-- 
+With best wishes
+Dmitry
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY5DuXgAKCRAw5/Bqldv6
-8ocvAJ0XOQM0YJyF5UQGAs5QgDHESOtXDACfaUGluw63oEH83Gfx8KfGbd/e1gQ=
-=4REW
------END PGP SIGNATURE-----
-
---n/1XYLv8CUf7pjHq--
