@@ -2,376 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6510A6463BB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 23:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD05E6463F6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 23:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiLGWA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 17:00:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43280 "EHLO
+        id S229593AbiLGWT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 17:19:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbiLGWAf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 17:00:35 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D4B84DE8;
-        Wed,  7 Dec 2022 14:00:32 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B7LsCtt003017;
-        Wed, 7 Dec 2022 22:00:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=TMdu94/5OkuXtF4rkDkFZzzrpnVZt7h12PRb1jo2jCg=;
- b=hCkHOHoLfzcozih7juJBKg6+4c6VjyekdSOWefwX6mXKkBSMBK6Ytxt3Ym1Diye6jqXJ
- Uyju0FrHcz/UfzdKWfS88ZO1KTKLtDHoEDSJCFrOxCAgxvCsRkUnjrx5rQSaI+F3K7cu
- JvSFvLNbhZJ2L0WCedSYaqElJkgrSz0meYHao0AuTFAj43jF7i3R6Djrx9gTGaS+OeMu
- rxVepW9XjTSzesnU85MkgryGhGqq28wMLOIuiQwytsPJp/X1QLvTttm9KRlrrcdqR4fm
- FQt1NUSBZyLNfxOvKXHjh1+OAeaB1p6lYlS+DNK+AAvgsJlaLdKYK7ImduIcqeQ4rlPT fg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3maywmrew3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Dec 2022 22:00:27 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B7M0QM8006536
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 7 Dec 2022 22:00:27 GMT
-Received: from th-lint-050.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.36; Wed, 7 Dec 2022 14:00:25 -0800
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "Kuogee Hsieh" <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 12/12] arm64: dts: qcom: sa8295-adp: Enable DP instances
-Date:   Wed, 7 Dec 2022 14:00:12 -0800
-Message-ID: <20221207220012.16529-13-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
+        with ESMTP id S229589AbiLGWT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 17:19:57 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C5069AAC;
+        Wed,  7 Dec 2022 14:19:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C3057B8218F;
+        Wed,  7 Dec 2022 22:19:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76E6AC43470;
+        Wed,  7 Dec 2022 22:19:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670451594;
+        bh=Z6y1S2c4O/wQVEci3pG8Cjc3WmkGbiLwEfx3oMfIjck=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OCzOmaGjJvSkeIY2d/ch72xW78HASiWEjCv+COoZdnTgvkbcLvkwqw9nRliNM7Nr7
+         Vh5ZKgh6udrB+8stTTSMByhHAjlcp/qqbJ8HcYxS+wKcLi1v5EH17QABp3OodWWQja
+         nYT3Yw8ShUY/8OMh7z0R0HWl2YvOAvbMtSypH42zZvCp7RNFIfLybieNj/DV0uJCOC
+         BXDbq3pjWQpAMu2LpGYfaqHQN+39X8JkC3xgx7kA8D1GV5VPtn0dLPsNpkiNHGrtNo
+         Q/c3+qkPf0oeD9Bvjzrb5Q2jX7ab7UTYIxO+yMVw608bhxM/dSOw681DSkG5CKRMPl
+         GSbjoaiZaYfmA==
+Received: by mail-ua1-f50.google.com with SMTP id e24so6502644uam.10;
+        Wed, 07 Dec 2022 14:19:54 -0800 (PST)
+X-Gm-Message-State: ANoB5pnDavVVUGpwlR+N8IDCtBRXSn5dXe6aQxCmM0VROPydGBFiBW6F
+        v0G0mLmWjWehJeunLuxNtFwS4ijmWn9IKG3WAA==
+X-Google-Smtp-Source: AA0mqf7sjL89XYXP7++xV6ahJfBPE5ZnuFqEZVVoFHM87m+y1bCKE4MXIBGEtgCvE7SaKjFdqV+bCcJFTgMrIRcBLr0=
+X-Received: by 2002:ab0:1006:0:b0:419:70a:90cb with SMTP id
+ f6-20020ab01006000000b00419070a90cbmr32720021uab.36.1670451593309; Wed, 07
+ Dec 2022 14:19:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bVrDuQrrrDY9cZdnNUry0sYOSnj4iJCF
-X-Proofpoint-GUID: bVrDuQrrrDY9cZdnNUry0sYOSnj4iJCF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-07_11,2022-12-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- clxscore=1015 suspectscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 malwarescore=0 bulkscore=0 mlxlogscore=945 lowpriorityscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2212070186
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221207162435.1001782-1-herve.codina@bootlin.com>
+In-Reply-To: <20221207162435.1001782-1-herve.codina@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 7 Dec 2022 16:19:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJiZU=sHVPc92nDNoqUjm7FUb=u0izGYa+irkUW1XmA_w@mail.gmail.com>
+Message-ID: <CAL_JsqJiZU=sHVPc92nDNoqUjm7FUb=u0izGYa+irkUW1XmA_w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Add the Renesas USBF controller support
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Wed, Dec 7, 2022 at 10:24 AM Herve Codina <herve.codina@bootlin.com> wrote:
+>
+> Hi,
+>
+> This series add support for the Renesas USBF controller (USB Device
+> Controller) available in the Renesas RZ/N1 SoC.
+>
+> Based on previous review:
+>   https://lore.kernel.org/all/20221114111513.1436165-3-herve.codina@bootlin.com/
+>
+> A new strategy is proposed to handle the H2MODE bit from CFG_USB
+> register compared to the previous versions on the series. As a
+> reminder, H2MODE bit allows to configure the internal USB Port
+> interface for two hosts or one host and one device.
 
-The SA8295P ADP has, among other interfaces, six MiniDP connectors which
-are connected to MDSS0 DP2 and DP3, and MDSS1 DP0 through DP3.
+Is this case any different from all the phandle properties we have in
+bindings that point to some misc registers somewhere else you need to
+poke? If so, I'm not really a fan of duplicating the information.
 
-Enable Display Clock controllers, MDSS instanced, MDPs, DP controllers,
-DP PHYs and link them all together.
+We also have cases of of_find_compatible_node(NULL, NULL,
+"foo-bar-syscon") which is a dependency expressed in the driver, but
+not DT. In either case, adding 'depends-on' would be an ABI break as
+you are requiring a DT change.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
+> This new strategy is:
+>   - Add the new generic 'depends-on' property in the device tree.
+>
+>     This generic property expresses an simple functionnal dependency
+>     that does not rely on a specific topic. It is an 'order only'
+>     dependency that can be used for dependencies between consumers
+>     and producers that are not based on a specific infrastructure
+>     and not need other relationship than this simple 'order only'
+>     (ie no API is provided between the provider and the consumer)
 
-Changes since v4:
-- None
+Isn't getting a regmap an API?
 
- arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 243 ++++++++++++++++++++++-
- 1 file changed, 241 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-index 6c29d7d757e0..d55c8c5304cc 100644
---- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-@@ -23,6 +23,90 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	dp2-connector {
-+		compatible = "dp-connector";
-+		label = "DP2";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			dp2_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp0_phy_out>;
-+			};
-+		};
-+	};
-+
-+	dp3-connector {
-+		compatible = "dp-connector";
-+		label = "DP3";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			dp3_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp1_phy_out>;
-+			};
-+		};
-+	};
-+
-+	edp0-connector {
-+		compatible = "dp-connector";
-+		label = "EDP0";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 2 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			edp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp2_phy_out>;
-+			};
-+		};
-+	};
-+
-+	edp1-connector {
-+		compatible = "dp-connector";
-+		label = "EDP1";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			edp1_connector_in: endpoint {
-+				remote-endpoint = <&mdss0_dp3_phy_out>;
-+			};
-+		};
-+	};
-+
-+	edp2-connector {
-+		compatible = "dp-connector";
-+		label = "EDP2";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			edp2_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp2_phy_out>;
-+			};
-+		};
-+	};
-+
-+	edp3-connector {
-+		compatible = "dp-connector";
-+		label = "EDP3";
-+		type = "mini";
-+
-+		hpd-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			edp3_connector_in: endpoint {
-+				remote-endpoint = <&mdss1_dp3_phy_out>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -163,13 +247,168 @@ vreg_l7g: ldo7 {
- 
- 		vreg_l8g: ldo8 {
- 			regulator-name = "vreg_l8g";
--			regulator-min-microvolt = <880000>;
--			regulator-max-microvolt = <880000>;
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11g: ldo11 {
-+			regulator-name = "vreg_l11g";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 	};
- };
- 
-+&dispcc0 {
-+	status = "okay";
-+};
-+
-+&dispcc1 {
-+	status = "okay";
-+};
-+
-+&mdss0 {
-+	status = "okay";
-+};
-+
-+&mdss0_dp2 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss0_dp2_phy_out: endpoint {
-+				remote-endpoint = <&edp0_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss0_dp2_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l8g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&mdss0_dp3 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss0_dp3_phy_out: endpoint {
-+				remote-endpoint = <&edp1_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss0_dp3_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l8g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&mdss1 {
-+	status = "okay";
-+};
-+
-+&mdss1_dp0 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss1_dp0_phy_out: endpoint {
-+				remote-endpoint = <&dp2_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss1_dp0_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l11g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&mdss1_dp1 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss1_dp1_phy_out: endpoint {
-+				remote-endpoint = <&dp3_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss1_dp1_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l11g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&mdss1_dp2 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss1_dp2_phy_out: endpoint {
-+				remote-endpoint = <&edp2_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss1_dp2_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l11g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&mdss1_dp3 {
-+	status = "okay";
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss1_dp3_phy_out: endpoint {
-+				remote-endpoint = <&edp3_connector_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss1_dp3_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l11g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
- &pcie2a {
- 	perst-gpios = <&tlmm 143 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 145 GPIO_ACTIVE_LOW>;
--- 
-2.37.3
-
+Rob
