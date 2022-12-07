@@ -2,190 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 008F0645721
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C059D645729
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:08:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbiLGKHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:07:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37734 "EHLO
+        id S230166AbiLGKIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:08:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbiLGKHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:07:44 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9418063E1
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:07:42 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id f16so8658597ljc.8
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:07:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2lgyDc2BPaf6a7xLJztu7FglI3cnhZOU9b/y2TvNFgc=;
-        b=vRsLv/GaSy9EPmAQq+63dZ6M4t6p4/CzDF2JAjaJSIcxWJOx9uVeZqJVNVq3dmnpPb
-         lBbab6edWfxx7MxVCDMbL855Z5mWItwy5YdIfEfZyiS/JHuT2O+8bt92/90S+I4d4l8V
-         iFrpKD1UpAiPDqcnWIxRmPay3c38uIZ7FH1b8s6ecILw68jJqX4NunJSc1velN82iOav
-         NUhsUSK7gdRRkiBhDUH99oazExjAQxTUARi1CHM2K0dmmwiheHUfoas2SOLG3QpcGJTO
-         QqFBw3rMuSN7y7RbUu8bMOcFQHvG/oSb+scJ7gW2JFLzjvH+VqXs+Kj8KfPIvB7wpqr+
-         Fkkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2lgyDc2BPaf6a7xLJztu7FglI3cnhZOU9b/y2TvNFgc=;
-        b=fweeAP2kZ7Te34VT3Gw6eGKgogi2mql0EoAIlo4ldLLiGIU0qjjwn8UcYisjlWClh1
-         35PSnTv+FFoENgP/PZ1a9lp4BLj6F2NAzqrgGJRATORypmAFhH+G78KP7GGUst/jnFz3
-         vOPRmbsxTF1BITOP0rCyPeGXA4OOzvLZmy5Oksoku3eB+kQX6WZpTZy8xj0Ee8K4qjPQ
-         voYv6gFxY9KSO/XU5ggHEmPvNvcJEMF41XjfcAu9AE+bCyMU8thnNrYxNbhEPkZ9TBmK
-         z26mQoYJF5GCy2kHePNzTpHO8A7n/YYXuYXOiDZNc02TPbDjEzCcdGVKSxeaWt7jvNTk
-         rLTg==
-X-Gm-Message-State: ANoB5pnOTvG5PNcAypdBQ8808xTi4PDN+IOK3D61agz4wbBGHk7BTVpI
-        l7RNA2RlM2QgZKu+KwfZwmhqvg==
-X-Google-Smtp-Source: AA0mqf7rtzVO4OcdPniGSM3lTHYW3jU+eQ+5NKwi22IsC1vflmvtS1Aibm/8Ce1hrOnOkE5hsrF3pw==
-X-Received: by 2002:a2e:9e11:0:b0:26e:3292:12ad with SMTP id e17-20020a2e9e11000000b0026e329212admr24627754ljk.271.1670407660835;
-        Wed, 07 Dec 2022 02:07:40 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v7-20020ac25927000000b004ab4ebb5d92sm2807906lfi.5.2022.12.07.02.07.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 02:07:40 -0800 (PST)
-Message-ID: <7deb14ee-aae1-b521-c75e-6e33cd052c44@linaro.org>
-Date:   Wed, 7 Dec 2022 11:07:39 +0100
+        with ESMTP id S230078AbiLGKIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:08:44 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22AF6478;
+        Wed,  7 Dec 2022 02:08:43 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D0296602BCA;
+        Wed,  7 Dec 2022 10:08:41 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670407721;
+        bh=AyR0RJnVKrrqQBm9hFiiBr7ZIDDoQirRHSbrqdL6UgM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Lt1ouqtzvN/cuiyAwGqv8hAf7z0yOZ7kKLfaiI2zvDgg+xHD+3X9XYLh4CPC+tpeE
+         VhrqNI5+jpml1H8zckoIDyzdcqhFTgeSKuQxKVbtMMZOJ1poRgLRvY0Pgp1PtKd44e
+         URFvFOQWTsc99dYvNbtT5MFbJcqH3/HYxxZaseaihah8pgMfxy5QD8Bo6fpBLClyM9
+         F298s/We7GqPdmqjnLOpHPmWcjMMy3tCTGUjKdw/rF8yMeP8OcNFi525DTelWSPp0C
+         qDH4/2Vqi0afKEOssANEbUKPrr/V+WKYSOpb7f9n5RUlKJMsORCAfAKfwhMejfodD5
+         0Me9nh+W+yTYg==
+Message-ID: <ff2931b5-948f-f013-056d-b0a78d7272d6@collabora.com>
+Date:   Wed, 7 Dec 2022 11:08:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 4/5] staging: dt-bindings: regulator: adi,max77541.yaml
- Add MAX77541 Regulator bindings
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v2 3/9] spi: mtk-snfi: Add optional nfi_hclk which needed
+ for MT7986
 Content-Language: en-US
-To:     Okan Sahin <okan.sahin@analog.com>, outreachy@lists.linux.dev
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20221207090906.5896-1-okan.sahin@analog.com>
- <20221207090906.5896-5-okan.sahin@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207090906.5896-5-okan.sahin@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     =?UTF-8?B?WGlhbmdzaGVuZyBIb3UgKOS+r+elpeiDnCk=?= 
+        <Xiangsheng.Hou@mediatek.com>,
+        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "gch981213@gmail.com" <gch981213@gmail.com>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "richard@nod.at" <richard@nod.at>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?QmVubGlhbmcgWmhhbyAo6LW15pys5LquKQ==?= 
+        <Benliang.Zhao@mediatek.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?QmluIFpoYW5nICjnq6Dmlowp?= <bin.zhang@mediatek.com>
+References: <20221205065756.26875-1-xiangsheng.hou@mediatek.com>
+ <20221205065756.26875-4-xiangsheng.hou@mediatek.com>
+ <ef2e6859-56e1-bbf0-dbde-44ea3d7d2f3f@collabora.com>
+ <4db35ac3914e444b754f9075141fd69e07e7c858.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <4db35ac3914e444b754f9075141fd69e07e7c858.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 10:08, Okan Sahin wrote:
-> This patch adds document the bindings for MAX77541 and MAX77540
-> regulator drivers.
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+Il 07/12/22 02:42, Xiangsheng Hou (侯祥胜) ha scritto:
+> Hi Angelo,
 > 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
-> ---
->  .../bindings/regulator/adi,max77541.yaml      | 44 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77541.yaml
+> On Mon, 2022-12-05 at 15:21 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 05/12/22 07:57, Xiangsheng Hou ha scritto:
+>>> Add optional nfi_hclk which needed for MT7986.
+>>>
+>>> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+>>
+>> Is there any operation for which you need NFI_HCLK enabled, but at
+>> the same time
+>> PAD_CLK and/or NFI_CLK can be disabled?
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77541.yaml b/Documentation/devicetree/bindings/regulator/adi,max77541.yaml
-> new file mode 100644
-> index 000000000000..1f828895ab3a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/adi,max77541.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/adi,max77541.yaml#
+> No, for the new IP design on MT7986, will need the
+> PAD_CLK/NFI_CLK/NFI_HCLK enabled at the same time.
+> 
+>> If NFI_HCLK and NFI_CLK must always be ON at the same time, adding
+>> this clock to
+>> spi-mtk-snfi.c is *not* an optimal way of doing things: you can, at
+>> this point,
+>> set NFI_HCLK as parent of NFI_CLK in the MT7986 clock driver instead,
+>> without
+>> making any addition to this driver at all.
+> 
+> For some IC, there may have only NFI_CLK/PAD_CLK, and have no NFI_HCLK,
+> this rely on IC design.
+> 
 
-Filename matching compatible, so adi,max77541-regulator.yaml
+I've just checked clk-mt7986-infracfg and we can't reparent NFI1_CK, nor SPINFI1_CK
+as they have xxxx_sel parents already, which are not common with the HCK.
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Buck Converter driver for MAX77540/MAX77541
+You're right, the addition of the nfi_hclk clock is needed, which means that for
+this commit, you get my
 
-Drop "driver" and any other references to Linux drivers.
 
-> +
-> +maintainers:
-> +  - Okan Sahin <okan.sahin@analog.com>
-> +
-> +description: |
-> +  This is a part of device tree bindings for ADI MAX77540/MAX77541
-> +
-> +  The buck convertere is represented as a sub-node of the PMIC node on the device tree.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Typo, converter
 
-> +
-> +  The device has two buck regulators.
-> +  See also Documentation/devicetree/bindings/mfd/adi,max77541.yaml for
-> +  additional information and example.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,max77540-regulator
-> +      - adi,max77541-regulator
-> +
-> +patternProperties:
-> +  "^BUCK[12]$":
+P.S.: Thanks for clarifying!
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    additionalProperties: false
-> +    description: |
-> +      Buck regulator.
-> +
-> +    properties:
-> +      regulator-name: true
-> +      regulator-always-on: true
-> +      regulator-boot-on: true
-> +      regulator-min-microvolt:
-> +        minimum: 300000
-> +      regulator-max-microvolt:
-> +        maximum: 5200000
-> +
-> +additionalProperties: false
-> \ No newline at end of file
-
-Check your patches before sending...
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5704ed5afce3..8e5572b28a8c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12502,6 +12502,7 @@ M:	Okan Sahin <okan.sahin@analog.com>
->  L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/mfd/adi,max77541.yaml
-> +F:	Documentation/devicetree/bindings/regulator/adi,max77541.yaml
->  F:	drivers/mfd/max77541.c
->  F:	drivers/regulator/max77541-regulator.c
->  F:	include/linux/mfd/max77541.h
-
-Best regards,
-Krzysztof
-
+Regards,
+Angelo
