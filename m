@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A545645D61
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 614EC645D99
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:28:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbiLGPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 10:14:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58214 "EHLO
+        id S229696AbiLGP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 10:28:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiLGPO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:14:58 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592E160EB3
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:14:57 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id p36so24826801lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:14:57 -0800 (PST)
+        with ESMTP id S229621AbiLGP2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:28:00 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7B543858
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:27:59 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id p36so24887680lfa.12
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:27:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/NtXR99YY/YnD6oXE1Csk2UNFUAjboD1pCOokVrfPfA=;
-        b=fnwxWVsZQarOW1g820iNU+J4Hfp4bvS/sVpkweWbQfS0GISHHYMqRhJSq15oSaBsTQ
-         7nswqkdmM01rF5SmW55qYHdVK/HTsrrin66Wh3jEL69myZXFH7ebBnRWTN+IveYfSfY5
-         ELrg3kdK1l+N86IMI8fbKGj0VjgvZkeYO4trktUIw0IkUj2r9rjrS6uwse6Vp2Bp7xHV
-         KnFrzkv6Inp0lj3L+fbvHLiBbszVxxc61m67g2TCjdD2qybaXvstb601hH7T57iQJbUj
-         WCGYbE42nm0e2Z+oCjmujlYTVPByZJZCiJ1IYRyVftVYTEB7C8B4GsTDTt0G/5KclvGF
-         oxDg==
+        bh=TokEjNlXlL75+xEzHHcfrOtvGUeNpxpixbHN6tlln1o=;
+        b=xZoAANYFUthrKrQWZ6Ci6dV24edG9wqHPi6R2TIHnGK70ZBmeBBMtRY+dHTIjC9yLD
+         X22I1hEtbP+dxqo+eq50o/QAuervEYat50fozHnFCVRyS1oqT/Rns4LPv88Z0KUfbj7N
+         dObCogEsL+cq8W1saACmHaxrUAOe+xr8PNLQdNKglVzJEnEbn78Rcr83cWzTK2YMmN85
+         Re3N58OP0QvOZLrtx6jWJByX6X4/gFzNmGlJQfrCAdwBK5Q7jkU3fphWGsIufqCx6VgZ
+         wjFWQZ/cQa8ds9qGRlSqBqxDJctnDgC6seOgWtciLCSeu1z0tjtn7zMx/dSN9V3eYrRn
+         Kxdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/NtXR99YY/YnD6oXE1Csk2UNFUAjboD1pCOokVrfPfA=;
-        b=b7XL+CtwnStdYTAi5WT81eyiFn1izt1t+Ps0AiTme6jxklBY01AISfdUMP0u47pNhG
-         FqYR8Wq/eJ1OvDcGr3NWPtaKH1nmg0xIHBipkZo91r/6CoaH0xtiTNLm7TnX4qkeec0G
-         cpSqL/dNsrCbLnQ8UoJP2LS6A3WXErzSssX/m35URAZUfYu047bosXvqgo3st0+ti2pj
-         6aP/1LU+uUh9V6+XDd7RsQI6WQPQKH5rVYF8+WpHzYoXwD89WcPzcyHRPKXIs5zFKHvA
-         UUz04kQ27shFyfAGkeeXHEZr3je0tkaGDNuA0C1mTe5r6lxvdSK4oHFlnNDAGRMzuwpS
-         yDag==
-X-Gm-Message-State: ANoB5pl665pOSFBG/MoemmugXYbZVYMWMUXs3P4FC12usXLOojmzl2Up
-        M3PlcVMXAXzBBxV0I7wh5rDEcA==
-X-Google-Smtp-Source: AA0mqf547wAIdfMLEczotwwPA5Zt/mVZpkdrWuFBMjOjByvhXT3cbXDKWUguS0TF5BEOaPkSWX+Pzw==
-X-Received: by 2002:ac2:4acf:0:b0:4b5:699e:6e9d with SMTP id m15-20020ac24acf000000b004b5699e6e9dmr5243135lfp.91.1670426094907;
-        Wed, 07 Dec 2022 07:14:54 -0800 (PST)
+        bh=TokEjNlXlL75+xEzHHcfrOtvGUeNpxpixbHN6tlln1o=;
+        b=UuhQMwQ9YsQ62PdqfchEcOUcjmDwCnzNJvrxkY96AK3iDPmEdEf0knjHs6AWikQsha
+         xzdUYS4ZoOvBsTXKALI14y5JB+1EDKYXleDYM/MMU/eX5hpMeZbQQmbqfv+xToPxg81b
+         HWN5XYQfUfTt8hNldB3ypGtemYcpbS6H2bkBqtlkJXTSo0l8sjqSDXRJwq34x1cDXvEZ
+         bGaGPvzWkwwakChmpp0R7CT6RMEju733xXU/log37NYbbRvkIT6+YmjhtdQAzShey+w3
+         NEtr7LqQJpf3zmzKq2vMUD93Ra2FHF9WvJQixnA2LDa2EZ1jNSTHiYQiESNmBIORodhs
+         Dvpg==
+X-Gm-Message-State: ANoB5pmkjkY+nD983C4sNgka6PiXvpo/gyu7FUlsMaaumz8EjwJ2bZVH
+        CemaY1ImxQYwCbhK2lSl4NBTaA==
+X-Google-Smtp-Source: AA0mqf5lFASv5Gt8Q+CtjFWyDlLlmnb/Ja3W9mhr64B6BAoDNOVmOlEhVOJQQAAb5p3q+sYnyzLLkw==
+X-Received: by 2002:ac2:4149:0:b0:4a2:217:18bf with SMTP id c9-20020ac24149000000b004a2021718bfmr24820910lfi.146.1670426877825;
+        Wed, 07 Dec 2022 07:27:57 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e13-20020ac24e0d000000b004946b549a19sm2898207lfr.45.2022.12.07.07.14.53
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512024400b004a8b9c68735sm215425lfo.102.2022.12.07.07.27.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 07:14:54 -0800 (PST)
-Message-ID: <c0b84752-443f-d935-0ed8-c8ed4d212c2e@linaro.org>
-Date:   Wed, 7 Dec 2022 16:14:53 +0100
+        Wed, 07 Dec 2022 07:27:57 -0800 (PST)
+Message-ID: <30166f9d-ebfa-ed8b-c08b-ff8e2599161f@linaro.org>
+Date:   Wed, 7 Dec 2022 16:27:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: Add mmc node
+Subject: Re: [PATCH v11 5/6] dt-bindings: media: wave5: add yaml devicetree
+ bindings
 Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        kernel@collabora.com, bob.beckett@collabora.com,
+        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com,
+        nas.chung@chipsnmedia.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-4-william.qiu@starfivetech.com>
+References: <20221207121350.66217-1-sebastian.fricke@collabora.com>
+ <20221207121350.66217-6-sebastian.fricke@collabora.com>
+ <48d60bd0-4de1-4a5e-eca1-1f8a9303cce0@linaro.org>
+ <20221207150925.frotwpm3ukwwlnig@basti-XPS-13-9310>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207131731.1291517-4-william.qiu@starfivetech.com>
+In-Reply-To: <20221207150925.frotwpm3ukwwlnig@basti-XPS-13-9310>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,98 +81,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 14:17, William Qiu wrote:
-> This adds the mmc node for the StarFive JH7110 SoC.
-> Set sdioo node to emmc and set sdio1 node to sd.
+On 07/12/2022 16:09, Sebastian Fricke wrote:
+> Hello Krzysztof, 
 > 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 38 +++++++++++++++++++
->  2 files changed, 63 insertions(+)
+> On 07.12.2022 13:31, Krzysztof Kozlowski wrote:
+>> On 07/12/2022 13:13, Sebastian Fricke wrote:
+>>> From: Robert Beckett <bob.beckett@collabora.com>
+>>>
+>>> Add bindings for the wave5 chips&media codec driver
+>>>
+>>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+>>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+>>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+>>
+>> What's happening with this patch? Where is the changelog?
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> index c8946cf3a268..6ef8e303c2e6 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
-> @@ -47,6 +47,31 @@ &clk_rtc {
->  	clock-frequency = <32768>;
->  };
->  
-> +&sdio0 {
-> +	max-frequency = <100000000>;
-> +	card-detect-delay = <300>;
-> +	bus-width = <8>;
-> +	cap-mmc-highspeed;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	non-removable;
-> +	cap-mmc-hw-reset;
-> +	post-power-on-delay-ms = <200>;
-> +	status = "okay";
-> +};
-> +
-> +&sdio1 {
-> +	max-frequency = <100000000>;
-> +	card-detect-delay = <300>;
-> +	bus-width = <4>;
-> +	no-sdio;
-> +	no-mmc;
-> +	broken-cd;
-> +	cap-sd-highspeed;
-> +	post-power-on-delay-ms = <200>;
-> +	status = "okay";
-> +};
-> +
->  &gmac0_rmii_refin {
->  	clock-frequency = <50000000>;
->  };
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index c22e8f1d2640..e90b085d7e41 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -331,6 +331,11 @@ aoncrg: clock-controller@17000000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		sys_syscon: sys_syscon@13030000 {
+> The changelog is located in the cover letter.
+> https://lore.kernel.org/linux-media/20221207121350.66217-1-sebastian.fricke@collabora.com/
 
-No underscores in node names, generic node names (syscon or
-system-controller)
 
-> +			compatible = "syscon";
+Which you did not sent to us... so? How does it help us?
 
-This is not allowed alone.
+> 
+>> Why it is v11 and first time I see it?
+> 
+> You actually replied to V10:
+> https://lore.kernel.org/linux-media/20221023085341.s23qinjuw4qls3dn@basti-XPS-13-9310/
+> 
+>> And why it is v11 with basic mistakes and lack of testing?!?
+>> I would assume that v11 was already seen and tested...
+> 
+> Sorry I don't have a lot of experience with dt-bindings, thank you for
+> highlighting the issues, I will correct them. And I forgot to build the
+> documentation during my testing runs.
+> I took over the patch set from another contributor and as no one
+> complained about the dt-bindings for the last 10 versions, I concentrated
+> my energy on other problems.
 
-> +			reg = <0x0 0x13030000 0x0 0x1000>;
-> +		};
-> +
->  		gpio: gpio@13040000 {
->  			compatible = "starfive,jh7110-sys-pinctrl";
->  			reg = <0x0 0x13040000 0x0 0x10000>;
-> @@ -433,5 +438,38 @@ uart5: serial@12020000 {
->  			reg-shift = <2>;
->  			status = "disabled";
->  		};
-> +
-> +		/* unremovable emmc as mmcblk0 */
-> +		sdio0: mmc@16010000 {
-> +			compatible = "starfive,jh7110-sdio";
-> +			reg = <0x0 0x16010000 0x0 0x10000>;
-> +			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
-> +				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
-> +			clock-names = "biu","ciu";
-> +			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
-> +			reset-names = "reset";
-> +			interrupts = <74>;
-> +			fifo-depth = <32>;
-> +			fifo-watermark-aligned;
-> +			data-addr = <0>;
-> +			starfive,sys-syscon = <&sys_syscon 0x14 0x1a 0x7c000000>;
+Because they were never sent to maintainers...
 
-This does not match your bindings at all. "&sys_syscon" is a phandle,
-not a number of tuning retries, as you expect in your bindings.
+> 
+>>
+>>
+>>> ---
+>>>  .../devicetree/bindings/cnm,wave5.yml         | 72 +++++++++++++++++++
+>>>  1 file changed, 72 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/cnm,wave5.yml
+>>
+>> Wrong directory. It wasn't here at all before, so I am really confused
+>> how this could happen.
+> 
+> Thanks for the highlight.
+> 
+> I will move it to:
+> Documentation/devicetree/bindings/media/cnm,wave5.yml
+> 
+>>
+>> Subject: drop redundant pieces: yaml, devicetree and bindings.
+> 
+> I call it:
+> 
+> dt-bindings: media: chips-media: add wave5 bindings
+> 
+> in V12
+> 
+> Sincerely,
+> Sebastian Fricke
 
+And the rest questions? Lack of response means agreement, which is fine,
+so in v12 questionable parts will be removed?
 
 Best regards,
 Krzysztof
