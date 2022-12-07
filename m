@@ -2,231 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53CDF64550A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 09:03:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ADE564558C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 09:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiLGIDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 03:03:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
+        id S229808AbiLGIk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 03:40:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbiLGIDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 03:03:42 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52BF286D7
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 00:03:39 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id d6so27448199lfs.10
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 00:03:39 -0800 (PST)
+        with ESMTP id S229779AbiLGIkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 03:40:55 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231B15581
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 00:40:54 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id ud5so12279212ejc.4
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 00:40:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yn9nDIGn57BVhUGGyUSUzD23S1rxXpzrdnXEfSzJBj0=;
-        b=UIW5zMXgASAy+T2xjE2boa7e+J0qIv/9iCmwUo7tlbUZebVcBBNhTJP+sxPJmP0tZQ
-         k8njJByoFb+Ie9stov3JZI0U54YrvKHw8QEenO03owZGsMQOXOSx4H5m5nie5n/lysPm
-         pAtT26EDd+qJ7efs4OWJpO+mxCIx420wLdmUghd/z57NdlUTn/BM7Jt9OBobtM8cb2H/
-         Us8yg3iPm5mmcyjvHoVmfqrGcd1l9tX/Rojlio0NSvauNYu/vw7jhDQzVGWi0+J149Li
-         30/1cPK6aFfjxZbWgB1vcMmRkeQ+El2UeTxuVIfUTN4H23TKeluHhsEu8RNjroftQBy0
-         g63w==
+        d=fairphone.com; s=fair;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8XELo1fO300N0txX2bi3UEYRaJ+M60DVCY2RyFyvGz8=;
+        b=TCecy/H/WK1gAkBTJ5GIKc+X1XC31M66Rla7gAYR1wRrlgJCAcTCRyXbsYXA03JzXx
+         JOcEi6F4tQYRZLWJirYh5RmB0UIdHH2tuRtnrGMM1mX38mq61gNNs3OIdk2xJsUa6Mqk
+         mCuAZ6/rIKB2BpF1G+vwRJLGuN2P98C7xvOBhJSIQWAkpOssgKkGh/kJ2ih2Yvn12pcG
+         ZpCedigP6QoDhTc5NVkItdJHsfTOM2j82buah4N42FtSwGZUyniCYdxgJY+sd0n6ESMc
+         PhPbrCkjOvVnnKaIaofP3r/tX35vnvZvB/XqDWuzN8BNApw1owEG6LIb7dswyal38tWW
+         mMlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yn9nDIGn57BVhUGGyUSUzD23S1rxXpzrdnXEfSzJBj0=;
-        b=H3zc27P0lOgF/0YLTcvO2Jv4c0pkXyZnWjMCta+RiGPEJOM5L5AI6e9LVUNQi3h0gI
-         M1hSke3LyX+wWabvuVcSL9ID5S1nrr4pc+Ivmq053QWDvp4qjqCRDVAylOmc2Qt5BVWX
-         7DywIu5OWzRA3XTTsRbL+SV5K7SR9NRkwvScuDgKfzvQ/sZeb/D3WN+GXwbYwSwgM6ng
-         VM8ar0EjHFZ1Jlw3AdrnC7Va+EWxxoK2MjJLus5PqhddzNamuFRzCv4D+MSuTzVn08Sc
-         ngrp5uHVVjIX/8HVQHB3vzizgsuHmj250qnzjwhjREtYWmxps7mjfsl5mvMMdZplDj6w
-         gLaQ==
-X-Gm-Message-State: ANoB5plPDYzdp12BkgSfJIMvkhXHRHr7kVOdh0VcgjhsYr/FO8Cf53FZ
-        JOvgeeEOUgETt1i3T+XvummSvAWqHRiJvxgAnmE=
-X-Google-Smtp-Source: AA0mqf5NJN1ww/UQ0wHfpUCGJftcWeph6OoozsXSushoSpf3klqVk//uK8UNhsA/fIpfwc9vl3w7jg==
-X-Received: by 2002:a19:4f5d:0:b0:4b5:6704:e547 with SMTP id a29-20020a194f5d000000b004b56704e547mr5078003lfk.494.1670400218155;
-        Wed, 07 Dec 2022 00:03:38 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac251b3000000b004b583198d83sm636556lfk.186.2022.12.07.00.03.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 00:03:37 -0800 (PST)
-Message-ID: <cd6e259f-4216-17c2-fab0-a952c0177fee@linaro.org>
-Date:   Wed, 7 Dec 2022 09:03:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/5] dt-bindings: dma: ti: k3-bcdma: Add bindings for
- BCDMA CSI RX
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8XELo1fO300N0txX2bi3UEYRaJ+M60DVCY2RyFyvGz8=;
+        b=1J9gww3BMj1EQwU1L//l+HjYc7kkJfqao4fkyjKFWv4okGb6JS4K59+K9IhjjIricW
+         zcsRTpTbU/wxVUidSNvhhnLEJnfavcMEtwzCdmO6P2ZVsIGi46VGHlDZ2rfWASBsB5xB
+         PGTOUHPdvXu/pYM9lVr+oxjGlqL8ArnuKtBEQWTMqTbpW1FrUhYPsT7GVPszb2C2+7hf
+         WDZqT64y3dYtF9iEWS126llTTkncrfoe6/lEG3bd5qd/UooOBmweNaKB6uPK+3ct7y8a
+         mrn4ZmsrLvCC4nCJZ1GmIY4IK1nek1H+QIjS5fLgNLvhd4QYGai+ytilTR7BFQCF5bZE
+         5A6A==
+X-Gm-Message-State: ANoB5plDv5+fRya4ECBvozPcdESxrM9c5lVhDRNBQ6TTTpokjNvgltbd
+        YTtZtYXAIDCSXhqMOX2S/rtjhA==
+X-Google-Smtp-Source: AA0mqf6U95l25iZubD6K14hN1Ncq7oAY8QAmNyarEwa8m5xcbZDpWkUuic5l1vZnnYgt2adI42tyew==
+X-Received: by 2002:a17:906:9f09:b0:7bc:db1b:206f with SMTP id fy9-20020a1709069f0900b007bcdb1b206fmr12269924ejc.719.1670402452588;
+        Wed, 07 Dec 2022 00:40:52 -0800 (PST)
+Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id kx4-20020a170907774400b0079e11b8e891sm8183619ejc.125.2022.12.07.00.40.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Dec 2022 00:40:52 -0800 (PST)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221206043554.1521522-1-vigneshr@ti.com>
- <20221206043554.1521522-2-vigneshr@ti.com>
- <63e1e565-b1e7-ecfc-009a-ee036108f160@linaro.org>
- <8e93f459-53e0-ee39-96cc-2c9e51a72547@ti.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8e93f459-53e0-ee39-96cc-2c9e51a72547@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm7225-fairphone-fp4: Add pmk8350 PMIC
+Date:   Wed,  7 Dec 2022 09:40:45 +0100
+Message-Id: <20221207084045.270172-1-luca.weiss@fairphone.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 07:09, Vignesh Raghavendra wrote:
-> Hi Krzysztof,
-> 
-> On 06/12/22 14:02, Krzysztof Kozlowski wrote:
->> On 06/12/2022 05:35, Vignesh Raghavendra wrote:
->>> AM62A SoC has a dedicated BCDMA that serves Camera Serial Interface
->>> (CSI) IP. Add new compatible for the same. Unlike system
->>> BCDMA, this instance only has RX DMA channels and lack TX or block copy
->>> channel. Thus make those properties optional. Additionally CSI RX has
->>> independent power domain, add the binding for the same.
->>>
->>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->>> ---
->>>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 87 ++++++++++++++-----
->>>  1 file changed, 63 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->>> index 08627d91e607..d7b5adbb9b2e 100644
->>> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->>> @@ -32,9 +32,66 @@ allOf:
->>>    - $ref: /schemas/dma/dma-controller.yaml#
->>>    - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
->>>  
->>
->> When adding if:then:, please move entire allOf after "required:" part.
-> 
-> Sure, will do
-> 
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: ti,am62a-dmss-bcdma-csirx
->>> +    then:
->>> +      properties:
->>> +        ti,sci-rm-range-bchan: false
->>> +        ti,sci-rm-range-tchan: false
->>> +
->>> +        reg:
->>> +          maxItems: 3
->>> +
->>> +        reg-names:
->>> +          items:
->>> +            - const: gcfg
->>> +            - const: rchanrt
->>> +            - const: ringrt
->>
->> With my changes further this can be only "maxItems: 3"
-> 
-> Yes, but wont that mean any of the 3 reg-names out of the 5? Would it
-> not be better to further restrict specifically to above 3 reg-names (as
-> thats how the IP is)
+The PMK8350 (which is actually a PMK8003) is used for the RTC and has
+ADC for thermals.
 
-I thought that first three entries are the same, but they are not, so
-indeed keep it like you have it now.
+Since the adc_tm compatible used in PMK8350 is not yet supported, skip
+configuring that and the associated thermal zone for now.
 
-> 
->>
->>> +
->>> +      required:
->>> +        - compatible
->>> +        - "#dma-cells"
->>> +        - reg
->>> +        - reg-names
->>> +        - msi-parent
->>> +        - ti,sci
->>> +        - ti,sci-dev-id
->>> +        - ti,sci-rm-range-rchan
->>> +        - power-domains
->>> +
->>> +    else:
->>> +      properties:
->>> +        reg:
->>> +          maxItems: 5
->>> +
->>> +        reg-names:
->>> +          items:
->>> +            - const: gcfg
->>> +            - const: bchanrt
->>> +            - const: rchanrt
->>> +            - const: tchanrt
->>> +            - const: ringrt
->>
->> With my changes further this can be only "minItems: 5"
-> 
-> Ok.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-I was wrong, keep it.
-
-> 
->>
->>> +
->>> +      required:
->>> +        - compatible
->>> +        - "#dma-cells"
->>> +        - reg
->>> +        - reg-names
->>> +        - msi-parent
->>> +        - ti,sci
->>> +        - ti,sci-dev-id
->>> +        - ti,sci-rm-range-bchan
->>> +        - ti,sci-rm-range-tchan
->>> +        - ti,sci-rm-range-rchan
->>> +
->>>  properties:
->>>    compatible:
->>> -    const: ti,am64-dmss-bcdma
->>> +    enum:
->>> +      - ti,am64-dmss-bcdma
->>> +      - ti,am62a-dmss-bcdma-csirx
->>
->> Keep some order, e.g. alphabetical. This reduces later conflicts on
->> simultaneous edits.
-> 
-> Will fix!
-> 
->>
->>>  
->>>    "#dma-cells":
->>>      const: 3
->>> @@ -65,19 +122,13 @@ properties:
->>>  
->>>        cell 3: ASEL value for the channel
->>>  
->>> -  reg:
->>> -    maxItems: 5
->>
->> Keep it here with widest constrains - minItems: 3, maxItems: 5
->>
->>> -
->>> -  reg-names:
->>> -    items:
->>> -      - const: gcfg
->>> -      - const: bchanrt
->>> -      - const: rchanrt
->>> -      - const: tchanrt
->>> -      - const: ringrt
->>
->> Keep the list here with minItems: 3
-
-So here minItems:3, maxItems:5
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+index c456e9594ea5..df05e5dc8696 100644
+--- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
++++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+@@ -5,7 +5,11 @@
+ 
+ /dts-v1/;
+ 
++/* PMK8350 (in reality a PMK8003) is configured to use SID6 instead of 0 */
++#define PMK8350_SID 6
++
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+@@ -13,6 +17,7 @@
+ #include "pm6150l.dtsi"
+ #include "pm6350.dtsi"
+ #include "pm7250b.dtsi"
++#include "pmk8350.dtsi"
+ 
+ / {
+ 	model = "Fairphone 4";
+@@ -426,6 +431,20 @@ conn-therm@1 {
+ 	};
+ };
+ 
++&pmk8350_rtc {
++	status = "okay";
++};
++
++&pmk8350_vadc {
++	adc-chan@644 {
++		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++		qcom,pre-scaling = <1 1>;
++		label = "xo_therm";
++	};
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+-- 
+2.38.1
 
