@@ -2,283 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF76645AB7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742A1645AE0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:26:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbiLGNVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 08:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54168 "EHLO
+        id S229479AbiLGN0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 08:26:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbiLGNV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:21:28 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE1431EEE
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 05:21:26 -0800 (PST)
-Received: from mail-yb1-f200.google.com (mail-yb1-f200.google.com [209.85.219.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id ECD2F41558
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 13:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1670419285;
-        bh=5Fy8+G52z4/CaDFZeawpURrDotSj/z5PeZad0B3CFd8=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=sA+Tahxh3nX1vDKzBo+AIshYBkBn5Uf39K95irWs6aXv5MPqekElxPEh//x0/nN7J
-         ax7WWXo8hw14dDy3f65N266IINrM/6k/OWA63Ah+vSLQGoQlBie049gZarNOnx5IZr
-         PR61DCPe0gprrkuzUg6kgkHCsHJm014JgV5xiFf/AL7TTsAV7OmHz+sPk2FW5OalXM
-         mlMCPIQfY85xjuGxX66U+SlkDhAjlMq0oevlQF8tbCi3xMSIlW3VUJm63yogxg01vw
-         k0Nglb9sbU0Ka30IzlYbv2Igh1ebwi3BFg3M678rc4caDI0hSPJJbLk69h7KgjVewA
-         AdHxpAb9BedAw==
-Received: by mail-yb1-f200.google.com with SMTP id e185-20020a2569c2000000b006f28dd5da75so19044967ybc.19
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 05:21:24 -0800 (PST)
+        with ESMTP id S230045AbiLGN0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:26:23 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E135358BF1;
+        Wed,  7 Dec 2022 05:26:04 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id p18so9951994qkg.2;
+        Wed, 07 Dec 2022 05:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gasjj2Warc1QIbknNKNkywz6J4OpsWmMf8ktNJGJzxM=;
+        b=bIHdWFbwnlgZ9X7ycTDJihFthCsDpZiozQ8aRPo5JuLh15PEb9zZRUQK8qp8nDk0Vz
+         JfuW+6fXd6v1zosJUbmBo1DSHPZzrgeQ4NH/RuGTFXM+l6tzYjFEJMqAyK/DnvtK+WRG
+         hYaFKDNCwaycPkz7L9zlXE/Dh2jw9yLebTR8VYUV0c2DQ5oY9Q/X4PuouvFypRwhA5Wx
+         USwVkgVJOjDKx/mSlCC/Kr/dZi+q8x8bV3j/UfJaDxQ/ivdISebJdeQQlFG1qs5GNxHU
+         M33kyTUKZI9LbjBWr9Icf107BKr2qSF8tmIgdHAQyMvy3YmTtB8gmVUXeCoUjH5wwazP
+         ivxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5Fy8+G52z4/CaDFZeawpURrDotSj/z5PeZad0B3CFd8=;
-        b=O1XfRvZm93F5HGqSiPSY+O9AZ6RR7oRWN9vJS6Ou8KAGIeHqRGqVe68XKAEKwBds5R
-         gPAVDgR1PjTsWfCoN9yryFjVzNAMJPQPJIwnp1fRCZEDj2zf7HlSktOLXxw9SYrRSdy0
-         KFxWTwMf0ANFZutkPCb5ZANrF2EOSt/+JiUglzrF+dj9D/+o8Vu6AW8R6Ct/iIAXi1YC
-         774rRATkHT9lKyhWlobDLXtBaeKNe/4Da2D1IdWAGrbtJMBg0SKfLKMS/T+NaqnyeFop
-         1oYg7IwU00wBexAEP3pjnLlsU+JzOZxMgEasPhCB/oo3t2yYVkI2yqQc4tjYbFyuD0Go
-         qpAQ==
-X-Gm-Message-State: ANoB5pnZHbrjeXQB9LQdczas+UAeCf7AfQAgBNSjtUHJVK/7hJh7PHh6
-        caOFVRtGYMbl22ho2Gzo6g1DAv2S+Nxghyzo93wHVfiOhibxpLGMjntpFLedYeX4/x6x7ouXYsC
-        teXnrMjewNe+MyQ1GB+1jJeoDqS4foqfyj3U5WdLErKbbu/ofSDs0JJI=
-X-Received: by 2002:a05:690c:851:b0:378:5e3a:8fad with SMTP id bz17-20020a05690c085100b003785e3a8fadmr3504073ywb.78.1670419283344;
-        Wed, 07 Dec 2022 05:21:23 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4dEsAOszSDho0u8YfNbcHyL/Cu47ytTETp59tYZGKkZJLswpRhnp6pWtRXOnnDD2vLgF89Nbs4i2sLQZ086ds=
-X-Received: by 2002:a05:690c:851:b0:378:5e3a:8fad with SMTP id
- bz17-20020a05690c085100b003785e3a8fadmr3504041ywb.78.1670419283074; Wed, 07
- Dec 2022 05:21:23 -0800 (PST)
+        bh=gasjj2Warc1QIbknNKNkywz6J4OpsWmMf8ktNJGJzxM=;
+        b=tyaC/cwwQYvyUMX3VAeYh0jZ++iXHrLp7jNpQVg60nMI0i1aIIp23y6W+LBZOFbyEP
+         jKm5FgN+vBNdNG8idp1T7TIRAts3SifyM+b3V0/qCc02WK3LHrLw/eQnqjloBoMar6Cd
+         lUrGDc/lIoumo3rIXZ+ZHQVGbDic72k2TDKu5S9x5VVS0IoiVXDmvjUYvjy+dwixf/t/
+         fdkWk0E819eS9nx6Y91ijx9QAkWA0lMiy1TsM04Cqu3Td2BXso3qNqGMtB4Kd2vQJu/6
+         Z6WmvWMGAa9LANOT0+oCHcBCD8uLd2k6m9dcgdkz3ogTMI/CA3Btt5zGPJwnUA9LZqTp
+         Tydg==
+X-Gm-Message-State: ANoB5plb6nHO5+JNgZMC9lfSJR3QtqIa5AIHUv+s24/l29en8tzBoSbC
+        ww5e1SIIND/dg/HisQ4VYM9zfc2l6NqTqcrZRbU=
+X-Google-Smtp-Source: AA0mqf5RnWnS+hISdVDsA/In+NITv+EGTmDYWDSf+CwqqDeU+RkT3eKO4lbUN9HJ6WbQczEee6OKmp48cqrdxu9QXDs=
+X-Received: by 2002:a05:620a:1aa3:b0:6fa:b56f:7ede with SMTP id
+ bl35-20020a05620a1aa300b006fab56f7edemr80678604qkb.383.1670419563989; Wed, 07
+ Dec 2022 05:26:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20221118011108.70715-1-hal.feng@starfivetech.com>
- <20221118011108.70715-4-hal.feng@starfivetech.com> <7f78e57a-d9be-b1e9-d161-40b1f66e3804@linaro.org>
- <05ade4a9-6ae2-6e3a-5223-270b24e6ea24@starfivetech.com>
-In-Reply-To: <05ade4a9-6ae2-6e3a-5223-270b24e6ea24@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Wed, 7 Dec 2022 14:21:06 +0100
-Message-ID: <CAJM55Z_Cr1ynK0oZ+p6EaLtc1OiZQTTbgx3N6SrM6eOt5rYrGw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] dt-bindings: pinctrl: Add StarFive JH7110 aon pinctrl
-To:     Jianlong Huang <jianlong.huang@starfivetech.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Conor Dooley <conor@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+References: <20221205085351.27566-1-tmaimon77@gmail.com> <20221205085351.27566-3-tmaimon77@gmail.com>
+ <CAHp75VeAzgCUiH5Z1pVJ-4X29aCK44q907DRQXX75zS4oEhHHg@mail.gmail.com>
+ <CAP6Zq1gi7-pA9wdO3=V9Uf0+pKPTHwWw66MfbYmOwodoXeRDqA@mail.gmail.com>
+ <CAHp75VctiJvvk-6AWfQSU9psHvPeKECaCWPuKL9YQ_-Vt3GBGA@mail.gmail.com>
+ <c200557f-c30a-62f9-287a-af804e818cf1@intel.com> <CAHp75VczbNpHPi-TBe81Ad=P=eXJZpAmkj=m4-apGF1e0uh5kg@mail.gmail.com>
+ <CAHp75VemBiGUTspEYDe3hwA9pEzjNMQGY6_kUoVMJyCuEWgChw@mail.gmail.com>
+ <c4e2a00c-d09e-95e2-eaf2-1de6b820ac6e@intel.com> <CAP6Zq1h9XvH501e_nH9TkUCKPNOuH7dhOM8FrsUM=PYX4gt0qw@mail.gmail.com>
+In-Reply-To: <CAP6Zq1h9XvH501e_nH9TkUCKPNOuH7dhOM8FrsUM=PYX4gt0qw@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 7 Dec 2022 15:25:27 +0200
+Message-ID: <CAHp75Vd5DzkCW0Gpouv+0Or=Yhjp_KdFGP-jXkpHD=UZrG2ajA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-npcm: Add NPCM SDHCI driver
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>, ulf.hansson@linaro.org,
+        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        skhan@linuxfoundation.org, davidgow@google.com,
+        pbrobinson@gmail.com, gsomlo@gmail.com, briannorris@chromium.org,
+        arnd@arndb.de, krakoczy@antmicro.com, openbmc@lists.ozlabs.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Nov 2022 at 02:15, Jianlong Huang
-<jianlong.huang@starfivetech.com> wrote:
->
-> On Mon, 21 Nov 2022 09:44:00 +0100, Krzysztof Kozlowski wrote:
-> > On 18/11/2022 02:11, Hal Feng wrote:
-> >> From: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >>
-> >> Add pinctrl bindings for StarFive JH7110 SoC aon pinctrl controller.
-> >>
-> >> Signed-off-by: Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >> ---
-> >>  .../pinctrl/starfive,jh7110-aon-pinctrl.yaml  | 134 ++++++++++++++++++
-> >>  1 file changed, 134 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml
-> >> new file mode 100644
-> >> index 000000000000..1dd000e1f614
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/pinctrl/starfive,jh7110-aon-pinctrl.yaml
-> >> @@ -0,0 +1,134 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/pinctrl/starfive,jh7110-aon-pinctrl.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: StarFive JH7110 Aon Pin Controller
-> >> +
-> >> +description: |
-> >> +  Bindings for the JH7110 RISC-V SoC from StarFive Technology Ltd.
-> >> +
-> >> +  Out of the SoC's many pins only the ones named PAD_GPIO0 to PAD_GPIO4
-> >> +  can be multiplexed and have configurable bias, drive strength,
-> >> +  schmitt trigger etc.
-> >> +  Some peripherals have their I/O go through the 4 "GPIOs". This also
-> >> +  includes PWM.
-> >> +
-> >> +maintainers:
-> >> +  - Jianlong Huang <jianlong.huang@starfivetech.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: starfive,jh7110-aon-pinctrl
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  reg-names:
-> >> +    items:
-> >> +      - const: control
+On Wed, Dec 7, 2022 at 3:01 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> On Mon, 5 Dec 2022 at 16:33, Adrian Hunter <adrian.hunter@intel.com> wrote:
+> > On 5/12/22 16:17, Andy Shevchenko wrote:
+> > > On Mon, Dec 5, 2022 at 4:14 PM Andy Shevchenko
+> > > <andy.shevchenko@gmail.com> wrote:
+> > >> On Mon, Dec 5, 2022 at 3:41 PM Adrian Hunter <adrian.hunter@intel.com> wrote:
+> > >>> On 5/12/22 15:25, Andy Shevchenko wrote:
+> > >>>> On Mon, Dec 5, 2022 at 1:20 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
 
-Again this doesn't seem necessary when you only have 1 memory range.
+...
 
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +
-> >> +  resets:
-> >> +    maxItems: 1
-> >> +
-> >> +  gpio-controller: true
-> >> +
-> >> +  "#gpio-cells":
-> >> +    const: 2
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +    description: The GPIO parent interrupt.
+> > >>>> devm_ is problematic in your case.
+> > >>>> TL;DR: you need to use clk_get_optional() and clk_put().
+> > >>>
+> > >>> devm_ calls exactly those, so what is the issue?
+> > >>
+> > >> The issue is the error path or removal stage where it may or may be
+> > >> not problematic. To be on the safe side, the best approach is to make
+> > >> sure that allocated resources are being deallocated in the reversed
+> > >> order. That said, the
+> > >>
+> > >> 1. call non-devm_func()
+> > >> 2. call devm_func()
+> > >>
+> > >> is wrong strictly speaking.
+> > >
+> > > To elaborate more, the
+> > >
+> > > 1. call all devm_func()
+> > > 2. call only non-devm_func()
+> > >
+> > > is the correct order.
 > >
-> > Same comments apply plus one more.
->
-> Will fix, drop this description.
->
-> >
-> >> +
-> >> +  interrupt-controller: true
-> >> +
-> >> +  "#interrupt-cells":
-> >> +    const: 2
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - reg-names
-> >> +  - gpio-controller
-> >> +  - "#gpio-cells"
-> >> +  - interrupts
-> >> +  - interrupt-controller
-> >> +  - "#interrupt-cells"
-> >
-> > "required:" goes after patternProperties.
->
-> Will fix.
->
-> >
-> >> +
-> >> +patternProperties:
-> >> +  '-[0-9]+$':
-> >
-> > Same comment.
->
-> Will fix.
-> Keep consistent quotes, use '
->
-> >
-> >> +    type: object
-> >> +    patternProperties:
-> >> +      '-pins$':
-> >> +        type: object
-> >> +        description: |
-> >> +          A pinctrl node should contain at least one subnode representing the
-> >> +          pinctrl groups available on the machine. Each subnode will list the
-> >> +          pins it needs, and how they should be configured, with regard to
-> >> +          muxer configuration, system signal configuration, pin groups for
-> >> +          vin/vout module, pin voltage, mux functions for output, mux functions
-> >> +          for output enable, mux functions for input.
-> >> +
-> >> +        properties:
-> >> +          pinmux:
-> >> +            description: |
-> >> +              The list of GPIOs and their mux settings that properties in the
-> >> +              node apply to. This should be set using the GPIOMUX macro.
-> >> +            $ref: "/schemas/pinctrl/pinmux-node.yaml#/properties/pinmux"
-> >> +
-> >> +          bias-disable: true
-> >> +
-> >> +          bias-pull-up:
-> >> +            type: boolean
-> >> +
-> >> +          bias-pull-down:
-> >> +            type: boolean
-> >> +
-> >> +          drive-strength:
-> >> +            enum: [ 2, 4, 8, 12 ]
-> >> +
-> >> +          input-enable: true
-> >> +
-> >> +          input-disable: true
-> >> +
-> >> +          input-schmitt-enable: true
-> >> +
-> >> +          input-schmitt-disable: true
-> >> +
-> >> +          slew-rate:
-> >> +            maximum: 1
-> >> +
-> >> +        additionalProperties: false
-> >> +
-> >> +    additionalProperties: false
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    #include <dt-bindings/clock/starfive-jh7110.h>
-> >> +    #include <dt-bindings/reset/starfive-jh7110.h>
-> >> +    #include <dt-bindings/pinctrl/pinctrl-starfive-jh7110.h>
-> >> +
-> >> +        soc {
-> >> +                #address-cells = <2>;
-> >> +                #size-cells = <2>;
+> > 1. WRT pltfm_host->clk, that is what is happening
+> > 2. WRT other resources that is simply not always possible because not every resource is wrapped by devm_
+> > e.g. mmc_alloc_host() / mmc_free_host()
+> I little confused about what to decide, should I use only
+> non-devm_func because mmc_alloc_host() / mmc_free_host() is not
+> warrped with devm_?
 
-Again these two lines can be dropped..
+It is up to you how to proceed. I pointed out the problem with your
+code which may or may not be fatal.
 
-> >
-> > Same comment.
->
-> Will fix.
-> Use 4 spaces for example indentation.
->
-> >
-> >> +
-> >> +                gpioa: gpio@17020000 {
-> >> +                        compatible = "starfive,jh7110-aon-pinctrl";
-> >> +                        reg = <0x0 0x17020000 0x0 0x10000>;
+If you want to solve it, there are several approaches:
+1) get rid of devm_ completely;
+2) properly shuffle the ordering in ->probe(), so all devm_ calls are
+followed by non-devm_;
+3) wrap non-devm_ cals to become managed (see
+devm_add_action_or_reset() approach);
+4) fix SDHCI / MMC layer by providing necessary devm_ calls and/or fix
+sdhci_pltfm_register() to handle the clock.
 
-..if you just change this to
-reg = <0x17020000 0x10000>;
+Personally, the list order is from the least, what I prefer, to the
+most (i.o.w. I would like to see rather 4) than 1) to be implemented).
 
-> >> +                        reg-names = "control";
-> >> +                        resets = <&aoncrg_rst JH7110_AONRST_AON_IOMUX>;
-> >> +                        interrupts = <85>;
-> >> +                        interrupt-controller;
-> >> +                        #interrupt-cells = <2>;
-> >> +                        #gpio-cells = <2>;
-> >> +                        gpio-controller;
-> >> +                };
-> >> +        };
-> >> +
-> >> +...
-> >
->
-> Best regards,
-> Jianlong Huang
->
->
+> > > Hence in this case the driver can be worked around easily (by
+> > > shuffling the order in ->probe() to call devm_ first), but as I said
+> > > looking into implementation of the _unregister() I'm pretty sure that
+> > > clock management should be in sdhci-pltfm, rather than in all callers
+> > > who won't need the full customization.
+> > >
+> > > Hope this helps to understand my point.
+> > >
+> > >>>> Your ->remove() callback doesn't free resources in the reversed order
+> > >>>> which may or, by luck, may not be the case of all possible crashes,
+> > >>>> UAFs, races, etc during removal stage. All the same for error path in
+> > >>>> ->probe().
+> > >>
+> > >> I also pointed out above what would be the outcome of neglecting this rule.
+
+...
+
+> > >>>>>> Why can't you use sdhci_pltfm_register()?
+> > >>>>> two things are missing in sdhci_pltfm_register
+> > >>>>> 1. clock.
+> > >>>>
+> > >>>> Taking into account the implementation of the corresponding
+> > >>>> _unregister() I would add the clock handling to the _register() one.
+> > >>>> Perhaps via a new member of the platform data that supplies the name
+> > >>>> and index of the clock and hence all clk_get_optional() / clk_put will
+> > >>>> be moved there.
+> Do you mean to add it to sdhci_pltfm_register function? if yes I
+> believe it will take some time to modify sdhci_pltfm_register
+> I prefer not to use sdhci_pltfm_register.
+
+In the Linux kernel we are trying hard to avoid code duplication. Why
+do you need it to be open coded? (Yes, I heard you, but somebody
+should fix the issues with that funcion at some point, right?)
+
+> > >>>>> 2. Adding SDHCI_CAN_DO_8BIT capability according the eMMC capabilities.
+> > >>>>
+> > >>>> All the same, why can't platform data be utilised for this?
+
+-- 
+With Best Regards,
+Andy Shevchenko
