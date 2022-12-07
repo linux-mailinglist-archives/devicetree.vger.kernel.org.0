@@ -2,59 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E5D5645C4F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:20:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F35645C56
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:20:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbiLGOUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 09:20:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46754 "EHLO
+        id S230237AbiLGOUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 09:20:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbiLGOT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:19:59 -0500
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7735CD2A;
-        Wed,  7 Dec 2022 06:19:57 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id t19-20020a9d7753000000b0066d77a3d474so11344038otl.10;
-        Wed, 07 Dec 2022 06:19:57 -0800 (PST)
+        with ESMTP id S230292AbiLGOUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:20:14 -0500
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFA35D697;
+        Wed,  7 Dec 2022 06:20:02 -0800 (PST)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-143ffc8c2b2so21462542fac.2;
+        Wed, 07 Dec 2022 06:20:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=QgVOiHXNq8Eg/RbdXIqm53C1ukjaOPMLva8zWgn7a2M=;
-        b=WBaExhRs3nHA0FXvfCy0sdSdQn2ckfyQxLUzw1F1eRyMMjs/yZLMOwrnFMRZevzUA1
-         8oK7A1lMo2st6Mjr7PVKcu9mlNVdbE5g59Hl0Ml6v8FNVcGElLIP2yLotiyw3n0xRJLZ
-         PJRXyn3tV21sSh8VgtGc/UA17KyFS1mKFvKFAQzXb+HcESyODwbj6tJqkVKlUHP3Nlzx
-         5ajUvZNIZrtfwCJsGw0I96RzYfOFG2a3cvifPKcAFzDImwOaCjgaeyfPU+Pa9LmzlQD0
-         vSjDr6Y41QsLZMwhcLO8445ybWbu3ry412JSSStfh76eoGCyu1hojWSucWcB5S5c3b0E
-         uwMg==
-X-Gm-Message-State: ANoB5plkGnLcp2eRShZuhG6dw+5nRWAvH5h26c3rhmU+xRC0KczLi0Rd
-        gFkYqK+o/GTXUu6oj9EfNQ==
-X-Google-Smtp-Source: AA0mqf422GoEENzKggll1Vr+0LCwcJG1tEGJNJCcx00he4Eb012EfRCZ1zlWY/G3Oy+Ad/qk/rDIgQ==
-X-Received: by 2002:a05:6830:1419:b0:670:6518:157e with SMTP id v25-20020a056830141900b006706518157emr1109531otp.269.1670422797191;
-        Wed, 07 Dec 2022 06:19:57 -0800 (PST)
+        bh=RhBLk8VcFaz/v/fMZe1KFzL357JI5UetuESxzLIfjRI=;
+        b=f41V3Mr1ZbHV9eZngza0v8XRjgfMyhl1EayJcMThAExA0jzsCSXhrSWUEEfF8HkeXM
+         gxo4RRBAR48pBURgRD9bXg36sfvOFEI/AbjnmhAgK+ox4vAclRcaA9S/bqT3IajwDftG
+         z6BOREkg6mqL2rbtivCzpOr6zu4YtXHDsDrP+zcaJo5Q0YHwAweUaPAnjXvv/Ap70z33
+         +KjIJrJMBJXk4F4j/AvpEEKue0ei6eIRhRJtwu9yS9Ou3oCjYH3/7vVFOkHulY/9SdSe
+         I+rWB/l6d+EZFco09t0S1s9Chb3mzR8l4lHU7FPrlN0UkS6kdMiXu4xuKusOxeGiUGgb
+         55vA==
+X-Gm-Message-State: ANoB5pluVXM0GyVakcFKC1AVFXso6cXrklbYKwOPff3endGfgMRlb40G
+        Db1wMzF7zAYOftUoPfghCg==
+X-Google-Smtp-Source: AA0mqf5Ces9tvVXcwYUIowwHdMMYUnDLEQYpabQuJIpvVLOqIoD7NUUxHhH9Fbamf0mmXpL6Z9I0lQ==
+X-Received: by 2002:a05:6870:be9b:b0:144:a46f:e355 with SMTP id nx27-20020a056870be9b00b00144a46fe355mr7016254oab.95.1670422801747;
+        Wed, 07 Dec 2022 06:20:01 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t26-20020a05683014da00b0066cb9069e0bsm10508365otq.42.2022.12.07.06.19.56
+        by smtp.gmail.com with ESMTPSA id w64-20020aca6243000000b0035ba52d0efasm9484993oib.52.2022.12.07.06.20.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Dec 2022 06:19:56 -0800 (PST)
-Received: (nullmailer pid 2124805 invoked by uid 1000);
+        Wed, 07 Dec 2022 06:20:01 -0800 (PST)
+Received: (nullmailer pid 2124809 invoked by uid 1000);
         Wed, 07 Dec 2022 14:19:49 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20221207055405.30940-17-hayashi.kunihiko@socionext.com>
-References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
- <20221207055405.30940-17-hayashi.kunihiko@socionext.com>
-Message-Id: <167042222204.2111807.2226062109962666582.robh@kernel.org>
-Subject: Re: [PATCH v2 16/16] dt-bindings: soc: socionext: Add UniPhier AHCI
- glue layer
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        outreachy@lists.linux.dev, Mark Brown <broonie@kernel.org>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        linux-iio@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20221207090906.5896-5-okan.sahin@analog.com>
+References: <20221207090906.5896-1-okan.sahin@analog.com>
+ <20221207090906.5896-5-okan.sahin@analog.com>
+Message-Id: <167042222369.2111889.8418799302512280680.robh@kernel.org>
+Subject: Re: [PATCH 4/5] staging: dt-bindings: regulator: adi,max77541.yaml
+ Add MAX77541 Regulator bindings
 Date:   Wed, 07 Dec 2022 08:19:49 -0600
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,32 +79,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 07 Dec 2022 14:54:05 +0900, Kunihiko Hayashi wrote:
-> Add DT binding schema for components belonging to the platform-specific
-> AHCI glue layer implemented in UniPhier SoCs.
+On Wed, 07 Dec 2022 12:08:43 +0300, Okan Sahin wrote:
+> This patch adds document the bindings for MAX77541 and MAX77540
+> regulator drivers.
 > 
-> This AHCI glue layer works as a sideband logic for the host controller,
-> including core reset, PHYs, and some signals to the controller.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
 > ---
->  .../socionext,uniphier-ahci-glue.yaml         | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml
+>  .../bindings/regulator/adi,max77541.yaml      | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77541.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/regulator/adi,max77541.yaml:44:28: [error] no new line character at the end of file (new-line-at-end-of-file)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.example.dtb: ahci-glue@65700000: 'reg' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml
 
 doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/regulator/adi,max77541.yaml: Documentation/devicetree/bindings/mfd/adi,max77541.yaml
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221207055405.30940-17-hayashi.kunihiko@socionext.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221207090906.5896-5-okan.sahin@analog.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
