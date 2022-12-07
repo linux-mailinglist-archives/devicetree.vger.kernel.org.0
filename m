@@ -2,155 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 614EC645D99
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:28:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17C80645DBB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:35:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiLGP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 10:28:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
+        id S229437AbiLGPf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 10:35:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiLGP2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:28:00 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7B543858
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:27:59 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id p36so24887680lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:27:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TokEjNlXlL75+xEzHHcfrOtvGUeNpxpixbHN6tlln1o=;
-        b=xZoAANYFUthrKrQWZ6Ci6dV24edG9wqHPi6R2TIHnGK70ZBmeBBMtRY+dHTIjC9yLD
-         X22I1hEtbP+dxqo+eq50o/QAuervEYat50fozHnFCVRyS1oqT/Rns4LPv88Z0KUfbj7N
-         dObCogEsL+cq8W1saACmHaxrUAOe+xr8PNLQdNKglVzJEnEbn78Rcr83cWzTK2YMmN85
-         Re3N58OP0QvOZLrtx6jWJByX6X4/gFzNmGlJQfrCAdwBK5Q7jkU3fphWGsIufqCx6VgZ
-         wjFWQZ/cQa8ds9qGRlSqBqxDJctnDgC6seOgWtciLCSeu1z0tjtn7zMx/dSN9V3eYrRn
-         Kxdw==
+        with ESMTP id S229545AbiLGPf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:35:56 -0500
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BEEA62E97;
+        Wed,  7 Dec 2022 07:35:55 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id m204so21114252oib.6;
+        Wed, 07 Dec 2022 07:35:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TokEjNlXlL75+xEzHHcfrOtvGUeNpxpixbHN6tlln1o=;
-        b=UuhQMwQ9YsQ62PdqfchEcOUcjmDwCnzNJvrxkY96AK3iDPmEdEf0knjHs6AWikQsha
-         xzdUYS4ZoOvBsTXKALI14y5JB+1EDKYXleDYM/MMU/eX5hpMeZbQQmbqfv+xToPxg81b
-         HWN5XYQfUfTt8hNldB3ypGtemYcpbS6H2bkBqtlkJXTSo0l8sjqSDXRJwq34x1cDXvEZ
-         bGaGPvzWkwwakChmpp0R7CT6RMEju733xXU/log37NYbbRvkIT6+YmjhtdQAzShey+w3
-         NEtr7LqQJpf3zmzKq2vMUD93Ra2FHF9WvJQixnA2LDa2EZ1jNSTHiYQiESNmBIORodhs
-         Dvpg==
-X-Gm-Message-State: ANoB5pmkjkY+nD983C4sNgka6PiXvpo/gyu7FUlsMaaumz8EjwJ2bZVH
-        CemaY1ImxQYwCbhK2lSl4NBTaA==
-X-Google-Smtp-Source: AA0mqf5lFASv5Gt8Q+CtjFWyDlLlmnb/Ja3W9mhr64B6BAoDNOVmOlEhVOJQQAAb5p3q+sYnyzLLkw==
-X-Received: by 2002:ac2:4149:0:b0:4a2:217:18bf with SMTP id c9-20020ac24149000000b004a2021718bfmr24820910lfi.146.1670426877825;
-        Wed, 07 Dec 2022 07:27:57 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id b4-20020a056512024400b004a8b9c68735sm215425lfo.102.2022.12.07.07.27.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 07:27:57 -0800 (PST)
-Message-ID: <30166f9d-ebfa-ed8b-c08b-ff8e2599161f@linaro.org>
-Date:   Wed, 7 Dec 2022 16:27:56 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v11 5/6] dt-bindings: media: wave5: add yaml devicetree
- bindings
-Content-Language: en-US
-To:     Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        kernel@collabora.com, bob.beckett@collabora.com,
-        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com,
-        nas.chung@chipsnmedia.com, devicetree@vger.kernel.org,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lBpBd7+pFnpb+CGSyhsTaAtXlwJmyfr3U6zIXBU+CU8=;
+        b=bwGtDG3eaTxTwfAC4Zdz21uIFe4K9ZGaY/0UTxy9ORls3qAmbvRR9zTQu+0DggfeYL
+         NhOkXaf1SxTyFDAKqOIBfsMfjK+XZjqfOpA+VBiiZTc58ZmTEYEfibn4h1/HhPwfw/rJ
+         K9nSYlyd8DDT9HdJ3Xf0mfolpFZ2LXLWOc70+XS5xmXmM2cRtsmq59JjY4mUnboViJOJ
+         OrS3VTM50ivPdCMjT/T4qms4i+GRTxgYUT8S4D5z+hP978hqHP9RGHqYgw5T2lYUXLao
+         6Ppf6JJJ/Gnjdp6LxN5T5cp3pHnHmKmoE8uJkqrBP0olKy/3IRyEsdiAfFGHQj2VCEEZ
+         +eyw==
+X-Gm-Message-State: ANoB5plre3BEWqFqkkAjpLymJQYigJJe7UU9/hoJ2BLzo/8bx5JC8N4Q
+        ABDCusfpg3NpBEGggwqMiA==
+X-Google-Smtp-Source: AA0mqf6Feu1onLJPtKNVbwwfEe7rbawqt0LgfrOo7YBldPyEM5I/BsLZS0ysSmXTDBpwIUzHe7p7Mw==
+X-Received: by 2002:aca:1e0d:0:b0:35b:b54d:19a with SMTP id m13-20020aca1e0d000000b0035bb54d019amr21750341oic.242.1670427354571;
+        Wed, 07 Dec 2022 07:35:54 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s17-20020a056870631100b00136f3e4bc29sm12245693oao.9.2022.12.07.07.35.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Dec 2022 07:35:54 -0800 (PST)
+Received: (nullmailer pid 2275786 invoked by uid 1000);
+        Wed, 07 Dec 2022 15:35:53 -0000
+Date:   Wed, 7 Dec 2022 09:35:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20221207121350.66217-1-sebastian.fricke@collabora.com>
- <20221207121350.66217-6-sebastian.fricke@collabora.com>
- <48d60bd0-4de1-4a5e-eca1-1f8a9303cce0@linaro.org>
- <20221207150925.frotwpm3ukwwlnig@basti-XPS-13-9310>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207150925.frotwpm3ukwwlnig@basti-XPS-13-9310>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v2 09/16] dt-bindings: soc: socionext: Add UniPhier
+ SoC-glue logic
+Message-ID: <20221207153553.GA2269092-robh@kernel.org>
+References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
+ <20221207055405.30940-10-hayashi.kunihiko@socionext.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221207055405.30940-10-hayashi.kunihiko@socionext.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 16:09, Sebastian Fricke wrote:
-> Hello Krzysztof, 
+On Wed, Dec 07, 2022 at 02:53:58PM +0900, Kunihiko Hayashi wrote:
+> Add devicetree binding schema for the SoC-glue logic implemented on
+> Socionext Uniphier SoCs.
 > 
-> On 07.12.2022 13:31, Krzysztof Kozlowski wrote:
->> On 07/12/2022 13:13, Sebastian Fricke wrote:
->>> From: Robert Beckett <bob.beckett@collabora.com>
->>>
->>> Add bindings for the wave5 chips&media codec driver
->>>
->>> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
->>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
->>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->>
->> What's happening with this patch? Where is the changelog?
+> This SoC-glue logic is a set of miscellaneous function registers
+> handling signals for specific devices outside system components,
+> and also has multiple functions such as I/O pinmux, usb-phy, debug,
+> clock-mux for a specific SoC, and so on.
 > 
-> The changelog is located in the cover letter.
-> https://lore.kernel.org/linux-media/20221207121350.66217-1-sebastian.fricke@collabora.com/
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  .../socionext,uniphier-soc-glue.yaml          | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+> new file mode 100644
+> index 000000000000..6fc790963660
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-soc-glue.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Socionext UniPhier SoC-glue logic
+> +
+> +maintainers:
+> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> +
+> +description: |+
+> +  SoC-glue logic implemented on Socionext UniPhier SoCs is a collection of
+> +  miscellaneous function registers handling signals outside system components.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - socionext,uniphier-ld4-soc-glue
+> +          - socionext,uniphier-pro4-soc-glue
+> +          - socionext,uniphier-pro5-soc-glue
+> +          - socionext,uniphier-pxs2-soc-glue
+> +          - socionext,uniphier-sld8-soc-glue
+> +          - socionext,uniphier-ld11-soc-glue
+> +          - socionext,uniphier-ld20-soc-glue
+> +          - socionext,uniphier-pxs3-soc-glue
+> +          - socionext,uniphier-nx1-soc-glue
+> +      - const: simple-mfd
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^pinctrl(@[0-9a-f]+)?$":
+> +    $ref: /schemas/pinctrl/socionext,uniphier-pinctrl.yaml#
+> +
+> +  "^usb-hub(@[0-9a-f]+)?$":
+> +    $ref: /schemas/phy/socionext,uniphier-usb2-phy.yaml#
+> +
+> +  "^clock-controller(@[0-9a-f]+)?$":
+> +    $ref: /schemas/clock/socionext,uniphier-clock.yaml#
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - socionext,uniphier-pro4-soc-glue
+> +              - socionext,uniphier-ld11-soc-glue
+> +    else:
+> +      patternProperties:
+> +        "^usb-hub(@[0-9a-f]+)?$": false
 
+While just if and else is valid json-schema, we require 'then'. Can you 
+change this to 'if: { not: {...}, then: {}'.
 
-Which you did not sent to us... so? How does it help us?
+You should be getting a warning for this. The rest of the warnings from 
+the bot look like false positives you can ignore.
 
-> 
->> Why it is v11 and first time I see it?
-> 
-> You actually replied to V10:
-> https://lore.kernel.org/linux-media/20221023085341.s23qinjuw4qls3dn@basti-XPS-13-9310/
-> 
->> And why it is v11 with basic mistakes and lack of testing?!?
->> I would assume that v11 was already seen and tested...
-> 
-> Sorry I don't have a lot of experience with dt-bindings, thank you for
-> highlighting the issues, I will correct them. And I forgot to build the
-> documentation during my testing runs.
-> I took over the patch set from another contributor and as no one
-> complained about the dt-bindings for the last 10 versions, I concentrated
-> my energy on other problems.
-
-Because they were never sent to maintainers...
-
-> 
->>
->>
->>> ---
->>>  .../devicetree/bindings/cnm,wave5.yml         | 72 +++++++++++++++++++
->>>  1 file changed, 72 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/cnm,wave5.yml
->>
->> Wrong directory. It wasn't here at all before, so I am really confused
->> how this could happen.
-> 
-> Thanks for the highlight.
-> 
-> I will move it to:
-> Documentation/devicetree/bindings/media/cnm,wave5.yml
-> 
->>
->> Subject: drop redundant pieces: yaml, devicetree and bindings.
-> 
-> I call it:
-> 
-> dt-bindings: media: chips-media: add wave5 bindings
-> 
-> in V12
-> 
-> Sincerely,
-> Sebastian Fricke
-
-And the rest questions? Lack of response means agreement, which is fine,
-so in v12 questionable parts will be removed?
-
-Best regards,
-Krzysztof
-
+Rob
