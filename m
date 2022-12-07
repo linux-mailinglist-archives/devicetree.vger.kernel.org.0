@@ -2,122 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F38A0645746
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83F0D645752
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:15:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbiLGKNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:13:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
+        id S230319AbiLGKPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:15:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbiLGKNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:13:36 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4FC1A221
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:13:35 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d6so27905788lfs.10
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EfzRINXvTujbfGexnmXcZib+yfVoupZmsTbefxlDJnw=;
-        b=Go0DCB4+6QM2Lz8HnEfnjEpYF04o+zaCU7giFE1dNJHPtFZR5dW2o8AD9bJh6xS56M
-         /FQa5LGWbUAyDnAozVwWajxACvIDzprJP50Pd4jaGNkLi4BbZhIZT1UI07AH5K1qCypS
-         RafclyjEf7X7t06AEtXF3LtrqAaloeMTBbfIdL7lkba1TP5oi2eJjr9474OsrIDssan8
-         bkAxZo4ORF5q7zjsJN3QbCUMc2owtn6hCIkXP5yY2inq/43m/k8zaDpyDNqycQ1eDHyQ
-         RfQlxRbzQMBzzZWxcI3CZL/AlilnzwC6TyH57ElK/uzlnKcKfltQlVPu1hroedcj+CCP
-         FXbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EfzRINXvTujbfGexnmXcZib+yfVoupZmsTbefxlDJnw=;
-        b=p02eS85P+AobxnZ78WGRLygTGfbgSnzee3T2XmyNOGwQXLwHUucBwhvMyaLWaSvuHi
-         o5Qa8gnIJ4LkVRO/QJl00HxuJzWr8UAUN889jTITyQpUEDx/FAf2B82CrmuoJnZN1THl
-         A+ydeX16zJgM6n2TgIpq9ix9f2/YNGU/9BXLhic00GwDyaci4OHUgHu0gIownuwgPW/y
-         +vxaKdA3NwBAHYPbwOTZ9SHnZEswjcHbUYZVjigV6tXZNTKt9J8ZR+KoMK8O6Uc8gnlv
-         oOFBl9V8F+3xHIkkmIUxMXVWTkb0rwm/6ne8py7SUaKjf7GVwWfgFdMJ4jO+EWT+aPyV
-         dRjg==
-X-Gm-Message-State: ANoB5pkswDxCU7viP10Cb058ykFeOJ+nvUojCzi8fM7vi2dYopcHTN72
-        FCDpUo8RqpVLe8jRZzV3jHbO+8mUIPaYfWZja2Q=
-X-Google-Smtp-Source: AA0mqf7hsCAj+w8XCvjyZUfiTkBTV5WU3JxoUzeIJmMqZ0pP8HJxm1PyMERjuSoo3lfnPbIlTSY2KA==
-X-Received: by 2002:a05:6512:2520:b0:4a2:6907:98d8 with SMTP id be32-20020a056512252000b004a2690798d8mr25290485lfb.28.1670408013714;
-        Wed, 07 Dec 2022 02:13:33 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m16-20020a056512359000b004b57d186aaasm840449lfr.249.2022.12.07.02.13.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 02:13:33 -0800 (PST)
-Message-ID: <13a7ac60-c9a2-aa60-f8ba-640d9e99ab44@linaro.org>
-Date:   Wed, 7 Dec 2022 11:13:32 +0100
+        with ESMTP id S230323AbiLGKPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:15:47 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4911627DF2;
+        Wed,  7 Dec 2022 02:15:46 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6D9246602BCA;
+        Wed,  7 Dec 2022 10:15:44 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1670408145;
+        bh=xenTL6ycu6+J3dZkWwVqbyz6cpJbQ3K/72/MLgrrW/g=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=csvgkyZsfJVtOhUqHsF67yjdQ4Myj7Ij6uUKXdL5wVB/Wc4qJx0ziPEA+6pIUJKQX
+         n2tdsBeKl95ESt8JzqfIV4c9SfzXumwbyRnITpibdLhlhhbMUGp/7DAkCcY6Fav1Sr
+         j7eV9ZfTMkIxo2z3bEtjgjW7tfTpK1XsKomx+pAGmhjKbJoSkv8HvK/mPfGIulapqv
+         T6HVXqH5ccANG3Qzeew0izlxulMivy8ics97W4y/466JTM2GZAWvoy5cSeh2EQ5qpO
+         f5HRlmMmRKisM33PWsUAVVDvN8s4lBNgXkdvkerr5D8phfpuCzeEkBFYQxwyeyWj7w
+         +9rz5aQQLZBqg==
+Message-ID: <fa7d4a05-d224-47e6-cd4d-fdb246d70e27@collabora.com>
+Date:   Wed, 7 Dec 2022 11:15:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 3/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynosautov9
+ Thunderbird/102.5.0
+Subject: Re: [PATCH v4 3/8] arm64: dts: mediatek: mt8195: add MMSYS
+ configuration for VPPSYS
 Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20221207085832.86909-1-sriranjani.p@samsung.com>
- <CGME20221207085852epcas5p3de090e5b0abec213c1b5511e1da3eeff@epcas5p3.samsung.com>
- <20221207085832.86909-4-sriranjani.p@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207085832.86909-4-sriranjani.p@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Moudy Ho <moudy.ho@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
+References: <20221207094921.15450-1-moudy.ho@mediatek.com>
+ <20221207094921.15450-4-moudy.ho@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221207094921.15450-4-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 09:58, Sriranjani P wrote:
-> Exynosautov9 has several different SYSREGs, so use dedicated compatibles
-> for them and deprecate usage of generic Exynosautov9 compatible alone.
+Il 07/12/22 10:49, Moudy Ho ha scritto:
+> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 > 
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> ---
->  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml  | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+> With the change of the MMSYS binding file for MT8195, the compatible
+> name of VPPSYS in dts need to be fixed to match the definition.
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> index f57bc7c194a1..b6105d261b47 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> @@ -17,7 +17,6 @@ properties:
->                - samsung,exynos3-sysreg
->                - samsung,exynos4-sysreg
->                - samsung,exynos5-sysreg
-> -              - samsung,exynosautov9-sysreg
->                - tesla,fsd-cam-sysreg
->                - tesla,fsd-fsys0-sysreg
->                - tesla,fsd-fsys1-sysreg
-> @@ -45,6 +44,17 @@ properties:
->            - const: samsung,exynos850-sysreg
->            - const: syscon
->          deprecated: true
-> +      - items:
-> +          - enum:
-> +              - samsung,exynosautov9-fsys2-sysreg
-> +              - samsung,exynosautov9-peric0-sysreg
-> +              - samsung,exynosautov9-peric1-sysreg
-> +          - const: samsung,exynosautov9-sysreg
-> +          - const: syscon
-> +      - items:
-> +          - const: samsung,exynosautov9-sysreg
-> +          - const: syscon
+> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-Same comment here - let's make it part of enums which are deprecated (so
-together with 5433 and 850)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Best regards,
-Krzysztof
 
