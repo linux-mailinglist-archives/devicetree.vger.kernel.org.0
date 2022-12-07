@@ -2,94 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9986F6458AA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 12:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09ACA6458B7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 12:17:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbiLGLNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 06:13:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
+        id S229529AbiLGLRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 06:17:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiLGLMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 06:12:37 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B89484C259
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 03:11:59 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id s8so28155844lfc.8
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 03:11:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E0iYqJnQf0sSNe9rxshze1YySuIt155ihLOCpKX2z5k=;
-        b=wTezHXPaL4l/5HAY8qbeZePY+DKfz3vY1J/a/QnRF3jRMoa2SuHSmVGZG1T2Eifr4W
-         rAoaufzCt+/dryglOiGYFvGcmEDATx8y2A3+4h4DV9OV+5+IH5SnJTjNdCEvbGTwG1n/
-         GSI7YoV/Hzhx3pK9rKg/E9Xms30rsyWuv8HylCnbFcaw9BF1mdkWNQOUboMEHq7yQoUx
-         xSOb6lys3b8s+XQt2ygXBeX2uiukZ6dx7tR/DaTb+wVlu0THe2A/VF/vup1HAtyarn0A
-         TU8YYuzvGe+zBMnefoVSlmrudsqJsrJx191X5Rble4bF9bXZ0OncXE23+r3hege/fpzw
-         J4GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E0iYqJnQf0sSNe9rxshze1YySuIt155ihLOCpKX2z5k=;
-        b=wlfNLTjYJQUyPKgAYo2icZPNiYp6eMuxD4Rmb4M7ufkyZVwkxMc1FnpeKbwp6lKjXX
-         Z+5/ygFrgCa91RkG+vvybi1Msz/d+OqyL0XC0MNv2GvXBPnJTgjOX5JM898j+4uZVkfv
-         X9QWE7Y1Y+WJmpNOmhfATCG7sU/A+ScXmWKNQGzBrzvL3RRYyiB3eE0dmWcY1Vt0RtQR
-         7S2eUkixB+bAwZTH6ilwLZUyFowTICn8yQABmCuJj4DegSlPpGlyIv4afLTn8/a7Woef
-         FW3e4cVtDXOlBbcD+I/5Mj4oOwlvhjhFjXXBhgcResQBKRQjCCYA05Ifu57b/2D65mgS
-         mGVw==
-X-Gm-Message-State: ANoB5pk8lTgREWL0DRSfSgFo172Qa7lYtnAY4oQ4Npt2GhAmu8sE9DBx
-        tLFb+udADY3vjLObWjyabTkK9w==
-X-Google-Smtp-Source: AA0mqf4uzvLKyl3k4Pb5t+QyvCxHerRe7zAYZU2BD51W/m4v4FdG4A3Lu0gU1HHRBMujAKiI5F3hBA==
-X-Received: by 2002:ac2:4462:0:b0:4b5:7780:cf5a with SMTP id y2-20020ac24462000000b004b57780cf5amr3829606lfl.283.1670411518113;
-        Wed, 07 Dec 2022 03:11:58 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id 3-20020ac25f03000000b004aa543f3748sm2801528lfq.130.2022.12.07.03.11.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Dec 2022 03:11:57 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     wg@grandegger.com, pabeni@redhat.com, rcsekar@samsung.com,
-        mkl@pengutronix.de, pankaj.dubey@samsung.com, edumazet@google.com,
-        linux-fsd@tesla.com, krzysztof.kozlowski+dt@linaro.org,
-        alim.akhtar@samsung.com, ravi.patel@samsung.com,
-        robh+dt@kernel.org, Vivek Yadav <vivek.2311@samsung.com>,
-        kuba@kernel.org, davem@davemloft.net
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, sriranjani.p@samsung.com,
-        linux-can@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        aswani.reddy@samsung.com, netdev@vger.kernel.org
-Subject: Re: (subset) [Patch v4 2/2] arm64: dts: fsd: Add MCAN device node
-Date:   Wed,  7 Dec 2022 12:11:54 +0100
-Message-Id: <167041151082.34325.8017885279639590973.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221207100632.96200-3-vivek.2311@samsung.com>
-References: <20221207100632.96200-1-vivek.2311@samsung.com> <CGME20221207100700epcas5p408c436aaaf0edd215b54f36f500cd02c@epcas5p4.samsung.com> <20221207100632.96200-3-vivek.2311@samsung.com>
+        with ESMTP id S229489AbiLGLRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 06:17:10 -0500
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A396DC1E;
+        Wed,  7 Dec 2022 03:17:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1670411829; x=1701947829;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=H0Vzsz2jhaO+JMBnaxA31lSJWlWykGUD2EfsJINbXAg=;
+  b=FkFd6ZpL8AGXwxy1ubYQ3ZOo0oygDZRMO7q2X+wVysci5v1TbHbgoIvI
+   nySPWg8M/u9SRyZz7dy8+5+KsXIIwrNrpxiufjEpsFDPW8lM9vzrZKmEX
+   kPzJl4k+r4ygD9a0QNIuwdFWO0xVD1VyzlS+Pn1t/RAN7oWl9V0av5bNR
+   BQQGAReTLJqfEu8w4VRAzNwoiq0NsjzRkGrMsWEPZHBf79+76bgJ8Wt11
+   Uh2aSRUfNQ+gzS1+u5BCQJXmqZc0OuMuEBNLToCIZxssjDcVSQL+RW6oP
+   notaYUJExxWd6tKgQWugC5psvF9nTdfWbrGN4ettGnvcrV7dtGCnimDtc
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="316881114"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; 
+   d="scan'208";a="316881114"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2022 03:16:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10553"; a="679102665"
+X-IronPort-AV: E=Sophos;i="5.96,225,1665471600"; 
+   d="scan'208";a="679102665"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP; 07 Dec 2022 03:16:49 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1p2sPu-005jlA-26;
+        Wed, 07 Dec 2022 13:16:46 +0200
+Date:   Wed, 7 Dec 2022 13:16:46 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     outreachy@lists.linux.dev, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 3/5] staging: drivers: regulator: Add MAX77541 Regulator
+ Support
+Message-ID: <Y5B2HrS1MlERLppj@smile.fi.intel.com>
+References: <20221207090906.5896-1-okan.sahin@analog.com>
+ <20221207090906.5896-4-okan.sahin@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221207090906.5896-4-okan.sahin@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Dec 2022 15:36:32 +0530, Vivek Yadav wrote:
-> Add MCAN device node and enable the same for FSD platform.
-> This also adds the required pin configuration for the same.
+On Wed, Dec 07, 2022 at 12:08:42PM +0300, Okan Sahin wrote:
+> This patch adds regulator driver for both MAX77541 and MAX77540.
+
+Read Submitting Patches documentation on how to create better commit message.
+
+> The MAX77541 is a high-efficiency step-down converter
+> with two 3A switching phases for single-cell Li+ battery and 5VDC systems.
 > 
-> 
+> The MAX77540 is a high-efficiency step-down converter
+> with two 3A switching phases.
 
-Applied, thanks!
+...
 
-[2/2] arm64: dts: fsd: Add MCAN device node
-      https://git.kernel.org/krzk/linux/c/142c693e6bd63d8dfaf7f808b015fc46180af731
+> +/*
+> + * Copyright (c) 2022 Analog Devices, Inc.
+> + * ADI Regulator driver for the MAX77540 and MAX77541
 
-Best regards,
+> + *
+
+Redundant blank line.
+
+> + */
+
+...
+
+> +static const unsigned int max77541_buck_volt_range_sel[] = {
+> +	0x00, 0x00, 0x40, 0x40, 0x80, 0x80
+
+You can leave trailing comma.
+
+> +};
+
+...
+
+> +static const struct regulator_desc max77540_regulators_desc[] = {
+> +	MAX77540_BUCK(1, max77541_buck_ops),
+> +	MAX77540_BUCK(2, max77541_buck_ops)
+
+Ditto.
+
+> +};
+> +
+> +static const struct regulator_desc max77541_regulators_desc[] = {
+> +	MAX77541_BUCK(1, max77541_buck_ops),
+> +	MAX77541_BUCK(2, max77541_buck_ops)
+
+Ditto.
+
+> +};
+
+...
+
+> +struct max77541_regulator_dev {
+> +	struct device *dev;
+
+Isn't it the same as...
+
+> +	struct max77541_dev *max77541;
+
+...max77541->dev ?
+
+> +};
+
+...
+
+> +static int max77541_regulator_probe(struct platform_device *pdev)
+> +{
+
+	truct device *dev = &pdev->dev;
+
+will save you a bit of code below.
+
+> +	struct max77541_dev *max77541 = dev_get_drvdata(pdev->dev.parent);
+
+
+...
+
+
+> +				return dev_err_probe(&pdev->dev, PTR_ERR(rdev),
+> +							"Failed to register regulator\n");
+
+Wrong indentation.
+
+...
+
+> +				return dev_err_probe(&pdev->dev, PTR_ERR(rdev),
+> +						"Failed to register regulator\n");
+
+Ditto.
+
+...
+
+> +
+
+Redundant blank line.
+
+> +module_platform_driver(max77541_regulator_driver);
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+With Best Regards,
+Andy Shevchenko
+
+
