@@ -2,83 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF82D645F5D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 17:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63EEB645F66
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 17:58:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbiLGQ5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 11:57:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42266 "EHLO
+        id S229843AbiLGQ6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 11:58:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiLGQ5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 11:57:04 -0500
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE1A62E8F;
-        Wed,  7 Dec 2022 08:57:04 -0800 (PST)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1447c7aa004so13843631fac.11;
-        Wed, 07 Dec 2022 08:57:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wjsoTXGri8JLvJW2T8GIZAWKirugVS34hV+s8paAZjM=;
-        b=B95HHd9RFVh0YWSFXqw1o7LpQmjiI5/V10JgeDz0NdFru4Lm8pnjCR649fOo/Hw/63
-         om/7vGEtkqJceLGwILoU3ZhROi7rRdoUCKnTdKK4iQSZf0Ze7RBE2HFSbS1rk9VRwvNz
-         gUIeiN6zbGwp8JT4M40R+v2X6KPThUqQM4WdJSjIl1sXa0u0kLlyr8gFMPiEb8z41a+k
-         2VCmijcAihW+ftq7ctgcTnN5IRN0oWliFjbU2JCEzKtCw5BHfCl9WwkzwTuGG5OWff4W
-         KMmCNMXcc/1ko86zk4pT8TzN/0t0Tpx+wuuKTevxEtPc3X/M853ci5tRFoT930jSlmgA
-         W/qQ==
-X-Gm-Message-State: ANoB5pny8xeV48FssdNaZJqSbB5pUMmN5TXwpS3xZZ21LAAYE4re8bF6
-        pyJlPzxAhbFnlMn2W2jh1CVeZkay5Q==
-X-Google-Smtp-Source: AA0mqf7VORNFgWUjiYSUyWALvb0Vfyh3rcM9Jxf+M/TQedidfiv9ZxymKnscFUHhOk0EfWqVdzqw4g==
-X-Received: by 2002:a05:6870:e99f:b0:142:d085:c1cc with SMTP id r31-20020a056870e99f00b00142d085c1ccmr44003737oao.29.1670432223084;
-        Wed, 07 Dec 2022 08:57:03 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n25-20020a9d6f19000000b00660e833baddsm10495609otq.29.2022.12.07.08.57.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Dec 2022 08:57:02 -0800 (PST)
-Received: (nullmailer pid 2401862 invoked by uid 1000);
-        Wed, 07 Dec 2022 16:57:02 -0000
-Date:   Wed, 7 Dec 2022 10:57:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: sort entries alphabetically
-Message-ID: <20221207165702.GA2396480-robh@kernel.org>
-References: <20221202110536.22230-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229696AbiLGQ6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 11:58:34 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C0776721E;
+        Wed,  7 Dec 2022 08:58:33 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B7CEt6x015572;
+        Wed, 7 Dec 2022 16:58:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=2CkhUiDLm8wVX2E0KqCm7+V9IW3xKtZ2XXcdy1mx8I0=;
+ b=lA9cxczhd+PVjBhk8ZD0R1kZJwTXb+ynyCOJLMLOjG+j2NkEN65Qt2mQow8RTNVjOwid
+ rji4xeRnkJuHZTxVQPcCbmZdY68CbBtZUjITE0L2AfmMOLXNcKtcx+FLXQYG8DtkHJYY
+ bnw2I0ReGlQankUiC9IWZeoUobZGj5zAUj2U8g+yR4SHdkweG5vmHfyFmdeAwF9U9+0h
+ pqzg+2CvNF7p2/rv3Q8q53HpFnUwtDs4dbvwipCHWB0ukyBFkS8mILYoH+WYdRbQ8tkB
+ ORvMzEx/rUx+JehoydehGXWWudbzq+TNiXbOl2F60f4j8uSssE+a37BQ1j4tiCENuGcT 8A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ma1664mys-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 07 Dec 2022 16:58:15 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B7GwEtF003837
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 7 Dec 2022 16:58:14 GMT
+Received: from khsieh-linux1.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.36; Wed, 7 Dec 2022 08:58:13 -0800
+From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <robdclark@gmail.com>,
+        <sean@poorly.run>, <swboyd@chromium.org>, <dianders@chromium.org>,
+        <vkoul@kernel.org>, <daniel@ffwll.ch>, <airlied@linux.ie>,
+        <agross@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@somainline.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <airlied@gmail.com>
+CC:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        <quic_abhinavk@quicinc.com>, <quic_sbillaka@quicinc.com>,
+        <freedreno@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v10 0/5] Add data-lanes and link-frequencies to dp_out endpoint
+Date:   Wed, 7 Dec 2022 08:57:53 -0800
+Message-ID: <1670432278-30643-1-git-send-email-quic_khsieh@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221202110536.22230-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HgcZF3A3vWeQ7DdsGrKrX4wkK4mleeEv
+X-Proofpoint-GUID: HgcZF3A3vWeQ7DdsGrKrX4wkK4mleeEv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-07_08,2022-12-07_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 clxscore=1015 mlxscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 spamscore=0 mlxlogscore=861
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212070147
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 12:05:36PM +0100, Krzysztof Kozlowski wrote:
-> Sort entries alphabetically.  This was a semi manual job with help of:
-> 
->   cat Documentation/devicetree/bindings/vendor-prefixes.yaml | grep '":' > old
->   cat old | sort > new
->   diff -ubB old new
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Patch rebased on next-20221201 therefore might not apply cleanly to
-> Rob's tree. Probably should be taken after the 6.2-rc1.
+Add DP both data-lanes and link-frequencies property to dp_out endpoint and support
+functions to DP driver.
 
-Indeed. I'll pick this up with the other treewide cleanups planned for 
-the merge window.
+Kuogee Hsieh (5):
+  arm64: dts: qcom: add data-lanes and link-freuencies into dp_out
+    endpoint
+  dt-bindings: msm/dp: add data-lanes and link-frequencies property
+  drm/msm/dp: parser data-lanes as property of dp_out endpoint
+  drm/msm/dp: parser link-frequencies as property of dp_out endpoint
+  drm/msm/dp: add support of max dp link rate
 
-Rob
+ .../bindings/display/msm/dp-controller.yaml        | 13 ++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi       |  6 ++-
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi     |  6 ++-
+ drivers/gpu/drm/msm/dp/dp_display.c                |  4 ++
+ drivers/gpu/drm/msm/dp/dp_panel.c                  |  7 +--
+ drivers/gpu/drm/msm/dp/dp_panel.h                  |  1 +
+ drivers/gpu/drm/msm/dp/dp_parser.c                 | 52 ++++++++++++++++++----
+ drivers/gpu/drm/msm/dp/dp_parser.h                 |  2 +
+ 8 files changed, 78 insertions(+), 13 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
