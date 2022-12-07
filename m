@@ -2,156 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE25D646203
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 21:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E55864620F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 21:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiLGUEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 15:04:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34264 "EHLO
+        id S229750AbiLGUGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 15:06:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbiLGUEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 15:04:20 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D2913D7C
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 12:04:19 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id j4so30431706lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 12:04:19 -0800 (PST)
+        with ESMTP id S229723AbiLGUGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 15:06:15 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A706D77223
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 12:06:13 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id y25so8196365lfa.9
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 12:06:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l3W4AXWAS24yUYVPMlcPiaqqG/pQP+BE1R3UfjzEdCQ=;
-        b=Fs1+Z+Kws7zzF0olOZ8OzkKdCdQ0Mnb/kgdNkJrTGAXhdyZxDdzI/6FO7w4AdaaC94
-         Tf5Dn7qOl/XN97QSdCz1mKdRYls82chj7JXgXYpf+rE4mxQTMX3BCqFcQWGXgNVbGqkb
-         KoZuJYwDh3JKag9DKqgH8FLXBmIhJMmds1abSj4ragRYeQC2lmyqeOU+c0PJCjyqx4Y/
-         lxJ2YUacvczwJIPm3HMMkBQGMPvnDgMY1juM9rrBILjWJkpSIsrsS0oH5qOOVklNbG52
-         lFTOgdwH4zRKxOCx5Kqp4xHi02aixnSd05i+Q/PGSNmuwJa/GY85uPXJ1pL6JvWzDtwY
-         KlZQ==
+        bh=SVZZ17cW0EmuZRh2nTo/dxOsOvCo68gbOMlI0qg0Oes=;
+        b=f83oDLXIKgXTvGRYKqZtWpfPU8ufCWVDcdrjasaCLvpkw7nA/JC9IYESereH++ibEn
+         dyVjnTTFusrXcYYJqJXpKhfVOrZoWAEBj3AxokAfqEvE6nDqEVi9Uxat0xtez4s1+Wr2
+         f90QZSh2x+gG0xb1yApoMeZNSB1FxEDyC7wVP90pwRrPLXi88cepilas96RCOzMH+nfG
+         KQ79MkzVpLTfDPbMFnVm3/AJGgNui4KuB9lms45NY87q8eP7BeiiU8Vx5B6CnRzKdFw5
+         4fcWEUcP03ArwhKl7wAVOYsk0sMBXuUlDkGdrrlJM9qABic+vfz5BkHLKBj+GpCFk0K2
+         DH6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3W4AXWAS24yUYVPMlcPiaqqG/pQP+BE1R3UfjzEdCQ=;
-        b=ELGE6l0EorkTuoN7cYM3okq+Ohm0Nkd6irH9ZKAqi1LrkxSzAvNfjdjenlaZwmzvyo
-         7ViIrGL90klEIGxRWeuPdTFudOes0dRYgZ8ndoRuK0OeGj2/jRftVIybDRp6yfDAE5tt
-         RQFAnGvUmTzZweUCFv6hP0qs0TgRfoyXjMNoZ3eBoGnF0ZpmRotiwsBk7b450dYjYNdN
-         GoRq2pcKxDFO7vYyc+J//thtz4RcmwPKoqC45L5/JHeQIoPDxeehRzwtBr5tTygjnthp
-         zfTMwnp4HUl1IUz1tqC9XCXPkSwy0b3daBCFTKPIquX/Lh7da9b7kNbq64/+H4pXUonK
-         1uiQ==
-X-Gm-Message-State: ANoB5pmCoQjxDwn3/UmEtbZ6ADg+5iXrI+VHhrDnnwvprBQSEwM9N9KL
-        cSTODCK8UY7/sBjDlnuyg4WZUA==
-X-Google-Smtp-Source: AA0mqf7U3pgwgNVXnWuYdlHWRaFHTBavgDqmVajh1aIC4PNT3RriHB4hg+8UB2/l7yCEzpZ5R4gW0Q==
-X-Received: by 2002:a05:6512:258a:b0:4b5:6fb9:708d with SMTP id bf10-20020a056512258a00b004b56fb9708dmr5129046lfb.300.1670443457554;
-        Wed, 07 Dec 2022 12:04:17 -0800 (PST)
+        bh=SVZZ17cW0EmuZRh2nTo/dxOsOvCo68gbOMlI0qg0Oes=;
+        b=frAjEpGX7RyhcyAfc/I3g8VPppO00lnZMreUduex92896iyk/6fi4V/G18RWy1yajZ
+         c2XzTQ8vrea+XZE5UobJF7r4/p0fPMeZ7SIUzPfCGS0T8oSIHCCpFmBxQlMEVVUKQj1g
+         YHRVmSA2GyiMB6VU1+3My/tiprv/I9rUEQsjr619NKi8Rfn+TsqiseQ43INVXb2GYE/f
+         uMztVSQqjndH9EJ0Jbp7YqCeyAbqibJkHYgN3Uoqy36YeTZZHnqaXvBVNAH5Do44UwY4
+         cUoUAA2Fy2l16TUjiAyv2BjINe/KpMXZQHFXaMFgRYoYUHyY/HiSA7l2BtDOZSAKr4N6
+         66fg==
+X-Gm-Message-State: ANoB5pkx8WbjCyByHq34v9fhvG4VOSzBDwRgx4rR4jd1pliUeR+SvU7C
+        ClQXPH9xAY7BNleLGoqGvwDaJw==
+X-Google-Smtp-Source: AA0mqf6lF43siP7A8cs36cAr32BfjPsWC/tEMDD+5bQ4FNR5cgq2SC2e+dr0o9VhXGZ0Qy5V7AFotQ==
+X-Received: by 2002:ac2:4e07:0:b0:4a2:2a60:ecf5 with SMTP id e7-20020ac24e07000000b004a22a60ecf5mr32619085lfr.57.1670443572075;
+        Wed, 07 Dec 2022 12:06:12 -0800 (PST)
 Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id c16-20020a056512325000b004994c190581sm2983236lfr.123.2022.12.07.12.04.16
+        by smtp.gmail.com with ESMTPSA id i10-20020a0565123e0a00b004b59067142bsm474079lfv.8.2022.12.07.12.06.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 12:04:17 -0800 (PST)
-Message-ID: <de67c95a-d003-c4ef-64a4-c3565ce02b7a@linaro.org>
-Date:   Wed, 7 Dec 2022 22:04:16 +0200
+        Wed, 07 Dec 2022 12:06:11 -0800 (PST)
+Message-ID: <fc1b64dc-938e-0bb2-ef28-c09c7ec17efd@linaro.org>
+Date:   Wed, 7 Dec 2022 22:06:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.0
-Subject: Re: [PATCH v4 02/13] drm/msm/dpu: Introduce SC8280XP
+Subject: Re: [PATCH v10 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
 Content-Language: en-GB
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        airlied@gmail.com
+Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221205174433.16847-1-quic_bjorande@quicinc.com>
- <20221205174433.16847-3-quic_bjorande@quicinc.com>
- <0430d878-e0cd-3708-91a3-2eca66418386@linaro.org>
- <20221207162824.kyxecdz43v5ojatx@builder.lan>
+References: <1670432278-30643-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670432278-30643-3-git-send-email-quic_khsieh@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221207162824.kyxecdz43v5ojatx@builder.lan>
+In-Reply-To: <1670432278-30643-3-git-send-email-quic_khsieh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 18:28, Bjorn Andersson wrote:
-> On Wed, Dec 07, 2022 at 04:49:07PM +0200, Dmitry Baryshkov wrote:
->> On 05/12/2022 19:44, Bjorn Andersson wrote:
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> [..]
->>> +static const struct dpu_mdp_cfg sc8280xp_mdp[] = {
->>> +	{
->>> +	.name = "top_0", .id = MDP_TOP,
->>> +	.base = 0x0, .len = 0x494,
->>> +	.features = 0,
->>> +	.highest_bank_bit = 0x3, /* TODO: 2 for LP_DDR4 */
->>
->> ubwc_swizzle ? I'd suppose it's 6, but I'd bet on it.
->>
+On 07/12/2022 18:57, Kuogee Hsieh wrote:
+> Add both data-lanes and link-frequencies property into endpoint
 > 
-> I don't see ubwc_swizzle defined for any other platform, and it seems to
-> be unused for DPU_HW_UBWC_VER_40. Am I perhaps missing something?
-
-Yes, it doesn't seem to be used for VER_40, just wanted to have it for 
-the sake of completeness. See 
-https://lore.kernel.org/linux-arm-msm/20221207142833.204193-4-dmitry.baryshkov@linaro.org/T/#u
-
+> Changes in v7:
+> -- split yaml out of dtsi patch
+> -- link-frequencies from link rate to symbol rate
+> -- deprecation of old data-lanes property
 > 
->>> +	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0},
->>> +	.clk_ctrls[DPU_CLK_CTRL_VIG1] = { .reg_off = 0x2b4, .bit_off = 0},
->>> +	.clk_ctrls[DPU_CLK_CTRL_VIG2] = { .reg_off = 0x2bc, .bit_off = 0},
->>> +	.clk_ctrls[DPU_CLK_CTRL_VIG3] = { .reg_off = 0x2c4, .bit_off = 0},
->>> +	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8},
->>> +	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8},
->>> +	.clk_ctrls[DPU_CLK_CTRL_CURSOR0] = { .reg_off = 0x2bc, .bit_off = 8},
->>> +	.clk_ctrls[DPU_CLK_CTRL_CURSOR1] = { .reg_off = 0x2c4, .bit_off = 8},
->>> +	.clk_ctrls[DPU_CLK_CTRL_REG_DMA] = { .reg_off = 0x2bc, .bit_off = 20},
->>> +	},
->>> +};
->>> +
->>>    static const struct dpu_mdp_cfg qcm2290_mdp[] = {
->>>    	{
->>>    	.name = "top_0", .id = MDP_TOP,
->>> @@ -648,6 +693,45 @@ static const struct dpu_ctl_cfg sc7180_ctl[] = {
->>>    	},
->>>    };
->>> +static const struct dpu_ctl_cfg sc8280xp_ctl[] = {
->>> +	{
->>> +	.name = "ctl_0", .id = CTL_0,
->>> +	.base = 0x15000, .len = 0x204,
->>> +	.features = BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG),
->>
->> Please use CTL_SC7270_MASK instead, unless you have a strong reasong not to
->> do it.
->>
+> Changes in v8:
+> -- correct Bjorn mail address to kernel.org
 > 
-> No strong reason, will update.
-
-Thanks. The logic for me is to be able to update a single mask when new 
-features are added instead of going all over the code.
-
-E.g. I think sc8280xp will benefit from hierarchical DSPP support, will 
-it not?
-
+> Changes in v10:
+> -- add menu item to data-lanes and link-frequecnis
 > 
-> Thanks,
-> Bjorn
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
+> ---
+>   .../devicetree/bindings/display/msm/dp-controller.yaml      | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index f2515af..c4a278f 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -81,6 +81,7 @@ properties:
+>   
+>     data-lanes:
+>       $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    deprecated: true
+>       minItems: 1
+>       maxItems: 4
+>       items:
+> @@ -104,6 +105,15 @@ properties:
+>         port@1:
+>           $ref: /schemas/graph.yaml#/properties/port
+>           description: Output endpoint of the controller
+> +          data-lanes:
+> +          $ref: /schemas/types.yaml#/definitions/uint32-array
+> +          minItems: 1
+> +          maxItems: 4
+> +
+> +          link-frequencies:
+> +          $ref: /schemas/types.yaml#/definitions/uint64-array
+> +          minItems: 1
+> +          maxItems: 4
+
+There is an issue here. You are describing the properties beneath the 
+port@1, while in reality they are found beneath the endpoint node. See 
+analogix,anx7625.yaml for a proper example.
+
+>   
+>   required:
+>     - compatible
+> @@ -193,6 +203,9 @@ examples:
+>                   reg = <1>;
+>                   endpoint {
+>                       remote-endpoint = <&typec>;
+> +                    data-lanes = <1 2>;
+> +                    link-frequencies = /bits/ 64 <1620000000 2700000000
+> +                                                  5400000000 8100000000>;
+>                   };
+>               };
+>           };
 
 -- 
 With best wishes
