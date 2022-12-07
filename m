@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96D28645B92
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45088645BA3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 14:58:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiLGN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 08:56:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51810 "EHLO
+        id S229863AbiLGN6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 08:58:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbiLGN43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:56:29 -0500
+        with ESMTP id S230200AbiLGN6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 08:58:25 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C7A5BD4A
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 05:56:27 -0800 (PST)
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD6E5C0D7
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 05:58:23 -0800 (PST)
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com [209.85.166.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 45F6B41531
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 13:56:26 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6758541531
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 13:58:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1670421386;
-        bh=AN5JF4JjPpOJkZ/tkyQphRahAoTXPLdfhR7No5Nhr94=;
+        s=20210705; t=1670421502;
+        bh=9GCL3W6v/AmfhZbVCu5utEsH4vGz3v+tufp1/dYemRM=;
         h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
          To:Cc:Content-Type;
-        b=jei3mGbblDEH/5cUMoQs+XxsOWdroGAdN8MOzYk/4MmToDd/v3XpTjLw36WVwO55G
-         0sSfVTsv7nubsXdxEBXlwjey81B5Z5ZoMLpbXQt5Lpkfyt4laVdSkNVCl22i8TgJ7F
-         ClM8wjpm0U0h99oceRXr1OHwcyTIV8C7NSL1kpoR1rUth1O6SBBwQWTh3U//FQJ3IH
-         PWWlAKikhhk2yi+8WXi7Fgg8AfnQi8k+ile9dCG1kmsSYnsdpcmO96c3TW296gJvO+
-         oblcufOjGuqPnAPlczDq8vmV2aAQLx+LcJCt0E1W2cGQpQ9S0sYDcB3uUZjBuOIwYM
-         9HXixBwxZlwyA==
-Received: by mail-il1-f197.google.com with SMTP id d6-20020a056e02214600b00303620c6e39so6664706ilv.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 05:56:26 -0800 (PST)
+        b=dKUvmoqIGuOxHNNKEtH6Ri+Tj3dSZVfYeYVSgDiUN6H61FwQWPWJqUqi/e4Fn2xuu
+         cFFpbwz27G0cH6IvLJ9wk6uLw6/Ow4k3UNfLuHX976tCwLL8XzugxeKaFI6WAjjwCD
+         r6YjAgtYcE4OPdfkKhayYEYRrmzAcRTeViS01iqxhbNpV5X5rVxhSLpHF6Pin6tx5m
+         CCDm32bdgv/mRZnnZbR6BQ7pMATmx3j8ckrdtGTzDv8s5ePMbVvjv39CcD6tCAFH2J
+         /DPUK9zV3PpQsFoI78UI62t60cGEMqIy4bbVoNDTNKjGyKKiDSdg7yHEYqSm31N70d
+         JlkdjN8VAbp8g==
+Received: by mail-il1-f200.google.com with SMTP id 7-20020a056e0220c700b0030386f0d0e6so284221ilq.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 05:58:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AN5JF4JjPpOJkZ/tkyQphRahAoTXPLdfhR7No5Nhr94=;
-        b=HJ8+9IDCybuADE29o2u3tDgdb5O5nH46FVhBJWuNRlCohjwfkRAyIFzdao15aldvtz
-         DU6en6GscKbJ2Q1s5M/ZkcPlLFC6L3+N1bruTi+ToogxMqLyWDFbqNvTeEH6smaIXHxk
-         aKirXPG7dESElPOBtFMbR1h4blapHUtS60oXsDjFWekbeXBJfwL1irO/veBwCILICPyl
-         0vvxkwRNjN92btDKMvsF/XEAeLAppxlvsCScrf5UR8A8KzpEOULPVy3AwN45JQahTv1R
-         UpQKvfjoVBGEmOvJfTKcgZqfhLJhHw2TsvHCHlOmLz8CyJ596g63oL0I5CxPWjlCJbTT
-         G4kQ==
-X-Gm-Message-State: ANoB5pn5D03v6QhRmdluAeEGGUTMw+4Ciep8SK92TRtDSboopj2JjbhF
-        QY2vDBjjFe6Cs2V8DHFokbvs11/7OE1lo3GHbk35NFqhIivTfxLOzUs57AETqwvFkIxYP/gSpEf
-        2JjRMTHlFT+7xL/fIb/IoMbBN0LGbP85HqjQGGmRgNToFZ9rWwB7lJgQ=
-X-Received: by 2002:a92:cd43:0:b0:303:2fd2:f612 with SMTP id v3-20020a92cd43000000b003032fd2f612mr15125912ilq.144.1670421384613;
-        Wed, 07 Dec 2022 05:56:24 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf68T1FZSxevGnNf72rEE0f+xwVzoSCPSjB0SLRGWkB37LRAqopLc6DAcKKSJpFo/ZWVkn24R+SZbWzdDyZVHaY=
-X-Received: by 2002:a92:cd43:0:b0:303:2fd2:f612 with SMTP id
- v3-20020a92cd43000000b003032fd2f612mr15125908ilq.144.1670421384463; Wed, 07
- Dec 2022 05:56:24 -0800 (PST)
+        bh=9GCL3W6v/AmfhZbVCu5utEsH4vGz3v+tufp1/dYemRM=;
+        b=S+ZOHlmFdF6wzJQfN/hHUVvBvrxqoOCD/VTg3CNEZcoiJIDyRv/+IvSg6PncwrZK80
+         XAdiQ6uRwyKiawYiAbSqZ2aDkmE1jplHG5k+zadWQIsPMd0T6RGG5UUWskaXCj0gf7U2
+         tpB9RbL9tkCdtrVAMhJMCvvXf2jMi9hL6dM7RQ9YXYx9P6L7bmNbrUiVRyn0Ts0UTdQG
+         dvtePmoYOeDpW3wn3ph68urcMnR0tW/UovyMTkVy9TCjPLgcwEeDQj5OI1j5PVID+5DZ
+         ht4y2q+RwjUar968yfjId69L/MIQeB/PFUDem2NLa1Gt90ashA6MrFzsL8WOvYfnOHXn
+         bXOg==
+X-Gm-Message-State: ANoB5pkRQSp7P0rxVxz0YWvyZxV077IcjtsHAJYhDcyTgcq1f1gNC8IQ
+        t51AL1pUF0AhwmLEN7nATMDqCVosq438eqwXAxdOSl9S6LyGTlyVzCTj8gFGEeaCvzuYc8WuF+V
+        nIm6SmfJAwxOx3Oy88/WaDzbdZuc4vFEaCqFFkmpOC7CUe/iXNuwxGvI=
+X-Received: by 2002:a05:6638:15cb:b0:38a:a2c:5c1e with SMTP id i11-20020a05663815cb00b0038a0a2c5c1emr14812167jat.35.1670421501101;
+        Wed, 07 Dec 2022 05:58:21 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf6oS4WtB4AY/x9xEAWaZszCLUNeiIhVzCL4QBdnRGkNjsZUkTVArtcl3+u1LcaAO1HHytY7Lk4DCTgXk2m0eYo=
+X-Received: by 2002:a05:6638:15cb:b0:38a:a2c:5c1e with SMTP id
+ i11-20020a05663815cb00b0038a0a2c5c1emr14812154jat.35.1670421500857; Wed, 07
+ Dec 2022 05:58:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-2-yanhong.wang@starfivetech.com> <277f9665-e691-b0ad-e6ef-e11acddc2006@linaro.org>
- <22123903-ee95-a82e-d792-01417ceb63b1@starfivetech.com> <3a9ef360-73c3-cf26-3eca-4903b9a04ea3@linaro.org>
-In-Reply-To: <3a9ef360-73c3-cf26-3eca-4903b9a04ea3@linaro.org>
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com> <20221201090242.2381-3-yanhong.wang@starfivetech.com>
+In-Reply-To: <20221201090242.2381-3-yanhong.wang@starfivetech.com>
 From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Wed, 7 Dec 2022 14:56:07 +0100
-Message-ID: <CAJM55Z-iLy1fZmoyk3FU7oDQcKBk6APYf-cbamKr7Gjx+NaoTQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/7] dt-bindings: net: snps,dwmac: Add compatible
- string for dwmac-5.20 version.
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     yanhong wang <yanhong.wang@starfivetech.com>,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+Date:   Wed, 7 Dec 2022 14:58:04 +0100
+Message-ID: <CAJM55Z8ZDKWEkdWuRZfcMQDrySMh4vdB1UvkAC+q1GRKMbGuEw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/7] net: stmmac: platform: Add snps,dwmac-5.20 IP
+ compatible string
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
@@ -82,51 +79,49 @@ Cc:     yanhong wang <yanhong.wang@starfivetech.com>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Dec 2022 at 09:04, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 1 Dec 2022 at 10:05, Yanhong Wang <yanhong.wang@starfivetech.com> wrote:
 >
-> On 02/12/2022 03:53, yanhong wang wrote:
-> >
-> >
-> > On 2022/12/2 0:18, Krzysztof Kozlowski wrote:
-> >> On 01/12/2022 10:02, Yanhong Wang wrote:
-> >>> Add dwmac-5.20 version to snps.dwmac.yaml
-> >>
-> >> Drop full stop from subject and add it here instead.
-> >>
-> >
-> > Will update in the next version.
-> >
-> >>>
-> >>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> >>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
-> >>
-> >> Two people contributed this one single line?
-> >>
-> >
-> > Emil made this patch and I submitted it.
+> Add "snps,dwmac-5.20" compatible string for 5.20 version that can avoid
+> to define some platform data in the glue layer.
 >
-> If Emil made this patch, then your From field is incorrect.
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
 
-Yes, please don't change the author of the commits you cherry-picked
-from my tree.
+Hi Yanhong.
 
-But now I'm curious. Did you check with your colleagues that the dwmac
-IP on the SoC is in fact version 5.20?
-This was just an educated guess from my side.
+Thanks for submitting this.
+But just as a reminder. Please don't change the author of the commits
+you cherry-picked from my tree.
 
 /Emil
 
-> Best regards,
-> Krzysztof
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 50f6b4a14be4..cc3b701af802 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -519,7 +519,8 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>         if (of_device_is_compatible(np, "snps,dwmac-4.00") ||
+>             of_device_is_compatible(np, "snps,dwmac-4.10a") ||
+>             of_device_is_compatible(np, "snps,dwmac-4.20a") ||
+> -           of_device_is_compatible(np, "snps,dwmac-5.10a")) {
+> +           of_device_is_compatible(np, "snps,dwmac-5.10a") ||
+> +           of_device_is_compatible(np, "snps,dwmac-5.20")) {
+>                 plat->has_gmac4 = 1;
+>                 plat->has_gmac = 0;
+>                 plat->pmt = 1;
+> --
+> 2.17.1
 >
 >
 > _______________________________________________
