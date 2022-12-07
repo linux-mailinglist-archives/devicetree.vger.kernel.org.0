@@ -2,94 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 178496460D1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 18:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC53F646105
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 19:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbiLGR7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 12:59:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60802 "EHLO
+        id S229636AbiLGSbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 13:31:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiLGR7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 12:59:46 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C0D2EF38
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 09:59:46 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id g7so29941767lfv.5
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 09:59:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xzPIIHJ1Rx7W7OD0G8eMenZ9zj+B5F0PnPlpat3xklc=;
-        b=UXpgHXTFGYUweNouQpPno29sHtNAL/jhMwxXafo5uOe/iEciVXCYpavftBwknC2my/
-         9Uy/VshAP9An+L/tAjUZO+9YtVr9q3Qv89AN17gtRn5w3W67lIBat4fLb3jUVdUs9Tre
-         CbwO1c0+95byKcQHD/DUbLqPqzQzl+aEmFLdruPNZYq2IgXeyC/2MpKlueS2ZawASS6A
-         a0xSosvGOZIrvIaoS+Shk/ITbARVaB/AtaR0rhmcXeBGilWFd/j8a46LQOiJwAUqi5Zc
-         IGvPvyW0irluJ/6KcLPtTXdri0HANvayczkEd/vXHzAdNd2QpBOph3XRaWMBgvZ2SiEJ
-         Mr8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xzPIIHJ1Rx7W7OD0G8eMenZ9zj+B5F0PnPlpat3xklc=;
-        b=4hTDB9yNytRuBtrLAUJz8yZuabhY6D8qlSBDbsWdA/yg6nF+4shC6/oTxMiaEm5+Bd
-         0isxxw1QOkb6Sk4H9xp/XOSKNFzmM1lXCdVOKlwA5p88EYDtDRntm5oHv+eNboUNi8Xv
-         i7jH2IZj/Zg6V5CnbbCg3HWczXRn7Ku0WRSOSwRPPn57yfzJJMHB9TUnD5D28s13qKXt
-         qyGP87CtXseJZjUX73uqg/ol6GCIsqUClklLPbJPGeQZxzQDFSd67lgQT3orq/Okldv8
-         EQOEaaAu/a1ppm+G11Rte8jL3cX6vRpff74/J7WYyn9hl6WO1dusqJHO8EPRU9LLIobD
-         YLyA==
-X-Gm-Message-State: ANoB5pnzOZjjR817vjqKmyafx8wC9tet88NWJdF70hO97uvQM+tOKLqf
-        AJ3aGrOamqkmCjMIGazGdMJAWQ==
-X-Google-Smtp-Source: AA0mqf4bFnRtzANo/1HX9jgQhllGdBce+YDCVO9UkkGvJLPzCy7oV6FOKm1Q22ucoJbhAYuAmzf//w==
-X-Received: by 2002:a19:9152:0:b0:4b5:6930:dfab with SMTP id y18-20020a199152000000b004b56930dfabmr5844562lfj.324.1670435984427;
-        Wed, 07 Dec 2022 09:59:44 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h13-20020ac24dad000000b004b1892aa5c8sm2933914lfe.56.2022.12.07.09.59.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 09:59:43 -0800 (PST)
-Message-ID: <3be5ad78-daa9-39aa-9dad-c2234a0a464c@linaro.org>
-Date:   Wed, 7 Dec 2022 18:59:42 +0100
+        with ESMTP id S229441AbiLGSbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 13:31:01 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6575E6A759;
+        Wed,  7 Dec 2022 10:31:00 -0800 (PST)
+Received: from [192.168.178.23] (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 1CC5FC4A3F;
+        Wed,  7 Dec 2022 18:30:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1670437858; bh=+eYqdfhUQtkHlB+nOxralti44nmznPQ11lDL/KUnEbE=;
+        h=Subject:From:Date:To:Cc;
+        b=QOG1fAae5D76Ctxap/tWPvZNbs06s9chtxLjrHZGf+4IBM5RQtrhpquufJQHRMrhQ
+         gGGThLlU0Bk1hHDCzNdzzSw/RhltQZ5uMwbvN31Elz4Cwk3Vk12IMeawSojREu1oyT
+         88BWh33Suz5N9Btd6915CGLts0w1mUKKTHni5uh0=
+Subject: [PATCH v3 0/9] Add a bunch of msm8953 dts files
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/4] dt-bindings: regulator: Add mps,mpq7932
- power-management IC
-Content-Language: en-US
-To:     Saravanan Sekar <saravanan@linumiz.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marten.lindahl@axis.com
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221207173716.123223-1-saravanan@linumiz.com>
- <20221207173716.123223-3-saravanan@linumiz.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207173716.123223-3-saravanan@linumiz.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIAM3bkGMC/w3MQQqDMBBG4avIrPuDSYi2vU2SmdaATiFjpSDevVl+i/dOMmlVjJ7DSU2OavWjHe
+ E2UFmSvgWVu8mP3js/zthsuz9iwAQHld8O3rPhCODXVDi6OTIH6nlOJsgtaVn6QL/rel1/3FkTnW8A AAA=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Date:   Wed, 07 Dec 2022 19:30:37 +0100
+Message-Id: <20221207-msm8953-6-1-next-dtbs-v3-v3-0-a64b3b0af0eb@z3ntu.xyz>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kees Cook <keescook@chromium.org>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Tony Luck <tony.luck@intel.com>
+Cc:     Gabriela David <ultracoolguy@disroot.org>,
+        Eugene Lepshy <fekz115@gmail.com>,
+        linux-hardening@vger.kernel.org,
+        Anton Bambura <jenneron@protonmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        Danila Tikhonov <JIaxyga@protonmail.com>,
+        Gianluca Boiano <morf3089@gmail.com>,
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Julian Braha <julianbraha@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Alejandro Tafalla <atafalla@dnyon.com>
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3677; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=+eYqdfhUQtkHlB+nOxralti44nmznPQ11lDL/KUnEbE=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBjkNvZMqTNTSfhOxClEt1bhge+JyvK92AhPpZQ4fb/
+ dBRreqmJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCY5Db2QAKCRBy2EO4nU3XVhoVD/
+ 918zncaubiVzxbEsWjIWUW1DiBeNDdpPPX60rXIRVFBQszXjwyx+tuti5mJBFBDjNDxr8evm9nyfjI
+ 6IoGtLgA0Qw2mFEqio7Rffx1uhVIlT9oqCHsm17uRcJYE6Hmwn3urWQagq1sI1CR40IuPiKPvBKHJu
+ UYDM/Akk92Jl5A5Lxp+j8pBfmBZFdKxLIMi+mz94kb4/C63DS5WK9rFwVxzNePMH1bagkwlzKcvBCn
+ LgclhWq5HDYWlgnOUxHH49WqoGKP2W4Yn+wUnjO4foQwPoSlhLycKJEKZFDQIQ3vg5vWmVk/FCu6sw
+ QbxJcsdPtzx/W74C3EK3fxF9/aqtXyp64b+8sGKGUR0jFe3rO7v8CHCsR1XPkgoRL3iSRQuspSV+6N
+ sVMWplUx1+vQQHqSqY4jaCqtzCuNtmwqQThd+o/6Ks1cKPnnj/FTTVKA0ECHFbtBu9AH8NXVSXDZ1T
+ UQO3fpCre4uNN2kINx/QG4JKj12rv4N3ggt7BFTXIeQ10nvL3ovsEaPqVuUUmbopqTPdC7w3wVn5NX
+ ESraEaPe1kVISwxNEMy+dMGCPgnD/RWd+NCh/UkoCf3iI8LFP4R34H77k+cKb4DXy9mHMPaFARunSR
+ rjjBVljSaWuD4HSG/IExybKwJ4e+7Y6Xo5Vigyz33P8Nl+XHxWvQ9BLT3q8A==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 18:37, Saravanan Sekar wrote:
-> Document mpq7932 power-management IC
-> 
-> Signed-off-by: Saravanan Sekar <saravanan@linumiz.com>
-> ---
->  .../bindings/regulator/mps,mpq7932.yaml       | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mps,mpq7932.yaml
-> 
+The following patches add a bunch of msm8953-based devices that have
+been created in the msm8953-mainline[0] repository, which includes
+Snapdragon 450 (SDM450), Snapdragon 625 (msm8953) and Snapdragon 632
+(SDM632) devices.
+The dts files are trimmed down to what is currently supported upstream,
+as a way to also minimizing diff for further patches.
 
+I've tried my best in keeping all the relevant author tags based on the
+git info I could find there.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[0] https://github.com/msm8953-mainline/linux
+
+To: Andy Gross <agross@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Kees Cook <keescook@chromium.org>
+To: Tony Luck <tony.luck@intel.com>
+To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-hardening@vger.kernel.org
+Cc: Julian Braha <julianbraha@gmail.com>
+Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
+Cc: Alejandro Tafalla <atafalla@dnyon.com>
+Cc: Adam Skladowski <a39.skl@gmail.com>
+Cc: Anton Bambura <jenneron@protonmail.com>
+Cc: Danila Tikhonov <JIaxyga@protonmail.com>
+Cc: Vladimir Lypak <vladimir.lypak@gmail.com>
+Cc: Eugene Lepshy <fekz115@gmail.com>
+Cc: Gianluca Boiano <morf3089@gmail.com>
+Cc: Gabriela David <ultracoolguy@disroot.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht
+Cc: phone-devel@vger.kernel.org
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+
+---
+Changes in v3:
+- Rebase on qcom/linux.git for-next
+- Fix non-alphabetical sort of sdhc_* nodes
+- Add missing supplies to sdhc nodes,
+    align order between all the devices,
+    remove some unnecessary pinctrl override
+- Pick up tags
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20221119203758.888207-1-luca@z3ntu.xyz/
+
+---
+Adam Skladowski (1):
+      arm64: dts: qcom: msm8953: Add device tree for Xiaomi Redmi Note 4X
+
+Alejandro Tafalla (1):
+      arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A2 Lite
+
+Danila Tikhonov (1):
+      arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A1
+
+Eugene Lepshy (1):
+      arm64: dts: qcom: msm8953: Add device tree for Xiaomi Redmi 5 Plus
+
+Gabriela David (1):
+      arm64: dts: qcom: sdm632: Add device tree for Motorola G7 Power
+
+Julian Braha (1):
+      arm64: dts: qcom: sdm450: Add device tree for Motorola Moto G6
+
+Luca Weiss (2):
+      dt-bindings: arm: qcom: document new msm8953-family devices
+      arm64: dts: qcom: msm8953: Adjust reserved-memory nodes
+
+Sireesh Kodali (1):
+      arm64: dts: qcom: msm8953: Add device tree for Motorola G5 Plus
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |  19 ++
+ arch/arm64/boot/dts/qcom/Makefile                  |   7 +
+ .../boot/dts/qcom/msm8953-motorola-potter.dts      | 305 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts  | 325 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts   | 329 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts | 325 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts  | 361 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953.dtsi              |  24 +-
+ arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts   | 252 ++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm632-motorola-ocean.dts | 291 +++++++++++++++++
+ 10 files changed, 2226 insertions(+), 12 deletions(-)
+---
+base-commit: ca14659da4341de75506516c16f66d84bf3f2fa0
+change-id: 20221207-msm8953-6-1-next-dtbs-v3-df6cd5175dd3
 
 Best regards,
-Krzysztof
-
+-- 
+Luca Weiss <luca@z3ntu.xyz>
