@@ -2,282 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DBAB645801
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 008F0645721
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiLGKgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:36:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33102 "EHLO
+        id S229820AbiLGKHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:07:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbiLGKgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:36:09 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870F22EF77
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:36:07 -0800 (PST)
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221207103606epoutp04b8b1fbe596a2b9c92a5b4bf945b2e013~ufHfajH5D2836628366epoutp04j
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 10:36:06 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221207103606epoutp04b8b1fbe596a2b9c92a5b4bf945b2e013~ufHfajH5D2836628366epoutp04j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1670409366;
-        bh=zxEW4aRMNY+I/kBJaywdBjCo9sOxx8Km7j9aqHAo5dA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NP5oCXm9d4Rg8XsxXuAA2Ph3hzvezKN3sJqiI/uh8UFkh4ZMA/CX+O847EAYZE3WX
-         EaqwHl5u3qOMklsfGQ5ew93jxcKTVUx9rcdk3Zr+AY2YSfN40kVhj4dVhukXqT2vIT
-         lb2OVM6VWF8Qse5X8nnwcijM3r7773kmYFxePNYc=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20221207103604epcas5p46ed071591a8b7c3a61aeda1c5a48b667~ufHd6SGaR3205632056epcas5p4H;
-        Wed,  7 Dec 2022 10:36:04 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.183]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4NRtwy4dX8z4x9Pw; Wed,  7 Dec
-        2022 10:36:02 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E4.25.39477.29C60936; Wed,  7 Dec 2022 19:36:02 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-        20221207100700epcas5p408c436aaaf0edd215b54f36f500cd02c~ueuFbrcTq2723727237epcas5p4F;
-        Wed,  7 Dec 2022 10:07:00 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221207100700epsmtrp29aab399730057e716faf8a2cf6acba50~ueuFZKJUG0757407574epsmtrp25;
-        Wed,  7 Dec 2022 10:07:00 +0000 (GMT)
-X-AuditID: b6c32a4a-007ff70000019a35-fb-63906c9259a3
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        FB.FD.14392.3C560936; Wed,  7 Dec 2022 19:06:59 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20221207100657epsmtip2cef9b724734c821be031ee8ed03931c2~ueuClidVI0667806678epsmtip2f;
-        Wed,  7 Dec 2022 10:06:56 +0000 (GMT)
-From:   Vivek Yadav <vivek.2311@samsung.com>
-To:     rcsekar@samsung.com, krzysztof.kozlowski+dt@linaro.org,
-        wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-        alim.akhtar@samsung.com, linux-fsd@tesla.com, robh+dt@kernel.org
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        aswani.reddy@samsung.com, sriranjani.p@samsung.com,
-        Vivek Yadav <vivek.2311@samsung.com>
-Subject: [Patch v4 2/2] arm64: dts: fsd: Add MCAN device node
-Date:   Wed,  7 Dec 2022 15:36:32 +0530
-Message-Id: <20221207100632.96200-3-vivek.2311@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221207100632.96200-1-vivek.2311@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0VTe1BUVRyec+/dB8TqDVAOFLhzR1JogF3bpUNC6OTInWiKgZweY8Kdy20X
-        WXa3fZBEo2RRwAzPtBAXWIhtYiFAXiGwPsDQrFGSRwHagGARISIrYA+wXRbqv+98v++b7/f7
-        nXOEuGcv30+YojZwOjWjovjuRHtvUFBIiaqIlfx8nkLjFe181NPSJkCm6x8RqPLSNR6603db
-        gAqmJ3DU317AQ82TwzxkXT6Jo4mZ19BAp4mPSq+fw1Bj9QkC9Zm3oqXvZwGqbnsgQBPz3QJU
-        1t/BQ9m2SwI0NtvAQ39V9RLI8stZ3p6tdGvtCEabm430/RtjgG625vLpm8PdfLql5hhduCKh
-        750b4tMFrVZArx4vF9D25oC4x95MjVRyTDKnE3NqVpOcolZEUbEJiS8kysMl0hBpBHqWEquZ
-        NC6K2vdSXMj+FJVjVEqczqiMDiqO0eupsOcjdRqjgRMrNXpDFMVpk1VamTZUz6TpjWpFqJoz
-        PCeVSHbJHcKkVOVqXjGmLd1xZOjOKSILdG3LA25CSMrg7EIbngfchZ5kF4DZo8uYs+BJLgBY
-        uxjvKiwB2JlbIthwVE63810FG4APbGeBy5GNwdm5TCfmk8FwMtdMOEXeZB0GW+0TwHnAyTIM
-        1nw4SjhVXmQUvH1xzJEnFBJkIJxret9Ji8jdsPXLOsKVtg3WNV3AndiNjIQLtwrXeoXkuBCO
-        LNWui/ZBy+rwOvaCM5db11v1g/Y5G9+FWdixmstzYSU0F3cDF46GFwZNhLMHnAyCjZ1hLtof
-        nrzasLYKnNwE8/+ewly8CHZUbODtcNpexHNanVH517xcNA07LDUC14IKASyurMCLQEDZ/wlm
-        AKzAl9Pq0xScXq7dpebe/e/SWE1aM1h7zcEvdoCJ8fnQHoAJQQ+AQpzyFk2fyWc9RclMxnuc
-        TpOoM6o4fQ+QO9ZXjPttYTWO76A2JEplERJZeHi4LOKZcCnlI7KcyGE9SQVj4FI5TsvpNnyY
-        0M0vC4Npo4Y/DiQ8pcmtvuXjEbNi+jUk8ElbY0YSpT9y8dEbv0e/+rhNnhIdZpxZeFt8d/P5
-        5fIIot90l/WfnR7d/vUNt8i44EmPgys+AzHx4qwx83evbKp/S6DzbR+x3Hs4cjjp0QfeO56O
-        /fanU2xJZuCnl0tNe/3Zbjltz+eP2E0HF31HFUU5LbIz8i9+6Mt5OaGpcHj1sDuJW1p8/Tqb
-        Yit+PH3/ECOqXqx655NMZcKBo17uMVduCsoGJVXs/NwT8d9kDO4t23LF2hU29M9x0nT1qz0e
-        5fFM7DHrUnrb1Mf16aaZ14nTRxcyd/8W0LC5lBc05bNz5yGPLvZzxUBC/Gd5f7bUpz6kCL2S
-        kQbjOj3zL6CbkghWBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNLMWRmVeSWpSXmKPExsWy7bCSvO7h1AnJBmtO21g8mLeNzeLQ5q3s
-        FnPOt7BYzD9yjtXi6bFH7BZ9Lx4yW1zY1sdqsenxNVaLVd+nMls8fBVucXnXHDaLGef3MVms
-        XzSFxeLYAjGLb6ffMFos2vqF3eLhhz3sFrMu7GC1aN17hN3i9pt1rBa/Fh5msVh6byerg5jH
-        lpU3mTwWbCr1+HjpNqPHplWdbB53ru1h89i8pN6j/6+Bx/t9V9k8+rasYvT41zSX3ePzJrkA
-        7igum5TUnMyy1CJ9uwSujH9dE5kKZqhXXH06k6WBcbd8FyMnh4SAicT8F9vYQGwhgd2MElfm
-        lELEpSSmnHnJAmELS6z895y9i5ELqKaZSWJm9wdmkASbgJbE484FLCAJEYHdTBJvu+eCVTEL
-        LGKSeHmlF6xKWMBW4tHB20xdjBwcLAKqEu821ICEeQWsJbYsWw21QV5i9YYDYOWcAjYSn+72
-        M0NcZC3x79czxgmMfAsYGVYxSqYWFOem5xYbFhjmpZbrFSfmFpfmpesl5+duYgTHj5bmDsbt
-        qz7oHWJk4mA8xCjBwawkwvtiY2+yEG9KYmVValF+fFFpTmrxIUZpDhYlcd4LXSfjhQTSE0tS
-        s1NTC1KLYLJMHJxSDUwHYh7w9q0WvFrTXXZT4zPDo+U/3tQHfOoSnvk50VrSlW2vYdyUDj6u
-        pbPyFnYVfpgeeDfDXPbxLt37s4Q+nipQ1bcLziw3uC+csjHuxvnzDr2MKaEfrsuc2ViowebP
-        OH+rQ4FhSNWbe8tC/K//ig3nnedtW5sy75WoVavXiWky3fMXiyRpZV674OZUuIazZMaf10bu
-        rur7rr1r/9puf1l71sd/J0/K7/ZgOjbh1HJTcb9iXvnkW3eapsxTmrVr1YPlxS+NGwIXK58R
-        4+r65nBWuGmW8bebC58GJad+P9r81fPcSznG44msZzNezDibz7Jshslc8RW2Fmed/i719lO1
-        cU1dtEa2oL7KrpJ9qr8SS3FGoqEWc1FxIgAnLSt5DgMAAA==
-X-CMS-MailID: 20221207100700epcas5p408c436aaaf0edd215b54f36f500cd02c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221207100700epcas5p408c436aaaf0edd215b54f36f500cd02c
-References: <20221207100632.96200-1-vivek.2311@samsung.com>
-        <CGME20221207100700epcas5p408c436aaaf0edd215b54f36f500cd02c@epcas5p4.samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229954AbiLGKHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:07:44 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9418063E1
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:07:42 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id f16so8658597ljc.8
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:07:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2lgyDc2BPaf6a7xLJztu7FglI3cnhZOU9b/y2TvNFgc=;
+        b=vRsLv/GaSy9EPmAQq+63dZ6M4t6p4/CzDF2JAjaJSIcxWJOx9uVeZqJVNVq3dmnpPb
+         lBbab6edWfxx7MxVCDMbL855Z5mWItwy5YdIfEfZyiS/JHuT2O+8bt92/90S+I4d4l8V
+         iFrpKD1UpAiPDqcnWIxRmPay3c38uIZ7FH1b8s6ecILw68jJqX4NunJSc1velN82iOav
+         NUhsUSK7gdRRkiBhDUH99oazExjAQxTUARi1CHM2K0dmmwiheHUfoas2SOLG3QpcGJTO
+         QqFBw3rMuSN7y7RbUu8bMOcFQHvG/oSb+scJ7gW2JFLzjvH+VqXs+Kj8KfPIvB7wpqr+
+         Fkkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2lgyDc2BPaf6a7xLJztu7FglI3cnhZOU9b/y2TvNFgc=;
+        b=fweeAP2kZ7Te34VT3Gw6eGKgogi2mql0EoAIlo4ldLLiGIU0qjjwn8UcYisjlWClh1
+         35PSnTv+FFoENgP/PZ1a9lp4BLj6F2NAzqrgGJRATORypmAFhH+G78KP7GGUst/jnFz3
+         vOPRmbsxTF1BITOP0rCyPeGXA4OOzvLZmy5Oksoku3eB+kQX6WZpTZy8xj0Ee8K4qjPQ
+         voYv6gFxY9KSO/XU5ggHEmPvNvcJEMF41XjfcAu9AE+bCyMU8thnNrYxNbhEPkZ9TBmK
+         z26mQoYJF5GCy2kHePNzTpHO8A7n/YYXuYXOiDZNc02TPbDjEzCcdGVKSxeaWt7jvNTk
+         rLTg==
+X-Gm-Message-State: ANoB5pnOTvG5PNcAypdBQ8808xTi4PDN+IOK3D61agz4wbBGHk7BTVpI
+        l7RNA2RlM2QgZKu+KwfZwmhqvg==
+X-Google-Smtp-Source: AA0mqf7rtzVO4OcdPniGSM3lTHYW3jU+eQ+5NKwi22IsC1vflmvtS1Aibm/8Ce1hrOnOkE5hsrF3pw==
+X-Received: by 2002:a2e:9e11:0:b0:26e:3292:12ad with SMTP id e17-20020a2e9e11000000b0026e329212admr24627754ljk.271.1670407660835;
+        Wed, 07 Dec 2022 02:07:40 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v7-20020ac25927000000b004ab4ebb5d92sm2807906lfi.5.2022.12.07.02.07.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 02:07:40 -0800 (PST)
+Message-ID: <7deb14ee-aae1-b521-c75e-6e33cd052c44@linaro.org>
+Date:   Wed, 7 Dec 2022 11:07:39 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 4/5] staging: dt-bindings: regulator: adi,max77541.yaml
+ Add MAX77541 Regulator bindings
+Content-Language: en-US
+To:     Okan Sahin <okan.sahin@analog.com>, outreachy@lists.linux.dev
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+References: <20221207090906.5896-1-okan.sahin@analog.com>
+ <20221207090906.5896-5-okan.sahin@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207090906.5896-5-okan.sahin@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MCAN device node and enable the same for FSD platform.
-This also adds the required pin configuration for the same.
+On 07/12/2022 10:08, Okan Sahin wrote:
+> This patch adds document the bindings for MAX77541 and MAX77540
+> regulator drivers.
 
-Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
----
- arch/arm64/boot/dts/tesla/fsd-evb.dts      | 16 +++++
- arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi | 28 +++++++++
- arch/arm64/boot/dts/tesla/fsd.dtsi         | 68 ++++++++++++++++++++++
- 3 files changed, 112 insertions(+)
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-index 1db6ddf03f01..af3862e9fe3b 100644
---- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-+++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-@@ -34,6 +34,22 @@
- 	clock-frequency = <24000000>;
- };
- 
-+&m_can0 {
-+	status = "okay";
-+};
-+
-+&m_can1 {
-+	status = "okay";
-+};
-+
-+&m_can2 {
-+	status = "okay";
-+};
-+
-+&m_can3 {
-+	status = "okay";
-+};
-+
- &serial_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-index d0abb9aa0e9e..bb5289ebfef3 100644
---- a/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
-@@ -339,6 +339,34 @@
- 		samsung,pin-pud = <FSD_PIN_PULL_UP>;
- 		samsung,pin-drv = <FSD_PIN_DRV_LV1>;
- 	};
-+
-+	m_can0_bus: m-can0-bus-pins {
-+		samsung,pins = "gpd0-0", "gpd0-1";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
-+
-+	m_can1_bus: m-can1-bus-pins {
-+		samsung,pins = "gpd0-2", "gpd0-3";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
-+
-+	m_can2_bus: m-can2-bus-pins {
-+		samsung,pins = "gpd0-4", "gpd0-5";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
-+
-+	m_can3_bus: m-can3-bus-pins {
-+		samsung,pins = "gpd0-6", "gpd0-7";
-+		samsung,pin-function = <FSD_PIN_FUNC_2>;
-+		samsung,pin-pud = <FSD_PIN_PULL_UP>;
-+		samsung,pin-drv = <FSD_PIN_DRV_LV4>;
-+	};
- };
- 
- &pinctrl_pmu {
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index f35bc5a288c2..dfdb32514887 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -755,6 +755,74 @@
- 			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		m_can0: can@14088000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x14088000 0x0 0x0200>,
-+			      <0x0 0x14080000 0x0 0x8000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&m_can0_bus>;
-+			clocks = <&clock_peric PERIC_MCAN0_IPCLKPORT_PCLK>,
-+				 <&clock_peric PERIC_MCAN0_IPCLKPORT_CCLK>;
-+			clock-names = "hclk", "cclk";
-+			bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+			status = "disabled";
-+		};
-+
-+		m_can1: can@14098000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x14098000 0x0 0x0200>,
-+			      <0x0 0x14090000 0x0 0x8000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&m_can1_bus>;
-+			clocks = <&clock_peric PERIC_MCAN1_IPCLKPORT_PCLK>,
-+				 <&clock_peric PERIC_MCAN1_IPCLKPORT_CCLK>;
-+			clock-names = "hclk", "cclk";
-+			bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+			status = "disabled";
-+		};
-+
-+		m_can2: can@140a8000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x140a8000 0x0 0x0200>,
-+			      <0x0 0x140a0000 0x0 0x8000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&m_can2_bus>;
-+			clocks = <&clock_peric PERIC_MCAN2_IPCLKPORT_PCLK>,
-+				 <&clock_peric PERIC_MCAN2_IPCLKPORT_CCLK>;
-+			clock-names = "hclk", "cclk";
-+			bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+			status = "disabled";
-+		};
-+
-+		m_can3: can@140b8000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x140b8000 0x0 0x0200>,
-+			      <0x0 0x140b0000 0x0 0x8000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&m_can3_bus>;
-+			clocks = <&clock_peric PERIC_MCAN3_IPCLKPORT_PCLK>,
-+				 <&clock_peric PERIC_MCAN3_IPCLKPORT_CCLK>;
-+			clock-names = "hclk", "cclk";
-+			bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-+			status = "disabled";
-+		};
-+
- 		spi_0: spi@14140000 {
- 			compatible = "tesla,fsd-spi";
- 			reg = <0x0 0x14140000 0x0 0x100>;
--- 
-2.17.1
+> 
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+> ---
+>  .../bindings/regulator/adi,max77541.yaml      | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/adi,max77541.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/adi,max77541.yaml b/Documentation/devicetree/bindings/regulator/adi,max77541.yaml
+> new file mode 100644
+> index 000000000000..1f828895ab3a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/adi,max77541.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/adi,max77541.yaml#
+
+Filename matching compatible, so adi,max77541-regulator.yaml
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Buck Converter driver for MAX77540/MAX77541
+
+Drop "driver" and any other references to Linux drivers.
+
+> +
+> +maintainers:
+> +  - Okan Sahin <okan.sahin@analog.com>
+> +
+> +description: |
+> +  This is a part of device tree bindings for ADI MAX77540/MAX77541
+> +
+> +  The buck convertere is represented as a sub-node of the PMIC node on the device tree.
+
+Typo, converter
+
+> +
+> +  The device has two buck regulators.
+> +  See also Documentation/devicetree/bindings/mfd/adi,max77541.yaml for
+> +  additional information and example.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max77540-regulator
+> +      - adi,max77541-regulator
+> +
+> +patternProperties:
+> +  "^BUCK[12]$":
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    additionalProperties: false
+> +    description: |
+> +      Buck regulator.
+> +
+> +    properties:
+> +      regulator-name: true
+> +      regulator-always-on: true
+> +      regulator-boot-on: true
+> +      regulator-min-microvolt:
+> +        minimum: 300000
+> +      regulator-max-microvolt:
+> +        maximum: 5200000
+> +
+> +additionalProperties: false
+> \ No newline at end of file
+
+Check your patches before sending...
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5704ed5afce3..8e5572b28a8c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12502,6 +12502,7 @@ M:	Okan Sahin <okan.sahin@analog.com>
+>  L:	linux-kernel@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+> +F:	Documentation/devicetree/bindings/regulator/adi,max77541.yaml
+>  F:	drivers/mfd/max77541.c
+>  F:	drivers/regulator/max77541-regulator.c
+>  F:	include/linux/mfd/max77541.h
+
+Best regards,
+Krzysztof
 
