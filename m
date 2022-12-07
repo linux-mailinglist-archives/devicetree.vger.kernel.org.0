@@ -2,149 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2CF645EA0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 17:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDE2645EAF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 17:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbiLGQVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 11:21:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45850 "EHLO
+        id S229658AbiLGQYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 11:24:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbiLGQVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 11:21:38 -0500
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2041.outbound.protection.outlook.com [40.107.14.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3718C63D46;
-        Wed,  7 Dec 2022 08:21:37 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y7raEawjmPW+OqCrooJ3R7dwxIU/dxtZ+WUeTVKkc4vzdbulF2f2hKXRovG1RFPD8jydvTsN/LXd7FY0rmxK3CER4Ygo/dHm1YK1po1xubEIVQJkDRiYgAYasoh+QfT3lmWr+4wurKSwGg/dM405aXBarfK/AxFy34Znj/MkM0G2NNI+WbG20ebmDjDjTN7V7ZoLRDkqNJnybSKEREE6GdIJygdqfEZCsGUASb/U8WcT6ENTLtN6QRzkj6rjxbW3BYDq8NZ7M80KC+aAWrw/v2RnkrPbFm/EbOh6ZZVAW80iZxvs6FohNJYH41xrisqH89Tg/JjQgdqTBnyKAayJaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F5fJXSVFJOH1SaEr0rmjfWEiu5EZ6r+dRtsuLoruwZA=;
- b=Evje7WzXXVZDTOOpssIMQHeQQ35Rbs5SBHrEwXP0965V4ItR9bbQYH8/aSSvH71aokYy4SJvQcsz1jVASzj1I0o2UBcTuvonh9yBrVtSf9uCSIg5Gml9hYQfMM0MTElYT7WDe33EVQP/8EcPKcowV9Z/0rokeB5WVQUa8kU7XT2lMQUUN/LHnaVkwk0uiq6QlK7T/H2ZbdVOyVUcDOu4BoGDkXyT6jxEHHk8ju+U/aBfQTdTJdhi1/9VxcEQKkTHb8xNmdLXWWB15VD6tG6YfMIKlZPu9Ryvvgx7RWpGwLByYz0bnFRJYxnaIDgMvUoE0ZZWehKMPqguHMfP80F+wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F5fJXSVFJOH1SaEr0rmjfWEiu5EZ6r+dRtsuLoruwZA=;
- b=ln5PCBMA4EzG9c+54NtSLO/Gu71UT+/iWM8bLX7Fu/oNMI1jTGbDdL7sMqItqY02yUFBJcCu5a17yo+UEQLSqziDi4vIyWtTeJF8DNiPrAJLmrdjTW3N6tcRdLQBNLrXIuG1nOLkwLCH+gmBQ4/6DjUwEj9lCGvui1Msb2UNgjA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com (2603:10a6:150:22::11)
- by AM9PR04MB8276.eurprd04.prod.outlook.com (2603:10a6:20b:3e7::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10; Wed, 7 Dec
- 2022 16:21:34 +0000
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953]) by GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953%6]) with mapi id 15.20.5880.014; Wed, 7 Dec 2022
- 16:21:34 +0000
-From:   Han Xu <han.xu@nxp.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S229762AbiLGQYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 11:24:44 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE8A2BF1;
+        Wed,  7 Dec 2022 08:24:42 -0800 (PST)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id E8FDB40003;
+        Wed,  7 Dec 2022 16:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670430280;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=uXJ9vQ0Ynsot47CGwLCWr7UusrmSQ01bL1ZRlYaTFVo=;
+        b=jWDZwiQ8jwUnrFFI1b5mTkv69adeV5Eug7HW9Dba1jfz2rniPainJkBrJlVaZFSGfbYdD1
+        2I1z0cr16Jm7Zpo0GBx8JPmmXTC9Lx1D33B23cmmyO0QOR9pffoiUQQiSHYkp75rF2dKQH
+        XAUiWHY22RRehFAZp1L2y1U+p9yGZ0aHpPM+JmT1EHIRhxFB8f2MdiH2iglaArOZf9t2vy
+        tZBm7m10XE09CArmpWBiubotGMHEXBuVIC/OnaU3Xsej2CUoN+ZEokGW7jcu5pOrIbbXUh
+        88Fd9SSvFUlM6D+bzyxYoCTXcqeD/rUSK48RnO4em9+KcPGPa056jZZbS4arqg==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, Han Xu <han.xu@nxp.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        imx@lists.linux.dev
-Subject: [PATCH 2/2] dt-bindings: iio: accel: fxls8962af: add new compatible string
-Date:   Wed,  7 Dec 2022 10:20:45 -0600
-Message-Id: <20221207162045.669958-2-han.xu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221207162045.669958-1-han.xu@nxp.com>
-References: <20221207162045.669958-1-han.xu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0007.namprd05.prod.outlook.com
- (2603:10b6:a03:254::12) To GV1PR04MB9071.eurprd04.prod.outlook.com
- (2603:10a6:150:22::11)
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 0/9] Add the Renesas USBF controller support
+Date:   Wed,  7 Dec 2022 17:24:26 +0100
+Message-Id: <20221207162435.1001782-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9071:EE_|AM9PR04MB8276:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d6bdf1c-3fe9-4b92-5bb1-08dad86f1b8f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1SnH02UL2+1TvPYAJCVX/f46+hhlyaUzPWUstGm1colQZCcl/c9hXVIn/e0x2KIJtYiy/vgEXUqySZbS/FKTSZkfgjVQ6nBpSMKfs4373EfNZDgkTny8JcfLqwQmLQI9M7qAsMabUgmW4wkjsBM0XkzV3gIdCFupSz4fQoBh76+CF1QdCjrBozj8uGR5lhLIIB7m7C+3uwTjy/29FAX35s+J6GRL9jXRVp2j7kjEy8IwZcN5G14e2ISmmx2jodX+X/AKvkzJzacplmvZF2ezoeU2rbixOu+4DgkfC2qJUtNiKxZkwgnUjilKTVjR3mP+gZnFWjUPO65J77KagXuyB8k3cknt/hlHDw/JZvErOOPCmturrZgSqbrG3QrpDGxOgcQBWffoqjKnaDvLpa+7g6TTG8jwnyaG0/U6HqzoNONpvdjfyZ0NTFd3I0yMCDHkTdmaw4cZ/IMfMFDc0DKF+grjwpgdLvbgKPbltTtr4HBZOG26852zta43lB4om+QLiZZCW7qG5AvQKNVnUJv6Q+EOmYB7cTLsIIXzh6787okDntjVmwHo6+dUmTgh5L5Ii+OI4X8fsmkWpfoqn28s861Rf+nFi7up3pCdrIBvyL/VY4jzTGITiVJ2zaY61lrSoqUEyf1ZUqJeO8ZDcozhFBd/Ev9syRVJU/P6VM5oWFo/Dz0UmLBjN1TVGlo3y3/Bhk0tA66iniF36oKFvP4aCxCtVE7MFv8sm/ZeCP4yjByBtJyYF7JUWi2opgLXmIIQnPqqiVf3rGQzwsiMI+p4bA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(136003)(366004)(346002)(39860400002)(451199015)(36756003)(66556008)(4326008)(66476007)(8676002)(52116002)(66946007)(6486002)(2616005)(186003)(1076003)(966005)(26005)(110136005)(86362001)(54906003)(6512007)(316002)(478600001)(2906002)(6666004)(6506007)(41300700001)(8936002)(4744005)(44832011)(38350700002)(38100700002)(5660300002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kiKCNgJ1B3XC3b9JntpD0qgVi9atU9H/9L/Pm7+sjy1tFciy/TYPoKTJAaJE?=
- =?us-ascii?Q?6PDxaaEH/HVQ1l5zO4hVrHMx1Zls+3N++JzEY4YLlzkZZBH0daf/gna+XWMA?=
- =?us-ascii?Q?1ukzRLDhsfGar8GfMSS34LaUW3cUsFGupFZ61vwcP5DCpx3X1QbUWKAVAzKl?=
- =?us-ascii?Q?EMNod2Ez86A0iFLKEHTeFj3v5XOycfYjPEAYqY97yBAtbkuCp76q208e4sPA?=
- =?us-ascii?Q?gWiRrA5KaytW2746wxBnR0ovs/0VFtsdodiUS4t+vk7Px/B1ZLbK3gy0oIj8?=
- =?us-ascii?Q?z9Sczl0ahyGPc19RaXUpRqDN9+zP3Us4xlTu16exm1H5wlu89ih9dBmfPRxr?=
- =?us-ascii?Q?4+gWyJCGTWL12GdUCxv538/lBJ3CVf7r2R7jn2bn+4BEZ/3vN17FcDCVnFjU?=
- =?us-ascii?Q?xV/tyPHZ3gq4BknOGtwpPJz+Q04tWpwswhFfk1ugUmHv/YplxYkytx0C6xvh?=
- =?us-ascii?Q?ZKppU+Psv3FxKFbi88+NTP6IkK6TBXLwEcgGZrZqHU+9hf3tChyqoMn9GUyL?=
- =?us-ascii?Q?syenzCWym7xyfckZaTq8pJcrwjn4h32UkfODuIQiRbSnFW7uF5PVbSOp61Pk?=
- =?us-ascii?Q?ghw+q9aTdNZ0ViROTvHcHJhOihOXxjY9oNmytNAIkeZ4xkw5dYdYgmJ+0+D8?=
- =?us-ascii?Q?uKI30Uvgn/29KGm6Qvl9cRu+1WCTOZkRYJBLynUX2WdjDAYeHQxYuxyjdYit?=
- =?us-ascii?Q?jKH97StzdbTCOhZUG4UjyXZWs1TlitFJsPS6bitVvwRIvY6YDxdP4TbjAV+w?=
- =?us-ascii?Q?6D4mcyaAMC5NwNZG/HwVwvflcwDhpEK9T6/T0yzyIJCC7CVmnlBPjfOTHXeb?=
- =?us-ascii?Q?Qgn4AiHgPFqmzkFle/tvZGBYQFcTYIDr7beMF0axypV2/Kl5jB26tQTQRVJL?=
- =?us-ascii?Q?l/Q1tym2CjR4O0/rfyOs8C75qHuODFnTxgi4fzzTw9tIZTsCoNGOIXah6hVI?=
- =?us-ascii?Q?cGQ34wJLDbizaJ3GiI3OMixe/bq1MotbNnMj4OhPLl2cqESIvKGp8R0ho4+p?=
- =?us-ascii?Q?7KREt5PuD/zHWb1PUjHgNIr8HowJJ9Mw+fDqVDL43pHxDLMx00dybAZOZxJm?=
- =?us-ascii?Q?PwhaTd0SKh4qp19JCL8iUX/E6/a46ghVI1hFlKictZOfn3FAlKs+6WR+S9qc?=
- =?us-ascii?Q?ONsY7E5nabS92qCi9rUXD2pcUmbNns1K65QHtAbiADux95S1voxBh0Ihesw5?=
- =?us-ascii?Q?dp2JXcqpNxYz94ETBcUo13JwVrBvFsr+C+0d+kbNr2JiDtQcCs1WYymE6sZ1?=
- =?us-ascii?Q?nSfuNn6mc/oU+/LcRB5zpBCP2c3O/P6M/b+khDOWwd53pgF0YSSIKXB4dVKz?=
- =?us-ascii?Q?rOCSzDKYPMlyqP3wZl+vDLW0HeFwGvquxwPCSXwp9/uJGAmYhxrYL1Nc/6ps?=
- =?us-ascii?Q?uV0ybPZ2oPXhz4PiYidJjop6GvpMpf8asgqxTdOu9CpFxuCDo+hmZS81Bds0?=
- =?us-ascii?Q?LLIq8UHN73sWNTFmxmXtDFDleFQiGu/L3jNsPY39NPz2p9YocBjAhtyUKCB1?=
- =?us-ascii?Q?qqhwqH8REpNWjvRyd5MLZF+NR71iTFHRPp0qTkOTqEoLmPK/t/MiIQLm0yvS?=
- =?us-ascii?Q?KpRKe+xO4DkZRDXLkgE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d6bdf1c-3fe9-4b92-5bb1-08dad86f1b8f
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9071.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2022 16:21:34.6400
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CDPLm1TCF0sAcGfJdEC66FcOXyFmL7NdJQ3ks7IvoerojaJQONadX9ZyUk9cy7u8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8276
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add new compatible string for the NXP FXLS8967AF accelerometer sensor.
+Hi,
 
-Signed-off-by: Han Xu <han.xu@nxp.com>
----
- Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+This series add support for the Renesas USBF controller (USB Device
+Controller) available in the Renesas RZ/N1 SoC.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-index 65ce8ea14b52..400eff3ff315 100644
---- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-@@ -14,12 +14,14 @@ description: |
-   SPI and I2C interface.
-     https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
-     https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-+    https://www.nxp.com/docs/en/data-sheet/FXLS8967AF.pdf
- 
- properties:
-   compatible:
-     enum:
-       - nxp,fxls8962af
-       - nxp,fxls8964af
-+      - nxp,fxls8967af
- 
-   reg:
-     maxItems: 1
+Based on previous review:
+  https://lore.kernel.org/all/20221114111513.1436165-3-herve.codina@bootlin.com/
+  
+A new strategy is proposed to handle the H2MODE bit from CFG_USB
+register compared to the previous versions on the series. As a
+reminder, H2MODE bit allows to configure the internal USB Port
+interface for two hosts or one host and one device.
+
+This new strategy is:
+  - Add the new generic 'depends-on' property in the device tree.
+
+    This generic property expresses an simple functionnal dependency
+    that does not rely on a specific topic. It is an 'order only'
+    dependency that can be used for dependencies between consumers
+    and producers that are not based on a specific infrastructure
+    and not need other relationship than this simple 'order only'
+    (ie no API is provided between the provider and the consumer)
+
+    The 'depends-on' property is handled in a generic way using
+    fw_devlink. The probe() function calls order is ensured by the
+    core infrastructure.
+
+    In the nodes impacted by H2MODE, 'depends-on' is used to
+    express the dependency to sysctrl.
+
+  - At sysctrl level, during the probe, switch to '1 host, 1 device'
+    mode only if the USB device is available.
+
+Patches 1, 2 and 3 are related to 'depends-on' in the PCI bridge
+node. This PCI bridge connects the USB host controllers to the AHB bus
+
+Patch 4 adds the 'depends-on' support in fw_devlink
+Patch 6 handles h2mode in sysctrl
+
+Patch 5, 7, 8 and 9 are related to the USBF controller with a new
+binding definition, the driver itself and myself as a maintainer
+of this controller.
+
+Best regards,
+Herve Codina
+
+Changes v2 -> v3:
+  - v2 Patches 1, 2 and 3 removed.
+
+  - Patches 1, 2, 3 and 4 (new patches)
+
+  - Patch 5 (v2 patch 4):
+    Add 'depends-on' property
+    Removed redundant 'binding' word
+
+  - Patch 6 (new patch)
+
+  - Patch 7 (v2 patch 5)
+    Removed h2mode checking. This check is no more needed and the API no more
+    available.
+
+  - Patch 8 (v2 patch 6)
+    Add 'depends-on' property
+
+  - Patch 9 (v2 patch 7)
+    Fix file name
+
+Changes v1 -> v2:
+  - Patch 1:
+    Rename r9a06g032_sysctrl_get_usb_h2mode to r9a06g032_sysctrl_get_usb_role
+    and return USB_ROLE_{HOST,DEVICE} or an error code.
+    Reword commit log
+
+  - Patches 2 and 3:
+    No changes. Some previous feedbacks still need to be taken into account
+      https://lore.kernel.org/all/20221107182642.05a09f2f@bootlin.com/
+      https://lore.kernel.org/all/20221107173614.474707d7@bootlin.com/
+
+  - Patch 4:
+    Rename file from renesas,usbf.yaml to renesas,rzn1-usbf.yaml.
+    Remove 'oneOf'.
+    Add blank line and line break.
+    Add 'power-domains'.
+    Reword commit log
+
+  - Patch 5:
+    Remove clocks handling (handled by runtime PM through the clock domain
+    pointed by power-domains).
+    Fix compilation warning raised by the 'kernel test robot'.
+
+  - Patch 6:
+    Add 'power-domains'
+
+  - Patch 7:
+    Add 'Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>'
+
+
+Herve Codina (9):
+  dt-bindings: PCI: renesas,pci-rcar-gen2: Add depends-on for RZ/N1 SoC
+    family
+  ARM: dts: r9a06g032: Add dependency to sysctrl in the PCI bridge
+  dt-bindings: PCI: renesas,pci-rcar-gen2: 'depends-on' is no more
+    optional
+  of: property: fw_devlink: Add support for "depends-on"
+  dt-bindings: usb: add the Renesas RZ/N1 USBF controller
+  soc: renesas: r9a06g032-sysctrl: Handle h2mode setting based on USBF
+    presence
+  usb: gadget: udc: add Renesas RZ/N1 USBF controller support
+  ARM: dts: r9a06g032: Add the USBF controller node
+  MAINTAINERS: add the Renesas RZ/N1 USBF controller entry
+
+ .../bindings/pci/renesas,pci-rcar-gen2.yaml   |    7 +
+ .../bindings/usb/renesas,rzn1-usbf.yaml       |   77 +
+ MAINTAINERS                                   |    8 +
+ arch/arm/boot/dts/r9a06g032.dtsi              |   14 +
+ drivers/clk/renesas/r9a06g032-clocks.c        |   28 +
+ drivers/of/property.c                         |    2 +
+ drivers/usb/gadget/udc/Kconfig                |   11 +
+ drivers/usb/gadget/udc/Makefile               |    1 +
+ drivers/usb/gadget/udc/renesas_usbf.c         | 3420 +++++++++++++++++
+ 9 files changed, 3568 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.yaml
+ create mode 100644 drivers/usb/gadget/udc/renesas_usbf.c
+
 -- 
-2.25.1
+2.38.1
 
