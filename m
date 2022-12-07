@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BC9645741
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F38A0645746
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 11:13:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbiLGKMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 05:12:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
+        id S229788AbiLGKNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 05:13:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbiLGKMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:12:38 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC6A63DA
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:12:37 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id x11so20329295ljh.7
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:12:37 -0800 (PST)
+        with ESMTP id S230235AbiLGKNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 05:13:36 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4FC1A221
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 02:13:35 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id d6so27905788lfs.10
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 02:13:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OC/LTw1yay9XRp7UnfXbK+UoHlH+HfeWaPk0UzxZKJk=;
-        b=AyAHobwLi8UQ8Y3RO7WvijzSRK4GKV+VjGhQSY0MFj/dZqZ1hQYnwMS48zLGlZgGu8
-         pBMU0O3mzLgrID5x4nK1Wq/HO4C26DVdzqkjpN2acNm7j7Wxo4/B2i9L+O35IC2LH0IF
-         IooyTG9pFjty+G22aC8PKNdTaWYb7kt885nOAmbyKHSOy2aovniFXCycJhDmo6Pr4/7p
-         5Fcxoc+7nK2fRWXH9wbGSqAJc11/tq+/AkLpLzPvaW3INxfQQCCoGrLmOpm3076R+gWP
-         liBtHETwG/fMs4NeFm3+CFokf2K//xmXloFe/3YvkzRqAiCpDtQPhBU8wIDf38c/g3jY
-         vYQg==
+        bh=EfzRINXvTujbfGexnmXcZib+yfVoupZmsTbefxlDJnw=;
+        b=Go0DCB4+6QM2Lz8HnEfnjEpYF04o+zaCU7giFE1dNJHPtFZR5dW2o8AD9bJh6xS56M
+         /FQa5LGWbUAyDnAozVwWajxACvIDzprJP50Pd4jaGNkLi4BbZhIZT1UI07AH5K1qCypS
+         RafclyjEf7X7t06AEtXF3LtrqAaloeMTBbfIdL7lkba1TP5oi2eJjr9474OsrIDssan8
+         bkAxZo4ORF5q7zjsJN3QbCUMc2owtn6hCIkXP5yY2inq/43m/k8zaDpyDNqycQ1eDHyQ
+         RfQlxRbzQMBzzZWxcI3CZL/AlilnzwC6TyH57ElK/uzlnKcKfltQlVPu1hroedcj+CCP
+         FXbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OC/LTw1yay9XRp7UnfXbK+UoHlH+HfeWaPk0UzxZKJk=;
-        b=yIkAzC7G9RF2s7I4cpL8QO3AOCg7Mp5Fq1jo29D+zFzssYXZpbDP/kJ0hBuerNyMbb
-         e2/hzuH/7GWnMDtyRGZlg9uYrDYI1FwSjPqb1y1s6u/FD5FY4vLLU+ApueW3i2PILei/
-         7ezeJP5aBiw0/Qr+4mlr08L2ZrLyO3KCCS61EYqo2L+1jZmic4YzOZTwCW5sxRrb2bbU
-         3DXi0xVrfixjV1qD1K8S4N4/+9gAeWWC/96xGfy6+nEyIhquSvYYwIxl/mdO2tTYQz0A
-         aA+C2ziRXBTH9bVpQedKVvPJW3609w9GZOjHebi8DWCybP/zF9DN8vFCthkK15fjcQZd
-         xwkQ==
-X-Gm-Message-State: ANoB5pmnzpm6ybr873rmArvdU7vljwadAKL3EORdFvDCwC/bG3p9o5aq
-        lE7YIJDIbJrqHhZvJMCIf2xvCA==
-X-Google-Smtp-Source: AA0mqf69CWZ3OX2KPfDh4UAI1He+Nkzx6NpNQ6qGOhkHv674OUnmjIC8peAUmlRmBQVU7KfAsW2UnQ==
-X-Received: by 2002:a2e:2c15:0:b0:27a:773:7054 with SMTP id s21-20020a2e2c15000000b0027a07737054mr2978314ljs.169.1670407955487;
-        Wed, 07 Dec 2022 02:12:35 -0800 (PST)
+        bh=EfzRINXvTujbfGexnmXcZib+yfVoupZmsTbefxlDJnw=;
+        b=p02eS85P+AobxnZ78WGRLygTGfbgSnzee3T2XmyNOGwQXLwHUucBwhvMyaLWaSvuHi
+         o5Qa8gnIJ4LkVRO/QJl00HxuJzWr8UAUN889jTITyQpUEDx/FAf2B82CrmuoJnZN1THl
+         A+ydeX16zJgM6n2TgIpq9ix9f2/YNGU/9BXLhic00GwDyaci4OHUgHu0gIownuwgPW/y
+         +vxaKdA3NwBAHYPbwOTZ9SHnZEswjcHbUYZVjigV6tXZNTKt9J8ZR+KoMK8O6Uc8gnlv
+         oOFBl9V8F+3xHIkkmIUxMXVWTkb0rwm/6ne8py7SUaKjf7GVwWfgFdMJ4jO+EWT+aPyV
+         dRjg==
+X-Gm-Message-State: ANoB5pkswDxCU7viP10Cb058ykFeOJ+nvUojCzi8fM7vi2dYopcHTN72
+        FCDpUo8RqpVLe8jRZzV3jHbO+8mUIPaYfWZja2Q=
+X-Google-Smtp-Source: AA0mqf7hsCAj+w8XCvjyZUfiTkBTV5WU3JxoUzeIJmMqZ0pP8HJxm1PyMERjuSoo3lfnPbIlTSY2KA==
+X-Received: by 2002:a05:6512:2520:b0:4a2:6907:98d8 with SMTP id be32-20020a056512252000b004a2690798d8mr25290485lfb.28.1670408013714;
+        Wed, 07 Dec 2022 02:13:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b00492ceda336fsm2782548lfg.278.2022.12.07.02.12.34
+        by smtp.gmail.com with ESMTPSA id m16-20020a056512359000b004b57d186aaasm840449lfr.249.2022.12.07.02.13.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 02:12:34 -0800 (PST)
-Message-ID: <5ebd4de2-26a8-ff2b-18e4-dc43b3cdf662@linaro.org>
-Date:   Wed, 7 Dec 2022 11:12:33 +0100
+        Wed, 07 Dec 2022 02:13:33 -0800 (PST)
+Message-ID: <13a7ac60-c9a2-aa60-f8ba-640d9e99ab44@linaro.org>
+Date:   Wed, 7 Dec 2022 11:13:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 1/4] dt-bindings: soc: samsung: exynos-sysreg: add
- dedicated SYSREG compatibles to Exynos850
+Subject: Re: [PATCH 3/4] dt-bindings: soc: samsung: exynos-sysreg: add
+ dedicated SYSREG compatibles to Exynosautov9
 Content-Language: en-US
 To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
@@ -64,16 +64,15 @@ To:     Sriranjani P <sriranjani.p@samsung.com>, robh+dt@kernel.org,
 Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
 References: <20221207085832.86909-1-sriranjani.p@samsung.com>
- <CGME20221207085846epcas5p1d1e7fb6945752fc1d9d4aba4874b2484@epcas5p1.samsung.com>
- <20221207085832.86909-2-sriranjani.p@samsung.com>
+ <CGME20221207085852epcas5p3de090e5b0abec213c1b5511e1da3eeff@epcas5p3.samsung.com>
+ <20221207085832.86909-4-sriranjani.p@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207085832.86909-2-sriranjani.p@samsung.com>
+In-Reply-To: <20221207085832.86909-4-sriranjani.p@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,57 +80,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/12/2022 09:58, Sriranjani P wrote:
-> Exynos850 has two different SYSREGs, hence add dedicated compatibles for
-> them and deprecate usage of generic Exynos850 compatible alone.
+> Exynosautov9 has several different SYSREGs, so use dedicated compatibles
+> for them and deprecate usage of generic Exynosautov9 compatible alone.
 > 
 > Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
 > ---
->  .../soc/samsung/samsung,exynos-sysreg.yaml        | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+>  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml  | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> index 4954790eda6c..f57bc7c194a1 100644
+> index f57bc7c194a1..b6105d261b47 100644
 > --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
 > +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
 > @@ -17,7 +17,6 @@ properties:
 >                - samsung,exynos3-sysreg
 >                - samsung,exynos4-sysreg
 >                - samsung,exynos5-sysreg
-> -              - samsung,exynos850-sysreg
->                - samsung,exynosautov9-sysreg
+> -              - samsung,exynosautov9-sysreg
 >                - tesla,fsd-cam-sysreg
 >                - tesla,fsd-fsys0-sysreg
-> @@ -36,6 +35,16 @@ properties:
->            - const: samsung,exynos5433-sysreg
+>                - tesla,fsd-fsys1-sysreg
+> @@ -45,6 +44,17 @@ properties:
+>            - const: samsung,exynos850-sysreg
 >            - const: syscon
 >          deprecated: true
 > +      - items:
 > +          - enum:
-> +              - samsung,exynos850-cmgp-sysreg
-> +              - samsung,exynos850-peri-sysreg
-> +          - const: samsung,exynos850-sysreg
+> +              - samsung,exynosautov9-fsys2-sysreg
+> +              - samsung,exynosautov9-peric0-sysreg
+> +              - samsung,exynosautov9-peric1-sysreg
+> +          - const: samsung,exynosautov9-sysreg
 > +          - const: syscon
 > +      - items:
-> +          - const: samsung,exynos850-sysreg
-
-and this can go to existing 5433 deprecated entry (making it enum of
-deprecated compatibles).
-
+> +          - const: samsung,exynosautov9-sysreg
 > +          - const: syscon
-> +        deprecated: true
->  
->    reg:
->      maxItems: 1
-> @@ -53,7 +62,9 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> -              - samsung,exynos850-sysreg
-> +              - samsung,exynos850-cmgp-sysreg
-> +              - samsung,exynos850-peri-sysreg
-> +            const: samsung,exynos850-sysreg
 
-This should stay in the enum.
+Same comment here - let's make it part of enums which are deprecated (so
+together with 5433 and 850)
 
 Best regards,
 Krzysztof
