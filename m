@@ -2,113 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 649BD645D49
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23435645D5A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 16:13:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiLGPKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 10:10:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
+        id S229677AbiLGPNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 10:13:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbiLGPKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:10:20 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF475BD4E
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:10:19 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id x28so11829445lfn.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:10:19 -0800 (PST)
+        with ESMTP id S229702AbiLGPNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 10:13:10 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728A55FBB7
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 07:13:09 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g7so29203675lfv.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 07:13:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gz835eZGCRh+WN94zvl6mcTbQaOnylgv5MAXmXuctaA=;
-        b=hLy25wjMTZVgYcoxzL3Cb7C8Pugw+mR3COLvCuzmqQrdWLQsAKElUAskEgYL8f7PWF
-         U97C2da1LE1ja5UO+VT/v+WwoJKFBQUZC3GD/8oJH5ilIwgO7WuD0ehxLPSxyYuPuAL6
-         WUgi843gP1R2xX5Y6RWNJq0hsS9tLn8UZQY8+0ejRyQzYTggH9SvG+r5AVhwE8MgJqPo
-         Uk6/J4rgvut0WCS+AcPZ3M0eSQBSpPZVuzzX8lmyEJkTH8+Y8BVJv2CzJ7VDvCWHbWeC
-         La2ZO0fBZS11c78YGu8OLRWALizkVgfvCd12ggGikVcFPl+zIUt5Q2us/g1l6JRRs8qP
-         B1cA==
+        bh=EwuV0n2FcadO46u8mq+gLHcFjCqs4mgvgde47beSgFk=;
+        b=ZvS9jSQhUfL8WcXq/TxjyksIXloX15Ag5b6M8G03A1zo4+dvHKYj8t3a8r40mu0zUD
+         M2UVP7NtSB1bzo/jAucazJWb/W/54+/U+mC//YqsA4AmlQQgsTPeaF2bp/Q2fzsI6OGT
+         imkn5Y7HbXYKqZf1tA1kLjtpHdJIjCJx0GR9ufvTcuUfWjPhtUsrAOAgjoC70cQ37dZ/
+         Wa3Yk2L8Z1SS5cojk6pU9smxwWQ4hJi5nEVC96MZgjOzjP4wegHIg4v1q1KuNEkEu59Y
+         66Pb14vJxPITtwp8AGoKMUfUE7+wLmUIaLW+5uIIxpzwIoroodtdFUuONVOwugpDCrol
+         xmLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gz835eZGCRh+WN94zvl6mcTbQaOnylgv5MAXmXuctaA=;
-        b=8KL4c4VvwZF934X3H1y1oMqCjx69I6ocOnKCCJIKg9XkxdxcsOhA+8JCNicbt4epzs
-         XsUPEYiXA2UlFUrGXWdhvvEU/48b5PmN/xgflyjCvMQzDjbnBHNCjH5p6wwne0eniZhu
-         Dukgw5rR+mmREMUMryVLjkgoBYZGOK5O7OK4/p86ZgFKgpEyEiix85k6Tfvo5/Fkk2PO
-         5k6AcQh1e2z6frANx5lFZFqN822pbdHWLIAMzCRE01ixwsEL5jgwnjZe12+hbhXq+3/G
-         HI5vi7dBXzOuTu1OQL6a5Pfi/PYPvvgKGT30Mpalv4VBXrHbJmmTgu+YN7f2iWZW/PRb
-         27Iw==
-X-Gm-Message-State: ANoB5plKAqYzIFJ88+/g/N2o2KBJlfrj2T77m3nu5DEYzQpsuiW6b8Vr
-        RvxxIbYrXdZ1hInsHK5sJAeIAw==
-X-Google-Smtp-Source: AA0mqf6OCTBZrdnGnAV0vkexyBgE3U7veOZQevyMSaWAqlIRtTzXIxeaaUlEaUEDfDoQYoVt0dwl3Q==
-X-Received: by 2002:a19:4f4a:0:b0:4b5:5c01:76c4 with SMTP id a10-20020a194f4a000000b004b55c0176c4mr6570229lfk.56.1670425817552;
-        Wed, 07 Dec 2022 07:10:17 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id f27-20020a19381b000000b0049fff3f645esm2877310lfa.70.2022.12.07.07.10.16
+        bh=EwuV0n2FcadO46u8mq+gLHcFjCqs4mgvgde47beSgFk=;
+        b=UxxyRgC7+IqB98hhdNcFS7AJb7jsWmPmRkYvDZXSRiY2qUqBC3sH2rLQRhcgJ51StZ
+         IVzMAr0aN63u68vXqWShRviOuQy/5Y1ObM9ydWCYBr4okyn2ZREU0iTz/4wvYFm6PQDB
+         OOqnj+M7cp0fmufKXq8kGcYjA17F3qGa7+kghKJCbAd/URI95yuRC997D4aXNdRujHyV
+         ow02WvxCFz54gr9gWNR0CM+uBkQqr66MU5OVQlfG48KQb0xEbZ2uGvsims+PLn4AMWLs
+         QE3C6gv+yUCYgi0RevYb/EpDvWf36UZZVpftK2SC/2u4D4z7Bzs84hlQgklO92WeoYZo
+         fX3A==
+X-Gm-Message-State: ANoB5pk//+Mb7N+Aa3NuwYQdUb19WD7eQtphN2EhyGue/Ob58gEL461U
+        y95Fyd7Eyw9UdK9gdd83cKbhvw==
+X-Google-Smtp-Source: AA0mqf7H/u1TTdUDubpP4RFHzJ+Z6dInp9jhB+5+WVPVTc4JVsGKqJfFgAD2IAyI7TXnhs+eSOZW8A==
+X-Received: by 2002:a05:6512:3454:b0:4b5:8240:5bcb with SMTP id j20-20020a056512345400b004b582405bcbmr3082136lfr.388.1670425987664;
+        Wed, 07 Dec 2022 07:13:07 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id bi27-20020a0565120e9b00b004aac23e0dd6sm2893718lfb.29.2022.12.07.07.13.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 07:10:17 -0800 (PST)
-Message-ID: <67c99b1b-5da1-861e-f5ad-d8db3e06b866@linaro.org>
-Date:   Wed, 7 Dec 2022 17:10:16 +0200
+        Wed, 07 Dec 2022 07:13:07 -0800 (PST)
+Message-ID: <d7ecbbbf-5d6b-3254-b645-dbea369447ae@linaro.org>
+Date:   Wed, 7 Dec 2022 16:13:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.0
-Subject: Re: [PATCH v4 2/3] drm/msm/disp/dpu1: add helper to know if display
- is builtin
-Content-Language: en-GB
-To:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, quic_abhinavk@quicinc.com
-References: <1669021695-4397-1-git-send-email-quic_kalyant@quicinc.com>
- <1669021695-4397-3-git-send-email-quic_kalyant@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1669021695-4397-3-git-send-email-quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add bindings for StarFive
+Content-Language: en-US
+To:     William Qiu <william.qiu@starfivetech.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
+ <20221207131731.1291517-2-william.qiu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207131731.1291517-2-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/11/2022 11:08, Kalyan Thota wrote:
-> Since DRM encoder type for few encoders can be similar
-> (like eDP and DP), get the connector type for a given
-> encoder to differentiate between builtin and pluggable
-> displays.
+On 07/12/2022 14:17, William Qiu wrote:
+> Add documentation to describe StarFive
+> designware mobile storage host controller driver.
 > 
-> Changes in v1:
-> - add connector type in the disp_info (Dmitry)
-> - add helper functions to know encoder type
-> - update commit text reflecting the change
-> 
-> Changes in v2:
-> - avoid hardcode of connector type for DSI as it may not be true (Dmitry)
-> - get the HPD information from encoder bridge
-> 
-> Changes in v3:
-> - use connector type instead of bridge ops in determining
-> connector (Dmitry)
-> 
-> Changes in v4:
-> - get type from the drm connector rather from bridge connector (Dmitry)
-> 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 26 ++++++++++++++++++++++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  6 ++++++
->   2 files changed, 32 insertions(+)
+>  .../bindings/mmc/starfive,jh7110-sdio.yaml    | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+> new file mode 100644
+> index 000000000000..4f27ef3cf4f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-sdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive Designware Mobile Storage Host Controller
+> +
+> +description:
+> +  StarFive uses the Synopsys designware mobile storage host controller
+> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
+> +
+> +allOf:
+> +  - $ref: "synopsys-dw-mshc-common.yaml#"
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Drop quotes
 
--- 
-With best wishes
-Dmitry
+> +
+> +maintainers:
+> +  - William Qiu <william.qiu@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-sdio
+
+Why do you call it sdio if the interface is for mmc as well?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    items:
+> +      - description: biu clock
+> +      - description: ciu clock
+
+I don't think the card interface clock is optional... are you sure you
+have designs working without it? No clock line at all getting to the memory?
+
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: biu
+> +      - const: ciu
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  starfive,sys-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      The desired number of times that the host execute tuning when needed.
+
+That's not matching the property name. Missing number of items... this
+is anyway confusing. Why number of tuning tries is a property of DT?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive-jh7110.h>
+> +    #include <dt-bindings/reset/starfive-jh7110.h>
+> +    mmc@16010000 {
+> +            compatible = "starfive,jh7110-sdio";
+
+Use 4 spaces for example indentation.
+
+> +            reg = <0x16010000 0x10000>;
+> +            clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
+> +                 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+
+Align with previous <
+
+Best regards,
+Krzysztof
 
