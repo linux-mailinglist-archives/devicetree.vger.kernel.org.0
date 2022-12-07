@@ -2,332 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA77645C39
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:17:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15EA8645C44
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:19:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbiLGORD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 09:17:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
+        id S230064AbiLGOTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 09:19:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbiLGORC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:17:02 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D406C55A95
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 06:16:56 -0800 (PST)
-Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5339F41548
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 14:16:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1670422615;
-        bh=0TQumGkPBfGZkbUnE2eIaWNrjWJVr3n7Xa2FW9xBHzQ=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=WYpt88iMaJBsbjbmZ3RHxmRQincDSyvWYSjh42RGUUmfKfsdLcCLME4+KnaoewxE4
-         7V5esq7J72g3syejjSOpwaaGTZSS6xLa7/pXQ2ILzBwNlphCirmjoKewiQ39tsT6NZ
-         cp+y+HqROhzkufeoYHO2a7pBYayTF0+OXp1gOnuUKSFwoz8TrAanBiWMoudFkjbPct
-         GfE/SdfjamzO+SzhExEv00YHzTVmZs7V8o1gvg/VLBJcnvrZj2A6FHaBCTcikh703C
-         hpUQm/H6kUR2PCDbr45adYgb8OOOSD9ijcj3hEFhFqP5LzattXbs1qmSrjB4GMV5dh
-         +p/Qe3Z53J+jA==
-Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-3fe3bedbb16so15519717b3.15
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 06:16:55 -0800 (PST)
+        with ESMTP id S229522AbiLGOTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:19:54 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B155AB9;
+        Wed,  7 Dec 2022 06:19:53 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id r11so15136957oie.13;
+        Wed, 07 Dec 2022 06:19:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0TQumGkPBfGZkbUnE2eIaWNrjWJVr3n7Xa2FW9xBHzQ=;
-        b=z++e/Kt2RVmpytYYMD5AyP0cfrML2sXpCj5fZH6qLmyVJ0xBufMy2sSdZCjDDxOmKK
-         lUP+qZodwArcIm9pxjR916t7LB5k4Xhmzb/QATaM7e3GFM3noYHu4ywRNbJn/vr0SsDH
-         rhtKqyDKJrrpYg0mwgmOYuFpqIYhGlTtjI4Uuoh0gHK6G8P2RdbuHhjcwblKhPNUMBQ9
-         GERegIct/gN7uCnpl3qr3arfR7jtAEVH+Q6WX4PJxyljmWPVI2AWXBNi3Qt8fFC/BH+8
-         BmAkm/g1siZQ3l0ZtM9INBTU/XCwnz8oMCELys1BZ6JSJeeHt7p/a0h3uFHxa1TbN1yE
-         yGiQ==
-X-Gm-Message-State: ANoB5pnN5NJp7tc0Tr32XsFQEby694FjTvBl8946C5eASJRU0UJss/0B
-        0p6hvB1+ctRD0WqIoDcPTFHOiiVBsgZkEXdzWlZMaHtIhBy5TIKGd54Kv9scZvF+rKWlAnq08Qg
-        WgB2wpFD6Q4BB9hNhYSjDKbFT+AnvGW/gmWpSd6smAe2sroC2Fi/U/dE=
-X-Received: by 2002:a81:1e04:0:b0:391:fccf:db48 with SMTP id e4-20020a811e04000000b00391fccfdb48mr19742465ywe.257.1670422614387;
-        Wed, 07 Dec 2022 06:16:54 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf5jJpSrSo/VPL2KWSG5PgoBvSpVrm0KRx1TI9YUKLQbZERI9ER36jaV4ypZMpKyQmKmqs8L1xzE8rxQNhfbb7A=
-X-Received: by 2002:a81:1e04:0:b0:391:fccf:db48 with SMTP id
- e4-20020a811e04000000b00391fccfdb48mr19742434ywe.257.1670422614064; Wed, 07
- Dec 2022 06:16:54 -0800 (PST)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=iv7xppBkzzqPyj7+IDPZPeqq/1XojkANHcgbqXc5A+Q=;
+        b=Ddyrsw0Jd4IWSap4PP15kvZegM+gjcgbKUg+a0b1gZUuzLp0ekKVywI4bUa7jNHTiK
+         TmNhiKlPq0nlFpy73KyfOAouglzdV5jVHcqEUtyqVjMFQDf/IPJ2F7R9ZSJoOphFPY9t
+         bZLsVODXRAEvkVUz4YFbbCed1/Lc9bmCtxnjyV1OYUqHdpM/hymX4Cr/ilpinZ5CjlzU
+         bCOOaiyAs8vHwtTaI5eQfpTsMKVt+igfVRaKjaPaJxvIwo2UfAS6olRDk4/eH/WLaUc4
+         WBvmvhJVNmPvsUgdybjtKi8GrOumDailDlHPv/sFi3Fhx6abYwLrXejk61miOMBVEnHd
+         ZKUQ==
+X-Gm-Message-State: ANoB5pnbE39kEdZKsW99sNO9Hs2rRGYg5q7bgQn5TuY7YlqIxU13nXxv
+        yOZugH2rxAFD/Wf1nZIqUA==
+X-Google-Smtp-Source: AA0mqf7d54nVIsJian3SGED4RnhboOTPOMm1xYCZfwkvzoS88hMy4GPDNglID+jiUKgLRpjc0Qjpew==
+X-Received: by 2002:a05:6808:1117:b0:35a:7142:8109 with SMTP id e23-20020a056808111700b0035a71428109mr34202733oih.84.1670422792620;
+        Wed, 07 Dec 2022 06:19:52 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g15-20020a544f8f000000b003458d346a60sm9651993oiy.25.2022.12.07.06.19.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Dec 2022 06:19:52 -0800 (PST)
+Received: (nullmailer pid 2124807 invoked by uid 1000);
+        Wed, 07 Dec 2022 14:19:49 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com> <20221201090242.2381-6-yanhong.wang@starfivetech.com>
-In-Reply-To: <20221201090242.2381-6-yanhong.wang@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Wed, 7 Dec 2022 15:16:37 +0100
-Message-ID: <CAJM55Z9bdpxLsKOM8UhE=b5Z2uPzL227N1-x6d8AuvkZHRajqA@mail.gmail.com>
-Subject: Re: [PATCH v1 5/7] net: stmmac: Add StarFive dwmac supoort
-To:     Yanhong Wang <yanhong.wang@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Okan Sahin <okan.sahin@analog.com>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lee Jones <lee@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        linux-kernel@vger.kernel.org,
+        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        linux-iio@vger.kernel.org, outreachy@lists.linux.dev,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20221207090906.5896-3-okan.sahin@analog.com>
+References: <20221207090906.5896-1-okan.sahin@analog.com>
+ <20221207090906.5896-3-okan.sahin@analog.com>
+Message-Id: <167042222291.2111846.12061845006174479582.robh@kernel.org>
+Subject: Re: [PATCH 2/5] staging: dt-bindings: mfd: adi,max77541.yaml Add
+ MAX77541 bindings
+Date:   Wed, 07 Dec 2022 08:19:49 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yanhong,
 
-Thanks for submitting this. Again please don't change the author of
-the commits you cherry-picked from my tree. This is why we have the
-Co-developed-by: tag so you can mark that you added or in this case
-removed code.
-I'd hoped you would still include the support for the JH7100 though.
-
-Also you seem to have changed the name of some of the functions.
-Please at least keep the prefix consistent if you do that. Now it's a
-mix of dwmac_starfive_, starfive_eth_ and starfive_eth_plat.
-
-On Thu, 1 Dec 2022 at 10:07, Yanhong Wang <yanhong.wang@starfivetech.com> wrote:
->
-> This adds StarFive dwmac driver support on the StarFive JH7110 SoCs.
->
-> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+On Wed, 07 Dec 2022 12:08:41 +0300, Okan Sahin wrote:
+> This patch adds document the bindings for MAX77541 MFD driver. It also
+> includes MAX77540 driver whose regmap is covered by MAX77541.
+> 
+> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
 > ---
+>  .../devicetree/bindings/mfd/adi,max77541.yaml | 134 ++++++++++++++++++
 >  MAINTAINERS                                   |   1 +
->  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
->  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->  .../stmicro/stmmac/dwmac-starfive-plat.c      | 147 ++++++++++++++++++
->  4 files changed, 160 insertions(+)
->  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7eaaec8d3b96..36cb00cf860b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19610,6 +19610,7 @@ STARFIVE DWMAC GLUE LAYER
->  M:     Yanhong Wang <yanhong.wang@starfivetech.com>
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
-> +F:     drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
->
->  STARFIVE PINCTRL DRIVER
->  M:     Emil Renner Berthing <kernel@esmil.dk>
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> index 31ff35174034..1e29cd3770b9 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> @@ -235,6 +235,17 @@ config DWMAC_INTEL_PLAT
->           the stmmac device driver. This driver is used for the Intel Keem Bay
->           SoC.
->
-> +config DWMAC_STARFIVE_PLAT
+>  2 files changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/adi,max77541.yaml
+> 
 
-Why did you add the _PLAT suffix? None of the other SoC wrappers have this..
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +       tristate "StarFive dwmac support"
-> +       depends on OF && COMMON_CLK
-> +       depends on STMMAC_ETH
-> +       default SOC_STARFIVE
-> +       help
-> +         Support for ethernet controllers on StarFive RISC-V SoCs
-> +
-> +         This selects the StarFive platform specific glue layer support for
-> +         the stmmac device driver. This driver is used for StarFive RISC-V SoCs.
-> +
->  config DWMAC_VISCONTI
->         tristate "Toshiba Visconti DWMAC support"
->         default ARCH_VISCONTI
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> index d4e12e9ace4f..a63ab0ab5071 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_DWMAC_DWC_QOS_ETH)       += dwmac-dwc-qos-eth.o
->  obj-$(CONFIG_DWMAC_INTEL_PLAT) += dwmac-intel-plat.o
->  obj-$(CONFIG_DWMAC_GENERIC)    += dwmac-generic.o
->  obj-$(CONFIG_DWMAC_IMX8)       += dwmac-imx.o
-> +obj-$(CONFIG_DWMAC_STARFIVE_PLAT)      += dwmac-starfive-plat.o
->  obj-$(CONFIG_DWMAC_VISCONTI)   += dwmac-visconti.o
->  stmmac-platform-objs:= stmmac_platform.o
->  dwmac-altr-socfpga-objs := altr_tse_pcs.o dwmac-socfpga.o
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
-> new file mode 100644
-> index 000000000000..8fbf584d4e19
-> --- /dev/null
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
-> @@ -0,0 +1,147 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * StarFive DWMAC platform driver
-> + *
-> + * Copyright(C) 2022 StarFive Technology Co., Ltd.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mfd/adi,max77541.yaml:134:7: [error] no new line character at the end of file (new-line-at-end-of-file)
 
-Hmm.. where did my copyright go?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,max77541.yaml: properties:adc:required: '-compatible' is not of type 'array'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,max77541.yaml: properties:adc:required: '-compatible' is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+./Documentation/devicetree/bindings/mfd/adi,max77541.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/regulator/adi,max77541.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/adi,max77541.yaml: ignoring, error in schema: properties: adc: required
+Error: Documentation/devicetree/bindings/mfd/adi,max77541.example.dts:99.13-14 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/mfd/adi,max77541.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
 
-> + *
-> + */
-> +
-> +#include <linux/of_device.h>
-> +#include "stmmac_platform.h"
-> +
-> +struct starfive_dwmac {
-> +       struct device *dev;
-> +       struct clk *clk_tx;
-> +       struct clk *clk_gtx;
-> +       struct clk *clk_gtxc;
-> +};
-> +
-> +static void starfive_eth_fix_mac_speed(void *priv, unsigned int speed)
-> +{
-> +       struct starfive_dwmac *dwmac = priv;
-> +       unsigned long rate;
-> +       int err;
-> +
-> +       switch (speed) {
-> +       case SPEED_1000:
-> +               rate = 125000000;
-> +               break;
-> +       case SPEED_100:
-> +               rate = 25000000;
-> +               break;
-> +       case SPEED_10:
-> +               rate = 2500000;
-> +               break;
-> +       default:
-> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
-> +               return;
-> +       }
-> +
-> +       err = clk_set_rate(dwmac->clk_gtx, rate);
-> +       if (err)
-> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
-> +}
-> +
-> +static void dwmac_starfive_clk_disable(void *clk)
-> +{
-> +       clk_disable_unprepare(clk);
-> +}
-> +
-> +static int starfive_eth_plat_probe(struct platform_device *pdev)
-> +{
-> +       struct plat_stmmacenet_data *plat_dat;
-> +       struct stmmac_resources stmmac_res;
-> +       struct starfive_dwmac *dwmac;
-> +       int err;
-> +
-> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +       if (err)
-> +               return err;
-> +
-> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> +       if (IS_ERR(plat_dat)) {
-> +               dev_err(&pdev->dev, "dt configuration failed\n");
-> +               return PTR_ERR(plat_dat);
-> +       }
-> +
-> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> +       if (!dwmac)
-> +               return -ENOMEM;
-> +
-> +       dwmac->clk_tx = devm_clk_get(&pdev->dev, "tx");
-> +       if (IS_ERR(dwmac->clk_tx))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-> +                                               "error getting tx clock\n");
-> +
-> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
-> +                             dwmac->clk_tx);
-> +       if (err)
-> +               return err;
-> +
-> +       err = clk_prepare_enable(dwmac->clk_tx);
-> +       if (err)
-> +               return dev_err_probe(&pdev->dev, err, "error enabling tx clock\n");
-> +
-> +       dwmac->clk_gtx = devm_clk_get(&pdev->dev, "gtx");
-> +       if (IS_ERR(dwmac->clk_gtx))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtx),
-> +                                               "error getting gtx clock\n");
-> +
-> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
-> +                             dwmac->clk_gtx);
-> +       if (err)
-> +               return err;
-> +
-> +       err = clk_prepare_enable(dwmac->clk_gtx);
-> +       if (err)
-> +               return dev_err_probe(&pdev->dev, err, "error enabling gtx clock\n");
+doc reference errors (make refcheckdocs):
 
-I think the 3 calls above can be simplified to devm_clk_get_enabled().
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221207090906.5896-3-okan.sahin@analog.com
 
-> +       dwmac->clk_gtxc = devm_clk_get(&pdev->dev, "gtxc");
-> +       if (IS_ERR(dwmac->clk_gtxc))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtxc),
-> +                                               "error getting gtxc clock\n");
-> +
-> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
-> +                             dwmac->clk_gtxc);
-> +       if (err)
-> +               return err;
-> +
-> +       err = clk_prepare_enable(dwmac->clk_gtxc);
-> +       if (err)
-> +               return dev_err_probe(&pdev->dev, err, "error enabling gtxc clock\n");
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Same here.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +
-> +       dwmac->dev = &pdev->dev;
-> +       plat_dat->fix_mac_speed = starfive_eth_fix_mac_speed;
-> +       plat_dat->init = NULL;
-> +       plat_dat->bsp_priv = dwmac;
-> +       plat_dat->dma_cfg->dche = true;
-> +
-> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-> +       if (err) {
-> +               stmmac_remove_config_dt(pdev, plat_dat);
-> +               return err;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id starfive_eth_plat_match[] = {
-> +       {.compatible = "starfive,dwmac"},
-> +       { }
-> +};
-> +
-> +static struct platform_driver starfive_eth_plat_driver = {
-> +       .probe  = starfive_eth_plat_probe,
-> +       .remove = stmmac_pltfr_remove,
-> +       .driver = {
-> +               .name = "starfive-eth-plat",
-> +               .pm = &stmmac_pltfr_pm_ops,
-> +               .of_match_table = starfive_eth_plat_match,
-> +       },
-> +};
-> +
-> +module_platform_driver(starfive_eth_plat_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
+pip3 install dtschema --upgrade
 
-Here you also seem to have removed me.
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +MODULE_AUTHOR("Yanhong Wang <yanhong.wang@starfivetech.com>");
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
