@@ -2,155 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7DB6456A9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 10:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58EA645610
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 10:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbiLGJh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 04:37:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47530 "EHLO
+        id S229759AbiLGJI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 04:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbiLGJhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 04:37:19 -0500
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2541F42F6B
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 01:37:09 -0800 (PST)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20221207093707epoutp047163cc5d82a53d5d3939f6e22db0858f~ueUABzOK_1034110341epoutp04M
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 09:37:07 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20221207093707epoutp047163cc5d82a53d5d3939f6e22db0858f~ueUABzOK_1034110341epoutp04M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1670405827;
-        bh=Snt2Sfm19TbPHC6NdC56oxXeITXd+ZYEHuxh4O0JQaQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QJ4ytBD10XwkIGoRLKN0mENTUxpizzKcz8oJWF117Wf4gKjVyZOXBCoSZ0nmMNlIk
-         Io6pZDD/4uY9uDkakmjtNwJfnM0tUQWDkQ4hVXVEkLTaaX7WoSvOE/0taAaWyu9CXS
-         iz8QH4fjTa9nHx3ylhdo7J5at90NhG2Ato2RQQWg=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20221207093706epcas5p4e951749315f8a19d00ca98014a49e353~ueT-XyLAV0772407724epcas5p4m;
-        Wed,  7 Dec 2022 09:37:06 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.181]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4NRscw5PfNz4x9Q1; Wed,  7 Dec
-        2022 09:37:04 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        69.A1.01710.0CE50936; Wed,  7 Dec 2022 18:37:04 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20221207085855epcas5p17245364dc058b29f7edcabdfc5dfb456~udypkPXdz2875028750epcas5p1-;
-        Wed,  7 Dec 2022 08:58:55 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20221207085855epsmtrp1cbfc1a9d59a1249d77aa826edad11a39~udypjcrsW2582425824epsmtrp1X;
-        Wed,  7 Dec 2022 08:58:55 +0000 (GMT)
-X-AuditID: b6c32a49-c9ffa700000006ae-52-63905ec0a847
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        98.57.14392.FC550936; Wed,  7 Dec 2022 17:58:55 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20221207085854epsmtip1725b59b360fd2fe8f19de08c8177bb7a~udyoESAIK2541625416epsmtip1R;
-        Wed,  7 Dec 2022 08:58:54 +0000 (GMT)
-From:   Sriranjani P <sriranjani.p@samsung.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, alim.akhtar@samsung.com,
-        pankaj.dubey@samsung.com, ravi.patel@samsung.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Sriranjani P <sriranjani.p@samsung.com>
-Subject: [PATCH 4/4] arm64: dts: exynos: add dedicated SYSREG compatibles to
- Exynosautov9
-Date:   Wed,  7 Dec 2022 14:28:32 +0530
-Message-Id: <20221207085832.86909-5-sriranjani.p@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221207085832.86909-1-sriranjani.p@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPKsWRmVeSWpSXmKPExsWy7bCmlu6BuAnJBhf+Klo8mLeNzWL+kXOs
-        Fn0vHjJbbHp8jdXi8q45bBYzzu9jsli09Qu7xcMPe9gtWvceYbe4/WYdqwOXx6ZVnWwed67t
-        YfPYvKTeo2/LKkaPz5vkAlijsm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTy
-        EnNTbZVcfAJ03TJzgI5SUihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYFOgVJ+YW
-        l+al6+WlllgZGhgYmQIVJmRn7Gr5w1gwgati6ZGyBsa1HF2MnBwSAiYS015dZu9i5OIQEtjN
-        KHHy6XFWkISQwCdGif7bThCJb4wSqyZcZoLpuPljClTHXkaJD9P2skA4rUwS2x8tZQepYhPQ
-        lWi99pkJJCEisIRRorV7FyOIwywwhVHi2K9ljCBVwgLREgeebQLrYBFQlVh1fDcLiM0rYCux
-        8vpRdoh98hKrNxxgBrE5Bewkvu1oYQMZJCFwi13ixdsTLBBFLhI3/n1jhrCFJV4d3wLVLCXx
-        sr8Nyk6X2HxkMyuEnSPR0dQMVW8vceDKHKA5HEDXaUqs36UPEZaVmHpqHdjPzAJ8Er2/n0D9
-        zyuxYx6MrSax+FEnlC0jsfbRJ6jxHhJHbsxnhATLREaJ2S172Scwys1CWLGAkXEVo2RqQXFu
-        emqxaYFhXmo5PNqS83M3MYJTnpbnDsa7Dz7oHWJk4mA8xCjBwawkwvtiY2+yEG9KYmVValF+
-        fFFpTmrxIUZTYABOZJYSTc4HJt28knhDE0sDEzMzMxNLYzNDJXHepVM6koUE0hNLUrNTUwtS
-        i2D6mDg4pRqYFimka3w80Ki67OOLk4rf5z+apXc2myFRt3nVxlUF71UcSj9WFTI5HZpVONN+
-        500OV8HZiQfbVE6tt2pytckJr3+z1OdxiomXltEH7+Phi6O8DhXry7vc7NO8ceJO7nun3c1f
-        2dZNmcRX3s1XED1786HolQZLZx8P+sPuIVD9/VzM+k1BR9sz6sPKeFYJSntrhc0qfbw0Ik/C
-        avm/Q01vtq4+EPXNwsR3a5/zHcnDz3VUEyr9/n352L748JcD1e4n0ywzReuMmlYbJU9Pndqp
-        tHfNieKtP5jNk3L/35TNSLK49/7bd9VJqp6TvnW1OT3nPrxsjdJD8dqvhxjULfnLdMQXKc6Y
-        7tHGqxj+LDpTiaU4I9FQi7moOBEA7cJ9+AIEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGLMWRmVeSWpSXmKPExsWy7bCSnO750AnJBvMea1g8mLeNzWL+kXOs
-        Fn0vHjJbbHp8jdXi8q45bBYzzu9jsli09Qu7xcMPe9gtWvceYbe4/WYdqwOXx6ZVnWwed67t
-        YfPYvKTeo2/LKkaPz5vkAlijuGxSUnMyy1KL9O0SuDJ2tfxhLJjAVbH0SFkD41qOLkZODgkB
-        E4mbP6awdzFycQgJ7GaUOLtnNxtEQkbi5IMlzBC2sMTKf8+hipqZJFp+zGEBSbAJ6Eq0XvvM
-        BJIQEVjFKHHm0VQwh1lgBqPE0qVnwEYJC0RKPG37yQRiswioSqw6vhusm1fAVmLl9aPsECvk
-        JVZvOAC2jlPATuLbjhawXiGgmnsPl7NNYORbwMiwilEytaA4Nz232LDAMC+1XK84Mbe4NC9d
-        Lzk/dxMjOCi1NHcwbl/1Qe8QIxMH4yFGCQ5mJRHeFxt7k4V4UxIrq1KL8uOLSnNSiw8xSnOw
-        KInzXug6GS8kkJ5YkpqdmlqQWgSTZeLglGpgOi4/6YHrr+iVp+0UvSel3yx+yHh+ofEa+wl7
-        tcrZn9rU/p+8jc3mUm3y39mfv30t6nk6P/tyjdKU8x0yd5+VvegKsdbcNjl5j1umAFfYfN7t
-        gkExZiu0g8zm9n95+NHaof118ZS2R4pfNroXcE3iuDhRuXCr32MRH99zJjZFR60dv7Nc4hLS
-        zLrQ9cytauv3lrS/e54sm5choMdwpGyL77/y+N3JX3I49hy/bhtVUbE1pGC5leBxkf7ihS6m
-        ei98vhxqeMnuou01ffa8uWU6P/a+vn2Hv+u7c/1E46tbmF894+nuvlq5Jpz9mdmEicqvotbY
-        ic58xB12/Cn3+W0W5gyBlaIZS3/uiWV7VnhLQYmlOCPRUIu5qDgRAE/6xR+5AgAA
-X-CMS-MailID: 20221207085855epcas5p17245364dc058b29f7edcabdfc5dfb456
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221207085855epcas5p17245364dc058b29f7edcabdfc5dfb456
-References: <20221207085832.86909-1-sriranjani.p@samsung.com>
-        <CGME20221207085855epcas5p17245364dc058b29f7edcabdfc5dfb456@epcas5p1.samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229842AbiLGJIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 04:08:45 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF9015A3C
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 01:08:41 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id b9so20161231ljr.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 01:08:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8WyD6+4TOtnUZ3buZrfTvZlmLnV/84EmqHh/FS/HaPA=;
+        b=L51sXgM7Hxi4SbUu1GAGwaWH8+oChEaG+fH/OfL9hIiFxjSBSLXKFotpowsHk3SDhN
+         p4cZ9Blp6YSzDOgACKD9avjX7BW17+aEsZ3QYKvjRXFuZp75GP7SmTGJDzFOnsShyeDj
+         11UruWJXKsGl029Y26Lg4SX+I2DtKEoj5FTQFMCWtF3/Z1KuUX3gM0t7OuDl12x3tc+j
+         /1IvglKFAGAeHBnwqkQne+a7jkoBQfQ6jVctZJsAT1zyYX5oj/Wev1yD4YvQfff/nUh8
+         p//ZmuGEqWgyIBpjMAU1ix+krZXB5tg9XLOL6SGmrshHF3sfOrGuBANw9h9OADYmOT2g
+         6cmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8WyD6+4TOtnUZ3buZrfTvZlmLnV/84EmqHh/FS/HaPA=;
+        b=2n2Qfg6+Ns6fBqGihYcKmvIjUQ53HXPfWozwlx1kE3a0c3172Xj6Fjy1nEO7AB7dJ6
+         Z2xDIPEv+VFmA0n7EeUP0Yk6APNtZA4VTXrvpwMZKTD8svZu9SAp/Qz0/NOzVHAunwfr
+         hp1Jt5uiE2R7FfG9XLXGngc5FOIfC06VPMW8hXldUNqzmbKVe9DsMrnnqgeAogdluj3I
+         mQwG0Ej5q9p/lvEce8u75z7x0NsueM/dB1DiLPjGUC6l3CCn5J7vkUvK4Dj5Gjnc91H2
+         B4d0/G/CKbYtJxys8jQuxZilczDsbiA8nW3ecFGT5ICFWs1o7b3w8tkGG4wdC/aVf4K3
+         eEvg==
+X-Gm-Message-State: ANoB5pnI/J7f14y3Y9rWm+RArlvE/AgL7y+jhm4Nri+30S06qsmSf39D
+        QVRnzVj+qmmjwdvjiSN7WuFlSw==
+X-Google-Smtp-Source: AA0mqf5csyV+ZQkovsgzCNVOH5rNxgnnX0/bj5YjAEE7jb/b2fXvUxMbfi0o2/X1/JDCViBzm8O8bg==
+X-Received: by 2002:a2e:96d6:0:b0:279:dcde:84b2 with SMTP id d22-20020a2e96d6000000b00279dcde84b2mr7575311ljj.207.1670404120162;
+        Wed, 07 Dec 2022 01:08:40 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id 142-20020a2e0994000000b00279a5b85791sm69308ljj.88.2022.12.07.01.08.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 01:08:39 -0800 (PST)
+Message-ID: <ebd963e5-fc27-b70d-8cc4-b18978a5de39@linaro.org>
+Date:   Wed, 7 Dec 2022 10:08:38 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 8/9] media: dt-bindings: nvidia,tegra-cec: convert to
+ DT schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Joe Tessler <jrt@google.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Jeff Chase <jnchase@google.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20221205151845.21618-1-krzysztof.kozlowski@linaro.org>
+ <20221205151845.21618-9-krzysztof.kozlowski@linaro.org>
+ <Y49vm34cwgilAA33@orome>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y49vm34cwgilAA33@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynosautov9 has several different SYSREGs, so use dedicated compatibles
-for them.
+On 06/12/2022 17:36, Thierry Reding wrote:
+> On Mon, Dec 05, 2022 at 04:18:44PM +0100, Krzysztof Kozlowski wrote:
+>> Convert Nvidia Tegra HDMI CEC bindings to DT schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>> ---
+>>  .../bindings/media/cec/nvidia,tegra-cec.yaml  | 58 +++++++++++++++++++
+>>  .../devicetree/bindings/media/tegra-cec.txt   | 27 ---------
+>>  MAINTAINERS                                   |  2 +-
+>>  3 files changed, 59 insertions(+), 28 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/media/cec/nvidia,tegra-cec.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/media/tegra-cec.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/cec/nvidia,tegra-cec.yaml b/Documentation/devicetree/bindings/media/cec/nvidia,tegra-cec.yaml
+>> new file mode 100644
+>> index 000000000000..9a4025ff7fad
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/cec/nvidia,tegra-cec.yaml
+> 
+> For consistency with other DT bindings on Tegra, it'd be good to name
+> this nvidia,tegra114-cec.yaml since that's the first generation where
+> this IP was added. Not a big deal, though.
 
-Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Sure, I can rename it.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 5dc361734cfe..d3c5cdeff47f 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -370,17 +370,20 @@
- 		};
- 
- 		syscon_fsys2: syscon@17c20000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-fsys2-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x17c20000 0x1000>;
- 		};
- 
- 		syscon_peric0: syscon@10220000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-peric0-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x10220000 0x2000>;
- 		};
- 
- 		syscon_peric1: syscon@10820000 {
--			compatible = "samsung,exynosautov9-sysreg", "syscon";
-+			compatible = "samsung,exynosautov9-peric1-sysreg",
-+				     "samsung,exynosautov9-sysreg", "syscon";
- 			reg = <0x10820000 0x2000>;
- 		};
- 
--- 
-2.17.1
+> 
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/cec/nvidia,tegra-cec.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nvidia Tegra HDMI CEC
+> 
+> Again, for consistency with other bindings, NVIDIA is the preferred
+> spelling. It's not a big deal and could be fixed up in a subsequent
+> patch, there are a few other cases where the alternative spelling has
+> been used.
+> 
+> The rest looks okay, so either way:
+> 
+> Acked-by: Thierry Reding <treding@nvidia.com>
+
+OK
+
+Best regards,
+Krzysztof
 
