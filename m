@@ -2,150 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A31264631D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 22:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4266646342
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 22:32:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229564AbiLGVNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 16:13:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51006 "EHLO
+        id S229614AbiLGVcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 16:32:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiLGVNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 16:13:45 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F4DB1741D;
-        Wed,  7 Dec 2022 13:13:44 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id k189so3099068oif.7;
-        Wed, 07 Dec 2022 13:13:44 -0800 (PST)
+        with ESMTP id S229557AbiLGVcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 16:32:17 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF705E3F2
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 13:32:17 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id b16so15599581yba.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 13:32:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=cBEAHRQUmQbIelBI60mcdGrH2vQqqJhfYOv8Km35M8bxP8JECzdc6Tmjn3quFvE14b
+         FHzTZWNaTCgsFofoxqvbxVXU4TNZkjsQy3pz++7azDlEcdJjk3DK2t6n/M9WxcnbKPF1
+         xtM+i5qpMNQzQhL6q6OXvpeEseD7PhkxowLnYSKZVUEwmEmTHVr+QmE9OLgGipHTZUc7
+         03SAldUyiEpaiv4KOoYaX0w6HTYkQH4G887y7LQdMVycPBalAydW1qOYGpyJbHne8n2S
+         zWyADAOPvXaHC5o4cXcP7udFqeTywYEFFNFLcO+CMomfb7EhM9fUHMrHVjhliAMNVkxJ
+         qV9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ODpnYyfaXKRv/tcoyL5sYgiHCqzwZL7rK+tRZUQXp6o=;
-        b=6SOPW4fSks6mKZCVv0U5AxmZQ5GYJZflzPLiJiLbNFd4ZFfOLx6c4/gS8Viau1EL9x
-         tXQdCngs7idLXn5JUqBrdTtDKgwYzEEZdWkxLsHDkw0BpJLTPnW68UVWZImbqrASW9y9
-         YbxQIAXnOrI9y+v1sXIfR7JkOcljOnNWQIco3+VDEuZAu31qAUH6iplOsv81Y38r+YKb
-         X27EfRuqLnhUeYvl5XSUoMQNaZn4F5FTckljOk4pzex2/rci0k8ipnHrmtuiYBsc+G8A
-         Olhg7GAfWPUGEU3nLteHnoEq7jUYWtLHBEhVGncXsj+lmYrjw30lg2oS2ei+KDSLqAa/
-         chaA==
-X-Gm-Message-State: ANoB5pmH2R3DbVOa7gG9hmM+2P6UufXTpYu18xhnok+fFAkIjY/pAxVf
-        ZQE9Zus44a7GWQN2eQ9vmeXVkQPtjQ==
-X-Google-Smtp-Source: AA0mqf7XhwR8ZwBKB+ZE6mPcI5YuuPDn5J8tDe4dKM9yKhKS+fB6MIl0usQDA2+jWSXcGjkoFGfafw==
-X-Received: by 2002:a05:6808:188:b0:35c:3410:ac6d with SMTP id w8-20020a056808018800b0035c3410ac6dmr7797622oic.4.1670447623659;
-        Wed, 07 Dec 2022 13:13:43 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 24-20020aca1018000000b0035e461d9b1bsm311562oiq.50.2022.12.07.13.13.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Dec 2022 13:13:43 -0800 (PST)
-Received: (nullmailer pid 2849012 invoked by uid 1000);
-        Wed, 07 Dec 2022 21:13:42 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280: Fix CPU nodes compatible string
-Date:   Wed,  7 Dec 2022 15:13:27 -0600
-Message-Id: <20221207211327.2848665-1-robh@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=DYIjQmhSZun5yKFtYlZ/AUufknalakvFYJuKXndRKORSaI1vhSqMGK0qHntEC7F9OK
+         QrsEF/wCbB/xtRz/LXyGID4HkLHP/wUahutKvkp4eWBPSu9BGQHRFv3AAMU2eh3p847X
+         FG2BNqIDwzGxvw8jIa8VmdJUDypFiUIHciyEudRu3gYD/ksDq5uBXWgKYuskaRm63733
+         8wNeqp9U9kNY1Kn+f4hK8DOwpE5juCSIAulgjgOBmEikzdYzVm22OHUIM+bWmhxqBFy3
+         gAO5tNX+AekZ6yGVdmiZIMLjoie7myEIldBBQaK7Ega+TAGTAyae43du6BRaXIOAGnYP
+         uuMg==
+X-Gm-Message-State: ANoB5pmLzhYdv6dAvp9F2neSlmQyweGVX0QkPvQLXMi9sqYIUEPE118t
+        aRoLhL/GYZGd5l6ValR/hV/kKvaPEdsag4/v7bQ=
+X-Google-Smtp-Source: AA0mqf7m/bIV41zxUFCCnh8WEkTndUuv4lpupE160I0tB+lSIWpvTYECHtY1dbaIEucmyPvLaAt1Uh1bkLKQrc8xBRc=
+X-Received: by 2002:a5b:4d0:0:b0:703:7022:cb49 with SMTP id
+ u16-20020a5b04d0000000b007037022cb49mr8035846ybp.50.1670448735805; Wed, 07
+ Dec 2022 13:32:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Received: by 2002:a05:7010:a7a2:b0:2ee:ec03:13c0 with HTTP; Wed, 7 Dec 2022
+ 13:32:15 -0800 (PST)
+Reply-To: Gregdenzell9@gmail.com
+From:   Greg Denzell <dgreg5440@gmail.com>
+Date:   Wed, 7 Dec 2022 21:32:15 +0000
+Message-ID: <CACjOjkWH0Yjx9rbNj=ah_S-HHWHekDV6VEGo_ahWDZWj5UJh6w@mail.gmail.com>
+Subject: Hello Friend, This will remind you again that I have not yet received
+ your reply to my last message to you.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,EMPTY_MESSAGE,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:b33 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [dgreg5440[at]gmail.com]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [gregdenzell9[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [dgreg5440[at]gmail.com]
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  2.3 EMPTY_MESSAGE Message appears to have no textual parts
+        *  2.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'arm,kryo' is not documented and is not an Arm Ltd thing either as that
-is Qualcomm branding. The correct compatible is 'qcom,kryo'.
-
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 212580316d3e..f06cc7588acc 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -166,7 +166,7 @@ cpus {
- 
- 		CPU0: cpu@0 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-@@ -189,7 +189,7 @@ L3_0: l3-cache {
- 
- 		CPU1: cpu@100 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-@@ -209,7 +209,7 @@ L2_100: l2-cache {
- 
- 		CPU2: cpu@200 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-@@ -229,7 +229,7 @@ L2_200: l2-cache {
- 
- 		CPU3: cpu@300 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-@@ -249,7 +249,7 @@ L2_300: l2-cache {
- 
- 		CPU4: cpu@400 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x400>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
-@@ -269,7 +269,7 @@ L2_400: l2-cache {
- 
- 		CPU5: cpu@500 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x500>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
-@@ -289,7 +289,7 @@ L2_500: l2-cache {
- 
- 		CPU6: cpu@600 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x600>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
-@@ -309,7 +309,7 @@ L2_600: l2-cache {
- 
- 		CPU7: cpu@700 {
- 			device_type = "cpu";
--			compatible = "arm,kryo";
-+			compatible = "qcom,kryo";
- 			reg = <0x0 0x700>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
--- 
-2.35.1
 
