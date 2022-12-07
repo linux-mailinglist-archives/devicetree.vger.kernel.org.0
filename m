@@ -2,308 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F5A645C15
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA77645C39
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 15:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbiLGOIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 09:08:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34692 "EHLO
+        id S230136AbiLGORD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 09:17:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbiLGOIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:08:41 -0500
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D699045ECA
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 06:08:37 -0800 (PST)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        with ESMTP id S230061AbiLGORC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 09:17:02 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D406C55A95
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 06:16:56 -0800 (PST)
+Received: from mail-yw1-f200.google.com (mail-yw1-f200.google.com [209.85.128.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0E1893F291;
-        Wed,  7 Dec 2022 15:08:34 +0100 (CET)
-Date:   Wed, 7 Dec 2022 15:08:32 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com
-Subject: Re: [v10] drm/msm/disp/dpu1: add support for dspp sub block flush in
- sc7280
-Message-ID: <20221207140832.6r2kznoulfek7yye@SoMainline.org>
-References: <1670417963-19426-1-git-send-email-quic_kalyant@quicinc.com>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5339F41548
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 14:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1670422615;
+        bh=0TQumGkPBfGZkbUnE2eIaWNrjWJVr3n7Xa2FW9xBHzQ=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=WYpt88iMaJBsbjbmZ3RHxmRQincDSyvWYSjh42RGUUmfKfsdLcCLME4+KnaoewxE4
+         7V5esq7J72g3syejjSOpwaaGTZSS6xLa7/pXQ2ILzBwNlphCirmjoKewiQ39tsT6NZ
+         cp+y+HqROhzkufeoYHO2a7pBYayTF0+OXp1gOnuUKSFwoz8TrAanBiWMoudFkjbPct
+         GfE/SdfjamzO+SzhExEv00YHzTVmZs7V8o1gvg/VLBJcnvrZj2A6FHaBCTcikh703C
+         hpUQm/H6kUR2PCDbr45adYgb8OOOSD9ijcj3hEFhFqP5LzattXbs1qmSrjB4GMV5dh
+         +p/Qe3Z53J+jA==
+Received: by mail-yw1-f200.google.com with SMTP id 00721157ae682-3fe3bedbb16so15519717b3.15
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 06:16:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0TQumGkPBfGZkbUnE2eIaWNrjWJVr3n7Xa2FW9xBHzQ=;
+        b=z++e/Kt2RVmpytYYMD5AyP0cfrML2sXpCj5fZH6qLmyVJ0xBufMy2sSdZCjDDxOmKK
+         lUP+qZodwArcIm9pxjR916t7LB5k4Xhmzb/QATaM7e3GFM3noYHu4ywRNbJn/vr0SsDH
+         rhtKqyDKJrrpYg0mwgmOYuFpqIYhGlTtjI4Uuoh0gHK6G8P2RdbuHhjcwblKhPNUMBQ9
+         GERegIct/gN7uCnpl3qr3arfR7jtAEVH+Q6WX4PJxyljmWPVI2AWXBNi3Qt8fFC/BH+8
+         BmAkm/g1siZQ3l0ZtM9INBTU/XCwnz8oMCELys1BZ6JSJeeHt7p/a0h3uFHxa1TbN1yE
+         yGiQ==
+X-Gm-Message-State: ANoB5pnN5NJp7tc0Tr32XsFQEby694FjTvBl8946C5eASJRU0UJss/0B
+        0p6hvB1+ctRD0WqIoDcPTFHOiiVBsgZkEXdzWlZMaHtIhBy5TIKGd54Kv9scZvF+rKWlAnq08Qg
+        WgB2wpFD6Q4BB9hNhYSjDKbFT+AnvGW/gmWpSd6smAe2sroC2Fi/U/dE=
+X-Received: by 2002:a81:1e04:0:b0:391:fccf:db48 with SMTP id e4-20020a811e04000000b00391fccfdb48mr19742465ywe.257.1670422614387;
+        Wed, 07 Dec 2022 06:16:54 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf5jJpSrSo/VPL2KWSG5PgoBvSpVrm0KRx1TI9YUKLQbZERI9ER36jaV4ypZMpKyQmKmqs8L1xzE8rxQNhfbb7A=
+X-Received: by 2002:a81:1e04:0:b0:391:fccf:db48 with SMTP id
+ e4-20020a811e04000000b00391fccfdb48mr19742434ywe.257.1670422614064; Wed, 07
+ Dec 2022 06:16:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1670417963-19426-1-git-send-email-quic_kalyant@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com> <20221201090242.2381-6-yanhong.wang@starfivetech.com>
+In-Reply-To: <20221201090242.2381-6-yanhong.wang@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Wed, 7 Dec 2022 15:16:37 +0100
+Message-ID: <CAJM55Z9bdpxLsKOM8UhE=b5Z2uPzL227N1-x6d8AuvkZHRajqA@mail.gmail.com>
+Subject: Re: [PATCH v1 5/7] net: stmmac: Add StarFive dwmac supoort
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-07 04:59:23, Kalyan Thota wrote:
-> Flush mechanism for DSPP blocks has changed in sc7280 family, it
-> allows individual sub blocks to be flushed in coordination with
-> master flush control.
-> 
-> Representation: master_flush && (PCC_flush | IGC_flush .. etc )
-> 
-> This change adds necessary support for the above design.
-> 
-> Changes in v1:
-> - Few nits (Doug, Dmitry)
-> - Restrict sub-block flush programming to dpu_hw_ctl file (Dmitry)
-> 
-> Changes in v2:
-> - Move the address offset to flush macro (Dmitry)
-> - Seperate ops for the sub block flush (Dmitry)
-> 
-> Changes in v3:
-> - Reuse the DPU_DSPP_xx enum instead of a new one (Dmitry)
-> 
-> Changes in v4:
-> - Use shorter version for unsigned int (Stephen)
-> 
-> Changes in v5:
-> - Spurious patch please ignore.
-> 
-> Changes in v6:
-> - Add SOB tag (Doug, Dmitry)
-> 
-> Changes in v7:
-> - Cache flush mask per dspp (Dmitry)
-> - Few nits (Marijn)
-> 
-> Changes in v8:
-> - Few nits (Marijn)
-> 
-> Changes in v9:
-> - use DSPP enum while accessing flush mask to make it readable (Dmitry)
-> - Few nits (Dmitry)
-> 
-> Changes in v10:
-> - fix white spaces in a seperate patch (Dmitry)
-> 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+Hi Yanhong,
+
+Thanks for submitting this. Again please don't change the author of
+the commits you cherry-picked from my tree. This is why we have the
+Co-developed-by: tag so you can mark that you added or in this case
+removed code.
+I'd hoped you would still include the support for the JH7100 though.
+
+Also you seem to have changed the name of some of the functions.
+Please at least keep the prefix consistent if you do that. Now it's a
+mix of dwmac_starfive_, starfive_eth_ and starfive_eth_plat.
+
+On Thu, 1 Dec 2022 at 10:07, Yanhong Wang <yanhong.wang@starfivetech.com> wrote:
+>
+> This adds StarFive dwmac driver support on the StarFive JH7110 SoCs.
+>
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c       |  2 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |  5 ++-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  4 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 44 ++++++++++++++++++++++++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h     |  5 ++-
->  5 files changed, 55 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index 601d687..4170fbe 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -766,7 +766,7 @@ static void _dpu_crtc_setup_cp_blocks(struct drm_crtc *crtc)
->  
->  		/* stage config flush mask */
->  		ctl->ops.update_pending_flush_dspp(ctl,
-> -			mixer[i].hw_dspp->idx);
-> +			mixer[i].hw_dspp->idx, DPU_DSPP_PCC);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> index 27f029f..0eecb2f 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> @@ -65,7 +65,10 @@
->  	(PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
->  
->  #define CTL_SC7280_MASK \
-> -	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
-> +	(BIT(DPU_CTL_ACTIVE_CFG) | \
-> +	 BIT(DPU_CTL_FETCH_ACTIVE) | \
-> +	 BIT(DPU_CTL_VM_CFG) | \
-> +	 BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
->  
->  #define MERGE_3D_SM8150_MASK (0)
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 38aa38a..126ee37 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -161,10 +161,12 @@ enum {
->   * DSPP sub-blocks
->   * @DPU_DSPP_PCC             Panel color correction block
->   * @DPU_DSPP_GC              Gamma correction block
-> + * @DPU_DSPP_IGC             Inverse gamma correction block
->   */
->  enum {
->  	DPU_DSPP_PCC = 0x1,
->  	DPU_DSPP_GC,
-> +	DPU_DSPP_IGC,
->  	DPU_DSPP_MAX
->  };
->  
-> @@ -191,6 +193,7 @@ enum {
->   * @DPU_CTL_SPLIT_DISPLAY:	CTL supports video mode split display
->   * @DPU_CTL_FETCH_ACTIVE:	Active CTL for fetch HW (SSPPs)
->   * @DPU_CTL_VM_CFG:		CTL config to support multiple VMs
-> + * @DPU_CTL_DSPP_BLOCK_FLUSH  CTL config to support dspp sub-block flush
+>  MAINTAINERS                                   |   1 +
+>  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+>  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>  .../stmicro/stmmac/dwmac-starfive-plat.c      | 147 ++++++++++++++++++
+>  4 files changed, 160 insertions(+)
+>  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7eaaec8d3b96..36cb00cf860b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19610,6 +19610,7 @@ STARFIVE DWMAC GLUE LAYER
+>  M:     Yanhong Wang <yanhong.wang@starfivetech.com>
+>  S:     Maintained
+>  F:     Documentation/devicetree/bindings/net/starfive,dwmac-plat.yaml
+> +F:     drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+>
+>  STARFIVE PINCTRL DRIVER
+>  M:     Emil Renner Berthing <kernel@esmil.dk>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> index 31ff35174034..1e29cd3770b9 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> @@ -235,6 +235,17 @@ config DWMAC_INTEL_PLAT
+>           the stmmac device driver. This driver is used for the Intel Keem Bay
+>           SoC.
+>
+> +config DWMAC_STARFIVE_PLAT
 
-The above uses tabs, why does this use spaces?
+Why did you add the _PLAT suffix? None of the other SoC wrappers have this..
 
->   * @DPU_CTL_MAX
->   */
->  enum {
-> @@ -198,6 +201,7 @@ enum {
->  	DPU_CTL_ACTIVE_CFG,
->  	DPU_CTL_FETCH_ACTIVE,
->  	DPU_CTL_VM_CFG,
-> +	DPU_CTL_DSPP_SUB_BLOCK_FLUSH,
->  	DPU_CTL_MAX
->  };
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index a35ecb6..e801be1 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -33,6 +33,7 @@
->  #define   CTL_INTF_FLUSH                0x110
->  #define   CTL_INTF_MASTER               0x134
->  #define   CTL_FETCH_PIPE_ACTIVE         0x0FC
-> +#define   CTL_DSPP_n_FLUSH(n)           ((0x13C) + ((n) * 4))
->  
->  #define CTL_MIXER_BORDER_OUT            BIT(24)
->  #define CTL_FLUSH_MASK_CTL              BIT(17)
-> @@ -113,6 +114,9 @@ static inline void dpu_hw_ctl_clear_pending_flush(struct dpu_hw_ctl *ctx)
->  	trace_dpu_hw_ctl_clear_pending_flush(ctx->pending_flush_mask,
->  				     dpu_hw_ctl_get_flush_register(ctx));
->  	ctx->pending_flush_mask = 0x0;
+> +       tristate "StarFive dwmac support"
+> +       depends on OF && COMMON_CLK
+> +       depends on STMMAC_ETH
+> +       default SOC_STARFIVE
+> +       help
+> +         Support for ethernet controllers on StarFive RISC-V SoCs
 > +
-> +	memset(ctx->pending_dspp_flush_mask, 0,
-> +		sizeof(ctx->pending_dspp_flush_mask));
->  }
->  
->  static inline void dpu_hw_ctl_update_pending_flush(struct dpu_hw_ctl *ctx,
-> @@ -130,6 +134,8 @@ static u32 dpu_hw_ctl_get_pending_flush(struct dpu_hw_ctl *ctx)
->  
->  static inline void dpu_hw_ctl_trigger_flush_v1(struct dpu_hw_ctl *ctx)
->  {
-> +	int dspp;
+> +         This selects the StarFive platform specific glue layer support for
+> +         the stmmac device driver. This driver is used for StarFive RISC-V SoCs.
 > +
->  	if (ctx->pending_flush_mask & BIT(MERGE_3D_IDX))
->  		DPU_REG_WRITE(&ctx->hw, CTL_MERGE_3D_FLUSH,
->  				ctx->pending_merge_3d_flush_mask);
-> @@ -140,6 +146,11 @@ static inline void dpu_hw_ctl_trigger_flush_v1(struct dpu_hw_ctl *ctx)
->  		DPU_REG_WRITE(&ctx->hw, CTL_WB_FLUSH,
->  				ctx->pending_wb_flush_mask);
->  
-> +	for(dspp = DSPP_0; dspp < DSPP_MAX; dspp++)
+>  config DWMAC_VISCONTI
+>         tristate "Toshiba Visconti DWMAC support"
+>         default ARCH_VISCONTI
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> index d4e12e9ace4f..a63ab0ab5071 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> @@ -31,6 +31,7 @@ obj-$(CONFIG_DWMAC_DWC_QOS_ETH)       += dwmac-dwc-qos-eth.o
+>  obj-$(CONFIG_DWMAC_INTEL_PLAT) += dwmac-intel-plat.o
+>  obj-$(CONFIG_DWMAC_GENERIC)    += dwmac-generic.o
+>  obj-$(CONFIG_DWMAC_IMX8)       += dwmac-imx.o
+> +obj-$(CONFIG_DWMAC_STARFIVE_PLAT)      += dwmac-starfive-plat.o
+>  obj-$(CONFIG_DWMAC_VISCONTI)   += dwmac-visconti.o
+>  stmmac-platform-objs:= stmmac_platform.o
+>  dwmac-altr-socfpga-objs := altr_tse_pcs.o dwmac-socfpga.o
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+> new file mode 100644
+> index 000000000000..8fbf584d4e19
+> --- /dev/null
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive-plat.c
+> @@ -0,0 +1,147 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * StarFive DWMAC platform driver
+> + *
+> + * Copyright(C) 2022 StarFive Technology Co., Ltd.
 
-Space between for and (?
+Hmm.. where did my copyright go?
 
-> +		if (ctx->pending_dspp_flush_mask[dspp - DSPP_0])
-> +			DPU_REG_WRITE(&ctx->hw, CTL_DSPP_n_FLUSH(dspp - DSPP_0),
-> +				ctx->pending_dspp_flush_mask[dspp - DSPP_0]);
-
-Shouldn't this loop as a whole check if _any_ DSPP flush is requested
-via `pending_flush_mask & BIT(29)`?  The other flushes don't check the
-per-block mask value either (and could write zero that way) but only
-base this check on the presence of a global flush mask for that block.
-
+> + *
+> + */
 > +
->  	DPU_REG_WRITE(&ctx->hw, CTL_FLUSH, ctx->pending_flush_mask);
->  }
->  
-> @@ -287,8 +298,9 @@ static void dpu_hw_ctl_update_pending_flush_merge_3d_v1(struct dpu_hw_ctl *ctx,
->  }
->  
->  static void dpu_hw_ctl_update_pending_flush_dspp(struct dpu_hw_ctl *ctx,
-> -	enum dpu_dspp dspp)
-> +	enum dpu_dspp dspp, u32 dspp_sub_blk)
->  {
+> +#include <linux/of_device.h>
+> +#include "stmmac_platform.h"
 > +
-
-Empty line needed for?
-
->  	switch (dspp) {
->  	case DSPP_0:
->  		ctx->pending_flush_mask |= BIT(13);
-> @@ -307,6 +319,30 @@ static void dpu_hw_ctl_update_pending_flush_dspp(struct dpu_hw_ctl *ctx,
->  	}
->  }
->  
-> +static void dpu_hw_ctl_update_pending_flush_dspp_subblocks(
-> +	struct dpu_hw_ctl *ctx,	enum dpu_dspp dspp, u32 dspp_sub_blk)
+> +struct starfive_dwmac {
+> +       struct device *dev;
+> +       struct clk *clk_tx;
+> +       struct clk *clk_gtx;
+> +       struct clk *clk_gtxc;
+> +};
+> +
+> +static void starfive_eth_fix_mac_speed(void *priv, unsigned int speed)
 > +{
+> +       struct starfive_dwmac *dwmac = priv;
+> +       unsigned long rate;
+> +       int err;
 > +
-
-And here?
-
-> +	if (dspp >= DSPP_MAX)
-> +		return;
+> +       switch (speed) {
+> +       case SPEED_1000:
+> +               rate = 125000000;
+> +               break;
+> +       case SPEED_100:
+> +               rate = 25000000;
+> +               break;
+> +       case SPEED_10:
+> +               rate = 2500000;
+> +               break;
+> +       default:
+> +               dev_err(dwmac->dev, "invalid speed %u\n", speed);
+> +               return;
+> +       }
 > +
-> +	switch (dspp_sub_blk) {
-> +	case DPU_DSPP_IGC:
-> +		ctx->pending_dspp_flush_mask[dspp - DSPP_0] |= BIT(2);
-> +		break;
-> +	case DPU_DSPP_PCC:
-> +		ctx->pending_dspp_flush_mask[dspp - DSPP_0] |= BIT(4);
-> +		break;
-> +	case DPU_DSPP_GC:
-> +		ctx->pending_dspp_flush_mask[dspp - DSPP_0] |= BIT(5);
-> +		break;
-> +	default:
-> +		return;
-> +	}
-> +
-> +	ctx->pending_flush_mask |= BIT(29);
-
-Can/should we define an _IDX for this, like is done with MERGE_3D_IDX,
-DSC_IDX, INTF_IDX and WB_IDX?
-
+> +       err = clk_set_rate(dwmac->clk_gtx, rate);
+> +       if (err)
+> +               dev_err(dwmac->dev, "failed to set tx rate %lu\n", rate);
 > +}
 > +
->  static u32 dpu_hw_ctl_poll_reset_status(struct dpu_hw_ctl *ctx, u32 timeout_us)
->  {
->  	struct dpu_hw_blk_reg_map *c = &ctx->hw;
-> @@ -675,7 +711,11 @@ static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
->  	ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
->  	ops->update_pending_flush_sspp = dpu_hw_ctl_update_pending_flush_sspp;
->  	ops->update_pending_flush_mixer = dpu_hw_ctl_update_pending_flush_mixer;
-> -	ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
-> +	if (cap & BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
-> +		ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp_subblocks;
-> +	else
-> +		ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
+> +static void dwmac_starfive_clk_disable(void *clk)
+> +{
+> +       clk_disable_unprepare(clk);
+> +}
 > +
->  	if (cap & BIT(DPU_CTL_FETCH_ACTIVE))
->  		ops->set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
->  };
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> index 96c012e..78611a8 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> @@ -152,9 +152,11 @@ struct dpu_hw_ctl_ops {
->  	 * No effect on hardware
->  	 * @ctx       : ctl path ctx pointer
->  	 * @blk       : DSPP block index
-> +	 * @dspp_sub_blk : DSPP sub-block index
->  	 */
->  	void (*update_pending_flush_dspp)(struct dpu_hw_ctl *ctx,
-> -		enum dpu_dspp blk);
-> +		enum dpu_dspp blk, u32 dspp_sub_blk);
+> +static int starfive_eth_plat_probe(struct platform_device *pdev)
+> +{
+> +       struct plat_stmmacenet_data *plat_dat;
+> +       struct stmmac_resources stmmac_res;
+> +       struct starfive_dwmac *dwmac;
+> +       int err;
 > +
->  	/**
->  	 * Write the value of the pending_flush_mask to hardware
->  	 * @ctx       : ctl path ctx pointer
-> @@ -242,6 +244,7 @@ struct dpu_hw_ctl {
->  	u32 pending_intf_flush_mask;
->  	u32 pending_wb_flush_mask;
->  	u32 pending_merge_3d_flush_mask;
-> +	u32 pending_dspp_flush_mask[DSPP_MAX - DSPP_0];
->  
->  	/* ops */
->  	struct dpu_hw_ctl_ops ops;
-> -- 
-> 2.7.4
-> 
+> +       err = stmmac_get_platform_resources(pdev, &stmmac_res);
+> +       if (err)
+> +               return err;
+> +
+> +       plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> +       if (IS_ERR(plat_dat)) {
+> +               dev_err(&pdev->dev, "dt configuration failed\n");
+> +               return PTR_ERR(plat_dat);
+> +       }
+> +
+> +       dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
+> +       if (!dwmac)
+> +               return -ENOMEM;
+> +
+> +       dwmac->clk_tx = devm_clk_get(&pdev->dev, "tx");
+> +       if (IS_ERR(dwmac->clk_tx))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
+> +                                               "error getting tx clock\n");
+> +
+> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
+> +                             dwmac->clk_tx);
+> +       if (err)
+> +               return err;
+> +
+> +       err = clk_prepare_enable(dwmac->clk_tx);
+> +       if (err)
+> +               return dev_err_probe(&pdev->dev, err, "error enabling tx clock\n");
+> +
+> +       dwmac->clk_gtx = devm_clk_get(&pdev->dev, "gtx");
+> +       if (IS_ERR(dwmac->clk_gtx))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtx),
+> +                                               "error getting gtx clock\n");
+> +
+> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
+> +                             dwmac->clk_gtx);
+> +       if (err)
+> +               return err;
+> +
+> +       err = clk_prepare_enable(dwmac->clk_gtx);
+> +       if (err)
+> +               return dev_err_probe(&pdev->dev, err, "error enabling gtx clock\n");
+
+I think the 3 calls above can be simplified to devm_clk_get_enabled().
+
+> +       dwmac->clk_gtxc = devm_clk_get(&pdev->dev, "gtxc");
+> +       if (IS_ERR(dwmac->clk_gtxc))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_gtxc),
+> +                                               "error getting gtxc clock\n");
+> +
+> +       err = devm_add_action(&pdev->dev, dwmac_starfive_clk_disable,
+> +                             dwmac->clk_gtxc);
+> +       if (err)
+> +               return err;
+> +
+> +       err = clk_prepare_enable(dwmac->clk_gtxc);
+> +       if (err)
+> +               return dev_err_probe(&pdev->dev, err, "error enabling gtxc clock\n");
+
+Same here.
+
+> +
+> +       dwmac->dev = &pdev->dev;
+> +       plat_dat->fix_mac_speed = starfive_eth_fix_mac_speed;
+> +       plat_dat->init = NULL;
+> +       plat_dat->bsp_priv = dwmac;
+> +       plat_dat->dma_cfg->dche = true;
+> +
+> +       err = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> +       if (err) {
+> +               stmmac_remove_config_dt(pdev, plat_dat);
+> +               return err;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id starfive_eth_plat_match[] = {
+> +       {.compatible = "starfive,dwmac"},
+> +       { }
+> +};
+> +
+> +static struct platform_driver starfive_eth_plat_driver = {
+> +       .probe  = starfive_eth_plat_probe,
+> +       .remove = stmmac_pltfr_remove,
+> +       .driver = {
+> +               .name = "starfive-eth-plat",
+> +               .pm = &stmmac_pltfr_pm_ops,
+> +               .of_match_table = starfive_eth_plat_match,
+> +       },
+> +};
+> +
+> +module_platform_driver(starfive_eth_plat_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("StarFive DWMAC platform driver");
+
+Here you also seem to have removed me.
+
+> +MODULE_AUTHOR("Yanhong Wang <yanhong.wang@starfivetech.com>");
+> --
+> 2.17.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
