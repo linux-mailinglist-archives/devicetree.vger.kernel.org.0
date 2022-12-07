@@ -2,184 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516E36461A3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 20:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9326461C2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Dec 2022 20:32:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229870AbiLGTXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Dec 2022 14:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44750 "EHLO
+        id S229762AbiLGTcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Dec 2022 14:32:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbiLGTXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 14:23:38 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E5836DCCD
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 11:23:37 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id co23so2058216wrb.4
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 11:23:36 -0800 (PST)
+        with ESMTP id S229576AbiLGTcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Dec 2022 14:32:24 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE3C663DC;
+        Wed,  7 Dec 2022 11:32:23 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id q1so17241586pgl.11;
+        Wed, 07 Dec 2022 11:32:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hH3Pz0smggYd5Ax4I5h47Equ8+9UzMYchJCtdBeu9ys=;
-        b=hcbeHlPaAJNF3WmImvRG5DLoo7M25beGkY5dSkH58WD89csIImpKtFEl2aaojQMyuV
-         IILTAq7TfHZJrdT8TRoLOQMZFMfdPwQbHeAKpe2pdpDnzeR/AqhV+EkywSLnbf2LtTqG
-         o8eJtEJLypeI93tInZCXkaqy3e1OqK+y9KNX4RAhmCs7LvBPWOO23+SluSULsYW3Ib4H
-         qSPO7x5s7gM7JQKq6fmpa3iD1r7UHFHgwRPYSYfS84q1f3kJRQKCGk4WOk9rb/81Ji2F
-         kTFBQdUNOzPq0Lav1KuuJY/QtLsk9L/Y7kmtH6XviSukmEHlEnzDRAtpdg7/K8oIHXoP
-         HEcQ==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CJ93t0qOhK77peLQli38loBDZSZoHQBfLCudn8XKKkU=;
+        b=SXJMcwQ/DX/x1scl/JInhAOMSXhTgG6NMqn0+f7F4uJvfw1ENl1Owc16iAdMtuKYZV
+         +eUJ6MG53Lh01wqJMd6+BBLGW+ASLyrTILLY/k8fcy3T1q3c0G2guTpUxDEZ+Cw7xiwq
+         5nv71OjcKpcKe1o8yphT4VWCfosowXpVq8F5taWYUqk/X0jcJiSsHJEcfPvqzh70Md7I
+         pVJu4/p2YnToPdRxt7oQFXliv+t6JQHRnhBtkIWmA1PpDjP5ebiwdFx3ie9dbI1oq7T/
+         fVANQn9sC5L4Sogum8Mi1HJ4qls2Do89SgYD/trpNdfJjBuDX56pZV6W0HB7hvxFRpoE
+         /x9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hH3Pz0smggYd5Ax4I5h47Equ8+9UzMYchJCtdBeu9ys=;
-        b=l6O6RVjabrFo7Ky8XtbehH5LDagVUvU5kQjMDE//OXu7Sd9pkLAk2be1LObAm2pojU
-         MUPevwtwMIVJH519H9s1HklKIR8E7CeqXH9MaNsOZX+Q3WJvn5S7hf1t/S4kzXC1lZDJ
-         +s7SmA2xEt7m3CmYPPegt18R2G1W8kfYgBxp1AcIH034Lju8zz+CfDourieFwRuxU5aV
-         VQNMgeCfI1n8kEQoXdZrjKlDFbBlOjGX8HxrBZSS0VSvVNW9KchhuDDgzTgj4N2PKHG/
-         IihVZPrvpHakYyZZw2+mkXB/wODGe1vNbhr/7GVNz+jiCzbxHHgFfSDA6j8UlkFyeilL
-         Vs5A==
-X-Gm-Message-State: ANoB5pk8csNsVAZ/ywYBKoBTpGFZHiuAkTgY+M7Nh/RPL38sKVjVx8dL
-        g46SC7yzny4ZHLIordif2qyapQ==
-X-Google-Smtp-Source: AA0mqf70kRRjkYWg4dhDpQXT4Rp1YjC8VnDb/WpHKKyQZlLwRuTOnMeU/4+13H9UiGXRio/S0e2gxQ==
-X-Received: by 2002:a5d:440b:0:b0:241:f901:a7e3 with SMTP id z11-20020a5d440b000000b00241f901a7e3mr39430454wrq.511.1670441016606;
-        Wed, 07 Dec 2022 11:23:36 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id w1-20020a5d5441000000b002422b462975sm19400355wrv.34.2022.12.07.11.23.35
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CJ93t0qOhK77peLQli38loBDZSZoHQBfLCudn8XKKkU=;
+        b=P/NlZFRX/34uBIbzxctF94PRLIi1Lhstjs0drm2pHdGq6XsJCSmHYjqb7Tk0zWQRQT
+         zx9K4QMQigwFTLGy0Dp37knnEKH5ugtZTFh7vX432b6fdZPGFGGnWaI0VrlHNHJDXp9k
+         iECYCjLd87GWaNZ027FFQpGQ2TSvP4VVQsB83LSsDiNUWNwUom5vpspaDezPPPRlMvrz
+         5uXiWnTeeL6uItSLepU6q90MMc+f8xUHgIpDkB0sOp7IrlJiyjaKAB0ivDNMl9ChQE4r
+         Z93PQHaZ4PmY+/x1eE4oGzpCMIbfPKNp7nHI/OrARjLM95am1DFfeOo2bl8Z+WQtadAp
+         bJJw==
+X-Gm-Message-State: ANoB5pnPX0XBgM92mEpTOzNX2Z9jyWraiLuVjeiDmt5CWDkJpquJWHO2
+        5ajb+r3D+VY+fzzORthd/d4=
+X-Google-Smtp-Source: AA0mqf5S9Wbej7daA71TN/mdshSxOTWOgPe3L9BDEC6euYukOmVdhOpbd6Jrdw3mr8NfWxb0vDjJEQ==
+X-Received: by 2002:a62:1b05:0:b0:576:91fa:8ed0 with SMTP id b5-20020a621b05000000b0057691fa8ed0mr22190841pfb.15.1670441543186;
+        Wed, 07 Dec 2022 11:32:23 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:7a61:38c7:d37a:7f43])
+        by smtp.gmail.com with ESMTPSA id l16-20020a170903121000b0018157b415dbsm15089573plh.63.2022.12.07.11.32.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Dec 2022 11:23:36 -0800 (PST)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 07 Dec 2022 20:23:27 +0100
-Subject: [PATCH v3 5/5] remoteproc: qcom_q6v5_pas: add sm8550 adsp, cdsp & mpss
- compatible & data
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-5-62162a1df718@linaro.org>
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
-To:     Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Wed, 07 Dec 2022 11:32:22 -0800 (PST)
+Date:   Wed, 7 Dec 2022 11:32:19 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-remoteproc@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-kernel@vger.kernel.org
-X-Mailer: b4 0.10.1
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: input: qcom,pm8921-keypad: convert
+ to YAML format
+Message-ID: <Y5DqQywrM6WjqwWA@google.com>
+References: <20221204061555.1355453-1-dmitry.baryshkov@linaro.org>
+ <20221204061555.1355453-2-dmitry.baryshkov@linaro.org>
+ <20221205220433.GA2684995-robh@kernel.org>
+ <E5C1A37F-5758-4026-9412-F13760C465D0@linaro.org>
+ <20221207170753.GA2402110-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221207170753.GA2402110-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the compatible & data for the aDSP, cDSP and MPSS found in
-the SM8550 SoC.
+On Wed, Dec 07, 2022 at 11:07:53AM -0600, Rob Herring wrote:
+> On Tue, Dec 06, 2022 at 05:20:16AM +0200, Dmitry Baryshkov wrote:
+> > 6 декабря 2022 г. 00:04:33 GMT+02:00, Rob Herring <robh@kernel.org> пишет:
+> > >On Sun, Dec 04, 2022 at 08:15:52AM +0200, Dmitry Baryshkov wrote:
+> > >> Convert the bindings for the keypad subdevices of Qualcomm PM8921 and
+> > >> PM8058 PMICs from text to YAML format.
+> > >> 
+> > >> While doing the conversion also change linux,keypad-no-autorepeat
+> > >> property to linux,input-no-autorepeat. The former property was never
+> > >> used by DT and was never handled by the driver.
+> > >
+> > >Changing from the documented one to one some drivers use. I guess 
+> > >that's a slight improvement. Please see this discussion[1]. 
+> > 
+> > Well, the problem is that the documentation is misleading. The driver 
+> > doesn't handle the documented property, so we should change either 
+> > the driver, or the docs. Which change is the preferred one?
+> 
+> The preference is autorepeat is not the default and setting 
+> 'autorepeat' enables it. You can't really change that unless you don't 
+> really need autorepeat by default. I can't see why it would be 
+> needed for the power button, but I haven't looked what else you have.
+> 
+> Of all the no autorepeat options, I prefer 'linux,no-autorepeat' as I 
+> find 'input' or 'keypad' redundant. But Dmitry T. didn't think it should 
+> be a common property at the time.
 
-This platform requires the "Devicetree" firmware to be loaded along the
-main firmware.
+Right, I would prefer for new bindings we used assertive "autorepeat",
+instead of negating "no-autorepeat". However here we are dealing with
+existing binding.
 
-The MPSS DSM memory to be assigned to the MPSS subsystem is the
-third memory-region entry as defined in the bindings.
+The issue is complicated with the driver using one option, binding
+specifying another, and existing in-kernel DTSes not using any and thus
+activating autorepeat as the default driver behavior.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 66 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index d6a288432b6c..2a29ffad83eb 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1125,6 +1125,69 @@ static const struct adsp_data sm8450_mpss_resource = {
- 	.ssctl_id = 0x12,
- };
- 
-+static const struct adsp_data sm8550_adsp_resource = {
-+	.crash_reason_smem = 423,
-+	.firmware_name = "adsp.mdt",
-+	.dtb_firmware_name = "adsp_dtb.mdt",
-+	.pas_id = 1,
-+	.dtb_pas_id = 0x24,
-+	.minidump_id = 5,
-+	.has_aggre2_clk = false,
-+	.auto_boot = false,
-+	.proxy_pd_names = (char*[]){
-+		"lcx",
-+		"lmx",
-+		NULL
-+	},
-+	.load_state = "adsp",
-+	.ssr_name = "lpass",
-+	.sysmon_name = "adsp",
-+	.ssctl_id = 0x14,
-+};
-+
-+static const struct adsp_data sm8550_cdsp_resource = {
-+	.crash_reason_smem = 601,
-+	.firmware_name = "cdsp.mdt",
-+	.dtb_firmware_name = "cdsp_dtb.mdt",
-+	.pas_id = 18,
-+	.dtb_pas_id = 0x25,
-+	.minidump_id = 7,
-+	.has_aggre2_clk = false,
-+	.auto_boot = false,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mxc",
-+		"nsp",
-+		NULL
-+	},
-+	.load_state = "cdsp",
-+	.ssr_name = "cdsp",
-+	.sysmon_name = "cdsp",
-+	.ssctl_id = 0x17,
-+};
-+
-+static const struct adsp_data sm8550_mpss_resource = {
-+	.crash_reason_smem = 421,
-+	.firmware_name = "modem.mdt",
-+	.dtb_firmware_name = "modem_dtb.mdt",
-+	.pas_id = 4,
-+	.dtb_pas_id = 0x26,
-+	.minidump_id = 3,
-+	.has_aggre2_clk = false,
-+	.auto_boot = false,
-+	.decrypt_shutdown = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mss",
-+		NULL
-+	},
-+	.load_state = "modem",
-+	.ssr_name = "mpss",
-+	.sysmon_name = "modem",
-+	.ssctl_id = 0x12,
-+	.region_assign_idx = 2,
-+};
-+
- static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,msm8974-adsp-pil", .data = &adsp_resource_init},
-@@ -1165,6 +1228,9 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sm8450-cdsp-pas", .data = &sm8350_cdsp_resource},
- 	{ .compatible = "qcom,sm8450-slpi-pas", .data = &sm8350_slpi_resource},
- 	{ .compatible = "qcom,sm8450-mpss-pas", .data = &sm8450_mpss_resource},
-+	{ .compatible = "qcom,sm8550-adsp-pas", .data = &sm8550_adsp_resource},
-+	{ .compatible = "qcom,sm8550-cdsp-pas", .data = &sm8550_cdsp_resource},
-+	{ .compatible = "qcom,sm8550-mpss-pas", .data = &sm8550_mpss_resource},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, adsp_of_match);
+Do we have an idea if there are out-of-tree users of this? If we are
+reasonable sure there are not we could converge on the standard
+"autorepeat" property.
 
 -- 
-b4 0.10.1
+Dmitry
