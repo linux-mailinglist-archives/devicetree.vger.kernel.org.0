@@ -2,125 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 569B16475DB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 20:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 593C664760F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 20:20:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbiLHTBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 14:01:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33158 "EHLO
+        id S229470AbiLHTUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 14:20:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbiLHTBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 14:01:24 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 236AB49B4A;
-        Thu,  8 Dec 2022 11:01:23 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A1B923A;
-        Thu,  8 Dec 2022 11:01:29 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C5793F73D;
-        Thu,  8 Dec 2022 11:01:20 -0800 (PST)
-Message-ID: <2a188b8a-ab16-d5d4-ed5f-f8eec236e4ca@arm.com>
-Date:   Thu, 8 Dec 2022 19:01:16 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC PATCH] arm64: dts: ls1028a: mark ARM SMMU as DMA coherent
-Content-Language: en-GB
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev
-Cc:     Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229543AbiLHTUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 14:20:31 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46E79854F
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 11:20:30 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id y17so2485280plp.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 11:20:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ifQ3Jav6VsSh1zyTRvbz7pDkhV+r1K5wCw7Us/t45o0=;
+        b=X5atqoLOC95H8hGG6aBCNBoodKm+iMf7Ug0EuydjqLq5lc+FvwdCwRWqKzn+D6ITYD
+         sHDDLbefyapJJE5aWPeT2ZnrzctfSZmI4BdUvu7Tsm8IfbmyXCAitOp0ICvAWYCLohSr
+         /WxClb5RXALcnX5LBwlGxTkiMGVRtouhYKSc8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ifQ3Jav6VsSh1zyTRvbz7pDkhV+r1K5wCw7Us/t45o0=;
+        b=yla8yoflELSyj6LgNAdCgTHYPDwdezMoqSHzrORAAz9ANZcjB/hu2BmxGiGuXr4+Um
+         R3D4giSN81tiPNojXSPr+e9nCSXYuQIkVKkM3tmTHy4kHjCq+pDUsjfbMW66IWLx+bjj
+         JYcgE6EXXxkHuZVIcJ0UpKSxbw2b0D9Sjywdg2DA90PX428msNf9TgPrxzvSrb1v33V+
+         Oz3h8M8Hh2OdI+o87xYL20uwkdrm/6MBR1gRn7FTOgeC3znfcNdegpAOS1J88BgUcufX
+         NrDt1ckZcgYDTd0rTYG1W6InJZlfwn+iHR3uCk6TRVy5EfYjwMOhxSf5s3ST36JRXLCb
+         2GKA==
+X-Gm-Message-State: ANoB5pmmcy7IzVdE1H4yjluJUtAcr9vthp57t5JDVkrUovwiLlXI4qOo
+        PodL49N8bqEFOYgXdRfvNgVOZmwZ/KPb1cKN
+X-Google-Smtp-Source: AA0mqf70cATti+xb7wjPXJuFUg5RS0zjxNnJbgQkzNAyfUDBsVP2zR8uCcSgJ32j6So/RiOaMZCGuA==
+X-Received: by 2002:a17:902:c745:b0:189:9519:87b6 with SMTP id q5-20020a170902c74500b00189951987b6mr2423967plq.5.1670527230259;
+        Thu, 08 Dec 2022 11:20:30 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:3aa1:2c62:9ac:4468])
+        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b00186a2274382sm17112019plf.76.2022.12.08.11.20.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Dec 2022 11:20:29 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     mka@chromium.org, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+        Yunlong Jia <ecs.beijing2022@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Johnny Chuang <johnny.chuang.emc@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-References: <20221208151514.3840720-1-vladimir.oltean@nxp.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20221208151514.3840720-1-vladimir.oltean@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] arm64: dts: qcom: sc7180: Make pazquel360's touchscreen work
+Date:   Thu,  8 Dec 2022 11:20:01 -0800
+Message-Id: <20221208192006.1070898-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.39.0.rc1.256.g54fd8350bd-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 3:15 pm, Vladimir Oltean wrote:
-> Since commit df198b37e72c ("iommu/arm-smmu: Report
-> IOMMU_CAP_CACHE_COHERENCY better"), the SMMU driver will say that a
-> device has the IOMMU_CAP_CACHE_COHERENCY capability if the
-> ARM_SMMU_FEAT_COHERENT_WALK bit was set in smmu->features.
-> 
-> This breaks vfio-pci, as can be seen below:
-> 
-> $ echo 0000:00:00.0 > /sys/bus/pci/drivers/fsl_enetc/unbind
-> $ echo vfio-pci > /sys/bus/pci/devices/0000\:00\:00.0/driver_override
-> $ echo 0000:00:00.0 > /sys/bus/pci/drivers/vfio-pci/bind
-> [   25.261941] vfio-pci 0000:00:00.0: arm_smmu_capable: smmu features 0xe9e
-> [   25.268877] vfio-pci 0000:00:00.0: vfio_group_find_or_alloc: device_iommu_capable() returned false
-> [   25.279271] vfio-pci 0000:00:00.0: vfio_pci_core_register_device: failed to register group dev: -EINVAL
-> [   25.301377] vfio-pci: probe of 0000:00:00.0 failed with error -22
-> 
-> The ARM_SMMU_FEAT_COHERENT_WALK feature is set in
-> arm_smmu_device_dt_probe() if the OF node of the SMMU device was set as
-> dma-coherent. In the case of LS1028A, it wasn't.
-> 
-> Fix that.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
-> The LS1028A is not the only SoC affected by this, it seems.
-> fsl-ls1088a.dtsi seems to be in the same situation where vfio-pci worked
-> before. There are also other SoCs which don't have dma-coherent in the
-> iommu node. There's also something I don't quite like about this patch
-> technically introducing a regression which requires a device tree update.
-> 
-> Can something different be done about that, or are LS1028A/LS1088A
-> simply to blame because of breaching the dt-bindings contract, and in
-> that case, I'll have to suck it up, put a Fixes tag here, write another
-> patch for LS1088A, and resend?
+This series of patches adds / fixes problems with pazquel360's
+touchscreen. A few notes here:
 
-It's more just good fortune that it ever worked properly at all. We have
-to make the DT authoritative about coherency because cases exist where
-the ID register is misconfigured. You've been telling Linux that that is
-the case, and now the message is finally getting through to VFIO. If we
-weren't also lazy in io-pgtable-arm about what shareability attribute to
-use for IOMMU_CACHE, you would have actually had the broken VFIO
-behaviour that that check is now defending against.
+1. Originally the touchscreen was supposed to be added as part of the
+first landing of the pazquel360 device tree. ...but the fact that
+Yunlong changed email addresses seems to have messed up Bjorn's
+scripts. What landed was v3 [1] instead of v5 [2]. The pazquel360 part
+of this series is that diff.
 
-I'd argue that you do want to make the DT change, because it's the truth
-of the hardware. Even if you did want to keep doing the significant
-extra work of maintaining non-coherent pagetables (there is a dubious
-snoop latency vs. TLB miss rate argument), that would be better achieved
-at the level of the io_pgtable_cfg, not by lying about the entire SMMU.
+2. We delayed sending the fixup till now because soon after the series
+landed upstream we found that some laptops were having trouble
+initting the touchscreen in cases where the eDP/touchscreen regulator
+was left on by the bootloader. We've been struggling to make sense of
+all of this. As part of this investigation we landed a85fbd649844
+("Input: elants_i2c - properly handle the reset GPIO when power is
+off") but that wasn't enough. That fix, together with the fixes in
+this series, is enough though.
 
-However, since Jason refactored things at the VFIO end too, it looks like
-this should now be consistently checked for every individual device
-bound to a VFIO driver, so we might be able to do a bit better, as
-below. I'd be rather surprised if anyone ever genuinely built this
-topology, but it does happen to be the one other combination that's easy
-to infer with reasonable confidence.
+3. This series is mostly device tree changes with one more change to
+the Elan driver. They are fine to land in separate trees. It turns out
+that with _just_ the device tree changes things are actually working
+OK but the timing is tight, so getting a little extra breathing room
+from the Linux driver is nice.
 
-Thanks,
-Robin.
+4. Despite the fact that we did debugging here on pazquel360, many of
+the changes here are made in general for trogdor devices. I believe
+that this will make the timing more correct on those devices even if
+we weren't actually seeing problems.
 
------>8-----
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-index 30dab1418e3f..a5ad9d6b51cf 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-@@ -1320,7 +1320,8 @@ static bool arm_smmu_capable(struct device *dev, enum iommu_cap cap)
-  	switch (cap) {
-  	case IOMMU_CAP_CACHE_COHERENCY:
-  		/* Assume that a coherent TCU implies coherent TBUs */
--		return cfg->smmu->features & ARM_SMMU_FEAT_COHERENT_WALK;
-+		return cfg->smmu->features & ARM_SMMU_FEAT_COHERENT_WALK ||
-+			device_get_dma_attr(dev) == DEV_DMA_COHERENT;
-  	case IOMMU_CAP_NOEXEC:
-  		return true;
-  	default:
+[1] https://lore.kernel.org/r/20220901024827.v3.2.Iea2d2918adfff2825b87d428b5732717425c196f@changeid
+[2] https://lore.kernel.org/r/20220923083657.v5.3.Iea2d2918adfff2825b87d428b5732717425c196f@changeid
+
+
+Douglas Anderson (5):
+  arm64: dts: qcom: sc7180: Bump up trogdor ts_reset_l drive strength
+  arm64: dts: qcom: sc7180: Add trogdor eDP/touchscreen regulator
+    off-on-time
+  arm64: dts: qcom: sc7180: Start the trogdor eDP/touchscreen regulator
+    on
+  arm64: dts: qcom: sc7180: Add pazquel360 touschreen
+  Input: elants_i2c: Delay longer with reset asserted
+
+ .../dts/qcom/sc7180-trogdor-homestar.dtsi     | 18 ++++++++++++++++
+ .../qcom/sc7180-trogdor-parade-ps8640.dtsi    | 20 ++++++++++++++++++
+ .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 21 +++++++++++++++++++
+ .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi | 20 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 10 ++++++++-
+ drivers/input/touchscreen/elants_i2c.c        |  2 +-
+ 6 files changed, 89 insertions(+), 2 deletions(-)
+
+-- 
+2.39.0.rc1.256.g54fd8350bd-goog
+
