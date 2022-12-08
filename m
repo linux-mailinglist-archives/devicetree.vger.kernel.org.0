@@ -2,197 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46DA464721D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 15:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE0164727E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 16:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiLHOqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 09:46:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38300 "EHLO
+        id S229694AbiLHPJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 10:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiLHOqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 09:46:12 -0500
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8862BDFEA;
-        Thu,  8 Dec 2022 06:46:11 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B8ETERh027895;
-        Thu, 8 Dec 2022 14:45:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Xr4xHq0gKkujS+pQ9/6dlXQZ2AbT3C9rsoW5f5OpxpA=;
- b=UvtBvCW7ivoyMrWzMb57H+4Xa/QglbdaMWC7C9VUpxO/UourEjPV5L5e9/Z4fyw+Y7+h
- xwyAdo0b4Por0oRK9/oOFBUNYjWDW3mJZ4oRLh2mXUnzfKMBlDYDlJsnGHdb+uJZspHm
- 4BxAwqjoIN7jerf0jc1neCTkElJRHUfc8sh6Wvs69bMztBCdD84RmFE7uAgQ4U75TsBP
- Nc0Vu2O/POHeYlpveR5Oum8i22gDY7ko9sJiVGHA3CcJ1A8DvDSHjznkCf9Cc5LCoQOB
- u94zwi4TcHL2Kqdik3p/t9RFyLCfMZCBtBU2WvdxI5UOi5hi+WH2GL57XjFmEhFUrkv0 aw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mb7bc9kyk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Dec 2022 14:45:55 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B8Ejsx7021215
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 8 Dec 2022 14:45:54 GMT
-Received: from [10.216.54.36] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 8 Dec 2022
- 06:45:46 -0800
-Message-ID: <3cd97020-d55a-7808-49f5-5fe3af84dc58@quicinc.com>
-Date:   Thu, 8 Dec 2022 20:15:43 +0530
+        with ESMTP id S229604AbiLHPJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 10:09:44 -0500
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6C49349B70;
+        Thu,  8 Dec 2022 07:09:43 -0800 (PST)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 09 Dec 2022 00:09:42 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id CDA812058B4F;
+        Fri,  9 Dec 2022 00:09:42 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 9 Dec 2022 00:09:42 +0900
+Received: from [10.212.157.17] (unknown [10.212.157.17])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 0E4CE1DA8;
+        Fri,  9 Dec 2022 00:09:42 +0900 (JST)
+Message-ID: <8d29ddb9-359c-df91-abb6-acdb6927fa95@socionext.com>
+Date:   Fri, 9 Dec 2022 00:09:41 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v7 0/6] clk/qcom: Support gdsc collapse polling using
- 'reset' interface
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v2 01/16] dt-bindings: clock: Fix node descriptions in
+ uniphier-clock example
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
+ <20221207055405.30940-2-hayashi.kunihiko@socionext.com>
+ <c2782196-6dae-522a-50d5-5e5223e66e56@linaro.org>
 Content-Language: en-US
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Douglas Anderson <dianders@chromium.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
-        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1664960824-20951-1-git-send-email-quic_akhilpo@quicinc.com>
- <20221201225705.46r2m35ketvzipox@builder.lan>
- <CAPDyKFofsqcoFbYt-9BcisbPdreLGqAAMWorqHi0_D1kwCdYhg@mail.gmail.com>
- <20221207165457.kwdwwiycbwjpogxl@builder.lan>
- <CAPDyKFpYgYkDdJ79xxkwr-Mqnj5CoBrV+ZZe6Xz4hGLNR4zUVw@mail.gmail.com>
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <CAPDyKFpYgYkDdJ79xxkwr-Mqnj5CoBrV+ZZe6Xz4hGLNR4zUVw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <c2782196-6dae-522a-50d5-5e5223e66e56@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oSW0SBdBxL6fUr4qAcmvSHnY4Tqwmf6y
-X-Proofpoint-ORIG-GUID: oSW0SBdBxL6fUr4qAcmvSHnY4Tqwmf6y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-12-08_08,2022-12-08_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- adultscore=0 clxscore=1015 phishscore=0 malwarescore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2212080121
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/8/2022 7:10 PM, Ulf Hansson wrote:
-> On Wed, 7 Dec 2022 at 17:55, Bjorn Andersson <andersson@kernel.org> wrote:
->> On Wed, Dec 07, 2022 at 05:00:51PM +0100, Ulf Hansson wrote:
->>> On Thu, 1 Dec 2022 at 23:57, Bjorn Andersson <andersson@kernel.org> wrote:
->>>> On Wed, Oct 05, 2022 at 02:36:58PM +0530, Akhil P Oommen wrote:
->>>> @Ulf, Akhil has a power-domain for a piece of hardware which may be
->>>> voted active by multiple different subsystems (co-processors/execution
->>>> contexts) in the system.
->>>>
->>>> As such, during the powering down sequence we don't wait for the
->>>> power-domain to turn off. But in the event of an error, the recovery
->>>> mechanism relies on waiting for the hardware to settle in a powered off
->>>> state.
->>>>
->>>> The proposal here is to use the reset framework to wait for this state
->>>> to be reached, before continuing with the recovery mechanism in the
->>>> client driver.
->>> I tried to review the series (see my other replies), but I am not sure
->>> I fully understand the consumer part.
->>>
->>> More exactly, when and who is going to pull the reset and at what point?
->>>
->>>> Given our other discussions on quirky behavior, do you have any
->>>> input/suggestions on this?
->>>>
->>>>> Some clients like adreno gpu driver would like to ensure that its gdsc
->>>>> is collapsed at hardware during a gpu reset sequence. This is because it
->>>>> has a votable gdsc which could be ON due to a vote from another subsystem
->>>>> like tz, hyp etc or due to an internal hardware signal. To allow
->>>>> this, gpucc driver can expose an interface to the client driver using
->>>>> reset framework. Using this the client driver can trigger a polling within
->>>>> the gdsc driver.
->>>> @Akhil, this description is fairly generic. As we've reached the state
->>>> where the hardware has settled and we return to the client, what
->>>> prevents it from being powered up again?
->>>>
->>>> Or is it simply a question of it hitting the powered-off state, not
->>>> necessarily staying there?
->>> Okay, so it's indeed the GPU driver that is going to assert/de-assert
->>> the reset at some point. Right?
->>>
->>> That seems like a reasonable approach to me, even if it's a bit
->>> unclear under what conditions that could happen.
->>>
->> Generally the disable-path of the power-domain does not check that the
->> power-domain is actually turned off, because the status might indicate
->> that the hardware is voting for the power-domain to be on.
-> Is there a good reason why the HW needs to vote too, when the GPU
-> driver is already in control?
->
-> Or perhaps that depends on the running use case?
-This power domain can be voted to be ON from other subsystems outside of linux kernel like secure os, hypervisor etc through separate vote registers. So it is not completely under the control of linux clk driver. Linux clk driver can only vote it to be kept ON, check current status etc, but cannot force it to be OFF. I believe this is why it is a votable gdsc in linux-clk driver.
-
-Just a general clarification. GPU has mainly 2 power domains: (1) CX which is shared by GPU and its SMMU, (2) GX which is GPU specific and managed mostly by a power management core within GPU. This patch series is to allow gpu driver to ensure that CX gdsc has collapsed which in turn will reset GPU's internal state.
->
->> As part of the recovery of the GPU after some fatal fault, the GPU
->> driver does something which will cause the hardware votes for the
->> power-domain to be let go, and then the driver does pm_runtime_put().
-> Okay. That "something", sounds like a device specific setting for the
-> corresponding gdsc, right?
->
-> So somehow the GPU driver needs to manage that setting, right?
-Clarified about this above.
->
->> But in this case the GPU driver wants to ensure that the power-domain is
->> actually powered down, before it does pm_runtime_get() again. To ensure
->> that the hardware lost its state...
-> I see.
->
->> The proposal here is to use a reset to reach into the power-domain
->> provider and wait for the hardware to be turned off, before the GPU
->> driver attempts turning the power-domain on again.
+On 2022/12/08 17:06, Krzysztof Kozlowski wrote:
+> On 07/12/2022 06:53, Kunihiko Hayashi wrote:
+>> Prior to adding dt-bindings for SoC-dependent controllers, rename the
+>> clock nodes their parent nodes to the generic names in the example.
 >>
+>> And also fix the missing compatible string.
 >>
->> In other words, there is no reset. This is a hack to make a normally
->> asynchronous pd.power_off() to be synchronous in this particular case.
-Not really. Because other non-linux subsystems are involved here for CX gdsc, we need a way to poll the gdsc register to ensure that it has indeed collapsed before gpu driver continue with re-initialization of gpu. It is either this approach using 'reset' framework or plumbing a new path from gpu driver to gpucc-gdsc driver to poll the collapse status. I went with the 'reset' approach as per the consensus here: https://patchwork.freedesktop.org/patch/493143/
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   .../clock/socionext,uniphier-clock.yaml       | 21 +++++++++++--------
+>>   1 file changed, 12 insertions(+), 9 deletions(-)
+>>
+>> diff --git
+>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>> index 9a0cc7341630..672450a1ecda 100644
+>> ---
+>> a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>> +++
+>> b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+>> @@ -61,11 +61,12 @@ required:
+>>
+>>   examples:
+>>     - |
+>> -    sysctrl@61840000 {
+>> -        compatible = "socionext,uniphier-sysctrl", "simple-mfd",
+>> "syscon";
+>> +    syscon@61840000 {
+>> +        compatible = "socionext,uniphier-ld11-sysctrl",
+>> +                     "simple-mfd", "syscon";
+>>           reg = <0x61840000 0x4000>;
+>>
+>> -        clock {
+>> +        clock-controller {
+>>               compatible = "socionext,uniphier-ld11-clock";
+>>               #clock-cells = <1>;
+>>           };
+>> @@ -74,11 +75,12 @@ examples:
+>>       };
+>>
+>>     - |
+>> -    mioctrl@59810000 {
+>> -        compatible = "socionext,uniphier-mioctrl", "simple-mfd",
+>> "syscon";
+>> +    syscon@59810000 {
+>> +        compatible = "socionext,uniphier-ld11-mioctrl",
+>> +                     "simple-mfd", "syscon";
+>>           reg = <0x59810000 0x800>;
+>>
+>> -        clock {
+>> +        clock-controller {
+>>               compatible = "socionext,uniphier-ld11-mio-clock";
+>>               #clock-cells = <1>;
+>>           };
+>> @@ -87,11 +89,12 @@ examples:
+>>       };
+>>
+>>     - |
+>> -    perictrl@59820000 {
+>> -        compatible = "socionext,uniphier-perictrl", "simple-mfd",
+>> "syscon";
+>> +    syscon@59820000 {
+>> +        compatible = "socionext,uniphier-ld11-perictrl",
+>> +                     "simple-mfd", "syscon";
+>>           reg = <0x59820000 0x200>;
+>>
+>> -        clock {
+> 
+> These are all three same examples (no differences except compatibles),
+> so you can as well keep only one. You can also skip parent node,
+> otherwise you might keep getting warnings for this schema. The parent is
+> not that relevant here and its bindings (e.g.
+> socionext,uniphier-sysctrl.yaml) should include complete example -
+> parent with all the children.
+I understand.
+I'll keep one and drop the parent node from the example.
 
--Akhil.
-> Alright, assuming I understood your clarifications above correctly
-> (thanks!), I think I have got a much better picture now.
->
-> Rather than abusing the reset interface, I think we should manage this
-> through the genpd's power on/off notifiers (GENPD_NOTIFY_OFF). The GPU
-> driver should register its corresponding device for them
-> (dev_pm_genpd_add_notifier()).
->
-> The trick however, is to make the behaviour of the power-domain for
-> the gdsc (the genpd->power_off() callback) conditional on whether the
-> HW is configured to vote or not. If the HW can vote, it should not
-> poll for the state - and vice versa when the HW can't vote.
->
-> Would this work?
->
-> Kind regards
-> Uffe
+Thank you,
 
+---
+Best Regards
+Kunihiko Hayashi
