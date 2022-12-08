@@ -2,117 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E297646C97
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BF74646C9F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:22:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbiLHKTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
+        id S229513AbiLHKW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:22:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiLHKTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:19:52 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BC454463
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:19:50 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id l8so1030883ljh.13
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:19:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=10WJDlf9oJXsY4jAF05O11SmuT12shB47OS13dhPV0c=;
-        b=qS5P611nurHFZ/TBYo4/yeBcl5q6l+7yiF0ZlegH5T4L4oeEY17pIPgd9TLTN0s6m4
-         mwbebyCWTxp3cNS2UG7HTSZ7B36+/B9tk0Vcd+YRL2zLoyKg6C7cBwKj1LK22WcBMEpx
-         a6IMw3DJ28lN7S3CNTCKnYU6C+1aSRz2n56FhYUhwKFFTAhr08HPsd0EHWN0rWqcooRt
-         AYj90BxBXoJiZoYAURSQx1ltzD5qbFK2z3w8BPpiAOTSbCZIz1gvR29ioerurtYX2HSH
-         w6x62FEmjRNRK7/Kz5tHdiqnWmPvBiseH8h0noK0xvOVPEXyZyjcGrVua0OqjZEf/PHy
-         pDbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=10WJDlf9oJXsY4jAF05O11SmuT12shB47OS13dhPV0c=;
-        b=r8WDPyJ/ct7+8w4RDNhcTYYpr/XpRv981i/Ba3tjDV1Z74IWzvscbsVzNBo3oIBDVH
-         YaBLYZ6HelUTV1q7EFZJRJbMojF5YJ0bQN4/YPaVpvwz8MtQ4wy4aAMkqtN7AqPZ/Yh4
-         NnIO1sjHooOPk1Ov0z+4IsPQ9jmxnIJAmDxGIplSkFX2pKEQAuDf0zBKvQm+U2lzUzJ5
-         G5FbC6KqBiP1cypzv65uWiDvkLM0pshxdY70SeSGU3lfNe+HphxN+giZscNfUTGi+8q/
-         76vdLLuoJ9t5MAyDCa2u9y0sa09vCu292dW+Zi7g6z+A6dD0RjmEEoCm/KHL0qM7Qge+
-         sytA==
-X-Gm-Message-State: ANoB5pkj+bo62/k8FVVNdwqSAtSF+/oqpe6f61k765UFo3Y0iDFBClYX
-        A81GCs8U6oOb0LWN4HFOSM29sQ==
-X-Google-Smtp-Source: AA0mqf7cJzJyg77TLLMG4YOqskS1oKHjZCq05qLNoCRTZ/OG9J3ILZVaKronu52vVGrgOp88I8meCQ==
-X-Received: by 2002:a2e:7818:0:b0:279:bf32:34dd with SMTP id t24-20020a2e7818000000b00279bf3234ddmr12181221ljc.31.1670494789232;
-        Thu, 08 Dec 2022 02:19:49 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c14-20020a19e34e000000b004949a8df775sm278484lfk.33.2022.12.08.02.19.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 02:19:48 -0800 (PST)
-Message-ID: <947e47d3-4235-8f16-d3ef-c3ddd7d51acf@linaro.org>
-Date:   Thu, 8 Dec 2022 11:19:47 +0100
+        with ESMTP id S229470AbiLHKW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:22:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618EB54342;
+        Thu,  8 Dec 2022 02:22:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1C6E5B82362;
+        Thu,  8 Dec 2022 10:22:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D58C433C1;
+        Thu,  8 Dec 2022 10:22:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670494942;
+        bh=ErJmS2Ph8pUOWhyn1bGZWvmgNR7aRTvFWTY/3HNMPPU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=o0KcurJGm6y78e9JLdrN//6EMuoWntcFSF144dnvgGcqBiqFKKriISACdEKrx7sxx
+         La5DX1xW1PixYRltDbCUxoduG0dZ6vkKCfUPd7vM3vY2GJIyL7s8yGUE8SJvCbhj48
+         x64j5qqgULkys6NCYqCYy7XeL+usCTWA6tgKPn4XnlVTHA9P1IbavRKe7OGe8PRVMo
+         VUNXyV++if0t5eP0oqsA2VBcntBoR1GfIZhfr+MuJy9eUjCRFA5QmDCDoKG7544l//
+         K2B4h1+FAntaBDRCZdPq1NERky/C2j9Qx/3Z5Otea0Z1TWwvnrXDhhApZr14fwvE/+
+         kcUXZlOeTuU+Q==
+Message-ID: <f2aaf9bd-e65b-08c7-5eae-7fac59324791@kernel.org>
+Date:   Thu, 8 Dec 2022 12:22:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] leds: qcom,pm8058-led: Convert to DT schema
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v11 2/6] remoteproc: pru: Add enum for PRU Core
+ Identifiers.
 Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Cc:     Rob Herring <robh@kernel.org>,
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221201131505.42292-1-krzysztof.kozlowski@linaro.org>
- <20221202000858.GA1737135-robh@kernel.org> <Y5Dzamz6XRZudQzq@duo.ucw.cz>
- <Y5G30ttrf1RJa+sM@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y5G30ttrf1RJa+sM@google.com>
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        nm@ti.com, vigneshr@ti.com, srk@ti.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221207110411.441692-1-danishanwar@ti.com>
+ <20221207110411.441692-3-danishanwar@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221207110411.441692-3-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 11:09, Lee Jones wrote:
-> On Wed, 07 Dec 2022, Pavel Machek wrote:
-> 
->> On Thu 2022-12-01 18:08:58, Rob Herring wrote:
->>> On Thu, Dec 01, 2022 at 02:15:05PM +0100, Krzysztof Kozlowski wrote:
->>>> Convert the Qualcomm PM8058 PMIC LED bindings to DT schema.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>  .../devicetree/bindings/leds/leds-pm8058.txt  | 67 -------------------
->>>>  .../bindings/leds/qcom,pm8058-led.yaml        | 57 ++++++++++++++++
->>>>  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml  |  4 ++
->>>>  3 files changed, 61 insertions(+), 67 deletions(-)
->>>>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pm8058.txt
->>>>  create mode 100644 Documentation/devicetree/bindings/leds/qcom,pm8058-led.yaml
->>>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>
->>> Or should I apply it?
->>
->> Thanks for ACK, let me take it, I guess.
-> 
-> Did you see Krzysztof's replies to this patch?
-> 
-> Sounded like he was going to re-work it, which is why I left it.
 
-The only rework needed was to add "dt-bindings:" prefix in the subject.
-If you could add it while applying/amending commit, that would be great
-and spare me resend. Otherwise, let me know if you dropped this patch
-and expect a resend.
 
-Best regards,
-Krzysztof
+On 07/12/2022 13:04, MD Danish Anwar wrote:
+> Introducing enum pruss_pru_id for PRU Core Identifiers.
+> PRUSS_PRU0 indicates PRU Core 0.
+> PRUSS_PRU1 indicates PRU Core 1.
+> PRUSS_NUM_PRUS indicates the total number of PRU Cores.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
+
+--
+cheers,
+-roger
+
+> ---
+>  drivers/remoteproc/pru_rproc.c |  7 ++++---
+>  include/linux/pruss.h          | 32 ++++++++++++++++++++++++++++++++
+>  2 files changed, 36 insertions(+), 3 deletions(-)
+>  create mode 100644 include/linux/pruss.h
+> 
+> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+> index 128bf9912f2c..a1a208b31846 100644
+> --- a/drivers/remoteproc/pru_rproc.c
+> +++ b/drivers/remoteproc/pru_rproc.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+> +#include <linux/pruss.h>
+>  #include <linux/pruss_driver.h>
+>  #include <linux/remoteproc.h>
+>  
+> @@ -438,7 +439,7 @@ static void *pru_d_da_to_va(struct pru_rproc *pru, u32 da, size_t len)
+>  	dram0 = pruss->mem_regions[PRUSS_MEM_DRAM0];
+>  	dram1 = pruss->mem_regions[PRUSS_MEM_DRAM1];
+>  	/* PRU1 has its local RAM addresses reversed */
+> -	if (pru->id == 1)
+> +	if (pru->id == PRUSS_PRU1)
+>  		swap(dram0, dram1);
+>  	shrd_ram = pruss->mem_regions[PRUSS_MEM_SHRD_RAM2];
+>  
+> @@ -747,14 +748,14 @@ static int pru_rproc_set_id(struct pru_rproc *pru)
+>  	case RTU0_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU0_IRAM_ADDR_MASK:
+> -		pru->id = 0;
+> +		pru->id = PRUSS_PRU0;
+>  		break;
+>  	case TX_PRU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case RTU1_IRAM_ADDR_MASK:
+>  		fallthrough;
+>  	case PRU1_IRAM_ADDR_MASK:
+> -		pru->id = 1;
+> +		pru->id = PRUSS_PRU1;
+>  		break;
+>  	default:
+>  		ret = -EINVAL;
+> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+> new file mode 100644
+> index 000000000000..fbe4fbb45807
+> --- /dev/null
+> +++ b/include/linux/pruss.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/**
+> + * PRU-ICSS Subsystem user interfaces
+> + *
+> + * Copyright (C) 2015-2022 Texas Instruments Incorporated - http://www.ti.com
+> + *	Suman Anna <s-anna@ti.com>
+> + */
+> +
+> +#ifndef __LINUX_PRUSS_H
+> +#define __LINUX_PRUSS_H
+> +
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define PRU_RPROC_DRVNAME "pru-rproc"
+> +
+> +/**
+> + * enum pruss_pru_id - PRU core identifiers
+> + * @PRUSS_PRU0: PRU Core 0.
+> + * @PRUSS_PRU1: PRU Core 1.
+> + * @PRUSS_NUM_PRUS: Total number of PRU Cores available.
+> + *
+> + */
+> +
+> +enum pruss_pru_id {
+> +	PRUSS_PRU0 = 0,
+> +	PRUSS_PRU1,
+> +	PRUSS_NUM_PRUS,
+> +};
+> +
+> +
+> +#endif /* __LINUX_PRUSS_H */
+> \ No newline at end of file
