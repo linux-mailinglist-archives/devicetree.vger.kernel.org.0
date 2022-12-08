@@ -2,132 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D78426468F6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 07:16:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF4E564692D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 07:30:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbiLHGQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 01:16:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54610 "EHLO
+        id S229804AbiLHGaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 01:30:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiLHGQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 01:16:22 -0500
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46539AE12;
-        Wed,  7 Dec 2022 22:16:21 -0800 (PST)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 73ECA320029B;
-        Thu,  8 Dec 2022 01:16:19 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 08 Dec 2022 01:16:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm2; t=1670480178; x=1670566578; bh=x0me3RKZeq0yeb9T+A/Cz7qCe
-        2YIzalCfRlQG3BTeKE=; b=K2oJX4eFTEWB9WOxAJUc23gDWQ8FAWBMusXLae2tW
-        P6Zh0RT3DqkvyIQQE02DxwlutY2ZNjMz2h7+VHeDCfKE9fxGeJeEgub+nLhJQRND
-        KPuI2r+NIskj/JylWfrTBntujKb0TFA2w2qETg8+wOVpQQoc/8QOgykkg3BGMtHI
-        BhRa2PDrMILL1kWFVSo8fz5VGuDoushbvd5w04yOxB2R9ZCFi4z8jJA4RFXmtugW
-        bCfDeL9ynrhOTH/lV7NPJvw3jUe/UsK+6L7VQZNRZ44E9uql8DAo7gIpD2Gsh8tl
-        M0xSG+92z08PmJWQnDgfUZ/kXNpSL5n44b3qhrZ9p3hhA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:message-id
-        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1670480178; x=1670566578; bh=x0me3RKZeq0yeb9T+A/Cz7qCe2YIzalCfRl
-        QG3BTeKE=; b=NZRvslDJ35NLwJfLfOKpottBlDkIoqAcMjQiNRJBy6piuqEOqfJ
-        icyHbG4Mtb+YirsBhlKo1e2NiHobJXllhAlWrA93RCdxV3oUF3KY7o/9xeW6PG/p
-        xabCCfQI/xzgrRj55CdfI6loXvBRcrFlzjLmUut/IlIoGOCzRDzlMILBLynzpDJW
-        iWvV5CIuBlUJPf3EAmf9b5cU5lHobXVHJU1L8lwjR68N2lfLeMnIjSSGH+3zG9Pn
-        sETQOpl05IWu6wmhg8eDV4jGOcEnmbCWpszx0qI9YPflKhCmKS3Ufz0ADVzjsWT7
-        ftaG5sYsjYt2a8Rki0cNF7HYsgrF8/t+fQw==
-X-ME-Sender: <xms:MoGRY8U5eOBbbzsGsJjDycaXhpuajJdHZXBapPc1yj6I9lIpfbq7RQ>
-    <xme:MoGRYwmzqfaKt3IZB7FSM-CNISNNJH34HObu1JRBvvHj3r5I_DHSr9YGvMGCN1nfx
-    aVuff55MfQLw5LiSg>
-X-ME-Received: <xmr:MoGRYwapx06IkOpboMsipny0lGLTw2-DEgp1I8BLWwy8gc7plN8-5ArwAjUfB-RQ41LXaoMBCUy7Hxckzl4gRtCXKK1quiyocSjlh1sp7hDTLm6lAafYVwlMPCkZazxltFYPmA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudelgdelhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
-    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
-    htthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeehhffh
-    keekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:MoGRY7XHSTdwRUN0PBCA6yc6vG6477iQCZyOoT7diDvetfv5wNo5pQ>
-    <xmx:MoGRY2lq9iAJmJkoAsQ1QWPRUcPEGmOfy9WP9mWX2uV0oFQbT0EarA>
-    <xmx:MoGRYwdBOBQVqQklUK2inER0ny6GM1GmpBI-j78MrqKDPbyarfTL6A>
-    <xmx:MoGRYw3d_BzNbdPXeim_HbCYEiJwxbpQmYcx1mGJOhvPSyBop9BC4Q>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Dec 2022 01:16:17 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh@kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        with ESMTP id S229731AbiLHGaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 01:30:10 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E967EE011;
+        Wed,  7 Dec 2022 22:30:07 -0800 (PST)
+X-UUID: bb5766d3350a4b1cbfee27ebe5d6e852-20221208
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hKtAWAV0bi6rqv43sLV/uWtA5c/Igilteq9bn17Jhys=;
+        b=uFPMcPxg4sSbbB4EWJ3se0uRgc2qCX8MMISX1rKICPTBAAmoh65FYdJ1wkH1v/JsDbB5OFpBMuoRvKrLQDZ02tyOo7KopUHuVzW6MM33iFqhXzwC9xfxAEMYVop7NnhBMjwHfKPeygqCfgRtLBOCKWDxuztZiTaO6GYw4b9WBMY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:b6ef4d75-363f-419a-88e3-ff522e574262,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:dcaaed0,CLOUDID:4987fed1-652d-43fd-a13a-a5dd3c69a43d,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: bb5766d3350a4b1cbfee27ebe5d6e852-20221208
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+        (envelope-from <xiangsheng.hou@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2052830187; Thu, 08 Dec 2022 14:30:02 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 8 Dec 2022 14:30:00 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 8 Dec 2022 14:29:59 +0800
+From:   Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        LABBE Corentin <clabbe.montjoie@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: net: sun8i-emac: Add phy-supply property
-Date:   Thu,  8 Dec 2022 00:16:16 -0600
-Message-Id: <20221208061616.7806-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.4
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chuanhong Guo <gch981213@gmail.com>
+CC:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <benliang.zhao@mediatek.com>, <bin.zhang@mediatek.com>
+Subject: [PATCH v3 0/9] Add MediaTek MT7986 SPI NAND and ECC support
+Date:   Thu, 8 Dec 2022 14:29:46 +0800
+Message-ID: <20221208062955.2546-1-xiangsheng.hou@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property has always been supported by the Linux driver; see
-commit 9f93ac8d4085 ("net-next: stmmac: Add dwmac-sun8i"). In fact, the
-original driver submission includes the phy-supply code but no mention
-of it in the binding, so the omission appears to be accidental. In
-addition, the property is documented in the binding for the previous
-hardware generation, allwinner,sun7i-a20-gmac.
+Changes since V2:
+ - Change ECC err_mask value with GENMASK macro.
+ - Change snfi mediatek,rx-latch-latency to mediatek,rx-latch-latency-ns.
+ - Add a separate patch for DTS change.
+ - Move common description to top-level pattern properties.
+ - Drop redundant parts in dt-bindings.
 
-Document phy-supply in the binding to fix devicetree validation for the
-25+ boards that already use this property.
+Changes since V1:
+ - Use existing sample delay property.
+ - Add restricting for optional nfi_hclk.
+ - Improve and perfect dt-bindings documentation.
+ - Change existing node name to match NAND controller DT bingings.
+ - Fix issues reported by dt_binding_check.
+ - Fix issues reported by dtbs_check.
 
-Fixes: 0441bde003be ("dt-bindings: net-next: Add DT bindings documentation for Allwinner dwmac-sun8i")
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Xiangsheng Hou (9):
+  spi: mtk-snfi: Change default page format to setup default setting
+  spi: mtk-snfi: Add optional nfi_hclk which is needed for MT7986
+  mtd: nand: ecc-mtk: Add ECC support fot MT7986 IC
+  dt-bindings: spi: mtk-snfi: Add compatible for MT7986
+  spi: mtk-snfi: Add snfi sample delay and read latency adjustment
+  dt-bindings: spi: mtk-snfi: Add read latch latency property
+  dt-bindings: mtd: Split ECC engine with rawnand controller
+  arm/arm64: dts: mediatek: Fix existing NAND controller node name
+  dt-bindings: mtd: mediatek,nand-ecc-engine: Add compatible for MT7986
 
-Changes in v2:
- - Drop the rest of the series, which was obsoleted by the dt-schema fix
- - Add Acked-by/Reviewed-by tags
+ .../bindings/mtd/mediatek,mtk-nfc.yaml        | 154 +++++++++++++++
+ .../mtd/mediatek,nand-ecc-engine.yaml         |  63 +++++++
+ .../devicetree/bindings/mtd/mtk-nand.txt      | 176 ------------------
+ .../bindings/spi/mediatek,spi-mtk-snfi.yaml   |  54 +++++-
+ arch/arm/boot/dts/mt2701.dtsi                 |   2 +-
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |   2 +-
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   2 +-
+ drivers/mtd/nand/ecc-mtk.c                    |  28 ++-
+ drivers/spi/spi-mtk-snfi.c                    |  41 +++-
+ 9 files changed, 329 insertions(+), 193 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/mtk-nand.txt
 
- .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml     | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-index 1432fda3b603..47bc2057e629 100644
---- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-+++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-@@ -40,6 +40,9 @@ properties:
-   clock-names:
-     const: stmmaceth
- 
-+  phy-supply:
-+    description: PHY regulator
-+
-   syscon:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
 -- 
-2.37.4
+2.25.1
 
