@@ -2,108 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C85F646B75
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B86646B8B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:09:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbiLHJH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:07:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S230168AbiLHJJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:09:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiLHJHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:07:21 -0500
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2044.outbound.protection.outlook.com [40.107.20.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB9CC4AF3B
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:06:52 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U6fQziBIu4/pfo/xLA8BiRcAaeW12q79lGNaNdqdRROOR0JNQpMWqSdpqwTMZ9ScHdpnYxwMZJoog3716fyB45qZ4q5Bzy2y7mjNAOzNYIpuOmF08kkusN3ajLiuaE3led6XEW+7VephdN7HKhm8EqpyTCvUbKWkQzW2a1TNhEd5wA0a0OTlDMOPvE1pvg4qA7HKNm7iRcxXsuEpmEcUovki2gmI2Ms9Q5E2bw9xjfons1V+c7GbZWtctGbzASI+27TQJmhg874C2Kc3tL8mdZQqf7ie9vfkmWJ6uqglVj4dbM1qPaWXmtx71IkhVtUuhVPN5mUJgLsWXtg8JITsgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q7Yoyy2dJQLWo9r/1AucUrhfZL/maGxXUA2O4pOnnAk=;
- b=SpZh9ZE5vRbqWOaDb5ZXfdm5NGBPVh5lDHmJas3tkguVacvcHBmlAue26jIV8wkidbO26FOl/4yZzXn++zQ5fmwLj8JhOah2ijsejviUemEFbGp8RJ07cRIQPF6BcmHhEPeTeRC4su0ouY66OPxPieNK/WhL+F/6he3rINMzbEXMaKrBXpYV/AUdVONeQYW9SPpUX2ShMOvBdgt7M4GFWL6udccJX55ivogCjBU2pgeUW0bWWZggZGT9WpIusRsjDwqRR9afOof1uUvmveAq4dlnQGqzdzEpp/yuMunSV4XLdDGhl1BOZFO+VqllSMuC4iaTMyKs6SNs/PKD5JoBvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q7Yoyy2dJQLWo9r/1AucUrhfZL/maGxXUA2O4pOnnAk=;
- b=Dbee69Fg7mFGg0G8dazUCDYtXXmXwSUVNRTHAuIzinv1ETVxAtlDAI7fqjDqGEwWB47Ce5ZNCAT/7afwWZyjIzBn4hJjziKkrPoOn6amjZbd7gctCRW0QfROm6nql9mj7lvFEtK7Ah05Juqi7dkfuLdcSe5RMw8Nyh0QxEoAXDE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- PAXPR04MB8943.eurprd04.prod.outlook.com (2603:10a6:102:20e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10; Thu, 8 Dec
- 2022 09:06:50 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::7479:76ef:8e5:da0b%7]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
- 09:06:48 +0000
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        peng.fan@nxp.com, haibo.chen@nxp.com, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx93-11x11-evk: correct clock and strobe pad setting
-Date:   Thu,  8 Dec 2022 17:06:58 +0800
-Message-Id: <20221208090658.3591981-1-haibo.chen@nxp.com>
+        with ESMTP id S230170AbiLHJIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:08:51 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F361B9C6
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:08:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670490528; x=1702026528;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h0uI75b/XLO5fwpolzeROMRFzfbiSy8hveLLAfG1BeM=;
+  b=g3MaTjkvbq2Ij6uLFOKmOooYsPXtSBKhD65+3KJxVP4XFwfjMEnS8s8U
+   KTURHaN/Yz1XeMLeKYQhW/fMJrWDuDFjZpFdFhLRrIOZdspQYvJEmYdk1
+   LdkadDhxVbMJlmZXUNzkUjB8ZAJS8Ko0wwwNwuLyhtmxdtjqpqMSbciVX
+   iOcyI/1gAdSDMNJAcMyOrRDI0eor/OQJk19uKsemmCp8OTKhryFxsniP+
+   VETqSwjb2WGTIGW5MgVDMcpTtuvlybtXSpZ66tHdH7uEKGSaZGJoRMxRJ
+   XXJaPIowDismR/XpY2dQiZtw5S2cjbRcgvp/0PMBFM95fMAdKgSoI3Azk
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
+   d="scan'208";a="27831351"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 08 Dec 2022 10:08:46 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 08 Dec 2022 10:08:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670490526; x=1702026526;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h0uI75b/XLO5fwpolzeROMRFzfbiSy8hveLLAfG1BeM=;
+  b=GU9eHAseTY1I62vI6AY7mmd+1z8X+ZenI3NG0hKyLQzS/do4XmluF1zN
+   A29UBICzQs5344kNUsENzbawRzCZnvP25t3Ez7Y1UsloUQfZrfQxm/6Ff
+   XwzhykNo8703NwJVoL5P9kvDysbdb6jUUtQ4tK4PPfS2ugh5iFwFljmWL
+   CJaCeAlO+xJE5amZ237LQPUSBvU8mf8nWV1f+QXobcwcvz49o0oex+DIS
+   AwyBZqVAEPgrb3XD3ofD2NzoFxPQwOrsQ6b8sb3OG2/ulEeoB/2O6Xm5M
+   ZDhN4Z45ioqvlL3rGpr2I9rT3sKLCrN+jmlVnwiM3EkwO/nfWu28Hbde5
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
+   d="scan'208";a="27831350"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 752CC280071;
+        Thu,  8 Dec 2022 10:08:46 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] arm64: dts: imx8mp: Add LCDIF2 & LDB nodes
+Date:   Thu,  8 Dec 2022 10:08:41 +0100
+Message-Id: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0034.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::10) To DB7PR04MB4010.eurprd04.prod.outlook.com
- (2603:10a6:5:21::30)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|PAXPR04MB8943:EE_
-X-MS-Office365-Filtering-Correlation-Id: ca9ced4e-b0ea-4e52-0557-08dad8fb8997
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DOmm586DgeaUkRGdll04GV2W17vWc7XnqhRj0nF/Q7UEyCt0DyLbARU6MmP9ZGlviDW63EZmx8OMAJGxGZCfohuo/A++eQCESrU4oVOTVZn42aJ2CvJYS598qfdbSaS13aGStiTfOrChLj8AQvJoCzLNjEeo+8LEGbOvitmigq0TdCHRUxI1ObhoBQT3C+Ru/Fm+y4RFZiJ3Dv4Unq/n0WITqJ1LABpqIkWAuhJsEU6j+stbOBHMG/UC78IDE9OB1LF4FIDBpdSEcIB3BGkJRNYqQyE/lLUD0zq3wcPQAW0sQatNhPRkptNO8Cj6xsXxjhSCUofiUdcgFyOy2fsufJNbq2JCZFzqWa8ZK5zTMwDgr31cEOqLfGu8xuirpVxkkCa8R7sv2OVl07or2ZDennZ+1LGQ8gGVwJX800Yd3cx1JwQ8Cfg7BKjcej0pj22gsrdzQPvQ4STdusFyKBUvnFgxe3oXm0r68CWbO/T4uj3mbIDHIafHzGxjINu8JvHHEt6BFCSWV9cJOMr+/Istul+IGBAUedpAxNgT+Nts8S8RLNWHdHrx7tivk95qQqiXc0pha0KBpMT73crlE3rfODjapYwf3AcseE33m2HpfAZT4y3kDJZuamdtv+c9vPUFiTFOKKMmYcVjA14I+b8DQyae66CnYt2HbB8Kl3JhJbWBX2QHz/qQMJWAR5xJj0uqRVzvMAGO+SE+dRemq9U5QNbufcaUH1Ioli0VtR//sZw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(136003)(396003)(366004)(376002)(451199015)(83380400001)(38100700002)(6486002)(86362001)(478600001)(36756003)(38350700002)(1076003)(6512007)(52116002)(2616005)(66476007)(5660300002)(6506007)(26005)(186003)(9686003)(4326008)(8676002)(2906002)(41300700001)(66946007)(6666004)(316002)(66556008)(8936002)(473944003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+JIgmhjcARDefYrcXIOuHuEA+Vj6lylbUzpH42ek9xDTp66sY9YyAs0NvyWD?=
- =?us-ascii?Q?nGv//pNQVyMLSSdXsrIjJ06NcNUVfdHYD530WUEBCO1Me1z8kHGlm0jMhhAw?=
- =?us-ascii?Q?Q2yNTnrmF2kZc6TU9c8mjwJjuMzbZWplMlB4U3fYsEhOv/hxPj3EQ7KzURrb?=
- =?us-ascii?Q?U3axh/xneKaoZsyNi+E4PQxLtJmvt8s0D1T+rlrvwF/N8izEc84KoL3UT4eD?=
- =?us-ascii?Q?9ShOHelwVEzjLiJowbI6n0SC5ioJWXX5HWNZ03mOmZPZV1bBrquaS/0mDfpc?=
- =?us-ascii?Q?DEdUh3kLUADve4Yp7fxioFA9c+xILC923rQ9b/gXeW2QHPDaiiVIEPft0Eqn?=
- =?us-ascii?Q?jau2V8hD+H8CMhYZTjJ6mfOlXDSzLOoeEHHmOeevKyNYtHsZUuStfbJnet6K?=
- =?us-ascii?Q?XbNa0zdat6FNycUi9NQ0N+VpS2ojMIyg7oPIp6DI8yjKZo7jlS+URC/61/VC?=
- =?us-ascii?Q?u2KDk70mLxIpQI4DbDPx0uMJ+e2dVU//MlGbhCs8e7mG+R4zypUizwVFGHed?=
- =?us-ascii?Q?DRYGhUTAirvab21RnD6uCIa+eqsZy7MVbE6rQ5UfaKTix2dvp9pl3/6RndMM?=
- =?us-ascii?Q?2MuFe53EJ/3/RkNPhrSH8sZ1AYGfU5vH+77DddXk3vv1aEuEENcGBtVPElJF?=
- =?us-ascii?Q?avInn813ZGbsJeOTlaS70UuhgpqayFwMCbqstTp1ukgkC3ih5Ju1SpsGy/vW?=
- =?us-ascii?Q?L5H4ICHDlALUHXF5U54TdnssZDDb2ZK930YBtYt8Xkis17ybyYEM/gO/SNjd?=
- =?us-ascii?Q?da+nblHH4WESJSXA8+dJq9xmnYFreSidQpL0qiJIUlBo23Vn6UYYpPXuxhha?=
- =?us-ascii?Q?S4gZNbQ7QaH6LOZYHuD4JVkZEZ7JsgtGaH4AhMtQsx5n4hZddl/aDoWE74Ia?=
- =?us-ascii?Q?KIgNmse/ayRXjr+t348/FKSfTnLzXb68ILED78YU9epVcH34EmQif09bFyX8?=
- =?us-ascii?Q?41gCqDxmHZ14Me2Vseyt2nFWxqbsawKgPYDBLMZHcYYEgOptGMjUKb3q05A7?=
- =?us-ascii?Q?T7EcSPDiE+A9X3rqw6HTfUl5SMZeqdKgC3Wv2qwcFyXZ6K2zSwRtsshuciFM?=
- =?us-ascii?Q?bwQB/XfL0lKZ3GsfHfUXyNTmT3wTclkaKq/aV5XFc4SqzlqWYYP9d0D0WHUP?=
- =?us-ascii?Q?CptBoTzQmONDeg045TWPwHOA2VqAeGOCOUqWxxxBImJG3rKLcglvfcpzJ99P?=
- =?us-ascii?Q?R2PFeu+WiyBYYM5i917B3JRt2a/ZirdJt15NLMranwC22P7VSCcf2zFmwS97?=
- =?us-ascii?Q?X3Cw8aGQFiLDuiZgRNsG1Po0eEs2z47sd7QsqmUeUbehTiBwO6lGj2VVWg7I?=
- =?us-ascii?Q?n8pEJcMmINKbRSVAI4QaqWI7D44G6rLENzWove+FkHH48K7P8fG/iT3tJ/nr?=
- =?us-ascii?Q?ZwpiPEerprGyIrRGqEcJPSUr1zmxK0MBVfPgQ46vlmOKEw8uiIpRrljFZK5Q?=
- =?us-ascii?Q?80yHUfFOp0tuq1AhtZBVpbtuQfP02+xGOIT0sDkb+xcaOad/AvV8TRvW2+HA?=
- =?us-ascii?Q?X0qa2SyKA2Qk/clQ0Vy05OTs4uyWayFy1l6Zcs44RkThpszbP+B0N9b9D75f?=
- =?us-ascii?Q?JjRWKoEp4Cq50l5mNBP6sAz960HoDRGJU02DpAgM?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca9ced4e-b0ea-4e52-0557-08dad8fb8997
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 09:06:48.5769
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dlc3cRiEWfsgyJDlSYEb3KO/HF77Gf22z07WHnZ68pwXkUKKKXAdfT78XC/UFyZb968iJDGN6htUaik8vAJ1Uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8943
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -111,51 +83,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+LCDIF2 is directly attached to the LVDS Display Bridge (LDB).
+Both need the same clock source (VIDEO_PLL1).
 
-For clock and strobe pad of usdhc, need to config as pull down.
-Current pad config set these pad as both pull up and pull down,
-this is wrong, so fix it here.
-Find this issue when enable HS400ES mode on one Micron eMMC chip,
-CMD8 always meet CRC error in HS400ES/HS400 mode.
-
-Fixes: e37907bd8294 ("arm64: dts: freescale: add i.MX93 11x11 EVK basic support")
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I opted to add both at the same time, so the remote-endpoints are already
+connected.
+blk-ctrl@32ec0000 needs the 'simple-bus' compatible so that bridge@5c is
+actually probed.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index 69786c326db0..27f9a9f33134 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -74,7 +74,7 @@ MX93_PAD_UART1_TXD__LPUART1_TX			0x31e
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 65 ++++++++++++++++++++++-
+ 1 file changed, 64 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 7a6e6221f4219..c1beff33c4981 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -1098,10 +1098,35 @@ aips4: bus@32c00000 {
+ 			#size-cells = <1>;
+ 			ranges;
  
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
--			MX93_PAD_SD1_CLK__USDHC1_CLK		0x17fe
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
- 			MX93_PAD_SD1_CMD__USDHC1_CMD		0x13fe
- 			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x13fe
- 			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x13fe
-@@ -84,7 +84,7 @@ MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x13fe
- 			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x13fe
- 			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x13fe
- 			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
--			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x17fe
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
- 		>;
- 	};
++			lcdif2: display-controller@32e90000 {
++				compatible = "fsl,imx8mp-lcdif";
++				reg = <0x32e90000 0x238>;
++				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
++					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
++				clock-names = "pix", "axi", "disp_axi";
++				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
++						  <&clk IMX8MP_VIDEO_PLL1>;
++				assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>,
++							 <&clk IMX8MP_VIDEO_PLL1_REF_SEL>;
++				assigned-clock-rates = <0>, <1039500000>;
++				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_LCDIF_2>;
++				status = "disabled";
++
++				port {
++					lcdif2_to_ldb: endpoint {
++						remote-endpoint = <&ldb_from_lcdif2>;
++					};
++				};
++			};
++
+ 			media_blk_ctrl: blk-ctrl@32ec0000 {
+ 				compatible = "fsl,imx8mp-media-blk-ctrl",
+-					     "syscon";
++					     "simple-bus", "syscon";
+ 				reg = <0x32ec0000 0x10000>;
++				#address-cells = <1>;
++				#size-cells = <1>;
+ 				power-domains = <&pgc_mediamix>,
+ 						<&pgc_mipi_phy1>,
+ 						<&pgc_mipi_phy1>,
+@@ -1146,6 +1171,44 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+ 				assigned-clock-rates = <500000000>, <200000000>;
  
-@@ -102,7 +102,7 @@ MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
+ 				#power-domain-cells = <1>;
++
++				lvds_bridge: bridge@5c {
++					compatible = "fsl,imx8mp-ldb";
++					clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
++					clock-names = "ldb";
++					reg = <0x5c 0x4>, <0x128 0x4>;
++					reg-names = "ldb", "lvds";
++					assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
++					assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
++					status = "disabled";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							ldb_from_lcdif2: endpoint {
++								remote-endpoint = <&lcdif2_to_ldb>;
++							};
++						};
++
++						port@1 {
++							reg = <1>;
++
++							ldb_lvds_ch0: endpoint {
++							};
++						};
++
++						port@2 {
++							reg = <2>;
++
++							ldb_lvds_ch1: endpoint {
++							};
++						};
++					};
++				};
+ 			};
  
- 	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <
--			MX93_PAD_SD2_CLK__USDHC2_CLK		0x17fe
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x15fe
- 			MX93_PAD_SD2_CMD__USDHC2_CMD		0x13fe
- 			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x13fe
- 			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x13fe
+ 			pcie_phy: pcie-phy@32f00000 {
 -- 
 2.34.1
 
