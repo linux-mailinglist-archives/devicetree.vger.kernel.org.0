@@ -2,244 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5405C646B25
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 849A8646B34
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:57:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbiLHIzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:55:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57834 "EHLO
+        id S229558AbiLHI5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:57:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230053AbiLHIzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:55:44 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A0EE053EDC;
-        Thu,  8 Dec 2022 00:55:42 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.108.31])
-        by gateway (Coremail) with SMTP id _____8CxbeuNppFjcBEEAA--.9417S3;
-        Thu, 08 Dec 2022 16:55:41 +0800 (CST)
-Received: from [0.0.0.0] (unknown [112.20.108.31])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx5VaLppFjodknAA--.13869S3;
-        Thu, 08 Dec 2022 16:55:40 +0800 (CST)
-Message-ID: <7bc31b2d-6687-5823-6950-cdedb8105db5@loongson.cn>
-Date:   Thu, 8 Dec 2022 16:55:39 +0800
+        with ESMTP id S229646AbiLHI5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:57:30 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F30C62EA7
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:57:29 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b3so1048184lfv.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:57:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t+Wh+O8PRwTrRbk5kFdr3a/rSo7u8vOA5d9odhfiR14=;
+        b=v1BSzoivO0PDOUQT0ugfbeIyn3ltnACrXweWeUA+dRemAuYcVd53KUcoqoV2McEcub
+         IfYVTtelayxQaadlY3/x1LZHiBSoTV0lsY1GUYkDIFVB1DCuw+RNbFEZ+yTaUe/ENSdc
+         fxSaDVJ5zzuJwqfP1qXHAzPOBOHk7qTaKzr7fZwzYAS128kkeJXBDj5prB4lhNzxgtL5
+         IdvWodkx3BjVp1VZk8YC/0BvmoFHi25ioRN2If5ARSnBGks1Vfhjjl+BxWxUMSfoiG26
+         HtI7KpSkvckM10TE74NfLcKzhACjrJxrL6azX6OEzG4BLfbvizZ+F2XOFFDqQu7U3Ct/
+         mOYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t+Wh+O8PRwTrRbk5kFdr3a/rSo7u8vOA5d9odhfiR14=;
+        b=g5zzW/hfMsaS+Ie7cHh5vAGjTWaTJQv7HDCoDkUXs5Y1RZf+Cu4P6HZZC3mMqaHMcM
+         sp/kqihE2yD/LWuVWOiXz2K/0iaA9sLiDSNmtEd5ghybBKMxhOs5I5Yyfa3SQmNB/+zL
+         j7uKXEB1afk6XbOPUk2vdKcJiBQaqSx6u7rb62iyqb3RG4LMrGe7i62aU50a6P0TixY6
+         s8zOTGHPbdcrhTSEYr+kJzkRNMZQi/AWOd+PU7IAJHdvMAhh055XP2fk9udQCh21VDL6
+         wCI3ApSzDqVnqKS72JTjzal2GhAmhqw1vj7YnChsRPi31qyBdlfe/SDf0dvNXu6f1IsR
+         JhzQ==
+X-Gm-Message-State: ANoB5pmaDEn0C92FepeYm+FjMwJJRXtQb/6MBdcCrdMdZtZrvioaHZaz
+        0939Zn1qgSdi94Aui8k9bWrWQWR+JjCNVi4luV4=
+X-Google-Smtp-Source: AA0mqf5FwywbJZstRFly5MgLTHQOmnrNxgG1bb0++yQ1DsDDnUV6kjVmQp+5cJWWCy8cOwCS3g1TAw==
+X-Received: by 2002:a05:6512:2005:b0:4b5:9043:2537 with SMTP id a5-20020a056512200500b004b590432537mr2133373lfb.48.1670489847665;
+        Thu, 08 Dec 2022 00:57:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id i6-20020a2ea226000000b0026dee5476d5sm2230773ljm.113.2022.12.08.00.57.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Dec 2022 00:57:27 -0800 (PST)
+Message-ID: <d5e9f614-496c-b111-c9af-f180e16c40b5@linaro.org>
+Date:   Thu, 8 Dec 2022 09:57:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: Re: [PATCH V5 3/4] i2c: ls2x: Add driver for Loongson-2K/LS7A I2C
- controller
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        linux-i2c@vger.kernel.org, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, Huacai Chen <chenhuacai@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>, Arnd Bergmann <arnd@arndb.de>,
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 2/2] dt-bindings: lcdif: Add optional power-domain
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>
-References: <cover.1670293176.git.zhoubinbin@loongson.cn>
- <e088e2ffaef1492adc09b7cdbde0afcea2eeb8b2.1670293176.git.zhoubinbin@loongson.cn>
- <Y49ei1fpEawXvGQB@smile.fi.intel.com>
-In-Reply-To: <Y49ei1fpEawXvGQB@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cx5VaLppFjodknAA--.13869S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3Xr4xAw1fur13KrykuFyrtFb_yoW7Ary3pa
-        y8AF48KrWjqr10qr4DJr1UC347Zrs5J34UJr18Jay7A3ZxCr1vqryrXr409F48Gr4kWrsr
-        Aw4Dtr15ua4YvFDanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bq8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
-        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVWUCVW8JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwA2z4
-        x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa
-        w2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44
-        I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2
-        jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62
-        AI1cAE67vIY487MxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCa
-        FVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
-        IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
-        42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
-        IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280
-        aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUcbAwUUUUU
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+        Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
+ <1839665.tdWV9SEqCh@steina-w>
+ <a033d9a3-4bee-d749-9bd9-24a419398d0b@linaro.org>
+ <3212302.44csPzL39Z@steina-w>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3212302.44csPzL39Z@steina-w>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy:
+On 08/12/2022 09:50, Alexander Stein wrote:
+> Hello Krzysztof,
+> 
+> Am Donnerstag, 8. Dezember 2022, 09:25:31 CET schrieb Krzysztof Kozlowski:
+>> On 08/12/2022 06:59, Alexander Stein wrote:
+>>> Am Mittwoch, 7. Dezember 2022, 17:00:22 CET schrieb Marek Vasut:
+>>>> On 12/7/22 16:14, Alexander Stein wrote:
+>>>>> i.MX8MP requires a power-domain for this peripheral to use. Add it as
+>>>>> an optional property.
+>>>>>
+>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>>>> ---
+>>>>>
+>>>>>   Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 3 +++
+>>>>>   1 file changed, 3 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>>>> b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml index
+>>>>> 793e8eccf8b8b..9d9fb5ad587c2 100644
+>>>>> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>>>>
+>>>>> @@ -52,6 +52,9 @@ properties:
+>>>>>     interrupts:
+>>>>>       maxItems: 1
+>>>>>
+>>>>> +  power-domains:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>>
+>>>>>     port:
+>>>>>       $ref: /schemas/graph.yaml#/properties/port
+>>>>>       description: The LCDIF output port
+>>>>
+>>>> Should this be required on mx8mp then ?
+>>>
+>>> I'm hesitating to add a required property later on. But I'm okay with
+>>> both.
+>>> Rob, Krzysztof: Any preference here? Shall power-domains be made required
+>>> for fsl,imx8mp-lcdif only?
+>>
+>> I don't know. That's not the question to us, but to someone who knows
+>> the hardware/datasheet.
+> 
+> I was not talking about the hardware, which needs the power-domain, but the DT 
+> schema. Sorry to be not specific about this.
+> Is it okay to add a required property for a compatible later on?
 
-在 2022/12/6 23:23, Andy Shevchenko 写道:
-> On Tue, Dec 06, 2022 at 11:16:56AM +0800, Binbin Zhou wrote:
->> This I2C module is integrated into the Loongson-2K SoCs and Loongson
->> LS7A bridge chip.
-> Much better, thanks!
->
-> ...
->
->> +/*
->> + * The I2C controller has a fixed I2C bus frequency by default, but to
->> + * be compatible with more client devices, we can obtain the set I2C
->> + * bus frequency from ACPI or FDT.
->> + */
->> +static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
->> +{
->> +	u16 val = 0x12c; /* Default value of I2C divider latch register */
-> Besides comment better to be placed on top of the commented line, the value
-> is better to have its own definition where you place the comment and elaborate
-> what it means in practice (The clock frequency is changed?  Bus speed is
-> different?)
+Yes, it is okay, assuming:
+1. Linux implementation still works without it thus preserving ABI.
+2. It is really required, e.g. device cannot operate without it (your
+commit msg suggests that).
+3. The property should be required since beginning, but we did not add
+it due to mistake/forgot/lack of docs etc.
 
-Ok, I'll put this comment on a separate line.
-
-The LS2X I2C supports STANDARD_MODE and FAST_MODE, so the maximum bus 
-frequency is 400kHz.
-"0x12c" is our empirical value after experimentation and represents 33KHz.
-
-Also, I think the better way is:
-
-@@ -53,6 +53,15 @@
-  #define LS2X_CTR_IEN           BIT(6) /* Enable i2c interrupt */
-  #define LS2X_CTR_MST           BIT(5) /* 0: Slave mode 1: Master mode */
-
-+/* The PCLK clock frequency input from the LPB bus */
-+#define LS2X_I2C_PCLK_FREQ     (50 * HZ_PER_MHZ)
-+/*
-+ * The LS2X I2C controller supports standard mode and fast mode,
-+ * so the maximum bus frequency is 400kHz.
-+ * The '33KHz' is our empirical value after experimentation.
-+ */
-+#define LS2X_I2C_FREQ_STD      (33 * HZ_PER_KHZ)
-+
-  struct ls2x_i2c_priv {
-         struct i2c_adapter      adapter;
-         struct device           *dev;
-@@ -231,17 +240,19 @@ static irqreturn_t ls2x_i2c_irq_handler(int 
-this_irq, void *dev_id)
-   */
-  static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
-  {
--       u16 val = 0x12c; /* Default value of I2C divider latch register */
-         struct i2c_timings *t = &priv->i2c_t;
-         u32 acpi_speed = i2c_acpi_find_bus_speed(priv->dev);
-
-         i2c_parse_fw_timings(priv->dev, t, false);
-
-         if (acpi_speed || t->bus_freq_hz)
--               val = 10 * HZ_PER_MHZ / max(t->bus_freq_hz, acpi_speed) - 1;
-+               t->bus_freq_hz = max(t->bus_freq_hz, acpi_speed);
-+       else
-+               t->bus_freq_hz = LS2X_I2C_FREQ_STD;
-
--       /* Set LS2X I2C frequency */
--       writel(val, priv->base + I2C_LS2X_PRER_LO);
-+       /* Calculate and set LS2X I2C frequency */
-+       writel((LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1),
-+              priv->base + I2C_LS2X_PRER_LO);
-  }
-
->> +	struct i2c_timings *t = &priv->i2c_t;
->> +	u32 acpi_speed = i2c_acpi_find_bus_speed(priv->dev);
->> +
->> +	i2c_parse_fw_timings(priv->dev, t, false);
->> +
->> +	if (acpi_speed || t->bus_freq_hz)
->> +		val = 10 * HZ_PER_MHZ / max(t->bus_freq_hz, acpi_speed) - 1;
->> +
->> +	/* Set LS2X I2C frequency */
->> +	writel(val, priv->base + I2C_LS2X_PRER_LO);
->> +}
-> ...
->
->> +	writeb(data | LS2X_CTR_EN | LS2X_CTR_IEN | LS2X_CTR_MST,
->> +			priv->base + I2C_LS2X_CTR);
-> Wrong indentation.
->
-> ...
->
->> +	r = devm_request_irq(dev, irq, ls2x_i2c_irq_handler,
->> +			     IRQF_SHARED, "ls2x-i2c", priv);
->> +	if (r < 0)
->> +		return dev_err_probe(dev, r, "Unable to request irq %d\n", irq);
-> You requested IRQ without filling all data structures. Is it fine? Have you
-> checked that with CONFIG_DEBUG_SHIRQ being enabled?
-
-Sorry, I don't quite understand what you mean by "without filling all 
-data structures", I need call ls2x_i2c_reginit(priv) before it ?
-
-I see that other i2c drivers request interrupts at about the same time 
-as I do.
-
-I tested it with CONFIG_DEBUG_SHIRQ and no exceptions were reported.
-
-
-> ...
->
->> +	r = devm_i2c_add_adapter(dev, adap);
->> +	if (r)
->> +		return dev_err_probe(dev, r, "Failure adding adapter\n");
->> +
->> +	return 0;
->> +}
-> Looking at the above...
->
->> +static int ls2x_i2c_remove(struct platform_device *pdev)
->> +{
->> +	struct ls2x_i2c_priv *priv = platform_get_drvdata(pdev);
->> +
->> +	i2c_del_adapter(&priv->adapter);
-> ...are you sure this is correct?
-
-When we use devm_i2c_add_adapter(), the adapter will be auto deleted on 
-driver detach.
-
-So I just drop the ls2x_i2c_remove() ?
-
->> +	return 0;
->> +}
-> ...
->
->> +static int ls2x_i2c_suspend(struct device *dev)
->> +{
->> +	struct ls2x_i2c_priv *priv = dev_get_drvdata(dev);
->> +	priv->suspended = 1;
-> No protection needed?
-
-Actually this variable is not used elsewhere, maybe it is useless, I 
-will try to remove it and add some necessary actions in the 
-suspend/rusume callbacks, such as disable i2c interrupts, to ensure 
-integrity.
-
-
->> +	return 0;
->> +}
->> +
->> +static int ls2x_i2c_resume(struct device *dev)
->> +{
->> +	struct ls2x_i2c_priv *priv = dev_get_drvdata(dev);
->> +	priv->suspended = 0;
-> Ditto.
->
->> +	ls2x_i2c_reginit(priv);
->> +	return 0;
->> +}
-> ...
->
->> +MODULE_ALIAS("platform:ls2x-i2c");
-> Why is this required?
-
-I just referred to other drivers before, and now the MODULE_DEVICE_TABLE 
-already creates proper alias for platform driver.
-
-I will drop it.
-
-Thanks.
-
-Binbin
+Best regards,
+Krzysztof
 
