@@ -2,89 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34880646AC5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3855C646ADB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiLHIlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:41:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44870 "EHLO
+        id S229974AbiLHIol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:44:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbiLHIlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:41:46 -0500
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4FF61BA5;
-        Thu,  8 Dec 2022 00:41:46 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 5FBC63200406;
-        Thu,  8 Dec 2022 03:41:44 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 08 Dec 2022 03:41:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1670488903; x=1670575303; bh=o2
-        7cKNM0F/yZT4+xauvXc0mBIO5hPIuXwZIEKjYIs/4=; b=uGBrY91JweDL0OZJUF
-        3LGUk3EerYvwUZ3Qkdba7oX7StXpB8PlbJQuayR6sQQRPDSetbY/vgwLQt+mFFk9
-        GnShE/4bxIiHgV54NMAzRj+HlIuNkoZmZsYNdeHnzUP2Vt/1ihRyMkZNkZOcYCwE
-        vAwrugA0QSir/zGR26yswLaEvu1RBjfqsiSVsiMWZaDTcRGUYkRWCXvVo8Wp8l0V
-        4MJVfUZnHDd4TKEzgC1NSJ9mJA3lw5Ci+TKsJj7D8wm6dIDlE1O74hXQTyVMrFKC
-        Lzn4arLp/6liijLrKLV3ABGtNND37MVimDn22XUfFyqf7TxOMC8EvAoOtA+kLWAy
-        Cdpg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1670488903; x=1670575303; bh=o27cKNM0F/yZT
-        4+xauvXc0mBIO5hPIuXwZIEKjYIs/4=; b=p7S1ezHwMNotvpUjUmhCwhfxKbm2t
-        w6wwpdzek3O0FQdyJWfur0FNgPmodmKr553+AfeGDqsY9A48xvc4fr/Gu/5xmXbp
-        EpsmEysMjn1rk90tHxojvM2P/4LxCxAcv+uLjkzJGZ+xgIGp1vheL/rR5PYbiALM
-        gYWgGZelfeSb1/Dk2lc4PyVTMbdhaFgO+R41aQ1uGzNGq+uPLLB/8PXSWkYZjFHo
-        QhCMCo89lWfi//s6JpCsCUUaZwPRdSb2oZdh95Ke57teXvp8SBSyUK16fgSz5D8V
-        DkXKI/J1xLw4QNGklrWkNBlgr6QDp9AT3hdvcClFJHcKc5GqloZy2FO/A==
-X-ME-Sender: <xms:R6ORY0_S5trTL60xBjjq9ZUHEWMLXVxm1Wx887HWnkv-vqmUEjwpoQ>
-    <xme:R6ORY8uhBEDQ3lhTfw2bzaQxlMxwbbo__4qG5ncSPVNcaF65BDkF2ahoJFVVemWQ3
-    MswH1HPctoptLbaCw>
-X-ME-Received: <xmr:R6ORY6Cd2ZPsksAxGFZUK2hxBfbFESSevn20CUgHqk_kL-qZyNy5YiEFnrWmtseRBWL0P3440yVCHw6-wyNOJLck-AN-sRu032nKVpAMdbQQw8V124yY06A6Hli6kMralpTblQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudelgdduvdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:R6ORY0dJqcuIphmfZLXksqznY6HpuNnKMz2ud24wIyZz5ofjilKyZw>
-    <xmx:R6ORY5PBoSrIZfgl8nvWW3KzlV-RNWsOKd6IcYUmANIL7m0-fEHpmw>
-    <xmx:R6ORY-kZNOlXuyRcpsccmAYRsn4gS-Y2_QoIP9TX5k8oIq0FtRccnQ>
-    <xmx:R6ORY_uRs_aYVR-3yMymBd-5dCss312yWWmU3D7fBeYUnOkKb3dQBg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Dec 2022 03:41:43 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Samuel Holland <samuel@sholland.org>,
-        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH v5 4/4] soc: sunxi: sram: Only iterate over SRAM children
-Date:   Thu,  8 Dec 2022 02:41:27 -0600
-Message-Id: <20221208084127.17443-5-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221208084127.17443-1-samuel@sholland.org>
-References: <20221208084127.17443-1-samuel@sholland.org>
+        with ESMTP id S230003AbiLHIo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:44:29 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605ED26489;
+        Thu,  8 Dec 2022 00:44:24 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 27C2824DFD7;
+        Thu,  8 Dec 2022 16:44:23 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
+ 2022 16:44:23 +0800
+Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
+ 2022 16:44:22 +0800
+Message-ID: <b0dfc269-e06e-4f4d-7695-55c8522d6137@starfivetech.com>
+Date:   Thu, 8 Dec 2022 16:44:21 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLACK autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add bindings for StarFive
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
+ <20221207131731.1291517-2-william.qiu@starfivetech.com>
+ <d7ecbbbf-5d6b-3254-b645-dbea369447ae@linaro.org>
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <d7ecbbbf-5d6b-3254-b645-dbea369447ae@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,38 +60,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that a regulators child is accepted by the controller binding, the
-debugfs show routine must be explicitly limited to mmio-sram children.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
 
-(no changes since v4)
+On 2022/12/7 23:13, Krzysztof Kozlowski wrote:
+> On 07/12/2022 14:17, William Qiu wrote:
+>> Add documentation to describe StarFive
+>> designware mobile storage host controller driver.
+>> 
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>> ---
+>>  .../bindings/mmc/starfive,jh7110-sdio.yaml    | 71 +++++++++++++++++++
+>>  1 file changed, 71 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+>> new file mode 100644
+>> index 000000000000..4f27ef3cf4f3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
+>> @@ -0,0 +1,71 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/starfive,jh7110-sdio.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive Designware Mobile Storage Host Controller
+>> +
+>> +description:
+>> +  StarFive uses the Synopsys designware mobile storage host controller
+>> +  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
+>> +
+>> +allOf:
+>> +  - $ref: "synopsys-dw-mshc-common.yaml#"
+> 
+> Drop quotes
+> 
 
-Changes in v4:
- - Check the compatible string instead of the node name
+Will fix.
 
-Changes in v2:
- - New patch for v2
+>> +
+>> +maintainers:
+>> +  - William Qiu <william.qiu@starfivetech.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-sdio
+> 
+> Why do you call it sdio if the interface is for mmc as well?
+> 
 
- drivers/soc/sunxi/sunxi_sram.c | 3 +++
- 1 file changed, 3 insertions(+)
+Will update compatible.
 
-diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
-index 92f9186c1c42..f09918c59042 100644
---- a/drivers/soc/sunxi/sunxi_sram.c
-+++ b/drivers/soc/sunxi/sunxi_sram.c
-@@ -120,6 +120,9 @@ static int sunxi_sram_show(struct seq_file *s, void *data)
- 	seq_puts(s, "--------------------\n\n");
- 
- 	for_each_child_of_node(sram_dev->of_node, sram_node) {
-+		if (!of_device_is_compatible(sram_node, "mmio-sram"))
-+			continue;
-+
- 		sram_addr_p = of_get_address(sram_node, 0, NULL, NULL);
- 
- 		seq_printf(s, "sram@%08x\n",
--- 
-2.37.4
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +    items:
+>> +      - description: biu clock
+>> +      - description: ciu clock
+> 
+> I don't think the card interface clock is optional... are you sure you
+> have designs working without it? No clock line at all getting to the memory?
+> 
 
+Will fix.
+
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    items:
+>> +      - const: biu
+>> +      - const: ciu
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  starfive,sys-syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description:
+>> +      The desired number of times that the host execute tuning when needed.
+> 
+> That's not matching the property name. Missing number of items... this
+> is anyway confusing. Why number of tuning tries is a property of DT?
+> 
+
+Will update the description.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - interrupts
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/starfive-jh7110.h>
+>> +    #include <dt-bindings/reset/starfive-jh7110.h>
+>> +    mmc@16010000 {
+>> +            compatible = "starfive,jh7110-sdio";
+> 
+> Use 4 spaces for example indentation.
+> 
+
+I'll fix the indentation.
+
+>> +            reg = <0x16010000 0x10000>;
+>> +            clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
+>> +                 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
+> 
+> Align with previous <
+> 
+
+I will fix.
+
+Thank you for taking time to review and provide helpful comments for this patch.
+
+Best regards,
+William Qiu
+
+> Best regards,
+> Krzysztof
+> 
