@@ -2,150 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21BC2647154
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 15:08:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1386A647163
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 15:13:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbiLHOIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 09:08:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44072 "EHLO
+        id S229703AbiLHONe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 09:13:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiLHOIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 09:08:49 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF35B314
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 06:08:45 -0800 (PST)
+        with ESMTP id S229621AbiLHONc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 09:13:32 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861AE7E439
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 06:13:31 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id d131so1775307ybh.4
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 06:13:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670508525; x=1702044525;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=o2rKyCWo/i92zJrOkGubl8HRyLvMB0jfTjO6UhKs7xc=;
-  b=hXOnGZv+IROjHhvo8sBG4YrkgBqAo78vGsfd0bYF3wwvG8dUhhxDCG50
-   iUbSe3Tu+hC1YVjP0VUwtHb7CA82wYFsDFHtZ0Mt7Ib+n4olSC1y4uPnx
-   6KmGZ4UchiKeM5Gg3wCkaR2NFuuRNm1VSurZpDNlbo04fGSn3v4esAohr
-   ZErvfQOJYcdhYe3k7Br5yqkVWt95zu8t3pSrSlWTx4jTm02n7J4fjQC3r
-   ZOsN1Ox/mY5Yash3yPv5IF8CB4OXIERJJ45W8+3Kl8wq0HdJ/zuZVjsQ3
-   MsjzzTWsXisw+ALTTu5dLeQnDPJxDlYXvWzbFZYLiylGa5pRUfAx5PHP7
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27842106"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Dec 2022 15:08:43 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 08 Dec 2022 15:08:44 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 08 Dec 2022 15:08:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670508523; x=1702044523;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=o2rKyCWo/i92zJrOkGubl8HRyLvMB0jfTjO6UhKs7xc=;
-  b=myBfQmB5Uo8LsbyG06Z499sCGkE/h581fv6Imo35n+UQxk0NNa4qKndp
-   ilbNfY4VFjvtWDBqVPJv2VHVa0JVNTOAgdH6wl5E8qj85aRugj5ekopkY
-   3ogR0QeD4LNcsXupd3fhGWfLTn7AqrQW0avWM0Y0XXTgMecTMNrssWjSk
-   kRWJmvAcGhcruK6xBzFilWYys3fypOj+a31SmQhHmk/iJopmCGFcG+vBx
-   dAV9rQJSF6soyKmBoOo6W1Vbj5glfAkXlS4QXrEKj5XSM0p7+0VNH9FTg
-   cepDFjG9mTig+VS/Hrkz9k+/KqaaH+A3eSWS3ww/tnxw7iKUCjqPjoO6r
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27842104"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Dec 2022 15:08:43 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 66B7B280072;
-        Thu,  8 Dec 2022 15:08:43 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 1/1] dt-bindings: lcdif: Fix constraints for imx8mp
-Date:   Thu,  8 Dec 2022 15:08:40 +0100
-Message-Id: <20221208140840.3227035-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Z5aJtLOuR7FuK5HbTy22FQpW8Dvr68E0rRJLO0HyBk=;
+        b=oMLFT7CiEH/WZJjXGiQcL2YeIFMSySLFJwOHBXqBfUpYtZhi/y3/hjBquUv7hfXXtK
+         RBd/4pWaU3C//J78g874Ftmevp3GEB9qEm/zre80CUs0NWyxnLfgX7oFYU2u4EUFXN7n
+         hPyfOg8BnP04XPhmfgLacW8ue8nLW9y8dhWB2t4DLSeiNQbtNtMNQed65frPzWuOjmKV
+         zVNdzEoD93UKR08k40tOWYhaRXvpnOqVQHUk36vPes1z8p3Xq7pWxsDt4Uu+CV/OyRay
+         PiAECURGS5pUAr2MwHmjm9wqV5EVcChv7PFxFXu9qQuhQNPjLwCvtZejxE92epJWpwQA
+         zVoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Z5aJtLOuR7FuK5HbTy22FQpW8Dvr68E0rRJLO0HyBk=;
+        b=jzzZcL+yqoQiUh6HaeRDXx2cqBZl3F0rWKOyIKT+NVXJxMbt5tx8975WTXCcSHRFHc
+         ZayQ++pfL+H8//e6mVcmlrUMdTmpci2FnY5j7KecwnZq+nJmfFq+3l2TFgwUGpEVHSqX
+         IqyssDcN3Pfh0unkYq4qmAma316kd1R8DGwEUw1AO3ZOgLOASZH2teVoM54ggAj9GSAK
+         MUQcQN2fCsamrf/XOlGeVQM5lB4WOOSu0tuvH35Z+lTdUoWcL8nrT+oCmCwoZwyLMZ7N
+         UAV2p7TZCpnM0ZkfL/Q9F+Hx14TuT4EhXanIGtyfTCJcVwzdeJdIN9EbOcu4sll0KQc3
+         HCcg==
+X-Gm-Message-State: ANoB5plgAz1wN+3xaS/QzEjNLjBtntp3m6J7Rorp7e/woO0YfbkjHFzt
+        dARhuX4tlarbG4etQ2PNUtwQQtvXl4cOn+DAVaPr4Q==
+X-Google-Smtp-Source: AA0mqf7BVGb/EIkFUaHqlMWOuRls39ddO5l5iNFgrXGZGIwAL1UtqvApnlXb3rvZfj2yAM/L4i77IP5/4pDvbZCoSqY=
+X-Received: by 2002:a05:6902:114f:b0:701:161b:d3b1 with SMTP id
+ p15-20020a056902114f00b00701161bd3b1mr17092268ybu.194.1670508810698; Thu, 08
+ Dec 2022 06:13:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221207062913.3154262-1-bhupesh.sharma@linaro.org>
+ <CAA8EJpo30L=KYvrkbnWOrSXGVPk5++r77MTqVd12SZtaUqo-_w@mail.gmail.com> <CAH=2Ntw7EKxkrRwp7mqkBm0gGE7=jVruViPa7ZiG1aSA0ipMzQ@mail.gmail.com>
+In-Reply-To: <CAH=2Ntw7EKxkrRwp7mqkBm0gGE7=jVruViPa7ZiG1aSA0ipMzQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 8 Dec 2022 17:13:20 +0300
+Message-ID: <CAA8EJpqUT+Zy0uD+0NnUTbQWOM_+CAfXTU+ED=GwgcNe2MpVHQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Fix iommu sid values for PCIe nodes
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, konrad.dybcio@linaro.org,
+        andersson@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MP uses 3 clocks, so soften the restrictions for clocks & clock-names.
-This SoC requires a power-domain for this peripheral to use. Add it as
-a required property.
+On Thu, 8 Dec 2022 at 14:05, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+>
+> On Thu, 8 Dec 2022 at 16:14, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Wed, 7 Dec 2022 at 09:29, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> > >
+> > > Fix the iommu sid values for the PCIe nodes present on
+> > > Qualcomm SM8150 SoC dtsi (in sync the with downstream code).
+> >
+> > The commit message describes what you did, not why. Is there any
+> > actual issue that you are trying to solve?
+>
+> Right, I will add that in v2. We have a customer facing some sid
+> related IOMMU transactional errors on sm8150 based boards.
+>
+> > It makes me wonder because all modern Qualcomm platforms share more or
+> > less the same setup.
+>
+> Please see sdm845.dtsi, which does the same as suggested via this
+> patch for sm8150.
 
-Fixes: f5419cb0743f ("dt-bindings: lcdif: Add compatible for i.MX8MP")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v3:
-* Removed power-domains minItems: 1 constraint
+Should we also apply the same change to other platforms?
 
-Changes in v2:
-* Squash both patches into one
-* Split the conditionals from fsl,imx6sx-lcdif
-* Mark power-domains as required for fsl,imx8mp-lcdif
-* Ignored the A-b & R-b due to reorganization
+>
+> Thanks,
+> Bhupesh
+>
+> > > Fixes: a1c86c680533 ("arm64: dts: qcom: sm8150: Add PCIe nodes")
+> > > Cc: Bjorn Andersson <andersson@kernel.org>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> >
+> > No need to have regular maintainers in Cc tags. Please use regular
+> > git-send-email arguments instead.
+> >
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 32 ++++++++++++++++++++++++++--
+> > >  1 file changed, 30 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > index d1b64280ab0b..e88d1617a1ab 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > > @@ -1810,9 +1810,23 @@ pcie0: pci@1c00000 {
+> > >                                       "slave_q2a",
+> > >                                       "tbu";
+> > >
+> > > -                       iommus = <&apps_smmu 0x1d80 0x7f>;
+> > > +                       iommus = <&apps_smmu 0x1d80 0xf>;
+> > >                         iommu-map = <0x0   &apps_smmu 0x1d80 0x1>,
+> > >                                     <0x100 &apps_smmu 0x1d81 0x1>;
+> >
+> > it looks like the patch was not even compile-tested.
+> >
+> > > +                                   <0x200 &apps_smmu 0x1d82 0x1>,
+> > > +                                   <0x300 &apps_smmu 0x1d83 0x1>,
+> > > +                                   <0x400 &apps_smmu 0x1d84 0x1>,
+> > > +                                   <0x500 &apps_smmu 0x1d85 0x1>,
+> > > +                                   <0x600 &apps_smmu 0x1d86 0x1>,
+> > > +                                   <0x700 &apps_smmu 0x1d87 0x1>,
+> > > +                                   <0x800 &apps_smmu 0x1d88 0x1>,
+> > > +                                   <0x900 &apps_smmu 0x1d89 0x1>,
+> > > +                                   <0xa00 &apps_smmu 0x1d8a 0x1>,
+> > > +                                   <0xb00 &apps_smmu 0x1d8b 0x1>,
+> > > +                                   <0xc00 &apps_smmu 0x1d8c 0x1>,
+> > > +                                   <0xd00 &apps_smmu 0x1d8d 0x1>,
+> > > +                                   <0xe00 &apps_smmu 0x1d8e 0x1>,
+> > > +                                   <0xf00 &apps_smmu 0x1d8f 0x1>;
+> > >
+> > >                         resets = <&gcc GCC_PCIE_0_BCR>;
+> > >                         reset-names = "pci";
+> > > @@ -1909,9 +1923,23 @@ pcie1: pci@1c08000 {
+> > >                         assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+> > >                         assigned-clock-rates = <19200000>;
+> > >
+> > > -                       iommus = <&apps_smmu 0x1e00 0x7f>;
+> > > +                       iommus = <&apps_smmu 0x1e00 0xf>;
+> > >                         iommu-map = <0x0   &apps_smmu 0x1e00 0x1>,
+> > >                                     <0x100 &apps_smmu 0x1e01 0x1>;
+> > > +                                   <0x200 &apps_smmu 0x1e02 0x1>,
+> > > +                                   <0x300 &apps_smmu 0x1e03 0x1>,
+> > > +                                   <0x400 &apps_smmu 0x1e04 0x1>,
+> > > +                                   <0x500 &apps_smmu 0x1e05 0x1>,
+> > > +                                   <0x600 &apps_smmu 0x1e06 0x1>,
+> > > +                                   <0x700 &apps_smmu 0x1e07 0x1>,
+> > > +                                   <0x800 &apps_smmu 0x1e08 0x1>,
+> > > +                                   <0x900 &apps_smmu 0x1e09 0x1>,
+> > > +                                   <0xa00 &apps_smmu 0x1e0a 0x1>,
+> > > +                                   <0xb00 &apps_smmu 0x1e0b 0x1>,
+> > > +                                   <0xc00 &apps_smmu 0x1e0c 0x1>,
+> > > +                                   <0xd00 &apps_smmu 0x1e0d 0x1>,
+> > > +                                   <0xe00 &apps_smmu 0x1e0e 0x1>,
+> > > +                                   <0xf00 &apps_smmu 0x1e0f 0x1>;
+> > >
+> > >                         resets = <&gcc GCC_PCIE_1_BCR>;
+> > >                         reset-names = "pci";
+> > > --
+> > > 2.38.1
+> > >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
- .../bindings/display/fsl,lcdif.yaml           | 29 ++++++++++++++++++-
- 1 file changed, 28 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 876015a44a1e6..f449cfc767899 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -52,6 +52,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: The LCDIF output port
-@@ -81,7 +84,31 @@ allOf:
-           maxItems: 3
-       required:
-         - clock-names
--    else:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx8mp-lcdif
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 3
-+        clock-names:
-+          minItems: 3
-+          maxItems: 3
-+      required:
-+        - clock-names
-+        - power-domains
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - fsl,imx6sx-lcdif
-+                - fsl,imx8mp-lcdif
-+    then:
-       properties:
-         clocks:
-           maxItems: 1
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
