@@ -2,57 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 264EC64705B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8105A647090
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbiLHNCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 08:02:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58022 "EHLO
+        id S229772AbiLHNOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 08:14:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbiLHNCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:02:37 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C40631F;
-        Thu,  8 Dec 2022 05:02:36 -0800 (PST)
+        with ESMTP id S229619AbiLHNOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:14:30 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E6181DBD
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 05:14:29 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 377ADB823B2;
-        Thu,  8 Dec 2022 13:02:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D752EC433C1;
-        Thu,  8 Dec 2022 13:02:30 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0F03FCE2442
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 13:14:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E840C433C1;
+        Thu,  8 Dec 2022 13:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670504553;
-        bh=HF/CT0qe8YpFOKtPjeRHyYkiJf0CwH4GR79yo9n3q3U=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=jH5e6c8f849b8XDNRljqZMzdQjJUarDYzIfv9F1yBeld8zD/0aRo/sJfPTnt7sV1A
-         vihQJrDaeqAPCkSJEF3929KEVyVZLcRjaBgwft+3zvWH4dDLeRqmPvzakPZplUV29o
-         QxLJZi2q8QIbw9Jk9zIm4j66lufJD2HGxZOjyQVqTYai9ze8Ze/E8ogATA10bokRYA
-         7rSZF0lvpNacNjOGYJS4um3efdxrADYZrIveP00ieN2znQddVIuHDZMWg0cD2VMMqE
-         Vdi2h6NQVYLcpT7bmZelyOsBD70dDzcjgBDA9Z3HZtG0hwZ2qG6esrqJcfJVXpBHrw
-         rilDxPN/YI3Aw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>, Lee Jones <lee@kernel.org>,
+        s=k20201202; t=1670505266;
+        bh=WadoWmzSEhezI89KiTW/e5WPFBONJsvpELRqmsX7g1M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G1pFbA1NwK51wx4dTlNEB7U8WWoNFDjqZqjaRhW7W6n6HO6+11cDV2d5sBAYqcziM
+         wi4MgirwNKh4Un4FlNy7Chy+dTGYoxHCnK1aUtvkGBmQAQcyu/Vdewr5gmbtjgyuMS
+         1gjUwJEwkrfcimMUpGYWdBzHVnUzOus7z6DV7t/GxlQdXjOtmxPA2A7/0N1cGsrZz7
+         Jp941d/UaPi3iuz6XMROJjoguD0teB6M83+C0bgxp1jlVLJzxOAshidxG4dYnfhWGX
+         4U5ZRYhHjNF1YCzvDC+1uFBRvjhR2znzPNINj/XUttSYw/eNILCuwBma8y/hGoAhw4
+         MZDH8HoIadKUQ==
+Date:   Thu, 8 Dec 2022 13:14:19 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Support Opensource <support.opensource@diasemi.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Gene Chen <gene_chen@richtek.com>,
-        Daniel Mack <zonque@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-In-Reply-To: <20221206211554.92005-1-robh@kernel.org>
-References: <20221206211554.92005-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Add missing 'unevaluatedProperties' to
- regulator nodes
-Message-Id: <167050455059.159009.6147291983377925638.b4-ty@kernel.org>
-Date:   Thu, 08 Dec 2022 13:02:30 +0000
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: da9062: Move IRQ to optional
+ properties
+Message-ID: <Y5HjK6ITymyy2Q3H@google.com>
+References: <20221122095833.3957-1-cniedermaier@dh-electronics.com>
+ <20221122095833.3957-2-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.11.0-dev-b77ec
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221122095833.3957-2-cniedermaier@dh-electronics.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,40 +60,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Dec 2022 15:15:55 -0600, Rob Herring wrote:
-> Several regulator schemas are missing 'unevaluatedProperties' constraint
-> which means any extra properties are allowed. Upon adding the
-> constraint, there's numerous warnings from using the deprecated
-> 'regulator-compatible' property. Remove the usage as examples shouldn't
-> be using long since deprecated properties.
+On Tue, 22 Nov 2022, Christoph Niedermaier wrote:
+
+> Move IRQ to optional properties, because the MFD DA9061/62
+> is usable without IRQ. This makes the chip usable for designs
+> that don't have the IRQ pin connected.
 > 
-> 
-> [...]
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> ---
+> Cc: Support Opensource <support.opensource@diasemi.com>
+> Cc: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: kernel@dh-electronics.com
+> Cc: devicetree@vger.kernel.org
+> To: linux-kernel@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/mfd/da9062.txt | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 
-Applied to
+Applied, thanks.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] dt-bindings: Add missing 'unevaluatedProperties' to regulator nodes
-      commit: 2a17ddfdca25ac4cbb0d317362608ec32f98fd82
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+Lee Jones [李琼斯]
