@@ -2,175 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 251FF646C2D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5F1646C3B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:46:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbiLHJql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:46:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
+        id S230260AbiLHJq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:46:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbiLHJqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:46:25 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3AC977205;
-        Thu,  8 Dec 2022 01:46:21 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 682B324E2B9;
-        Thu,  8 Dec 2022 17:46:20 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
- 2022 17:46:20 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
- 2022 17:46:19 +0800
-Message-ID: <70ebb0f1-b151-cc83-64c2-cffe361b21a3@starfivetech.com>
-Date:   Thu, 8 Dec 2022 17:46:18 +0800
+        with ESMTP id S230381AbiLHJqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:46:37 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A9BA6F0D2
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:46:36 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id g7so1212073lfv.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 01:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JbJYjODEjro1RFdAuzwb2wjJ9qbMGZnpipEOMqi0I/0=;
+        b=wSwCTtIanqUXWSPc0KxcMvgfz7n4H8KI2Uxk6yeWeRUPI0N7urywQW+Au5DGF6ywVK
+         IXAzB0+orsU7wslEUAVg7Ay9wEwkz8SmCTk69kAwGuIHELMAHt3FoHsF4im0NqL8K06/
+         RxTzKGkQcLxQyLrH55eXl/pgvWMbIy/TAi7d6YvGoo261/HSfr1f7LTF/RV6M4Kb7tGW
+         RaPKKYeNxMWNdlNgXzSrWV99JpjmvFH81nYP9JiymaxvIYfO++vm9GdCEiYJi/xEoqiT
+         PZc7C9q/Yyp98dry18TEUFJtafKPT8sPXa/SVSxY2p9yB21Fj4QmpphpHgRYVxdmqIX4
+         8xNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JbJYjODEjro1RFdAuzwb2wjJ9qbMGZnpipEOMqi0I/0=;
+        b=x5yeQfLh4d4wjA8MabLxH9jeFp29fC9aUlgIHkd2Q5mcameLalRheJ8fz1iQBGIX+R
+         GGYxzW/RbGOSkfcLZqCmWnYWFNEM9ovyxe+42Q5uiFbySHxzyTCFZdBUCohIM711w5GQ
+         3zHhXNeKKc0GJ6RQ3jdT9Ms+tsrejTDpVS3j/eIYvog1HPmRAch+LgkkoyB72UI35Rn3
+         cYVMNBeXCp+rUKi5H61z3uZne7V5UcE72K+9gLldmyvTCpeuOp53EP/B/8QtWyHGCimZ
+         g9ni3LWby2FecEkYtCtTa2m1lSDRq6w25MP+llLXTv1IhMfDU92XulIpAimBXO6/zCez
+         5ehQ==
+X-Gm-Message-State: ANoB5pnuZcSvhRcTXnYJMRPURS9AEGbq4TyS+ysy6y694HR+Xmgw/u48
+        omaEAcBKhEFA9fjs3sQ28qx6qw==
+X-Google-Smtp-Source: AA0mqf5hBvoUq0DJmDGm6rvtOlEM6uybZlaFXaOwx4rvv/c2CPN/lkieaUTh7DCyPEd6A5RVF74mNw==
+X-Received: by 2002:a05:6512:258b:b0:4b5:a5c7:3289 with SMTP id bf11-20020a056512258b00b004b5a5c73289mr193233lfb.8.1670492794696;
+        Thu, 08 Dec 2022 01:46:34 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s5-20020a056512314500b004b56a8d9e90sm1826596lfi.116.2022.12.08.01.46.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Dec 2022 01:46:34 -0800 (PST)
+Message-ID: <8dfb5b8a-766a-14ec-16d4-74fdd9f7d622@linaro.org>
+Date:   Thu, 8 Dec 2022 10:46:32 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v1 3/3] riscv: dts: starfive: Add mmc node
+Subject: Re: [PATCH v3 3/9] dt-bindings: PCI: renesas,pci-rcar-gen2:
+ 'depends-on' is no more optional
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-4-william.qiu@starfivetech.com>
- <c0b84752-443f-d935-0ed8-c8ed4d212c2e@linaro.org>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <c0b84752-443f-d935-0ed8-c8ed4d212c2e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221207162435.1001782-1-herve.codina@bootlin.com>
+ <20221207162435.1001782-4-herve.codina@bootlin.com>
+ <36895e49-aea5-3676-e7df-78b30277e6a0@linaro.org>
+ <20221208100530.137fa8b7@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221208100530.137fa8b7@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/12/7 23:14, Krzysztof Kozlowski wrote:
-> On 07/12/2022 14:17, William Qiu wrote:
->> This adds the mmc node for the StarFive JH7110 SoC.
->> Set sdioo node to emmc and set sdio1 node to sd.
->> 
->> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> ---
->>  .../jh7110-starfive-visionfive-v2.dts         | 25 ++++++++++++
->>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 38 +++++++++++++++++++
->>  2 files changed, 63 insertions(+)
->> 
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> index c8946cf3a268..6ef8e303c2e6 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> @@ -47,6 +47,31 @@ &clk_rtc {
->>  	clock-frequency = <32768>;
->>  };
->>  
->> +&sdio0 {
->> +	max-frequency = <100000000>;
->> +	card-detect-delay = <300>;
->> +	bus-width = <8>;
->> +	cap-mmc-highspeed;
->> +	mmc-ddr-1_8v;
->> +	mmc-hs200-1_8v;
->> +	non-removable;
->> +	cap-mmc-hw-reset;
->> +	post-power-on-delay-ms = <200>;
->> +	status = "okay";
->> +};
->> +
->> +&sdio1 {
->> +	max-frequency = <100000000>;
->> +	card-detect-delay = <300>;
->> +	bus-width = <4>;
->> +	no-sdio;
->> +	no-mmc;
->> +	broken-cd;
->> +	cap-sd-highspeed;
->> +	post-power-on-delay-ms = <200>;
->> +	status = "okay";
->> +};
->> +
->>  &gmac0_rmii_refin {
->>  	clock-frequency = <50000000>;
->>  };
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> index c22e8f1d2640..e90b085d7e41 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->> @@ -331,6 +331,11 @@ aoncrg: clock-controller@17000000 {
->>  			#reset-cells = <1>;
->>  		};
->>  
->> +		sys_syscon: sys_syscon@13030000 {
+On 08/12/2022 10:05, Herve Codina wrote:
+> Hi Krzysztof,
 > 
-> No underscores in node names, generic node names (syscon or
-> system-controller)
+> On Thu, 8 Dec 2022 09:26:41 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 07/12/2022 17:24, Herve Codina wrote:
+>>> The 'depends-on' property is set in involved DTS.
+>>>
+>>> Move it to a required property.
+>>>
+>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml | 1 +  
+>>
+>> This should be squashed with previous patch. There is no point to add
+>> property and immediately in the next patch make it required. Remember
+>> that bindings are separate from DTS.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I though about make dtbs_check in case of git bisect.
 
-Will fix.
+And what would this commit change? In Git you will have
+1. dt-bindings: PCI: renesas,pci-rcar-gen2: Add depends-on for RZ/N1 SoC
+family
+2. dt-bindings: PCI: renesas,pci-rcar-gen2: 'depends-on' is no more optional
+
+so what is the difference for git bisect?
 
 > 
->> +			compatible = "syscon";
-> 
-> This is not allowed alone.
+> But, ok I will squash or perhaps remove completely this commit.
+> It introduces a DT compatibility break adding a new mandatory
+> property (raised by Rob on cover letter review).
+> Is this compatibility break can be acceptable ?
 
-Will fix.
+Requiring property in bindings as a fix for something which was broken
+is ok. But this is independent of Linux drivers, which should not stop
+working.
 
-> 
->> +			reg = <0x0 0x13030000 0x0 0x1000>;
->> +		};
->> +
->>  		gpio: gpio@13040000 {
->>  			compatible = "starfive,jh7110-sys-pinctrl";
->>  			reg = <0x0 0x13040000 0x0 0x10000>;
->> @@ -433,5 +438,38 @@ uart5: serial@12020000 {
->>  			reg-shift = <2>;
->>  			status = "disabled";
->>  		};
->> +
->> +		/* unremovable emmc as mmcblk0 */
->> +		sdio0: mmc@16010000 {
->> +			compatible = "starfive,jh7110-sdio";
->> +			reg = <0x0 0x16010000 0x0 0x10000>;
->> +			clocks = <&syscrg JH7110_SYSCLK_SDIO0_AHB>,
->> +				 <&syscrg JH7110_SYSCLK_SDIO0_SDCARD>;
->> +			clock-names = "biu","ciu";
->> +			resets = <&syscrg JH7110_SYSRST_SDIO0_AHB>;
->> +			reset-names = "reset";
->> +			interrupts = <74>;
->> +			fifo-depth = <32>;
->> +			fifo-watermark-aligned;
->> +			data-addr = <0>;
->> +			starfive,sys-syscon = <&sys_syscon 0x14 0x1a 0x7c000000>;
-> 
-> This does not match your bindings at all. "&sys_syscon" is a phandle,
-> not a number of tuning retries, as you expect in your bindings.
-> 
+Best regards,
+Krzysztof
 
-Hi Krzysztof,
-
-The sys_syscon is one of system controller registers, and it is used to be the data strobe
-delay chain select. I will update its type and description in next version.
-
-Thanks,
-William Qiu
-
-> 
-> Best regards,
-> Krzysztof
-> 
