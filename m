@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 914BC646D25
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F32EF646D29
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbiLHKis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:38:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45672 "EHLO
+        id S230085AbiLHKjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:39:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbiLHKiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:38:16 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7D38C699
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:34:36 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id j4so1433720lfk.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:34:36 -0800 (PST)
+        with ESMTP id S230094AbiLHKi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:38:26 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4282A8DBC5
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:34:44 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id b9so1093788ljr.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:34:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2LJDWSGNjS/LXhJZi7SC2DVBDrfCD5judgl3sH6DXJM=;
-        b=gNK/jN7CLTEZAH0fNiVipx2qX2wGVvxsNE49fEHGsf9+AApbnD9/WM6gDY7B2A6+Db
-         x66We9UAim4fVs3LYcdc8DQz4NaNgKLOFf79H164EdL29YalCgOjyXWOqYqeyord6EAv
-         a+azYOKG63PnK4VVKC+yKCmyCS0S+72SVh0cS3z2H3CW9vFrA5NjWVndFkJbwGtFus0X
-         yMVUZP9BQeYtGPP7OKQW7q6NsJe903d4/YytCha4yKpMNZqi5BwXxDbfYGoHepzduCk9
-         m+/Vm/26ECguZuWGGKNfKm1Ud6pBvBqOuRuinwfPyhR2QX1G5cAeqUcBBvPUfNcUlQmI
-         lesg==
+        bh=8wlomM62NFx1YHTfCjgWd0qifHffMzgJBx2BRZ3hlQI=;
+        b=Zgs/O1aroG9LaLScW+tiEaN9cZft2W8o9Evv0YHTmeo/J7OWXlj5LJEwhNgAobPHiU
+         uilgBPlUmdc3dWoJqKobg/6nC4aL2RxR6aNKFTHd4U4P3je9IK7UEqrTPICpSn2ctSGw
+         eUDfIP26E6Lw5Wv+vg41sGJQZ8NeuitsqCbYENnre0i2tddoYSvnfc1eEO69kmz9/+o1
+         to1mVogkoa5gKRNde/SInp3how33I8ithQmxEwteCeiJA3PwCGK8QgY6btRuN9enSPAI
+         knbNp4fHecsdEiSDq7pit8IZ8kZpXrooa222ZVaz/3sn/sfoy9dadArhBzNRkmI4FPEV
+         cmoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2LJDWSGNjS/LXhJZi7SC2DVBDrfCD5judgl3sH6DXJM=;
-        b=jYaqJx2IfjTR1aX5KBvsKJiq/Gidn6/ri0jt1moZIMT6ki/m4Ar4Yi4wf8HHIKjDFe
-         BPTrdiVNt0kfbiM+V9n/IqRuLmAV2QDpCoVP2Qs1jNngEagTsAbDkYaGo0j1nCL81jeP
-         zNTppTPKqX4hPvSOAJh8gmFhH2dPsu3Vifc+HZ3g70HIzRysa4HR7z/jOmDe2ewjbh4N
-         ICR6k2qfXGcGwuuO0taGwO+shoaFQmUIzvImO/Ams2xiU1YrrjsTPE5N2v/TGxYJ8If0
-         n6beOKdaKUxCEuknhR6sFcb7UQIlI7SGOdzYIatqugELYl6SljWXdUqKfFg7sCT+yOvH
-         t9Cg==
-X-Gm-Message-State: ANoB5plTdCvkGR0NEaFd++te2FSFp+6LbVbNG9eJ5Ij3IdHbXhawv5j6
-        j+JDHi1JuMObMlbzDS1/Mkt67A==
-X-Google-Smtp-Source: AA0mqf5UttAa8Y+XQ2b+W1Sp0iqeySPxBCP85uS9mxv0qgIUhBlQvXy2P5iTA2NL4+7MMCImRdOHpw==
-X-Received: by 2002:a05:6512:2619:b0:4b5:346e:b4c with SMTP id bt25-20020a056512261900b004b5346e0b4cmr11115112lfb.49.1670495672815;
-        Thu, 08 Dec 2022 02:34:32 -0800 (PST)
+        bh=8wlomM62NFx1YHTfCjgWd0qifHffMzgJBx2BRZ3hlQI=;
+        b=kswhyQZoILux/wLp+I3Xz2QbmWE6xVDjOBwKELTf6KRqOyE7GTXHobJj1BLluhMFmD
+         mOwGM1Sqf1Liv527i7kfdWdztplCrVdyIWXlviUw9rAxhTSYqo06S8go3QLHs1ybxr2A
+         NVCib15MDCc2LVuln0lmQMawjLbCojGOTFpoNiheJV81VCgueF+GORiE1P3XtOwyhbKL
+         3dJP2M3kw30NzjwBfLALkNmEu0qy/tHo4IEtf6ZzZNN7J1040jQiVt/OiSARo+VYreDP
+         4/ByXqJ++3mOx57K1O45gkLyV/0MM4lGRqEaaxkPuuyfIVWB9Qkaok1IRyZsNB7BLaqG
+         3+yw==
+X-Gm-Message-State: ANoB5pnjg1s2WbrO9AmYKmdv2GCvXCYNmiy5pA/CL7DlE8JhHVgwabzu
+        sLJd0PexeTGbGO+ggnZ7wH/6yQ==
+X-Google-Smtp-Source: AA0mqf7o/RMvkWwS4aIlrO6d/DFiefvL6HYy0xc580iCs1mlzMpUSHlZ3ewFzGXX1TIm3rivJd8baA==
+X-Received: by 2002:a05:651c:198a:b0:277:6c67:1a7f with SMTP id bx10-20020a05651c198a00b002776c671a7fmr30533917ljb.133.1670495678436;
+        Thu, 08 Dec 2022 02:34:38 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id c23-20020ac25f77000000b004b4ad5ee601sm3284034lfc.255.2022.12.08.02.34.31
+        by smtp.gmail.com with ESMTPSA id v11-20020a056512096b00b0048af9576d30sm3287258lft.83.2022.12.08.02.34.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 02:34:32 -0800 (PST)
-Message-ID: <47789025-d78b-bcdd-6876-6c9af52a3b05@linaro.org>
-Date:   Thu, 8 Dec 2022 11:34:31 +0100
+        Thu, 08 Dec 2022 02:34:37 -0800 (PST)
+Message-ID: <f2af0b1d-dfd9-32d4-8638-2023fe43f81c@linaro.org>
+Date:   Thu, 8 Dec 2022 11:34:36 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: leds: intel,lgm: Add missing 'led-gpios'
- property
+Subject: Re: [PATCH 2/2] dt-bindings: leds: Add missing references to common
+ LED schema
 Content-Language: en-US
 To:     Rob Herring <robh@kernel.org>, Pavel Machek <pavel@ucw.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Yi Xin <Yixin.zhu@intel.com>,
-        Mallikarjuna reddy <mallikarjunax.reddy@intel.com>
+        Mallikarjuna reddy <mallikarjunax.reddy@intel.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
 References: <20221207204327.2810001-1-robh@kernel.org>
+ <20221207204327.2810001-2-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207204327.2810001-1-robh@kernel.org>
+In-Reply-To: <20221207204327.2810001-2-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,12 +83,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/12/2022 21:43, Rob Herring wrote:
-> The example has 'led-gpio' properties, but that's not documented. As the
-> 'gpio' form is deprecated, add 'led-gpios' to the schema and update the
-> example.
+> 'led' nodes should have a reference to LED common.yaml schema. Add it where
+> missing and drop any duplicate properties.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
+>  .../devicetree/bindings/leds/leds-lgm.yaml       |  3 ++-
+>  .../devicetree/bindings/leds/leds-max77650.yaml  |  9 ++-------
+>  .../bindings/leds/rohm,bd71828-leds.yaml         | 16 +++-------------
+>  3 files changed, 7 insertions(+), 21 deletions(-)
+> 
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
