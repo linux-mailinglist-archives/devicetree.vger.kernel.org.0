@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 286C664780C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 22:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B44FA647817
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 22:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbiLHVfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 16:35:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44070 "EHLO
+        id S229940AbiLHViD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 16:38:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbiLHVf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 16:35:29 -0500
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F45786AD
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 13:35:28 -0800 (PST)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-3b48b139b46so29288797b3.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 13:35:28 -0800 (PST)
+        with ESMTP id S229558AbiLHVh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 16:37:58 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD1A27143
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 13:37:48 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id g4so3283306ybg.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 13:37:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tlFUfNslInmoKrVXkH1lhTSHZIbojnQ8pkFmtckc3GY=;
-        b=K30+WCfX8giduPvnrjcW4mf0ZRHkFyzYUFp5Xw7Zjv/oHUrV8dMXoacaTfnJxSLDwV
-         pVeAN6CSxR/O/Vx40v4erwGSsTiSXe3BI/bCWsHnatqvqmAYi2FqyUlAzRP5W0y2p5aE
-         zAMj6D1W7oNBlX+83qRGtrT5KuxtIXTavxGMWCCNE4DdR8cS0J3wu80gRV6T992+pMA4
-         hmoUbprlR34I2rGMsgz46+y2PEb9RfKy+swqPIFvY9MPPF985zvYmfUFrwWlSjxOyf9M
-         WI2I3nsrrptkAptuLcZe9jRb6RKZya66wgPG4LDdLz5f79U48zqo0n1oOC6z22UMXm/O
-         /38A==
+        bh=G41Op/lXG3g8Cnic6c+y5fMoL1kfzSLedyaKM6ngDWk=;
+        b=VpKYfGNZb5NLOpCp/ra9Y2Ulw55z+QsCoke03jVwQYoK9q/V9V4MH4UDvmU/KT5E5y
+         xzaa2CrDyT8Rafr7S87MxrWHIp775KtLJccKp/ErlERK1ai8gDR1KucY4E0gS5vrC8ue
+         o2a2uxAXzDyaZn6KYzvBhrGGHgU2OYNyhOgLehAiwyGEA2DxZqfqTz/ivnVp8an9p6qf
+         4lnkXsUHdIeDkebmwL4Wpu0kkB+/tkL8OqnH0ExiDEFtVN1z8BIeuA4+asytJtsZBt5h
+         X5+Cm5oms9BQOlb8Gfa4nskF6afkGCb/Fjw6V5SujsBw7hhQtl9yEJSbcxlJ6kfxjqFg
+         m4OQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tlFUfNslInmoKrVXkH1lhTSHZIbojnQ8pkFmtckc3GY=;
-        b=BiQ95RRTfafO3FQ0P1vGO23AVuJ4z3O7/oTSCW2+WOg8I7ByYSzCindAWxQTD2zRTw
-         uHER2mcjZb4J9LxsJoG9zHpbmJMLU3vO4Abn6D+auwTMOLoeGkrGuW+7RQRoDbWDSwF3
-         0qH+63QLP8q3YjtqisQGlIA26WV+1NTZbgMgUnlhTFPQqbgkgRT6GfWURGj9p/wwxNos
-         dlfCPBGWmdvGLvJHHU48AIpzNXLO1Xfxl196/xILn6/DLOmHV5GSVMG4Gjqzt7MHBSso
-         00iUob+QZt3YLFMEvhIQy/EHAm59vbuLrlnOiu7l/zTh784V2On7mUNwFpDWZR5BvBK7
-         hirw==
-X-Gm-Message-State: ANoB5pm3kapgM/3omAzK63oge4i04Y2gLhYO/Nn/ZZWcjquDvgjcunPU
-        Ke10JNUKVS361DrOYvA2/Y6rZlOFRNll7MQ+lnPNcg==
-X-Google-Smtp-Source: AA0mqf5lejhclephxCw5o0uTd2TpzNhPuNBMRa9NqKnFF/sR8PB4mPhQmV9Y5dXLDaQc09tXea5EUQ+vf5gXqUZdr5c=
-X-Received: by 2002:a81:b45:0:b0:3c8:b520:2fa6 with SMTP id
- 66-20020a810b45000000b003c8b5202fa6mr48364581ywl.411.1670535327801; Thu, 08
- Dec 2022 13:35:27 -0800 (PST)
+        bh=G41Op/lXG3g8Cnic6c+y5fMoL1kfzSLedyaKM6ngDWk=;
+        b=g6auK9F7BpCilPX/0j5Jo+cIwLsDy9V54qOr4sBJYLcaL9I/A0squlwhsn4Lo+LvId
+         rJ4+6t1Zrvd2ILtAMPk4e0SMhe+9wGajSS/7IuzaN+cjSX0aUTg7HV7S28QeUUnDTJT+
+         tRJAex6dsqi5a9RMyo8X7ne8tbDcCwOoXd/mRz3W9DqrJWkfEZRc+irzzF+kNkKJpFHY
+         P8zw+4xe8i3b3DRB46Ntg4htdQRFS7/1/k+a7n62PDQESk5ctQIsHh986grQT6SVfTel
+         yE+d4nnbjoLEoinGH1+/Qh6jABpUWivb/IqlLqqXW9Ir+DfK20YRh2e3rLIH+dTqP8VM
+         0TTQ==
+X-Gm-Message-State: ANoB5pl2aP9WqgoiZAQSzasvQn+EvEcqSHw03M6GYNOpk1jq4wBtGVrD
+        P6pIAxI3upL40QOrgH3DegWMqH7L20e/vpmqqGPRjA==
+X-Google-Smtp-Source: AA0mqf7rPAESFFVwhyJ9HkuCCRFFiTbnhyEA/d6xsWGCjrmTSVvR3DD4aRUtEyo49QuIvzEJhbumeD0JLnToI4RKBHw=
+X-Received: by 2002:a25:ac2:0:b0:6e9:3d7a:8012 with SMTP id
+ 185-20020a250ac2000000b006e93d7a8012mr69106030ybk.449.1670535468018; Thu, 08
+ Dec 2022 13:37:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20221205105931.410686-1-vadym.kochan@plvision.eu>
- <20221205105931.410686-4-vadym.kochan@plvision.eu> <CACRpkdaXQqrCEqu9HTMZMMWbnkQxXEmoJNtiH-HENZWeDqjqTw@mail.gmail.com>
- <BN9PR18MB4251300124E30A16B3F5C521DB1D9@BN9PR18MB4251.namprd18.prod.outlook.com>
-In-Reply-To: <BN9PR18MB4251300124E30A16B3F5C521DB1D9@BN9PR18MB4251.namprd18.prod.outlook.com>
+References: <20221128054820.1771-1-clin@suse.com> <20221128054820.1771-3-clin@suse.com>
+ <CAOMZO5D0wJcfbFsvUN3K17S5F4zT2Yf8yQB+wMKQPzuMBitrpA@mail.gmail.com>
+In-Reply-To: <CAOMZO5D0wJcfbFsvUN3K17S5F4zT2Yf8yQB+wMKQPzuMBitrpA@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 8 Dec 2022 22:35:16 +0100
-Message-ID: <CACRpkdayw4JPY_3HFvgDpfPaDwOZHKKmyaahpEbKR6DaO_VJuA@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v3 3/3] mmc: xenon: Fix 2G limitation on AC5 SoC
-To:     Elad Nachman <enachman@marvell.com>
-Cc:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Hu Ziji <huziji@marvell.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Date:   Thu, 8 Dec 2022 22:37:36 +0100
+Message-ID: <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: add NXP S32 SoC family support
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Chester Lin <clin@suse.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -76,38 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Elad,
+On Thu, Dec 8, 2022 at 12:04 AM Fabio Estevam <festevam@gmail.com> wrote:
 
-I get it, I think. I was a bit confused by the 3G/4G terminology.
-
-On Thu, Dec 8, 2022 at 11:20 AM Elad Nachman <enachman@marvell.com> wrote:
-
-> The lower 31-bits of the address placed in the ADMA is passed through the interconnect, and remapped to the base of the DDR.
+> In other imx8m pinctrl drivers we pass:
+(...)
+> > +module_platform_driver(s32g_pinctrl_driver);
 >
-> Hence only addressing of the lower 2GB of the DDR memory is supported for eMMC in this device family (AC5/X).
->
-> So the quirk needs to kick in above 2GB of physical memory accessed from the base of the DDR.
+> And we also register it in arch_initcall() level.
 
-How "clever" to skip bit 32. This should be in the patch description.
+Do you really need that though? This driver certainly does not.
 
-> This is why a quirk which only kicks in above 4GB is not sufficient.
-
-So the author of the patch should create a new quirk that kicks in above 2GB,
-devised to be similar in style of the 4GB quirk we already have.
-
-> Furthermore, SDHCI_QUIRK_32BIT_DMA_ADDR is checked in sdhci_prepare_data() as a way to
-> disable DMA when the offset of the scatter-list DMA address is not 32-bit aligned. If the address is
-> aligned, this quirk does not disable the DMA, and will not solve our problem.
-
-That's right.
-
-Let's just create a new quirk:
-
-SDHCI_QUIRK_31BIT_DMA_ROOF
-
-Define the semantics such that this will allow DMA for buffers that are below
-the 31st bit, but does not have the semantics to limit scatter-gather buffers to
-be 32-bit aligned.
+I was under the impression that recent changes to the probe-order
+logic has made most explicit arch_ etc initcall orderings surplus.
 
 Yours,
 Linus Walleij
