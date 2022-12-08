@@ -2,187 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE2A646B8C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0F27646B8F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:10:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiLHJJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:09:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S229918AbiLHJKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:10:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229840AbiLHJIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:08:52 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753EE1AD96
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:08:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670490531; x=1702026531;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IRxyjKwx8MYOWiyaUgXq4MZ0RFREaiW9N9dB3Mi9UhE=;
-  b=p6aX6u+UrQ3HaID4Q3oetYJT7RXyLrv9NZD4pPm9aspzxU8DPoio5ti5
-   WiXfPKKMl5q31oyoYKWBp4Pvz7JmKKmbpVvVcnslReB8mlyTcJvioNEoB
-   1e1xfycRQh5pNMoLOKZVeuQNvWR55lFvS5oZEnA3bRiq4+rp2ToWifhQr
-   VkT+9zMr5wOZuXUPerGcKvDnhyaw+XpUXSmMZjh2sU7lv03atqDvS63XU
-   kJY9YbLvHCERiIix7H6JNTaMfBhuYEfFAOq3lUOUr/Shmq36GVfS3x4IB
-   xhvV4C18GJfQLbYWh+gNrWfldQM3C+VRu2NAiTytv5Ij5AlXha0aIymdw
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27831353"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 08 Dec 2022 10:08:46 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 08 Dec 2022 10:08:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670490526; x=1702026526;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IRxyjKwx8MYOWiyaUgXq4MZ0RFREaiW9N9dB3Mi9UhE=;
-  b=E5eBGwk3O4uELi1QeY4FAwbVFQN4mT7uUaF+NCVWdBRdIr79yQjeelSe
-   Na4UGZQJXG6j+P1N8GxNXkCaI4oPWrB4vv3p5ngRG1LcvMoMsjHKUv5W4
-   HC+cFqKKz6bnD2uHWuZDFJTuvdK56SvEoT+xn8v+A0hU8m6iYQR5cowTE
-   8onomeH7xust0UVQSBG8pyw8swpdCv0Dfwg5jWNTEqDuOuS+lbBT15tBQ
-   mBtXNDaD4Bu6T/VX+dBSEbvMllm+sXn50+LzwzY+n/BXkX87Ub2mCwzTj
-   trt8lLzxM6oVZrh/zz/sGkhDW6cyEqJzB84fVLuSWRgGI63k7U1eNu6BT
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27831352"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A2105280072;
-        Thu,  8 Dec 2022 10:08:46 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] arm64: dts: freescale: Add LVDS overlay for TQMa8MPxL
-Date:   Thu,  8 Dec 2022 10:08:42 +0100
-Message-Id: <20221208090842.2869374-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
-References: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S230043AbiLHJJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:09:41 -0500
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C6F115E;
+        Thu,  8 Dec 2022 01:09:14 -0800 (PST)
+Received: by mail-qk1-f169.google.com with SMTP id k3so389688qki.13;
+        Thu, 08 Dec 2022 01:09:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GX7yoUJ5UVZ3SHZOJ/FiTU1z5/uRyGEiAnkth1oZIWc=;
+        b=R32eRC3eN2Q/wcD8aDFGZpNNl001yhOpDRho97ztCblTGuFZgvJcn21SPykwg7fFwI
+         Dyj2ClmsJFxY/0kn50rgGMhburszagOnwmIvHipbmD/vxoplFTKIkIz9zyIj4/iOYxaS
+         vMhMMhhsIqSyx0EXFuisgBJ7KS5YFs3j8ZvMqnhbtfjKoHt7nHYKgR+zMePlsWLKJQGA
+         EtGDW4lS3+7/vpg6eefFgk+uAtVGIBRsdZVE8yYw+zj6/ce4FOxRilxRT0dzytOGkS0S
+         8ouk/C/08jFVbIbVFA/SQCg6rhq/mUatqRCNe8MlQjZrPhTDryO5YE3suBXF8VgXoGoj
+         eZnA==
+X-Gm-Message-State: ANoB5pk7kCv3sLWF/B18/goWCTWXNwBpr4aH34RdiPRqhTHsQXgFByp2
+        eJYwDA1auAYHgCu/F0tdzQ0A1YpJJiRtSQ==
+X-Google-Smtp-Source: AA0mqf5l+PK1CNxVV9iNxJPKT6GbAODSzpi9YxDLSJm9goYqz+8iYayk/3veYB2dHvHMItjwVnrl3A==
+X-Received: by 2002:a05:620a:2190:b0:6fe:c24c:3b15 with SMTP id g16-20020a05620a219000b006fec24c3b15mr12149929qka.380.1670490553148;
+        Thu, 08 Dec 2022 01:09:13 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id s18-20020a05620a29d200b006f9ddaaf01esm19602731qkp.102.2022.12.08.01.09.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Dec 2022 01:09:12 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id s11so906582ybe.2;
+        Thu, 08 Dec 2022 01:09:12 -0800 (PST)
+X-Received: by 2002:a5b:24b:0:b0:6ca:3b11:8d76 with SMTP id
+ g11-20020a5b024b000000b006ca3b118d76mr71131994ybp.202.1670490552413; Thu, 08
+ Dec 2022 01:09:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221207162435.1001782-1-herve.codina@bootlin.com> <20221207162435.1001782-9-herve.codina@bootlin.com>
+In-Reply-To: <20221207162435.1001782-9-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 8 Dec 2022 10:09:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWHVStUFx61oKWh=YiJ9wfXZaeWEnt2CSRgn3HQe3pQ6w@mail.gmail.com>
+Message-ID: <CAMuHMdWHVStUFx61oKWh=YiJ9wfXZaeWEnt2CSRgn3HQe3pQ6w@mail.gmail.com>
+Subject: Re: [PATCH v3 8/9] ARM: dts: r9a06g032: Add the USBF controller node
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds an overlay for the supported LVDS display tianma tm070jvhg33.
-The display timings have to be specified explicitly. Using the typical pixel
-clock, the LDB clock can not be configured as the 7-fold of that.
-By setting pixel clock to 74.25 MHz, LDB can be configured to exactly
-519.75 MHz.
+On Wed, Dec 7, 2022 at 5:25 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> Add the USBF controller available in the r9a06g032 SoC.
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-To be hold I'm unsure where to list the overlays. I checked other overlays
-and opted to added them at the end of imx8mp section.
+My
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+on v2 is still valid.
 
- arch/arm64/boot/dts/freescale/Makefile        |  4 ++
- .../imx8mp-tqma8mpql-mba8mpxl-lvds.dtso       | 61 +++++++++++++++++++
- 2 files changed, 65 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index ef6f364eaa183..9eedee68413b2 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -97,6 +97,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dev.dtb
-+
-+imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
-new file mode 100644
-index 0000000000000..ea44d605342ba
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2022 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Alexander Stein
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
-+};
-+
-+&backlight_lvds {
-+	status = "okay";
-+};
-+
-+&display {
-+	compatible = "tianma,tm070jvhg33";
-+	status = "okay";
-+
-+	panel-timing {
-+		clock-frequency = <74250000>;
-+		hactive = <1280>;
-+		vactive = <800>;
-+		hfront-porch = <64>;
-+		hback-porch = <5>;
-+		hsync-len = <1>;
-+		vfront-porch = <40>;
-+		vback-porch = <2>;
-+		vsync-len = <1>;
-+		de-active = <1>;
-+	};
-+
-+	port {
-+		panel_in_lvds0: endpoint {
-+			remote-endpoint = <&ldb_lvds_ch0>;
-+		};
-+	};
-+};
-+
-+&lcdif2 {
-+	status = "okay";
-+};
-+
-+&lvds_bridge {
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			ldb_lvds_ch0: endpoint {
-+				remote-endpoint = <&panel_in_lvds0>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
--- 
-2.34.1
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
