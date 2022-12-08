@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA22646DB3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D86646D46
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbiLHLAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 06:00:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35596 "EHLO
+        id S230061AbiLHKmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:42:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiLHK7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:59:54 -0500
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4A04B5C77D;
-        Thu,  8 Dec 2022 02:52:55 -0800 (PST)
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1p3EW2-0002wy-01; Thu, 08 Dec 2022 11:52:34 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 99685C2487; Thu,  8 Dec 2022 11:36:47 +0100 (CET)
-Date:   Thu, 8 Dec 2022 11:36:47 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 10/11] MIPS: mscc: jaguar2: Fix pca9545 i2c-mux node names
-Message-ID: <20221208103647.GB8388@alpha.franken.de>
-References: <cover.1669999298.git.geert+renesas@glider.be>
- <5eb01c348c5dd90887b33e866555df8f1067e9df.1669999298.git.geert+renesas@glider.be>
+        with ESMTP id S230287AbiLHKl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:41:56 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0921E81D87
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:38:11 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id p36so1361951lfa.12
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:38:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RnjXh6srzA4hNTFwgK5oMRB4A7wsXpdJZ0W8ZXTddYA=;
+        b=VzMA2sy/yYjMfgvLGX1epBgYu/dA3s6XjiuLDRqPBkE7WbF7tGDunaV1r7DEb4FN5S
+         QjjnaAIYZevKBIbOhVNoI6ghLhc7MN1XbwZ9wB5aUwS29e+X11+ZsByhDVv25wj/72KB
+         w8Th2wOMfE0GGHReL6yiUJqLNEdakg8c09JgvQv64COtnm4FGqfzRV2ZT8XHcPBEgKgh
+         40ubl33Bii3JnJU30rE2WuLKBuPNEZ+D9Bv1Rljg5745Uk+6URwyPnqP5TkNJhT/lu66
+         4dZbdbRcQAGOEavIRRiSw8cHiDwocU43ZCldGiFALkK9jPCemeNcX+89YEJF/+y4q9kV
+         +fAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RnjXh6srzA4hNTFwgK5oMRB4A7wsXpdJZ0W8ZXTddYA=;
+        b=OPEeTEibqLeuQauSHXEshO9oILef7MZGzHZOYByzGoKwi6b20erLCyuYN2YQxfmy70
+         uOzXPxpxB3qRQArvtAlV032uZy8CHnT3zCl9ILMTPdD2Pty8cV4mImMx5Vo/U9ImCB4y
+         j4c1/rrnzfqVJUTZjlIUBn27Fk53+acnoLLu4bDaJTSWahlgHmPy3WE/lz6+hi3UF2hI
+         Z/m9/90XPgchOdTRGbY2mn9IABrDDbYfRCYVUTQrGWoUxi1eEWLp+wip7DHtTNZWi8dj
+         HDoD5ULdPOWw/2nTuX4wC9ovphVl1WbKL3HSfeJm8MH8zN76WI0FEt/nEJrdC6d95JdR
+         +nbg==
+X-Gm-Message-State: ANoB5plTG2JEmb+NaiXZcp1yk8D+pWtf4TTUoCoWMNd0dknUuttbse63
+        CF8GYW7d8KG8tyKnQDvNOCE2+A==
+X-Google-Smtp-Source: AA0mqf6E0jLO5LLaLBE4f0zVPvXynee8OE3sUTA1JN58Zl1sfJhuv++Y/uM1QeorAs7UsOD/Hr83bA==
+X-Received: by 2002:a05:6512:39d4:b0:4b3:b6db:8cb5 with SMTP id k20-20020a05651239d400b004b3b6db8cb5mr30264632lfu.599.1670495889427;
+        Thu, 08 Dec 2022 02:38:09 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id v1-20020a056512348100b004b575d239besm1553607lfr.237.2022.12.08.02.38.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Dec 2022 02:38:09 -0800 (PST)
+Message-ID: <7df45cef-ce99-5931-b3a5-32ded8df6d2f@linaro.org>
+Date:   Thu, 8 Dec 2022 11:38:07 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5eb01c348c5dd90887b33e866555df8f1067e9df.1669999298.git.geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 2/5] dt-bindings: remoteproc: qcom: adsp: document
+ sm8550 adsp, cdsp & mpss compatible
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
+ <20221114-narmstrong-sm8550-upstream-remoteproc-v3-2-62162a1df718@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-2-62162a1df718@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 02, 2022 at 05:49:25PM +0100, Geert Uytterhoeven wrote:
-> "make dtbs_check":
+On 07/12/2022 20:23, Neil Armstrong wrote:
+> This documents the compatible for the component used to boot the
+> aDSP, cDSP and MPSS on the SM8550 SoC.
 > 
->     arch/mips/boot/dts/mscc/jaguar2_pcb110.dtb: pca9545@70: $nodename:0: 'pca9545@70' does not match '^(i2c-?)?mux'
-> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->     arch/mips/boot/dts/mscc/jaguar2_pcb110.dtb: pca9545@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3' were unexpected)
-> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->     ...
+> The SM8550 boot process on SM8550 now requires a secondary "Devicetree"
+> firmware to be passed along the main Firmware, and the cDSP a new power
+> domain named "NSP".
 > 
-> Fix this by renaming PCA9545 nodes to "i2c-mux", to match the I2C bus
-> multiplexer/switch DT bindings and the Generic Names Recommendation in
-> the Devicetree Specification.
+> A third memory domain for the DSM memory zone is also needed for the MPSS
+> PAS bindings.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  arch/mips/boot/dts/mscc/jaguar2_pcb110.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
 
-applied to mips-next.
 
-Thomas.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Best regards,
+Krzysztof
+
