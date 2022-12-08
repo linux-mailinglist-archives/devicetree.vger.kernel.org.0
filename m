@@ -2,145 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2DD5646FB2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 13:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 207E464700E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 13:52:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbiLHMal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 07:30:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36866 "EHLO
+        id S230070AbiLHMwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 07:52:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiLHMaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 07:30:39 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D843C2B185;
-        Thu,  8 Dec 2022 04:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1670502638; x=1702038638;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=geMWQwl8f3L8TwGLVN0GOzD32/STIXrJqv4HDrTS7ZE=;
-  b=nrZEHigd0HXl6aoFAdunsYiwb+qUJWAfa5jqBMVWvHnhKB2nyeHq2oxQ
-   EV0V58zegRN7BKxhe2jjJyapxnVCaXN81GB+/24QCAUTq2T32hY2Ahewf
-   ZCxHZ7RbBdzmdTT+G/XiMeFAGBfK1Djoj2hjgVs6KMTloZ2GddHyMgVVO
-   gf18BQIOy3X3p3KUjfTjjKtrVUCwpzYeNep+W0Y+6C7To0mcqUtkNSiSW
-   KQWcJjlMh26JkzvULg2QAtSVEpKXi4BlW/Eqdt7vuxP+o15lya2oGh0TB
-   AUVnbY/FiXaNFcCxmbTDTjVPBcs2Vq9oC6LhweIY/5PSY1w0Gxu47p+3O
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="318298662"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; 
-   d="scan'208";a="318298662"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2022 04:30:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10554"; a="821321712"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; 
-   d="scan'208";a="821321712"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP; 08 Dec 2022 04:30:30 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1p3G2l-006KKW-1a;
-        Thu, 08 Dec 2022 14:30:27 +0200
-Date:   Thu, 8 Dec 2022 14:30:27 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
+        with ESMTP id S230210AbiLHMvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 07:51:45 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C68950E9
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 04:51:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BC988B823A1
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 12:51:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6C5C433D6;
+        Thu,  8 Dec 2022 12:50:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670503861;
+        bh=8hnNJ9DZ4igi+2oWkwMROzxxrbtcCPXUTfGBvpCICRE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=OBB8ECup1asPHUtDd+yv9pGEbglayCD8FXpWNbIJoFUPULofulix6CpBu3dqbOBoY
+         BxOi0HBuoOMfPvTjCJUKZS5ZWSr0qgKs7COm+1p6psZRJ47CHztaa3V82SyqYzxrEY
+         1KYUoPM6+wtYuE56voOqTrK9XER6DcejbAXSKOJ5LMkCvcXDjQtzfPD5qvuGyvcMlU
+         JlMI36ez57pOOo6stAVPR+HDWSCjzyuCQunNq9BR27tIHJAAVBIEZkxaXfnrNwEIoQ
+         mYDn5dGJedysCPvgPj1a258z3Wy1ZTX9KTjylY1V48WbJ0zTILXIFeHGMuTf3Qw2tb
+         NEGWpkrb/h1uQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     alsa-devel@alsa-project.org, Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v5 1/8] i2c: core: let adapters be notified of client
- attach/detach
-Message-ID: <Y5HY4/Ho48KrGFoR@smile.fi.intel.com>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-2-tomi.valkeinen@ideasonboard.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20221208035354.255438-1-marex@denx.de>
+References: <20221208035354.255438-1-marex@denx.de>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl-sai: Reinstate i.MX93 SAI
+ compatible string
+Message-Id: <167050385979.139462.9635280378479288853.b4-ty@kernel.org>
+Date:   Thu, 08 Dec 2022 12:50:59 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221208104006.316606-2-tomi.valkeinen@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.11.0-dev-b77ec
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 08, 2022 at 12:39:59PM +0200, Tomi Valkeinen wrote:
-> From: Luca Ceresoli <luca@lucaceresoli.net>
+On Thu, 08 Dec 2022 04:53:54 +0100, Marek Vasut wrote:
+> The ASoC: dt-bindings: fsl-sai: Fix mx6ul and mx7d compatible strings
+> dropped i.MX93 SAI compatible string, reinstate it.
 > 
-> An adapter might need to know when a new device is about to be
-> added. This will soon bee needed to implement an "I2C address
-> translator" (ATR for short), a device that propagates I2C transactions
-> with a different slave address (an "alias" address). An ATR driver
-> needs to know when a slave is being added to find a suitable alias and
-> program the device translation map.
 > 
-> Add an attach/detach callback pair to allow adapter drivers to be
-> notified of clients being added and removed.
 
-...
+Applied to
 
-> +	if (adap->attach_ops &&
-> +	    adap->attach_ops->attach_client &&
-> +	    adap->attach_ops->attach_client(adap, info, client) != 0)
-> +		goto out_remove_swnode;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-With a temporary variable it becomes better
+Thanks!
 
-	... *ops = adap->attach_ops;
+[1/1] ASoC: dt-bindings: fsl-sai: Reinstate i.MX93 SAI compatible string
+      commit: e85b1f5a9769ac30f4d2f6fb1cdcd9570c38e0c1
 
-	if (ops && ops->attach_client && ops->attach_client(adap, info, client))
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Also notice drop of unneeded ' != 0' part.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
->  	status = device_register(&client->dev);
->  	if (status)
-> -		goto out_remove_swnode;
-> +		goto out_detach_client;
->  
->  	dev_dbg(&adap->dev, "client [%s] registered with bus id %s\n",
->  		client->name, dev_name(&client->dev));
->  
->  	return client;
->  
-> +out_detach_client:
-> +	if (adap->attach_ops && adap->attach_ops->detach_client)
-> +		adap->attach_ops->detach_client(adap, client);
-
-In the similar way.
-
-...
-
-> +	if (adap->attach_ops &&
-> +	    adap->attach_ops->detach_client)
-> +		adap->attach_ops->detach_client(adap, client);
-
-In the similar way.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Mark
