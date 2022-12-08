@@ -2,162 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12CBC64755C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 19:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8013C6475AE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 19:38:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbiLHSJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 13:09:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36568 "EHLO
+        id S229911AbiLHSio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 13:38:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiLHSJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 13:09:20 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261D948774;
-        Thu,  8 Dec 2022 10:09:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1670522959; x=1702058959;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=txh7YJKE0E8JOPXOa+vZqXWz/X+tUvda/1SL6EmUw3g=;
-  b=c1lrqrVGN2hxJ/GTeiaCivOkDKi5mKXUu69wnNsUoOtx1z83iAYMS8iz
-   34NuqXaHzeHpkvujvwfhT5ZgEmsQYQCxPMp90aJ93EQNPc+u3lbyzcGpt
-   fXVXJgn2Bm8wU53/kVNfqRG64WYtWA32c62c2hMDqv/5h6MHuU6qpTQIc
-   s7sJRvsEUeUZe0cvD35JgaJrCcm0O4EocJJW1S/DiB2khZlPcfMRQYDpq
-   Xtlahcpzt8VQWjK4KcuBW6l+AOnEBNa5tK8R0F/jd30T1f7mhIKkwXJmD
-   z79opurwlmC/KRGk22l5FVE3B/ePJJzlMOZVNdqfwVSk1es49FLXyB+4l
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="318407803"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; 
-   d="scan'208";a="318407803"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2022 10:09:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10555"; a="710574261"
-X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; 
-   d="scan'208";a="710574261"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2022 10:09:12 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1p3LKX-006WD8-32;
-        Thu, 08 Dec 2022 20:09:09 +0200
-Date:   Thu, 8 Dec 2022 20:09:09 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Luca Ceresoli <luca@lucaceresoli.net>
-Subject: Re: [PATCH v5 2/8] i2c: add I2C Address Translator (ATR) support
-Message-ID: <Y5IoRdxle8nbrK4U@smile.fi.intel.com>
-References: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
- <20221208104006.316606-3-tomi.valkeinen@ideasonboard.com>
- <Y5HeRL6H5vEeDznl@smile.fi.intel.com>
- <e55d0aa0-e860-3510-2d2f-11486a23c3ea@ideasonboard.com>
+        with ESMTP id S229755AbiLHSim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 13:38:42 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60BF82FB4
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 10:38:41 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id g20so776500iob.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 10:38:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3/xRJHKG4NMzsfm+L55zOJgUriasPBTXRAvPlc39dV8=;
+        b=RDMaYzI9+CHGgDxC/9KzdYmdhuMifeXLSA/5/9xHUEck68KrbhkswKh+mhRViJdpxK
+         axz1EC/onSkbs1DLN9IqkX6vU+lx9GdHFdeNSmFjXJNoOJSd4bxbO2U7fC23VnRBKJCU
+         AIB7xtevHY6ujkbUUNmnyWK2E5LYhNoKCMSAxZHPa43vJwZZB+QWz4He6pl75R1EmSZB
+         N+VL4WkfALF+KeAnGoIbNFaVlLvleq/2nDUiDZWFD2EREc70WE+choT8lVMUnRRlyJ0R
+         e76gtHhNLC4RpsxtG4oc8t3yuBdJwUqsNaaItfsIPTfTMvAG+SU+3mAk+qQXjbwfUVqW
+         y1Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3/xRJHKG4NMzsfm+L55zOJgUriasPBTXRAvPlc39dV8=;
+        b=egvney2C3A1+yERguiZFcE4EMJCgknj7dzAzHo3pXrux4Olr9GLO66h2ogEOFAwdqn
+         8+NxdTuUJEVZ6N0XAWg3YgFqLQeuM8TEj0Wz8kigriRObTdI95UKB49o1eo5BeDwvxPg
+         ZRlAbPVf/ZupqOyBcSK9kW5DeO83U7O937Bfo/lCoC655D9AhjraBy0fXtTaoE8OfQeN
+         laz6WgOW3PBD1g9qLidV2lFJ7dVPUtgc9Hrxo2bJxLhJDxa5mQpVAhvTcScVTG/bRht0
+         1Lwzuen0KM2g/HRuysjuJRaT28XONpwogNOuc1sZsnIDrtRRUjufugYiDzjnzHmdcdg+
+         apFw==
+X-Gm-Message-State: ANoB5pmCYQBcASxpINpWEmTG27FF26Lvxv8AJE0UJx9wiDYsSX6EE0Wx
+        T3umpFb40Pk+G81w3B/xayenYA==
+X-Google-Smtp-Source: AA0mqf61illtL0dhR5UWIP1aOg0DfrQStcwqNBO0OxsnwZmssKcjojUuirB3yT2rAuBwoUL+/sntyg==
+X-Received: by 2002:a6b:c402:0:b0:6e0:27a2:1768 with SMTP id y2-20020a6bc402000000b006e027a21768mr1813129ioa.18.1670524721128;
+        Thu, 08 Dec 2022 10:38:41 -0800 (PST)
+Received: from localhost.localdomain ([98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id m6-20020a0566022ac600b006de16e510b5sm9191180iov.53.2022.12.08.10.38.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Dec 2022 10:38:40 -0800 (PST)
+From:   Alex Elder <elder@linaro.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, agross@kernel.org
+Cc:     elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: enable IPA in sc7280-herobrine-lte-sku.dtsi
+Date:   Thu,  8 Dec 2022 12:38:37 -0600
+Message-Id: <20221208183837.505454-1-elder@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e55d0aa0-e860-3510-2d2f-11486a23c3ea@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 08, 2022 at 06:01:19PM +0200, Tomi Valkeinen wrote:
-> On 08/12/2022 14:53, Andy Shevchenko wrote:
-> > On Thu, Dec 08, 2022 at 12:40:00PM +0200, Tomi Valkeinen wrote:
+IPA is only needed on a platform if it includes a modem, and not all
+SC7280 SoC variants do.  The file "sc7280-herobrine-lte-sku.dtsi" is
+used to encapsulate definitions related to Chrome OS SC7280 devices
+where a modem is present, and that's the proper place for the IPA
+node to be enabled.
 
-...
+Currently IPA is enabled in "sc7280-idp.dtsi", which is included by
+DTS files for Qualcomm reference platforms (all of which include the
+modem).  That also includes "sc7280-herobrine-lte-sku.dtsi", so
+enabling IPA there would make it unnecessary for "sc7280-idp.dtsi"
+to enable it.
 
-> > > +	if (bus_handle) {
-> > > +		device_set_node(&chan->adap.dev, fwnode_handle_get(bus_handle));
-> > 
-> > I believe the correct way, while above still works, is
-> > 
-> > 		device_set_node(&chan->adap.dev, bus_handle);
-> > 		fwnode_handle_get(dev_fwnode(&chan->adap.dev));
-> 
-> Hmm, why is that correct? Shouldn't you give device_set_node() an fwnode
-> that has been referenced?
+The only other place IPA is enabled is "sc7280-qcard.dtsi".
+That file is included only by "sc7280-herobrine.dtsi", which
+is (eventually) included only by these top-level DTS files:
+  sc7280-herobrine-crd.dts
+  sc7280-herobrine-herobrine-r1.dts
+  sc7280-herobrine-evoker.dts
+  sc7280-herobrine-evoker-lte.dts
+  sc7280-herobrine-villager-r0.dts
+  sc7280-herobrine-villager-r1.dts
+  sc7280-herobrine-villager-r1-lte.dts
+All of but two of these include "sc7280-herobrine-lte-sku.dtsi", and
+for those cases, enabling IPA there means there is no need for it to
+be enabled in "sc7280-qcard.dtsi".
 
-You take a reference on the adap->dev and not on input. It's just a logical,
-But as I said your variant still works.
+The two remaining cases will no longer enable IPA as a result of
+this change:
+  sc7280-herobrine-evoker.dts
+  sc7280-herobrine-villager-r1.dts
+Both of these have "lte" counterparts, and are meant to represent
+board variants that do *not* have a modem.
 
-> > But I agree that this looks a bit verbose. And...
-> > 
-> > > +	} else {
-> > > +		struct fwnode_handle *atr_node;
-> > > +		struct fwnode_handle *child;
-> > > +		u32 reg;
-> > > +
-> > > +		atr_node = device_get_named_child_node(dev, "i2c-atr");
-> > > +
-> > > +		fwnode_for_each_child_node(atr_node, child) {
-> > > +			ret = fwnode_property_read_u32(child, "reg", &reg);
-> > > +			if (ret)
-> > > +				continue;
-> > > +			if (chan_id == reg)
-> > > +				break;
-> > > +		}
-> > > +
-> > > +		device_set_node(&chan->adap.dev, child);
-> > 
-> > ...OTOH, you set node with bumped reference here. So I leave all this to
-> > the maintainers.
-> > 
-> > > +		fwnode_handle_put(atr_node);
-> > > +	}
+This is exactly the desired configuration.
 
-...
+Signed-off-by: Alex Elder <elder@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 5 +++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi               | 5 -----
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi             | 5 -----
+ 3 files changed, 5 insertions(+), 10 deletions(-)
 
-> > > +static inline void i2c_atr_set_clientdata(struct i2c_atr *atr, void *data)
-> > > +{
-> > > +	atr->priv = data;
-> > > +}
-> > > +
-> > > +static inline void *i2c_atr_get_clientdata(struct i2c_atr *atr)
-> > > +{
-> > > +	return atr->priv;
-> > > +}
-> > 
-> > The function names are misleading, because I would think this is about driver
-> > data that has been set.
-> > 
-> > I would rather use name like
-> > 
-> > 	i2c_atr_get_priv()
-> > 	i2c_atr_set_priv()
-> 
-> Indeed, set_clientdata is probably wrong. But i2c_atr_set_priv() sounds like
-> it's private to the i2c-atr itself. Maybe i2c_atr_set_driver_data?
-
-Works for me.
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+index ad66e5e9db4ed..956708397f035 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+@@ -34,3 +34,8 @@ &remoteproc_mpss {
+ &rmtfs_mem {
+ 	reg = <0x0 0x9c900000 0x0 0x800000>;
+ };
++
++&ipa {
++	status = "okay";
++	modem-init;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index f7efb9966afd1..0ddbe7f732bd9 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -376,11 +376,6 @@ &gpi_dma1 {
+ 	status = "okay";
+ };
+ 
+-&ipa {
+-	status = "okay";
+-	modem-init;
+-};
+-
+ &lpass_cpu {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+index df49564ae6dc1..cd6ee84b36fd4 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+@@ -336,11 +336,6 @@ vreg_bob: bob {
+ 
+ /* ADDITIONS TO NODES DEFINED IN PARENT DEVICE TREE FILES */
+ 
+-&ipa {
+-	status = "okay";
+-	modem-init;
+-};
+-
+ &lpass_va_macro {
+ 	vdd-micb-supply = <&vreg_bob>;
+ };
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
