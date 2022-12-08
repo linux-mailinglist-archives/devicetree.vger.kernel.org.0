@@ -2,107 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49F00646BAD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B04646BCB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230369AbiLHJOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:14:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45612 "EHLO
+        id S229546AbiLHJXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:23:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbiLHJNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:13:48 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE59F528B2
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:12:47 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1p3Cx3-0006oc-8k; Thu, 08 Dec 2022 10:12:21 +0100
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:92e:b9fb:f0e7:2adf])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 76E921394C2;
-        Thu,  8 Dec 2022 09:12:19 +0000 (UTC)
-Date:   Thu, 8 Dec 2022 10:12:11 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Vivek Yadav <vivek.2311@samsung.com>
-Cc:     rcsekar@samsung.com, krzysztof.kozlowski+dt@linaro.org,
-        wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, pankaj.dubey@samsung.com,
-        ravi.patel@samsung.com, alim.akhtar@samsung.com,
-        linux-fsd@tesla.com, robh+dt@kernel.org, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        aswani.reddy@samsung.com, sriranjani.p@samsung.com
-Subject: Re: [Patch v4 1/2] can: m_can: Call the RAM init directly from
- m_can_chip_config
-Message-ID: <20221208091211.622jm5raebedxboa@pengutronix.de>
-References: <20221207100632.96200-1-vivek.2311@samsung.com>
- <CGME20221207100650epcas5p408d280e0e2d2d6acfb5e252e37f504b2@epcas5p4.samsung.com>
- <20221207100632.96200-2-vivek.2311@samsung.com>
+        with ESMTP id S230048AbiLHJXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:23:48 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8875C74E;
+        Thu,  8 Dec 2022 01:23:45 -0800 (PST)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4ADBE25B;
+        Thu,  8 Dec 2022 10:23:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1670491423;
+        bh=6e3cUNNKs0Mbc6lRI0WlQoFsDq6mdyEYot1UJAoMES8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=viWeAjRfAvQDJgnz5ohqc3JZkl7Q+gk/Z3jJt8aK+WmByB4rXDZUkfs2Sg2ZcCA4E
+         fddgUjJkVmLM9By1Lr+REp0CsPRxZDIQxfz+uEvj73auGnCvKWwy6r4mo73JXaMmSm
+         LmAN/hm7+be8HNS8BQ/HlAqrxUToEAWMkxYNCp2o=
+Message-ID: <e2f8d8f2-dd16-fe2a-8413-ba408672801d@ideasonboard.com>
+Date:   Thu, 8 Dec 2022 11:23:39 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qo5ntlmugze2qlne"
-Content-Disposition: inline
-In-Reply-To: <20221207100632.96200-2-vivek.2311@samsung.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 3/8] dt-bindings: media: add bindings for TI DS90UB960
+Content-Language: en-US
+To:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        Wolfram Sang <wsa@the-dreams.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        "satish.nagireddy@getcruise.com" <satish.nagireddy@getcruise.com>
+References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
+ <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
+ <20221102172630.GA4140587-robh@kernel.org>
+ <6c254d5f-9fa1-b06a-4edb-7e58e4b33101@ideasonboard.com>
+ <fb9e9d5e-9c8b-1ce2-5723-efa498d1ba93@fi.rohmeurope.com>
+ <8360ac8f-64aa-9edd-a110-903e734739f3@ideasonboard.com>
+ <20221111172631.2832ae6c@booty>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221111172631.2832ae6c@booty>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Luca,
 
---qo5ntlmugze2qlne
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 11/11/2022 18:26, Luca Ceresoli wrote:
+> Hello Tomi, Matti, Wolfram,
+> 
+> On Thu, 3 Nov 2022 14:32:02 +0200
+> Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+> 
+>> On 03/11/2022 14:13, Vaittinen, Matti wrote:
+>>> On 11/3/22 13:50, Tomi Valkeinen wrote:
+>>>> Hi Rob,
+>>>>
+>>>> On 02/11/2022 19:26, Rob Herring wrote:
+>>>>> On Tue, Nov 01, 2022 at 03:20:27PM +0200, Tomi Valkeinen wrote:
+>>>>>> +
+>>>>>> +  i2c-alias-pool:
+>>>>>
+>>>>> Something common or could be? If not, then needs a vendor prefix.
+>>>>
+>>>> I'll have to think about this. It is related to the i2c-atr, so I think
+>>>> it might be a common thing.
+>>>
+>>> I'd say this should be common. Where the i2c-atr properties should live
+>>> is another question though. If the I2C-atr stays as a genericly usable
+>>> component - then these bindings should be in a file that can be
+>>> referenced by other I2C-atr users (like the UB960 here).
+>>
+>> Yep. All the links, link, serializer and alias nodes/properties are new
+>> things here, and I guess these could be used by other deser-ser systems.
+>> That said, I don't have any experience with other systems.
+> 
+> The i2c-alias-pool was discussed during the RFC,v2 review [1] and it
+> was agreed that it should be generic. The same principle should apply
+> to the other ATR properties.
+> 
+> That said, at some point it was also decided that the alias pool should
+> just be ditched in favor of an automatic selection of an unused address
+> by the i2c core [2] [3]. Maybe that idea has changed, definitely some
+> i2c core things needed to be omdified for it to happen, but overall I'm
+> still convinced automatic assignment without a pool was a good idea.
 
-On 07.12.2022 15:36:31, Vivek Yadav wrote:
-> When we try to access the mcan message ram addresses during the probe,
-> hclk is gated by any other drivers or disabled, because of that probe
-> gets failed.
->=20
-> Move the mram init functionality to mcan chip config called by
-> m_can_start from mcan open function, by that time clocks are
-> enabled.
->=20
-> Suggested-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> Signed-off-by: Vivek Yadav <vivek.2311@samsung.com>
+Yes, the serializer and the remote peripheral i2c aliases can be 
+dynamically reserved at runtime, so the i2c-alias-pool and the i2c-alias 
+are, in that sense, not needed.
 
-Applied to linux-can-next.
+I haven't looked at this in depth yet, but reading the references you 
+gave, it sounds like it's not quite clear what addresses are available 
+and what are not.
 
-Thanks,
-Marc
+On the other hand, is dynamic i2c address reservation something that the 
+users expect to happen? All i2c devices I have used have always had a 
+fixed address in the DT, even if at times the devices may support 
+choosing between a few different addresses.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+Keeping with that tradition, would it be best to just use fixed i2c 
+aliases, defined in the DT, for the serializers and the remote 
+peripherals? In the current series this is already the case for 
+serializers (with i2c-alias property), but we could do something similar 
+for the remote peripherals.
 
---qo5ntlmugze2qlne
-Content-Type: application/pgp-signature; name="signature.asc"
+  Tomi
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmORqmkACgkQrX5LkNig
-013EGAgAqIsT8Spgs5YSH/Ia25bQG5vb66rPRb4TpsVjmLjycBzY26fgnsXhMqnD
-EJ0x3PhYxpZS3/XI8IiRXPgewekGZBl9DkZWk7BreOLS7MbKR+jnW/82FOrYoDvm
-JleZrFmHQB65YiJTZwzmNmcuEgiQ/KJBfnvVWFbN2KZu8zyEJT6OIRpjDCztetuA
-a/lPfdZJybyh4fTrHJo98KTKie/xuzHGcWtu0YXdI6u3R3O7Z8PBr2jhvuzsvFh/
-7ZrrKY55DAp4TfYI472mR3V4IJpM+Xhs0CJhxPBzqjWw6XxckjrJSTk5k1ZLRymX
-Nf3Bm8cceg345Bu4LOi1AiI+AjxzOw==
-=aA7E
------END PGP SIGNATURE-----
-
---qo5ntlmugze2qlne--
