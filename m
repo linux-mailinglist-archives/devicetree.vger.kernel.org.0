@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D110646A72
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D638646A76
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:26:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiLHIZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:25:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34346 "EHLO
+        id S229677AbiLHI0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbiLHIZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:25:36 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B0413CD7
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:25:34 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id x6so755962lji.10
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:25:34 -0800 (PST)
+        with ESMTP id S229646AbiLHI0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:26:46 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1395E9DE
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:26:44 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id h10so756621ljk.11
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:26:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xE8jv3PkuMLfTb6vfE6WECcl1fHHkR+JJYoxxEnxTzI=;
-        b=foAOdHOyJB5et6qqqHy/AtQNtZkvyrfaUB+dd5lD3qGnhyuZqNG93a1MdOHXY6MeXn
-         BjQjFc4iQ8CFUP8n72odAFiCZJ+rDkzZfDvQ8CYxzuAj64g1YjavbIsMc48V89aHwgs6
-         6Ei6e9Ft56HsGD5bc3Mdh0EZRzDHyH3RszhUt19ZdPhF0w0Sl7xnefd4jyKVijUlmdW5
-         emGC0NqKWSfPuC2d1V8MFfDLuPF8cZilf4egSnq68olLbZYjwa7NK5mYfQ9xfCaUc4Il
-         MqCkgnhTpkQVZbIemGoSTVThWGsrhcKzzK/3cu/ADvvlcghMky1RrYsesJkJHIeyGC4D
-         GyBw==
+        bh=I6ClY8Qn5PhU88a7o7iHI8P//YfoghPFJcCo7zTwnx8=;
+        b=xI/MBzy1SAK+zJrVSmYY0x+h/gh0oAVfK1JHbYnRpeJh1Z7iY1kY1TW6Ixp3W2Kabj
+         p41PCFYiUJT6aaQGicyGHO/I0aqlLmHYk1XJ+/N4uWQfESbMN4uxPgj9X3BxlCtX69jg
+         jEUaXE1820E6AMvDr69hJG/x2hqILM5PWE3VdJUJb1T6wk6kh6RVkLkS8uGaTpC9k+Fj
+         5kcDAKeiaq6GqovSIz07BBory0mJSNMGGGDlkWuFeX4YkGUF2SlPgqrdvLDgBdm/ZZyJ
+         KIDmXdeY1/hDwNj2jfFc9n5fZA9puhsqbABk9w7KpihVi2si54vMF+4znQrOQI++QMKp
+         a2hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xE8jv3PkuMLfTb6vfE6WECcl1fHHkR+JJYoxxEnxTzI=;
-        b=cz1FEkZ00QqzuTbDWEcCH4CyOYhmvsojDG7y/tJrsrLrPbbn7TA63kTQYRCKdRUXGF
-         vma+TH32hld3U9i6SNwxK6sV5Jwnq07oj6kwOXBPN+rFYT934mftXaNnFX/iw6rzAUwk
-         oc5pHp5cxfodx/qSFB1OOPOGj+u5x2oT6D6hTTyVLSfDDVq6E3gy6YLGvw8uduGKsGyg
-         JpdX+rV453LJbzuXjeLNSAahSFiTrYVy+aUudPB8O09IcffuKiZwfBgwR4g3I0bB4a4V
-         lIv8Xj8Sa7LELUkzkXvgXj/mhBeeOboH3xuwpsuMbP/JGrOSyQCY2JtjWbLcpg5+kbco
-         osig==
-X-Gm-Message-State: ANoB5pmNMZG6D6TWgd1/WXZ6rgA3GuhP83BPF2/WZ9rI0JalJ6ImPd9p
-        YkHceoQtmHux5saU5hxJrzYDzEr0Oajb9KqwawI=
-X-Google-Smtp-Source: AA0mqf4/MQ847e6F5ifIS/SX54WEmvMn0heImNI0WYKc/4M90aEB/+yIg6YSjxOM1SOpgt0dmSBmQw==
-X-Received: by 2002:a05:651c:c89:b0:26f:bd61:ac4f with SMTP id bz9-20020a05651c0c8900b0026fbd61ac4fmr25339083ljb.396.1670487933258;
-        Thu, 08 Dec 2022 00:25:33 -0800 (PST)
+        bh=I6ClY8Qn5PhU88a7o7iHI8P//YfoghPFJcCo7zTwnx8=;
+        b=7X2G8EqIJ1EPdZ0uR2hZRIjj/iNVo7EiuJHm3LcrcvWqhpwY4HaZuFaNVvqJe39BwL
+         q3kdnuguGBmpzlpQXsH7+OeIWVW3njvRChPqs5B+Cki5binrjSLFA+MNxFGyg6W682VA
+         NkMqM6jrG4mkRBfHwomMGTcYHba9K93arw06xuoPL1gfCozN0Vn8ZDGrxZ2acWiFk/ue
+         sa3y42DMtMlL/vnmDsPYOBswLhcK4z9anDfivHk9cBoa1dFLrbdmr8Vm7nTRXyDRaUWd
+         p3GqKomWHB52ZBXO3j1E31W2QqPOAFhGBJ8ZwFCtULe0yo/lYdbXQ2P6E5wV3DvVwFnC
+         19yA==
+X-Gm-Message-State: ANoB5pmWLfBmEY8VHsC181VxJlvHpUVbWSo0irGHnJMcL7FiT0i9C6cQ
+        vAddlpo0WTnDeh0Z3/0Odt1tqw==
+X-Google-Smtp-Source: AA0mqf6epq8Tk3LPsvkLyf6+nNpqKEYyRgrRwB6VG90m/K7IlmsjsseL+xDK/7lLb1TyxhdT7bvecA==
+X-Received: by 2002:a05:651c:1108:b0:277:e8c:a5a4 with SMTP id e8-20020a05651c110800b002770e8ca5a4mr25863815ljo.311.1670488003075;
+        Thu, 08 Dec 2022 00:26:43 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id m8-20020a2e9108000000b0026dffa29989sm1901074ljg.23.2022.12.08.00.25.32
+        by smtp.gmail.com with ESMTPSA id t15-20020a05651c204f00b0026bf43a4d72sm2114512ljo.115.2022.12.08.00.26.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 00:25:32 -0800 (PST)
-Message-ID: <a033d9a3-4bee-d749-9bd9-24a419398d0b@linaro.org>
-Date:   Thu, 8 Dec 2022 09:25:31 +0100
+        Thu, 08 Dec 2022 00:26:42 -0800 (PST)
+Message-ID: <36895e49-aea5-3676-e7df-78b30277e6a0@linaro.org>
+Date:   Thu, 8 Dec 2022 09:26:41 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 2/2] dt-bindings: lcdif: Add optional power-domain
+Subject: Re: [PATCH v3 3/9] dt-bindings: PCI: renesas,pci-rcar-gen2:
+ 'depends-on' is no more optional
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
- <20221207151400.1572582-2-alexander.stein@ew.tq-group.com>
- <00789ae3-7fd7-e662-6348-8a31a72ee589@denx.de> <1839665.tdWV9SEqCh@steina-w>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20221207162435.1001782-1-herve.codina@bootlin.com>
+ <20221207162435.1001782-4-herve.codina@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1839665.tdWV9SEqCh@steina-w>
+In-Reply-To: <20221207162435.1001782-4-herve.codina@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 06:59, Alexander Stein wrote:
-> Am Mittwoch, 7. Dezember 2022, 17:00:22 CET schrieb Marek Vasut:
->> On 12/7/22 16:14, Alexander Stein wrote:
->>> i.MX8MP requires a power-domain for this peripheral to use. Add it as
->>> an optional property.
->>>
->>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>> ---
->>>
->>>   Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 3 +++
->>>   1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
->>> b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml index
->>> 793e8eccf8b8b..9d9fb5ad587c2 100644
->>> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
->>> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
->>>
->>> @@ -52,6 +52,9 @@ properties:
->>>     interrupts:
->>>       maxItems: 1
->>>
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>>
->>>     port:
->>>       $ref: /schemas/graph.yaml#/properties/port
->>>       description: The LCDIF output port
->>
->> Should this be required on mx8mp then ?
+On 07/12/2022 17:24, Herve Codina wrote:
+> The 'depends-on' property is set in involved DTS.
 > 
-> I'm hesitating to add a required property later on. But I'm okay with both.
-> Rob, Krzysztof: Any preference here? Shall power-domains be made required for 
-> fsl,imx8mp-lcdif only?
+> Move it to a required property.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml | 1 +
 
-I don't know. That's not the question to us, but to someone who knows
-the hardware/datasheet.
+This should be squashed with previous patch. There is no point to add
+property and immediately in the next patch make it required. Remember
+that bindings are separate from DTS.
 
 Best regards,
 Krzysztof
