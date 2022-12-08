@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6A2B646A6C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D110646A72
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:25:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiLHIYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:24:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33324 "EHLO
+        id S229602AbiLHIZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:25:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbiLHIYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:24:52 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD255B5A8
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:24:50 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id p36so892168lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:24:50 -0800 (PST)
+        with ESMTP id S229893AbiLHIZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:25:36 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B0413CD7
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:25:34 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id x6so755962lji.10
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:25:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=79xB/zM0U0/1kfBuvBDw4fIid88fhTEKl6HV/65eqGs=;
-        b=nvk9SILY86V5yKvRYpP7qenKU1KR1IOY1b/BM+L+QcHCf/u+QVi3c8WQ6vbdg3oPVS
-         VVlohE2IuC4MoGbo/EULgXXjjOhfzADR8Tz+4ph/gbsQzdbkQrB1DebQJBjpVwTJddfW
-         CzxeFFR1Gbt8Ofq6PTo717dICjqph7MUXke19OJ4L5UvQK5M/WhkaVpsUkCKYq5+3JWy
-         xLWn8Jw/KxKzG9XPiOjuwwr4TdHdwIcjuRGGSZwO2UaVJgGs3z7WfcGNGAAIqdW2qx2k
-         OwJTU9tn3ajdtwEa41B8OborHPi2OrKiUyNRZMQHz03uFo5+t5f6ruqSNIjIrk+93tnM
-         z1dA==
+        bh=xE8jv3PkuMLfTb6vfE6WECcl1fHHkR+JJYoxxEnxTzI=;
+        b=foAOdHOyJB5et6qqqHy/AtQNtZkvyrfaUB+dd5lD3qGnhyuZqNG93a1MdOHXY6MeXn
+         BjQjFc4iQ8CFUP8n72odAFiCZJ+rDkzZfDvQ8CYxzuAj64g1YjavbIsMc48V89aHwgs6
+         6Ei6e9Ft56HsGD5bc3Mdh0EZRzDHyH3RszhUt19ZdPhF0w0Sl7xnefd4jyKVijUlmdW5
+         emGC0NqKWSfPuC2d1V8MFfDLuPF8cZilf4egSnq68olLbZYjwa7NK5mYfQ9xfCaUc4Il
+         MqCkgnhTpkQVZbIemGoSTVThWGsrhcKzzK/3cu/ADvvlcghMky1RrYsesJkJHIeyGC4D
+         GyBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=79xB/zM0U0/1kfBuvBDw4fIid88fhTEKl6HV/65eqGs=;
-        b=nmf063zCAuw+Q9zSJ6bN41E9JmkBRTa5WvXhsJJqqUSEPAkM1EA5Y5pTrOCrd8PFO4
-         4w2m9O0g0ksJsv0KcWqAjKlPUbqP3dnR/uLs1Zx+uf5qPXhzOdbdOqbPIugSOQKFIj8h
-         cTeU6+siocmYfBngQbWglPWrRcf4AOpQ1NaTVn0/aeJClP952EzL+f54pq07i8BJF7zU
-         7v+XHTMCvCAlma0UA92qFdcjwtPVv00JxsxeU7ZJz0EEqa17pJfR6Vr7uu6AvARStzEG
-         G87ggpAdMNiHFoRnEZA2naA0uutqiIh9+qgKZQQY3No0/QxRfz53n6c1SnV7LwsGLxmm
-         AY9g==
-X-Gm-Message-State: ANoB5pm1kllp4A5ocAUaVvTivitGgCrc6g67a6P7xfponE9POZL7eJoV
-        AtLwaQ2mFSf4IKSDSNUGxJpSzowxYHyloRBCq4s=
-X-Google-Smtp-Source: AA0mqf5ePKjGDy40LvCJ1aaco/uK1rBASrKzt5yUYPiLyG9tv8AhNviCbFBNMS5KJPPIKiUFaMNyqA==
-X-Received: by 2002:a05:6512:74b:b0:4ad:5f7b:46e0 with SMTP id c11-20020a056512074b00b004ad5f7b46e0mr35621340lfs.350.1670487889230;
-        Thu, 08 Dec 2022 00:24:49 -0800 (PST)
+        bh=xE8jv3PkuMLfTb6vfE6WECcl1fHHkR+JJYoxxEnxTzI=;
+        b=cz1FEkZ00QqzuTbDWEcCH4CyOYhmvsojDG7y/tJrsrLrPbbn7TA63kTQYRCKdRUXGF
+         vma+TH32hld3U9i6SNwxK6sV5Jwnq07oj6kwOXBPN+rFYT934mftXaNnFX/iw6rzAUwk
+         oc5pHp5cxfodx/qSFB1OOPOGj+u5x2oT6D6hTTyVLSfDDVq6E3gy6YLGvw8uduGKsGyg
+         JpdX+rV453LJbzuXjeLNSAahSFiTrYVy+aUudPB8O09IcffuKiZwfBgwR4g3I0bB4a4V
+         lIv8Xj8Sa7LELUkzkXvgXj/mhBeeOboH3xuwpsuMbP/JGrOSyQCY2JtjWbLcpg5+kbco
+         osig==
+X-Gm-Message-State: ANoB5pmNMZG6D6TWgd1/WXZ6rgA3GuhP83BPF2/WZ9rI0JalJ6ImPd9p
+        YkHceoQtmHux5saU5hxJrzYDzEr0Oajb9KqwawI=
+X-Google-Smtp-Source: AA0mqf4/MQ847e6F5ifIS/SX54WEmvMn0heImNI0WYKc/4M90aEB/+yIg6YSjxOM1SOpgt0dmSBmQw==
+X-Received: by 2002:a05:651c:c89:b0:26f:bd61:ac4f with SMTP id bz9-20020a05651c0c8900b0026fbd61ac4fmr25339083ljb.396.1670487933258;
+        Thu, 08 Dec 2022 00:25:33 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v26-20020a05651203ba00b004b55cebdbd7sm2182547lfp.120.2022.12.08.00.24.48
+        by smtp.gmail.com with ESMTPSA id m8-20020a2e9108000000b0026dffa29989sm1901074ljg.23.2022.12.08.00.25.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 00:24:48 -0800 (PST)
-Message-ID: <77f3dea3-7009-eccc-6bac-66309e15a767@linaro.org>
-Date:   Thu, 8 Dec 2022 09:24:47 +0100
+        Thu, 08 Dec 2022 00:25:32 -0800 (PST)
+Message-ID: <a033d9a3-4bee-d749-9bd9-24a419398d0b@linaro.org>
+Date:   Thu, 8 Dec 2022 09:25:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 16/16] dt-bindings: soc: socionext: Add UniPhier AHCI
- glue layer
+Subject: Re: [PATCH 2/2] dt-bindings: lcdif: Add optional power-domain
 Content-Language: en-US
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
- <20221207055405.30940-17-hayashi.kunihiko@socionext.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20221207151400.1572582-1-alexander.stein@ew.tq-group.com>
+ <20221207151400.1572582-2-alexander.stein@ew.tq-group.com>
+ <00789ae3-7fd7-e662-6348-8a31a72ee589@denx.de> <1839665.tdWV9SEqCh@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207055405.30940-17-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1839665.tdWV9SEqCh@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,79 +79,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 06:54, Kunihiko Hayashi wrote:
-> Add DT binding schema for components belonging to the platform-specific
-> AHCI glue layer implemented in UniPhier SoCs.
+On 08/12/2022 06:59, Alexander Stein wrote:
+> Am Mittwoch, 7. Dezember 2022, 17:00:22 CET schrieb Marek Vasut:
+>> On 12/7/22 16:14, Alexander Stein wrote:
+>>> i.MX8MP requires a power-domain for this peripheral to use. Add it as
+>>> an optional property.
+>>>
+>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>> ---
+>>>
+>>>   Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml index
+>>> 793e8eccf8b8b..9d9fb5ad587c2 100644
+>>> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+>>>
+>>> @@ -52,6 +52,9 @@ properties:
+>>>     interrupts:
+>>>       maxItems: 1
+>>>
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>>
+>>>     port:
+>>>       $ref: /schemas/graph.yaml#/properties/port
+>>>       description: The LCDIF output port
+>>
+>> Should this be required on mx8mp then ?
 > 
-> This AHCI glue layer works as a sideband logic for the host controller,
-> including core reset, PHYs, and some signals to the controller.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  .../socionext,uniphier-ahci-glue.yaml         | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml
-> new file mode 100644
-> index 000000000000..bf37be8a778d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-ahci-glue.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-ahci-glue.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Socionext UniPhier SoC AHCI glue layer
-> +
-> +maintainers:
-> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> +
-> +description: |+
-> +  AHCI glue layer implemented on Socionext UniPhier SoCs is a sideband
-> +  logic handling signals to AHCI host controller inside AHCI component.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - socionext,uniphier-pro4-ahci-glue
-> +          - socionext,uniphier-pxs2-ahci-glue
-> +          - socionext,uniphier-pxs3-ahci-glue
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
+> I'm hesitating to add a required property later on. But I'm okay with both.
+> Rob, Krzysztof: Any preference here? Shall power-domains be made required for 
+> fsl,imx8mp-lcdif only?
 
-use consistent quotes
-
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^reset-controller@[0-9a-f]+$":
-> +    $ref: /schemas/reset/socionext,uniphier-glue-reset.yaml#
-> +
-> +  "phy@[0-9a-f]+$":
-> +    $ref: /schemas/phy/socionext,uniphier-ahci-phy.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties:
-> +  type: object
-
-What is the additional object? It's not in your example, not in DTS. Why
-do you need to allow it?
+I don't know. That's not the question to us, but to someone who knows
+the hardware/datasheet.
 
 Best regards,
 Krzysztof
