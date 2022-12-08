@@ -2,121 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D984764761A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 20:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43A626476AD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 20:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiLHTUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 14:20:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45370 "EHLO
+        id S229902AbiLHTkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 14:40:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiLHTUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 14:20:37 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDE02A406
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 11:20:37 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id o12so2488831pjo.4
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 11:20:37 -0800 (PST)
+        with ESMTP id S229655AbiLHTkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 14:40:17 -0500
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5AF1AA21
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 11:40:04 -0800 (PST)
+Received: by mail-io1-xd30.google.com with SMTP id p6so854093iod.13
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 11:40:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SghZa+kW7wIj2RUcdePRPR1tV1IHuHFiC2Ew9exQVO0=;
-        b=ak7msN6Am+PYdy9SBwDyO8HiaGzwCdF79wcoo7pb8KdOw8kNKiwvT04KD8UeG3l4yf
-         GHh80N84AQqX/dKIQiW+9jBDoDh48Vvk/EYWPaYl9SreZxA583cg2J/RuMvZaT2uBUXF
-         DerpsC3NQVtxvjdcQP0Sp8sv2U5KgcCeb+5A4=
+        bh=6knfdCbn21BCTb9mG6T6YdbL/IZU8aMeiwcDOSNAJo4=;
+        b=gnTxgQ2YNwFnoPYgG4cIMS+LZ97bY5Yp0AHyoiPlrUT7G4ndzlsjZQoB2Gfq67kx88
+         YiWicu4p4r1Zdr+9vpbO+5nEJZTqDOqwgKsxzmVAK537CbhlTySJfvrgonsJVt26ojyT
+         pbJpSWBBpnn09OI6AweyatYOvcVUfVsBAhQaI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SghZa+kW7wIj2RUcdePRPR1tV1IHuHFiC2Ew9exQVO0=;
-        b=o/b8JQDLdtVkIys3kd1sO8uufphpZtq44OScx2mpf9lq8WjWj1kXpRpP/qieVux3ub
-         XL1KCsDkcr+D7gFCIsIjPgSovHMipeGu1oeyTKMRXTy7GokGOf4cfyPWL3Xg8+dYd0aU
-         E41lcVzCp8p5H7d+muBQjkaEMR3n7iCUcLFd0de01y4wwp6NSWhT5/YhqlVs6Tfpc7jI
-         nkRkYkmIlIQvbqDkhTdVtqgcrPqiF2NgVAu6CSDoqEqIogBGqGHXJkhdgrjb2KHPMIxo
-         D20jGf7NmS8UaSJRq1gFt0t2ReyPVI0W7o7nNKeCcXDhliD20S7lTNwlsNW5LGIK1jz0
-         RjXA==
-X-Gm-Message-State: ANoB5pnxIA/aDBUjwF+emcpYWUviXug695ctZpiiOYSxpmv73oVu4/lP
-        4M+zoDewN2f4Ub8EB5sOSXIsJA==
-X-Google-Smtp-Source: AA0mqf4m92QMQvWjvOsl2lEdbxbWHxT+FcSa9B07bLEQjj7z+eqgTBCjsv8IKmgo4AM2FSVhzN8t3w==
-X-Received: by 2002:a17:902:f7ca:b0:189:b203:9e2f with SMTP id h10-20020a170902f7ca00b00189b2039e2fmr2971988plw.56.1670527236814;
-        Thu, 08 Dec 2022 11:20:36 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:3aa1:2c62:9ac:4468])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b00186a2274382sm17112019plf.76.2022.12.08.11.20.35
+        bh=6knfdCbn21BCTb9mG6T6YdbL/IZU8aMeiwcDOSNAJo4=;
+        b=jXv+0JcDjsIHZxQAnF5fEZ9uDJ7bFijQlaFWJBEffojw0ubfypQSeqVkiZY7Q7F5Ji
+         zJXD6PDoZgVB29NYvfjrSnlLOYqWYvI1Ff+nREyDRn9NNUZjm4QX4zLPCctW+ZShst0G
+         7f3mAKJp65zTBTrpmCa1llZBDQB+/py4YELbyhGeAzfgZUZwpsXVDxHXswBhaAo9LMf1
+         qjILzOL70tq2EM+ZfzyA1BW9stz3IEp9iyMd6tzSurK5UySjG48Q82Dx8N3jpIOm5PuQ
+         5pR2w1mROtJsy1iMqF0jKzJoRgrh9PbMHrWByK/OsH+g4J0MwhMe1kZD0oPVlqwxbi3L
+         vJTg==
+X-Gm-Message-State: ANoB5pmB1U+3T6gWYGLE1WIl4hamvjSfWI2SlH0HsKxcMr2eQLdyh3q/
+        9LIlekvOUqoMbzRDnMz6CMIlfQ==
+X-Google-Smtp-Source: AA0mqf6htiQQBANxQtC64ij512XLq0BetgIsGBfEonOfV8+AaIxjPeGn0rvLwyBUCwAQtpNC3yxztA==
+X-Received: by 2002:a05:6602:381b:b0:6bc:d715:b8f8 with SMTP id bb27-20020a056602381b00b006bcd715b8f8mr2455896iob.7.1670528398762;
+        Thu, 08 Dec 2022 11:39:58 -0800 (PST)
+Received: from markhas1.roam.corp.google.com (63-225-246-100.hlrn.qwest.net. [63.225.246.100])
+        by smtp.gmail.com with ESMTPSA id b5-20020a05660214c500b006df13af1f16sm9245441iow.50.2022.12.08.11.39.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Dec 2022 11:20:36 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
-        Yunlong Jia <ecs.beijing2022@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+        Thu, 08 Dec 2022 11:39:58 -0800 (PST)
+From:   Mark Hasemeyer <markhas@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Raul Rangel <rrangel@chromium.org>,
+        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
+        Mark Hasemeyer <markhas@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/5] arm64: dts: qcom: sc7180: Add pazquel360 touschreen
-Date:   Thu,  8 Dec 2022 11:20:05 -0800
-Message-Id: <20221208111910.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: [PATCH v11 2/3] dt-bindings: mfd: cros-ec: Add UART compatible string
+Date:   Thu,  8 Dec 2022 12:39:51 -0700
+Message-Id: <20221208123944.v11.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
 X-Mailer: git-send-email 2.39.0.rc1.256.g54fd8350bd-goog
-In-Reply-To: <20221208192006.1070898-1-dianders@chromium.org>
-References: <20221208192006.1070898-1-dianders@chromium.org>
+In-Reply-To: <20221208123944.v11.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+References: <20221208123944.v11.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The touchscreen was supposed to have been added when pazquel360 first
-was added upstream but was missed. Add it now.
+From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Add a compatible string to support the UART implementation of the cros
+ec interface. The driver does not support the reg and interrupt
+properties, so exempt them from being required for UART compatible nodes.
+
+Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
+Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
 
- .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Changes in v11:
+- Update commit message to include device
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-index 5702325d0c7b..54b89def8402 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-@@ -14,6 +14,27 @@ &alc5682 {
- 	realtek,dmic-clk-rate-hz = <2048000>;
- };
+Changes in v10:
+- No change
+
+Changes in v9:
+- Rebase onto for-next
+- Update node-name from uart0 to serial
+- Remove reg and interrupt property requirement for UART compatible
+  nodes.
+- Update authorship
+
+Changes in v8:
+- Update commit message
+
+Changes in v7:
+- No change
+
+Changes in v6:
+- No change
+
+Changes in v5:
+- No change
+
+Changes in v4:
+- Changes in commit message.
+
+Changes in v3:
+- Rebased changes on google,cros-ec.yaml
+
+Changes in v2:
+- No change
+
+---
+ .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+index 3d5efa5578d1b..cdf1d719efe9d 100644
+--- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
++++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+@@ -33,6 +33,9 @@ properties:
+       - description:
+           For implementations of the EC connected through RPMSG.
+         const: google,cros-ec-rpmsg
++      - description:
++          For implementations of the EC connected through UART.
++        const: google,cros-ec-uart
  
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
+   controller-data: true
+ 
+@@ -187,6 +190,15 @@ allOf:
+       properties:
+         mediatek,rpmsg-name: false
+ 
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              enum:
++                - google,cros-ec-rpmsg
++                - google,cros-ec-uart
++    then:
+       required:
+         - reg
+         - interrupts
+@@ -299,4 +311,12 @@ examples:
+         vdd-supply = <&pp3300_fp_mcu>;
+       };
+     };
 +
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3915", "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		hid-descr-addr = <0x0001>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+		vccio-supply = <&pp1800_l10a>;
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
- &keyboard_controller {
- 	function-row-physmap = <
- 		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
++  # Example for UART
++  - |
++    serial {
++        cros-ec {
++            compatible = "google,cros-ec-uart";
++        };
++    };
+ ...
 -- 
 2.39.0.rc1.256.g54fd8350bd-goog
 
