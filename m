@@ -2,58 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DA1646AAE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F4F6646AC0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:41:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbiLHIiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:38:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43180 "EHLO
+        id S229717AbiLHIln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:41:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbiLHIiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:38:14 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5E32DA9E;
-        Thu,  8 Dec 2022 00:38:08 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id ED42C24DEBC;
-        Thu,  8 Dec 2022 16:38:06 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
- 2022 16:38:07 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
- 2022 16:38:05 +0800
-Message-ID: <39916671-8ab1-4f39-1d9b-a66ebedfc772@starfivetech.com>
-Date:   Thu, 8 Dec 2022 16:38:05 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add bindings for StarFive
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229530AbiLHIlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:41:36 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8FA16176F;
+        Thu,  8 Dec 2022 00:41:35 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id A844F3200488;
+        Thu,  8 Dec 2022 03:41:30 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Thu, 08 Dec 2022 03:41:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm3; t=1670488890; x=1670575290; bh=ofGKFfIQd2m7ie86s3B7/ao4k
+        1jGkO2oySg1tYsGzrU=; b=sfPkxjStcjTieZ6d29X5LqINXORCQAvoGOG3hdpU7
+        vbHignV9KHUlHGepP/a+byTBQCU4t7/ywAnAngxM+oEJUPeghOTvbzk8AsZBp74m
+        UihL6lo3/OgwHdDyQquQaQRoZZtLf7Mkd8waXCgIYfYajh4giQkyyexOwEApEbbE
+        YBK4rcigJXsRE7CEtjYmVhsF23mEw7yYO8m3nMfhqMY/CY/9ETeNO0TinhrcmF3N
+        rsYQPqUP+vEHeqKMtuPJmr9Un7rXifLNmTEhVTIvZbuji/0F9WIxOcj/4HOWl26r
+        EvNPSUffqj10xYGLCyxbL/uw8dcnOAKxJc6OONE+zwnnQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+        1670488890; x=1670575290; bh=ofGKFfIQd2m7ie86s3B7/ao4k1jGkO2oySg
+        1tYsGzrU=; b=EtyEGp1xj8J0r6bJXsjPrQAdJt74UZqAcAkohqM7xPM4p0FmEM+
+        ckMFw7Mk/G+rPYM6GPI8yk3sMqPxaKnn/GOT2ksjkLss/CPf00ogoLT9N+yAK46t
+        oO0Mm38AuPhD3yHBDYTd4+x5t/3tFzkFp8ln5hBWHfw9qN7IPGfgNftPEBNhV0Hb
+        E854WwObGYXGxncBYSplipbAsRzwFRcu9IiyWavhz9H8PTGWBqJgSi76PdmyMXlg
+        ZzhZZNSBJ3Wj0BZGbYYEG2o4vqxHy53os0WUACmngp8JzVjDXH4aJ4ubE/yjsGZ6
+        XOmAYYIH8FPKp0ecj0YasAmEmf0N90YeyHg==
+X-ME-Sender: <xms:OaORY8s3vjLkNzAzi1uNhT5oim0hjsBLyY8yiFYFBNTU3cBCfworSg>
+    <xme:OaORY5c_OELpoa1zQz1Vd5tvtFPE0lLiZIoVtKgFlrLvaG-qpKZciZwcXcpStax04
+    C4dCh56iHAl5fM7Eg>
+X-ME-Received: <xmr:OaORY3wVqUNnQ0g_8SwMYYnc1j397mS-AgKMKULN4bOzKLripokxeGoIJIyY2lIheN7d3EkVHX4ZV8q4C7uHKobpP65SyDMWvVkVzkNlGayCo4XLc5GEApVXXWIWkCMYQSpNlw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrudelgdduvdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:OaORY_P5flMhRbXtN9r5E2Y3bwjYphMhHHFNp9T-s5EDoNLcP64n6g>
+    <xmx:OaORY8-C6AOjyPwXP8dbNPmn7ohZzwXaXm8kkSek2LWX37fMNFMGKQ>
+    <xmx:OaORY3VIQCkCWCmRdlj4ciR5Dh-ZVvslfumW-VNimGZXRArR6a2SUA>
+    <xmx:OqORY2fUNoxh42T9FejvkMFjPVoUBSdGznsIUjw4yvX0SlRMhLj4wQ>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 8 Dec 2022 03:41:28 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <devicetree@vger.kernel.org>
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-2-william.qiu@starfivetech.com>
- <167042222472.2111911.2050446708831690640.robh@kernel.org>
- <Y5CnQlYTZJrJNjCf@spud>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <Y5CnQlYTZJrJNjCf@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        Samuel Holland <samuel@sholland.org>,
+        Andrew Lunn <andrew@lunn.ch>, Heiko Stuebner <heiko@sntech.de>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v5 0/4] regulator: Add support for Allwinner D1 system LDOs
+Date:   Thu,  8 Dec 2022 02:41:23 -0600
+Message-Id: <20221208084127.17443-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.37.4
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLACK autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,72 +89,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the binding and driver for one of the two pairs of LDOs
+inside the Allwinner D1 SoC. I am splitting up the two pairs of LDOs to
+unblock merging the SoC devicetree; the analog LDOs depend on the audio
+codec binding, but they are not required to boot.
 
+A binding and driver change is required for the SRAM controller, to
+accept the regulators device as its child node.
 
-On 2022/12/7 22:46, Conor Dooley wrote:
-> On Wed, Dec 07, 2022 at 08:19:49AM -0600, Rob Herring wrote:
->> 
->> On Wed, 07 Dec 2022 21:17:29 +0800, William Qiu wrote:
->> > Add documentation to describe StarFive
->> > designware mobile storage host controller driver.
->> > 
->> > Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> > ---
->> >  .../bindings/mmc/starfive,jh7110-sdio.yaml    | 71 +++++++++++++++++++
->> >  1 file changed, 71 insertions(+)
->> >  create mode 100644 Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.yaml
->> > 
->> 
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->> 
->> yamllint warnings/errors:
->> 
->> dtschema/dtc warnings/errors:
->> Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.example.dts:21:18: fatal error: dt-bindings/clock/starfive-jh7110.h: No such file or directory
->>    21 |         #include <dt-bindings/clock/starfive-jh7110.h>
->>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> Hello William,
-> As with the other bindings that StarFive has sent out recently,
-> including this header in the example creates a dependency on the
-> clock/reset stuff being merged prior to the drivers for unrelated
-> subsytems.
-> To avoid that, you can drop the headers & definitions from these
-> *examples* & use the numbers themselves instead.
-> 
-> That way, the only thing that depends on the clock binding headers is
-> the DeviceTree patch & the driver can be merged once it is ready.
-> 
-> Thanks,
-> Conor.
-> 
-Hi Conor,
+The example for the regulator device binding is in SRAM controller
+binding document, per Rob's request to keep MFD examples in one place.
 
-Thank you for your suggestion. I will take it and fix it.
+Because of this, at least the first 3 patches need to be taken together
+through the regulator tree, though it should be fine to merge the whole
+series that way.
 
-Best regards,
-William Qiu
+Changes in v5:
+ - Correct the voltage calculation for the non-linearity around 1.6 V.
 
->> compilation terminated.
->> make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/mmc/starfive,jh7110-sdio.example.dtb] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make: *** [Makefile:1492: dt_binding_check] Error 2
->> 
->> doc reference errors (make refcheckdocs):
->> 
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221207131731.1291517-2-william.qiu@starfivetech.com
->> 
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->> 
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->> 
->> pip3 install dtschema --upgrade
->> 
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
->> 
+Changes in v4:
+ - Fix the order of the maintainer/description sections
+ - Replace unevaluatedProperties with "additionalProperties: false"
+ - Drop the analog LDOs until the codec binding is ready
+ - Drop the analog LDOs until the codec binding is ready
+ - Remove unevaluatedProperties from regulators schema reference
+ - Check the compatible string instead of the node name
+
+Changes in v3:
+ - Add "reg" property to bindings
+ - Add "unevaluatedProperties: true" to regulator nodes
+ - Minor changes to regulator node name patterns
+ - Remove system-ldos example (now added in the parent binding)
+ - Adjust control flow in sun20i_regulator_get_regmap() for clarity
+ - Require the regulators node to have a unit address
+ - Reference the regulator schema from the SRAM controller schema
+ - Move the system LDOs example to the SRAM controller schema
+ - Reorder the patches so the example passes validation
+
+Changes in v2:
+ - Remove syscon property from bindings
+ - Update binding examples to fix warnings and provide context
+ - Use decimal numbers for .n_voltages instead of field widths
+ - Get the regmap from the parent device instead of a property/phandle
+
+Samuel Holland (4):
+  regulator: dt-bindings: Add Allwinner D1 system LDOs
+  regulator: sun20i: Add Allwinner D1 LDOs driver
+  dt-bindings: sram: sunxi-sram: Add regulators child
+  soc: sunxi: sram: Only iterate over SRAM children
+
+ .../allwinner,sun20i-d1-system-ldos.yaml      |  37 +++++
+ .../allwinner,sun4i-a10-system-control.yaml   |  28 ++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sun20i-regulator.c          | 156 ++++++++++++++++++
+ drivers/soc/sunxi/sunxi_sram.c                |   3 +
+ 6 files changed, 233 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+ create mode 100644 drivers/regulator/sun20i-regulator.c
+
+-- 
+2.37.4
+
