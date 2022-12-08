@@ -2,123 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01454647114
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 766BF647134
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:58:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbiLHNyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 08:54:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59512 "EHLO
+        id S229937AbiLHN6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 08:58:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbiLHNyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:54:47 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B7837F89;
-        Thu,  8 Dec 2022 05:54:46 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 00038817FB;
-        Thu,  8 Dec 2022 14:54:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670507685;
-        bh=5xDJlwrd0zqkIN9nBK5C7VNF8PbYTDTfmRcPZ8Vq1Z0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=wU/A1kV8m0n1cx/qEnXp2O4vGbBSDCrYgDizeWdVesl1jCHZUKqUyesyxZZDMB1L7
-         6mkXR7pmTmFRA6AouvQz9LePzEnGUh8yGsb3IVE4oagU4IEEwWuOJpRWWMszafM4Qw
-         KSFsbgAI/4YFkx4Cnyp0KvlWDE65GF7bDN/joANbTr6pUZjm8hzX8f5hWaGMiqz6wz
-         o44cdjhmkfkJJjfLgd94rzhurtM+qUWA2HuiH7S1p5nBGyYO+CMeI9t6vkl02EjrqO
-         AbJU0tNVMNo9vFkp/gcfIa8lwq2GN3wKqVGLEtZxWboyCXZC/oTTmF9s8SVTK349zf
-         +RXKJQiNb2vsA==
-Message-ID: <108503ba-f4a8-a9de-20ee-f8f1f90965a2@denx.de>
-Date:   Thu, 8 Dec 2022 14:54:43 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
- size-cells"
-Content-Language: en-US
-To:     Francesco Dolcini <francesco@dolcini.it>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        with ESMTP id S230374AbiLHN6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:58:14 -0500
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C539C9950D;
+        Thu,  8 Dec 2022 05:57:27 -0800 (PST)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7BE0540009;
+        Thu,  8 Dec 2022 13:57:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670507845;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Mr7vzB06ht6izeqsLHAia6JSQyQ1GNVqrccqV8dELgw=;
+        b=DCDRHaqHKOtHFvSe0xYDJk3kFFuNCF608DJmF1Ke49OrphC+kEsbFvOFWPlw3VPNrRZI+1
+        ZU9aKAaF+ZODnViGtoxXxFmr+L+gXshALTNDSWbF91Jm7sOhqzjS+QlBLAzLi2MDuGXKG+
+        nIAl2Ljwd1oSA+IBIU14we++A59VNUDAh5Jw8YcvYy382VRl1GCZi5Flq1tG+5AWai0AGn
+        wKE9Z4jjRN+alZWX/vL//ioFfzRY63K6gpOM/llOvgic6mHbINMMauKybI5u+YQbIRfLWc
+        cM8MCLMGt25iy+iHwLefsjtMnQu/58Jne5S3MJkPooyesnbI/10NsBr6DXz+PA==
+Date:   Thu, 8 Dec 2022 14:57:22 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Nathan Chancellor <nathan@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        stable@vger.kernel.org,
-        Thorsten Leemhuis <regressions@leemhuis.info>
-References: <20221205152327.26881-1-francesco@dolcini.it>
- <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
- <20221208115124.6cc7a8bf@xps-13>
- <2a6c5a08-1649-3f80-cc37-a425f09f3a67@denx.de>
- <544539BE-F7C2-4484-9588-6428EFA8A537@dolcini.it>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <544539BE-F7C2-4484-9588-6428EFA8A537@dolcini.it>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        llvm@lists.linux.dev
+Subject: Re: [PATCH v8 3/6] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <Y5HtQr6G1Ha8ybeX@aptenodytes>
+References: <20221103163717.246217-1-paul.kocialkowski@bootlin.com>
+ <20221103163717.246217-4-paul.kocialkowski@bootlin.com>
+ <Y4RVzSM4FQ/tYQAV@dev-arch.thelio-3990X>
+ <Y5BlisjV8Zi5fGWC@spud>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Eq1pwegXvM8VevdS"
+Content-Disposition: inline
+In-Reply-To: <Y5BlisjV8Zi5fGWC@spud>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/8/22 14:49, Francesco Dolcini wrote:
-> Il 8 dicembre 2022 14:21:31 CET, Marek Vasut <marex@denx.de> ha scritto:
->> On 12/8/22 11:51, Miquel Raynal wrote:
->>> Hi Shawn,
->>
->> Hi,
->>
->>> + Thorsten
->>>
->>> marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
->>>
->>>> On 12/5/22 16:23, Francesco Dolcini wrote:
->>>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>>>
->>>>> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
->>>>>
->>>>> It introduced a boot regression on colibri-imx7, and potentially any
->>>>> other i.MX7 boards with MTD partition list generated into the fdt by
->>>>> U-Boot.
->>>>>
->>>>> While the commit we are reverting here is not obviously wrong, it fixes
->>>>> only a dt binding checker warning that is non-functional, while it
->>>>> introduces a boot regression and there is no obvious fix ready.
->>>>>
->>>>> Cc: stable@vger.kernel.org
->>>>> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
->>>>> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
->>>>> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
->>>>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->>> [...]
->>>> Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
->>> [...]
->>>> Acked-by: Marek Vasut <marex@denx.de>
->>> [...]
->>>
->>> As discussed in the above links, boot is broken on imx7 Colibri boards,
->>> this revert was the most quick and straightforward fix we agreed upon
->>> with the hope (~ duty?) it would make it in v6.1. Any chance you could
->>> pick this up rapidly and forward it to Linus? Or should we involve
->>> him directly (Thorsten?).
->>
->> It seems neither Francesco nor me agree that this is the right approach and rather the fix should be the two-liner change to the OF partition parser, so maybe this should not be picked ?
-> 
-> I think that the 2 lines change might not be good enough to properly handle the U-Boot generated OF partitions in the general case, even if it fixes my specific issue.
-> 
-> Given that I would do the revert as an immediate first step.
 
-Then that's fine, let's do it.
+--Eq1pwegXvM8VevdS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Will you also follow up on the parser fix please ?
+Hi Conor, Nathan,
+
+On Wed 07 Dec 22, 10:06, Conor Dooley wrote:
+> On Sun, Nov 27, 2022 at 11:31:41PM -0700, Nathan Chancellor wrote:
+> > Hi Paul,
+> >=20
+> > On Thu, Nov 03, 2022 at 05:37:14PM +0100, Paul Kocialkowski wrote:
+> > > Some Allwinner platforms come with an Image Signal Processor, which
+> > > supports various features in order to enhance and transform data
+> > > received by image sensors into good-looking pictures. In most cases,
+> > > the data is raw bayer, which gets internally converted to RGB and
+> > > finally YUV, which is what the hardware produces.
+> > >=20
+> > > This driver supports ISPs that are similar to the A31 ISP, which was
+> > > the first standalone ISP found in Allwinner platforms. Simpler ISP
+> > > blocks were found in the A10 and A20, where they are tied to a CSI
+> > > controller. Newer generations of Allwinner SoCs (starting with the
+> > > H6, H616, etc) come with a new camera subsystem and revised ISP.
+> > > Even though these previous and next-generation ISPs are somewhat
+> > > similar to the A31 ISP, they have enough significant differences to
+> > > be out of the scope of this driver.
+> > >=20
+> > > While the ISP supports many features, including 3A and many
+> > > enhancement blocks, this implementation is limited to the following:
+> > > - V3s (V3/S3) platform support;
+> > > - Bayer media bus formats as input;
+> > > - Semi-planar YUV (NV12/NV21) as output;
+> > > - Debayering with per-component gain and offset configuration;
+> > > - 2D noise filtering with configurable coefficients.
+> > >=20
+> > > Since many features are missing from the associated uAPI, the driver
+> > > is aimed to integrate staging until all features are properly
+> > > described.
+> > >=20
+> > > On the technical side, it uses the v4l2 and media controller APIs,
+> > > with a video node for capture, a processor subdev and a video node
+> > > for parameters submission. A specific uAPI structure and associated
+> > > v4l2 meta format are used to configure parameters of the supported
+> > > modules.
+> > >=20
+> > > One particular thing about the hardware is that configuration for
+> > > module registers needs to be stored in a DMA buffer and gets copied
+> > > to actual registers by the hardware at the next vsync, when instructed
+> > > by a flag. This is handled by the "state" mechanism in the driver.
+> > >=20
+> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> >=20
+> > This patch is now in -next as commit e3185e1d7c14 ("media: staging:
+> > media: Add support for the Allwinner A31 ISP"), where it causes the
+> > following clang warnings:
+>=20
+> FWIW, this is (as yet) unfixed & thus breaking allmodconfig w/ clang.
+> I had a quick look on lore but could not see a proposed fix other than
+> what Nathan has pasted below.
+
+Sorry for the inconvenience. I've just sent a fix series which should resol=
+ve
+these issues (and other ones too): "Allwinner A31/A83T CSI/ISP/MIPI CSI-2 m=
+edia
+fixes" (version 2).
+
+Thanks for the report!
+
+Paul
+
+> > > +void sun6i_isp_capture_configure(struct sun6i_isp_device *isp_dev)
+> > > +{
+> > > +	unsigned int width, height;
+> > > +	unsigned int stride_luma, stride_chroma =3D 0;
+> > > +	unsigned int stride_luma_div4, stride_chroma_div4;
+> > > +	const struct sun6i_isp_capture_format *format;
+> > > +	const struct v4l2_format_info *info;
+> > > +	u32 pixelformat;
+> > > +
+> > > +	sun6i_isp_capture_dimensions(isp_dev, &width, &height);
+> > > +	sun6i_isp_capture_format(isp_dev, &pixelformat);
+> > > +
+> > > +	format =3D sun6i_isp_capture_format_find(pixelformat);
+> > > +	if (WARN_ON(!format))
+> > > +		return;
+> > > +
+> > > +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_SIZE_CFG_REG,
+> > > +			     SUN6I_ISP_MCH_SIZE_CFG_WIDTH(width) |
+> > > +			     SUN6I_ISP_MCH_SIZE_CFG_HEIGHT(height));
+> > > +
+> > > +	info =3D v4l2_format_info(pixelformat);
+> > > +	if (WARN_ON(!info))
+> > > +		return;
+> > > +
+> > > +	stride_luma =3D width * info->bpp[0];
+> > > +	stride_luma_div4 =3D DIV_ROUND_UP(stride_luma, 4);
+> > > +
+> > > +	if (info->comp_planes > 1) {
+> > > +		stride_chroma =3D width * info->bpp[1] / info->hdiv;
+> > > +		stride_chroma_div4 =3D DIV_ROUND_UP(stride_chroma, 4);
+> > > +	}
+> > > +
+> > > +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_CFG_REG,
+> > > +			     SUN6I_ISP_MCH_CFG_EN |
+> > > +			     SUN6I_ISP_MCH_CFG_OUTPUT_FMT(format->output_format) |
+> > > +			     SUN6I_ISP_MCH_CFG_STRIDE_Y_DIV4(stride_luma_div4) |
+> > > +			     SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_chroma_div4));
+> > > +}
+> >=20
+> >=20
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:6: erro=
+r: variable 'stride_chroma_div4' is used uninitialized whenever 'if' condit=
+ion is false [-Werror,-Wsometimes-uninitialized]
+> >           if (info->comp_planes > 1) {
+> >               ^~~~~~~~~~~~~~~~~~~~~
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:144:42: not=
+e: uninitialized use occurs here
+> >                               SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_c=
+hroma_div4));
+> >                                                                 ^~~~~~~=
+~~~~~~~~~~~
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_reg.h:249:48: note: e=
+xpanded from macro 'SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4'
+> >   #define SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(v)     (((v) << 20) & GENMAS=
+K(30, 20))
+> >                                                     ^
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:2: note=
+: remove the 'if' if its condition is always true
+> >           if (info->comp_planes > 1) {
+> >           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:112:51: not=
+e: initialize the variable 'stride_chroma_div4' to silence this warning
+> >           unsigned int stride_luma_div4, stride_chroma_div4;
+> >                                                           ^
+> >                                                             =3D 0
+> >=20
+> > Does stride_chroma_div4 want to just be initialized to zero?
+> >=20
+> > > +static int sun6i_isp_proc_notifier_bound(struct v4l2_async_notifier =
+*notifier,
+> > > +					 struct v4l2_subdev *remote_subdev,
+> > > +					 struct v4l2_async_subdev *async_subdev)
+> > > +{
+> > > +	struct sun6i_isp_device *isp_dev =3D
+> > > +		container_of(notifier, struct sun6i_isp_device, proc.notifier);
+> > > +	struct sun6i_isp_proc_async_subdev *proc_async_subdev =3D
+> > > +		container_of(async_subdev, struct sun6i_isp_proc_async_subdev,
+> > > +			     async_subdev);
+> > > +	struct sun6i_isp_proc *proc =3D &isp_dev->proc;
+> > > +	struct sun6i_isp_proc_source *source =3D proc_async_subdev->source;
+> > > +	bool enabled;
+> > > +
+> > > +	switch (source->endpoint.base.port) {
+> > > +	case SUN6I_ISP_PORT_CSI0:
+> > > +		source =3D &proc->source_csi0;
+> > > +		enabled =3D true;
+> > > +		break;
+> > > +	case SUN6I_ISP_PORT_CSI1:
+> > > +		source =3D &proc->source_csi1;
+> > > +		enabled =3D !proc->source_csi0.expected;
+> > > +		break;
+> > > +	default:
+> > > +		break;
+> > > +	}
+> > > +
+> > > +	source->subdev =3D remote_subdev;
+> > > +
+> > > +	return sun6i_isp_proc_link(isp_dev, SUN6I_ISP_PROC_PAD_SINK_CSI,
+> > > +				   remote_subdev, enabled);
+> > > +}
+> >=20
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:418:2: error: =
+variable 'enabled' is used uninitialized whenever switch default is taken [=
+-Werror,-Wsometimes-uninitialized]
+> >           default:
+> >           ^~~~~~~
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:425:23: note: =
+uninitialized use occurs here
+> >                                     remote_subdev, enabled);
+> >                                                     ^~~~~~~
+> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:407:14: note: =
+initialize the variable 'enabled' to silence this warning
+> >           bool enabled;
+> >                       ^
+> >                       =3D 0
+> >=20
+> > Should there be an early return in the default case?
+> >=20
+> > I do not mind sending patches if you are unable to, assuming I have the
+> > right fixes.
+> >=20
+> > Cheers,
+> > Nathan
+> >=20
+
+
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--Eq1pwegXvM8VevdS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmOR7UIACgkQ3cLmz3+f
+v9HUhgf+MqWFRHpJteq7pbYqsoMp5NzKApq8Hab85Kt4+jkrdLX2dh6CaKTamgE/
+40oyJ2sy5UkWIMNxPsfOdsDPV4d5K5VE430Rqd8EnA7Vu3uPV6Mwbl7YtMcsIIhh
+QKFpamExdTcvdL3wUE8pUylLl4ivuwXeJYblWp9JdzzqhBQYE0hcuCdryF0hPm0l
+R2h3rc0+jnlq6Lmv38MMTM1WFh8j6Fz9rPz8yEEoKBq4WSRGKn1Tdt6Ksmv7hmKh
+uz3RTdIauzhkUziTluMjhmBgWjI843kki2vXNo6X6pUk05zM6qxF7Iiat2jIgRW2
+iyAWJvWttMBPhfa1UzYG2Rn8BFiiYw==
+=Vl1z
+-----END PGP SIGNATURE-----
+
+--Eq1pwegXvM8VevdS--
