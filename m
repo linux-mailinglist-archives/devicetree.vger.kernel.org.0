@@ -2,170 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E4C6472AD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 16:18:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 833BB6472BA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 16:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiLHPSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 10:18:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
+        id S230197AbiLHPUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 10:20:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbiLHPRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 10:17:49 -0500
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2068.outbound.protection.outlook.com [40.107.249.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D699B29C;
-        Thu,  8 Dec 2022 07:15:53 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lcqoCOw6M8G6DxzZYlJHrAkXkhgtoArxrPTnxZLLGRjW1cTQL2Mp/MiLu6KW5Kqe1U03eOCKtDL+nNEnc9kTnouX/WaviZAh0z5yTGzB/7uW3S5u4n1a5a6mE/TeR/FajBJVQgUHkB1wOETINTjH4N6pXKk3ytp1DiS5YbgKXZYlQZyFYI6qcTdZbED/lAUxe4WTlThOvFnDB+msFTQ/pSZGQlGZ8Aj4veR7x1Q8bio1pC2LkEoTmd+gRGU+pprjgVliYLa+3qRPx4O7VEH7fqL+vo5i8cMhXMthNxvFrCugt1saj3OCttci+DQcr0Y7E1oZq4S7pxD0F8LZFbHObw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NfB0hF8xj5xSy45sSCvyNvucOad/YqfjphkS6J56NhY=;
- b=oPWPWtTGPKbvJGYpFQO49Z/070FZiThIK/bOyOTHI84wR+500R1CmqJp6TvA1klBR0x0sYKSAt1VMYC668SorP66hrRmCOfXbttHo3WTqr4u3KNt4xAqraNKcao+DIXAqclix+ods7KdNPc/DM6dtVYvLxvNTq8HM4Kbnsu9EcNZBq5tHHmCOnOzmlRtDXNS6gp3NUCurO273AyZK5yj0oSnTZinxvF1/C1uckk19iKkWK4KxoqxcG/j24UVQeeFBwyfg4YvkvtysIfUlWgTHYRIH6Xbo70yBnnEJ2A2qzd/pg6Hgo9mCf5yEQBMnMkTdptOIzFMyRlk0ByNx4K4AQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NfB0hF8xj5xSy45sSCvyNvucOad/YqfjphkS6J56NhY=;
- b=nZhYsTRkG/93nZmBNouWbPjzH59p93yzHwKldTlnAs8W2KOJqGuFfvgW6mB95gdT2BfMsT19nBKsbCSAJFcuq2Q6foXXdFDIBWXwsK+XcCAlfiEEQYCpl2yRbXzEoKsSkKE+iA5FX6gQDnWWFvzWw33pKEjcYk+Lt829mDkGyiU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by AM0PR04MB6961.eurprd04.prod.outlook.com (2603:10a6:208:180::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10; Thu, 8 Dec
- 2022 15:15:34 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::9317:77dc:9be2:63b]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::9317:77dc:9be2:63b%7]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
- 15:15:34 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     devicetree@vger.kernel.org, iommu@lists.linux.dev
-Cc:     Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        with ESMTP id S229785AbiLHPUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 10:20:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67124EC33;
+        Thu,  8 Dec 2022 07:18:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 711D461D99;
+        Thu,  8 Dec 2022 15:18:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 157C0C433D6;
+        Thu,  8 Dec 2022 15:17:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670512698;
+        bh=vq2JZdIXZxuzPq+eKkO04EmYL/odF/HNbaofJ5z9G2c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dVf0bTIYvtDM0bsdxnvONKoMRSeFoGN6XdiMz27/UrRQKp1iNphnns0UyF4DHDMGS
+         xU2iNaFwKFlM5liiIGJB/nfPIS8cM1m0U7e6EwikNZTHnylSkYpxcF1r3ASHtSWLPm
+         xVZ+XLXAiI4YJllOoBO4grwI83o7F11URjkICTrbMbKZ1jbNejihF9yNgMXtf1L44i
+         AI166+m02CiT2+rX8TEOfPBdSIc4CPI6EbUPt6ayhKnruZH/mY3tX8AN2z/x+W4Woq
+         xvjaARq7BxrapWpWqJZpiKaTT2EzJHdKznSGe5mGjQlkiK3WoFdMK0DMssfr8FzuWp
+         Hd5uhmqB9l4FA==
+Date:   Thu, 8 Dec 2022 15:17:28 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [RFC PATCH] arm64: dts: ls1028a: mark ARM SMMU as DMA coherent
-Date:   Thu,  8 Dec 2022 17:15:14 +0200
-Message-Id: <20221208151514.3840720-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR01CA0096.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:10e::37) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] leds: add driver for SPI driven WorldSemi WS2812B
+ RGB LEDs
+Message-ID: <Y5IACDDFH/yBoxPn@google.com>
+References: <20221207040904.582585-1-gch981213@gmail.com>
+ <20221207040904.582585-4-gch981213@gmail.com>
+ <Y5By0YeGVlS5TlO3@google.com>
+ <CAJsYDV+PBvEBWp=2LLbLkiNqQ0qQgWDOyZ4-onMC9_1B0mTfww@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5136:EE_|AM0PR04MB6961:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59ce40fc-2661-469c-ad3f-08dad92f0d90
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pSdjvIS8GKY73MzPot8K3qFJffhLGvpTIcXvUBsgqfg79j0X8oQk/yHPhRrYY9tqZSGyRF56bO8s6LXLXqEL8gBk22lrFaHMQ8hAYwGGjt3c3hxCyH3CaJ3b0TsGfpnpe+L4FSOa22PsNa6aIo5ozh6XlBUSY1OoxI4AZXyeydcDIaGbBti1qhU5nNBw+5O2in2R64UCXsLLDFmsY1mwTDNnWhw9PxL2/iSD27vMytR/U8AtWNg0rdemL4ogHwNN09e6EpJk3bP165ebE+ID6OUbYqJFLgM1aWO11qT+3FhxQgFWQzKI5L/4oF+wBzxa4cbZhfksiMaG6ZO6rqGF3hLFPqSTL3aAw6FanIeRfAVIrxdnfj0JP26orTlfmdccOg+sa3ds6TKyT3ByzlXpB2/qsqRMznnWxhI2akf7aoLK/MInUx09kGQy05IzXRXBSQXFfemFPFq0aUm1sP8PqIMyPr2H9IHFCj6DEgYHc8+zHQRv5X3uNj3Vzi64Gr00xSFCRTLARw0e0o6R9A0E6lzhfmix7GCBMuJfv5TChEXEDJtRv2DPrqk7QaN6x9410xZI1EVax1V8okKP6B/7X8aW0i4ZXnl0lzvTkVVTlulApGZP0sGzN7fFmDLbomYr5qbzctUKQZiOf6Jgql3jVTxeAnkPcpQmIewly2wSXOZiR3//cbsT6IG5k/dFm803PaICWnpWlgecaxeQ1X0Vgg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(366004)(39860400002)(376002)(396003)(451199015)(6486002)(6666004)(478600001)(6506007)(52116002)(26005)(6512007)(66946007)(316002)(54906003)(66556008)(4326008)(66476007)(8676002)(1076003)(44832011)(186003)(83380400001)(2906002)(41300700001)(38350700002)(38100700002)(2616005)(36756003)(86362001)(5660300002)(7416002)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XhV0LlYPnc604XmEG1eD3vCYEX2bqAbxJJJCtRnCVuCay1AxdtGg9DcVsI1z?=
- =?us-ascii?Q?zDASL07YCahxfj9RQWn738BEGfCIZReAD+//DJF0nuxWU4mCK/k1esioCXrN?=
- =?us-ascii?Q?UlopUf1ZauEaaEcd5dzSbTKokLzwg9WJ154FEOM/gwo5cJ5NsdL9pgHfkV08?=
- =?us-ascii?Q?5YyYp1XZuSWOsGoVF3+XJbGuV8WyDY+FHQKhKkuwSz4WjSjP/XJtsXyMdb8K?=
- =?us-ascii?Q?6NeaEmUDk7L/1D4spvhgGh6eaD2DwshpPJMikFBShzWBdVWYGisvgK9I7Puu?=
- =?us-ascii?Q?fwNqwvZoyyoABckzRXlu0a2ruO+Dyd/QhgDuKnkAM2+eYI1TrXDvm4EJs34C?=
- =?us-ascii?Q?aGBxpdnThYwDvggwKhVD0maCD7WAE/XWQYOWcs9Xx5IPtqSdXMBmHfV5yASi?=
- =?us-ascii?Q?UzxqoFG2I0tmAAue4rhoZcETwjfv50OJw3AOUql6N6yzVrsjzdfGgPQeZtcn?=
- =?us-ascii?Q?whs8zv0GVSgcSDQZMdaJ3OzZlPAFU8RkPgMMa4bEigmyPOLUpIQsVvM4NfcU?=
- =?us-ascii?Q?eUkxUOb6fFSjdN/VZOQF3F/3t9eaXR0KuG3YHgq3Tn5lrZd2MLtc9NvwEuVU?=
- =?us-ascii?Q?aY1m8t/5qqMY2SQwFOFK/UAOYVVhqLbmHxmZ6kj3UOU3IMPYqHAlT9TY8eU+?=
- =?us-ascii?Q?ZXzHNN6WczhGG2cf0QZo2U7migmPy5Qu+ooWl5wbdjnAgp8LEN+AhvLUdSMV?=
- =?us-ascii?Q?7dIdpEAhodT0Yf7kHfraIFlWlr7x7GcyeSSBUzQnfC2isiMIusWXifiBweSm?=
- =?us-ascii?Q?T7tD7+3jdfF/tkSmzRLU/DytUBeJyUhNM+IzNajnj3HanzLp9Uephm1hY0Xw?=
- =?us-ascii?Q?00Osu/QAHQ3moj1Auo+4KeV8kN6A0K6LG4jd74AmpuKefRiRrvL6vxASIqJA?=
- =?us-ascii?Q?Zowdm2gkeu3vomAT4zBHKQgZqT+mdDefENp+MNbIz8+uRbczbXEsVhjYMBcY?=
- =?us-ascii?Q?r7gSNuy9ucd4+cusxoLPV6y+v8HpKqY1AWxLj/ao8W6GtStuHzHZpeq0n+CI?=
- =?us-ascii?Q?J4HzZoftJaaIXHmaRnbExkMQ+BfrW431rwi0UqObzwXhluy41EJLPppTRyuT?=
- =?us-ascii?Q?TiJDDnzUJnMLfviAGALmx7fF+gxBfP11ldzXXNKFFMMCHQtImdjew0X6EqTT?=
- =?us-ascii?Q?nIn4Hcy9vVZsyw8kFHHi2GFffUSczHorJF8owWyNDmiUwxG+Z3hvsvSqbTIF?=
- =?us-ascii?Q?6Guxx6PvmU7Br8ibP7RcvqI5fB0UppSkwJClUSAjzppII6U+mfCPBDOd9MJt?=
- =?us-ascii?Q?VPmli52UMsR9wRrhdH0OQEV3aTz5dOOsSgPMG773ENSWfJC2hDtvPMHkKqPM?=
- =?us-ascii?Q?MnS2/O6NLrG89QeRVd7C2lLBD+OKd3Jra9SgfBkpfoxwMocXxWG3knL7BIxd?=
- =?us-ascii?Q?5Qx6KQeIfuD1h3P/6O+5yh9sidT7UAL7IW0hzUkUoAtSV5MHuYKwBBSK9oel?=
- =?us-ascii?Q?9vpZEiNQ2bD8TDe7Y8b1e2TDwawDljzWwNnDuuH2FXvUNQcWdO5tfHzb7O1w?=
- =?us-ascii?Q?GPeEFBU3azvDaPFw8kSATctjDkBz8TBbgFhU+eYbYlvYLtrzvZeTXQbatmhG?=
- =?us-ascii?Q?H0fBearxIrV9SnuJoN7isqHHYSokfUwiFnA9BsxzG6+GfZLfeG5KbOJRnK/B?=
- =?us-ascii?Q?Sg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59ce40fc-2661-469c-ad3f-08dad92f0d90
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2022 15:15:34.2653
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wX5X+rKRdsE75FzdbgxeonAd1T82UIoPLPCG9OY3dzrUUvKRIJb/Apgx36q/rZqB2x9qFeAOAEmLrM52mjeLHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6961
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJsYDV+PBvEBWp=2LLbLkiNqQ0qQgWDOyZ4-onMC9_1B0mTfww@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit df198b37e72c ("iommu/arm-smmu: Report
-IOMMU_CAP_CACHE_COHERENCY better"), the SMMU driver will say that a
-device has the IOMMU_CAP_CACHE_COHERENCY capability if the
-ARM_SMMU_FEAT_COHERENT_WALK bit was set in smmu->features.
+On Thu, 08 Dec 2022, Chuanhong Guo wrote:
 
-This breaks vfio-pci, as can be seen below:
+> Hi!
+> 
+> On Wed, Dec 7, 2022 at 7:02 PM Lee Jones <lee@kernel.org> wrote:
+> >
+> > On Wed, 07 Dec 2022, Chuanhong Guo wrote:
+> >
+> > > This patch adds support for driving a chain of WS2812B LED chips
+> > > using SPI bus.
+> > >
+> > > WorldSemi WS2812B is a individually addressable LED chip that
+> > > can be chained together and controlled individually using a
+> > > single wire. The chip recognize a long pulse as a bit of 1 and
+> > > a short pulse as a bit of 0. Host sends a continuous stream
+> > > of 24-bits color values, each LED chip takes the first 3 byte
+> > > it receives as its color value and passes the leftover bytes to
+> > > the next LED on the chain.
+> > >
+> > > This driver simulates this protocol using SPI bus by sending
+> > > a long pulse as 3'b110 and a short pulse as 3'b100. The SPI
+> > > frequency needs to be 2.105MHz~2.85MHz for the timing to be
+> > > correct and the controller needs to transfer all the bytes
+> > > continuously.
+> > >
+> > > Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> > > ---
+> > > Changes since v1:
+> > > rename the driver to drop -spi suffix
+> > > add support for default-brightness
+> > > use fwnode apis for properties
+> > >
+> > > Changes since v2:
+> > > drop default-brightness and default-intensity
+> > >
+> > >  drivers/leds/rgb/Kconfig        |  11 ++
+> > >  drivers/leds/rgb/Makefile       |   1 +
+> > >  drivers/leds/rgb/leds-ws2812b.c | 219 ++++++++++++++++++++++++++++++++
+> > >  3 files changed, 231 insertions(+)
+> > >  create mode 100644 drivers/leds/rgb/leds-ws2812b.c
+> > >
+> > > diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> > > index 204cf470beae..5c2081852f01 100644
+> > > --- a/drivers/leds/rgb/Kconfig
+> > > +++ b/drivers/leds/rgb/Kconfig
+> > > @@ -26,4 +26,15 @@ config LEDS_QCOM_LPG
+> > >
+> > >         If compiled as a module, the module will be named leds-qcom-lpg.
+> > >
+> > > +config LEDS_WS2812B
+> > > +     tristate "SPI driven WS2812B RGB LED support"
+> > > +     depends on OF
+> > > +     depends on SPI
+> > > +     help
+> > > +       This option enables support for driving daisy-chained WS2812B RGB
+> > > +       LED chips using SPI bus. This driver simulates the single-wire
+> > > +       protocol by sending bits over the SPI MOSI pin. For this to work,
+> > > +       the SPI frequency should be 2.105MHz~2.85MHz and the controller
+> > > +       needs to transfer all the bytes continuously.
+> > > +
+> > >  endif # LEDS_CLASS_MULTICOLOR
+> > > diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
+> > > index 0675bc0f6e18..a6f855eaeb14 100644
+> > > --- a/drivers/leds/rgb/Makefile
+> > > +++ b/drivers/leds/rgb/Makefile
+> > > @@ -2,3 +2,4 @@
+> > >
+> > >  obj-$(CONFIG_LEDS_PWM_MULTICOLOR)    += leds-pwm-multicolor.o
+> > >  obj-$(CONFIG_LEDS_QCOM_LPG)          += leds-qcom-lpg.o
+> > > +obj-$(CONFIG_LEDS_WS2812B)           += leds-ws2812b.o
+> > > diff --git a/drivers/leds/rgb/leds-ws2812b.c b/drivers/leds/rgb/leds-ws2812b.c
+> > > new file mode 100644
+> > > index 000000000000..68c80beb304c
+> > > --- /dev/null
+> > > +++ b/drivers/leds/rgb/leds-ws2812b.c
+> > > @@ -0,0 +1,219 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * WorldSemi WS2812B individually-addressable LED driver using SPI
+> > > + *
+> > > + * Copyright 2022 Chuanhong Guo <gch981213@gmail.com>
+> > > + *
+> > > + * This driver simulates WS2812B protocol using SPI MOSI pin. A one pulse
+> > > + * is transferred as 3'b110 and a zero pulse is 3'b100. For this driver to
+> > > + * work properly, the SPI frequency should be 2.105MHz~2.85MHz and it needs
+> > > + * to transfer all the bytes continuously.
+> > > + */
+> > > +
+> > > +#include <linux/led-class-multicolor.h>
+> > > +#include <linux/leds.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/property.h>
+> > > +#include <linux/spi/spi.h>
+> > > +#include <linux/mutex.h>
+> > > +
+> > > +#define WS2812B_BYTES_PER_COLOR 3
+> > > +#define WS2812B_NUM_COLORS 3
+> > > +#define WS2812B_RESET_LEN 18
+> > > +
+> > > +struct ws2812b_led {
+> > > +     struct led_classdev_mc mc_cdev;
+> > > +     struct mc_subled subled[WS2812B_NUM_COLORS];
+> > > +     struct ws2812b_priv *priv;
+> > > +     int reg;
+> >
+> > Looks like you're leaking the Device Tree nomenclature into the
+> > driver.  IIUC, this is not a reg(ister) value at all, but the LED
+> > indices.
+> 
+> You are right. reg is a bit weird here. I'll go with idx instead.
 
-$ echo 0000:00:00.0 > /sys/bus/pci/drivers/fsl_enetc/unbind
-$ echo vfio-pci > /sys/bus/pci/devices/0000\:00\:00.0/driver_override
-$ echo 0000:00:00.0 > /sys/bus/pci/drivers/vfio-pci/bind
-[   25.261941] vfio-pci 0000:00:00.0: arm_smmu_capable: smmu features 0xe9e
-[   25.268877] vfio-pci 0000:00:00.0: vfio_group_find_or_alloc: device_iommu_capable() returned false
-[   25.279271] vfio-pci 0000:00:00.0: vfio_pci_core_register_device: failed to register group dev: -EINVAL
-[   25.301377] vfio-pci: probe of 0000:00:00.0 failed with error -22
+idx is a terrible variable name (like 'data' or 'value').
 
-The ARM_SMMU_FEAT_COHERENT_WALK feature is set in
-arm_smmu_device_dt_probe() if the OF node of the SMMU device was set as
-dma-coherent. In the case of LS1028A, it wasn't.
+Please use something better, like cascade (as per the datasheet).
 
-Fix that.
+> > How does the datasheet describe / differentiate them?
+> 
+> The datasheet only describes a single chip instead of
+> a chain of them, so there's no specific word for this,
+> it says:
+> 
+> After the pixel power-on reset, the DIN port receive
+> data from controller, the first pixel collect initial 24bit
+> data then sent to the internal data latch, the other
+> data which reshaping by the internal signal reshaping
+> amplification circuit sent to the next cascade pixel
+> through the DO port.
+> 
+> Here's the datasheet:
+> https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+> 
+> >
+> > > +};
+> > > +
+> > > +struct ws2812b_priv {
+> > > +     struct led_classdev ldev;
+> > > +     struct spi_device *spi;
+> > > +     struct mutex mutex;
+> > > +     int num_leds;
+> > > +     size_t data_len;
+> > > +     u8 *data_buf;
+> > > +     struct ws2812b_led leds[];
+> > > +};
+> > > +
+> > > +static void ws2812b_set_byte(u8 *p, u8 val)
+> > > +{
+> > > +     /*
+> > > +      * Every bit of data is represented using 3 bits: 3'b100 for
+> > > +      * 0 and 3'b110 for 1.
+> > > +      * 1 byte of data takes up 3 bytes in a SPI transfer. The higher
+> > > +      * 3 bits, middle 2 bits and lower 3 bits are represented
+> > > +      * with the 1st, 2nd and 3rd byte in the SPI transfer.
+> > > +      * Here's the lookup table for them.
+> >
+> > Sometimes a little ASCII representation can help people visualise the
+> > data stream / layout.
+> >
+> > > +      */
+> > > +     const u8 h3b[] = { 0x92, 0x93, 0x9a, 0x9b, 0xd2, 0xd3, 0xda, 0xdb };
+> > > +     const u8 m2b[] = { 0x49, 0x4d, 0x69, 0x6d };
+> > > +     const u8 l3b[] = { 0x24, 0x26, 0x34, 0x36, 0xa4, 0xa6, 0xb4, 0xb6 };
+> >
+> > It's taken me a couple of minutes to parse this, which leads me to
+> > believe it requires more explanation.  The blurb you've written so
+> > far is good, please keep going.  What do the values in the lookup
+> > table represent?  I see that brightness is passed in (should val be
+> > called brightness too?).  Is the returned data the register values to
+> > set that brightness, or something else?
+> 
+> It is used to set brightness, but it's not register values. I'm abusing
+> SPI MOSI to send pulses of specific length. See the comments
+> below.
+> 
+> >
+> > Please also consider adding these comments to further the clarity:
+> >
+> > > +     p[0] = h3b[val >> 5];            /* 0-7 */
+> > > +     p[1] = m2b[(val >> 3) & 0x3];    /* 0-3 */
+> > > +     p[2] = l3b[val & 0x7];           /* 0-7 */
+> > > +}
+> 
+> /**
+> * ws2812b_set_byte - convert a byte of data to 3-byte SPI data for pulses
+> * @p: pointer to the 3-byte SPI data
+> * @val: 1-byte input data to be converted
+> *
+> * WS2812B receives a stream of bytes from DI, takes the first 3 byte as LED
+> * brightness and pases the rest to the next LED through the DO pin.
+> * This function assembles a single byte of data to the LED:
+> * A bit is represented with a pulse of specific length. A long pulse is a 1
+> * and a short pulse is a 0.
+> * SPI transfers data continuously, MSB first. We can send 3'b100 to create a
+> * 0 pulse and 3'b110 for a 1 pulse. In this way, a byte of data takes up 3
+> * bytes in a SPI transfer:
+> * 1x0 1x0 1x0 1x0 1x0 1x0 1x0 1x0
+> * Let's rearrange it in 8 bits:
+> * 1x01x01x 01x01x01 x01x01x0
+> * The higher 3 bits, middle 2 bits and lower 3 bits are represented with the
+> * 1st, 2nd and 3rd byte in the SPI transfer respectively.
+> * There are only 8 combinations for 3 bits and 4 for 2 bits, so we can create
+> * a lookup table for the 3 bytes. e.g. For 0x6b -> 2'b01101011:
+> * Bit 7-5: 3'b011 -> 10011011 -> 0x9b
+> * Bit 4-3: 2'b01 -> 01001101 -> 0x4d
+> * Bit 2-0: 3'b011 -> 00110110 -> 0x36
+> */
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-The LS1028A is not the only SoC affected by this, it seems.
-fsl-ls1088a.dtsi seems to be in the same situation where vfio-pci worked
-before. There are also other SoCs which don't have dma-coherent in the
-iommu node. There's also something I don't quite like about this patch
-technically introducing a regression which requires a device tree update.
+This is good, thank you.
 
-Can something different be done about that, or are LS1028A/LS1088A
-simply to blame because of breaching the dt-bindings contract, and in
-that case, I'll have to suck it up, put a Fixes tag here, write another
-patch for LS1088A, and resend?
+Please change the formatting so it's a little nicer to read.
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+E.g. tab out the examples.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 383829ec7be7..bcce189c7a0a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -715,6 +715,7 @@ smmu: iommu@5000000 {
- 			#global-interrupts = <8>;
- 			#iommu-cells = <1>;
- 			stream-match-mask = <0x7c00>;
-+			dma-coherent;
- 			/* global secure fault */
- 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
- 			/* combined secure interrupt */
+> > > +
+> > > +static int ws2812b_set(struct led_classdev *cdev,
+> > > +                    enum led_brightness brightness)
+> > > +{
+> > > +     struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+> > > +     struct ws2812b_led *led =
+> > > +             container_of(mc_cdev, struct ws2812b_led, mc_cdev);
+> > > +     struct ws2812b_priv *priv = led->priv;
+> > > +     u8 *buf = priv->data_buf + WS2812B_RESET_LEN +
+> > > +               led->reg * WS2812B_NUM_COLORS * WS2812B_BYTES_PER_COLOR;
+> >
+> > Please add some bracketing.  This also goes for the other places you
+> > have complex BODMAS type arithmetic where ordering may cause issues.
+> 
+> OK.
+> 
+> > Actually, I'm very comfortable with all of this, mostly unparsable (at
+> > least quickly) pointer arithmetic happening in this driver.  We have
+> > some very readable / maintainable ways of referencing registers /
+> > offsets that does not involve register address hopping.  Would you
+> > mind revisiting this please?  Have you considered Regmap for instance?
+> 
+> I couldn't figure out how regmap could make this simpler. If I create a
+> regmap for the entire buffer, it just moves this whole calculation into
+> reg_read callback isn't it?
+
+Have a go at putting the logic into a MACRO.
+
+Then you can swap out all of the repeated pointer arithmetic.
+
+> BTW the WS2812B_RESET_LEN is for a continuous 0 of more
+> than 50us. This indicates the start of a byte stream.
+
+[...]
+
+> > > +
+> > > +     for (i = 0; i < num_leds * WS2812B_NUM_COLORS; i++)
+> > > +             ws2812b_set_byte(priv->data_buf + WS2812B_RESET_LEN +
+> > > +                                      i * WS2812B_BYTES_PER_COLOR,
+> > > +                              0);
+> >
+> > At which point do you usually line-wrap?
+> 
+> I just write everything in one line and clang-format it :P
+
+Probably best not to do that.  100-chars is good.
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
