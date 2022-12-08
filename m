@@ -2,288 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 766BF647134
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:58:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B475064713B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 15:01:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbiLHN6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 08:58:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60190 "EHLO
+        id S229905AbiLHOBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 09:01:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230374AbiLHN6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:58:14 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C539C9950D;
-        Thu,  8 Dec 2022 05:57:27 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7BE0540009;
-        Thu,  8 Dec 2022 13:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1670507845;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Mr7vzB06ht6izeqsLHAia6JSQyQ1GNVqrccqV8dELgw=;
-        b=DCDRHaqHKOtHFvSe0xYDJk3kFFuNCF608DJmF1Ke49OrphC+kEsbFvOFWPlw3VPNrRZI+1
-        ZU9aKAaF+ZODnViGtoxXxFmr+L+gXshALTNDSWbF91Jm7sOhqzjS+QlBLAzLi2MDuGXKG+
-        nIAl2Ljwd1oSA+IBIU14we++A59VNUDAh5Jw8YcvYy382VRl1GCZi5Flq1tG+5AWai0AGn
-        wKE9Z4jjRN+alZWX/vL//ioFfzRY63K6gpOM/llOvgic6mHbINMMauKybI5u+YQbIRfLWc
-        cM8MCLMGt25iy+iHwLefsjtMnQu/58Jne5S3MJkPooyesnbI/10NsBr6DXz+PA==
-Date:   Thu, 8 Dec 2022 14:57:22 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Nathan Chancellor <nathan@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        llvm@lists.linux.dev
-Subject: Re: [PATCH v8 3/6] staging: media: Add support for the Allwinner A31
- ISP
-Message-ID: <Y5HtQr6G1Ha8ybeX@aptenodytes>
-References: <20221103163717.246217-1-paul.kocialkowski@bootlin.com>
- <20221103163717.246217-4-paul.kocialkowski@bootlin.com>
- <Y4RVzSM4FQ/tYQAV@dev-arch.thelio-3990X>
- <Y5BlisjV8Zi5fGWC@spud>
+        with ESMTP id S229779AbiLHOBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 09:01:17 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CD539E;
+        Thu,  8 Dec 2022 06:01:16 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id s8so2166993lfc.8;
+        Thu, 08 Dec 2022 06:01:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=royGBGeQe03mj6YzpytN9j6h7rr5KUHJiZDkbf1e+NI=;
+        b=O9F+0oZbPEu/1g4NGegNtl0Nyo/+SpwWR7RHxRZCnriug9e0tBeSlU/dEng8tDbQnr
+         9Dz5fes9pHILNrd5iQaWbWbERtpkfhCQ4iqAHev6dR5UHkRaSn+Duw9fc7oD+B9bEZNy
+         Y9wWYW94q8G/eUIX6CqsmZGRtQcV15h3iEROcJFKkgxIAWTiyEgLaBqpKHi5scFRo9ts
+         PfHZ1DhmHUScQZZoqh2bNjBmx2gQXFuJ0cSG91yb3OiCqhRbDOKjXu0ruK+ivBZPaNBS
+         39+D5DeilJh+3cELXSU2iPRQFyA7aeXPqkT2wbDHkudc3rJUU26drukYpreuH/RkuwBD
+         gdrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=royGBGeQe03mj6YzpytN9j6h7rr5KUHJiZDkbf1e+NI=;
+        b=d6ydvDa33LUJ5477WH1CQfox4rS7TSPdgKPJHQm5zs3Yepz7Jznrjj9KGjW6nEhQRj
+         Dmbs2FZlDpULV4VWAFRzsliMdfgCT8aTKvefhST9O6mrFEIgyM/htTFB4ffceMVWjy03
+         v/EnNuga471fexrTzScHFtDhaOXJ2dq275z+Ny+WnUnaEk8BFH/Hg5igmT5YMfbdX9v5
+         QHUvvQehz3pFZI9p3gsmGOqgpQOI7wUp/JAMZSDbo/No4zshYKvdzREV3uMwBN2G2Wd7
+         kl88dMkn0fSuNd1Luxv5nV2LCdkf4J711GJvZQeghABRq3HX1zx0idXHgZ0KM5o3OUZZ
+         UvIA==
+X-Gm-Message-State: ANoB5plla25rCnngzMk2TX5YT2NtHjq/A5J2B4m+55R2h1OLdEoBab3q
+        62WS6++T0K0EbKCxhJ+cDk8=
+X-Google-Smtp-Source: AA0mqf7ChOf5ktMT5YTqhw8zRkvR+EfOySECV3MkenBcEEoi+VLpr1qBIIv1gDiVElayN+ZXjfssUw==
+X-Received: by 2002:a05:6512:2f0:b0:4a9:d072:f5c1 with SMTP id m16-20020a05651202f000b004a9d072f5c1mr649233lfq.51.1670508074031;
+        Thu, 08 Dec 2022 06:01:14 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id m18-20020a194352000000b004b55ca53543sm2278805lfj.233.2022.12.08.06.01.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Dec 2022 06:01:13 -0800 (PST)
+Date:   Thu, 8 Dec 2022 17:01:11 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "Sergey.Semin@baikalelectronics.ru" 
+        <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v7 5/9] PCI: dwc: Avoid reading a register to detect
+ whether eDMA exists
+Message-ID: <20221208140111.7phlnsxktxzsc55f@mobilestation>
+References: <20221121124400.1282768-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221121124400.1282768-6-yoshihiro.shimoda.uh@renesas.com>
+ <20221122135550.GD157542@thinkpad>
+ <20221127235532.u7q7oou36wymkpyf@mobilestation>
+ <TYBPR01MB5341932B42719E026AA16D40D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221128115908.awhznkkrelk7h3nm@mobilestation>
+ <TYBPR01MB534107A3C2B521BA0D67B4A7D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221128161114.deacldwbckfnn6ft@mobilestation>
+ <TYBPR01MB5341FA664D5F1FCA07294F96D8129@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <TYBPR01MB53413E1BE13CCA65307770FDD81D9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Eq1pwegXvM8VevdS"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Y5BlisjV8Zi5fGWC@spud>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYBPR01MB53413E1BE13CCA65307770FDD81D9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Cc += Frank Li
 
---Eq1pwegXvM8VevdS
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+@Frank could you have a look at the thread and check the content of
+the CSRs dbi+0x8f8 and dbi+0x978 on available to you DW PCIe +EDMA
+devices?
 
-Hi Conor, Nathan,
+On Thu, Dec 08, 2022 at 12:26:18PM +0000, Yoshihiro Shimoda wrote:
+> Hi Serge, Manivannan,
+> 
+> > From: Yoshihiro Shimoda, Sent: Tuesday, November 29, 2022 9:22 AM
+> > 
+> > > From: Serge Semin, Sent: Tuesday, November 29, 2022 1:11 AM
+> > >
+> > > On Mon, Nov 28, 2022 at 12:41:11PM +0000, Yoshihiro Shimoda wrote:
+> > > > Hi Serge,
+> > > >
+> > > > > From: Serge Semin, Sent: Monday, November 28, 2022 8:59 PM
+> > > > >
+> > > > > On Mon, Nov 28, 2022 at 02:52:56AM +0000, Yoshihiro Shimoda wrote:
+> > > > > > Hi Serge,
+> > <snip>
+> > > > > No, this should have been the dw_pcie_readl_dbi() calls instead of
+> > > > > dw_pcie_readl_!dma!(). What I try to understand from these values is
+> > > > > the real version of your controller (dbi+0x8f8) and whether the legacy
+> > > > > eDMA viewport registers range follows the documented convention of
+> > > > > having FFs in the dbi+0x978 register. My current assumption that
+> > > > > either your IP-core is newer than v5.30a or has some vendor-specific
+> > > > > modification. But let's see the value first.
+> > > >
+> > >
+> > > > Oops! I'm sorry for my bad code. After fixed the code, the values are:
+> > > > ---
+> > > > [    1.108943] pcie-rcar-gen4 e65d0000.pcie: dw_pcie_edma_find_chip: +0x8f8 = 3532302a, +0x978 = 00000000
+> > > > ---
+> > >
+> > > @Yoshihiro. Got it. Thanks. Could you please confirm (double-check)
+> > > that what the content of the +0x978 CSR was really read by means of the
+> > > dw_pcie_readl_dbi() method?
+> > 
+> > Yes, I used dw_pcie_readl_dbi() like below.
+> > 
+> > --------------- (sorry, tabs replaced with spaces) ---------------
+> > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > @@ -843,6 +843,10 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
+> >  {
+> >         u32 val;
+> > 
+> > +       dev_info(pci->dev, "%s: +0x8f8 = %08x, +0x978 = %08x\n", __func__,
+> > +               dw_pcie_readl_dbi(pci, 0x8f8),
+> > +               dw_pcie_readl_dbi(pci, 0x978));
+> > +
+> >         if (pci->edma.reg_base) {
+> >                 pci->edma.mf = EDMA_MF_EDMA_UNROLL;
+> > ------------------------------------------------------------------
+> > 
+> > > @Mani, could you please have a look at the content of the +0x8f8 and
+> > > +0x978 CSRs in the CDM space of the available to you controllers?
+> > >
+> > > I've reproduced the behavior what discovered by @Yoshihiro, but on
+> > > v5.40a IP-core only. It was expected for that controller version, but
+> > > v5.20a was supposed to have FFs in +0x978 for the unrolled iATU/eDMA
+> > > space. It's strange to see it didn't.
+> 
 
-On Wed 07 Dec 22, 10:06, Conor Dooley wrote:
-> On Sun, Nov 27, 2022 at 11:31:41PM -0700, Nathan Chancellor wrote:
-> > Hi Paul,
-> >=20
-> > On Thu, Nov 03, 2022 at 05:37:14PM +0100, Paul Kocialkowski wrote:
-> > > Some Allwinner platforms come with an Image Signal Processor, which
-> > > supports various features in order to enhance and transform data
-> > > received by image sensors into good-looking pictures. In most cases,
-> > > the data is raw bayer, which gets internally converted to RGB and
-> > > finally YUV, which is what the hardware produces.
-> > >=20
-> > > This driver supports ISPs that are similar to the A31 ISP, which was
-> > > the first standalone ISP found in Allwinner platforms. Simpler ISP
-> > > blocks were found in the A10 and A20, where they are tied to a CSI
-> > > controller. Newer generations of Allwinner SoCs (starting with the
-> > > H6, H616, etc) come with a new camera subsystem and revised ISP.
-> > > Even though these previous and next-generation ISPs are somewhat
-> > > similar to the A31 ISP, they have enough significant differences to
-> > > be out of the scope of this driver.
-> > >=20
-> > > While the ISP supports many features, including 3A and many
-> > > enhancement blocks, this implementation is limited to the following:
-> > > - V3s (V3/S3) platform support;
-> > > - Bayer media bus formats as input;
-> > > - Semi-planar YUV (NV12/NV21) as output;
-> > > - Debayering with per-component gain and offset configuration;
-> > > - 2D noise filtering with configurable coefficients.
-> > >=20
-> > > Since many features are missing from the associated uAPI, the driver
-> > > is aimed to integrate staging until all features are properly
-> > > described.
-> > >=20
-> > > On the technical side, it uses the v4l2 and media controller APIs,
-> > > with a video node for capture, a processor subdev and a video node
-> > > for parameters submission. A specific uAPI structure and associated
-> > > v4l2 meta format are used to configure parameters of the supported
-> > > modules.
-> > >=20
-> > > One particular thing about the hardware is that configuration for
-> > > module registers needs to be stored in a DMA buffer and gets copied
-> > > to actual registers by the hardware at the next vsync, when instructed
-> > > by a flag. This is handled by the "state" mechanism in the driver.
-> > >=20
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> >=20
-> > This patch is now in -next as commit e3185e1d7c14 ("media: staging:
-> > media: Add support for the Allwinner A31 ISP"), where it causes the
-> > following clang warnings:
->=20
-> FWIW, this is (as yet) unfixed & thus breaking allmodconfig w/ clang.
-> I had a quick look on lore but could not see a proposed fix other than
-> what Nathan has pasted below.
+> So, should I add a quirk flag for my controller like below?
+> ---
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 69665a8a002e..384bd2c0ea75 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -844,7 +844,7 @@ static int dw_pcie_edma_find_chip(struct dw_pcie *pci)
+>         u32 val;
+> 
+>         val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
 
-Sorry for the inconvenience. I've just sent a fix series which should resol=
-ve
-these issues (and other ones too): "Allwinner A31/A83T CSI/ISP/MIPI CSI-2 m=
-edia
-fixes" (version 2).
+> -       if (val == 0xFFFFFFFF && pci->edma.reg_base) {
+> +       if ((pci->no_dma_ctrl_reg || val == 0xFFFFFFFF) && pci->edma.reg_base) {
+>                 pci->edma.mf = EDMA_MF_EDMA_UNROLL;
+> 
+>                 val = dw_pcie_readl_dma(pci, PCIE_DMA_CTRL);
 
-Thanks for the report!
+Very much no. I have just got rid from such boolean flags from the DW
+PCI private data.
 
-Paul
+Please be patient. Maintainers not always respond as soon as we would
+want. Please note my patchset also stalls due to your discovery (DW
+eDMA patches still under review).
 
-> > > +void sun6i_isp_capture_configure(struct sun6i_isp_device *isp_dev)
-> > > +{
-> > > +	unsigned int width, height;
-> > > +	unsigned int stride_luma, stride_chroma =3D 0;
-> > > +	unsigned int stride_luma_div4, stride_chroma_div4;
-> > > +	const struct sun6i_isp_capture_format *format;
-> > > +	const struct v4l2_format_info *info;
-> > > +	u32 pixelformat;
-> > > +
-> > > +	sun6i_isp_capture_dimensions(isp_dev, &width, &height);
-> > > +	sun6i_isp_capture_format(isp_dev, &pixelformat);
-> > > +
-> > > +	format =3D sun6i_isp_capture_format_find(pixelformat);
-> > > +	if (WARN_ON(!format))
-> > > +		return;
-> > > +
-> > > +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_SIZE_CFG_REG,
-> > > +			     SUN6I_ISP_MCH_SIZE_CFG_WIDTH(width) |
-> > > +			     SUN6I_ISP_MCH_SIZE_CFG_HEIGHT(height));
-> > > +
-> > > +	info =3D v4l2_format_info(pixelformat);
-> > > +	if (WARN_ON(!info))
-> > > +		return;
-> > > +
-> > > +	stride_luma =3D width * info->bpp[0];
-> > > +	stride_luma_div4 =3D DIV_ROUND_UP(stride_luma, 4);
-> > > +
-> > > +	if (info->comp_planes > 1) {
-> > > +		stride_chroma =3D width * info->bpp[1] / info->hdiv;
-> > > +		stride_chroma_div4 =3D DIV_ROUND_UP(stride_chroma, 4);
-> > > +	}
-> > > +
-> > > +	sun6i_isp_load_write(isp_dev, SUN6I_ISP_MCH_CFG_REG,
-> > > +			     SUN6I_ISP_MCH_CFG_EN |
-> > > +			     SUN6I_ISP_MCH_CFG_OUTPUT_FMT(format->output_format) |
-> > > +			     SUN6I_ISP_MCH_CFG_STRIDE_Y_DIV4(stride_luma_div4) |
-> > > +			     SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_chroma_div4));
-> > > +}
-> >=20
-> >=20
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:6: erro=
-r: variable 'stride_chroma_div4' is used uninitialized whenever 'if' condit=
-ion is false [-Werror,-Wsometimes-uninitialized]
-> >           if (info->comp_planes > 1) {
-> >               ^~~~~~~~~~~~~~~~~~~~~
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:144:42: not=
-e: uninitialized use occurs here
-> >                               SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(stride_c=
-hroma_div4));
-> >                                                                 ^~~~~~~=
-~~~~~~~~~~~
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_reg.h:249:48: note: e=
-xpanded from macro 'SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4'
-> >   #define SUN6I_ISP_MCH_CFG_STRIDE_UV_DIV4(v)     (((v) << 20) & GENMAS=
-K(30, 20))
-> >                                                     ^
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:135:2: note=
-: remove the 'if' if its condition is always true
-> >           if (info->comp_planes > 1) {
-> >           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c:112:51: not=
-e: initialize the variable 'stride_chroma_div4' to silence this warning
-> >           unsigned int stride_luma_div4, stride_chroma_div4;
-> >                                                           ^
-> >                                                             =3D 0
-> >=20
-> > Does stride_chroma_div4 want to just be initialized to zero?
-> >=20
-> > > +static int sun6i_isp_proc_notifier_bound(struct v4l2_async_notifier =
-*notifier,
-> > > +					 struct v4l2_subdev *remote_subdev,
-> > > +					 struct v4l2_async_subdev *async_subdev)
-> > > +{
-> > > +	struct sun6i_isp_device *isp_dev =3D
-> > > +		container_of(notifier, struct sun6i_isp_device, proc.notifier);
-> > > +	struct sun6i_isp_proc_async_subdev *proc_async_subdev =3D
-> > > +		container_of(async_subdev, struct sun6i_isp_proc_async_subdev,
-> > > +			     async_subdev);
-> > > +	struct sun6i_isp_proc *proc =3D &isp_dev->proc;
-> > > +	struct sun6i_isp_proc_source *source =3D proc_async_subdev->source;
-> > > +	bool enabled;
-> > > +
-> > > +	switch (source->endpoint.base.port) {
-> > > +	case SUN6I_ISP_PORT_CSI0:
-> > > +		source =3D &proc->source_csi0;
-> > > +		enabled =3D true;
-> > > +		break;
-> > > +	case SUN6I_ISP_PORT_CSI1:
-> > > +		source =3D &proc->source_csi1;
-> > > +		enabled =3D !proc->source_csi0.expected;
-> > > +		break;
-> > > +	default:
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	source->subdev =3D remote_subdev;
-> > > +
-> > > +	return sun6i_isp_proc_link(isp_dev, SUN6I_ISP_PROC_PAD_SINK_CSI,
-> > > +				   remote_subdev, enabled);
-> > > +}
-> >=20
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:418:2: error: =
-variable 'enabled' is used uninitialized whenever switch default is taken [=
--Werror,-Wsometimes-uninitialized]
-> >           default:
-> >           ^~~~~~~
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:425:23: note: =
-uninitialized use occurs here
-> >                                     remote_subdev, enabled);
-> >                                                     ^~~~~~~
-> >   drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c:407:14: note: =
-initialize the variable 'enabled' to silence this warning
-> >           bool enabled;
-> >                       ^
-> >                       =3D 0
-> >=20
-> > Should there be an early return in the default case?
-> >=20
-> > I do not mind sending patches if you are unable to, assuming I have the
-> > right fixes.
-> >=20
-> > Cheers,
-> > Nathan
-> >=20
+What we have discovered here is the undocumented behavior. The
+HW-manuals from 4.80 up to 5.30 say that the register dbi+0x978 must
+have FFs if the register doesn't exist. A similar rule is defined for
+the iATU CSRs space and it's working well at least up to IP-core
+5.40a. The viewport-based eDMA CSRs space has been removed from the
+HW-manuals since IP-core 5.40a and I can assure that IP-core 5.40a has
+zeros in dbi+0x978 on the real HW. I do have another devices with eDMA
+but all of them have been synthesized with the legacy viewport-based
+eDMA access, so I can't check whether the FFs statement is correct for
+the devices older than 5.40. You detected the problem on the IP-core
+5.20a, but @Mani didn't see it on his devices. Neither does Frank
+AFAIU. That's why I asked him and @Frank to check what value the
+dbi+0x8f8 and dbi+0x978 registers have in their devices at hand. After
+that we'll either add the IP-core version based test here:
+< -       val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
+< +       if (dw_pcie_ver_is_ge(pci, 5?0A)) {
+< +               val = 0xFFFFFFFF;
+< +       else
+< +               val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
+or add a new capability flag if @Mani has IP-core 5.20a with FFs in
+the CSRs dbi+0x978. Like this:
+< -       val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
+< +       if (dw_pcie_cap_is(pci, EDMA_UNROLL)) {
+< +               val = 0xFFFFFFFF;
+< +       else
+< +               val = dw_pcie_readl_dbi(pci, PCIE_DMA_VIEWPORT_BASE + PCIE_DMA_CTRL);
 
+So the main goal of this activity is to check whether your discovery
+is a bug on your particular device or is a bug in the HW-manuals. If
+the later is correct then the eDMA CSRs space auto-detection procedure
+should be fixed to be executed up to the corresponding IP-core
+version. If the former is correct then we'll add a new capability
+flag. In anyway having the new boolean field in the device private
+data wouldn't be a good option since there is the capabilities API
+available in the driver.
 
+-Serge(y)
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---Eq1pwegXvM8VevdS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmOR7UIACgkQ3cLmz3+f
-v9HUhgf+MqWFRHpJteq7pbYqsoMp5NzKApq8Hab85Kt4+jkrdLX2dh6CaKTamgE/
-40oyJ2sy5UkWIMNxPsfOdsDPV4d5K5VE430Rqd8EnA7Vu3uPV6Mwbl7YtMcsIIhh
-QKFpamExdTcvdL3wUE8pUylLl4ivuwXeJYblWp9JdzzqhBQYE0hcuCdryF0hPm0l
-R2h3rc0+jnlq6Lmv38MMTM1WFh8j6Fz9rPz8yEEoKBq4WSRGKn1Tdt6Ksmv7hmKh
-uz3RTdIauzhkUziTluMjhmBgWjI843kki2vXNo6X6pUk05zM6qxF7Iiat2jIgRW2
-iyAWJvWttMBPhfa1UzYG2Rn8BFiiYw==
-=Vl1z
------END PGP SIGNATURE-----
-
---Eq1pwegXvM8VevdS--
+> ---
+> 
+> Best regards,
+> Yoshihiro Shimoda
+> 
+> > > -Sergey
+> > >
+> > > >
+> > > > <snip>
+> > > > > > So, should I change the condition like below?
+> > > > > >
+> > > > > > ---
+> > > > > > -	if (val == 0xFFFFFFFF && pci->edma.reg_base) {
+> > > > > > +	if ((val == 0xFFFFFFFF || val == 0x00000000) && pci->edma.reg_base) {
+> > > > > > ...
+> > > > > > -	} else if (val != 0xFFFFFFFF) {
+> > > > > > -	} else if (!(val == 0xFFFFFFFF || val == 0x00000000)) {
+> > > > > > ---
+> > > > >
+> > > > > Definitely no. Even though it's impossible to have the eDMA controller
+> > > > > configured with zero number of read and write channels we shouldn't
+> > > > > assume that getting a zero value from the DMA_CTRL_VIEWPORT_OFF offset
+> > > > > means having the unrolled eDMA CSRs mapping. Let's have a look at the
+> > > > > content of the dbi+0x8f8 and dbi+0x978 offsets first. Based on these
+> > > > > values we'll come up with what to do next.
+> > > >
+> > > > I got it.
+> > > >
+> > > > Best regards,
+> > > > Yoshihiro Shimoda
+> > > >
+> > > > > -Serge(y)
+> > > > >
+> > > > > >
+> > > > > > Best regards,
+> > > > > > Yoshihiro Shimoda
+> > > > > >
+> > > > > > > -Sergey
+> > > > > > >
+> > > > > > > > >  	} else {
+> > > > > > > > >  		return -ENODEV;
+> > > > > > > > >  	}
+> > > > > > > > > --
+> > > > > > > > > 2.25.1
+> > > > > > > > >
+> > > > > > > >
+> > > > > > > > --
+> > > > > > > > மணிவண்ணன் சதாசிவம்
