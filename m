@@ -2,100 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E27A3646A00
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 08:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9928646A17
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:06:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229486AbiLHH7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 02:59:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47472 "EHLO
+        id S229530AbiLHIGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:06:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiLHH7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 02:59:21 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728E654378
-        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 23:59:20 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id s8so827679lfc.8
-        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 23:59:20 -0800 (PST)
+        with ESMTP id S229486AbiLHIGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:06:05 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B04554B11
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:06:04 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id f20so727557lja.4
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:06:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ifN3keePSqcP1VQvXgjgaCnpgDY0iz9KJSv9ZTvk64U=;
-        b=NyfoEAix9x9ZjuHYxTQNy67/Ymvezy9y2hj03fXPx8mIJA6dW8Vi3co8zXn82yON7M
-         UI15Ol21gzQW75izSCq/0gFibYIJ+JivwpvcRq1l4DDnVZW1gWGOFX73ZOK47ILqLNGC
-         meSCv2o3EBf/9napNBpTFnXQQYsAK0NcMy85+jpBU+dwpoK0BHsnHLOk7qUq9TBL47RA
-         Pxsvd4SPN+gRZ672am2fSNIjF5Zmts4mSiBR2YSuUMGAcfKQov7Y6hEXFoRfHSK4NOFj
-         JE+/se7E9BrUhJ3YGBSaKWzrq4mrY1+gUCQivvAQuClqU/oedzs1/IcaLrO/norEsYcE
-         4tGw==
+        bh=7u/88vG7XZa4vAH6mLsoYNV0uw6Ahu+wcvp0KHUwzqw=;
+        b=UGr/szUAygo3dmWdI1Txj6LLFnJFbH+38MiH5i7VvWniYX4Pc/wHwY5JejfdcejHmk
+         BXfR350df2uUN0YH94Pvv9JLKc3TvidwVk+KweAVRaKmNr72ni3Ms69X7Yr208lZYtLP
+         phecYdFh+UApy78dsfJF4VcyVFMCfw/7VAhF0F15VoD+2173b8WtbM5IX2Ypcebd9U7C
+         /pFG5s6BnQiUOUHIrkPjdvI7FBoYVq37eHeQBirq2UaPvaADYaSQHf3G8O/NzZW/ykiB
+         ip3UNz/1jPmUUUuWjpODBDk4BTQ3dTNCWThY6xSAmPZYhdST1yBWNs28zK58i33Vk+Qu
+         +/qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ifN3keePSqcP1VQvXgjgaCnpgDY0iz9KJSv9ZTvk64U=;
-        b=T97xkMe46V2LiKDto3jAYmZqy1dDueffnflUNMWc9abaEhcmRhgu5zRJ2ON3000WMt
-         1gfTyDn7Z5Frc7REbfTRz0NWcu6yZISpi815UDZ6c6Y+9UGeQBubx49I/XxxqdOPDq4m
-         lMWZLWCnOeXPCfsOpmSzhTdZ11kLUl7Kub4rgGUdXI94ePMHRPZZZYN/Jl1+osnBWgxs
-         cP2LFp3R0/3KReaxY4QoAusz7RweXrBuH6ptFrOerDhWrcu0i21Wsudp+E318dxEqh0d
-         8DTie+YozUrS00qccKJvbqvkrV6EBmB5exrPEotf1p8YEq1QW6sl+OszKkvyq20s7q5s
-         LumQ==
-X-Gm-Message-State: ANoB5pmgT/N5B2RK88E7U5SX3gQSkgdsgYWSeC+AFLgtS9qt+eIGJgc0
-        07fpvtjVlH+UuQtWe7Fya67PQg==
-X-Google-Smtp-Source: AA0mqf6Ai63Lvn4lPSEHsIJqs5NWlG+yEnhX8s/K+t+sinQ058a/JdqLaNPM6UtafcdtITYNKx3R2g==
-X-Received: by 2002:a05:6512:33d2:b0:4b5:28fc:36e1 with SMTP id d18-20020a05651233d200b004b528fc36e1mr12149885lfg.179.1670486358836;
-        Wed, 07 Dec 2022 23:59:18 -0800 (PST)
+        bh=7u/88vG7XZa4vAH6mLsoYNV0uw6Ahu+wcvp0KHUwzqw=;
+        b=sW7533BE1DwoG8i11q4ixz8hd8i11u5xjTUEcoDhNqaAqjcgt3xlQjU2XaaI7LLiuR
+         gLjUss0zRut1ux0Rlsj5naqfL0qjHuF62e9lWJNuLl96xPgG+Jlcn+/jnDnd6+G5zb02
+         3BpwlCnPcA7ND9Vfs883a+Rw6W7C5HJWx2rjVIv+UXv9P4pJhyMOOs4OCa3Q388MkG+9
+         ygIkQgJurHf8vQytq0G4ckinfPd4agi6W9J7gYqg4/E3vvf/d6KDOAJdgqGfUWk0RX3j
+         Yo3rCWry3/tj9MutbLav9WEl0QSfUSTnMDrtHk2KWUkC/6UtPx8YXY41zsrrDKF5j1zK
+         gp2g==
+X-Gm-Message-State: ANoB5pnPtBmr2LMss3YuHw523ubp97cHPEloTrsC8UDJk4O4X7cqqMpE
+        8XKMvqsQ7Yyb2EXgmCPnpd/P/w==
+X-Google-Smtp-Source: AA0mqf7Q2WP7HWGn4EgBpD6vXpK9CyXpetJ7Brto08p49kkV7N2jF7lx1m8uRoulMebxY7Ceozo4Kw==
+X-Received: by 2002:a05:651c:883:b0:277:34b:1bfe with SMTP id d3-20020a05651c088300b00277034b1bfemr29992013ljq.8.1670486762678;
+        Thu, 08 Dec 2022 00:06:02 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id o9-20020ac25e29000000b0049465afdd38sm3247926lfg.108.2022.12.07.23.59.17
+        by smtp.gmail.com with ESMTPSA id s12-20020a056512214c00b004a45edc1de2sm3213990lfr.239.2022.12.08.00.06.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Dec 2022 23:59:18 -0800 (PST)
-Message-ID: <a2653b17-4ed4-6fe3-ca46-6f8917a58171@linaro.org>
-Date:   Thu, 8 Dec 2022 08:59:17 +0100
+        Thu, 08 Dec 2022 00:06:02 -0800 (PST)
+Message-ID: <c2782196-6dae-522a-50d5-5e5223e66e56@linaro.org>
+Date:   Thu, 8 Dec 2022 09:06:01 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH V6 1/2] dt-bindings: firmware: qcom,scm: Add optional
- interrupt
+Subject: Re: [PATCH v2 01/16] dt-bindings: clock: Fix node descriptions in
+ uniphier-clock example
 Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        robimarko@gmail.com, quic_gurus@quicinc.com,
-        quic_rjendra@quicinc.com
-References: <20221208064031.2875-1-quic_sibis@quicinc.com>
- <20221208064031.2875-2-quic_sibis@quicinc.com>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
+ <20221207055405.30940-2-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208064031.2875-2-quic_sibis@quicinc.com>
+In-Reply-To: <20221207055405.30940-2-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 07:40, Sibi Sankar wrote:
-> From: Guru Das Srinagesh <quic_gurus@quicinc.com>
+On 07/12/2022 06:53, Kunihiko Hayashi wrote:
+> Prior to adding dt-bindings for SoC-dependent controllers, rename the
+> clock nodes their parent nodes to the generic names in the example.
 > 
-> Add an interrupt specification to the bindings to support the wait-queue
-> feature on SM8450 SoCs.
+> And also fix the missing compatible string.
 > 
-> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
+>  .../clock/socionext,uniphier-clock.yaml       | 21 +++++++++++--------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
 > 
-> The interrupt property for scm firmware from a binding perspective is
-> completely optional i.e. not all tz fw running in the wild on sm8450
-> devices support this feature. The bootloader does the interrupt property
-> addition on sm8450 devices with wait-queue support.
+> diff --git a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+> index 9a0cc7341630..672450a1ecda 100644
+> --- a/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+> @@ -61,11 +61,12 @@ required:
+>  
+>  examples:
+>    - |
+> -    sysctrl@61840000 {
+> -        compatible = "socionext,uniphier-sysctrl", "simple-mfd", "syscon";
+> +    syscon@61840000 {
+> +        compatible = "socionext,uniphier-ld11-sysctrl",
+> +                     "simple-mfd", "syscon";
+>          reg = <0x61840000 0x4000>;
+>  
+> -        clock {
+> +        clock-controller {
+>              compatible = "socionext,uniphier-ld11-clock";
+>              #clock-cells = <1>;
+>          };
+> @@ -74,11 +75,12 @@ examples:
+>      };
+>  
+>    - |
+> -    mioctrl@59810000 {
+> -        compatible = "socionext,uniphier-mioctrl", "simple-mfd", "syscon";
+> +    syscon@59810000 {
+> +        compatible = "socionext,uniphier-ld11-mioctrl",
+> +                     "simple-mfd", "syscon";
+>          reg = <0x59810000 0x800>;
+>  
+> -        clock {
+> +        clock-controller {
+>              compatible = "socionext,uniphier-ld11-mio-clock";
+>              #clock-cells = <1>;
+>          };
+> @@ -87,11 +89,12 @@ examples:
+>      };
+>  
+>    - |
+> -    perictrl@59820000 {
+> -        compatible = "socionext,uniphier-perictrl", "simple-mfd", "syscon";
+> +    syscon@59820000 {
+> +        compatible = "socionext,uniphier-ld11-perictrl",
+> +                     "simple-mfd", "syscon";
+>          reg = <0x59820000 0x200>;
+>  
+> -        clock {
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+These are all three same examples (no differences except compatibles),
+so you can as well keep only one. You can also skip parent node,
+otherwise you might keep getting warnings for this schema. The parent is
+not that relevant here and its bindings (e.g.
+socionext,uniphier-sysctrl.yaml) should include complete example -
+parent with all the children.
 
 Best regards,
 Krzysztof
