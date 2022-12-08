@@ -2,80 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E67E8646BFD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A85E646C16
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229776AbiLHJfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:35:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
+        id S230198AbiLHJoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:44:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiLHJfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:35:16 -0500
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B6C5B84E;
-        Thu,  8 Dec 2022 01:35:13 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 67B0E24DD6E;
-        Thu,  8 Dec 2022 17:35:11 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
- 2022 17:35:11 +0800
-Received: from EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e]) by
- EXMBX068.cuchost.com ([fe80::c4da:cbc4:bb39:ca7e%16]) with mapi id
- 15.00.1497.044; Thu, 8 Dec 2022 17:35:10 +0800
-From:   JiaJie Ho <jiajie.ho@starfivetech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: RE: [PATCH 0/6] crypto: starfive: Add driver for cryptographic engine
-Thread-Topic: [PATCH 0/6] crypto: starfive: Add driver for cryptographic
- engine
-Thread-Index: AQHZBH/pPWRKQfsetk2izJkM4PGjPq5jvsYw//+A4ICAAIfRMA==
-Date:   Thu, 8 Dec 2022 09:35:10 +0000
-Message-ID: <a0bd9060bab348eba1044cd911653bd7@EXMBX068.cuchost.com>
-References: <20221130055214.2416888-1-jiajie.ho@starfivetech.com>
- <e1e9f1d19982493b89ae63f51e00a3bb@EXMBX068.cuchost.com>
- <9c7066e4-fa3f-3dda-b939-04dfdaf73242@linaro.org>
-In-Reply-To: <9c7066e4-fa3f-3dda-b939-04dfdaf73242@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [161.142.158.8]
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229820AbiLHJoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:44:22 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022E65E9C2
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:44:21 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id c1so1195180lfi.7
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 01:44:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tR+f/+3nybjrz985QuJTlkfFuvKyHlsK8G2EHEYD21M=;
+        b=NvP+hneTcrJLq5aKAbWBlzRJJD/2srJe9IAT/Pq2hUX9OAuJ1vz01KfcttkSjfGWq6
+         MkVQq1uw8kaTQSnVB8uX4rSsEPLC1n/PxH/go/ginVJgW0kAhDGkoNoRs1nCQHSk4/ck
+         94ktgccj6TDjOHMk+TlN+wvvuCtzqnhdW7+fA1IExI/sPZyyW9qQ4IwDE45IaqKWgC1L
+         fz0+PgDy6EuN18RY7i+dTcRX5m1e/rFaC7S5djIFlmkXMFDMfb3lBRwtf1W/F9Vre7Gh
+         5Y9A7wMqnRq2lIyDogonPN6I6vu4NSaPH0jxR54Lwuur/QSXC6XPAOQghUC7UTeLNFms
+         ZW0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tR+f/+3nybjrz985QuJTlkfFuvKyHlsK8G2EHEYD21M=;
+        b=bsNoEc2ZsS9Wdbfhd3DZWKkZlRf1rRnKmJ3asHcxSozsvCqMybE27+meUDkywpI9MO
+         S2SLSq2Au+AQVK9ryj7uqwlGiBxJ80I1d5EYK6IA1HG0UZs21on3QGQ9fyTvTYofE971
+         QXO1lcworJw2Cb+eq8p3sLusv6ZBDgzGO3J9a2+PhGGXs8pPzXfdaT2+S3msvmvQuM6S
+         G6pTg9rJrhKyf1kWSrMxF867vSRB8v2puTfUpmDOY9vcJg2xXeyZLkYW4wn8tAqE+xLb
+         QduOwUiYsv77tAfXLuRiigw4dyWRtm3WfA+GpQM/JriGPWfciC6XaLPzQPN9PMgje4uf
+         1zhw==
+X-Gm-Message-State: ANoB5plWdk6NgydCjK2kG+H6iz0qO+zffmCXmCis3EPZn4589foH8c1+
+        h80lKjXqu45BPe5CdoZ24Fv1CQ==
+X-Google-Smtp-Source: AA0mqf77vkoDAk7e+na4oDIjnlgURFAAvORsW7EKDtnaXGZNkHzBFx7iahF6vIP8MxlwXav31qtCag==
+X-Received: by 2002:a05:6512:31c5:b0:4a2:3ca7:3a44 with SMTP id j5-20020a05651231c500b004a23ca73a44mr26614010lfe.23.1670492659337;
+        Thu, 08 Dec 2022 01:44:19 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id d23-20020a194f17000000b0049482adb3basm3257906lfb.63.2022.12.08.01.44.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Dec 2022 01:44:18 -0800 (PST)
+Message-ID: <fe70d964-229a-8bda-a414-e009dd955e5e@linaro.org>
+Date:   Thu, 8 Dec 2022 10:44:17 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 7/9] dt-bindings: mtd: Split ECC engine with rawnand
+ controller
+Content-Language: en-US
+To:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chuanhong Guo <gch981213@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
+        bin.zhang@mediatek.com
+References: <20221208062955.2546-1-xiangsheng.hou@mediatek.com>
+ <20221208062955.2546-8-xiangsheng.hou@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221208062955.2546-8-xiangsheng.hou@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
-RGVjZW1iZXIgOCwgMjAyMiA1OjI4IFBNDQo+IFRvOiBKaWFKaWUgSG8gPGppYWppZS5ob0BzdGFy
-Zml2ZXRlY2guY29tPjsgSGVyYmVydCBYdQ0KPiA8aGVyYmVydEBnb25kb3IuYXBhbmEub3JnLmF1
-PjsgRGF2aWQgUyAuIE1pbGxlciA8ZGF2ZW1AZGF2ZW1sb2Z0Lm5ldD47DQo+IFJvYiBIZXJyaW5n
-IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yu
-a296bG93c2tpK2R0QGxpbmFyby5vcmc+DQo+IENjOiBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwu
-b3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtDQo+IGtlcm5lbEB2Z2VyLmtl
-cm5lbC5vcmc7IGxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU3ViamVjdDogUmU6
-IFtQQVRDSCAwLzZdIGNyeXB0bzogc3RhcmZpdmU6IEFkZCBkcml2ZXIgZm9yIGNyeXB0b2dyYXBo
-aWMgZW5naW5lDQo+IA0KPiBPbiAwOC8xMi8yMDIyIDEwOjA5LCBKaWFKaWUgSG8gd3JvdGU6DQo+
-ID4NCj4gPiBIaSBIZXJiZXJ0L0RhdmlkLA0KPiA+DQo+ID4gQ291bGQgeW91IHBsZWFzZSBoZWxw
-IHRvIHJldmlldyBhbmQgcHJvdmlkZSBjb21tZW50cyBvbiB0aGlzIHBhdGNoIHNlcmllcz8NCj4g
-PiBUaGFuayB5b3UgaW4gYWR2YW5jZS4NCj4gDQo+IFlvdSByZWNlaXZlZCBzb21lIGNvbW1lbnRz
-IHNvIHRoZSBleHBlY3RhdGlvbiBpcyB0byBzZW5kIGEgdjIuDQo+IA0KDQpTdXJlLCBJJ2xsIGRv
-IHRoYXQgdGhlbi4NCg0KVGhhbmtzDQpKaWEgSmllDQo=
+On 08/12/2022 07:29, Xiangsheng Hou wrote:
+> Split MediaTek ECC engine with rawnand controller and convert to
+> YAML schema.
+> 
+> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+> ---
+>  .../bindings/mtd/mediatek,mtk-nfc.yaml        | 154 +++++++++++++++
+>  .../mtd/mediatek,nand-ecc-engine.yaml         |  62 ++++++
+>  .../devicetree/bindings/mtd/mtk-nand.txt      | 176 ------------------
+>  3 files changed, 216 insertions(+), 176 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/mtk-nand.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml b/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+> new file mode 100644
+> index 000000000000..eb1a44c7ae4e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+> @@ -0,0 +1,154 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/mediatek,mtk-nfc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek(MTK) SoCs raw NAND FLASH controller (NFC)
+> +
+> +maintainers:
+> +  - Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt2701-nfc
+> +      - mediatek,mt2712-nfc
+> +      - mediatek,mt7622-nfc
+> +
+> +  reg:
+> +    items:
+> +      - description: Base physical address and size of NFI.
+> +
+> +  interrupts:
+> +    items:
+> +      - description: NFI interrupt
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock used for the controller
+> +      - description: clock used for the pad
+> +
+> +  clock-names:
+> +    items:
+> +      - const: nfi_clk
+> +      - const: pad_clk
+> +
+> +  ecc-engine:
+> +    description: device-tree node of the required ECC engine.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +patternProperties:
+> +  "^nand@[a-f0-9]$":
+> +    type: object
+
+This should be instead:
+    $ref: nand-chip.yaml#
+    unevaluatedProperties: false
+
+and then properties below (due to current dtschema limitations) should
+list properties from nand-controller.yaml:
+
+      nand-on-flash-bbt: true
+
+Optionally, we could create additional schema - nand-controller-chip,
+which would be referenced directly by nand-controller and itself would
+ref nand-chip.
+
+> +    properties:
+> +      reg:
+> +        minimum: 0
+
+no need, 0 is the minimum.
+
+> +        maximum: 1
+> +      nand-ecc-mode:
+> +        const: hw
+> +
+> +allOf:
+> +  - $ref: nand-controller.yaml#
+> +
+> +  - if:
+
+Best regards,
+Krzysztof
+
