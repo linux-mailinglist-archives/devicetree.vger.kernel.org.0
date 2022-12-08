@@ -2,187 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E3F6479A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 00:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A02AE6479E3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 00:24:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbiLHXRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 18:17:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56668 "EHLO
+        id S230162AbiLHXYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 18:24:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiLHXRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 18:17:17 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CC39D898
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 15:17:16 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id cf42so4417867lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 15:17:15 -0800 (PST)
+        with ESMTP id S230109AbiLHXXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 18:23:17 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12E86ACCD
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 15:22:08 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id o189so1217952iof.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 15:22:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oCsKRmRYTaUN175iSQ+8CzQ2o2D9diPnWoiAzSTDmos=;
-        b=BYb25JT1/vslYb1DVLQqLM2ML3g0LWdH5/ndWyCIwBRipkTd9axxTKxTKlNbz2vQMy
-         DrqG+oxmI+U6ZL6iDFVGaNypyQ4WimpRF9/nGRaIM85Iaezq9GLkBZqmVrGhXGvxQOm8
-         xAcDOs9HLWTaIS5TLAj0oIYXKmP/pY+Bn5mQ87Embw9cX0dHZF6XkN6eZ4fgdJfIy17+
-         2IJhGmjRLLg1JijE1FBp7PenToFQMj/cI42N2sUl2N+fKF+CStWxgUflSYe5qyUYnZ9H
-         01AplyEft30KlGoXeuIldop66n0dfONjmGWX0uc8N8EpvE+8MkNbJ8dqrcAK6o2ph2Cl
-         Bxig==
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kbpMQ63Zd0ddTl917YQAEJDL2fT9g2XYtpQwPSl/m6E=;
+        b=oZjo3h0jiJm+5LuEJLHVzKLTtbsfV4Yuzhhxd/0ah+FUxmwHzdKXsVKAZkW+Pt1cP7
+         bZJht87h69mLBsd1Tr8S5xNbfe5pJ8QSZtXBGHnH6b9s6QFQmWTOdTfyGBDZxslciDBi
+         xOg+nIOw+X5W+tU+P2FkZ0ukmTYoQuwun0OgE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCsKRmRYTaUN175iSQ+8CzQ2o2D9diPnWoiAzSTDmos=;
-        b=mb00QcigVrtofc+u0BiMx/QDA3YK96V9ui4LLraWFwswpN1GPgb9rWt+PJZlaCqkcN
-         6ft2lbS0iHNwfGQ8MIthJi4hPeu6kCldBGc7VJn5+gLuEGgrjnZbYt8d1edpvC0JkGN3
-         CTpOl6Cu0QofNwlb5h5YtzfD0rKT1NwroNLtTCiM5FsTXx4IdGvXPAG0EvRFYjxe9r7u
-         7i3YhU9LAVMmcPOsDkAWB9S3zMeKCQ3GhSzszxOMv5E08ULUCO694UPPwmjV+cGPd/gj
-         Jy4tTrlYoTEM6O8ma+f5UAqgN6ZhxOJBidm7iFsYXolLL/WzbREIbTShElt2GB2rYZ+L
-         rMjg==
-X-Gm-Message-State: ANoB5pmy70+IB9fnp3u95PE7nbfzB/OBCcc7gfLppQP5yU9iM64aketL
-        TP2rPz0QyC/9njYs0JUCv1/LRQ==
-X-Google-Smtp-Source: AA0mqf64HHvBQnvh8Ga6+ZAmOSUnUf2eZ3LsaDK2t12dZu2v75LfbBkHvla/5YT+ih76Hp88Yyg7aA==
-X-Received: by 2002:a05:6512:2a9a:b0:4a4:68b9:6091 with SMTP id dt26-20020a0565122a9a00b004a468b96091mr883514lfb.28.1670541434323;
-        Thu, 08 Dec 2022 15:17:14 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id v4-20020a056512348400b004b097f2c73dsm3521105lfr.253.2022.12.08.15.17.13
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kbpMQ63Zd0ddTl917YQAEJDL2fT9g2XYtpQwPSl/m6E=;
+        b=OyuM87TkuBE9F7RPB0MgL2390l7AvIpIxni84IPCeVMx1N/9KeaodoDOuv6i5B6UMa
+         r/lEtR7zu+SdiPnnKJtm2mfUrfSTlaf2seZNu69/LEWTq6GMf8TswEwj52HOWDejN0Wj
+         j1iP8tf+ZGhfHL8nqO0Nuo5z+2L7rtKp7kAtCV08PaDQ2vAK3YVbkZhZB0faBFbvGd3L
+         L44GK4sQV2wQ+eIu7U+CCliEtBA2p/3lsEpUmpb9gzhb7JcgLrCkqltCEYVDfrdo7xxY
+         zHS3JHXP1AkLf3+5UdmYT2Szyouev9gdUs/RcogSPEYqqQojdwraHJjfdQ0K//305vi1
+         2idw==
+X-Gm-Message-State: ANoB5pnpFjFTO2gujr+oFxg8ThV1y0tJeLuYFk0T1H+Q7lZD2H54jdK3
+        gosHUnUzVgWgrRRgUYCNZ3Bzeg==
+X-Google-Smtp-Source: AA0mqf7R4a0/39caWEYz1Aqubo3foxnMQIfA4QfNcQ9VQeaAtG5do3746c/qrqrZlXYDXMfVE8x12A==
+X-Received: by 2002:a5d:8593:0:b0:6bc:d712:8bbc with SMTP id f19-20020a5d8593000000b006bcd7128bbcmr2168029ioj.4.1670541728078;
+        Thu, 08 Dec 2022 15:22:08 -0800 (PST)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id o7-20020a0566022e0700b006a49722dc6dsm7371iow.11.2022.12.08.15.22.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 15:17:13 -0800 (PST)
-Message-ID: <e12f53ca-6934-fc9d-c99c-6859628238a1@linaro.org>
-Date:   Fri, 9 Dec 2022 01:17:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v11 4/5] drm/msm/dp: parser link-frequencies as property
- of dp_out endpoint
-Content-Language: en-GB
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        airlied@gmail.com
-Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Thu, 08 Dec 2022 15:22:07 -0800 (PST)
+Date:   Thu, 8 Dec 2022 23:22:07 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Yunlong Jia <ecs.beijing2022@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
- <1670539015-11808-5-git-send-email-quic_khsieh@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1670539015-11808-5-git-send-email-quic_khsieh@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sc7180: Bump up trogdor ts_reset_l
+ drive strength
+Message-ID: <Y5Jxn01EzEZ8fE1G@google.com>
+References: <20221208192006.1070898-1-dianders@chromium.org>
+ <20221208111910.1.I39c387f1e3176fcf340039ec12d54047de9f8526@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221208111910.1.I39c387f1e3176fcf340039ec12d54047de9f8526@changeid>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 00:36, Kuogee Hsieh wrote:
-> Add capability to parser and retrieve max DP link supported rate from
-> link-frequencies property of dp_out endpoint.
+On Thu, Dec 08, 2022 at 11:20:02AM -0800, Douglas Anderson wrote:
+> On at least one board (pazquel360) the reset line for the touchscreen
+> was scoped and found to take almost 2 ms to fall when we drove it
+> low. This wasn't great because the Linux driver for the touchscreen
+> (the elants_i2c driver) thinks it can do a 500 us reset pulse. If we
+> bump the drive strength to 8 mA then the reset line went down in ~421
+> us.
 > 
-> Changes in v6:
-> -- second patch after split parser patch into two patches
+> NOTE: we could apply this fix just for pazquel360, but:
+> * Probably other trogdor devices have similar timings and it's just
+>   that nobody has noticed it before.
+> * There are other trogdor boards using the same elan driver that tries
+>   to do 500 us reset pulses.
+> * Bumping the drive strength to 8mA across the board won't hurt. This
+>   isn't a high speed signal or anything.
 > 
-> Changes in v7:
-> -- without checking cnt against DP_MAX_NUM_DP_LANES to retrieve link rate
-> 
-> Changes in v9:
-> -- separate parser link-frequencies out of data-lanes
-> 
-> Changes in v10:
-> -- add dp_parser_link_frequencies()
-> 
-> Changes in v11:
-> -- return 0 if(!endpoint)
-> 
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/dp/dp_parser.c | 27 +++++++++++++++++++++++++++
->   drivers/gpu/drm/msm/dp/dp_parser.h |  2 ++
->   2 files changed, 29 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
-> index b5f7e70..9a7dcd4 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-> @@ -91,6 +91,29 @@ static int dp_parser_ctrl_res(struct dp_parser *parser)
->   	return 0;
->   }
->   
-> +static u32 dp_parser_link_frequencies(struct device_node *of_node)
-> +{
-> +	struct device_node *endpoint;
-> +	u64 frequency = 0;
-> +	int cnt = 0;
-> +
-> +	endpoint = of_graph_get_endpoint_by_regs(of_node, 1, 0); /* port@1 */
-> +	if (!endpoint)
-> +		return 0;
-> +
-> +	cnt = of_property_count_u64_elems(endpoint, "link-frequencies");
-> +
-> +	if (cnt > 0)
-> +		of_property_read_u64_index(endpoint, "link-frequencies",
-> +						cnt - 1, &frequency);
-> +	of_node_put(endpoint);
-> +
-> +	frequency /= 10;	/* from symbol rate to link rate */
-> +	frequency /= 1000;	/* kbytes */
-> +
-> +	return frequency;
-> +}
-> +
->   static int dp_parser_misc(struct dp_parser *parser)
->   {
->   	struct device_node *of_node = parser->pdev->dev.of_node;
-> @@ -113,6 +136,10 @@ static int dp_parser_misc(struct dp_parser *parser)
->   			parser->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
->   	}
->   
-> +	parser->max_dp_link_rate = dp_parser_link_frequencies(of_node);
-> +	if (!parser->max_dp_link_rate)
-> +                parser->max_dp_link_rate = DP_LINK_RATE_HBR2; /* 540000 khz */
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-Drop the comment please. One can jump to the defined value to see what 
-is it equal to. So it adds no information.
-
-> +
->   	return 0;
->   }
->   
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h b/drivers/gpu/drm/msm/dp/dp_parser.h
-> index 866c1a8..6b10c3e 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.h
-> @@ -15,6 +15,7 @@
->   #define DP_LABEL "MDSS DP DISPLAY"
->   #define DP_MAX_PIXEL_CLK_KHZ	675000
->   #define DP_MAX_NUM_DP_LANES	4
-> +#define DP_LINK_RATE_HBR2	540000 /* khz */
-
-kbytes, not kHz. Otherwise it would have been 5400000.
-
->   
->   enum dp_pm_type {
->   	DP_CORE_PM,
-> @@ -119,6 +120,7 @@ struct dp_parser {
->   	struct dp_io io;
->   	struct dp_display_data disp_data;
->   	u32 max_dp_lanes;
-> +	u32 max_dp_link_rate;
->   	struct drm_bridge *next_bridge;
->   
->   	int (*parse)(struct dp_parser *parser);
-
--- 
-With best wishes
-Dmitry
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
