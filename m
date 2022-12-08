@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 030E3646A3F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5523A646A42
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:16:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiLHIPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:15:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
+        id S229637AbiLHIQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:16:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229500AbiLHIP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:15:29 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7120393
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:15:27 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id q7so735258ljp.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:15:27 -0800 (PST)
+        with ESMTP id S229556AbiLHIQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:16:48 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3594231209
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:16:47 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id bp15so859053lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:16:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LgyRqzud0zXZMbwa4o3Em0PEO2uwJfY5hzWUK2zHrig=;
-        b=HZKneIeF/HgUtnGvfYwVLXg+en54ofzZRs3ThisifXYacGeIig0HoWC4Xpa6vopsqD
-         5A9U1mJxvNlMhtPCHOZKan1eq6mvAUU771caiTUG82CunIbB+9Cg6pdJjZjES+JTCq3q
-         Hgrr9GP6PSeWEwfRXc/rG1RZJLU3ZLg4yXP8jzkpbHWeUsp4KtiFX8KP1viJ9V06N0jg
-         U+XySoosFkzuS6wCxBfEKx4TN/+v9rXLc3+Hc0F+g+hHjE2M+lPR/YFnw2zOLx9s47mN
-         P3vhiSbFcJgfnKJV2PRCaMyCxB9l55G1uebVApOjX30xW636cruVW+griUpzch4x2eG1
-         5/7A==
+        bh=PF1nhzaa3bOWLnElJnxjSlerqY4ubgHIoylvmN0rU3Y=;
+        b=II6e9Bf4eylbafWSRmdDpTseqtGBMvPUBc4y4RVjH3ExqDvoZ8qn9JW6AkGIH5NHB+
+         mVDEZdssSaKciolHTzNGUUJVVQJAUaJPxS/ftiN/fvllC4D/cH7RVXxPwHspKOZdSawl
+         erutud72cCMbwmC9zOe24feYT2iFt4Aau7c27i0vKN69Jix4UvuIjIrp5fdHdJ8gJIyN
+         2biwVdum4ufLkWgHd37GQZ87Nple0oBC3/vdPlf9XZnQBL/Zz4Et1ZGyoI3CHL+CmxY3
+         xy+NWYWbOSYtXgKVNK+EI0uB2d3JAU6quq7YBKbQXGEgje1I4kUu/gxebMmqIcwBoiHm
+         enpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LgyRqzud0zXZMbwa4o3Em0PEO2uwJfY5hzWUK2zHrig=;
-        b=rENJwRODA2OVDyF/9CXjbXTp9d5qVoA20VsZFK4LN1O/fcpMsBH9n+OUcKIWlAVxa9
-         Wb9woFRKPR34u7pViCA7N+/GTeI79PXGO++QkXkMF0oI8+NgxNewiv+ntqHTF66laIyE
-         hWvu/2KQg0YuUHsbgqaYoSfaFb1qnTPcFxIkrs9VGIidGqVEi7qIjVL7DbXm/2gwgMx8
-         JIudVvIA9FpacYgmRZ1CeeZ1UGICS3RJB7baFp/MB1E7yDAG/A3T3q29lcIe2RG/zPs8
-         94erh/qT0mGeLXkp8IX73V+Ko92+9hrvD541VHgIry76cOw/PUukI8nITAeIJark5kso
-         e9Ww==
-X-Gm-Message-State: ANoB5plGUZLvHm/opCtnsiERDSkh+ANMO3Djku+TjP97ZjJA/nQL+0YW
-        MYHNuGoRTUewHzsLCXb0OVYNkA==
-X-Google-Smtp-Source: AA0mqf5BwIidE6DLQ8jucQ6oUWNN2FiPWK57TNmVaq8GJGkT06iNRfXSt86cwnGbG61RC0HYp7qONg==
-X-Received: by 2002:a2e:9d50:0:b0:26f:db16:4735 with SMTP id y16-20020a2e9d50000000b0026fdb164735mr30310931ljj.323.1670487326217;
-        Thu, 08 Dec 2022 00:15:26 -0800 (PST)
+        bh=PF1nhzaa3bOWLnElJnxjSlerqY4ubgHIoylvmN0rU3Y=;
+        b=Tg8IIvZR1fDjlzSmWRGjygUNqwbN0u+5meiPZH9GzZm8bfN/jxlDefNmIopQhPzD3d
+         m1LFok0lrqz3pm8CH44kQiodIW46j5vxxLR3WxWo1PQx5MfMvh2xJsyXWa2jwtYkvxCh
+         kbPU77jwSUckbMZkmOw+QyypzbwNL9oERjN6hVI1B3CCobOtZTEqXKgWQ9GrTzOU+tBu
+         YqNcpMDjQf9cciCURz2e0uUugyDRQTEsEnnBCMLW6rOfFPJNUSY2wqWVuxiXRWuVxftP
+         I25qp+czAxvp/RSNRH5uPD1m8zVBjKlFIv0vzBaG49WcOI2zRtft1Lzn4v2zrvzSTrke
+         aEBw==
+X-Gm-Message-State: ANoB5pknL0dCJLPBwGOYqBHGZ33Kb2rf6zXKXtvEOWbWXxpV11zohAU3
+        3ZOFmMRjYYLnzj5ZSLMmzz8PXw==
+X-Google-Smtp-Source: AA0mqf6W3fEmxI0w/HyRzJGr/j0fAAN2mK0bJVsJ5O5eA5FfTnbKMaJm7XrZDqNhpM830ZMhfwMyQw==
+X-Received: by 2002:a05:6512:12c9:b0:4af:aa4c:fc8c with SMTP id p9-20020a05651212c900b004afaa4cfc8cmr30006852lfg.653.1670487405542;
+        Thu, 08 Dec 2022 00:16:45 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v4-20020a056512348400b004b097f2c73dsm3223135lfr.253.2022.12.08.00.15.25
+        by smtp.gmail.com with ESMTPSA id v18-20020ac258f2000000b004b567e1f8e5sm1879659lfo.125.2022.12.08.00.16.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 00:15:25 -0800 (PST)
-Message-ID: <801c95b0-1157-632f-f9ed-9d526f54dc6c@linaro.org>
-Date:   Thu, 8 Dec 2022 09:15:24 +0100
+        Thu, 08 Dec 2022 00:16:45 -0800 (PST)
+Message-ID: <26c92774-e709-ef13-598b-d271368249bc@linaro.org>
+Date:   Thu, 8 Dec 2022 09:16:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v2 08/16] dt-bindings: soc: socionext: Add UniPhier system
- controller
+Subject: Re: [PATCH v2 09/16] dt-bindings: soc: socionext: Add UniPhier
+ SoC-glue logic
 Content-Language: en-US
 To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,9 +63,9 @@ To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
 Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20221207055405.30940-1-hayashi.kunihiko@socionext.com>
- <20221207055405.30940-9-hayashi.kunihiko@socionext.com>
+ <20221207055405.30940-10-hayashi.kunihiko@socionext.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207055405.30940-9-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20221207055405.30940-10-hayashi.kunihiko@socionext.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,54 +78,54 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/12/2022 06:53, Kunihiko Hayashi wrote:
-> Add devicetree binding schema for the system controller implemented on
+> Add devicetree binding schema for the SoC-glue logic implemented on
 > Socionext Uniphier SoCs.
 > 
-> This system controller has multiple functions such as clock control,
-> reset control, internal watchdog timer, thermal management, and so on.
+> This SoC-glue logic is a set of miscellaneous function registers
+> handling signals for specific devices outside system components,
+> and also has multiple functions such as I/O pinmux, usb-phy, debug,
+> clock-mux for a specific SoC, and so on.
 > 
 > Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../socionext/socionext,uniphier-sysctrl.yaml | 105 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-sysctrl.yaml
+>  .../socionext,uniphier-soc-glue.yaml          | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-sysctrl.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-sysctrl.yaml
+> diff --git a/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
 > new file mode 100644
-> index 000000000000..c1b7cec8def4
+> index 000000000000..6fc790963660
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-sysctrl.yaml
-> @@ -0,0 +1,105 @@
+> +++ b/Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-soc-glue.yaml
+> @@ -0,0 +1,113 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-sysctrl.yaml#
+> +$id: http://devicetree.org/schemas/soc/socionext/socionext,uniphier-soc-glue.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Socionext UniPhier system controller
+> +title: Socionext UniPhier SoC-glue logic
 > +
 > +maintainers:
 > +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > +
 > +description: |+
-> +  System controller implemented on Socionext UniPhier SoCs has multiple
-> +  functions such as clock control, reset control, internal watchdog timer,
-> +  thermal management, and so on.
+> +  SoC-glue logic implemented on Socionext UniPhier SoCs is a collection of
+> +  miscellaneous function registers handling signals outside system components.
 > +
 > +properties:
 > +  compatible:
 > +    items:
 > +      - enum:
-> +          - socionext,uniphier-ld4-sysctrl
-> +          - socionext,uniphier-pro4-sysctrl
-> +          - socionext,uniphier-pro5-sysctrl
-> +          - socionext,uniphier-pxs2-sysctrl
-> +          - socionext,uniphier-sld8-sysctrl
-> +          - socionext,uniphier-ld11-sysctrl
-> +          - socionext,uniphier-ld20-sysctrl
-> +          - socionext,uniphier-pxs3-sysctrl
-> +          - socionext,uniphier-nx1-sysctrl
+> +          - socionext,uniphier-ld4-soc-glue
+> +          - socionext,uniphier-pro4-soc-glue
+> +          - socionext,uniphier-pro5-soc-glue
+> +          - socionext,uniphier-pxs2-soc-glue
+> +          - socionext,uniphier-sld8-soc-glue
+> +          - socionext,uniphier-ld11-soc-glue
+> +          - socionext,uniphier-ld20-soc-glue
+> +          - socionext,uniphier-pxs3-soc-glue
+> +          - socionext,uniphier-nx1-soc-glue
 > +      - const: simple-mfd
 > +      - const: syscon
 > +
@@ -133,56 +133,20 @@ On 07/12/2022 06:53, Kunihiko Hayashi wrote:
 > +    maxItems: 1
 > +
 > +patternProperties:
+> +  "^pinctrl(@[0-9a-f]+)?$":
+
+Your children cannot have unit address in this binding (not mentioning
+that children schema has in example statement that unit address is
+invalid: "must be a child of syscon node").
+
+> +    $ref: /schemas/pinctrl/socionext,uniphier-pinctrl.yaml#
+> +
+> +  "^usb-hub(@[0-9a-f]+)?$":
+> +    $ref: /schemas/phy/socionext,uniphier-usb2-phy.yaml#
+> +
 > +  "^clock-controller(@[0-9a-f]+)?$":
-
-I don't remember if we talked about this but: why do you include here
-unit address? All your bindings expect these take regmap from the parent
-and they do not have separate MMIO address space, so these should be
-properties, not pattern properties.
-
-Same in places below.
-
 > +    $ref: /schemas/clock/socionext,uniphier-clock.yaml#
 > +
-> +  "^reset-controller(@[0-9a-f]+)?$":
-> +    $ref: /schemas/reset/socionext,uniphier-reset.yaml#
-> +
-> +  "^watchdog(@[0-9a-f]+)?$":
-> +    $ref: /schemas/watchdog/socionext,uniphier-wdt.yaml#
-> +
-> +  "^thermal-sensor(@[0-9a-f]+)?$":
-> +    $ref: /schemas/thermal/socionext,uniphier-thermal.yaml#
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: socionext,uniphier-ld4-sysctrl
-> +    then:
-> +      patternProperties:
-> +        "^watchdog(@[0-9a-f]+)?$": false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - socionext,uniphier-ld4-sysctrl
-> +              - socionext,uniphier-pro4-sysctrl
-> +              - socionext,uniphier-sld8-sysctrl
-> +              - socionext,uniphier-ld11-sysctrl
-> +    then:
-> +      patternProperties:
-> +        "^thermal-sensor(@[0-9a-f]+)?$": false
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-
 Best regards,
 Krzysztof
 
