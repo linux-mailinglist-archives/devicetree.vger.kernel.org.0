@@ -2,79 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B77646CAA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 977AE646CB1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:27:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiLHKXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:23:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33066 "EHLO
+        id S229575AbiLHK1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:27:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229893AbiLHKXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:23:22 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E802E68C59
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:23:20 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id l8so1039656ljh.13
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:23:20 -0800 (PST)
+        with ESMTP id S229562AbiLHK1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:27:35 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6488866C86
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:27:31 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id g7so1359689lfv.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:27:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g+B5X/siBQMDNHW++d/NVJYttMcaz1xev1asS50hTk8=;
-        b=EQQ3NvJkl389D4dVGmRkI7rzjjmUgb9H1rWNL3+YePkOU2G367ojIHLfsHdsAo1Bpt
-         G8l05jUG/3HYadgZuEumI+wyElNcaHx0FTeW3EXRgyLJB3MsJDUrSpy1Qu7UVEHod6uE
-         0plq1iyITpsNdTa28xmpRQrpVUrPbz7zsFSDPDGzH3HVK8HZo4KJ71Cm5bN+BJQvTyYG
-         p5ncQxRrourn1artoxlR0ljkaBPNd+H5KlODWDHbtTqsrUb53GZKzamVFz5/ZLYx9qzj
-         TIXikXWtokZESio2ssV8bENWplx9E5VuQRJAiHFfGOgCcASMVlryfcxnCDLoL9WSR/cD
-         WZiQ==
+        bh=08K5Vlx4IB2Dsl4MLI7dMUqa7FCe1uwxxccMSj5m7Jc=;
+        b=IixV+1uuN0bY/bbX/+N1Lj3Yzho/GsLoaPm65A55jNVZnGBKdqqPJHjimnAVhl56jG
+         KkHyze5xgI+sqQzAHIwAnyBQlnetfyzeAarswqTTSMXXcJNiQTtHWLlyr2HKy6RJHB3z
+         ftbwsIEMBQHSadpP1Bt5ZwTO7fLPQ6u61hiDiuROWH4cjz5jlPIxKlw8V2u6uH5Ao8X6
+         ghDfPPV54N7yzq3bpv7U8lCMbuW1HOhxWsVQ661f4FCHJfSLxQzRaiJTq2EIx/m89PDH
+         15wEdAs1fzHM+kIxmA0U77aUjmrFCD3ZXlg68lUD2GXnrrxUfb7cp6sY2zmfuaNILclm
+         Db6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g+B5X/siBQMDNHW++d/NVJYttMcaz1xev1asS50hTk8=;
-        b=CjKPORlxg/rove0Qpp083Y/WXrO0IAMwXc55SM3cVdmaPb25F/1CasKEtmp8DAhSNF
-         /xzGT74ojYE2DdnmIr1mOGb8UqIDjLdTzn4yuv2eWK8lKgacE2lkFZZuHRu3AZNx0ji9
-         7wFA7Pz8waVMiSOghwaMPpmSu42PK9AV0FZuy40TV1rb/XfTAD343/gpIRSnU6tzKp0G
-         bPQ3K0ibl9qemp2fXdOYOyFyHMXpgNSIJVtozpFl7IoPcikYwpN/hN0t9iAi6GKlwTvp
-         gdlgyiC30qEBQudsHtt43YIKsbZdzOOBqkP305mRO+0Mcn/vLAsYB7dfqDD738azkbkJ
-         CEPQ==
-X-Gm-Message-State: ANoB5pkSSdGQqMETE2+LakPIuSuAkPNi4ZoknI9m0ggMwiUEqbiEhZ3b
-        1SxvvUrLEB9SMDOO8rCarXkDJw==
-X-Google-Smtp-Source: AA0mqf4yZqf8tgWsUV7vtH0t1c6GV/jQbn+tgZj2f773cilX6ivTWQ5qvmx4rfBe7VjJ9RNWCqRjkQ==
-X-Received: by 2002:a05:651c:1c7:b0:27a:267b:f33f with SMTP id d7-20020a05651c01c700b0027a267bf33fmr339228ljn.260.1670494999039;
-        Thu, 08 Dec 2022 02:23:19 -0800 (PST)
+        bh=08K5Vlx4IB2Dsl4MLI7dMUqa7FCe1uwxxccMSj5m7Jc=;
+        b=ql8cq0aLODLBajOZBZqU5tHgHTH6kCo3o3Vlty9JDE4fi2udoQSmOGu2EDY0WW2ARh
+         ScinnXZYRjeDCmf1QbqI1RJDdE6qOATu1gWEw2pzMNMtW0Gs6Xz0CkvVnD4IfSNbOxVh
+         9l2DxSmfQGrkSAOAK2JQMbIjalcnFH/Uqohuv32ffKFu/8gNOOQTry2WhjGtonhzaRl1
+         SoSVfylPynmxAMwSnRiQGaOjYBAISp+aoS4K+rl4+PAZxJBlBrQtEOGX8QPyWM42Ypy7
+         cmoX9LTngkUk/B6nb9adl6S4dmsv4+bOow2GNsRVfkku+HT8TwqOG/L1oPqoimubNSAq
+         nm0w==
+X-Gm-Message-State: ANoB5pkBzhgGgMinujQQ408s/KklAWg1nBAdbInY3Dm50ZUjiymsmMLA
+        GJ8UgLtkgZsGdZZ5WA7yI1EqCdkCcx8vBD9cEtU=
+X-Google-Smtp-Source: AA0mqf7/AP5zYXuEc0m0ov+YEb0CvMKWc7CDgcN+N/jX1BqZ0D2ehR+bjn3ZqxsyUTZwP+wrkY7e3w==
+X-Received: by 2002:a05:6512:c29:b0:4b1:b061:4815 with SMTP id z41-20020a0565120c2900b004b1b0614815mr30077826lfu.18.1670495249722;
+        Thu, 08 Dec 2022 02:27:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e1-20020a195001000000b0048aee825e2esm3276489lfb.282.2022.12.08.02.23.17
+        by smtp.gmail.com with ESMTPSA id v7-20020ac25927000000b0048a982ad0a8sm3304728lfi.23.2022.12.08.02.27.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 02:23:18 -0800 (PST)
-Message-ID: <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
-Date:   Thu, 8 Dec 2022 11:23:17 +0100
+        Thu, 08 Dec 2022 02:27:29 -0800 (PST)
+Message-ID: <f3e3a3d0-6d21-c782-38a2-c8b2c36242c3@linaro.org>
+Date:   Thu, 8 Dec 2022 11:27:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
- peripheral
+Subject: Re: [PATCH v3 7/9] dt-bindings: mtd: Split ECC engine with rawnand
+ controller
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
- <20221106193722.j64xrhitdencrjxy@SoMainline.org>
- <20221202093658.vg6t2ptar2arh7hn@SoMainline.org> <2656622.mvXUDI8C0e@g550jk>
- <20221208101232.536i3cmjf4uk2z52@SoMainline.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, benliang.zhao@mediatek.com,
+        bin.zhang@mediatek.com
+References: <20221208062955.2546-1-xiangsheng.hou@mediatek.com>
+ <20221208062955.2546-8-xiangsheng.hou@mediatek.com>
+ <fe70d964-229a-8bda-a414-e009dd955e5e@linaro.org>
+ <20221208110035.5649a051@xps-13>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208101232.536i3cmjf4uk2z52@SoMainline.org>
+In-Reply-To: <20221208110035.5649a051@xps-13>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,25 +89,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 11:12, Marijn Suijten wrote:
-> On 2022-12-04 17:19:05, Luca Weiss wrote:
->> On Freitag, 2. Dezember 2022 10:36:58 CET Marijn Suijten wrote:
->> [..]
+On 08/12/2022 11:00, Miquel Raynal wrote:
+> Hi Krzysztof,
+> 
+> krzysztof.kozlowski@linaro.org wrote on Thu, 8 Dec 2022 10:44:17 +0100:
+> 
+>> On 08/12/2022 07:29, Xiangsheng Hou wrote:
+>>> Split MediaTek ECC engine with rawnand controller and convert to
+>>> YAML schema.
+>>>
+>>> Signed-off-by: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+>>> ---
+>>>  .../bindings/mtd/mediatek,mtk-nfc.yaml        | 154 +++++++++++++++
+>>>  .../mtd/mediatek,nand-ecc-engine.yaml         |  62 ++++++
+>>>  .../devicetree/bindings/mtd/mtk-nand.txt      | 176 ------------------
+>>>  3 files changed, 216 insertions(+), 176 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+>>>  create mode 100644 Documentation/devicetree/bindings/mtd/mediatek,nand-ecc-engine.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/mtd/mtk-nand.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml b/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+>>> new file mode 100644
+>>> index 000000000000..eb1a44c7ae4e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mtd/mediatek,mtk-nfc.yaml
+>>> @@ -0,0 +1,154 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mtd/mediatek,mtk-nfc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek(MTK) SoCs raw NAND FLASH controller (NFC)
+>>> +
+>>> +maintainers:
+>>> +  - Xiangsheng Hou <xiangsheng.hou@mediatek.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - mediatek,mt2701-nfc
+>>> +      - mediatek,mt2712-nfc
+>>> +      - mediatek,mt7622-nfc
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: Base physical address and size of NFI.
+>>> +
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: NFI interrupt
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: clock used for the controller
+>>> +      - description: clock used for the pad
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: nfi_clk
+>>> +      - const: pad_clk
+>>> +
+>>> +  ecc-engine:
+>>> +    description: device-tree node of the required ECC engine.
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +
+>>> +patternProperties:
+>>> +  "^nand@[a-f0-9]$":
+>>> +    type: object  
 >>
->> So the way this patch does it is good or does it need changes?
+>> This should be instead:
+>>     $ref: nand-chip.yaml#
+>>     unevaluatedProperties: false
+>>
+>> and then properties below (due to current dtschema limitations) should
+>> list properties from nand-controller.yaml:
+>>
+>>       nand-on-flash-bbt: true
+>>
+>> Optionally, we could create additional schema - nand-controller-chip,
+>> which would be referenced directly by nand-controller and itself would
+>> ref nand-chip.
 > 
-> Except the typo(s?) pointed out in my first reply, this is good to go.
-> 
-> If we stick with generic adc-chan node names that should be documented
-> in the bindings IMO, as it is currently only captured implicitly in the
-> examples.  Krzysztof, what is your thought on this?
+> Isn't this enough? (in linux-next)
+> https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git/tree/Documentation/devicetree/bindings/mtd/nand-controller.yaml?h=mtd/next#n54
 
-If I understand correctly, the outcome of other discussion [1] was to
-use labels and generic node names. In such case the patch was correct
-(except other comments).
+No, I tested it and it does not work as intended. In this particular
+case. I think this is a limitation of dtschema, because binding itself
+looks fine. The problem is that you have:
+1. mtk-nfc having nand@ children. mtk-nfc references nand-controller
+which brings these children.
+2. However nand-controller while bringing these children does two things:
+a. ref: nand-chip
+b. add more propeties
 
-[1]
-https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei/
+3. The mtk-nfc must further extend the nand@ child.
+4. If you add "unevaluatedProperties: false" you notice warnings of
+unevaluated propertie from nand-controller children.
 
 Best regards,
 Krzysztof
