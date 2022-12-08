@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B86646B8B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE2A646B8C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 10:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbiLHJJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 04:09:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41592 "EHLO
+        id S230211AbiLHJJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 04:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbiLHJIv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:08:51 -0500
+        with ESMTP id S229840AbiLHJIw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 04:08:52 -0500
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F361B9C6
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:08:48 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753EE1AD96
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 01:08:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670490528; x=1702026528;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=h0uI75b/XLO5fwpolzeROMRFzfbiSy8hveLLAfG1BeM=;
-  b=g3MaTjkvbq2Ij6uLFOKmOooYsPXtSBKhD65+3KJxVP4XFwfjMEnS8s8U
-   KTURHaN/Yz1XeMLeKYQhW/fMJrWDuDFjZpFdFhLRrIOZdspQYvJEmYdk1
-   LdkadDhxVbMJlmZXUNzkUjB8ZAJS8Ko0wwwNwuLyhtmxdtjqpqMSbciVX
-   iOcyI/1gAdSDMNJAcMyOrRDI0eor/OQJk19uKsemmCp8OTKhryFxsniP+
-   VETqSwjb2WGTIGW5MgVDMcpTtuvlybtXSpZ66tHdH7uEKGSaZGJoRMxRJ
-   XXJaPIowDismR/XpY2dQiZtw5S2cjbRcgvp/0PMBFM95fMAdKgSoI3Azk
-   A==;
+  t=1670490531; x=1702026531;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=IRxyjKwx8MYOWiyaUgXq4MZ0RFREaiW9N9dB3Mi9UhE=;
+  b=p6aX6u+UrQ3HaID4Q3oetYJT7RXyLrv9NZD4pPm9aspzxU8DPoio5ti5
+   WiXfPKKMl5q31oyoYKWBp4Pvz7JmKKmbpVvVcnslReB8mlyTcJvioNEoB
+   1e1xfycRQh5pNMoLOKZVeuQNvWR55lFvS5oZEnA3bRiq4+rp2ToWifhQr
+   VkT+9zMr5wOZuXUPerGcKvDnhyaw+XpUXSmMZjh2sU7lv03atqDvS63XU
+   kJY9YbLvHCERiIix7H6JNTaMfBhuYEfFAOq3lUOUr/Shmq36GVfS3x4IB
+   xhvV4C18GJfQLbYWh+gNrWfldQM3C+VRu2NAiTytv5Ij5AlXha0aIymdw
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27831351"
+   d="scan'208";a="27831353"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -39,24 +39,24 @@ X-PGP-Universal: processed;
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1670490526; x=1702026526;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=h0uI75b/XLO5fwpolzeROMRFzfbiSy8hveLLAfG1BeM=;
-  b=GU9eHAseTY1I62vI6AY7mmd+1z8X+ZenI3NG0hKyLQzS/do4XmluF1zN
-   A29UBICzQs5344kNUsENzbawRzCZnvP25t3Ez7Y1UsloUQfZrfQxm/6Ff
-   XwzhykNo8703NwJVoL5P9kvDysbdb6jUUtQ4tK4PPfS2ugh5iFwFljmWL
-   CJaCeAlO+xJE5amZ237LQPUSBvU8mf8nWV1f+QXobcwcvz49o0oex+DIS
-   AwyBZqVAEPgrb3XD3ofD2NzoFxPQwOrsQ6b8sb3OG2/ulEeoB/2O6Xm5M
-   ZDhN4Z45ioqvlL3rGpr2I9rT3sKLCrN+jmlVnwiM3EkwO/nfWu28Hbde5
-   A==;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=IRxyjKwx8MYOWiyaUgXq4MZ0RFREaiW9N9dB3Mi9UhE=;
+  b=E5eBGwk3O4uELi1QeY4FAwbVFQN4mT7uUaF+NCVWdBRdIr79yQjeelSe
+   Na4UGZQJXG6j+P1N8GxNXkCaI4oPWrB4vv3p5ngRG1LcvMoMsjHKUv5W4
+   HC+cFqKKz6bnD2uHWuZDFJTuvdK56SvEoT+xn8v+A0hU8m6iYQR5cowTE
+   8onomeH7xust0UVQSBG8pyw8swpdCv0Dfwg5jWNTEqDuOuS+lbBT15tBQ
+   mBtXNDaD4Bu6T/VX+dBSEbvMllm+sXn50+LzwzY+n/BXkX87Ub2mCwzTj
+   trt8lLzxM6oVZrh/zz/sGkhDW6cyEqJzB84fVLuSWRgGI63k7U1eNu6BT
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.96,227,1665439200"; 
-   d="scan'208";a="27831350"
+   d="scan'208";a="27831352"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 08 Dec 2022 10:08:46 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 752CC280071;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A2105280072;
         Thu,  8 Dec 2022 10:08:46 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -68,10 +68,12 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/2] arm64: dts: imx8mp: Add LCDIF2 & LDB nodes
-Date:   Thu,  8 Dec 2022 10:08:41 +0100
-Message-Id: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] arm64: dts: freescale: Add LVDS overlay for TQMa8MPxL
+Date:   Thu,  8 Dec 2022 10:08:42 +0100
+Message-Id: <20221208090842.2869374-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
+References: <20221208090842.2869374-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,105 +85,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LCDIF2 is directly attached to the LVDS Display Bridge (LDB).
-Both need the same clock source (VIDEO_PLL1).
+This adds an overlay for the supported LVDS display tianma tm070jvhg33.
+The display timings have to be specified explicitly. Using the typical pixel
+clock, the LDB clock can not be configured as the 7-fold of that.
+By setting pixel clock to 74.25 MHz, LDB can be configured to exactly
+519.75 MHz.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
-I opted to add both at the same time, so the remote-endpoints are already
-connected.
-blk-ctrl@32ec0000 needs the 'simple-bus' compatible so that bridge@5c is
-actually probed.
+To be hold I'm unsure where to list the overlays. I checked other overlays
+and opted to added them at the end of imx8mp section.
 
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 65 ++++++++++++++++++++++-
- 1 file changed, 64 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/Makefile        |  4 ++
+ .../imx8mp-tqma8mpql-mba8mpxl-lvds.dtso       | 61 +++++++++++++++++++
+ 2 files changed, 65 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 7a6e6221f4219..c1beff33c4981 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1098,10 +1098,35 @@ aips4: bus@32c00000 {
- 			#size-cells = <1>;
- 			ranges;
- 
-+			lcdif2: display-controller@32e90000 {
-+				compatible = "fsl,imx8mp-lcdif";
-+				reg = <0x32e90000 0x238>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+				clock-names = "pix", "axi", "disp_axi";
-+				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
-+						  <&clk IMX8MP_VIDEO_PLL1>;
-+				assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>,
-+							 <&clk IMX8MP_VIDEO_PLL1_REF_SEL>;
-+				assigned-clock-rates = <0>, <1039500000>;
-+				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_LCDIF_2>;
-+				status = "disabled";
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index ef6f364eaa183..9eedee68413b2 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -97,6 +97,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dahlia.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-dev.dtb
 +
-+				port {
-+					lcdif2_to_ldb: endpoint {
-+						remote-endpoint = <&ldb_from_lcdif2>;
-+					};
-+				};
++imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl-lvds.dtb
++
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
+new file mode 100644
+index 0000000000000..ea44d605342ba
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds.dtso
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright (c) 2022 TQ-Systems GmbH <linux@ew.tq-group.com>,
++ * D-82229 Seefeld, Germany.
++ * Author: Alexander Stein
++ */
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
++};
++
++&backlight_lvds {
++	status = "okay";
++};
++
++&display {
++	compatible = "tianma,tm070jvhg33";
++	status = "okay";
++
++	panel-timing {
++		clock-frequency = <74250000>;
++		hactive = <1280>;
++		vactive = <800>;
++		hfront-porch = <64>;
++		hback-porch = <5>;
++		hsync-len = <1>;
++		vfront-porch = <40>;
++		vback-porch = <2>;
++		vsync-len = <1>;
++		de-active = <1>;
++	};
++
++	port {
++		panel_in_lvds0: endpoint {
++			remote-endpoint = <&ldb_lvds_ch0>;
++		};
++	};
++};
++
++&lcdif2 {
++	status = "okay";
++};
++
++&lvds_bridge {
++	status = "okay";
++
++	ports {
++		port@1 {
++			ldb_lvds_ch0: endpoint {
++				remote-endpoint = <&panel_in_lvds0>;
 +			};
++		};
++	};
++};
 +
- 			media_blk_ctrl: blk-ctrl@32ec0000 {
- 				compatible = "fsl,imx8mp-media-blk-ctrl",
--					     "syscon";
-+					     "simple-bus", "syscon";
- 				reg = <0x32ec0000 0x10000>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
- 				power-domains = <&pgc_mediamix>,
- 						<&pgc_mipi_phy1>,
- 						<&pgc_mipi_phy1>,
-@@ -1146,6 +1171,44 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
- 				assigned-clock-rates = <500000000>, <200000000>;
- 
- 				#power-domain-cells = <1>;
-+
-+				lvds_bridge: bridge@5c {
-+					compatible = "fsl,imx8mp-ldb";
-+					clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+					clock-names = "ldb";
-+					reg = <0x5c 0x4>, <0x128 0x4>;
-+					reg-names = "ldb", "lvds";
-+					assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
-+					assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
-+					status = "disabled";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							ldb_from_lcdif2: endpoint {
-+								remote-endpoint = <&lcdif2_to_ldb>;
-+							};
-+						};
-+
-+						port@1 {
-+							reg = <1>;
-+
-+							ldb_lvds_ch0: endpoint {
-+							};
-+						};
-+
-+						port@2 {
-+							reg = <2>;
-+
-+							ldb_lvds_ch1: endpoint {
-+							};
-+						};
-+					};
-+				};
- 			};
- 
- 			pcie_phy: pcie-phy@32f00000 {
++&pwm2 {
++	status = "okay";
++};
 -- 
 2.34.1
 
