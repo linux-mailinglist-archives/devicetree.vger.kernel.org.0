@@ -2,93 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A269646E5F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:22:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E276D646EDC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbiLHLWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 06:22:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51712 "EHLO
+        id S229513AbiLHLrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 06:47:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiLHLVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 06:21:37 -0500
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371BF654FF
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 03:20:59 -0800 (PST)
-Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id DF7083F3FA;
-        Thu,  8 Dec 2022 12:20:56 +0100 (CET)
-Date:   Thu, 8 Dec 2022 12:20:55 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
- peripheral
-Message-ID: <20221208112055.m7sqg3ysxzskqjp4@SoMainline.org>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
- <20221106193722.j64xrhitdencrjxy@SoMainline.org>
- <20221202093658.vg6t2ptar2arh7hn@SoMainline.org>
- <2656622.mvXUDI8C0e@g550jk>
- <20221208101232.536i3cmjf4uk2z52@SoMainline.org>
- <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
+        with ESMTP id S229470AbiLHLrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 06:47:25 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C035CD34;
+        Thu,  8 Dec 2022 03:47:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1670500044; x=1702036044;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MVTL6UUvKcTMVCYpcQSuarT5kz7nFvxwqkKHy/9pKRI=;
+  b=s3w5JTnmDfhG0fCQYp/FygzJ6nbkqKQq9yj0DUk+zrnJIZHF19ZS8pyH
+   kU+l6OQ/Q7mCRUJGEiVMcVrPlARU7bYV9SDkXh4gER4IQemvs5mGRhzqd
+   FV/czQ4qIEiWPina9q6Dba3y+Mhy4Qf0s8wyqMXWwgNtmOeDel2YmdC6O
+   DmzkSwDV0qYIyahvJdOGRD9Voo5I56v41mHUlvfY7L5s7tVFrWL5cErGh
+   4yGy2srAfsYQ8GTRsHAHrTx39P0VxExYicelA5YtML76JNy2jXpGPFq1b
+   8LNCxVa19gIeFO0VWF8No/J44SDqPk7JmgxLR9K9xj3bowb9CsGt9esJX
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,227,1665471600"; 
+   d="scan'208";a="127112214"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Dec 2022 04:47:23 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 8 Dec 2022 04:47:22 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Thu, 8 Dec 2022 04:47:20 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <sandeepsheriker.mallikarjun@microchip.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sam9x60: fix the ddr clock for sam9x60
+Date:   Thu, 8 Dec 2022 13:52:41 +0200
+Message-ID: <20221208115241.36312-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-12-08 11:23:17, Krzysztof Kozlowski wrote:
-> On 08/12/2022 11:12, Marijn Suijten wrote:
-> > On 2022-12-04 17:19:05, Luca Weiss wrote:
-> >> On Freitag, 2. Dezember 2022 10:36:58 CET Marijn Suijten wrote:
-> >> [..]
-> >>
-> >> So the way this patch does it is good or does it need changes?
-> > 
-> > Except the typo(s?) pointed out in my first reply, this is good to go.
-> > 
-> > If we stick with generic adc-chan node names that should be documented
-> > in the bindings IMO, as it is currently only captured implicitly in the
-> > examples.  Krzysztof, what is your thought on this?
-> 
-> If I understand correctly, the outcome of other discussion [1] was to
-> use labels and generic node names.
+The 2nd DDR clock for sam9x60 DDR controller is peripheral clock with
+id 49.
 
-The outcome was to use labels in the driver and disregard node names as
-the new fwnode API clobbers those names by including the @xx register
-bit.
+Fixes: 1e5f532c2737 ("ARM: dts: at91: sam9x60: add device tree for soc and board")
+Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+---
+ arch/arm/boot/dts/sam9x60.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-(I'll follow up with Jonathan whether or not to remove the current
-fallback to node names, as [1] ended up discussing many different issues
-and nits)
+diff --git a/arch/arm/boot/dts/sam9x60.dtsi b/arch/arm/boot/dts/sam9x60.dtsi
+index 8f5477e307dd..37a5d96aaf64 100644
+--- a/arch/arm/boot/dts/sam9x60.dtsi
++++ b/arch/arm/boot/dts/sam9x60.dtsi
+@@ -564,7 +564,7 @@ pmecc: ecc-engine@ffffe000 {
+ 			mpddrc: mpddrc@ffffe800 {
+ 				compatible = "microchip,sam9x60-ddramc", "atmel,sama5d3-ddramc";
+ 				reg = <0xffffe800 0x200>;
+-				clocks = <&pmc PMC_TYPE_SYSTEM 2>, <&pmc PMC_TYPE_CORE PMC_MCK>;
++				clocks = <&pmc PMC_TYPE_SYSTEM 2>, <&pmc PMC_TYPE_PERIPHERAL 49>;
+ 				clock-names = "ddrck", "mpddr";
+ 			};
+ 
+-- 
+2.34.1
 
-> In such case the patch was correct
-> (except other comments).
-
-As a consequence it _doesn't matter_ how nodes are named, and we _can_
-use generic node names.  My question for you is whether we should, and
-if we should lock that in via dt-bindings to guide everyone towards
-using labels (which i did _not_ do in the recently-landed PM8950 and
-PM6125, but will send followup for).
-
-> [1]
-> https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei/
-
-- Marijn
