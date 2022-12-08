@@ -2,110 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B1E646A11
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AD126469F0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 08:52:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiLHIEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:04:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49878 "EHLO
+        id S229470AbiLHHws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 02:52:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbiLHIEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:04:46 -0500
-X-Greylist: delayed 1371 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 08 Dec 2022 00:04:43 PST
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B3554B11;
-        Thu,  8 Dec 2022 00:04:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=MIME-Version:Content-Type:In-Reply-To:References:Subject:Cc:
-        To:From:Message-ID:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID; bh=bml85ulkX1OS7ktufGeEH5m2m20WMjZxds4C1n9NNvE=; b=0Ri+ER
-        OEJlmXFJNut++pB2ojG0rki4S+bI/Qi4YGmVFGjkDCL286qKdzTarTTl22oX1pBfmqiaAqCms8cva
-        t4Q+twRSBkEFI3I4LfJWTGAn0Yxrtx6EX+hW6406wBTH5PkASqgvS3OUmQISeCTOuG8QVXEEGTM4r
-        nHobeimVyDa21tWy/kGFmdI9SPLL6k2KUtyFaL/r/7Z1Sq9kAgpmM02Aa56UPmtq1YIlQzSjDGD0L
-        nEr+IxY58i2LZSWsxO7FyX/Twg9SucnV8qYVWnJDYPoCU59Vd+w/urjis3Z2zyBNYcZjCrndw/nmT
-        iV8UTI1XakG1RLNLPRIhLenRyYBA==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1p3BXh-000MKT-4s; Thu, 08 Dec 2022 08:42:05 +0100
-Received: from [192.168.0.30] (helo=webmail.your-server.de)
-        by sslproxy01.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-CHACHA20-POLY1305:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1p3BXg-000L7Y-QG; Thu, 08 Dec 2022 08:42:04 +0100
-Received: from 2a06.4004.10DF.0001.15d4.557d.AD03.f652.static6.kviknet.net
- (2a06.4004.10DF.0001.15d4.557d.AD03.f652.static6.kviknet.net
- [2a06:4004:10df:1:15d4:557d:ad03:f652]) by webmail.your-server.de (Horde
- Framework) with HTTPS; Thu, 08 Dec 2022 08:42:04 +0100
-Date:   Thu, 08 Dec 2022 08:42:04 +0100
-Message-ID: <20221208084204.Horde.i2WEsn4JH4SC4PwvZd8m7xF@webmail.your-server.de>
-From:   sean@geanix.com
-To:     Han Xu <han.xu@nxp.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        imx@lists.linux.dev
-Subject: Re: [PATCH 2/2] dt-bindings: iio: accel: fxls8962af: add new
- compatible string
-References: <20221207162045.669958-1-han.xu@nxp.com>
- <20221207162045.669958-2-han.xu@nxp.com>
-In-Reply-To: <20221207162045.669958-2-han.xu@nxp.com>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+        with ESMTP id S229576AbiLHHwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 02:52:47 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB03E10B77
+        for <devicetree@vger.kernel.org>; Wed,  7 Dec 2022 23:52:45 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id x6so680135lji.10
+        for <devicetree@vger.kernel.org>; Wed, 07 Dec 2022 23:52:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WeLvogb5JcadAWbdKBuMs8s2ANbAcK0xMjx9ddwhq14=;
+        b=ZHANhG9Di5kOOXFJDYWU/H7bgD39QQKX/0QHbql541UnEppPeUB17FwVY4f+KQDowh
+         gCQYMEdcbAuhhh6zy3f5wB0otFHnd5cOee/YdrN1dk71ntSyXv5Vy796a9Ue6Rl2aJS+
+         M3LKUrkbQe6Xl2liTjjM1puFs/8QD49O+4YFKnGiyxOQLGP+RUv3SbTrpgsyxorbIMnM
+         M8nDtE6yH9oebfJ1AF2KXh/NaDB92Io4bxk7PYS2Q4QPVhNPD102260eQSMmu5I3+eIJ
+         RW7mS0L02YnQhu+VVQCS8s9sLU/qQiAjDXrwJhgLocr5iBWHPNDFasV1MYkv4MMwSpxG
+         iz5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WeLvogb5JcadAWbdKBuMs8s2ANbAcK0xMjx9ddwhq14=;
+        b=NB47uhBxvlUMcUNEDDd/RtBsZERR+AlXFIoSVPIUZnFfeus6FXOiTBYnXHLOHeVfPy
+         M9fswHGfwUGvQKWn69TRUbjV6/JxP40yYwLrd2xYYfEIYronpbUiy+r2HeRFy5QImIx2
+         GV6AC0qgDbTzkm2lwJjjD6i0OQHhFerd5WiRlLCwuAb8hxZYOSI6/qlzkP4DbugyN8ul
+         /FChDb7rwz2xTymv7MNtsgUvHbdzhoGOO8wcktqEFpvwbgSrcgyi6OdpJXbkUgWEPBcH
+         PY6Lnf41K3Onv0igKgcLHGgG4tkMnsIimirH59jbEXC4wtRMArSsl1Np32bTdIl6/yCj
+         BaDQ==
+X-Gm-Message-State: ANoB5pn2xvGTH9c4qPoMPeDzAvCX4KYYCkpAn9izGW6cPFDSoA9N62/Y
+        QCQD8CXbq7IuUEEPGhbc/+gS0A==
+X-Google-Smtp-Source: AA0mqf7NUrHXH8IdAre6WwZa9HcPzETJhRbH+/idQa0BUPVdPF8aRm+V8yQNfDi69QgGf02lR11a0Q==
+X-Received: by 2002:a05:651c:10b5:b0:27a:727:cb92 with SMTP id k21-20020a05651c10b500b0027a0727cb92mr4328153ljn.84.1670485963624;
+        Wed, 07 Dec 2022 23:52:43 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id f3-20020ac25083000000b0049c29389b98sm3217960lfm.151.2022.12.07.23.52.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Dec 2022 23:52:42 -0800 (PST)
+Message-ID: <dc0254dc-ef1b-d5fb-163e-281c725a3dcd@linaro.org>
+Date:   Thu, 8 Dec 2022 08:52:41 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.7/26743/Wed Dec  7 09:17:04 2022)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 2/3] dt-bindings: leds: add dt schema for
+ worldsemi,ws2812b
+To:     Chuanhong Guo <gch981213@gmail.com>, linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221207040904.582585-1-gch981213@gmail.com>
+ <20221207040904.582585-3-gch981213@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221207040904.582585-3-gch981213@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Quoting Han Xu <han.xu@nxp.com>:
-
-> add new compatible string for the NXP FXLS8967AF accelerometer sensor.
->
-> Signed-off-by: Han Xu <han.xu@nxp.com>
-Reviewed-by: Sean Nyekjaer <sean@geanix.com>
+On 07/12/2022 05:09, Chuanhong Guo wrote:
+> Add dt binding schema for WorldSemi WS2812B driven using SPI
+> bus.
+> 
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
 > ---
->  Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git  
-> a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml  
-> b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> index 65ce8ea14b52..400eff3ff315 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
-> @@ -14,12 +14,14 @@ description: |
->    SPI and I2C interface.
->      https://www.nxp.com/docs/en/data-sheet/FXLS8962AF.pdf
->      https://www.nxp.com/docs/en/data-sheet/FXLS8964AF.pdf
-> +    https://www.nxp.com/docs/en/data-sheet/FXLS8967AF.pdf
->
->  properties:
->    compatible:
->      enum:
->        - nxp,fxls8962af
->        - nxp,fxls8964af
-> +      - nxp,fxls8967af
->
->    reg:
->      maxItems: 1
-> --
-> 2.25.1
+> Changes since v1:
+> remove linux driver reference from description
+> remove some obvious descriptions
+> fix unit address regex in multi-led property
+> drop various minItems
+> add maxItems = 1 to reg
+> fix node names and property orders in binding example
+> drop -spi from compatible string
+> add default-brightness
+> 
+> Change since v2:
+> drop "this patch" from commit message
+> rename leds to led-controller
+> drop default-brightness and default-intensity
+> 
+>  .../bindings/leds/worldsemi,ws2812b.yaml      | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> new file mode 100644
+> index 000000000000..548c05ac3d31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/worldsemi,ws2812b.yaml
+> @@ -0,0 +1,116 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/worldsemi,ws2812b.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: WS2812B LEDs driven using SPI
+> +
+> +maintainers:
+> +  - Chuanhong Guo <gch981213@gmail.com>
+> +
+> +description: |
+> +  WorldSemi WS2812B is a individually addressable LED chip that can be chained
+> +  together and controlled individually using a single wire.
+> +  This binding describes a chain of WS2812B LEDs connected to the SPI MOSI pin.
+> +  Typical setups includes connecting the data pin of the LED chain to MOSI as
+> +  the only device or using CS and MOSI with a tri-state voltage-level shifter
+> +  for the data pin.
+> +  The SPI frequency needs to be 2.105MHz~2.85MHz for the timing to be correct
+> +  and the controller needs to send all the bytes continuously.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: worldsemi,ws2812b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    minimum: 2105000
+> +    maximum: 2850000
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^multi-led@[0-9a-f]+$":
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      color-index:
+> +        description: |
+> +          A 3-item array specifying color of each components in this LED. It
+> +          should be one of the LED_COLOR_ID_* prefixed definitions from the
+> +          header include/dt-bindings/leds/common.h. Defaults to
+> +          <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>
+> +          if unspecified.
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
 
+Hmm, maybe we should add more colors the "color" property, like
+LED_COLOR_ID_GRB, LED_COLOR_ID_BRG, LED_COLOR_ID_BGR?
 
+Rest look ok for me. If there is going to be resend, drop redundant "dt
+schema for" from the subject.
+
+Best regards,
+Krzysztof
 
