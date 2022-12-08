@@ -2,158 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33BDB646D99
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:51:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18774646DAA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbiLHKv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:51:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56038 "EHLO
+        id S229564AbiLHK7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:59:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230249AbiLHKu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:50:56 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7BD192FE1
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:44:50 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id i186so1131184ybc.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/MTdVOdPppbnP+rAbbGOQVo9VYExTtbyUU8WhFMBao=;
-        b=dKQcu9paovdf2bhpUoNTbPxWctG0sBdnpfgj9Zxey5YU95Kxv6xtQJQ32GAcorA81Z
-         ISmVRE1NMYRGUwKia522St6d/A7xVe7KIcg6AjNlH0k+SaxhmXnHP4eRl1ligh41MAdh
-         tJUHyGJC6Xd0ocRJKcDj0+P/1aRCSg9nH4k7GkSYve3dhL2vufDb5Ef/QwgsLUbRNTPe
-         pv1LrvFSoaXV6B0SvMdm4MfMA9G9gK9k5Dnvk9ITkPTXZ63gKrzB7BtKsRMCheaqrWNz
-         or6IJNdz9lWPj/su1IivJzddDAIZA1u9uEiV2CAFFrGxpmLDFqYe34A5COuKwQhPI09N
-         BUWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z/MTdVOdPppbnP+rAbbGOQVo9VYExTtbyUU8WhFMBao=;
-        b=HqrgDqj9eGqy+xRTiNPRW3Wz9mc/GD+G4eiRNOrDy9JR7zNRounDO5TkmjiqxDre4p
-         mrCVsqk6csZ0iILF8dz4p56iCwHolev2qjmBuolhAa9W+dyCD5n9Y0kSHO6I1s5pYAPs
-         NPt9B8t/QfhUgWP8jZ9HxXMg4oC082SuDxEmtHhc4szhIUCocIIc60KsxK5eoxHXXC6W
-         Cy2ZTGM5xK8tEZ/FH1tP9k1eT/+nfH0eSqA9O+pMuFZTfIzAagO3LVNbKDs7MHLxNyH/
-         Wo6xWAdwSBqpGR8QsUsdXnOEEy8xkj3wcFPkq6LM9gAgrNsV8N2FFQgrAqOohy7W35+O
-         XaQg==
-X-Gm-Message-State: ANoB5pkM/HvqjlenUtk9bPzwXbSBaEVY6HSNhnHYwnQZa1pWWh2nb54k
-        sfEmBM8yuagw+sQoQdzqmNJwLp3z+sx5G9qh7slxvw==
-X-Google-Smtp-Source: AA0mqf6ZED3KxFDcqPX3ROcO3vw5KziX61l3uQ3EwpxmLialIpiHeBGuyYF/yfqB8Ju0OjrkkjXrcbnArZgC89IOlus=
-X-Received: by 2002:a25:8c9:0:b0:6f8:9c91:4503 with SMTP id
- 192-20020a2508c9000000b006f89c914503mr39303257ybi.15.1670496289814; Thu, 08
- Dec 2022 02:44:49 -0800 (PST)
+        with ESMTP id S229651AbiLHK7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:59:24 -0500
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BDAC900E0;
+        Thu,  8 Dec 2022 02:51:29 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 67C6FC0004;
+        Thu,  8 Dec 2022 10:51:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670496687;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jX4qpJhOZfq0Tc57pU2iw5g5rc8m7DS0d+5g0687Ft0=;
+        b=F7JNzgIt3I6hYU/+MJtFg6ivPmkYClN5wsy3v7G1m9kQzXfuztQaq1LgcvBGV8sSBBnhYU
+        bJdglueOmfSxR8ZR1WD0HWV41CHorRhPSqEdvGr0ZjOodhI1IlWvf91DoaVHILLYgy9kSM
+        HPk17yM46JhEGztJVFQ10ZjoYRo6gOipTTp6GcK8El04ZCG3TfMjo9DN22UIfr1NJiRbCq
+        M4zaed9uWAFIncMswV91KO1Tu7ehBppIAMeJwnSTWoL/edWIChknIC2M/HlpH3d2QHAZsT
+        qYY7ktnnHLj46WRausFpBJPcgSHJHmeHj2edNgwwt3nmOpfT2KZI4foEXxxl+w==
+Date:   Thu, 8 Dec 2022 11:51:24 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        stable@vger.kernel.org,
+        Thorsten Leemhuis <regressions@leemhuis.info>
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Message-ID: <20221208115124.6cc7a8bf@xps-13>
+In-Reply-To: <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+References: <20221205152327.26881-1-francesco@dolcini.it>
+        <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221207062913.3154262-1-bhupesh.sharma@linaro.org>
-In-Reply-To: <20221207062913.3154262-1-bhupesh.sharma@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 8 Dec 2022 13:44:39 +0300
-Message-ID: <CAA8EJpo30L=KYvrkbnWOrSXGVPk5++r77MTqVd12SZtaUqo-_w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Fix iommu sid values for PCIe nodes
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, konrad.dybcio@linaro.org,
-        andersson@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Dec 2022 at 09:29, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
->
-> Fix the iommu sid values for the PCIe nodes present on
-> Qualcomm SM8150 SoC dtsi (in sync the with downstream code).
+Hi Shawn,
 
-The commit message describes what you did, not why. Is there any
-actual issue that you are trying to solve?
-It makes me wonder because all modern Qualcomm platforms share more or
-less the same setup.
++ Thorsten
 
->
-> Fixes: a1c86c680533 ("arm64: dts: qcom: sm8150: Add PCIe nodes")
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
+marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
 
-No need to have regular maintainers in Cc tags. Please use regular
-git-send-email arguments instead.
+> On 12/5/22 16:23, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> >=20
+> > This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
+> >=20
+> > It introduced a boot regression on colibri-imx7, and potentially any
+> > other i.MX7 boards with MTD partition list generated into the fdt by
+> > U-Boot.
+> >=20
+> > While the commit we are reverting here is not obviously wrong, it fixes
+> > only a dt binding checker warning that is non-functional, while it
+> > introduces a boot regression and there is no obvious fix ready.
+> >=20
+> > Cc: stable@vger.kernel.org
+> > Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+> > Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.tor=
+adex.com/
+> > Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+[...]
+> Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+[...]
+> Acked-by: Marek Vasut <marex@denx.de>
+[...]
 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 32 ++++++++++++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index d1b64280ab0b..e88d1617a1ab 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -1810,9 +1810,23 @@ pcie0: pci@1c00000 {
->                                       "slave_q2a",
->                                       "tbu";
->
-> -                       iommus = <&apps_smmu 0x1d80 0x7f>;
-> +                       iommus = <&apps_smmu 0x1d80 0xf>;
->                         iommu-map = <0x0   &apps_smmu 0x1d80 0x1>,
->                                     <0x100 &apps_smmu 0x1d81 0x1>;
+As discussed in the above links, boot is broken on imx7 Colibri boards,
+this revert was the most quick and straightforward fix we agreed upon
+with the hope (~ duty?) it would make it in v6.1. Any chance you could
+pick this up rapidly and forward it to Linus? Or should we involve
+him directly (Thorsten?).
 
-it looks like the patch was not even compile-tested.
-
-> +                                   <0x200 &apps_smmu 0x1d82 0x1>,
-> +                                   <0x300 &apps_smmu 0x1d83 0x1>,
-> +                                   <0x400 &apps_smmu 0x1d84 0x1>,
-> +                                   <0x500 &apps_smmu 0x1d85 0x1>,
-> +                                   <0x600 &apps_smmu 0x1d86 0x1>,
-> +                                   <0x700 &apps_smmu 0x1d87 0x1>,
-> +                                   <0x800 &apps_smmu 0x1d88 0x1>,
-> +                                   <0x900 &apps_smmu 0x1d89 0x1>,
-> +                                   <0xa00 &apps_smmu 0x1d8a 0x1>,
-> +                                   <0xb00 &apps_smmu 0x1d8b 0x1>,
-> +                                   <0xc00 &apps_smmu 0x1d8c 0x1>,
-> +                                   <0xd00 &apps_smmu 0x1d8d 0x1>,
-> +                                   <0xe00 &apps_smmu 0x1d8e 0x1>,
-> +                                   <0xf00 &apps_smmu 0x1d8f 0x1>;
->
->                         resets = <&gcc GCC_PCIE_0_BCR>;
->                         reset-names = "pci";
-> @@ -1909,9 +1923,23 @@ pcie1: pci@1c08000 {
->                         assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
->                         assigned-clock-rates = <19200000>;
->
-> -                       iommus = <&apps_smmu 0x1e00 0x7f>;
-> +                       iommus = <&apps_smmu 0x1e00 0xf>;
->                         iommu-map = <0x0   &apps_smmu 0x1e00 0x1>,
->                                     <0x100 &apps_smmu 0x1e01 0x1>;
-> +                                   <0x200 &apps_smmu 0x1e02 0x1>,
-> +                                   <0x300 &apps_smmu 0x1e03 0x1>,
-> +                                   <0x400 &apps_smmu 0x1e04 0x1>,
-> +                                   <0x500 &apps_smmu 0x1e05 0x1>,
-> +                                   <0x600 &apps_smmu 0x1e06 0x1>,
-> +                                   <0x700 &apps_smmu 0x1e07 0x1>,
-> +                                   <0x800 &apps_smmu 0x1e08 0x1>,
-> +                                   <0x900 &apps_smmu 0x1e09 0x1>,
-> +                                   <0xa00 &apps_smmu 0x1e0a 0x1>,
-> +                                   <0xb00 &apps_smmu 0x1e0b 0x1>,
-> +                                   <0xc00 &apps_smmu 0x1e0c 0x1>,
-> +                                   <0xd00 &apps_smmu 0x1e0d 0x1>,
-> +                                   <0xe00 &apps_smmu 0x1e0e 0x1>,
-> +                                   <0xf00 &apps_smmu 0x1e0f 0x1>;
->
->                         resets = <&gcc GCC_PCIE_1_BCR>;
->                         reset-names = "pci";
-> --
-> 2.38.1
->
-
-
--- 
-With best wishes
-Dmitry
+Thanks,
+Miqu=C3=A8l
