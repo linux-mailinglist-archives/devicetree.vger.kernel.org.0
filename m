@@ -2,99 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 983BB646D42
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA22646DB3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiLHKmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:42:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45296 "EHLO
+        id S229699AbiLHLAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 06:00:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229948AbiLHKlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:41:31 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 898CF813B2
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:36:46 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id b9so1098946ljr.5
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:36:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sLgD4mcq6NGXe2Z5yow35JLIwbCl1WcOMrelcw30Bb8=;
-        b=CF9YKsqP/11cHBIXUz03ZsFPnhJHFngU9qimSaYyprnmJ2noIS6FX9wJH0cbjhMRrN
-         HdPfraeLtfMtqtvS3ditepeMr+P5fXMBYirqPnYfW3/KW9fFckIiF1Y5oJpNohSYQaoa
-         l/shLXcbQjHmCqSYrVtEE2vNQQ2P3KwFc/a1+qInmmyaSlkKbs7GHI/fZ36X/N5XPPlo
-         F0kGh4lEUVJOtR7StaX6gj2wC+ueMCAHDCVs2LeQI5ibwH8EmkiQYIMLWBOG9q2n8jFV
-         OfbQaPImsaoAL5Idoo3r70g81fg4BFghoTB/O6mIrc1A/aKsWlKFJN2k0t+5c3uYY/4J
-         tz8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sLgD4mcq6NGXe2Z5yow35JLIwbCl1WcOMrelcw30Bb8=;
-        b=D8mdLI0KHOPr+NXtA+2QByloN9RK7Hnm8CrRzgj1O+KMVRRSmq33La1LqbdTItyXCM
-         KDD+uMLDMWsati7mweDFwvEGapY1uSrxhXQRYZQjSavAIqKlETI6wCCjrEwET3eQSe/D
-         EFr7mzrRQfMfz7ByWY6pnc3kltFeLCk6l4YsXLJYPpLEBX3r1NUEetfp8TEbxgYTH1jC
-         xNpIWXZJI8wdoHwDq/XUugIPAKnlyEYBTcmFWPC1n/3mDMwzKRDthAr1lvPrb2Om2tNs
-         BbWbOdHercQWkox0xBfb0rZ8w9GrPuhcUEUsLsx3T+l51JJsTNnHFkSX3D1RsgTuT91S
-         PB0A==
-X-Gm-Message-State: ANoB5pn3/0gNaxvoXp1Q+Fid049bLofrJ4xcGlCQoaRI+0fJLjY+keCx
-        yYd88/3WEleD1zjjvTuYYblsDw==
-X-Google-Smtp-Source: AA0mqf5ENdBwq+Xg+vLczBJHlsxjumL9lHK33PbP4IM/NElioaVr1fIvYaupW5RTfAbgj0rzifRzBA==
-X-Received: by 2002:a2e:c52:0:b0:277:9bf:9411 with SMTP id o18-20020a2e0c52000000b0027709bf9411mr22163424ljd.504.1670495804952;
-        Thu, 08 Dec 2022 02:36:44 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id e27-20020ac2547b000000b004b5785b1d9csm1450294lfn.302.2022.12.08.02.36.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 02:36:44 -0800 (PST)
-Message-ID: <25cd4c9b-13dc-1e12-92ea-3610eb9af7a7@linaro.org>
-Date:   Thu, 8 Dec 2022 11:36:43 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 1/5] dt-bindings: remoteproc: qcom: adsp: move
- memory-region and firmware-name out of pas-common
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229786AbiLHK7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:59:54 -0500
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4A04B5C77D;
+        Thu,  8 Dec 2022 02:52:55 -0800 (PST)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1p3EW2-0002wy-01; Thu, 08 Dec 2022 11:52:34 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 99685C2487; Thu,  8 Dec 2022 11:36:47 +0100 (CET)
+Date:   Thu, 8 Dec 2022 11:36:47 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, Li Yang <leoyang.li@nxp.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
         Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
- <20221114-narmstrong-sm8550-upstream-remoteproc-v3-1-62162a1df718@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-1-62162a1df718@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 10/11] MIPS: mscc: jaguar2: Fix pca9545 i2c-mux node names
+Message-ID: <20221208103647.GB8388@alpha.franken.de>
+References: <cover.1669999298.git.geert+renesas@glider.be>
+ <5eb01c348c5dd90887b33e866555df8f1067e9df.1669999298.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5eb01c348c5dd90887b33e866555df8f1067e9df.1669999298.git.geert+renesas@glider.be>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 20:23, Neil Armstrong wrote:
-> Move memory-region and firmware-name definitions out of qcom,pas-common.yaml
-> since they will be redefined differently for SM8550 PAS bindings documentation.
+On Fri, Dec 02, 2022 at 05:49:25PM +0100, Geert Uytterhoeven wrote:
+> "make dtbs_check":
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>     arch/mips/boot/dts/mscc/jaguar2_pcb110.dtb: pca9545@70: $nodename:0: 'pca9545@70' does not match '^(i2c-?)?mux'
+> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>     arch/mips/boot/dts/mscc/jaguar2_pcb110.dtb: pca9545@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2', 'i2c@3' were unexpected)
+> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>     ...
+> 
+> Fix this by renaming PCA9545 nodes to "i2c-mux", to match the I2C bus
+> multiplexer/switch DT bindings and the Generic Names Recommendation in
+> the Devicetree Specification.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
+>  arch/mips/boot/dts/mscc/jaguar2_pcb110.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
+applied to mips-next.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thomas.
 
-Best regards,
-Krzysztof
-
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
