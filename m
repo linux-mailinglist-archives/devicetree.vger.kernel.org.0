@@ -2,67 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F14626470CC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC416470FB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 14:42:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230125AbiLHNbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 08:31:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46470 "EHLO
+        id S230224AbiLHNm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 08:42:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbiLHNbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:31:44 -0500
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D228658F;
-        Thu,  8 Dec 2022 05:31:42 -0800 (PST)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-144b21f5e5fso1793724fac.12;
-        Thu, 08 Dec 2022 05:31:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wdryjHBfKth8/hD6fCw95fsa+h8Ry8TUfw1B23x19eA=;
-        b=FQvAyw9Iq6FvlPV/b7Alx/rJ6Cb1yOvELgKUoQ7Xn4Ggr4hgH7GjIsbAjGfKj3xPr3
-         Z6gTN7S44nA7fCDbickRFKO8bQNfffJGrhwGPAI+Ru3aJPrHiLOoRhuaKzk21glZzpBi
-         2Xuz1vZeAzcLmSpEDjRG65C2WRjButPJRspLiAR94kL0YIEab6CoL8wlzpj00hAVzihB
-         1LN8MsRMYThh5rdLdEfnqIAPWrUSkyrpfAVb8t1o62VnO9CsV2EWCBTj3nsCtFev3GIG
-         jA7CO5L25lC98k48DyBmqAek/cyyNmbbQbD71IMhFwU/DjbnXq46zkdTCLqMNPQtj7mG
-         e4IA==
-X-Gm-Message-State: ANoB5plaYC6w25p5kzpF4BnoHT0NioGXsyw1qpu0xZynYAqbK5n0JvnG
-        p2Vues9OP7yr0WunAX7OJRre4Z5Pww==
-X-Google-Smtp-Source: AA0mqf5jYIx6OuCiREELp2iTWD6/DFP6YpGy19CgJhpulghI/ol7bDHOxjgZBOg0u/Ao9SYOXOztYA==
-X-Received: by 2002:a05:6870:1696:b0:144:7a85:63ea with SMTP id j22-20020a056870169600b001447a8563eamr1404205oae.23.1670506301925;
-        Thu, 08 Dec 2022 05:31:41 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g13-20020a056870c14d00b001375188dae9sm13560046oad.16.2022.12.08.05.31.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Dec 2022 05:31:41 -0800 (PST)
-Received: (nullmailer pid 539976 invoked by uid 1000);
-        Thu, 08 Dec 2022 13:31:40 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S230372AbiLHNmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 08:42:06 -0500
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C804B8B39F;
+        Thu,  8 Dec 2022 05:41:53 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2B8CIeXh003845;
+        Thu, 8 Dec 2022 13:41:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=bGawsvtpYEDznEm4b8jKPt0VkPsUz0y02oBiQf+JrC4=;
+ b=aV0uUH/VGVH8VcllqZ7OxTWHlotsxL1I/kCPZW+bAV6WLdw+kUUWj+rgt6/qLP7k6vZv
+ aalN4Aq+AUuk2rHv+DiAVZSNkkTbvwz4LRZez0mLsbBSHX1RfIp+dqglFTS34nDJ+IOO
+ eGDtNJ683D/NtngtsiwS544Dbk4p69N25K19oNJtNcwmJA4OaLHeWKDr5wRK4hKH+5QE
+ /Z+esdcoIaDBWy3D5orFU6YrQGZz9bxxMY/BM4BBwCCnuhzF2cW0u2dz96w14bL1wWxV
+ 5rypCzGe5RrquLsbp3kPM2JreFYBd5LLmd4K/djXl+YeI5gYRzH0IdY3wdyCi0mFdnT3 cQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3mbffs880v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 08 Dec 2022 13:41:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2B8Df3bT015445
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 8 Dec 2022 13:41:03 GMT
+Received: from [10.216.30.208] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.36; Thu, 8 Dec 2022
+ 05:40:57 -0800
+Message-ID: <ec403926-24ef-947d-2a1c-6cbf0e31ab89@quicinc.com>
+Date:   Thu, 8 Dec 2022 19:10:54 +0530
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Walker Chen <walker.chen@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>
-In-Reply-To: <20221208084523.9733-2-walker.chen@starfivetech.com>
-References: <20221208084523.9733-1-walker.chen@starfivetech.com>
- <20221208084523.9733-2-walker.chen@starfivetech.com>
-Message-Id: <167050594063.531467.3185697679617153248.robh@kernel.org>
-Subject: Re: [RESEND PATCH v2 1/3] dt-bindings: power: Add starfive,jh71xx-pmu
-Date:   Thu, 08 Dec 2022 07:31:40 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] remoteproc: elf_loader: Update resource table name check
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <bgoswami@quicinc.com>,
+        <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <judyhsiao@chromium.org>, <krzysztof.kozlowski@linaro.org>,
+        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <mathieu.poirier@linaro.org>, <perex@perex.cz>,
+        <quic_plai@quicinc.com>, <quic_rohkumar@quicinc.com>,
+        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
+        <tiwai@suse.com>
+References: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n520=mjdc4H1m8au0iBo2qEeaL8OrF1HCP0bXORe2Wa_7w@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n520=mjdc4H1m8au0iBo2qEeaL8OrF1HCP0bXORe2Wa_7w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: u0MLp0o3BE-g2iuoQLX6FffRLsAyL9lZ
+X-Proofpoint-GUID: u0MLp0o3BE-g2iuoQLX6FffRLsAyL9lZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-08_07,2022-12-08_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 mlxlogscore=999
+ bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0 clxscore=1015
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2212080115
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -70,44 +87,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 08 Dec 2022 16:45:21 +0800, Walker Chen wrote:
-> Add bindings for Power Management Unit (PMU) on the StarFive JH71XX SoC.
-> 
-> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
-> ---
->  .../bindings/power/starfive,jh71xx-pmu.yaml   | 45 +++++++++++++++++++
->  .../dt-bindings/power/starfive,jh7110-pmu.h   | 17 +++++++
->  2 files changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.yaml
->  create mode 100644 include/dt-bindings/power/starfive,jh7110-pmu.h
-> 
+On 12/7/2022 7:25 AM, Stephen Boyd wrote:
+Thanks for Your Time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-12-01 04:20:48)
+>> Update resource table name check with sub string search instead of
+>> complete string search.
+>> In general Qualcomm binary contains, section header name
+>> (e.g. .resource_table), amended with extra string to differentiate
+>> with other sections.
+>> So far Android adsp binaries are being authenticated using TZ,
+>> hence this mismatch hasn't created any problem.
+>> In recent developments, ADSP binary is being used in Chrome based
+>> platforms, which doesn't have TZ path, hence resource table is
+>> required for memory sandboxing.
+>>
+> Does this need a Fixes tag?
+I don't think so. I feel It's kind of enhancement.
+>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> ---
+>>   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c b/drivers/remoteproc/remoteproc_elf_loader.c
+>> index 5a412d7..0feb120 100644
+>> --- a/drivers/remoteproc/remoteproc_elf_loader.c
+>> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
+>> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct firmware *fw)
+>>                  u64 offset = elf_shdr_get_sh_offset(class, shdr);
+>>                  u32 name = elf_shdr_get_sh_name(class, shdr);
+>>
+>> -               if (strcmp(name_table + name, ".resource_table"))
+>> +               if (!strstr(name_table + name, ".resource_table"))
+> Was the strcmp not working before because the 'name_table' has something
+> else in it? It really looks like your elf file is malformed.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Actually, DSP binary is prepared by combining different elfs. So Section 
+header names are appended with
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.yaml:18:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+something else to distinguish same section name of different elfs, by 
+using some Qualcomm specific QURT scripts.
+Hence final binary contains resource_table name appended with module 
+specific name.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.yaml: properties:compatible: [{'enum': ['starfive,jh7110-pmu']}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.yaml: ignoring, error in schema: properties: compatible
-Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.example.dtb:0:0: /example-0/power-controller@17030000: failed to match any schema with compatible: ['starfive,jh7110-pmu']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221208084523.9733-2-walker.chen@starfivetech.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+So this patch is required to handle such modified name.
 
