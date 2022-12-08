@@ -2,117 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E4D646CB9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C24646CDF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:33:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbiLHK35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:29:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36352 "EHLO
+        id S230000AbiLHKdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbiLHK34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:29:56 -0500
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BEA30550;
-        Thu,  8 Dec 2022 02:29:55 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id DFF771C09FA; Thu,  8 Dec 2022 11:29:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1670495392;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=7w9NZ5zMjCJ6jruselsa9gif4njcjBN9vZovQO3hsCw=;
-        b=E/XC91OllcUxx1hBoqvZ/VvLx7jAx91ScHqsv3K0SgZ6d0TJBzV9y9luDkkFuKPrCOKruO
-        whhYzx2FKbvPp5nlxiFTM81Nd+CvJXxJ0kXloSQ9W9lrqqwL9X/IqbGDjzUK+tFLSGM0cY
-        mkS7KeITmJkynn9zc5vvBPeWH6aypCo=
-Date:   Thu, 8 Dec 2022 11:29:52 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        with ESMTP id S230022AbiLHKb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:31:57 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65BC97F893
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:31:27 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id q7so1076101ljp.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:31:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hHpfKld4lMu5+ixat6T/4oDADkdqQ2JYTvtcw+gBQks=;
+        b=lYkktDDamxCqSzLug7/jM6W5q3xrwBPVxdKHojjaI+5YLOTvfvjGAF3suKsT7ZOuZj
+         D26pEZy5c+Fgf4U3ZEupe3wBJ8BY7XeWnpxs3oPF00XBwYvgdba0EYWCnniEDOIU25BD
+         d93uf25o+GlAocvZyCKOC1Dqe4dvUAa2PE/zxshL55Jm19Z662tl7kt88IzxeMvx1y9a
+         87haUECX9Ix1B2GJDY6XsflvT1P4JnchaRB2RdQ2gXqG8nb2lU+STpo3VNF0sXHwaS3E
+         6j4IJITO8mGNzCKrnDIZp/65HCYeba7WcjyBptakuOl1p2TLS+yHAn2Js5IEhInO0T8v
+         3lHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hHpfKld4lMu5+ixat6T/4oDADkdqQ2JYTvtcw+gBQks=;
+        b=yvKrN82M8kO7EActnne67L968W/GEda1VDNBI4fWtilcviKHfDizBiOEcMs+QG8cs0
+         qnb5jdH6EW13xND03gNbaqNA3grrl/qtug1kFlzEnZZW6bYsz7yD7idjaXXmwkOxM+NM
+         r6TWKUFqKyjo5v3dYcDQ+PY4M0bhSsIRZnf9srSrNgTWEFQQpcth9gF5dYLtjeT0mM6r
+         LYBUMXP5UPxwKvs9skwt06JhHj2fRE/HTPMbPIIBoPg6szKIO/HGXv91+RlymeBpiqVj
+         eRJxSV8LgIVRFn8dsferUyE6ZsLajc3SB7fdMVjQIHdHaNfuX+88Ab4So0Joc/ff9eS3
+         jtgg==
+X-Gm-Message-State: ANoB5pn9Z1JLu77hTY28sVGAjKr/1yx6V9C0hXfw4i7r/Lzz1TB+HsLh
+        WOlNOvzXGF5lFYNDB8pnOjsQSQ==
+X-Google-Smtp-Source: AA0mqf4YQr6Rqh7drzmAs4lwxW/QyZKhfelPGBRvTCbcteoRamNm4E3qRXuBmWRnOH2IoXB0BKMdTg==
+X-Received: by 2002:a05:651c:1592:b0:277:b9f:cdbd with SMTP id h18-20020a05651c159200b002770b9fcdbdmr31733522ljq.0.1670495485712;
+        Thu, 08 Dec 2022 02:31:25 -0800 (PST)
+Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id h18-20020a2eb0f2000000b00279e5247dabsm1699580ljl.18.2022.12.08.02.31.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Dec 2022 02:31:24 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] leds: qcom,pm8058-led: Convert to DT schema
-Message-ID: <Y5G8oK+L0ck5Zb9j@duo.ucw.cz>
-References: <20221201131505.42292-1-krzysztof.kozlowski@linaro.org>
- <20221202000858.GA1737135-robh@kernel.org>
- <Y5Dzamz6XRZudQzq@duo.ucw.cz>
- <Y5G30ttrf1RJa+sM@google.com>
- <947e47d3-4235-8f16-d3ef-c3ddd7d51acf@linaro.org>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Joe Tessler <jrt@google.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Jeff Chase <jnchase@google.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 0/9] media: dt-bindings: common CEC properties
+Date:   Thu,  8 Dec 2022 11:31:06 +0100
+Message-Id: <20221208103115.25512-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="0szrq67hw48wihFy"
-Content-Disposition: inline
-In-Reply-To: <947e47d3-4235-8f16-d3ef-c3ddd7d51acf@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---0szrq67hw48wihFy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v3
+================
+1. cec-gpio: Add missing SPDX.
+2. nvidia,tegra114-cec: Correct path in maintainers.
 
-On Thu 2022-12-08 11:19:47, Krzysztof Kozlowski wrote:
-> On 08/12/2022 11:09, Lee Jones wrote:
-> > On Wed, 07 Dec 2022, Pavel Machek wrote:
-> >=20
-> >> On Thu 2022-12-01 18:08:58, Rob Herring wrote:
-> >>> On Thu, Dec 01, 2022 at 02:15:05PM +0100, Krzysztof Kozlowski wrote:
-> >>>> Convert the Qualcomm PM8058 PMIC LED bindings to DT schema.
-> >>>>
-> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>> ---
-> >>>>  .../devicetree/bindings/leds/leds-pm8058.txt  | 67 ----------------=
----
-> >>>>  .../bindings/leds/qcom,pm8058-led.yaml        | 57 ++++++++++++++++
-> >>>>  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml  |  4 ++
-> >>>>  3 files changed, 61 insertions(+), 67 deletions(-)
-> >>>>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pm80=
-58.txt
-> >>>>  create mode 100644 Documentation/devicetree/bindings/leds/qcom,pm80=
-58-led.yaml
-> >>>
-> >>> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>>
-> >>> Or should I apply it?
-> >>
-> >> Thanks for ACK, let me take it, I guess.
-> >=20
-> > Did you see Krzysztof's replies to this patch?
-> >=20
-> > Sounded like he was going to re-work it, which is why I left it.
->=20
-> The only rework needed was to add "dt-bindings:" prefix in the subject.
-> If you could add it while applying/amending commit, that would be great
-> and spare me resend. Otherwise, let me know if you dropped this patch
-> and expect a resend.
+Changes since v2:
+================
+1. nvidia,tegra114-cec: Rename to nvidia,tegra114-cec.yaml.
+2. nvidia,tegra114-cec: Nvidia->NVIDIA.
+3. Add acks/rb tags.
 
-Lets not do anything if the patch is otherwise correct.
+Changes since v1
+================
+1. chrontel,ch7322: fix node name to 'cec'.
+2. Add ack tags.
 
 Best regards,
-							Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
+Krzysztof
 
---0szrq67hw48wihFy
-Content-Type: application/pgp-signature; name="signature.asc"
+Krzysztof Kozlowski (9):
+  media: dt-bindings: amlogic,meson-gx-ao-cec: move to cec subfolder
+  media: dt-bindings: st,stm32-cec: move to cec subfolder
+  media: dt-bindings: cec: convert common CEC properties to DT schema
+  media: dt-bindings: amlogic,meson-gx-ao-cec: reference common CEC
+    properties
+  media: dt-bindings: chrontel,ch7322: reference common CEC properties
+  media: dt-bindings: samsung,s5p-cec: convert to DT schema
+  media: dt-bindings: cec-gpio: convert to DT schema
+  media: dt-bindings: nvidia,tegra114-cec: convert to DT schema
+  media: dt-bindings: st,stih-cec: convert to DT schema
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/media/cec-gpio.txt    | 42 -----------
+ .../devicetree/bindings/media/cec.txt         |  8 --
+ .../{ => cec}/amlogic,meson-gx-ao-cec.yaml    | 11 +--
+ .../bindings/media/cec/cec-common.yaml        | 28 +++++++
+ .../bindings/media/cec/cec-gpio.yaml          | 74 +++++++++++++++++++
+ .../media/cec/nvidia,tegra114-cec.yaml        | 58 +++++++++++++++
+ .../bindings/media/cec/samsung,s5p-cec.yaml   | 66 +++++++++++++++++
+ .../bindings/media/cec/st,stih-cec.yaml       | 66 +++++++++++++++++
+ .../media/{ => cec}/st,stm32-cec.yaml         |  4 +-
+ .../bindings/media/i2c/chrontel,ch7322.yaml   | 11 ++-
+ .../devicetree/bindings/media/s5p-cec.txt     | 36 ---------
+ .../devicetree/bindings/media/stih-cec.txt    | 27 -------
+ .../devicetree/bindings/media/tegra-cec.txt   | 27 -------
+ MAINTAINERS                                   | 12 +--
+ 14 files changed, 309 insertions(+), 161 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/cec-gpio.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/cec.txt
+ rename Documentation/devicetree/bindings/media/{ => cec}/amlogic,meson-gx-ao-cec.yaml (86%)
+ create mode 100644 Documentation/devicetree/bindings/media/cec/cec-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/cec/cec-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/cec/nvidia,tegra114-cec.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/cec/samsung,s5p-cec.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/cec/st,stih-cec.yaml
+ rename Documentation/devicetree/bindings/media/{ => cec}/st,stm32-cec.yaml (89%)
+ delete mode 100644 Documentation/devicetree/bindings/media/s5p-cec.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/stih-cec.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/tegra-cec.txt
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY5G8oAAKCRAw5/Bqldv6
-8o7nAJ401end/9RufAJqigoyfG5TThos+QCcD4SqympiWjM80RAF50EcMuaM4ds=
-=FrpG
------END PGP SIGNATURE-----
+-- 
+2.34.1
 
---0szrq67hw48wihFy--
