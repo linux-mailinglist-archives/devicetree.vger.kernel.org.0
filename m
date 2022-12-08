@@ -2,104 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D638646A76
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:26:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E4D646A83
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 09:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbiLHI0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 03:26:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
+        id S229781AbiLHIaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 03:30:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbiLHI0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:26:46 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1395E9DE
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 00:26:44 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id h10so756621ljk.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 00:26:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I6ClY8Qn5PhU88a7o7iHI8P//YfoghPFJcCo7zTwnx8=;
-        b=xI/MBzy1SAK+zJrVSmYY0x+h/gh0oAVfK1JHbYnRpeJh1Z7iY1kY1TW6Ixp3W2Kabj
-         p41PCFYiUJT6aaQGicyGHO/I0aqlLmHYk1XJ+/N4uWQfESbMN4uxPgj9X3BxlCtX69jg
-         jEUaXE1820E6AMvDr69hJG/x2hqILM5PWE3VdJUJb1T6wk6kh6RVkLkS8uGaTpC9k+Fj
-         5kcDAKeiaq6GqovSIz07BBory0mJSNMGGGDlkWuFeX4YkGUF2SlPgqrdvLDgBdm/ZZyJ
-         KIDmXdeY1/hDwNj2jfFc9n5fZA9puhsqbABk9w7KpihVi2si54vMF+4znQrOQI++QMKp
-         a2hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I6ClY8Qn5PhU88a7o7iHI8P//YfoghPFJcCo7zTwnx8=;
-        b=7X2G8EqIJ1EPdZ0uR2hZRIjj/iNVo7EiuJHm3LcrcvWqhpwY4HaZuFaNVvqJe39BwL
-         q3kdnuguGBmpzlpQXsH7+OeIWVW3njvRChPqs5B+Cki5binrjSLFA+MNxFGyg6W682VA
-         NkMqM6jrG4mkRBfHwomMGTcYHba9K93arw06xuoPL1gfCozN0Vn8ZDGrxZ2acWiFk/ue
-         sa3y42DMtMlL/vnmDsPYOBswLhcK4z9anDfivHk9cBoa1dFLrbdmr8Vm7nTRXyDRaUWd
-         p3GqKomWHB52ZBXO3j1E31W2QqPOAFhGBJ8ZwFCtULe0yo/lYdbXQ2P6E5wV3DvVwFnC
-         19yA==
-X-Gm-Message-State: ANoB5pmWLfBmEY8VHsC181VxJlvHpUVbWSo0irGHnJMcL7FiT0i9C6cQ
-        vAddlpo0WTnDeh0Z3/0Odt1tqw==
-X-Google-Smtp-Source: AA0mqf6epq8Tk3LPsvkLyf6+nNpqKEYyRgrRwB6VG90m/K7IlmsjsseL+xDK/7lLb1TyxhdT7bvecA==
-X-Received: by 2002:a05:651c:1108:b0:277:e8c:a5a4 with SMTP id e8-20020a05651c110800b002770e8ca5a4mr25863815ljo.311.1670488003075;
-        Thu, 08 Dec 2022 00:26:43 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t15-20020a05651c204f00b0026bf43a4d72sm2114512ljo.115.2022.12.08.00.26.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 00:26:42 -0800 (PST)
-Message-ID: <36895e49-aea5-3676-e7df-78b30277e6a0@linaro.org>
-Date:   Thu, 8 Dec 2022 09:26:41 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 3/9] dt-bindings: PCI: renesas,pci-rcar-gen2:
- 'depends-on' is no more optional
-Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229738AbiLHIaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 03:30:19 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF1360B78;
+        Thu,  8 Dec 2022 00:30:14 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 85A6624DFD7;
+        Thu,  8 Dec 2022 16:30:07 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
+ 2022 16:30:07 +0800
+Received: from localhost.localdomain (113.72.146.33) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 8 Dec
+ 2022 16:30:06 +0800
+From:   Walker Chen <walker.chen@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221207162435.1001782-1-herve.codina@bootlin.com>
- <20221207162435.1001782-4-herve.codina@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207162435.1001782-4-herve.codina@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor.dooley@microchip.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/3] JH7110 PMU Support
+Date:   Thu, 8 Dec 2022 16:29:52 +0800
+Message-ID: <20221208082955.10653-1-walker.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.146.33]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 17:24, Herve Codina wrote:
-> The 'depends-on' property is set in involved DTS.
-> 
-> Move it to a required property.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml | 1 +
+Hello,
 
-This should be squashed with previous patch. There is no point to add
-property and immediately in the next patch make it required. Remember
-that bindings are separate from DTS.
+This patchset adds PMU (Power Management Unit) controller driver for the
+StarFive JH7110 SoC. In order to meet low power requirements, PMU is
+designed for including multiple PM domains that can be used for power
+gating of selected IP blocks for power saving by reduced leakage
+current. The first patch adds device tree binding for PM domain provider
+and consumer. The second patch adds pmu driver and support JH7110 SoC.
+The last patch adds device node about pmu to JH7110 dts. 
+
+The series has been tested on the VisionFive 2 boards which equip with
+JH7110 SoC and works normally.
+
+The last patch should be applied after the following patchset:
+https://lore.kernel.org/all/20221118011714.70877-1-hal.feng@starfivetech.com/
+
+Changes in v2:
+- Squashed 1st patch (dt-bindings header) into 2nd which is related to
+  dt-bindings stuff.
+- Renamed the dt-bindings header 'jh7110-power.h' to
+  'starfive,jh7110-pmu.h' and used dual license for it.
+- Renamed the dt-bindings 'starfive,jh71xx-power.yaml' to
+  'starfive,jh71xx-pmu.yaml', dropped items from properties.
+- Change of MAINTAINERS: added the entry of 'starfive soc drivers';
+  changed status to 'Supported' for the entry of
+  'STARFIVE JH71XX PMU CONTROLLER DRIVER' and sorted the lines alphabetically.
+- Dropped the header file 'include/soc/starfive/pm_domains.h'.
+- Dropped starfive_pmu_hw_event_turn_on() and starfive_pmu_hw_event_turn_off().
+- Added 'default SOC_STARFIVE' and expanded help text in the Kconfig.
+- Added a JH71XX_PMU_ prefix to those macro definitions in driver.
+- Replaced the data type 'uint8_t / uint32_t' with 'u8 / u32'.
+- Fixed some complains by using checkpatch.pl
+- Added spinlock to jh71xx_pmu_int_enable().
+- Dropped spinlock from jh71xx_pmu_interrupt().
+- Used jh71xx_pmu_ as prefix to all functions.
+- Replaced io accessors '__raw_readl / __raw_writel' with 'readl / writel'.
+- Added jh71xx_pmu_get_state() to the beginning of jh71xx_pmu_set_state().
+- Added more detailed comment about controlling power domain.
+- Simplified the usage of loop when performing pm_genpd_init() to register
+  power domain.
+- Added more detailed description about the features of power domain
+  hardware to commit message in 2nd patch.
+- Replaced dev_info() with dev_dbg() in jh71xx_pmu_set_state().
+- Decreased the timeout numbers of polling power status when switching
+  power mode.
+
+Previous versions:
+v1 - https://lore.kernel.org/all/20221118133216.17037-1-walker.chen@starfivetech.com/
 
 Best regards,
-Krzysztof
+Walker
+
+Walker Chen (3):
+  dt-bindings: power: Add starfive,jh71xx-pmu
+  soc: starfive: Add StarFive JH71XX pmu driver
+  riscv: dts: starfive: add pmu controller node
+
+ .../bindings/power/starfive,jh71xx-pmu.yaml   |  45 ++
+ MAINTAINERS                                   |  14 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |   7 +
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/starfive/Kconfig                  |  11 +
+ drivers/soc/starfive/Makefile                 |   3 +
+ drivers/soc/starfive/jh71xx_pmu.c             | 396 ++++++++++++++++++
+ .../dt-bindings/power/starfive,jh7110-pmu.h   |  17 +
+ 9 files changed, 495 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/starfive,jh71xx-pmu.yaml
+ create mode 100644 drivers/soc/starfive/Kconfig
+ create mode 100644 drivers/soc/starfive/Makefile
+ create mode 100644 drivers/soc/starfive/jh71xx_pmu.c
+ create mode 100644 include/dt-bindings/power/starfive,jh7110-pmu.h
+
+
+base-commit: 094226ad94f471a9f19e8f8e7140a09c2625abaa
+prerequisite-patch-id: 8ebfffa09b478904bf7c516f76e2d824ddb60140
+prerequisite-patch-id: e8dd8258a4c4062eee2cf07c4607d52baea71f3a
+prerequisite-patch-id: d050d884d7b091ff30508a70f5ce5164bb3b72e5
+prerequisite-patch-id: 0e41f8cfd4861fcbf6f2e6a2559ce28f0450299e
+prerequisite-patch-id: 6e1652501859b85f101ff3b15ced585d43c71c1b
+prerequisite-patch-id: 587628a67adad5c655e5f998bf6c4a368ec07d3c
+prerequisite-patch-id: 596490c0e397df6c0249c1306fbb1d5bf00b5b83
+prerequisite-patch-id: dc873317826b50364344b25ac5cd74e811403f3d
+prerequisite-patch-id: a50150f41d8e874553023187e22eb24dffae8d16
+prerequisite-patch-id: 735e62255c75801bdc4c0b4107850bce821ff7f5
+prerequisite-patch-id: 9d2e83a2dd43e193f534283fab73e90b4f435043
+prerequisite-patch-id: 7a43e0849a9afa3c6f83547fd16d9271b07619e5
+prerequisite-patch-id: e7aa6fb05314bad6d94c465f3f59969871bf3d2e
+prerequisite-patch-id: 6276b2a23818c65ff2ad3d65b562615690cffee9
+prerequisite-patch-id: d834ece14ffb525b8c3e661e78736692f33fca9b
+prerequisite-patch-id: 4c17a3ce4dae9b788795d915bf775630f5c43c53
+prerequisite-patch-id: dabb913fd478e97593e45c23fee4be9fd807f851
+prerequisite-patch-id: ba61df106fbe2ada21e8f22c3d2cfaf7809c84b6
+prerequisite-patch-id: 287572fb64f83f5d931034f7c75674907584a087
+prerequisite-patch-id: 536114f0732646095ef5302a165672b3290d4c75
+prerequisite-patch-id: 258ea5f9b8bf41b6981345dcc81795f25865d38f
+prerequisite-patch-id: 8b6f2c9660c0ac0ee4e73e4c21aca8e6b75e81b9
+prerequisite-patch-id: e09e995700a814a763aa304ad3881a7222acf556
+prerequisite-patch-id: 841cd71b556b480d6a5a5e332eeca70d6a76ec3f
+prerequisite-patch-id: d074c7ffa2917a9f754d5801e3f67bc980f9de4c
+prerequisite-patch-id: 5f59bc7cbbf1230e5ff4761fa7c1116d4e6e5d71
+prerequisite-patch-id: d5da3475c6a3588e11a1678feb565bdd459b548e
+-- 
+2.17.1
 
