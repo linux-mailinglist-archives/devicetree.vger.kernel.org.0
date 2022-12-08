@@ -2,105 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D78C0646E2B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:13:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A269646E5F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 12:22:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbiLHLNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 06:13:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46982 "EHLO
+        id S229940AbiLHLWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 06:22:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiLHLN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 06:13:29 -0500
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4030D3E0B9;
-        Thu,  8 Dec 2022 03:13:28 -0800 (PST)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
-        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        id 1p3Eq6-0002BL-Gj; Thu, 08 Dec 2022 12:13:18 +0100
-Message-ID: <e31c7d2c-d32b-844f-4a24-c68f726d531c@leemhuis.info>
-Date:   Thu, 8 Dec 2022 12:13:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
- size-cells"
-Content-Language: en-US, de-DE
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Marek Vasut <marex@denx.de>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        with ESMTP id S229680AbiLHLVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 06:21:37 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371BF654FF
+        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 03:20:59 -0800 (PST)
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id DF7083F3FA;
+        Thu,  8 Dec 2022 12:20:56 +0100 (CET)
+Date:   Thu, 8 Dec 2022 12:20:55 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        stable@vger.kernel.org
-References: <20221205152327.26881-1-francesco@dolcini.it>
- <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
- <20221208115124.6cc7a8bf@xps-13>
-From:   Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <20221208115124.6cc7a8bf@xps-13>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1670498008;2b675538;
-X-HE-SMSGID: 1p3Eq6-0002BL-Gj
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
+ peripheral
+Message-ID: <20221208112055.m7sqg3ysxzskqjp4@SoMainline.org>
+References: <20221101161801.1058969-1-luca@z3ntu.xyz>
+ <20221106193722.j64xrhitdencrjxy@SoMainline.org>
+ <20221202093658.vg6t2ptar2arh7hn@SoMainline.org>
+ <2656622.mvXUDI8C0e@g550jk>
+ <20221208101232.536i3cmjf4uk2z52@SoMainline.org>
+ <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.12.22 11:51, Miquel Raynal wrote:
-> Hi Shawn,
+On 2022-12-08 11:23:17, Krzysztof Kozlowski wrote:
+> On 08/12/2022 11:12, Marijn Suijten wrote:
+> > On 2022-12-04 17:19:05, Luca Weiss wrote:
+> >> On Freitag, 2. Dezember 2022 10:36:58 CET Marijn Suijten wrote:
+> >> [..]
+> >>
+> >> So the way this patch does it is good or does it need changes?
+> > 
+> > Except the typo(s?) pointed out in my first reply, this is good to go.
+> > 
+> > If we stick with generic adc-chan node names that should be documented
+> > in the bindings IMO, as it is currently only captured implicitly in the
+> > examples.  Krzysztof, what is your thought on this?
 > 
-> + Thorsten
-> 
-> marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
-> 
->> On 12/5/22 16:23, Francesco Dolcini wrote:
->>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>
->>> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
->>>
->>> It introduced a boot regression on colibri-imx7, and potentially any
->>> other i.MX7 boards with MTD partition list generated into the fdt by
->>> U-Boot.
->>>
->>> While the commit we are reverting here is not obviously wrong, it fixes
->>> only a dt binding checker warning that is non-functional, while it
->>> introduces a boot regression and there is no obvious fix ready.
->>>
->>> Cc: stable@vger.kernel.org
->>> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
->>> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
->>> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
->>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> [...]
->> Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> [...]
->> Acked-by: Marek Vasut <marex@denx.de>
-> [...]
-> 
-> As discussed in the above links, boot is broken on imx7 Colibri boards,
-> this revert was the most quick and straightforward fix we agreed upon
-> with the hope (~ duty?) it would make it in v6.1. Any chance you could
-> pick this up rapidly and forward it to Linus? Or should we involve
-> him directly (Thorsten?).
+> If I understand correctly, the outcome of other discussion [1] was to
+> use labels and generic node names.
 
-Asking Linus directly often is fine, if it's something urgent and the
-maintainer that usually would handle a patch is MIA. But in this
-particular case it's likely not the best strategy, as it seems
-753395ea1e45 was merged via the ARM soc tree. In that case I'd say the
-revert should ideally go through there as well, hence I'd suggest asking
-those maintainers (e.g. Arnd and Olof) is the right move at this point
-in time (would be something different if today was release day; but even
-then it would be wise to have them involved).
+The outcome was to use labels in the driver and disregard node names as
+the new fwnode API clobbers those names by including the @xx register
+bit.
 
-Ciao, Thorsten
+(I'll follow up with Jonathan whether or not to remove the current
+fallback to node names, as [1] ended up discussing many different issues
+and nits)
+
+> In such case the patch was correct
+> (except other comments).
+
+As a consequence it _doesn't matter_ how nodes are named, and we _can_
+use generic node names.  My question for you is whether we should, and
+if we should lock that in via dt-bindings to guide everyone towards
+using labels (which i did _not_ do in the recently-landed PM8950 and
+PM6125, but will send followup for).
+
+> [1]
+> https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei/
+
+- Marijn
