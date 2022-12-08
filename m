@@ -2,107 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33D86646D46
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FD6646D50
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 11:43:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbiLHKmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 05:42:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
+        id S230234AbiLHKnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 05:43:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbiLHKl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:41:56 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0921E81D87
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 02:38:11 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id p36so1361951lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 02:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RnjXh6srzA4hNTFwgK5oMRB4A7wsXpdJZ0W8ZXTddYA=;
-        b=VzMA2sy/yYjMfgvLGX1epBgYu/dA3s6XjiuLDRqPBkE7WbF7tGDunaV1r7DEb4FN5S
-         QjjnaAIYZevKBIbOhVNoI6ghLhc7MN1XbwZ9wB5aUwS29e+X11+ZsByhDVv25wj/72KB
-         w8Th2wOMfE0GGHReL6yiUJqLNEdakg8c09JgvQv64COtnm4FGqfzRV2ZT8XHcPBEgKgh
-         40ubl33Bii3JnJU30rE2WuLKBuPNEZ+D9Bv1Rljg5745Uk+6URwyPnqP5TkNJhT/lu66
-         4dZbdbRcQAGOEavIRRiSw8cHiDwocU43ZCldGiFALkK9jPCemeNcX+89YEJF/+y4q9kV
-         +fAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RnjXh6srzA4hNTFwgK5oMRB4A7wsXpdJZ0W8ZXTddYA=;
-        b=OPEeTEibqLeuQauSHXEshO9oILef7MZGzHZOYByzGoKwi6b20erLCyuYN2YQxfmy70
-         uOzXPxpxB3qRQArvtAlV032uZy8CHnT3zCl9ILMTPdD2Pty8cV4mImMx5Vo/U9ImCB4y
-         j4c1/rrnzfqVJUTZjlIUBn27Fk53+acnoLLu4bDaJTSWahlgHmPy3WE/lz6+hi3UF2hI
-         Z/m9/90XPgchOdTRGbY2mn9IABrDDbYfRCYVUTQrGWoUxi1eEWLp+wip7DHtTNZWi8dj
-         HDoD5ULdPOWw/2nTuX4wC9ovphVl1WbKL3HSfeJm8MH8zN76WI0FEt/nEJrdC6d95JdR
-         +nbg==
-X-Gm-Message-State: ANoB5plTG2JEmb+NaiXZcp1yk8D+pWtf4TTUoCoWMNd0dknUuttbse63
-        CF8GYW7d8KG8tyKnQDvNOCE2+A==
-X-Google-Smtp-Source: AA0mqf6E0jLO5LLaLBE4f0zVPvXynee8OE3sUTA1JN58Zl1sfJhuv++Y/uM1QeorAs7UsOD/Hr83bA==
-X-Received: by 2002:a05:6512:39d4:b0:4b3:b6db:8cb5 with SMTP id k20-20020a05651239d400b004b3b6db8cb5mr30264632lfu.599.1670495889427;
-        Thu, 08 Dec 2022 02:38:09 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056512348100b004b575d239besm1553607lfr.237.2022.12.08.02.38.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 02:38:09 -0800 (PST)
-Message-ID: <7df45cef-ce99-5931-b3a5-32ded8df6d2f@linaro.org>
-Date:   Thu, 8 Dec 2022 11:38:07 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/5] dt-bindings: remoteproc: qcom: adsp: document
- sm8550 adsp, cdsp & mpss compatible
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229733AbiLHKnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 05:43:19 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89121222;
+        Thu,  8 Dec 2022 02:40:26 -0800 (PST)
+Received: from desky.lan (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 893EB25B;
+        Thu,  8 Dec 2022 11:40:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1670496023;
+        bh=ab3VDBBlRhkk1OCm+eM9aIt0zkYjaGuasNx+kTETGB4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NcuWxdUAooti/wS8UrXxku4R8b30Fb+FkevjbueyMSUXpAN4K+05fGzHheelm+naP
+         ZiGKIEIA+cJuJhCdyXA83ZJLDNRWQwEo/soJmAsO9pWSM+WsM/JJ9+e16sRO4uHBhX
+         ghN+fenSpn6jVQ4kJQOaplqDCZRDcFK4JPrR/JYw=
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-0-62162a1df718@linaro.org>
- <20221114-narmstrong-sm8550-upstream-remoteproc-v3-2-62162a1df718@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221114-narmstrong-sm8550-upstream-remoteproc-v3-2-62162a1df718@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v5 0/8] i2c-atr and FPDLink
+Date:   Thu,  8 Dec 2022 12:39:58 +0200
+Message-Id: <20221208104006.316606-1-tomi.valkeinen@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 20:23, Neil Armstrong wrote:
-> This documents the compatible for the component used to boot the
-> aDSP, cDSP and MPSS on the SM8550 SoC.
-> 
-> The SM8550 boot process on SM8550 now requires a secondary "Devicetree"
-> firmware to be passed along the main Firmware, and the cDSP a new power
-> domain named "NSP".
-> 
-> A third memory domain for the DSM memory zone is also needed for the MPSS
-> PAS bindings.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+Hi,
 
+You can find v4 of the series from:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+https://lore.kernel.org/all/20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com/
 
-Best regards,
-Krzysztof
+You can find a longer introduction of the series in that version's cover
+letter.
+
+There has been a lot of changes to the DT bindings and the i2c-atr code in this
+version, but they are all fixes and cleanups, no architectural changes. The
+FPDLink drivers have not been changed, except to reflect the changes in the
+DT.
+
+I will send a diff between v4 and v5 to give a better idea of the changes.
+
+One thing that was discussed a bit but not handled in this version is the
+i2c-pool/i2c-alias topic. I believe we have three options: 1) use fixed
+addresses, defined in DT, 2) get the addresses from an i2c-pool, 3) dynamically
+reserve the addresses at runtime. The current series uses 2).
+
+ Tomi
+
+Luca Ceresoli (2):
+  i2c: core: let adapters be notified of client attach/detach
+  i2c: add I2C Address Translator (ATR) support
+
+Tomi Valkeinen (6):
+  dt-bindings: media: add bindings for TI DS90UB913
+  dt-bindings: media: add bindings for TI DS90UB953
+  dt-bindings: media: add bindings for TI DS90UB960
+  media: i2c: add DS90UB960 driver
+  media: i2c: add DS90UB913 driver
+  media: i2c: add DS90UB953 driver
+
+ .../bindings/media/i2c/ti,ds90ub913.yaml      |  121 +
+ .../bindings/media/i2c/ti,ds90ub953.yaml      |  112 +
+ .../bindings/media/i2c/ti,ds90ub960.yaml      |  358 ++
+ Documentation/i2c/index.rst                   |    1 +
+ Documentation/i2c/muxes/i2c-atr.rst           |   78 +
+ MAINTAINERS                                   |    8 +
+ drivers/i2c/Kconfig                           |    9 +
+ drivers/i2c/Makefile                          |    1 +
+ drivers/i2c/i2c-atr.c                         |  503 ++
+ drivers/i2c/i2c-core-base.c                   |   18 +-
+ drivers/media/i2c/Kconfig                     |   47 +
+ drivers/media/i2c/Makefile                    |    3 +
+ drivers/media/i2c/ds90ub913.c                 |  892 ++++
+ drivers/media/i2c/ds90ub953.c                 | 1607 +++++++
+ drivers/media/i2c/ds90ub960.c                 | 4195 +++++++++++++++++
+ include/linux/i2c-atr.h                       |   82 +
+ include/linux/i2c.h                           |   16 +
+ include/media/i2c/ds90ub9xx.h                 |   16 +
+ 18 files changed, 8066 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+ create mode 100644 Documentation/i2c/muxes/i2c-atr.rst
+ create mode 100644 drivers/i2c/i2c-atr.c
+ create mode 100644 drivers/media/i2c/ds90ub913.c
+ create mode 100644 drivers/media/i2c/ds90ub953.c
+ create mode 100644 drivers/media/i2c/ds90ub960.c
+ create mode 100644 include/linux/i2c-atr.h
+ create mode 100644 include/media/i2c/ds90ub9xx.h
+
+-- 
+2.34.1
 
