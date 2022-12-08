@@ -2,91 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8BB6468A1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 06:38:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5888A6468BA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Dec 2022 06:49:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbiLHFi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 00:38:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38732 "EHLO
+        id S229470AbiLHFtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 00:49:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiLHFiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 00:38:55 -0500
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC3581392;
-        Wed,  7 Dec 2022 21:38:53 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id A4A2541F72;
-        Thu,  8 Dec 2022 05:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1670477931; bh=4d6mB9PvrA0IQLEv97GyxkdCgPLBiIYvjnKz/z7F5O4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=xUfCJOMvLijxJoJP1niRKanugCRWBOeN66w1xsm+sYeH7D1i9sP5QuDvI9ghv/VwS
-         4Ug/aFzUOX7vz/5s7ljYg98Ie3aYOnO/JlrfIP7+HqParM+HDQ7TSZb44mCVNsmywu
-         PSQLw8RuTz6Taayvl7Okij7PZ1kmkZEtM43h/dU3/+vLxYZFsEPQT+tcZ8J71r+lae
-         VhaCI1cmDSJ1dAc68f3GKYgaDH5+qZLCznI5nhu7SYtOXbx8v+cOiraiNJHRULNvE6
-         zIzGVwDDOlPZcyljIBnl9bx3MgZvlGzPfJa6q8a+So37GdGIAcZv/rvuyTLXDgggHE
-         fZtvSrbXV1YvQ==
-Message-ID: <751ec272-e5cd-65a8-cf26-d37aade972ac@marcan.st>
-Date:   Thu, 8 Dec 2022 14:38:45 +0900
+        with ESMTP id S229437AbiLHFtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 00:49:46 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AAB9B45A16;
+        Wed,  7 Dec 2022 21:49:45 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id AF82A804D;
+        Thu,  8 Dec 2022 05:49:44 +0000 (UTC)
+Date:   Thu, 8 Dec 2022 07:49:43 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v9 1/2] memory: omap-gpmc: wait pin additions
+Message-ID: <Y5F69xtIPM87iklg@atomide.com>
+References: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
+ <20221102133047.1654449-2-benedikt.niedermayr@siemens.com>
+ <Y5CafQpZnjSSCMoj@atomide.com>
+ <ae35cfd12ed3472df20ca5f99bffa8bb7c009199.camel@siemens.com>
+ <Y5CsDefg12Bbg24p@atomide.com>
+ <cf36d335dc6a85ebafc765a4d806745cca62362a.camel@siemens.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: apple: t6002: Fix GPU power domains
-Content-Language: en-US
-To:     Asahi Lina <lina@asahilina.net>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Janne Grunau <j@jannau.net>
-Cc:     Marc Zyngier <maz@kernel.org>, asahi@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221207014305.21018-1-lina@asahilina.net>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20221207014305.21018-1-lina@asahilina.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cf36d335dc6a85ebafc765a4d806745cca62362a.camel@siemens.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 10.43, Asahi Lina wrote:
-> On t6002 (M1 Ultra), each die contains a self-contained GPU block.
-> However, only the coprocessor and global management circuitry of the
-> first die are used. This is what is represented by the "gpu" PS (the
-> one in die1 is disabled). Nonetheless, this shared component drives the
-> processing blocks in both dies, and therefore depends on the AFR fabric
-> being powered up on both dies.
-> 
-> Add an explicit dependency from the GPU block on die0 to AFR on die1,
-> next to the existing die0 AFR dependency.
-> 
-> Fixes: fa86294eb355 ("arm64: dts: apple: Add initial t6000/t6001/t6002 DTs")
-> Signed-off-by: Asahi Lina <lina@asahilina.net>
-> ---
->  arch/arm64/boot/dts/apple/t6002.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/apple/t6002.dtsi b/arch/arm64/boot/dts/apple/t6002.dtsi
-> index 1376103b49c6..8fa2d8dd72ff 100644
-> --- a/arch/arm64/boot/dts/apple/t6002.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t6002.dtsi
-> @@ -296,3 +296,8 @@ &cpu_p20 &cpu_p21 &cpu_p22 &cpu_p23
->  		};
->  	};
->  };
-> +
-> +&ps_gfx {
-> +	// On t6002, the die0 GPU power domain needs both AFR power domains
-> +	power-domains = <&ps_afr>, <&ps_afr_die1>;
-> +};
+* Niedermayr, BENEDIKT <benedikt.niedermayr@siemens.com> [221207 17:29]:
+> I found the cause of this bug.
+> At least when "gpmc_cs_program_settings: invalid wait-pin (-1)" is printed in the kernel log.
 
-Thanks, applied both patches to asahi-soc/dt!
+OK
 
-- Hector
+> Now I'm not sure where to send the bugfix patch (linux-next, linux-omap, both?). 
+
+Please send a fix as against current Linux next as a separate patch as
+your earlier patches have been already applied for the merge window.
+
+If dts changes are also needed, let's first try to fix the driver to handle
+the invalid wait-pin case. Then we can patch the dts files separately as
+needed.
+
+Regards,
+
+Tony
