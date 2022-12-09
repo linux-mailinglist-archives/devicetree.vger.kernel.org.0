@@ -2,207 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17B4864806D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 10:51:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E086480E0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 11:24:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiLIJvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 04:51:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
+        id S229776AbiLIKYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 05:24:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbiLIJvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 04:51:11 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E50662E97
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 01:51:10 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id h10so4372808ljk.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 01:51:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WmNxA0xMKY6NE0mrIyzBIF0KSGbClhaHO3jVAK7ow4A=;
-        b=zsKHFut1fusmlRzaqC6gMptvhABkJGSOQq5hIJ1I/r4cVG37+7a4t2IrovMr/jKJ5D
-         zr/ZJQAnUraIV3Qp1/b4YieH7bfXONmIwxOzIAOSjCU9jsNWYps8VvuFTfriN3fL6sLI
-         YyhohW0mbWOODBqXOGtUpJzzpNXx3Eij6AnMtNtGObdJaoVQ67Ye5cy1/j8rcE89nVnN
-         vneQn0ZqN46biXdgVYBFnAV4XMh45q7z76Zcp3yvHwaMlelg+Pyb1DsSGLHD+2pn7maS
-         SI/mNY6F3yHZJjgUd5V/MevrhrfqgdDMr7ogRGskvdICHCT/7vx//tKKeH49XNfzHTL0
-         42MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WmNxA0xMKY6NE0mrIyzBIF0KSGbClhaHO3jVAK7ow4A=;
-        b=zLZriFHut9Aolu5lS8WkweiYPGjs6QVFFBSwgK36U9TvxUh4C+JwEcSNkFnzIjRf11
-         nkdoG0vX8GgtI0i+DllRFltF8Tf5fBLMmAMoV7Q4b7OZ/iSK6fJTj+Tknfx+otRDpFTX
-         z3BCMFiOPxCvCjfvDGgCbhvVNhPOQOsUnWgZSnrhNPJu5uTEb2/GcjhWuUzB7hwGnEU2
-         ASYLAsBxa2FXE5+r+OcDka2mJejPoreZE9JCMjp4hMaZijsID0473WocyS1iQvBnJRCe
-         QwSO9lzyL1PLbVPuXAnaHIVdoIyGHON06gBship54ozEaTCg/mPbnRE7h9e89vfvVwFJ
-         XD1A==
-X-Gm-Message-State: ANoB5pnzojHQ7VIFzFve6iVklLny08AQNvcftDjvTBO/Xki0gJXR1T41
-        aXkzClB0tfZh/mQkMERSdv9CAA==
-X-Google-Smtp-Source: AA0mqf6Re9jhCKkdjDDp6XJh14UAiK81Ds3CPU63T7hDPmrfSeN+RaMCPt/WdrVE5gYX7Y2+b1Ai1w==
-X-Received: by 2002:a2e:9bd2:0:b0:27a:2eff:f5f4 with SMTP id w18-20020a2e9bd2000000b0027a2efff5f4mr1022053ljj.8.1670579468673;
-        Fri, 09 Dec 2022 01:51:08 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id u5-20020a05651c130500b00279a15e635asm153428lja.58.2022.12.09.01.51.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 01:51:08 -0800 (PST)
-Message-ID: <f95197a3-4849-bf4b-521e-f073a54db280@linaro.org>
-Date:   Fri, 9 Dec 2022 10:51:06 +0100
+        with ESMTP id S229762AbiLIKYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 05:24:14 -0500
+X-Greylist: delayed 630 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 09 Dec 2022 02:24:14 PST
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047FB61BB3
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 02:24:13 -0800 (PST)
+DKIM-Signature: a=rsa-sha256; b=ZVZ1lBJuDOw6lWG+2dxMDTxxcdf/rSKCSmMz8zN2BW2YvlleGdrkrFhERdyq87fjvdqRPmMD7dz1MSn0B3WbI2IKl1MJhFJ4muMLdKBsTbo7r/65v7FkaxMHQ4rgqtvgGN3K0/XRbTX70GZ+0x34cqAsXq3dldrymgjHuXyHrbK/t26CC4aSrJutEdAOdn+0hLyiVL1bOdX7S6197W7cDqTk5f+nT+eTRl4WsNJ8ZUpHhzWMm7w0qRFV/tBei/OU5Sbk5eoMr2sbQN4BuDhWh3qDD6YbX4G7fKCmHL1BaQDyAOt2Y7r9klpIXN6pwr4Vvpka3CWScPSZPJQNZYMTrQ==; s=purelymail3; d=iskren.info; v=1; bh=QicPjp3sGnItvqW0OSsKwZzeWrXOfWwJ2oxre2/WImY=; h=Received:Subject:To:From;
+DKIM-Signature: a=rsa-sha256; b=V7+wnrI/mLLm2Z7U3mRP+vuQrOJATYAbFhXzbSq2oSHHML2cXp+ok+Vk94YPM3+Qv11/sm3iwLBZpK2dKzm19G5uxYtrf3bQgEtgO7A3VWBVohZWVZljuSEkYaAkzsBh2htn83zIOy+SfAspnwYYrdAGZbp1N8nUru/bUiz8wQzglrWvtVX+qwg8uwTLi+hO+d5tHhQ7De0uw2q+TOT40bC3nO67SRqaQ/dMxSTP0+UIKrg+xr+T6cWDvqoAKRyJ3gWe1odNg87GGulgXdloytXHFijVO0iugTo3G9ucnY0dEJuIIVL+g3P07HSIlVkTMy310VpJ9d9H6lheTFH5OA==; s=purelymail3; d=purelymail.com; v=1; bh=QicPjp3sGnItvqW0OSsKwZzeWrXOfWwJ2oxre2/WImY=; h=Feedback-ID:Received:Subject:To:From;
+Feedback-ID: 10275:2339:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -802281199;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Fri, 09 Dec 2022 10:13:21 +0000 (UTC)
+Message-ID: <8e6a1920-5a7f-1b67-5a68-feb8c1dfad0c@iskren.info>
+Date:   Fri, 9 Dec 2022 12:13:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
+ Thunderbird/102.5.0
+Subject: Re: [PATCH 1/5] arm64: dts: qcom: sm6115: Fix UFS node
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <7463917.EvYhyI6sBW@steina-w>
- <e1844fdc-c640-747d-e38f-400669f2a1a8@linaro.org>
- <3394586.QJadu78ljV@steina-w>
- <80cb69b4-811d-1cd9-297d-2d828fc988f4@linaro.org>
-In-Reply-To: <80cb69b4-811d-1cd9-297d-2d828fc988f4@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221208201401.530555-1-konrad.dybcio@linaro.org>
+From:   Iskren Chernev <me@iskren.info>
+In-Reply-To: <20221208201401.530555-1-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 10:50, Krzysztof Kozlowski wrote:
-> On 09/12/2022 10:36, Alexander Stein wrote:
->> Hello Krzysztof,
->>
->> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
->>> On 09/12/2022 09:54, Alexander Stein wrote:
->>>> Hello Krzysztof,
->>>>
->>>> thanks for the fast feedback.
->>>>
->>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
->>>>> On 09/12/2022 09:33, Alexander Stein wrote:
->>>>>> It takes some time until the enable GPIO has settled when turning on.
->>>>>> This delay is platform specific and may be caused by e.g. voltage
->>>>>> shifts, capacitors etc.
->>>>>>
->>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>>>> ---
->>>>>>
->>>>>>  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4 ++++
->>>>>>  1 file changed, 4 insertions(+)
->>>>>>
->>>>>> diff --git
->>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
->>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>
->>>>>> @@ -32,6 +32,10 @@ properties:
->>>>>>      maxItems: 1
->>>>>>      description: GPIO specifier for bridge_en pin (active high).
->>>>>>
->>>>>> +  ti,enable-delay-us:
->>>>>> +    default: 10000
->>>>>> +    description: Enable time delay for enable-gpios
->>>>>
->>>>> Aren't you now mixing two separate delays? One for entire block on (I
->>>>> would assume mostly fixed delay) and one depending on regulators
->>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
->>>>> second delays in your power supply? If so, the first one might be fixed
->>>>> and hard-coded in the driver?
->>>>
->>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
->>>> specified by datasheet. This is already ensured by a following delay after
->>>> requesting enable_gpio as low and switching the GPIO to low in disable
->>>> path.
->>>>
->>>> When enabling this GPIO it takes some time until it is valid on the chip,
->>>> this is what this series is about. It's highly platform specific.
->>>>
->>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
->>>> This one has to be enabled before the enable GPIO can be enabled. So
->>>> there is no regulator-ramp-delay.
->>>
->>> Your driver does one after another - regulator followed immediately by
->>> gpio - so this as well can be a delay from regulator (maybe not ramp but
->>> enable delay).
->>
->> But this will introduce a section which must not be interrupted or delayed. 
->> This is impossible as the enable gpio is attached to an i2c expander in my 
->> case.
->>
->> Given the following time chart:
->>
->>  vcc                  set             EN
->> enable               GPIO             PAD
->>   |                    |               |
->>   |                    |<-- t_raise -->|
->>   | <-- t_vcc_gpio --> |               |
->>   | <--        t_enable_delay      --> |
->>
->> t_raise is the time from changing the GPIO output at the expander until 
->> voltage on the EN (input) pad from the bridge has reached high voltage level.
->> This is an electrical characteristic I can not change and have to take into 
->> account.
->> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge 
->> (removing from reset). Minimum t_vcc_gpio is something which can be addressed 
->> by the regulator and is no problem so far. But there is no upper bound to it.
->>
->> If I understand you correctly, you want to specify t_enable_delay in a 
->> regulator property. This only works if you can upper bound t_vcc_gpio which is 
->> not possible due to e.g. scheduling and i2c bus contention.
->>
->> IMHO that's why there needs to be an configurable delay in the bridge driver.
-> 
-> What I am saying that you might be here mixing two separate delays:
-> regulator enable and/or ramp delay (which more or less matches your
-> t_vcc_gpio) and t_raise. I don't know about which board we talk, but the
-> mainline users of this bridge do not have even regulator supply,
-> therefore its enable time might be not factored.
-> 
-> Why this all raising questions? Because only your t_vcc_gpio should be
-> board dependent, right? Your bridge has fixed internal delays - from
-> datasheet: ten, tdis and treset. Nothing in your device is board
-> specific, thus I assume any enable delay is coming from power supply.
-> 
-> Probably experiment to prove it would be to keep power supply enabled
-> always and check on the scope of EN pin.
-> 
-> Anyway, even if this is variable delay on your EN input pin, it is still
-> input to the device and based on your time-diagram it is not a property
-> of the device. Property of the device could be:
-> 
-> EN-pad goes high <--------------> output pins stable
-> 
-> which is either:
-> 1. ten already described in datasheet,
-> 2. not the case here.
 
 
-Ah, I forgot, otherwise this is a generic property of every system not
-specific to your bridge. Thus it should be modeled somewhere else or in
-in generic way.
+On 12/8/22 22:13, Konrad Dybcio wrote:
+> In its current form, UFS did not even probe successfully - it failed
+> when trying to set XO (ref_clk) to 300 MHz instead of doing so to
+> the ICE clk. Moreover, the missing reg-names prevented ICE from
+> working or being discovered at all. Fix both of these issues.
+> 
+> As a sidenote, the log reveals that this SoC uses UFS ICE v3.1.0.
+> 
+> Fixes: 97e563bf5ba1 ("arm64: dts: qcom: sm6115: Add basic soc dtsi")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+[for the whole series]
+Reviewed-by: Iskren Chernev <me@iskren.info>
 
-Best regards,
-Krzysztof
-
+> ---
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index 572bf04adf90..3f4017bc667d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -704,6 +704,7 @@ opp-202000000 {
+>  		ufs_mem_hc: ufs@4804000 {
+>  			compatible = "qcom,sm6115-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>  			reg = <0x04804000 0x3000>, <0x04810000 0x8000>;
+> +			reg-names = "std", "ice";
+>  			interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
+>  			phys = <&ufs_mem_phy_lanes>;
+>  			phy-names = "ufsphy";
+> @@ -736,10 +737,10 @@ ufs_mem_hc: ufs@4804000 {
+>  					<0 0>,
+>  					<0 0>,
+>  					<37500000 150000000>,
+> -					<75000000 300000000>,
+>  					<0 0>,
+>  					<0 0>,
+> -					<0 0>;
+> +					<0 0>,
+> +					<75000000 300000000>;
+>  
+>  			status = "disabled";
+>  		};
