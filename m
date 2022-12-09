@@ -2,140 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2A6D647C61
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 03:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B11C9647C7E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 04:03:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbiLICtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 21:49:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36628 "EHLO
+        id S229542AbiLIDDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 22:03:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiLICtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 21:49:24 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF2A79C06
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 18:49:23 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id x22so8420361ejs.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 18:49:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=53YW0ORFneqyG93srJ8jF+XX7zmPAnIboOzrEPTG0Ts=;
-        b=THue66vB24/bYK1OKRCFn3bh/J/RhSIiO/22Xzu3S1OMJvLXwxUmZzaqbERTDmNPxX
-         QG0p0q4606ivku/eGXQWQOeiIDGlgB5VSdhbxtsaFHyeVmlMcQ41A6JCmWrIFMjeLbed
-         1QPWt9QMzlb32nmtD26qU5ryEWB5T3z82YP51rFbEtE90bFRGxb4WH0CwWFZ9sNZBDie
-         YpGntb2COBf6JNsjRbynRwGQ5E9OEJXMlPt6aroZeRuLOjBeyF6GVdtPNDf/rxNqW9gD
-         L5jh4FvWCbafrPqPi9eRB4EyDyH9EMgnUDC9O/kvvfbe8z/Ww1BknWX/k4YRHHKzjFg+
-         S5oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=53YW0ORFneqyG93srJ8jF+XX7zmPAnIboOzrEPTG0Ts=;
-        b=f9yB4vb/gIynaqwC5Dt7zL736pOFhfB7MVuPbyfosUbjwwQfYV82PqL/tk1ISSrWCt
-         f4gNloaMp8to8t8m07QCzYi1RYynR7OumYdJL222AbygnhvG7eVRVfZb3Psl7BUEEtP8
-         tjXuR0v47q/vrUMPcr8NQ+UCEh0Ipf5fV0uK+d6aBpEvIeKs6S1IAoMJGy1iOeGoSIYN
-         BLexXcgZIFTjpEAQMbp6yLvB2+FrFR90UCO244CkP9EhqJqe4Zo6Az6ijwFF/CpvV1X2
-         iMEDsCDfnd3Zcpy4zx6O6xQYZPWCgrIkSvqBe13XN475rED5b+O5LO6k2/8b6DbWz9FJ
-         zX2A==
-X-Gm-Message-State: ANoB5pmuRA++tvcLjR8mNN1u/C54UrNcphpy7EkY9ABVXoXWoGDj1x2m
-        MvNssIcN2FU3W5lb8/7EkWVhCsz88wGDN8Wg7grXgQ==
-X-Google-Smtp-Source: AA0mqf6doDwZB2F+lKd6wShNarKCxmm1N6/epMJ03LBGs+paMSVEE2cZP89QidB84RL5HCl7NJLWWsopNGHRAj14smU=
-X-Received: by 2002:a17:906:c44a:b0:7c0:d6bb:fd7 with SMTP id
- ck10-20020a170906c44a00b007c0d6bb0fd7mr18360425ejb.726.1670554161785; Thu, 08
- Dec 2022 18:49:21 -0800 (PST)
+        with ESMTP id S229523AbiLIDDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 22:03:00 -0500
+X-Greylist: delayed 1931 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 08 Dec 2022 19:02:48 PST
+Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CCE26486;
+        Thu,  8 Dec 2022 19:02:47 -0800 (PST)
+Received: from [78.40.148.178] (helo=webmail.codethink.co.uk)
+        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1p3SfQ-006rLO-U8; Fri, 09 Dec 2022 01:59:12 +0000
 MIME-Version: 1.0
-References: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-In-Reply-To: <20221207220012.16529-1-quic_bjorande@quicinc.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Thu, 8 Dec 2022 20:49:10 -0600
-Message-ID: <CAKXuJqirYDCGfOP=YMOGdacB_v0GNty7HZ+p0U19a8DpBMDGKQ@mail.gmail.com>
-Subject: Re: [PATCH v5 00/12] drm/msm: Add SC8280XP support
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Date:   Fri, 09 Dec 2022 01:59:08 +0000
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+To:     Yanhong Wang <yanhong.wang@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v1 2/7] net: stmmac: platform: Add snps,dwmac-5.20 IP
+ compatible string
+In-Reply-To: <20221201090242.2381-3-yanhong.wang@starfivetech.com>
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
+ <20221201090242.2381-3-yanhong.wang@starfivetech.com>
+Message-ID: <f6fd99d22a025377e176890cc7641ab9@codethink.co.uk>
+X-Sender: ben.dooks@codethink.co.uk
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 7, 2022 at 4:00 PM Bjorn Andersson
-<quic_bjorande@quicinc.com> wrote:
->
-> This introduces support for the SC8280XP platform in the MDSS, DPU and
-> DP driver. It reworks the HDP handling in the DP driver to support
-> external HPD sources - such as the dp-connector, or USB Type-C altmode.
->
-> It then introduces the display clock controllers, mdss, dpu and
-> displayport controllers and link everything together, for both the MDSS
-> instances on the platform, and lastly enables EDP on the compute
-> reference device and 6 of the MiniDP outputs on the automotive
-> development platform.
->
->
-> The patches was previously sent separately, but submitting them together
-> here as they (except dts addition) goes in the same tree.
->
-> Bjorn Andersson (12):
->   dt-bindings: display/msm: Add binding for SC8280XP MDSS
->   drm/msm/dpu: Introduce SC8280XP
->   drm/msm: Introduce SC8280XP MDSS
->   dt-bindings: msm/dp: Add SDM845 and SC8280XP compatibles
->   drm/msm/dp: Stop using DP id as index in desc
->   drm/msm/dp: Add DP and EDP compatibles for SC8280XP
->   drm/msm/dp: Add SDM845 DisplayPort instance
->   drm/msm/dp: Rely on hpd_enable/disable callbacks
->   drm/msm/dp: Implement hpd_notify()
->   arm64: dts: qcom: sc8280xp: Define some of the display blocks
->   arm64: dts: qcom: sc8280xp-crd: Enable EDP
->   arm64: dts: qcom: sa8295-adp: Enable DP instances
->
->  .../bindings/display/msm/dp-controller.yaml   |   3 +
->  .../display/msm/qcom,sc8280xp-dpu.yaml        | 122 +++
->  .../display/msm/qcom,sc8280xp-mdss.yaml       | 143 +++
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 243 ++++-
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  72 +-
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 838 ++++++++++++++++++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 217 +++++
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c |  18 +
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.h |   3 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |   2 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
->  drivers/gpu/drm/msm/dp/dp_display.c           | 151 ++--
->  drivers/gpu/drm/msm/dp/dp_display.h           |   1 +
->  drivers/gpu/drm/msm/dp/dp_drm.c               |   3 +
->  drivers/gpu/drm/msm/dp/dp_drm.h               |   4 +
->  drivers/gpu/drm/msm/msm_drv.h                 |   1 +
->  drivers/gpu/drm/msm/msm_mdss.c                |   4 +
->  18 files changed, 1770 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
->
-> --
-> 2.37.3
->
 
-Tested on Lenovo Thinkpad X13s
-Tested-by: Steev Klimaszewski <steev@kali.org>
+
+On 2022-12-01 09:02, Yanhong Wang wrote:
+> Add "snps,dwmac-5.20" compatible string for 5.20 version that can avoid
+> to define some platform data in the glue layer.
+> 
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 50f6b4a14be4..cc3b701af802 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -519,7 +519,8 @@ stmmac_probe_config_dt(struct platform_device
+> *pdev, u8 *mac)
+>  	if (of_device_is_compatible(np, "snps,dwmac-4.00") ||
+>  	    of_device_is_compatible(np, "snps,dwmac-4.10a") ||
+>  	    of_device_is_compatible(np, "snps,dwmac-4.20a") ||
+> -	    of_device_is_compatible(np, "snps,dwmac-5.10a")) {
+> +	    of_device_is_compatible(np, "snps,dwmac-5.10a") ||
+> +	    of_device_is_compatible(np, "snps,dwmac-5.20")) {
+>  		plat->has_gmac4 = 1;
+>  		plat->has_gmac = 0;
+>  		plat->pmt = 1;
+
+out of interest, is the version of the ip autodetectable yet?
+also, we would be better off if having an if (version > 4) check if we 
+use the standard snps ip block code headers
+
