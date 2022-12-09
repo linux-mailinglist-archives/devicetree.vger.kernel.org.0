@@ -2,164 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6B4647B6E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 02:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E34E647B7C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 02:33:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbiLIB2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 20:28:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37068 "EHLO
+        id S229783AbiLIBda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 20:33:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiLIB2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 20:28:24 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2959801CF;
-        Thu,  8 Dec 2022 17:28:22 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0C79924E1FF;
-        Fri,  9 Dec 2022 09:28:13 +0800 (CST)
-Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
- 2022 09:28:13 +0800
-Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
- (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
- 2022 09:28:11 +0800
-Message-ID: <a2c6ff79-2d47-d0a1-d59a-716a1d212808@starfivetech.com>
-Date:   Fri, 9 Dec 2022 09:28:06 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1 7/7] riscv: dts: starfive: visionfive-v2: Add phy
- delay_chain configuration
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229615AbiLIBd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 20:33:28 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C2286F65;
+        Thu,  8 Dec 2022 17:33:27 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10000)
+        id BFB4C2014B; Fri,  9 Dec 2022 09:33:21 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1670549601;
+        bh=ucE4NfgBowpZ8cxr+out2h6hZKjFsNKDxR1YbmxvS6M=;
+        h=From:To:Subject:Date;
+        b=lJk7Q5nPoXFU0Gzdt3PiOELSroXbNfKYvmyq1GnJWN/t9fGOOxQ5bgfaYyj+q/mkU
+         5msqqWBdQJCeUfOGGo/xIcMkDlbqcAgQCy/YIVdqRuAWvs2NNLPRdv/LFuE/+j7LTj
+         VaiqB6Bkc6UoL4hMo9r6YG1lU2RDHKse3d+KOMT5+mQZc9RnZkQd9ZNCZFlNf2cQSV
+         gQG6i4JxEoZGsaNXBByjL49g8blbxBUB90yDKQVeULvhTYuBcob+ZAnSNuORAynb23
+         UCyvTHCT6HBcFVARVJ0K2Xp3rhfZv4SZq8Ya7yYxJv/VhYlDNblrpv8r+Zl+73JYWG
+         8+7fT6Dt8pSQw==
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
- <20221201090242.2381-8-yanhong.wang@starfivetech.com> <Y4jpDvXo/uj9ygLR@spud>
- <Y4kAyAhBseNmmDo8@spud>
-From:   yanhong wang <yanhong.wang@starfivetech.com>
-In-Reply-To: <Y4kAyAhBseNmmDo8@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX173.cuchost.com
- (172.16.6.93)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>
+Subject: [RFC PATCH v2 0/3] Add reset control for mfd syscon devices
+Date:   Fri,  9 Dec 2022 09:33:06 +0800
+Message-Id: <20221209013309.407879-1-jk@codeconstruct.com.au>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This RFC series adds a facility for syscon devices to control a reset
+line when probed; we have instances of simple register-only syscon
+resources that need deassertion of a reset line for the register set to
+be accessible.
+
+Rather than requiring a specific driver to implement this, it'd be nice
+to use the generic syscon device and the generic resets linkage to do
+so.
+
+Any comments/queries/etc are most welcome.
+
+Cheers,
 
 
-On 2022/12/2 3:30, Conor Dooley wrote:
-> On Thu, Dec 01, 2022 at 05:49:08PM +0000, Conor Dooley wrote:
->> On Thu, Dec 01, 2022 at 05:02:42PM +0800, Yanhong Wang wrote:
->> > riscv: dts: starfive: visionfive-v2: Add phy delay_chain configuration
->> > 
->> > Add phy delay_chain configuration to support motorcomm phy driver for
->> > StarFive VisionFive 2 board.
-> 
-> nit: please re-word this commit next time around to actually say what
-> you're doing here. I didn't notice it initially, but this patch is doing
-> a lot more than adding `delay_chain` configuration. To my dwmac unaware
-> brain, there's nothing hits for that term outside of the changelog :(
-> 
+Jeremy
+---
+v2:
+ * do reset control in the early of_syscon_register() path, rather than
+   the platform device init, which isn't used.
+ * consequently, add regmap infrastructure to attach a reset
+   controller, in a similar way to attaching clocks
 
-I will re-word the commit message and add another dt-binding to describe the details that such as "rxc_dly_en","tx_inverted_10" etc.
+Jeremy Kerr (3):
+  dt-bindings: mfd/syscon: Add resets property
+  regmap: mmio: allow reset control in a MMIO regmap
+  mfd: syscon: allow reset control for syscon devices
 
-> Thanks,
-> Conor.
-> 
->> > 
->> > Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
->> > ---
->> >  .../jh7110-starfive-visionfive-v2.dts         | 46 +++++++++++++++++++
->> >  1 file changed, 46 insertions(+)
->> > 
->> > diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> > index c8946cf3a268..2868ef4c74ef 100644
->> > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-v2.dts
->> > @@ -15,6 +15,8 @@
->> >  
->> >  	aliases {
->> >  		serial0 = &uart0;
->> > +		ethernet0=&gmac0;
->> > +		ethernet1=&gmac1;
->> 
->> Please match the whitespace usage of the existing entry.
->> 
->> >  	};
->> >  
->> >  	chosen {
->> > @@ -114,3 +116,47 @@
->> >  	pinctrl-0 = <&uart0_pins>;
->> >  	status = "okay";
->> >  };
->> > +
->> > +&gmac0 {
->> > +	status = "okay";
->> > +	#address-cells = <1>;
->> > +	#size-cells = <0>;
->> > +	phy-handle = <&phy0>;
->> > +	status = "okay";
->> > +	mdio0 {
->> 
->> A line of whitespace before the child nodes too please :)
->> 
->> > +		#address-cells = <1>;
->> > +		#size-cells = <0>;
->> > +		compatible = "snps,dwmac-mdio";
->> > +		phy0: ethernet-phy@0 {
->> > +			reg = <0>;
->> > +			rxc_dly_en = <1>;
->> > +			tx_delay_sel_fe = <5>;
->> > +			tx_delay_sel = <0xa>;
->> > +			tx_inverted_10 = <0x1>;
->> > +			tx_inverted_100 = <0x1>;
->> > +			tx_inverted_1000 = <0x1>;
->> > +		};
->> > +	};
->> > +};
->> > +
->> > +&gmac1 {
->> > +	status = "okay";
->> > +	#address-cells = <1>;
->> > +	#size-cells = <0>;
->> > +	phy-handle = <&phy1>;
->> > +	status = "okay";
->> > +	mdio1 {
->> > +		#address-cells = <1>;
->> > +		#size-cells = <0>;
->> > +		compatible = "snps,dwmac-mdio";
->> > +		phy1: ethernet-phy@1 {
->> > +			reg = <1>;
->> > +			tx_delay_sel_fe = <5>;
->> > +			tx_delay_sel = <0>;
->> > +			rxc_dly_en = <0>;
->> > +			tx_inverted_10 = <0x1>;
->> > +			tx_inverted_100 = <0x1>;
->> > +			tx_inverted_1000 = <0x0>;
->> > +		};
->> > +	};
->> > +};
->> > -- 
->> > 2.17.1
->> > 
+ .../devicetree/bindings/mfd/syscon.yaml       |  3 +++
+ drivers/base/regmap/regmap-mmio.c             | 22 +++++++++++++++
+ drivers/mfd/syscon.c                          | 27 ++++++++++++++-----
+ include/linux/regmap.h                        |  3 +++
+ 4 files changed, 49 insertions(+), 6 deletions(-)
+
+-- 
+2.35.1
+
