@@ -2,98 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F0964871B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC9F564875D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 18:10:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbiLIQ6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 11:58:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49164 "EHLO
+        id S229902AbiLIRKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 12:10:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbiLIQ6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:58:01 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00CB1DF3
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:57:57 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id p8so7943509lfu.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:57:57 -0800 (PST)
+        with ESMTP id S229816AbiLIRJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 12:09:54 -0500
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC99286C5
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 09:09:34 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id m18so12963719eji.5
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 09:09:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RpqPCBfzDAs8JVS1IeOpD/CKxCRHOoR51Vnm5lxDkNA=;
-        b=lsm4bM/FVHMd9HNKHL0b6U4XIPGnbS59knpkI/1xA5FnZQfqN3PUXusvmDIht8LRNa
-         P2vbJj4oi73OsOmEOrlLKzDBweEBcFCa0bCOVRpmsl/skFkyXhI5Km9L7UfAf8YQ1d7k
-         QaBuOOZvdDjHkIQic82vHrks4VJm0S1NCJwmzhWMiCiCxo57iiq12dLDKVYGldmqPgp2
-         Rm2jqVZ4h1lx/eqy4hHdYDQ+1i/JCNYd63U+Iq9vwkT1XtFbltg0Fd96byPPBhmpkfH3
-         LKKAKWYkzD3CEX3oXnHwRRCEA/GZhIxws/cQifyAFBoysezf0/Z7kyjGlo+24fi3axOi
-         GikQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NXbFEB1xKk4N48FcslTMhY6JVh3nMLyk4J4qoIMRvnE=;
+        b=nUmD78MQ7NnK3IqCVJDUrdNthqq8xbLAX87n4IQsS384SzBm/UB+io7PLK0DDRodk5
+         z7o04SMoI/orbl8rDMTFvF6SuE574vHt4H2xj02QeYta2t/AzsrIeRZ8UKjyXS2DKdsQ
+         ANcCzBzXauN0otQHC6aH2BnFLuAGVKDZpXmAA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RpqPCBfzDAs8JVS1IeOpD/CKxCRHOoR51Vnm5lxDkNA=;
-        b=B1cUzJweyp5sdy864XDQlVRtW1BUSQo7UY9bmsjino9n1J8NSxUSb8KnMUhCm2vydm
-         M08aVa025yQ1k+s0JMEDC4rqjzZvPjwfL2j9N8Cucf/clSWClQDkY5+jYdm7A44Yfro0
-         KjjTWJsr2+ecafdFo2fwRX4IFEsXjd74wa9vuRVWaJwN0AH9ew7YXL2NCP8Io6jMpCYp
-         nB92OIpfOSp3v4L8OH/7pNfjXX1+DBucBWxfJ+YcOLEu/nnkM0G9bpOOGB5wgHYtXuQw
-         jb3kzeGFXvGZDMoiUw6R06dRXYbV1JKp9PVsBQWA6xcUtLDi7FpjvQNgoIJT6XJFtXag
-         PDDQ==
-X-Gm-Message-State: ANoB5pkPXZ58HWWZSLIo+8a//ieHyYmnlZigNn8ZzlT7NedCIWEo9bX1
-        GW81AP7A/r1VIl07r5/hCgkGK7BI+NukhHzXcBY=
-X-Google-Smtp-Source: AA0mqf7kzu6iAfWEPXh8v/aZNVbaQTPA+0OCONbOH+E5SHR2eUqLP85TXJEV/QkpOHRfXXEDIX1s/g==
-X-Received: by 2002:a19:7405:0:b0:4b5:7096:23ff with SMTP id v5-20020a197405000000b004b5709623ffmr1813356lfe.66.1670605076396;
-        Fri, 09 Dec 2022 08:57:56 -0800 (PST)
-Received: from krzk-bin (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id y1-20020a196401000000b004b5850e6b63sm332534lfb.65.2022.12.09.08.57.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 08:57:55 -0800 (PST)
-Date:   Fri, 9 Dec 2022 17:57:53 +0100
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>
-Subject: Re: [RESEND PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and
- MAX5978
-Message-ID: <20221209165753.q4ovlu2lebxfibed@krzk-bin>
-References: <20221124110210.3905092-1-Naresh.Solanki@9elements.com>
- <20221124110210.3905092-3-Naresh.Solanki@9elements.com>
- <CABqG17hCoY86w3usA6RNLQbGjHo_JRFioznuvdCZLo4_KNaMWg@mail.gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NXbFEB1xKk4N48FcslTMhY6JVh3nMLyk4J4qoIMRvnE=;
+        b=Dg4rl3DpSrz1/Z/AOf/XpgzA97ox2AseFETtpq3bIUL84eQKi7vYeD/k3rg0w3uU3F
+         geYv6QhoY/YddYjOLwSxuwTGFbhCeopEVKYgUOycgzXgXriQPsF3zpJxaASdvZbEU/NO
+         c6WR5kOSlrPm6gdOlm/5G5XadNupQrsLW22r5qCogJLHtoh+6uSDr99zhqcG7TDEPmQD
+         avcPZXyqCvAPlWyKQTuHgbcDM9msv4laOKBnLipH0n2CcGb5At7VSr5r+KvwPWCVAKkR
+         O04nwALet7jd2Td5SpsXUsSkwho2wgaeqDq3NsCb7SXk169Qx4bTfL5cdFEx6niCqFDO
+         k/UA==
+X-Gm-Message-State: ANoB5plRlTxqBTi6sBKiqZYJThubvo585Ny1jHXZJ7iPHgZgdCUKUwNr
+        n1GZnRXLqTyRnsNdfPVo9Qwnbo4++sJ6u6tqjO8=
+X-Google-Smtp-Source: AA0mqf6z8vepEdNdTGkXZ57/L9Tol1KwT0lekfsAxbNhbnAy5VZ1x7NMmay/sZdks6x58cIwG71PPA==
+X-Received: by 2002:a17:906:37ce:b0:7c1:41bb:70ac with SMTP id o14-20020a17090637ce00b007c141bb70acmr2155757ejc.64.1670605773104;
+        Fri, 09 Dec 2022 09:09:33 -0800 (PST)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id b2-20020a17090630c200b007b839689adesm120971ejb.166.2022.12.09.09.09.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Dec 2022 09:09:32 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id h7so5836433wrs.6
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 09:09:31 -0800 (PST)
+X-Received: by 2002:a5d:4943:0:b0:242:3ca3:b7bd with SMTP id
+ r3-20020a5d4943000000b002423ca3b7bdmr18075619wrs.583.1670605771352; Fri, 09
+ Dec 2022 09:09:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CABqG17hCoY86w3usA6RNLQbGjHo_JRFioznuvdCZLo4_KNaMWg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221209020612.1303267-1-dianders@chromium.org> <20221208180603.v2.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
+In-Reply-To: <20221208180603.v2.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 9 Dec 2022 09:09:19 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WnjpOSvQ88gQJDJ5HFipBU5K5JRApRjZ0QYhi9AkYOTQ@mail.gmail.com>
+Message-ID: <CAD=FV=WnjpOSvQ88gQJDJ5HFipBU5K5JRApRjZ0QYhi9AkYOTQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] arm64: dts: qcom: sc7180: Add pazquel360 touschreen
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, mka@chromium.org,
+        Yunlong Jia <ecs.beijing2022@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-input@vger.kernel.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 06, 2022 at 11:00:52PM +0530, Naresh Solanki wrote:
-> ping
+Hi,
 
-You missed several mailing lists and maintainers, so whom do you ping?
-Yourself? Please start using get_maintainers.pl...
+On Thu, Dec 8, 2022 at 6:06 PM Douglas Anderson <dianders@chromium.org> wrote:
+>
+> The touchscreen was supposed to have been added when pazquel360 first
+> was added upstream but was missed. Add it now.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+> (no changes since v1)
+>
+>  .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> index 5702325d0c7b..54b89def8402 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
+> @@ -14,6 +14,27 @@ &alc5682 {
+>         realtek,dmic-clk-rate-hz = <2048000>;
+>  };
+>
+> +ap_ts_pen_1v8: &i2c4 {
+> +       status = "okay";
+> +       clock-frequency = <400000>;
+> +
+> +       ap_ts: touchscreen@10 {
+> +               compatible = "elan,ekth3915", "elan,ekth3500";
+> +               reg = <0x10>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
+> +
+> +               interrupt-parent = <&tlmm>;
+> +               interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +               hid-descr-addr = <0x0001>;
 
->=20
-> Regards,
-> Naresh Solanki
->=20
->=20
->=20
-> 9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
-> Email:  naresh.solanki@9elements.com
-> Mobile:  +91 9538631477
->=20
-> Sitz der Gesellschaft: Bochum
-> Handelsregister: Amtsgericht Bochum, HRB 17519
-> Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
->=20
-> Datenschutzhinweise nach Art. 13 DSGVO
->=20
+I happened to re-read this and did a facepalm here. The
+'hid-descr-addr' doesn't belong here at all (it's for a totally
+different type of touchscreen), but it was there in our downstream
+branch (incorrectly) and I just copied it over. I even had noticed it
+before, but forgot it yesterday when posting this series.
+
+Just to get things out of the way, I'll post a v3 now. Sorry for the noise.
+
+-Doug
