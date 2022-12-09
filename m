@@ -2,720 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB42647FD3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 10:05:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 653AC647FD5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 10:07:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiLIJFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 04:05:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36364 "EHLO
+        id S229512AbiLIJHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 04:07:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiLIJFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 04:05:35 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3446011C1E
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 01:05:33 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id a19so4312451ljk.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 01:05:33 -0800 (PST)
+        with ESMTP id S229488AbiLIJHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 04:07:50 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA3A23145
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 01:07:48 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id c1so6051270lfi.7
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 01:07:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GwKYNzfl5yFLwm9nwpZvx4YULd6KDhGtfJ+NUxuhGMU=;
-        b=nBhdKrIfDXakNZMaJHCzZdl/Ow221uRkAKiaSI6z8L4GCBhhNKVqFgXB49oiKOPAZ8
-         Hlx1jkYkKwdAjasbcErEEtg/3aIUET+KS7vMq8frb2GOAhgIyvrsDZGMJXqcbe0615yh
-         6E0XWDy2//xYf62N9iMDtv4cI/L7GJczaAspMm+ITOfpXguTt8Kp+l5phWGAwecD+dmY
-         gbh4MNaT8alRCx/fZRWhpM3hHHO5s4DoNkaJbsJCiOUWXHz/8S4BvnWv98H7LAKLViIp
-         koG1hdu/4UXMDJbytVFSf4UTbaXs9udUakHVhFioJBIlWdBKUPicFZ5xdtX+dcPchl15
-         p0+Q==
+        bh=ybW+aCgYd8tZxSihqCA8moOMAzb18/wt69cgYIeTQLA=;
+        b=nBVQ+SkVhs3wwQPEnbXQvi8xQ3RpYbSkKWRIHcKT6pb0G4T4u5oKTdg5AIIzVp5QHa
+         wwp4Ki+AmN/jd394VY4agdyYhqjo5oTL47fyenY+zFI/0c1w1LSpMusItzVR690S9EPk
+         sRUS52upPS/qDLw9IYnKntnX2Agro2RQuJCwWxcp81edDraH3q6u4xiZsZtNNyhMkGcT
+         xhwMzuwEcw/j6Mi54GCXl4nISVjE0iRFG5jXmAnCqt5sQdk6F5Elj0AYdvs6O9XxTB4o
+         WrA9cpkMzg3+MnzbF+spFmYPO2kE7nXjyYdvwCD4EPx761r9LBHeUNeN9wtMF9pC02zd
+         Nu8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GwKYNzfl5yFLwm9nwpZvx4YULd6KDhGtfJ+NUxuhGMU=;
-        b=qAUzlNF9r5OseeZh/aBLAN46haT6UJTcKO7aj15RVl34C4LQdZ0phgbtEBAVK8IHlm
-         q1uUJoqQq4VLhSLhfTIfvKtKAhEq4DKsNDlfOcRnmlYIYorRWrLIgZOJKO8P1kkjAO3G
-         mVXbC+uBdwrq0kLLaSKz5tl1+EZMV3Pt5cb/MPRIvqX1W1zgu02Nleq9wIocSYlfiMdf
-         DMurQnpQTnc6TpO6LDHy52vCfPYn4j18qHGLLmBo0HH9+rx+0g4QzivhsMIoVBKDiEgT
-         lecas3fabQ0zh1UNYk23Ptrb2ZHW1aUgk4a2vyXTJUc2r9gUXpuzrVFOwekNYj0v7hhB
-         bBCQ==
-X-Gm-Message-State: ANoB5pl7jXIDCqfVF2zrYCHTwEwbeca8X6GA9Hb2jsOpziIMEOMpDdE/
-        teGA+FjVqWZPIqabYNECtuVNhg==
-X-Google-Smtp-Source: AA0mqf5toIzHjXXoeCB9lUjXIf4MZ++61zq8TBuCjidiw/YP/i/RKQ5iKYll95gaRKMaPMClLfSgxQ==
-X-Received: by 2002:a05:651c:1944:b0:26f:db34:a161 with SMTP id bs4-20020a05651c194400b0026fdb34a161mr1641848ljb.36.1670576731328;
-        Fri, 09 Dec 2022 01:05:31 -0800 (PST)
+        bh=ybW+aCgYd8tZxSihqCA8moOMAzb18/wt69cgYIeTQLA=;
+        b=PQZqmKVuNMPxA7k7kEH2kS1oOroloMrcCnhEeuw4NpbVmD8dguJ9a/l+jcvKhnB/uS
+         f4XbjbZWN5cyq14HzZoKzzGLFbpr8iC50nvnrGzOt2BIMjHfm4XB1Gs5DSruVgZfjXyT
+         IASdgxM1vp2HU4NMfAwPyJLk6wnWpeIx+u6e6GFzXc14J6Tk4v7RshRdQ5qqDcXlxe6d
+         VywG0LtNXY5+nBLjwJWNqUl0Tz36x3r9xXxHGupi/GBs1dtQt60xNkQGyFtwv9bl86Sp
+         lEz/Uru0L/azs2hHDXHX3hOV79zy9Ai6eim/xnFEoGy1g1YTIL3GjW4KHd9joKXmAM9m
+         xGIQ==
+X-Gm-Message-State: ANoB5pkfMttCCYLy2TT6oTAt748yBvvZhpAPY5h/h2PCoLF7jSFF5O89
+        wf+t4HE86v1+kBqQpBuWpu8icj7kv7MbLnKQy24=
+X-Google-Smtp-Source: AA0mqf7xqh4G/QTp1tz9wqt0dVEe0iVKnhHfr9sUq5VI81q6jrWkJVeObQvPjWJn+GyWT4tZSNB7xA==
+X-Received: by 2002:a05:6512:2007:b0:4b5:650b:ba3f with SMTP id a7-20020a056512200700b004b5650bba3fmr1340506lfb.12.1670576867136;
+        Fri, 09 Dec 2022 01:07:47 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id bg37-20020a05651c0ba500b00279c85d4400sm137018ljb.60.2022.12.09.01.05.30
+        by smtp.gmail.com with ESMTPSA id cf27-20020a056512281b00b0049fff3f645esm175958lfb.70.2022.12.09.01.07.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 01:05:30 -0800 (PST)
-Message-ID: <12c375c4-d7d0-7a7b-5688-2210491df8e6@linaro.org>
-Date:   Fri, 9 Dec 2022 10:05:29 +0100
+        Fri, 09 Dec 2022 01:07:46 -0800 (PST)
+Message-ID: <e1844fdc-c640-747d-e38f-400669f2a1a8@linaro.org>
+Date:   Fri, 9 Dec 2022 10:07:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3] dt-bindings: Convert active-semi PMIC docs to YAML
- schemas
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
+ delay property
 Content-Language: en-US
-To:     Paul Cercueil <paul@crapouillou.net>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20221207201341.191682-1-paul@crapouillou.net>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
+ <20221209083339.3780776-2-alexander.stein@ew.tq-group.com>
+ <07fbe219-9034-65f6-963a-037de9bb6d79@linaro.org>
+ <7463917.EvYhyI6sBW@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221207201341.191682-1-paul@crapouillou.net>
+In-Reply-To: <7463917.EvYhyI6sBW@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2022 21:13, Paul Cercueil wrote:
-> Create YAML bindings for the Active-semi PMICs and remove the old text
-> files.
-
-Use subject prefixes matching the subsystem (git log --oneline -- ...),
-so: regulator: dt-bindings: Convert active-semi PMIC to DT schema
-
+On 09/12/2022 09:54, Alexander Stein wrote:
+> Hello Krzysztof,
 > 
-> The bindings aren't perfect, for instance I couldn't find good
-> descriptions for the vendor properties in the "charger" node of the
-> ACT8945A because I am not familiar with the hardware and these
-> properties were not documented anywhere.
+> thanks for the fast feedback.
 > 
-> The YAML schemas are a bit different than what is described in the old
-> text files, because these were sometimes wrong or had missing
-> information. This is the case for the ACT8600 documentation, which
-> specified the valid node names for the regulators, while the driver was
-> expecting different names. This led to the current situation where we
-> have two different boards using different names for the regulators:
-> - arch/mips/boot/dts/ingenic/ci20.dts uses the names documented in the
->   text file,
-> - arch/mips/boot/dts/ingenic/gcw0.dts uses the names that the driver
->   expects.
-> In theory, the driver should be fixed to follow the documentation, and
-> accept both naming schemes. In practice though, when the PMIC node was
-> added to the ci20.dts board file, the names were already wrong in
-> regards to what the driver expected, so it never really worked
-> correctly and wasn't tested properly. Furthermore, in that board the
-> consumers of the regulators aren't working for various other reasons
-> (invalid GPIOs, etc.).
+> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
+>> On 09/12/2022 09:33, Alexander Stein wrote:
+>>> It takes some time until the enable GPIO has settled when turning on.
+>>> This delay is platform specific and may be caused by e.g. voltage
+>>> shifts, capacitors etc.
+>>>
+>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>> ---
+>>>
+>>>  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>
+>>> @@ -32,6 +32,10 @@ properties:
+>>>      maxItems: 1
+>>>      description: GPIO specifier for bridge_en pin (active high).
+>>>
+>>> +  ti,enable-delay-us:
+>>> +    default: 10000
+>>> +    description: Enable time delay for enable-gpios
+>>
+>> Aren't you now mixing two separate delays? One for entire block on (I
+>> would assume mostly fixed delay) and one depending on regulators
+>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
+>> second delays in your power supply? If so, the first one might be fixed
+>> and hard-coded in the driver?
 > 
-> For that reason, for the ACT8600 bindings I decided to only use the node
-> names that the driver expects (and that gcw0.dts uses), instead of
-> accepting both old and new names. A follow-up patch will update the CI20
-> board to use the new regulator names.
+> Apparently there are two different delays: reset time (t_reset) of 10ms as 
+> specified by datasheet. This is already ensured by a following delay after 
+> requesting enable_gpio as low and switching the GPIO to low in disable path.
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> When enabling this GPIO it takes some time until it is valid on the chip, this 
+> is what this series is about. It's highly platform specific.
 > 
-> ---
-> v2:
-> - Avoid | character in descriptions that can be single-line
-> - Remove unevaluatedProperties when additionalProperties is also present
-> - Remove useless inner parentheses in regular expressions
-> - Rename I2C nodes to just... i2c
-> - Remove node handles
-> 
-> v3:
-> - Fix alignment in examples
-> - Drop useless status = "okay"; in examples
-> - I set myself as the maintainer, which I only did because nobody else
->   seems to care.
-> 
-> Cheers,
-> -Paul
+> Unfortunately this is completely unrelated to the vcc-supply regulator. This 
+> one has to be enabled before the enable GPIO can be enabled. So there is no 
+> regulator-ramp-delay.
 
-(...)
+Your driver does one after another - regulator followed immediately by
+gpio - so this as well can be a delay from regulator (maybe not ramp but
+enable delay).
 
-
-> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
-> new file mode 100644
-> index 000000000000..d8cc9cd527ef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/active-semi,act8600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Active-semi ACT8600 regulator
-> +
-> +maintainers:
-> +  - Paul Cercueil <paul@crapouillou.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: active-semi,act8600
-> +
-> +  reg:
-> +    description: I2C address
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-> +    maxItems: 1
-> +
-> +  system-power-controller:
-> +    description:
-> +      Indicates that the ACT8600 is responsible for powering OFF
-> +      the system.
-> +    type: boolean
-> +
-> +  active-semi,vsel-high:
-> +    description:
-> +      Indicates the VSEL pin is high. If this property is missing,
-> +      the VSEL pin is assumed to be low.
-> +    type: boolean
-> +
-> +  regulators:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      DCDC1:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp1-supply:
-> +            description: Handle to the VP1 input supply
-> +
-> +      DCDC2:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp2-supply:
-> +            description: Handle to the VP2 input supply
-> +
-> +      DCDC3:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp3-supply:
-> +            description: Handle to the VP3 input supply
-> +
-> +    patternProperties:
-> +      "^(SUDCDC_REG4|LDO_REG9|LDO_REG10)$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +      "^LDO[5-8]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl-supply:
-> +            description: Handle to the INL input supply
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - regulators
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pmic@5a {
-> +        compatible = "active-semi,act8600";
-> +        reg = <0x5a>;
-> +
-> +        regulators {
-> +          SUDCDC_REG4 {
-> +            regulator-min-microvolt = <5300000>;
-> +            regulator-max-microvolt = <5300000>;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO5 {
-> +            regulator-min-microvolt = <2500000>;
-> +            regulator-max-microvolt = <2500000>;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO6 {
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO7 {
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO8 {
-> +            regulator-min-microvolt = <1800000>;
-> +            regulator-max-microvolt = <1800000>;
-> +            regulator-always-on;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO_REG9 {
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +            inl-supply = <&vcc>;
-> +          };
-> +
-> +          LDO_REG10 {
-> +            inl-supply = <&vcc>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml
-> new file mode 100644
-> index 000000000000..f276dec59b3d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml
-> @@ -0,0 +1,206 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/active-semi,act8846.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Active-semi ACT8846 regulator
-> +
-> +maintainers:
-> +  - Paul Cercueil <paul@crapouillou.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: active-semi,act8846
-> +
-> +  reg:
-> +    description: I2C address
-
-Ditto
-
-> +    maxItems: 1
-> +
-> +  system-power-controller:
-> +    description:
-> +      Indicates that the ACT8846 is responsible for powering OFF
-> +      the system.
-> +    type: boolean
-> +
-> +  active-semi,vsel-high:
-> +    description:
-> +      Indicates the VSEL pin is high. If this property is missing,
-> +      the VSEL pin is assumed to be low.
-> +    type: boolean
-> +
-> +  regulators:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      REG1:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp1-supply:
-> +            description: Handle to the VP1 input supply
-> +
-> +      REG2:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp2-supply:
-> +            description: Handle to the VP2 input supply
-> +
-> +      REG3:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp3-supply:
-> +            description: Handle to the VP3 input supply
-> +
-> +      REG4:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp4-supply:
-> +            description: Handle to the VP4 input supply
-> +
-> +    patternProperties:
-> +      "^REG[5-7]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl1-supply:
-> +            description: Handle to the INL1 input supply
-> +
-> +      "^REG[8-9]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl2-supply:
-> +            description: Handle to the INL2 input supply
-> +
-> +      "^REG1[0-2]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl3-supply:
-> +            description: Handle to the INL3 input supply
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - regulators
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pmic@5a {
-> +        compatible = "active-semi,act8846";
-> +        reg = <0x5a>;
-> +
-> +        system-power-controller;
-> +
-> +        regulators {
-> +          REG1 {
-> +            regulator-name = "VCC_DDR";
-> +            regulator-min-microvolt = <1200000>;
-> +            regulator-max-microvolt = <1200000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG2 {
-> +            regulator-name = "VCC_IO";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG3 {
-> +            regulator-name = "VDD_LOG";
-> +            regulator-min-microvolt = <1000000>;
-> +            regulator-max-microvolt = <1000000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG4 {
-> +            regulator-name = "VCC_20";
-> +            regulator-min-microvolt = <2000000>;
-> +            regulator-max-microvolt = <2000000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG5 {
-> +            regulator-name = "VCCIO_SD";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG6 {
-> +            regulator-name = "VDD10_LCD";
-> +            regulator-min-microvolt = <1000000>;
-> +            regulator-max-microvolt = <1000000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG7 {
-> +            regulator-name = "VCC_WL";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG8 {
-> +            regulator-name = "VCCA_33";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG9 {
-> +            regulator-name = "VCC_LAN";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG10 {
-> +            regulator-name = "VDD_10";
-> +            regulator-min-microvolt = <1000000>;
-> +            regulator-max-microvolt = <1000000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG11 {
-> +            regulator-name = "VCC_18";
-> +            regulator-min-microvolt = <1800000>;
-> +            regulator-max-microvolt = <1800000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          REG12 {
-> +            regulator-name = "VCC18_LCD";
-> +            regulator-min-microvolt = <1800000>;
-> +            regulator-max-microvolt = <1800000>;
-> +            regulator-always-on;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml
-> new file mode 100644
-> index 000000000000..cf36ab7c82c4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml
-> @@ -0,0 +1,162 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/active-semi,act8865.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Active-semi ACT8865 regulator
-> +
-> +maintainers:
-> +  - Liam Girdwood <lgirdwood@gmail.com>
-> +  - Mark Brown <broonie@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: active-semi,act8865
-> +
-> +  reg:
-> +    description: I2C address
-
-ditto
-
-> +    maxItems: 1
-> +
-> +  system-power-controller:
-> +    description: |
-> +      Indicates that the ACT8865 is responsible for powering OFF
-> +      the system.
-> +    type: boolean
-> +
-> +  active-semi,vsel-high:
-> +    description: |
-> +      Indicates the VSEL pin is high. If this property is missing,
-> +      the VSEL pin is assumed to be low.
-> +    type: boolean
-> +
-> +  regulators:
-> +    type: object
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      DCDC_REG1:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp1-supply:
-> +            description: Handle to the VP1 input supply
-> +
-> +      DCDC_REG2:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp2-supply:
-> +            description: Handle to the VP2 input supply
-> +
-> +      DCDC_REG3:
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          vp3-supply:
-> +            description: Handle to the VP3 input supply
-> +
-> +    patternProperties:
-> +      "^LDO_REG[1-2]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl45-supply:
-> +            description: Handle to the INL45 input supply
-> +
-> +      "^LDO_REG[3-4]$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          inl67-supply:
-> +            description: Handle to the INL67 input supply
-> +
-> +    additionalProperties: false
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - regulators
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/regulator/active-semi,8865-regulator.h>
-> +
-> +    i2c1 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pmic: act8865@5b {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +        compatible = "active-semi,act8865";
-> +        reg = <0x5b>;
-> +        active-semi,vsel-high;
-> +
-> +        regulators {
-> +          vcc_1v8_reg: DCDC_REG1 {
-> +            regulator-name = "VCC_1V8";
-> +            regulator-min-microvolt = <1800000>;
-> +            regulator-max-microvolt = <1800000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          vcc_1v2_reg: DCDC_REG2 {
-> +            regulator-name = "VCC_1V2";
-> +            regulator-min-microvolt = <1100000>;
-> +            regulator-max-microvolt = <1300000>;
-> +            regulator-always-on;
-> +
-> +            regulator-allowed-modes = <ACT8865_REGULATOR_MODE_FIXED>,
-> +                                      <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> +            regulator-initial-mode = <ACT8865_REGULATOR_MODE_FIXED>;
-> +
-> +            regulator-state-mem {
-> +              regulator-on-in-suspend;
-> +              regulator-suspend-min-microvolt = <1150000>;
-> +              regulator-suspend-max-microvolt = <1150000>;
-> +              regulator-changeable-in-suspend;
-> +              regulator-mode = <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> +            };
-> +          };
-> +
-> +          vcc_3v3_reg: DCDC_REG3 {
-> +            regulator-name = "VCC_3V3";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          vddana_reg: LDO_REG1 {
-> +            regulator-name = "VDDANA";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +
-> +            regulator-allowed-modes = <ACT8865_REGULATOR_MODE_NORMAL>,
-> +            <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> +            regulator-initial-mode = <ACT8865_REGULATOR_MODE_NORMAL>;
-> +
-> +            regulator-state-mem {
-> +              regulator-off-in-suspend;
-> +            };
-> +          };
-> +
-> +          vddfuse_reg: LDO_REG2 {
-> +            regulator-name = "FUSE_2V5";
-> +            regulator-min-microvolt = <2500000>;
-> +            regulator-max-microvolt = <2500000>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml
-> new file mode 100644
-> index 000000000000..b8c0ba8247ef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml
-> @@ -0,0 +1,259 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/active-semi,act8945a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Active-semi ACT8945a regulator
-> +
-> +maintainers:
-> +  - Paul Cercueil <paul@crapouillou.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: active-semi,act8945a
-> +
-> +  reg:
-> +    description: I2C address
-
-ditto
-
-> +    maxItems: 1
-> +
-> +  system-power-controller:
-> +    description:
-> +      Indicates that the ACT8945a is responsible for powering OFF
-> +      the system.
-> +    type: boolean
-> +
 
 Best regards,
 Krzysztof
