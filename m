@@ -2,164 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8714F647EEA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B67E4647F13
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:15:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbiLIIHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 03:07:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
+        id S230058AbiLIIPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 03:15:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiLIIHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:07:00 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE025B86E
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:06:59 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id b13so5855768lfo.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 00:06:59 -0800 (PST)
+        with ESMTP id S229779AbiLIIPJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:15:09 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849B6F5AB
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:15:08 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id c1so5871619lfi.7
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 00:15:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t3Vs+1WI1y3virfX5xKwzsGtAygi7nWt3LxEdPgxueY=;
-        b=DM5mZnd9ChTGZazpZvbX3e2l/bSIy8PL3KnAU66pl2Mfhb5SEXRPyiA10Yy551uzlb
-         EOeuefI7JelhJ8rQiCN7k4Tfit64IT+e0l4Ogz/6o7AAabwZYURpj47g+c9gnYl9I0Oe
-         vCN3ibG7BdaKeZjiaKw+H84K2YdS89F7JvDj8G0VUJCVusbvlGQ2lMYtOPjvoZIRlHcd
-         ZJc7GUf76vBS+oqzcwb9tLbcQvI+Y8b+5blVdAmO9hx1Hls4iAebc6zDqlKPIAf66rIT
-         afLcrMgZ9/SYJYQJmOV18QjU7k700yKlWfMuK9TPM/ZmtJWyoY9TbOUb+/LEVRpPifyS
-         8v/Q==
+        bh=TU3iTOgUKCrTzkxasHDvYAEVuyaSKUnPm4hRffDvfg0=;
+        b=aUBEkLHMG2a1aqywjROvKDCIe9ylxqURVXAp8duIfrydYO/Faf9AThcdockIisPXdC
+         qxFezRTBRK8LHAlZx+trl6j8CpOkjldoIzNt0QKbrbUcNlpj2Q4j5/VUbRHoxeY5F1OY
+         G0ZSG4thKqKkkEjRsoHIgYUfSLZA1H6jUgp7ObtGzIB3rjKjnOHRfnlvW5qO+MjGKc3d
+         hXJs6sv5h8XQhLlevPcxk2i9M2+9F/IN2tzGlbUweA88xW0cAzvbGobLwNS6oI4nHd/B
+         N1RqeF10Psn7QtA+jH/l5BkgKLoRrmrz2oX+lsg44+bkinouLR8v4mOgaW/5O/II4bVr
+         p4IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t3Vs+1WI1y3virfX5xKwzsGtAygi7nWt3LxEdPgxueY=;
-        b=lrtES7bWRmZ0HLwn1lhR3CIZJC+Y4t3Igx6i58nF6z80bYS8qog3NDH7sNrrk91INV
-         H1gCLSwvubwW7Hgz8QaTjvYR/kiCqR8DLETHf4dJekvDBTDttc49J2XKUhFYg1EK/YsG
-         EMa1eGyJlmguKatUxzBEhWaInMEXbxgrz+d7v4e6T5/AehH4z9sdpHD6tQ2fgtT5PIWo
-         33uy5hx+rCmZBZCWNDBOq1zlNfmnOj94By4mlWY2ZdgMA3HG00GWLBD8MXE6oqYYhb1d
-         l0aNvBYuzyO+BL34d1hJ9V2MPLjnzsms5doM5CZQCCDPxV6NWwFsyL8MPSi6jrscJU1V
-         cehw==
-X-Gm-Message-State: ANoB5pkKcYrZ+dN5TAOi+dztbcN4HIksyeQvkWCCrKqEmRj7+mh5Imv6
-        ICaKC/KryLWfmpRhoZvkELl4PA==
-X-Google-Smtp-Source: AA0mqf6UBTJgYTJ9mm2nM5Oa6/8gKG5B2r0fumHwhHHSaESXxoQhfvm9fGBSLzqAfFkdEtVurXaPzA==
-X-Received: by 2002:a05:6512:1508:b0:4a4:68b9:6094 with SMTP id bq8-20020a056512150800b004a468b96094mr1979487lfb.31.1670573217565;
-        Fri, 09 Dec 2022 00:06:57 -0800 (PST)
+        bh=TU3iTOgUKCrTzkxasHDvYAEVuyaSKUnPm4hRffDvfg0=;
+        b=gcIut1XB48hpSPk4REqNM4tGm5btCwxBTK/e3lZitgRx18BJlRXm9hXUke5cwopG4n
+         pjWsR5NA7GvknS5JAQKyR+x9OyKHzyOiKVcmMN92T5+eWqNuAI65nQPQN5Oa1mJ6U4uG
+         bWq4l6JBw97JmbYc08tkEYZlXSPMbupema5+4ebXMGIReBXEFpsTrdD6FBtKhVCKnlwJ
+         AzzaTFThfbmILR6/slN7yexdnMGVUMagOCAlaAyMevCIoOYb9DJcMZamE0gF+sMrW1Xm
+         +u3OHp9Zusblp56U0j+qRRNJmp5Skdxe0E9CU1DkYByTpAClzPJAUztK2nsciReLzePL
+         PznQ==
+X-Gm-Message-State: ANoB5pkPZo2Amp5lQHHbyRN2WEKI36nDtFLkql6Qu7QbKOAR+yupAR1+
+        Iasq1kxSi2thcH9j+6HikWS1LQ==
+X-Google-Smtp-Source: AA0mqf5LH0oaXBX2oMln8F2dI/6wLckfhiUbmEX2RUMeqW67bVLpSEOEn0X/W+YSDlUTzAcknDlmew==
+X-Received: by 2002:ac2:59c9:0:b0:4b5:6d7f:8cb3 with SMTP id x9-20020ac259c9000000b004b56d7f8cb3mr1162314lfn.11.1670573706925;
+        Fri, 09 Dec 2022 00:15:06 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id q25-20020ac25a19000000b00494978b0caesm152032lfn.276.2022.12.09.00.06.56
+        by smtp.gmail.com with ESMTPSA id u27-20020ac258db000000b00494603953b6sm164105lfo.6.2022.12.09.00.15.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 00:06:57 -0800 (PST)
-Message-ID: <15cb7a77-4308-15f0-4669-7a2673b4abcb@linaro.org>
-Date:   Fri, 9 Dec 2022 09:06:55 +0100
+        Fri, 09 Dec 2022 00:15:06 -0800 (PST)
+Message-ID: <6e5a2d2a-6d97-a84e-97c2-819053f1dd59@linaro.org>
+Date:   Fri, 9 Dec 2022 09:15:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 3/9] dt-bindings: PCI: renesas,pci-rcar-gen2:
- 'depends-on' is no more optional
+Subject: Re: [PATCH v4 1/7] dt-bindings: arm64: dts: mediatek: Add mt8365-evk
+ board
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221207162435.1001782-1-herve.codina@bootlin.com>
- <20221207162435.1001782-4-herve.codina@bootlin.com>
- <36895e49-aea5-3676-e7df-78b30277e6a0@linaro.org>
- <20221208100530.137fa8b7@bootlin.com>
- <8dfb5b8a-766a-14ec-16d4-74fdd9f7d622@linaro.org>
- <20221208165101.584e4b92@bootlin.com>
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        linux-mediatek@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, khilman@baylibre.com
+References: <20221208153041.3965378-1-bero@baylibre.com>
+ <20221208153041.3965378-2-bero@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208165101.584e4b92@bootlin.com>
+In-Reply-To: <20221208153041.3965378-2-bero@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 16:51, Herve Codina wrote:
-> Hi Krzysztof,
+On 08/12/2022 16:30, Bernhard Rosenkränzer wrote:
+> Add bindings for the Mediatek mt8365-evk board.
 > 
-> On Thu, 8 Dec 2022 10:46:32 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 08/12/2022 10:05, Herve Codina wrote:
->>> Hi Krzysztof,
->>>
->>> On Thu, 8 Dec 2022 09:26:41 +0100
->>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>   
->>>> On 07/12/2022 17:24, Herve Codina wrote:  
->>>>> The 'depends-on' property is set in involved DTS.
->>>>>
->>>>> Move it to a required property.
->>>>>
->>>>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml | 1 +    
->>>>
->>>> This should be squashed with previous patch. There is no point to add
->>>> property and immediately in the next patch make it required. Remember
->>>> that bindings are separate from DTS.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>  
->>>
->>> I though about make dtbs_check in case of git bisect.  
->>
->> And what would this commit change? In Git you will have
->> 1. dt-bindings: PCI: renesas,pci-rcar-gen2: Add depends-on for RZ/N1 SoC
->> family
->> 2. dt-bindings: PCI: renesas,pci-rcar-gen2: 'depends-on' is no more optional
->>
->> so what is the difference for git bisect?
-> 
-> Well, today, I have:
-> 1. dt-bindings: Add depends-on
-> 2. dts: Add depends-on
-> 3. dt-bindings: Move depends-on to mandatory
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> ---
 
-What does it mean "I have"? Patches on mailing list? But we talk about
-Git and I wrote you bindings are DTS are not going the same tree.
 
-> 
-> If I squash dt-bindings commits, I am going to have:
->   1. dt-bindings: Add mandatory depends-on
->   2. dts: Add depends-on
-> or
->   1. dts: Add depends-on
->   2. dt-bindings: Add mandatory depends-on
-
-And how does it matter? Anyway it goes separate trees.
-
-> 
-> I have not tested but if I used only the first commit in each
-> case (git bisect):
-
-It's not bisectable anyway, you cannot make it bisectable within one
-release.
-
-> In the first case, dtbs_check is probably going to signal the
-> missing 'depends-on' property on dts.
-> In the second case, dtbs_check is probably going to signal the
-> not described 'depends-on' property present in dts.
-
-And why is that even a problem?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
