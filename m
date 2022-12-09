@@ -2,137 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1072648511
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:26:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE436485B4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:39:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbiLIP0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 10:26:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47036 "EHLO
+        id S229966AbiLIPjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 10:39:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230045AbiLIP0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:26:23 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41D8C8B38C
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 07:26:22 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id s8so7550524lfc.8
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 07:26:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pLB1Wp3SQOJvU3kmfPpuZm7QuXVx8DYyBfu0xuLdcZw=;
-        b=m3hxql7NUdafbTVeg6ijPntzDBxQVpRc5SWUf8+sGDBP7ZLuHGeqdSTidfzXI2OeGz
-         d7jUrkc/b3Ioz97kyV7naZ1GT95f7m7jUadk+KW9MxmdxO4kDNIa8ZG8vHvhA8BUUr3v
-         E8eMALq+oA5w6jzSbVgg2jW8JrpK1y92yxYEBuzVpYhRga8Q/5ePYfkVhqqgxpR247xh
-         piqcwWwxSy66pxc6pCi/FW9UT6BJOfz8mPoohSczDqj6LHQH9z4TtOghDLiEDb+Hcb+W
-         4wxgBisisAqnht1uTCJFo760Iv0YrOHwU/KUf3emx2rYQ6DUYB3l7k+woqjeABpqp+3h
-         O5yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pLB1Wp3SQOJvU3kmfPpuZm7QuXVx8DYyBfu0xuLdcZw=;
-        b=R+v2JSco2msUvTl0+zHIrtgDLkleljcMxOaIjrx76HWvdmLrSYoTe2hdRKHk1MUI3u
-         hhGIVioFqifqnjISHmF4+7p1DP7fame5cJBtaBIGixlIopqxXy1tFCNC0pPNf9a7uCkX
-         wgbv2MsWl+vvBIrQs4ubPWuz3FUZo/Yyz7jo3SLc3ALOd3Ljg2K6wG1bPiRjNcZ8LI4T
-         yXNcki6wpw4hgpyW5sWU+yojcPySJR0g5XDk/epNo8bg+PMJ6SB/G3tFJoEw14ZKkI+3
-         w/2yN2iFdvkMvJqDiGXuoWgxtaLjyzhXSikNtriBMYi0PHftHbpVkjyCXczVshK+uiAa
-         MsNQ==
-X-Gm-Message-State: ANoB5plrO16SsHmq3zxk82e/KVhY+E2FSWb+jhImNDNP4loao8jNUHPJ
-        eHKPMLsSdb3MkJ7YNqpp/z0QfQ==
-X-Google-Smtp-Source: AA0mqf4taA+JeYEBat76sf7r3OiUs4uoVxCCpHSHBKIeuJiMnNnndlfjtMxgKqqIZfbViMyJW4ZPSA==
-X-Received: by 2002:ac2:4c07:0:b0:4a4:68b9:66f5 with SMTP id t7-20020ac24c07000000b004a468b966f5mr1397063lfq.64.1670599580603;
-        Fri, 09 Dec 2022 07:26:20 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id n21-20020a05651203f500b004b4ea0f4e25sm299664lfq.301.2022.12.09.07.26.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 07:26:20 -0800 (PST)
-Message-ID: <a4a88541-2e5c-7f7f-ae3a-38f0f48c1feb@linaro.org>
-Date:   Fri, 9 Dec 2022 16:26:19 +0100
+        with ESMTP id S230484AbiLIPjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:39:03 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41671944DE;
+        Fri,  9 Dec 2022 07:38:37 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1B515240007;
+        Fri,  9 Dec 2022 15:38:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670600315;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=iEZQ7a3rtGPOj2loD/oWZkyH/UPYQamMD++xVLPyjxU=;
+        b=UqeC9/7xfyDro4Vdn/TMvdKer07QL9tkNgkjMEGojQaS4CHRS7505GOMSfwaFbtJxgKiUd
+        JMbDh4qigIO/mEhhwVUnJeAQHH7TusS3DZOw0gJ2jruaU92ZBTzQsqzGZJOEB+I85kryjZ
+        6vlo9Q4JNO9d7LKbsbbCN80Nhm69NUeHkkhHuuVETBgSZLbc5ukg6DWCzzSpLIQBieYLJ3
+        iQ9h6a4fp73rdzz3rTtjc38NQPxenYWtIiT9kAfqY1k2W7eVhdq+WIg5G+ijIV2O9Uj2/9
+        DqqNmw/uBHwrUPRPqM30IxG9D57QAmsdzqCOf8/crRtAstsd+gmXY0AGkXbyWg==
+Date:   Fri, 9 Dec 2022 16:38:30 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Thorsten Leemhuis" <regressions@leemhuis.info>,
+        "Marek Vasut" <marex@denx.de>, "Shawn Guo" <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "Francesco Dolcini" <francesco.dolcini@toradex.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
+        "Fabio Estevam" <festevam@gmail.com>,
+        "NXP Linux Team" <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, stable@vger.kernel.org,
+        "Francesco Dolcini" <francesco@dolcini.it>
+Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
+ size-cells"
+Message-ID: <20221209163830.4b47ccb5@xps-13>
+In-Reply-To: <dbdb4417-a1cf-4613-8f7a-98b524bfdedc@app.fastmail.com>
+References: <20221205152327.26881-1-francesco@dolcini.it>
+        <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
+        <20221208115124.6cc7a8bf@xps-13>
+        <Y5ITkZtKWHzWaLS4@francesco-nb.int.toradex.com>
+        <bb4e185a-c4db-428b-a1ee-ee1ba767fffb@leemhuis.info>
+        <dbdb4417-a1cf-4613-8f7a-98b524bfdedc@app.fastmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: zynqmp: Add xlnx prefix to GEM compatible
- string
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc:     Harini Katakam <harini.katakam@amd.com>,
-        David Heidelberg <david@ixit.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Piyush Mehta <piyush.mehta@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <718283a9f5493ab63b4aaa12337dd5cab6538ff5.1670594172.git.michal.simek@amd.com>
- <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
- <d097b9f5-a82d-f343-088d-d745d5d1ed32@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d097b9f5-a82d-f343-088d-d745d5d1ed32@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 16:23, Michal Simek wrote:
-> 
-> 
-> On 12/9/22 16:11, Krzysztof Kozlowski wrote:
->> On 09/12/2022 14:56, Michal Simek wrote:
->>> From: Harini Katakam <harini.katakam@amd.com>
->>>
->>> cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
->>> favour of xlnx prefix. Add this new compatible string and retain
->>> the existing string for compatibility with uboot drivers.
->>>
->>> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>>
->>>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++----
->>>   1 file changed, 4 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> index 8553299f12eb..233127d94204 100644
->>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->>> @@ -507,7 +507,7 @@ nand0: nand-controller@ff100000 {
->>>   		};
->>>   
->>>   		gem0: ethernet@ff0b0000 {
->>> -			compatible = "cdns,zynqmp-gem", "cdns,gem";
->>> +			compatible = "xlnx,zynqmp-gem", "cdns,zynqmp-gem", "cdns,gem";
->>
->> That's not what the bindings are saying. If this was the intention of
->> AMD, you should have replied to my patch that you need prolonged
->> backwards compatibility.
-> 
-> I have sent the patch to U-Boot to support new compatible string and CC you on 
-> that too.
-> 
-> I have no problem to do switch just to xlnx one but it is not fully accurate 
-> that cdns,versal-gem wasn't used. True is not in Linux but it was used in U-Boot.
-> 
-> If we can go straight to xlnx,zynqmp-gem, cdns,gem I will send v2 of this patch.
+Hi Arnd,
 
-Yeah, there might be also few other users of these bindings (other
-systems), thus the DTS change might need to wait a bit. The other way
-would be to change bindings to match your three-compatible usage, but
-then we would have these in three places in DTS (old compatible,
-new+old, only new).
+arnd@arndb.de wrote on Fri, 09 Dec 2022 16:25:28 +0100:
 
-Best regards,
-Krzysztof
+> On Fri, Dec 9, 2022, at 14:30, Thorsten Leemhuis wrote:
+> > On 08.12.22 17:40, Francesco Dolcini wrote: =20
+> >> + Arnd =20
+> >
+> > Arnd, have you seen this? We haven't heard anything from Shawn afaics,
+> > who normally would take care of a patch like this. Hence could you
+> > consider picking up the patch at the start of this thread (e.g.
+> > https://lore.kernel.org/all/20221205152327.26881-1-francesco@dolcini.it/
+> > ) and send it to Linus in the next 48 hours? It seems low-risk and fixes
+> > a regression introduced this cycle various people care about. That's why
+> > I'll likely ask Linus to consider picking this up directly before
+> > releasing 6.1, if I don't hear anything from you soon. But I'd prefer if
+> > the patch would go through at least somewhat the proper channels;
+> > alternatively a ACK from you to signal Linus "yeah, pick this up" would
+> > help as well. =20
+>=20
+> Done now.
+>=20
+>    Arnd
 
+Thanks a lot.
+
+Miqu=C3=A8l
