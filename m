@@ -2,80 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED08164884A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 19:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8373648891
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 19:43:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229563AbiLISQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 13:16:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        id S229850AbiLISm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 13:42:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiLISQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 13:16:28 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AAFFA658B
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 10:16:27 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id q7so5750264ljp.9
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 10:16:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JoijXwXZ/QMJ+MHmkZyk6ZNFTzCacwwN6Dw+3qiPXXU=;
-        b=h+HpFt+vSKp8kV7WQ++6tCOuO+RtZ++ppnktlp1IbIk13aECw9XflFvc2XB5Yv+N09
-         bgU57OdhcTCbne6b1N/EnY0OuW91EQgCes/7Xox9Z7prerMqRvKGVwpurPHkeX0B2Kvl
-         9oRveEUnlks0l6TLSuDC4btGK/HyS1ZPam3qjzEVCOklNvgcJ2xojRD0bdHgBLPcycRR
-         jukmzQ/cFEKEKSQI0DUGQ3WcQ8hsGCgI24lGieyDvzrvJGOl3CrONkYyAp9QFBfk2vpk
-         jQabuwnUXPIQN3aAlsrIkqu6W2YLTVhtyJxwJbB5hYWBmwSkxErvRgNOXIsaHX0qJdHb
-         kMFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JoijXwXZ/QMJ+MHmkZyk6ZNFTzCacwwN6Dw+3qiPXXU=;
-        b=zk3eyaPPSIbbCRqywHaS9EP0MY33a3itt+3I5y3y+Dlw1j6qXnTQh+xcoVUizoF/Dp
-         JMcl6XXOXcgPpFAAISWBvvupR1p/EzB6qCnEb1r1knZ6PjjZzJizcbnk94MBF+YOLYHl
-         rW7Uqz7dimOVByPzXnHi6x/KG9AtjVs2LB+X+r0om8IeDALdzuDWherErlJfP5dN4CPt
-         EKWRrHFXKXhz3Rhzr26L7rPnELQDjt++PWkOA3TF3KfXs+/MV5QA7pfmlb9FyNhM/mdM
-         NFOmWpPiXvmt2vWbDvc5K2UCFaGkbdKkDDUARdmYUPN/a2h+fmiwQvVxmx4ucK9CtsP7
-         ypQQ==
-X-Gm-Message-State: ANoB5pn1gnm3u7ZtG/VtCA2KFqcj5/F2btORcq/mvTOz0/BZId6HDXYd
-        d4MEXq5ExTVpMn/dX8tGaQynGw==
-X-Google-Smtp-Source: AA0mqf5r3ZO5zIYlFZLUCjVtJaiX96hnOAEKv0jeiM/6xAWJJKHfLoffaNGAMOsEnOBRAEYra8d6lg==
-X-Received: by 2002:a2e:9cce:0:b0:27a:1c5a:9faa with SMTP id g14-20020a2e9cce000000b0027a1c5a9faamr1898251ljj.24.1670609785903;
-        Fri, 09 Dec 2022 10:16:25 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id i124-20020a2e2282000000b0027712379ec8sm302618lji.28.2022.12.09.10.16.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 10:16:25 -0800 (PST)
-Message-ID: <0055a151-0f29-581f-f938-e7647105c3ec@linaro.org>
-Date:   Fri, 9 Dec 2022 19:16:24 +0100
+        with ESMTP id S229951AbiLISmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 13:42:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE795C76B;
+        Fri,  9 Dec 2022 10:42:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A3B2622FE;
+        Fri,  9 Dec 2022 18:42:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09FDC433EF;
+        Fri,  9 Dec 2022 18:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670611371;
+        bh=PpE/G/4dvnSSAm8Q7Pn2IAc5LMvy9D6cw/GCLldO0ms=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=F1S6Ycl3LrDQuNE7lflcCF9ALoe/dSaR0vWZv/KPyaGuzx5CDdcOsTvPmrszRAt6h
+         MbgC3lOeF+nfVAE5h2KKDRMqyR8zOPu4l08ZXCEdV8L361DTKlZ6jZEd5pnhz1HviI
+         FVafqAjov2Z2kNFV1zN85bPLqyK5PyWgvox3UdZSJb/p9Nz/l0Kuz64QK+d2yz99fK
+         WDMJX8IRE6t2WwjAfOx67ONytkso+oFnWzzPaV1bnqtaHqI7SOeil28bR8jVa2os0o
+         TMzBBZ4PruxP4u5F8sNn2LUPGaD1GbGOjUmaLWin4ZBsg93tv+EqjziZhmSq4JMd5p
+         qPUeYjzTmKz1A==
+Received: by mail-ua1-f50.google.com with SMTP id m5so1557829uah.3;
+        Fri, 09 Dec 2022 10:42:50 -0800 (PST)
+X-Gm-Message-State: ANoB5pmZGUEtTazTkIGIMi9ruI7pE1TR526lmUZZgTAZDcDZ18CBpqh5
+        p1PEm3jXepkTWwQC7AOjthSCovahG9jPFnQbQQ==
+X-Google-Smtp-Source: AA0mqf79z59cmKU7wd0hgtORScW/h1SAPCmD82lmyH4G17E8k94N0WGkMeg1Mx2wwn6Wlpetminrk/ZkwcmCMD0R5uE=
+X-Received: by 2002:ab0:3a96:0:b0:419:678:cf31 with SMTP id
+ r22-20020ab03a96000000b004190678cf31mr34441960uaw.63.1670611369881; Fri, 09
+ Dec 2022 10:42:49 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sdm845: align TLMM pin
- configuration with DT schema
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+References: <20221209171621.3351220-1-robh@kernel.org>
+In-Reply-To: <20221209171621.3351220-1-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 9 Dec 2022 12:42:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL-FVy1SK1ZTVoPaxDG0-7_PtcZZHFWJt8+aaGWFFBwaA@mail.gmail.com>
+Message-ID: <CAL_JsqL-FVy1SK1ZTVoPaxDG0-7_PtcZZHFWJt8+aaGWFFBwaA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Convert Fujitsu SDHCI to DT schema
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20221202155738.383301-1-krzysztof.kozlowski@linaro.org>
- <20221202155738.383301-2-krzysztof.kozlowski@linaro.org>
- <CAD=FV=UPLssDromnt89RYbSEU9qq_t+CSyd5VhmD7b-9JkcMFA@mail.gmail.com>
- <c0b660bf-93c2-89b6-e704-17489efe6840@linaro.org>
- <CAD=FV=UjwDkgXXmVcV-XNsPKOGh=TVsQexC0YQoU-_fz==y+UQ@mail.gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=UjwDkgXXmVcV-XNsPKOGh=TVsQexC0YQoU-_fz==y+UQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,67 +63,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 18:53, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Dec 9, 2022 at 2:25 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 02/12/2022 17:53, Doug Anderson wrote:
->>> Hi,
->>>
->>> On Fri, Dec 2, 2022 at 7:57 AM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> DT schema expects TLMM pin configuration nodes to be named with
->>>> '-state' suffix and their optional children with '-pins' suffix.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>
->>>> ---
->>>>
->>>> Cc: Doug Anderson <dianders@chromium.org>
->>>>
->>>> Tested on Qualcomm RB3. Please kndly test a bit more on other devices.
->>>> This should not have an functional impact.
->>>>
->>>> Changes since v2:
->>>> 1. Bring back UART6 4-pin bias/drive strength to DTSI.
->>>
->>> Just to be clear, it doesn't actually belong in the DTSI, but it was
->>> there before your patch and it's fine if your patch series doesn't fix
->>> the whole world. I'm OK with this one staying in the DTSI for now just
->>> to keep things simpler.
->>>
->>> One change missing in v3 that I would have expected based on our
->>> discussion in the previous version would be to "Add UART3 4-pin mux
->>> settings for use in db845c." I think you said you would do this, but I
->>> don't see it done.
->>
->> Hm, I don't recall that. Changing db845c to usage of RTS/CTS is
->> independent problem, not related to fixes or aligning with DT schema.
-> 
-> It was in the message:
-> 
-> https://lore.kerne.org/r/68bcdf25-e8e3-f817-f213-efb0bce3f43a@linaro.org
-> 
-> I said:
-> 
->> FWIW, I would have expected that the SoC dtsi file would get a "4-pin"
->> definition (similar to what you did with qup_uart6_4pin) and then we'd
->> use that here.
-> 
-> You said:
-> 
->> Sure.
-> 
+On Fri, Dec 9, 2022 at 11:16 AM Rob Herring <robh@kernel.org> wrote:
+>
+> Convert the Fujitsu SDHCI binding to DT schema format.
+>
+> The interrupts were not documented. The driver only uses the first
+> interrupt, but the DT and example have 2 interrupts. The 2nd one is
+> unknown. "dma-coherent" was also not documented, but is used.
+>
+> The "socionext,synquacer-sdhci" compatible was not documented, but it is
+> compatible with "fujitsu,mb86s70-sdhci-3.0.yaml" and is in use (in
+> u-boot Synquacer dts).
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../mmc/fujitsu,mb86s70-sdhci-3.0.yaml        | 67 +++++++++++++++++++
+>  .../devicetree/bindings/mmc/sdhci-fujitsu.txt | 32 ---------
+>  2 files changed, 67 insertions(+), 32 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml b/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
+> new file mode 100644
+> index 000000000000..0218a6ce4b2f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/fujitsu,mb86s70-sdhci-3.0.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Fujitsu SDHCI controller
+> +
+> +maintainers:
+> +  - Vincent Yang <Vincent.Yang@tw.fujitsu.com>
 
-Yes, indeed and it see now I still keep there cts-rts-pins. Somehow I
-thought now we talk about UART6 or UART9...
+Bounces. Any other volunteers?
 
-However, the UART3 is disabled, so it will not have any effect, except
-for some downstream users.
-
-Best regards,
-Krzysztof
-
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: socionext,synquacer-sdhci
+> +          - const: fujitsu,mb86s70-sdhci-3.0
+> +      - const: fujitsu,mb86s70-sdhci-3.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Core clock
+> +      - description: Interface clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: iface
+> +
+> +  dma-coherent: true
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  fujitsu,cmd-dat-delay-select:
+> +    type: boolean
+> +    description: Indicating that the host requires the CMD_DAT_DELAY control
+> +      to be enabled.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@36600000 {
+> +        compatible = "fujitsu,mb86s70-sdhci-3.0";
+> +        reg = <0x36600000 0x1000>;
+> +        interrupts = <0 172 0x4>,
+> +               <0 173 0x4>;
+> +        bus-width = <4>;
+> +        vqmmc-supply = <&vccq_sdhci1>;
+> +        clocks = <&clock 2 2 0>, <&clock 2 3 0>;
+> +        clock-names = "core", "iface";
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt b/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
+> deleted file mode 100644
+> index 3ee9263adf73..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -* Fujitsu SDHCI controller
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the sdhci_f_sdh30 driver.
+> -
+> -Required properties:
+> -- compatible: "fujitsu,mb86s70-sdhci-3.0"
+> -- clocks: Must contain an entry for each entry in clock-names. It is a
+> -  list of phandles and clock-specifier pairs.
+> -  See ../clocks/clock-bindings.txt for details.
+> -- clock-names: Should contain the following two entries:
+> -       "iface" - clock used for sdhci interface
+> -       "core"  - core clock for sdhci controller
+> -
+> -Optional properties:
+> -- vqmmc-supply: phandle to the regulator device tree node, mentioned
+> -  as the VCCQ/VDD_IO supply in the eMMC/SD specs.
+> -- fujitsu,cmd-dat-delay-select: boolean property indicating that this host
+> -  requires the CMD_DAT_DELAY control to be enabled.
+> -
+> -Example:
+> -
+> -       sdhci1: mmc@36600000 {
+> -               compatible = "fujitsu,mb86s70-sdhci-3.0";
+> -               reg = <0 0x36600000 0x1000>;
+> -               interrupts = <0 172 0x4>,
+> -                            <0 173 0x4>;
+> -               bus-width = <4>;
+> -               vqmmc-supply = <&vccq_sdhci1>;
+> -               clocks = <&clock 2 2 0>, <&clock 2 3 0>;
+> -               clock-names = "iface", "core";
+> -       };
+> --
+> 2.35.1
+>
