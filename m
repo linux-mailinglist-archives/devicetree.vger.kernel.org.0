@@ -2,123 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A69647BE8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 03:06:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24D1A647C3F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 03:27:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbiLICGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 21:06:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S229814AbiLIC1H convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 8 Dec 2022 21:27:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiLICGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 21:06:34 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370937D0A9
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 18:06:33 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id u5so3339749pjy.5
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 18:06:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=riB7LtyZ0lleKlmY9G6ocrA6pcHo/IAGW1ay3iZp0eQ=;
-        b=X+JYtgj8sgUEsF7jToHxDCYTMglL0aIOZ4+loh9W8HStvg47PVkIykK/WViQN8qXBK
-         GjYQ508/LrXK1k0wxNZCEu3/JqnBdZOnrAFBorD3+i/CA07NkAFrocN78evZiRColHr5
-         uftETNCdoUP898da50ms6V//mnUDPs9xOTcmU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=riB7LtyZ0lleKlmY9G6ocrA6pcHo/IAGW1ay3iZp0eQ=;
-        b=idCL5WrF+ULfo3Fg8Yect8Tu6JnkylUWIE3Hv2oMEP4ZiPT08jf62i2fUWGmGW+qgK
-         OmiHvvhDxlMP5ZchuQ8lVOLhf00JDz+w6uZ2iMzwB35eb0s5RS7KobNrnjJoUINdpa6Q
-         j6E/0mAwl8yNNP145Gsw/fZb9pbdwjnk6SZls+cs7izpud7jf7NLsqvxuZXON8zcrHxf
-         dxJOXvyw7RMOn2MGHf8K16I12PWKfKmsgW6Oj1706QwPenqLpfL2WnTTztlq7o4A++DC
-         bBKnw/DsPPjqBbACKKUsZzdaHDAuGgOYsLZSNLjpNA3Y3sn4KwOt5/0EnP+qDqeyUwDQ
-         ZtzQ==
-X-Gm-Message-State: ANoB5pk7cfM4CoBel8+nzQDzZvmjA93+HxZaStuEvLbYupW0U8GRU2pP
-        LoA5RSGRdCAZPUkMjpvH8phwBA==
-X-Google-Smtp-Source: AA0mqf5e81mya60xEl8F+ZSr8VdEDiUyt7BQLEsWUnydTPCssdcQFKXLZ9EuWMLf5QY19GrOyKTGFw==
-X-Received: by 2002:a17:90a:199b:b0:218:72de:1f77 with SMTP id 27-20020a17090a199b00b0021872de1f77mr4054831pji.6.1670551592946;
-        Thu, 08 Dec 2022 18:06:32 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:9a82:7898:7bf4:b4f])
-        by smtp.gmail.com with ESMTPSA id h3-20020a17090a648300b00218ddc8048bsm233473pjj.34.2022.12.08.18.06.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Dec 2022 18:06:32 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, mka@chromium.org,
-        Yunlong Jia <ecs.beijing2022@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-input@vger.kernel.org, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/5] arm64: dts: qcom: sc7180: Add pazquel360 touschreen
-Date:   Thu,  8 Dec 2022 18:06:11 -0800
-Message-Id: <20221208180603.v2.4.Id132522bda31fd97684cb076a44a0907cd28097d@changeid>
-X-Mailer: git-send-email 2.39.0.rc1.256.g54fd8350bd-goog
-In-Reply-To: <20221209020612.1303267-1-dianders@chromium.org>
-References: <20221209020612.1303267-1-dianders@chromium.org>
+        with ESMTP id S229795AbiLIC1H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 21:27:07 -0500
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD25E442FE;
+        Thu,  8 Dec 2022 18:27:04 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2ED5F24DD6E;
+        Fri,  9 Dec 2022 10:26:58 +0800 (CST)
+Received: from EXMBX173.cuchost.com (172.16.6.93) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
+ 2022 10:26:58 +0800
+Received: from [192.168.120.49] (171.223.208.138) by EXMBX173.cuchost.com
+ (172.16.6.93) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
+ 2022 10:26:56 +0800
+Message-ID: <236b1b83-9bda-ac09-ea09-9701dccb4ac6@starfivetech.com>
+Date:   Fri, 9 Dec 2022 10:26:55 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v1 2/7] net: stmmac: platform: Add snps,dwmac-5.20 IP
+ compatible string
+Content-Language: en-US
+To:     Ben Dooks <ben.dooks@codethink.co.uk>
+CC:     <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20221201090242.2381-1-yanhong.wang@starfivetech.com>
+ <20221201090242.2381-3-yanhong.wang@starfivetech.com>
+ <f6fd99d22a025377e176890cc7641ab9@codethink.co.uk>
+From:   yanhong wang <yanhong.wang@starfivetech.com>
+In-Reply-To: <f6fd99d22a025377e176890cc7641ab9@codethink.co.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX173.cuchost.com
+ (172.16.6.93)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The touchscreen was supposed to have been added when pazquel360 first
-was added upstream but was missed. Add it now.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
----
 
-(no changes since v1)
+On 2022/12/9 9:59, Ben Dooks wrote:
+> 
+> 
+> On 2022-12-01 09:02, Yanhong Wang wrote:
+>> Add "snps,dwmac-5.20" compatible string for 5.20 version that can avoid
+>> to define some platform data in the glue layer.
+>>
+>> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+>> Signed-off-by: Yanhong Wang <yanhong.wang@starfivetech.com>
+>> ---
+>>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> index 50f6b4a14be4..cc3b701af802 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> @@ -519,7 +519,8 @@ stmmac_probe_config_dt(struct platform_device
+>> *pdev, u8 *mac)
+>>      if (of_device_is_compatible(np, "snps,dwmac-4.00") ||
+>>          of_device_is_compatible(np, "snps,dwmac-4.10a") ||
+>>          of_device_is_compatible(np, "snps,dwmac-4.20a") ||
+>> -        of_device_is_compatible(np, "snps,dwmac-5.10a")) {
+>> +        of_device_is_compatible(np, "snps,dwmac-5.10a") ||
+>> +        of_device_is_compatible(np, "snps,dwmac-5.20")) {
+>>          plat->has_gmac4 = 1;
+>>          plat->has_gmac = 0;
+>>          plat->pmt = 1;
+> 
+> out of interest, is the version of the ip autodetectable yet?
+> also, we would be better off if having an if (version > 4) check if we use the standard snps ip block code headers
+> 
 
- .../dts/qcom/sc7180-trogdor-pazquel360.dtsi   | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-index 5702325d0c7b..54b89def8402 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel360.dtsi
-@@ -14,6 +14,27 @@ &alc5682 {
- 	realtek,dmic-clk-rate-hz = <2048000>;
- };
- 
-+ap_ts_pen_1v8: &i2c4 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@10 {
-+		compatible = "elan,ekth3915", "elan,ekth3500";
-+		reg = <0x10>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+		hid-descr-addr = <0x0001>;
-+
-+		vcc33-supply = <&pp3300_ts>;
-+		vccio-supply = <&pp1800_l10a>;
-+		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
- &keyboard_controller {
- 	function-row-physmap = <
- 		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
--- 
-2.39.0.rc1.256.g54fd8350bd-goog
-
+Yes, the version of the ip is autodetectable. It is also possible to use the standard "snps, dwmac-5.10a" definition on JH7110（has been tested on the VisionFive v2 boards and works normally）, do you have any better suggestions?
