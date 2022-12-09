@@ -2,153 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CCF64849C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 602D56484BA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:12:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbiLIPGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 10:06:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56918 "EHLO
+        id S229703AbiLIPMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 10:12:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230179AbiLIPG3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:06:29 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523BA89337
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 07:05:53 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id a19so5230805ljk.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 07:05:53 -0800 (PST)
+        with ESMTP id S230202AbiLIPLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:11:51 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA8A8424F
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 07:11:48 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id b3so7496264lfv.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 07:11:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Eb+dzXKfFxLhKYjaGwUiIKvSA18uKRx27pJ/FmHwtEU=;
-        b=UaqEE2V7XWYGetw5n3TULGb3MoulZySHOYQ45kKm+9Eji+t1wo6MYUsW1LCCKdPiPY
-         Vu266DfbJXMo4NoR0PIPAf0q2mOUQQ0RzXKII/DP5rY/X7uagyLXuOCAZ/LIRCbMWkVD
-         KHE0DkBTFDkR9uIFeVYbEl7pJzQazF6EKMmuQyiP9Ktjxd+KxzAKbUj3M8Ha/IIGvVP/
-         UqHY/ruIR5qS9yi2gb/bpnCK86jZmpJhHENjwoSGG+GYN4OVQB8kPmFdHoLVIk5xwRNB
-         YH1m3qyByyMey0nxj7P+MukceClfttKeE3lSNC9BfGc+JFoXsYmUIrS4/89ZAatwcjmY
-         3CMw==
+        bh=7cuUWzalGLeE3U/K66CMEQVIJgCrRwDmBLE6q4R3bQQ=;
+        b=O50DfcpCmh/95hsBmIq4ezUYhOmXILd+8P/BZDcOZHpbQa+wNnV1R5daYSfIMEKqEl
+         qBli7kSxAExZi5vJg4or3a7jDyHQAXTz2EPAjRQRLGzTgfDoykJ3063Mwoa4i4R2ju2S
+         OMBp3EKAEh4l2n6pBIkCCobTu8qFRrRrtNUtKfHP44I3ar6RHWBW/iQRymjpYNj2uvfz
+         AohNzZWIywFGMCBkHAhWZGCgCtb5PhsN8x7BsjBs/erDxKKicTmbzN9tdiovn1/aaImb
+         E2naBnMqxuDwFGpK2ZpkJg6iamp4fPmAP9KTkuNryTouapq/ON8RQmHH1ld2n9xhoOVB
+         QRNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Eb+dzXKfFxLhKYjaGwUiIKvSA18uKRx27pJ/FmHwtEU=;
-        b=Y27S3l3hLz9D4hmwOfgkgCzzOIVfrplFrEVR+Hd9HXeaFoo8Tz1xk4ouRegIpzQSrX
-         tKLEnCv4IZYQ3FLQLtDL0ry4j8tbRsVOrqV1Bu8KropsHo1V7gr7TAdOPlykUwfFa7sW
-         Ce6x7WGErUaFCAKEWxGE/FvWIOaqSMURQj4ImMBhSJswiY3yZdF+M/FoCbpjFcm9OWKB
-         RByWBxLmT30t2d25AOwnJ8j02IEiTfCJ+1J5QVjqSrkUmI1/FSvk3QFA4zEGPf4poKMy
-         eUW7glp0INhpz0oeQefIgGg0Ov/u0oDEmhFEzKEQUWin9Kp+4Lg6wt5JlPPBrfJBVLiZ
-         8Mkw==
-X-Gm-Message-State: ANoB5pkS8kJo1BIo6dBZHwxHJFZ4mVV9QSpTCf8pzDIBl73K8tDB6YB/
-        vymEbJ5E7EgI7cnD1O2+6axELg==
-X-Google-Smtp-Source: AA0mqf7t6HyCvjQbRm6lmUFP6R5mKqPRb4U9dlf9l9mifKdgF30nTCo9XZGo4dm2k9UFBPiA/WTurQ==
-X-Received: by 2002:a05:651c:94:b0:27a:7a8:c54b with SMTP id 20-20020a05651c009400b0027a07a8c54bmr1902929ljq.45.1670598351535;
-        Fri, 09 Dec 2022 07:05:51 -0800 (PST)
+        bh=7cuUWzalGLeE3U/K66CMEQVIJgCrRwDmBLE6q4R3bQQ=;
+        b=ZjUOrBNsGAHzHdnZ52UMgE7IdFEJJqKm8bLwZ9cYsHu5W0LHv/G9vPYVKgRD6HtE0q
+         lw+mWLkGIgWXj6Qv3N3c33caElvclW83nGfbBKV+yo1lggUjWeCe8JC9cbSnb6kNjpta
+         B0ToKYUTYNwNEVm1ICWw8hSmTHuDbsmDpVMXRoqtFCd1LJ7CLATUeS+UGxuLOTopcHCC
+         gsRHhbcHP0rq4s6w+oGZE/8B06R/6n/gwIK5d5ExRW2B8QMUYMxHS1LY6MhyAsBjQGEC
+         nrAPtBIEiW0IsOgXJwYcfU8IeiOojCCC6PIjbWDhgb180NuKUej8yIkZWnX3nIybclqZ
+         vM+A==
+X-Gm-Message-State: ANoB5pki5la1eSIxwsKapUHfSARTiPvykmEnOqYQdOSaSpvsDEryjq2X
+        8zHaVUlzZbN/I0TAhjEWExisbw==
+X-Google-Smtp-Source: AA0mqf58IgWVzN5mqZ7Bf20XMCGVYjy5o/MHY56iAFYEDVMalm0AKxvwtUjT5a3UKzEG221l1DLUYg==
+X-Received: by 2002:a05:6512:1318:b0:4a5:3735:9cc5 with SMTP id x24-20020a056512131800b004a537359cc5mr1937755lfu.33.1670598706741;
+        Fri, 09 Dec 2022 07:11:46 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id r23-20020a2eb617000000b00279cbcfd7dbsm245033ljn.30.2022.12.09.07.05.50
+        by smtp.gmail.com with ESMTPSA id y3-20020a199143000000b004b4bb6286d8sm297232lfj.84.2022.12.09.07.11.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 07:05:50 -0800 (PST)
-Message-ID: <24fa41d2-87d1-be19-af44-337784b0f0a4@linaro.org>
-Date:   Fri, 9 Dec 2022 16:05:49 +0100
+        Fri, 09 Dec 2022 07:11:46 -0800 (PST)
+Message-ID: <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
+Date:   Fri, 9 Dec 2022 16:11:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
+Subject: Re: [PATCH] arm64: dts: zynqmp: Add xlnx prefix to GEM compatible
+ string
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc:     Harini Katakam <harini.katakam@amd.com>,
+        David Heidelberg <david@ixit.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
+        Robert Hancock <robert.hancock@calian.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <718283a9f5493ab63b4aaa12337dd5cab6538ff5.1670594172.git.michal.simek@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
+In-Reply-To: <718283a9f5493ab63b4aaa12337dd5cab6538ff5.1670594172.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 15:29, Luca Weiss wrote:
-> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
-> in the bindings so the existing dts can validate successfully.
+On 09/12/2022 14:56, Michal Simek wrote:
+> From: Harini Katakam <harini.katakam@amd.com>
 > 
-> Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
-> sm8450: add Inline Crypto Engine registers and clock") so move the
-> compatible to the correct if.
+> cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
+> favour of xlnx prefix. Add this new compatible string and retain
+> the existing string for compatibility with uboot drivers.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
-> (no cover subject)
 > 
-> The only remaining validation issues I see is the following on sc8280xp-crd.dtb
-> and sa8540p-ride.dtb:
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
->   Unevaluated properties are not allowed ('required-opps', 'dma-coherent' were unexpected)
-> 
-> Maybe someone who knows something about this can handle this?
-> 
-> And the patch adding qcom,sm6115-ufshc hasn't been applied yet.
-> ---
->  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index f2d6298d926c..58a2fb2c83c3 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -102,7 +102,6 @@ allOf:
->                - qcom,sc8280xp-ufshc
->                - qcom,sm8250-ufshc
->                - qcom,sm8350-ufshc
-> -              - qcom,sm8450-ufshc
->      then:
->        properties:
->          clocks:
-> @@ -130,6 +129,7 @@ allOf:
->                - qcom,sdm845-ufshc
->                - qcom,sm6350-ufshc
->                - qcom,sm8150-ufshc
-> +              - qcom,sm8450-ufshc
->      then:
->        properties:
->          clocks:
-> @@ -149,6 +149,12 @@ allOf:
->          reg:
->            minItems: 2
->            maxItems: 2
-> +        reg-names:
-
-There are no reg-names in top-level, so it's surprising to see its
-customized here. It seems no one ever documented that usage...
-
-> +          items:
-> +            - const: std
-> +            - const: ice
-> +      required:
-> +        - reg-names
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index 8553299f12eb..233127d94204 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -507,7 +507,7 @@ nand0: nand-controller@ff100000 {
+>  		};
 >  
->    - if:
->        properties:
-> 
-> ---
-> base-commit: f925116b24c0c42dc6d5ab5111c55fd7f74e8dc7
-> change-id: 20221209-dt-binding-ufs-2d7f64797ff2
-> 
-> Best regards,
+>  		gem0: ethernet@ff0b0000 {
+> -			compatible = "cdns,zynqmp-gem", "cdns,gem";
+> +			compatible = "xlnx,zynqmp-gem", "cdns,zynqmp-gem", "cdns,gem";
+
+That's not what the bindings are saying. If this was the intention of
+AMD, you should have replied to my patch that you need prolonged
+backwards compatibility.
 
 Best regards,
 Krzysztof
