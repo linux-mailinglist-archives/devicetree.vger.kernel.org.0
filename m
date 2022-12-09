@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5254647F2E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0510647F4A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:34:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiLIIYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 03:24:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
+        id S229807AbiLIIeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 03:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbiLIIYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:24:42 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AFB5F6E7
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:24:38 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bp15so5863039lfb.13
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 00:24:38 -0800 (PST)
+        with ESMTP id S229808AbiLIId6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:33:58 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D555F6EA
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:33:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pgtluh/qFWbybHqU1pIl0XhIK9Ltz3NWQ9TH4ULNdCI=;
-        b=G36fOEIYfuH+EBBgjd3NprynhcRlOGJBonsGn8oLy35Dqd2ZJm1vUwX6ocgi7ZqPMY
-         jeOZFevMryWdnMBbg9Ff6qpnUzT+z9en6w//DgHaA0lwl/Bs/WYW8Q9+qpWDZQxpF5Vl
-         6N1W6nkFu7wW0X1e7jjvPqb/KLWAc/3CJSij5EkPZd+kKxaoMwR1Ezyk+MZz5a87re6b
-         gLyRsUL+IaRWe6oTymVEfze7cUshq+wY+QpwB9jkk8x5WYK8Mttpbl7kcLKqVaS/v6ck
-         HcqPODHPNu84k3sMV3th4xF7SB1H419ZYPf9wB8JgAEJhPxKIN8qhLXxakKoIGnD0Zwg
-         wYiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pgtluh/qFWbybHqU1pIl0XhIK9Ltz3NWQ9TH4ULNdCI=;
-        b=3aPNDsirlGNN5wom7F1ANjHdm1SynuBfi79WsDWx4vay+smgwzPRnFGiQou2jSBxT+
-         Fz80sfnmDo89u/CyzW7nI3ywoWFNY2/pSTdq+6Mzyaam+S9pKZuI7QJZyKk/TKN44tXS
-         XVTnGZ3FYZ7lmAjZPDQTPejedAQBEhf7EwRB+LkEtfbiXu5md41N+5HFAsTGDwhU0cnu
-         cZmha6zs/xVWMLC+3U8A3nYzDnAPrZ0vUhKZ74q5fSGCDFzCgXZHkoovKO3i+oPy1ZRQ
-         8NU6CmU8eAjr7xhTVl3x/1RhOmleyWh6Oi040kU69gWq43tIkW5ZqEYYW28LiGbLwpf3
-         okCQ==
-X-Gm-Message-State: ANoB5pmYiYlCjneXpOUn2z7tAt3GQsvbyBHV3tHEftpanqScru6M4J8r
-        cRhiFVlaa6vTQCn4JI9mL/InNha4zvBjv2YdxH4=
-X-Google-Smtp-Source: AA0mqf59zsEkuV6mRtwVCxKJ8kPshhmnfpMTK48L/4Lyt5MsxS8/oOM77BEHpexiBl5OfB0RVuLQ0g==
-X-Received: by 2002:ac2:539b:0:b0:4b5:5efb:7d26 with SMTP id g27-20020ac2539b000000b004b55efb7d26mr1228920lfh.37.1670574277319;
-        Fri, 09 Dec 2022 00:24:37 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056512079200b004b54ca56cf9sm159499lfr.303.2022.12.09.00.24.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 00:24:36 -0800 (PST)
-Message-ID: <4413e2b4-7faf-fa0f-469f-bc90d3446cee@linaro.org>
-Date:   Fri, 9 Dec 2022 09:24:35 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670574829; x=1702110829;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PORLHYSX/1kTqOMLWJEv1w2doPx8L9CMFxROJgP2dxg=;
+  b=q4qBEVHa7VMEElpUj2pSUTrBmxSDQv1qoNl1FcgOxxiQFBAe7Av3wuLF
+   7+1sQK29heEzKWC2ApqN3J0GXjVs8lVOJhHEBoEfnOBQP1R4Xa/A331MO
+   zpvxjzMMEvnQEEFwkg4C9xHjFXkYz3oA3FrOsGugVuZ2NIZEORiPF45H+
+   +i1nPftIkDkSa9vrX98YvJt4ZZ8PPh9M9koyLDUoQyTm/62av3R0325ZG
+   XOmqNd3rV2VeW8dUWdp59C+ExWhlgWLyz/Hh27Pmey05KW62aX9ZhJOKL
+   ndRrQJgyj4+6/iIpK03x0XNdPaXuW3YbvFx9bvdyOv/OhQoci+wdqku9K
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27857150"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 09:33:47 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Dec 2022 09:33:47 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 09:33:47 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670574827; x=1702110827;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PORLHYSX/1kTqOMLWJEv1w2doPx8L9CMFxROJgP2dxg=;
+  b=p2cagO7zTPKeH7+1Q2HHf2dXpTNl5NAVZc2w4eDESXSt1Z3HCSfEERHJ
+   JC2TDleoS4/MU+ZgOb62nzzZ/gcQKhTrLwQK8DJoJS4VAtvLvszl3iTwv
+   OJLCG4Qwxu4fCfoITDIlxyYFMd39gQXEfJjaUL4xY5xiu4fCJdlxbu/Am
+   96XmEVnQBHeXJ48LlK1c+dighe7Gw3RxyNaEcT4iv+NxL08sdBkf2ZBeS
+   kQCXR7IWAsIJf0TCF8pRel6WNXehWlu7hWKXg3Lr3ZdcU5+EcDRcV5e4N
+   iDWhWNhDbfIsWvkVlhhE6NV3u797nlBfZWiD7TUUR5N0ssm/VpyiycMFh
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27857145"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Dec 2022 09:33:46 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 766B2280071;
+        Fri,  9 Dec 2022 09:33:45 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] TI SN65DSI83 GPIO enable delay support
+Date:   Fri,  9 Dec 2022 09:33:37 +0100
+Message-Id: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: qcom,ipa: Add SM6350
- compatible
-Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     Luca Weiss <luca.weiss@fairphone.com>, andersson@kernel.org,
-        konrad.dybcio@linaro.org, agross@kernel.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221208211529.757669-1-elder@linaro.org>
- <20221208211529.757669-2-elder@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208211529.757669-2-elder@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 22:15, Alex Elder wrote:
-> From: Luca Weiss <luca.weiss@fairphone.com>
-> 
-> Add support for SM6350, which uses IPA v4.7.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Alex Elder <elder@linaro.org>
+Hi all,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+this small series adds a new optional property for specifying a platform
+spefic enable delay. The LVDS Bridge requires at least a reset time of
+10ms, but this is just the low pulse width. The actual rising time is a
+different matter and is highly platform specific. My platform has a rising
+time of ~110ms until the SN signal reaches VCC x 0.7 voltage level. Thus
+make this time platform configurable.
 
-Best regards,
-Krzysztof
+Alexander Stein (2):
+  dt-bindings: drm/bridge: ti-sn65dsi83: Add enable delay property
+  drm: bridge: ti-sn65dsi83: Add enable delay support
+
+ .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml   | 4 ++++
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c                      | 7 ++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
 
