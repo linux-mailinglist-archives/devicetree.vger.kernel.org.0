@@ -2,156 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5C36484F2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57129648508
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:25:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiLIPXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 10:23:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
+        id S229696AbiLIPZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 10:25:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbiLIPXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:23:41 -0500
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on20611.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe59::611])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA602D1DE;
-        Fri,  9 Dec 2022 07:23:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UslqNYbvmZfBwdDt6YO6v7QV3/tu4GDKddn1RZoCRI5EHmdjYh+2Cwf8HJCIQo7zeWcosOMXqh7cH0CSPOY/AikqLlS/HYXsU24maZ/+dpEDhP2Fo03KU8yIXFgPG0qjKn5wcwtSUqf2uiItWiOMrODgILpmE4TX3ODEk9qYdX9u3i9xm79WJQRhpljZqhuUElrf450TLMdwblki0iQWuDiMIY6QAXhntrr6WVNigI4VD3SX0PD3Csuz+P/jKHpXhgqa3J9mWNENUdLiRHIixosSpV0pCky0KUrjGhdG8kMYgMh7hAnIZ9IcOdzQG/T96cH0FfN+vKp2xJR+DZw/aQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SCKNHIDki15l7ab6l91uQTVIp0k0f4/3tZTw0opKR/Y=;
- b=Zd9S8IccVzsBL9Z2yy+WjAW/YjN7GFKtwSyljwD5tV0NAN47FxhPYUGLruYZwdoGrPODznz1FRhq4E3jpM79VtDcTJRZr/Sssw5UKRQdqU6P/g1Y+Q9yrza0WRp6Gk3rqjDAFMWSvhiiLMMRgknEFqFevjFwC3IDW5At2CFbnmnQkcbRe7hVxt3zEUMDzF6Ya9mmePX4EN5a9is2I77RhsGG0UjbXHBkDkRRtHiZaHvEHp8oAsI0hLJmVmo9Ln1IKHbKKv+lQZkbYqXkRQZRfo+etxkjHSq/Bl/wOgz7km8Jh/07Vm4X+qY1DvWhraiUM0QDGUP6bb36WyXhAjwb+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SCKNHIDki15l7ab6l91uQTVIp0k0f4/3tZTw0opKR/Y=;
- b=iBZdUPWKIZtEQuIPzcgfHUbKJh0uAWrcsBUNO0vcwrjL8wNhBNzRyhT2D+xF7ENVjZcqBnNLYucZOU5ORXBzODJ9PiX+gqkPkz8HnLqkk+2/TmBmyIHTzdJxtpd7wli71WurcZ4QjV5QwDCpcBN/2foTa2uZDvM78F4jUpPPvlE=
-Received: from BN6PR17CA0046.namprd17.prod.outlook.com (2603:10b6:405:75::35)
- by CH2PR12MB4216.namprd12.prod.outlook.com (2603:10b6:610:a8::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 9 Dec
- 2022 15:23:37 +0000
-Received: from BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:75:cafe::8f) by BN6PR17CA0046.outlook.office365.com
- (2603:10b6:405:75::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10 via Frontend
- Transport; Fri, 9 Dec 2022 15:23:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT067.mail.protection.outlook.com (10.13.177.159) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 15:23:36 +0000
-Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 9 Dec
- 2022 09:23:31 -0600
-Message-ID: <d097b9f5-a82d-f343-088d-d745d5d1ed32@amd.com>
-Date:   Fri, 9 Dec 2022 16:23:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: zynqmp: Add xlnx prefix to GEM compatible
- string
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Harini Katakam <harini.katakam@amd.com>,
-        David Heidelberg <david@ixit.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Piyush Mehta <piyush.mehta@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <718283a9f5493ab63b4aaa12337dd5cab6538ff5.1670594172.git.michal.simek@amd.com>
- <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT067:EE_|CH2PR12MB4216:EE_
-X-MS-Office365-Filtering-Correlation-Id: 055c323b-f9be-4051-a050-08dad9f957c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e5u2Q97Ok3OpY5NTAeuOQTW+X7ft1WASIMCJDMQ5TR5B9k/mGeLdBYok6fDzKGJ66XSG0cyqGYQm67UXM6QeMPi77wwmZ2c95jFfIB1Pujy8IlHQKjblyaBRWDsnbqG1OcFAdQVq3tfgdK0443GYzrhscKz0J+kVADdmbkcnzaj8I+Xzi8XokWVhOlHERsLnPzRuJK6hNcrLRXwOZ/3UlbxVAjWzy+jr0KS5nyBTw+OOZ2ODq1MZLhNSJi6AUUtzhzVhF2kWvvq2fu4eknW7MzmSZEexacgXVwaZDwLJYdh4oeJIrOl60kIev9cJVM8OCfkpN5vNogA5qmGYQkrAiyvtm0dAhUZg/VEMydeThcBo00fzYV+HJx8XpJYQuA4Usoe4yQf7dMEvF6Zqdp73QzjpBADxpF4psV6Wzk2fHjKslCIcJED3PD0/WtkZljwP4H//k35Rtbta6HMsesCfL3HafrODwks1S5W8EnfTByDMmUplxvqPDvjxMXyWroV0w9Oc3TrVWIqtAQEGTxDJui/278IUu9S9HZd6BoHNuVAeydRaJkfeGxkQwKUhwnL2DL4uyOmJvgvjQX41m5pj2WkbaQoLNqGjmg28rh4NJ7N3epeSbcy/NtKMPGcKM4POerySyNENhnUnjDtHZEGgqQhxUOW0JFj6IuXbBusL/wUDNa9Qa26wX1bRjt/q97ZlGM0UGE7Ma2c/mb9gHuVy4IY6fo+G87i8Fz7/PWFIJxqyuaejIcJejIfjryPxUrOylScY0L1pBQ/zxCMPrzvVGmZu5NFoGXUA5qLcMH4Gsng=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(39860400002)(346002)(396003)(136003)(451199015)(46966006)(36840700001)(40470700004)(31686004)(36860700001)(70586007)(40480700001)(70206006)(81166007)(8676002)(4326008)(356005)(82740400003)(478600001)(186003)(54906003)(2906002)(336012)(26005)(16526019)(86362001)(110136005)(83380400001)(31696002)(36756003)(426003)(53546011)(8936002)(16576012)(47076005)(5660300002)(7416002)(41300700001)(316002)(40460700003)(2616005)(44832011)(82310400005)(2101003)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 15:23:36.8596
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 055c323b-f9be-4051-a050-08dad9f957c6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4216
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229939AbiLIPZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:25:41 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A03F786A0;
+        Fri,  9 Dec 2022 07:25:40 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id B5CEF320091F;
+        Fri,  9 Dec 2022 10:25:38 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 09 Dec 2022 10:25:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to; s=fm1; t=
+        1670599538; x=1670685938; bh=El72L61y206EseKUUon70geO5hnaNo4Skdb
+        zoWJup0s=; b=ZryyW61SmwUNUdXyXyeQ04j4PF/btO/bIFiVJ29PUhV6gC60luy
+        HCSHGECW3YPsUK9C479qv2dQrElPCHFklE0QsHvrS7phHWjGSoA1zJFzV/utK9iC
+        GuOmpFBjBs92WvkROGmKkgiQqTCYOUwVAymioMpWryLBAkOTCXFATk7Mxdi9vk5B
+        chiG82E0ZuGWHLNLI3UOgNB6k64FdxM1pM2w0ylg1govsSZKrLex0pzFuHEHaOWg
+        qy95Y+pkCfF7KGcrxYYwv97yRAqh8mSdj/Wt93HecRDI0FZ3w/Oi3SOaphFtPNEi
+        KIo40JnRIV7Hz0U7Ccw7eRUKfsCzHw4tXAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:message-id:mime-version
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1670599538; x=
+        1670685938; bh=El72L61y206EseKUUon70geO5hnaNo4SkdbzoWJup0s=; b=M
+        WHAAOylbf+HAsSWpB1jAKZkX+NtsBIJkA9NWLcNLsq3njdBQ4q+Px7TCX/x2AMoC
+        PRLKczD/9UVuDpHXUrd4HFEEK1Tus8esKtHAwq+2WNvq1pAlTXuDwhgcOuOPAkDJ
+        I7xTrDaGz7BQ6Alk4dc4jWO84MVs/ICkmDEdZZME2/jWN196M1EiK2d8u52Zqr9O
+        foQ9ijN7MKjAO7J3dPfyXy/c6dKyaazn9BNwvxAJZ3AZt9KWZESM1b0tDRDpSgl6
+        YnFOgR2wuztmHZ1T9Q9EEMlkKXjh6XYjdTWm2HhVSpZev3xUw/I1tyS6PG3Xz66/
+        lzN45huAuLtd4RuALJKRg==
+X-ME-Sender: <xms:cVOTY6kIgkInYQhS_OQKlTGkmQnhJ6h3e0yL9A-U8nlAUCR3y4_cZA>
+    <xme:cVOTYx2i5_bB9EtX8PJV2OF3vR13VOEerSPii0kjEDmkT6inGDGtxt1PO0xsYKxVh
+    _EwpN_a_Jk9LDWIWv8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvgdejhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpeeffeeuhfekjeevtddvtdelledttddtjeegvdfhtdduvdfhueekudeihfejtefgieen
+    ucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:cVOTY4psYswyKqlfJrDg2gF_Aci8hRilCeU-hNwLGFR7zMWGN4ByIA>
+    <xmx:cVOTY-meh3OlMcdPaOUbmWMP0VKJIPypP7j11aRaqePKU8p9ocrGwA>
+    <xmx:cVOTY43Dk9LFjhq-wf7sZl8-1uuRhpD0WgqBDTM3XUaszHf4eRzPXA>
+    <xmx:clOTY-xLVuNhsJ5PG_mck_njKRkFepB_7Ha6PMM-ECko88aQ_chGKw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D8385B60086; Fri,  9 Dec 2022 10:25:37 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <c2178eba-0c25-4310-8b87-1dc7708d2a34@app.fastmail.com>
+Date:   Fri, 09 Dec 2022 16:25:17 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Linus Torvalds" <torvalds@linux-foundation.org>
+Cc:     "Francesco Dolcini" <francesco.dolcini@toradex.com>,
+        "Miquel Raynal" <miquel.raynal@bootlin.com>,
+        "Marek Vasut" <marex@denx.de>,
+        "NXP Linux Team" <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, stable@vger.kernel.org,
+        "Thorsten Leemhuis" <regressions@leemhuis.info>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [GIT PULL] ARM: SoC fixes for 6.1, part 6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The following changes since commit da0cbf9307a227f52a38a0a580a4642ad9d7325c:
 
+  Merge tag 'at91-fixes-6.1-3' of https://git.kernel.org/pub/scm/linux/kernel/git/at91/linux into arm/fixes (2022-11-29 15:45:36 +0100)
 
-On 12/9/22 16:11, Krzysztof Kozlowski wrote:
-> On 09/12/2022 14:56, Michal Simek wrote:
->> From: Harini Katakam <harini.katakam@amd.com>
->>
->> cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
->> favour of xlnx prefix. Add this new compatible string and retain
->> the existing string for compatibility with uboot drivers.
->>
->> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->> ---
->>
->>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++----
->>   1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> index 8553299f12eb..233127d94204 100644
->> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> @@ -507,7 +507,7 @@ nand0: nand-controller@ff100000 {
->>   		};
->>   
->>   		gem0: ethernet@ff0b0000 {
->> -			compatible = "cdns,zynqmp-gem", "cdns,gem";
->> +			compatible = "xlnx,zynqmp-gem", "cdns,zynqmp-gem", "cdns,gem";
-> 
-> That's not what the bindings are saying. If this was the intention of
-> AMD, you should have replied to my patch that you need prolonged
-> backwards compatibility.
+are available in the Git repository at:
 
-I have sent the patch to U-Boot to support new compatible string and CC you on 
-that too.
+  https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git tags/soc-fixes-6.1-6
 
-I have no problem to do switch just to xlnx one but it is not fully accurate 
-that cdns,versal-gem wasn't used. True is not in Linux but it was used in U-Boot.
+for you to fetch changes up to ef19964da8a668c683f1d38274f6fb756e047945:
 
-If we can go straight to xlnx,zynqmp-gem, cdns,gem I will send v2 of this patch.
+  Revert "ARM: dts: imx7: Fix NAND controller size-cells" (2022-12-08 17:47:57 +0100)
 
-Thanks,
-Michal
+----------------------------------------------------------------
+ARM: SoC fixes for 6.1, part 6
 
+One more last minute revert for a boot regression that was
+found on the popular colibri-imx7.
+
+----------------------------------------------------------------
+
+This came in just after I sent off the "final pull request for 6.1"
+yesterday, and it seems important enough for another even more
+final round.
+
+Author: Francesco Dolcini <francesco.dolcini@toradex.com>
+Date:   Mon Dec 5 16:23:27 2022 +0100
+
+    Revert "ARM: dts: imx7: Fix NAND controller size-cells"
+    
+    This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
+    
+    It introduced a boot regression on colibri-imx7, and potentially any
+    other i.MX7 boards with MTD partition list generated into the fdt by
+    U-Boot.
+    
+    While the commit we are reverting here is not obviously wrong, it fixes
+    only a dt binding checker warning that is non-functional, while it
+    introduces a boot regression and there is no obvious fix ready.
+    
+    Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
+    Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+    Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
+    Acked-by: Marek Vasut <marex@denx.de>
+    Cc: stable@vger.kernel.org
+    Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
+    Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
+    Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 03d2e8544a4e..0fc9e6b8b05d 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -1270,10 +1270,10 @@ dma_apbh: dma-apbh@33000000 {
+                        clocks = <&clks IMX7D_NAND_USDHC_BUS_RAWNAND_CLK>;
+                };
+ 
+-               gpmi: nand-controller@33002000 {
++               gpmi: nand-controller@33002000{
+                        compatible = "fsl,imx7d-gpmi-nand";
+                        #address-cells = <1>;
+-                       #size-cells = <0>;
++                       #size-cells = <1>;
+                        reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
+                        reg-names = "gpmi-nand", "bch";
+                        interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
