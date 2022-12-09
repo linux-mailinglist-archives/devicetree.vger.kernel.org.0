@@ -2,170 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A946483C9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:30:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2456483DC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:38:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiLIOaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 09:30:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54884 "EHLO
+        id S229815AbiLIOiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 09:38:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiLIOaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:30:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D100205C5;
-        Fri,  9 Dec 2022 06:30:08 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B8E2EB8287F;
-        Fri,  9 Dec 2022 14:30:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E31C433F1;
-        Fri,  9 Dec 2022 14:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670596205;
-        bh=a+obGw3XVMUgASOc8FIE8ScuBYM0lR28Ui9u4J3KSSw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=evYP4PkUi2/2b7jX7db6YhIdWE1vyjJsHtneNdVjASPc3wp/JvLGQvPueihcNQJAP
-         /qtC+41vZU4R5OEri+9O5Iw3sN3FrNCpQtxe+ZaToNocefQI53eEKOs70UjyIFvj5M
-         pmeklMhsIjMCjoKNsJJFgW7Np+XsWSFB8jsHhijZBZ5EFnqifkxDgFRMzW17gV2Z9A
-         6acYGobJjHtpcwkiS5ZrJNw8XDh8dgL8CwahFmYwDvdtheDG2cMHw1YpQw/0XSaUmn
-         onKb+5C6K+mNHd2wQhU8TD0RPEXwOan1ItvzaHTlblzAlVplQLrNQFlNvjXC2bur/h
-         giX8eVEKXzNSA==
-Received: by mail-vk1-f173.google.com with SMTP id z23so2182504vkb.12;
-        Fri, 09 Dec 2022 06:30:05 -0800 (PST)
-X-Gm-Message-State: ANoB5pmXH4yWeyVQ8NZqU7SS4Et1qp4MyO4XyJKTJGo2khdLdx4KOqTh
-        mh6cfuDgD3jWqNsWLPJx2cfNw3TMh9hvLP+aVQ==
-X-Google-Smtp-Source: AA0mqf53boM2A4hfZJBHsALfQhmvj3CWarRFhZegP+duCkmWd1VI9ygmXmydjZTSN0pUVc4Gpi0ad+IlynSnuQ5IjzY=
-X-Received: by 2002:a1f:2348:0:b0:3bd:51f6:1f3 with SMTP id
- j69-20020a1f2348000000b003bd51f601f3mr15880344vkj.35.1670596204403; Fri, 09
- Dec 2022 06:30:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
- <Y3ap1o2SbNvFw8Vd@orome> <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
- <Y49xg7wptRweHd4I@orome> <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
- <20221209101743.uzyw5ejubkbfm5di@mobilestation>
-In-Reply-To: <20221209101743.uzyw5ejubkbfm5di@mobilestation>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 9 Dec 2022 08:29:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com>
-Message-ID: <CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
+        with ESMTP id S229554AbiLIOh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:37:59 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 787FD22536;
+        Fri,  9 Dec 2022 06:37:58 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id n7so3722472wms.3;
+        Fri, 09 Dec 2022 06:37:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ksjf1ifYnL0IeOGv0R3sruLheVUdXvnakVg9dKCd4O8=;
+        b=OQbbA1cK0DLAHzSfbCq5R8N42tSEvcURMYHt9ZKK+qQWDGzmd6F6B4RFf1jPssJGbj
+         ZVLzrI0eVT8/DemfkWZX4S2ly6YAMd4Igj2dHB5DSD+4aeEdEVoScZ8oSd4eJTr5tyRR
+         Yf3GkNs4OgraFIWhrjQE8n/HMyqK5p2aGAxY40oV1AVYan85DJXLUrnud+gMZcrhJHiY
+         AYhPxe47WfPQdQ4+0W8NhvANhC7JWtG7EG+Bl5TZSJjVmsDgF1F3SEXCPqKjMbrY0UQW
+         Nlp6j6rGt3VHI07A1wXyixNjgDjAzGlUj9olUKmAUgmI2+RfO1j3ezGdMzKoC8tC8lTn
+         MoEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ksjf1ifYnL0IeOGv0R3sruLheVUdXvnakVg9dKCd4O8=;
+        b=Ru/8MXPuwfhtWmbP9oiFb9btmfYeKny7UEmymkPdY0YxaOnm2iO2joMuERF+pXTnn6
+         dIMdTJUQlx+kmnjDZyFEamOFey/z/Uri3vj7uj9DQm8M+ceLaU43WCKjy4xrQAps+h/7
+         /Y5gmQ7/DU5OrO1S296oA4neOAQbvBXTm6N9ydYb2bXw4naGbjtrV7hPaYNXGEhpzVzR
+         tg8vPMMI6e/GP58U4pFKomhy49XbzjpxMvuoMNbF3lo6sEpvewdC8AA0XrogQ0o7jGv4
+         yexSnkYYiNinpAOyanJcVWvQfAyTy0bAO0Dw4+Vjh0MxqAk2QPZ+6ul1TOL7F4uhRRKF
+         YhYA==
+X-Gm-Message-State: ANoB5pmUBt47kjny+xOc8ask+ruPmlGagWn3yurZL1ZDX4i1R9EAo0mN
+        7ghjmQHQhwXgKmHCfiK9i68=
+X-Google-Smtp-Source: AA0mqf63osf9GJAqNUmeOnHYl7OcmwLZoFhTthT6awFqHx8o40PCq+85mTgT5LZ3WhrI54SyAX7gVw==
+X-Received: by 2002:a05:600c:1d91:b0:3d0:274a:3171 with SMTP id p17-20020a05600c1d9100b003d0274a3171mr5173435wms.0.1670596676855;
+        Fri, 09 Dec 2022 06:37:56 -0800 (PST)
+Received: from localhost.localdomain ([95.183.227.98])
+        by smtp.gmail.com with ESMTPSA id m31-20020a05600c3b1f00b003d1e3b1624dsm9645517wms.2.2022.12.09.06.37.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Dec 2022 06:37:56 -0800 (PST)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
-        mmaddireddy@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Tianshu Qiu <tian.shu.qiu@intel.com>,
+        Bingbu Cao <bingbu.cao@intel.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Lee Jackson <info@arducam.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Umang Jain <umang.jain@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] media: i2c: ak7375: Add regulator management
+Date:   Fri,  9 Dec 2022 17:37:38 +0300
+Message-Id: <20221209143741.214242-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 9, 2022 at 4:17 AM Serge Semin
-<Sergey.Semin@baikalelectronics.ru> wrote:
->
-> On Tue, Dec 06, 2022 at 03:14:58PM -0600, Rob Herring wrote:
-> > On Tue, Dec 6, 2022 at 10:44 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > >
-> > > On Mon, Dec 05, 2022 at 05:41:55PM -0600, Rob Herring wrote:
-> > > > On Thu, Nov 17, 2022 at 3:38 PM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > > > >
-> > > > > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
-> > > > > > From: Vidya Sagar <vidyas@nvidia.com>
-> > > > > >
-> > > > > > Add support for ECAM aperture that is only supported for Tegra234
-> > > > > > devices.
-> > > > > >
-> > > > > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> > > > > > Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
-> > > > > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> > > > > > ---
-> > > > > > Changes since V2:
-> > > > > > - Avoid duplication of reg items and reg-names
-> > > > > > Changes since V1:
-> > > > > > - Restricted the ECAM aperture to only Tegra234 devices that support it.
-> > > > > >
-> > > > > >  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
-> > > > > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
-> > > > > >  2 files changed, 33 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > Both patches applied now.
-> > > >
-> > > > linux-next now fails with this. I suspect it is due to Sergey's
-> > > > changes to the DWC schema.
-> > > >
-> > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
-> > > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
-> > > > fixed:
-> > > >         'dbi' was expected
-> > > >         'dbi2' was expected
-> > > >         'ecam' is not one of ['elbi', 'app']
-> > > >         'atu' was expected
-> > > >         'dma' was expected
-> > > >         'phy' was expected
-> > > >         'config' was expected
-> > > >         /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
-> > > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
-> > > > fixed:
-> > > >                 'ecam' is not one of ['apb', 'mgmt', 'link', 'ulreg', 'appl']
-> > > >                 'ecam' is not one of ['atu_dma']
-> > > >                 'ecam' is not one of ['smu', 'mpu']
-> > > >         From schema:
-> > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> > >
-> > > Stephen reported the other day that he wasn't able to resolve this
-> > > conflict in linux-next, so he dropped the ECAM bits. The ECAM patch has
-> > > now propagated to ARM SoC so it can't be easily backed out, but I guess
-> > > we could revert on that tree and instead apply the patch to the DT tree
-> > > and resolve the conflict there.
-> > >
-> > > I guess the better alternative would be to try and resolve the merge
-> > > properly and let Stephen (and Linus) know.
-> >
->
-> > Instead, can you prepare a patch on top of Sergey's adding a 'oneOf'
-> > entry with 'ecam'. As this is a new thing, it should have its own
-> > entry. Then when merging, we just throw out the change from your side.
->
-> Right, the only change that is required here is to extend the
-> reg-names oneOf list of the DT-bindings:
-> < Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> with the 'ecam' entry. If it's a vendor-specific part then add to the
-> last the last entry defines the vendor-specific duplicates of the generic CSR
-> spaces.
->
-> On the other hand I don't really see a reason in adding the ECAM CSRs
-> space to the generic DW PCIe device since basically the ECAM memory is
-> just a pre-configured outbound iATU window. So if it's a ECAM-based
-> device then it should have been already configured by the system
-> bootloader upon the kernel boot up. Thus there is no point in having
-> the generic DW PCIe resources and it should be just a generic
-> ECAM-based device with a single ECAM CSR space as the
-> "snps,dw-pcie-ecam"/"pci-host-ecam-generic" DT-bindings require
-> especially seeing the Nvidia low-level driver doesn't use the ECAM
-> registers at all. Moreover the DW PCIe core driver doesn't
-> differentiate between the already configured iATU windows and the one
-> available for the ranges-based mapping. Instead the DW PCIe core just
-> disables all the detected in- and outbound iATUs by means of the
-> dw_pcie_iatu_setup() method. So the pre-configured ECAM space will be
-> reset by the driver core anyway.
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-This was discussed some before. This is for the firmware/bootloader to
-setup ECAM mode. Then the kernel will see generic (ACPI) ECAM.
+This series adds needed regulator management for the AK7375 VCM.
+A DT schema conversion is made before adding new properties.
 
-Yes, it is iATU config, but so is 'config'. If we were starting over,
-I'd say 'reg' should just have the entire address space for iATU and
-the driver could figure out how to configure it (beyond what ranges
-says). But that ship has sailed. Also, note that the address range
-here is disjoint from 'config', so it looks like we'd need 2 entries
-anyways.
+Changes since v2:
+  - Increase delay to 10000 microseconds to match the AK7371 datasheet
+    and because 3000 can be unstable sometimes.
+  - Use dev_err_probe to report regulator parsing failure.
+  - Remove AK7375_NUM_SUPPLIES macro.
+  - Use unsigned int to index supply name array.
 
-Rob
+Changes since v1:
+  - Add vendor prefix to DT binding doc file name
+  - Reorganize variable declaration
+  - Change the power-on delay range to 3000-3500 microseconds.
+
+Yassine Oudjana (3):
+  media: dt-bindings: ak7375: Convert to DT schema
+  media: dt-bindings: ak7375: Add supplies
+  media: i2c: ak7375: Add regulator management
+
+ .../devicetree/bindings/media/i2c/ak7375.txt  |  8 ---
+ .../media/i2c/asahi-kasei,ak7375.yaml         | 52 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ drivers/media/i2c/ak7375.c                    | 38 ++++++++++++++
+ 4 files changed, 91 insertions(+), 9 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ak7375.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/asahi-kasei,ak7375.yaml
+
+-- 
+2.38.1
+
