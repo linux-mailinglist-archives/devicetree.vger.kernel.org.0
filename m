@@ -2,129 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1ED6489B5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 21:52:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B73826489C2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 21:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbiLIUws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 15:52:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41318 "EHLO
+        id S229760AbiLIU7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 15:59:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiLIUwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 15:52:46 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B208BC3D
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 12:52:44 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id b3so8850902lfv.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 12:52:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jj9hWgWY6DzifYBIvFgTsPapdUtki3fp8cPuRUAv5cU=;
-        b=X31HflyuE5ExTUYKMZ1LI6Zs0Si1rbwcCV0qulY4VPQABapKV1wmpSmX/nGbkzAnmw
-         TjBWIsDUbIp5E5tcwg8VNeaaOXjFuSy0izUKNbCG0L7ODuVA+52P9IjqO7baKVkHEyva
-         bLyvN2Dc5Jh+lO5z/Eib+he9nr+J4Jtu6tr8U=
+        with ESMTP id S229721AbiLIU7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 15:59:02 -0500
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295E4AC6D2;
+        Fri,  9 Dec 2022 12:59:02 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id q18-20020a056830441200b006704633f258so3554769otv.0;
+        Fri, 09 Dec 2022 12:59:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jj9hWgWY6DzifYBIvFgTsPapdUtki3fp8cPuRUAv5cU=;
-        b=0fkXtBglJiQ0anHbrHBF94pyf80LFSTHoxD3oIkvD4DtbbY5PlwEsTpCY48WQuDrbD
-         MzxQrWFxfNoAaaDlCtSwCNaAR8l0pjqPCFUz1X2+dcW8mg9Qd7DXleGvokeEMo/5vXlI
-         9ChsTOHeKP34ZyOOKEPGIZgo/C7A9LS6TqDBpZ00KzNixKNS0Ew79hC/TQh6epoC9zpD
-         dQkly+1aVU3fY3624g1Cc8hhgUwROd5SyNoBQN3gKU0ww8BNqGoss76z8xYJ5g1EsX2x
-         abROOWH/BOdb8HBxRyv6RLOwokXZF5cTjnQa0H3ezuyRa/AbmwQm6g5Awm3eKkaaLGCU
-         aK1Q==
-X-Gm-Message-State: ANoB5plZpH0+RttSySogc+EXaP0HlhsffsDmAlfgluGsmRlSqtKL7Z1/
-        f7UCqNQrJQs3DfBQXnooWK9CODus3qTuUaeCz7X5yg==
-X-Google-Smtp-Source: AA0mqf7MC4Uryvkm5Y9sHf/fsm/ghqu2q3sYTfxfmTOOaObG5TKXiLAgEubGJE1ayHAEA+rzNVvKX/hqSBAVlhtWzK8=
-X-Received: by 2002:ac2:5e37:0:b0:4a2:4d72:6cc2 with SMTP id
- o23-20020ac25e37000000b004a24d726cc2mr35867808lfg.511.1670619162961; Fri, 09
- Dec 2022 12:52:42 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 9 Dec 2022 15:52:42 -0500
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MGTdK+VfJnonpBESmz4+ySkzMEO/TSQtM1pNjoYjQQM=;
+        b=XPuJ1wrvV9cocVoLqUkF+8cuD7nKXIN7PdFi+MP1EvUBk66X6P4c3mDlB4qbRBedaa
+         EFbi3DqOoI3mgk88SY+uUhBkAR3J2DXw/cVM05/2gJ4f/XtQtrqI/KCvw3K1MhpWbp2R
+         geK2CRtoTl1Vg+1xUXrEg5nB8EKvhNpq2yop8m/YfNdG6tm23UAC4VTFYtTc1oOyTPfN
+         ZBEW6/NgZ/gbR0sfeyp0BqAhmPHrG4AcqESFGPxQCuUv0f+n2DltCpML6U3NRbt30u6M
+         xDwzXJRXZ7nVyo8o2/NLFXSqWV2UTgOdUBkKBVnNci2BnpKLov7LZLe7dSfuVw4ZR47z
+         VsxA==
+X-Gm-Message-State: ANoB5pnIJfsqMPdwVg7OJyTA1srZSNTi5J2rjrt8iH4+V6gpNusTRWO2
+        2nmL/FnH2zbaJmIJzqCT1IHlxIGmxg==
+X-Google-Smtp-Source: AA0mqf7mXhC8lyMFV8kDY/PdmkSOjVF0bMOsRL+SRSrIEQpj4nhFDXpxu4GkobjjOUeCQE1ob8aGBQ==
+X-Received: by 2002:a05:6830:2a06:b0:66d:334d:b8a7 with SMTP id y6-20020a0568302a0600b0066d334db8a7mr3577801otu.17.1670619541357;
+        Fri, 09 Dec 2022 12:59:01 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l24-20020a9d4c18000000b0066db09fb1b5sm972211otf.66.2022.12.09.12.59.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Dec 2022 12:59:00 -0800 (PST)
+Received: (nullmailer pid 3837169 invoked by uid 1000);
+        Fri, 09 Dec 2022 20:59:00 -0000
+Date:   Fri, 9 Dec 2022 14:59:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     ruanjinjie <ruanjinjie@huawei.com>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: overlay: fix null pointer dereferencing in
+ find_dup_cset_node_entry() and find_dup_cset_prop()
+Message-ID: <20221209205900.GA3808024-robh@kernel.org>
+References: <20221206083657.3202856-1-ruanjinjie@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <ec403926-24ef-947d-2a1c-6cbf0e31ab89@quicinc.com>
-References: <1669897248-23052-1-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n520=mjdc4H1m8au0iBo2qEeaL8OrF1HCP0bXORe2Wa_7w@mail.gmail.com> <ec403926-24ef-947d-2a1c-6cbf0e31ab89@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 9 Dec 2022 15:52:42 -0500
-Message-ID: <CAE-0n50VYGNF_rGzyb_2Jd8dY8cFx3BeOw0s-ywELkRqEEig4g@mail.gmail.com>
-Subject: Re: [PATCH] remoteproc: elf_loader: Update resource table name check
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, bgoswami@quicinc.com,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, krzysztof.kozlowski@linaro.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        mathieu.poirier@linaro.org, perex@perex.cz, quic_plai@quicinc.com,
-        quic_rohkumar@quicinc.com, robh+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221206083657.3202856-1-ruanjinjie@huawei.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-12-08 05:40:54)
->
-> On 12/7/2022 7:25 AM, Stephen Boyd wrote:
-> Thanks for Your Time Stephen!!!
-> > Quoting Srinivasa Rao Mandadapu (2022-12-01 04:20:48)
-> >> Update resource table name check with sub string search instead of
-> >> complete string search.
-> >> In general Qualcomm binary contains, section header name
-> >> (e.g. .resource_table), amended with extra string to differentiate
-> >> with other sections.
-> >> So far Android adsp binaries are being authenticated using TZ,
-> >> hence this mismatch hasn't created any problem.
-> >> In recent developments, ADSP binary is being used in Chrome based
-> >> platforms, which doesn't have TZ path, hence resource table is
-> >> required for memory sandboxing.
-> >>
-> > Does this need a Fixes tag?
-> I don't think so. I feel It's kind of enhancement.
-> >
-> >> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> >> ---
-> >>   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
-> >>   1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/remoteproc/remoteproc_elf_loader.c b/drivers/remoteproc/remoteproc_elf_loader.c
-> >> index 5a412d7..0feb120 100644
-> >> --- a/drivers/remoteproc/remoteproc_elf_loader.c
-> >> +++ b/drivers/remoteproc/remoteproc_elf_loader.c
-> >> @@ -272,7 +272,7 @@ find_table(struct device *dev, const struct firmware *fw)
-> >>                  u64 offset = elf_shdr_get_sh_offset(class, shdr);
-> >>                  u32 name = elf_shdr_get_sh_name(class, shdr);
-> >>
-> >> -               if (strcmp(name_table + name, ".resource_table"))
-> >> +               if (!strstr(name_table + name, ".resource_table"))
-> > Was the strcmp not working before because the 'name_table' has something
-> > else in it? It really looks like your elf file is malformed.
->
-> Actually, DSP binary is prepared by combining different elfs. So Section
-> header names are appended with
->
-> something else to distinguish same section name of different elfs, by
-> using some Qualcomm specific QURT scripts.
-> Hence final binary contains resource_table name appended with module
-> specific name.
->
-> So this patch is required to handle such modified name.
->
+On Tue, Dec 06, 2022 at 04:36:57PM +0800, ruanjinjie wrote:
+> when kmalloc() fail to allocate memory in kasprintf(), fn_1 or fn_2 will
+> be NULL, strcmp() will cause null pointer dereference.
+> 
+> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
+> Signed-off-by: ruanjinjie <ruanjinjie@huawei.com>
+> ---
+>  drivers/of/overlay.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> index bd8ff4df723d..49c066b51148 100644
+> --- a/drivers/of/overlay.c
+> +++ b/drivers/of/overlay.c
+> @@ -545,6 +545,11 @@ static int find_dup_cset_node_entry(struct overlay_changeset *ovcs,
+>  
+>  		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+>  		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+> +		if (!fn_1 || !fn_2) {
+> +			kfree(fn_1);
+> +			kfree(fn_2);
+> +			return -ENOMEM;
+> +		}
+>  		node_path_match = !strcmp(fn_1, fn_2);
 
-Can you clarify how the section header name looks? Probably you can
-objdump the section here and provide that information to help us
-understand.
+We don't actually care what the return code is, so just change this to:
 
-I think remoteproc_elf_loader.c assumes the ELF file is properly formed.
-There should be a section named '.resource_table', so the strcmp will
-find it by looking at the section header names.
+node_path_match = !fn_1 || !fn_2 || !strcmp(fn_1, fn_2);
+
+>  		kfree(fn_1);
+>  		kfree(fn_2);
+> @@ -580,6 +585,11 @@ static int find_dup_cset_prop(struct overlay_changeset *ovcs,
+>  
+>  		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+>  		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+> +		if (!fn_1 || !fn_2) {
+> +			kfree(fn_1);
+> +			kfree(fn_2);
+> +			return -ENOMEM;
+> +		}
+>  		node_path_match = !strcmp(fn_1, fn_2);
+>  		kfree(fn_1);
+>  		kfree(fn_2);
+> -- 
+> 2.25.1
+> 
+> 
