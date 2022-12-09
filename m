@@ -2,88 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D12C56482D7
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 14:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA51D6482F6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 14:51:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiLINiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 08:38:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
+        id S229655AbiLINv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 08:51:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbiLINiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 08:38:14 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D8C60B66
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 05:38:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670593093; x=1702129093;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AEWb0npLjWYKAZ77OTmHcUwl5bx4xDS149SD5wS2qfk=;
-  b=DvTTuHUFg3sDf+CaH0gumsiRtq0djot+DKzVCYMPm0mU9gBudgJ+oIEG
-   evhs6OxitFz6drWsghliiWHAyPy7l7qkdXZVvcL3ALl8Ys58vfUJfXw04
-   DxPYaUqbCtNjIE3p7mYGnzkzvy8ox6si8I3YqoSX/a+ku6j+tqkn8MCNT
-   yAZjk2iVf8KKg8Yf5zdoD9Vvn06hYfnIlqlwIywaCHFzTsZUpmvdg6dsL
-   oZzt2vxH3LqjHrJLMNirdu7x1OdsFMWF+q0NZFup6OSq8ErUqHalISPmj
-   tH2yRICC+1Z/i1AAZLtz5P88qgzL+Jk0+qlNNTqRiKcCBEQfX+M8XxlgM
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27866776"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 14:38:11 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Dec 2022 14:38:11 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 14:38:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670593091; x=1702129091;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AEWb0npLjWYKAZ77OTmHcUwl5bx4xDS149SD5wS2qfk=;
-  b=glhmBAg52Y1tdZhI4gHF6hZPn88lF1iPLkQvGgfMxZKqeoVesRjRzFaU
-   Mr6quEgiQFJMSOivgCLiLC40zaMwtsxuG6DX79F3tRHFbJNDd3/bno8/n
-   5pytBMaKz7k8NCxVacITDj3S5Wtzd6FrdaNIsnHGwEtZAeTNTvNh/OeZ6
-   ZVPshTOdU/Vse78WCpAYzOD6DisR50KELkGGocIIZumuKmbwyKExT3Pjo
-   xHwERsTLnKTM+3b2SyBFvGDnM+G4JamvIlBaZhzVJEbAyccoovVAzzB/m
-   hdv+HJob7MPJByDoKEj+U0YE3i6rsKG9nvrVJarT8OH5suyKmfDOHoP4q
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27866775"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Dec 2022 14:38:10 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B9FF2280071;
-        Fri,  9 Dec 2022 14:38:10 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable delay property
-Date:   Fri, 09 Dec 2022 14:38:08 +0100
-Message-ID: <2735716.BEx9A2HvPv@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com> <45157029.fMDQidcC6G@steina-w> <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
+        with ESMTP id S229530AbiLINv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 08:51:27 -0500
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2057.outbound.protection.outlook.com [40.107.101.57])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 633E875082;
+        Fri,  9 Dec 2022 05:51:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ALPFOTGHbZEOoUWKQlIe/PTDnWm9+MayU9vBK7lUc8NSHQcvHpp1jjIJe1b+9CQ3e2DQQzX0dyEbYRwolwYxUuePEPsYee5PKSeyx6T0zvYfDJfTkjhW7CknDJnHMkEZOdhKsfG2EzpZt9eItyrsyWIhjKCJF7fjl6q6bxsfGBnDmxXWRFzneuOwQF8g6zZ/84bdsoY0CVJ6SZsGGtJ0H1noUA9FV+YzbriF4dqq9rwdNfZK0+EBnaSMcZ5xO5ekgeaA0nDh87tA7YDSfrirpiDy/lPSVFF5kx1M9YZ/e9tlhQ3CurltT/gVHobdRGgn+ToKbsuTVfVooaXwJP+oyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zGCSzrBQRP2mnNTMvA9z1Qpnl8ShVtNMz+tmloboZNM=;
+ b=TWy8squ9gsHl/pZQfYTW9UUKnVx7jr0RvAqQu/W2axyFGxSAq2ahtDUDSoHqV+nD+xrAKtvZHqvpOOa3inW48E6vpWgzTbteyi96WSYSzrcU1TU5J2SSfChP0r8+YuZRaf9375uCIxl8NrpvJ3MtiI6eh3VCSyIKRitduBARL8qkUoGCUd+cn3zOiOVk4GMVxUx7opS8YrEs4fWoDmUFy+JajW0livS8gWBf2k6ksR8ObXMsXKUzWwiCJWKpSXDLuqCY8A5AjjmDtCCx3PJkGu+SMNW/Z2Fa1OWeGCRm54tyqYHlU2BpWJ2uxiOCsYfepHOpHqDqEo809Cnm3g1V3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zGCSzrBQRP2mnNTMvA9z1Qpnl8ShVtNMz+tmloboZNM=;
+ b=l96enpWL6owpBSla0wAQDO43794oI7VWsiDyGXwL3Ez42KV2TpTyHGkdH37+sOhnvettjgsZ33ST5Z640hnmpvTs2OfMCJ95Mp9+VwVb2QBb7J5ihgfhO5SmLtiY3wqKGdnW+mG5un5J5PMCKL35XtADJIJ8Q/VlrpoNDmGLNRI=
+Received: from MW4PR04CA0287.namprd04.prod.outlook.com (2603:10b6:303:89::22)
+ by PH8PR12MB7157.namprd12.prod.outlook.com (2603:10b6:510:22b::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 9 Dec
+ 2022 13:51:20 +0000
+Received: from CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:89:cafe::12) by MW4PR04CA0287.outlook.office365.com
+ (2603:10b6:303:89::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16 via Frontend
+ Transport; Fri, 9 Dec 2022 13:51:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT072.mail.protection.outlook.com (10.13.174.106) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 13:51:20 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 9 Dec
+ 2022 07:51:18 -0600
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Harini Katakam <harini.katakam@amd.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] ARM: dts: zynq: Add xlnx prefix to GEM compatible string
+Date:   Fri, 9 Dec 2022 14:51:16 +0100
+Message-ID: <5452508cf2bb4213e9cff9b957d663c30633e81b.1670593872.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT072:EE_|PH8PR12MB7157:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5fda7ab-299f-4b13-f5ec-08dad9ec73d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NfeV20TKMWYICtO4qjDW0bMZ6cosOzUhH0xSF6WnkBs4X2TJtJkh/Y46iycr85Yo9ItIg+FNltEglAO4DB47eqmFJsHVNBfFLy/Ovr4oIrLIRHduEL+RNJkO3F86t0QQT/leW7izeyHUiZ6kT99WJPonrCrk2rYB1NdiUyP9WvKT9EgUasTy3cHrdNy4A0DZe1bYHEZe9y9/oXUuYMNjiPHwkleVXAPJSd70eHGye4Roq/Ltmen/QuUWWYMA4xRqeOLNM1wFLDZYZvmG8dOIxK+VR31borAkxh5I5lIb/HrPiTM69xIQtNItOQ/2DgfhMdRhHTjxKcoplC5/nM5B8JqN25G+BNo6rcEp4kij4V+JIxYHQXcvVphu6pcgCKiIAKO9AuHwLa8t59UnHCjq2xXtINTp733Ouj8F2pQ+RquXTuI3BuaAEPMJOxd3zrsQ2Glmgpf7+XkU5FHVez0MI1Jhuou56vKI2MYTofVwHu17n6HIhyRrap1J2kmC2g3FqktBm29t6RDW7/zKmGElndVeHFF6kKrVIXac1j+chtBx16RmE3mEgV9+3jUoWPIpC68ptSR2Z47j/QYTQ1pVOYFpaPe7O2VwPjzFU7HmtJoDmFdMwq85aTVTQGSvGlg6CFcAeqgWJq6bqxNk6rP7kFvfnGTyZAJQiq93UOY1SGHluHsI/lmE75J8FNzgk82nq74MF/hzShR9EjKAt4CpsW+9Ydk11mZgSCL1jaBCBMiHnCfiPR5ZxP/oV5UM6wcE
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(396003)(136003)(346002)(39860400002)(451199015)(40470700004)(46966006)(36840700001)(478600001)(8676002)(82310400005)(40460700003)(26005)(70586007)(110136005)(54906003)(70206006)(82740400003)(40480700001)(4326008)(81166007)(356005)(316002)(2906002)(83380400001)(16526019)(186003)(41300700001)(336012)(2616005)(5660300002)(36860700001)(36756003)(44832011)(47076005)(86362001)(426003)(8936002)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 13:51:20.3564
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5fda7ab-299f-4b13-f5ec-08dad9ec73d3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT072.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7157
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,141 +99,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
-> On 12/9/22 13:21, Alexander Stein wrote:
-> > Hi Marek,
-> > 
-> > Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
-> >> On 12/9/22 10:36, Alexander Stein wrote:
-> >>> Hello Krzysztof,
-> >> 
-> >> Hi,
-> >> 
-> >>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
-> >>>> On 09/12/2022 09:54, Alexander Stein wrote:
-> >>>>> Hello Krzysztof,
-> >>>>> 
-> >>>>> thanks for the fast feedback.
-> >>>>> 
-> >>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof 
-Kozlowski:
-> >>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
-> >>>>>>> It takes some time until the enable GPIO has settled when turning
-> >>>>>>> on.
-> >>>>>>> This delay is platform specific and may be caused by e.g. voltage
-> >>>>>>> shifts, capacitors etc.
-> >>>>>>> 
-> >>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>>> ---
-> >>>>>>> 
-> >>>>>>>    .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
-> >>>>>>>    ++++
-> >>>>>>>    1 file changed, 4 insertions(+)
-> >>>>>>> 
-> >>>>>>> diff --git
-> >>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
-> >>>>>>> ---
-> >>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>> +++
-> >>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>> 
-> >>>>>>> @@ -32,6 +32,10 @@ properties:
-> >>>>>>>        maxItems: 1
-> >>>>>>>        description: GPIO specifier for bridge_en pin (active high).
-> >>>>>>> 
-> >>>>>>> +  ti,enable-delay-us:
-> >>>>>>> +    default: 10000
-> >>>>>>> +    description: Enable time delay for enable-gpios
-> >>>>>> 
-> >>>>>> Aren't you now mixing two separate delays? One for entire block on (I
-> >>>>>> would assume mostly fixed delay) and one depending on regulators
-> >>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss
-> >>>>>> the
-> >>>>>> second delays in your power supply? If so, the first one might be
-> >>>>>> fixed
-> >>>>>> and hard-coded in the driver?
-> >>>>> 
-> >>>>> Apparently there are two different delays: reset time (t_reset) of
-> >>>>> 10ms
-> >>>>> as
-> >>>>> specified by datasheet. This is already ensured by a following delay
-> >>>>> after
-> >>>>> requesting enable_gpio as low and switching the GPIO to low in disable
-> >>>>> path.
-> >>>>> 
-> >>>>> When enabling this GPIO it takes some time until it is valid on the
-> >>>>> chip,
-> >>>>> this is what this series is about. It's highly platform specific.
-> >>>>> 
-> >>>>> Unfortunately this is completely unrelated to the vcc-supply
-> >>>>> regulator.
-> >>>>> This one has to be enabled before the enable GPIO can be enabled. So
-> >>>>> there is no regulator-ramp-delay.
-> >>>> 
-> >>>> Your driver does one after another - regulator followed immediately by
-> >>>> gpio - so this as well can be a delay from regulator (maybe not ramp
-> >>>> but
-> >>>> enable delay).
-> >> 
-> >> The chip has two separate input pins:
-> >> 
-> >> VCC -- power supply that's regulator
-> >> EN -- reset line, that's GPIO
-> >> 
-> >> Alexander is talking about EN line here.
-> >> 
-> >>> But this will introduce a section which must not be interrupted or
-> >>> delayed.
-> >>> This is impossible as the enable gpio is attached to an i2c expander in
-> >>> my
-> >>> case.
-> >>> 
-> >>> Given the following time chart:
-> >>>    vcc                  set             EN
-> >>> 
-> >>> enable               GPIO             PAD
-> >>> 
-> >>>     |                    |<-- t_raise -->|
-> >>>     | 
-> >>>     | <-- t_vcc_gpio --> |               |
-> >>>     | <--        t_enable_delay      --> |
-> >>> 
-> >>> t_raise is the time from changing the GPIO output at the expander until
-> >>> voltage on the EN (input) pad from the bridge has reached high voltage
-> >>> level. This is an electrical characteristic I can not change and have to
-> >>> take into account.
-> >>> t_vcc_gpio is the time from enabling supply voltage to enabling the
-> >>> bridge
-> >>> (removing from reset). Minimum t_vcc_gpio is something which can be
-> >>> addressed by the regulator and is no problem so far. But there is no
-> >>> upper bound to it.
-> >> 
-> >> What exactly is your EN signal rise time (should be ns or so)? Can you
-> >> look at that with a scope , maybe even with relation to the VCC regulator
-> >> ?
-> > 
-> > I checked EN rise time using a scope, it's ~110ms. I not an expert in
-> > hardware but on the mainboard there is some capacitor attached to this
-> > line, which increased the time, independent from the internal pull-up.
-> 
-> This does seem like a hardware bug right there, can you double-check
-> this with the hardware engineer ?
+From: Harini Katakam <harini.katakam@amd.com>
 
-Yep, checked with hardware engineer. An 470nF is attached, together with an 
-open drain output and only the internal pull-up. So yes ~113ms rising time 
-until 0.7 x VCC.
+cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
+favour of xlnx prefix. Add this new compatible string and retain
+the existing string for compatibility with uboot drivers.
 
-Best regards,
-Alexander
+Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-> I would expect the capacitor to charge quickly when you flip the I2C
-> expander output HIGH, unless the I2C expander output is open drain, at
-> which point the transistor in the output is closed when the output is
-> set to HIGH and the capacitor is charging over the DSI83 EN pullup ,
-> which might be slow.
+ arch/arm/boot/dts/zynq-7000.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
-
+diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+index f96f19a8a83f..25fbca70ac1f 100644
+--- a/arch/arm/boot/dts/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/zynq-7000.dtsi
+@@ -243,7 +243,7 @@ qspi: spi@e000d000 {
+ 		};
+ 
+ 		gem0: ethernet@e000b000 {
+-			compatible = "cdns,zynq-gem", "cdns,gem";
++			compatible = "xlnx,zynq-gem", "cdns,zynq-gem", "cdns,gem";
+ 			reg = <0xe000b000 0x1000>;
+ 			status = "disabled";
+ 			interrupts = <0 22 4>;
+@@ -254,7 +254,7 @@ gem0: ethernet@e000b000 {
+ 		};
+ 
+ 		gem1: ethernet@e000c000 {
+-			compatible = "cdns,zynq-gem", "cdns,gem";
++			compatible = "xlnx,zynq-gem", "cdns,zynq-gem", "cdns,gem";
+ 			reg = <0xe000c000 0x1000>;
+ 			status = "disabled";
+ 			interrupts = <0 45 4>;
+-- 
+2.36.1
 
