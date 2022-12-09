@@ -2,124 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A37C647CF6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 05:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19091647D1B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 05:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbiLIEj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 23:39:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
+        id S229500AbiLIEz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 23:55:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiLIEjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 23:39:16 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2051.outbound.protection.outlook.com [40.107.21.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A4D389D7;
-        Thu,  8 Dec 2022 20:39:14 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JGygBM4VYujejhSp/DVadfCqmHrb7HQ9M3Ib4TRLDDkyF8GMfRag2CfWUrEYWdONJ/7w2QEuVR6gCsR8R9EXUMMYz2cF5aX/jtwuWoCwA6OKbw3sPX2BpTV3LiOrw6CwC9sPAo9FRCw9IbhIfq+56abVo9U4MzgL9RdVrdvuwo1RIHussWw0OEjBKapbZOEnxANG5wY84ndtQD0Qf4jIF5ylvqplstEbPMP54XWYYamAiAXVBJbBKPVKK/R+ox+NYr/OTaf5cF0D2MpByFjLPCJ4LBbGzGE2teCHYR7Z5zFrnGtGVY/mUPRquZvo3wb+TeZj3M8y3laJ7wDra5ehNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=krYM4wEtvuuArgN0tfvokRxHJdMqM2aZ+R7FZv7J7rg=;
- b=O2ooEx083I/YFarEKM0DEypQwXFGbhSTFyKds4GEEqmaxC5yTBK766Bcm7kjOMUeqbuzuJ1z48q8ZX1uE/7WOLkJqFIDvktIZQNjwkyC+PPiqgpo3kS9i4ZDJwxaXgutIWxp08f7bTnN6qPUjubtgCcariJ8+ik9d0XJJ6U1CYDr399bz9JF/61kMz8eK7w5pkvKQ3BMgeIiUG1KwdH+zKn3nOjNDHdgfAssBB59nJ0asavCAJ+b1fhK61/SJp155UawscwxZBBx60HWbloCVHTZRt9Qnfs0adbW2D263pmKRdKjiBmRsu/k/un5k5a4SkNuSzRUMr7p8Egni4IJYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=krYM4wEtvuuArgN0tfvokRxHJdMqM2aZ+R7FZv7J7rg=;
- b=qcKwtr3Lc8gudq7UqHOSypMmudkt2Z+oS1loSg7iQ1omxE1HYwfhARtQavTwlwE2vRlCFD2r/2jn9OdE+IOd0G+Xk7Qq2CPhCeFI4FeTo5vYRZC490T5iX/SG5FFsaUlFNSUFuXrKsqae5S14uSlBhmwwNwRjPKLLjav+DwECjyTyW3wqFqZ5BiH5eSqDCS4TKiGBjxattblXLv+h1INTjjk2hrP7rx+iwnHJG8QJeR2NgHbZu9bPeCS4Gbkhe911aKvPahZj54UDVMe66D2Ql7Vucj0iRpohmStBHIxCmIqhhPs2GKuVJFPez8Sfqt6c1FxMsPMOUHslOctyDEmrA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
- by AM8PR04MB7377.eurprd04.prod.outlook.com (2603:10a6:20b:1de::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.11; Fri, 9 Dec
- 2022 04:39:11 +0000
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::28d6:1b8:94d9:89f5]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::28d6:1b8:94d9:89f5%7]) with mapi id 15.20.5880.011; Fri, 9 Dec 2022
- 04:39:10 +0000
-Date:   Fri, 9 Dec 2022 12:38:51 +0800
-From:   Chester Lin <clin@suse.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
-        Radu Pirea <radu-nicolae.pirea@nxp.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Matthew Nunez <matthew.nunez@nxp.com>,
-        Phu Luu An <phu.luuan@nxp.com>,
-        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: add NXP S32 SoC family support
-Message-ID: <Y5K726npjKAO4sIq@linux-8mug>
-References: <20221128054820.1771-1-clin@suse.com>
- <20221128054820.1771-3-clin@suse.com>
- <CAOMZO5D0wJcfbFsvUN3K17S5F4zT2Yf8yQB+wMKQPzuMBitrpA@mail.gmail.com>
- <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
-X-ClientProxiedBy: TYCP301CA0034.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:380::14) To VI1PR0402MB3439.eurprd04.prod.outlook.com
- (2603:10a6:803:4::13)
+        with ESMTP id S229479AbiLIEzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 23:55:55 -0500
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634017D089;
+        Thu,  8 Dec 2022 20:55:53 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2B94taJ8062692;
+        Thu, 8 Dec 2022 22:55:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1670561736;
+        bh=vHMQwHO7YJaLPUifIZ/KpwitNZcVWF9PtNfzAVnncAM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=uD/mKhDjZ0QDJ8oitnSnSN9CZD5E9HurKJ+KQyYzsKP4a6gpSj4xtLOUVooIPiqJt
+         CPPNM0FbGePaq6GG4SyPfDLczY5/WyduH+VMDrQOdzHeU7Gg2nV+lC0qJXGX7ut2ka
+         ajGefKk6jeJi4XVcCPoq9/Wg713Ni19eavoxNa6A=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2B94ta9F055517
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 8 Dec 2022 22:55:36 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 8
+ Dec 2022 22:55:36 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 8 Dec 2022 22:55:35 -0600
+Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2B94tVij082885;
+        Thu, 8 Dec 2022 22:55:32 -0600
+Message-ID: <a8b8ba60-0413-5568-ae9a-57c25840dca7@ti.com>
+Date:   Fri, 9 Dec 2022 10:25:31 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|AM8PR04MB7377:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e0497b3-462a-45f9-2ace-08dad99f50d9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P892p19npaRtH/1LKjs1HzWb9WeBKXJ/OJhU3icv4F8pEU9CpHPBtnGnSQDM4REVDitPnT8KPRVvnD4pa+iiGXS7k8+alZHfRDJKQCTIr4tA/2iATFfqioBJ7zGeNfJGk8ercwZHaURo/qXcFAjGpJRUVS9rA0Z6sjtpdYWlenxgoLHtMKeW04yg+tafddnZHnXssptInOca/2fRQ1CcnmTqAy70E6/qEKnO95teBUvnKHByysJYpoT1kP8KbW/2b+dvuLH9nAcBWoevuHXqELreF7H2RDqBva88KQY3JeHCCHOu7jmapA1HKuwiUFHIdrNGI3Aw4wFApmgRmCrYVAb3bkuDkvhx5dmNGeYsKoyBvy/2yjxpyKgZ2FBSrB0OyofYMGC8exg7Ymd7AVZioajnPLwnTF20CS1V0O3Fl8s6070OBZftuGH0wjNJkKr3nioXCejq0GHpMZQr64Fn5u1KhgSjdo6Rsc8MuBkj2qYW3oNyg2/nAj5/TOYWJSyC2s6FY48+yHCmvGlsxnq94K/VPD+cmchcLoHUxN/+zseFoOp2OaX4NkYiSZJqGyG1IqxQoxsXP4Yc9A29GQllK8jUL58nw5m1DezfZRJuffxpsXew6Sa0FAIJKnJ6+BNDyYg8/ULt/NMDWw20CSyw5A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(376002)(136003)(346002)(396003)(39860400002)(366004)(451199015)(86362001)(41300700001)(38100700002)(8936002)(7416002)(5660300002)(4744005)(8676002)(66946007)(66476007)(66556008)(4326008)(33716001)(2906002)(9686003)(26005)(6512007)(83380400001)(316002)(6486002)(54906003)(6916009)(53546011)(6506007)(6666004)(186003)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oNKyglSeoUfzmJQ6xnMkV6KccDpAgL0ChcwEQDLgLVkBkmwElJ6JSwvHn4Ar?=
- =?us-ascii?Q?oMFVn+46Wc87BWm3mP3fSozK4h5ODdi7WcHfVrBR5TjTdKSCWsl+7fnlgOKg?=
- =?us-ascii?Q?K3Cp8J79lUbdV31dXliMxhmJNQRm42Mvr4oX4tnhz04oCMc7aBg+1MgnqhhR?=
- =?us-ascii?Q?/rickF7/DKtcocdaOxEzUuydIWACd6B88aqTcAn/mGw5FKHtQYcm/I7b+KrV?=
- =?us-ascii?Q?RWcx5JjXMkEAK7qp2n/JaSWWLPjKsG4TXMJi3kIdoPfwFZjPl1RP1vuAi1gy?=
- =?us-ascii?Q?5Ycw886VIACGWpLpPnv62dvBs8GmMD8RIPvKxcrTqjNlvnP07CeRJO5zRRPS?=
- =?us-ascii?Q?hiAu6JjGvLH3ljXkLTqTp0kDyDywk+n6zV/4C933jtBnGDacRYKsf+r6zllt?=
- =?us-ascii?Q?1u1kzFW1s2WWNehMp7GuxBC2iRf0O9aoCGk4hN9A+OhGjX3aPa2vlVyz3pqV?=
- =?us-ascii?Q?8xaJAHXSWafk3UamMVOFF6pywncv3dqqcUr/XWBFx+h1BYOVV3Cj6oeu1w8D?=
- =?us-ascii?Q?Jr+pYxpY17LeZc6bXYFp/sFdLIuN9ow44A/q5K5iLxOjNevLPXtDLYsxSzU8?=
- =?us-ascii?Q?NyXgOthW+8DZIaMNoKEUaeyXbHTH5xlSnvh/Ffrj9YY9qAdOWSBGJso0SD9w?=
- =?us-ascii?Q?I3pcJqIJKtMJf5gtSOSbINgW5cNbnO9G8e+dtXo917LHfZpnUy0jq6e2IHOV?=
- =?us-ascii?Q?3e7n6ZirYUILIjVQJ9SARNTg9Mu3NS9wE2qXXinP6FOwyuB4HSob3h8pzx/j?=
- =?us-ascii?Q?U4MCW5IrS61Kl4h8Ff8sKiT/mGzZ9dP6wJWu4tNEBML2jEvRgF14rdOStyc8?=
- =?us-ascii?Q?l4OsXYY8ub0XUphP5bSGYxVJkvjPxIuvN/GeK5ALGH7qPXt9Y971YY10f1mP?=
- =?us-ascii?Q?2vbgRwfa/daR29+3X6TlXWIflW0Ds9asy3ZK61/NlLelyi8GEpTyXxpNkRSX?=
- =?us-ascii?Q?0BeJ6kyJoTIMhAqm7NWTEDLUeQ/0HBva3gY57vmkkbMdm4tG8A5gAr2mtcGF?=
- =?us-ascii?Q?uvljVN+k6FeWKNhF9vO8GQyaqE/A4GnRY0jVJY0ORsalvfaz4XQrWzxDhW0W?=
- =?us-ascii?Q?kXtzMQilU6lGiiONSfRtk3iBTmBJcNfilIteTfW5Dcx0bi5BOTYpwK+1v/fl?=
- =?us-ascii?Q?0V5tjW/NDi74Kp4xo4zj6tpDdTp45c25ytl/IcRqyM/gmQR+JcQfDi8cElOD?=
- =?us-ascii?Q?Fch95r/2KChLLKvPyiIoio7pAeN74XY57Sc8+HmzgF8co/c3MsTpyhU+h+mS?=
- =?us-ascii?Q?NV6DPvfnU2zeknkHxPD60TFMuf5zKgWrvAPxjBqIQjkomYUGF5+OoGwut7ZW?=
- =?us-ascii?Q?NW6jJZk8wC8Jhuj1WbHtZ93nb+DvDpvw8CPZwoijlClpUHs82wgIbZrgO0mG?=
- =?us-ascii?Q?kOoWcqKw0X/yiXm42lqK4TM6nQqMPjhTfWd+dY3odX9/43I5zlmcHMU7SAqq?=
- =?us-ascii?Q?NbKcY3/Gh1YfNNjrGG1LXUeL0qOIp/g26J+o5SqPdMLt7BtC/d0Fm7s3te8j?=
- =?us-ascii?Q?xXbKqkQNqmI8w3a0oOUaDZrlufpCMxFhBJlEM7y2Nns64BRbHokfeHlm7AN1?=
- =?us-ascii?Q?2zfiwdqu1Z3b0JYN8lM=3D?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e0497b3-462a-45f9-2ace-08dad99f50d9
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 04:39:10.8908
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wqZHY31qdB7xzfRzsNRqJSjalYbI5kKGGsy0YsJaTXZBUQr4Z2SXHbwKmOO0pRgF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7377
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [EXTERNAL] Re: [PATCH v11 3/6] remoteproc: pru: Add APIs to get
+ and put the PRU cores
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Suman Anna <s-anna@ti.com>, "Andrew F . Davis" <afd@ti.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <srk@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20221207110411.441692-1-danishanwar@ti.com>
+ <20221207110411.441692-4-danishanwar@ti.com>
+ <77d79939-53bb-bc27-a8f8-ea5bf509a15f@kernel.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+In-Reply-To: <77d79939-53bb-bc27-a8f8-ea5bf509a15f@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -127,36 +75,283 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus and Fabio,
+Hi Roger,
 
-Thanks for your time to review this patch!
-
-On Thu, Dec 08, 2022 at 10:37:36PM +0100, Linus Walleij wrote:
-> On Thu, Dec 8, 2022 at 12:04 AM Fabio Estevam <festevam@gmail.com> wrote:
+On 08/12/22 16:05, Roger Quadros wrote:
+> Hi,
 > 
-> > In other imx8m pinctrl drivers we pass:
-> (...)
-> > > +module_platform_driver(s32g_pinctrl_driver);
-> >
-> > And we also register it in arch_initcall() level.
+> On 07/12/2022 13:04, MD Danish Anwar wrote:
+>> Add two new APIs, pru_rproc_get() and pru_rproc_put(), to the PRU
+>> driver to allow client drivers to acquire and release the remoteproc
+>> device associated with a PRU core. The PRU cores are treated as
+>> resources with only one client owning it at a time.
+>>
+>> The pru_rproc_get() function returns the rproc handle corresponding
+>> to a PRU core identified by the device tree "ti,prus" property under
+>> the client node. The pru_rproc_put() is the complementary function
+>> to pru_rproc_get().
+>>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  drivers/remoteproc/pru_rproc.c | 133 ++++++++++++++++++++++++++++++++-
+>>  include/linux/pruss.h          |  29 +++++++
+>>  2 files changed, 160 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
+>> index a1a208b31846..7d4ed39b3772 100644
+>> --- a/drivers/remoteproc/pru_rproc.c
+>> +++ b/drivers/remoteproc/pru_rproc.c
+>> @@ -2,12 +2,14 @@
+>>  /*
+>>   * PRU-ICSS remoteproc driver for various TI SoCs
+>>   *
+>> - * Copyright (C) 2014-2020 Texas Instruments Incorporated - https://www.ti.com/
+>> + * Copyright (C) 2014-2022 Texas Instruments Incorporated - https://www.ti.com/
+>>   *
+>>   * Author(s):
+>>   *	Suman Anna <s-anna@ti.com>
+>>   *	Andrew F. Davis <afd@ti.com>
+>>   *	Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org> for Texas Instruments
+>> + *	Puranjay Mohan <p-mohan@ti.com>
+>> + *	Md Danish Anwar <danishanwar@ti.com>
+>>   */
+>>  
+>>  #include <linux/bitops.h>
+>> @@ -112,6 +114,8 @@ struct pru_private_data {
+>>   * @rproc: remoteproc pointer for this PRU core
+>>   * @data: PRU core specific data
+>>   * @mem_regions: data for each of the PRU memory regions
+>> + * @client_np: client device node
+>> + * @lock: mutex to protect client usage
+>>   * @fw_name: name of firmware image used during loading
+>>   * @mapped_irq: virtual interrupt numbers of created fw specific mapping
+>>   * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
+>> @@ -127,6 +131,8 @@ struct pru_rproc {
+>>  	struct rproc *rproc;
+>>  	const struct pru_private_data *data;
+>>  	struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
+>> +	struct device_node *client_np;
+>> +	struct mutex lock;
+>>  	const char *fw_name;
+>>  	unsigned int *mapped_irq;
+>>  	struct pru_irq_rsc *pru_interrupt_map;
+>> @@ -147,6 +153,125 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
+>>  	writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
+>>  }
+>>  
+>> +static struct rproc *__pru_rproc_get(struct device_node *np, int index)
+>> +{
+>> +	struct rproc *rproc;
+>> +	phandle rproc_phandle;
+>> +	int ret;
+>> +
+>> +	ret = of_property_read_u32_index(np, "ti,prus", index, &rproc_phandle);
+>> +	if (ret)
+>> +		return ERR_PTR(ret);
+>> +
+>> +	rproc = rproc_get_by_phandle(rproc_phandle);
+>> +	if (!rproc) {
+>> +		ret = -EPROBE_DEFER;
+>> +		goto err_no_rproc_handle;
+>> +	}
+>> +
+>> +	/* make sure it is PRU rproc */
+>> +	if (!is_pru_rproc(rproc->dev.parent)) {
+>> +		rproc_put(rproc);
+>> +		return ERR_PTR(-ENODEV);
+>> +	}
+>> +
+>> +	return rproc;
+>> +
+>> +err_no_rproc_handle:
+>> +	rproc_put(rproc);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +
+>> +/**
+>> + * pru_rproc_get() - get the PRU rproc instance from a device node
+>> + * @np: the user/client device node
+>> + * @index: index to use for the ti,prus property
+>> + * @pru_id: optional pointer to return the PRU remoteproc processor id
+>> + *
+>> + * This function looks through a client device node's "ti,prus" property at
+>> + * index @index and returns the rproc handle for a valid PRU remote processor if
+>> + * found. The function allows only one user to own the PRU rproc resource at a
+>> + * time. Caller must call pru_rproc_put() when done with using the rproc, not
+>> + * required if the function returns a failure.
+>> + *
+>> + * When optional @pru_id pointer is passed the PRU remoteproc processor id is
+>> + * returned.
+>> + *
+>> + * Return: rproc handle on success, and an ERR_PTR on failure using one
+>> + * of the following error values
+>> + *    -ENODEV if device is not found
+>> + *    -EBUSY if PRU is already acquired by anyone
+>> + *    -EPROBE_DEFER is PRU device is not probed yet
+>> + */
+>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>> +			    enum pruss_pru_id *pru_id)
+>> +{
+>> +	struct rproc *rproc;
+>> +	struct pru_rproc *pru;
+>> +	struct device *dev;
+>> +	int ret;
+>> +
+>> +	rproc = __pru_rproc_get(np, index);
+>> +	if (IS_ERR(rproc))
+>> +		return rproc;
+>> +
+>> +	pru = rproc->priv;
+>> +	dev = &rproc->dev;
+>> +
+>> +	mutex_lock(&pru->lock);
+>> +
+>> +	if (pru->client_np) {
+>> +		mutex_unlock(&pru->lock);
+>> +		put_device(dev);
 > 
-> Do you really need that though? This driver certainly does not.
+> Is this put_device() to counter balance the get_device() you had earlier?
+> Is it still needed?
+>> Did we do the right thing by getting rid of the additional get_device()?
+> I didn't see a reason for it.
 > 
-> I was under the impression that recent changes to the probe-order
-> logic has made most explicit arch_ etc initcall orderings surplus.
+
+The previous get_device() in __pru_rproc_get() was additional/not required as
+the same get_device() was called by rproc_get_by_phandle() API before it's
+completion.
+
+So that get_device() is not needed.
+
+The put_device() here is to counter the get_device() called by
+rproc_get_by_phandle() in the API __pru_rproc_get().
+
+So I think, this put_device() is still needed.
+
+>> +		ret = -EBUSY;
+>> +		goto err_no_rproc_handle;
+>> +	}
+>> +
+>> +	pru->client_np = np;
+>> +
+>> +	mutex_unlock(&pru->lock);
+>> +
+>> +	if (pru_id)
+>> +		*pru_id = pru->id;
+>> +
+>> +	return rproc;
+>> +
+>> +err_no_rproc_handle:
+>> +	rproc_put(rproc);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pru_rproc_get);
+>> +
+>> +/**
+>> + * pru_rproc_put() - release the PRU rproc resource
+>> + * @rproc: the rproc resource to release
+>> + *
+>> + * Releases the PRU rproc resource and makes it available to other
+>> + * users.
+>> + */
+>> +void pru_rproc_put(struct rproc *rproc)
+>> +{
+>> +	struct pru_rproc *pru;
+>> +
+>> +	if (IS_ERR_OR_NULL(rproc) || !is_pru_rproc(rproc->dev.parent))
+>> +		return;
+>> +
+>> +	pru = rproc->priv;
+>> +
+>> +	mutex_lock(&pru->lock);
+>> +
+>> +	if (!pru->client_np) {
+>> +		mutex_unlock(&pru->lock);
+>> +		return;
+>> +	}
+>> +
+>> +	pru->client_np = NULL;
+>> +	mutex_unlock(&pru->lock);
+>> +
+>> +	rproc_put(rproc);
+>> +}
+>> +EXPORT_SYMBOL_GPL(pru_rproc_put);
+>> +
+>>  static inline u32 pru_debug_read_reg(struct pru_rproc *pru, unsigned int reg)
+>>  {
+>>  	return readl_relaxed(pru->mem_regions[PRU_IOMEM_DEBUG].va + reg);
+>> @@ -817,6 +942,8 @@ static int pru_rproc_probe(struct platform_device *pdev)
+>>  	pru->pruss = platform_get_drvdata(ppdev);
+>>  	pru->rproc = rproc;
+>>  	pru->fw_name = fw_name;
+>> +	pru->client_np = NULL;
+>> +	mutex_init(&pru->lock);
+>>  
+>>  	for (i = 0; i < ARRAY_SIZE(mem_names); i++) {
+>>  		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>> @@ -905,7 +1032,7 @@ MODULE_DEVICE_TABLE(of, pru_rproc_match);
+>>  
+>>  static struct platform_driver pru_rproc_driver = {
+>>  	.driver = {
+>> -		.name   = "pru-rproc",
+>> +		.name   = PRU_RPROC_DRVNAME,
+>>  		.of_match_table = pru_rproc_match,
+>>  		.suppress_bind_attrs = true,
+>>  	},
+>> @@ -917,5 +1044,7 @@ module_platform_driver(pru_rproc_driver);
+>>  MODULE_AUTHOR("Suman Anna <s-anna@ti.com>");
+>>  MODULE_AUTHOR("Andrew F. Davis <afd@ti.com>");
+>>  MODULE_AUTHOR("Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>");
+>> +MODULE_AUTHOR("Puranjay Mohan <p-mohan@ti.com>");
+>> +MODULE_AUTHOR("Md Danish Anwar <danishanwar@ti.com>");
+>>  MODULE_DESCRIPTION("PRU-ICSS Remote Processor Driver");
+>>  MODULE_LICENSE("GPL v2");
+>> diff --git a/include/linux/pruss.h b/include/linux/pruss.h
+>> index fbe4fbb45807..6ea737e995e9 100644
+>> --- a/include/linux/pruss.h
+>> +++ b/include/linux/pruss.h
+>> @@ -28,5 +28,34 @@ enum pruss_pru_id {
+>>  	PRUSS_NUM_PRUS,
+>>  };
+>>  
+>> +struct device_node;
+>> +
+>> +#if IS_ENABLED(CONFIG_PRU_REMOTEPROC)
+>> +
+>> +struct rproc *pru_rproc_get(struct device_node *np, int index,
+>> +			    enum pruss_pru_id *pru_id);
+>> +void pru_rproc_put(struct rproc *rproc);
+>> +
+>> +#else
+>> +
+>> +static inline struct rproc *
+>> +pru_rproc_get(struct device_node *np, int index, enum pruss_pru_id *pru_id)
+>> +{
+>> +	return ERR_PTR(-EOPNOTSUPP);
+>> +}
+>> +
+>> +static inline void pru_rproc_put(struct rproc *rproc) { }
+>> +
+>> +#endif /* CONFIG_PRU_REMOTEPROC */
+>> +
+>> +static inline bool is_pru_rproc(struct device *dev)
+>> +{
+>> +	const char *drv_name = dev_driver_string(dev);
+>> +
+>> +	if (strncmp(drv_name, PRU_RPROC_DRVNAME, sizeof(PRU_RPROC_DRVNAME)))
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>>  
+>>  #endif /* __LINUX_PRUSS_H */
+>> \ No newline at end of file
 > 
+> --
+> cheers,
+> -roger
 
-Could bool/tristate options in the Kconfig be the key point?
-
-Based on current design I prefer to build the s32g2 pinctrl driver as built-in
-rather than a loadable module. IIUC, when the driver is not built as module
-then the initcall ordering should still matter.
-
-Feel free to correct me if anything wrong.
-
-Regards,
-Chester
-
-
-> Yours,
-> Linus Walleij
+Thanks,
+Danish
