@@ -2,117 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F7064812F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 11:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7946F648164
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 12:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbiLIK5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 05:57:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33408 "EHLO
+        id S229732AbiLILOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 06:14:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiLIK47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 05:56:59 -0500
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14FB13A2D3;
-        Fri,  9 Dec 2022 02:56:58 -0800 (PST)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 817355C0166;
-        Fri,  9 Dec 2022 05:56:57 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Fri, 09 Dec 2022 05:56:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=undef.tools; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1670583417; x=1670669817; bh=w1
-        otl967u68MCBaOx0vm7u3myDK0ku2dIZUUldypgTc=; b=EDqduu2g4J9kHwUTOm
-        HUYvFTP/kNckyKbZDN17tGDkFbKUCactcbBjj0urUno+j5qtxR1DUAv9iOsdky81
-        yiJYZdWuy8LO3IYEfyEM9+bD3mat6Gyk2ugx7DnNvgM0MrKvC5YHoWlLkcCdmJ1Z
-        2Io44JVU7knnFvhXoNB9DIkAWtDlhzw2h8rfSGtRB9FTBja8y3VZuG/pDPSw1O3a
-        qi2P2ViLe1ha+WeJWtXMMviETJgTzciTF4R8IP3I4NJGF995CGRVP8NalHL6CiDS
-        fQLvK9A8GRFMEyFqxXn6a9OnbinMVUouAMwfcAT8wDLuddkqbZEJnTW2A7izscc8
-        WRcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1670583417; x=1670669817; bh=w1otl967u68MC
-        BaOx0vm7u3myDK0ku2dIZUUldypgTc=; b=Oynndpa9pBgOJDn03WPWbz67HDr7r
-        NBH4HgtJV6X2Qna2havV8zbTtloQH2bUAXJhMSl1kMMG5wk8gLokCDIBNd7rYR/D
-        qLEem/1QuPN1IBmdhLJf3G3jiwH7zdzGSUxKM/O2huZ28KIVbU9MpKkxoodwZpwY
-        Nl3uEkYYrGKcoMIbSFMzzLbpC0hdRB+C3oJYOMoqfP7dzuoCBNTvYKNBQ5ILF+UW
-        5tiVuuF41WJciM1mpb+BFKWHLv89nWBHOO2Qo84ejtOBRdZuGapgXjUPRxH/J49L
-        X2VNcEaHz0H1YVlCQu69Du+jA7HxmJkpF2cfj/nFvoc5Pm4DX8FgPEK3A==
-X-ME-Sender: <xms:eBSTY-HzDkqUiBsliq1RjPs56jITtxNISzasTYwdFfqT365ZUgZ-fQ>
-    <xme:eBSTY_UY3DA1DI3y93hsqKq6j91_xPUNtan0QZgFnBXDYR8L1NPZsnM9sfv473ajA
-    r2_1IitUvFt24QBfDk>
-X-ME-Received: <xmr:eBSTY4IWX_t1UQiz-7vBLYBZgAGdy1RJ8ziFfIWTuOd_SxFjK7tWj3amXUwdtIizaJ7pMAQXr2MivTeDkvvLJMs6r7e9UYzbxueQrlS-ZoorlV6e9tR_Etta4w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvgddvudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeflrghrrhgr
-    hhcuifhoshgsvghllhcuoehkvghrnhgvlhesuhhnuggvfhdrthhoohhlsheqnecuggftrf
-    grthhtvghrnhepveejveefudehteegtedvveeutefgfeefleffuefhgfejvefgfefhkeef
-    jefhvdetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epkhgvrhhnvghlsehunhguvghfrdhtohholhhs
-X-ME-Proxy: <xmx:eBSTY4HNcDaih9SIKj8aLwmctCFCLT5TfoivoOeAhDnmUfuZ9JAZgw>
-    <xmx:eBSTY0Uq2RMFOwJviEhVInfyAQpWaVJGoZ44hxkk0tNXSNLt4L0Qsw>
-    <xmx:eBSTY7OZ890kWAPYVTIhaO_N0UnTpP8dBQ0edGNrtLsQ6c_J1Gp7wA>
-    <xmx:eRSTY4qj6LvWWu1HGucItYq6-Hp93WPcFQMFMRQHesln_g7WouRJ6A>
-Feedback-ID: id76147eb:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 9 Dec 2022 05:56:53 -0500 (EST)
-From:   Jarrah Gosbell <kernel@undef.tools>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     phone-devel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>,
-        Jarrah Gosbell <kernel@undef.tools>
-Subject: [PATCH 2/2] dt-bindings: sound: rt5640: Allow to describe how LOUT is wired
-Date:   Fri,  9 Dec 2022 10:56:21 +0000
-Message-Id: <20221209105621.39237-2-kernel@undef.tools>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221209105621.39237-1-kernel@undef.tools>
-References: <20221209105621.39237-1-kernel@undef.tools>
+        with ESMTP id S229488AbiLILOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 06:14:42 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02B31F9DF;
+        Fri,  9 Dec 2022 03:14:41 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id m4-20020a05600c3b0400b003d1cb516ce0so5510279wms.4;
+        Fri, 09 Dec 2022 03:14:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aptsriDL75Ig6gjid308/Jf1kFuZ73/LpGcnByUwftU=;
+        b=Tc35s68OF5v/x5JicHtvMLmwSH8H8p5eYTwOaTIPhnSP8L3O4gM+ZWgXAqgbmMWT6I
+         +LQ3awlxrnDCU1IkqCWUKc5co5vIituYd4IaOGiXt2GXLJLF4mT3OpErbIfjjbX4jwqa
+         ukD5OwKhFtqys/G5DSP1uCXyAT6H6lwqWCEuB2qyIvbM9AMuCKuq+Y1UhNR7OPrGOYzq
+         4X3pS+Nns9YEJTxQAsjiXjvu4R4K6db8McQ+uzd641csHEpgzAIr030PogKu+8MuvaKC
+         JpnehUiyhcRAA1fTEQIyg2/Krxw9Wn17It8sjZ1tvIr1Wp55h93x9w63jvqWi5usu188
+         CEuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aptsriDL75Ig6gjid308/Jf1kFuZ73/LpGcnByUwftU=;
+        b=jfKjZXgpX96UqSNvSoD/FU8KOrw14CnVAe1Eey7Z0oFykHqsG/Gm2z82cL8RPaYUui
+         PbVp60xgSRPIM8L948Jszoq0MsargCDf7Q2NjJQx6jOFkLXo6nnsVOYj2Mh341cFpQO2
+         01bF/j12l589mZiSB379NghIFIPyp3xCDEjmBpdiCzVDNQMhUTEmAaq6r9mM2q9oSdBT
+         AcP2L5oXdUD3rJ9iuLz37G6MDeTS2cBjfoLouBoyj3h7PSKoqdjbDHNJZAp/qk2wgW7M
+         O080aPC/q6qjir58KiYrE2fcLFkzz8EpBWV2QgdC809f8ZBwZBaqNfb4Zk8mQaigWPsV
+         gTsQ==
+X-Gm-Message-State: ANoB5pkTdHCUYAgcUhq7kEGtcv+asC2aEF2GbygKkHpYr6Q+qNPQO646
+        ox4UfQX89TpwjdVIQT7nP64=
+X-Google-Smtp-Source: AA0mqf6vJvsHf/sOnwWAxNsXK0x2d6BbzHfgigIkSOCuPrOv+Y6tlWVGrIjefUs5N4uvSBIzkS2A+Q==
+X-Received: by 2002:a05:600c:4e54:b0:3cf:51cf:91c with SMTP id e20-20020a05600c4e5400b003cf51cf091cmr4503087wmq.11.1670584480443;
+        Fri, 09 Dec 2022 03:14:40 -0800 (PST)
+Received: from localhost ([217.131.81.52])
+        by smtp.gmail.com with UTF8SMTPSA id bg9-20020a05600c3c8900b003c6f3f6675bsm9149366wmb.26.2022.12.09.03.14.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Dec 2022 03:14:39 -0800 (PST)
+From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
+To:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sasha Finkelstein <fnkl.kernel@gmail.com>
+Subject: [PATCH v4 0/4] PWM and keyboard backlight driver for ARM Macs
+Date:   Fri,  9 Dec 2022 14:13:09 +0300
+Message-Id: <20221209111313.2701-1-fnkl.kernel@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megi@xff.cz>
+Hi,
 
-Depending on HW design, som boards may expect mono differential output
-on LOUT. Describe a property that enables it.
+This is the v4 of the patch series to add PWM and keyboard
+backlight driver for ARM macs.
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Jarrah Gosbell <kernel@undef.tools>
----
- Documentation/devicetree/bindings/sound/rt5640.txt | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v1:
+Addressing the review comments.
 
-diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
-index ff1228713f7e..0c398581d52b 100644
---- a/Documentation/devicetree/bindings/sound/rt5640.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5640.txt
-@@ -20,6 +20,9 @@ Optional properties:
- - realtek,in3-differential
-   Boolean. Indicate MIC1/2/3 input are differential, rather than single-ended.
- 
-+- realtek,lout-differential
-+  Boolean. Indicate LOUT output is differential, rather than stereo.
-+
- - realtek,ldo1-en-gpios : The GPIO that controls the CODEC's LDO1_EN pin.
- 
- - realtek,dmic1-data-pin
+Changes in v2:
+Added the reviewed-by and acked-by tags.
+Addressing a review comment.
+
+Changes in v3:
+Addressing the review comments.
+
+v1: https://www.spinics.net/lists/linux-pwm/msg19500.html
+v2: https://www.spinics.net/lists/linux-pwm/msg19562.html
+v3: https://www.spinics.net/lists/linux-pwm/msg19901.html
+
+Sasha Finkelstein (4):
+  dt-bindings: pwm: Add Apple PWM controller
+  pwm: Add Apple PWM controller
+  arm64: dts: apple: t8103: Add PWM controller
+  MAINTAINERS: Add entries for Apple PWM driver
+
+ .../bindings/pwm/apple,s5l-fpwm.yaml          |  51 ++++++
+ MAINTAINERS                                   |   2 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts      |  19 +++
+ arch/arm64/boot/dts/apple/t8103-j313.dts      |  19 +++
+ arch/arm64/boot/dts/apple/t8103.dtsi          |   9 ++
+ drivers/pwm/Kconfig                           |  12 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-apple.c                       | 150 ++++++++++++++++++
+ 8 files changed, 263 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+ create mode 100644 drivers/pwm/pwm-apple.c
+
 -- 
-2.35.1
+2.37.1 (Apple Git-137.1)
 
