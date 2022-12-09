@@ -2,93 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3BC4648AC0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 23:27:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F8D648B73
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 00:47:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbiLIW1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 17:27:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
+        id S229821AbiLIXrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 18:47:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiLIW1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 17:27:23 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5CA2935B;
-        Fri,  9 Dec 2022 14:27:22 -0800 (PST)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A0B5ACA534;
-        Fri,  9 Dec 2022 22:27:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1670624840; bh=wLfywnxmIafoKhNvlsidC0GQdw63kk9snyKcibJe0eQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=t0s3JI/5UovWp4wn/nB2fBIgsPyAE15q1Sdc4UdV3Kivu/onrmIMkiDkIQcSxVeZx
-         NSJKAul/dDfqMRaAEPa7UoOJqW5eQUXhFeTHWkWVbIl0lMjow5Dk2Uzw1u/4i7769a
-         VT9zwEbDjxN2O/+VYmCDC0+l+nSsu44eZIHv5zb4=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     phone-devel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        with ESMTP id S229804AbiLIXrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 18:47:08 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C324D5E3
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 15:47:06 -0800 (PST)
+Received: from TimeMachine.lan (adsl-d248.84-47-10.t-com.sk [84.47.10.248])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 8003C1F697;
+        Sat, 10 Dec 2022 00:47:04 +0100 (CET)
+From:   Martin Botka <martin.botka@somainline.org>
+To:     martin.botka1@gmail.com
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
         Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
+        Martin Botka <martin.botka@somainline.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: pmi8950: Correct rev_1250v channel label to mv
-Date:   Fri, 09 Dec 2022 23:27:19 +0100
-Message-ID: <4558956.LvFx2qVVIh@g550jk>
-In-Reply-To: <20221209215437.1783067-1-marijn.suijten@somainline.org>
-References: <20221209215437.1783067-1-marijn.suijten@somainline.org>
+Subject: [PATCH v2 0/3] AXP1530 PMIC
+Date:   Sat, 10 Dec 2022 00:46:51 +0100
+Message-Id: <20221209234654.1082522-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_HTTP,RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Freitag, 9. Dezember 2022 22:54:37 CET Marijn Suijten wrote:
-> This was pointed out in review but never followed up on thanks to
-> sidetracked discussions about labels vs node names.
-> 
-> Fixes: 0d97fdf380b4 ("arm64: dts: qcom: Add configuration for PMI8950
-> peripheral") Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> b/arch/arm64/boot/dts/qcom/pmi8950.dtsi index 32d27e2187e3..8008f02434a9
-> 100644
-> --- a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> @@ -47,7 +47,7 @@ adc-chan@9 {
->  			adc-chan@a {
->  				reg = <VADC_REF_1250MV>;
->  				qcom,pre-scaling = <1 1>;
-> -				label = "ref_1250v";
-> +				label = "ref_1250mv";
+Hello,
 
-Indeed 1250V are maybe a bit much ;) Thanks!
+This patch series adds support for the AXP1530 PMIC which is controlled via the
+I2C bus.
 
-Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
+Changes in v2:
+Remove RSB support.
+Drop .id = 0
 
->  			};
-> 
->  			adc-chan@d {
+Martin Botka (3):
+  dt-bindings: mfd: x-powers,axp152: Document the AXP1530 variant
+  mfd: ax20x: Add suppport for AXP1530 PMIC
+  regulator: axp20x: Add support for AXP1530 variant
 
+ .../bindings/mfd/x-powers,axp152.yaml         |  1 +
+ drivers/mfd/axp20x-i2c.c                      |  2 +
+ drivers/mfd/axp20x.c                          | 62 +++++++++++++++++++
+ drivers/regulator/axp20x-regulator.c          | 44 +++++++++++++
+ include/linux/mfd/axp20x.h                    | 34 ++++++++++
+ 5 files changed, 143 insertions(+)
 
-
+-- 
+2.38.1
 
