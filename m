@@ -2,196 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3124C648784
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 18:16:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6872464878C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 18:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbiLIRQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 12:16:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37906 "EHLO
+        id S230229AbiLIRRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 12:17:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbiLIRQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 12:16:34 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF58B45EE4;
-        Fri,  9 Dec 2022 09:16:27 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id k189so5094521oif.7;
-        Fri, 09 Dec 2022 09:16:27 -0800 (PST)
+        with ESMTP id S229960AbiLIRQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 12:16:38 -0500
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC8A14C251;
+        Fri,  9 Dec 2022 09:16:34 -0800 (PST)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-144b21f5e5fso462946fac.12;
+        Fri, 09 Dec 2022 09:16:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eN7a2U3mP8Yzw7PGpnN4K9XOjRgKV4cZBsjjvOGf8hc=;
-        b=qby6yrnonrMtj53Z0laDgk7BPazKLYuo3rN3QkhGDltRUv+tPYOy6mcgNOEnpOzl7w
-         EBW7PCu8UXIKzAQ7nLfHHail4uE88Snc8Tcd/CPHPOYSDKfVacV9akjVGvb/1WAB2+sd
-         N9xaWkjoohs03p2bnnD1gTxeS5TOscuaisyvnyi+ZoUqdF8oXNF9HfpI4it2ympNZdF7
-         vChBjTIYNfaQSmXePB+o3K5XRO6noNDdCs0m3Sr1h1YbykDdGebvUI6ACUusjw1L8mAE
-         mQkSVzth/OZBybUbJZsHufBVhFoKhkCZjyC/lD7OxbS0p6Bv0PIdou9WDGCoiAxU97jV
-         Vevg==
-X-Gm-Message-State: ANoB5pmNvHYagB2m4xEvjEo19h0JlvoRjqLcpox2hf77VccpynJY8O12
-        v9UQBTzov8dy5fO+fz3tEg==
-X-Google-Smtp-Source: AA0mqf5xEiTgvWdhcmihWNanSXd90w2tH05SA/9hCOzJQTAJUBmBSr/sRJkLKOPQIdsdNPyk/s+cSw==
-X-Received: by 2002:aca:d745:0:b0:35a:d192:9a53 with SMTP id o66-20020acad745000000b0035ad1929a53mr2562546oig.41.1670606186740;
-        Fri, 09 Dec 2022 09:16:26 -0800 (PST)
+        bh=nT7n1C9HDmnfsMXK1UZuW3ewHAZmx+WKrb59B2B6QMA=;
+        b=f46QawZYXSrQ0PusiWjBuUfDYHaMVJJmI5cdhCneih3pzc5gmjt8Z849nYmtr/kDj8
+         S44yowASsbH8II0FNQvFfwevLNjdvpT9tKtvv44/E2qz6ksQO1Pc6NoLZ1/CI0ju7RUT
+         Z1a3zhG5ka0i5YInu3y3CjAiTJ2wckL+6Fan+EpRGp5qzczeNEmvskTi1uS0a8vGAXU7
+         iXkk0UMO8YKm8vpfxTnBq8R9UjtYvmS5/5NN5i7apDDSurjYFXCZ2DUi+DSzqMN9Gb0+
+         WFCaz06yZNlFwhaAGMnf4SecD0P57OCNQ86DhQTlDXW5p97cMlSdscmPZvt+9FNoCsrA
+         Dslg==
+X-Gm-Message-State: ANoB5plCAJRdlFMrXfhUBePj/g8SsznDml+cISl/w8+y+TI6KAaG01A+
+        9AeEQ8OwQbXoTwvRXq9ukg==
+X-Google-Smtp-Source: AA0mqf4HrdS5onXU+aUkto9dfahliOHsa9I12pdQqETUJZeqoXQjSEDFdvR+RaBO4mKtfpdT29vIZQ==
+X-Received: by 2002:a05:6870:4624:b0:13c:5f3:c24f with SMTP id z36-20020a056870462400b0013c05f3c24fmr4362920oao.7.1670606193889;
+        Fri, 09 Dec 2022 09:16:33 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v19-20020a056808005300b00359ad661d3csm703986oic.30.2022.12.09.09.16.26
+        by smtp.gmail.com with ESMTPSA id l20-20020a056870205400b001438fb3b0a0sm1068668oad.44.2022.12.09.09.16.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 09:16:26 -0800 (PST)
-Received: (nullmailer pid 3351352 invoked by uid 1000);
-        Fri, 09 Dec 2022 17:16:25 -0000
+        Fri, 09 Dec 2022 09:16:33 -0800 (PST)
+Received: (nullmailer pid 3351538 invoked by uid 1000);
+        Fri, 09 Dec 2022 17:16:32 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vincent Yang <Vincent.Yang@tw.fujitsu.com>
+        Jassi Brar <jaswinder.singh@linaro.org>
 Cc:     Ard Biesheuvel <ardb@kernel.org>,
         Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: Convert Fujitsu SDHCI to DT schema
-Date:   Fri,  9 Dec 2022 11:16:21 -0600
-Message-Id: <20221209171621.3351220-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: gpio: Convert Fujitsu MB86S7x GPIO to DT schema
+Date:   Fri,  9 Dec 2022 11:16:28 -0600
+Message-Id: <20221209171629.3351420-1-robh@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Fujitsu SDHCI binding to DT schema format.
+Convert the Fujitsu MB86S7x GPIO binding to DT schema format.
 
-The interrupts were not documented. The driver only uses the first
-interrupt, but the DT and example have 2 interrupts. The 2nd one is
-unknown. "dma-coherent" was also not documented, but is used.
-
-The "socionext,synquacer-sdhci" compatible was not documented, but it is
-compatible with "fujitsu,mb86s70-sdhci-3.0.yaml" and is in use (in
-u-boot Synquacer dts).
+The "socionext,synquacer-gpio" compatible was not documented, but is
+compatible with "fujitsu,mb86s70-gpio" and is in use (in u-boot
+Synquacer dts).
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../mmc/fujitsu,mb86s70-sdhci-3.0.yaml        | 67 +++++++++++++++++++
- .../devicetree/bindings/mmc/sdhci-fujitsu.txt | 32 ---------
- 2 files changed, 67 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
- delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
+ .../bindings/gpio/fujitsu,mb86s70-gpio.txt    | 20 --------
+ .../bindings/gpio/fujitsu,mb86s70-gpio.yaml   | 50 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.yaml
 
-diff --git a/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml b/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
+diff --git a/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.txt b/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.txt
+deleted file mode 100644
+index bef353f370d8..000000000000
+--- a/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-Fujitsu MB86S7x GPIO Controller
+--------------------------------
+-
+-Required properties:
+-- compatible: Should be "fujitsu,mb86s70-gpio"
+-- reg: Base address and length of register space
+-- clocks: Specify the clock
+-- gpio-controller: Marks the device node as a gpio controller.
+-- #gpio-cells: Should be <2>. The first cell is the pin number and the
+-  second cell is used to specify optional parameters:
+-   - bit 0 specifies polarity (0 for normal, 1 for inverted).
+-
+-Examples:
+-	gpio0: gpio@31000000 {
+-		compatible = "fujitsu,mb86s70-gpio";
+-		reg = <0 0x31000000 0x10000>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		clocks = <&clk 0 2 1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.yaml b/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.yaml
 new file mode 100644
-index 000000000000..0218a6ce4b2f
+index 000000000000..d18d95285465
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/fujitsu,mb86s70-sdhci-3.0.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only
++++ b/Documentation/devicetree/bindings/gpio/fujitsu,mb86s70-gpio.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/mmc/fujitsu,mb86s70-sdhci-3.0.yaml#
++$id: http://devicetree.org/schemas/gpio/fujitsu,mb86s70-gpio.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Fujitsu SDHCI controller
++title: Fujitsu MB86S7x GPIO Controller
 +
 +maintainers:
-+  - Vincent Yang <Vincent.Yang@tw.fujitsu.com>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml#
++  - Jassi Brar <jaswinder.singh@linaro.org>
 +
 +properties:
 +  compatible:
 +    oneOf:
 +      - items:
-+          - const: socionext,synquacer-sdhci
-+          - const: fujitsu,mb86s70-sdhci-3.0
-+      - const: fujitsu,mb86s70-sdhci-3.0
++          - const: socionext,synquacer-gpio
++          - const: fujitsu,mb86s70-gpio
++      - const: fujitsu,mb86s70-gpio
 +
 +  reg:
 +    maxItems: 1
 +
++  '#gpio-cells':
++    const: 2
++
++  gpio-controller: true
++  gpio-line-names: true
++
 +  clocks:
-+    items:
-+      - description: Core clock
-+      - description: Interface clock
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: iface
-+
-+  dma-coherent: true
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  fujitsu,cmd-dat-delay-select:
-+    type: boolean
-+    description: Indicating that the host requires the CMD_DAT_DELAY control
-+      to be enabled.
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
++  - '#gpio-cells'
++  - gpio-controller
 +  - clocks
-+  - clock-names
-+  - interrupts
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    mmc@36600000 {
-+        compatible = "fujitsu,mb86s70-sdhci-3.0";
-+        reg = <0x36600000 0x1000>;
-+        interrupts = <0 172 0x4>,
-+               <0 173 0x4>;
-+        bus-width = <4>;
-+        vqmmc-supply = <&vccq_sdhci1>;
-+        clocks = <&clock 2 2 0>, <&clock 2 3 0>;
-+        clock-names = "core", "iface";
++    gpio@31000000 {
++        compatible = "fujitsu,mb86s70-gpio";
++        reg = <0x31000000 0x10000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        clocks = <&clk 0 2 1>;
 +    };
 +...
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt b/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
-deleted file mode 100644
-index 3ee9263adf73..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-fujitsu.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--* Fujitsu SDHCI controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci_f_sdh30 driver.
--
--Required properties:
--- compatible: "fujitsu,mb86s70-sdhci-3.0"
--- clocks: Must contain an entry for each entry in clock-names. It is a
--  list of phandles and clock-specifier pairs.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Should contain the following two entries:
--	"iface" - clock used for sdhci interface
--	"core"  - core clock for sdhci controller
--
--Optional properties:
--- vqmmc-supply: phandle to the regulator device tree node, mentioned
--  as the VCCQ/VDD_IO supply in the eMMC/SD specs.
--- fujitsu,cmd-dat-delay-select: boolean property indicating that this host
--  requires the CMD_DAT_DELAY control to be enabled.
--
--Example:
--
--	sdhci1: mmc@36600000 {
--		compatible = "fujitsu,mb86s70-sdhci-3.0";
--		reg = <0 0x36600000 0x1000>;
--		interrupts = <0 172 0x4>,
--			     <0 173 0x4>;
--		bus-width = <4>;
--		vqmmc-supply = <&vccq_sdhci1>;
--		clocks = <&clock 2 2 0>, <&clock 2 3 0>;
--		clock-names = "iface", "core";
--	};
 -- 
 2.35.1
 
