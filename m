@@ -2,107 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D5E648170
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 12:15:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B59E64817D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 12:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbiLILPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 06:15:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42434 "EHLO
+        id S229955AbiLILSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 06:18:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229946AbiLILP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 06:15:26 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894AE6FF21;
-        Fri,  9 Dec 2022 03:15:21 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id v7so3340315wmn.0;
-        Fri, 09 Dec 2022 03:15:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8JfIhBQiQdRpJMfaCFXCAzBv7sjvzS5wkmaXDYOimOk=;
-        b=Zp5F6wCUXi/NJ5uICZTPFEcbi34g+0A3QfRXWirxcrW+E7C+H+3Z1wJBw1CZTHoloO
-         nlStbGVm0QBJwDYhOXYliWTDQ1STgZuE7xoT8ZaRVs9Pj+/vGauGo4cbPkj5rfCUY05v
-         4XfJCuClQCJeKa2TW69A6uWQJnsViD9v/XOX/UUkrmrkrvDw3/H06sGJ+gFN0cVhCEN8
-         rza5IxNBZ0p2mPE+iF3MTRbkAPZZaRuUsdClqu2iQUuhKO5ZtnhEXpGM1AAUq5FSfTC0
-         NVU5GchDzQQlL61lY1nbWnsimHWuDLPKiyppeDOxFndFRVuGBaY+/h6Q0jowunthFDwU
-         opSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8JfIhBQiQdRpJMfaCFXCAzBv7sjvzS5wkmaXDYOimOk=;
-        b=1cJUwFjCb22Y14OS88b1NnpubunvyeLPG92iQkOBusghaIAfMPHvtlZDA7kHj0qW1b
-         jYEHzZt+zGPMEqoNGqjn0DwXjnHtxmKyeH8NF1+3LY7YemXxhUJ9XvsUIQVjeGP3rB8g
-         JwSuGLfOgRRa5xLp6bX4VURA1xpEdo3mKI/fLMgDQOU2MccI67sB9KcC7IGroNgYAdTA
-         8Q6WyjkrLCVzGVWYTlFd7RSPApXDRlHVNowcdi6OIN9y0oT9tN5DYdZXW5y1jqAAlJW3
-         CaGJMM/dpttds8fPqA6O999XZQcj1zoBbBgYf7t3izdj7g2I44N0vnv/feWZ1U+Jajvw
-         JqDg==
-X-Gm-Message-State: ANoB5pm+VSWXEb+Ccsirq6deT2RpekpsFzywFvfhxiT7abGNMLdNcFzO
-        ZwN3Jk+UPp6mdfPOSUvJGOU=
-X-Google-Smtp-Source: AA0mqf4VhywMBEJArePJwdgHoqHlWBtuDafXIyolh0KxoMBFXwbj7kqLPN5MxEL9ZmMltqgPJCZu1w==
-X-Received: by 2002:a7b:c358:0:b0:3d1:f882:43eb with SMTP id l24-20020a7bc358000000b003d1f88243ebmr4237490wmj.10.1670584519963;
-        Fri, 09 Dec 2022 03:15:19 -0800 (PST)
-Received: from localhost ([217.131.81.52])
-        by smtp.gmail.com with UTF8SMTPSA id m188-20020a1c26c5000000b003d1d5a83b2esm7580068wmm.35.2022.12.09.03.15.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 03:15:19 -0800 (PST)
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-To:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sasha Finkelstein <fnkl.kernel@gmail.com>
-Subject: [PATCH v4 4/4] MAINTAINERS: Add entries for Apple PWM driver
-Date:   Fri,  9 Dec 2022 14:13:13 +0300
-Message-Id: <20221209111313.2701-5-fnkl.kernel@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20221209111313.2701-1-fnkl.kernel@gmail.com>
-References: <20221209111313.2701-1-fnkl.kernel@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229734AbiLILSA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 06:18:00 -0500
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 981652E9C0;
+        Fri,  9 Dec 2022 03:17:58 -0800 (PST)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1013C5C013F;
+        Fri,  9 Dec 2022 06:17:58 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 09 Dec 2022 06:17:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1670584678; x=1670671078; bh=02+SGIrsh9
+        aXXJRxaDR3edUo75PItu/i4cDwFPHk0qM=; b=RzRj1oeeJ8wJ/GsvZ4Ys8QnTtC
+        qNGqAfZMRFfGDBbXAmlEPLUIy6I+czuaFEqawEyqMDikInTMYXFTcBspazfYpQB4
+        xBGLAanH34tPTS290djatfQqB1GLqQcj4uxDgMRSsAj2qwn11yf3DjEJaUlkCjE9
+        rRjgUlb6D2/O+vXw6pAwcAX3DFWx5ui7enILKXRONSmaCwtV0kki8I+4NbAYIisR
+        Mfy5V2t0hMHVCSZMaLUVRxSyURIwXMWfBb8cRCYMOdr8aAydxLoSouICaYx9rFrD
+        M0yyqvF9Ae9c/pFMccxil3qKYQOZzve5nKeo8kaRKZcsjkO6gPwSCdF4iQBg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1670584678; x=1670671078; bh=02+SGIrsh9aXXJRxaDR3edUo75PI
+        tu/i4cDwFPHk0qM=; b=Kz1FgZR6UivKklO3QbYWzFcPfFvA2TkrYLFNgyhgBHKc
+        pVwSGFVwezfYZ9wHJZWij04g2dapjYKTooOYPYPqymG84udMaWK/3R3PZ2gDA+/s
+        AzkQdC4hb1FWyT5cgM49TL3Kk2791IyXGPYnAFU2UEsaA8BEgKgUesdbSjeSVaO3
+        dChHijgYGfp0A7siilFe4qgPtM9rDcU3O6zDlHcYDkJ3/geASc3OTxT6ajgvpnD+
+        Ck67JnFBFBRPzJQ39iCN6R70onGB1jLBImNOMqjXyOXsGzsL6q4lWMaOidPBIOuW
+        C/LSu2jA/vwvWwcofZdIVF4CeDJbiLf9ji4zz5vukw==
+X-ME-Sender: <xms:ZRmTYzqp7iE0j95eLPtCjsMlGYvazapGEj31k6isaaD6JGhV4-uM2g>
+    <xme:ZRmTY9pFFnROs0kLR8N6DXi9NfjtIycizeKKLwWBnvc9rMDWogWwLCdlKuBoSgIvs
+    Tyos_faMcTH34nSxz4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvddvgddvhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhepffegffdutddvhefffeeltefhjeejgedvleffjeeigeeuteelvdettddulefgudfg
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+    gusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:ZRmTYwPyldiR6xIx4k__Ilko4PSsbgOxKuJ36LUVsaJzxjZV7CmOWQ>
+    <xmx:ZRmTY24p7uhtCsMZnHa-fbQETIfxLU6H3TyG_96lzSMAAikgMH8MUA>
+    <xmx:ZRmTYy48TPgpw8NUhC2PQmotaiUOjTwUXc3e2hgXK0DxeEGLHnvr5Q>
+    <xmx:ZhmTY0S_5jBf_Mpbof-sr9sqyf7TL9VDmSt4ClFsNtkhGBVqPCw0yw>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 71BCCB60086; Fri,  9 Dec 2022 06:17:57 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1115-g8b801eadce-fm-20221102.001-g8b801ead
+Mime-Version: 1.0
+Message-Id: <0c621478-6429-4a7c-9c14-5fab7017d1e8@app.fastmail.com>
+In-Reply-To: <20221209013309.407879-1-jk@codeconstruct.com.au>
+References: <20221209013309.407879-1-jk@codeconstruct.com.au>
+Date:   Fri, 09 Dec 2022 12:17:36 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Jeremy Kerr" <jk@codeconstruct.com.au>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Mark Brown" <broonie@kernel.org>
+Subject: Re: [RFC PATCH v2 0/3] Add reset control for mfd syscon devices
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the MAINTAINERS entries for the driver
+On Fri, Dec 9, 2022, at 02:33, Jeremy Kerr wrote:
+> This RFC series adds a facility for syscon devices to control a reset
+> line when probed; we have instances of simple register-only syscon
+> resources that need deassertion of a reset line for the register set to
+> be accessible.
+>
+> Rather than requiring a specific driver to implement this, it'd be nice
+> to use the generic syscon device and the generic resets linkage to do
+> so.
+>
+> Any comments/queries/etc are most welcome.
 
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Acked-by: Sven Peter <sven@svenpeter.dev>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+The syscon side looks good to me,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1daadaa4d48b..86a8265c8e42 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1908,6 +1908,7 @@ F:	Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
- F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
- F:	Documentation/devicetree/bindings/power/apple*
-+F:	Documentation/devicetree/bindings/pwm/pwm-apple.yaml
- F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
- F:	arch/arm64/boot/dts/apple/
- F:	drivers/clk/clk-apple-nco.c
-@@ -1921,6 +1922,7 @@ F:	drivers/mailbox/apple-mailbox.c
- F:	drivers/nvme/host/apple.c
- F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
-+F:	drivers/pwm/pwm-apple.c
- F:	drivers/soc/apple/*
- F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
--- 
-2.37.1 (Apple Git-137.1)
-
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
