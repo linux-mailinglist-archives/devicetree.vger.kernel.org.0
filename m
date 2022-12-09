@@ -2,162 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A4556484DB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:19:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5C36484F2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 16:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230295AbiLIPT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 10:19:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40498 "EHLO
+        id S229968AbiLIPXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 10:23:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230270AbiLIPTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:19:25 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89958740F
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 07:19:23 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id l8so5201372ljh.13
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 07:19:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cUqxyT1clmDwn9Zro9D+5wDVpGHXxnFJou8ChYK956o=;
-        b=yqUAlzbOfp2h1Yly7SCMDl7vy1sjcTlMrzPPb+6GWRQTgEXcGrspmSiRh2H4SLbbG8
-         9czrZSSrhqK4PMyPoGfvZc1LPseUaujdwvVZXiyfusWWCiW+20KVIhwIUz/ahQuC6OCQ
-         YDPRNPy43NFsyrZkX15D4QFKq66C5PLLN5sCk6dNP0CSk6uZgpmRoUuTcc+0vOrNtkAg
-         5Mkt5N3WWwJnM2OS8KqmyWaJACoGGiBsOdzTi/sCQmC+ajR/Lwfu0pQyPjrmFVICmPet
-         Cl1G5TvhwcGInk7WtWTX4OARn/hUCEHNOHVWzFPcosYnOsTikoO83MPNVH2Cbmfx11iH
-         qrew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cUqxyT1clmDwn9Zro9D+5wDVpGHXxnFJou8ChYK956o=;
-        b=1q8q98LB12DwqPxjvV9sA2CZYNV28tAtMfr1mLBPKK44df6VV/HJt5ZQ+hEtLFVxKf
-         33CIDH8cQm+Cf1WZvDqkDX4xwaN1l05ZwivCP7PVKSQp2XHmrk4P2fQ6n82iHS4ftMpM
-         Nic1m3XmCTBtfY+NVHfzuneO6OJnyf378nyfy/cSYUyjgIwFTOZD3XzKD109mJw4w/5q
-         mrAwaq5uPIE8EaOpBXVwx9zvcWKB4HEDwDrdQP2pG8yOGENuHKQ9AVpJtl3PRWoWUYQG
-         AJAJmFGn+bGZs+FFvhdiirVxAv7udrV6+V0sPBY9VfNQ0pGW88B0BC15mZ5V1pr6YGD3
-         0jZw==
-X-Gm-Message-State: ANoB5plI9sLbNNN5xGvNOcy3mMhm9d2zcwuApQbMr1OLqaWj/TH5XwYH
-        IT/brOIoCSEf/p+BAxeIzszhKA==
-X-Google-Smtp-Source: AA0mqf5f+iC1ajxI4MGe81943QW3HpslBZxD7S2QCV9T0YkIU4JpfAS0eNCTgGjB9xg7Zn00OIexUA==
-X-Received: by 2002:a05:651c:2118:b0:277:4c69:ee28 with SMTP id a24-20020a05651c211800b002774c69ee28mr3382419ljq.50.1670599162296;
-        Fri, 09 Dec 2022 07:19:22 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id p20-20020a2eba14000000b002770566d642sm253305lja.17.2022.12.09.07.19.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 07:19:21 -0800 (PST)
-Message-ID: <a527720e-d4d9-6c90-f991-a5b123c4559b@linaro.org>
-Date:   Fri, 9 Dec 2022 16:19:20 +0100
+        with ESMTP id S229714AbiLIPXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 10:23:41 -0500
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on20611.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe59::611])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA602D1DE;
+        Fri,  9 Dec 2022 07:23:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UslqNYbvmZfBwdDt6YO6v7QV3/tu4GDKddn1RZoCRI5EHmdjYh+2Cwf8HJCIQo7zeWcosOMXqh7cH0CSPOY/AikqLlS/HYXsU24maZ/+dpEDhP2Fo03KU8yIXFgPG0qjKn5wcwtSUqf2uiItWiOMrODgILpmE4TX3ODEk9qYdX9u3i9xm79WJQRhpljZqhuUElrf450TLMdwblki0iQWuDiMIY6QAXhntrr6WVNigI4VD3SX0PD3Csuz+P/jKHpXhgqa3J9mWNENUdLiRHIixosSpV0pCky0KUrjGhdG8kMYgMh7hAnIZ9IcOdzQG/T96cH0FfN+vKp2xJR+DZw/aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SCKNHIDki15l7ab6l91uQTVIp0k0f4/3tZTw0opKR/Y=;
+ b=Zd9S8IccVzsBL9Z2yy+WjAW/YjN7GFKtwSyljwD5tV0NAN47FxhPYUGLruYZwdoGrPODznz1FRhq4E3jpM79VtDcTJRZr/Sssw5UKRQdqU6P/g1Y+Q9yrza0WRp6Gk3rqjDAFMWSvhiiLMMRgknEFqFevjFwC3IDW5At2CFbnmnQkcbRe7hVxt3zEUMDzF6Ya9mmePX4EN5a9is2I77RhsGG0UjbXHBkDkRRtHiZaHvEHp8oAsI0hLJmVmo9Ln1IKHbKKv+lQZkbYqXkRQZRfo+etxkjHSq/Bl/wOgz7km8Jh/07Vm4X+qY1DvWhraiUM0QDGUP6bb36WyXhAjwb+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SCKNHIDki15l7ab6l91uQTVIp0k0f4/3tZTw0opKR/Y=;
+ b=iBZdUPWKIZtEQuIPzcgfHUbKJh0uAWrcsBUNO0vcwrjL8wNhBNzRyhT2D+xF7ENVjZcqBnNLYucZOU5ORXBzODJ9PiX+gqkPkz8HnLqkk+2/TmBmyIHTzdJxtpd7wli71WurcZ4QjV5QwDCpcBN/2foTa2uZDvM78F4jUpPPvlE=
+Received: from BN6PR17CA0046.namprd17.prod.outlook.com (2603:10b6:405:75::35)
+ by CH2PR12MB4216.namprd12.prod.outlook.com (2603:10b6:610:a8::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.14; Fri, 9 Dec
+ 2022 15:23:37 +0000
+Received: from BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:75:cafe::8f) by BN6PR17CA0046.outlook.office365.com
+ (2603:10b6:405:75::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.10 via Frontend
+ Transport; Fri, 9 Dec 2022 15:23:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT067.mail.protection.outlook.com (10.13.177.159) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5901.17 via Frontend Transport; Fri, 9 Dec 2022 15:23:36 +0000
+Received: from [10.254.241.50] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 9 Dec
+ 2022 09:23:31 -0600
+Message-ID: <d097b9f5-a82d-f343-088d-d745d5d1ed32@amd.com>
+Date:   Fri, 9 Dec 2022 16:23:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
+Subject: Re: [PATCH] arm64: dts: zynqmp: Add xlnx prefix to GEM compatible
+ string
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Harini Katakam <harini.katakam@amd.com>,
+        David Heidelberg <david@ixit.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eric Biggers <ebiggers@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
- <24fa41d2-87d1-be19-af44-337784b0f0a4@linaro.org>
- <COXDTKRPPU1J.373YHYKBQIN38@otso>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <COXDTKRPPU1J.373YHYKBQIN38@otso>
-Content-Type: text/plain; charset=UTF-8
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <718283a9f5493ab63b4aaa12337dd5cab6538ff5.1670594172.git.michal.simek@amd.com>
+ <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <ff731bed-1df5-aafd-d490-7bdf9382ff38@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT067:EE_|CH2PR12MB4216:EE_
+X-MS-Office365-Filtering-Correlation-Id: 055c323b-f9be-4051-a050-08dad9f957c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e5u2Q97Ok3OpY5NTAeuOQTW+X7ft1WASIMCJDMQ5TR5B9k/mGeLdBYok6fDzKGJ66XSG0cyqGYQm67UXM6QeMPi77wwmZ2c95jFfIB1Pujy8IlHQKjblyaBRWDsnbqG1OcFAdQVq3tfgdK0443GYzrhscKz0J+kVADdmbkcnzaj8I+Xzi8XokWVhOlHERsLnPzRuJK6hNcrLRXwOZ/3UlbxVAjWzy+jr0KS5nyBTw+OOZ2ODq1MZLhNSJi6AUUtzhzVhF2kWvvq2fu4eknW7MzmSZEexacgXVwaZDwLJYdh4oeJIrOl60kIev9cJVM8OCfkpN5vNogA5qmGYQkrAiyvtm0dAhUZg/VEMydeThcBo00fzYV+HJx8XpJYQuA4Usoe4yQf7dMEvF6Zqdp73QzjpBADxpF4psV6Wzk2fHjKslCIcJED3PD0/WtkZljwP4H//k35Rtbta6HMsesCfL3HafrODwks1S5W8EnfTByDMmUplxvqPDvjxMXyWroV0w9Oc3TrVWIqtAQEGTxDJui/278IUu9S9HZd6BoHNuVAeydRaJkfeGxkQwKUhwnL2DL4uyOmJvgvjQX41m5pj2WkbaQoLNqGjmg28rh4NJ7N3epeSbcy/NtKMPGcKM4POerySyNENhnUnjDtHZEGgqQhxUOW0JFj6IuXbBusL/wUDNa9Qa26wX1bRjt/q97ZlGM0UGE7Ma2c/mb9gHuVy4IY6fo+G87i8Fz7/PWFIJxqyuaejIcJejIfjryPxUrOylScY0L1pBQ/zxCMPrzvVGmZu5NFoGXUA5qLcMH4Gsng=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(376002)(39860400002)(346002)(396003)(136003)(451199015)(46966006)(36840700001)(40470700004)(31686004)(36860700001)(70586007)(40480700001)(70206006)(81166007)(8676002)(4326008)(356005)(82740400003)(478600001)(186003)(54906003)(2906002)(336012)(26005)(16526019)(86362001)(110136005)(83380400001)(31696002)(36756003)(426003)(53546011)(8936002)(16576012)(47076005)(5660300002)(7416002)(41300700001)(316002)(40460700003)(2616005)(44832011)(82310400005)(2101003)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 15:23:36.8596
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 055c323b-f9be-4051-a050-08dad9f957c6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4216
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 16:11, Luca Weiss wrote:
-> On Fri Dec 9, 2022 at 4:05 PM CET, Krzysztof Kozlowski wrote:
->> On 09/12/2022 15:29, Luca Weiss wrote:
->>> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
->>> in the bindings so the existing dts can validate successfully.
->>>
->>> Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
->>> sm8450: add Inline Crypto Engine registers and clock") so move the
->>> compatible to the correct if.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>> (no cover subject)
->>>
->>> The only remaining validation issues I see is the following on sc8280xp-crd.dtb
->>> and sa8540p-ride.dtb:
->>>
->>>   Unevaluated properties are not allowed ('required-opps', 'dma-coherent' were unexpected)
->>>
->>> Maybe someone who knows something about this can handle this?
->>>
->>> And the patch adding qcom,sm6115-ufshc hasn't been applied yet.
->>> ---
->>>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 8 +++++++-
->>>  1 file changed, 7 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> index f2d6298d926c..58a2fb2c83c3 100644
->>> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
->>> @@ -102,7 +102,6 @@ allOf:
->>>                - qcom,sc8280xp-ufshc
->>>                - qcom,sm8250-ufshc
->>>                - qcom,sm8350-ufshc
->>> -              - qcom,sm8450-ufshc
->>>      then:
->>>        properties:
->>>          clocks:
->>> @@ -130,6 +129,7 @@ allOf:
->>>                - qcom,sdm845-ufshc
->>>                - qcom,sm6350-ufshc
->>>                - qcom,sm8150-ufshc
->>> +              - qcom,sm8450-ufshc
->>>      then:
->>>        properties:
->>>          clocks:
->>> @@ -149,6 +149,12 @@ allOf:
->>>          reg:
->>>            minItems: 2
->>>            maxItems: 2
->>> +        reg-names:
+
+
+On 12/9/22 16:11, Krzysztof Kozlowski wrote:
+> On 09/12/2022 14:56, Michal Simek wrote:
+>> From: Harini Katakam <harini.katakam@amd.com>
 >>
->> There are no reg-names in top-level, so it's surprising to see its
->> customized here. It seems no one ever documented that usage...
+>> cdns,zynq/zynqmp/versal-gem was recently deprecated in Linux in
+>> favour of xlnx prefix. Add this new compatible string and retain
+>> the existing string for compatibility with uboot drivers.
+>>
+>> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>> ---
+>>
+>>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 8 ++++----
+>>   1 file changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> index 8553299f12eb..233127d94204 100644
+>> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+>> @@ -507,7 +507,7 @@ nand0: nand-controller@ff100000 {
+>>   		};
+>>   
+>>   		gem0: ethernet@ff0b0000 {
+>> -			compatible = "cdns,zynqmp-gem", "cdns,gem";
+>> +			compatible = "xlnx,zynqmp-gem", "cdns,zynqmp-gem", "cdns,gem";
 > 
-> From what I can tell, from driver side all devices not using ICE don't
-> need reg-names, only the "ice" reg is referenced by name in the driver.
-> 
-> I didn't add it top-level because with only one reg I think we're not
-> supposed to use reg-names, right?
+> That's not what the bindings are saying. If this was the intention of
+> AMD, you should have replied to my patch that you need prolonged
+> backwards compatibility.
 
-And you still won't need to use. Yet property should be rather described
-in top-level which also will unify the items here (so no different
-2-item reg-names in variants).
+I have sent the patch to U-Boot to support new compatible string and CC you on 
+that too.
 
-Just add it to top-level with minItems: 1 and per variant customize:
-1. maxItems: 1
-2. minItems: 2 + required
+I have no problem to do switch just to xlnx one but it is not fully accurate 
+that cdns,versal-gem wasn't used. True is not in Linux but it was used in U-Boot.
 
-The "required" is a bit questionable... this was never added by Eric to
-the bindings. Driver support and DTS were added completely skipping
-bindings...
+If we can go straight to xlnx,zynqmp-gem, cdns,gem I will send v2 of this patch.
 
-Best regards,
-Krzysztof
+Thanks,
+Michal
 
