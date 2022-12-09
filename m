@@ -2,88 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA6BE647EBF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 08:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77CC0647EE5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:04:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiLIHsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 02:48:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47908 "EHLO
+        id S229460AbiLIIE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 03:04:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229545AbiLIHsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 02:48:22 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0154FFAF
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 23:48:17 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d6so5756070lfs.10
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 23:48:17 -0800 (PST)
+        with ESMTP id S230019AbiLIIE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:04:26 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E2F5AE22
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:04:25 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id q7so4131431ljp.9
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 00:04:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=NsuZyFPaWs/2xOslubtL3bTv7xZraftR6tRWln/UHA0=;
-        b=L0ObW+6jVYepqRQlOuSGYejbeGJxoK2QtyeJ8hUusQv0T1wIqZbpYlI1rbKASAM82q
-         Tsuu631UcDvh3dpORs7Dkq6MOiW73wcKDfoQqx2+ex12mu7QgOIgpy8L0iKqc/Y2wxeO
-         MVlQwsOrl86I/ULPLD5Pmu636m8TPx3+MzPsQbLfKWcWvb8+e2RX2P9dsW+aRBdh2nQw
-         DlcubyQYjk9X3/XCK41jJeOSxOV+V69sKUyp2q1ON3R4oX9jMkWZ3rAazapizSgNtGUq
-         jaN3VrungIzhOox1TjRfJNmXEPsdB51mws3POhJ7RwD/NlZ/U4kiQJ7aigL6pnMTbGMa
-         lVyw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eTLraVCW2+yq4yH7aq+Ix50RknoV/LoBc1AGTJJK5cw=;
+        b=A3AsGw2XT+w5SWlTLYvwfRD1wHSdO8O0JDyKh18jGNzuCK4AnFZl6cyNL3bFmnv6Nv
+         mpQ2/hMwx3M9TXkz/hBqE3D6T3WKbjxbQKYZp+ShBpqdmb9rDIefIximFKAVKEP29crb
+         5iKa/wA2tpr8Jl5/5fWEnwEpkOMRCDtGqa73uQDK8QerEPREebrO80kJykoDZbBLUf85
+         aZ/tJorHgkXFyB28eTooXiphagesbqpzhZZrlbaOXhE93AtzMnIumLkdF9hfMvCcMi+E
+         EA9oLH9jzOpAGwR/yXS3OL3kOi4y5JhhtmKRnvkqAl3CQu01RoeXzYqu6+bsDB18Dkis
+         n+7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NsuZyFPaWs/2xOslubtL3bTv7xZraftR6tRWln/UHA0=;
-        b=ZuzW2cYdzzkLc8KFlbxU2cJlgqkrLwQNgJiCpU97Bw7vw5M1m4BdgQlDPlMDAobs1K
-         oB5SBsfVD9j+xrm93AQWv1AbZ7zvhOeg+fmRhdBlhdegd6xDBcr7JLxpa/zLHKFYDM16
-         /+OEeIqxD3iH8LpmZwUKqNrMzj55o9GwXMBgAfEZeuF5hBW/P31sgRnfwOs5hobckgoI
-         Gb8+tNZJ95SLZRNvz6snRtTJuziZGtE7AB6xclG4CfzwIsn+nLE+522gjo90nY4Cy+4H
-         I2fGN1jvzbj7KUseJKX+pOuksBJJdvckeyeyiK8+tvb1f1kpGG1OrOZpbAxVbjvm0yRL
-         40UQ==
-X-Gm-Message-State: ANoB5pkv50+0Xmpt8GEddppljyGbe3tnOnEutbkBeaZy74EjNyrAI6Fs
-        hDbfYoOCLMNZ7ORTBZjiswOcjA==
-X-Google-Smtp-Source: AA0mqf50R8kzIqUKGZ8njOLQTZPpV95PUHF/rpYhGJtY+iZVQ8Z32kmn45AQFCSJtdOmMzqch/n1Uw==
-X-Received: by 2002:a05:6512:16a1:b0:4a4:68b8:f4d6 with SMTP id bu33-20020a05651216a100b004a468b8f4d6mr1739705lfb.28.1670572096037;
-        Thu, 08 Dec 2022 23:48:16 -0800 (PST)
+        bh=eTLraVCW2+yq4yH7aq+Ix50RknoV/LoBc1AGTJJK5cw=;
+        b=zOJqw7e9ekIVPDFljH08Xh/KK3pExbzW9hUc6k9H5IvlTrqWLO2a2Lo1N3WsNxZiou
+         Wt/ZiNAEwhDyUq8dEC7FiiIlt3NWTbKSulLMFNYb8wobqgn/JgM6OTvEZyaaTtkwTfpU
+         lFZGoKyBtbjihLlapvQkIv2/g2x8lS00fD4NArM4Wxh3TxLQdWbFL8GJDVhjgNGZNSKp
+         rjjmS43O9wbhNyB/mmHkEa+5Bp2C7q4lg4cAZgZcixj4QeOHMUgJl9B4RXN6e6zUuWAV
+         iyDuwmmH3zkoxzUa7jpajxvtpehB0Vb35BSvB3xfxnxZeH2D+lMW0h8AwzAd7VJY9k2H
+         8LVQ==
+X-Gm-Message-State: ANoB5pnK5pZEBjrRIAlQWwjzqffB05glzpYTYTIhwy34194H7hJbR1bq
+        E7jaCTcxugWjGdlRgSPb7YIqlA==
+X-Google-Smtp-Source: AA0mqf6U+cJ7mLtJ30Q9BL1pN1jGQzIzm+3FHYTR5SAC9qTGyhS38TrtEta+6S2yRis/6dlhQN02Yg==
+X-Received: by 2002:a2e:ab0d:0:b0:279:e1ba:8c6a with SMTP id ce13-20020a2eab0d000000b00279e1ba8c6amr1312691ljb.44.1670573063639;
+        Fri, 09 Dec 2022 00:04:23 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a6-20020a19f806000000b004b5766f48d8sm155053lff.19.2022.12.08.23.48.14
+        by smtp.gmail.com with ESMTPSA id o25-20020a2e7319000000b002770e6c620bsm116238ljc.106.2022.12.09.00.04.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 23:48:15 -0800 (PST)
-Message-ID: <41500a04-b004-0e2c-20a1-3a3092b90e6d@linaro.org>
-Date:   Fri, 9 Dec 2022 08:48:13 +0100
+        Fri, 09 Dec 2022 00:04:23 -0800 (PST)
+Message-ID: <713fb813-cd4d-aac7-5532-131207529bce@linaro.org>
+Date:   Fri, 9 Dec 2022 09:04:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [v4 1/5] dt-bindings: mfd: Add aspeed pwm-tach binding
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20221123061635.32025-1-billy_tsai@aspeedtech.com>
- <20221123061635.32025-2-billy_tsai@aspeedtech.com>
- <c4b188b1-06a4-3cb0-a758-e12942e1f67b@linaro.org>
- <27055c13-11ab-cc73-f2ba-c269785b0e28@linaro.org>
- <A5EA19E5-21D8-4954-9636-9B28AC8D946A@aspeedtech.com>
+Subject: Re: [PATCH 4/5] dt-bindings: arm: qcom: Add SM6115(P) and Lenovo Tab
+ P11
 Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Iskren Chernev <me@iskren.info>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221208201401.530555-1-konrad.dybcio@linaro.org>
+ <20221208201401.530555-4-konrad.dybcio@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <A5EA19E5-21D8-4954-9636-9B28AC8D946A@aspeedtech.com>
+In-Reply-To: <20221208201401.530555-4-konrad.dybcio@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -96,21 +80,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 01:54, Billy Tsai wrote:
->     > > However I am surprised to see such change, so I have no clue why this
->     > > was done.
+On 08/12/2022 21:14, Konrad Dybcio wrote:
+> Document SM6115P, an APQ version of SM6115, which in turn is more or
+> less a beefier version of SM4250.
 > 
->     > Actually now I see it was like that in previous patch, I just missed it
->     > during previous review. Anyway this must be fixed.
+> Document Lenovo Tab P11 (J606F) as a SM6115P device.
 > 
-> I have two module (PWM and TACH) but share with the same base address,
-> The PWM will use the offset (N*0x10) + 0x0 and 0x04.
-> The TACH will use the offset (N*0x10) + 0x8 and 0x0c.
-> The range of the N is 0~15.
-> Can you give me some advice to fix this problem without using simple-mfd?
+> Add SM6115 to the msm-id list of shame.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
-Use regular driver which populates children.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
