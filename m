@@ -2,68 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFC664881E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 19:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E8B648836
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 19:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbiLISAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 13:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35140 "EHLO
+        id S229482AbiLISLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 13:11:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbiLIR76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 12:59:58 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964B1A3844
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 09:59:56 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id p36so8181159lfa.12
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 09:59:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=f22vZCjXybDI16EXekXa2UBySgDksyt2VSWTc/dPnDU=;
-        b=KREhYnoePYN4orZ39eONxq3E8mSCU/zQFges9mjBszy9iwCGX1ZXqFGaYTfjE8KNWq
-         GnbMWK91HSsX8IalnxIx41GuyCpVATG0U7oSMxXCkMyyZW16KTTKrb9oeWt9ZnJPv+EQ
-         hLokxIzo1JKTf35rrcGPwktCrRNhLfhIKpr9tkZw+c673FPBnyLAeisPiDPRuYN6Z2SJ
-         Ovy+t5FmhGhX0fXh+2xF3huOxUtjIe5oTGehlXTtoVUvL4FGryF62bDjfSJCKKEb63Fe
-         NGqV9r87jpMEvQXfkhtL9eLr5iO3HBF6ipMIg/gYK9I8US20Jie75eUEbbhMpz7guj32
-         7WEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f22vZCjXybDI16EXekXa2UBySgDksyt2VSWTc/dPnDU=;
-        b=KdDXfn1LiPKuqdcqTaJ1ZCOtGjFLuPYbWhjJrzq2Lu+eZChioLpPlrkJQ2kyUnsQjF
-         6dNX3gsWNXKoNpRxSKcy7oHDollohBwyLR+Lvh0V38rnSPCBusOfGJA+mWfxjKS3sSXy
-         daZJyDWi4ZmWXLS6xnhvXuJ5oH4RNLzeDLFF69tEYGLC0PiRpNSARkf4nGFU+VtWX5x5
-         JeYlzXjzN81D5u3z/lPhwJTQqsqrtaFAD+LwCNklvogB3iRB5yUhbk6yzwiew7athQnB
-         IwMbJVT35fUcpSPxZ/FCRFcOi2kO4JdnpqKpsE2gMB5FEI5MdWKjuHRysVijb0O+M26Q
-         0EVg==
-X-Gm-Message-State: ANoB5pmKYaerMyBgf+5V83hpELBrRNLNAOjY6tZgL1r1Sue2MAYa3wLm
-        mFOXos4l/OgKC4gTZVL8rKOB0Q==
-X-Google-Smtp-Source: AA0mqf706m4/EPthaGELVyDiMAmsOzNdN2ihBoRYFH9rN1tRPkIS/dT9wEdG+K0RroRv6jFflRAp0g==
-X-Received: by 2002:a05:6512:90c:b0:4b5:2cf4:cc1d with SMTP id e12-20020a056512090c00b004b52cf4cc1dmr1585358lft.68.1670608794982;
-        Fri, 09 Dec 2022 09:59:54 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id k16-20020a0565123d9000b004b577877286sm350380lfv.50.2022.12.09.09.59.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 09:59:54 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        with ESMTP id S229591AbiLISLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 13:11:31 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECAB9B7B2;
+        Fri,  9 Dec 2022 10:11:30 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7634A622F8;
+        Fri,  9 Dec 2022 18:11:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D4BC433D2;
+        Fri,  9 Dec 2022 18:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670609489;
+        bh=epx/3n6EwqEj5rJc+f7YxdkKGXlAtgNwhwzCjKBq+B8=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=q0fqputXafLstYl7s0bbqBLoARECT4s7udCu2lxwMr8acbXZx0lwkn41Ah5tYa6/m
+         Dw5GPNYVmG7/KMGJyL9dNgkzPdj1b9gzLW7x7XdFXZq6T/53w9aRpTBAHy1NV4gZQQ
+         cUjf/jbzo3V3qQnEUDrSWeS+lfxhDlf9ifvGJ0C1/ONiRUMWlXGPJgVVHqZLjn1A5U
+         heKpQRMS58dIB1xlUlW4/ckFhzwzj5aBBqJmhJVr/hxG6nswwtuTHWbgkAWl0ytECl
+         bYCXaHPvTTGJkVUZzzIWgsh7qSZRM8a9dU/h9H6GYx3y+mnu4YH3FvcXMKIfLhbI9O
+         jg05ybqRsE7EA==
+From:   Mark Brown <broonie@kernel.org>
+To:     Masahisa Kojima <masahisa.kojima@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Ard Biesheuvel <ardb@kernel.org>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: adi,adau7002: Convert to DT schema
-Date:   Fri,  9 Dec 2022 18:59:46 +0100
-Message-Id: <20221209175947.335319-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221209171644.3351787-1-robh@kernel.org>
+References: <20221209171644.3351787-1-robh@kernel.org>
+Subject: Re: [PATCH] spi: dt-bindings: Convert Synquacer SPI to DT schema
+Message-Id: <167060948678.166802.5232484726492968107.b4-ty@kernel.org>
+Date:   Fri, 09 Dec 2022 18:11:26 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.11.0-dev-64ef0
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,91 +58,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Analog Devices ADAU7002 Stereo PDM-to-I2S/TDM Converter
-bindings to DT schema.  During the conversion, add properties already
-used by DTS (sc7180-trogdor-coachz.dts) and Linux driver:
-1. wakeup-delay-ms,
-2. sound-dai-cells (via referencing dai-common.yaml).
+On Fri, 09 Dec 2022 11:16:43 -0600, Rob Herring wrote:
+> Convert the Socionext Synquacer SPI binding to DT format.
+> 
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/sound/adi,adau7002.txt           | 19 ---------
- .../bindings/sound/adi,adau7002.yaml          | 40 +++++++++++++++++++
- 2 files changed, 40 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau7002.txt
- create mode 100644 Documentation/devicetree/bindings/sound/adi,adau7002.yaml
+Applied to
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau7002.txt b/Documentation/devicetree/bindings/sound/adi,adau7002.txt
-deleted file mode 100644
-index f144ee1abf85..000000000000
---- a/Documentation/devicetree/bindings/sound/adi,adau7002.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Analog Devices ADAU7002 Stereo PDM-to-I2S/TDM Converter
--
--Required properties:
--
-- - compatible: Must be "adi,adau7002"
--
--Optional properties:
--
-- - IOVDD-supply: Phandle and specifier for the power supply providing the IOVDD
--	supply as covered in Documentation/devicetree/bindings/regulator/regulator.txt
--
--	If this property is not present it is assumed that the supply pin is
--	hardwired to always on.
--
--Example:
--	adau7002: pdm-to-i2s {
--		compatible = "adi,adau7002";
--		IOVDD-supply = <&supply>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau7002.yaml b/Documentation/devicetree/bindings/sound/adi,adau7002.yaml
-new file mode 100644
-index 000000000000..fcca0fde7d86
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,adau7002.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,adau7002.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADAU7002 Stereo PDM-to-I2S/TDM Converter
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: adi,adau7002
-+
-+  IOVDD-supply:
-+    description:
-+      IOVDD power supply, if skipped then it is assumed that the supply pin is
-+      hardwired to always on.
-+
-+  wakeup-delay-ms:
-+    description:
-+      Delay after power up needed for device to settle.
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    audio-codec {
-+        compatible = "adi,adau7002";
-+        IOVDD-supply = <&pp1800_l15a>;
-+        #sound-dai-cells = <0>;
-+        wakeup-delay-ms = <80>;
-+    };
--- 
-2.34.1
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
+
+[1/1] spi: dt-bindings: Convert Synquacer SPI to DT schema
+      commit: 3cf241c3d56ff19f5192cb42a025bc6582b6e8fa
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
