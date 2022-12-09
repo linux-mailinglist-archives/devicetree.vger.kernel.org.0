@@ -2,271 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8CA76480C0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 11:15:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D13946480C6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 11:17:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbiLIKPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 05:15:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
+        id S229592AbiLIKRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 05:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229612AbiLIKPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 05:15:43 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E40931F94
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 02:15:42 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id c1so6296663lfi.7
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 02:15:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BlvfkF2ZFYuFQpxBnIpN0aFK4kWr5DwTIlUFg1Sxm10=;
-        b=iB4EZnlRNYR9XsnIqBEIPTBPZ2s9ORP0ZU5q5t8qP0qfsE1V1SD5UJIlwcXU5e4BFm
-         hjg7dt4F/HGMUh1zYORVDvLvPrIp/6gj8VRMgbyztp9Az9iX1Ai5mGFp2w0jGh3YGAJO
-         F8Pxd+pYMnHp6HwgbBk50hJtPrL0eMR6xW9Sz3tun7+qq7RXyM5F3z1Py3XYMwUC/s+F
-         cSn2n099UHSkGl9tfbf81M/Kde3wmliN5v1T8ZtIhVfoYl5Zmu0VZmd7tI5vllaz/xPF
-         AcF4lNgNIeUKyfuNLO8SiBLRDSFz0bjaGezpNvxlk0M8xzw2u4pp012hc0iPN/6r5bi3
-         rPbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BlvfkF2ZFYuFQpxBnIpN0aFK4kWr5DwTIlUFg1Sxm10=;
-        b=hotBxh6D3QbxIQMxXo/ivCEBWMXzb04GRspVCrY3eSqouJTTcBZ1/kZgN4HC/1JNA/
-         A5jWVxeZdLH5YgqsWjUEpk2QSZd3vr3eOTt2YG3l3GlFVix38lDN6gUvTFYrJYXNRL0J
-         s/JOY6Jg5Mu4uo5OKM5SxIc38URxIxTnP7Ib1kmyZlaWoOUqwepbSEa7MjLCaOWRI9mV
-         2R3iVIq1MWNRTU45HlxekcPUiEON8Pifva6IqIDA5yjJuUugW1w57j1vL6pkX8RQ0Rnw
-         qsL44+m2GNSDNXdBkTLjCap3uNvJTGoGAMQ8cGhyO1iRPkeC6poV8eqQQXpEZAMUgVJS
-         HygQ==
-X-Gm-Message-State: ANoB5pnEfmlOkHZUQLWwiqUJZtUj26h8HUAE2lCS0UZpICW71cZFtO6Q
-        ImjW3criTZF5DTiA6BtYBde5xA==
-X-Google-Smtp-Source: AA0mqf4PV54SFqHCdc0zs8HGqB2QDXjAeslsLxGBJT/SW25dK9NlvFl04szs2leJ2cSdPYldgZKSqg==
-X-Received: by 2002:a05:6512:10c3:b0:4b5:34c4:78a4 with SMTP id k3-20020a05651210c300b004b534c478a4mr1695393lfg.30.1670580939515;
-        Fri, 09 Dec 2022 02:15:39 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id a19-20020ac25053000000b004b5789ecdd7sm191371lfm.274.2022.12.09.02.15.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 02:15:39 -0800 (PST)
-Message-ID: <d7d9f3c7-b3e3-1e13-a80f-c7bf7b38a5b1@linaro.org>
-Date:   Fri, 9 Dec 2022 11:15:37 +0100
+        with ESMTP id S229545AbiLIKRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 05:17:54 -0500
+Received: from post.baikalelectronics.com (post.baikalelectronics.com [213.79.110.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5357B2AE35;
+        Fri,  9 Dec 2022 02:17:46 -0800 (PST)
+Received: from post.baikalelectronics.com (localhost.localdomain [127.0.0.1])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id 7B1D1E0EE7;
+        Fri,  9 Dec 2022 13:17:44 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        baikalelectronics.ru; h=cc:cc:content-type:content-type:date
+        :from:from:in-reply-to:message-id:mime-version:references
+        :reply-to:subject:subject:to:to; s=post; bh=Ec3ViA1L+1+zRfJZ8e1q
+        eQl0OyxR+BM/2+3K7g2BZ9I=; b=R05EYE98HzQ0MxHVk6hVIH3+DWnkwj2TU15o
+        xM5JYoXYcFUipO5pL1Tuuu6LTKPYRcIq9fjgzXUOxqajVeC484NeGt8fdrup9/Wm
+        5t9YJEO2ewtD4StEPy6kx11pH2SY5PEAse137DbDyJmdGBlDU4aOsoxwkj+aZH0/
+        2aJCQJo=
+Received: from mail.baikal.int (mail.baikal.int [192.168.51.25])
+        by post.baikalelectronics.com (Proxmox) with ESMTP id 5D9B6E0ED4;
+        Fri,  9 Dec 2022 13:17:44 +0300 (MSK)
+Received: from mobilestation (10.8.30.6) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 9 Dec 2022 13:17:44 +0300
+Date:   Fri, 9 Dec 2022 13:17:43 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <vidyas@nvidia.com>,
+        <mmaddireddy@nvidia.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+Message-ID: <20221209101743.uzyw5ejubkbfm5di@mobilestation>
+References: <20221114155333.234496-1-jonathanh@nvidia.com>
+ <20221114155333.234496-2-jonathanh@nvidia.com>
+ <Y3ap1o2SbNvFw8Vd@orome>
+ <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
+ <Y49xg7wptRweHd4I@orome>
+ <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 10/12] dt-bindings: mediatek: mt8188: add audio afe
- document
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de
-Cc:     angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221208033148.21866-1-trevor.wu@mediatek.com>
- <20221208033148.21866-11-trevor.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221208033148.21866-11-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
+X-Originating-IP: [10.8.30.6]
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2022 04:31, Trevor Wu wrote:
-> Add mt8188 audio afe document.
+On Tue, Dec 06, 2022 at 03:14:58PM -0600, Rob Herring wrote:
+> On Tue, Dec 6, 2022 at 10:44 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+> >
+> > On Mon, Dec 05, 2022 at 05:41:55PM -0600, Rob Herring wrote:
+> > > On Thu, Nov 17, 2022 at 3:38 PM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > > >
+> > > > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
+> > > > > From: Vidya Sagar <vidyas@nvidia.com>
+> > > > >
+> > > > > Add support for ECAM aperture that is only supported for Tegra234
+> > > > > devices.
+> > > > >
+> > > > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> > > > > Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > > ---
+> > > > > Changes since V2:
+> > > > > - Avoid duplication of reg items and reg-names
+> > > > > Changes since V1:
+> > > > > - Restricted the ECAM aperture to only Tegra234 devices that support it.
+> > > > >
+> > > > >  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
+> > > > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+> > > > >  2 files changed, 33 insertions(+), 3 deletions(-)
+> > > >
+> > > > Both patches applied now.
+> > >
+> > > linux-next now fails with this. I suspect it is due to Sergey's
+> > > changes to the DWC schema.
+> > >
+> > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > > fixed:
+> > >         'dbi' was expected
+> > >         'dbi2' was expected
+> > >         'ecam' is not one of ['elbi', 'app']
+> > >         'atu' was expected
+> > >         'dma' was expected
+> > >         'phy' was expected
+> > >         'config' was expected
+> > >         /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > > fixed:
+> > >                 'ecam' is not one of ['apb', 'mgmt', 'link', 'ulreg', 'appl']
+> > >                 'ecam' is not one of ['atu_dma']
+> > >                 'ecam' is not one of ['smu', 'mpu']
+> > >         From schema:
+> > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+> >
+> > Stephen reported the other day that he wasn't able to resolve this
+> > conflict in linux-next, so he dropped the ECAM bits. The ECAM patch has
+> > now propagated to ARM SoC so it can't be easily backed out, but I guess
+> > we could revert on that tree and instead apply the patch to the DT tree
+> > and resolve the conflict there.
+> >
+> > I guess the better alternative would be to try and resolve the merge
+> > properly and let Stephen (and Linus) know.
+> 
 
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
+> Instead, can you prepare a patch on top of Sergey's adding a 'oneOf'
+> entry with 'ecam'. As this is a new thing, it should have its own
+> entry. Then when merging, we just throw out the change from your side.
+
+Right, the only change that is required here is to extend the
+reg-names oneOf list of the DT-bindings:
+< Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+with the 'ecam' entry. If it's a vendor-specific part then add to the
+last the last entry defines the vendor-specific duplicates of the generic CSR
+spaces.
+
+On the other hand I don't really see a reason in adding the ECAM CSRs
+space to the generic DW PCIe device since basically the ECAM memory is
+just a pre-configured outbound iATU window. So if it's a ECAM-based
+device then it should have been already configured by the system
+bootloader upon the kernel boot up. Thus there is no point in having
+the generic DW PCIe resources and it should be just a generic
+ECAM-based device with a single ECAM CSR space as the
+"snps,dw-pcie-ecam"/"pci-host-ecam-generic" DT-bindings require
+especially seeing the Nvidia low-level driver doesn't use the ECAM
+registers at all. Moreover the DW PCIe core driver doesn't
+differentiate between the already configured iATU windows and the one
+available for the ranges-based mapping. Instead the DW PCIe core just
+disables all the detected in- and outbound iATUs by means of the
+dw_pcie_iatu_setup() method. So the pre-configured ECAM space will be
+reset by the driver core anyway.
+
+What I would suggest here is to split up the devices:
+1. If it's a ECAM-based device, then it should be identified as
+"snps,dw-pcie-ecam"/"pci-host-ecam-generic", then it will have a
+single ECAM CSR space with no need in other resources.
+2. If it's a DW PCIe device with Nvidia Tegra194-specific settings,
+then it should be identified as "nvidia,tegra194-pcie" with no ECAM
+registers.
+
+Thus we wouldn't need to have any modifications applied to the
+bindings and to the DT-files. What do you think?
+
+-Serge(y)
 
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> ---
->  .../devicetree/bindings/sound/mt8188-afe.yaml | 196 ++++++++++++++++++
->  1 file changed, 196 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mt8188-afe.yaml
+> I'd really prefer that bindings don't go thru the soc tree unless
+> there's some strong reason. The default is to go via the subsystem
+> trees. Beyond 'we are running the dtschema checks on all our dts files
+> and can't have the warnings', I don't know what that would be. I wish
+> everyone was doing that, but I'm pretty sure most are not.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8188-afe.yaml b/Documentation/devicetree/bindings/sound/mt8188-afe.yaml
-> new file mode 100644
-> index 000000000000..6ab26494d924
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mt8188-afe.yaml
-
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-Comment was about filename matching compatible, so with vendor prefix.
-
-> @@ -0,0 +1,196 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mt8188-afe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek AFE PCM controller for mt8188
-> +
-> +maintainers:
-> +  - Trevor Wu <trevor.wu@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8188-afe
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: audiosys
-> +
-> +  mediatek,topckgen:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the mediatek topckgen controller
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: 26M clock
-> +      - description: audio pll1 clock
-> +      - description: audio pll2 clock
-> +      - description: clock divider for i2si1_mck
-> +      - description: clock divider for i2si2_mck
-> +      - description: clock divider for i2so1_mck
-> +      - description: clock divider for i2so2_mck
-> +      - description: clock divider for dptx_mck
-> +      - description: a1sys hoping clock
-> +      - description: audio intbus clock
-> +      - description: audio hires clock
-> +      - description: audio local bus clock
-> +      - description: mux for dptx_mck
-> +      - description: mux for i2so1_mck
-> +      - description: mux for i2so2_mck
-> +      - description: mux for i2si1_mck
-> +      - description: mux for i2si2_mck
-> +      - description: audio 26m clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk26m
-> +      - const: apll1_ck
-> +      - const: apll2_ck
-> +      - const: apll12_div0
-> +      - const: apll12_div1
-> +      - const: apll12_div2
-> +      - const: apll12_div3
-> +      - const: apll12_div9
-> +      - const: a1sys_hp_sel
-> +      - const: aud_intbus_sel
-> +      - const: audio_h_sel
-> +      - const: audio_local_bus_sel
-> +      - const: dptx_m_sel
-> +      - const: i2so1_m_sel
-> +      - const: i2so2_m_sel
-> +      - const: i2si1_m_sel
-> +      - const: i2si2_m_sel
-> +      - const: adsp_audio_26m
-> +
-> +patternProperties:
-> +  "^mediatek,etdm-in[1-2]-chn-disabled$":
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 1
-> +    maxItems: 16
-> +    description:
-> +      By default, all data received from ETDM pins will be outputed to
-> +      memory. etdm in supports disable_out in direct mode(w/o interconn).
-> +      User can specify the channel ID which they hope dropping and then
-> +      the specified channel won't be seen on memory.
-
-So we know what are the IDs but it's a mystery what are the values.
-Especially with unique values - how any of these should case that
-channel "won't be seen in memory"?
-
-> +    uniqueItems: true
-> +    items:
-> +      minimum: 0
-> +      maximum: 15
-> +
-> +  "^mediatek,etdm-in[1-2]-mclk-always-on-rate-hz$":
-> +    description: Specify etdm in mclk output rate for always on case.
-
-How is it different than assigned-clock-rates?
-
-> +
-> +  "^mediatek,etdm-out[1-3]-mclk-always-on-rate-hz$":
-> +    description: Specify etdm out mclk output rate for always on case.
-> +
-> +  "^mediatek,etdm-in[1-2]-multi-pin-mode$":
-> +    type: boolean
-> +    description: if present, the etdm data mode is I2S.
-> +
-> +  "^mediatek,etdm-out[1-3]-multi-pin-mode$":
-> +    type: boolean
-> +    description: if present, the etdm data mode is I2S.
-> +
-> +  "^mediatek,etdm-in[1-2]-cowork-source$":
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      etdm modules can share the same external clock pin. Specify
-> +      which etdm clock source is required by this etdm in moudule.
-
-typo: module
-
-> +    enum:
-> +      - 0 # etdm1_in
-> +      - 1 # etdm2_in
-> +      - 2 # etdm1_out
-
-I don't get. This suggests that etdm1_out can be clock source of
-etdm-in1. Or etdm1_in can be clock source of etdm-in1... It does not
-make sense...
-
-> +      - 3 # etdm2_out
-> +
-> +  "^mediatek,etdm-out[1-2]-cowork-source$":
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      etdm modules can share the same external clock pin. Specify
-> +      which etdm clock source is required by this etdm out moudule.
-> +    enum:
-> +      - 0 # etdm1_in
-> +      - 1 # etdm2_in
-> +      - 2 # etdm1_out
-> +      - 3 # etdm2_out
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - resets
-> +  - reset-names
-> +  - mediatek,topckgen
-> +  - power-domains
-> +  - clocks
-> +  - clock-names
-> +
-Best regards,
-Krzysztof
+> Rob
+> 
 
