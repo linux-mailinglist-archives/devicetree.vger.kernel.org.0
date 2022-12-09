@@ -2,456 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19BE64827B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1B364828A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:45:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbiLIMkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 07:40:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54816 "EHLO
+        id S229897AbiLIMpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 07:45:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiLIMke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:40:34 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA4971250
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:40:33 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id z4so4790593ljq.6
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 04:40:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0lXiAj3rzLz3gmBjsIDq3bXSlHIvyIVLqSnh/2V9Ecw=;
-        b=HJRurJGfi0QdLm21nvGmmiQ7/NUFhHdTBFsIbSNPkKSm0JAW9IsPajc0vdBvEgj/Te
-         8dOvggpPkwEfc4/1SIoCHqes+zSVNNAGf9WlmwXBR6VcX7C9yoOhLmQwoINzzo+U6SqT
-         HmeOfD12A2NtflGGRarRYtHDuyJ87sP3u5Gw30rgIvN8+EgUyddNOyET6RLZey6GeOLx
-         lihIOY6Ykx1lFQNClojI99+UsT4uTqa26/EuZW3UPOorTa8HkKM2Nfod9uFpEXf5N8ZW
-         qur6x/TN8Wjo9ODVFju466b3HWqGO64T0/Lc38DMdOloByEu6L/67kwW4wRE0NJsBHpR
-         nJ/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0lXiAj3rzLz3gmBjsIDq3bXSlHIvyIVLqSnh/2V9Ecw=;
-        b=7YbafrTbZznfrd0qy33qNDFc4+BI0ePXkYMCKPaavtjUPKv/tM9Y2nOsniXJkzm7Yk
-         UggNIWnGalCUeRcyMaVFN/TjBqmHx0HSPnhDvm3xIzsjPyohlo3+H1N3fJDmzLMErbTA
-         DuLBlLYpdn0t77nC7bgGD0nTs2hU7PttbC/KL0nFTlPSNVZY/IuwcKeYmthT58teSUX3
-         09tOtXUgFt6OU0jb79RFCdhMKcmbWhxpYCOwSE9xvFG+yna8w46zpymsKXyhyuQknvjU
-         qtQ4Z1T2/YRhSVYudLBNAILjyT6nRF77a9jKp2sLIL9Tcpid1xiTFT6+DUJJfeFj3LWv
-         53UQ==
-X-Gm-Message-State: ANoB5pmDYSuD9GUElNBwewwsmDnGHiB+lCJTq9Hgnu9WFiN1XR9650qN
-        B4Ah6ZaKbPiK7w6rgPQ2xcEzqA==
-X-Google-Smtp-Source: AA0mqf7Xvklym2102Rz+/mU+VCWRfEQnUyjStcyCGkWf+VP//RUKes5I3Y4rubgJfbMqEVcZ1J4hgA==
-X-Received: by 2002:a2e:9d8b:0:b0:279:f30f:78db with SMTP id c11-20020a2e9d8b000000b00279f30f78dbmr1380251ljj.44.1670589631582;
-        Fri, 09 Dec 2022 04:40:31 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id s25-20020a05651c049900b0026dcb07122csm203693ljc.117.2022.12.09.04.40.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 04:40:31 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm6115: Add thermal zones
-Date:   Fri,  9 Dec 2022 13:40:26 +0100
-Message-Id: <20221209124026.178764-1-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S229521AbiLIMpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:45:35 -0500
+Received: from SHSQR01.spreadtrum.com (unknown [222.66.158.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C9367222;
+        Fri,  9 Dec 2022 04:45:32 -0800 (PST)
+Received: from SHSend.spreadtrum.com (shmbx06.spreadtrum.com [10.0.1.11])
+        by SHSQR01.spreadtrum.com with ESMTP id 2B9Ch0BE005164;
+        Fri, 9 Dec 2022 20:43:00 +0800 (+08)
+        (envelope-from Zhe.Wang1@unisoc.com)
+Received: from xm13705pcu.spreadtrum.com (10.13.3.189) by
+ shmbx06.spreadtrum.com (10.0.1.11) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 9 Dec 2022 20:42:59 +0800
+From:   Zhe Wang <zhe.wang1@unisoc.com>
+To:     <martin.petersen@oracle.com>, <jejb@linux.ibm.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <alim.akhtar@samsung.com>, <avri.altman@wdc.com>
+CC:     <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <orsonzhai@gmail.com>, <yuelin.tang@unisoc.com>,
+        <zhenxiong.lai@unisoc.com>, <zhang.lyra@gmail.com>,
+        <zhewang116@gmail.com>
+Subject: [PATCH v4 0/2] Add support for Unisoc UFS host controller
+Date:   Fri, 9 Dec 2022 20:41:19 +0800
+Message-ID: <20221209124121.20306-1-zhe.wang1@unisoc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.13.3.189]
+X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
+ shmbx06.spreadtrum.com (10.0.1.11)
+X-MAIL: SHSQR01.spreadtrum.com 2B9Ch0BE005164
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones associated with the on-SoC temperature sensors.
+V3 -> V4:
+ - Added "Reviewed-by" to the dt-bindings patch
+ - Addressed Alim's comments
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115.dtsi | 364 +++++++++++++++++++++++++++
- 1 file changed, 364 insertions(+)
+V2 -> V3:
+ - Modify the clock and reset names to more appropriate names
+ - Use 'assigned-clock-parents' to place parent clock of 'core'
+ - Do some format order modification
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-index 1d227b9b331c..25928fae1bb9 100644
---- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
-@@ -1420,6 +1420,370 @@ cpufreq_hw: cpufreq@f521000 {
- 		};
- 	};
- 
-+	thermal-zones {
-+		mapss-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 0>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cdsp-hvx-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 1>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wlan-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 2>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		camera-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 3>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		video-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 4>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		modem1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 5>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		cpu4-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 6>;
-+
-+			trips {
-+				cpu4_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu4_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu4_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu5-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 7>;
-+
-+			trips {
-+				cpu5_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu5_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu5_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu6-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 8>;
-+
-+			trips {
-+				cpu6_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu6_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu6_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu7-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 9>;
-+
-+			trips {
-+				cpu7_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu7_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu7_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu45-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 10>;
-+
-+			trips {
-+				cpu45_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu45_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu45_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu67-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 11>;
-+
-+			trips {
-+				cpu67_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu67_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu67_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu0123-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 12>;
-+
-+			trips {
-+				cpu0123_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu0123_alert1: trip-point1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu0123_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		modem0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 13>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		display-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 14>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		gpu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tsens0 15>;
-+
-+			trips {
-+				trip-point0 {
-+					temperature = <115000>;
-+					hysteresis = <5000>;
-+					type = "passive";
-+				};
-+
-+				trip-point1 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+V1 -> V2:
+ - Fix dt-binding doc in v2 patch
+ - Do some minor format changes
+ - Remove of_match_ptr
+ - Remove functions from headers
+
+Zhe Wang (2):
+  dt-bindings: ufs: Add document for Unisoc UFS host controller
+  scsi: ufs-unisoc: Add support for Unisoc UFS host controller
+
+ .../bindings/ufs/sprd,ums9620-ufs.yaml        |  79 +++
+ drivers/ufs/host/Kconfig                      |  12 +
+ drivers/ufs/host/Makefile                     |   1 +
+ drivers/ufs/host/ufs-sprd.c                   | 458 ++++++++++++++++++
+ drivers/ufs/host/ufs-sprd.h                   |  85 ++++
+ 5 files changed, 635 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ufs/sprd,ums9620-ufs.yaml
+ create mode 100644 drivers/ufs/host/ufs-sprd.c
+ create mode 100644 drivers/ufs/host/ufs-sprd.h
+
 -- 
-2.38.1
+2.17.1
 
