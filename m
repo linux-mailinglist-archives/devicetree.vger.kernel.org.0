@@ -2,205 +2,456 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5483648252
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A19BE64827B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:40:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbiLIMXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 07:23:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47556 "EHLO
+        id S229902AbiLIMkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 07:40:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiLIMXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:23:10 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE2D1EEEA
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:23:09 -0800 (PST)
+        with ESMTP id S229517AbiLIMke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:40:34 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA4971250
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:40:33 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id z4so4790593ljq.6
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 04:40:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670588589; x=1702124589;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YwpG9O9tidDLB/IzKW92Dfwn1EwnhUAoPlNcR81FoNg=;
-  b=cBEuA4Oq7ugZ2//kk377du1ErBkIzuGIRVQQgPbJjwWqvni6TllrZ8cY
-   5p7Fwl1+k2/RfNuKRa5BeeQ7dl6lz+3engaUaHIlfZ3JLAgtzXShkvwuN
-   zDtZMCx2Vp6MR9mFi8baI0yc5QkbALFPL8QlhilPEgAr4OmSkP6MG23+h
-   GlVZe/3wbhT0+kUCPAtMY8rpGFWiRothxNp/owJUxFYRGkbD+G6loOo+3
-   KGLOK+cgMkalcFU6ziZ5FFJBNMgejriPT7USIBT/7f6tbMb/ykuz/aiXy
-   h/5uO3n6jLruKNv7OYVvNvD7EpM/Q/WsIrGk0VPEv+rhmZ/ZoJW8mbL4i
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27865059"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 13:23:07 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Dec 2022 13:23:08 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 13:23:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670588587; x=1702124587;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YwpG9O9tidDLB/IzKW92Dfwn1EwnhUAoPlNcR81FoNg=;
-  b=ZB9VAxZm19FzrRpWxImBpFzdQj9KnaCE9ZyEQNQOp7AQLUkrquib/dok
-   tpTYw0BEeJCIioEFgAErK/V9GNpcAKbjGBG64qs73/wztfTLYg/Qc/iDe
-   xdKgcURB0dWHgdXvB36PciuPZ2eughb1xWVk/CnzDBwMCZgwKhD8tUcze
-   /w39wdZ2YlQhcazXAZm/G9vWWOQ/hZC/OcJ/Lin511z/x/f3Tz4UmdTYC
-   z2sgsbYMPpWT8h8b0rBTLtK4ioeIlkCe+nretFAHHjsNXK1CV8SyrliTz
-   YXMWkWUaLs1xIySFCeVKD0G3U5HYymgd01++6W2tZ/F/i3BoEBPpuDcoV
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27865058"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Dec 2022 13:23:07 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 981BA280071;
-        Fri,  9 Dec 2022 13:23:07 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0lXiAj3rzLz3gmBjsIDq3bXSlHIvyIVLqSnh/2V9Ecw=;
+        b=HJRurJGfi0QdLm21nvGmmiQ7/NUFhHdTBFsIbSNPkKSm0JAW9IsPajc0vdBvEgj/Te
+         8dOvggpPkwEfc4/1SIoCHqes+zSVNNAGf9WlmwXBR6VcX7C9yoOhLmQwoINzzo+U6SqT
+         HmeOfD12A2NtflGGRarRYtHDuyJ87sP3u5Gw30rgIvN8+EgUyddNOyET6RLZey6GeOLx
+         lihIOY6Ykx1lFQNClojI99+UsT4uTqa26/EuZW3UPOorTa8HkKM2Nfod9uFpEXf5N8ZW
+         qur6x/TN8Wjo9ODVFju466b3HWqGO64T0/Lc38DMdOloByEu6L/67kwW4wRE0NJsBHpR
+         nJ/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0lXiAj3rzLz3gmBjsIDq3bXSlHIvyIVLqSnh/2V9Ecw=;
+        b=7YbafrTbZznfrd0qy33qNDFc4+BI0ePXkYMCKPaavtjUPKv/tM9Y2nOsniXJkzm7Yk
+         UggNIWnGalCUeRcyMaVFN/TjBqmHx0HSPnhDvm3xIzsjPyohlo3+H1N3fJDmzLMErbTA
+         DuLBlLYpdn0t77nC7bgGD0nTs2hU7PttbC/KL0nFTlPSNVZY/IuwcKeYmthT58teSUX3
+         09tOtXUgFt6OU0jb79RFCdhMKcmbWhxpYCOwSE9xvFG+yna8w46zpymsKXyhyuQknvjU
+         qtQ4Z1T2/YRhSVYudLBNAILjyT6nRF77a9jKp2sLIL9Tcpid1xiTFT6+DUJJfeFj3LWv
+         53UQ==
+X-Gm-Message-State: ANoB5pmDYSuD9GUElNBwewwsmDnGHiB+lCJTq9Hgnu9WFiN1XR9650qN
+        B4Ah6ZaKbPiK7w6rgPQ2xcEzqA==
+X-Google-Smtp-Source: AA0mqf7Xvklym2102Rz+/mU+VCWRfEQnUyjStcyCGkWf+VP//RUKes5I3Y4rubgJfbMqEVcZ1J4hgA==
+X-Received: by 2002:a2e:9d8b:0:b0:279:f30f:78db with SMTP id c11-20020a2e9d8b000000b00279f30f78dbmr1380251ljj.44.1670589631582;
+        Fri, 09 Dec 2022 04:40:31 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id s25-20020a05651c049900b0026dcb07122csm203693ljc.117.2022.12.09.04.40.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Dec 2022 04:40:31 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable delay property
-Date:   Fri, 09 Dec 2022 13:23:07 +0100
-Message-ID: <2139563.Icojqenx9y@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <91535d1b-300e-79a1-5f6b-8401cf1b7b2c@linaro.org>
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com> <df7e4c0d-2e30-a808-584f-d302233c2931@denx.de> <91535d1b-300e-79a1-5f6b-8401cf1b7b2c@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm6115: Add thermal zones
+Date:   Fri,  9 Dec 2022 13:40:26 +0100
+Message-Id: <20221209124026.178764-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add thermal zones associated with the on-SoC temperature sensors.
 
-Am Freitag, 9. Dezember 2022, 13:10:00 CET schrieb Krzysztof Kozlowski:
-> On 09/12/2022 13:02, Marek Vasut wrote:
-> > On 12/9/22 10:36, Alexander Stein wrote:
-> >> Hello Krzysztof,
-> > 
-> > Hi,
-> > 
-> >> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
-> >>> On 09/12/2022 09:54, Alexander Stein wrote:
-> >>>> Hello Krzysztof,
-> >>>> 
-> >>>> thanks for the fast feedback.
-> >>>> 
-> >>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
-> >>>>> On 09/12/2022 09:33, Alexander Stein wrote:
-> >>>>>> It takes some time until the enable GPIO has settled when turning on.
-> >>>>>> This delay is platform specific and may be caused by e.g. voltage
-> >>>>>> shifts, capacitors etc.
-> >>>>>> 
-> >>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>> ---
-> >>>>>> 
-> >>>>>>   .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
-> >>>>>>   ++++
-> >>>>>>   1 file changed, 4 insertions(+)
-> >>>>>> 
-> >>>>>> diff --git
-> >>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
-> >>>>>> ---
-> >>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>> +++
-> >>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>> 
-> >>>>>> @@ -32,6 +32,10 @@ properties:
-> >>>>>>       maxItems: 1
-> >>>>>>       description: GPIO specifier for bridge_en pin (active high).
-> >>>>>> 
-> >>>>>> +  ti,enable-delay-us:
-> >>>>>> +    default: 10000
-> >>>>>> +    description: Enable time delay for enable-gpios
-> >>>>> 
-> >>>>> Aren't you now mixing two separate delays? One for entire block on (I
-> >>>>> would assume mostly fixed delay) and one depending on regulators
-> >>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss
-> >>>>> the
-> >>>>> second delays in your power supply? If so, the first one might be
-> >>>>> fixed
-> >>>>> and hard-coded in the driver?
-> >>>> 
-> >>>> Apparently there are two different delays: reset time (t_reset) of 10ms
-> >>>> as
-> >>>> specified by datasheet. This is already ensured by a following delay
-> >>>> after
-> >>>> requesting enable_gpio as low and switching the GPIO to low in disable
-> >>>> path.
-> >>>> 
-> >>>> When enabling this GPIO it takes some time until it is valid on the
-> >>>> chip,
-> >>>> this is what this series is about. It's highly platform specific.
-> >>>> 
-> >>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
-> >>>> This one has to be enabled before the enable GPIO can be enabled. So
-> >>>> there is no regulator-ramp-delay.
-> >>> 
-> >>> Your driver does one after another - regulator followed immediately by
-> >>> gpio - so this as well can be a delay from regulator (maybe not ramp but
-> >>> enable delay).
-> > 
-> > The chip has two separate input pins:
-> > 
-> > VCC -- power supply that's regulator
-> > EN -- reset line, that's GPIO
-> > 
-> > Alexander is talking about EN line here.
-> 
-> I know, but mainline boards seems to be missing power supply, so that
-> raises questions.
-> 
-> Whether voltage on some input pin reaches specified level is hardly a
-> problem of only this bridge. OTOH, datasheet describes another delay
-> which is specific to the chip and which is fixed - t_en/ten/Ten.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 364 +++++++++++++++++++++++++++
+ 1 file changed, 364 insertions(+)
 
-The mainline board doesn't have a bridge node yet, as this issue has not been 
-solved. In my tree this looks like this:
-
-dsi_lvds_bridge: bridge@2d {
-    compatible = "ti,sn65dsi83";
-    reg = <0x2d>;
-    enable-gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-    vcc-supply = <&reg_sn65dsi83_1v8>;
-    ti,enable-delay-us = <120000>;
-    status = "disabled";
-
-    ports {
-[...]
-    };
-};
-
-So there is a regulator providing VCC. Once stable enable-gpio is rising EN 
-pin. The rising time is what is board specific, but completely independent 
-from VCC supply. But as Krzysztof noticed this is independent from this bridge 
-driver and can occur everywhere where a GPIO switch/enable is involved.
-I have an idea which I'll post on linux-gpio.
-
-Regards,
-Alexander
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 1d227b9b331c..25928fae1bb9 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -1420,6 +1420,370 @@ cpufreq_hw: cpufreq@f521000 {
+ 		};
+ 	};
+ 
++	thermal-zones {
++		mapss-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 0>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		cdsp-hvx-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 1>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		wlan-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 2>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		camera-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 3>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		video-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 4>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		modem1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 5>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		cpu4-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 6>;
++
++			trips {
++				cpu4_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu4_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu4_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu5-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 7>;
++
++			trips {
++				cpu5_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu5_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu5_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu6-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 8>;
++
++			trips {
++				cpu6_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu6_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu6_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu7-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 9>;
++
++			trips {
++				cpu7_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu7_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu7_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu45-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 10>;
++
++			trips {
++				cpu45_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu45_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu45_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu67-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 11>;
++
++			trips {
++				cpu67_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu67_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu67_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu0123-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 12>;
++
++			trips {
++				cpu0123_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu0123_alert1: trip-point1 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu0123_crit: cpu_crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		modem0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 13>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		display-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 14>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++
++		gpu-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tsens0 15>;
++
++			trips {
++				trip-point0 {
++					temperature = <115000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				trip-point1 {
++					temperature = <125000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++			};
++		};
++	};
++
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-- 
+2.38.1
 
