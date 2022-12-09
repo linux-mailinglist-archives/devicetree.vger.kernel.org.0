@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819F9648452
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF2F64845B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229835AbiLIO5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 09:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45792 "EHLO
+        id S230119AbiLIO6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 09:58:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbiLIO4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:56:48 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77C084274
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 06:56:27 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 1so7413359lfz.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 06:56:27 -0800 (PST)
+        with ESMTP id S229668AbiLIO54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:57:56 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE72881DBE
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 06:57:26 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id j4so7467662lfk.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 06:57:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zn39Cq6H46SfgCPMDp1Yyg4Hy1ifOLwJBJ6L3zqm8MM=;
-        b=oK6qJslOKT34uL/1v4g3iVT1myebBNEM4jqIgvwqM03/FD9DabncthU7iZSDV0Dw6V
-         XsercsMR7iFL4hosx9kgIZ9YzmeCwbSXsSX4/PK42T64csirCJrUZDGR63AA3gzG1g41
-         zlLghgCExlKP16+a3f94HqnFX/ZzAhWZHtnZtcyd5lQqtnZGVR+xrZz6v60MtrThIAwE
-         XQEk16WFuKtIqjvbXFNEA7UN1gFNRMxtw2StjPUdNgiBZiUp23HOjBaOGribElE0U6rD
-         481bOTOymtR3SVQCOPXoy+Dnb7PRwjW6PGEXoMZeDb2M9MiCGeBIBtnUuFWXLdoTE2dW
-         +kEQ==
+        bh=7J0TRFpxYFO8l+uYWyA/vikM8HYkKYJhsAgNGT3Tc5o=;
+        b=Lf/Djb40bLkM8VInQ1pLDSyt5NAycSK/65rpI+LWMpMAIF1aEXW9Wmq/6SSEl091gw
+         xl4ttFIwAAUipdbtRBONlQViNjc6wdJ4cO2r2tc2iYTi1BFprYtEBpA9PopRPACRW1PA
+         CsDAHzoNurr/hWSwJ4uaBufSG0XkJ4B2Dpv6SvDbJtK7/oEx59sRX3b+8gBsCxCELSdX
+         quWVLHeLTpOR9e4O5lPM3dL8hCifev31Ziw79FymRa08UHKNnFbuzBUOkGH7JvEQ8E1Q
+         nAxa/xMYgGW7VWsGmVF3mYqCmwp4eZKpiQkPw6wSTLb4mdcxwl5syRN2Gue1JOERMCo3
+         tjEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zn39Cq6H46SfgCPMDp1Yyg4Hy1ifOLwJBJ6L3zqm8MM=;
-        b=xmijjTnlCJhtKcUuBF3voPgRWM8WT4A3loi7cf6hSNySyB/7cn9m9mj/B7oIqgOWSm
-         2ppN/0eAchqQFt8hK13lX+dsYb0G6aMdSQK3KX3ID9odNxC7vEZID+Q7DwKX4Jy+3Mxw
-         YLteklC6P4jp5PMcvEu/e7pVVa5wPqxSgyFBs9vo353Dm4/QaRQWCdcZDHbh24J0S0Bt
-         YisCRmw6U3CpTtfKqPzSnsse7rpSysVuD9nYE8yS6bFCeukUNbKM8SqxpRmY5R7bKTQz
-         3JOZ/E57qw7TJSgGDNPm3sYFYRYUCQTkGI/tDVJcyBWifKzDESOKz77U2BTXqbWQK5rc
-         BVKQ==
-X-Gm-Message-State: ANoB5pkQGa2nH/HioGuDWj2khLtVEi0tOrhDgGNmpIRM7xZuHBAA7SxD
-        /3TTme0yrcM06t+RxlPXYELe7Q==
-X-Google-Smtp-Source: AA0mqf6+eQqJYIlJ4RBGy5DkLM0OPyqhKXbsUkA+Jn4oqxjdS9sXP0vfO1VIWussQDLHIAES8/dMgw==
-X-Received: by 2002:a05:6512:13a2:b0:4a4:68b7:d61d with SMTP id p34-20020a05651213a200b004a468b7d61dmr2041235lfa.4.1670597785748;
-        Fri, 09 Dec 2022 06:56:25 -0800 (PST)
+        bh=7J0TRFpxYFO8l+uYWyA/vikM8HYkKYJhsAgNGT3Tc5o=;
+        b=Iao4q9l3NFCdDwFoRqmex8RuOBr0Y/Lstwk1JuDwFu4magvzMn5+NoRGjBRXGfvnhW
+         OIv5Bfe6F1erwPCEtqXzYT4SLp7qIIk3gZvlrfvvK5YdLyujDI/m79C+lbKpsLIGoMHv
+         Ml32438tuMv839qGV3qzXI9BmF8IqRU0Af6L2+1BLujVbJTqRSvkIPirDAspoj0LDHdg
+         fuLl52i/fek9FjmJFYb6xvqzYPgVQqaGL/dogkFoDRw54pO3YCLFF6tfxnMJcO9fM6Gh
+         fZ4JCQXqQT4AJ3uNz8VZQheqO2myt3tATJCGIAyIzLp3dvINl5nvmUxMT3DpcNSB2C7M
+         MflA==
+X-Gm-Message-State: ANoB5plzUPo6RCaZw237wXrA0YvCRExr2vW2ERD6TltixJlAiPvuPRFE
+        dw9VPe9tO9beWPoDLdOwAa5Dgg==
+X-Google-Smtp-Source: AA0mqf6390q1LWWYTitf3zCcoubMJ1stQadogWnI1EZsqeT7GcBNgsXO1PqxqlrjMSLCcqyCHFvwvA==
+X-Received: by 2002:a05:6512:224a:b0:4a4:68b9:19fc with SMTP id i10-20020a056512224a00b004a468b919fcmr2563324lfu.36.1670597844896;
+        Fri, 09 Dec 2022 06:57:24 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id h9-20020ac24d29000000b004b50b4f63b7sm287771lfk.170.2022.12.09.06.56.24
+        by smtp.gmail.com with ESMTPSA id w25-20020a05651204d900b004afac783b5esm286046lfq.238.2022.12.09.06.57.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Dec 2022 06:56:25 -0800 (PST)
-Message-ID: <fb34e446-2904-a357-e54b-3e82a2b0745c@linaro.org>
-Date:   Fri, 9 Dec 2022 15:56:24 +0100
+        Fri, 09 Dec 2022 06:57:24 -0800 (PST)
+Message-ID: <97065624-2fcf-9b83-9129-27c88d49d946@linaro.org>
+Date:   Fri, 9 Dec 2022 15:57:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v3 10/12] dt-bindings: mediatek: mt8188: add audio afe
- document
+Subject: Re: [PATCH v11 1/5] arm64: dts: qcom: add data-lanes and
+ link-freuencies into dp_out endpoint
 Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221208033148.21866-1-trevor.wu@mediatek.com>
- <20221208033148.21866-11-trevor.wu@mediatek.com>
- <d7d9f3c7-b3e3-1e13-a80f-c7bf7b38a5b1@linaro.org>
- <45b4b287dfd57b99e0ba5675bf99194f6d84d9da.camel@mediatek.com>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        agross@kernel.org, dmitry.baryshkov@linaro.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, airlied@gmail.com
+Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670539015-11808-2-git-send-email-quic_khsieh@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <45b4b287dfd57b99e0ba5675bf99194f6d84d9da.camel@mediatek.com>
+In-Reply-To: <1670539015-11808-2-git-send-email-quic_khsieh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -95,76 +83,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 11:56, Trevor Wu (吳文良) wrote:
->>> +
->>> +patternProperties:
->>> +  "^mediatek,etdm-in[1-2]-chn-disabled$":
->>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->>> +    minItems: 1
->>> +    maxItems: 16
->>> +    description:
->>> +      By default, all data received from ETDM pins will be
->>> outputed to
->>> +      memory. etdm in supports disable_out in direct mode(w/o
->>> interconn).
->>> +      User can specify the channel ID which they hope dropping and
->>> then
->>> +      the specified channel won't be seen on memory.
->>
->> So we know what are the IDs but it's a mystery what are the values.
->> Especially with unique values - how any of these should case that
->> channel "won't be seen in memory"?
->>
-> For example,
-> FE can support 14ch, but BE(etdm) can't support 14ch(it can support
-> 16ch).
-> In the case, we can configure 16ch to etdm and make use of the property
-> to disable the last two channels.
+On 08/12/2022 23:36, Kuogee Hsieh wrote:
+> Move data-lanes property from mdss_dp node to dp_out endpoint. Also
+> add link-frequencies property into dp_out endpoint as well. The last
+> frequency specified at link-frequencies will be the max link rate
+> supported by DP.
 > 
-> mediatek,etdm-in1-chn-disabled = /bits/ 8 <0xE 0xF>;
-
-Your description should explain that this is a list of channel IDs which
-should be disabled.
-
+> Changes in v5:
+> -- revert changes at sc7180.dtsi and sc7280.dtsi
+> -- add &dp_out to sc7180-trogdor.dtsi and sc7280-herobrine.dtsi
 > 
+> Changes in v6:
+> -- add data-lanes and link-frequencies to yaml
 > 
->>> +    uniqueItems: true
->>> +    items:
->>> +      minimum: 0
->>> +      maximum: 15
->>> +
->>> +  "^mediatek,etdm-in[1-2]-mclk-always-on-rate-hz$":
->>> +    description: Specify etdm in mclk output rate for always on
->>> case.
->>
->> How is it different than assigned-clock-rates?
->>
-> This includes clock enabling at init stage.
-
-assigned-clock-rates are also at init stage. I asked what is different.
-
+> Changes in v7:
+> -- change 160000000 to 1620000000
+> -- separate yaml to different patch
 > 
->>> +
->>> +  "^mediatek,etdm-out[1-3]-mclk-always-on-rate-hz$":
->>> +    description: Specify etdm out mclk output rate for always on
->>> case.
->>> +
->>> +  "^mediatek,etdm-in[1-2]-multi-pin-mode$":
->>> +    type: boolean
->>> +    description: if present, the etdm data mode is I2S.
->>> +
->>> +  "^mediatek,etdm-out[1-3]-multi-pin-mode$":
->>> +    type: boolean
->>> +    description: if present, the etdm data mode is I2S.
->>> +
->>> +  "^mediatek,etdm-in[1-2]-cowork-source$":
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      etdm modules can share the same external clock pin. Specify
->>> +      which etdm clock source is required by this etdm in moudule.
->>
->> typo: module
->>
+> Changes in v8:
+> -- correct Bjorn mail address to kernel.org
+> 
+> Changes in v9:
+> -- use symbol rate (hz) for link-frequencies at dp_out at sc7180_trogdor.dtsi
+> 
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi   | 6 +++++-
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 6 +++++-
+>  2 files changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index eae22e6..93b0cde 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -814,7 +814,11 @@ hp_i2c: &i2c9 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&dp_hot_plug_det>;
+> -	data-lanes = <0 1>;
+> +};
+> +
+> +&dp_out {
+> +    data-lanes = <0  1>;
+
+Why adding two spaces? Just cut previous line and paste it, don't change it.
+
+> +    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
+>  };
+>  
+>  &pm6150_adc {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index c11e371..3c7a9d8 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -442,7 +442,11 @@ ap_i2c_tpm: &i2c14 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&dp_hot_plug_det>;
+> -	data-lanes = <0 1>;
+> +};
+> +
+> +&dp_out {
+> +	data-lanes = <0  1>;
+
+Ditto
+
 
 Best regards,
 Krzysztof
