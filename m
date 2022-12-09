@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AEC76483CB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A946483C9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 15:30:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiLIOaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 09:30:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        id S229675AbiLIOaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 09:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbiLIOaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:30:19 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8301F1EAFE
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 06:30:18 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id m18so11890627eji.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 06:30:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=message-id:cc:to:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ahhIweHST2fVWw+QNEKcMc3YDUt5JUbQsb01fgMnKM=;
-        b=MKpLKku0oJT9B2Npz5IZA6cYSnr4/ZP33ndTpDqKEYHYny24sutnHlzL4pWa59heWc
-         QvaDZhuvjK+lzaMUw2yiCf2pSApJoGZlNyJTYZ89f+IXOsVH09yJmhzNuz32sJLY7hWZ
-         pwE2GI2KSgZ5hCKPQHmXxX7iVUJpibjfs5OdSfQzL8Kp4aUu2MmAu4FHuibFtoZQN39Z
-         /O1Yh5kCLlF1C04pyQK8eCKmrKAtHWMzIxPMFUADPduIXN0C4s6VHy566FxiFoWWEBAc
-         hYhMhO4qLjr1XJJMxzNnEm/ofqFEimHMmY6Wv1d1bAeR4N1wkKgxu68dG5ysOcgwu7mq
-         1rZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:cc:to:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8ahhIweHST2fVWw+QNEKcMc3YDUt5JUbQsb01fgMnKM=;
-        b=Q4GqyXUnvWT+HE/AI+E8IthdiUI7ATkl6Pwe0gQsOqt2g6Kc82ciH1x75XljVS9AWs
-         +Qnr/AUg6OG6b+0jWrEO7xADfj9tjpCLfDhKr0+coX3jEgHCu2iiywKbdqcGM7mVqq4I
-         adEjHqUk1PrbroueFgmOzdekVndWC8d5gWgPMGE55S49EuiYNAWMyGZLEGXkGF0a4fMs
-         MUGNXN7veEO9T41Gd5C14Lr06lvkiglk3Bpxjr7jq5bJ1LtmBiYIcZ/aVa4QgIkYjGA7
-         L1/31ClGPg8ksNlVjCo+7pX+S/yz9FR1UWNtZSZ38Erx749zU7jGVcr14CEvJH7SVjob
-         mG7g==
-X-Gm-Message-State: ANoB5plV/gSz6Q7zhwhXevT0nws2yv4HmiRNSf/HzImVnjwnMnxZfNOf
-        h2jvLnfHCpjA/2WmMqW9xN/fwg==
-X-Google-Smtp-Source: AA0mqf7k6k5YG+Dp6ty81YR5OtHUag6/ksIZw1U6zjW68jA+uY5YSPGhIBQk2kcKxxdeh48jIBvYkQ==
-X-Received: by 2002:a17:906:fcd8:b0:7c0:b66b:9ec0 with SMTP id qx24-20020a170906fcd800b007c0b66b9ec0mr4884778ejb.16.1670596217069;
-        Fri, 09 Dec 2022 06:30:17 -0800 (PST)
-Received: from [172.16.240.113] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id kx17-20020a170907775100b007c0d6b34d54sm610520ejc.129.2022.12.09.06.30.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 06:30:16 -0800 (PST)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-Date:   Fri, 09 Dec 2022 15:29:47 +0100
-Subject: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
+        with ESMTP id S229561AbiLIOaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 09:30:09 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D100205C5;
+        Fri,  9 Dec 2022 06:30:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B8E2EB8287F;
+        Fri,  9 Dec 2022 14:30:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E31C433F1;
+        Fri,  9 Dec 2022 14:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670596205;
+        bh=a+obGw3XVMUgASOc8FIE8ScuBYM0lR28Ui9u4J3KSSw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=evYP4PkUi2/2b7jX7db6YhIdWE1vyjJsHtneNdVjASPc3wp/JvLGQvPueihcNQJAP
+         /qtC+41vZU4R5OEri+9O5Iw3sN3FrNCpQtxe+ZaToNocefQI53eEKOs70UjyIFvj5M
+         pmeklMhsIjMCjoKNsJJFgW7Np+XsWSFB8jsHhijZBZ5EFnqifkxDgFRMzW17gV2Z9A
+         6acYGobJjHtpcwkiS5ZrJNw8XDh8dgL8CwahFmYwDvdtheDG2cMHw1YpQw/0XSaUmn
+         onKb+5C6K+mNHd2wQhU8TD0RPEXwOan1ItvzaHTlblzAlVplQLrNQFlNvjXC2bur/h
+         giX8eVEKXzNSA==
+Received: by mail-vk1-f173.google.com with SMTP id z23so2182504vkb.12;
+        Fri, 09 Dec 2022 06:30:05 -0800 (PST)
+X-Gm-Message-State: ANoB5pmXH4yWeyVQ8NZqU7SS4Et1qp4MyO4XyJKTJGo2khdLdx4KOqTh
+        mh6cfuDgD3jWqNsWLPJx2cfNw3TMh9hvLP+aVQ==
+X-Google-Smtp-Source: AA0mqf53boM2A4hfZJBHsALfQhmvj3CWarRFhZegP+duCkmWd1VI9ygmXmydjZTSN0pUVc4Gpi0ad+IlynSnuQ5IjzY=
+X-Received: by 2002:a1f:2348:0:b0:3bd:51f6:1f3 with SMTP id
+ j69-20020a1f2348000000b003bd51f601f3mr15880344vkj.35.1670596204403; Fri, 09
+ Dec 2022 06:30:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Message-Id: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
-X-Mailer: b4 0.11.0-dev-64ef0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20221114155333.234496-1-jonathanh@nvidia.com> <20221114155333.234496-2-jonathanh@nvidia.com>
+ <Y3ap1o2SbNvFw8Vd@orome> <CAL_JsqKpyn=mWXv4tuS4U8AahNPkL6hpNQCfyRdf9bDY1EqSJg@mail.gmail.com>
+ <Y49xg7wptRweHd4I@orome> <CAL_JsqK+BxHB8__aN=84R4xpoJtf4_7xHeTkbgPakdNqzywJWw@mail.gmail.com>
+ <20221209101743.uzyw5ejubkbfm5di@mobilestation>
+In-Reply-To: <20221209101743.uzyw5ejubkbfm5di@mobilestation>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 9 Dec 2022 08:29:52 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com>
+Message-ID: <CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, vidyas@nvidia.com,
+        mmaddireddy@nvidia.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,67 +69,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
-in the bindings so the existing dts can validate successfully.
+On Fri, Dec 9, 2022 at 4:17 AM Serge Semin
+<Sergey.Semin@baikalelectronics.ru> wrote:
+>
+> On Tue, Dec 06, 2022 at 03:14:58PM -0600, Rob Herring wrote:
+> > On Tue, Dec 6, 2022 at 10:44 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > >
+> > > On Mon, Dec 05, 2022 at 05:41:55PM -0600, Rob Herring wrote:
+> > > > On Thu, Nov 17, 2022 at 3:38 PM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > > > >
+> > > > > On Mon, Nov 14, 2022 at 03:53:32PM +0000, Jon Hunter wrote:
+> > > > > > From: Vidya Sagar <vidyas@nvidia.com>
+> > > > > >
+> > > > > > Add support for ECAM aperture that is only supported for Tegra234
+> > > > > > devices.
+> > > > > >
+> > > > > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> > > > > > Co-developed-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > > > ---
+> > > > > > Changes since V2:
+> > > > > > - Avoid duplication of reg items and reg-names
+> > > > > > Changes since V1:
+> > > > > > - Restricted the ECAM aperture to only Tegra234 devices that support it.
+> > > > > >
+> > > > > >  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 34 +++++++++++++++++--
+> > > > > >  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+> > > > > >  2 files changed, 33 insertions(+), 3 deletions(-)
+> > > > >
+> > > > > Both patches applied now.
+> > > >
+> > > > linux-next now fails with this. I suspect it is due to Sergey's
+> > > > changes to the DWC schema.
+> > > >
+> > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > > > fixed:
+> > > >         'dbi' was expected
+> > > >         'dbi2' was expected
+> > > >         'ecam' is not one of ['elbi', 'app']
+> > > >         'atu' was expected
+> > > >         'dma' was expected
+> > > >         'phy' was expected
+> > > >         'config' was expected
+> > > >         /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb:
+> > > > pcie@14160000: reg-names:4: 'oneOf' conditional failed, one must be
+> > > > fixed:
+> > > >                 'ecam' is not one of ['apb', 'mgmt', 'link', 'ulreg', 'appl']
+> > > >                 'ecam' is not one of ['atu_dma']
+> > > >                 'ecam' is not one of ['smu', 'mpu']
+> > > >         From schema:
+> > > > /builds/robherring/linux-dt/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
+> > >
+> > > Stephen reported the other day that he wasn't able to resolve this
+> > > conflict in linux-next, so he dropped the ECAM bits. The ECAM patch has
+> > > now propagated to ARM SoC so it can't be easily backed out, but I guess
+> > > we could revert on that tree and instead apply the patch to the DT tree
+> > > and resolve the conflict there.
+> > >
+> > > I guess the better alternative would be to try and resolve the merge
+> > > properly and let Stephen (and Linus) know.
+> >
+>
+> > Instead, can you prepare a patch on top of Sergey's adding a 'oneOf'
+> > entry with 'ecam'. As this is a new thing, it should have its own
+> > entry. Then when merging, we just throw out the change from your side.
+>
+> Right, the only change that is required here is to extend the
+> reg-names oneOf list of the DT-bindings:
+> < Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> with the 'ecam' entry. If it's a vendor-specific part then add to the
+> last the last entry defines the vendor-specific duplicates of the generic CSR
+> spaces.
+>
+> On the other hand I don't really see a reason in adding the ECAM CSRs
+> space to the generic DW PCIe device since basically the ECAM memory is
+> just a pre-configured outbound iATU window. So if it's a ECAM-based
+> device then it should have been already configured by the system
+> bootloader upon the kernel boot up. Thus there is no point in having
+> the generic DW PCIe resources and it should be just a generic
+> ECAM-based device with a single ECAM CSR space as the
+> "snps,dw-pcie-ecam"/"pci-host-ecam-generic" DT-bindings require
+> especially seeing the Nvidia low-level driver doesn't use the ECAM
+> registers at all. Moreover the DW PCIe core driver doesn't
+> differentiate between the already configured iATU windows and the one
+> available for the ranges-based mapping. Instead the DW PCIe core just
+> disables all the detected in- and outbound iATUs by means of the
+> dw_pcie_iatu_setup() method. So the pre-configured ECAM space will be
+> reset by the driver core anyway.
 
-Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
-sm8450: add Inline Crypto Engine registers and clock") so move the
-compatible to the correct if.
+This was discussed some before. This is for the firmware/bootloader to
+setup ECAM mode. Then the kernel will see generic (ACPI) ECAM.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
-(no cover subject)
+Yes, it is iATU config, but so is 'config'. If we were starting over,
+I'd say 'reg' should just have the entire address space for iATU and
+the driver could figure out how to configure it (beyond what ranges
+says). But that ship has sailed. Also, note that the address range
+here is disjoint from 'config', so it looks like we'd need 2 entries
+anyways.
 
-The only remaining validation issues I see is the following on sc8280xp-crd.dtb
-and sa8540p-ride.dtb:
-
-  Unevaluated properties are not allowed ('required-opps', 'dma-coherent' were unexpected)
-
-Maybe someone who knows something about this can handle this?
-
-And the patch adding qcom,sm6115-ufshc hasn't been applied yet.
----
- Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index f2d6298d926c..58a2fb2c83c3 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -102,7 +102,6 @@ allOf:
-               - qcom,sc8280xp-ufshc
-               - qcom,sm8250-ufshc
-               - qcom,sm8350-ufshc
--              - qcom,sm8450-ufshc
-     then:
-       properties:
-         clocks:
-@@ -130,6 +129,7 @@ allOf:
-               - qcom,sdm845-ufshc
-               - qcom,sm6350-ufshc
-               - qcom,sm8150-ufshc
-+              - qcom,sm8450-ufshc
-     then:
-       properties:
-         clocks:
-@@ -149,6 +149,12 @@ allOf:
-         reg:
-           minItems: 2
-           maxItems: 2
-+        reg-names:
-+          items:
-+            - const: std
-+            - const: ice
-+      required:
-+        - reg-names
- 
-   - if:
-       properties:
-
----
-base-commit: f925116b24c0c42dc6d5ab5111c55fd7f74e8dc7
-change-id: 20221209-dt-binding-ufs-2d7f64797ff2
-
-Best regards,
--- 
-Luca Weiss <luca.weiss@fairphone.com>
+Rob
