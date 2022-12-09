@@ -2,174 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F66648678
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16D786486BF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:49:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiLIQ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 11:26:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60770 "EHLO
+        id S229731AbiLIQtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 11:49:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbiLIQ0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:26:30 -0500
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACAC86F4C
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:26:29 -0800 (PST)
-Received: by mail-il1-x12f.google.com with SMTP id h15so123441ilh.12
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:26:29 -0800 (PST)
+        with ESMTP id S229488AbiLIQs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:48:59 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E501C93A68
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:48:57 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id j4so7983312lfk.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:48:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IgG/TNRbidgEyJvAVaHHfxRU0Ng4OyfVihTTmLvE0JQ=;
-        b=K2COfFDPnQsv126b/kS1Mvllrw3QIpmb9WDCa0cAUFybrJ8VpQtraDrw/XddNXS3hE
-         CGUa7htqAGx3XqePpeRi597iv9RWO6TM8JJ7TLnEN80eCZmZTxPMay9cq7dJzDL1AqnF
-         oS2lECZHiRtfUgaLT2+k0OKBqtzpeIlqzUgn0=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J30FnQ0XiYOkHjVMLeIVpKVykgV1Qs0n+YPAOVIOpV4=;
+        b=b2D2uGJ8VV2as0TF1iNkhi3Q/zjaAfpIkf9XcqE8w9rpm8q7up3YA5WxPVwjsrahZH
+         LHPxphF3tauv7GfBtCx+k7iMQmR85VR0jbOAIeBBoUcwSOmp9B+v964HnrIFQJArDsqs
+         sGiW2VREDwkxJoz2iJc8qnCR9BRfNJinyYlyQY4MJEz/BfloTsvI3mrYoskO+YqGu5Mr
+         TmWQ0PTlYqC7yDdA2q52PuVvXo+uCcuvkRfsjQGZDLs5MDk8vpMAL8KVOGNds6lQ0X4P
+         qLaJfe0mHDoe22frX4AznQG/cuqryHPti8ECBfTmrDcQFWQynDLUT5IxoTafTHsvikGe
+         s77A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IgG/TNRbidgEyJvAVaHHfxRU0Ng4OyfVihTTmLvE0JQ=;
-        b=rbHgkQPgsrAJspZLoKLhTc18HXkAZW+LUo7i6o2CY9ig8ervNhy7V6jdi8RUOj5tEl
-         PtwNQSrUdCMd2bCQ2IDIexsOxFJnhK2pFZ+Xz72v35ztkEeQLyLX5eKgdhGG1LS7BDD7
-         kJGK7B4QKeGz3keVtqjfNQdbJ0AP/kb622rPlHVNyic78WrGotze9tizwIl9XXVIQ0EA
-         ZhSqS+OeqhVFq0titU6zqPFQQSTa/Hw9qZv6DJ0TDZsNR3AZ+mvR/RtOMsgdVQSfac+g
-         gOED0rQUvK7SR2ooqtgID+YkleMFeBbCxSJAqXXzN6wUdUqbhoCFSSRfgOZEkeW8FfjG
-         v6Qw==
-X-Gm-Message-State: ANoB5pkRYcQ0gAi3aLWzrfqWW1mAcdFzP1ZbTl8xkuEjJ4DQuHnXIX+J
-        AilZ65J3NKj4/jyE5t7qxj/qHw==
-X-Google-Smtp-Source: AA0mqf4GbUMG7eifsf2+6++ibfFG2nLQoNYrqF9HJv87Rh6ZMP3a/A2Al3nYNs4oILz+rW+bJjWRNA==
-X-Received: by 2002:a92:d489:0:b0:303:8cff:9841 with SMTP id p9-20020a92d489000000b003038cff9841mr3381027ilg.26.1670603188775;
-        Fri, 09 Dec 2022 08:26:28 -0800 (PST)
-Received: from markhas1.roam.corp.google.com (63-225-246-100.hlrn.qwest.net. [63.225.246.100])
-        by smtp.gmail.com with ESMTPSA id b2-20020a92dcc2000000b002e85e8b8d1dsm556531ilr.5.2022.12.09.08.26.28
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J30FnQ0XiYOkHjVMLeIVpKVykgV1Qs0n+YPAOVIOpV4=;
+        b=NpIoWZc/T2By4PMvxJ5zyNxp81pT1STkM4FbSWPyZbv7BC43d76rMiyKrvodoTHWa7
+         p6CbDwAbQE+0CsDvEHQPU75iQq/PJ0mpq3bX10yDklwfDk/zJfzieLboVtubVIRNq6PI
+         e/yTC5TcCPsLzkimdEUvgLR7ETdujPgYvKSeWgCH3HgYuIphf1B6AwoXCjrFJSq0fjKI
+         0nUbwtv8zbITSXTbEhBp4nq3RCu7UnGIMpGhSjBeexVwxfAGtcEhm9MyUUdge/k8ioD+
+         VH4f2VQg37ZWDUJupG4RP0OLgO2TZQh76usr7++GtzdzJXD+9s3L0FuJckSKzsjc+4Dm
+         CiEQ==
+X-Gm-Message-State: ANoB5pkHNaRUMXCKmR7kN1Rwc5u8Hh9UxRA/QnT+MYtYDBAS55rUGU1e
+        Nf75hlTsyB1OZBPzCgtEjphjmQ==
+X-Google-Smtp-Source: AA0mqf6QHZX7sydljwe+pLb3NkfHGfOKw8Be2gecYqlnlnkhxnyLI7iY4fQjrJ3kufXVJrNts406fQ==
+X-Received: by 2002:ac2:4c4f:0:b0:4a4:68b8:f4f4 with SMTP id o15-20020ac24c4f000000b004a468b8f4f4mr3021215lfk.58.1670604536319;
+        Fri, 09 Dec 2022 08:48:56 -0800 (PST)
+Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
+        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002770fb5722fsm275242ljm.123.2022.12.09.08.48.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 08:26:28 -0800 (PST)
-From:   Mark Hasemeyer <markhas@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Raul Rangel <rrangel@chromium.org>,
-        Bhanu Prakash Maiya <bhanumaiya@chromium.org>,
-        Mark Hasemeyer <markhas@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
+        Fri, 09 Dec 2022 08:48:55 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: [PATCH v12 2/3] dt-bindings: mfd: cros-ec: Add UART compatible string
-Date:   Fri,  9 Dec 2022 09:26:23 -0700
-Message-Id: <20221209092619.v12.2.I9e018ecb8bdf341648cb64417085978ff0d22a46@changeid>
-X-Mailer: git-send-email 2.39.0.rc1.256.g54fd8350bd-goog
-In-Reply-To: <20221209092619.v12.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
-References: <20221209092619.v12.1.If7926fcbad397bc6990dd725690229bed403948c@changeid>
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Alex Elder <elder@linaro.org>
+Subject: [PATCH v3 00/19] clk: qcom: smd-rpm: drop platform names
+Date:   Fri,  9 Dec 2022 18:48:36 +0200
+Message-Id: <20221209164855.128798-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
+This series concludes the previous work on Qualcomm RPM and RPMH clock
+drivers. It reworks the clk-smd-rpm driver to drop the SoC name from the
+clock symbol name, as the clock definitions are shared between different
+SoCs (platforms). Having an SoC name in the clock definition can lead to
+all sources of confusion and/or errors.
 
-Add a compatible string to support the UART implementation of the cros
-ec interface. The driver does not support the reg and interrupt
-properties, so exempt them from being required for UART compatible nodes.
+Changes since v2:
+ - Split bindings into a separate patch
 
-Signed-off-by: Bhanu Prakash Maiya <bhanumaiya@chromium.org>
-Co-developed-by: Mark Hasemeyer <markhas@chromium.org>
-Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+Changes since v1:
+ - Split the MMXI/MMAXI and sm6375 vs sm6125 changes into two different
+   patches
+ - Reworked macro definitions and usage to remove empty arguments
+ - Dropped qcm2290_bimc_gpu_clk definition in the corresponding patch
+ - Alignment fixes
 
-Changes in v12:
-- No change
 
-Changes in v11:
-- Update commit message to include device
+Dmitry Baryshkov (19):
+  dt-bindings: clocks: qcom: rpmcc: add LN_BB_CLK_PIN clocks
+  clk: qcom: smd-rpm: enable pin-controlled ln_bb_clk clocks on qcs404
+  clk: qcom: smd-rpm: remove duplication between MMXI and MMAXI defines
+  clk: qcom: smd-rpm: remove duplication between qcs404 and qcm2290
+    clocks
+  clk: qcom: smd-rpm: add missing ln_bb_clkN clocks
+  clk: qcom: smd-rpm: use msm8998_ln_bb_clk2 for qcm2290 SoC
+  clk: qcom: smd-rpm: rename msm8992_ln_bb_* clocks to qcs404_ln_bb_*
+  clk: qcom: smd-rpm: remove duplication between sm6375 and sm6125
+    clocks
+  clk: qcom: smd-rpm: add XO_BUFFER clock for each XO_BUFFER_PINCTRL
+    clock
+  clk: qcom: smd-rpm: drop the rpm_status_id field
+  clk: qcom: smd-rpm: fix alignment of line breaking backslashes
+  clk: qcom: smd-rpm: move clock definitions together
+  clk: qcom: smd-rpm: rename some msm8974 active-only clocks
+  clk: qcom: smd-rpm: simplify XO_BUFFER clocks definitions
+  clk: qcom: smd-rpm: simplify SMD_RPM/_BRANCH/_QDSS clock definitions
+  clk: qcom: smd-rpm: rename SMD_RPM_BRANCH clock symbols
+  clk: qcom: smd-rpm: rename the qcm2290 rf_clk3 clocks
+  clk: qcom: smd-rpm: rename SMD_RPM_BUS clocks
+  clk: qcom: smd-rpm: remove usage of platform name
 
-Changes in v10:
-- No change
+ drivers/clk/qcom/clk-smd-rpm.c         | 1441 ++++++++++++------------
+ include/dt-bindings/clock/qcom,rpmcc.h |    2 +
+ include/linux/soc/qcom/smd-rpm.h       |    1 -
+ 3 files changed, 723 insertions(+), 721 deletions(-)
 
-Changes in v9:
-- Rebase onto for-next
-- Update node-name from uart0 to serial
-- Remove reg and interrupt property requirement for UART compatible
-  nodes.
-- Update authorship
-
-Changes in v8:
-- Update commit message
-
-Changes in v7:
-- No change
-
-Changes in v6:
-- No change
-
-Changes in v5:
-- No change
-
-Changes in v4:
-- Changes in commit message.
-
-Changes in v3:
-- Rebased changes on google,cros-ec.yaml
-
-Changes in v2:
-- No change
-
----
- .../bindings/mfd/google,cros-ec.yaml          | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 3d5efa5578d1b..cdf1d719efe9d 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -33,6 +33,9 @@ properties:
-       - description:
-           For implementations of the EC connected through RPMSG.
-         const: google,cros-ec-rpmsg
-+      - description:
-+          For implementations of the EC connected through UART.
-+        const: google,cros-ec-uart
- 
-   controller-data: true
- 
-@@ -187,6 +190,15 @@ allOf:
-       properties:
-         mediatek,rpmsg-name: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          not:
-+            contains:
-+              enum:
-+                - google,cros-ec-rpmsg
-+                - google,cros-ec-uart
-+    then:
-       required:
-         - reg
-         - interrupts
-@@ -299,4 +311,12 @@ examples:
-         vdd-supply = <&pp3300_fp_mcu>;
-       };
-     };
-+
-+  # Example for UART
-+  - |
-+    serial {
-+        cros-ec {
-+            compatible = "google,cros-ec-uart";
-+        };
-+    };
- ...
 -- 
-2.39.0.rc1.256.g54fd8350bd-goog
+2.35.1
 
