@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B70764821A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:02:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 393EC64821F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiLIMCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 07:02:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37900 "EHLO
+        id S229968AbiLIMDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 07:03:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiLIMBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:01:35 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5136F6ACD6;
-        Fri,  9 Dec 2022 04:01:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230076AbiLIMC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:02:57 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA8437F83
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:02:54 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A5B85CE2969;
-        Fri,  9 Dec 2022 12:01:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C602C433D2;
-        Fri,  9 Dec 2022 12:01:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670587284;
-        bh=VO1jn+Chl+xyrflXzrrO7caYAzOuX+cY2t9eRqjN5PM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=P6bvHrBh70ZZ8nZBuZs/yt+uDSQokcyK+zE2Txngfcuzobdrka6BLdoHI+V9AyL+0
-         jSNbqFg8o3Mrza1I/hWMGbEUPpRp4TRTuRXhQkhI9JQN4omF0I2mn2LG7p0B8fK2Ec
-         OdN558i7eUDxEEunzTacG+Z/ykbzqhrq36jgg3MnnwH5UqqLqG6KFHhgdg9NQMpsgu
-         PcBmCxLe4VMocyLI6vfRSjEoHela7dxY0JOBITItpXL2EiqirP5u/BSAbwEWXRwpTd
-         yn1p3MW//Oo6E35jECYxEP256TUdcs+N0Vn+Sh3h2JETsTN1bzgM7WmD5oh9F3q42W
-         DZzHm2uPIxHEg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1p3c4A-00BaAw-52;
-        Fri, 09 Dec 2022 12:01:22 +0000
-Date:   Fri, 09 Dec 2022 12:01:21 +0000
-Message-ID: <86cz8srdke.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5633C851C1;
+        Fri,  9 Dec 2022 13:02:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1670587372;
+        bh=8ppd3SwUwaOJ0CiaHMQd9G4CrXnCUVOjP8n6b8m88QE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Z3zXG6/KMbdu18O87D7kVPeO+PJL0bomjgeL1IDYyKyOxC45GRfE/Mu7nDt7CGIeK
+         bs0aY1KznjxeDLOo6ZKjHojb7ZmManidh8H9dDO/kUinGp89fJw+PXzQ5EJjriqA95
+         R9iO6tKRqzaWUCWhAO6z9TOvaFMOZSshpyG9jfu8TOGC0VDwH75Eo9yF2kQARTRilT
+         8hTaKAvAcr6EmY1kD70X0VXakxTiwuxwOFnMnx1a6raQcLIdELt+YbaN8ATwY1xW3N
+         Q+zi367ENtxdgwqAcCPA5dmJzZ0PBExzc59oU3GzZFAs9FVsKLm36n4q+mdZMKSCx6
+         +UlLbpeV9gi8w==
+Message-ID: <df7e4c0d-2e30-a808-584f-d302233c2931@denx.de>
+Date:   Fri, 9 Dec 2022 13:02:10 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
+ delay property
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCHv5 3/7] arm64: dts: rockchip: Add base DT for rk3588 SoC
-In-Reply-To: <20221205172350.75234-4-sebastian.reichel@collabora.com>
-References: <20221205172350.75234-1-sebastian.reichel@collabora.com>
-        <20221205172350.75234-4-sebastian.reichel@collabora.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sebastian.reichel@collabora.com, kever.yang@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org, chris.obbard@collabora.com, benjamin.gaignard@collabora.com, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@collabora.com, yifeng.zhao@rock-chips.com, zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
+ <7463917.EvYhyI6sBW@steina-w>
+ <e1844fdc-c640-747d-e38f-400669f2a1a8@linaro.org>
+ <3394586.QJadu78ljV@steina-w>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <3394586.QJadu78ljV@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,119 +71,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Dec 2022 17:23:46 +0000,
-Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
+On 12/9/22 10:36, Alexander Stein wrote:
+> Hello Krzysztof,
+
+Hi,
+
+> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
+>> On 09/12/2022 09:54, Alexander Stein wrote:
+>>> Hello Krzysztof,
+>>>
+>>> thanks for the fast feedback.
+>>>
+>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
+>>>> On 09/12/2022 09:33, Alexander Stein wrote:
+>>>>> It takes some time until the enable GPIO has settled when turning on.
+>>>>> This delay is platform specific and may be caused by e.g. voltage
+>>>>> shifts, capacitors etc.
+>>>>>
+>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>>>> ---
+>>>>>
+>>>>>   .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4 ++++
+>>>>>   1 file changed, 4 insertions(+)
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+>>>>>
+>>>>> @@ -32,6 +32,10 @@ properties:
+>>>>>       maxItems: 1
+>>>>>       description: GPIO specifier for bridge_en pin (active high).
+>>>>>
+>>>>> +  ti,enable-delay-us:
+>>>>> +    default: 10000
+>>>>> +    description: Enable time delay for enable-gpios
+>>>>
+>>>> Aren't you now mixing two separate delays? One for entire block on (I
+>>>> would assume mostly fixed delay) and one depending on regulators
+>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
+>>>> second delays in your power supply? If so, the first one might be fixed
+>>>> and hard-coded in the driver?
+>>>
+>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
+>>> specified by datasheet. This is already ensured by a following delay after
+>>> requesting enable_gpio as low and switching the GPIO to low in disable
+>>> path.
+>>>
+>>> When enabling this GPIO it takes some time until it is valid on the chip,
+>>> this is what this series is about. It's highly platform specific.
+>>>
+>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
+>>> This one has to be enabled before the enable GPIO can be enabled. So
+>>> there is no regulator-ramp-delay.
+>>
+>> Your driver does one after another - regulator followed immediately by
+>> gpio - so this as well can be a delay from regulator (maybe not ramp but
+>> enable delay).
+
+The chip has two separate input pins:
+
+VCC -- power supply that's regulator
+EN -- reset line, that's GPIO
+
+Alexander is talking about EN line here.
+
+> But this will introduce a section which must not be interrupted or delayed.
+> This is impossible as the enable gpio is attached to an i2c expander in my
+> case.
 > 
-> From: Kever Yang <kever.yang@rock-chips.com>
+> Given the following time chart:
 > 
-> This initial version supports (single core) CPU, dma, interrupts, timers,
-> UART and SDHCI. In short - everything necessary to boot Linux on this
-> system on chip.
+>   vcc                  set             EN
+> enable               GPIO             PAD
+>    |                    |               |
+>    |                    |<-- t_raise -->|
+>    | <-- t_vcc_gpio --> |               |
+>    | <--        t_enable_delay      --> |
 > 
-> The DT is split into rk3588 and rk3588s, which is a reduced version
-> (i.e. with less peripherals) of the former.
-> 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> [rebase, squash and reword commit message]
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588.dtsi  |   58 +
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 1672 +++++++++++++++++++++
->  2 files changed, 1730 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588.dtsi
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> new file mode 100644
-> index 000000000000..ecdd2294cd42
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -0,0 +1,1672 @@
+> t_raise is the time from changing the GPIO output at the expander until
+> voltage on the EN (input) pad from the bridge has reached high voltage level.
+> This is an electrical characteristic I can not change and have to take into
+> account.
+> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
+> (removing from reset). Minimum t_vcc_gpio is something which can be addressed
+> by the regulator and is no problem so far. But there is no upper bound to it.
+
+What exactly is your EN signal rise time (should be ns or so)? Can you 
+look at that with a scope , maybe even with relation to the VCC regulator ?
+
+The DSI84 EN pin already has a built-in pullup per DSI84 datasheet (see 
+Table 5-1. Pin Functions), so that should make the signal rise fast, 
+certainly not for seconds.
 
 [...]
-
-> +	pmu-a55 {
-> +		compatible = "arm,cortex-a55-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	pmu-a76 {
-> +		compatible = "arm,cortex-a76-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-
-Two PMUs with the same PPI and no partition? This is totally
-wrong. Please see how RK3399 does it, with each PMU having a PPI
-partition allocated.
-
-See the PMU binding for the details.
-
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	spll: clock-0 {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <702000000>;
-> +		clock-output-names = "spll";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
-
-You have a set of ARMv8.2 cores, which do have an interrupt for the
-EL2 virtual timer. Please add this interrupt and while you're at it,
-add the interrupt-names properties that are associated with them.
-
-See the binding for the details.
-
-[...]
-
-> +	gic: interrupt-controller@fe600000 {
-> +		compatible = "arm,gic-v3";
-> +		reg = <0x0 0xfe600000 0 0x10000>, /* GICD */
-> +		      <0x0 0xfe680000 0 0x100000>; /* GICR */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		mbi-alias = <0x0 0xfe610000>;
-> +		mbi-ranges = <424 56>;
-> +		msi-controller;
-> +		#interrupt-cells = <3>;
-> +
-> +		ppi-partitions {
-> +			interrupt-partition-0 {
-> +				affinity = <
-> +					&cpu_l0 &cpu_l1 &cpu_l2 &cpu_l3
-> +					&cpu_b0 &cpu_b1 &cpu_b2 &cpu_b3
-> +				>;
-> +			};
-> +		};
-
-What is the purpose of having an interrupt partition that covers *all*
-the CPUs? This makes zero sense. You need to:
-
-- Bump #interrupt-cells to 4, as per the GIC binding
-
-- Create PPI partitions to segregate the two CPU types
-
-- Make the PMU devices use the corresponding PPI partition as per the binding
-
-- Fix all the interrupt specifiers to use 4 cells instead of 3
-
-Again, RK3399 got it right, and for once I'm advocating some sort of
-copy/paste...
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
