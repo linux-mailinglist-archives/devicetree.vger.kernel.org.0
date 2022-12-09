@@ -2,152 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 202AD648ABC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 23:24:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3BC4648AC0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 23:27:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiLIWYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 17:24:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
+        id S229655AbiLIW1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 17:27:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbiLIWYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 17:24:09 -0500
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA5937F9D
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 14:24:07 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id y194-20020a4a45cb000000b004a08494e4b6so896241ooa.7
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 14:24:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0niFOJtseZKpNqdp7Vx1SkJWAbHvAgltgpslEU1rios=;
-        b=ZthfjG8mjewWB9eae366IW4b62xtMBDXTGmfIMRwYZeVDo9XwCKj3gbixD0w95mX7d
-         mHgExb1PF8V8wqmwB5OwisI4eDrmRc5fu0ptzV/55nCqzQNi1SCtxvLWW3MmC7NSJrMe
-         cXnW4IwbeKdBWO6R0lqa6uD77PsBY+ifPZxykrPR5yDyq6KeMPKR2ojHSUaeINq1AzKT
-         KidqCJkTyn1ANnE7cgACv665rsc6ktCRCBxlO8mEUBjlOs3oxSbfhXd/CxEoazW1H6M3
-         v8y1U8nE4ZJcsGx3Dtf/mm1kk7Dea6nO1LF6bXf12OdhSrVV397bXq4IuwbDWkKwPm5n
-         aoAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0niFOJtseZKpNqdp7Vx1SkJWAbHvAgltgpslEU1rios=;
-        b=nyIRQ5Tg0DVhuYkUtxdPxkBtj+pkuPy3QXo2nKqWxc74RwtooVb0focB6Iz4QBL/Cm
-         k7hxEUJT3eZUjG+GskoEruwt/UhhlIhsZpHBgPVtEo7GT/U9pKO1YuXsXQ3K0pGI98gb
-         0Dvh7g5x/Q14MTRPocGUsC9Dg1Mx2URoj8DIepipegd45RPc4iRvcARa7gZ01SeXhz7N
-         wqtLvs5xdIN2yHW3o99olpzRsS1VhHGZpjLAUH9Hc0MSCwpgALXadARgMaN8IYNI2XZm
-         Skul5HjbfwDzJkZYLSqRkBInUbLZncTec+o/+i3dWTgnj6UqLCVt454aAAxFjJhp5a6b
-         derA==
-X-Gm-Message-State: ANoB5plkUiiPqni6Dr61cCrsVza8VE/6S0EFpCuD8QAJqIryMoT0LyL9
-        aqcGzcWs5AvP8tu8AXPZMY3VfA==
-X-Google-Smtp-Source: AA0mqf6YezcedWqO5/DfQ5Hh5KjmW+9LYC+dlAS/gPvAELaB4jrAICD5YQomLLQmCgeSgLlXx2Ehtg==
-X-Received: by 2002:a4a:dc8c:0:b0:4a0:c270:2f3f with SMTP id g12-20020a4adc8c000000b004a0c2702f3fmr4138546oou.3.1670624647102;
-        Fri, 09 Dec 2022 14:24:07 -0800 (PST)
-Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
-        by smtp.gmail.com with ESMTPSA id c127-20020a4a4f85000000b004a0ad937ccdsm882932oob.1.2022.12.09.14.24.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 14:24:06 -0800 (PST)
-Date:   Fri, 9 Dec 2022 17:24:03 -0500
-From:   William Breathitt Gray <william.gray@linaro.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S229478AbiLIW1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 17:27:23 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5CA2935B;
+        Fri,  9 Dec 2022 14:27:22 -0800 (PST)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A0B5ACA534;
+        Fri,  9 Dec 2022 22:27:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1670624840; bh=wLfywnxmIafoKhNvlsidC0GQdw63kk9snyKcibJe0eQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=t0s3JI/5UovWp4wn/nB2fBIgsPyAE15q1Sdc4UdV3Kivu/onrmIMkiDkIQcSxVeZx
+         NSJKAul/dDfqMRaAEPa7UoOJqW5eQUXhFeTHWkWVbIl0lMjow5Dk2Uzw1u/4i7769a
+         VT9zwEbDjxN2O/+VYmCDC0+l+nSsu44eZIHv5zb4=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     phone-devel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: Re: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
-Message-ID: <Y5O1g8/69tCfmdW6@fedora>
-References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
- <20221205225042.GA2812115-robh@kernel.org>
- <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdX2=AwerQZS2cqR4exq_QNtt=Fwp5KBcmPr1qmOBNOSAg@mail.gmail.com>
- <87sfhsgb9e.ffs@tglx>
- <OS0PR01MB59228CED6187C7B19776CE22861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <878rjjfprw.ffs@tglx>
- <OS0PR01MB5922B590AB9791B9741E2A1D861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <87sfhrdure.ffs@tglx>
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: pmi8950: Correct rev_1250v channel label to mv
+Date:   Fri, 09 Dec 2022 23:27:19 +0100
+Message-ID: <4558956.LvFx2qVVIh@g550jk>
+In-Reply-To: <20221209215437.1783067-1-marijn.suijten@somainline.org>
+References: <20221209215437.1783067-1-marijn.suijten@somainline.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YkhtusH7Lbb0s/D9"
-Content-Disposition: inline
-In-Reply-To: <87sfhrdure.ffs@tglx>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Freitag, 9. Dezember 2022 22:54:37 CET Marijn Suijten wrote:
+> This was pointed out in review but never followed up on thanks to
+> sidetracked discussions about labels vs node names.
+> 
+> Fixes: 0d97fdf380b4 ("arm64: dts: qcom: Add configuration for PMI8950
+> peripheral") Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> b/arch/arm64/boot/dts/qcom/pmi8950.dtsi index 32d27e2187e3..8008f02434a9
+> 100644
+> --- a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> @@ -47,7 +47,7 @@ adc-chan@9 {
+>  			adc-chan@a {
+>  				reg = <VADC_REF_1250MV>;
+>  				qcom,pre-scaling = <1 1>;
+> -				label = "ref_1250v";
+> +				label = "ref_1250mv";
 
---YkhtusH7Lbb0s/D9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Indeed 1250V are maybe a bit much ;) Thanks!
 
-On Wed, Dec 07, 2022 at 05:49:09PM +0100, Thomas Gleixner wrote:
-> On Wed, Dec 07 2022 at 11:35, Biju Das wrote:
-> > Counter, It can be used as measuring the processing time of DRP-AI.
->=20
-> Sigh. You can do that with the architected timer too, especially when
-> you are going to do the measurement in user space.
->=20
-> clock_gettime(), which uses the VDSO with the architected timer is fast
-> to access and accurate.
->=20
-> Thanks,
->=20
->         tglx
+Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
 
-Hi Biju,
+>  			};
+> 
+>  			adc-chan@d {
 
-It's true that you could implement a Counter driver to achieve what you
-want here, but I don't think that's the most apt interface for this
-device. Your device is used to measure the processing time of DRP-AI, so
-modeling this as a clocksource seems like the right approach to take.
 
-Of course, if there is something missing from clocksource/clockevent
-that you need, then it should be added to the subsystem. So let's try to
-narrow down exactly what functionality you need.
 
-You gave a Counter use-case example earlier where you can configure the
-ceiling value of the timer (e.g. to 1usec or 10000000usec) and push
-Counter events on the interrupts that trigger off that that
-configuration; the Counter subsystem can logs the current system time
-everytime a Counter event is pushed.
 
-Could the same thing be achieved using clockevents framework instead?
-With this approach you would register an event to fire in the future
-(e.g. 1usec or 10000000usec) and then call clock_gettime() to get the
-current system when you're notified of the event. Would this approach
-work for your use-case, or is something else missing here?
-
-William Breathitt Gray
-
---YkhtusH7Lbb0s/D9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCY5O1gwAKCRC1SFbKvhIj
-K8zuAP4uMkkxnrQ9VzRVJNsRxxSLOWknl898zSxxh2gIpvALaQD8DStd05P+6buF
-P9QDJciknANFclFf6QmJ5Pg8Sh6nCgs=
-=/qcp
------END PGP SIGNATURE-----
-
---YkhtusH7Lbb0s/D9--
