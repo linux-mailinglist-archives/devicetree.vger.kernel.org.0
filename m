@@ -2,117 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FAB648184
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 12:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B61564818E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 12:25:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbiLILTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 06:19:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
+        id S229591AbiLILZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 06:25:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiLILSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 06:18:32 -0500
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D024349095;
-        Fri,  9 Dec 2022 03:18:25 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A86D024E1FE;
-        Fri,  9 Dec 2022 19:18:23 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
- 2022 19:18:23 +0800
-Received: from [192.168.120.55] (171.223.208.138) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 9 Dec
- 2022 19:18:22 +0800
-Message-ID: <b56b3363-5792-cf51-0ffe-914afccaa423@starfivetech.com>
-Date:   Fri, 9 Dec 2022 19:18:21 +0800
+        with ESMTP id S229777AbiLILZW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 06:25:22 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8DD6E55A
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 03:25:21 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id p36so6516135lfa.12
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 03:25:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0K7eVJj4k3cMvSUFweS+f/J9GwqB4FTC28EsgFNd3e4=;
+        b=v8O3IindDPA/6bCVNb+vJbPGFFquksYTufkIL+Vc7fLkAd/9VzB6hOH2SxGv89qjVJ
+         cNK9uYg8Oy/rJtYZ/8G8LMuzRhp3Gid70zHybmHW1tZxmRozMR0cJNglctyaw17vBDgZ
+         +fzwQWVeI/oQsKm7SMm1faRESIHEDNiLz86aDkwC53wksXi4ccm+VpJJsbzCNj1fZ4iD
+         tjwfA1zH3m3vTQH0URH6ln7ISWtYQR2uIGmDXytFFNw0KOwKuHfI45v68zdyc4VpD9jB
+         2pNx580WFgQsamVQLtnQA3INsyxfKp5Es7Yezkp5xBefQc8FjwI9VJhqJWhzi5YXrMY2
+         hBKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0K7eVJj4k3cMvSUFweS+f/J9GwqB4FTC28EsgFNd3e4=;
+        b=PexjMbYPLxqCjWwxxyh3NgM0tUlzADKRNCVFGBqwI+ZLOXiHC0k0r5jgPkG+Ruf8pa
+         YW9Qpk2HAHWAcVk77IEJ/hQBNdXMMwo80WdJraIuC9JB2s2hg25Cx2CkZb1k9fmQTWw6
+         zxETuOTZ4/tIuf3F8Bc6BVjZbJseCknwgQ6I/6eyuS24fdXrUbstOT2HZFv1q1/aIbZv
+         wSpAxJmG9FXV1ypRuetJ1LpZd/hdql6w+AhvVYelpGrEcLNtzr+kX6cx4rXOfoNsKQPi
+         mLOFw6rurhyK/Hhsc33LS2bpq9kNc7z43V93/b1IlZF6u9N5AEr8eKPOEWg9uVOc0+Ze
+         xiqQ==
+X-Gm-Message-State: ANoB5pmsA4+CXrG3FroVeZ1D4Y6uI0BQrAT+GX4Z2OfYWJm0C266Ko1A
+        yI/IimyhyAWZ1zBMx4wzX/9wOrOHczOsGbWI94M=
+X-Google-Smtp-Source: AA0mqf6LfW07j/W9B4V1vwkpcNXcjozq6HyoRYstlaUqh4lqn4eUXH8+9Cn1fFTwacZZFVk5UNKMVQ==
+X-Received: by 2002:a05:6512:150:b0:4b4:f212:617c with SMTP id m16-20020a056512015000b004b4f212617cmr1274955lfo.1.1670585119603;
+        Fri, 09 Dec 2022 03:25:19 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id e12-20020ac2546c000000b00497a0ea92desm218963lfn.135.2022.12.09.03.25.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Dec 2022 03:25:19 -0800 (PST)
+Message-ID: <79d72425-2188-0a87-4ad3-a334df081005@linaro.org>
+Date:   Fri, 9 Dec 2022 12:25:18 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add bindings for StarFive
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221207131731.1291517-1-william.qiu@starfivetech.com>
- <20221207131731.1291517-2-william.qiu@starfivetech.com>
- <CACRpkdY6364RtQMgGAFA024Pb-9v6+xcTUJdH+-MvzooBGYnhw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: sound: rt5640: Allow to describe how
+ LOUT is wired
 Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <CACRpkdY6364RtQMgGAFA024Pb-9v6+xcTUJdH+-MvzooBGYnhw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jarrah Gosbell <kernel@undef.tools>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>
+References: <20221209105621.39237-1-kernel@undef.tools>
+ <20221209105621.39237-2-kernel@undef.tools>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221209105621.39237-2-kernel@undef.tools>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/12/2022 11:56, Jarrah Gosbell wrote:
+> From: Ondrej Jirman <megi@xff.cz>
+> 
+> Depending on HW design, som boards may expect mono differential output
+> on LOUT. Describe a property that enables it.
+> 
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Jarrah Gosbell <kernel@undef.tools>
+> ---
+>  Documentation/devicetree/bindings/sound/rt5640.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 
 
-On 2022/12/9 5:13, Linus Walleij wrote:
-> Hi William,
-> 
-> thanks for your patch!
-> 
-> On Wed, Dec 7, 2022 at 2:17 PM William Qiu <william.qiu@starfivetech.com> wrote:
-> 
->> Add documentation to describe StarFive
->> designware mobile storage host controller driver.
->>
->> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> 
-> (...)
-> 
->> +  starfive,sys-syscon:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description:
->> +      The desired number of times that the host execute tuning when needed.
-> 
-> This is not consistent with the use in the code of the attached driver.
-> There it is a phandle, and it has three cells, which I am critical of.
-> Also this description is hard to understand.
-> 
-
-Will update all of it in next version.
-
-
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - interrupts
-> 
-> I don't think the syscon phandle is optional.
-> 
-
-Will fix.
-
->> +    #include <dt-bindings/clock/starfive-jh7110.h>
->> +    #include <dt-bindings/reset/starfive-jh7110.h>
->> +    mmc@16010000 {
->> +            compatible = "starfive,jh7110-sdio";
->> +            reg = <0x16010000 0x10000>;
-> 
-> No syscon phandle in the example: this needs to be added.
-> 
-
-I will add the syscon phandle.
-
-Thank you for taking time to review and provide helpful comments for this patch.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-William Qiu
-> Yours,
-> Linus Walleij
+Krzysztof
+
