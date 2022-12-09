@@ -2,67 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C1B648284
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13752648295
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbiLIMnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 07:43:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56872 "EHLO
+        id S229793AbiLIMvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 07:51:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbiLIMnN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:43:13 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED35466C8F
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:43:06 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229561AbiLIMvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:51:15 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A9F5654D;
+        Fri,  9 Dec 2022 04:51:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id A747883013;
-        Fri,  9 Dec 2022 13:43:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670589783;
-        bh=tDe71/9P7cFLwj+ee+l5ZE+ypcX2PVrZpg1sOtxlx20=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=tsjsf5/x8dXrPfE9tP5vL0818pAC4ebDKxLLKq4bgDXAWNxpTeFirnC24P0FHiKON
-         F/3rKbw7bjxfNRXUHbE2KLNzADVu8DIkcgDEudorw9ta5p1iKkjCSpzFqfnbqZbNzD
-         4Jn+e/UNIgKjW3+yIM0LqGeB54c6crp7XR9x1pHu+3nGfg7WwU4b0BrCMPY7lOMQG+
-         uXUe8v4TY9iCNraDzuyCBNQqdW2PXoNXPVG8eN3hpoZTkZwDXUzG9N4a2Q6slOpQgP
-         uJ2kxjQTxm9UkhKdAOqHFJpqko469zojNWPIBXfcQxlncYGHJ0Xodq2SKRCEAYasDW
-         sTzYMFWz3p73A==
-Message-ID: <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
-Date:   Fri, 9 Dec 2022 13:43:02 +0100
+        by sin.source.kernel.org (Postfix) with ESMTPS id 43B7ECE2718;
+        Fri,  9 Dec 2022 12:51:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 750D4C43396;
+        Fri,  9 Dec 2022 12:51:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1670590271;
+        bh=l6iQ7xL9UgI0P6o9KPYO7dLEzciOii5ZJrs3IMg8bQU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=abQxTjgutG9xtPqL/42nIPy5W0gB/wewQkRXXEhXsi5LlesduDiR81v6dGqpvsLh0
+         XhVKEbRX7AYJpgjlcD4ijIvc5UqqfDKou/V1Ou89clO0z8e7PviRDnHIad/H5nBUui
+         SxPZPQRp+XX0RM3NIfFhM4z/lpVguGa9IS43KJ9iRXvUdZ4jkUgpZ0/HFNFan94Jgd
+         eEhvlCJeijjAlb1ZDNh43EkXDK5sp+GM9XaCWe3v/UGNR+gt+9qxxhm0dS0A4WS7y8
+         Jj6grVzNKF90keO4UeSjelT3wuFV7rOyv3MNUpDE/69CjqAAJVFYNV25rbkKDttvVj
+         R9vlGssn/Zxjg==
+Date:   Fri, 9 Dec 2022 12:51:06 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [RFC PATCH v2 2/3] regmap: mmio: allow reset control in a MMIO
+ regmap
+Message-ID: <Y5MvOp7kLoEJfwkk@sirena.org.uk>
+References: <20221209013309.407879-1-jk@codeconstruct.com.au>
+ <20221209013309.407879-3-jk@codeconstruct.com.au>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <3394586.QJadu78ljV@steina-w> <df7e4c0d-2e30-a808-584f-d302233c2931@denx.de>
- <45157029.fMDQidcC6G@steina-w>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <45157029.fMDQidcC6G@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vo6Tx5ry7wCBatdt"
+Content-Disposition: inline
+In-Reply-To: <20221209013309.407879-3-jk@codeconstruct.com.au>
+X-Cookie: Who is John Galt?
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,118 +59,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/9/22 13:21, Alexander Stein wrote:
-> Hi Marek,
-> 
-> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
->> On 12/9/22 10:36, Alexander Stein wrote:
->>> Hello Krzysztof,
->>
->> Hi,
->>
->>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
->>>> On 09/12/2022 09:54, Alexander Stein wrote:
->>>>> Hello Krzysztof,
->>>>>
->>>>> thanks for the fast feedback.
->>>>>
->>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
->>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
->>>>>>> It takes some time until the enable GPIO has settled when turning on.
->>>>>>> This delay is platform specific and may be caused by e.g. voltage
->>>>>>> shifts, capacitors etc.
->>>>>>>
->>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>>>>> ---
->>>>>>>
->>>>>>>    .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
->>>>>>>    ++++
->>>>>>>    1 file changed, 4 insertions(+)
->>>>>>>
->>>>>>> diff --git
->>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
->>>>>>> ---
->>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>> +++
->>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
->>>>>>>
->>>>>>> @@ -32,6 +32,10 @@ properties:
->>>>>>>        maxItems: 1
->>>>>>>        description: GPIO specifier for bridge_en pin (active high).
->>>>>>>
->>>>>>> +  ti,enable-delay-us:
->>>>>>> +    default: 10000
->>>>>>> +    description: Enable time delay for enable-gpios
->>>>>>
->>>>>> Aren't you now mixing two separate delays? One for entire block on (I
->>>>>> would assume mostly fixed delay) and one depending on regulators
->>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
->>>>>> second delays in your power supply? If so, the first one might be fixed
->>>>>> and hard-coded in the driver?
->>>>>
->>>>> Apparently there are two different delays: reset time (t_reset) of 10ms
->>>>> as
->>>>> specified by datasheet. This is already ensured by a following delay
->>>>> after
->>>>> requesting enable_gpio as low and switching the GPIO to low in disable
->>>>> path.
->>>>>
->>>>> When enabling this GPIO it takes some time until it is valid on the
->>>>> chip,
->>>>> this is what this series is about. It's highly platform specific.
->>>>>
->>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
->>>>> This one has to be enabled before the enable GPIO can be enabled. So
->>>>> there is no regulator-ramp-delay.
->>>>
->>>> Your driver does one after another - regulator followed immediately by
->>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
->>>> enable delay).
->>
->> The chip has two separate input pins:
->>
->> VCC -- power supply that's regulator
->> EN -- reset line, that's GPIO
->>
->> Alexander is talking about EN line here.
->>
->>> But this will introduce a section which must not be interrupted or
->>> delayed.
->>> This is impossible as the enable gpio is attached to an i2c expander in my
->>> case.
->>>
->>> Given the following time chart:
->>>    vcc                  set             EN
->>>
->>> enable               GPIO             PAD
->>>
->>>     |                    |<-- t_raise -->|
->>>     |
->>>     | <-- t_vcc_gpio --> |               |
->>>     | <--        t_enable_delay      --> |
->>>
->>> t_raise is the time from changing the GPIO output at the expander until
->>> voltage on the EN (input) pad from the bridge has reached high voltage
->>> level. This is an electrical characteristic I can not change and have to
->>> take into account.
->>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
->>> (removing from reset). Minimum t_vcc_gpio is something which can be
->>> addressed by the regulator and is no problem so far. But there is no
->>> upper bound to it.
->> What exactly is your EN signal rise time (should be ns or so)? Can you
->> look at that with a scope , maybe even with relation to the VCC regulator ?
-> 
-> I checked EN rise time using a scope, it's ~110ms. I not an expert in hardware
-> but on the mainboard there is some capacitor attached to this line, which
-> increased the time, independent from the internal pull-up.
 
-This does seem like a hardware bug right there, can you double-check 
-this with the hardware engineer ?
+--vo6Tx5ry7wCBatdt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I would expect the capacitor to charge quickly when you flip the I2C 
-expander output HIGH, unless the I2C expander output is open drain, at 
-which point the transistor in the output is closed when the output is 
-set to HIGH and the capacitor is charging over the DSI83 EN pullup , 
-which might be slow.
+On Fri, Dec 09, 2022 at 09:33:08AM +0800, Jeremy Kerr wrote:
+> A syscon device may need to be taken out of reset before functioning -
+> this change adds a facility to attach a reset control to a mmio regmap,
+> and performs the necessary deassert/assert operations on the reset
+> controller on attach/detach.
+
+Managment of reset feels like something that should be done at a higher
+level - typically reset also implies losing all the register contents
+which means it should be somewhere above the cache layer.
+
+--vo6Tx5ry7wCBatdt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmOTLzkACgkQJNaLcl1U
+h9AobAf+Ku+dEoKODV9xdIeqEwytNwQb2u35kHQnnJKq4P43eeHNL1TOkHdimrSx
+sBElcYnuF/+G/F1eHMWoPJZ+zlpM/aHlLcMFJi8uS6NuLm4EqXctPZwFaRP4epv8
+5zYbwBGgu0uzf9+zDMkTrP5sNqepcumcT3Jaakm3pqibrPMNdXIBR74noj7wH/gQ
+UEOtB/thETWQlWqUmoc3EP+i2P/7ZN32gbgOBr+r+9X7XqeEEak5w69z0Kx/sHw/
+DpfeEABsF2S4zBNmQCn0tg8qUlq5lzjlPzQJiMAaHLby0s1XVkGeOcyJubezEmFK
+3sfIa4sY7QWSCEcSZKsRcKxXqY5+Mw==
+=i4KA
+-----END PGP SIGNATURE-----
+
+--vo6Tx5ry7wCBatdt--
