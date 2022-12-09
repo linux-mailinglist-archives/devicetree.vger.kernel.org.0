@@ -2,278 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 211FD647AD0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 01:35:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5DA1647AF4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 01:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiLIAfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 19:35:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32858 "EHLO
+        id S229563AbiLIAtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 19:49:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbiLIAfu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 19:35:50 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EAAE9D88B
-        for <devicetree@vger.kernel.org>; Thu,  8 Dec 2022 16:35:48 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id p36so4587752lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Dec 2022 16:35:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u9i6tSwEYMMAQhxXNd22Ibb8itC1fP4PyffqUvO3Sp0=;
-        b=w0dCi8LMFFLIwv9l8ZHEkvSMj0cu9rLyqukdYLaOGOhZdP5ShfHSzL1DFsug8nOW2U
-         7Hv32ruiYInr8Zz72srEFfkLY522kax3mnidwyoSp59oBxJcCrOrtmtZ10RKx1pxkGs7
-         /mZK2JvRnhX8tNPCCPKno/nePmAcuMD3rUzYkNPn/SUdBQoj5cioWtcaXJmAJEqDxlsO
-         kXUx/kJGdyo7Iddd+BIiswkWaaKvYo+KiWhm56KBO+n0ZcLHApOD6JoXz+3ZcfceBZcZ
-         IhKDod81lUt8DaXm57bK0lWbAULZACw42SZ9hZJuCwSVjUkOVFh3YVxZ1QWIgFy5lqyu
-         +tGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u9i6tSwEYMMAQhxXNd22Ibb8itC1fP4PyffqUvO3Sp0=;
-        b=bmIZKkbECcGj5j9+NBrVJO+Gb+mZKYy3L7Oq0Qwwm8sAYDUnYXpxYCwf91+w+MgmZV
-         32O+BGdwzrs713UdJdKl9Ov64OKipgfp5YOxS8kN/1SRKK5D8bhE63vjGp4M0+KoWhkB
-         yT0tqDj9vYFRdeTZzbAVOpZ1Gvq3eS3mZO2uOYGqIbANViZtH8erG4hzDhqRXXRjSWZK
-         KmM3TQuvvg4zPlS8Eyc/z/Wj0N7rZDlksi52l+5Qdo3CD1VFYWqOBI1TRfSXSwn9krjS
-         SmTP86moEjt+2u6hLXgkbualEEDx3xi4QKEp5GYKs98XC00j5ulW+s0gT5a9mZGzDOjg
-         OOxA==
-X-Gm-Message-State: ANoB5pmbWYU/p8K/Cx5zOMhd0xDy210Frt/h5nysuuvcQrmk2rs+bLvy
-        MYjW7lLu7xBuPg9Y9T7flqWdVw==
-X-Google-Smtp-Source: AA0mqf7I3ZRSP2xjQAxL8LPJRhqpQO/Grjq0p57nj0CmHvYCy7hYf+K/liWo0VkYQwpbumlYCYOjmg==
-X-Received: by 2002:a05:6512:1394:b0:4b5:de9:a12f with SMTP id p20-20020a056512139400b004b50de9a12fmr1417991lfa.12.1670546146352;
-        Thu, 08 Dec 2022 16:35:46 -0800 (PST)
-Received: from ?IPV6:2001:14ba:a085:4d00::8a5? (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id bt14-20020a056512260e00b004a44ffb1023sm19597lfb.57.2022.12.08.16.35.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 16:35:45 -0800 (PST)
-Message-ID: <e53844b7-601b-f355-302b-cc871962a446@linaro.org>
-Date:   Fri, 9 Dec 2022 02:35:44 +0200
+        with ESMTP id S229752AbiLIAs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 19:48:57 -0500
+Received: from out28-74.mail.aliyun.com (out28-74.mail.aliyun.com [115.124.28.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D60A5045;
+        Thu,  8 Dec 2022 16:48:55 -0800 (PST)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0852604|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0155697-0.00428494-0.980145;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047201;MF=lee.jackson@arducam.com;NM=0;PH=DS;RN=6;RT=5;SR=0;TI=SMTPD_---.QRbCchF_1670546913;
+Received: from localhost(mailfrom:lee.jackson@arducam.com fp:SMTPD_---.QRbCchF_1670546913)
+          by smtp.aliyun-inc.com;
+          Fri, 09 Dec 2022 08:48:33 +0800
+Date:   Fri, 9 Dec 2022 08:48:31 +0800
+From:   Lee Jackson <lee.jackson@arducam.com>
+To:     linux-media@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Subject: [PATCH v5 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
+ binding
+Message-ID: <20221209084831.000048ab@arducam.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v11 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-Content-Language: en-GB
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        dri-devel@lists.freedesktop.org, robdclark@gmail.com,
-        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
-        vkoul@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        airlied@gmail.com
-Cc:     quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
- <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
- <5a3865ed-8847-db04-3d60-f35438250bef@linaro.org>
- <5aa16223-dbf6-996c-1985-794302dcce91@quicinc.com>
- <be1411e8-1d07-7643-977c-a306016fd660@linaro.org>
- <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,FROM_WSP_TRAIL,
+        HEADER_FROM_DIFFERENT_DOMAINS,INVALID_MSGID,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 02:22, Kuogee Hsieh wrote:
-> 
-> On 12/8/2022 4:11 PM, Dmitry Baryshkov wrote:
->> On 09/12/2022 01:38, Kuogee Hsieh wrote:
->>>
->>> On 12/8/2022 3:33 PM, Dmitry Baryshkov wrote:
->>>> On 09/12/2022 00:36, Kuogee Hsieh wrote:
->>>>> Add both data-lanes and link-frequencies property into endpoint
->>>>>
->>>>> Changes in v7:
->>>>> -- split yaml out of dtsi patch
->>>>> -- link-frequencies from link rate to symbol rate
->>>>> -- deprecation of old data-lanes property
->>>>>
->>>>> Changes in v8:
->>>>> -- correct Bjorn mail address to kernel.org
->>>>>
->>>>> Changes in v10:
->>>>> -- add menu item to data-lanes and link-frequecnis
->>>>>
->>>>> Changes in v11:
->>>>> -- add endpoint property at port@1
->>>>>
->>>>> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
->>>>
->>>> Applying: dt-bindings: msm/dp: add data-lanes and link-frequencies 
->>>> property
->>>> .git/rebase-apply/patch:47: trailing whitespace.
->>>>
->>>> .git/rebase-apply/patch:51: trailing whitespace.
->>>>
->>>>
->>>> Also the dt_binding_check fails with an error for this schema. And 
->>>> after fixing the error in the schema I faced an example validation 
->>>> error. Did you check that the schema is correct and that the example 
->>>> validates against the schema?
->>>
->>> yes, but i run "make dt_binding_check 
->>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml" at mu v5.15 branch since
->>
->> I wouldn't ask you to post the log here. But I don't think that either 
->> of the errors that I see here is related to 5.15 vs 6.1-rc.
->>
->> In fact after applying this patch against 5.15 I saw the expected 
->> failure:
->>
->> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->> properties:required: ['port@0', 'port@1'] is not of type 'object', 
->> 'boolean'
->> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->> properties: 'required' should not be valid under {'$ref': 
->> '#/definitions/json-schema-prop-names'}
->> Documentation/devicetree/bindings/display/msm/dp-controller.yaml: 
->> ignoring, error in schema: properties: required
->>
->>>
->>> "make dt_binding_check" does not work at msm-next branch.
->>
->> I went ahead and just checked.
->>
->> `make dt_binding_check DT_SCHEMA_FILES=display/msm`  works cleanly in 
->> msm-next and reports a single example-related warning in 
->> msm-next-lumag. I pushed a patch to fix that warning (wich can 
->> hopefully be picked up by Abhinav into msm-fixes). So you can assume 
->> that both these branches have consistent error-free display/msm schemas.
->>
-> I have clean msm-next branch (without my data-lines yaml patch applied) 
-> and run "make dt_binding_check 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml", then I saw below error messages.
-> 
-> Have you run into this problem?
 
-No.
+Add YAML device tree binding for IMX519 CMOS image sensor, and
+the relevant MAINTAINERS entries.
 
-> 
->    HOSTCC  scripts/basic/fixdep
->    HOSTCC  scripts/dtc/dtc.o
->    HOSTCC  scripts/dtc/flattree.o
->    HOSTCC  scripts/dtc/fstree.o
->    HOSTCC  scripts/dtc/data.o
->    HOSTCC  scripts/dtc/livetree.o
->    HOSTCC  scripts/dtc/treesource.o
->    HOSTCC  scripts/dtc/srcpos.o
->    HOSTCC  scripts/dtc/checks.o
->    HOSTCC  scripts/dtc/util.o
->    LEX     scripts/dtc/dtc-lexer.lex.c
->    HOSTCC  scripts/dtc/dtc-lexer.lex.o
->    HOSTCC  scripts/dtc/dtc-parser.tab.o
->    HOSTLD  scripts/dtc/dtc
-> sort: -:2: disorder: 2022.1
-> ERROR: dtschema minimum version is v2022.3
-> make[2]: *** [check_dtschema_version] Error 1
-> make[1]: *** [dt_binding_check] Error 2
-> make: *** [__sub-make] Error 2
+Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
+---
+ .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   8 ++
+ 2 files changed, 115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
 
-This means that somewhere in your path you have an older dtschema instance.
-
-When you sent me a question regarding this error, I asked for the 
-additional info. You provided none. Instead you went on sending the 
-untested patch that doesn't work.
-
-> 
->>>
->>> But I did not check trainiling whitespace this time.
->>>
->>>>
->>>>> ---
->>>>>   .../bindings/display/msm/dp-controller.yaml        | 27 
->>>>> ++++++++++++++++++++++
->>>>>   1 file changed, 27 insertions(+)
->>>>>
->>>>> diff --git 
->>>>> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml 
->>>>> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>> index f2515af..2a7fdef8 100644
->>>>> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>>> @@ -81,6 +81,7 @@ properties:
->>>>>       data-lanes:
->>>>>       $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>> +    deprecated: true
->>>>>       minItems: 1
->>>>>       maxItems: 4
->>>>>       items:
->>>>> @@ -96,6 +97,7 @@ properties:
->>>>>       ports:
->>>>>       $ref: /schemas/graph.yaml#/properties/ports
->>>>> +
->>>>>       properties:
->>>>>         port@0:
->>>>>           $ref: /schemas/graph.yaml#/properties/port
->>>>> @@ -105,6 +107,29 @@ properties:
->>>>>           $ref: /schemas/graph.yaml#/properties/port
->>>>>           description: Output endpoint of the controller
->>>>>   +        properties:
->>>>> +          endpoint:
->>>>> +            $ref: /schemas/media/video-interfaces.yaml#
->>>>> +
->>>>> +            properties:
->>>>> +              remote-endpoint: true
->>>>
->>>> PLease add empty lines between the property definitions
->>>>
->>>>> +              data-lanes:
->>>>> +                $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>
->>>> This is already a part of video-interfaces, so you don't need $ref
->>>>
->>>>> +                minItems: 1
->>>>> +                maxItems: 4
->>>>> +                items:
->>>>> +                  maximum: 3
->>>>
->>>> enum: [0, 1, 2, 3]
->>>>
->>>>> +              link-frequencies:
->>>>> +                $ref: /schemas/types.yaml#/definitions/uint64-array
->>>>> +                minItems: 1
->>>>> +                maxItems: 4
->>>>> +                items:
->>>>> +                  maximum: 8100000000
->>>>
->>>> I think we can have enum here too.
->>>>
->>>>> +
->>>>> +  required:
->>>>> +    - port@0
->>>>> +    - port@1
->>>>> +
->>>>>   required:
->>>>>     - compatible
->>>>>     - reg
->>>>> @@ -193,6 +218,8 @@ examples:
->>>>>                   reg = <1>;
->>>>>                   endpoint {
->>>>>                       remote-endpoint = <&typec>;
->>>>> +                    data-lanes = <0 1>;
->>>>> +                    link-frequencies = /bits/ 64 <1620000000 
->>>>> 2700000000 5400000000 8100000000>;
->>>>>                   };
->>>>>               };
->>>>>           };
->>>>
->>
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+new file mode 100644
+index 000000000000..d7ca16cfbacc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
++
++maintainers:
++  - Lee Jackson <lee.jackson@arducam.com>
++
++description: 
++  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
++  with an active array size of 4656H x 3496V. It is programmable through
++  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
++  Image data is sent through MIPI CSI-2, which is configured as either 2 or
++  4 data lanes.
++
++properties:
++  compatible:
++    const: sony,imx519
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  vdig-supply:
++    description:
++      Digital I/O voltage supply, 1.05 volts
++
++  vana-supply:
++    description:
++      Analog voltage supply, 2.8 volts
++
++  vddl-supply:
++    description:
++      Digital core voltage supply, 1.8 volts
++
++  reset-gpios:
++    description: 
++      Reference to the GPIO connected to the xclr pin, if any.
++      Must be released (set high) after all supplies and INCK are applied.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            anyOf:
++              - items:
++                  - const: 1
++                  - const: 2
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - vana-supply
++  - vdig-supply
++  - vddl-supply
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        imx519: sensor@1a {
++            compatible = "sony,imx519";
++            reg = <0x1a>;
++            clocks = <&imx519_clk>;
++            vana-supply = <&imx519_vana>;   /* 2.8v */
++            vdig-supply = <&imx519_vdig>;   /* 1.05v */
++            vddl-supply = <&imx519_vddl>;   /* 1.8v */
++
++            port {
++                imx519_0: endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
++                    link-frequencies = /bits/ 64 <493500000>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 046ff06ff97f..1fe906632209 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19232,6 +19232,14 @@ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+ F:	drivers/media/i2c/imx412.c
+ 
++SONY IMX519 SENSOR DRIVER
++M:	Arducam Kernel Maintenance <info@arducam.com>
++M:	Lee Jackson <lee.jackson@arducam.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
++
+ SONY MEMORYSTICK SUBSYSTEM
+ M:	Maxim Levitsky <maximlevitsky@gmail.com>
+ M:	Alex Dubov <oakad@yahoo.com>
 -- 
-With best wishes
-Dmitry
-
+2.34.1
