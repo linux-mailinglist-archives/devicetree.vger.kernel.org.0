@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AA5648713
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F0964871B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiLIQzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 11:55:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
+        id S229840AbiLIQ6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 11:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiLIQzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:55:23 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B23C4941AB;
-        Fri,  9 Dec 2022 08:55:22 -0800 (PST)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id BA1C9CA44B;
-        Fri,  9 Dec 2022 16:54:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1670604890; bh=JPxISEVGZ3issJ6dY6iVzvmxKxEEeRMzlzxN/ukUT/Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Z70cN0BCSwfeW8Vsj/KfBq/QdTsGv9w/ZxNzZNuZK7BQVU4SGMbcosSXRPNiGLGtN
-         9PbrJVLFHS3iUh/C+2nxTB3/VU0Rybvn5pHYtfyoR9nhpF9Y441j8NvqUEvxKwye5r
-         CvDfv5l+Vfy806NOaQ5bS9qhLovI5HMF0kHMrKa8=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950 peripheral
-Date:   Fri, 09 Dec 2022 17:54:50 +0100
-Message-ID: <5740737.DvuYhMxLoT@g550jk>
-In-Reply-To: <20221208112055.m7sqg3ysxzskqjp4@SoMainline.org>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz> <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org> <20221208112055.m7sqg3ysxzskqjp4@SoMainline.org>
+        with ESMTP id S229816AbiLIQ6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:58:01 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00CB1DF3
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:57:57 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id p8so7943509lfu.11
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:57:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RpqPCBfzDAs8JVS1IeOpD/CKxCRHOoR51Vnm5lxDkNA=;
+        b=lsm4bM/FVHMd9HNKHL0b6U4XIPGnbS59knpkI/1xA5FnZQfqN3PUXusvmDIht8LRNa
+         P2vbJj4oi73OsOmEOrlLKzDBweEBcFCa0bCOVRpmsl/skFkyXhI5Km9L7UfAf8YQ1d7k
+         QaBuOOZvdDjHkIQic82vHrks4VJm0S1NCJwmzhWMiCiCxo57iiq12dLDKVYGldmqPgp2
+         Rm2jqVZ4h1lx/eqy4hHdYDQ+1i/JCNYd63U+Iq9vwkT1XtFbltg0Fd96byPPBhmpkfH3
+         LKKAKWYkzD3CEX3oXnHwRRCEA/GZhIxws/cQifyAFBoysezf0/Z7kyjGlo+24fi3axOi
+         GikQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RpqPCBfzDAs8JVS1IeOpD/CKxCRHOoR51Vnm5lxDkNA=;
+        b=B1cUzJweyp5sdy864XDQlVRtW1BUSQo7UY9bmsjino9n1J8NSxUSb8KnMUhCm2vydm
+         M08aVa025yQ1k+s0JMEDC4rqjzZvPjwfL2j9N8Cucf/clSWClQDkY5+jYdm7A44Yfro0
+         KjjTWJsr2+ecafdFo2fwRX4IFEsXjd74wa9vuRVWaJwN0AH9ew7YXL2NCP8Io6jMpCYp
+         nB92OIpfOSp3v4L8OH/7pNfjXX1+DBucBWxfJ+YcOLEu/nnkM0G9bpOOGB5wgHYtXuQw
+         jb3kzeGFXvGZDMoiUw6R06dRXYbV1JKp9PVsBQWA6xcUtLDi7FpjvQNgoIJT6XJFtXag
+         PDDQ==
+X-Gm-Message-State: ANoB5pkPXZ58HWWZSLIo+8a//ieHyYmnlZigNn8ZzlT7NedCIWEo9bX1
+        GW81AP7A/r1VIl07r5/hCgkGK7BI+NukhHzXcBY=
+X-Google-Smtp-Source: AA0mqf7kzu6iAfWEPXh8v/aZNVbaQTPA+0OCONbOH+E5SHR2eUqLP85TXJEV/QkpOHRfXXEDIX1s/g==
+X-Received: by 2002:a19:7405:0:b0:4b5:7096:23ff with SMTP id v5-20020a197405000000b004b5709623ffmr1813356lfe.66.1670605076396;
+        Fri, 09 Dec 2022 08:57:56 -0800 (PST)
+Received: from krzk-bin (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id y1-20020a196401000000b004b5850e6b63sm332534lfb.65.2022.12.09.08.57.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Dec 2022 08:57:55 -0800 (PST)
+Date:   Fri, 9 Dec 2022 17:57:53 +0100
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>
+Subject: Re: [RESEND PATCH v11 2/2] mfd: max597x: Add support for MAX5970 and
+ MAX5978
+Message-ID: <20221209165753.q4ovlu2lebxfibed@krzk-bin>
+References: <20221124110210.3905092-1-Naresh.Solanki@9elements.com>
+ <20221124110210.3905092-3-Naresh.Solanki@9elements.com>
+ <CABqG17hCoY86w3usA6RNLQbGjHo_JRFioznuvdCZLo4_KNaMWg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABqG17hCoY86w3usA6RNLQbGjHo_JRFioznuvdCZLo4_KNaMWg@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        SPF_HELO_NONE,SPF_PASS,T_PDS_OTHER_BAD_TLD autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 8. Dezember 2022 12:20:55 CET Marijn Suijten wrote:
-> On 2022-12-08 11:23:17, Krzysztof Kozlowski wrote:
-> > On 08/12/2022 11:12, Marijn Suijten wrote:
-> > > On 2022-12-04 17:19:05, Luca Weiss wrote:
-> > >> On Freitag, 2. Dezember 2022 10:36:58 CET Marijn Suijten wrote:
-> > >> [..]
-> > >> 
-> > >> So the way this patch does it is good or does it need changes?
-> > > 
-> > > Except the typo(s?) pointed out in my first reply, this is good to go.
-> > > 
-> > > If we stick with generic adc-chan node names that should be documented
-> > > in the bindings IMO, as it is currently only captured implicitly in the
-> > > examples.  Krzysztof, what is your thought on this?
-> > 
-> > If I understand correctly, the outcome of other discussion [1] was to
-> > use labels and generic node names.
-> 
-> The outcome was to use labels in the driver and disregard node names as
-> the new fwnode API clobbers those names by including the @xx register
-> bit.
-> 
-> (I'll follow up with Jonathan whether or not to remove the current
-> fallback to node names, as [1] ended up discussing many different issues
-> and nits)
-> 
-> > In such case the patch was correct
-> > (except other comments).
-> 
-> As a consequence it _doesn't matter_ how nodes are named, and we _can_
-> use generic node names.  My question for you is whether we should, and
-> if we should lock that in via dt-bindings to guide everyone towards
-> using labels (which i did _not_ do in the recently-landed PM8950 and
-> PM6125, but will send followup for).
+On Tue, Dec 06, 2022 at 11:00:52PM +0530, Naresh Solanki wrote:
+> ping
 
-FYI the patch has been merged already and is now in linux-next
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm64/boot/dts/qcom/pmi8950.dtsi?id=0d97fdf380b478c358c94f50f1b942e87f407b9b
+You missed several mailing lists and maintainers, so whom do you ping?
+Yourself? Please start using get_maintainers.pl...
 
-If you have any changes that need to be done please send a follow-up patch.
-
-Regards
-Luca
-
-> 
-> > [1]
-> > https://lore.kernel.org/linux-arm-msm/20221112162719.0ac87998@jic23-huawei
-> > /
-> 
-> - Marijn
-
-
-
-
+>=20
+> Regards,
+> Naresh Solanki
+>=20
+>=20
+>=20
+> 9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
+> Email:  naresh.solanki@9elements.com
+> Mobile:  +91 9538631477
+>=20
+> Sitz der Gesellschaft: Bochum
+> Handelsregister: Amtsgericht Bochum, HRB 17519
+> Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
+>=20
+> Datenschutzhinweise nach Art. 13 DSGVO
+>=20
