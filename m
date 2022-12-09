@@ -2,127 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7EBC64823F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B53E4648250
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 13:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229798AbiLIMOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 07:14:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43994 "EHLO
+        id S229678AbiLIMVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 07:21:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbiLIMOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:14:53 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F1BC1743C;
-        Fri,  9 Dec 2022 04:14:52 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id e205so4303365oif.11;
-        Fri, 09 Dec 2022 04:14:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kI7BbdyAUV/eNarvTgWcZoX1xauTnHS7x8JJjE7aAYY=;
-        b=H22f2eUpGiDd7CwkA7y2/NdOiC8kNvSs78eGvAb5QoEBJpG/ckz6TnBBPcIm2ZF9TZ
-         ghfn7Cs9kJu2zDZYNJXStZqos6Bilgb/Nl/HGcpLHAPJMd5FJS41RadYWpxYd3hW6itx
-         da2Gt2aGy+Is/vJKUsH22uH2IVJJo93Ho/rawg8coQI+i+1xtk0glz+L6VbVL3PA+JZs
-         B64ixJIuFJoGyuSLU9squll6+r7uqDBWDrjHdMeDtC7M+9XHVV6PyLMPg76cyVM2sKp4
-         85jC0TBZWhkgqvbS0oDkUBe5sW1jY0XjYni2lCAEp+FWxevdRPtQTcyQsBx4n8Y8zJwQ
-         sPew==
-X-Gm-Message-State: ANoB5pnda16u1FgDR0e8NnjABxhbmoHwmUDovaa7v8RGCU+BTELxmjzg
-        ZFT9Ebwf0XbrKD2fKWiOxA==
-X-Google-Smtp-Source: AA0mqf4FRI86zMRlAtzC+h2pF/uE9HwQGgMNCY3G4dmWrGrHC4nf3HUzituKruhqW4XxFd90+aIcLQ==
-X-Received: by 2002:aca:3dd5:0:b0:35a:3c3d:34d5 with SMTP id k204-20020aca3dd5000000b0035a3c3d34d5mr2111798oia.14.1670588091153;
-        Fri, 09 Dec 2022 04:14:51 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b23-20020aca2217000000b0035b99bbe30bsm447422oic.54.2022.12.09.04.14.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 04:14:50 -0800 (PST)
-Received: (nullmailer pid 2822350 invoked by uid 1000);
-        Fri, 09 Dec 2022 12:14:49 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S229468AbiLIMVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 07:21:42 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB18528B1
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 04:21:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670588500; x=1702124500;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=K3lJW0Uus1z+S8b7/YeTxtglEzL06touIBpOZIQnlTE=;
+  b=cpftIln+PGnaqijqBQ7zQU0mCWfwLptEtH6ZI2qdXCLGZ9kt2QVXnhW6
+   knCzuAz1tap82NuQxBKDRHGhv6c3QJFraWld5cVseOvIq9DC7OgxExZPP
+   GqHoT0IfOG1qjEaVZtbJC2pFuVwkVAXmENOti+bCc/yShykWzkeGJTEzQ
+   oB9hE5H1ISBN2K+MxEGiUuuk5TlkF70TLWmG2v+WyDDLeymno22nnEQ79
+   0botOit/AmadqxF+HOqBBfjotqw7AIdJC0Uk2CaVMkanhj1L9O7UMn0q6
+   OLr9CLekcqiTig51WixV1cvf657s1rW3SW8XhXRsmhXU76GBk0dycdMQd
+   g==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27865036"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 13:21:38 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Dec 2022 13:21:39 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 13:21:39 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670588498; x=1702124498;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=K3lJW0Uus1z+S8b7/YeTxtglEzL06touIBpOZIQnlTE=;
+  b=ezAUQQST8YUxXQsjt8N2ZWIZWao8cn8DOqlUcWDGTvj6d/aDYRq4L7Ht
+   ptc2IhNREfqDYk3wnv1Zf+z+BeNVcj81mFyoIg9hKWfaxnhHDnlp98vE5
+   gWxrxjtUKf+E4oj/VkDp9vU4JOfEQ9IIlGkOKUqQrrIyt1TS9tkD2NpXI
+   oywc95PuyGbhTB+cLvPXW8jDFclCpBPZuVpN4at27LVZDFr7lon1cCnZW
+   8aBvYOD8PPryB8Nff3WpF9QOiGNVx3D4GMOPF+okERaG3BdYVJWCrh51j
+   N9/aG0GVDygJLsn/sfbebO+kMwmf0pItDWpz86a4mLXWo1iSbtVutgNi7
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27865035"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Dec 2022 13:21:38 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 83A20280071;
+        Fri,  9 Dec 2022 13:21:38 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable delay property
+Date:   Fri, 09 Dec 2022 13:21:36 +0100
+Message-ID: <45157029.fMDQidcC6G@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <df7e4c0d-2e30-a808-584f-d302233c2931@denx.de>
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com> <3394586.QJadu78ljV@steina-w> <df7e4c0d-2e30-a808-584f-d302233c2931@denx.de>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
-Cc:     vkoul@kernel.org, daniel@ffwll.ch, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, dmitry.baryshkov@linaro.org,
-        freedreno@lists.freedesktop.org, agross@kernel.org,
-        dianders@chromium.org, dri-devel@lists.freedesktop.org,
-        swboyd@chromium.org, linux-kernel@vger.kernel.org,
-        robdclark@gmail.com, devicetree@vger.kernel.org,
-        quic_sbillaka@quicinc.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, airlied@linux.ie,
-        quic_abhinavk@quicinc.com, andersson@kernel.org, airlied@gmail.com,
-        sean@poorly.run
-In-Reply-To: <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
-References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
- <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
-Message-Id: <167058798233.2819544.12292613321491007286.robh@kernel.org>
-Subject: Re: [PATCH v11 2/5] dt-bindings: msm/dp: add data-lanes and
- link-frequencies property
-Date:   Fri, 09 Dec 2022 06:14:49 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marek,
 
-On Thu, 08 Dec 2022 14:36:52 -0800, Kuogee Hsieh wrote:
-> Add both data-lanes and link-frequencies property into endpoint
+Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
+> On 12/9/22 10:36, Alexander Stein wrote:
+> > Hello Krzysztof,
 > 
-> Changes in v7:
-> -- split yaml out of dtsi patch
-> -- link-frequencies from link rate to symbol rate
-> -- deprecation of old data-lanes property
+> Hi,
 > 
-> Changes in v8:
-> -- correct Bjorn mail address to kernel.org
+> > Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
+> >> On 09/12/2022 09:54, Alexander Stein wrote:
+> >>> Hello Krzysztof,
+> >>> 
+> >>> thanks for the fast feedback.
+> >>> 
+> >>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
+> >>>> On 09/12/2022 09:33, Alexander Stein wrote:
+> >>>>> It takes some time until the enable GPIO has settled when turning on.
+> >>>>> This delay is platform specific and may be caused by e.g. voltage
+> >>>>> shifts, capacitors etc.
+> >>>>> 
+> >>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>>>> ---
+> >>>>> 
+> >>>>>   .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
+> >>>>>   ++++
+> >>>>>   1 file changed, 4 insertions(+)
+> >>>>> 
+> >>>>> diff --git
+> >>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+> >>>>> ---
+> >>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>> +++
+> >>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>> 
+> >>>>> @@ -32,6 +32,10 @@ properties:
+> >>>>>       maxItems: 1
+> >>>>>       description: GPIO specifier for bridge_en pin (active high).
+> >>>>> 
+> >>>>> +  ti,enable-delay-us:
+> >>>>> +    default: 10000
+> >>>>> +    description: Enable time delay for enable-gpios
+> >>>> 
+> >>>> Aren't you now mixing two separate delays? One for entire block on (I
+> >>>> would assume mostly fixed delay) and one depending on regulators
+> >>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
+> >>>> second delays in your power supply? If so, the first one might be fixed
+> >>>> and hard-coded in the driver?
+> >>> 
+> >>> Apparently there are two different delays: reset time (t_reset) of 10ms
+> >>> as
+> >>> specified by datasheet. This is already ensured by a following delay
+> >>> after
+> >>> requesting enable_gpio as low and switching the GPIO to low in disable
+> >>> path.
+> >>> 
+> >>> When enabling this GPIO it takes some time until it is valid on the
+> >>> chip,
+> >>> this is what this series is about. It's highly platform specific.
+> >>> 
+> >>> Unfortunately this is completely unrelated to the vcc-supply regulator.
+> >>> This one has to be enabled before the enable GPIO can be enabled. So
+> >>> there is no regulator-ramp-delay.
+> >> 
+> >> Your driver does one after another - regulator followed immediately by
+> >> gpio - so this as well can be a delay from regulator (maybe not ramp but
+> >> enable delay).
 > 
-> Changes in v10:
-> -- add menu item to data-lanes and link-frequecnis
+> The chip has two separate input pins:
 > 
-> Changes in v11:
-> -- add endpoint property at port@1
+> VCC -- power supply that's regulator
+> EN -- reset line, that's GPIO
 > 
-> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
-> ---
->  .../bindings/display/msm/dp-controller.yaml        | 27 ++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+> Alexander is talking about EN line here.
 > 
+> > But this will introduce a section which must not be interrupted or
+> > delayed.
+> > This is impossible as the enable gpio is attached to an i2c expander in my
+> > case.
+> > 
+> > Given the following time chart:
+> >   vcc                  set             EN
+> > 
+> > enable               GPIO             PAD
+> > 
+> >    |                    |<-- t_raise -->|
+> >    | 
+> >    | <-- t_vcc_gpio --> |               |
+> >    | <--        t_enable_delay      --> |
+> > 
+> > t_raise is the time from changing the GPIO output at the expander until
+> > voltage on the EN (input) pad from the bridge has reached high voltage
+> > level. This is an electrical characteristic I can not change and have to
+> > take into account.
+> > t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
+> > (removing from reset). Minimum t_vcc_gpio is something which can be
+> > addressed by the regulator and is no problem so far. But there is no
+> > upper bound to it.
+> What exactly is your EN signal rise time (should be ns or so)? Can you
+> look at that with a scope , maybe even with relation to the VCC regulator ?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I checked EN rise time using a scope, it's ~110ms. I not an expert in hardware 
+but on the mainboard there is some capacitor attached to this line, which 
+increased the time, independent from the internal pull-up.
 
-yamllint warnings/errors:
+> The DSI84 EN pin already has a built-in pullup per DSI84 datasheet (see
+> Table 5-1. Pin Functions), so that should make the signal rise fast,
+> certainly not for seconds.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dp-controller.yaml: properties:required: ['port@0', 'port@1'] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dp-controller.yaml: properties: 'required' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-	hint: A json-schema keyword was found instead of a DT property name.
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dp-controller.yaml: ignoring, error in schema: properties: required
-Documentation/devicetree/bindings/display/msm/dp-controller.example.dtb:0:0: /example-0/displayport-controller@ae90000: failed to match any schema with compatible: ['qcom,sc7180-dp']
+Here it is >100ms, so the current waiting time is far too less. This results 
+in errors regarding PLL lock failure.
 
-doc reference errors (make refcheckdocs):
+Best regards,
+Alexander
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
