@@ -2,92 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1559D647CAA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 05:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A37C647CF6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 05:39:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiLIDnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Dec 2022 22:43:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
+        id S229719AbiLIEj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Dec 2022 23:39:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229902AbiLIDnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 22:43:16 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A449CFA;
-        Thu,  8 Dec 2022 19:43:10 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id a14so2824897pfa.1;
-        Thu, 08 Dec 2022 19:43:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KzTx46VsPlNBtMUazlqoN2pJfqj2F09S8xX/pSLFCGo=;
-        b=i/JQjYIhPgIflT4dl1HEXlY0uLvEHEF1mcMgqGuRA7RIkSIll5DO0xBsbhMAxHrw/f
-         OSEikPHufGbEG5aMghcO5x9TVB/Wym3Qtxi4pqF5VmIkEooHc3aWbZvLcbut4yQSupN/
-         laSxPa7V2i4PI/8OEE7Yna3Mt7uapNgALsQt1yZWVgmInywCKp6uzOLNvwau/PNIwWET
-         1oG8Ra5ao8UhUjOtJu8KMmps1mMTnNYSjuDZ7sHdShKrlPlq0ITl4d5uS8KogVl2J2i0
-         bfJ3ppD5nwXwnSrq9uS5b+XE5YWsZ3t2CbghLsPuEOITFcUcSu8/oVrym7ALIxrnvOxF
-         OSYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KzTx46VsPlNBtMUazlqoN2pJfqj2F09S8xX/pSLFCGo=;
-        b=NvK3GDgaT/8rVen869P/RzHh5RHmiQs5ILQQT6evVMcMiyYIEgM6NP2jQ1s09VHL5F
-         SKR1UiGRe+p5vOM/RiDwGu+jTfOi9JfKiE6pmuE5+cjH0p66hEAaf2jMf8YMNOnR43xT
-         XiiZpmI4i/0uV7kJ3xidkkgqXCM/cmXIa2PDjIOnWBu3t4br2gY9yVrEf/51ij47KKB8
-         /Bh/MDdegxpNFDeTFdpI+3DyEX7zh/3JPAFOKuwp6G1mqAjsheXNew9WJqsc3zXBbpuk
-         FQGzORg+cTjpp1A1WmMc47fejk7f4Q4/lnHc1pjiAdyPred7skibwI9+b5guYTZTuZHX
-         Qk2g==
-X-Gm-Message-State: ANoB5pko4ENh+4oeOdluPxH6hUVQZxZi5rfPlHjbBYM3tOMngF1cnQW9
-        8tkq4z5IOF6bKFZBwIzcx6LWQD72jdWeZA==
-X-Google-Smtp-Source: AA0mqf4Xv5B508LHmEcNLP3bfnRlnLKzbtTqCexJYTKcyQr7BN6m+nxHrlQoWXwmg//WwYPTBeYsug==
-X-Received: by 2002:aa7:858a:0:b0:56e:705e:3608 with SMTP id w10-20020aa7858a000000b0056e705e3608mr3904227pfn.31.1670557389598;
-        Thu, 08 Dec 2022 19:43:09 -0800 (PST)
-Received: from [10.230.29.214] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id u82-20020a627955000000b00571cdbd0771sm238815pfc.102.2022.12.08.19.43.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Dec 2022 19:43:09 -0800 (PST)
-Message-ID: <af8093e9-11a5-930d-6dc5-2387195446b1@gmail.com>
-Date:   Thu, 8 Dec 2022 19:43:06 -0800
+        with ESMTP id S229658AbiLIEjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Dec 2022 23:39:16 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2051.outbound.protection.outlook.com [40.107.21.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A4D389D7;
+        Thu,  8 Dec 2022 20:39:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JGygBM4VYujejhSp/DVadfCqmHrb7HQ9M3Ib4TRLDDkyF8GMfRag2CfWUrEYWdONJ/7w2QEuVR6gCsR8R9EXUMMYz2cF5aX/jtwuWoCwA6OKbw3sPX2BpTV3LiOrw6CwC9sPAo9FRCw9IbhIfq+56abVo9U4MzgL9RdVrdvuwo1RIHussWw0OEjBKapbZOEnxANG5wY84ndtQD0Qf4jIF5ylvqplstEbPMP54XWYYamAiAXVBJbBKPVKK/R+ox+NYr/OTaf5cF0D2MpByFjLPCJ4LBbGzGE2teCHYR7Z5zFrnGtGVY/mUPRquZvo3wb+TeZj3M8y3laJ7wDra5ehNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=krYM4wEtvuuArgN0tfvokRxHJdMqM2aZ+R7FZv7J7rg=;
+ b=O2ooEx083I/YFarEKM0DEypQwXFGbhSTFyKds4GEEqmaxC5yTBK766Bcm7kjOMUeqbuzuJ1z48q8ZX1uE/7WOLkJqFIDvktIZQNjwkyC+PPiqgpo3kS9i4ZDJwxaXgutIWxp08f7bTnN6qPUjubtgCcariJ8+ik9d0XJJ6U1CYDr399bz9JF/61kMz8eK7w5pkvKQ3BMgeIiUG1KwdH+zKn3nOjNDHdgfAssBB59nJ0asavCAJ+b1fhK61/SJp155UawscwxZBBx60HWbloCVHTZRt9Qnfs0adbW2D263pmKRdKjiBmRsu/k/un5k5a4SkNuSzRUMr7p8Egni4IJYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=krYM4wEtvuuArgN0tfvokRxHJdMqM2aZ+R7FZv7J7rg=;
+ b=qcKwtr3Lc8gudq7UqHOSypMmudkt2Z+oS1loSg7iQ1omxE1HYwfhARtQavTwlwE2vRlCFD2r/2jn9OdE+IOd0G+Xk7Qq2CPhCeFI4FeTo5vYRZC490T5iX/SG5FFsaUlFNSUFuXrKsqae5S14uSlBhmwwNwRjPKLLjav+DwECjyTyW3wqFqZ5BiH5eSqDCS4TKiGBjxattblXLv+h1INTjjk2hrP7rx+iwnHJG8QJeR2NgHbZu9bPeCS4Gbkhe911aKvPahZj54UDVMe66D2Ql7Vucj0iRpohmStBHIxCmIqhhPs2GKuVJFPez8Sfqt6c1FxMsPMOUHslOctyDEmrA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by AM8PR04MB7377.eurprd04.prod.outlook.com (2603:10a6:20b:1de::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.11; Fri, 9 Dec
+ 2022 04:39:11 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::28d6:1b8:94d9:89f5]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::28d6:1b8:94d9:89f5%7]) with mapi id 15.20.5880.011; Fri, 9 Dec 2022
+ 04:39:10 +0000
+Date:   Fri, 9 Dec 2022 12:38:51 +0800
+From:   Chester Lin <clin@suse.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>, s32@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Larisa Grigore <larisa.grigore@nxp.com>,
+        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+        Andrei Stefanescu <andrei.stefanescu@nxp.com>,
+        Radu Pirea <radu-nicolae.pirea@nxp.com>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Matthew Nunez <matthew.nunez@nxp.com>,
+        Phu Luu An <phu.luuan@nxp.com>,
+        Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: add NXP S32 SoC family support
+Message-ID: <Y5K726npjKAO4sIq@linux-8mug>
+References: <20221128054820.1771-1-clin@suse.com>
+ <20221128054820.1771-3-clin@suse.com>
+ <CAOMZO5D0wJcfbFsvUN3K17S5F4zT2Yf8yQB+wMKQPzuMBitrpA@mail.gmail.com>
+ <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdaKYFbXRcV1WgDEiYPEwzNAZq-AqAHpWd1rJyW-h369dw@mail.gmail.com>
+X-ClientProxiedBy: TYCP301CA0034.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:380::14) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH net 1/2] MAINTAINERS: Update NXP FEC maintainer
-Content-Language: en-US
-To:     Clark Wang <xiaoning.wang@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Wei Fang <wei.fang@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20221205212340.1073283-1-f.fainelli@gmail.com>
- <20221205212340.1073283-2-f.fainelli@gmail.com>
- <HE1PR0402MB2939AE5C96DE9ECD183D5522F31C9@HE1PR0402MB2939.eurprd04.prod.outlook.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <HE1PR0402MB2939AE5C96DE9ECD183D5522F31C9@HE1PR0402MB2939.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|AM8PR04MB7377:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e0497b3-462a-45f9-2ace-08dad99f50d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: P892p19npaRtH/1LKjs1HzWb9WeBKXJ/OJhU3icv4F8pEU9CpHPBtnGnSQDM4REVDitPnT8KPRVvnD4pa+iiGXS7k8+alZHfRDJKQCTIr4tA/2iATFfqioBJ7zGeNfJGk8ercwZHaURo/qXcFAjGpJRUVS9rA0Z6sjtpdYWlenxgoLHtMKeW04yg+tafddnZHnXssptInOca/2fRQ1CcnmTqAy70E6/qEKnO95teBUvnKHByysJYpoT1kP8KbW/2b+dvuLH9nAcBWoevuHXqELreF7H2RDqBva88KQY3JeHCCHOu7jmapA1HKuwiUFHIdrNGI3Aw4wFApmgRmCrYVAb3bkuDkvhx5dmNGeYsKoyBvy/2yjxpyKgZ2FBSrB0OyofYMGC8exg7Ymd7AVZioajnPLwnTF20CS1V0O3Fl8s6070OBZftuGH0wjNJkKr3nioXCejq0GHpMZQr64Fn5u1KhgSjdo6Rsc8MuBkj2qYW3oNyg2/nAj5/TOYWJSyC2s6FY48+yHCmvGlsxnq94K/VPD+cmchcLoHUxN/+zseFoOp2OaX4NkYiSZJqGyG1IqxQoxsXP4Yc9A29GQllK8jUL58nw5m1DezfZRJuffxpsXew6Sa0FAIJKnJ6+BNDyYg8/ULt/NMDWw20CSyw5A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(376002)(136003)(346002)(396003)(39860400002)(366004)(451199015)(86362001)(41300700001)(38100700002)(8936002)(7416002)(5660300002)(4744005)(8676002)(66946007)(66476007)(66556008)(4326008)(33716001)(2906002)(9686003)(26005)(6512007)(83380400001)(316002)(6486002)(54906003)(6916009)(53546011)(6506007)(6666004)(186003)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oNKyglSeoUfzmJQ6xnMkV6KccDpAgL0ChcwEQDLgLVkBkmwElJ6JSwvHn4Ar?=
+ =?us-ascii?Q?oMFVn+46Wc87BWm3mP3fSozK4h5ODdi7WcHfVrBR5TjTdKSCWsl+7fnlgOKg?=
+ =?us-ascii?Q?K3Cp8J79lUbdV31dXliMxhmJNQRm42Mvr4oX4tnhz04oCMc7aBg+1MgnqhhR?=
+ =?us-ascii?Q?/rickF7/DKtcocdaOxEzUuydIWACd6B88aqTcAn/mGw5FKHtQYcm/I7b+KrV?=
+ =?us-ascii?Q?RWcx5JjXMkEAK7qp2n/JaSWWLPjKsG4TXMJi3kIdoPfwFZjPl1RP1vuAi1gy?=
+ =?us-ascii?Q?5Ycw886VIACGWpLpPnv62dvBs8GmMD8RIPvKxcrTqjNlvnP07CeRJO5zRRPS?=
+ =?us-ascii?Q?hiAu6JjGvLH3ljXkLTqTp0kDyDywk+n6zV/4C933jtBnGDacRYKsf+r6zllt?=
+ =?us-ascii?Q?1u1kzFW1s2WWNehMp7GuxBC2iRf0O9aoCGk4hN9A+OhGjX3aPa2vlVyz3pqV?=
+ =?us-ascii?Q?8xaJAHXSWafk3UamMVOFF6pywncv3dqqcUr/XWBFx+h1BYOVV3Cj6oeu1w8D?=
+ =?us-ascii?Q?Jr+pYxpY17LeZc6bXYFp/sFdLIuN9ow44A/q5K5iLxOjNevLPXtDLYsxSzU8?=
+ =?us-ascii?Q?NyXgOthW+8DZIaMNoKEUaeyXbHTH5xlSnvh/Ffrj9YY9qAdOWSBGJso0SD9w?=
+ =?us-ascii?Q?I3pcJqIJKtMJf5gtSOSbINgW5cNbnO9G8e+dtXo917LHfZpnUy0jq6e2IHOV?=
+ =?us-ascii?Q?3e7n6ZirYUILIjVQJ9SARNTg9Mu3NS9wE2qXXinP6FOwyuB4HSob3h8pzx/j?=
+ =?us-ascii?Q?U4MCW5IrS61Kl4h8Ff8sKiT/mGzZ9dP6wJWu4tNEBML2jEvRgF14rdOStyc8?=
+ =?us-ascii?Q?l4OsXYY8ub0XUphP5bSGYxVJkvjPxIuvN/GeK5ALGH7qPXt9Y971YY10f1mP?=
+ =?us-ascii?Q?2vbgRwfa/daR29+3X6TlXWIflW0Ds9asy3ZK61/NlLelyi8GEpTyXxpNkRSX?=
+ =?us-ascii?Q?0BeJ6kyJoTIMhAqm7NWTEDLUeQ/0HBva3gY57vmkkbMdm4tG8A5gAr2mtcGF?=
+ =?us-ascii?Q?uvljVN+k6FeWKNhF9vO8GQyaqE/A4GnRY0jVJY0ORsalvfaz4XQrWzxDhW0W?=
+ =?us-ascii?Q?kXtzMQilU6lGiiONSfRtk3iBTmBJcNfilIteTfW5Dcx0bi5BOTYpwK+1v/fl?=
+ =?us-ascii?Q?0V5tjW/NDi74Kp4xo4zj6tpDdTp45c25ytl/IcRqyM/gmQR+JcQfDi8cElOD?=
+ =?us-ascii?Q?Fch95r/2KChLLKvPyiIoio7pAeN74XY57Sc8+HmzgF8co/c3MsTpyhU+h+mS?=
+ =?us-ascii?Q?NV6DPvfnU2zeknkHxPD60TFMuf5zKgWrvAPxjBqIQjkomYUGF5+OoGwut7ZW?=
+ =?us-ascii?Q?NW6jJZk8wC8Jhuj1WbHtZ93nb+DvDpvw8CPZwoijlClpUHs82wgIbZrgO0mG?=
+ =?us-ascii?Q?kOoWcqKw0X/yiXm42lqK4TM6nQqMPjhTfWd+dY3odX9/43I5zlmcHMU7SAqq?=
+ =?us-ascii?Q?NbKcY3/Gh1YfNNjrGG1LXUeL0qOIp/g26J+o5SqPdMLt7BtC/d0Fm7s3te8j?=
+ =?us-ascii?Q?xXbKqkQNqmI8w3a0oOUaDZrlufpCMxFhBJlEM7y2Nns64BRbHokfeHlm7AN1?=
+ =?us-ascii?Q?2zfiwdqu1Z3b0JYN8lM=3D?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e0497b3-462a-45f9-2ace-08dad99f50d9
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2022 04:39:10.8908
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wqZHY31qdB7xzfRzsNRqJSjalYbI5kKGGsy0YsJaTXZBUQr4Z2SXHbwKmOO0pRgF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7377
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,60 +127,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Linus and Fabio,
+
+Thanks for your time to review this patch!
+
+On Thu, Dec 08, 2022 at 10:37:36PM +0100, Linus Walleij wrote:
+> On Thu, Dec 8, 2022 at 12:04 AM Fabio Estevam <festevam@gmail.com> wrote:
+> 
+> > In other imx8m pinctrl drivers we pass:
+> (...)
+> > > +module_platform_driver(s32g_pinctrl_driver);
+> >
+> > And we also register it in arch_initcall() level.
+> 
+> Do you really need that though? This driver certainly does not.
+> 
+> I was under the impression that recent changes to the probe-order
+> logic has made most explicit arch_ etc initcall orderings surplus.
+> 
+
+Could bool/tristate options in the Kconfig be the key point?
+
+Based on current design I prefer to build the s32g2 pinctrl driver as built-in
+rather than a loadable module. IIUC, when the driver is not built as module
+then the initcall ordering should still matter.
+
+Feel free to correct me if anything wrong.
+
+Regards,
+Chester
 
 
-On 12/8/2022 6:01 PM, Clark Wang wrote:
-> Hi Florian,
-> 
-> 
->> -----Original Message-----
->> From: Florian Fainelli <f.fainelli@gmail.com>
->> Sent: 2022年12月6日 5:24
->> To: netdev@vger.kernel.org
->> Cc: Florian Fainelli <f.fainelli@gmail.com>; Thomas Gleixner
->> <tglx@linutronix.de>; Marc Zyngier <maz@kernel.org>; Rob Herring
->> <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Shawn Guo <shawnguo@kernel.org>;
->> dl-linux-imx <linux-imx@nxp.com>; David S. Miller <davem@davemloft.net>;
->> Eric Dumazet <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>;
->> Paolo Abeni <pabeni@redhat.com>; Sascha Hauer <s.hauer@pengutronix.de>;
->> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
->> <festevam@gmail.com>; open list:IRQCHIP DRIVERS
->> <linux-kernel@vger.kernel.org>; open list:OPEN FIRMWARE AND FLATTENED
->> DEVICE TREE BINDINGS <devicetree@vger.kernel.org>; moderated
->> list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
->> <linux-arm-kernel@lists.infradead.org>
->> Subject: [PATCH net 1/2] MAINTAINERS: Update NXP FEC maintainer
->>
->> Emails to Joakim Zhang bounce, add Shawn Guo (i.MX architecture
->> maintainer) and the NXP Linux Team exploder email.
->>
->> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->>   MAINTAINERS | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 256f03904987..ba25d5af51a0 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8187,7 +8187,8 @@ S:	Maintained
->>   F:	drivers/i2c/busses/i2c-cpm.c
->>
->>   FREESCALE IMX / MXC FEC DRIVER
->> -M:	Joakim Zhang <qiangqing.zhang@nxp.com>
->> +M:	Shawn Guo <shawnguo@kernel.org>
->> +M:	NXP Linux Team <linux-imx@nxp.com>
-> 
-> For FEC driver, please change as follows. Thanks.
-> M: Wei Fang <wei.fang@nxp.com>
-> R: Shenwei Wang <shenwei.wang@nxp.com>
-> R: Clark Wang <xiaoning.wang@nxp.com>
-> R: NXP Linux Team <linux-imx@nxp.com>
-> 
-> Best Regards,
-> Clark Wang
-
-Will do, thanks for stepping in.
--- 
-Florian
+> Yours,
+> Linus Walleij
