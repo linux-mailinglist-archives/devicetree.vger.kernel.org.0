@@ -2,54 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 966396482CA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 14:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D12C56482D7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 14:38:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229545AbiLINat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 08:30:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43676 "EHLO
+        id S229545AbiLINiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 08:38:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbiLINat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 08:30:49 -0500
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F851789F;
-        Fri,  9 Dec 2022 05:30:47 -0800 (PST)
-Received: from [2a02:8108:963f:de38:eca4:7d19:f9a2:22c5]; authenticated
-        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        id 1p3dSY-0004xm-Q5; Fri, 09 Dec 2022 14:30:38 +0100
-Message-ID: <bb4e185a-c4db-428b-a1ee-ee1ba767fffb@leemhuis.info>
-Date:   Fri, 9 Dec 2022 14:30:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v1] Revert "ARM: dts: imx7: Fix NAND controller
- size-cells"
-Content-Language: en-US, de-DE
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        with ESMTP id S229758AbiLINiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 08:38:14 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D8C60B66
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 05:38:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670593093; x=1702129093;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AEWb0npLjWYKAZ77OTmHcUwl5bx4xDS149SD5wS2qfk=;
+  b=DvTTuHUFg3sDf+CaH0gumsiRtq0djot+DKzVCYMPm0mU9gBudgJ+oIEG
+   evhs6OxitFz6drWsghliiWHAyPy7l7qkdXZVvcL3ALl8Ys58vfUJfXw04
+   DxPYaUqbCtNjIE3p7mYGnzkzvy8ox6si8I3YqoSX/a+ku6j+tqkn8MCNT
+   yAZjk2iVf8KKg8Yf5zdoD9Vvn06hYfnIlqlwIywaCHFzTsZUpmvdg6dsL
+   oZzt2vxH3LqjHrJLMNirdu7x1OdsFMWF+q0NZFup6OSq8ErUqHalISPmj
+   tH2yRICC+1Z/i1AAZLtz5P88qgzL+Jk0+qlNNTqRiKcCBEQfX+M8XxlgM
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27866776"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 14:38:11 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 09 Dec 2022 14:38:11 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 14:38:11 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1670593091; x=1702129091;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AEWb0npLjWYKAZ77OTmHcUwl5bx4xDS149SD5wS2qfk=;
+  b=glhmBAg52Y1tdZhI4gHF6hZPn88lF1iPLkQvGgfMxZKqeoVesRjRzFaU
+   Mr6quEgiQFJMSOivgCLiLC40zaMwtsxuG6DX79F3tRHFbJNDd3/bno8/n
+   5pytBMaKz7k8NCxVacITDj3S5Wtzd6FrdaNIsnHGwEtZAeTNTvNh/OeZ6
+   ZVPshTOdU/Vse78WCpAYzOD6DisR50KELkGGocIIZumuKmbwyKExT3Pjo
+   xHwERsTLnKTM+3b2SyBFvGDnM+G4JamvIlBaZhzVJEbAyccoovVAzzB/m
+   hdv+HJob7MPJByDoKEj+U0YE3i6rsKG9nvrVJarT8OH5suyKmfDOHoP4q
+   w==;
+X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
+   d="scan'208";a="27866775"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Dec 2022 14:38:10 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B9FF2280071;
+        Fri,  9 Dec 2022 14:38:10 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        stable@vger.kernel.org, Francesco Dolcini <francesco@dolcini.it>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20221205152327.26881-1-francesco@dolcini.it>
- <0aa2d48b-35a0-1781-f265-0387d213bdd6@denx.de>
- <20221208115124.6cc7a8bf@xps-13>
- <Y5ITkZtKWHzWaLS4@francesco-nb.int.toradex.com>
-From:   Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <Y5ITkZtKWHzWaLS4@francesco-nb.int.toradex.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1670592648;8c9799b5;
-X-HE-SMSGID: 1p3dSY-0004xm-Q5
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable delay property
+Date:   Fri, 09 Dec 2022 14:38:08 +0100
+Message-ID: <2735716.BEx9A2HvPv@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com> <45157029.fMDQidcC6G@steina-w> <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,58 +91,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.12.22 17:40, Francesco Dolcini wrote:
-> + Arnd
-
-Arnd, have you seen this? We haven't heard anything from Shawn afaics,
-who normally would take care of a patch like this. Hence could you
-consider picking up the patch at the start of this thread (e.g.
-https://lore.kernel.org/all/20221205152327.26881-1-francesco@dolcini.it/
-) and send it to Linus in the next 48 hours? It seems low-risk and fixes
-a regression introduced this cycle various people care about. That's why
-I'll likely ask Linus to consider picking this up directly before
-releasing 6.1, if I don't hear anything from you soon. But I'd prefer if
-the patch would go through at least somewhat the proper channels;
-alternatively a ACK from you to signal Linus "yeah, pick this up" would
-help as well.
-
-Ciao, Thorsten
-
-
-> On Thu, Dec 08, 2022 at 11:51:24AM +0100, Miquel Raynal wrote:
->> marex@denx.de wrote on Mon, 5 Dec 2022 17:26:53 +0100:
->>> On 12/5/22 16:23, Francesco Dolcini wrote:
->>>> From: Francesco Dolcini <francesco.dolcini@toradex.com>
->>>>
->>>> This reverts commit 753395ea1e45c724150070b5785900b6a44bd5fb.
->>>>
->>>> It introduced a boot regression on colibri-imx7, and potentially any
->>>> other i.MX7 boards with MTD partition list generated into the fdt by
->>>> U-Boot.
->>>>
->>>> While the commit we are reverting here is not obviously wrong, it fixes
->>>> only a dt binding checker warning that is non-functional, while it
->>>> introduces a boot regression and there is no obvious fix ready.
->>>>
->>>> Cc: stable@vger.kernel.org
->>>> Fixes: 753395ea1e45 ("ARM: dts: imx7: Fix NAND controller size-cells")
->>>> Link: https://lore.kernel.org/all/Y4dgBTGNWpM6SQXI@francesco-nb.int.toradex.com/
->>>> Link: https://lore.kernel.org/all/20221205144917.6514168a@xps-13/
->>>> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
->> [...]
->>> Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
->> [...]
->>> Acked-by: Marek Vasut <marex@denx.de>
->> [...]
->>
->> As discussed in the above links, boot is broken on imx7 Colibri boards,
->> this revert was the most quick and straightforward fix we agreed upon
->> with the hope (~ duty?) it would make it in v6.1. Any chance you could
->> pick this up rapidly and forward it to Linus? Or should we involve
->> him directly (Thorsten?).
+Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
+> On 12/9/22 13:21, Alexander Stein wrote:
+> > Hi Marek,
+> > 
+> > Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
+> >> On 12/9/22 10:36, Alexander Stein wrote:
+> >>> Hello Krzysztof,
+> >> 
+> >> Hi,
+> >> 
+> >>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
+> >>>> On 09/12/2022 09:54, Alexander Stein wrote:
+> >>>>> Hello Krzysztof,
+> >>>>> 
+> >>>>> thanks for the fast feedback.
+> >>>>> 
+> >>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof 
+Kozlowski:
+> >>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
+> >>>>>>> It takes some time until the enable GPIO has settled when turning
+> >>>>>>> on.
+> >>>>>>> This delay is platform specific and may be caused by e.g. voltage
+> >>>>>>> shifts, capacitors etc.
+> >>>>>>> 
+> >>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>>>>>> ---
+> >>>>>>> 
+> >>>>>>>    .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
+> >>>>>>>    ++++
+> >>>>>>>    1 file changed, 4 insertions(+)
+> >>>>>>> 
+> >>>>>>> diff --git
+> >>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+> >>>>>>> ---
+> >>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>> +++
+> >>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>> 
+> >>>>>>> @@ -32,6 +32,10 @@ properties:
+> >>>>>>>        maxItems: 1
+> >>>>>>>        description: GPIO specifier for bridge_en pin (active high).
+> >>>>>>> 
+> >>>>>>> +  ti,enable-delay-us:
+> >>>>>>> +    default: 10000
+> >>>>>>> +    description: Enable time delay for enable-gpios
+> >>>>>> 
+> >>>>>> Aren't you now mixing two separate delays? One for entire block on (I
+> >>>>>> would assume mostly fixed delay) and one depending on regulators
+> >>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss
+> >>>>>> the
+> >>>>>> second delays in your power supply? If so, the first one might be
+> >>>>>> fixed
+> >>>>>> and hard-coded in the driver?
+> >>>>> 
+> >>>>> Apparently there are two different delays: reset time (t_reset) of
+> >>>>> 10ms
+> >>>>> as
+> >>>>> specified by datasheet. This is already ensured by a following delay
+> >>>>> after
+> >>>>> requesting enable_gpio as low and switching the GPIO to low in disable
+> >>>>> path.
+> >>>>> 
+> >>>>> When enabling this GPIO it takes some time until it is valid on the
+> >>>>> chip,
+> >>>>> this is what this series is about. It's highly platform specific.
+> >>>>> 
+> >>>>> Unfortunately this is completely unrelated to the vcc-supply
+> >>>>> regulator.
+> >>>>> This one has to be enabled before the enable GPIO can be enabled. So
+> >>>>> there is no regulator-ramp-delay.
+> >>>> 
+> >>>> Your driver does one after another - regulator followed immediately by
+> >>>> gpio - so this as well can be a delay from regulator (maybe not ramp
+> >>>> but
+> >>>> enable delay).
+> >> 
+> >> The chip has two separate input pins:
+> >> 
+> >> VCC -- power supply that's regulator
+> >> EN -- reset line, that's GPIO
+> >> 
+> >> Alexander is talking about EN line here.
+> >> 
+> >>> But this will introduce a section which must not be interrupted or
+> >>> delayed.
+> >>> This is impossible as the enable gpio is attached to an i2c expander in
+> >>> my
+> >>> case.
+> >>> 
+> >>> Given the following time chart:
+> >>>    vcc                  set             EN
+> >>> 
+> >>> enable               GPIO             PAD
+> >>> 
+> >>>     |                    |<-- t_raise -->|
+> >>>     | 
+> >>>     | <-- t_vcc_gpio --> |               |
+> >>>     | <--        t_enable_delay      --> |
+> >>> 
+> >>> t_raise is the time from changing the GPIO output at the expander until
+> >>> voltage on the EN (input) pad from the bridge has reached high voltage
+> >>> level. This is an electrical characteristic I can not change and have to
+> >>> take into account.
+> >>> t_vcc_gpio is the time from enabling supply voltage to enabling the
+> >>> bridge
+> >>> (removing from reset). Minimum t_vcc_gpio is something which can be
+> >>> addressed by the regulator and is no problem so far. But there is no
+> >>> upper bound to it.
+> >> 
+> >> What exactly is your EN signal rise time (should be ns or so)? Can you
+> >> look at that with a scope , maybe even with relation to the VCC regulator
+> >> ?
+> > 
+> > I checked EN rise time using a scope, it's ~110ms. I not an expert in
+> > hardware but on the mainboard there is some capacitor attached to this
+> > line, which increased the time, independent from the internal pull-up.
 > 
-> Hello Arnd,
-> FYI - see Miquel explanation above.
-> 
-> Francesco
-> 
+> This does seem like a hardware bug right there, can you double-check
+> this with the hardware engineer ?
+
+Yep, checked with hardware engineer. An 470nF is attached, together with an 
+open drain output and only the internal pull-up. So yes ~113ms rising time 
+until 0.7 x VCC.
+
+Best regards,
+Alexander
+
+> I would expect the capacitor to charge quickly when you flip the I2C
+> expander output HIGH, unless the I2C expander output is open drain, at
+> which point the transistor in the output is closed when the output is
+> set to HIGH and the capacitor is charging over the DSI83 EN pullup ,
+> which might be slow.
+
+
+
+
