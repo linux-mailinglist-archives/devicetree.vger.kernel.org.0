@@ -2,136 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8A8647F4C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:34:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41338647F52
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 09:35:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbiLIIeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Dec 2022 03:34:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44906 "EHLO
+        id S229703AbiLIIfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Dec 2022 03:35:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiLIIeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:34:00 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DA9A60B76
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:33:52 -0800 (PST)
+        with ESMTP id S229675AbiLIIfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 03:35:15 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32F72FC22
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 00:35:14 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id b9so4203141ljr.5
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 00:35:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670574833; x=1702110833;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aqS6Xix3Clyg7votbMt2p6Yj9UqNWGx8KsGGmFu1njk=;
-  b=olAWkbx/BhKR5HreSG5G7eQcQInGKMbhRhr341PDqyALsMLce+DhsonE
-   Fd5xIQTHwPc/KYEy/QsFHHJywGnXSI5oN885mrCQMN1oN0iV3g08ssdsh
-   BcmYrbrU/Q8FpTBy9gbGdH07urY7bT5oKpxbNpbpdJfxPqcetRTAzNO2c
-   bDfoxyIi/bZs0N2NiEpKeweP/ppHjyrM+Vs/A6s7Itwcaj86b0kioRB2G
-   EoZCJYc/tuHB+FBdqvkkZ2ebI+K/VYoohOvHifmEf4tHLTqiR5gVyoGrh
-   M4SFzcwlwsQRlVH5UI8E+/eaVU80Xfr4t8Qa9S8mlThKpwuN7URnxRwOT
-   A==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27857153"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 09 Dec 2022 09:33:47 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 09 Dec 2022 09:33:47 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 09 Dec 2022 09:33:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1670574827; x=1702110827;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=aqS6Xix3Clyg7votbMt2p6Yj9UqNWGx8KsGGmFu1njk=;
-  b=Am5kftNTRp0BTz+5bYbsD4OA4l6eRe7WsKsPsUiEnN1IFwoPDtYbsqsU
-   rc4fyuORBviRvxDZ3u5+50l0f5HkynzWZWC7t+MjkvscbNPxYMw60M3e1
-   9QYFGXCagPHpS7T2d86uvLtxAYMv/OWBRhZkMIwiR3+IzFfZiLW38w5TH
-   I8YWxKXj2QmEyA6Zz1YzlhyklyhW2tJVgaGLA6Ct75mlpUxY6UCgaRqc/
-   SUm5CEUGHWnljyFN0zqfksMv92Tt71pzsD0bnnC2N9+Ej9uiIocyb28ru
-   GOXC3p5IYpz9BPy+TLufddmtxfwRjggH/FLgei3XFZhgNdhceZMzfhBae
-   w==;
-X-IronPort-AV: E=Sophos;i="5.96,230,1665439200"; 
-   d="scan'208";a="27857149"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 09 Dec 2022 09:33:46 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 12E21280073;
-        Fri,  9 Dec 2022 09:33:46 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ysnzACHXURIkIO+/AQjmEoci49zgr//vhpb8kPXwKcU=;
+        b=Dz4L0SfClKX1bHZ81SYcCTOpqPl/TgBLy411jpBd64n3fzciV3rClVWbCDT5GZKmRV
+         PP4eUU6/sz8gWqwRx4Rd0yI72rh+vELPXT2Vj4pq1Eiklx1jHNFD46pZnTX9BxP1cq91
+         gHfxpu3JJ953kXLi5spr8CtCUdp5Zzc20A75r8x4yZWWNFxTdSjMs0H1I3pex/PSX0D7
+         SIN0VvErlW0bTBtizX/T8Q1oKsAP+7wel/FagaS/1+bkt4lue8Aa+gaYf2SaaugUVVB4
+         DrH+xVOGbM3EFQmO5KGIZsY2wk2V7cbA1Bl2BdHImwOkn0Sjl09w90hMyf3SKtPWUpq1
+         m0hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ysnzACHXURIkIO+/AQjmEoci49zgr//vhpb8kPXwKcU=;
+        b=bXC91+oadMfHTS/Kp0qlSrafOBsd7BAojizWwxJDicSPIxYIbwotNlFvndirfboHt3
+         0mWYW+r3ezl7WgFbVy4skedFy36o7eVTXQYmyrYW3VTNIQyYEpKAJJiayojIlrc4vcDF
+         G1+wuOSdr6W3ZKlUB9IQtdVw9bC9R3BShEpiW2vB9Z+c7ETs+a6YcdoSy3/XFgF4l4h8
+         ByFekCpNDzc+TbFHurdu1O1F2HFjIL3WKhHwOTthI5Aa/SSWjzT9XJ3ft251eo/ovatH
+         R1EG2ysQr0Rc7GBokR9IJlGI6jcWkBmKU/5/ULyF/Plpt02DabJTwWUwEFGWQ6iTrzfA
+         piOg==
+X-Gm-Message-State: ANoB5pl8BVYPYNs/CATN6+/oc6T5pA8snn2nvj2mbtm/34tYXl9K/myV
+        /kcaBbxlzBEfeEcH5vEK/7Ypwg==
+X-Google-Smtp-Source: AA0mqf4BnUchN5dAKoDAdQcRawUxcca7TShvvAE+vweS7atuhK1MMnvaPvUhFPB+lJePI5J9QSLU3w==
+X-Received: by 2002:a05:651c:1187:b0:278:ea26:af88 with SMTP id w7-20020a05651c118700b00278ea26af88mr1713866ljo.42.1670574913010;
+        Fri, 09 Dec 2022 00:35:13 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id b11-20020a2e894b000000b0026bca725cd0sm131502ljk.39.2022.12.09.00.35.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Dec 2022 00:35:12 -0800 (PST)
+Message-ID: <be4b57bc-2d1e-3bbe-b5f1-8a3946c2a9a7@linaro.org>
+Date:   Fri, 9 Dec 2022 09:35:11 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: display/msm: convert MDP5 schema to
+ YAML format
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] drm: bridge: ti-sn65dsi83: Add enable delay support
-Date:   Fri,  9 Dec 2022 09:33:39 +0100
-Message-Id: <20221209083339.3780776-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221208005458.328196-1-dmitry.baryshkov@linaro.org>
+ <20221208005458.328196-2-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221208005458.328196-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It takes some time until the enable GPIO has settled when turning on.
-This delay is platform specific and may be caused by e.g. voltage shifts,
-capacitors etc.
-Fall back to current default if not specified in DT.
+On 08/12/2022 01:54, Dmitry Baryshkov wrote:
+> Convert the mdp5.txt into the yaml format. Changes to the existing (txt) schema:
+>  - MSM8996 has additional "iommu" clock, define it separately
+>  - Add new properties used on some of platforms:
+>    - interconnects, interconnect-names
+>    - iommus
+>    - power-domains
+>    - operating-points-v2, opp-table
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 047c14ddbbf11..6510ee384315e 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -145,6 +145,7 @@ struct sn65dsi83 {
- 	struct drm_bridge		*panel_bridge;
- 	struct gpio_desc		*enable_gpio;
- 	struct regulator		*vcc;
-+	u32				enable_delay;
- 	bool				lvds_dual_link;
- 	bool				lvds_dual_link_even_odd_swap;
- };
-@@ -346,7 +347,7 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
- 
- 	/* Deassert reset */
- 	gpiod_set_value_cansleep(ctx->enable_gpio, 1);
--	usleep_range(10000, 11000);
-+	fsleep(ctx->enable_delay);
- 
- 	/* Get the LVDS format from the bridge state. */
- 	bridge_state = drm_atomic_get_new_bridge_state(state, bridge);
-@@ -603,6 +604,10 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
- 		return dev_err_probe(dev, PTR_ERR(ctx->vcc),
- 				     "Failed to get supply 'vcc'\n");
- 
-+	if (of_property_read_u32(dev->of_node, "ti,enable-delay-us",
-+				 &ctx->enable_delay))
-+		ctx->enable_delay = 10000;
-+
- 	return 0;
- }
- 
--- 
-2.34.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
