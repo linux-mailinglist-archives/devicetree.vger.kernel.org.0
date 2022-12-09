@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 934F16486C3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A964A6486C6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Dec 2022 17:49:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiLIQtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229720AbiLIQtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 9 Dec 2022 11:49:01 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbiLIQs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:48:59 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39FD93A7E
-        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:48:58 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id g14so1525953ljh.10
-        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:48:58 -0800 (PST)
+        with ESMTP id S229751AbiLIQtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Dec 2022 11:49:00 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6922B94186
+        for <devicetree@vger.kernel.org>; Fri,  9 Dec 2022 08:48:59 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id h10so5489180ljk.11
+        for <devicetree@vger.kernel.org>; Fri, 09 Dec 2022 08:48:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HersfMJkZd5e6DBLXP/NMgfEzYAxOgK3H+M5S2K1LU0=;
-        b=TStuVzJLgFgkajlXehNTU2wHvphRD/qyu5l4T6X7jDmzHmJEI4tFJo4WGwBWC2pAzh
-         uq9SrORR5BWe1TYLHmbMpbv7np1KE3XOF1qJeCYteyGMATQwWdS0NPEWZmVjw9XijGNL
-         +jKJqvWkxAXXzTH0GnMdDUopOr6f4zD5vsOEzCauAFtHQkcR0SoG9VVZf8MNrac1J4/e
-         wo2PSv2gvvVjym1FYuAqh9JxZt9cdoIekrnEquHK3QYPzjKGeUxMI2E18D7jbBQoSGhF
-         qo2wGEU0B2joyheoOUcrEVwIjsTllvGv6Cvsmb5VopUWWwY0TKUT+dx6f6kRB4yBdll/
-         jV0Q==
+        bh=bHOsQvXR3hakSFSmtqr6ZnE8Sp59mrLg73lyyGTu7WE=;
+        b=EedMFybdjDgyC2qmrrxjHi95X/hbVzlwnXEkl7H8uZFxrExOn0ZD6A/jfJMsTRb5SU
+         D74sKE/i2yEi8O48Mkje7IpC6GyIgd17JJb5gX7rSxo71b+ZCWoueYIEXsy5mvsxOM3q
+         32XPGId/v5vHs/Wyr64sv35Z+mXuhb6FAoCI3vjNkG1AA6Bpj9hdgKC9TJd97yQ9/gOb
+         xnziuf7DnepAJej6m0eGxT/hdmV421FEVPVBcks+qym8hyV5kffuUavuViIfIXqOe3X+
+         fQjtEWa/eaoPP442bHQHjqMDvuExIC57mnl+LjfI00X615zFRTqNK6qX+jGgFOH5QPCv
+         X62w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HersfMJkZd5e6DBLXP/NMgfEzYAxOgK3H+M5S2K1LU0=;
-        b=Zjv+RgU/EJ4pOHExYhjNHiWlQ55kW0MTpwB2qpqFW6SnOPAgHtAMsrb6d6FyiVTMvT
-         7rjS0DIwirdOmqSuZ0qS5109IuMwbS2fx9h6dHvhgtYPhVrGM7KN04otn8BtZlBZYd9k
-         xcrpFbHw83f3RAeVmr7Px4Mrw9iGoSac3Ksz3juloWp8EI3X/tSHGc2Ya0Lvnsh2FZN2
-         JwEkmeIavoksAiLbmyzwYRmFPVIsa07Fnc0TBtFSJeQn1Ncwe+Qa5aWGwFvZ3Te/tkwn
-         qK93lCl9spMWTiEkPjtrqBJseq6sNfRuZOROg74xpIiGhBRURWPczoxWABsk3C+uS12J
-         Ua1w==
-X-Gm-Message-State: ANoB5pnTTw7icT0wimiZEXes1Agmrf0s+ZTD/H2mWOgoBu91CxTQWMCf
-        tNSGrOgM36FibnRyyTa5JFRvrQ==
-X-Google-Smtp-Source: AA0mqf6kzVSHOpKMEPw+bxW6ZPPAXtINRQBP89ZkkNPgLM8CRQuBIYUGR5ePdb9tey7NkUYEz7PZUg==
-X-Received: by 2002:a2e:a305:0:b0:27a:31cc:c88 with SMTP id l5-20020a2ea305000000b0027a31cc0c88mr1350951lje.51.1670604537138;
+        bh=bHOsQvXR3hakSFSmtqr6ZnE8Sp59mrLg73lyyGTu7WE=;
+        b=oDNFSWmva4tPd5xbSAT3gjOo9iBQzSo9snHsCaao9eosEz8P45N67ecpWa6O2+M2iN
+         RPGbyg+TE6XlGFO600GI72W/NLekb0cb82rJJzbgc1brVuJnx43L37hlFpxsbXLSJVms
+         2nJPXx+Aiy+q7ns9fIuWAslDltQxsN36goAj4nRqJNH0ZbhWUhfjmjdHfjuRz3sqBZr5
+         pLX3u7lALOFcqyRvHk1W++stWTf2bGEIfqJHFv67iho5ST5gB8Bj+4Ru8Sqi6I4ukqfd
+         cbMpqhub5b+hTPHnS6yDcVkqWUo4K3DkPsIkwQ3oJOZCs4FRBRWRFJfYbMgx4itwFOof
+         XRVw==
+X-Gm-Message-State: ANoB5pna5XpPvBx45wi/LGJHCYNTLrIj08YU1NevMlz7uYwEEP0Jo4bC
+        Jxfj5WJGoaKOsElKwZqHjkg43A==
+X-Google-Smtp-Source: AA0mqf511Y3cnon+M1mh4oCJiaUtKB0Z+KpwbRykcxtLSPAIE/C41dshN+gl/Rz6KDReE/PyJfGQ8w==
+X-Received: by 2002:a2e:300a:0:b0:27a:3d9d:81f5 with SMTP id w10-20020a2e300a000000b0027a3d9d81f5mr240439ljw.5.1670604537829;
         Fri, 09 Dec 2022 08:48:57 -0800 (PST)
 Received: from eriador.lan (dzccz6yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a085:4d00::8a5])
-        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002770fb5722fsm275242ljm.123.2022.12.09.08.48.56
+        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002770fb5722fsm275242ljm.123.2022.12.09.08.48.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 08:48:56 -0800 (PST)
+        Fri, 09 Dec 2022 08:48:57 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         Taniya Das <quic_tdas@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, Alex Elder <elder@linaro.org>
-Subject: [PATCH v3 01/19] dt-bindings: clocks: qcom: rpmcc: add LN_BB_CLK_PIN clocks
-Date:   Fri,  9 Dec 2022 18:48:37 +0200
-Message-Id: <20221209164855.128798-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 02/19] clk: qcom: smd-rpm: enable pin-controlled ln_bb_clk clocks on qcs404
+Date:   Fri,  9 Dec 2022 18:48:38 +0200
+Message-Id: <20221209164855.128798-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221209164855.128798-1-dmitry.baryshkov@linaro.org>
 References: <20221209164855.128798-1-dmitry.baryshkov@linaro.org>
@@ -78,25 +78,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin-controlled Low-Noise BB clock definition.
+The commit eaeee28db289 ("clk: qcom: smd: Add support for QCS404 rpm
+clocks") defined the pin-controlled ln_bb_clk clocks, but didn't add
+them to the qcs404_clks array. Add them to make these clocks usable to
+platform devices.
 
+Fixes: eaeee28db289 ("clk: qcom: smd: Add support for QCS404 rpm clocks")
+Reviewed-by: Alex Elder <elder@linaro.org?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- include/dt-bindings/clock/qcom,rpmcc.h | 2 ++
+ drivers/clk/qcom/clk-smd-rpm.c | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,rpmcc.h b/include/dt-bindings/clock/qcom,rpmcc.h
-index c0ad624e930e..46309c9953b2 100644
---- a/include/dt-bindings/clock/qcom,rpmcc.h
-+++ b/include/dt-bindings/clock/qcom,rpmcc.h
-@@ -168,5 +168,7 @@
- #define RPM_SMD_MSS_CFG_AHB_CLK		122
- #define RPM_SMD_MSS_CFG_AHB_A_CLK		123
- #define RPM_SMD_BIMC_FREQ_LOG			124
-+#define RPM_SMD_LN_BB_CLK_PIN			125
-+#define RPM_SMD_LN_BB_A_CLK_PIN			126
+diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.c
+index fea505876855..3082f38513fa 100644
+--- a/drivers/clk/qcom/clk-smd-rpm.c
++++ b/drivers/clk/qcom/clk-smd-rpm.c
+@@ -843,6 +843,8 @@ static struct clk_smd_rpm *qcs404_clks[] = {
+ 	[RPM_SMD_RF_CLK1_A] = &msm8916_rf_clk1_a,
+ 	[RPM_SMD_LN_BB_CLK] = &msm8992_ln_bb_clk,
+ 	[RPM_SMD_LN_BB_A_CLK] = &msm8992_ln_bb_a_clk,
++	[RPM_SMD_LN_BB_CLK_PIN] = &qcs404_ln_bb_clk_pin,
++	[RPM_SMD_LN_BB_A_CLK_PIN] = &qcs404_ln_bb_clk_a_pin,
+ };
  
- #endif
+ static const struct rpm_smd_clk_desc rpm_clk_qcs404 = {
 -- 
 2.35.1
 
