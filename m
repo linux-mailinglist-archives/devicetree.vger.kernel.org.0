@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96987648D36
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 06:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 617B7648D6B
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 08:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiLJFY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 00:24:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48234 "EHLO
+        id S229640AbiLJHce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 02:32:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiLJFY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 00:24:58 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B0413DD7;
-        Fri,  9 Dec 2022 21:24:57 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id x28so10143490lfn.6;
-        Fri, 09 Dec 2022 21:24:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3gp2u14h0dnYSNhcfL3eNILAFSlGBrCZqmYzWKjZ3+A=;
-        b=XOxh6XFDEu+b7+FKIte4ImHu252tGNYpf9imSmjEhbTO23txERGzb04HV8OFNXJ05b
-         QAhVC4rlsWM+3eIKBS3YR5ib3w6c8oN3qQRbkwxhnG2nVDVlrSfZ+xOWxzxo0fsR63dA
-         4+fOe6Uq+FZqpD+e+9lrgLOI0ek0aH1PU1FFP8fnipJ7yJtiPIlTGWG4ear/1XbN+Bz3
-         OayMqwxDcSHTj9Zt04hyy75GdZSnLdlI0JwzJnEVCC72NQFklOzmczv81TDaBwqmNZjv
-         1HHguXhcv+uggxGlOoWu0rcCLYb+rGZAgCedOukZ2fL34zqRjrmT6EExukUwyNwqO9NM
-         heOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3gp2u14h0dnYSNhcfL3eNILAFSlGBrCZqmYzWKjZ3+A=;
-        b=aLgsTrmWAuFPEcTzPSj7Yebzmio8fehw5eED8PmJ+1JoAnNuMN12gXc9vTN/uYmoqD
-         zai0sQln745RgE/sDAV/ceCfo+VhUZ07ZsLeUSffceOd6n4WdYY4VDPAxqwxG9Lc860R
-         YH234oubaByGtY9ivUf1OvXeYo+T7nL/uXQQSww4r7FuDQBreRKQ8Mo44pjxwY3HHwzw
-         XCqIIcNB+bOb26PbmnLAuPHYcc3H5TZzH3/hhk9EbRsgnhYdvkKwg3RcYadM65cotRRE
-         U2RyYhVUDMLVBts7P57YgZ887DsrxS5K4JjGxe+ejXEyBHyTpUx8dLbwyJz1/tMwEMSn
-         KnIA==
-X-Gm-Message-State: ANoB5pncdX/vLsUnqHlzpUnOh4kJH6WEmqjbH43/Gv52trKPdb067Tgj
-        +AuYqzjqiJGBGgv3S4ppXd0=
-X-Google-Smtp-Source: AA0mqf6/5Dc7kI1T98sGYAP121BGY/V1iSHtQPEl/mcu/QL9XdOCU5jR5PfMpRg5VEEzacF/6PQnDQ==
-X-Received: by 2002:a05:6512:1283:b0:4a4:68b8:9c37 with SMTP id u3-20020a056512128300b004a468b89c37mr3628595lfs.31.1670649896116;
-        Fri, 09 Dec 2022 21:24:56 -0800 (PST)
-Received: from localhost.localdomain ([176.106.35.163])
-        by smtp.gmail.com with ESMTPSA id z19-20020a056512371300b004b4bab7d5a9sm572702lfr.46.2022.12.09.21.24.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Dec 2022 21:24:55 -0800 (PST)
-From:   Dominik Kobinski <dominikkobinski314@gmail.com>
-To:     konrad.dybcio@linaro.org
-Cc:     agross@kernel.org, alexeymin@postmarketos.org,
-        bjorn.andersson@linaro.org, bribbers@disroot.org,
-        devicetree@vger.kernel.org, dominikkobinski314@gmail.com,
-        linux-arm-msm@vger.kernel.org, petr.vorel@gmail.com,
-        pevik@seznam.cz
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8992-lg-bullhead: Disable cont_splash_mem
-Date:   Sat, 10 Dec 2022 06:24:54 +0100
-Message-Id: <20221210052454.314693-1-dominikkobinski314@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <2cf45767-7974-3b40-fa18-ec33db5d5ac2@linaro.org>
-References: <2cf45767-7974-3b40-fa18-ec33db5d5ac2@linaro.org>
+        with ESMTP id S229468AbiLJHcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 02:32:33 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2021263B;
+        Fri,  9 Dec 2022 23:32:27 -0800 (PST)
+X-UUID: ca6ba3865f0e40758cb07f733de742cf-20221210
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=RV9FBZj19jlJj76zizzD8sDNUjqQGz9+DRIs5bQdvgo=;
+        b=dpGonxXrGs6UCuur090hQkAr6Q9Ja6LSvMw4j9VSg+YOmtyXc5d+p4dlQyyCHWP+IJeeLfYzpG2+3E+OJXKnpMxZ8BMi9en5AvnBZAfxOm/y9bTyBDbhEJWelks7sUgsyXRujnMvDXbI2M2sL9TO674qpnvvulTTimthE1ClxI4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.14,REQID:35998799-579d-492b-ba45-6a4975e798b6,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.14,REQID:35998799-579d-492b-ba45-6a4975e798b6,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:dcaaed0,CLOUDID:f8a531d2-652d-43fd-a13a-a5dd3c69a43d,B
+        ulkID:2212101532234J9HKBJQ,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: ca6ba3865f0e40758cb07f733de742cf-20221210
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 21752955; Sat, 10 Dec 2022 15:32:22 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 10 Dec 2022 15:32:20 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 10 Dec 2022 15:32:19 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/5] media: mediatek: vcodec: Fix power_VideoCall test fail
+Date:   Sat, 10 Dec 2022 15:32:13 +0800
+Message-ID: <20221210073218.17350-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Random getting below error message when test power_VideoCall/control.49_vp9:
+pc : __list_del_entry_valid+0xb0/0xfc
+lr : __list_del_entry_valid+0xac/0xfc
+sp : ffffffc020f23ce0
 
-Looks like the reboot issue was caused by a memory hole not being reserved.
-It's defined in the downstream kernel source (link : [1]). 
+The lat_buf in core list won't be deleted when one instance decode done.
+Will access invalid released lat_buf list when queue work continue to decode.
+Firstly, remove all unused lat_buf to the top of core list, making sure
+these buffers can be decoded in highest priority; lastly, remove all unused
+lat_buf when the instance is freed.
 
-Adding it makes the kernel boot fine (tested when booted from lk2nd)
+patch 1 add params to record lat and core lat_buf count.
+patch 2 using each instance lat_buf count replace core ready list.
+patch 3 move lat_buf to the top of core list.
+patch 4 add core decode done event.
+patch 5 remove unused lat_buf.
+---
+Yunfei Dong (5):
+  media: mediatek: vcodec: add params to record lat and core lat_buf
+    count
+  media: mediatek: vcodec: using each instance lat_buf count replace
+    core ready list
+  media: mediatek: vcodec: move lat_buf to the top of core list
+  media: mediatek: vcodec: add core decode done event
+  media: mediatek: vcodec: remove unused lat_buf
 
-I'll try to send a patch with it tomorrow.
+ .../platform/mediatek/vcodec/vdec_msg_queue.c | 74 +++++++++++++++++--
+ .../platform/mediatek/vcodec/vdec_msg_queue.h | 13 ++++
+ 2 files changed, 81 insertions(+), 6 deletions(-)
 
-Kind regards,
-Dominik
+-- 
+2.18.0
 
-[1] https://github.com/android-linux-stable/bullhead/blob/android-msm-bullhead-3.10/arch/arm64/boot/dts/lge/msm8992-bullhead.dtsi#L144
