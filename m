@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10295648DF2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A786648DF9
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:32:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbiLJJbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 04:31:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58334 "EHLO
+        id S229749AbiLJJb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 04:31:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiLJJbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:31:19 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1D212AD9
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:18 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id s25so94394lji.2
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:18 -0800 (PST)
+        with ESMTP id S229470AbiLJJb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:31:58 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DE412AD9
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:56 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id b3so10725628lfv.2
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M+HZ2UMBdem2ooBDTFN6oxFPfKBOmQHSueRlKfK2c/4=;
-        b=mNLaJ39vpYQFEKXM/SGxUbeLc2o4WU9TeoCA9Lw9p428her6/0WdNMWT7A40m92yX0
-         Ffi33NGqd+a5W7g1QDlgE7OwQBlFwSSay4WUivpyiS3WAkcxEr976NlNoORBaoBsLlAF
-         4+D0d+2LlMMHcximGWbyoP1VtP0N5ZUQN8QCljVyvvhmboo27IEbH9emw2ZmKdRTQ3zP
-         PwBLJeiGTFJ/5LvhhkUpN+ewknRK7D807n60ivLycbASq+THoJfoeaNjsQ617uDoylHv
-         pNojOFGqIfm8IQMXKLo8tr+ffmMqodMMW0YYGU+j8A2UMeWe6AZH0jF59ZjxZzXGPSqY
-         5aLw==
+        bh=q22psyh7vIuSTAyo+VTH/u5gOPrXWBAWUyVY5G37HJ4=;
+        b=IByPJGZusV+y4+L58Wx24wQ3AxHtMKJGLEt8/IYcCkAStjCFT2UQsZ/IBbAoPwXDz/
+         YE3QOgtZUdY0Z77kEU1tScwbAZc5IAe4yKUUTNFCzR8UB2zl2DZTLLkAb8ic77L1yu9Z
+         AX18YA0dmOSTttrhVpJeMCD2k0j0bnSwMXTOrKhO3U0AgoZtKgYjOARQGKh7QnHYeWVr
+         ZJZwSpUvkAxqRtSN0chdrhGnb9TGBB0hiAEDSexgh5eNXFLPToJFAg12yEijpl3FLC0t
+         Doj3kk8OkPOz4CcKUvh73ie/mOGGQRipm4fVmRx9P/knHu915x3OeiyuJEqNy7nv4tKn
+         s9GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M+HZ2UMBdem2ooBDTFN6oxFPfKBOmQHSueRlKfK2c/4=;
-        b=ggNwg5m+bko4WkGAkONJ+WthvvCccUhuHkLLW8CYuFR11v4KZBzF6+ZksHmXXMHVHz
-         ZbONUpFG1zRBJAfH18W0QgG1M7nrgOxY3mkIGBQjoyJv9kObToeK21oGa6OG5jYBikhH
-         EVAmeRPI41eKXVMvhmU3b4iSD4MRqSrKfjDc5XcXCgWzSVBoySLFt0hfbpF+S1L6nxSZ
-         buXDsJGh/LGLHfGcXnd7Ww7fN36CXTMX42TpiLjw6FSc+k6ti5yOL/jCApXn2sBQ5JNE
-         2a37+cu+pXjQXZ2gPAwxyTccaeV1Yn3ajCoBrLwVw5Yh6yZSpqOtplHwco3eX+eX3l4m
-         Pm3w==
-X-Gm-Message-State: ANoB5pnDK9kS8t0OxrEfcsdK1mLSX2s52xk/0aOvwPX+NkKbrFUay49R
-        ghdjJMO1xi8AuTwVlUiIbeaY9A==
-X-Google-Smtp-Source: AA0mqf4BoK/U9B+Rh9EtaxBLhf3STxEGHiaY0hpQOQ8M8qltYekFMwQ1P3PvGG6uaIqRsP/AuFYexA==
-X-Received: by 2002:a05:651c:12c4:b0:26f:db34:b387 with SMTP id 4-20020a05651c12c400b0026fdb34b387mr2051621lje.3.1670664676955;
-        Sat, 10 Dec 2022 01:31:16 -0800 (PST)
+        bh=q22psyh7vIuSTAyo+VTH/u5gOPrXWBAWUyVY5G37HJ4=;
+        b=7njq8oyhFDplRPxiIMqtbTJCpqniTaGjlN04fTW1QJSsrQ2YTQPbEEBT7CbMDV0V7K
+         rbrMGwiDNVNKbvgKZ4oqfVQD7wuW31NyMYO4nQN5My54dKVDhOv+NZIQZjg1ZQ85+VPo
+         HxLFFdoGMZUiWl35CI6++rY6ZyFxNpqFbI4o3IQScZYFnZ8BdyGlVw0g8TAcJBoLWN5l
+         Z66RqD9UPsImf2jOd93JAH597CWQlJV8sGlKxNZnQANXhXSjlv/nOa/Kqv8tw4LQ1X8h
+         DUHR0CiMvfwfjlchKCMxdrPRaItlMf8runxJGg8OzAIbc7zocvymWxkky/wknh62bGAQ
+         7TpQ==
+X-Gm-Message-State: ANoB5pnDuEfY69MWGcx/nSCXitX/YnrazwjmQlrnc6YJ229igrFPAoDI
+        VxTD7UVHwQ5Rf3p5hV65bxw6f7/jbMNCaXyn
+X-Google-Smtp-Source: AA0mqf5cBUGRW0tkcAXfALEyDIFlijX6tAjRld5gC/6BIXWWq9sBRCjqmUtNdkImfcWqMp4Il3O6Fg==
+X-Received: by 2002:ac2:47f8:0:b0:4b5:5da1:4bcb with SMTP id b24-20020ac247f8000000b004b55da14bcbmr3601239lfp.13.1670664715064;
+        Sat, 10 Dec 2022 01:31:55 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id z19-20020a05651c11d300b00279c10ae746sm515008ljo.140.2022.12.10.01.31.15
+        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b004949a8df775sm652098lfr.33.2022.12.10.01.31.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Dec 2022 01:31:16 -0800 (PST)
-Message-ID: <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
-Date:   Sat, 10 Dec 2022 10:31:14 +0100
+        Sat, 10 Dec 2022 01:31:54 -0800 (PST)
+Message-ID: <5013a8f8-2c2c-f298-b397-8dc6b1944b31@linaro.org>
+Date:   Sat, 10 Dec 2022 10:31:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH net-next 2/2] net: ipa: add IPA v4.7 support
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150-kumano: Panel framebuffer is
+ 2.5k instead of 4k
 Content-Language: en-US
-To:     Alex Elder <elder@linaro.org>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
-Cc:     andersson@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>
-References: <20221208211529.757669-1-elder@linaro.org>
- <20221208211529.757669-3-elder@linaro.org>
- <47b2fb29-1c2e-db6e-b14f-6dfe90341825@linaro.org>
- <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221209191733.1458031-1-marijn.suijten@somainline.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
+In-Reply-To: <20221209191733.1458031-1-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -83,72 +88,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 9.12.2022 21:22, Alex Elder wrote:
-> On 12/8/22 3:22 PM, Konrad Dybcio wrote:
->>
->>
->> On 8.12.2022 22:15, Alex Elder wrote:
->>> Add the necessary register and data definitions needed for IPA v4.7,
->>> which is found on the SM6350 SoC.
->>>
->>> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> Signed-off-by: Alex Elder <elder@linaro.org>
->>> ---
->> [...]
->>> +
->>> +/* Memory configuration data for an SoC having IPA v4.7 */
->>> +static const struct ipa_mem_data ipa_mem_data = {
->>> +    .local_count    = ARRAY_SIZE(ipa_mem_local_data),
->>> +    .local        = ipa_mem_local_data,
->>> +    .imem_addr    = 0x146a9000,
->>> +    .imem_size    = 0x00002000,
->> Should probably be
->>
->> 0x146a8000
->> 0x00003000
->>
->> with an appropriate change in dt to reserve that region.
->>
->> Qualcomm does:
->> ipa@... { qcom,additional-mapping = <0x146a8000 0x146a8000 0x2000>; };
->>
->> which covers 0x146a8000-0x146a9fff
->>
->> plus
->>
->> imem@.. { reg = <0x146aa000 0x1000>; };
->>
->> which in total gives us 0x146a8000-0x146aafff
+On 9.12.2022 20:17, Marijn Suijten wrote:
+> The framebuffer configuration for kumano griffin, written in kumano dtsi
+> (which is overwritten in bahamut dts for its smaller panel) has to use a
+> 1096x2560 configuration as this is what the panel (and framebuffer area)
+> has been initialized to.  Downstream userspace also has access to (and
+> uses) this 2.5k mode by default, and only switches the panel to 4k when
+> requested.
 > 
-> Can you tell me where you found this information?
-[1], [2]
-
-> 
->> That would also mean all of your writes are kind of skewed, unless
->> you already applied some offsets to them.
-> 
-> This region is used by the modem, but must be set up
-> by the AP.
-> 
->> (IMEM on 6350 starts at 0x14680000 and is 0x2e000 long, as per
->> the bootloader memory map)
-> 
-> On SM7250 (sorry, I don't know about 7225, or 6350 for that matter),
-> the IMEM starts at 0x14680000 and has length 0x2c000.  However that
-> memory is used by multiple entities.  The portion set aside for IPA
-> starts at 0x146a9000 and has size 0x2000.
-> 
-Not sure how 7250 relates to 6350, but I don't think there's much
-overlap..
-
+> Fixes: d0a6ce59ea4e ("arm64: dts: qcom: sm8150: Add support for SONY Xperia 1 / 5 (Kumano platform)")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-
-[1] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L3698-L3707
-
-[2] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L1004-L1045
->                     -Alex
+>  arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
->> Konrad
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+> index 8f1ddc969406..9f48a097927e 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+> @@ -35,9 +35,10 @@ chosen {
+>  		framebuffer: framebuffer@9c000000 {
+>  			compatible = "simple-framebuffer";
+>  			reg = <0 0x9c000000 0 0x2300000>;
+> -			width = <1644>;
+> -			height = <3840>;
+> -			stride = <(1644 * 4)>;
+> +			/* Griffin BL initializes in 2.5k mode, not 4k */
+> +			width = <1096>;
+> +			height = <2560>;
+> +			stride = <(1096 * 4)>;
+>  			format = "a8r8g8b8";
+>  			/*
+>  			 * That's (going to be) a lot of clocks, but it's necessary due
