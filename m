@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A786648DF9
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0765E648DFB
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:33:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiLJJb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 04:31:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+        id S229779AbiLJJdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 04:33:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiLJJb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:31:58 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DE412AD9
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:56 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id b3so10725628lfv.2
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:56 -0800 (PST)
+        with ESMTP id S229762AbiLJJdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:33:21 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C114811803
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:33:19 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g7so10723196lfv.5
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:33:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q22psyh7vIuSTAyo+VTH/u5gOPrXWBAWUyVY5G37HJ4=;
-        b=IByPJGZusV+y4+L58Wx24wQ3AxHtMKJGLEt8/IYcCkAStjCFT2UQsZ/IBbAoPwXDz/
-         YE3QOgtZUdY0Z77kEU1tScwbAZc5IAe4yKUUTNFCzR8UB2zl2DZTLLkAb8ic77L1yu9Z
-         AX18YA0dmOSTttrhVpJeMCD2k0j0bnSwMXTOrKhO3U0AgoZtKgYjOARQGKh7QnHYeWVr
-         ZJZwSpUvkAxqRtSN0chdrhGnb9TGBB0hiAEDSexgh5eNXFLPToJFAg12yEijpl3FLC0t
-         Doj3kk8OkPOz4CcKUvh73ie/mOGGQRipm4fVmRx9P/knHu915x3OeiyuJEqNy7nv4tKn
-         s9GQ==
+        bh=mGfrbK5ti76cYm25UBxY9tc7IHas7Pzc/DKbMUVNEU8=;
+        b=a7sB7iSPGHTkN4uxjv7f4BpupQpw+i/uQCTC4lS3dlOoScGOfJ3hsYbuOxFxkwxLgw
+         6wBN5sHslpVjafLZSWqK0jr+/1QQWPXRDRqhpvciwhROoFXo/vnOeY8cS9eyFJOSY3YA
+         1Dyu7uvvRdvRrfPsvCdcfXSC0Fc4ET+7qUKMD1IS0GkYUgpDv38dvSJae5P+YID8XWU5
+         IK9eGH5x1C3FwC5k58DQAEktvYXB3tqmbQVQXdpm3lPgT5lThCB6UQen6IuOOEDwxy2x
+         8EPokRnwzZmdKolu41nh8lc14/AKPAgNc7thMmrVvkEIIBubsGey1cGPVkw6+1o5aT58
+         X5Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q22psyh7vIuSTAyo+VTH/u5gOPrXWBAWUyVY5G37HJ4=;
-        b=7njq8oyhFDplRPxiIMqtbTJCpqniTaGjlN04fTW1QJSsrQ2YTQPbEEBT7CbMDV0V7K
-         rbrMGwiDNVNKbvgKZ4oqfVQD7wuW31NyMYO4nQN5My54dKVDhOv+NZIQZjg1ZQ85+VPo
-         HxLFFdoGMZUiWl35CI6++rY6ZyFxNpqFbI4o3IQScZYFnZ8BdyGlVw0g8TAcJBoLWN5l
-         Z66RqD9UPsImf2jOd93JAH597CWQlJV8sGlKxNZnQANXhXSjlv/nOa/Kqv8tw4LQ1X8h
-         DUHR0CiMvfwfjlchKCMxdrPRaItlMf8runxJGg8OzAIbc7zocvymWxkky/wknh62bGAQ
-         7TpQ==
-X-Gm-Message-State: ANoB5pnDuEfY69MWGcx/nSCXitX/YnrazwjmQlrnc6YJ229igrFPAoDI
-        VxTD7UVHwQ5Rf3p5hV65bxw6f7/jbMNCaXyn
-X-Google-Smtp-Source: AA0mqf5cBUGRW0tkcAXfALEyDIFlijX6tAjRld5gC/6BIXWWq9sBRCjqmUtNdkImfcWqMp4Il3O6Fg==
-X-Received: by 2002:ac2:47f8:0:b0:4b5:5da1:4bcb with SMTP id b24-20020ac247f8000000b004b55da14bcbmr3601239lfp.13.1670664715064;
-        Sat, 10 Dec 2022 01:31:55 -0800 (PST)
+        bh=mGfrbK5ti76cYm25UBxY9tc7IHas7Pzc/DKbMUVNEU8=;
+        b=MyRr2sQgD8/3HjSG1KFpLdHStAFdJsYAiA6mvmL9l55QAWUcj4D5SJ9qchfpGEL4d6
+         u3yHh79w7KsWHt8BHBl6sq5kdN0LfeNiC4hRV3uBEDkiu+nwOk/n+6u21YaaCtw/blYc
+         btqcnEFrkPZilK6hLkZss6EfpY6fjVtZWVcROButsVuw4YwhgxO4oFpWugpnJVktcVOG
+         zFlRgep6asn1sUZcCKJRWgMyRUgJIlBLzxShVZMdcp+Wc9jeRIzscVjTkzqmELaX/BGt
+         x2nSulgPzRR9Cazlu4ZJlldZF5oDExP3VikgRjNULzPv/RpCPL/yW+sjRJRG+4MI+hg5
+         o5Fw==
+X-Gm-Message-State: ANoB5pmH7gq/0NQ5nRA/2e3g7qCm/Ez2JtpUz6nKRfnQWqA5VZOME4Ir
+        kvYSsimAqBiyVRcI0bUn9rLUAg==
+X-Google-Smtp-Source: AA0mqf6KR4ABr+4GpU4gVmc46pmDWurLqqChdv8uG4pnRDQoG6IAVIUbYoOyM3TvDQo9O3Y2+zqoHA==
+X-Received: by 2002:ac2:4f04:0:b0:4ac:5aad:3ef8 with SMTP id k4-20020ac24f04000000b004ac5aad3ef8mr2721398lfr.11.1670664798163;
+        Sat, 10 Dec 2022 01:33:18 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b004949a8df775sm652098lfr.33.2022.12.10.01.31.53
+        by smtp.gmail.com with ESMTPSA id d9-20020a056512368900b004ae24559388sm638822lfs.111.2022.12.10.01.33.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Dec 2022 01:31:54 -0800 (PST)
-Message-ID: <5013a8f8-2c2c-f298-b397-8dc6b1944b31@linaro.org>
-Date:   Sat, 10 Dec 2022 10:31:53 +0100
+        Sat, 10 Dec 2022 01:33:17 -0800 (PST)
+Message-ID: <8eb9f68d-c36c-15e9-9bde-d436b3ed5925@linaro.org>
+Date:   Sat, 10 Dec 2022 10:33:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150-kumano: Panel framebuffer is
- 2.5k instead of 4k
+Subject: Re: [PATCH] arm64: dts: qcom: pmi8950: Correct rev_1250v channel
+ label to mv
 Content-Language: en-US
 To:     Marijn Suijten <marijn.suijten@somainline.org>,
         phone-devel@vger.kernel.org
@@ -69,11 +69,12 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221209191733.1458031-1-marijn.suijten@somainline.org>
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221209215437.1783067-1-marijn.suijten@somainline.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221209191733.1458031-1-marijn.suijten@somainline.org>
+In-Reply-To: <20221209215437.1783067-1-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,38 +89,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 9.12.2022 20:17, Marijn Suijten wrote:
-> The framebuffer configuration for kumano griffin, written in kumano dtsi
-> (which is overwritten in bahamut dts for its smaller panel) has to use a
-> 1096x2560 configuration as this is what the panel (and framebuffer area)
-> has been initialized to.  Downstream userspace also has access to (and
-> uses) this 2.5k mode by default, and only switches the panel to 4k when
-> requested.
+On 9.12.2022 22:54, Marijn Suijten wrote:
+> This was pointed out in review but never followed up on thanks to
+> sidetracked discussions about labels vs node names.
 > 
-> Fixes: d0a6ce59ea4e ("arm64: dts: qcom: sm8150: Add support for SONY Xperia 1 / 5 (Kumano platform)")
+> Fixes: 0d97fdf380b4 ("arm64: dts: qcom: Add configuration for PMI8950 peripheral")
 > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> index 8f1ddc969406..9f48a097927e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> @@ -35,9 +35,10 @@ chosen {
->  		framebuffer: framebuffer@9c000000 {
->  			compatible = "simple-framebuffer";
->  			reg = <0 0x9c000000 0 0x2300000>;
-> -			width = <1644>;
-> -			height = <3840>;
-> -			stride = <(1644 * 4)>;
-> +			/* Griffin BL initializes in 2.5k mode, not 4k */
-> +			width = <1096>;
-> +			height = <2560>;
-> +			stride = <(1096 * 4)>;
->  			format = "a8r8g8b8";
->  			/*
->  			 * That's (going to be) a lot of clocks, but it's necessary due
+> diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> index 32d27e2187e3..8008f02434a9 100644
+> --- a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
+> @@ -47,7 +47,7 @@ adc-chan@9 {
+>  			adc-chan@a {
+>  				reg = <VADC_REF_1250MV>;
+>  				qcom,pre-scaling = <1 1>;
+> -				label = "ref_1250v";
+> +				label = "ref_1250mv";
+>  			};
+>  
+>  			adc-chan@d {
