@@ -2,96 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A21648E41
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 11:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C1B8648E4A
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 12:02:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiLJK7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 05:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
+        id S229658AbiLJLCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 06:02:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiLJK7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 05:59:15 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E14BCA4;
-        Sat, 10 Dec 2022 02:59:14 -0800 (PST)
-From:   Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1670669953;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=iphm4QQgUglL/j++hAuj+bu5rQB4rYPNzSzGlqKLeUI=;
-        b=w0hpYeT8AutCl499sXSKrBiebT4DSTsz6/JLnrc8MrFMI8TwdgxbgU8G7WrnOAqnZyqjzv
-        Px4/RIaj79Ggr4bw+YPtbUP66xzi5s7E2YbhIDSwkYU+84vCg1SatWb/IkPu/dhB5XLx1z
-        vpGXo14ZAaLWcYbCxeF93GWRH07mLe/6Kwd8Oe+eQiB7tGjO5rpwOmsZezO1tQWy7dLwrn
-        Xd0EjFiiJps1nJAODIiLUvvG2gN0iqjrc73g6TlmA4lo8XaP6jG3Ak695qIUBwOKECI9xA
-        wSE4IshBzCGDyUm/Wf1DGC39fFZ65DoFDMVI2Au6icQ+rmXHV+4OuL7PVmU31g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1670669953;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=iphm4QQgUglL/j++hAuj+bu5rQB4rYPNzSzGlqKLeUI=;
-        b=rmVcFUCHGOam9sPMXWxNgZG5hlZhACkPFkY8AeSnVSE1kw6bft2iITHjDd6SdhvhwVCwpX
-        sAWtTcrmi5GZuSCg==
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        William Breathitt Gray <william.gray@linaro.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
-In-Reply-To: <OS0PR01MB5922293733EFD0D4F3E6B270861F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
- <20221205225042.GA2812115-robh@kernel.org>
- <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdX2=AwerQZS2cqR4exq_QNtt=Fwp5KBcmPr1qmOBNOSAg@mail.gmail.com>
- <87sfhsgb9e.ffs@tglx>
- <OS0PR01MB59228CED6187C7B19776CE22861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <878rjjfprw.ffs@tglx>
- <OS0PR01MB5922B590AB9791B9741E2A1D861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <87sfhrdure.ffs@tglx> <Y5O1g8/69tCfmdW6@fedora>
- <OS0PR01MB5922293733EFD0D4F3E6B270861F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Date:   Sat, 10 Dec 2022 11:59:12 +0100
-Message-ID: <875yejcynz.ffs@tglx>
+        with ESMTP id S229759AbiLJLCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 06:02:05 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E8F1CB07
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 03:02:04 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id b13so10937046lfo.3
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 03:02:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qtLsUqxObl5gNvozPidJotWpMooTYg5mjWrhCt6bCKc=;
+        b=sa7G/COWN4N2/rdfMXhPIS4QNgjWvxGqmVy3Kc/nEw8P5EMBZI2C9N2iJ1ZOBf5Gtr
+         CZEe6BLdgqFCsRv4qp0Itb+kxQeZOjuF3zHRFkTVbQTLgI3xStpWZ6cvud8cbontaloD
+         b1S8+u79d2H5OY46sujlez8DAwRSB1znFSbOeFwavjs4T6j/5L6kw98dy9/vXPsWCZiX
+         FUWpLR/Lxz66vOnSxEmcpnmfj/waImf3y9bzM89ybGBDcvPGUooZaJfS9Wm+vIpqDayj
+         d5IlEvXfo1RR7jZ62abZyW1mZtdexBsNyUzRwZX6qTdWMe6fJb7HjXScpkRGzw0lDVmZ
+         CAyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtLsUqxObl5gNvozPidJotWpMooTYg5mjWrhCt6bCKc=;
+        b=CdG8nndByXm4DTZNumHfYTDqPIV40qHYT5y2kha9ImaxJV9Lxr+UWK91OOoWFCFjkM
+         FtBXwM7DX0l/h9DIK9BgiiY8dYOA/SFathPPPV+6QG+DFq8XgbEbrKGOa89utKPioG6V
+         WIaEafTpgXbR7G7AEx0NvhqPkYCsrf8Z4Y7fFEwbQKRpWHt6hbOpeXZmXgKpWPpQ8KQC
+         /ZO2V31zZaF+kDhm0jBN+ktT6XXDGJrp0rrWdqLwoCzURrYJErLx2KyUu5fHAGWPzQ4M
+         TxzvetNp5nqPRny1TtQjhd1ZdG3DHCyjb5Pf0WMKlq6HRF1edCkbTFbIvB/Ar/XLn2Eu
+         Ao8g==
+X-Gm-Message-State: ANoB5pmXHMUdfe7R7+nKHJVwdNMZEOUZDL9iecYkH+/ULMhjYoMiTQFg
+        VhzgpdkBY9u3QZapF83x06jWrw==
+X-Google-Smtp-Source: AA0mqf4ukIq8f55ZwoT5lfBoGPIv3vIjf6EYKWXJHuBG4yXo1R8WH7bHnid2bOObROuEjdX9eqdlcg==
+X-Received: by 2002:ac2:569e:0:b0:4b5:9e59:8cdd with SMTP id 30-20020ac2569e000000b004b59e598cddmr1912500lfr.67.1670670120896;
+        Sat, 10 Dec 2022 03:02:00 -0800 (PST)
+Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
+        by smtp.gmail.com with ESMTPSA id s14-20020a056512202e00b004b5284a92f9sm674523lfs.208.2022.12.10.03.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Dec 2022 03:02:00 -0800 (PST)
+Message-ID: <3c5aeda7-6773-0b41-9c02-5f423117c3b3@linaro.org>
+Date:   Sat, 10 Dec 2022 12:01:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH] dt-bindings: ufs: qcom: Add reg-names property for ICE
+Content-Language: en-US
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     Luca Weiss <luca.weiss@fairphone.com>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221209-dt-binding-ufs-v1-0-8d502f0e18d5@fairphone.com>
+ <24fa41d2-87d1-be19-af44-337784b0f0a4@linaro.org>
+ <COXDTKRPPU1J.373YHYKBQIN38@otso>
+ <a527720e-d4d9-6c90-f991-a5b123c4559b@linaro.org>
+ <Y5OOA2+OuwgZ1i7B@sol.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y5OOA2+OuwgZ1i7B@sol.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 10 2022 at 07:52, Biju Das wrote:
-> scheduling tick is 4millisec. so if we want callback at 1 microsec,
-> then we need to use clock_nanosleep. Getting 1 microsec callback to
-> user space is challenging as the scheduling tick is only 4 millisec.
+On 09/12/2022 20:35, Eric Biggers wrote:
+> On Fri, Dec 09, 2022 at 04:19:20PM +0100, Krzysztof Kozlowski wrote:
+>> On 09/12/2022 16:11, Luca Weiss wrote:
+>>> On Fri Dec 9, 2022 at 4:05 PM CET, Krzysztof Kozlowski wrote:
+>>>> On 09/12/2022 15:29, Luca Weiss wrote:
+>>>>> The code in ufs-qcom-ice.c needs the ICE reg to be named "ice". Add this
+>>>>> in the bindings so the existing dts can validate successfully.
+>>>>>
+>>>>> Also sm8450 is using ICE since commit 276ee34a40c1 ("arm64: dts: qcom:
+>>>>> sm8450: add Inline Crypto Engine registers and clock") so move the
+>>>>> compatible to the correct if.
+>>>>>
+>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> ---
+>>>>> (no cover subject)
+>>>>>
+>>>>> The only remaining validation issues I see is the following on sc8280xp-crd.dtb
+>>>>> and sa8540p-ride.dtb:
+>>>>>
+>>>>>   Unevaluated properties are not allowed ('required-opps', 'dma-coherent' were unexpected)
+>>>>>
+>>>>> Maybe someone who knows something about this can handle this?
+>>>>>
+>>>>> And the patch adding qcom,sm6115-ufshc hasn't been applied yet.
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 8 +++++++-
+>>>>>  1 file changed, 7 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>>>>> index f2d6298d926c..58a2fb2c83c3 100644
+>>>>> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>>>>> @@ -102,7 +102,6 @@ allOf:
+>>>>>                - qcom,sc8280xp-ufshc
+>>>>>                - qcom,sm8250-ufshc
+>>>>>                - qcom,sm8350-ufshc
+>>>>> -              - qcom,sm8450-ufshc
+>>>>>      then:
+>>>>>        properties:
+>>>>>          clocks:
+>>>>> @@ -130,6 +129,7 @@ allOf:
+>>>>>                - qcom,sdm845-ufshc
+>>>>>                - qcom,sm6350-ufshc
+>>>>>                - qcom,sm8150-ufshc
+>>>>> +              - qcom,sm8450-ufshc
+>>>>>      then:
+>>>>>        properties:
+>>>>>          clocks:
+>>>>> @@ -149,6 +149,12 @@ allOf:
+>>>>>          reg:
+>>>>>            minItems: 2
+>>>>>            maxItems: 2
+>>>>> +        reg-names:
+>>>>
+>>>> There are no reg-names in top-level, so it's surprising to see its
+>>>> customized here. It seems no one ever documented that usage...
+>>>
+>>> From what I can tell, from driver side all devices not using ICE don't
+>>> need reg-names, only the "ice" reg is referenced by name in the driver.
+>>>
+>>> I didn't add it top-level because with only one reg I think we're not
+>>> supposed to use reg-names, right?
+>>
+>> And you still won't need to use. Yet property should be rather described
+>> in top-level which also will unify the items here (so no different
+>> 2-item reg-names in variants).
+>>
+>> Just add it to top-level with minItems: 1 and per variant customize:
+>> 1. maxItems: 1
+>> 2. minItems: 2 + required
+>>
+>> The "required" is a bit questionable... this was never added by Eric to
+>> the bindings. Driver support and DTS were added completely skipping
+>> bindings...
+>>
+> 
+> Sorry about that.  At the time
+> (https://lore.kernel.org/linux-scsi/20200722051143.GU388985@builder.lan/T/#t)
+> I didn't know there was a Documentation file that should have been updated.
 
-The tick is only relevant if high resolution timers are disabled because
-then hrtimers are expired in the tick. If high resolution timers are
-enabled then the hrtimer expiry happens at the exact expiry time.
+Any change regarding bindings (so adding/changing compatibles,
+properties, nodes) a driver is using must be followed by... change in
+the bindings.
 
-What's challenging about the 1 microsecond accuracy is that the system
-immanent latencies are already in that range. So while the timer fires
-exactly, the actual execution of the woken up task in user space is not
-exact as that is subject to the worst case sum of latencies in the
-system.
+> 
+> The UFS core assumes that the reg at index 0 is the UFS standard registers.
+> It is not referenced by name.
+> 
+> ufs-qcom already had an optional reg at index 1.  I needed to add another
+> optional reg.  So I made the regs at index 1 and later be optional named regs:
+> dev_ref_clk_ctrl_mem and ice.  That seemed better than hardcoding the indices.
+> 
+> Is it causing a problem that the UFS standard reg at index 0 is being mixed with
+> named regs in the same list?
 
-Thanks,
+The indexes should be ordered (hard-coded), not flexible. If there is
+already second IO address at index 1, then the patch does not look
+correct. When fixing, please fix it completely.
 
-        tglx
+Best regards,
+Krzysztof
+
