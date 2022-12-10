@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4961648EA6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 13:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A70A648EAA
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 13:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbiLJM37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 07:29:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42286 "EHLO
+        id S229494AbiLJMbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 07:31:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiLJM35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 07:29:57 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A10A1C413
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 04:29:56 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id p8so11117421lfu.11
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 04:29:56 -0800 (PST)
+        with ESMTP id S229628AbiLJMbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 07:31:37 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7921C1C901
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 04:31:36 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id s10so7662596ljg.1
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 04:31:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/S/tLvSZxZXHVY0JERCLfAZM29sEkAUhJTgc/unddeg=;
-        b=iauLDumAo/9BqlF8TA/G/2S9JBoyEusl15pJ3gg50C7J1fSv78be/eFAcJG5O8QWdq
-         sod5RBsIA4OB0yMwgVeMMKLIq6LhmVWFCV2YnEbs9C5UOzpPf2y4WIqjlbnVeKlPJ24C
-         dTYJzQ8WzqoBF/u4WUbAcJh5OisyalfDe836QklvQkxCRwDm1Nv50lUopRhGPkPARFxc
-         /Uk1vZS8v7YRiptj403pTlzV6UBhmkfhE1Vzw/zUUBT4JRCxA9I7n5B3Alw6I2zYFDKJ
-         FvZGBc76v/FqLSZBgIkpCSc83KR4yZChsLjOozyL/IYzB4CvV+mBrCmYNMucyNODIQOB
-         qY1w==
+        bh=6R8r/VCnswD9bNbiIPd9uK6NspRqfrl1hwseDl8et58=;
+        b=DQ4L2hWmrXP/0KrFothmtefJZbYb/r0ZAc9PLsTvKVvK8+rXRLpwspGHAbbIi8cpu4
+         VSjFVut4D+HpN8upau3fIbyiN9xKcTArNrEISnyKeAhlQqi5ijCXfF+YYhCWFK+Ie3Xo
+         NUT8hEDgzV+Qik5myxtCLLTE+DdBXiS0vHXD1nsIzgNVmTmDRkOFtcw8eXZTW1VjOPF7
+         tB6vNLm4Ta5KfhXzjomqzmtL3eEztdGTQu3j6H/9uYmD992e+MeDvGM2F2fdlEUqOoPQ
+         6IwqZkyqujxsWULV4u4WEOn1u5PRaL6rdtVFrPyhuiW+gK9kSDPxs8TOGxt7jbEXRoNL
+         tRLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/S/tLvSZxZXHVY0JERCLfAZM29sEkAUhJTgc/unddeg=;
-        b=f8I1HdZ6Om9cHhwW8NIrY+rFtmalVxlyjobkEDVgL6XMrtosyyzk6yZD17GUH3To8f
-         nw4jOyDN6kzViowubqGJOz7IBiNVoSM9uKgAwOMLfLLEjLT+55l+WKTn3RoPsA77ZWxP
-         TFhS7LkED61G1NzURYdNBiqbNhoycwUlnniy1RDMwdqDPReJupcvZKOSZ2iuTeehNoto
-         f9rNCJTdwHhkVz/X3STaj7ar4cpdHowfhSGHub/Nov7A64XgRq9yeMDIuo8R+B01pzYk
-         PK9h7jV9ABnCQly2JBwu3eCZG9sT0siVakB8k2Mo4aHiO99hHBpjqyPPNIXy4ujexK5V
-         uEUQ==
-X-Gm-Message-State: ANoB5pls3Y0sv4TQnLMprzXvoOa4syqV9wRMpYPfSHKHbS70iNpp/7mh
-        hkAS5yJr2C10HbY7qPrGy7wyrA==
-X-Google-Smtp-Source: AA0mqf7FHhmSa/SqG52Sj+exHj3rmyDJ05oDcK2GL1lNSyKRfWlYtiG1fw09Kd331nbceG3Zho5QDg==
-X-Received: by 2002:a05:6512:6d1:b0:4b1:8830:85e8 with SMTP id u17-20020a05651206d100b004b1883085e8mr3247569lff.26.1670675394733;
-        Sat, 10 Dec 2022 04:29:54 -0800 (PST)
+        bh=6R8r/VCnswD9bNbiIPd9uK6NspRqfrl1hwseDl8et58=;
+        b=1hvoX/0WS1KQg6cBRP0/ZMRnHTxc5eeFkvnnWETw+1R37WoHdbLbrTSDI0pH/Mk805
+         NcOeFVhZTKD0ytvdS7Pb/jo6CSW1qPWuyCua1DQjYbL3upN59LJqzZ3HFFIyeVJ1zHTZ
+         bVq7pZYdpVKh8G6MK0/1mJosnhYYHqq1XIIuzculZeDpRhsC3MXv3b9/uoWBU1GR1Ao2
+         9zfkJ4AUU9yozw5LmHxi7N2lzJO6/tNVQ/94EeAeIyAje8vD8fdMasotmoEWMatIKMTD
+         ZXgtEpuw9XUkamXr0Jlm3quGi2eZ2WPs7oxEkrDfedKARaz2TVVJysr9cKyNkpGTedwf
+         aJnQ==
+X-Gm-Message-State: ANoB5pmNCeHdZSFxY6gjjTHhIkdjtTfjGZnKUMrUXKclUEVC5MMgDaMQ
+        lGjw55TnPZ+qylWqSSI9XoptdQ==
+X-Google-Smtp-Source: AA0mqf6zQLudSfVoP+2ESlC9qRg45Z0hawTwkJbBvY4gjggHy74NHpNZMLavCGj6eOdmtmbHGDRyPw==
+X-Received: by 2002:a2e:9d8b:0:b0:279:f30f:78db with SMTP id c11-20020a2e9d8b000000b00279f30f78dbmr2275693ljj.44.1670675494844;
+        Sat, 10 Dec 2022 04:31:34 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id v17-20020ac25b11000000b004a2550db9ddsm706160lfn.245.2022.12.10.04.29.53
+        by smtp.gmail.com with ESMTPSA id h9-20020a2e9ec9000000b0027738fd1eb6sm574877ljk.110.2022.12.10.04.31.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Dec 2022 04:29:54 -0800 (PST)
-Message-ID: <f38f0bfd-858e-1995-167c-de747e57597b@linaro.org>
-Date:   Sat, 10 Dec 2022 13:29:52 +0100
+        Sat, 10 Dec 2022 04:31:34 -0800 (PST)
+Message-ID: <f1aa7f4c-35e4-47d2-2443-8271175dc5af@linaro.org>
+Date:   Sat, 10 Dec 2022 13:31:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7180: move QUP and QSPI opp
- tables out of SoC node
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8250: move sound and codec nodes
+ out of soc
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,13 +65,15 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221210115704.97614-1-krzysztof.kozlowski@linaro.org>
+ <20221210115704.97614-4-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221210115704.97614-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221210115704.97614-4-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,126 +83,103 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 10.12.2022 12:57, Krzysztof Kozlowski wrote:
-> The SoC node is a simple-bus and its schema expect to have nodes only
-> with unit addresses:
+> The sound and codec nodes are not a property of a soc, but rather board
+> as it describes the sound configuration.
+* in this case, there exist SoC-internal codecs
+
+ It also does not have unit
+> address:
 > 
->   sc7180-trogdor-lazor-r3.dtb: soc@0: opp-table-qspi: {'compatible': ['operating-points-v2'], 'phandle': [[186]], 'opp-75000000':
->     ...  'required-opps': [[47]]}} should not be valid under {'type': 'object'}
-> 
-> Move to top-level OPP tables:
->  - QUP which is shared between multiple nodes,
->  - QSPI which cannot be placed in its node due to address/size cells.
+>   sm8250-hdk.dtb: soc@0: sound: {} should not be valid under {'type': 'object'}
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 76 ++++++++++++++--------------
->  1 file changed, 38 insertions(+), 38 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index ea886cf08b4d..735581097295 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -538,6 +538,44 @@ cpu6_opp16: opp-2553600000 {
->  		};
->  	};
->  
-> +	qspi_opp_table: opp-table-qspi {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-75000000 {
-> +			opp-hz = /bits/ 64 <75000000>;
-> +			required-opps = <&rpmhpd_opp_low_svs>;
-> +		};
-> +
-> +		opp-150000000 {
-> +			opp-hz = /bits/ 64 <150000000>;
-> +			required-opps = <&rpmhpd_opp_svs>;
-> +		};
-> +
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			required-opps = <&rpmhpd_opp_nom>;
-> +		};
-> +	};
-> +
-> +	qup_opp_table: opp-table-qup {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-75000000 {
-> +			opp-hz = /bits/ 64 <75000000>;
-> +			required-opps = <&rpmhpd_opp_low_svs>;
-> +		};
-> +
-> +		opp-100000000 {
-> +			opp-hz = /bits/ 64 <100000000>;
-> +			required-opps = <&rpmhpd_opp_svs>;
-> +		};
-> +
-> +		opp-128000000 {
-> +			opp-hz = /bits/ 64 <128000000>;
-> +			required-opps = <&rpmhpd_opp_nom>;
-> +		};
-> +	};
-> +
->  	memory@80000000 {
-Sidenote: memory@ should be moved above opp-*, alphabetically
-
-For this:
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  		device_type = "memory";
->  		/* We expect the bootloader to fill in the size */
-> @@ -739,25 +777,6 @@ opp-384000000 {
+>  arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 40 ++++++++++++-------------
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi    |  6 ++--
+>  2 files changed, 22 insertions(+), 24 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> index 3ed8c84e25b8..b741b7da1afc 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+> @@ -27,6 +27,25 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>  
+> +	wcd938x: codec {
+> +		compatible = "qcom,wcd9380-codec";
+> +		#sound-dai-cells = <1>;
+> +		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
+> +		vdd-buck-supply = <&vreg_s4a_1p8>;
+> +		vdd-rxtx-supply = <&vreg_s4a_1p8>;
+> +		vdd-io-supply = <&vreg_s4a_1p8>;
+> +		vdd-mic-bias-supply = <&vreg_bob>;
+> +		qcom,micbias1-microvolt = <1800000>;
+> +		qcom,micbias2-microvolt = <1800000>;
+> +		qcom,micbias3-microvolt = <1800000>;
+> +		qcom,micbias4-microvolt = <1800000>;
+> +		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+> +		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> +		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> +		qcom,rx-device = <&wcd_rx>;
+> +		qcom,tx-device = <&wcd_tx>;
+> +	};
+> +
+>  	thermal-zones {
+>  		camera-thermal {
+>  			polling-delay-passive = <0>;
+> @@ -631,27 +650,6 @@ &slpi {
+>  	firmware-name = "qcom/sm8250/slpi.mbn";
+>  };
+>  
+> -&soc {
+> -	wcd938x: codec {
+> -		compatible = "qcom,wcd9380-codec";
+> -		#sound-dai-cells = <1>;
+> -		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
+> -		vdd-buck-supply = <&vreg_s4a_1p8>;
+> -		vdd-rxtx-supply = <&vreg_s4a_1p8>;
+> -		vdd-io-supply = <&vreg_s4a_1p8>;
+> -		vdd-mic-bias-supply = <&vreg_bob>;
+> -		qcom,micbias1-microvolt = <1800000>;
+> -		qcom,micbias2-microvolt = <1800000>;
+> -		qcom,micbias3-microvolt = <1800000>;
+> -		qcom,micbias4-microvolt = <1800000>;
+> -		qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+> -		qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> -		qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> -		qcom,rx-device = <&wcd_rx>;
+> -		qcom,tx-device = <&wcd_tx>;
+> -	};
+> -};
+> -
+>  &sound {
+>  	compatible = "qcom,sm8250-sndcard";
+>  	model = "SM8250-MTP-WCD9380-WSA8810-VA-DMIC";
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index d517d6a80bdc..fbbbae29e0c2 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -2826,9 +2826,6 @@ compute-cb@8 {
 >  			};
 >  		};
 >  
-> -		qup_opp_table: opp-table-qup {
-> -			compatible = "operating-points-v2";
-> -
-> -			opp-75000000 {
-> -				opp-hz = /bits/ 64 <75000000>;
-> -				required-opps = <&rpmhpd_opp_low_svs>;
-> -			};
-> -
-> -			opp-100000000 {
-> -				opp-hz = /bits/ 64 <100000000>;
-> -				required-opps = <&rpmhpd_opp_svs>;
-> -			};
-> -
-> -			opp-128000000 {
-> -				opp-hz = /bits/ 64 <128000000>;
-> -				required-opps = <&rpmhpd_opp_nom>;
-> -			};
+> -		sound: sound {
 > -		};
 > -
->  		qupv3_id_0: geniqup@8c0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0 0x008c0000 0 0x6000>;
-> @@ -2655,25 +2674,6 @@ opp-202000000 {
->  			};
+>  		usb_1_hsphy: phy@88e3000 {
+>  			compatible = "qcom,sm8250-usb-hs-phy",
+>  				     "qcom,usb-snps-hs-7nm-phy";
+> @@ -4910,6 +4907,9 @@ cpufreq_hw: cpufreq@18591000 {
 >  		};
+>  	};
 >  
-> -		qspi_opp_table: opp-table-qspi {
-> -			compatible = "operating-points-v2";
-> -
-> -			opp-75000000 {
-> -				opp-hz = /bits/ 64 <75000000>;
-> -				required-opps = <&rpmhpd_opp_low_svs>;
-> -			};
-> -
-> -			opp-150000000 {
-> -				opp-hz = /bits/ 64 <150000000>;
-> -				required-opps = <&rpmhpd_opp_svs>;
-> -			};
-> -
-> -			opp-300000000 {
-> -				opp-hz = /bits/ 64 <300000000>;
-> -				required-opps = <&rpmhpd_opp_nom>;
-> -			};
-> -		};
-> -
->  		qspi: spi@88dc000 {
->  			compatible = "qcom,sc7180-qspi", "qcom,qspi-v1";
->  			reg = <0 0x088dc000 0 0x600>;
+> +	sound: sound {
+> +	};
+> +
+>  	timer {
+>  		compatible = "arm,armv8-timer";
+>  		interrupts = <GIC_PPI 13
