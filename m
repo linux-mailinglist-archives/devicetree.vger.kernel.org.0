@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA66D648DEE
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10295648DF2
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 10:31:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229623AbiLJJ22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 04:28:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S229656AbiLJJbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 04:31:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiLJJ20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:28:26 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53E6B3B
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:28:25 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id cf42so10738260lfb.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:28:25 -0800 (PST)
+        with ESMTP id S229563AbiLJJbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 04:31:19 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1D212AD9
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:18 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id s25so94394lji.2
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 01:31:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TsbzVdPrko1HxcNQW70p0zO6ACUW3D/Os+YvnWapKLw=;
-        b=hYX3LhT9pRZdl+nd0Llwx2iTMYMEWRC9SSmd2fMFFbg+EUEJHCa1NyloZoLZBYUDPD
-         HxPo2cnm771kRSFmnWheyqS4XO+yNc6hP9wiUjcnECI6vEgHNXEoCpdDkCqGeEFsThzE
-         FrgfYJdMfmOBG0SDoOooZlEkKteAva+6nuC46NsOBDrb8kMZXIZeL14ruv4D4oPH8OpW
-         fW1eikvYhUmoXF+uEUgBlmcHMDA9ZsP3n8w8jpAVCsBLjimMx21VOeDyEFS2uEOLq0mo
-         YwuNFs1pQde2AKw3AC41ZEm5DwdXpqBi+nNMmCBn+OQTnvcph8zDN/jbTFcvCksLsWuP
-         pz1Q==
+        bh=M+HZ2UMBdem2ooBDTFN6oxFPfKBOmQHSueRlKfK2c/4=;
+        b=mNLaJ39vpYQFEKXM/SGxUbeLc2o4WU9TeoCA9Lw9p428her6/0WdNMWT7A40m92yX0
+         Ffi33NGqd+a5W7g1QDlgE7OwQBlFwSSay4WUivpyiS3WAkcxEr976NlNoORBaoBsLlAF
+         4+D0d+2LlMMHcximGWbyoP1VtP0N5ZUQN8QCljVyvvhmboo27IEbH9emw2ZmKdRTQ3zP
+         PwBLJeiGTFJ/5LvhhkUpN+ewknRK7D807n60ivLycbASq+THoJfoeaNjsQ617uDoylHv
+         pNojOFGqIfm8IQMXKLo8tr+ffmMqodMMW0YYGU+j8A2UMeWe6AZH0jF59ZjxZzXGPSqY
+         5aLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TsbzVdPrko1HxcNQW70p0zO6ACUW3D/Os+YvnWapKLw=;
-        b=RgCyyqHvhpup3Py6VpGDaiPP5bCD9Bqdv8qqN/H/v9ho842/x7k6pU7XoBz9CvgB69
-         ON3QqRo3ZOHLgJnQPnxKu+FPXGm3DzchMmy6laURw9A2KtxloASpemLypzWkNol6x+qI
-         WVBP5TlK9BOKHJWlA8sR8eLRK1sjT9emEwr6M+g/+JO+bN7c7Ips9tk1N0nP0yeX+Ium
-         h0dLG0IAJC8Bpq6OWWM4T2SI4BkkW7CO61KcSgAx2m3G+RjdTLOzbjgIFcZbW1j0BMUw
-         aO2uWQWON1VkgkMgXLM9T2iLDM7+vLqeSyNX4LlizKMmMfpl6wxUsKug6H81STpEMQT9
-         tZAQ==
-X-Gm-Message-State: ANoB5pmW3uA9uAlxNzU2/7SP6OtMi/95u/DDnEHleyn+AVZQn05Mpahe
-        o1oBRyqxyRSIk1gIXGGmDnuAuA==
-X-Google-Smtp-Source: AA0mqf62tTMgMEYSsD2FXG7iK70ce/NmK0K6J/J1yoPi7SnzCjvz0DnwaWCBSTJWV87CBeWxRySitQ==
-X-Received: by 2002:a05:6512:3e19:b0:4b0:6023:6f6f with SMTP id i25-20020a0565123e1900b004b060236f6fmr3566078lfv.57.1670664504035;
-        Sat, 10 Dec 2022 01:28:24 -0800 (PST)
+        bh=M+HZ2UMBdem2ooBDTFN6oxFPfKBOmQHSueRlKfK2c/4=;
+        b=ggNwg5m+bko4WkGAkONJ+WthvvCccUhuHkLLW8CYuFR11v4KZBzF6+ZksHmXXMHVHz
+         ZbONUpFG1zRBJAfH18W0QgG1M7nrgOxY3mkIGBQjoyJv9kObToeK21oGa6OG5jYBikhH
+         EVAmeRPI41eKXVMvhmU3b4iSD4MRqSrKfjDc5XcXCgWzSVBoySLFt0hfbpF+S1L6nxSZ
+         buXDsJGh/LGLHfGcXnd7Ww7fN36CXTMX42TpiLjw6FSc+k6ti5yOL/jCApXn2sBQ5JNE
+         2a37+cu+pXjQXZ2gPAwxyTccaeV1Yn3ajCoBrLwVw5Yh6yZSpqOtplHwco3eX+eX3l4m
+         Pm3w==
+X-Gm-Message-State: ANoB5pnDK9kS8t0OxrEfcsdK1mLSX2s52xk/0aOvwPX+NkKbrFUay49R
+        ghdjJMO1xi8AuTwVlUiIbeaY9A==
+X-Google-Smtp-Source: AA0mqf4BoK/U9B+Rh9EtaxBLhf3STxEGHiaY0hpQOQ8M8qltYekFMwQ1P3PvGG6uaIqRsP/AuFYexA==
+X-Received: by 2002:a05:651c:12c4:b0:26f:db34:b387 with SMTP id 4-20020a05651c12c400b0026fdb34b387mr2051621lje.3.1670664676955;
+        Sat, 10 Dec 2022 01:31:16 -0800 (PST)
 Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id q19-20020ac25293000000b004b5732080d1sm647488lfm.150.2022.12.10.01.28.22
+        by smtp.gmail.com with ESMTPSA id z19-20020a05651c11d300b00279c10ae746sm515008ljo.140.2022.12.10.01.31.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Dec 2022 01:28:23 -0800 (PST)
-Message-ID: <2a571be3-0ade-a8fe-2c9d-abb8e85955ee@linaro.org>
-Date:   Sat, 10 Dec 2022 10:28:21 +0100
+        Sat, 10 Dec 2022 01:31:16 -0800 (PST)
+Message-ID: <48bef9dd-b71c-b6aa-e853-1cf821e88b50@linaro.org>
+Date:   Sat, 10 Dec 2022 10:31:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: msm8992-lg-bullhead: Disable
- cont_splash_mem
+Subject: Re: [PATCH net-next 2/2] net: ipa: add IPA v4.7 support
 Content-Language: en-US
-To:     Dominik Kobinski <dominikkobinski314@gmail.com>
-Cc:     agross@kernel.org, alexeymin@postmarketos.org,
-        bjorn.andersson@linaro.org, bribbers@disroot.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        petr.vorel@gmail.com, pevik@seznam.cz
-References: <2cf45767-7974-3b40-fa18-ec33db5d5ac2@linaro.org>
- <20221210052454.314693-1-dominikkobinski314@gmail.com>
+To:     Alex Elder <elder@linaro.org>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com
+Cc:     andersson@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>
+References: <20221208211529.757669-1-elder@linaro.org>
+ <20221208211529.757669-3-elder@linaro.org>
+ <47b2fb29-1c2e-db6e-b14f-6dfe90341825@linaro.org>
+ <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221210052454.314693-1-dominikkobinski314@gmail.com>
+In-Reply-To: <fa6d342e-0cfe-b870-b044-b0af476e3905@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,21 +83,72 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10.12.2022 06:24, Dominik Kobinski wrote:
-> Hi all,
+On 9.12.2022 21:22, Alex Elder wrote:
+> On 12/8/22 3:22 PM, Konrad Dybcio wrote:
+>>
+>>
+>> On 8.12.2022 22:15, Alex Elder wrote:
+>>> Add the necessary register and data definitions needed for IPA v4.7,
+>>> which is found on the SM6350 SoC.
+>>>
+>>> Co-developed-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> Signed-off-by: Alex Elder <elder@linaro.org>
+>>> ---
+>> [...]
+>>> +
+>>> +/* Memory configuration data for an SoC having IPA v4.7 */
+>>> +static const struct ipa_mem_data ipa_mem_data = {
+>>> +    .local_count    = ARRAY_SIZE(ipa_mem_local_data),
+>>> +    .local        = ipa_mem_local_data,
+>>> +    .imem_addr    = 0x146a9000,
+>>> +    .imem_size    = 0x00002000,
+>> Should probably be
+>>
+>> 0x146a8000
+>> 0x00003000
+>>
+>> with an appropriate change in dt to reserve that region.
+>>
+>> Qualcomm does:
+>> ipa@... { qcom,additional-mapping = <0x146a8000 0x146a8000 0x2000>; };
+>>
+>> which covers 0x146a8000-0x146a9fff
+>>
+>> plus
+>>
+>> imem@.. { reg = <0x146aa000 0x1000>; };
+>>
+>> which in total gives us 0x146a8000-0x146aafff
 > 
-> Looks like the reboot issue was caused by a memory hole not being reserved.
-> It's defined in the downstream kernel source (link : [1]). 
+> Can you tell me where you found this information?
+[1], [2]
+
 > 
-> Adding it makes the kernel boot fine (tested when booted from lk2nd)
+>> That would also mean all of your writes are kind of skewed, unless
+>> you already applied some offsets to them.
 > 
-> I'll try to send a patch with it tomorrow.
+> This region is used by the modem, but must be set up
+> by the AP.
 > 
-> Kind regards,
-> Dominik
-That looks more sane than a piece of memory being reserved
-causing issues :) Happy you found the fix!
+>> (IMEM on 6350 starts at 0x14680000 and is 0x2e000 long, as per
+>> the bootloader memory map)
+> 
+> On SM7250 (sorry, I don't know about 7225, or 6350 for that matter),
+> the IMEM starts at 0x14680000 and has length 0x2c000.  However that
+> memory is used by multiple entities.  The portion set aside for IPA
+> starts at 0x146a9000 and has size 0x2000.
+> 
+Not sure how 7250 relates to 6350, but I don't think there's much
+overlap..
+
 
 Konrad
+
+[1] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L3698-L3707
+
+[2] https://github.com/sonyxperiadev/kernel/blob/aosp/LA.UM.9.12.r1/arch/arm64/boot/dts/qcom/lagoon.dtsi#L1004-L1045
+>                     -Alex
 > 
-> [1] https://github.com/android-linux-stable/bullhead/blob/android-msm-bullhead-3.10/arch/arm64/boot/dts/lge/msm8992-bullhead.dtsi#L144
+>> Konrad
+> 
