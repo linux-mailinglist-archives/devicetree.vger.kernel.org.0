@@ -2,140 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3FA648E3C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 11:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A21648E41
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 11:59:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbiLJK6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 05:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49584 "EHLO
+        id S229749AbiLJK7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 05:59:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbiLJK62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 05:58:28 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C541C403
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 02:58:27 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id s8so10906547lfc.8
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 02:58:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uLWU8UvLvUz+UPt+iZ/n8ZPOtKF07vffHOxQU5K8UgU=;
-        b=i2HHBJe6E7SskkvjwwGFpNZwVVx0TRnRKxu8beDwoiGPo6OJeP6gATP0/RVtcEaJQ7
-         zP8A3hYVq3BPi3KtNDi8sErXgidcrWNQkywjGheKVZdHIPVdnnpHlmx60i/xl4JwtsxZ
-         eHwm8gvOvxY01n2flE4vZA5JyLYxMpBcH7Uy3j+u0dNSkORQ586JwnB2FOIbQ7Vdqbgm
-         5g7napayHLM+VLqc5JTSI3h/8hEXGvtHZFiOdsRVrfkq3cun7nIOaPxIfSzFIHjAKdtp
-         4JvdD+0RTSHLJkbAqCmbBkjZlXBfsvUmI/0tCIzUm2YrpCXTWVNpRdtY2D0alhOOPXFE
-         4ZIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uLWU8UvLvUz+UPt+iZ/n8ZPOtKF07vffHOxQU5K8UgU=;
-        b=UxsxcKdABW/mZCnxUwSBNCagMKQDJSqfiHlicz620CeLRE2B3eyNgqyddXGRV61ePX
-         ECsWqxMKDTibZMbXL7kxkVh+Higme0Wq++++Q7EOUqu/kW1XiPtx8dZYGhUQl6U8HsX4
-         9dO7dmiwk5hIoXQa4q4sEJ3w6+QcvNJ897rL8+xe6lFJI9HFDjWFOZrtFJjrKeaBYQoc
-         QxI9k2DzBGRdc8EITOo/az4mtSQEsDI38TJIUali9MF2cqGjz6Xs3PnWR46By/lJNMHT
-         H95alb1v2N5iKn/IwPhsXaf+GXnC1DCXFa250CrI2Kz9nFLUrYRi2dXQHMSxr3Ldwhhl
-         XI+g==
-X-Gm-Message-State: ANoB5pmeqQ0JQuLkUKH5t1Z70HKOfyxMhJkt5v/SoubbNLOpuJBfr944
-        aWdSgucXWuKrdZA+zNAgC+wxvw==
-X-Google-Smtp-Source: AA0mqf4fOIbUVu1NB5M9iRbvy7IONCEf0BukLaKFdJLcqL+0Ys3M22vqZKiOwMRi0e+4M9pHxMoMnQ==
-X-Received: by 2002:a05:6512:224a:b0:4a4:68b9:19fc with SMTP id i10-20020a056512224a00b004a468b919fcmr3875677lfu.36.1670669905727;
-        Sat, 10 Dec 2022 02:58:25 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id z26-20020a195e5a000000b004b55b404d36sm671211lfi.156.2022.12.10.02.58.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Dec 2022 02:58:25 -0800 (PST)
-Message-ID: <4846bb5f-79a9-e199-6a1c-5021e975e7ee@linaro.org>
-Date:   Sat, 10 Dec 2022 11:58:24 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
- peripheral
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229680AbiLJK7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 05:59:15 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E14BCA4;
+        Sat, 10 Dec 2022 02:59:14 -0800 (PST)
+From:   Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1670669953;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iphm4QQgUglL/j++hAuj+bu5rQB4rYPNzSzGlqKLeUI=;
+        b=w0hpYeT8AutCl499sXSKrBiebT4DSTsz6/JLnrc8MrFMI8TwdgxbgU8G7WrnOAqnZyqjzv
+        Px4/RIaj79Ggr4bw+YPtbUP66xzi5s7E2YbhIDSwkYU+84vCg1SatWb/IkPu/dhB5XLx1z
+        vpGXo14ZAaLWcYbCxeF93GWRH07mLe/6Kwd8Oe+eQiB7tGjO5rpwOmsZezO1tQWy7dLwrn
+        Xd0EjFiiJps1nJAODIiLUvvG2gN0iqjrc73g6TlmA4lo8XaP6jG3Ak695qIUBwOKECI9xA
+        wSE4IshBzCGDyUm/Wf1DGC39fFZ65DoFDMVI2Au6icQ+rmXHV+4OuL7PVmU31g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1670669953;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=iphm4QQgUglL/j++hAuj+bu5rQB4rYPNzSzGlqKLeUI=;
+        b=rmVcFUCHGOam9sPMXWxNgZG5hlZhACkPFkY8AeSnVSE1kw6bft2iITHjDd6SdhvhwVCwpX
+        sAWtTcrmi5GZuSCg==
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        William Breathitt Gray <william.gray@linaro.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
- <36eb03e8-aace-f7ce-edc8-53715021c0ea@linaro.org>
- <20221208112055.m7sqg3ysxzskqjp4@SoMainline.org> <5740737.DvuYhMxLoT@g550jk>
- <20221209203851.sy37qqzczoaruuyb@SoMainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221209203851.sy37qqzczoaruuyb@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH 0/6] Add RZ/V2M Compare-Match Timer (TIM) support
+In-Reply-To: <OS0PR01MB5922293733EFD0D4F3E6B270861F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20221205145955.391526-1-biju.das.jz@bp.renesas.com>
+ <20221205225042.GA2812115-robh@kernel.org>
+ <OS0PR01MB592211AD4D0AE23DA7075DD5861B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdX2=AwerQZS2cqR4exq_QNtt=Fwp5KBcmPr1qmOBNOSAg@mail.gmail.com>
+ <87sfhsgb9e.ffs@tglx>
+ <OS0PR01MB59228CED6187C7B19776CE22861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <878rjjfprw.ffs@tglx>
+ <OS0PR01MB5922B590AB9791B9741E2A1D861A9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <87sfhrdure.ffs@tglx> <Y5O1g8/69tCfmdW6@fedora>
+ <OS0PR01MB5922293733EFD0D4F3E6B270861F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Date:   Sat, 10 Dec 2022 11:59:12 +0100
+Message-ID: <875yejcynz.ffs@tglx>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2022 21:38, Marijn Suijten wrote:
-> On 2022-12-09 17:54:50, Luca Weiss wrote:
->> On Donnerstag, 8. Dezember 2022 12:20:55 CET Marijn Suijten wrote:
->>> On 2022-12-08 11:23:17, Krzysztof Kozlowski wrote:
->>>> On 08/12/2022 11:12, Marijn Suijten wrote:
->>>>> On 2022-12-04 17:19:05, Luca Weiss wrote:
->>>>>> On Freitag, 2. Dezember 2022 10:36:58 CET Marijn Suijten wrote:
->>>>>> [..]
->>>>>>
->>>>>> So the way this patch does it is good or does it need changes?
->>>>>
->>>>> Except the typo(s?) pointed out in my first reply, this is good to go.
->>>>>
->>>>> If we stick with generic adc-chan node names that should be documented
->>>>> in the bindings IMO, as it is currently only captured implicitly in the
->>>>> examples.  Krzysztof, what is your thought on this?
->>>>
->>>> If I understand correctly, the outcome of other discussion [1] was to
->>>> use labels and generic node names.
->>>
->>> The outcome was to use labels in the driver and disregard node names as
->>> the new fwnode API clobbers those names by including the @xx register
->>> bit.
->>>
->>> (I'll follow up with Jonathan whether or not to remove the current
->>> fallback to node names, as [1] ended up discussing many different issues
->>> and nits)
->>>
->>>> In such case the patch was correct
->>>> (except other comments).
->>>
->>> As a consequence it _doesn't matter_ how nodes are named, and we _can_
->>> use generic node names.  My question for you is whether we should, and
->>> if we should lock that in via dt-bindings to guide everyone towards
->>> using labels (which i did _not_ do in the recently-landed PM8950 and
->>> PM6125, but will send followup for).
->>
->> FYI the patch has been merged already and is now in linux-next
->> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/arch/arm64/boot/dts/qcom/pmi8950.dtsi?id=0d97fdf380b478c358c94f50f1b942e87f407b9b
->>
->> If you have any changes that need to be done please send a follow-up patch.
-> 
-> Unfortunately saw that today as well, well after sending this reply.  I
-> would've loved to correct the pmi8950_gpio label _gpios before someone
+On Sat, Dec 10 2022 at 07:52, Biju Das wrote:
+> scheduling tick is 4millisec. so if we want callback at 1 microsec,
+> then we need to use clock_nanosleep. Getting 1 microsec callback to
+> user space is challenging as the scheduling tick is only 4 millisec.
 
-I don't understand what is there to correct. The "pmi8950_gpio" is a
-correct label. There is no single rule saying label should have "s" at
-the end. The only rules are: using underscores and having similar naming
-(e.g. mdss_ for all display labels).
+The tick is only relevant if high resolution timers are disabled because
+then hrtimers are expired in the tick. If high resolution timers are
+enabled then the hrtimer expiry happens at the exact expiry time.
 
-Best regards,
-Krzysztof
+What's challenging about the 1 microsecond accuracy is that the system
+immanent latencies are already in that range. So while the timer fires
+exactly, the actual execution of the woken up task in user space is not
+exact as that is subject to the worst case sum of latencies in the
+system.
 
+Thanks,
+
+        tglx
