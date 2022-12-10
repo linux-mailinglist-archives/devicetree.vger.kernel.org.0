@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CD1648F6C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 16:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D8D648F91
+	for <lists+devicetree@lfdr.de>; Sat, 10 Dec 2022 16:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiLJPXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 10:23:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60184 "EHLO
+        id S229665AbiLJP5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 10:57:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiLJPXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 10:23:50 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2FAF15FEE
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 07:23:48 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id a7so7927849ljq.12
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 07:23:48 -0800 (PST)
+        with ESMTP id S229628AbiLJP5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 10:57:21 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217FE635F
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 07:57:20 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id q6so1590177lfm.10
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 07:57:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=exYMzaZr/kQLcbfHTOiS5XZ19wPMTGQEdFPGl9xrdn4=;
-        b=IXuf0wukVUXjMtH7bbyeA7xFdEuqgfGgqdpeL5YbDYFg8H7iPhZjMMD9OrYDwfa2y4
-         kfjYcBD07ByqpxqtC/aqe48rvyTS8tJbfFu5hnFOnDydTNU9I0wSD1Y3kkK726LN5lii
-         pctk3FhC+XxJu4csK/wjkw3GcPzt/zCnyEbktfly88K/WYsXNPlxR3bDxwTd3lP+gHzy
-         kqW3e6BMcF40H7H7pE17BAO0F97fOImvD+/RsA1mbwnDN/ZYLeRzODFiMqXH8zJjILlr
-         TytdQDdqMfLwkvHlDZ5WzbRjOoKWhBaIfXeiOjV8Wafrxnyd5K1CKe4DBnaGi2Tuh+t2
-         NB1w==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PE0en2UU/eeKZFa7xUSQ62ylm6WHJ3y69mFi7KN0EPg=;
+        b=uADzHDM5DR03XMujeQymI1c+BzzsLzihX/0biqeI8AMQkzREic0BvffY0NsTAPS3Bq
+         zvQuVR6YaJhUbAQdCTB5MraQFRJ3sy5Zuw0IsRUgeOLu+H33msDjfaAdiWaC7Z2XTDH4
+         f2Zd10zqwcQ3plPFSAStKQqzFp0YN2hvvI4s2TbTVFHRvCJ3g1OkpTPRWUUADLiHTElQ
+         BjpyPWQ9ZmGQJEO4P/+INZHykcoy+RUH5uVnf8wCfyoHB0bpEreovFGqNO+06Gc6UdJV
+         SU27pU5iqOmX+Buk7IGl5xVcJdTKW5Ji/OlFHsXgFZkQer96i1Flm33oflLlu6J2NyQm
+         KCFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=exYMzaZr/kQLcbfHTOiS5XZ19wPMTGQEdFPGl9xrdn4=;
-        b=SWTOqzA6Xm9JfL2aptp34XU3GcW/4baF6FDeAHtlUnlqYGxK/Zt1QWATHTlCoQDRrJ
-         NjQ6SX69C/J3tg3Aj7n+xdNLltTX9OnI8oAQIoz6HB+CWatSYjUbZeldgJ8aRMp/HLW/
-         OpLyjoAOdlVWXfWxGfYbN4sQq35Lp0bVxvVH0njJf0lwdpe4JiX9zCmjF5ljdK9AZoww
-         qPvH+I1EvwbNVQmNvpyCF/UuqdeMC/Dji0ZdHmuUb3GXNEWh8ZSWz6s3Z/DQ/7rnk+Ew
-         TZDpiO6wVJWFtKbs8H7xlqAjgg2zhLl0YrrOBEq6N8rxgo/cJZcfhaiZBnSLIU5gl/Jp
-         G69w==
-X-Gm-Message-State: ANoB5pkh1geX3lK/a/wUtRGLvVcYznXgbSNZEOYKmdq7q7LMs0lFlWBh
-        mRO0CwQ2/Y0T7gmc76SY48JCfRjAGSG3wjb2
-X-Google-Smtp-Source: AA0mqf5tLFh6y+G+uNwBq/GjqU92UxZqJke7DbSrFkOYhRmMXFbGl+1oNT08LMkkm1UzNoa+P65xXg==
-X-Received: by 2002:a19:7010:0:b0:4a8:7434:65e1 with SMTP id h16-20020a197010000000b004a8743465e1mr2495041lfc.12.1670682332163;
-        Sat, 10 Dec 2022 06:25:32 -0800 (PST)
-Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac25f7a000000b004acb2adfa1fsm739912lfc.307.2022.12.10.06.25.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Dec 2022 06:25:31 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8150-kumano: Configure resin as volume up key
-Date:   Sat, 10 Dec 2022 15:25:25 +0100
-Message-Id: <20221210142525.16974-3-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221210142525.16974-1-konrad.dybcio@linaro.org>
-References: <20221210142525.16974-1-konrad.dybcio@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PE0en2UU/eeKZFa7xUSQ62ylm6WHJ3y69mFi7KN0EPg=;
+        b=n83CS4KPw4Cr9RKerpvXkD53neSiPN4K7rwSMUo8ZLAHXJJe8Gdsk6YZh0L4Rms4AM
+         8WjuHkcvZf4HqUJKqrh/UfwEUR/EHVikZNcf2dT2jCaInQTJsoAVu0e/BP0NhgjpJQ9O
+         0gFIYOAoTIoKmXSqIDiwCO7NsYXzUsAZBStVisaYxug+25qjHjWEnrbIGBQCFTB3a6fo
+         oS0DyeuzllWPDlG3dHGn0YmMY7I6l6kjIQjPe3N4zxWNdOjyvQ4cMTwzg5mpa/QzPgAZ
+         VRq1iI2REEFId9XEExz0bMk5qKcOhuqX6c0IIgBu/fzhG5gEQ6YdFyVOy1e7+4UHoT6l
+         9spw==
+X-Gm-Message-State: ANoB5plZ3KYxBH6QwsTcNxA/QjuhwRfIF6Mc17mQSkRIPU4Mlhn0EKXI
+        PCOJNWndnvpWwEG8mdavZJTQ++IDDU/KnzkZGBrkvA==
+X-Google-Smtp-Source: AA0mqf77QesybuE18xXTPg3wskSZ2lQyQwKjS6zkTW/qBKF6LV649yNe5WB5DZIBCDzwFDDgIkrLoLS1ItFPXqyVwLg=
+X-Received: by 2002:a05:6512:693:b0:4b5:5384:aa3c with SMTP id
+ t19-20020a056512069300b004b55384aa3cmr8929723lfe.150.1670687838196; Sat, 10
+ Dec 2022 07:57:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221208201401.530555-1-konrad.dybcio@linaro.org> <20221208201401.530555-4-konrad.dybcio@linaro.org>
+In-Reply-To: <20221208201401.530555-4-konrad.dybcio@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sat, 10 Dec 2022 21:27:06 +0530
+Message-ID: <CAH=2NtxYBbdR-rb6ZrqK+hW9gLuv_o80aOFUoEp7dqouON3x7A@mail.gmail.com>
+Subject: Re: [PATCH 4/5] dt-bindings: arm: qcom: Add SM6115(P) and Lenovo Tab P11
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org,
+        patches@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Iskren Chernev <me@iskren.info>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -74,33 +69,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marijn Suijten <marijn.suijten@somainline.org>
+On Fri, 9 Dec 2022 at 01:44, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Document SM6115P, an APQ version of SM6115, which in turn is more or
+> less a beefier version of SM4250.
 
-The volume-up button on both kumanos (Xperia 1 and Xperia 5) are mapped
-to resin.
+Let's drop the 2nd part of the above statement. As we discussed on
+irc, It suffices to say that SM6115P is the APQ version of SM6115.
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+I don't think that would require a respin. Maybe the commit message
+can be fixed while applying this.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-index 9d667bb6f25b..d64f2b04e267 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-@@ -486,6 +486,11 @@ &pon_pwrkey {
- 	status = "okay";
- };
- 
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEUP>;
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
--- 
-2.38.1
+> Document Lenovo Tab P11 (J606F) as a SM6115P device.
+>
+> Add SM6115 to the msm-id list of shame.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 27063a045bd0..0c7ad00586fa 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -62,6 +62,7 @@ description: |
+>          sdx65
+>          sm4250
+>          sm6115
+> +        sm6115p
+>          sm6125
+>          sm6350
+>          sm6375
+> @@ -790,6 +791,12 @@ properties:
+>                - oneplus,billie2
+>            - const: qcom,sm4250
+>
+> +      - items:
+> +          - enum:
+> +              - lenovo,j606f
+> +          - const: qcom,sm6115p
+> +          - const: qcom,sm6115
+> +
+>        - items:
+>            - enum:
+>                - sony,pdx201
+> @@ -931,6 +938,7 @@ allOf:
+>                - qcom,sdm845
+>                - qcom,sdx55
+>                - qcom,sdx65
+> +              - qcom,sm6115
+>                - qcom,sm6125
+>                - qcom,sm6350
+>                - qcom,sm7225
+> --
+> 2.38.1
 
+Otherwise:
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Thanks.
