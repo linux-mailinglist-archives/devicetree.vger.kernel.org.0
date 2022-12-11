@@ -2,62 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB40664948F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 14:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52524649496
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 15:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbiLKNyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 08:54:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35272 "EHLO
+        id S229777AbiLKOCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 09:02:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiLKNyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 08:54:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DD85FFB;
-        Sun, 11 Dec 2022 05:54:36 -0800 (PST)
+        with ESMTP id S229475AbiLKOCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 09:02:36 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A28DF6B;
+        Sun, 11 Dec 2022 06:02:35 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFB3A60DC9;
-        Sun, 11 Dec 2022 13:54:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C501C433EF;
-        Sun, 11 Dec 2022 13:54:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B8DBC60DC9;
+        Sun, 11 Dec 2022 14:02:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C67C433F0;
+        Sun, 11 Dec 2022 14:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670766875;
-        bh=/oIhWuCh+Q64jTqco5ZfqZoA6e/lvC0GYIS0yDoT6ZM=;
+        s=k20201202; t=1670767354;
+        bh=qbLdcwHUSakHdBthMKlWZnGRsrtDuG/VUTavNAVkCbU=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=eFNwL5RwB8XGTG4cBuwpt3kfB2nz60+JwzxTCaOp8jJilPt76GTPDVN9zLHlJwh1x
-         kAnK5IBilxYsWtr8ZREk6CrtgQMTj/kVq3h/qSnZlk6e5nldB/NRrMzOypzW/aSfc5
-         6BDuR/dljq+YRQy3Bg4hAp4dbVeFklh/vNbkceqfx88Lgs5w2VMhBa7zQpFyMmBTFE
-         kkQ9BVHjLFO//0CJkmRNvqHKnuHZttZUK7aVD+aHXDczXNffyFZuZd7ptUcUKDGgim
-         YqKlV7j7QDlZFPum+qfYR8WeP4nJuxwL0k62ONaZgR54ZnSPn/GV0MyYXTWjq6D2T0
-         St0THZGHm/TyA==
-Date:   Sun, 11 Dec 2022 14:07:27 +0000
+        b=S/AP9d93h1gVNufHPENhK8MQiLLfvo81gOZUBHnabPS/zwKMbxLoZkAG1ytQkaJXa
+         oSh/GvVIs/U94x9gd95SSS6G21HqazC+AMporVhhEaHZ8EnM4m+KjHgHKRey7E9bu6
+         rbqFWrTgny0leNUkgARaE54PTyj/UzcyG1y+1OSJakjHXbiwQkIuaZoyktu3k4iJbP
+         6CkShtbVoZj6z6tsgG8gA7UqRSEPf2YcQjnDLIvWgFBDSMSACUW5Mn9aDCmJ17vg0Z
+         08HeScdMr06j99op26cW7iQfijNXyYId/Mx+J2nQmEaZkANQGDn3+ryT7ulNb0TVOt
+         Y6du7WsIdvy9g==
+Date:   Sun, 11 Dec 2022 14:15:26 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Okan Sahin <okan.sahin@analog.com>, outreachy@lists.linux.dev,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 0/5] staging: drivers: mfd: Add MAX77541 MFD and related
- device drivers
-Message-ID: <20221211140727.6da705ac@jic23-huawei>
-In-Reply-To: <Y5XcUtNInUJl98JP@smile.fi.intel.com>
-References: <20221207090906.5896-1-okan.sahin@analog.com>
-        <Y5B0btPjY6nHhYRm@smile.fi.intel.com>
-        <20221211122043.424e095d@jic23-huawei>
-        <Y5XcUtNInUJl98JP@smile.fi.intel.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH] arm64: dts: qcom: Use labels with generic node
+ names for ADC channels
+Message-ID: <20221211141526.463f43e6@jic23-huawei>
+In-Reply-To: <20221210165434.3hhen5mgtvflghks@SoMainline.org>
+References: <20221209215308.1781047-1-marijn.suijten@somainline.org>
+        <3d5b29f3-8d8d-93a7-a485-5261e2d8891d@linaro.org>
+        <20221210165434.3hhen5mgtvflghks@SoMainline.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -71,34 +68,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 11 Dec 2022 15:34:10 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+On Sat, 10 Dec 2022 17:54:34 +0100
+Marijn Suijten <marijn.suijten@somainline.org> wrote:
 
-> On Sun, Dec 11, 2022 at 12:20:43PM +0000, Jonathan Cameron wrote:
-> > On Wed, 7 Dec 2022 13:09:34 +0200
-> > Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:  
-> > > On Wed, Dec 07, 2022 at 12:08:39PM +0300, Okan Sahin wrote:  
-> > > > This patchset adds mfd, regulator and adc driver and related bindings.The patches 
-> > > > are required to be applied in sequence.    
+> On 2022-12-10 12:02:03, Krzysztof Kozlowski wrote:
+> > On 09/12/2022 22:53, Marijn Suijten wrote:  
+> > > As discussed in [1] the DT should use labels to describe ADC channels,
+> > > with generic node names, since the IIO drivers now moved to the fwnode
+> > > API where node names include the `@xx` address suffix.
 > > > 
-> > > You have an indentation / wrapping issues in the above text.
+> > > Especially for the ADC5 driver that uses extend_name - which cannot be
+> > > removed for compatibility reasons - this results in sysfs files with the
+> > > @xx name that wasn't previously present, and leads to an unpleasant
+> > > file-browsing experience.
 > > > 
-> > > Nevertheless, why staging? What does it mean?  
+> > > Also remove all the unused channel labels in pm660.dtsi.
+> > > 
+> > > [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
+> > > 
+> > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>  
 > > 
-> > The main reason to go via staging is because a driver is sitting out
-> > of tree and it is useful to bring it in on the basis that it can then be
-> > cleaned up in tree before moving out of staging.  
+> > The talk was in context of bindings, not about changing all existing
+> > users thus affecting DTS.  
 > 
-> But files are not in staging. Me being confused.
+> And as a consequence, DTS.  The already-merged transition from OF to
+> fwnode resulted in `@xx` to be included in the ADC channel name - and in
+> the case of ADC5 even in sysfs filenames - so this seems like a
+> necessary change to make.
 
-I noticed that when I got to the patches :)
-Odd indeed - I'm guessing some cut and paste gone wrong.
-
-Jonathan
+Gah. We missed that at the time.  Arguably we should first fix that
+particular issue as we will have lots of old DT out there.
+(add a bit of code to strip the @xxx bit from that particular usecase).
+It gets tricky because now we might have code relying on the new
+broken behavior.
 
 > 
-> > For a relatively small driver like this, that's hard to argue.  Just
-> > clean it up in response to review feedback and then we can take it
-> > directly into relevant subsystems in the main tree.  
+> At the very least I would have changed the bindings submitted or
+> co-authored /by myself/ since I initially decided to rely on this (now
+> obviously) wrong behaviour, and should have used labels from the get go.
 > 
+> > What's more, to me "skin-temp-thermistor" is
+> > quite generic name, maybe "thermistor" would be more and reflects the
+> > purpose of the node, so it was more or less fine.  
+> 
+> Are you suggesting to not use "adc-chan", but "thermistor" as node name
+> (and still use skin_temp as label)?  Or to keep the fully-written-out
+> "thermistor" word in the label?
+> 
+> > Anyway I am against such changes without expressing it in the bindings.  
+> 
+> As expressed in [1] I suggested and am all for locking this change in
+> via bindings, and you are right to expect that to have gone paired with
+> this patch.
+> 
+> I'll submit that as the leading patch to this in v2, with the wildcard
+> pattern changed to adc-chan (or something else pending the discussion
+> above), and should I then also require the label property via `label:
+> true`?
+> 
+> [1]: https://lore.kernel.org/linux-arm-msm/20221208101232.536i3cmjf4uk2z52@SoMainline.org/
+
+So the 'fun' here is what to do with old DTS as we need to support that
+even if we update the binding docs and all in kernel users.
+
+Probably right option in driver is:
+a) Use label if present
+b) Use node name if it's not adc-chan but strip the @xxx off it.
+c) return an error.
+
+p.s. Please add iio@vger.kernel.org to future versions of this. If nothing
+else I tend to lose direct emails about IIO stuff as they aren't in the
+relevant patchwork instance.
+
+> 
+> - Marijn
 
