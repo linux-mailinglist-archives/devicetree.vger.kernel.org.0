@@ -2,85 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D920E6492F6
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 07:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F2B649339
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 09:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230081AbiLKGzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 01:55:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
+        id S229475AbiLKIqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 03:46:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229972AbiLKGzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 01:55:00 -0500
-Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B10DF5E
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 22:54:58 -0800 (PST)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id 4GEbp4I6yvgTT4GEbpFfpL; Sun, 11 Dec 2022 07:54:53 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 11 Dec 2022 07:54:53 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <361c0911-7133-4d28-436e-1dfab2b807a8@wanadoo.fr>
-Date:   Sun, 11 Dec 2022 07:54:49 +0100
+        with ESMTP id S229966AbiLKIqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 03:46:38 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE494E0D5;
+        Sun, 11 Dec 2022 00:46:36 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id h12so9108748wrv.10;
+        Sun, 11 Dec 2022 00:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=loYSZndITAn/hN7yRh5Ae3Y1mFVGof0StIEqdn2NE4g=;
+        b=n3IZwTyCIp/96PFBzgtZsDBy3cgplTkGR2Lnn67EUoddO7OVKngNHc8NFsLoqVVAml
+         Q0Vwb/lU9BObcVWznTvklGqDeRHlEhzIdxPKNaAyA1lvZznPAHn0uRIqJLDtAOko0yC2
+         drvkLnciG3ZKCarSp7cYaZ2CQKS6uKKjrafFO4npSFis6zcO27A0qzmj2YshICn4+Uhx
+         Vk0igRPteNA3MOWk24sPV7FK+gQZ0qjnAmluew1vXtBHKC2fXmhuQmbULLM137GRXJa4
+         dIarpHtk5Jx9VQoLTLNcMoz86L6gAzMpSYOoaFG1la4IevPIGjFs5H2FcxPpsV1SWvuJ
+         Sz6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=loYSZndITAn/hN7yRh5Ae3Y1mFVGof0StIEqdn2NE4g=;
+        b=Wcm2KTUmLTCTXCwDGTVsVyY3dnEx06jxfIzpZNc0mwph5ofISn8MRfHcVlY7FJPNC1
+         wOw4LntpwvbWdDy+JSh0RrDBCx9/wEd0bafxroCGedLMdW6trteYtSRxAFT33jdM5SPf
+         a9j6gAUwuNhxBIfu0+KABhZHaLxWgz1DRXVLaWGwozmph2G6unD/LL2euxq2Lpq6NC/j
+         /y72pAOhxJFyO+FhGVlbT1vS8461ARSaV2b9Ie0BGQcMsbnosEf7hyL7oZq0w1zYwT/t
+         cxoW0ym0rrA+UI1hrcHcPzFfi3i8/Lmi180+8AYbHXKiLuBJWyH0SOwyl4cWSe3zVjKS
+         UnIQ==
+X-Gm-Message-State: ANoB5pnohLjS90t4XUIqSU714xIYdFcOb5DBAvqH3mxpZZS8hCRpLzY+
+        sX+DjDcLAohY6feb5nrsX1s=
+X-Google-Smtp-Source: AA0mqf7BxA256Em2ujPBTajEXCwDwQJp0wGxTaUWZlaXzAl45b0Nimp9/Gl2nXURdkz/0LPDPXAJmw==
+X-Received: by 2002:a5d:6ac5:0:b0:24d:867f:10e6 with SMTP id u5-20020a5d6ac5000000b0024d867f10e6mr2648624wrw.32.1670748395327;
+        Sun, 11 Dec 2022 00:46:35 -0800 (PST)
+Received: from localhost.localdomain ([176.221.215.212])
+        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b002425dc49024sm5703423wro.43.2022.12.11.00.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Dec 2022 00:46:34 -0800 (PST)
+From:   Maksim Kiselev <bigunclemax@gmail.com>
+To:     olof@lixom.net
+Cc:     ansuelsmth@gmail.com, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, saravanak@google.com, zajec5@gmail.com,
+        fido_max@inbox.ru, =bigunclemax@gmail.com
+Subject: Re: fw_devlink=on breaks probing devices when of_platform_populate() is used
+Date:   Sun, 11 Dec 2022 11:46:31 +0300
+Message-Id: <20221211084631.3942082-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <Yyj7wJlqJkCwObRn@lx2k>
+References: <Yyj7wJlqJkCwObRn@lx2k>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 3/3] regulator: axp20x: Add support for AXP1530 variant
-Content-Language: fr
-To:     martin.botka@somainline.org
-Cc:     angelogioacchino.delregno@somainline.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, jamipkettunen@somainline.org,
-        jtrmal@gmail.com, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        marijn.suijten@somainline.org, martin.botka1@gmail.com,
-        paul.bouchara@somainline.org, robh+dt@kernel.org,
-        takuya@takuya.tech, wens@csie.org
-References: <20221209234654.1082522-1-martin.botka@somainline.org>
- <20221209234654.1082522-4-martin.botka@somainline.org>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20221209234654.1082522-4-martin.botka@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 10/12/2022 à 00:46, Martin Botka a écrit :
-> AXP1530 has a few regulators that are controlled via I2C Bus.
-> 
-> Add support for them.
-> 
-> Signed-off-by: Martin Botka <martin.botka-KtrmGDJU8+nZ+VzJOa5vwg@public.gmane.org>
-> ---
->   drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
->   1 file changed, 44 insertions(+)
-> 
-> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-> index d260c442b788..ca422311a996 100644
-> --- a/drivers/regulator/axp20x-regulator.c
-> +++ b/drivers/regulator/axp20x-regulator.c
 
-[...]
+Hi, I have the same problem.
+https://lore.kernel.org/all/CALHCpMgEZjnR39upkR6iozSk-b5A_GHRo9rcDSPXzzQi6x_qCw@mail.gmail.com/
 
-> @@ -1252,6 +1292,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
->   		drivevbus = of_property_read_bool(pdev->dev.parent->of_node,
->   						  "x-powers,drive-vbus-en");
->   		break;
-> +		case AXP1530_ID:
+I think the root of the problem was the choice of 'compatible'
+device tree property to marking mtd partition node as a nvmem provider. 
 
-Nit: indentation.
+This property used only inside 'mtd_nvmem_add' function to setup 
+'no_of_node' flag.
 
-> +		regulators = axp1530_regulators;
-> +		nregulators = AXP1530_REG_ID_MAX;
-> +		break;
->   	default:
->   		dev_err(&pdev->dev, "Unsupported AXP variant: %ld\n",
->   			axp20x->variant);
+> config.no_of_node = !of_device_is_compatible(node, "nvmem-cells");
 
+This is how this flag processed by 'nvmem_register' function.
+
+>	if (config->of_node)
+>		nvmem->dev.of_node = config->of_node;
+>	else if (!config->no_of_node)
+>		nvmem->dev.of_node = config->dev->of_node;
+
+Thats all, there is no such driver which compatible with 'nvmem-cells'.
+
+
+So, maybe we should change the 'compatible' property to something else?
