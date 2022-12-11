@@ -2,144 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52524649496
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 15:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9096494CE
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 16:28:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiLKOCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 09:02:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36696 "EHLO
+        id S230205AbiLKP24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 10:28:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiLKOCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 09:02:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23A28DF6B;
-        Sun, 11 Dec 2022 06:02:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B8DBC60DC9;
-        Sun, 11 Dec 2022 14:02:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C67C433F0;
-        Sun, 11 Dec 2022 14:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670767354;
-        bh=qbLdcwHUSakHdBthMKlWZnGRsrtDuG/VUTavNAVkCbU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=S/AP9d93h1gVNufHPENhK8MQiLLfvo81gOZUBHnabPS/zwKMbxLoZkAG1ytQkaJXa
-         oSh/GvVIs/U94x9gd95SSS6G21HqazC+AMporVhhEaHZ8EnM4m+KjHgHKRey7E9bu6
-         rbqFWrTgny0leNUkgARaE54PTyj/UzcyG1y+1OSJakjHXbiwQkIuaZoyktu3k4iJbP
-         6CkShtbVoZj6z6tsgG8gA7UqRSEPf2YcQjnDLIvWgFBDSMSACUW5Mn9aDCmJ17vg0Z
-         08HeScdMr06j99op26cW7iQfijNXyYId/Mx+J2nQmEaZkANQGDn3+ryT7ulNb0TVOt
-         Y6du7WsIdvy9g==
-Date:   Sun, 11 Dec 2022 14:15:26 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH] arm64: dts: qcom: Use labels with generic node
- names for ADC channels
-Message-ID: <20221211141526.463f43e6@jic23-huawei>
-In-Reply-To: <20221210165434.3hhen5mgtvflghks@SoMainline.org>
-References: <20221209215308.1781047-1-marijn.suijten@somainline.org>
-        <3d5b29f3-8d8d-93a7-a485-5261e2d8891d@linaro.org>
-        <20221210165434.3hhen5mgtvflghks@SoMainline.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.35; x86_64-pc-linux-gnu)
+        with ESMTP id S229471AbiLKP2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 10:28:55 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CE410F7;
+        Sun, 11 Dec 2022 07:28:54 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id v11so308103ljk.12;
+        Sun, 11 Dec 2022 07:28:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kmJQ3JX0cNEDcibAVe7dwqeACzxUsNklsuHAlAAT2AY=;
+        b=YPN6UipKS+mCxGrq1OPDGEAuFbMF9H7dWVi1shmS/sdsmgmFgpmPDEakvtLgyUfVgP
+         6y+Z7sFOqZaClN04RxLVe/Yro2nLQSBlhJ26bEhW4ji77w9VPcQqNlTFr4UDxtP9e4/4
+         lG61PHk3jYNX+VU2UsaewdUyHZX7O3u9ZrLXIz6TyrXbpB/kC25ubKNVTcDazVLPHkG6
+         hvHtAlXKOALb58Y3/5A66iwcAD1jL1T+JLcWVn3bMrQPGb/suyP5ix6oEd27tKwlpEkz
+         ll1FtdeX9r1Gqf8D9prfEpEqxtZu9U0XJPVhHcjroxqMvykgiKK6kkOWW5XDjVHfhphh
+         i2yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kmJQ3JX0cNEDcibAVe7dwqeACzxUsNklsuHAlAAT2AY=;
+        b=EWklhZ/19zbMRTK0g62oE5nidnGtOAcsjs9y1c3qovcScc8CWORcrTTck2C/u8U3Hj
+         GRAwPY+BPDTrX0vDj9OfUhPEWkAZLgRjh8Jhc4nWna6Nq3AZ1cHtkLP7Gi7AfyBLVunS
+         TaZOznKu5NjeSpsHt99ZfEvzHb9m4JtBPDSIFZZ3taAab4m7lhDQIAax9+DBO1dKq2on
+         hxgzEyOQs7NYTn+VG5d3EExNU6n93FGSL5gBFMgy0O/tH+GXpHGI9vTPjPLDGd+ENnN+
+         hVdib+l2jCX+BKJbo6T/5mLYwnlS+MqcJPmgF4wJC91EM9U5jQylGj9qe/2VJVxWL/Kd
+         Xtcg==
+X-Gm-Message-State: ANoB5pnb3NhhKRr6K5DeN30e3Mht8qLAchzGHMF0CaT8up5L23zob7aq
+        QdpiVhiNFB5iUQHhMCRl6KU=
+X-Google-Smtp-Source: AA0mqf4ec29PpXJgYvIXxoes0t+4hDpqBAloIHb1c2Zsw986jbFrb0kGPangD4gQLbS4VlDC9BKNNQ==
+X-Received: by 2002:a05:651c:233:b0:279:f59a:4888 with SMTP id z19-20020a05651c023300b00279f59a4888mr3308367ljn.37.1670772532814;
+        Sun, 11 Dec 2022 07:28:52 -0800 (PST)
+Received: from mobilestation ([95.79.133.202])
+        by smtp.gmail.com with ESMTPSA id u4-20020a05651c140400b00279ceee1678sm934297lje.73.2022.12.11.07.28.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Dec 2022 07:28:52 -0800 (PST)
+Date:   Sun, 11 Dec 2022 18:28:49 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "Sergey.Semin@baikalelectronics.ru" 
+        <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [EXT] RE: [PATCH v7 5/9] PCI: dwc: Avoid reading a register to
+ detect whether eDMA exists
+Message-ID: <20221211152849.y2dcxpc2teervlcl@mobilestation>
+References: <20221127235532.u7q7oou36wymkpyf@mobilestation>
+ <TYBPR01MB5341932B42719E026AA16D40D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221128115908.awhznkkrelk7h3nm@mobilestation>
+ <TYBPR01MB534107A3C2B521BA0D67B4A7D8139@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221128161114.deacldwbckfnn6ft@mobilestation>
+ <TYBPR01MB5341FA664D5F1FCA07294F96D8129@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <TYBPR01MB53413E1BE13CCA65307770FDD81D9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <20221208140111.7phlnsxktxzsc55f@mobilestation>
+ <TYBPR01MB5341B4EB94F1B829F0E0431CD81C9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+ <HE1PR0401MB23319A9F4AF7630A82249D65881C9@HE1PR0401MB2331.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <HE1PR0401MB23319A9F4AF7630A82249D65881C9@HE1PR0401MB2331.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Dec 2022 17:54:34 +0100
-Marijn Suijten <marijn.suijten@somainline.org> wrote:
+Hi Frank
 
-> On 2022-12-10 12:02:03, Krzysztof Kozlowski wrote:
-> > On 09/12/2022 22:53, Marijn Suijten wrote:  
-> > > As discussed in [1] the DT should use labels to describe ADC channels,
-> > > with generic node names, since the IIO drivers now moved to the fwnode
-> > > API where node names include the `@xx` address suffix.
-> > > 
-> > > Especially for the ADC5 driver that uses extend_name - which cannot be
-> > > removed for compatibility reasons - this results in sysfs files with the
-> > > @xx name that wasn't previously present, and leads to an unpleasant
-> > > file-browsing experience.
-> > > 
-> > > Also remove all the unused channel labels in pm660.dtsi.
-> > > 
-> > > [1]: https://lore.kernel.org/linux-arm-msm/20221106193018.270106-1-marijn.suijten@somainline.org/T/#u
-> > > 
-> > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>  
-> > 
-> > The talk was in context of bindings, not about changing all existing
-> > users thus affecting DTS.  
+On Fri, Dec 09, 2022 at 03:52:42PM +0000, Frank Li wrote:
+> Hi Serge,
 > 
-> And as a consequence, DTS.  The already-merged transition from OF to
-> fwnode resulted in `@xx` to be included in the ADC channel name - and in
-> the case of ADC5 even in sysfs filenames - so this seems like a
-> necessary change to make.
+> > From: Serge Semin, Sent: Thursday, December 8, 2022 11:01 PM
+> >
+> > Cc += Frank Li
+> >
+> > @Frank could you have a look at the thread and check the content of
+> > the CSRs dbi+0x8f8 and dbi+0x978 on available to you DW PCIe +EDMA
+> > devices?
+> 
 
-Gah. We missed that at the time.  Arguably we should first fix that
-particular issue as we will have lots of old DT out there.
-(add a bit of code to strip the @xxx bit from that particular usecase).
-It gets tricky because now we might have code relying on the new
-broken behavior.
+> [    2.598038] imx6q-pcie 5f010000.pcie_ep: imx_add_pcie_ep: +0x8f8 = 3438302a, +0x978 = 00010001
+
+Thanks for the reply. So it's 4.80a with the legacy viewport-based
+access. Alas it isn't what we need in this thread. We'll need
+@Mani's respond in order to decide how to fix the auto-detection
+procedure.
+
+-Serge(y)
 
 > 
-> At the very least I would have changed the bindings submitted or
-> co-authored /by myself/ since I initially decided to rely on this (now
-> obviously) wrong behaviour, and should have used labels from the get go.
+> Frank Li
 > 
-> > What's more, to me "skin-temp-thermistor" is
-> > quite generic name, maybe "thermistor" would be more and reflects the
-> > purpose of the node, so it was more or less fine.  
 > 
-> Are you suggesting to not use "adc-chan", but "thermistor" as node name
-> (and still use skin_temp as label)?  Or to keep the fully-written-out
-> "thermistor" word in the label?
-> 
-> > Anyway I am against such changes without expressing it in the bindings.  
-> 
-> As expressed in [1] I suggested and am all for locking this change in
-> via bindings, and you are right to expect that to have gone paired with
-> this patch.
-> 
-> I'll submit that as the leading patch to this in v2, with the wildcard
-> pattern changed to adc-chan (or something else pending the discussion
-> above), and should I then also require the label property via `label:
-> true`?
-> 
-> [1]: https://lore.kernel.org/linux-arm-msm/20221208101232.536i3cmjf4uk2z52@SoMainline.org/
-
-So the 'fun' here is what to do with old DTS as we need to support that
-even if we update the binding docs and all in kernel users.
-
-Probably right option in driver is:
-a) Use label if present
-b) Use node name if it's not adc-chan but strip the @xxx off it.
-c) return an error.
-
-p.s. Please add iio@vger.kernel.org to future versions of this. If nothing
-else I tend to lose direct emails about IIO stuff as they aren't in the
-relevant patchwork instance.
-
-> 
-> - Marijn
-
