@@ -2,97 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219C064965F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 21:51:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 602D764966E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 22:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbiLKUvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 15:51:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39100 "EHLO
+        id S229656AbiLKVPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 16:15:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbiLKUvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 15:51:41 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B06F766E;
-        Sun, 11 Dec 2022 12:51:40 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id DEB70853A7;
-        Sun, 11 Dec 2022 21:51:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670791898;
-        bh=cTgcwNIP/RurFg/ugsyeLDgSwONRtVIV9t/Z3Wx7l3k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qeqrTis87Aup88XZ3vumlu5ed7RFQYy8pPsTOzqvwb3tRLViSTnnInqgaPYN5ZoRA
-         f65ndjKoBUtGb6qXzVdssLQ9872PxY+4+0joKj+A+mb+ITSBQjjRogyHZmysY0qcTq
-         S19nCY/wuAeqIB26bvYlaMnzxX4udrWSGlwUrT3ZNcfaRVJkuQLbtX8eZ+HXoldNLm
-         zLXuWt07ptKd//MHYez+flrLi2yjRrYjaIKqwdvUw0yTkfZ4Kyd/JGCgb/9klnRGN7
-         NUG/hT9EPCZNjXqhuZcfR0s0CQG8I5pjSI8xC/I4sJbXCBhOYkNvMShC5J1GREmfpc
-         bX8phvDX43TNA==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S229461AbiLKVPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 16:15:51 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64DB10BD
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 13:15:50 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id j206so11536557ybj.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 13:15:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZFQd2ZnrXp1T0JoyUefLP6nDZag4evJK9N5dazk18fU=;
+        b=wUdqoYlyaKxIWUBvCMPDSIChKgDgE1KOVUk42j26ASJkgys9n7xG8kVi/V4256vbi3
+         N9BGIUvbvk37YfurXzg7clbcHi/h3PRKdOPOFfxot7h+7k9n2RC24DP83wCaQ4aJ9SfU
+         9QEQvXslOHkyRNfiK7G1CBgC4bwd1OlInXQ3NbXkmC6lrNoVtpcBvm8zwRvgbNZ04P13
+         zhPwH/0yBzVhLtq6aDGHiX71JC5PqeJEVf16OFSD0HSr05zWbdVeiPM1JSLiRrzkmLfh
+         GIkesUBgZR13PlHCfZa+1OGuIo015VsJmDdSkkbX0xGcxlCgZj9B8A4ztKUHrLug0can
+         Zj0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZFQd2ZnrXp1T0JoyUefLP6nDZag4evJK9N5dazk18fU=;
+        b=EzzL5/fAQKuhPnVG+14DtTYjZ+vfDhQcFwbobKL9IuFtThY0e6lZB8xLPUeSVk0v/f
+         GYba/0rRGE4N09/y5sTgwEvkysij3vmEEHu5eBNj4zgfblAasJcViuZnpABhR0tOtZjt
+         mciRbvVm6T0rcIbqKRh/lhhAqXIJPj8auiGg7fQIHoXOaEeC6WiANaXLRKZNiXSDU47N
+         dvuIeboWFsmk8R+SeatzzucT6OkFFRsz9ai2KfAroUjNwXXZtBOokIrRpNM9Qjm2bK+Y
+         pRwyf677n/VErnghn5lHHYniKnTjIXZqh5H84TjUg5UxdXz0wU7RLPX23rBe3aY4kPiP
+         149Q==
+X-Gm-Message-State: ANoB5pkg547hTEkhwPr0d8YDLP5p+jcFhI3CLxWKLjy/HHEPOQ2LgXre
+        0N4E2CIPBxVhaoyWXMwqYnjG+cFWrAa4DPbZgtMKwQ==
+X-Google-Smtp-Source: AA0mqf7/yPAsEdTsuK45OapbMO521RJhp7EwRCRhTkL9E1VmUicXued1+pR1WsrqpEiKMJku6tC1USuWdxXKO5sPxXE=
+X-Received: by 2002:a25:384a:0:b0:710:a8a6:d45 with SMTP id
+ f71-20020a25384a000000b00710a8a60d45mr3055491yba.152.1670793349879; Sun, 11
+ Dec 2022 13:15:49 -0800 (PST)
+MIME-Version: 1.0
+References: <20221210115704.97614-1-krzysztof.kozlowski@linaro.org>
+ <20221210115704.97614-4-krzysztof.kozlowski@linaro.org> <f1aa7f4c-35e4-47d2-2443-8271175dc5af@linaro.org>
+ <61b4b894-2c49-881f-c2eb-107e8e558232@linaro.org>
+In-Reply-To: <61b4b894-2c49-881f-c2eb-107e8e558232@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 11 Dec 2022 23:15:39 +0200
+Message-ID: <CAA8EJpqZiJd9=T8rdj65RZ2b5_OTai_a7MOektVB2gH8hGKdQg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8250: move sound and codec nodes
+ out of soc
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode as deprecated
-Date:   Sun, 11 Dec 2022 21:51:24 +0100
-Message-Id: <20221211205124.23823-2-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221211205124.23823-1-marex@denx.de>
-References: <20221211205124.23823-1-marex@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock {} subnode seems like it is describing an always-on clock
-generated by the PMIC. This should rather be modeled by consumer of
-the clock taking phandle to the RTC node itself, since it already
-does have clock-cells and all. Since there are no users of the clock
-subnode in tree anyway, mark it as deprecated to avoid proliferation
-of this approach.
+On Sun, 11 Dec 2022 at 22:13, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/12/2022 13:31, Konrad Dybcio wrote:
+> >
+> >
+> > On 10.12.2022 12:57, Krzysztof Kozlowski wrote:
+> >> The sound and codec nodes are not a property of a soc, but rather board
+> >> as it describes the sound configuration.
+> > * in this case, there exist SoC-internal codecs
+>
+> wcd9380 is not SoC internal, so to which codec you refer to? Sound node
+> is for sound configuration, not codec, and sound configuration is board
+> specific.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alessandro Zummo <a.zummo@towertech.it>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-rtc@vger.kernel.org
-To: devicetree@vger.kernel.org
----
-V2: - Add AB from Krzysztof
-V3: - No change
----
- Documentation/devicetree/bindings/rtc/st,m41t80.yaml | 1 +
- 1 file changed, 1 insertion(+)
+The platform has several macro 'codec's, which are SoC-internal
+devices. On the other hand, these devices also have bus addresses.
 
-diff --git a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-index fc9c6da6483f5..03ff833f5fe9d 100644
---- a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-+++ b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-@@ -40,6 +40,7 @@ properties:
-   clock:
-     type: object
-     $ref: /schemas/clock/fixed-clock.yaml#
-+    deprecated: true
-     properties:
-       clock-frequency:
-         const: 32768
+>
+> >
+> >  It also does not have unit
+> >> address:
+> >>
+> >>   sm8250-hdk.dtb: soc@0: sound: {} should not be valid under {'type': 'object'}
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
 -- 
-2.35.1
-
+With best wishes
+Dmitry
