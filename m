@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7711C649627
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 21:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA8064962A
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 21:17:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230186AbiLKUPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 15:15:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60562 "EHLO
+        id S230105AbiLKURF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 15:17:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230181AbiLKUPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 15:15:40 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474DE764B
-        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 12:15:39 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p8so15273246lfu.11
-        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 12:15:39 -0800 (PST)
+        with ESMTP id S230085AbiLKURE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 15:17:04 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D9765BB
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 12:17:03 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id q6so5231224lfm.10
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 12:17:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5Al7gvlUoTy7UGqDthGlSVzQcq2lj5xSL3RUL8nU3vo=;
-        b=s8oWxL35Ulw71ZUxUjQUR0xwAYVzn4x+SP8fx5hkMGlzNJeT+GYVWWZ0fgE9+HhkE2
-         U2G6XuNx4yIhBsG641w9OGVYiAsZzVQ8iZlJ1228jNHQwrThvbPHXcnMfedAvSR2BHya
-         tMdeDpuL9cMTrXDvvpmkgfqtv3ju6gm2UpQTBRLJZoGQi7mHv1jedEit15qVdvLtb5v8
-         zS8pakRIzEXpsX5TLsQ++paoBjyI7liuuSsu2MNtqCsPZxlReWfiNtFiLTJmhkGA2XT5
-         6tJM/zGDVemJRzkB3OQ9nR3Zod89+ur/WD/jn9WZtv4zMdID1dcb2186Usc/Z9T2EWyC
-         GzVA==
+        bh=sPgvv5cM0oSPYxsZv88ImjFPC2Vl18Oh/MuK/grhjDs=;
+        b=xnDZGt6etwplodHR1E8Dz8ar6iW3Xeta41yGbvnSphSG6ObafRTz9gIIWbNimtb166
+         jRpxhUGiJgBq5lGU6UyMPvkMaUL79QKxQN5fYjN/u1FuQDtZ/7S3zJSXqI5hDYGIVA0I
+         Bo7zexFgMM5X8kF+c1qnA61voYn57fj0pwApv1KfLsmnx6cJrmXET2EFuU+9VIbfC6YX
+         fpoBbSM86EpH/drcVRXnP4tYyCkwCIQg5yrfyGToaoS9kapydFhK18m5s2O/pkhCMtRe
+         Ajs3ghEX9Ab2CGHR2Dx7JGmb+lH4uS5sG/zXENlZtQmwfUC4CpzwuodsyaPGrSlNjszr
+         QDhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5Al7gvlUoTy7UGqDthGlSVzQcq2lj5xSL3RUL8nU3vo=;
-        b=RTs6FzBvb5JxpE5R1QaUA+ytI0xZDOCTzYgVfza3LLPpG37/+tQKDmc53QkT7UD7sJ
-         oal54K0DEZVU2GmIOeR0+GGVxP+ZzCUPGy+AB09k7pGhm99D+W/cWHN4a7xC5he7Hsvv
-         NzbxVycSeuE1wF8NnAN6lXvz+FYE5cBC7q9o2BE7JJMHTCdCFBPz+JPMTXItcYLRI6W6
-         pTCRTNO6MK8A15eavv0QUFhlGFMO+di9lL0krODst+E5xrfo6c4cOKxQJeqVnzoFc0fV
-         wjv6CrGYy0mGG5k/8JeaDTJ3YAjHLLo2UG561tOzYjxNYsa4cnLaeSKoZD1egh/jMEji
-         7pFw==
-X-Gm-Message-State: ANoB5plDwXP2e2YnexmaVbERIB/rsbhBWKIY+V6xInamDks88OzwVK2w
-        n1T7vND/yuKeTxm1gN013I5Reg==
-X-Google-Smtp-Source: AA0mqf7tJ+q4PuxNS+LMfitslzfdrVXH4RbDvaPUfQNNnBwlF4Ckb7s23Ex4Hr78Jz/aFLdDKyvUIg==
-X-Received: by 2002:ac2:47f4:0:b0:4b5:670e:b708 with SMTP id b20-20020ac247f4000000b004b5670eb708mr3443160lfp.14.1670789737703;
-        Sun, 11 Dec 2022 12:15:37 -0800 (PST)
+        bh=sPgvv5cM0oSPYxsZv88ImjFPC2Vl18Oh/MuK/grhjDs=;
+        b=Wo34tZl0PH5qJpFp9lionuCBDrotnFdzPuxOpYmhOYYvaqaUzQWuW7o86nbqzbw0kf
+         j3kkojL3dlfmXoWuXjwtzS2OJV810u8u4JCwWP8G9XoLO3AWSeQfQR5KkKmPHqMuhMiZ
+         //8zOgsmcQEhgOZOB2Ejy4FAeqj15dmiuw/4tQhf9kLwSlb+FXNnvmRhRPntD+MeF51q
+         CEnRdNCWtp+2g7TwI4ECi+6+313WDhgjwyz7Rj+LZMWM3eO15gPR5/ZbhElRIZnppfo+
+         niunxBMxM5CSb+nttvm5naq56saKsVMk+hLJG62rUoTeGHz5VXPMG9iPH4EC6GwVst4d
+         i1KA==
+X-Gm-Message-State: ANoB5plQYVTKZkyMnld37XXw7z67J1E03H4WzhYfPeaNT0Nhw2ozJiDz
+        JgWGen1qWDeXKijkV0bHODjfuQ==
+X-Google-Smtp-Source: AA0mqf5pfi7RswBzTQure7Tg7IBONyzg1o3h3hh7gYT7H0pcCMDbrwSvnU7288b/kHYuQfYGEj5mFw==
+X-Received: by 2002:a05:6512:ba5:b0:4b5:869e:b5ec with SMTP id b37-20020a0565120ba500b004b5869eb5ecmr4714243lfv.61.1670789821914;
+        Sun, 11 Dec 2022 12:17:01 -0800 (PST)
 Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id t1-20020ac24c01000000b004b501497b6fsm1331571lfq.148.2022.12.11.12.15.36
+        by smtp.gmail.com with ESMTPSA id u22-20020ac258d6000000b004b55da01d3csm1311205lfo.191.2022.12.11.12.17.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Dec 2022 12:15:37 -0800 (PST)
-Message-ID: <f260fd4e-a25b-6ae5-0952-63f68b5330fc@linaro.org>
-Date:   Sun, 11 Dec 2022 21:15:36 +0100
+        Sun, 11 Dec 2022 12:17:01 -0800 (PST)
+Message-ID: <fa9708e6-e5f8-798a-81bf-027dc09b4ffa@linaro.org>
+Date:   Sun, 11 Dec 2022 21:17:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.5.1
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: drop 0x from unit address
+Subject: Re: [PATCH] dt-bindings: mxsfb: Document i.MX8M power-domains
+ property
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221210113340.63833-1-krzysztof.kozlowski@linaro.org>
- <5d21408f-cc99-35f3-c4ce-b13f02c1c1f3@linaro.org>
+        Lucas Stach <l.stach@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20221211025702.672364-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5d21408f-cc99-35f3-c4ce-b13f02c1c1f3@linaro.org>
+In-Reply-To: <20221211025702.672364-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,20 +79,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/12/2022 13:26, Konrad Dybcio wrote:
+On 11/12/2022 03:57, Marek Vasut wrote:
+> The power-domains property is mandatory on i.MX8M Mini, Nano, Plus.
+> Document the property and mark it as required on the aforementioned
+> variants of the IP, present in those SoCs.
 > 
-> 
-> On 10.12.2022 12:33, Krzysztof Kozlowski wrote:
->> By coding style, unit address should not start with 0x.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> We somehow keep running into solving the same style issues :P
-> 
-> https://lore.kernel.org/lkml/20220930191049.123256-8-konrad.dybcio@somainline.org/
-> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Eh, this should have been just applied long time ago...
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
