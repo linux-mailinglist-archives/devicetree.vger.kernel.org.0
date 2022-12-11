@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE31164922A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 04:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D920E6492F6
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 07:55:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbiLKDBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 22:01:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47912 "EHLO
+        id S230081AbiLKGzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 01:55:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiLKDBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 22:01:12 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E83387;
-        Sat, 10 Dec 2022 19:01:09 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 0BA3A852FB;
-        Sun, 11 Dec 2022 04:01:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670727667;
-        bh=aEiouBhBgwLswh3IetEyUPaUNGvXqngdyiSg+pWw1ks=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AW9HFe/YxVJ6hGetSPDRDhlXmfFyX+nkqToY7jayqdM7eF35Q/1HASR7NdQs+oT1n
-         ZBjtUw0i8lWebUzyPnP7TWnXbXpZZ7dBtJbG1XtDmLI5APP6A/dYoNpTQEGcZf6Cve
-         nA0qeCxD/BsmKMdYHDMIYidB3zzKJbbsGU1DOfyfExGbsITUCdP/gTz+La0pA5hWuX
-         e54TYVZMOgf26ndiOGVJevS41a+fYYkZ3xU+Oyzs1SDBQhj7oWk9fEO0MJZLo6XIbW
-         l4sTt/nc2iJyIjav0WsshL7nwH6gfyQnCnaKRUvzZlM1V8rT+zsHou6dYlqk60khhl
-         Y1IfFCV89QRmA==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: rtc: m41t80: Mark the clock: subnode as deprecated
-Date:   Sun, 11 Dec 2022 04:00:54 +0100
-Message-Id: <20221211030054.672717-2-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221211030054.672717-1-marex@denx.de>
-References: <20221211030054.672717-1-marex@denx.de>
+        with ESMTP id S229972AbiLKGzA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 01:55:00 -0500
+Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B10DF5E
+        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 22:54:58 -0800 (PST)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id 4GEbp4I6yvgTT4GEbpFfpL; Sun, 11 Dec 2022 07:54:53 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 11 Dec 2022 07:54:53 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <361c0911-7133-4d28-436e-1dfab2b807a8@wanadoo.fr>
+Date:   Sun, 11 Dec 2022 07:54:49 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 3/3] regulator: axp20x: Add support for AXP1530 variant
+Content-Language: fr
+To:     martin.botka@somainline.org
+Cc:     angelogioacchino.delregno@somainline.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, jamipkettunen@somainline.org,
+        jtrmal@gmail.com, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        marijn.suijten@somainline.org, martin.botka1@gmail.com,
+        paul.bouchara@somainline.org, robh+dt@kernel.org,
+        takuya@takuya.tech, wens@csie.org
+References: <20221209234654.1082522-1-martin.botka@somainline.org>
+ <20221209234654.1082522-4-martin.botka@somainline.org>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20221209234654.1082522-4-martin.botka@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock {} subnode seems like it is describing an always-on clock
-generated by the PMIC. This should rather be modeled by consumer of
-the clock taking phandle to the RTC node itself, since it already
-does have clock-cells and all. Since there are no users of the clock
-subnode in tree anyway, mark it as deprecated to avoid proliferation
-of this approach.
+Le 10/12/2022 à 00:46, Martin Botka a écrit :
+> AXP1530 has a few regulators that are controlled via I2C Bus.
+> 
+> Add support for them.
+> 
+> Signed-off-by: Martin Botka <martin.botka-KtrmGDJU8+nZ+VzJOa5vwg@public.gmane.org>
+> ---
+>   drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
+>   1 file changed, 44 insertions(+)
+> 
+> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> index d260c442b788..ca422311a996 100644
+> --- a/drivers/regulator/axp20x-regulator.c
+> +++ b/drivers/regulator/axp20x-regulator.c
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alessandro Zummo <a.zummo@towertech.it>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-rtc@vger.kernel.org
-To: devicetree@vger.kernel.org
----
-V2: - Add AB from Krzysztof
----
- Documentation/devicetree/bindings/rtc/st,m41t80.yaml | 1 +
- 1 file changed, 1 insertion(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-index 9977c8954307e..98a6da4083897 100644
---- a/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-+++ b/Documentation/devicetree/bindings/rtc/st,m41t80.yaml
-@@ -40,6 +40,7 @@ properties:
-   clock:
-     type: object
-     $ref: /schemas/clock/fixed-clock.yaml#
-+    deprecated: true
-     properties:
-       clock-frequency:
-         const: 32768
--- 
-2.35.1
+> @@ -1252,6 +1292,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+>   		drivevbus = of_property_read_bool(pdev->dev.parent->of_node,
+>   						  "x-powers,drive-vbus-en");
+>   		break;
+> +		case AXP1530_ID:
+
+Nit: indentation.
+
+> +		regulators = axp1530_regulators;
+> +		nregulators = AXP1530_REG_ID_MAX;
+> +		break;
+>   	default:
+>   		dev_err(&pdev->dev, "Unsupported AXP variant: %ld\n",
+>   			axp20x->variant);
 
