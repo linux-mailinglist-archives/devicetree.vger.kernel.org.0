@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AEE36491A9
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 02:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CDBA6491C7
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 03:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiLKBYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 20:24:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51672 "EHLO
+        id S229775AbiLKCOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 21:14:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiLKBYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 20:24:01 -0500
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F379013EA7;
-        Sat, 10 Dec 2022 17:24:00 -0800 (PST)
-Received: from TimeMachine.lan (adsl-d248.84-47-10.t-com.sk [84.47.10.248])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id BC1553EEEB;
-        Sun, 11 Dec 2022 02:23:58 +0100 (CET)
-From:   Martin Botka <martin.botka@somainline.org>
-To:     martin.botka1@gmail.com
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Jan Trmal <jtrmal@gmail.com>, Tom <takuya@takuya.tech>,
-        Martin Botka <martin.botka@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] regulator: axp20x: Add support for AXP1530 variant
-Date:   Sun, 11 Dec 2022 02:21:32 +0100
-Message-Id: <20221211012132.1650783-4-martin.botka@somainline.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221211012132.1650783-1-martin.botka@somainline.org>
-References: <20221211012132.1650783-1-martin.botka@somainline.org>
+        with ESMTP id S229475AbiLKCOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 21:14:51 -0500
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B8F912AB7;
+        Sat, 10 Dec 2022 18:14:50 -0800 (PST)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.54])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4NV7Xf0wWqzJnsN;
+        Sun, 11 Dec 2022 10:11:14 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ kwepemi500008.china.huawei.com (7.221.188.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Sun, 11 Dec 2022 10:14:48 +0800
+Message-ID: <d2dd457e-ee9a-bdee-1efc-fe358d8f49a9@huawei.com>
+Date:   Sun, 11 Dec 2022 10:14:47 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,RCVD_IN_SORBS_HTTP,
-        RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH] of: overlay: fix null pointer dereferencing in
+ find_dup_cset_node_entry() and find_dup_cset_prop()
+To:     Rob Herring <robh@kernel.org>
+CC:     <frowand.list@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221206083657.3202856-1-ruanjinjie@huawei.com>
+ <20221209205900.GA3808024-robh@kernel.org>
+Content-Language: en-US
+From:   Ruan Jinjie <ruanjinjie@huawei.com>
+In-Reply-To: <20221209205900.GA3808024-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.109.254]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,84 +51,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AXP1530 has a few regulators that are controlled via I2C Bus.
 
-Add support for them.
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
- drivers/regulator/axp20x-regulator.c | 44 ++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index d260c442b788..ca422311a996 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -1001,6 +1001,40 @@ static const struct regulator_desc axp813_regulators[] = {
- 		    AXP22X_PWR_OUT_CTRL2, AXP22X_PWR_OUT_DC1SW_MASK),
- };
- 
-+static const struct linear_range axp1530_dcdc1_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-+	REGULATOR_LINEAR_RANGE(1600000, 0x58, 0x6A, 100000),
-+};
-+
-+static const struct linear_range axp1530_dcdc2_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x57, 20000),
-+};
-+
-+static const struct linear_range axp1530_dcdc3_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000, 0x0, 0x46, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 0x47, 0x66, 20000),
-+};
-+
-+static const struct regulator_desc axp1530_regulators[] = {
-+	AXP_DESC_RANGES(AXP1530, DCDC1, "dcdc1", "vin1", axp1530_dcdc1_ranges,
-+					0x6B, AXP1530_DCDC1_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(0)),
-+	AXP_DESC_RANGES(AXP1530, DCDC2, "dcdc2", "vin2", axp1530_dcdc2_ranges,
-+					0x58, AXP1530_DCDC2_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(1)),
-+	AXP_DESC_RANGES(AXP1530, DCDC3, "dcdc3", "vin3", axp1530_dcdc3_ranges,
-+					0x58, AXP1530_DCDC3_CONRTOL, 0x7f, AXP1530_OUTPUT_CONTROL,
-+					BIT(2)),
-+	AXP_DESC(AXP1530, LDO1, "ldo1", "ldo1in", 500, 3500, 100,
-+					AXP1530_ALDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-+					BIT(3)),
-+	AXP_DESC(AXP1530, LDO2, "ldo2", "ldo2in", 500, 3500, 100,
-+					AXP1530_DLDO1_CONRTOL, 0x1f, AXP1530_OUTPUT_CONTROL,
-+					BIT(4)),
-+};
-+
- static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- {
- 	struct axp20x_dev *axp20x = dev_get_drvdata(pdev->dev.parent);
-@@ -1040,6 +1074,12 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- 		def = 3000;
- 		step = 150;
- 		break;
-+	case AXP1530_ID:
-+		/*
-+		 * Do not set the DCDC frequency on AXP1530
-+		 */
-+		return 0;
-+		break;
- 	default:
- 		dev_err(&pdev->dev,
- 			"Setting DCDC frequency for unsupported AXP variant\n");
-@@ -1252,6 +1292,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 		drivevbus = of_property_read_bool(pdev->dev.parent->of_node,
- 						  "x-powers,drive-vbus-en");
- 		break;
-+		case AXP1530_ID:
-+		regulators = axp1530_regulators;
-+		nregulators = AXP1530_REG_ID_MAX;
-+		break;
- 	default:
- 		dev_err(&pdev->dev, "Unsupported AXP variant: %ld\n",
- 			axp20x->variant);
--- 
-2.38.1
-
+On 2022/12/10 4:59, Rob Herring wrote:
+> On Tue, Dec 06, 2022 at 04:36:57PM +0800, ruanjinjie wrote:
+>> when kmalloc() fail to allocate memory in kasprintf(), fn_1 or fn_2 will
+>> be NULL, strcmp() will cause null pointer dereference.
+>>
+>> Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
+>> Signed-off-by: ruanjinjie <ruanjinjie@huawei.com>
+>> ---
+>>  drivers/of/overlay.c | 10 ++++++++++
+>>  1 file changed, 10 insertions(+)
+>>
+>> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+>> index bd8ff4df723d..49c066b51148 100644
+>> --- a/drivers/of/overlay.c
+>> +++ b/drivers/of/overlay.c
+>> @@ -545,6 +545,11 @@ static int find_dup_cset_node_entry(struct overlay_changeset *ovcs,
+>>  
+>>  		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+>>  		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+>> +		if (!fn_1 || !fn_2) {
+>> +			kfree(fn_1);
+>> +			kfree(fn_2);
+>> +			return -ENOMEM;
+>> +		}
+>>  		node_path_match = !strcmp(fn_1, fn_2);
+> 
+> We don't actually care what the return code is, so just change this to:
+> 
+> node_path_match = !fn_1 || !fn_2 || !strcmp(fn_1, fn_2);
+Thank you very much!I'll give the v2 patch soon.
+> 
+>>  		kfree(fn_1);
+>>  		kfree(fn_2);
+>> @@ -580,6 +585,11 @@ static int find_dup_cset_prop(struct overlay_changeset *ovcs,
+>>  
+>>  		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+>>  		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+>> +		if (!fn_1 || !fn_2) {
+>> +			kfree(fn_1);
+>> +			kfree(fn_2);
+>> +			return -ENOMEM;
+>> +		}
+>>  		node_path_match = !strcmp(fn_1, fn_2);
+>>  		kfree(fn_1);
+>>  		kfree(fn_2);
+>> -- 
+>> 2.25.1
+>>
+>>
+> 
