@@ -2,155 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D35764920C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 03:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C44B364921F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 03:57:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiLKCtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 21:49:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42344 "EHLO
+        id S229746AbiLKC5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 21:57:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbiLKCtU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 21:49:20 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9315013F2F
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 18:49:19 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C790285334;
-        Sun, 11 Dec 2022 03:49:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670726957;
-        bh=9EDrUk/FXDakhvKu4hHdaikk6s+VBFhmtOLNXsXsZyw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iiA5JGjZ6RnX8qiYt1GGhY07KQ+9wE5EKMg+sPYdhRMOtGzDtxXvsK/okWUbV+fFz
-         lTrp/NmKDrnoUfOYgBHIgjJA4+Vi2IwmLJ1zkqkl2f6QrvE6kvDn0Ds08irdf/36d+
-         fC4mudgIAHhguK9JE+OfTBXvUqMKT/y++iQUGhZN/EexflAfypOa5gvnAUfAwYWzsG
-         aEGw5ic4m7ROaan2XaLW/vvsygopOoqgtwEfpYpk03FKlPy7i2Y+pZ9dcXrgwgIglN
-         D84TMx+ZnxOy2V0H4uqQmxagLv1hTFuT8h+TfHplw5IoOjFXe2v2ezMCrpK9SA1+tq
-         In0eMunElxN8g==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S229538AbiLKC5P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 21:57:15 -0500
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FC8A1A1;
+        Sat, 10 Dec 2022 18:57:12 -0800 (PST)
+Received: by codeconstruct.com.au (Postfix, from userid 10000)
+        id DEB4B20240; Sun, 11 Dec 2022 10:57:10 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=codeconstruct.com.au; s=2022a; t=1670727430;
+        bh=B2bgi3mEW9G3IrDXy4oqFAsoYTVXakmyqNJRxS06qk8=;
+        h=From:To:Cc:Subject:Date;
+        b=XJ55m8zQFto4ChwS8Bh69mSTYjmYu2vJWCK4C9eiwks/TS8aXQqmyUSAPxgQS2Llx
+         xgAYz4pIPbzTIv85QzOB+Q8tz/KQD6Rn1BamsmnEC+piVQjeaOc1BNuezRhEYg3i3q
+         Pkw4yRWksoHU7Xl3+XiQButtzsXV2CVCcBMtLFNlbDIYKEWyIeJ3ZoU3RstTR8g69k
+         XBYKufEeZUcb78Ubm9KagzTIV4rx8Da0iaUJSC6t3XwXybRXO3H16P1Rm7FypM0wnY
+         V/O5A5DbgFApNxkQUcKfjeDSO+1RnBdBjkrWGNX+NVbWY9F6Kvz8iQkk4sxWRx2RTO
+         29JaDwuq8gUTg==
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: [PATCH v6 3/3] dt-bindings: imx6q-pcie: Handle more resets on legacy platforms
-Date:   Sun, 11 Dec 2022 03:48:59 +0100
-Message-Id: <20221211024859.672076-3-marex@denx.de>
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: [RFC PATCH v3 0/2] Add reset control for mfd syscon devices
+Date:   Sun, 11 Dec 2022 10:56:58 +0800
+Message-Id: <20221211025700.1180843-1-jk@codeconstruct.com.au>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221211024859.672076-1-marex@denx.de>
-References: <20221211024859.672076-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX6 and i.MX7D does not use block controller to toggle PCIe
-reset, hence the PCIe DT description contains three reset entries
-on these older SoCs. Add this exception into the binding document.
+This RFC series adds a facility for syscon devices to control a reset
+line when probed; we have instances of simple register-only syscon
+resources that need deassertion of a reset line for the register set to
+be accessible.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: NXP Linux Team <linux-imx@nxp.com>
-To: devicetree@vger.kernel.org
----
-V2: - Add mx8mq to 3-reset PCIe core variant
-    - Handle the resets in allOf section
-V3: - Reinstate reset: maxItems:3 and add minItems:2
-    - Move reset-names back to main section
-    - The validation no longer works and introduces errors like these:
-      arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb: pcie@33800000: reset-names:0: 'pciephy' was expected
-V4: - Reinstate reset minItems and maxItems
-    - Turn the first two reset-names items into enums to cover all
-      the various name combinations, sort the rest in allOf section
-V5: - Drop items from main section reset-names and add maxItems:3
-V6: - Add RB from Krzysztof
----
- .../bindings/pci/fsl,imx6q-pcie.yaml          | 35 ++++++++++++++++---
- 1 file changed, 31 insertions(+), 4 deletions(-)
+Rather than requiring a specific driver to implement this, it'd be nice
+to use the generic syscon device and the generic resets linkage to do
+so.
 
-diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-index b434a1949b9ae..1a0ea9d3eaa43 100644
---- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-@@ -84,15 +84,14 @@ properties:
-       - const: pcie_phy
- 
-   resets:
-+    minItems: 2
-     maxItems: 3
-     description: Phandles to PCIe-related reset lines exposed by SRC
-       IP block. Additional required by imx7d-pcie and imx8mq-pcie.
- 
-   reset-names:
--    items:
--      - const: pciephy
--      - const: apps
--      - const: turnoff
-+    minItems: 2
-+    maxItems: 3
- 
-   fsl,tx-deemph-gen1:
-     description: Gen1 De-emphasis value (optional required).
-@@ -324,6 +323,34 @@ allOf:
-           maxItems: 1
-         power-domain-names: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6q-pcie
-+              - fsl,imx6sx-pcie
-+              - fsl,imx6qp-pcie
-+              - fsl,imx7d-pcie
-+              - fsl,imx8mq-pcie
-+    then:
-+      properties:
-+        resets:
-+          minItems: 3
-+        reset-names:
-+          items:
-+            - const: pciephy
-+            - const: apps
-+            - const: turnoff
-+    else:
-+      properties:
-+        resets:
-+          maxItems: 2
-+        reset-names:
-+          items:
-+            - const: apps
-+            - const: turnoff
-+
- examples:
-   - |
-     #include <dt-bindings/clock/imx6qdl-clock.h>
+Any comments/queries/etc are most welcome.
+
+Cheers,
+
+
+Jeremy
+---
+v2:
+ - use direct syscon registration interface, rather than the (unused)
+   syscon platform device code
+ - consequently, add regmap infrastructure to attach a reset
+   controller, in a similar way to attaching clocks
+v3:
+ - drop regmap reset attach and just do a direct deassert from the syscon
+   driver
+
+Jeremy Kerr (2):
+  dt-bindings: mfd/syscon: Add resets property
+  mfd: syscon: allow reset control for syscon devices
+
+ .../devicetree/bindings/mfd/syscon.yaml       |  3 +++
+ drivers/mfd/syscon.c                          | 27 ++++++++++++++-----
+ 2 files changed, 24 insertions(+), 6 deletions(-)
+
 -- 
 2.35.1
 
