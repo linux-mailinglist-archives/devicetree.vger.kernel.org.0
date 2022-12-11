@@ -2,58 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 412B96491FF
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 03:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5142F6491FB
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 03:36:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiLKCg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Dec 2022 21:36:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39528 "EHLO
+        id S229683AbiLKCgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Dec 2022 21:36:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbiLKCgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 21:36:54 -0500
-X-Greylist: delayed 629 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 10 Dec 2022 18:36:49 PST
-Received: from webmail.no-log.org (webmail.no-log.org [80.67.172.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2ECF13EA9
-        for <devicetree@vger.kernel.org>; Sat, 10 Dec 2022 18:36:49 -0800 (PST)
-Received: from webmail.no-log.org (webmail.no-log.org [80.67.172.39])
-        by webmail.no-log.org (Postfix) with ESMTP id 15A2382611;
-        Sun, 11 Dec 2022 03:25:58 +0100 (CET)
-X-Squirrel-UserHash: V14GBR0HRykaRAADAkByWl1KAAAFRyEdSg==
-X-Squirrel-FromHash: AVRfCVhbXX4=
-Message-ID: <e9f5603097e7b02c5601e4adf437ec71.squirrel@webmail.no-log.org>
-Date:   Sun, 11 Dec 2022 03:25:58 +0100
-Subject: Reply
-From:   "Mrs Susanne Hanna" <claire.guillet1@no-log.org>
-Reply-To: hanna.susanne@aol.com
-User-Agent: SquirrelMail/1.4.23 [SVN]
+        with ESMTP id S229529AbiLKCgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Dec 2022 21:36:38 -0500
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161D313E31;
+        Sat, 10 Dec 2022 18:36:37 -0800 (PST)
+Received: from kwepemi500008.china.huawei.com (unknown [172.30.72.53])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4NV84s2916z15N1r;
+        Sun, 11 Dec 2022 10:35:41 +0800 (CST)
+Received: from huawei.com (10.67.175.83) by kwepemi500008.china.huawei.com
+ (7.221.188.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Sun, 11 Dec
+ 2022 10:36:34 +0800
+From:   ruanjinjie <ruanjinjie@huawei.com>
+To:     <robh+dt@kernel.org>, <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <ruanjinjie@huawei.com>
+Subject: [PATCH v2] of: overlay: fix null pointer dereferencing in find_dup_cset_node_entry() and find_dup_cset_prop()
+Date:   Sun, 11 Dec 2022 10:33:37 +0800
+Message-ID: <20221211023337.592266-1-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type:   text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7BIT
-X-Priority: 3 (Normal)
-Importance: Normal
-X-Spam-Status: Yes, score=6.5 required=5.0 tests=BAYES_50,
-        FREEMAIL_FORGED_REPLYTO,HK_NAME_MR_MRS,MISSING_HEADERS,
-        REPLYTO_WITHOUT_TO_CC,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5843]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  1.0 MISSING_HEADERS Missing To: header
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  1.0 HK_NAME_MR_MRS No description available.
-        *  1.6 REPLYTO_WITHOUT_TO_CC No description available.
-        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Spam-Level: ******
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.67.175.83]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500008.china.huawei.com (7.221.188.139)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+when kmalloc() fail to allocate memory in kasprintf(), fn_1 or fn_2 will
+be NULL, strcmp() will cause null pointer dereference.
 
+Fixes: 2fe0e8769df9 ("of: overlay: check prevents multiple fragments touching same property")
+Signed-off-by: ruanjinjie <ruanjinjie@huawei.com>
+---
+v2:
+- not care return code, so check whether fn_1 or fn_2 is NULL in assigning node_path_match
+---
+ drivers/of/overlay.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
-Money was donated to you.
-Contact: hanna.susanne@aol.com
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index bd8ff4df723d..ed4e6c144a68 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -545,7 +545,7 @@ static int find_dup_cset_node_entry(struct overlay_changeset *ovcs,
+ 
+ 		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+ 		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+-		node_path_match = !strcmp(fn_1, fn_2);
++		node_path_match = !fn_1 || !fn_2 || !strcmp(fn_1, fn_2);
+ 		kfree(fn_1);
+ 		kfree(fn_2);
+ 		if (node_path_match) {
+@@ -580,7 +580,7 @@ static int find_dup_cset_prop(struct overlay_changeset *ovcs,
+ 
+ 		fn_1 = kasprintf(GFP_KERNEL, "%pOF", ce_1->np);
+ 		fn_2 = kasprintf(GFP_KERNEL, "%pOF", ce_2->np);
+-		node_path_match = !strcmp(fn_1, fn_2);
++		node_path_match = !fn_1 || !fn_2 || !strcmp(fn_1, fn_2);
+ 		kfree(fn_1);
+ 		kfree(fn_2);
+ 		if (node_path_match &&
+-- 
+2.25.1
 
