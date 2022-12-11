@@ -2,81 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE276495FD
-	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 20:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F194164960D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Dec 2022 21:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229477AbiLKTLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Dec 2022 14:11:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52868 "EHLO
+        id S229656AbiLKUAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Dec 2022 15:00:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiLKTLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 14:11:08 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1F0DEFE;
-        Sun, 11 Dec 2022 11:10:56 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id ud5so23022994ejc.4;
-        Sun, 11 Dec 2022 11:10:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WFk3Ha/y7pNYcZ4CQj5dPXoaiXBxGx8mxN+bqWFfNQw=;
-        b=hFl5eTX7YDB4EXSzDfZEPYzixaGbv1lHC+PHFud4mhj4PJ4vuqIkKzusymJiAyQlBf
-         gPY6mMUKYKysP09Y2Mg6vXZFxhXtHUZmhmWvNny/4EzIVMUygcQhe+GFbjbK/XeycB+U
-         oRiiLT+sGW/t3yDeYrXYYjIEO+/d3uj2Ja5/uwlnLdrjU6GkoIm3w4sTOPPLYP285TH2
-         QO3M16TloCcuBnfRitu0JgJnx0RqM9XPmwQtXoCIbZ3FwejzNwpnI8DDPDfdUrxm0Y64
-         4aqC8onLitxAY4+k/AGGRcUHArNE3n6/zKfWstbJECTWSEbQONdiyOQAmmkz7zEsAYKq
-         SVyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WFk3Ha/y7pNYcZ4CQj5dPXoaiXBxGx8mxN+bqWFfNQw=;
-        b=GGvlfIz9pZy9Q2FcUrwLk3/J+AnKLBRlxu1nlGoAPfep6sZE0mVE4DiTbvFU1Ua8oL
-         1gr6cbUkUqeXbKZlamiUaAFZ/lTGC8qkZBaPUSlUA90G/hsOeWBb+DkNVT/36WZSvV/d
-         BB59+MUFBWAFhdlfF4hK/+98kHzTf+BGZJdaZtpUx0V7nvsuXQjzeND/T8C9R/5/5STu
-         ZMhrPIH6dWZ/Z6PfVwPqgQ5ichrmiLGboWZCkUXGGeW9glvUB0sGcZVhIdszXD49mWAk
-         iem25fs0w56FZhPXxFKcRYu7h89plpPRqtTQCwHDehjPrf5y37NJFoCf6j4FmNp9lqwq
-         kM6g==
-X-Gm-Message-State: ANoB5pko18ygqu4jhth6h1Xay5uEiYE8hbLX6omwXaDE13Ljnzaym4Zs
-        Rc9ZtskCmmLo6xDK/rBWQS3ogm9tuL8NKI+o1FE=
-X-Google-Smtp-Source: AA0mqf78LAlr0O4GWAmtaVYZZ2KAkMWCtMR3iEe+wWmoy+n8XwbmVqBCvod8lV+fwIXqmkJ3DqkefEHz2iAP9rtIUtY=
-X-Received: by 2002:a17:906:e87:b0:78d:b88f:1548 with SMTP id
- p7-20020a1709060e8700b0078db88f1548mr83717588ejf.221.1670785854935; Sun, 11
- Dec 2022 11:10:54 -0800 (PST)
+        with ESMTP id S229471AbiLKUAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Dec 2022 15:00:02 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A37C2BCA9;
+        Sun, 11 Dec 2022 12:00:00 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 402DE240007;
+        Sun, 11 Dec 2022 19:59:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1670788798;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=nviQnYPoCNryX26Yk5aQ1g/hoSw96V3xdfHJt6EIe1o=;
+        b=NPljn+WjlL6wQk55wVt+JE7/b9utUL/easL6fbgNwYRUsfgbS76rL+clrhVsAiILUGzY4O
+        +pa3mBoPHV2vruMxOpbrpaOfvN/ZEcHwnJNMlgAVaAw6VAJn9CzVXFq+PlsafKkBLQbGxw
+        HGo2ch4S5koKgaLM3kWOPLxhCzOpQ83NtprCC4Y0K+u03mLAa2jBTgXXo69yv1sP4BhDPw
+        9dnfgP69AfhZZyELiu7NZrlRCAnOK4XbbIwiDB6le2unmi78RVMu3Zy26l5aCD4QUgbSgW
+        RHm/4rLXQ09DK0dtfM1n2zlIfp3zlaYTIK3pvHrEiVOA0SsVhz9qmAtohWpywA==
+Date:   Sun, 11 Dec 2022 20:59:56 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, kernel@collabora.com,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCHv4 00/13] Introduce RK806 Support
+Message-ID: <167078872190.11717.11951030261472241551.b4-ty@bootlin.com>
+References: <20221020204251.108565-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-References: <20221211100501.82323-1-dominikkobinski314@gmail.com> <CAB1t1CzXzt4idK2wkvF7hqXdOF=obkb7oG0Tu4PGwKYAX5nwNg@mail.gmail.com>
-In-Reply-To: <CAB1t1CzXzt4idK2wkvF7hqXdOF=obkb7oG0Tu4PGwKYAX5nwNg@mail.gmail.com>
-From:   Petr Vorel <petr.vorel@gmail.com>
-Date:   Sun, 11 Dec 2022 20:10:42 +0100
-Message-ID: <CAB1t1CxSG18tSockTLZaz6BTGXaEWbXZ2+EBpWSfr0HgHvxoqA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: msm8992-bullhead: add memory hole region
-To:     Dominik Kobinski <dominikkobinski314@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, pevik@seznam.cz, agross@kernel.org,
-        alexeymin@postmarketos.org, quic_bjorande@quicinc.com,
-        bribbers@disroot.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221020204251.108565-1-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dominik, all,
+On Thu, 20 Oct 2022 22:42:38 +0200, Sebastian Reichel wrote:
+> The Rockchip RK3588 Evaluation Boards use SPI connected RK806
+> PMICs. Downstream this is handled by a new driver, but apart
+> from being SPI connected this chip is quite similar to the
+> ther Rockchip PMICs (also RK806 is promoted to also support
+> I2C). Thus this series instead updates the RK808 driver(s).
+> 
+> Changelog since PATCHv3:
+>  * https://lore.kernel.org/all/20220909175522.179175-1-sebastian.reichel@collabora.com/
+>  * Dropped removing REGMAP_I2C dependency from RK817 ASoC driver (applied)
+>  * Rename MFD_RK808 to MFD_RK8XX to be consistent. It makes sense to do this now,
+>    since the patchset touches all the child drivers anyways.
+>  * rebase to v6.1-rc1
+>  * collected a couple of Acks
+>  * update rk806 DT binding according to DT maintainer feedback
+>  * add missing pinmux config to the rk806 DT binding
+>  * update rk806_spi_bus_write and rk806_spi_bus_read
+>  * replaced some constants with sizeof or defines
+>  * used capitalized comments
+>  * rename regmap_find_closest_bigger to regulator_find_closest_bigger, not sure
+>    why I prefixed it with regmap_ in the first place
+>  * use rk8xx_is_enabled_wmsk_regmap instead of regulator_is_enabled_regmap for
+>    the switching regulators to correctly report the state
+>  * reordered the first few patches grouping the MFD patches together
+> 
+> [...]
 
-Tested-by: Petr Vorel <petr.vorel@gmail.com>
+Applied, thanks!
 
-Fixes all my problems! Thanks for fix.
+[03/13] rtc: rk808: reduce 'struct rk808' usage
+        commit: 2e830ccc21eb67a4c2490279d907e5e9199e5156
 
-@Konrad @Andy @Bjorn Although it looks like it does not need to be in
-6.0.x stable, I'd be for merging it there.
-Not sure how about the other versions (I'd be for not adding it).
+Best regards,
 
-Kind regards,
-Petr
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
