@@ -2,190 +2,525 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AEAE649B2E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 10:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60822649B31
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 10:33:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231776AbiLLJdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 04:33:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
+        id S231902AbiLLJdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 04:33:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231907AbiLLJc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 04:32:58 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 783982603
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:32:50 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 536B2FB;
-        Mon, 12 Dec 2022 10:32:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1670837567;
-        bh=gO+CGPBef/Ifw+tKAKwgYSPY5yPXVhouQW3dyAqrBaY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=npe5L284CeffrQPOxHSaW7oO9qEFXAytbG+nBRmAEPoi2HcqfOshTSyEOSZMlQaXW
-         q40COhQyJYJmz//5HeG3FUfUbhvhPpjbPPtXQ2j+ZmH5H95kh/AJ5IrMUTY/DSBDqb
-         ajqm9DTXScJXE4OYRe9BvwCZFBUFcNPUUJ8YcIDA=
-Date:   Mon, 12 Dec 2022 11:32:45 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
+        with ESMTP id S231903AbiLLJdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 04:33:23 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8DB02603
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:33:21 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id h10so11858447ljk.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 01:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bZHkYi77hxjoZDsrKmhq/+OuCV8fZzrsDPTht6P0G/0=;
+        b=ojMMLM6XgX2zIkMJXDvdW75Q1TPJfGLCCd92nk+MTfgVbs8bkl9YvPrhlDWAM1eYoB
+         ik8XiEwX9nvFESCCLFUqYhEgu+XAif2OekUYQt7wlb5I88txktiL4tT8TUpAoVyQggB6
+         wvDvrrzj7FnsVY+2IwD5X9TtMuwlSIEXJ7zqPAyDdGZttSYrt5t7RkuUEokPRxiGlRsu
+         CCrsc5SwK02pEbj33kBCHt7O8tP8Jj32jiQsvNgfuDEgJEsWxChIXyS7yfRLxSXTucJK
+         HYvK9gNMSyGy3O0xroRjcAnGDFdDqv3XD6ULSng4eRS50EYXqQ4odUKpq8U4gsfGCsLP
+         GUTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bZHkYi77hxjoZDsrKmhq/+OuCV8fZzrsDPTht6P0G/0=;
+        b=uHh/wzvctqZgqBaCbnfeA8QAMTKeWiOGyMoXmUocx0UWq1GVaALZ95W6GZ/Oo1hpde
+         5dt7n2zdro8iDnsc5f/jZ01lOWC1+NPclpHjPbAKpfQv2gh+e66hPVMV3mxMzb3md6Ir
+         C5PEFPNfE7vdepEQ0wMquBRNqLxSC1LFr0UF1ybN0uP/u22U1h6tG5zsB+wI/kxBK1/V
+         oW2gJltpcyhXF0JKuRzf3YEodzBJwvpKohZj1ZYwUT1F4MHaO77jpM3jm1ExSeyiAFSn
+         sI1olcQ550fMZh6jW5Ut8BdIvCjA35n6JGqe8A7emwXDViNXQA/G3T/+rtaT3DA+xKkd
+         ayoQ==
+X-Gm-Message-State: ANoB5pn5zCbo5PREgFKcqI/22PK3scTUeYIh452xJL/oPDg6Rk4ocwuC
+        GRmNHzY93y1Pc/dxt0ycW0mOCQ==
+X-Google-Smtp-Source: AA0mqf6ECMNMrl2/XUIKQOuvGffNVIzy4PXBCIiLXEW+xJtPgSeF8Fy3+8b+vnb6GCELFfy+j+TwSg==
+X-Received: by 2002:a2e:b5cd:0:b0:27a:874:cd2d with SMTP id g13-20020a2eb5cd000000b0027a0874cd2dmr3756474ljn.9.1670837600091;
+        Mon, 12 Dec 2022 01:33:20 -0800 (PST)
+Received: from localhost.localdomain (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
+        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002770fb5722fsm1155081ljm.123.2022.12.12.01.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 01:33:19 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org, krzysztof.kozlowski@linaro.org
+Cc:     marijn.suijten@somainline.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
-Message-ID: <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <45157029.fMDQidcC6G@steina-w>
- <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
- <2735716.BEx9A2HvPv@steina-w>
- <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
- <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: display/msm: Add SM8150 MDSS & DPU
+Date:   Mon, 12 Dec 2022 10:33:12 +0100
+Message-Id: <20221212093315.11390-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 10:09:45AM +0100, Frieder Schrempf wrote:
-> On 09.12.22 15:49, Marek Vasut wrote:
-> > On 12/9/22 14:38, Alexander Stein wrote:
-> >> Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
-> >>> On 12/9/22 13:21, Alexander Stein wrote:
-> >>>> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
-> >>>>> On 12/9/22 10:36, Alexander Stein wrote:
-> >>>>>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
-> >>>>>>> On 09/12/2022 09:54, Alexander Stein wrote:
-> >>>>>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
-> >>>>>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
-> >>>>>>>>>> It takes some time until the enable GPIO has settled when turning on.
-> >>>>>>>>>> This delay is platform specific and may be caused by e.g. voltage
-> >>>>>>>>>> shifts, capacitors etc.
-> >>>>>>>>>>
-> >>>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>>>>>> ---
-> >>>>>>>>>>
-> >>>>>>>>>>    
-> >>>>>>>>>> .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
-> >>>>>>>>>>     ++++
-> >>>>>>>>>>     1 file changed, 4 insertions(+)
-> >>>>>>>>>>
-> >>>>>>>>>> diff --git
-> >>>>>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
-> >>>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> >>>>>>>>>>
-> >>>>>>>>>> @@ -32,6 +32,10 @@ properties:
-> >>>>>>>>>>         maxItems: 1
-> >>>>>>>>>>         description: GPIO specifier for bridge_en pin (active high).
-> >>>>>>>>>>
-> >>>>>>>>>> +  ti,enable-delay-us:
-> >>>>>>>>>> +    default: 10000
-> >>>>>>>>>> +    description: Enable time delay for enable-gpios
-> >>>>>>>>>
-> >>>>>>>>> Aren't you now mixing two separate delays? One for entire block (I
-> >>>>>>>>> would assume mostly fixed delay) and one depending on regulators
-> >>>>>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
-> >>>>>>>>> second delays in your power supply? If so, the first one might be fixed
-> >>>>>>>>> and hard-coded in the driver?
-> >>>>>>>>
-> >>>>>>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
-> >>>>>>>> specified by datasheet. This is already ensured by a following delay after
-> >>>>>>>> requesting enable_gpio as low and switching the GPIO to low in disable
-> >>>>>>>> path.
-> >>>>>>>>
-> >>>>>>>> When enabling this GPIO it takes some time until it is valid on the chip,
-> >>>>>>>> this is what this series is about. It's highly platform specific.
-> >>>>>>>>
-> >>>>>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
-> >>>>>>>> This one has to be enabled before the enable GPIO can be enabled. So
-> >>>>>>>> there is no regulator-ramp-delay.
-> >>>>>>>
-> >>>>>>> Your driver does one after another - regulator followed immediately by
-> >>>>>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
-> >>>>>>> enable delay).
-> >>>>>
-> >>>>> The chip has two separate input pins:
-> >>>>>
-> >>>>> VCC -- power supply that's regulator
-> >>>>> EN -- reset line, that's GPIO
-> >>>>>
-> >>>>> Alexander is talking about EN line here.
-> >>>>>
-> >>>>>> But this will introduce a section which must not be interrupted or delayed.
-> >>>>>> This is impossible as the enable gpio is attached to an i2c expander in my
-> >>>>>> case.
-> >>>>>>
-> >>>>>> Given the following time chart:
-> >>>>>>     vcc                  set             EN
-> >>>>>>
-> >>>>>> enable               GPIO             PAD
-> >>>>>>
-> >>>>>>      |                    |<-- t_raise -->|
-> >>>>>>      |
-> >>>>>>      | <-- t_vcc_gpio --> |               |
-> >>>>>>      | <--        t_enable_delay      --> |
-> >>>>>>
-> >>>>>> t_raise is the time from changing the GPIO output at the expander until
-> >>>>>> voltage on the EN (input) pad from the bridge has reached high voltage
-> >>>>>> level. This is an electrical characteristic I can not change and have to
-> >>>>>> take into account.
-> >>>>>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
-> >>>>>> (removing from reset). Minimum t_vcc_gpio is something which can be
-> >>>>>> addressed by the regulator and is no problem so far. But there is no
-> >>>>>> upper bound to it.
-> >>>>>
-> >>>>> What exactly is your EN signal rise time (should be ns or so)? Can you
-> >>>>> look at that with a scope , maybe even with relation to the VCC
-> >>>>> regulator
-> >>>>> ?
-> >>>>
-> >>>> I checked EN rise time using a scope, it's ~110ms. I not an expert in
-> >>>> hardware but on the mainboard there is some capacitor attached to this
-> >>>> line, which increased the time, independent from the internal pull-up.
-> >>>
-> >>> This does seem like a hardware bug right there, can you double-check
-> >>> this with the hardware engineer ?
-> >>
-> >> Yep, checked with hardware engineer. An 470nF is attached, together with an
-> >> open drain output and only the internal pull-up. So yes ~113ms rising time
-> >> until 0.7 x VCC.
-> > 
-> > I don't suppose you can have that capacitor reduced or better yet, some
-> > external pull up added, can you ?
-> 
-> Actually our HW engineers have implemented a similar RC circuit to
-> provide a hardware delay for the EN signal. I think this is due to a
-> design note in the datasheet (see chapter 7.4.1) and therefore it's
-> probably widely spread.
+Add bindings for the display hardware on SM8150.
 
-RC delay circuits are very common when tying a control signal to a power
-rail. I'm surprise to see it recommended (with such a large time
-constant) when the EN signal is actively controlled. It makes sense if
-the SN65DSI83 supply comes up before the GPIO can be actively driven low
-(for instance if the supply isn't manually controllable but tied to an
-always-on power rail), in other cases it's quite counter-productive (I
-really hope the EN input has a Schmitt trigger).
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+ .../bindings/display/msm/qcom,sm8150-dpu.yaml |  92 +++++
+ .../display/msm/qcom,sm8150-mdss.yaml         | 330 ++++++++++++++++++
+ 2 files changed, 422 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
 
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
+new file mode 100644
+index 000000000000..2b3f3fe9bdf7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/qcom,sm8150-dpu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8150 Display DPU
++
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++$ref: /schemas/display/msm/dpu-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm8150-dpu
++
++  reg:
++    items:
++      - description: Address offset and size for mdp register set
++      - description: Address offset and size for vbif register set
++
++  reg-names:
++    items:
++      - const: mdp
++      - const: vbif
++
++  clocks:
++    items:
++      - description: Display ahb clock
++      - description: Display hf axi clock
++      - description: Display core clock
++      - description: Display vsync clock
++
++  clock-names:
++    items:
++      - const: iface
++      - const: bus
++      - const: core
++      - const: vsync
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,dispcc-sm8150.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8150.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interconnect/qcom,sm8150.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    display-controller@ae01000 {
++        compatible = "qcom,sm8150-dpu";
++        reg = <0x0ae01000 0x8f000>,
++              <0x0aeb0000 0x2008>;
++        reg-names = "mdp", "vbif";
++
++        clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                 <&gcc GCC_DISP_HF_AXI_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
++                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        clock-names = "iface", "bus", "core", "vsync";
++
++        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++        assigned-clock-rates = <19200000>;
++
++        operating-points-v2 = <&mdp_opp_table>;
++        power-domains = <&rpmhpd SM8150_MMCX>;
++
++        interrupt-parent = <&mdss>;
++        interrupts = <0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                endpoint {
++                    remote-endpoint = <&dsi1_in>;
++                };
++            };
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
+new file mode 100644
+index 000000000000..55b41e4573dc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
+@@ -0,0 +1,330 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/qcom,sm8150-mdss.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8150 Display MDSS
++
++maintainers:
++  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
++
++description:
++  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
++  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
++  bindings of MDSS are mentioned for SM8150 target.
++
++$ref: /schemas/display/msm/mdss-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - const: qcom,sm8150-mdss
++
++  clocks:
++    items:
++      - description: Display AHB clock from gcc
++      - description: Display hf axi clock
++      - description: Display sf axi clock
++      - description: Display core clock
++
++  clock-names:
++    items:
++      - const: iface
++      - const: bus
++      - const: nrt_bus
++      - const: core
++
++  iommus:
++    maxItems: 1
++
++  interconnects:
++    maxItems: 2
++
++  interconnect-names:
++    maxItems: 2
++
++patternProperties:
++  "^display-controller@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        const: qcom,sm8150-dpu
++
++  "^dsi@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        const: qcom,mdss-dsi-ctrl
++
++  "^phy@[0-9a-f]+$":
++    type: object
++    properties:
++      compatible:
++        const: qcom,dsi-phy-7nm
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,dispcc-sm8150.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8150.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interconnect/qcom,sm8150.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    display-subsystem@ae00000 {
++        compatible = "qcom,sm8150-mdss";
++        reg = <0x0ae00000 0x1000>;
++        reg-names = "mdss";
++
++        interconnects = <&mmss_noc MASTER_MDP_PORT0 &mc_virt SLAVE_EBI_CH0>,
++                        <&mmss_noc MASTER_MDP_PORT1 &mc_virt SLAVE_EBI_CH0>;
++        interconnect-names = "mdp0-mem", "mdp1-mem";
++
++        power-domains = <&dispcc MDSS_GDSC>;
++
++        clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                 <&gcc GCC_DISP_HF_AXI_CLK>,
++                 <&gcc GCC_DISP_SF_AXI_CLK>,
++                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
++        clock-names = "iface", "bus", "nrt_bus", "core";
++
++        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++
++        iommus = <&apps_smmu 0x800 0x420>;
++
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        display-controller@ae01000 {
++            compatible = "qcom,sm8150-dpu";
++            reg = <0x0ae01000 0x8f000>,
++                  <0x0aeb0000 0x2008>;
++            reg-names = "mdp", "vbif";
++
++            clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                     <&gcc GCC_DISP_HF_AXI_CLK>,
++                     <&dispcc DISP_CC_MDSS_MDP_CLK>,
++                     <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++            clock-names = "iface", "bus", "core", "vsync";
++
++            assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++            assigned-clock-rates = <19200000>;
++
++            operating-points-v2 = <&mdp_opp_table>;
++            power-domains = <&rpmhpd SM8150_MMCX>;
++
++            interrupt-parent = <&mdss>;
++            interrupts = <0>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    dpu_intf1_out: endpoint {
++                        remote-endpoint = <&dsi0_in>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    dpu_intf2_out: endpoint {
++                        remote-endpoint = <&dsi1_in>;
++                    };
++                };
++            };
++
++            mdp_opp_table: opp-table {
++                compatible = "operating-points-v2";
++
++                opp-171428571 {
++                    opp-hz = /bits/ 64 <171428571>;
++                    required-opps = <&rpmhpd_opp_low_svs>;
++                };
++
++                opp-300000000 {
++                    opp-hz = /bits/ 64 <300000000>;
++                    required-opps = <&rpmhpd_opp_svs>;
++                };
++
++                opp-345000000 {
++                    opp-hz = /bits/ 64 <345000000>;
++                    required-opps = <&rpmhpd_opp_svs_l1>;
++                };
++
++                opp-460000000 {
++                    opp-hz = /bits/ 64 <460000000>;
++                    required-opps = <&rpmhpd_opp_nom>;
++                };
++            };
++        };
++
++        dsi@ae94000 {
++            compatible = "qcom,mdss-dsi-ctrl";
++            reg = <0x0ae94000 0x400>;
++            reg-names = "dsi_ctrl";
++
++            interrupt-parent = <&mdss>;
++            interrupts = <4>;
++
++            clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
++                     <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
++                     <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
++                     <&dispcc DISP_CC_MDSS_ESC0_CLK>,
++                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                     <&gcc GCC_DISP_HF_AXI_CLK>;
++            clock-names = "byte",
++                          "byte_intf",
++                          "pixel",
++                          "core",
++                          "iface",
++                          "bus";
++
++            assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
++                              <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
++            assigned-clock-parents = <&dsi0_phy 0>, <&dsi0_phy 1>;
++
++            operating-points-v2 = <&dsi_opp_table>;
++            power-domains = <&rpmhpd SM8150_MMCX>;
++
++            phys = <&dsi0_phy>;
++            phy-names = "dsi";
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    dsi0_in: endpoint {
++                        remote-endpoint = <&dpu_intf1_out>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    dsi0_out: endpoint {
++                    };
++                };
++            };
++
++            dsi_opp_table: opp-table {
++                compatible = "operating-points-v2";
++
++                opp-187500000 {
++                    opp-hz = /bits/ 64 <187500000>;
++                    required-opps = <&rpmhpd_opp_low_svs>;
++                };
++
++                opp-300000000 {
++                    opp-hz = /bits/ 64 <300000000>;
++                    required-opps = <&rpmhpd_opp_svs>;
++                };
++
++                opp-358000000 {
++                    opp-hz = /bits/ 64 <358000000>;
++                    required-opps = <&rpmhpd_opp_svs_l1>;
++                };
++            };
++        };
++
++        dsi0_phy: phy@ae94400 {
++            compatible = "qcom,dsi-phy-7nm";
++            reg = <0x0ae94400 0x200>,
++                  <0x0ae94600 0x280>,
++                  <0x0ae94900 0x260>;
++            reg-names = "dsi_phy",
++                        "dsi_phy_lane",
++                        "dsi_pll";
++
++            #clock-cells = <1>;
++            #phy-cells = <0>;
++
++            clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                     <&rpmhcc RPMH_CXO_CLK>;
++            clock-names = "iface", "ref";
++            vdds-supply = <&vreg_dsi_phy>;
++        };
++
++        dsi@ae96000 {
++            compatible = "qcom,mdss-dsi-ctrl";
++            reg = <0x0ae96000 0x400>;
++            reg-names = "dsi_ctrl";
++
++            interrupt-parent = <&mdss>;
++            interrupts = <5>;
++
++            clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
++                     <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
++                     <&dispcc DISP_CC_MDSS_PCLK1_CLK>,
++                     <&dispcc DISP_CC_MDSS_ESC1_CLK>,
++                     <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                     <&gcc GCC_DISP_HF_AXI_CLK>;
++            clock-names = "byte",
++                          "byte_intf",
++                          "pixel",
++                          "core",
++                          "iface",
++                          "bus";
++
++            assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
++                              <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
++            assigned-clock-parents = <&dsi1_phy 0>, <&dsi1_phy 1>;
++
++            operating-points-v2 = <&dsi_opp_table>;
++            power-domains = <&rpmhpd SM8150_MMCX>;
++
++            phys = <&dsi1_phy>;
++            phy-names = "dsi";
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    dsi1_in: endpoint {
++                        remote-endpoint = <&dpu_intf2_out>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    dsi1_out: endpoint {
++                    };
++                };
++            };
++        };
++
++        dsi1_phy: phy@ae96400 {
++            compatible = "qcom,dsi-phy-7nm";
++            reg = <0x0ae96400 0x200>,
++                  <0x0ae96600 0x280>,
++                  <0x0ae96900 0x260>;
++            reg-names = "dsi_phy",
++                        "dsi_phy_lane",
++                        "dsi_pll";
++
++            #clock-cells = <1>;
++            #phy-cells = <0>;
++
++            clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                     <&rpmhcc RPMH_CXO_CLK>;
++            clock-names = "iface", "ref";
++            vdds-supply = <&vreg_dsi_phy>;
++        };
++    };
++...
 -- 
-Regards,
+2.38.1
 
-Laurent Pinchart
