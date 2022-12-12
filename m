@@ -2,213 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 498BA64AA29
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 23:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C60864AA59
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 23:35:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233473AbiLLWXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 17:23:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60942 "EHLO
+        id S233818AbiLLWf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 17:35:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233735AbiLLWXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 17:23:37 -0500
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2058.outbound.protection.outlook.com [40.107.7.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 935CBB7C1;
-        Mon, 12 Dec 2022 14:23:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bmWIGWIudoV6nyehsJNvyYWixwZuElUdqY3OOUFBGdB80w9lGEf66qN+8uiwowmL+fyii0SWIpi4wEp7ikioXr0ueHoeHWeqnS2bS5m3+XarjdeIxTnh6PiWJYAmCwzKPt5cZu7no3SBRqQScM2C4yjLc48smNEgRS7g+5YZ8nfG7ziOrYWYsUGALJ9qyhAgTcLu3O7CvOUZCHnBeMl0jhHLcIF6hc3EwPxghP+zzonHskUPtYpnqkwSC8FxH01FW9mEIxN/nNRoDJVHfcpnN+o+3K9tbMTam4t/klR9FhPmNv03dLECdCdNrYT/n0aR1FMhFFLtrmz/p7EQv1XP6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WRxAGG27YCFbJ+D2Hmo+WzFNQjbSUcjbCTx7RVedWC0=;
- b=IOjFFTOJrjICucMs30mhotU6mttb3lHNXp54OCTzJN6WJXPn0i2KNX9OGrCBwo917eaI751U9C68La1zs4F2+yMzGtDblceyNiiWkaVGnlu6VzUL+ezP4C1Ut2k03p/i3xcPTfnrYwCCovkTV/rLiKtdajGj1+YOW6jHjquUMg/B/6yiWwU2QATgBw3HLh4YwU0awNfK6wPQKua+OTm7eBdD/0vYHqfUbfDl6oolnTkF13VcVXQp8wOD+d0Joj2t2oTjEsBBMrfEi4DE86qwn2kLgDAEX9IKgmwdp7ibGLZza3okTiAsLMpmrGLFipDByhnHBnxy+StGHYlHYlixpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WRxAGG27YCFbJ+D2Hmo+WzFNQjbSUcjbCTx7RVedWC0=;
- b=HDDxC0wPwsmnJUTw/XTgHdKs/yYv63plHYNi7/NwnXTqA8oyCpyphNvvkjTnKrlHQB/TLbqW1cHCa3cEajaYDmlkCQ4LNsTHPx2JA4605aCWZGfDkQIDlYR34dK5bVAtcJ3xl6y1B+njNNVvfCsw0VJYyLET80kvWtM/He0xA8M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com (2603:10a6:150:22::11)
- by AM7PR04MB6870.eurprd04.prod.outlook.com (2603:10a6:20b:107::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.11; Mon, 12 Dec
- 2022 22:23:32 +0000
-Received: from GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953]) by GV1PR04MB9071.eurprd04.prod.outlook.com
- ([fe80::ef72:e2bf:2ff6:a953%6]) with mapi id 15.20.5880.019; Mon, 12 Dec 2022
- 22:23:32 +0000
-Date:   Mon, 12 Dec 2022 16:23:25 -0600
-From:   Han Xu <han.xu@nxp.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        imx@lists.linux.dev
-Subject: Re: [PATCH 1/2] iio: accel: add the new entry in driver for
- FXLS8967AF
-Message-ID: <20221212222325.jmsg4m4swsqkesus@umbrella>
-References: <20221207162045.669958-1-han.xu@nxp.com>
- <20221211130920.47f1c684@jic23-huawei>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221211130920.47f1c684@jic23-huawei>
-X-ClientProxiedBy: BYAPR05CA0094.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::35) To GV1PR04MB9071.eurprd04.prod.outlook.com
- (2603:10a6:150:22::11)
+        with ESMTP id S233776AbiLLWf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 17:35:27 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30C63886
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 14:35:26 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id v71so15520834ybv.6
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 14:35:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IpAeK55ZtLsOItOVOsZUW0VX0dmUGZuhAd/spodi2Go=;
+        b=t14B1twGGRg6SASEJ+ZLGhHuryfaHLhvHJZJifSYAGZy7SktUGgGzYTV4SMEtrr2F+
+         NtAzSMIt9OgezFwIGrt5tvSLxJ664bJKgh7QHEpd9DSKH+TibYunqdwkeoNB70HdtaC+
+         u3wF5OQ3i1B71t8u/ghJ1uxJc4G7oo6GVUpDcKo2KBURmuyEDvvMkQgZyhzxbVvXxlX0
+         r1n0D258M0NkEx9Si+rocmFToLwfkEAIVegzKll09XNS7xODgko0a+pvEqvWtJf0CYYM
+         y2LR/qumoXQUQ4BY9gQ1KC1OlXq5qTTWEufUmBCTjL+Ijj8z3uWKmDPLG14ABDPisIxZ
+         rCvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IpAeK55ZtLsOItOVOsZUW0VX0dmUGZuhAd/spodi2Go=;
+        b=wuRb6RpjrkgxpAWm9/hEsqHK5RXtEQ17vPOedJLMCczZQcSktnLFKTGwOC2/h2Wkfy
+         ypMHIQ0zUshsIxRHokR87VxKtKVpx77A9ty2QJFhwtQZHXoCs1Rno2xq4VgjcbXuMIQk
+         NKIb+LZu7x1NQQQ9AQx1NIMwVOoalyyWMYouYU43uzk1ejw6o2iW5FeLCU2rVeRbIP/Y
+         AfeJdlqmWgLeBzdiR8ps/yABxM4A8d77SeIMYoqfCgC4hmjKfeeerBA5aniZyFX07U7h
+         KpheRvNzs/GfAFoux0nO3Rc6p25D73m+tfUVWwNuHwtyjNIn2u1dO8Brlg0caAHzCvA+
+         yH5Q==
+X-Gm-Message-State: ANoB5pnRoPEoaY8ShjS4qSt9GV+FEoir05Q9zXdIvR61Lze9b4/5ukDY
+        E+UyUAAX5jVtzUfk4ogZd+N2y5i1kwMf5sm0rj1dUw==
+X-Google-Smtp-Source: AA0mqf6vQuxCOzGUSvZb2kDX2AlckUYquLDzfG7G1uiKoRmVPaZPcfA52u7eXv04oPAKviSZIokhuxUkroshPyUJ3hc=
+X-Received: by 2002:a25:384a:0:b0:710:a8a6:d45 with SMTP id
+ f71-20020a25384a000000b00710a8a60d45mr3558285yba.152.1670884525944; Mon, 12
+ Dec 2022 14:35:25 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9071:EE_|AM7PR04MB6870:EE_
-X-MS-Office365-Filtering-Correlation-Id: a91d1820-8366-485e-538a-08dadc8f80ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: mQulEuiLHBhK+/q/SsBR0jhLyDHXASNtcXt1ORAV0VXvR2FmSMS34m3ukbYe4fvva9zlfuEkF0FHufSe9/vCn2jtkZYWsHPl+74RJVAuzAWEge89kH6OPiKVj0B0Mn+zlGSKVLRk311dZzpaVYcmIid3Pyq42uhrzwt3AHJjWwCjaBTweAIzb8YBG/FzMUw0Jrap49534imnAjQLxAMv/NjElaAli/OtOqK7msZ3QkHHxIDimuZW3AP2EwoUcyGeXwXSzOJvhVVVjZZGe6YP44RvYaEv80iCEtOUxP1cMqazkjomjHwfwHW9g76GjdLUk8E45iwKijilVRv+XduRSJYO0EAkDSLMlbjjztj7ywsErt9NFoldqN//964RRiiZJawJtK6wUBzhTObRkPDjh+nx/TfIhfil/3AyXBN/aMbAx5iToA0NEEusFYJMmPEriEjc/3+j/XIHG3IFCtziKHmYb8xwaf6PPJ+0wzybbuytBDLrs67c9+H6PVvKnkbu3EGrtv3mLtr8UcpYfOd2HiHbrg9QHD9SkUyQwR0DGtJRkXMF0t5JuJowRYyiqAm2DpRev8o49XsctCzJCfZMUQGdmzTnQ6PDQSMhWykrAIM3BdXHQMD84WlbHMo8aLSBtwDnAKV5EAJdxDnSfClr+9V7pvAwArD95gepyPLGiQnYpERw8jyyqnnI0UyAm/QEh5PxfNtG7sJTKRzYTY8c4w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(366004)(39860400002)(396003)(376002)(346002)(136003)(451199015)(33716001)(6486002)(478600001)(6506007)(6666004)(2906002)(86362001)(52116002)(38350700002)(26005)(5660300002)(6512007)(186003)(9686003)(44832011)(8936002)(38100700002)(1076003)(66946007)(83380400001)(6916009)(4326008)(54906003)(66476007)(41300700001)(66556008)(316002)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+fLVjG+lsUOAw6q1EhS5t58IsE0NjA2VXPxgO1v94g4xb0bsDABCo86NYsMG?=
- =?us-ascii?Q?IVraE3qAqc7AG/c7mop30W5mWWWnlch23FOZzqPKTq84Jx5nOGrTr6VOCGCO?=
- =?us-ascii?Q?vRs7imHf4IL5Qz1GtNsmKCBz+fy35MvjQXUHdgcNkbp3n8FmdyIIP8LPau/N?=
- =?us-ascii?Q?IR6pABNMW/RiQhjvpxFkqFEj90bA4mZ45vS91j46mxYzdHb5FgtOj2j1dGZC?=
- =?us-ascii?Q?dYjCYh5yRihBCtGYzdccRYNjOKIJu/Dd1GiRVyxAvkx5VS9cVkOytMLTFS/i?=
- =?us-ascii?Q?3TEp+YlZiE3JF75OHqNECmDCOF+obUDsdl368+lCOlluf5tvTIKajz8aeeaE?=
- =?us-ascii?Q?4IaSKlNORvLTaEy0n2t7H+th4RGC9e6G4X6MIJBvyP0s2P03UU0ISHKlVPvC?=
- =?us-ascii?Q?qOqSmCl3Ce9Wn43s+n4EJBSvw67C8oESSUuAij4HAGuJSgixzeVtiC68fitI?=
- =?us-ascii?Q?pzEOt+r2gIl59A991+ocSwhSjRDgXRECJgyj3ShF0b83GNRQBNKugtNTQkRR?=
- =?us-ascii?Q?QFFV5LVvflz+LLaBowmnj+YhyCDSeLWuXqwBKNgM7715rNuaWLpQg2qiFH/E?=
- =?us-ascii?Q?AsO/oKgJ4amDZBDSLiLcpPKZxq36RSwDBOhjIyrN7LAl2+cEkNwNSRIpTEFE?=
- =?us-ascii?Q?6hEmv4WnLsUWb3I11/k6KeEdzYeMxcXTCsNP38IjDMpXywvs8QQcTGZhCcc0?=
- =?us-ascii?Q?pA/DAVko53Te0gf4q/lxOo8EsXy8aFw6G8KwgmyhX7IkVULZDpkbyUwP6LYf?=
- =?us-ascii?Q?1CPy8SUJmACUpi+DhYw+RcFy35kr2bUMUVRbT9VML7VlpjxODPeatq4pP7kR?=
- =?us-ascii?Q?a15crljYjsuz7H6ZQX9k8+BMs2NKS9hbvmqwk0+Jik92FkkifCn1LHZ2/SjT?=
- =?us-ascii?Q?Hhb/m7ojEeRWF+B3lepc8Dr9aY7lUIHtD/syLhSGTzluadbjgLZM9w8nVbp9?=
- =?us-ascii?Q?lzChnidZGk3wTWBteIhxBImXJUqfOavKUcQ79vizqzCLh1o6refcxqidfKE5?=
- =?us-ascii?Q?cTEZcmY930OalRa0aFn2/V/GjwYjksKHxyCZuCV317nXqa9LN/73o2nS+Hdi?=
- =?us-ascii?Q?3xENZ+M4xejA/ngeVPFpZmDtzBk1ANcsVbwZ6ZeinRPh6uXJ78zclP6u08gv?=
- =?us-ascii?Q?Dc0PfzORhY7yjTuFUS05jXapTO/5sKeX0r/mvbaPVY21Q28l94G84Umb5oJl?=
- =?us-ascii?Q?oO38WVbutVKsvEm4KBpsQ3OS2J21OVPfg4YYOyOoQb6qLVTG4MONmCobNNwU?=
- =?us-ascii?Q?loDmeW7oAK6AjL7s3pqtCQjNPnhr3Ha8i3y1GK9GKrruR4dUprp5abfK+X3M?=
- =?us-ascii?Q?ZNodVNajEBP5wR24naUosCLz+iwN59UTB6vh4A4Ap7XHIkI/SH1GaRNPVTqn?=
- =?us-ascii?Q?YFEvW4pG5qLVUEtX/hfuW5fSZ5Bz3/nLag1uNQoCmIbV3u0NGaDpDp3/Adph?=
- =?us-ascii?Q?EkyDWKiM/iO3BdrqhdxWN2PKJCdZKo1t7JcUm/PhzlOW23iENT7n0r2WQAaP?=
- =?us-ascii?Q?CBHT4e0KCaXFYmRs2+YbsNJXAwVAcPGTidGSFtM9xH0wEoAyrVdMsGq7Fh09?=
- =?us-ascii?Q?R5vWB0suTJFFkrW1udw=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a91d1820-8366-485e-538a-08dadc8f80ac
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9071.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2022 22:23:32.5901
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wE2FG8RcsIxkMZ9ju1+jvenJWyEO1fnJrySjq8q/eyFNfFqM79P5lFwlWpUEQD8a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6870
+References: <1670539015-11808-1-git-send-email-quic_khsieh@quicinc.com>
+ <1670539015-11808-3-git-send-email-quic_khsieh@quicinc.com>
+ <5a3865ed-8847-db04-3d60-f35438250bef@linaro.org> <5aa16223-dbf6-996c-1985-794302dcce91@quicinc.com>
+ <be1411e8-1d07-7643-977c-a306016fd660@linaro.org> <b6d90c1f-5365-7197-be63-96c3d8cf0746@quicinc.com>
+ <e53844b7-601b-f355-302b-cc871962a446@linaro.org> <8b306c8f-3089-4aaf-7fc1-038a8330c89a@quicinc.com>
+In-Reply-To: <8b306c8f-3089-4aaf-7fc1-038a8330c89a@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 13 Dec 2022 00:35:14 +0200
+Message-ID: <CAA8EJpr5RYyQa7xu1_xJ0F-dn-H9aOf0KE-CDgDCwnZu3HPgXg@mail.gmail.com>
+Subject: Re: [PATCH v11 2/5] dt-bindings: msm/dp: add data-lanes and
+ link-frequencies property
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, robdclark@gmail.com,
+        sean@poorly.run, swboyd@chromium.org, dianders@chromium.org,
+        vkoul@kernel.org, daniel@ffwll.ch, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, airlied@gmail.com,
+        quic_abhinavk@quicinc.com, quic_sbillaka@quicinc.com,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/12/11 01:09PM, Jonathan Cameron wrote:
-> On Wed,  7 Dec 2022 10:20:44 -0600
-> Han Xu <han.xu@nxp.com> wrote:
-> 
-> > Add this new device entry in the driver id table.
-> > 
-> > Signed-off-by: Han Xu <han.xu@nxp.com>
-> Hi Han,
-> 
-> I went to apply this and discovered the FXLs8974CF_DEVICE_ID etc
-> isn't yet present in the upstream driver.  Have a I missed a patch
-> set somewhere?
-> 
-> One comment inline.
-> 
+On Mon, 12 Dec 2022 at 19:51, Kuogee Hsieh <quic_khsieh@quicinc.com> wrote:
+>
+>
+> On 12/8/2022 4:35 PM, Dmitry Baryshkov wrote:
+> > On 09/12/2022 02:22, Kuogee Hsieh wrote:
+> >>
+> >> On 12/8/2022 4:11 PM, Dmitry Baryshkov wrote:
+> >>> On 09/12/2022 01:38, Kuogee Hsieh wrote:
+> >>>>
+> >>>> On 12/8/2022 3:33 PM, Dmitry Baryshkov wrote:
+> >>>>> On 09/12/2022 00:36, Kuogee Hsieh wrote:
+> >>>>>> Add both data-lanes and link-frequencies property into endpoint
+> >>>>>>
+> >>>>>> Changes in v7:
+> >>>>>> -- split yaml out of dtsi patch
+> >>>>>> -- link-frequencies from link rate to symbol rate
+> >>>>>> -- deprecation of old data-lanes property
+> >>>>>>
+> >>>>>> Changes in v8:
+> >>>>>> -- correct Bjorn mail address to kernel.org
+> >>>>>>
+> >>>>>> Changes in v10:
+> >>>>>> -- add menu item to data-lanes and link-frequecnis
+> >>>>>>
+> >>>>>> Changes in v11:
+> >>>>>> -- add endpoint property at port@1
+> >>>>>>
+> >>>>>> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>`
+> >>>>>
+> >>>>> Applying: dt-bindings: msm/dp: add data-lanes and link-frequencies
+> >>>>> property
+> >>>>> .git/rebase-apply/patch:47: trailing whitespace.
+> >>>>>
+> >>>>> .git/rebase-apply/patch:51: trailing whitespace.
+> >>>>>
+> >>>>>
+> >>>>> Also the dt_binding_check fails with an error for this schema. And
+> >>>>> after fixing the error in the schema I faced an example validation
+> >>>>> error. Did you check that the schema is correct and that the
+> >>>>> example validates against the schema?
+> >>>>
+> >>>> yes, but i run "make dt_binding_check
+> >>>> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml"
+> >>>> at mu v5.15 branch since
+> >>>
+> >>> I wouldn't ask you to post the log here. But I don't think that
+> >>> either of the errors that I see here is related to 5.15 vs 6.1-rc.
+> >>>
+> >>> In fact after applying this patch against 5.15 I saw the expected
+> >>> failure:
+> >>>
+> >>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml:
+> >>> properties:required: ['port@0', 'port@1'] is not of type 'object',
+> >>> 'boolean'
+> >>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml:
+> >>> properties: 'required' should not be valid under {'$ref':
+> >>> '#/definitions/json-schema-prop-names'}
+> >>> Documentation/devicetree/bindings/display/msm/dp-controller.yaml:
+> >>> ignoring, error in schema: properties: required
+> >>>
+> >>>>
+> >>>> "make dt_binding_check" does not work at msm-next branch.
+> >>>
+> >>> I went ahead and just checked.
+> >>>
+> >>> `make dt_binding_check DT_SCHEMA_FILES=display/msm`  works cleanly
+> >>> in msm-next and reports a single example-related warning in
+> >>> msm-next-lumag. I pushed a patch to fix that warning (wich can
+> >>> hopefully be picked up by Abhinav into msm-fixes). So you can assume
+> >>> that both these branches have consistent error-free display/msm
+> >>> schemas.
+> >>>
+> >> I have clean msm-next branch (without my data-lines yaml patch
+> >> applied) and run "make dt_binding_check
+> >> DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/msm/dp-controller.yaml",
+> >> then I saw below error messages.
+> >>
+> >> Have you run into this problem?
+> >
+> > No.
+>
+> Did you do anything to fix "older dtschema instance"?
 
-There is another local patch not upstreamed, just sent them out as a patch set.
+I did not since I hadn't had such a problem. I can refer again to the
+steps I provided you beforehand. The email was sent 6 days ago. No
+answer from your side since that time.
 
-> 
-> > ---
-> >  drivers/iio/accel/fxls8962af-core.c | 7 +++++++
-> >  drivers/iio/accel/fxls8962af-i2c.c  | 2 ++
-> >  drivers/iio/accel/fxls8962af.h      | 1 +
-> >  3 files changed, 10 insertions(+)
-> > 
-> > diff --git a/drivers/iio/accel/fxls8962af-core.c b/drivers/iio/accel/fxls8962af-core.c
-> > index 17a6f4f4e06c..ddeb1b153499 100644
-> > --- a/drivers/iio/accel/fxls8962af-core.c
-> > +++ b/drivers/iio/accel/fxls8962af-core.c
-> > @@ -127,6 +127,7 @@
-> >  #define FXLS8962AF_DEVICE_ID			0x62
-> >  #define FXLS8964AF_DEVICE_ID			0x84
-> >  #define FXLS8974CF_DEVICE_ID			0x86
-> > +#define FXLS8967AF_DEVICE_ID			0x87
-> Fine with these being in numeric value order...
-> >  
-> >  /* Raw temp channel offset */
-> >  #define FXLS8962AF_TEMP_CENTER_VAL		25
-> > @@ -772,6 +773,12 @@ static const struct fxls8962af_chip_info fxls_chip_info_table[] = {
-> >  		.channels = fxls8962af_channels,
-> >  		.num_channels = ARRAY_SIZE(fxls8962af_channels),
-> >  	},
-> > +	[fxls8967af] = {
-> 
-> I'd rather everything else was in 'alphabetical order as anyone looking down
-> the lists will expect that ordering rather than one based on IDs that they
-> probably won't have reason to know.
+> I had run  "pip3 install dtschema --upgrade" and still not work.
 
-fixed in v2.
+Can you please post a full log of this command?
 
-> 
-> > +		.chip_id = FXLS8967AF_DEVICE_ID,
-> > +		.name = "fxls8967af",
-> > +		.channels = fxls8962af_channels,
-> > +		.num_channels = ARRAY_SIZE(fxls8962af_channels),
-> > +	},
-> >  };
-> >  
-> >  static const struct iio_info fxls8962af_info = {
-> > diff --git a/drivers/iio/accel/fxls8962af-i2c.c b/drivers/iio/accel/fxls8962af-i2c.c
-> > index 4a755a39d702..fd21f524e04f 100644
-> > --- a/drivers/iio/accel/fxls8962af-i2c.c
-> > +++ b/drivers/iio/accel/fxls8962af-i2c.c
-> > @@ -31,6 +31,7 @@ static const struct i2c_device_id fxls8962af_id[] = {
-> >  	{ "fxls8962af", fxls8962af },
-> >  	{ "fxls8964af", fxls8964af },
-> >  	{ "fxls8974cf", fxls8974cf },
-> > +	{ "fxls8967af", fxls8967af },
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(i2c, fxls8962af_id);
-> > @@ -39,6 +40,7 @@ static const struct of_device_id fxls8962af_of_match[] = {
-> >  	{ .compatible = "nxp,fxls8962af" },
-> >  	{ .compatible = "nxp,fxls8964af" },
-> >  	{ .compatible = "nxp,fxls8974cf" },
-> > +	{ .compatible = "nxp,fxls8967af" },
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, fxls8962af_of_match);
-> > diff --git a/drivers/iio/accel/fxls8962af.h b/drivers/iio/accel/fxls8962af.h
-> > index 45c7e57412e0..7de924d15694 100644
-> > --- a/drivers/iio/accel/fxls8962af.h
-> > +++ b/drivers/iio/accel/fxls8962af.h
-> > @@ -12,6 +12,7 @@ enum {
-> >  	fxls8962af,
-> >  	fxls8964af,
-> >  	fxls8974cf,
-> > +	fxls8967af,
-> >  };
-> >  
-> >  int fxls8962af_core_probe(struct device *dev, struct regmap *regmap, int irq);
-> 
+>
+> D you know how to fix this problem?
+>
+> Thanks,
+>
+> kuogee
+>
+> sort: -:2: disorder: 2022.1
+> ERROR: dtschema minimum version is v2022.3
+> make[2]: *** [check_dtschema_version] Error 1
+> make[1]: *** [dt_binding_check] Error 2
+> make: *** [__sub-make] Error 2
+
+Please add the output of:
+
+which dt-validate
+dt-validate -V
+
+And also a full log of your failing kernel build.
+
+
+
+> I had run "pip3 install dtschema --upgrade" according Rob Herring response.
+> but it still shows same problem.
+> Please let know how can I fix this problem.
+>
+> >
+> >>
+> >>    HOSTCC  scripts/basic/fixdep
+> >>    HOSTCC  scripts/dtc/dtc.o
+> >>    HOSTCC  scripts/dtc/flattree.o
+> >>    HOSTCC  scripts/dtc/fstree.o
+> >>    HOSTCC  scripts/dtc/data.o
+> >>    HOSTCC  scripts/dtc/livetree.o
+> >>    HOSTCC  scripts/dtc/treesource.o
+> >>    HOSTCC  scripts/dtc/srcpos.o
+> >>    HOSTCC  scripts/dtc/checks.o
+> >>    HOSTCC  scripts/dtc/util.o
+> >>    LEX     scripts/dtc/dtc-lexer.lex.c
+> >>    HOSTCC  scripts/dtc/dtc-lexer.lex.o
+> >>    HOSTCC  scripts/dtc/dtc-parser.tab.o
+> >>    HOSTLD  scripts/dtc/dtc
+> >> sort: -:2: disorder: 2022.1
+> >> ERROR: dtschema minimum version is v2022.3
+> >> make[2]: *** [check_dtschema_version] Error 1
+> >> make[1]: *** [dt_binding_check] Error 2
+> >> make: *** [__sub-make] Error 2
+> >
+> > This means that somewhere in your path you have an older dtschema
+> > instance.
+> >
+> > When you sent me a question regarding this error, I asked for the
+> > additional info. You provided none. Instead you went on sending the
+> > untested patch that doesn't work.
+>
+> since i can not test it on msm-next so that I did test it at my v5-15
+> branch.
+
+Wrong.
+
+>
+> besides, i think i have to sent the whole series patches include this
+> one to address your new comments on other patch.
+>
+> is this correct?
+
+No. Please fix your system first, validate your patches and send them
+afterwards. You can not expect others to do your job.
+
+--
+With best wishes
+Dmitry
