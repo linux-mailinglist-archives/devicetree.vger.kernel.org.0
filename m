@@ -2,529 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35336649E65
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:04:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38AEF649E69
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232087AbiLLMEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:04:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33938 "EHLO
+        id S231932AbiLLMFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:05:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232064AbiLLMEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:04:22 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E0710FD4
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:04:21 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id y25so18153122lfa.9
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:04:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GoNWm7eWviu1XQleAWkGJOCSAZGAKYrroAB/LiGPlxI=;
-        b=rI88Nnx9hsh22doOcrE9gKM29uDZxvYg4h96oG5sl6sCDzpNAhi6nBn6T1WyojzEZ4
-         l4DPdyL8cICi64ONqFtEIWx1RgLtwcfairk1z2xX77uNKVgRdsmzWuZPQ/ziLxzFkcol
-         9E/7Wt8V9fUD4ltCWNXuQvbTT4WdVhynv7gVMfF1S8KR3uN0FyV5HJ0EMdeX8X+KN/Tc
-         yMLEnTGWvJ/f2lpBOE3GFJfVsPa4Nqk+qAuOPDSdiTjzd1NkBluMF5+s8ZE4E2y4sRlH
-         2ZvvItn+kAeyNRTIY3vZ3+segX7K55V1151yMvu8zVrQMlMi8IqoRmcTgh6ZrAT2Dra+
-         SkXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GoNWm7eWviu1XQleAWkGJOCSAZGAKYrroAB/LiGPlxI=;
-        b=77nE6Cp0gEAkd3M+AEZUd+MCbNF6uVEKwTSHR8375XbIwSmPwNOqI7XWtOu6kScxDi
-         gA9Ap44uQUCURBD7FgEtA9oD4Xyqoc4bYJQwYXbjH2T3oadCiS7JSCMPwUvHmw7eHv3g
-         txfNMa/fzuK0cBndh6Ay4ZWfCw2Aga/rh4z3WJ0ay5GGiHdT/rUWoTxJhrb07RmhN4Ym
-         qQX/Lr2ILFcAYa3ukw36Z2HZfZvnOqO2Ss9LfFNceJu99hJ/rp+rWlakRDl1viYv7V8L
-         YYen0/nxFoSA4E94Hy6e1BL5LmhfI06X2YJMADdiVYvd2M5R0Z7hbuXUpwcPdtDwx/sD
-         t/lQ==
-X-Gm-Message-State: ANoB5pn4rztGkCj2I2VoHBsXwwdqBmWQ0bpibMu8K2Qzy37QpoB459XJ
-        HtmsTJCC2VkyE7eexaPSBA2Ezw==
-X-Google-Smtp-Source: AA0mqf6rRHK7su2hexYQyj7OOjXRm79AFeSnv5/vqClQGzwMDOuz5vMHVVqgmEuylyv3ZQOsoqcOcw==
-X-Received: by 2002:a05:6512:3f0f:b0:4b5:39fa:6de with SMTP id y15-20020a0565123f0f00b004b539fa06demr5109519lfa.41.1670846659423;
-        Mon, 12 Dec 2022 04:04:19 -0800 (PST)
-Received: from [192.168.1.101] (abxh44.neoplus.adsl.tpnet.pl. [83.9.1.44])
-        by smtp.gmail.com with ESMTPSA id m19-20020a056512359300b00492e3c8a986sm1600064lfr.264.2022.12.12.04.04.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 04:04:19 -0800 (PST)
-Message-ID: <ecb97537-ad31-4acc-4e5a-7f464c2912ab@linaro.org>
-Date:   Mon, 12 Dec 2022 13:04:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: sdm845: order top-level nodes
- alphabetically
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231827AbiLLMFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:05:38 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220AF263E
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:05:37 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 94CA16CF;
+        Mon, 12 Dec 2022 13:05:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1670846734;
+        bh=mI8PCmj/cnOJcB2oNJ1Dc5d6b0A6ZL0gRGJWujB/9Uo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vENgFypc+3HoroWNmP94Wa7VNOB8cgH5ZLLxBDQ5tV+dUcQ1+bCcHXw+8o47ktWW0
+         zbhEWexCEmNcbFynQlZL8alEnQKADvdNdCKiw7GZGtaVG/offKJlTtUcsWNCFEJDtO
+         bYuNmQIYfLKa0816zzWwUzyfDJDrwCWjvV06WXF8=
+Date:   Mon, 12 Dec 2022 14:05:32 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221212100232.138519-1-krzysztof.kozlowski@linaro.org>
- <20221212100232.138519-2-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221212100232.138519-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
+ delay property
+Message-ID: <Y5cZDOxTHYu5SOFj@pendragon.ideasonboard.com>
+References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
+ <45157029.fMDQidcC6G@steina-w>
+ <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
+ <2735716.BEx9A2HvPv@steina-w>
+ <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
+ <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
+ <Y5b1PRRFeSm2P/LB@pendragon.ideasonboard.com>
+ <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <604d3d94-1aa2-d4bf-e934-9844e25f60a4@kontron.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Dec 12, 2022 at 12:49:26PM +0100, Frieder Schrempf wrote:
+> On 12.12.22 10:32, Laurent Pinchart wrote:
+> > On Mon, Dec 12, 2022 at 10:09:45AM +0100, Frieder Schrempf wrote:
+> >> On 09.12.22 15:49, Marek Vasut wrote:
+> >>> On 12/9/22 14:38, Alexander Stein wrote:
+> >>>> Am Freitag, 9. Dezember 2022, 13:43:02 CET schrieb Marek Vasut:
+> >>>>> On 12/9/22 13:21, Alexander Stein wrote:
+> >>>>>> Am Freitag, 9. Dezember 2022, 13:02:10 CET schrieb Marek Vasut:
+> >>>>>>> On 12/9/22 10:36, Alexander Stein wrote:
+> >>>>>>>> Am Freitag, 9. Dezember 2022, 10:07:45 CET schrieb Krzysztof Kozlowski:
+> >>>>>>>>> On 09/12/2022 09:54, Alexander Stein wrote:
+> >>>>>>>>>> Am Freitag, 9. Dezember 2022, 09:39:49 CET schrieb Krzysztof Kozlowski:
+> >>>>>>>>>>> On 09/12/2022 09:33, Alexander Stein wrote:
+> >>>>>>>>>>>> It takes some time until the enable GPIO has settled when turning on.
+> >>>>>>>>>>>> This delay is platform specific and may be caused by e.g. voltage
+> >>>>>>>>>>>> shifts, capacitors etc.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>>>>>>>>>>> ---
+> >>>>>>>>>>>>
+> >>>>>>>>>>>>    
+> >>>>>>>>>>>> .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4
+> >>>>>>>>>>>>     ++++
+> >>>>>>>>>>>>     1 file changed, 4 insertions(+)
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> diff --git
+> >>>>>>>>>>>> a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>>>>>>> b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>>>>>>> index 48a97bb3e2e0d..3f50d497cf8ac 100644
+> >>>>>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> @@ -32,6 +32,10 @@ properties:
+> >>>>>>>>>>>>         maxItems: 1
+> >>>>>>>>>>>>         description: GPIO specifier for bridge_en pin (active high).
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> +  ti,enable-delay-us:
+> >>>>>>>>>>>> +    default: 10000
+> >>>>>>>>>>>> +    description: Enable time delay for enable-gpios
+> >>>>>>>>>>>
+> >>>>>>>>>>> Aren't you now mixing two separate delays? One for entire block (I
+> >>>>>>>>>>> would assume mostly fixed delay) and one depending on regulators
+> >>>>>>>>>>> (regulator-ramp-delay, regulator-enable-ramp-delay). Maybe you miss the
+> >>>>>>>>>>> second delays in your power supply? If so, the first one might be fixed
+> >>>>>>>>>>> and hard-coded in the driver?
+> >>>>>>>>>>
+> >>>>>>>>>> Apparently there are two different delays: reset time (t_reset) of 10ms as
+> >>>>>>>>>> specified by datasheet. This is already ensured by a following delay after
+> >>>>>>>>>> requesting enable_gpio as low and switching the GPIO to low in disable
+> >>>>>>>>>> path.
+> >>>>>>>>>>
+> >>>>>>>>>> When enabling this GPIO it takes some time until it is valid on the chip,
+> >>>>>>>>>> this is what this series is about. It's highly platform specific.
+> >>>>>>>>>>
+> >>>>>>>>>> Unfortunately this is completely unrelated to the vcc-supply regulator.
+> >>>>>>>>>> This one has to be enabled before the enable GPIO can be enabled. So
+> >>>>>>>>>> there is no regulator-ramp-delay.
+> >>>>>>>>>
+> >>>>>>>>> Your driver does one after another - regulator followed immediately by
+> >>>>>>>>> gpio - so this as well can be a delay from regulator (maybe not ramp but
+> >>>>>>>>> enable delay).
+> >>>>>>>
+> >>>>>>> The chip has two separate input pins:
+> >>>>>>>
+> >>>>>>> VCC -- power supply that's regulator
+> >>>>>>> EN -- reset line, that's GPIO
+> >>>>>>>
+> >>>>>>> Alexander is talking about EN line here.
+> >>>>>>>
+> >>>>>>>> But this will introduce a section which must not be interrupted or delayed.
+> >>>>>>>> This is impossible as the enable gpio is attached to an i2c expander in my
+> >>>>>>>> case.
+> >>>>>>>>
+> >>>>>>>> Given the following time chart:
+> >>>>>>>>     vcc                  set             EN
+> >>>>>>>>
+> >>>>>>>> enable               GPIO             PAD
+> >>>>>>>>
+> >>>>>>>>      |                    |<-- t_raise -->|
+> >>>>>>>>      |
+> >>>>>>>>      | <-- t_vcc_gpio --> |               |
+> >>>>>>>>      | <--        t_enable_delay      --> |
+> >>>>>>>>
+> >>>>>>>> t_raise is the time from changing the GPIO output at the expander until
+> >>>>>>>> voltage on the EN (input) pad from the bridge has reached high voltage
+> >>>>>>>> level. This is an electrical characteristic I can not change and have to
+> >>>>>>>> take into account.
+> >>>>>>>> t_vcc_gpio is the time from enabling supply voltage to enabling the bridge
+> >>>>>>>> (removing from reset). Minimum t_vcc_gpio is something which can be
+> >>>>>>>> addressed by the regulator and is no problem so far. But there is no
+> >>>>>>>> upper bound to it.
+> >>>>>>>
+> >>>>>>> What exactly is your EN signal rise time (should be ns or so)? Can you
+> >>>>>>> look at that with a scope , maybe even with relation to the VCC
+> >>>>>>> regulator
+> >>>>>>> ?
+> >>>>>>
+> >>>>>> I checked EN rise time using a scope, it's ~110ms. I not an expert in
+> >>>>>> hardware but on the mainboard there is some capacitor attached to this
+> >>>>>> line, which increased the time, independent from the internal pull-up.
+> >>>>>
+> >>>>> This does seem like a hardware bug right there, can you double-check
+> >>>>> this with the hardware engineer ?
+> >>>>
+> >>>> Yep, checked with hardware engineer. An 470nF is attached, together with an
+> >>>> open drain output and only the internal pull-up. So yes ~113ms rising time
+> >>>> until 0.7 x VCC.
+> >>>
+> >>> I don't suppose you can have that capacitor reduced or better yet, some
+> >>> external pull up added, can you ?
+> >>
+> >> Actually our HW engineers have implemented a similar RC circuit to
+> >> provide a hardware delay for the EN signal. I think this is due to a
+> >> design note in the datasheet (see chapter 7.4.1) and therefore it's
+> >> probably widely spread.
+> > 
+> > RC delay circuits are very common when tying a control signal to a power
+> > rail. I'm surprise to see it recommended (with such a large time
+> > constant) when the EN signal is actively controlled. It makes sense if
+> > the SN65DSI83 supply comes up before the GPIO can be actively driven low
+> > (for instance if the supply isn't manually controllable but tied to an
+> > always-on power rail), in other cases it's quite counter-productive (I
+> > really hope the EN input has a Schmitt trigger).
+> 
+> On our hardware there's also a pulldown resistor parallel to the
+> capacitor which makes sure EN is low from the beginning even if the GPIO
+> is not driven yet.
+> 
+> I don't really understand what the capacitor should be good for, or why
+> TI recommends it. It looks counter-productive to me, too.
 
+There's an internal pull-up to VCC, so in case the GPIO is not driven,
+the capacitor ensures that the EN voltage rises slowly enough to match
+the required timings. If you ensure it gets driven, there should be no
+concern.
 
-On 12.12.2022 11:02, Krzysztof Kozlowski wrote:
-> Order top-level nodes like memory, reserved-memory, opp-table-cpu
-> alphabetically for easier code maintenance.  No functional change (same
-> dtx_diff, except phandle changes).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+-- 
+Regards,
 
-Konrad
-> 
-> Changes since v1:
-> 1. New patch
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 384 +++++++++++++--------------
->  1 file changed, 192 insertions(+), 192 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index a63dbd12230f..88e7d4061aae 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -69,122 +69,18 @@ aliases {
->  
->  	chosen { };
->  
-> -	memory@80000000 {
-> -		device_type = "memory";
-> -		/* We expect the bootloader to fill in the size */
-> -		reg = <0 0x80000000 0 0>;
-> -	};
-> -
-> -	reserved-memory {
-> -		#address-cells = <2>;
-> -		#size-cells = <2>;
-> -		ranges;
-> -
-> -		hyp_mem: hyp-mem@85700000 {
-> -			reg = <0 0x85700000 0 0x600000>;
-> -			no-map;
-> -		};
-> -
-> -		xbl_mem: xbl-mem@85e00000 {
-> -			reg = <0 0x85e00000 0 0x100000>;
-> -			no-map;
-> -		};
-> -
-> -		aop_mem: aop-mem@85fc0000 {
-> -			reg = <0 0x85fc0000 0 0x20000>;
-> -			no-map;
-> -		};
-> -
-> -		aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
-> -			compatible = "qcom,cmd-db";
-> -			reg = <0x0 0x85fe0000 0 0x20000>;
-> -			no-map;
-> -		};
-> -
-> -		smem@86000000 {
-> -			compatible = "qcom,smem";
-> -			reg = <0x0 0x86000000 0 0x200000>;
-> -			no-map;
-> -			hwlocks = <&tcsr_mutex 3>;
-> -		};
-> -
-> -		tz_mem: tz@86200000 {
-> -			reg = <0 0x86200000 0 0x2d00000>;
-> -			no-map;
-> -		};
-> -
-> -		rmtfs_mem: rmtfs@88f00000 {
-> -			compatible = "qcom,rmtfs-mem";
-> -			reg = <0 0x88f00000 0 0x200000>;
-> -			no-map;
-> -
-> -			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> -		};
-> -
-> -		qseecom_mem: qseecom@8ab00000 {
-> -			reg = <0 0x8ab00000 0 0x1400000>;
-> -			no-map;
-> -		};
-> -
-> -		camera_mem: camera-mem@8bf00000 {
-> -			reg = <0 0x8bf00000 0 0x500000>;
-> -			no-map;
-> -		};
-> -
-> -		ipa_fw_mem: ipa-fw@8c400000 {
-> -			reg = <0 0x8c400000 0 0x10000>;
-> -			no-map;
-> -		};
-> -
-> -		ipa_gsi_mem: ipa-gsi@8c410000 {
-> -			reg = <0 0x8c410000 0 0x5000>;
-> -			no-map;
-> -		};
-> -
-> -		gpu_mem: gpu@8c415000 {
-> -			reg = <0 0x8c415000 0 0x2000>;
-> -			no-map;
-> -		};
-> -
-> -		adsp_mem: adsp@8c500000 {
-> -			reg = <0 0x8c500000 0 0x1a00000>;
-> -			no-map;
-> -		};
-> -
-> -		wlan_msa_mem: wlan-msa@8df00000 {
-> -			reg = <0 0x8df00000 0 0x100000>;
-> -			no-map;
-> -		};
-> -
-> -		mpss_region: mpss@8e000000 {
-> -			reg = <0 0x8e000000 0 0x7800000>;
-> -			no-map;
-> -		};
-> -
-> -		venus_mem: venus@95800000 {
-> -			reg = <0 0x95800000 0 0x500000>;
-> -			no-map;
-> -		};
-> -
-> -		cdsp_mem: cdsp@95d00000 {
-> -			reg = <0 0x95d00000 0 0x800000>;
-> -			no-map;
-> -		};
-> -
-> -		mba_region: mba@96500000 {
-> -			reg = <0 0x96500000 0 0x200000>;
-> -			no-map;
-> -		};
-> -
-> -		slpi_mem: slpi@96700000 {
-> -			reg = <0 0x96700000 0 0x1400000>;
-> -			no-map;
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <38400000>;
-> +			clock-output-names = "xo_board";
->  		};
->  
-> -		spss_mem: spss@97b00000 {
-> -			reg = <0 0x97b00000 0 0x100000>;
-> -			no-map;
-> +		sleep_clk: sleep-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <32764>;
->  		};
->  	};
->  
-> @@ -436,6 +332,18 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
->  		};
->  	};
->  
-> +	firmware {
-> +		scm {
-> +			compatible = "qcom,scm-sdm845", "qcom,scm";
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* We expect the bootloader to fill in the size */
-> +		reg = <0 0x80000000 0 0>;
-> +	};
-> +
->  	cpu0_opp_table: opp-table-cpu0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
-> @@ -701,32 +609,174 @@ pmu {
->  		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> -	timer {
-> -		compatible = "arm,armv8-timer";
-> -		interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
-> -			     <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
-> -			     <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
-> -			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
-> -	};
-> +	psci: psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
->  
-> -	clocks {
-> -		xo_board: xo-board {
-> -			compatible = "fixed-clock";
-> -			#clock-cells = <0>;
-> -			clock-frequency = <38400000>;
-> -			clock-output-names = "xo_board";
-> +		CPU_PD0: power-domain-cpu0 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
->  		};
->  
-> -		sleep_clk: sleep-clk {
-> -			compatible = "fixed-clock";
-> -			#clock-cells = <0>;
-> -			clock-frequency = <32764>;
-> +		CPU_PD1: power-domain-cpu1 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD2: power-domain-cpu2 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD3: power-domain-cpu3 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD4: power-domain-cpu4 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD5: power-domain-cpu5 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD6: power-domain-cpu6 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CPU_PD7: power-domain-cpu7 {
-> +			#power-domain-cells = <0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +		};
-> +
-> +		CLUSTER_PD: power-domain-cluster {
-> +			#power-domain-cells = <0>;
-> +			domain-idle-states = <&CLUSTER_SLEEP_0>;
->  		};
->  	};
->  
-> -	firmware {
-> -		scm {
-> -			compatible = "qcom,scm-sdm845", "qcom,scm";
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		hyp_mem: hyp-mem@85700000 {
-> +			reg = <0 0x85700000 0 0x600000>;
-> +			no-map;
-> +		};
-> +
-> +		xbl_mem: xbl-mem@85e00000 {
-> +			reg = <0 0x85e00000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		aop_mem: aop-mem@85fc0000 {
-> +			reg = <0 0x85fc0000 0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x85fe0000 0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		smem@86000000 {
-> +			compatible = "qcom,smem";
-> +			reg = <0x0 0x86000000 0 0x200000>;
-> +			no-map;
-> +			hwlocks = <&tcsr_mutex 3>;
-> +		};
-> +
-> +		tz_mem: tz@86200000 {
-> +			reg = <0 0x86200000 0 0x2d00000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: rmtfs@88f00000 {
-> +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0 0x88f00000 0 0x200000>;
-> +			no-map;
-> +
-> +			qcom,client-id = <1>;
-> +			qcom,vmid = <15>;
-> +		};
-> +
-> +		qseecom_mem: qseecom@8ab00000 {
-> +			reg = <0 0x8ab00000 0 0x1400000>;
-> +			no-map;
-> +		};
-> +
-> +		camera_mem: camera-mem@8bf00000 {
-> +			reg = <0 0x8bf00000 0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_fw_mem: ipa-fw@8c400000 {
-> +			reg = <0 0x8c400000 0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		ipa_gsi_mem: ipa-gsi@8c410000 {
-> +			reg = <0 0x8c410000 0 0x5000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu_mem: gpu@8c415000 {
-> +			reg = <0 0x8c415000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_mem: adsp@8c500000 {
-> +			reg = <0 0x8c500000 0 0x1a00000>;
-> +			no-map;
-> +		};
-> +
-> +		wlan_msa_mem: wlan-msa@8df00000 {
-> +			reg = <0 0x8df00000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mpss_region: mpss@8e000000 {
-> +			reg = <0 0x8e000000 0 0x7800000>;
-> +			no-map;
-> +		};
-> +
-> +		venus_mem: venus@95800000 {
-> +			reg = <0 0x95800000 0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp@95d00000 {
-> +			reg = <0 0x95d00000 0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		mba_region: mba@96500000 {
-> +			reg = <0 0x96500000 0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		slpi_mem: slpi@96700000 {
-> +			reg = <0 0x96700000 0 0x1400000>;
-> +			no-map;
-> +		};
-> +
-> +		spss_mem: spss@97b00000 {
-> +			reg = <0 0x97b00000 0 0x100000>;
-> +			no-map;
->  		};
->  	};
->  
-> @@ -1018,64 +1068,6 @@ slpi_smp2p_in: slave-kernel {
->  		};
->  	};
->  
-> -	psci: psci {
-> -		compatible = "arm,psci-1.0";
-> -		method = "smc";
-> -
-> -		CPU_PD0: power-domain-cpu0 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD1: power-domain-cpu1 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD2: power-domain-cpu2 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD3: power-domain-cpu3 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD4: power-domain-cpu4 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD5: power-domain-cpu5 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD6: power-domain-cpu6 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CPU_PD7: power-domain-cpu7 {
-> -			#power-domain-cells = <0>;
-> -			power-domains = <&CLUSTER_PD>;
-> -			domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> -		};
-> -
-> -		CLUSTER_PD: power-domain-cluster {
-> -			#power-domain-cells = <0>;
-> -			domain-idle-states = <&CLUSTER_SLEEP_0>;
-> -		};
-> -	};
-> -
->  	soc: soc@0 {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -5771,4 +5763,12 @@ modem_alert0: trip-point0 {
->  			};
->  		};
->  	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
-> +	};
->  };
+Laurent Pinchart
