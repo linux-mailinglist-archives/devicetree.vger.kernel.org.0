@@ -2,131 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9658A6498B1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 06:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F5F6498CE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 07:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbiLLFvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 00:51:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56462 "EHLO
+        id S230427AbiLLGCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 01:02:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiLLFvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 00:51:53 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCA626C7
-        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 21:51:51 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C2BDB852C4;
-        Mon, 12 Dec 2022 06:51:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1670824309;
-        bh=ZndLeltJuiFs8Zg4ydab+sBTWMIECwKCK9FzMcCrjLA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=x3zSgRkxyEYjI5Y5sfi/Pntd28byV61Q9UZ6ikfIp9zA4eTQpZGP+xwsy0Ob0ZKww
-         zr48YFD2jzeDpoNlMV/tMrDL9MS/8p+JnaVSVBbByl60oQVqY+RfsGXcJGnaYLu2lK
-         e+VfqeniKVe3txfC914fFSfk1zSbKqmDmJ8e0aX6mUHlyzHoSv+RJQCFqLNuqHjce4
-         x9W0rq/TEagotEc1omnslmImRa+ODefhYKueTujEaVUksRbINZHS2TaWzJ/VfPHUKr
-         TnXPqIaTUPmSQLnlA1+u8llmUvRoVS60iBdkFWMGvrBEJRKbXMCvvT4SnDrIPAGA7o
-         +BLumOBQ2oG0w==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S231194AbiLLGB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 01:01:56 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3FE38B2
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 22:01:55 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id q17-20020a17090aa01100b002194cba32e9so14522705pjp.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Dec 2022 22:01:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CtZbo9Uwr6mAiSS4K9joB67mf1cSBtb5VzmSLOnn2BA=;
+        b=feGDuEqDfW7doSqcTAYoSzv+D7I72/VtlAP9SODJ0tmxCS82qjFyPUpdAUHMt6tMy8
+         kmKjYZcnuQw23DqrQxUbYDreyr0qKhDF30tJKb/H0zThXZXWmOdMNQqL+8vtCjTVrzpf
+         /+fDjiuHjCPjmd6qXQyQvxaqXqIOtoqrw4lF9nR1hBuCJcFBdaGPTCUEYir4n35JnuUg
+         ZQvXxBiVf73Zyj8nGG3yzL5mwNzSVlGHCNuTbiQTxO2sltAjyFdzQbXSKyV3taP/Ohy7
+         z4aauu+sNzrZJWy9nZaH7UonI8WKyvnnfrr55oqzhZQek7MK5UZvLx4HHDaSlSUS8Djw
+         ahWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CtZbo9Uwr6mAiSS4K9joB67mf1cSBtb5VzmSLOnn2BA=;
+        b=UQdbUjtMoc12JWMkYJyF2T7B2NmDDGFAZwy0QbReSknxsyVjTZzhCHq5xWEW5QPucP
+         UTvyPGfVw/c5hZxMmwmmRFMBstOY81TT+0GZSEkoxDL7G+QZ73FwDYuYMSHaa8cXYYxz
+         mCmvAJLMrwTKFfuFfECzvh93s4581VGnNOVBTs56wU6n6Opg19/0aovOVFT02rN2d5Ob
+         /wQseXKLWbTOJyNZgJLkmu0oywA3DXq8Ly/I0JwPFeVH4nWNO66Xv4XOZX0CzKGKgi9M
+         Ik8rHbYU53SzFkGNnmJn5E5VWc5wWEX/5iU5CdK56zKBHjT4oPylZ9oCB8mhVDlBQTGf
+         qi/Q==
+X-Gm-Message-State: ANoB5pmqV9U625rGqg7RpA1qWmWFDnAEFTsi4l3Q1a0fqH4Tebe+QhD2
+        YyfBOv+/MEBWrupmG/aAZHU2HQ==
+X-Google-Smtp-Source: AA0mqf5+eaVtJ2ibhZx/7OHXPEfud2Yg6uvPqQP6gHqOu8YKIq3xFBm7jDraoJAlecduL321ZZVFxw==
+X-Received: by 2002:a17:902:e311:b0:189:dc9e:cef3 with SMTP id q17-20020a170902e31100b00189dc9ecef3mr13725691plc.16.1670824915071;
+        Sun, 11 Dec 2022 22:01:55 -0800 (PST)
+Received: from localhost ([122.172.87.149])
+        by smtp.gmail.com with ESMTPSA id e14-20020a17090301ce00b0017fe9b038fdsm5344579plh.14.2022.12.11.22.01.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Dec 2022 22:01:54 -0800 (PST)
+Date:   Mon, 12 Dec 2022 11:31:51 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3] dt-bindings: mxsfb: Document i.MX8M/i.MX6SX/i.MX6SL power-domains property
-Date:   Mon, 12 Dec 2022 06:51:37 +0100
-Message-Id: <20221212055137.270638-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: spear: drop 0x from unit address
+Message-ID: <20221212060151.p7ziztnxny42pi4n@vireshk-i7>
+References: <20221210113347.63939-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221210113347.63939-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The power-domains property is mandatory on i.MX8M Mini, Nano, Plus
-and i.MX6SX, i.MX6SL. Document the property and mark it as required
-on the aforementioned variants of the IP, present in those SoCs.
+On 10-12-22, 12:33, Krzysztof Kozlowski wrote:
+> By coding style, unit address should not start with 0x.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/spear300.dtsi | 2 +-
+>  arch/arm/boot/dts/spear310.dtsi | 2 +-
+>  arch/arm/boot/dts/spear320.dtsi | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/spear300.dtsi b/arch/arm/boot/dts/spear300.dtsi
+> index b39bd5a22627..f1135e887f7b 100644
+> --- a/arch/arm/boot/dts/spear300.dtsi
+> +++ b/arch/arm/boot/dts/spear300.dtsi
+> @@ -46,7 +46,7 @@ sdhci@70000000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		shirq: interrupt-controller@0x50000000 {
+> +		shirq: interrupt-controller@50000000 {
+>  			compatible = "st,spear300-shirq";
+>  			reg = <0x50000000 0x1000>;
+>  			interrupts = <28>;
+> diff --git a/arch/arm/boot/dts/spear310.dtsi b/arch/arm/boot/dts/spear310.dtsi
+> index 77570833d46b..ce08d8820940 100644
+> --- a/arch/arm/boot/dts/spear310.dtsi
+> +++ b/arch/arm/boot/dts/spear310.dtsi
+> @@ -34,7 +34,7 @@ fsmc: flash@44000000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		shirq: interrupt-controller@0xb4000000 {
+> +		shirq: interrupt-controller@b4000000 {
+>  			compatible = "st,spear310-shirq";
+>  			reg = <0xb4000000 0x1000>;
+>  			interrupts = <28 29 30 1>;
+> diff --git a/arch/arm/boot/dts/spear320.dtsi b/arch/arm/boot/dts/spear320.dtsi
+> index b12474446a48..56f141297ea3 100644
+> --- a/arch/arm/boot/dts/spear320.dtsi
+> +++ b/arch/arm/boot/dts/spear320.dtsi
+> @@ -49,7 +49,7 @@ sdhci@70000000 {
+>  			status = "disabled";
+>  		};
+>  
+> -		shirq: interrupt-controller@0xb3000000 {
+> +		shirq: interrupt-controller@b3000000 {
+>  			compatible = "st,spear320-shirq";
+>  			reg = <0xb3000000 0x1000>;
+>  			interrupts = <30 28 29 1>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Liu Ying <victor.liu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-To: devicetree@vger.kernel.org
----
-V2: - Add AB from Krzysztof
-    - Add mx6sx power domain into the list
-V3: - Update commit message
-    - Add i.MX6SL
-    - Update example
----
- .../devicetree/bindings/display/fsl,lcdif.yaml  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 876015a44a1e6..1f17be501749b 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -52,6 +52,9 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
-   port:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: The LCDIF output port
-@@ -87,6 +90,19 @@ allOf:
-           maxItems: 1
-         clock-names:
-           maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6sl-lcdif
-+              - fsl,imx6sx-lcdif
-+              - fsl,imx8mm-lcdif
-+              - fsl,imx8mn-lcdif
-+              - fsl,imx8mp-lcdif
-+    then:
-+      required:
-+        - power-domains
- 
- examples:
-   - |
-@@ -101,6 +117,7 @@ examples:
-                  <&clks IMX6SX_CLK_LCDIF_APB>,
-                  <&clks IMX6SX_CLK_DISPLAY_AXI>;
-         clock-names = "pix", "axi", "disp_axi";
-+        power-domains = <&pd_disp>;
- 
-         port {
-             endpoint {
 -- 
-2.35.1
-
+viresh
