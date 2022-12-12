@@ -2,98 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 892F2649A5C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99577649A70
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 09:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbiLLIug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 03:50:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
+        id S231664AbiLLIwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 03:52:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231630AbiLLIuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:50:35 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F202EE087
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:50:32 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id s25so4508997lji.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 00:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jI1OaOD4zYv+GMXooOxYiYkoWIspbT01nwkFL3b41Zw=;
-        b=vtG27djnDlxQPP+gt2UERYPQYHEz36rzlqnZwpyetB5yiPDse8bhlaLJ3grsX+YHaQ
-         ftSjkG9M5R/muWJgmfuf2IVOvwVkjG4yKIz8nXnWpcmHPO5qpDFgkXiPSYLG6PGRRfku
-         cLwFbIHMUrSIqLwFWpj4K30QFBM3QooeQ2nB0S0v1Bp4EBOMWyo9ig/6QXezxRsUGBNc
-         SMvOplKKPjlJvkbRW2+robdOeytZJNG/CkPyvb4INEZZoCB2MjX67U9l/VmkUKr+MbCS
-         yzTUU8/Ch/EQaG93pYmj4lKrg0K+g3C7VGuaS3azPQ/Br4Nj/8cgIuhT6h7J68BD81Vf
-         zFmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jI1OaOD4zYv+GMXooOxYiYkoWIspbT01nwkFL3b41Zw=;
-        b=RRYOS3p05PZaFM5WXDICeP7FjYHHrJ+rq08qL2s05eHpZGJ9oL3pE9KIu9EEWSWg3I
-         q6JkS65vfdnyEFvtNv6BXdSL9IrWZ+3FnImYNryQY2z9WpVi2A9EYEvQy1xgHUFlVBzg
-         bpPb9lGMLg/JR5NYDZhTFmObm7i0R+sgF1Ju8EL1aZaqWAVp/Yi+iFGpoVuOSDKUxE9X
-         /orP4aig+sCB53PGSvMRUr1LBhc5gZL8L7KnqFSFJb6bbC3MbnAKRs60I2CQn+xNue1+
-         w+DVcHU4MlUQ0CX10KhSpyoleRmuONXnhGO9J9kY0pyzNWf0HqBRCGT7WdLd1ugTqrIN
-         ytLA==
-X-Gm-Message-State: ANoB5pkCvym3FXgJ8DLWcDENeheJSsLXHE5yeP/gJaNEdlqDZYkLCG21
-        XPWdaiZl/W0lKF95xp74mJp0NQ==
-X-Google-Smtp-Source: AA0mqf7zeOimlWAmKA/szuz53f9S4WXpLbMRSVjDPhdREfV0CNwgjviZQ143aQR2M99Vw8wWRUTFMw==
-X-Received: by 2002:a2e:7008:0:b0:27a:170c:1938 with SMTP id l8-20020a2e7008000000b0027a170c1938mr3703767ljc.25.1670835031320;
-        Mon, 12 Dec 2022 00:50:31 -0800 (PST)
-Received: from [192.168.0.20] (088156142067.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.67])
-        by smtp.gmail.com with ESMTPSA id j22-20020a2e3c16000000b0027711dbd000sm1092346lja.69.2022.12.12.00.50.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Dec 2022 00:50:30 -0800 (PST)
-Message-ID: <064d6fc7-1efa-3272-c9c8-191efde8ba8f@linaro.org>
-Date:   Mon, 12 Dec 2022 09:50:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/5] dt-bindings: interconnect: Add UFS clocks to MSM8996
- A2NoC
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org
-Cc:     marijn.suijten@somainline.org, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231678AbiLLIwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 03:52:34 -0500
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEB1647F;
+        Mon, 12 Dec 2022 00:52:33 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2BC6svKu006345;
+        Mon, 12 Dec 2022 09:51:55 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=88WJawgyDIxs82OD3wvGxjMlMWZLJ+s7w1VXxHdtkiw=;
+ b=yznbl1sh4pi2WeCugf23IjHf93GiXa5NhufMiP0uoBwgcxiroLuHT0I+Hvl53kHf7H0z
+ j6TjQh0v7svPAk35qGrQTlYw9Iq6/36xp/6fBfPAv+Xgym+0+xTYapckDEYWzBUz3gfS
+ qeDVX7HI+4kj8xhWhRmQXhWCbDZH8ZaKOliTDuMzmXT3tvaggWIT5L+4W817NEWSFxtY
+ f132uf591/dfFgOer//59w0BEfpC/epCXbhhlhoAIz31wnPVaQjn7Y5f+MDl89tDfRRk
+ JmL+Z6JkQPxL38HgQvoeaxHRy+d7U4jJdVg62iX+/W+CZGFAVTHH9Wj8Sq8bbn0FdZhB mA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3mcjb598v6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Dec 2022 09:51:55 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 80EEC100039;
+        Mon, 12 Dec 2022 09:51:47 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6AE58217B6D;
+        Mon, 12 Dec 2022 09:51:47 +0100 (CET)
+Received: from localhost (10.201.20.130) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.13; Mon, 12 Dec
+ 2022 09:51:47 +0100
+From:   <patrice.chotard@foss.st.com>
+To:     <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221210200353.418391-1-konrad.dybcio@linaro.org>
- <20221210200353.418391-2-konrad.dybcio@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221210200353.418391-2-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <alexandre.torgue@foss.st.com>
+CC:     <mcoquelin.stm32@gmail.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Reinhold Mueller <reinhold.mueller@emtrion.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: [PATCH 0/4] Fix qspi pinctrl phandle for stm3mp15 based boards 
+Date:   Mon, 12 Dec 2022 09:51:38 +0100
+Message-ID: <20221212085142.3944367-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.130]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.923,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-12-12_01,2022-12-08_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/12/2022 21:03, Konrad Dybcio wrote:
-> MSM8996 A2NoC contains a UFS master, which means the UFS hardware is
-> accessed every time sync_state is called within the interconnect
-> framework. It's all good on devices where this clock is already enabled
-> (most likely from the bootloader), but devices with eMMC storage are
-> rather unlikely to have it like that. Add the missing 2 clocks to the
-> binding.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
+qspi_bk1_pins_a and qspi_bk2_pins_a pinctrl phandle has been splitted in
+2 parts. Only stm32mp157c-ev1.dts has been updated properly.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fix qspi pinctrl phandle for other boards which are based on stm32mp15x SoC.
 
-Best regards,
-Krzysztof
+Patrice Chotard (4):
+  ARM: dts: stm32: Fix qspi pinctrl phandle for stm32mp15xx-dhcor-som
+  ARM: dts: stm32: Fix qspi pinctrl phandle for stm32mp15xx-dhcom-som
+  ARM: dts: stm32: Fix qspi pinctrl phandle for
+    stm32mp157c-emstamp-argon
+  ARM: dts: stm32: Fix qspi pinctrl phandle for stm32mp151a-prtt1l
+
+Cc: Marek Vasut <marex@denx.de>
+Cc: Alexandre Torgue <alexandre.torgue@st.com>
+Cc: Reinhold Mueller <reinhold.mueller@emtrion.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: linux-stm32@st-md-mailman.stormreply.com
+To: linux-arm-kernel@lists.infradead.org
+
+ arch/arm/boot/dts/stm32mp151a-prtt1l.dtsi        | 8 ++++++--
+ arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 8 ++++++--
+ arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi     | 8 ++++++--
+ arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi     | 8 ++++++--
+ 4 files changed, 24 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
 
