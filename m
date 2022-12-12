@@ -2,90 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E59BD64A940
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 22:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE4664A96B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 22:18:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233792AbiLLVL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 16:11:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50250 "EHLO
+        id S232611AbiLLVSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 16:18:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233707AbiLLVLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 16:11:14 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB2E186EA;
-        Mon, 12 Dec 2022 13:11:13 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B7BBA61232;
-        Mon, 12 Dec 2022 21:11:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 46F0BC433AE;
-        Mon, 12 Dec 2022 21:11:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1670879473;
-        bh=9blLkkOjD8Bcolq83bGySvku3ewQgjiu1BEhR8H2mhw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=U0WmhgbMIZKLNIJlMTAWwLuufl6VdVpoRe8WreIDrGT1SUZw/IrSWP6obZ7wrRnyJ
-         GTW6N/8ErSM99JRYwfCoN1f0QTXxU0ASY+y+uIaiEqYYwweOX/hU/u6zKnTWA/wOi0
-         hmbCEARST6V4yXpRmbIfL6jGfFO980ypho6OHCZtBXEYXeADhXzWXMvSvvXDftiEX/
-         ic/b6Ge1Mim/JjrxC9vbWOSCqMh5zCpu1xHdRdM1Jss2RdiDV2glc81il9NRAP8mX/
-         lzDPDclVMpplQ9O9orReK+MgK2DeGxCWBxgKGgBTZ5TAzTD6/pg8BWg75IzJt6FU0O
-         K4qFODhVI6V5g==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 33733C00448;
-        Mon, 12 Dec 2022 21:11:13 +0000 (UTC)
+        with ESMTP id S233574AbiLLVSV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 16:18:21 -0500
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4807E9596;
+        Mon, 12 Dec 2022 13:17:43 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id v82so12471874oib.4;
+        Mon, 12 Dec 2022 13:17:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5i3OUjIfqgpyWppxSNZ/0sQhPXWrsfvFFv33+eGTUl4=;
+        b=xkdIkh01XL3IPla8T1y5AODCOrMR0+Dpcl7jQceuBqsaMXjkfuckMiVz3dqY8V1zbf
+         yVXKWLJkmXVsitAz818K4m5p9XtuNt25dU97mjr0P7cSM2HJqdnbqP5YqvKJ04/3Lel3
+         oSbyoV/K44XF/63RLSh3H6HmMfOzuYCQnnv/Wn7cyFAQQ37gfxG8dB8H6IQYhTLCGaXq
+         o6x1nEb0BFkYscmY97kaFXLsYZlhzKzZNlPF2XUOfMbp+wQby4OVD/BFNkYdXDrp8fN2
+         2GZrZuFuGM2cYkhJt1+tyYh8ujOAmZqya3OuQ1LmWzykLmaTabpoO4Y/sbiJ22EDiACA
+         Hm1g==
+X-Gm-Message-State: ANoB5plMNEiqTi1YnUduD4pN+fMWPSOr11AsJ3iajMFoEM74FMP0zY6t
+        S52NyOn1fgv8xn1Y8aIeXg==
+X-Google-Smtp-Source: AA0mqf4+AKSiMJMkNJ6/wMjadMR4/AaXI94WHnBBeADPelFXDpvkXG1yHfFrwDbRA398jUaokJufjw==
+X-Received: by 2002:a05:6808:a9c:b0:35c:1301:3ec6 with SMTP id q28-20020a0568080a9c00b0035c13013ec6mr6822938oij.28.1670879862511;
+        Mon, 12 Dec 2022 13:17:42 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j11-20020a056808034b00b00354d8589a15sm3875940oie.45.2022.12.12.13.17.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 13:17:42 -0800 (PST)
+Received: (nullmailer pid 1545272 invoked by uid 1000);
+        Mon, 12 Dec 2022 21:17:41 -0000
 Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net v2 0/2] Update Joakim Zhang entries
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <167087947320.28989.16734382104361853007.git-patchwork-notify@kernel.org>
-Date:   Mon, 12 Dec 2022 21:11:13 +0000
-References: <20221209220519.1542872-1-f.fainelli@gmail.com>
-In-Reply-To: <20221209220519.1542872-1-f.fainelli@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     netdev@vger.kernel.org, tglx@linutronix.de, maz@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, linux-imx@nxp.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, xiaoning.wang@nxp.com,
-        wei.fang@nxp.com, shenwei.wang@nxp.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org
+In-Reply-To: <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
+References: <20221212172804.1277751-1-biju.das.jz@bp.renesas.com>
+ <20221212172804.1277751-3-biju.das.jz@bp.renesas.com>
+Message-Id: <167087981089.1543932.15032317950577945818.robh@kernel.org>
+Subject: Re: [PATCH 02/16] dt-bindings: usb: Add RZ/V2M USB3DRD binding
+Date:   Mon, 12 Dec 2022 15:17:41 -0600
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to netdev/net.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Fri,  9 Dec 2022 14:05:17 -0800 you wrote:
-> Shawn, since you are the i.MX maintainer I added you and the NXP Linux
-> Team as the de-facto maintainers for those entries, however there may be
-> other people to list, thanks!
+On Mon, 12 Dec 2022 17:27:50 +0000, Biju Das wrote:
+> Add device tree bindings for the RZ/V2{M, MA} USB3DRD module.
 > 
-> Changes in v2:
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../bindings/usb/renesas,rzv2m-usb3drd.yaml   | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
 > 
-> - update the maintainers entry per Clark Wang's recommendations
-> 
-> [...]
 
-Here is the summary with links:
-  - [net,v2,1/2] MAINTAINERS: Update NXP FEC maintainer
-    https://git.kernel.org/netdev/net/c/4e81462a45ce
-  - [net,v2,2/2] dt-bindings: FEC/i.MX DWMAC and INTMUX maintainer
-    https://git.kernel.org/netdev/net/c/fb21cad28489
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb3peri:resets: [[4294967295, 29]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb3peri: 'reset-names' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000:compatible: 'oneOf' conditional failed, one must be fixed:
+	'renesas,r9a09g011-xhci' is not one of ['renesas,xhci-r8a7742', 'renesas,xhci-r8a7743', 'renesas,xhci-r8a7744', 'renesas,xhci-r8a7790', 'renesas,xhci-r8a7791', 'renesas,xhci-r8a7793']
+	'renesas,r9a09g011-xhci' is not one of ['renesas,xhci-r8a774a1', 'renesas,xhci-r8a774b1', 'renesas,xhci-r8a774c0', 'renesas,xhci-r8a774e1', 'renesas,xhci-r8a7795', 'renesas,xhci-r8a7796', 'renesas,xhci-r8a77961', 'renesas,xhci-r8a77965', 'renesas,xhci-r8a77990']
+	'renesas,rcar-gen2-xhci' was expected
+	'renesas,rcar-gen3-xhci' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000:clocks: [[4294967295, 1, 34], [4294967295, 1, 36]] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb@85070000: usb@85060000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'compatible' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.yaml
+Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb:0:0: /example-0/usb@85070000/usb@85060000: failed to match any schema with compatible: ['renesas,r9a09g011-xhci', 'renesas,rzv2m-xhci']
+Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb:0:0: /example-0/usb@85070000/usb@85060000: failed to match any schema with compatible: ['renesas,r9a09g011-xhci', 'renesas,rzv2m-xhci']
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb3peri: resets: [[4294967295, 29]] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb: usb3peri: 'reset-names' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20221212172804.1277751-3-biju.das.jz@bp.renesas.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
