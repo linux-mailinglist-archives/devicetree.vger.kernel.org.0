@@ -2,90 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2ED64A5EF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 18:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF9B64A60F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 18:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbiLLRcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 12:32:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
+        id S232591AbiLLRjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 12:39:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231343AbiLLRct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 12:32:49 -0500
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B47DC9;
-        Mon, 12 Dec 2022 09:32:47 -0800 (PST)
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-1322d768ba7so9248710fac.5;
-        Mon, 12 Dec 2022 09:32:47 -0800 (PST)
+        with ESMTP id S232633AbiLLRiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 12:38:55 -0500
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971DF9FF0
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 09:38:54 -0800 (PST)
+Received: by mail-il1-x131.google.com with SMTP id x12so3736096ilg.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 09:38:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TdFQHyfvuXS3dWpzBzfA/eYiqNVFYmQe6KA46+wVeF0=;
+        b=QEUYd8iH6ivq5ZndIww6CcGISu4oucIkeoSemO7r9vMYAu+Q8mnZXaSgmDhjoBkvXr
+         ZmQvKd7z/z+J38FahVjYhTtbw6ZA24XkymAFddvUXruuaCaLueXXaNGQKGnem7YHkPsI
+         tp2xzFQ9Mb4s4aR3KtrjTL5x07sHsjXG94xqetN2nXbrHX4rcv1QU+KgJ4HZks++7nMw
+         2qI8+gO2794L2vOVkPaLPR9wHn40Y9pBY9Z8nqiLjydipzjZUCCyGUwroc0HWt8fXEb/
+         L3c6r5IuLk96Xdh58s8uPbQfzItPqf/RQCYSc7glqZzslQ8fhjpMlpnaf7XE131XKpGy
+         X9kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4c0Q/vD5iPPOpm9+SZu8G9CtEcI/+Ys6P4p1qjE2xVw=;
-        b=NZCPXy3aOCthiuS0IxbdyQ5vLioRtXok3qceUecQtesFg824qoDLRLSjHu2tm2PFbG
-         MFrSHhr35lqAiDFtZLQDh3pPIM+48PhwtsI0LrYkNRXr3WHVSl05G9DJFmcuhivI230F
-         QPzu7KqBO4K4mLxCkxAHYbnfsPt9j1OX8MWS59MnuLcRQIg19PnypqlA/Ep61jBt72Oq
-         FqM6qJn+YKT8vPO6fl/mgA4/3L2y9uTdPDRRJyS+61O0ol6/XrZ82WarZlp5nhVrZIzZ
-         IryLnIf/U48z46Lz95R/hv/aNsIpRg/Upe/aF2AJuSxVWf/17hTY57407R5LUO4HPigu
-         N2Pg==
-X-Gm-Message-State: ANoB5pm/RRSyDfExQdu33ScNbdsNi+SZVnnLRmi22wblDLGKRBauvgyp
-        Jmhx+AcTpYfK3OfQMCNXiw==
-X-Google-Smtp-Source: AA0mqf5PsnRpjqPKGdBWGgDCZdAgNhbyqlTcPwwBpTvVw9k5vDQwoMoTIyNNqsRM0T5EzRgviQXaIQ==
-X-Received: by 2002:a05:6870:7985:b0:143:ffca:a9de with SMTP id he5-20020a056870798500b00143ffcaa9demr7920858oab.9.1670866367008;
-        Mon, 12 Dec 2022 09:32:47 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a22-20020a4ab796000000b004a0a7b08d9asm156388oop.19.2022.12.12.09.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Dec 2022 09:32:46 -0800 (PST)
-Received: (nullmailer pid 1173504 invoked by uid 1000);
-        Mon, 12 Dec 2022 17:32:45 -0000
-Date:   Mon, 12 Dec 2022 11:32:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: microchip: use proper naming
- syntax
-Message-ID: <20221212173245.GA1171311-robh@kernel.org>
-References: <20221212164153.78677-1-claudiu.beznea@microchip.com>
- <20221212164153.78677-2-claudiu.beznea@microchip.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TdFQHyfvuXS3dWpzBzfA/eYiqNVFYmQe6KA46+wVeF0=;
+        b=bXLjo2ryGiGVDjRxrlq8nSuZVXfrn2iJjiAdOPWgLTK21/5PzKst9Pwi0s1EqoR5Af
+         pPGr4lz2e318OwNwmCwSOHlukWlbNFomlLJcMQ4qZWv4xpgOR9/MP1vxbSPlQk2fahq/
+         fpWq0FzgMgTkhMaCS93IMKyRCM3yczWU6ZPtr3s3o3A0Swl/kF8K2Ciy3TDgV/aTiH4F
+         tLVwDLtT7YldCGufFVp1tE3/yed+1j4yPHxJ9v4rYeSWW0OwDGpjFdXbQewfZyKG1c9u
+         6PH0K9q607QTllOpB0uzBWEnvpfLMwalhHw7tLwmaH7+Jf2qefZxGTowpbvHqK7JG46J
+         Yy4w==
+X-Gm-Message-State: ANoB5pnkyVP9q7vD0n2O0SDQAgQpzh8Ubnna6PRr1RbpVg6pYgL+8yWZ
+        br5McduGtH0sBrN3Ycx8RHbK7Q==
+X-Google-Smtp-Source: AA0mqf54ndLJTVC/YJbPgo1fKqSt16oCLfOSQJH2SjHAru1Yh2YZyonlGUjdFeXJRIJc6J23nUkhJA==
+X-Received: by 2002:a92:612:0:b0:303:2965:9617 with SMTP id x18-20020a920612000000b0030329659617mr9759515ilg.9.1670866733899;
+        Mon, 12 Dec 2022 09:38:53 -0800 (PST)
+Received: from [172.22.22.4] ([98.61.227.136])
+        by smtp.googlemail.com with ESMTPSA id k13-20020a02334d000000b00389def938dbsm112672jak.71.2022.12.12.09.38.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Dec 2022 09:38:53 -0800 (PST)
+Message-ID: <1ab39358-b3b1-e93f-ea65-32b53a5b6334@linaro.org>
+Date:   Mon, 12 Dec 2022 11:38:52 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221212164153.78677-2-claudiu.beznea@microchip.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 01/19] dt-bindings: clocks: qcom: rpmcc: add
+ LN_BB_CLK_PIN clocks
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221209164855.128798-1-dmitry.baryshkov@linaro.org>
+ <20221209164855.128798-2-dmitry.baryshkov@linaro.org>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <20221209164855.128798-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 12, 2022 at 06:41:50PM +0200, Claudiu Beznea wrote:
-> Use the following syntax for Microchip ASoC YAML files:
-> vendor,device.yaml
+On 12/9/22 10:48 AM, Dmitry Baryshkov wrote:
+> Add pin-controlled Low-Noise BB clock definition.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Looks good to me.
+
+Reviewed-by: Alex Elder <elder@linaro.org>
+
 > ---
->  .../bindings/sound/mchp,i2s-mcc.yaml          | 108 ------------------
+>   include/dt-bindings/clock/qcom,rpmcc.h | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/qcom,rpmcc.h b/include/dt-bindings/clock/qcom,rpmcc.h
+> index c0ad624e930e..46309c9953b2 100644
+> --- a/include/dt-bindings/clock/qcom,rpmcc.h
+> +++ b/include/dt-bindings/clock/qcom,rpmcc.h
+> @@ -168,5 +168,7 @@
+>   #define RPM_SMD_MSS_CFG_AHB_CLK		122
+>   #define RPM_SMD_MSS_CFG_AHB_A_CLK		123
+>   #define RPM_SMD_BIMC_FREQ_LOG			124
+> +#define RPM_SMD_LN_BB_CLK_PIN			125
+> +#define RPM_SMD_LN_BB_A_CLK_PIN			126
+>   
+>   #endif
 
-Deleting? Why? That's not what the commit message says.
-
->  ...,pdmc.yaml => microchip,sama7g5-pdmc.yaml} |   0
->  ...rx.yaml => microchip,sama7g5-spdifrx.yaml} |   0
->  ...tx.yaml => microchip,sama7g5-spdiftx.yaml} |   0
->  4 files changed, 108 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/mchp,i2s-mcc.yaml
->  rename Documentation/devicetree/bindings/sound/{microchip,pdmc.yaml => microchip,sama7g5-pdmc.yaml} (100%)
->  rename Documentation/devicetree/bindings/sound/{mchp,spdifrx.yaml => microchip,sama7g5-spdifrx.yaml} (100%)
->  rename Documentation/devicetree/bindings/sound/{mchp,spdiftx.yaml => microchip,sama7g5-spdiftx.yaml} (100%)
-
-These will all fail binding checks. You need to update the $id values.
-
-Rob
