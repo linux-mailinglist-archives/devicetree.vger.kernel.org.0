@@ -2,166 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B1CE649EA7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:29:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 624FD649EB2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Dec 2022 13:33:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232075AbiLLM3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Dec 2022 07:29:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
+        id S231871AbiLLMdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Dec 2022 07:33:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232090AbiLLM3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:29:44 -0500
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2099.outbound.protection.outlook.com [40.107.103.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763D510FED
-        for <devicetree@vger.kernel.org>; Mon, 12 Dec 2022 04:29:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=edxb3rB1dsftjRXHxOAaRvnjg5lLJqAay3ibtD45XsQbBy1iwjbCt/Y3y44Balvqb790sT430Bco3UiSDhuvrZFJJlO3LE9x9S8kEFznmOiVxYGu9ija2Cgoz3AHtGiw7ce6BSpeOWx6hQE9h4wGTDg8vuq1j2dPebiHw76EG9pYMTb30udxVQnTp/oJ94+v22CgCjHtha+zfLWGU75qlbYya0w2FwtlpqGuYRtsrMsZhDna41AUp2b9juXEy4zlAc6BWJPy/MXtUzJjaWXv4hrqpjPZcytsFWc+VRTkAj8ykfpFw5aQMVtTrfV25MpGL4ExhCRv9tEQNXadCWiIfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yi30gRKiDYDkgWQqWRKXHpnqZW4B4Olb6SnDDyZheiE=;
- b=itMNdbo2qH4VjbECtB2WCeQdyPQToch4fQnV8KyH5Er+YQuwixNBXOnvvOe4yStWOjCa7ftX3VOTC8xHn0mjFqPI0OlzazYhfFaF2qP920Y202ec3VI9urAWw8n53k7Oy3TUIcLWTAnI4KuhxRdOhJf4LJuZELQBqNUygYQAaowkJ/Ku5y3wBn9G8sUGQvD8w8tgG5w0EWK4cva/uOt9346Vtn1W5Jk3MMcE1UWAUnugJL+1HmH30Uc90d0CRByr/vSxbIiPb68aCScDu58sVOHLhIgctGJrejdsUFJ1mfksluYTROh10+pZiQ/cHcDtPfYkN9xqVu2FI501qUlMBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yi30gRKiDYDkgWQqWRKXHpnqZW4B4Olb6SnDDyZheiE=;
- b=DYm1OkESF00ii1gh6yKLUScyBNcWdiwTYx7rKBw2w+H0XwCKm/aoYtmb63rZVGXP44vDUqWtdgGW9abgc3mlZCmOcfG1LOWvIsgcTbvyRSnb/nID5gpz0mQ1zZG0Tn/fYvQV+LubMwVi9mLW+60W4xv656NXWhyN5HZu2BAAE6k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by DB9PR10MB6691.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3d1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.19; Mon, 12 Dec
- 2022 12:29:40 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f209:bc86:3574:2ae6]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f209:bc86:3574:2ae6%5]) with mapi id 15.20.5880.019; Mon, 12 Dec 2022
- 12:29:40 +0000
-Message-ID: <8dc209df-8b69-d4a5-a056-b5aacdf41a14@kontron.de>
-Date:   Mon, 12 Dec 2022 13:29:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add enable
- delay property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20221209083339.3780776-1-alexander.stein@ew.tq-group.com>
- <45157029.fMDQidcC6G@steina-w> <6da2330d-516e-7dc4-a000-1e68c7f7887e@denx.de>
- <2735716.BEx9A2HvPv@steina-w> <c6f2cc52-41c6-028f-4d3f-e8a4d5d73dcd@denx.de>
- <9f8b1c17-0bc5-ae99-b7b1-cb2f52f9310d@kontron.de>
- <5f61cc70-9501-ee4e-010f-5188f87e3ef1@linaro.org>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <5f61cc70-9501-ee4e-010f-5188f87e3ef1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BE1P281CA0069.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:b10:26::10) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+        with ESMTP id S232169AbiLLMdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Dec 2022 07:33:01 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF8910FCB;
+        Mon, 12 Dec 2022 04:32:51 -0800 (PST)
+Received: from p57b7793f.dip0.t-ipconnect.de ([87.183.121.63] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1p4hyl-00033o-D8; Mon, 12 Dec 2022 13:32:19 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Guo Ren <guoren@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 1/6] riscv: asm: alternative-macros: Introduce ALTERNATIVE_3() macro
+Date:   Mon, 12 Dec 2022 13:32:17 +0100
+Message-ID: <8194084.DvuYhMxLoT@phil>
+In-Reply-To: <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221212115505.36770-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221212115505.36770-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|DB9PR10MB6691:EE_
-X-MS-Office365-Filtering-Correlation-Id: b64ab946-a2f5-4681-d593-08dadc3c8a08
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lDb80Tih72nui3MEXUiWpJYWepyBvj1FydhdLSTQzI0lB7iVYcKkc1aUr0J3iiBsoQRqDBHC3Fi2feqyS0aUVJTQoiTGkmlUIEFrUjxMle6uXJg4Kef6DK5oEfLtrPskR7Iac+sEJ9AWtMUjKUx5VlGPbozNciH5yfz9dO+wdmx+5/u1ttEkj+Ac20mUyZ3XGlfHzRJ4smGMWKcvT+PrnfO0pr/4Ojwjg79ntNYMQELmzkjEDZc9Xdes6q6TPRCHbdoNCBmfYHj9T6HArB/W30t+SALvwbueuTpqDw1CIj+bKWiJi5wm4K6OrkbJxgOEEa/Z53SOtPzBew8QwWY/xVge5EQV1hFx72d/qvBpiyLBWnpkV2c8lxYzep1KbScRvvUkk6SaTPqel9mM+KLqRYubhK0OnzxA1rJswVfHWzPNhfS7rD84sk0VsqQwt4hXs0Dc1YZLxHFTfsJObRh+TldgwyiGEu6d5ZHCcge4bJGI7HOkGgQRzQSFyzx6MaTtEmuLIxxGbnomMYpkpcP0NT1+FuKZxNo1VHNSoxtFOs4BTy1uvMpIJuZamooabhxHPSt8vnNjpwyprrtdQAvAs1SJAqUKyEteeIbnOVAtor+jin18x2V3he99GcDLchdvHo9/Qvt95miZDRx9gvYXOv6eOJ5GlmY1g6tgCGgfjkrZF2QLLP6mQKAnoRt+QBkROOHmzNzyuVo5xRZlPbZns/HP81+AX+wj0xNnrq66aS8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(39860400002)(346002)(366004)(376002)(451199015)(36756003)(316002)(53546011)(6512007)(110136005)(186003)(6486002)(6666004)(54906003)(6506007)(31696002)(86362001)(66946007)(66476007)(38100700002)(66556008)(4326008)(8676002)(31686004)(2616005)(478600001)(41300700001)(5660300002)(2906002)(44832011)(7416002)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3ZRSjk5RW0yZFB6M21mNmZaTzR0TExkbVBOblZzS1F4OGZXMGYvcFJVVnk0?=
- =?utf-8?B?QVJGWktPMUpDdWpnRktMZUh5dHpmb0d0WnlsUnlTRVVNZW95cVVSTldiRUVv?=
- =?utf-8?B?dU9Wb0NPejhhcEZDNjhQeHdiT3Q0NzBxamxIWEt6djRkTnliZnFkdm4rSWV1?=
- =?utf-8?B?LzlBZkdpVTNwUXBTNldtTHhaYnBnZEMzbXd1N1J3ZDZvdXpBWEFKRWRYYm5q?=
- =?utf-8?B?NTZ5dXJ1TXhHNGNjenI0WEd6WFpWYUlNMlpadGdQRisrMlZabWNsTFU2SjhW?=
- =?utf-8?B?TU9ieVdtVFUzUXlYcjUvVUYxMG51TndyejBmNFJzZGF3OEFuQkV4Wkxpd1h6?=
- =?utf-8?B?Z25DMlg3RXlRb0VIY015TWYvSmdOcEoxSkZiVjFFS0tVRVAwWTZCcVVzVXFV?=
- =?utf-8?B?WXhmZjFBNXJRTjhTeVZEQWtDdm1PUVI2c0xwOVZubzAxV1l6aTNqY1ZyRWdL?=
- =?utf-8?B?N2NXU2pKTWY0TVA0cm4wYm5jdWp5MnJ4SjdCSjBabXhTYmdtYllEQWFaNGlp?=
- =?utf-8?B?K1FNTHNZWnVWdWFIdXBWb2w5VndqUGlpYytTcTMwd1FEWFdwM1NXbmhoYmxK?=
- =?utf-8?B?M0puYkRMVzc0TlZ2azhZNXUxUkcwcytUajV3MnU0aXdCRzRBbk9mYVAwTGVj?=
- =?utf-8?B?WDIxWitkMXVBcCtTZlFuOVZXY3hOaHVCdDZkNURqRlpzMjN1ZXY3RzJ1MWM5?=
- =?utf-8?B?NWdhNGhseHBvaEt2ZlF4MkZLQVo0NEEzSnovUFN3K3FZZGhnUi9HbDRDTlVF?=
- =?utf-8?B?dC9BRGNaeXUraFVHMElPM2FYcHN1c1BYTnM4NklzZk5WdDVZYUZvNTB6ZkJX?=
- =?utf-8?B?Y3ZaNGM4MUhNZWVUekx4MHNWK1BWWUNIY2laTURzSW5tTHVsc0JTYlViU2Nw?=
- =?utf-8?B?YWNtNjVXUVpNQUhqbEV3Uk1yS3hYVEdZKzh2TnFic3VpRUZrS3Vyak90TWxj?=
- =?utf-8?B?SGxaaE0zbmtHQUp5eitpUzREZzRyeS82R0tBZnV4WlJSdUVST3B3QmNwZk9R?=
- =?utf-8?B?NnQvWXNYUE04YjJoSHdJdVN1OFFVNlp6c0xVZEFJdmNlSmM3OXphTWlVcWRF?=
- =?utf-8?B?T0RQN0ZSWXpMOEhpdGZ6QVl0QTUxVkpyV3pKeDgxdVZUVXh3a25sVzdWd09B?=
- =?utf-8?B?MWxHU3Urc2tHRjhxSjlTb0JwS3NCVURibHRxWG14ZUxBQlZtR0JpQS9WekJu?=
- =?utf-8?B?T2Zncms0ZzBZbXVKcWFSb3JYNTUyVitWQ2lBYmRMQlZJbThOaHJ4NE9xb01o?=
- =?utf-8?B?SGJXdm5wREJ4R3JMbTQzSnFjT1VWNDVrT0x5b1RYWTQ2NGVJUlJ6eWdFTGJT?=
- =?utf-8?B?TFVnSS9uL2lhSkQ2VXozU09SNENxeEJFL2NTQUFrQ0tsdUlRaWw3anpWMW5t?=
- =?utf-8?B?dDdpZkEvS1YvT1g0cWkzbmtia3NRclpNdXlsYy9SMEE3VDlqZTVzOC9POHhI?=
- =?utf-8?B?SXozZXRCSG4wcXJiYjF3MHhJT3I4dlVqaTFlb1ovZ29mQjZtOEp6WjVoMlUr?=
- =?utf-8?B?Q09DV0toMlhwVTNSR1pKV3lmMzhZOWU1SWhmdk16STUzZnYwWG83K0FyVUlL?=
- =?utf-8?B?dmlzb1JkaWJ4V0tISk16OXErdlRNVnBESGdCajN5WTNJdEQ3OXdUd3dySWdR?=
- =?utf-8?B?WGppWTJoWkQzeU9VVTlicnhYQVRYd2prelYzQjdOWGlYcEt2eUF4enhUN0Jj?=
- =?utf-8?B?ZzNjS2MzaEg1Q1NQR01jbW5qZFNObGVCTVIyVExoVmVRcVVNNTAxOFVWQlJa?=
- =?utf-8?B?YW9PNVBtejhGUTBXc1lnd0N3SEpIWi9mbWVJdGdrYW5DcUhvZmllNGZwK01C?=
- =?utf-8?B?elFOdDllVDZtOGs3cnR4cW9mLzVSL0VPWWI3NFlkSHJwMnBvRFVrajZVb0sx?=
- =?utf-8?B?MG55Tll1OFR2NUgzQzVGclBLMGM4QUNkZ3NpeThteVA3bFVxRk1xdEdqK0JE?=
- =?utf-8?B?ZkMrNTE3bWp4aDVsV0Q4R1dndU40ZmVzM0ZETGNzSi9xQlBNYkFXd3M4eWVh?=
- =?utf-8?B?eVFXRyt0blhxWWhmbmhVM1Z5elk3MjFoR005RlNrREZ4ZkVlUFpIbWlENDhW?=
- =?utf-8?B?ZXdPcHlUK0xCNmlnbTIxcnpzL2hreTlkUi9BS3BmSm14TVpvQnI5TkNodUpl?=
- =?utf-8?B?bkdmbVR5bkxDYldISnYyMXBMRTFWQm1kS0xCN2h5RUIyZXhkVFV5SHBBYmY1?=
- =?utf-8?Q?xbwzkWCBaDIRj6/m7UK/8cbEMPNV1zZUsSTlknbvSLlt?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: b64ab946-a2f5-4681-d593-08dadc3c8a08
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2022 12:29:39.9736
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HPbbVi/gV4Y8ZmthCLKSKwl5KXMhoR5dS/baLaa1AfUu4hXQipWbIHsSpZqm3jTX9m5MQerhevYh7uPt8OY6ZcqORCF8WyfIRgZ4ZhDDQ5A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB6691
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.12.22 10:23, Krzysztof Kozlowski wrote:
-> On 12/12/2022 10:09, Frieder Schrempf wrote:
->>>>> This does seem like a hardware bug right there, can you double-check
->>>>> this with the hardware engineer ?
->>>>
->>>> Yep, checked with hardware engineer. An 470nF is attached, together
->>>> with an
->>>> open drain output and only the internal pull-up. So yes ~113ms rising
->>>> time
->>>> until 0.7 x VCC.
->>>
->>> I don't suppose you can have that capacitor reduced or better yet, some
->>> external pull up added, can you ?
->>
->> Actually our HW engineers have implemented a similar RC circuit to
->> provide a hardware delay for the EN signal. I think this is due to a
->> design note in the datasheet (see chapter 7.4.1) and therefore it's
->> probably widely spread.
+Am Montag, 12. Dezember 2022, 12:55:00 CET schrieb Prabhakar:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> If I read section 7.4.1 correctly, it would be enough to just add delay
-> Ten=1ms instead of the capacitor, right? And that would be
-> device-specific. But if one chooses the capacitor solution, it becomes
-> now board specific.
+> Introduce ALTERNATIVE_3() macro.
+> 
+> A vendor wants to replace an old_content, but another vendor has used
+> ALTERNATIVE_2() to patch its customized content at the same location.
+> In this case, this vendor can use macro ALTERNATIVE_3() and then replace
+> ALTERNATIVE_2() with ALTERNATIVE_3() to append its customized content.
+> 
+> While at it update comment above ALTERNATIVE_2() macro and make it generic
+> so that the comment holds good for any new addition of ALTERNATIVE_X()
+> macros.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Yes, seems like that's the case.
+Reviewed-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
+
+> ---
+> v4->v5
+> * Rebased the patch on top of Andrew's series (now in Palmers for next-branch)
+> * Updated comment for ALTERNATIVE_x() as suggested by Heiko
+> 
+> RFC v3 -> v4
+> * New patch
+> ---
+>  arch/riscv/include/asm/alternative-macros.h | 46 ++++++++++++++++++---
+>  1 file changed, 41 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
+> index 7226e2462584..a5b4691520da 100644
+> --- a/arch/riscv/include/asm/alternative-macros.h
+> +++ b/arch/riscv/include/asm/alternative-macros.h
+> @@ -50,8 +50,17 @@
+>  	ALT_NEW_CONTENT \vendor_id_2, \errata_id_2, \enable_2, \new_c_2
+>  .endm
+>  
+> +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
+> +				new_c_2, vendor_id_2, errata_id_2, enable_2,	\
+> +				new_c_3, vendor_id_3, errata_id_3, enable_3
+> +       ALTERNATIVE_CFG_2 \old_c, \new_c_1, \vendor_id_1, \errata_id_1, \enable_1,	\
+> +                                 \new_c_2, \vendor_id_2, \errata_id_2, \enable_2
+> +       ALT_NEW_CONTENT \vendor_id_3, \errata_id_3, \enable_3, \new_c_3
+> +.endm
+> +
+>  #define __ALTERNATIVE_CFG(...)		ALTERNATIVE_CFG __VA_ARGS__
+>  #define __ALTERNATIVE_CFG_2(...)	ALTERNATIVE_CFG_2 __VA_ARGS__
+> +#define __ALTERNATIVE_CFG_3(...)	ALTERNATIVE_CFG_3 __VA_ARGS__
+>  
+>  #else /* !__ASSEMBLY__ */
+>  
+> @@ -98,6 +107,13 @@
+>  	__ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1)	\
+>  	ALT_NEW_CONTENT(vendor_id_2, errata_id_2, enable_2, new_c_2)
+>  
+> +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
+> +				   new_c_2, vendor_id_2, errata_id_2, enable_2,	\
+> +				   new_c_3, vendor_id_3, errata_id_3, enable_3)	\
+> +	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, enable_1,	\
+> +                                   new_c_2, vendor_id_2, errata_id_2, enable_2)	\
+> +	ALT_NEW_CONTENT(vendor_id_3, errata_id_3, enable_3, new_c_3)
+> +
+>  #endif /* __ASSEMBLY__ */
+>  
+>  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, errata_id, CONFIG_k)	\
+> @@ -108,6 +124,13 @@
+>  	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),	\
+>  				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2))
+>  
+> +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
+> +				  new_c_2, vendor_id_2, errata_id_2, CONFIG_k_2,		\
+> +				  new_c_3, vendor_id_3, errata_id_3, CONFIG_k_3)		\
+> +	__ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, errata_id_1, IS_ENABLED(CONFIG_k_1),	\
+> +				   new_c_2, vendor_id_2, errata_id_2, IS_ENABLED(CONFIG_k_2),	\
+> +				   new_c_3, vendor_id_3, errata_id_3, IS_ENABLED(CONFIG_k_3))
+> +
+>  #else /* CONFIG_RISCV_ALTERNATIVE */
+>  #ifdef __ASSEMBLY__
+>  
+> @@ -152,15 +175,28 @@
+>  	_ALTERNATIVE_CFG(old_content, new_content, vendor_id, errata_id, CONFIG_k)
+>  
+>  /*
+> - * A vendor wants to replace an old_content, but another vendor has used
+> - * ALTERNATIVE() to patch its customized content at the same location. In
+> - * this case, this vendor can create a new macro ALTERNATIVE_2() based
+> - * on the following sample code and then replace ALTERNATIVE() with
+> - * ALTERNATIVE_2() to append its customized content.
+> + * ALTERNATIVE_x macros allow providing multiple replacement options
+> + * for an ALTERNATIVE code section. This is helpful if multiple
+> + * implementation variants for the same functionality exist for
+> + * different cpu cores.
+> + *
+> + * Usage:
+> + *   ALTERNATIVE_x(old_content,
+> + *      new_content1, vendor_id1, errata_id1, CONFIG_k1,
+> + *      new_content2, vendor_id2, errata_id2, CONFIG_k2,
+> + *      ...
+> + *      new_contentx, vendor_idx, errata_idx, CONFIG_kx)
+>   */
+>  #define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
+>  				   new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)		\
+>  	_ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,	\
+>  					new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2)
+>  
+> +#define ALTERNATIVE_3(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,		\
+> +				   new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2,		\
+> +				   new_content_3, vendor_id_3, errata_id_3, CONFIG_k_3)		\
+> +       _ALTERNATIVE_CFG_3(old_content, new_content_1, vendor_id_1, errata_id_1, CONFIG_k_1,	\
+> +                                       new_content_2, vendor_id_2, errata_id_2, CONFIG_k_2,	\
+> +                                       new_content_3, vendor_id_3, errata_id_3, CONFIG_k_3)
+> +
+>  #endif
+> 
+
+
+
+
